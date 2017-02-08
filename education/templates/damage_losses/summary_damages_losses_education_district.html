@@ -1,0 +1,773 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+<!-- Main content -->
+<main class="main" ng-app="dlEduDistrictApp" ng-controller="DlEduDistrictController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Education Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of Damages and Losses in the Education Sector in a District</span>
+        </li>
+
+
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <ul class='nav nav-wizard'>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Public Sector</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Private Sector</a></li>
+            <li id="li3"><a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a></li>
+
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="307"/>
+                        <col width="110" span="7"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead">
+                         <td style="padding-left:5px;"> Incident</td>
+                        <td colspan="2" style="background:#EFEFEF;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </td>
+                        <td colspan="2" style="padding-right:5px;text-align:right;">
+                            District
+                        </td>
+                        <td colspan="2" style="background:#EFEFEF;">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
+                                    class="form-control" required>
+
+                                <option value="" selected>Select district</option>
+
+
+                            </select>
+                        </td>
+                         <td colspan="3" style="background:#EFEFEF;">
+                            <button type="button" class="btn btn-block btn-info" ng-click="LoadData(district,incident)">Load
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr class="trheadc" height="17">
+                        <td rowspan="2" width="307" height="34">
+                            Facilities and Assets
+                        </td>
+                        <td rowspan="2" width="110">
+                            Total Number Affected
+                        </td>
+                        <td colspan="2" width="220">
+                            Total Number of Students Affected
+                        </td>
+                        <td rowspan="2" width="110">
+                            Total Damages (LKR)
+                        </td>
+                        <td colspan="2" width="220">
+                            Losses (LKR)
+                        </td>
+                        <td rowspan="2" width="110">
+                            Total Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="17">
+                        <td width="110" height="17">
+                            Male
+                        </td>
+                        <td width="110">
+                            Female
+                        </td>
+                        <td width="110">
+                            Year 1
+                        </td>
+                        <td width="110">
+                            Year 2
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">
+                            1AB, 1C
+                        </td>
+
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[0].ab1_1c">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[1].ab1_1c">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].ab1_1c">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].ab1_1c">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].ab1_1c">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].ab1_1c">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">Type 2
+                        </td>
+                        <td width="110" ng-bind="dugDfDistrict.type_2">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[0].type_2">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[1].type_2">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].type_2">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].type_2">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].type_2">
+
+                        </td>
+                         <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].type_2">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">Type 3
+                        </td>
+                        <td width="110" ng-bind="dugDfDistrict.type_3">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[0].type_3">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[1].type_3">
+
+                        </td>
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].type_3">
+                        </td>
+                         <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].type_3">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].type_3">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].type_3">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">Pirivena
+                        </td>
+                        <td width="110" ng-bind="dugDfDistrict.pirivena">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[0].pirivena">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[1].pirivena">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].pirivena">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].pirivena">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].pirivena">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].pirivena">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">Training Institutes
+                        </td>
+                        <td width="110" ng-bind="dugDfDistrict.training_institutes">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[0].training_institutes">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[1].training_institutes">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].training_institutes">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].training_institutes">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].training_institutes">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].training_institutes">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">NCOE, Training Colleges
+                        </td>
+                        <td width="110" ng-bind="dugDfDistrict.training_colleges">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[0].training_colleges">
+                        </td>
+                         <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[1].training_colleges">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].training_colleges">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].training_colleges">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].training_colleges">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].training_colleges">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">TC, CRC, RESC
+                        </td>
+                        <td width="110" ng-bind="dugDfDistrict.tc_crc_resc">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[0].tc_crc_resc">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNsaDistrict[1].tc_crc_resc">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].tc_crc_resc">
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].tc_crc_resc">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].tc_crc_resc">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].tc_crc_resc">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17">Ministry, Provincial, Zonal, Divisional Offices, NIE
+                        </td>
+                        <td width="110" ng-bind="dugDfDistrict.min_pzd_offices">
+                        </td>
+                        <td class="tdpa" width="110">
+
+                        </td>
+                        <td class="tdpa" width="110">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DugNdafDistrict[0].min_pzd_offices">
+                        </td>
+                         <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[0].min_pzd_offices">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[1].min_pzd_offices">
+
+                        </td>
+                        <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].min_pzd_offices">
+
+                        </td>
+                    </tr>
+                    <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
+                        <td class="tdpa" width="307" height="17"> Total
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DugDfDistrict[0].ab1_1c +
+                                                 data.education.Table_5.DugDfDistrict[0].type_2 +
+                                                 data.education.Table_5.DugDfDistrict[0].type_3 +
+                                                 data.education.Table_5.DugDfDistrict[0].pirivena +
+                                                 data.education.Table_5.DugDfDistrict[0].training_institutes +
+                                                 data.education.Table_5.DugDfDistrict[0].training_colleges +
+                                                 data.education.Table_5.DugDfDistrict[0].tc_crc_resc +
+                                                 data.education.Table_5.DugDfDistrict[0].min_pzd_offices">
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DugNsaDistrict[0].ab1_1c +
+                                                 data.education.Table_5.DugNsaDistrict[0].type_2 +
+                                                 data.education.Table_5.DugNsaDistrict[0].type_3 +
+                                                 data.education.Table_5.DugNsaDistrict[0].pirivena +
+                                                 data.education.Table_5.DugNsaDistrict[0].training_institutes +
+                                                 data.education.Table_5.DugNsaDistrict[0].training_colleges +
+                                                 data.education.Table_5.DugNsaDistrict[0].tc_crc_resc +
+                                                 data.education.Table_5.DugNsaDistrict[0].min_pzd_offices">
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DugNsaDistrict[1].ab1_1c +
+                                                 data.education.Table_5.DugNsaDistrict[1].type_2 +
+                                                 data.education.Table_5.DugNsaDistrict[1].type_3 +
+                                                 data.education.Table_5.DugNsaDistrict[1].pirivena +
+                                                 data.education.Table_5.DugNsaDistrict[1].training_institutes +
+                                                 data.education.Table_5.DugNsaDistrict[1].training_colleges +
+                                                 data.education.Table_5.DugNsaDistrict[1].tc_crc_resc +
+                                                 data.education.Table_5.DugNsaDistrict[1].min_pzd_offices">
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DugNdafDistrict[0].ab1_1c +
+                                                 data.education.Table_5.DugNdafDistrict[0].type_2 +
+                                                 data.education.Table_5.DugNdafDistrict[0].type_3 +
+                                                 data.education.Table_5.DugNdafDistrict[0].pirivena +
+                                                 data.education.Table_5.DugNdafDistrict[0].training_institutes +
+                                                 data.education.Table_5.DugNdafDistrict[0].training_colleges +
+                                                 data.education.Table_5.DugNdafDistrict[0].tc_crc_resc +
+                                                 data.education.Table_5.DugNdafDistrict[0].min_pzd_offices">
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefDistrict[0].ab1_1c +
+                                                 data.education.Table_5.DpefBefDistrict[0].type_2 +
+                                                 data.education.Table_5.DpefBefDistrict[0].type_3 +
+                                                 data.education.Table_5.DpefBefDistrict[0].pirivena +
+                                                 data.education.Table_5.DpefBefDistrict[0].training_institutes +
+                                                 data.education.Table_5.DpefBefDistrict[0].training_colleges +
+                                                 data.education.Table_5.DpefBefDistrict[0].tc_crc_resc +
+                                                 data.education.Table_5.DpefBefDistrict[0].min_pzd_offices">
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefDistrict[1].ab1_1c +
+                                                 data.education.Table_5.DpefBefDistrict[1].type_2 +
+                                                 data.education.Table_5.DpefBefDistrict[1].type_3 +
+                                                 data.education.Table_5.DpefBefDistrict[1].pirivena +
+                                                 data.education.Table_5.DpefBefDistrict[1].training_institutes +
+                                                 data.education.Table_5.DpefBefDistrict[1].training_colleges +
+                                                 data.education.Table_5.DpefBefDistrict[1].tc_crc_resc +
+                                                 data.education.Table_5.DpefBefDistrict[1].min_pzd_offices">
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefDistrict[2].ab1_1c +
+                                                 data.education.Table_5.DpefBefDistrict[2].type_2 +
+                                                 data.education.Table_5.DpefBefDistrict[2].type_3 +
+                                                 data.education.Table_5.DpefBefDistrict[2].pirivena +
+                                                 data.education.Table_5.DpefBefDistrict[2].training_institutes +
+                                                 data.education.Table_5.DpefBefDistrict[2].training_colleges +
+                                                 data.education.Table_5.DpefBefDistrict[2].tc_crc_resc +
+                                                 data.education.Table_5.DpefBefDistrict[2].min_pzd_offices">
+                            </td>
+                        </tr>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+
+                <br>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Private Sector Informations</a>
+                <br>
+            </div>
+            <div class="tab-pane fade" id="step2">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="307"/>
+                        <col width="110" span="7"/>
+                    </colgroup>
+                    <tbody>
+
+
+                    <tr class="trheadc" height="17">
+                        <td rowspan="2" width="307" height="34">
+                            Facilities and Assets
+                        </td>
+                        <td rowspan="2" width="110">
+                            Total Number Affected
+                        </td>
+                        <td colspan="2" width="220">
+                            Total Number of Students Affected
+                        </td>
+                        <td rowspan="2" width="110">
+                            Total Damages (LKR)
+                        </td>
+                        <td colspan="2" width="220">
+                            Losses (LKR)
+                        </td>
+                        <td rowspan="2" width="110">
+                            Total Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="17">
+                        <td width="110" height="17">
+                            Male
+                        </td>
+                        <td width="110">
+                            Female
+                        </td>
+                        <td width="110">
+                            Year 1
+                        </td>
+                        <td width="110">
+                            Year 2
+                        </td>
+                    </tr>
+                    <tr  height="17" >
+                        <td class="tdpa" width="307" height="17">
+                            Pre-schools
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[0].num_edu_facilities">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[0].male">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[0].female">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].tot_damages">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[0].num_edu_facilities + data.education.Table_5.DpefNaf[0].male + data.education.Table_5.DpefNaf[0].female + data.education.Table_5.DpefBefPreDistrict[0].tot_damages + data.education.Table_5.DpefBefPreDistrict[0].est_los_year_1 + data.education.Table_5.DpefBefPreDistrict[0].est_los_year_2">
+
+                        </td>
+                    </tr>
+                    <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Primary Schools
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[1].num_edu_facilities">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[1].male">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[1].female">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[1].num_edu_facilities + data.education.Table_5.DpefNaf[1].male + data.education.Table_5.DpefNaf[1].female + data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages + data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1 + data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2">
+
+                        </td>
+
+                    </tr>
+                    <!--<tr  height="17">-->
+                        <!--<td class="tdpa" width="307" height="17">-->
+                            <!--Primary Schools-->
+                        <!--</td>-->
+                        <!--<td width="110" ng-bind="data.education.Table_5.DpefNaf[1].num_edu_facilities">-->
+
+                        <!--</td>-->
+                        <!--<td width="110" ng-bind="data.education.Table_5.DpefNaf[1].male">-->
+
+                        <!--</td>-->
+                        <!--<td width="110" ng-bind="data.education.Table_5.DpefNaf[1].female">-->
+
+                        <!--</td>-->
+                        <!--<td width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].tot_damages">-->
+
+                        <!--</td>-->
+                        <!--<td width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_1">-->
+
+                        <!--</td>-->
+                        <!--<td width="110" ng-bind="data.education.Table_5.DpefBefPrimaryDistrict[0].est_los_year_2">-->
+
+                        <!--</td>-->
+                        <!--<td width="110" >-->
+<!--&gt;>>>>>> 75911d53319e95562c122bfe2295a3a534f7ac6d-->
+
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Secondary Schools
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[2].num_edu_facilities">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[2].male">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[2].female">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2">
+
+                        </td>
+
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[2].num_edu_facilities + data.education.Table_5.DpefNaf[2].male + data.education.Table_5.DpefNaf[2].female + data.education.Table_5.DpefBefSecondaryDistrict[0].tot_damages + data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_1 +  data.education.Table_5.DpefBefSecondaryDistrict[0].est_los_year_2">
+
+                    </tr>
+                     <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Universities
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[3].num_edu_facilities">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[3].male">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[3].female">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefUnvDistrict[0].tot_damages">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2">
+
+                        </td>
+
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[3].num_edu_facilities + data.education.Table_5.DpefNaf[3].male + data.education.Table_5.DpefNaf[3].female + data.education.Table_5.DpefBefUnvDistrict[0].tot_damages + data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_1 + data.education.Table_5.DpefBefUnvDistrict[0].est_los_year_2">
+
+                    </tr>
+                     <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Technical Institutes
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[4].num_edu_facilities">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[4].male">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[4].female">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefTechDistrict[0].tot_damages">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2">
+
+                        </td>
+
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[4].num_edu_facilities + data.education.Table_5.DpefNaf[4].male + data.education.Table_5.DpefNaf[4].female + data.education.Table_5.DpefBefTechDistrict[0].tot_damages + data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 + data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2"> </td>
+
+                    </tr>
+                    <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Others
+                        </td>
+
+                        <td width="110">
+                        </td>
+
+                        <td width="110">
+
+                        </td>
+                        <td width="110">
+
+                        </td>
+                        <td width="110">
+
+                        </td>
+                        <td width="110" >
+
+                        </td>
+                        <td width="110" >
+
+                        </td>
+                        <td width="110" >
+
+                        </td>
+                    </tr>
+                    <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Total
+                        </td>
+
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[0].num_edu_facilities +
+                                                 data.education.Table_5.DpefNaf[1].num_edu_facilities +
+                                                 data.education.Table_5.DpefNaf[2].num_edu_facilities +
+                                                 data.education.Table_5.DpefNaf[3].num_edu_facilities +
+                                                 data.education.Table_5.DpefNaf[4].num_edu_facilities +
+                                                 data.education.Table_5.DpefNaf[5].num_edu_facilities">
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[0].male +
+                                                 data.education.Table_5.DpefNaf[1].male +
+                                                 data.education.Table_5.DpefNaf[2].male +
+                                                 data.education.Table_5.DpefNaf[3].male +
+                                                 data.education.Table_5.DpefNaf[4].male +
+                                                 data.education.Table_5.DpefNaf[5].male">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefNaf[0].female +
+                                                 data.education.Table_5.DpefNaf[1].female +
+                                                 data.education.Table_5.DpefNaf[2].female +
+                                                 data.education.Table_5.DpefNaf[3].female +
+                                                 data.education.Table_5.DpefNaf[4].female +
+                                                 data.education.Table_5.DpefNaf[5].female">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefTechDistrict[0].tot_damages +
+                                                 data.education.Table_5.DpefBefTechDistrict[1].tot_damages +
+                                                 data.education.Table_5.DpefBefTechDistrict[2].tot_damages +
+                                                 data.education.Table_5.DpefBefTechDistrict[3].tot_damages +
+                                                 data.education.Table_5.DpefBefTechDistrict[4].tot_damages +
+                                                 data.education.Table_5.DpefBefTechDistrict[5].tot_damages">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefTechDistrict[0].est_los_year_1 +
+                                                 data.education.Table_5.DpefBefTechDistrict[1].est_los_year_1 +
+                                                 data.education.Table_5.DpefBefTechDistrict[2].est_los_year_1 +
+                                                 data.education.Table_5.DpefBefTechDistrict[3].est_los_year_1 +
+                                                 data.education.Table_5.DpefBefTechDistrict[4].est_los_year_1 +
+                                                 data.education.Table_5.DpefBefTechDistrict[5].est_los_year_1">
+
+                        </td>
+                        <td width="110" ng-bind="data.education.Table_5.DpefBefTechDistrict[0].est_los_year_2 +
+                                                 data.education.Table_5.DpefBefTechDistrict[1].est_los_year_2 +
+                                                 data.education.Table_5.DpefBefTechDistrict[2].est_los_year_2 +
+                                                 data.education.Table_5.DpefBefTechDistrict[3].est_los_year_2 +
+                                                 data.education.Table_5.DpefBefTechDistrict[4].est_los_year_2 +
+                                                 data.education.Table_5.DpefBefTechDistrict[5].est_los_year_2">
+
+                        </td>
+                        <td>
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+<br>
+                <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Total Damages and Losses</a>
+                <br>
+
+            </div>
+
+            <div class="tab-pane fade" id="step3">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="307"/>
+                        <col width="110" span="7"/>
+                    </colgroup>
+                    <tbody>
+
+
+                    <tr class="trheadc" height="17">
+                        <td rowspan="2" width="307" height="34">
+                            Ownership
+                        </td>
+                        <td colspan="2" rowspan="2" width="220">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="4" width="440">
+                            Losses (LKR)
+                        </td>
+                        <td width="110">
+                            Total
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="17">
+                        <td colspan="2" width="220" height="17">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="220">
+                            Year 2
+                        </td>
+                        <td width="110">
+                            (LKR)
+                        </td>
+                    </tr>
+                   <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Public Sector
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110">
+
+                        </td>
+
+                    </tr>
+                    <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Private Sector
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110">
+
+                        </td>
+
+                    </tr>
+                    <tr  height="17">
+                        <td class="tdpa" width="307" height="17">
+                            Total
+
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110" colspan="2">
+
+                        </td>
+                        <td width="110">
+
+
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+               
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

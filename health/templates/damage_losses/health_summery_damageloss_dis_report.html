@@ -1,0 +1,851 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlHealthSectorDistrictApp" ng-controller="DlHealthSectorDistrictController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Health Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 8: Summary of Damages and Losses in the Health sector in a District</span>
+        </li>
+
+    </ol>
+
+
+     <div class="container-fluid">
+
+          <div class="card">
+                            <div class="card-header">
+                                <strong>Search</strong>
+                                
+                            </div>
+                            <div class="card-block">
+                                
+
+                               
+
+                                <div class="row">
+								
+								
+
+                                    <div class="form-group col-sm-3">
+                                        <label for="ccmonth">Province  &nbsp;&nbsp;<label for="checkbox1">
+                                                    <input type="checkbox" id="checkbox1" name="checkbox1" value="option1"> All
+                                                </label></label>
+                                        <select class="form-control" id="ccmonth" style="margin-top:-7px;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-3">
+                                        <label for="ccyear">District</label>
+                                        <select class="form-control" id="ccyear">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-3">
+
+                                        <div class="form-group">
+                                            <label for="cvv">Disaster Type</label>
+                                            <select class="form-control" id="ccyear">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            
+                                        </select>
+                                        </div>
+
+                                    </div>
+									
+									 
+									<div class="col-sm-1">
+
+                                        <div class="form-group">
+                                            
+                                          <button type="button" class="btn btn-sm btn-primary" style="padding:7px;margin-top:28px;"><i class="fa fa-search"></i> Search</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!--/row-->
+                            </div>
+                        </div>  
+        <div>
+			    <ul class='nav nav-wizard'>
+				    <li class="active"><a href='#step1' data-toggle="tab">1 Public Sector</a></li>
+				    <li><a href='#step2' data-toggle="tab">2 Private Sector</a></li>
+                    <li><a href='#step3' data-toggle="tab">3 Total Damages and Losses</a></li>
+                
+				  </ul>
+				
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane active" id="step1">
+                            	 <table class="table table-bordered" style="width:98.3%;background:#E4E5E6;">
+    <colgroup>
+        <col width="264"/>
+        <col width="98" span="7"/>
+    </colgroup>
+    <tbody>
+       
+       
+        <tr height="20" class="trheadc">
+            <td rowspan="2" width="264" height="40" style="text-align:left;padding-left:5px;">
+                Facilities and Assets
+            </td>
+            <td rowspan="2" width="98">
+                Total Number Affected
+            </td>
+            <td colspan="2" width="196" style="text-align:center;">
+                Total Number of Patients Affected
+            </td>
+            <td rowspan="2" width="98">
+                Total Damages (LKR)
+            </td>
+            <td colspan="2" width="196" style="text-align:center;">
+                Losses (LKR)
+            </td>
+            <td rowspan="2" width="98">
+                Total Losses (LKR)
+            </td>
+        </tr>
+        <tr height="20" class="trsubc">
+            <td width="98" height="20">
+                Male
+            </td>
+            <td width="98">
+                Female
+            </td>
+            <td width="98">
+                Year 1
+            </td>
+            <td width="98">
+                Year 2
+            </td>
+        </tr>
+                            </tbody>
+                                </table>
+                                <div style="height:400px;overflow:auto;">		
+                                <table class="table table-bordered">
+        <tr height="20" class="trhead" >
+            <td width="264" height="20" style="padding-left:5px;">
+                Line Ministry Health System
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="trheadc">
+                Teaching Hospitals
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Provincial General Hospitals
+            </td>
+            <td width="98">
+            
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                District General Hospitals
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                <strong>  Total </strong>
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20" >
+            <td width="264" height="20" class="tdpa">
+                MOH
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Offices
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Others
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                <strong>  Total </strong>
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20" class="trheadc">
+            <td width="264" height="20">
+                Other Medical Facilities
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+            <td width="98">
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Base Hospital
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Divisional Hospital
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Rural Hospital
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Central Dispensary
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                PMCUs
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                PHCCs
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                MCHCs
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+             <strong>  Total </strong> 
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                <strong>  TOTAL </strong>
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+                                    </table>
+                                     <br>
+                            <a href='#step2' data-toggle="tab" class="btn btn-sm btn-info pull-right"> Fill Private Sector Informations</a>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="tab-pane" id="step2" style="height:350px;">
+                            <table class="table table-bordered" style="width:98.3%;">
+    <colgroup>
+        <col width="202"/>
+        <col width="90" span="7"/>
+    </colgroup>
+    <tbody>
+                            
+        <tr height="20" class="trheadc">
+            <td rowspan="2" width="264" height="40" style="text-align:left;padding-left:5px;">
+                Facilities and Assets
+            </td>
+            <td rowspan="2" width="98">
+                Total Number Affected
+            </td>
+            <td colspan="2" width="196" style="text-align:center;">
+                Total Number of Patients Affected
+            </td>
+            <td rowspan="2" width="98">
+                Total Damages (LKR)
+            </td>
+            <td colspan="2" width="196" style="text-align:center;">
+                Losses (LKR)
+            </td>
+            <td rowspan="2" width="98">
+                Total Losses (LKR)
+            </td>
+        </tr>
+        <tr height="20" class="trsubc">
+            <td width="98" height="20">
+                Male
+            </td>
+            <td width="98">
+                Female
+            </td>
+            <td width="98">
+                Year 1
+            </td>
+            <td width="98">
+                Year 2
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Private Clinics
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Others
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                <strong>  TOTAL </strong>
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+                                </tbody>
+                            </table>
+                             <br>
+                            <a href="#step3" id="3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Total Damages and Losses Informations</a>
+                            
+                        </div>
+                        
+                        
+                        <div class="tab-pane" id="step3" style="height:350px;">
+                       <table class="table table-bordered" style="width:98.3%;">
+    <colgroup>
+        <col width="202"/>
+        <col width="90" span="7"/>
+    </colgroup>
+    <tbody>     
+                             
+       
+        <tr height="20" class="trheadc">
+            <td rowspan="2" width="264" height="40" style="text-align:left;padding-left:5px;">
+                Ownership
+            </td>
+            <td colspan="2" rowspan="2" width="196">
+                Damages (LKR)
+            </td>
+            <td colspan="4" width="392" style="text-align:center;">
+                Losses (LKR)
+            </td>
+            <td rowspan="2" width="98">
+                Total (LKR)
+            </td>
+        </tr>
+        <tr height="20" class="trsubc">
+            <td colspan="2" width="196" height="20">
+                Year 1
+            </td>
+            <td colspan="2" width="196">
+                Year 2
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Public Sector
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                Private Sector
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+        <tr height="20">
+            <td width="264" height="20" class="tdpa">
+                <strong>    TOTAL </strong>
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td colspan="2" width="196">
+                
+            </td>
+            <td width="98">
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+                             <div class="pull-right" style="margin-right:15px;">
+<br>
+<button type="button" class="btn btn-info">Clear</button>
+<button type="button" class="btn btn-success">Submit</button>
+</div>	
+                            
+                        </div>
+                        
+                        
+            </div>
+            </div>
+            
+            
+ 
+
+                    </div>    
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

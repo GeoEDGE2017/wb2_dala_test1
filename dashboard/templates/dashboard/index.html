@@ -1,0 +1,229 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+{% load static %}
+    <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            
+            <li class="breadcrumb-item"><a href="#">Admin</a>
+            </li>
+            <li class="breadcrumb-item active">Dashboard</li>
+           
+           
+        </ol>
+
+
+        <div class="container-fluid">
+
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-primary">
+                            <div class="card-block pb-0">
+                               
+                                <h4 class="mb-0">12 billion</h4>
+                                <p>Assests in all sectors</p>
+                            </div>
+                            <div class="chart-wrapper px-1" style="height:40px;">
+                                <canvas id="card-chart1" class="chart" height="50"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-info">
+                            <div class="card-block pb-0">
+                               
+                                <h4 class="mb-0">0 Losses</h4>
+                                <p>in this month</p>
+                            </div>
+                            <div class="chart-wrapper px-1" style="height:40px;">
+                                <canvas id="card-chart2" class="chart" height="50"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-warning">
+                            <div class="card-block pb-0">
+                               
+                                <h4 class="mb-0">Last Inserted Data</h4>
+                                <p>Health - Baseline data</p>
+                            </div>
+                            <div class="chart-wrapper" style="height:40px;">
+                                <canvas id="card-chart3" class="chart" height="50"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-danger">
+                            <div class="card-block pb-0">
+                                
+                                <h4 class="mb-0">25 Million</h4>
+                                <p>Damages So far this year</p>
+                            </div>
+                            <div class="chart-wrapper px-1" style="height:40px;">
+                                <canvas id="card-chart4" class="chart" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                </div >
+                <!--/row-->
+
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-xs-12">
+                              <br>
+								<div class="row">
+                               <div class="col-md-3">
+							   <center>
+							   <a href="{% url 'dashboard:health_main' %}">
+							   <img src="{% static 'dashboard/img/health.png' %}" style="width:100px;"> 							   
+							   <p style="font-size:15px;margin-top:10px;">Health</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="{% url 'dashboard:education_main' %}">
+							   <img src="{% static 'dashboard/img/edu.png' %}" style="width:100px;">
+								<p style="font-size:15px;margin-top:10px;">Education</p>
+							  
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="#">
+							 <img src="{% static 'dashboard/img/industiry.png' %}" style="width:100px;">
+							   						   
+							   <p style="font-size:15px;margin-top:10px;">Industry and Services</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="{% url 'dashboard:mining_main' %}">
+						 <img src="{% static 'dashboard/img/mimning.png' %}" style="width:100px;">
+							   						   
+							  <p style="font-size:15px;margin-top:10px;">Minning</p>
+							   </a>
+							   </center>
+							   </div>
+							   </div>
+							   <div class="row" style="margin-top:20px;">
+							   <div class="col-md-3">
+							   <center>
+							   <a href="#">
+						 <img src="{% static 'dashboard/img/water.png' %}" style="width:100px;">
+							   							   
+							   <p style="font-size:15px;margin-top:10px;">Water Supply</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="#">
+					 <img src="{% static 'dashboard/img/tourism.png' %}" style="width:100px;">
+							  							   
+							   <p style="font-size:15px;margin-top:10px;">Tourism</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="#">
+ 				<img src="{% static 'dashboard/img/tele.png' %}" style="width:100px;">
+							  						   
+							   <p style="font-size:15px;margin-top:10px;">Telecommunications</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="{% url 'dashboard:othergov_main' %}">
+					<img src="{% static 'dashboard/img/other.png' %}" style="width:170px;">
+							  					   
+							   <p style="font-size:15px;margin-top:10px;">Other Government Services</p>
+							   </a>
+							   </center>
+							   </div>
+							   </div>
+							   <div class="row" style="margin-top:20px;">
+							   <div class="col-md-3">
+							   <center>
+							   <a href="#">
+					<img src="{% static 'dashboard/img/picture1.png' %}" style="width:100px;">
+							  					   
+							   <p style="font-size:15px;margin-top:10px;">Transportation</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							    <div class="col-md-3">
+							   <center>
+							   <a href="#">
+					<img src="{% static 'dashboard/img/picture2.png' %}" style="width:100px;">
+							  					   
+							   <p style="font-size:15px;margin-top:10px;">Power Supply</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="#">
+					<img src="{% static 'dashboard/img/picture3.png' %}" style="width:100px;">
+							  					   
+							   <p style="font-size:15px;margin-top:10px;">Agriculture</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   <div class="col-md-3">
+							   <center>
+							   <a href="#">
+					<img src="{% static 'dashboard/img/picture4.png' %}" style="width:100px;">
+							  					   
+							   <p style="font-size:15px;margin-top:10px;">Housing</p>
+							   </a>
+							   </center>
+							   </div>
+							   
+							   
+							   
+							   </div>
+                            </div>
+                            <div class="col-xs-7">
+                                
+                            </div>
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+                <!--/.card-->
+
+            </div >
+
+        </div>
+        <!-- /.conainer-fluid -->
+    </main>
+    
+    {% endblock content %}
+

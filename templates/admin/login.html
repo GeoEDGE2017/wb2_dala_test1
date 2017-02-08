@@ -1,0 +1,113 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+{% load static %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}" /><link rel="stylesheet" type="text/css" href='{% static "dashboard/css/font-awesome.min.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "dashboard/css/simple-line-icons.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "dashboard/css/style.css" %}'>
+
+<style>
+.login #container {width:0;border:none;background:transparent;}
+</style>
+<!--script>
+$(document).ready(function(){
+    $('input[type=submit]').addClass('btn btn-info');
+});
+</script-->
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block usertools %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+
+
+<div  id="content-main" style="margin-top:-100px;">
+
+<div class="container d-table">
+        <div class="d-100vh-va-middle">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card-group">
+                        <div class="card p-2">
+                            <div class="card-block">
+                                <h1>Login</h1>
+                                <p class="text-muted">Sign In to your account</p>
+
+{% if form.errors and not form.non_field_errors %}
+<p class="errornote">
+{% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+</p>
+{% endif %}
+
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p class="errornote">
+    {{ error }}
+</p>
+{% endfor %}
+{% endif %}
+
+
+                                <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+  <div class="form-row">
+    {{ form.username.errors }}
+    {{ form.username.label_tag }} {{ form.username }}
+  </div>
+  <div class="form-row">
+    {{ form.password.errors }}
+    {{ form.password.label_tag }} {{ form.password }}
+    <input type="hidden" name="next" value="{{ next }}" />
+  </div>
+  {% url 'admin_password_reset' as password_reset_url %}
+  {% if password_reset_url %}
+  <div class="password-reset-link">
+    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
+  </div>
+  {% endif %}
+  <div class="submit-row">
+    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
+  </div>
+</form>
+                            </div>
+                        </div>
+                        <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%">
+                            <div class="card-block text-xs-center">
+                                <div>
+                                     <img src="{% static 'dashboard/img/logo.png' %}" class="img-avatar" style="width:200px;" alt="">
+<br><br>
+                                    <p style="font-size:20px;"><strong>Sri Lanka Post Disaster Damage and Loss Reporting System</strong></p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
+</div>
+{% endblock %}

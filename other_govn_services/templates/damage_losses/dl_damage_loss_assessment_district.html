@@ -1,0 +1,218 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+  
+   
+    
+  });
+  
+
+</script>
+<!-- Main content -->
+<main class="main" ng-app="dlAssessmentDistrictApp"
+      ng-controller="dlAssessmentDistrictController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Other Government Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damage and Loss Assessment in a District </span>
+        </li>
+
+
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="183"/>
+                        <col width="108" span="4"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead" height="19">
+                       
+                        <td style="padding-left:5px;" height="19" width="171">
+                            Incident
+                        </td>
+                        <td colspan="1" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </td>
+                         <td style="padding-left:5px;" height="19" width="171">
+                            District
+                        </td>
+                        <td colspan="1" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                            <select id="selectbasic" name="selectbasic" class="form-control"
+                                    style="width:100%;font-weight:400;">
+                                <option value="" selected="true">Select a District</option>
+                                {% for district in districts %}
+                                <option value={{ district.id }}>{{ district.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td rowspan="2" width="183" height="40" style="width:22%;">
+                            Asset Ownership
+                        </td>
+                        <td rowspan="2" width="108">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="216">
+                            Losses (LKR)
+                        </td>
+                        <td rowspan="2" width="108">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td width="108" height="20" style="width:20.2%;">
+                            Year 1
+                        </td>
+                        <td width="108">
+                            Year 2
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <tbody ng-repeat="(key, value) in districtData.other_govn_services.Table_3">
+                    <tr>
+                        <td class="tdpa" ng-bind="key" width="80" style="width:22%;"></td>
+                        <td width="108" style="width:25.5%;">
+                        </td>
+                        <td width="108" style="width:20.2%;">
+                        </td>
+                        <td width="108">
+                        </td>
+                        <td width="108"></td>
+
+                    </tr>
+                    <tr ng-repeat="(key, value) in value">
+                        <td class="tdpa" ng-bind="key" width="80"></td>
+                        <td ng-bind="value.DlagdDmgDistrict[0].damages" width="108">
+                        </td>
+                        <td ng-bind="value.DlagdLossesDistrict[0].los_year1" width="108">
+                        </td>
+                        <td ng-bind="value.DlagdLossesDistrict[0].los_year2" width="108">
+                        </td>
+                        <td width="108" style="width:9%;">
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+
+
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+                <br><br><br>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+<script>
+/*var button = document.getElementById('insert');
+var table = document.getElementById('tb1');
+
+button.onclick = function() {
+    var position=Math.round(table.rows.length / 4);
+    var row = table.insertRow(position);
+    row.innerHTML = '<td width="264"><button id="delete" class="btn btn-sm btn-danger btn-circle" ><i class="fa fa-minus"></i></button><input id="textinput" placeholder="Name" style="width:90%;float:right;" name="textinput" type="text" placeholder="" class="form-control input-md"><span></span></td>'+'<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></td>'+ '<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"> </td>'+'<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></td>'+'<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></td>';
+
+	$("#delete").click(function(){
+ $(this).parent().parent().remove();
+});
+}
+*/
+
+
+
+
+
+
+
+
+</script>
+<script>
+/*var button = document.getElementById('insert4');
+var table = document.getElementById('tb1');
+
+button.onclick = function() {
+    var position=Math.round(table.rows.length / 2);
+    var row = table.insertRow(position);
+    row.innerHTML = '<td width="264"><button id="delete1" class="btn btn-sm btn-danger btn-circle" ><i class="fa fa-minus"></i></button><input id="textinput" placeholder="Name" style="width:90%;float:right;" name="textinput" type="text" placeholder="" class="form-control input-md"></td>'+'<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></td>'+ '<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"> </td>'+'<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></td>'+'<td width="98"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></td>';
+
+	$("#delete1").click(function(){
+ $(this).parent().parent().remove();
+});
+}*/
+
+
+
+
+
+
+</script>
+<script>
+/*var button = document.getElementById('insert2');
+var table = document.getElementById('tb1');
+
+button.onclick = function() {
+    var position=Math.round(table.rows.length / 1);
+    var row = table.insertRow(position);
+    row.innerHTML = '<td width="264"><button id="delete2" class="btn btn-sm btn-danger btn-circle" ><i class="fa fa-minus"></i></button><input id="textinput" style="width:90%;float:right;" placeholder="Name" name="textinput" type="text" placeholder="" class="form-control input-md"></td>'+'<td colspan="4" width="392"><input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"></td>';
+	$("#delete2").click(function(){
+ $(this).parent().parent().remove();
+});
+}*/
+
+
+
+
+
+
+</script>
+{% endblock content %}

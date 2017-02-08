@@ -1,0 +1,73 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+  <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            
+            <li class="breadcrumb-item"><a href="#">Admin</a>
+            </li>
+            <li class="breadcrumb-item active">Reports</li>
+
+           
+        </ol>
+
+
+        <div class="container-fluid">
+
+         <div class="row">
+                  
+					
+					                    <div class="col-sm-6 col-md-4">
+										<a href="{% url 'reports:health_summery_damageloss_dis_report' %}" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+							<h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the health sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+						</a>
+                    </div>
+                    <!--/.col-->
+					
+					  <div class="col-sm-6 col-md-4">
+										<a href="{% url 'reports:health_summery_damageloss_province_report' %}" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+							<h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the health sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+						</a>
+                    </div>
+                    <!--/.col-->
+					
+					  <div class="col-sm-6 col-md-4">
+										<a href="{% url 'reports:health_summery_damageloss_national_report' %}" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+							<h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the health sector nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+						</a>
+                    </div>
+                    <!--/.col-->
+					
+                </div>   
+
+        </div>
+        <!-- /.conainer-fluid -->
+    </main>
+{% endblock content %}

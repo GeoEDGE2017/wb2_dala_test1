@@ -1,0 +1,212 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<style>
+a:hover {text-decoration:none;}
+.chart {
+    background: #eee;
+    padding: 3px;
+}
+
+.chart div {
+  width: 0;
+  transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 5px;
+  color: white;
+  box-shadow: 2px 2px 2px #666;
+}
+</style>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script>
+angular.module('myApp', []).
+   //camel cased directive name
+   //in your HTML, this will be named as bars-chart
+   directive('barsChart', function ($parse) {
+     //explicitly creating a directive definition variable
+     //this may look verbose but is good for clarification purposes
+     //in real life you'd want to simply return the object {...}
+     var directiveDefinitionObject = {
+         //We restrict its use to an element
+         //as usually  <bars-chart> is semantically
+         //more understandable
+         restrict: 'E',
+         //this is important,
+         //we don't want to overwrite our directive declaration
+         //in the HTML mark-up
+         replace: false,
+         //our data source would be an array
+         //passed thru chart-data attribute
+         scope: {data: '=chartData'},
+         link: function (scope, element, attrs) {
+           //in D3, any selection[0] contains the group
+           //selection[0][0] is the DOM node
+           //but we won't need that this time
+           var chart = d3.select(element[0]);
+           //to our original directive markup bars-chart
+           //we add a div with out chart stling and bind each
+           //data entry to the chart
+            chart.append("div").attr("class", "chart")
+             .selectAll('div')
+             .data(scope.data).enter().append("div")
+             .transition().ease("elastic")
+             .style("width", function(d) { return d + "%"; })
+             .text(function(d) { return d + "%"; });
+           //a little of magic: setting it's width based
+           //on the data value (d) 
+           //and text all with a smooth transition
+         } 
+      };
+      return directiveDefinitionObject;
+   });
+
+function Ctrl($scope) {
+    $scope.myData = [10,20,30,40,60, 80, 20, 50];
+}
+
+</script>
+ <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            
+            <li class="breadcrumb-item"><a href="#">Admin</a>
+            </li>
+            <li class="breadcrumb-item active">Health Sector</li>
+
+           
+        </ol>
+
+
+         <div class="container-fluid">
+
+			 <div class="card">
+                            <div class="card-header">
+                                <strong>Search</strong>
+                                
+                            </div>
+                            <div class="card-block">
+                                
+
+                               
+
+                                <div class="row">
+								
+								 
+
+                                    <div class="form-group col-sm-3">
+                                        <label for="ccmonth">Province  &nbsp;&nbsp;<label for="checkbox1">
+                                                    <input type="checkbox" id="checkbox1" name="checkbox1" value="option1"> All
+                                                </label></label>
+                                        <select class="form-control" id="ccmonth" style="margin-top:-7px;">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-3">
+                                        <label for="ccyear">District</label>
+                                        <select class="form-control" id="ccyear">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-3">
+
+                                        <div class="form-group">
+                                            <label for="cvv">Disaster Type</label>
+                                            <select class="form-control" id="ccyear">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            
+                                        </select>
+                                        </div>
+
+                                    </div>
+									
+									
+									<div class="col-sm-2">
+
+                                        <div class="form-group">
+                                            
+                                          <button type="button" class="btn btn-sm btn-primary" style="padding:7px;margin-top:28px;"><i class="fa fa-search"></i> Search</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!--/row-->
+                            </div>
+                        </div>  
+
+            <div class="animated fadeIn">
+                <div class="card-columns col-2">
+                    <div class="card">
+                        <div class="card-header">
+                             Chart
+                            
+                        </div>
+                        <div class="card-block">
+                            <div class="chart-wrapper">
+                              <div ng-app="myApp" ng-controller="Ctrl">
+    <bars-chart chart-data="myData"  ></bars-chart>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            Chart
+                           
+                        </div>
+                        <div class="card-block">
+                            <div class="chart-wrapper">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            Chart
+                            
+                        </div>
+                        <div class="card-block">
+                            <div class="chart-wrapper">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                           Chart
+                            
+                        </div>
+                        <div class="card-block">
+                            <div class="chart-wrapper">
+                                
+                            </div>
+                        </div>
+                    </div>
+                  
+                  
+                </div>
+            </div>
+
+        </div>
+        <!-- /.conainer-fluid -->
+        <!-- /.conainer-fluid -->
+    </main>
+{% endblock content %}

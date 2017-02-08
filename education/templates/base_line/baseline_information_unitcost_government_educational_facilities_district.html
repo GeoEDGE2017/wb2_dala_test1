@@ -1,0 +1,617 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+  
+   
+    
+  });
+  
+
+</script>
+<!-- Main content -->
+
+<main class="main" ng-app="bsUcostGeduFacilitiesApp" ng-controller="BsUcostGeduFacilitiesController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Education Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline Information of Unit Cost of Government Educational Facilities in a District</span>
+        </li>
+
+
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <div class="col-sm-12" style="padding:0;" ng-form name="form_bs_edu_untcost_dst">
+            <div class="card">
+
+                <div class="card-block">
+
+
+                    <table class="table table-bordered">
+
+                        <colgroup>
+                            <col width="280"/>
+                            <col width="136" span="8"/>
+                        </colgroup>
+                        <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            </td>
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_edu_untcost_dst.district.$error.required">
+                                    Please Select District
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_edu_untcost_dst.baselineDate.$error.required">
+                                    Please Select Date
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead">
+                            <td style="padding-left:5px;"> Name of District</td>
+
+                            <td colspan="3" style="background:#EFEFEF;">
+                                <select ng-model="district" id="selectbasic" name="district" class="form-control"
+                                        style="font-weight:400;" required>
+                                    <option value="">-- Select --</option>
+                                    {% for district in districts %}
+                                    <option value="{{ district.id }}">{{ district.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td colspan="2" style="padding-right:5px;text-align:right;">
+                                Year/Month
+                            </td>
+                            <td colspan="3" style="background:#EFEFEF;">
+                                <input name="textinput" type="text" placeholder="mm/yy" id="datepicker"
+                                       ng-model="baselineDate" class="form-control input-md" required>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="17">
+                            <td rowspan="2" width="320" height="65">
+                                Particulars
+                            </td>
+                            <td colspan="8" width="1088">
+                                Values (in LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="48">
+                            <td width="136" height="48">
+                                1AB, 1C
+                            </td>
+                            <td width="136">
+                                Type 2
+                            </td>
+                            <td width="136">
+                                Type 3
+                            </td>
+                            <td width="136">
+                                Pirivena
+                            </td>
+                            <td width="136">
+                                Training Institutes
+                            </td>
+                            <td width="136">
+                                NCOE, Training Colleges
+                            </td>
+                            <td width="136">
+                                TC, CRC, RESC
+                            </td>
+                            <td width="136">
+                                Ministry, Provincial, Zonal, Divisional Offices
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="boxscroll1" style="height:400px;overflow:auto;">
+
+                        <table class="table table-bordered">
+                        <colgroup>
+                            <col width="280"/>
+                            <col width="136" span="8"/>
+                        </colgroup>
+                            <tbody>
+                            <tr class="trheadc" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    Average Replacement Cost
+                                </td>
+                            </tr>
+                            <tr class="trhead" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    <span style="margin-left:3%;">Structures (LKR/sqm)</span>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bugArcStructure in bsUcostGeduFacilities.education.Table_2.BugArcStructures"
+                                height="17">
+                                <td ng-bind="bugArcStructure.particulars" ng-model="bugArcStructure.particulars"
+                                    class="tdpa" width="280" height="17">
+
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcStructure.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+
+
+                            <tr class="trhead" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    <span style="margin-left:3%;"> Supplies and Materials (LKR/Unit)</span>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bugArcSupply in bsUcostGeduFacilities.education.Table_2.BugArcSupplies"
+                                height="17">
+                                <td ng-bind="bugArcSupply.particulars" ng-if="$index < 5" class="tdpa"
+                                    width="280" height="17">
+                                </td>
+                                <td width="136" ng-if="$index > 4">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BugArcSupplies', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input ng-if="bugArcSupply.particulars != 'TOTAL'"
+                                           ng-model="bugArcSupply.total_number"
+                                           type="text" placeholder="" style="width:80%;float:right;"
+                                           class="form-control input-md">
+                                    <span ng-bind="bugArcSupply.total_number"
+                                          ng-if="bugArcSupply.particulars == 'TOTAL'">
+                                    </span>
+                                    {% endverbatim %}
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcSupply.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="20">
+                                <td colspan="10" width="280" height="17">
+                                    Others 
+                                    <button ng-click="insertAsset('BugArcSupplies')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="trhead" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    <span style="margin-left:3%;">  Equipment (LKR/Unit)</span>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bugArcEquipment in bsUcostGeduFacilities.education.Table_2.BugArcEquipment"
+                                height="17">
+                                <td ng-bind="bugArcEquipment.particulars" ng-if="$index < 5" class="tdpa"
+                                    width="280" height="17">
+                                </td>
+                                <td width="136" ng-if="$index > 4">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BugArcEquipment', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input ng-if="bugArcEquipment.particulars != 'TOTAL'"
+                                           ng-model="bugArcEquipment.total_number"
+                                           type="text" placeholder="" style="width:80%;float:right;"
+                                           class="form-control input-md">
+                                    <span ng-bind="bugArcEquipment.total_number"
+                                          ng-if="bugArcEquipment.particulars == 'TOTAL'">
+                                    </span>
+                                    {% endverbatim %}
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArcEquipment.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="20">
+                                <td colspan="10" width="280" height="17">
+                                    Others 
+                                    <button ng-click="insertAsset('BugArcEquipment')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr class="trheadc" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    Average Repair Cost
+                                </td>
+                            </tr>
+                            <tr class="trhead" height="25">
+                                <td colspan="9" width="1368" height="25">
+                                    <span style="margin-left:3%;">   Structures (LKR/sqm) </span>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bugArpcStructure in bsUcostGeduFacilities.education.Table_2.BugArpcStructures"
+                                height="17">
+                                <td class="tdpa" ng-bind="bugArpcStructure.particulars"
+                                    ng-model="bugArpcStructure.particulars" width="280" height="17">
+
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcStructure.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+
+                            <tr class="trhead" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    <span style="margin-left:3%;"> Supplies and Materials (LKR/Unit) </span>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bugArpcSupply in bsUcostGeduFacilities.education.Table_2.BugArpcSupplies"
+                                height="17">
+                                <td ng-bind="bugArpcSupply.particulars" ng-if="$index < 5" class="tdpa"
+                                    width="280" height="17">
+                                </td>
+                                <td width="136" ng-if="$index > 4">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BugArpcSupplies', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input ng-if="bugArpcSupply.particulars != 'TOTAL'"
+                                           ng-model="bugArpcSupply.total_number"
+                                           type="text" placeholder="" style="width:80%;float:right;"
+                                           class="form-control input-md" >
+                                    <span ng-bind="bugArpcSupply.total_number"
+                                          ng-if="bugArpcSupply.particulars == 'TOTAL'">
+                                    </span>
+                                    {% endverbatim %}
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcSupply.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="20">
+                                <td colspan="10" width="280" height="17">
+                                    Others 
+                                    <button ng-click="insertAsset('BugArpcSupplies')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="trhead" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    <span style="margin-left:3%;"> Equipment (LKR/Unit) </span>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bugArpcEquipment in bsUcostGeduFacilities.education.Table_2.BugArpcEquipment"
+                                height="17">
+                                <td ng-bind="bugArpcEquipment.particulars" ng-if="$index < 5" class="tdpa"
+                                    width="280" height="17">
+                                </td>
+                                <td width="136" ng-if="$index > 4">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BugArpcEquipment', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input ng-if="bugArpcEquipment.particulars != 'TOTAL'"
+                                           ng-model="bugArpcEquipment.total_number"
+                                           type="text" placeholder="" style="width:80%;float:right;"
+                                           class="form-control input-md">
+                                    <span ng-bind="bugArpcEquipment.total_number"
+                                          ng-if="bugArpcEquipment.particulars == 'TOTAL'">
+                                    </span>
+                                    {% endverbatim %}
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugArpcEquipment.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="20">
+                                <td colspan="10" width="280" height="17">
+                                    Others 
+                                    <button ng-click="insertAsset('BugArpcEquipment')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr class="trheadc" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    Average Fees/ Revenue (LKR)
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bugAfr in bsUcostGeduFacilities.education.Table_2.BugAfr" height="17">
+                                <td class="tdpa" ng-bind="bugAfr.particulars" ng-model="bugAfr.particulars" width="280"
+                                    height="17">
+
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugAfr.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="17">
+                                <td colspan="9" width="1368" height="17">
+                                    Construction/ Repair Period (in months)
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="bugCrp in bsUcostGeduFacilities.education.Table_2.BugCrp" height="17">
+                                <td class="tdpa" ng-bind="bugCrp.particulars" ng-model="bugCrp.particulars" width="280"
+                                    height="17">
+
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.ab1_1c" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.type_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.type_3" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.pirivena" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.training_institutes" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.training_colleges" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.tc_crc_resc" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="bugCrp.min_pzd_offices" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="bsHsDataEdit(form_bs_edu_untcost_dst)" ng-if="!is_edit"
+                                class="btn btn-success">Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-click="saveBsData(form_bs_edu_untcost_dst)" class="btn btn-success">
+                            Submit
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}
+

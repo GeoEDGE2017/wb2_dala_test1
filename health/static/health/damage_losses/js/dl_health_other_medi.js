@@ -8,7 +8,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
  $scope.dl_data={};
  $scope.is_edit = false;
  $scope.submitted = false;
- $scope.Districts=[];
+ $scope.Districts = [];
  $scope.is_valid_data = true;
 
     var init_data = {

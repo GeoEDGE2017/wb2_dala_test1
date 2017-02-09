@@ -3101,7 +3101,7 @@ class DugNsaNational(models.Model):
         db_table = 'dug_nsa_national'
 
 
-# transportation_rail
+# transport_rail
 
 class DlMovingAstLoss(models.Model):
     asset = models.CharField(max_length=255, blank=True, null=True)

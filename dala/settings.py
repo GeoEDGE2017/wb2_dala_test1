@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'other_govn_services',
     # 'other_govn_services.damage_losses',
     'mining',
-    'transportation_rail',
+    'transport_rail',
     'transport_water',
 
 ]
@@ -93,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {
-            'options': '-c search_path=health,public,other_government,education,mining,transportation_rail,transport_water'
+            'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water'
         },
         'NAME': 'dala_2017',
         'USER': 'postgres',
@@ -1233,7 +1233,7 @@ TABLE_PROPERTY_MAPPER = {
         },
 
     },
-    'transportation_rail': {
+    'transport_rail': {
         'Table_1': {
 
             'BsMovingAst':

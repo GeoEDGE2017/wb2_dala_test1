@@ -914,7 +914,7 @@ class BcsStructure(models.Model):
         db_table = 'bcs_structure'
 
 
-# transportation_rail
+# transport_rail
 class Company(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
 

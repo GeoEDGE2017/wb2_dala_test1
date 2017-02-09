@@ -4,4 +4,6 @@ from django.apps import AppConfig
 
 
 class DamageLossesConfig(AppConfig):
-    name = 'damage_losses'
+    name = 'health.damage_losses'
+    verbose_name = 'health.damage_losses'
+    label = 'health.damage_losses'

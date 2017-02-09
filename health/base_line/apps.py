@@ -4,4 +4,6 @@ from django.apps import AppConfig
 
 
 class BaseLineConfig(AppConfig):
-    name = 'base_line'
+    name = 'health.base_line'
+    verbose_name = 'health.base_line'
+    label = 'health.base_line'

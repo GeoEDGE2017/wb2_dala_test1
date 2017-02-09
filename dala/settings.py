@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'education',
     # 'db_tools'
     'other_govn_services',
-    #'other_govn_services.damage_losses',
     'mining',
 ]
 

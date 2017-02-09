@@ -285,6 +285,7 @@ def dl_save_data(request):
 
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
                 record_exist = sub_app_session.objects.filter(**filter_fields)
+                print record_exist
 
                 if not record_exist:
 
@@ -316,7 +317,7 @@ def dl_save_data(request):
                                 print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
                                 model_object.save()
 
-                    dl_session = DlSessionKeys(**filter_fields)
+                    dl_session = sub_app_session(**filter_fields)
                     dl_session.date = todate
                     dl_session.save()
 

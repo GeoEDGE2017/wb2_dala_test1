@@ -3,7 +3,7 @@ var app = angular.module('dlIncomeRailCompanyApp', ['underscore'])
 app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, _) {
     $scope.district;
     $scope.incident;
-
+    $scope.company;
     $scope.dlDate;
     $scope.bs_data={};
 
@@ -17,29 +17,33 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 
 
     var init_data = {
-        'transportation_rail' : {
+        'transport_rail' : {
             'Table_2': {
                 'DlMovingAstLoss' :[{
                     asset : 'Wagon',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Engine',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Others',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 },
                 {
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }],
                 'DlEquipMachineryAstLoss' : [{
                     asset : 'Signal equipment',
@@ -51,75 +55,90 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Vehicles',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Computers',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Furniture',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Others',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 },
                 {
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }],
                 'DlMatSuppliesAstLoss' : [{
                     asset : 'Fuel (Liters)',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Others',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 },
                 {
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }],
                 'DlStructuresAstLoss' : [{
                     asset : 'Tracks',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Tunnels',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
+
                 }, {
                     asset : 'Bridges',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset : 'Culverts',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 },{
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }],
                 'DlBuildingAstLoss': [{
                     asset: '1 floor',
@@ -130,6 +149,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset: '2-3 floors',
                     no_of_tot_destroyed : null,
@@ -139,6 +159,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 }, {
                     asset: 'More than 3 floors',
                     no_of_tot_destroyed : null,
@@ -148,6 +169,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
+                    company_id:$scope.company,
                 },
                 {
                     asset: 'Total',
@@ -158,6 +180,8 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
+                    company_id:$scope.company,
+
                 },
                 ],
             }
@@ -191,6 +215,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                         },
+                   'sector':'transport_rail',
                    'table_name': 'Table_1'
                 }),
                 dataType: 'json',
@@ -209,17 +234,32 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
         }
     }
 
+    $scope.getCompany = function(){
+
+    $scope.company;
+
+    }
+
     $scope.saveDlData = function(form) {
+
         $scope.submitted = true;
         if(form.$valid){
+        if($scope.company){
+
+        var array = $scope.dlIncomeRailCompany.transport_rail.Table_2;
+            var details = _.map(array, function(model_array) {
+                _.map(model_array, function(model) {
+                    model.company_id = parseInt($scope.company);
+                });
+            });
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
-                contentType: 'application/json; charset=utf-8',
+               contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
                     'table_data': $scope.dlIncomeRailCompany,
                     'com_data': {
-                        'district': $scope.district.district__id,
+                       'district': $scope.district.district__id,
                         'incident' : $scope.incident,
                     },
                     'is_edit':$scope.is_edit
@@ -228,16 +268,17 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
             }).then(function successCallback(response) {
                 if(response.data == 'False')
                     $scope.is_valid_data = false;
-                else
+               else
                     $("#modal-container-239453").modal('show');
             }, function errorCallback(response) {
                 console.log(response);
             });
+            }
         }
     }
 
      $scope.getTotal = function(property) {
-        var array = $scope.dlIncomeRailCompany.transportation_rail.Table_2.DlBuildingAstLoss;
+        var array = $scope.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss;
         var cumulative = null;
         var sums = _.map(array, function(obj) {
             cumulative += obj[property];

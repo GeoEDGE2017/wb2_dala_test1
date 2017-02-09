@@ -145,7 +145,7 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
 
         $scope.submitted = true;
         if(form.$valid) {
-            var array = $scope.bsIncomeRailCompany.transportation_rail.Table_1;
+            var array = $scope.bsIncomeRailCompany.transport_rail.Table_1;
             var details = _.map(array, function(model_array) {
                 _.map(model_array, function(model) {
                     model.company_id = parseInt($scope.selectedCompany.id);
@@ -208,7 +208,7 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.fetchCompanies = function() {
         $http({
             method: "POST",
-            url: "/transportation_rail/base_line/fetch_company_entities",
+            url: "/transport_rail/base_line/fetch_company_entities",
         }).success(function(data) {
             console.log(data);
             $scope.companies = data;

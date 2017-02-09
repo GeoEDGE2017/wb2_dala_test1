@@ -92,16 +92,16 @@
                         <td class="trhead" width="281" height="20">
                             Company
                         </td>
-                        <td colspan="4" width="300">
-                            <select id="selectbasic" name="company" ng-model="company"
+                        <td colspan="7" width="300">
+                            <select id="selectbasic" name="company"ng-change="getCompany()" ng-model="company"
                                         class="form-control"
                                         style="width:100%;font-weight:400;" required>
 
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
+                                <option value="" selected="true">Select an Company</option>
+                                {% for company in company %}
 
-                                <option value={{incident.id}}>{{incident.disaster_type.name}}
-                                    {{incident.reported_date_time}}
+                                <option value={{company.id}}>{{company.name}}
+
                                 </option>
                                 {% endfor %}
 

@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     # 'other_govn_services.damage_losses',
     'mining',
     'transport_rail',
+    'transport_rail.base_line',
+    'transport_rail.damage_losses',
     'transport_water',
 
 ]

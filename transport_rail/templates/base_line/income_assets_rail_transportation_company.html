@@ -1,0 +1,443 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+<!-- Main content -->
+<main class="main" ng-app="bsIncomeRailCompanyApp" ng-controller="bsIncomeRailCompanyController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Rail sub Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Income and assets in the rail transportation company</span>
+        </li>
+
+
+    </ol>
+
+
+    <div ng-init="fetchCompanies()" class="container-fluid">
+
+        <ul class='nav nav-wizard'>
+            <li class="active"><a href='#step1' data-toggle="tab">1 - Average Annual Income of Rail Company</a></li>
+            <li><a href='#step2' data-toggle="tab">2 - Buildings</a></li>
+
+        </ul>
+
+        <div id="myTabContent" class="tab-content" ng-form name="form_income_rail_trns_company">
+            <div class="tab-pane active" id="step1">
+
+
+                <table class="table table-bordered">
+
+                    <colgroup>
+                        <col width="281"/>
+                        <col width="170"/>
+                        <col width="130"/>
+                        <col width="125"/>
+                        <col width="112"/>
+                        <col width="85"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_income_rail_trns_company.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_income_rail_trns_company.baselineDate.$error.required">
+                                Please select Date
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="19">
+                        <td style="padding-left:5px;" height="19" width="171">
+                            District
+                        </td>
+                        <td colspan="1" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                            <select id="selectbasic" name="district" class="form-control" ng-model="district"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select a District</option>
+                                {% for district in districts %}
+                                <option value={{ district.id }}>{{ district.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td style="padding-left:5px;" height="19" width="171">
+                            Year/Month
+                        </td>
+                        <td colspan="2" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                            <input name="baselineDate" type="text" placeholder="" id="datepicker"
+                                   ng-model="baselineDate" class="form-control input-md" required>
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="trhead" width="281" height="20">
+                            Name of Railroad Company
+                        </td>
+                        <td colspan="2" width="622">
+                            <select ng-options="company as company.name for company in companies track by company.id"
+                                    name="company" id="ccyear" ng-model="selectedCompany" class="form-control" required>
+                                <option value="" selected>Select Company</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_income_rail_trns_company.company.$error.required">
+                                Please select Company
+                            </span>
+                        </td>
+                        <td width="">
+                            <a id="" href="#modal-container-218029" role="button" data-toggle="modal"
+                               class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add</a>
+                        </td>
+                        <td width="">
+                            <a id="" href="#modal-container-218028" role="button" data-toggle="modal"
+                               class="btn  btn-block btn-primary btn-warning">Edit</a>
+                        </td>
+                    </tr>
+                    <tr height="34">
+                        <td class="trhead" width="281" height="34">
+                            Av. Annual Income of Rail Company (LKR/Year)
+                        </td>
+                        <td colspan="5">
+                            <input id="textinput"
+                                   ng-model="bsIncomeRailCompany.transportation_rail.Table_1.BsIncAstRailIncome[0].annual_income"
+                                   name="textinput" type="number" placeholder="" class="form-control input-md">
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td rowspan="2" width="281" height="40">
+                            Total Number of Employees of Rail Companies
+                        </td>
+                        <td width="170">
+                            Male
+                        </td>
+                        <td width="130">
+                            Female
+                        </td>
+                        <td colspan="3" width="322">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td width="170" height="20">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md"
+                                   ng-model="bsIncomeRailCompany.transportation_rail.Table_1.BsTotEmpRailCompny[0].no_of_male">
+                        </td>
+                        <td width="130">
+                            <input id="textinput"
+                                   ng-model="bsIncomeRailCompany.transportation_rail.Table_1.BsTotEmpRailCompny[0].no_of_female"
+                                   name="textinput" type="number" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td colspan="3" width="322"
+                            ng-bind="bsIncomeRailCompany.transportation_rail.Table_1.BsTotEmpRailCompny[0].total_emp"
+                            ng-value="bsIncomeRailCompany.transportation_rail.Table_1.BsTotEmpRailCompny[0].total_emp = bsIncomeRailCompany.transportation_rail.Table_1.BsTotEmpRailCompny[0].no_of_male + bsIncomeRailCompany.transportation_rail.Table_1.BsTotEmpRailCompny[0].no_of_female">
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td width="281" height="20">
+                            Rail Transportation Assets
+                        </td>
+                        <td colspan="2" width="300">
+                            Average Replacement Cost (LKR/Unit)
+                        </td>
+                        <td colspan="3" width="322">
+                            Average Repair Cost (LKR/Unit)
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="boxscroll" style="height:400px;overflow:auto;cursor:auto;">
+                    <table class="table table-bordered">
+                        <tr class="trheadc" height="20">
+                            <td width="320" height="20">
+                                Moving Assets
+                            </td>
+                            <td colspan="2">
+
+                            </td>
+                            <td colspan="3">
+
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="bsMovingAst in bsIncomeRailCompany.transportation_rail.Table_1.BsMovingAst">
+                            <td class="tdpa" width="281" height="20" ng-bind="bsMovingAst.asset">
+                            </td>
+                            <td colspan="2">
+                                <input ng-model="bsMovingAst.avg_replace_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td colspan="3">
+                                <input ng-model="bsMovingAst.avg_repair_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="281" height="20">
+                                Equipment and machinery
+                            </td>
+                            <td colspan="2" width="300">
+                                (LKR/Unit)
+                            </td>
+                            <td colspan="3" width="322">
+                                (LKR/Unit)
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="bsEquipMachineryAst in bsIncomeRailCompany.transportation_rail.Table_1.BsEquipMachineryAst">
+                            <td class="tdpa" width="281" height="20" ng-bind="bsEquipMachineryAst.asset">
+                                Signal equipment
+                            </td>
+                            <td colspan="2">
+                                <input ng-model="bsEquipMachineryAst.avg_replace_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td colspan="3">
+                                <input ng-model="bsEquipMachineryAst.avg_repair_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="281" height="20">
+                                Materials and supplies
+                            </td>
+                            <td colspan="2" width="300">
+                                (LKR/Unit)
+                            </td>
+                            <td colspan="3" width="322">
+                                (LKR/Unit)
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="bsMatSuppliesAst in bsIncomeRailCompany.transportation_rail.Table_1.BsMatSuppliesAst">
+                            <td class="tdpa" width="281" height="20" ng-bind="bsMatSuppliesAst.asset">
+                            </td>
+                            <td colspan="2">
+                                <input ng-model="bsMatSuppliesAst.avg_replace_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+
+                            <td colspan="3" ng-if="bsMatSuppliesAst.asset !='Fuel (per Liter)'">
+                                <input ng-model="bsMatSuppliesAst.avg_repair_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="281" height="20">
+                                Structures (in Meter)
+                            </td>
+                            <td colspan="2" width="300">
+                                (LKR/Meter)
+                            </td>
+                            <td colspan="3" width="322">
+                                (LKR/Meter)
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="bsStructuresAst in bsIncomeRailCompany.transportation_rail.Table_1.BsStructuresAst">
+                            <td class="tdpa" width="281" height="20" ng-bind="bsStructuresAst.asset">
+                            </td>
+                            <td colspan="2">
+                                <input ng-model="bsStructuresAst.avg_replace_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td colspan="3">
+                                <input ng-model="bsStructuresAst.avg_repair_cost" id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br>
+                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Buildings Informations</a>
+                <br>
+            </div>
+            <div class="tab-pane fade" id="step2">
+
+                <table class="table table-bordered">
+
+                    <tr class="trheadc" height="20">
+                        <td rowspan="2" width="281" height="40">
+                            Buildings
+                        </td>
+                        <td colspan="2" rowspan="2" width="300">
+                            Average Replacement Cost (LKR/sqm)
+                        </td>
+                        <td colspan="3" width="322">
+                            Average Repair Cost (LKR/sqm)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td width="125" height="20">
+                            Roof
+                        </td>
+                        <td width="112">
+                            Wall
+                        </td>
+                        <td width="85">
+                            Floor
+                        </td>
+                    </tr>
+                    <tr height="20"
+                        ng-repeat="bsBuildingAst in bsIncomeRailCompany.transportation_rail.Table_1.BsBuildingAst">
+                        <td class="tdpa" width="281" height="20" ng-bind="bsBuildingAst.asset">
+                        </td>
+                        <td colspan="2">
+                            <input ng-model="bsBuildingAst.avg_replace_cost" id="textinput" name="textinput"
+                                   type="number" placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="125">
+                            <input ng-model="bsBuildingAst.avg_repair_cost_roof" id="textinput" name="textinput"
+                                   type="number" placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="112">
+                            <input ng-model="bsBuildingAst.avg_repair_cost_wall" id="textinput" name="textinput"
+                                   type="number" placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="85">
+                            <input ng-model="bsBuildingAst.avg_repair_cost_floor" id="textinput" name="textinput"
+                                   type="number" placeholder="" class="form-control input-md">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="editDlData(form_income_rail_trns_company)" ng-if="!is_edit"
+                            class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="submit" class="btn btn-success" ng-click="saveBsData(form_income_rail_trns_company)">
+                        Submit
+                    </button>
+                </div>
+                <br><br><br>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+
+
+    </div>
+    <!-- add model -->
+    <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;" ng-form name="form_income_rail_trns_company_add">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Add Railroad Company
+                    </h5>
+                </div>
+                <div colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                    <span class="arrow_box" ng-show="form_income_rail_trns_company_add.company_name.$error.required">
+                        Please enter Company name
+                    </span>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" ng-model="new_company.name" name="company_name" type="text"
+                                   placeholder=""
+                                   class="form-control input-md" required>
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            ng-click="saveCompany(form_income_rail_trns_company_add)">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- edit model -->
+    <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Edit Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

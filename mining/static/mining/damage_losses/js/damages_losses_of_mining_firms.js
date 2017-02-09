@@ -518,8 +518,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     }
 
 
-$scope.fetchFirms = function()
-{
+$scope.fetchFirms = function(){
 
     $scope.new_firm.district = $scope.district;
 

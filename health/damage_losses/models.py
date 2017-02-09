@@ -3100,3 +3100,88 @@ class DugNsaNational(models.Model):
         managed = False
         db_table = 'dug_nsa_national'
 
+
+# transportation_rail
+
+class DlMovingAstLoss(models.Model):
+    asset = models.CharField(max_length=255, blank=True, null=True)
+    no_of_tot_destroyed = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged = models.FloatField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.TimeField(blank=True, null=True)
+    created_date = models.TimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_moving_ast_loss'
+
+
+class DlEquipMachineryAstLoss(models.Model):
+    asset = models.CharField(max_length=255, blank=True, null=True)
+    no_of_tot_destroyed = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged = models.FloatField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.TimeField(blank=True, null=True)
+    created_date = models.TimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_equip_machinery_ast_loss'
+
+
+class DlMatSuppliesAstLoss(models.Model):
+    asset = models.CharField(max_length=255, blank=True, null=True)
+    no_of_tot_destroyed = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged = models.FloatField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.TimeField(blank=True, null=True)
+    created_date = models.TimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_mat_supplies_ast_loss'
+
+
+class DlStructuresAstLoss(models.Model):
+    asset = models.CharField(max_length=255, blank=True, null=True)
+    no_of_tot_destroyed = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged = models.FloatField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.TimeField(blank=True, null=True)
+    created_date = models.TimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_structures_ast_loss'
+
+
+class DlBuildingAstLoss(models.Model):
+    asset = models.CharField(max_length=255, blank=True, null=True)
+    no_of_tot_destroyed = models.FloatField(blank=True, null=True)
+    no_of_tot_destroyed_sqr_meters = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged_roof = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged_wall = models.FloatField(blank=True, null=True)
+    no_of_partially_damaged_floor = models.FloatField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.TimeField(blank=True, null=True)
+    created_date = models.TimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_building_ast_loss'

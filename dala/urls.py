@@ -45,7 +45,11 @@ urlpatterns = [
     url(r'^dl_fetch_district_disagtn$', views.dl_fetch_district_disagtn, name='dl_fetch_district_disagtn'),
     url(r'^dl_fetch_total_data$', views.dl_fetch_total_data, name='dl_fetch_total_data'),
 
+    # transportation_rail
+    url(r'^transportation_rail/', include('transportation_rail.urls', namespace='transportation_rail')),
 
+     # transport-water
+     url(r'^transport_water/', include('transport_water.urls', namespace='transport_water')),
 
 
 

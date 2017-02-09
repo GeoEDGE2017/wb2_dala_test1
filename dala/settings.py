@@ -48,8 +48,11 @@ INSTALLED_APPS = [
     'education',
     # 'db_tools'
     'other_govn_services',
-    #'other_govn_services.damage_losses',
+    # 'other_govn_services.damage_losses',
     'mining',
+    'transportation_rail',
+    'transport_water',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -90,9 +93,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {
-            'options': '-c search_path=health,public,other_government,education,mining'
+            'options': '-c search_path=health,public,other_government,education,mining,transportation_rail,transport_water'
         },
-        'NAME': 'dala_new',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
 
     },
@@ -182,7 +185,9 @@ TABLE_PROPERTY_MAPPER = {
                                    'mat_child_health_clinics', 'id'],
                 'BucOmarcCrpm': ['particulars', 'base_hospital', 'divisional_hospital',
                                  'rural_hospital',
-                                 'central_dispensary', 'pri_med_cunits', 'pri_health_ccenters'                                 'mat_child_health_clinics', 'id'],
+                                 'central_dispensary', 'pri_med_cunits',
+                                 'pri_health_ccenters'                                 'mat_child_health_clinics',
+                                 'id'],
                 'BucOmarcStructure': ['particulars', 'base_hospital', 'divisional_hospital',
                                       'rural_hospital',
                                       'central_dispensary', 'pri_med_cunits', 'pri_health_ccenters',
@@ -656,15 +661,15 @@ TABLE_PROPERTY_MAPPER = {
                 'department__name'
             ]
         },
-        'Table_4':{
-        'DlagdDmgProvince': [
-            'damages',
-        ],
-        'DlagdLossesProvince': [
-            'los_year1',
-            'los_year2',
-            'total_losses',
-        ]
+        'Table_4': {
+            'DlagdDmgProvince': [
+                'damages',
+            ],
+            'DlagdLossesProvince': [
+                'los_year1',
+                'los_year2',
+                'total_losses',
+            ]
         },
         'Table_5': {
             'DlagdDmgNational': [
@@ -713,56 +718,75 @@ TABLE_PROPERTY_MAPPER = {
     },
     'education': {
         'Table_3': {
-            'DugDfNdf':[
-                'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugDfNdf': [
+                'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc',
+                'min_pzd_offices', 'total'
             ],
-            'DugDfNsa':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'total'
+            'DugDfNsa': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'total'
             ],
-            'DugNdafStructure':[
-                'particulars','ab1_1c','type_2','type_3','pirivena','training_institutes','training_colleges','tc_crc_resc','min_pzd_offices','total'
+            'DugNdafStructure': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugNdafSupplies':[
-                'particulars','ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugNdafSupplies': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugNdafEquipment':[
-                'particulars', 'ab1_1c', 'type_2','type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugNdafEquipment': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugPdfaNpdf':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugPdfaNpdf': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugPdfaNsa':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugPdfaNsa': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugNpdatStructure':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugNpdatStructure': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugNpdatSupplies':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugNpdatSupplies': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugNpdatEquipment':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugNpdatEquipment': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugLosFi':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugLosFi': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugLosCud':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugLosCud': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugLosHoc':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugLosHoc': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
-            'DugLosOue':[
-                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc', 'min_pzd_offices', 'total'
+            'DugLosOue': [
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
         },
         'Table_4': {
-            'DpefNaf':['edu_facilities', 'num_edu_facilities', 'male', 'female'],
-            'DpefBefPreSchool':['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefPrmSchool':['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefSecSchool':['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefUnv':['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefTechInst':['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1', 'est_los_year_2', 'tot_los']
+            'DpefNaf': ['edu_facilities', 'num_edu_facilities', 'male', 'female'],
+            'DpefBefPreSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
+            'DpefBefPrmSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
+            'DpefBefSecSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
+            'DpefBefUnv': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1',
+                           'est_los_year_2', 'tot_los'],
+            'DpefBefTechInst': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                'est_los_year_1', 'est_los_year_2', 'tot_los']
         },
         'Table_2': {
             'BugArcStructures': [
@@ -1163,10 +1187,87 @@ TABLE_PROPERTY_MAPPER = {
                 'tc_crc_resc',
 
             ],
-        },
+            'transport_water': {
+                'Table_1': {
+                    'BsAstWaterWcrafts': ['assets',
+                                          'public',
+                                          'private',
+                                          'avg_replace_cost',
+                                          'avg_repair_cost',
+                                          'id'],
+                    'BsAstWaterEquipment': ['assets',
+                                            'public',
+                                            'private',
+                                            'avg_replace_cost',
+                                            'avg_repair_cost',
+                                            'id'],
+                    'BsAstWaterMaterials': ['assets',
+                                            'public',
+                                            'private',
+                                            'avg_replace_cost',
+                                            'avg_repair_cost',
+                                            'id'],
+                    'BsAstWaterStructures': ['assets',
+                                             'public',
+                                             'private',
+                                             'avg_replace_cost',
+                                             'avg_repair_cost',
+                                             'id'],
+                    'BsAstWaterBuildings': ['assets',
+                                            'public',
+                                            'private',
+                                            'avg_repair_cost_roof',
+                                            'avg_repair_cost_wall',
+                                            'avg_repair_cost_floor',
+                                            'id'],
+                    'BsAstWaterEmployment': ['assets',
+                                             'public',
+                                             'private',
+                                             'male',
+                                             'female',
+                                             'total',
+                                             'id'],
+                }
+            }
 
         },
-    }
+
+    },
+    'transportation_rail': {
+        'Table_1': {
+
+            'BsMovingAst':
+                ['asset',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsEquipMachineryAst':
+                ['asset',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsMatSuppliesAst':
+                ['asset',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsStructuresAst':
+                ['asset',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsBuildingAst': [
+                'asset',
+                'avg_replace_cost',
+                'avg_repair_cost_roof',
+                'avg_repair_cost_wall',
+                'avg_repair_cost_floor',
+                'id'
+            ],
+        }
+
+    },
+}
 
 AUTH_USER_MODEL = 'users.MyUser'
 

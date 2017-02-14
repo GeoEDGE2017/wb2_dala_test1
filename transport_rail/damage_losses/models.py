@@ -18,7 +18,8 @@ class DlSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_session_keys'
+        db_table = 'transport_rail.dl_session_keys'
+        app_label = 'transport_rail.damage_losses'
 
 
 class DlMovingAstLoss(models.Model):

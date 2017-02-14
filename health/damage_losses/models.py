@@ -3,7 +3,7 @@ from django.db import models
 from settings.models import District, Province
 from incidents.models import IncidentReport
 from health.base_line.models import Firm, PreSchools, PrimarySchools, Universities, TechInstitutes, SecondarySchools
-from health.base_line.models import Firm, Department
+from health.base_line.models import Firm,Department
 from incidents.models import IncidentReport
 
 

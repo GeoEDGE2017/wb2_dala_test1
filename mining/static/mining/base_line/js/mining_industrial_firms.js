@@ -208,7 +208,8 @@ $scope.fetchFirms = function()
     url: "/fetch_entities",
     data: angular.toJson({
     'district':  $scope.district,
-    'model': 'Firm'
+    'model': 'Firm',
+    'sector':'mining'
      }),
     }).success(function(data) {
 

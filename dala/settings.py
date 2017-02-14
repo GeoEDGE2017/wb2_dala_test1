@@ -49,11 +49,18 @@ INSTALLED_APPS = [
     # 'db_tools'
     'other_govn_services',
     # 'other_govn_services.damage_losses',
+    'mining.base_line',
+    'mining.damage_losses',
     'mining',
     'transport_rail',
     'transport_rail.base_line',
     'transport_rail.damage_losses',
     'transport_water',
+    'transport_water.base_line',
+    'transport_water.damage_losses',
+    'transport_land',
+    'transport_land.base_line',
+    'transport_land.damage_losses',
 
 ]
 
@@ -95,7 +102,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {
-            'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water'
+            'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
         },
         'NAME': 'dala_new',
         'USER': 'postgres',
@@ -1266,9 +1273,143 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_cost_floor',
                 'id'
             ],
+        },
+        'Table_3': {
+
+            'TotDmgProvince':
+                ['tot_damages',
+                 ],
+
+
         }
 
     },
+    'transport_water': {
+        'Table_1': {
+            'BsAstWaterWcrafts':
+                ['assets ',
+                 'public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            # 'BsAstWaterEquipment':
+            #     ['assets ',
+            #      'public',
+            #      'private',
+            #      'avg_replace_cost',
+            #      'avg_repair_cost',
+            #      'id'],
+            # 'BsAstWaterMaterials':
+            #     ['assets ',
+            #      'public',
+            #      'private',
+            #      'avg_replace_cost',
+            #      'avg_repair_cost',
+            #      'id'],
+
+        }
+
+    },
+    'transport_land': {
+        'Table_3': {
+            'BiaGacLandStructure':
+                ['asset',
+                 'avg_repair_cost',
+                 'id'],
+            'BiaGacLandPbuilding':
+                ['asset',
+                 'avg_repair_cost_floor_1',
+                 'avg_repair_cost_floor_2_3',
+                 'avg_repair_cost_floor_more_3',
+                 'id'],
+            'BiaGacLandOequipment':
+                ['asset',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+
+            'BiaGacLandMachinery':
+                ['asset',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+        },
+        'Table_2': {
+            'BsGtlAstBcompanies':
+                ['bus_companies',
+                 'public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsGtlAstPvehicles':
+                ['private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'private_vehicles',
+                 'id'],
+            'BsGtlAstTcompanies':
+                ['public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'taxi_companies',
+                 'id'],
+            'BsGtlAstTrcompanies':
+                ['public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'truck_companies',
+                 'id'],
+            'BsGtlAstTucompanies':
+                ['public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'tuk_companies',
+                 'id'],
+
+        },
+        'Table_1': {
+            'BsRbuRclassificattion':
+                ['road_classification',
+                 'avg_replace_concrete',
+                 'avg_replace_asphalt',
+                 'avg_replace_gravel',
+                 'avg_replace_earth',
+                 'avg_repair_concrete',
+                 'avg_repair_asphalt',
+                 'avg_repair_gravel',
+                 'avg_repair_earth',
+                 'id'],
+            'BsRbuTbridges':
+                ['type_bridges',
+                 'avg_replace_2_lanes',
+                 'avg_replace_multi_lanes',
+                 'avg_repair_2_lanes',
+                 'avg_repair_multi_lanes',
+                 'id'],
+            'BsRbuTrwalls':
+                ['type_retain_walls',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsRbuTculverts':
+                ['type_culverts',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsRbuTdrains':
+                ['type_drains',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+
+        }
+
+    }
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

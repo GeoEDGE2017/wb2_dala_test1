@@ -51,6 +51,10 @@ urlpatterns = [
      # transport-water
      url(r'^transport_water/', include('transport_water.urls', namespace='transport_water')),
 
+     # transport-land
+     url(r'^transport_land/', include('transport_land.urls', namespace='transport_land')),
+
+
 
 
 

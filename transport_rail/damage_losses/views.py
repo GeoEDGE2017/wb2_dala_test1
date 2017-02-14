@@ -27,3 +27,33 @@ def dl_rail_trnspt_cmpny(request):
         'company': company,
     }
     return render(request, 'damage_losses/damages_losses_rail_transportation_company.html', context)
+
+
+def dl_rail_trnspt_dis_summary(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    filtered_incidents = fetch_data['incidents']
+    company = Company.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': filtered_incidents,
+        'company': company,
+    }
+    return render(request, 'damage_losses/summary_damages_losses_rail_transportation.html', context)
+
+
+def dl_rail_trans_nat_summary(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    filtered_incidents = fetch_data['incidents']
+    company = Company.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': filtered_incidents,
+        'company': company,
+    }
+    return render(request, 'damage_losses/summary_damages_losses_the_rail_transportation_nationwide.html', context)

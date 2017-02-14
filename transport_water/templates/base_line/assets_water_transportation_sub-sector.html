@@ -110,7 +110,7 @@
                             class="tdpa">
 
                         </td>
-                        <td width="98" ng-if="$index > 2">
+                        <td width="98" ng-if="$index > 1">
                             {% verbatim %}
                             <button id="delete" ng-click="removeItem('BsAstWaterWcrafts', $index)"
                                     class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
@@ -287,10 +287,14 @@
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
-                        <td width="98" colspan="2">
+                        <td width="98" colspan="2" ng-if="bsAstWaterMaterials.assets !='Fuel (per Liter)'">
                             <input ng-model="bsAstWaterMaterials.avg_repair_cost"
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
+                        </td>
+
+                        <td width="98" class="tdpa" colspan="2" ng-if="bsAstWaterMaterials.assets =='Fuel (per Liter)'">
+
                         </td>
 
 

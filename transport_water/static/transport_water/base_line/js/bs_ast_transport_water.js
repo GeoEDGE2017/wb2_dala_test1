@@ -192,8 +192,7 @@ else if(table == 'BsAstWaterStructures'){
 }
 
 
-
-$scope.saveBsData = function(form)
+$scope.saveBsData = function()
 {
 $scope.submitted = true;
 console.log($scope.district + '-' + $scope.bs_date );
@@ -220,6 +219,29 @@ console.log($scope.district + '-' + $scope.bs_date );
 
 }
 
+$scope.bsHsDataEdit = function()
+{
+$scope.submitted = true;
 
+   $scope.is_edit = true;
+    $http({
+    method: "POST",
+    url: "/bs_fetch_edit_data",
+    data: angular.toJson({'table_name': 'Table_1', 'sector': 'transport_water', 'com_data': {'district': $scope.district,
+          'bs_date': $scope.bs_date} }),
+    }).success(function(data) {
+
+    console.log(data);
+    $scope.bsAstTransWater = data;
+    })
+
+
+}
+
+$scope.cancelEdit = function()
+{
+    $scope.is_edit = false;
+    $scope.bsAstTransWater = init_data;
+}
 
 })

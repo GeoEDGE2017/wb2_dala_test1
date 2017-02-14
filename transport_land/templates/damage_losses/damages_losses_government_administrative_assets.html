@@ -1,0 +1,634 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlGovnAdmnAsetsApp" ng-controller="dlGovnAdmnAsetsController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Damages and losses to government agency in charge of land transportation</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_dl_govn_admn_asets">
+        <div>
+            <ul class='nav nav-wizard'>
+                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
+                <li id="li2"><a href='#step2' data-toggle="tab">2 Partially Damaged </a></li>
+                <li id="li3"><a href='#step3' data-toggle="tab">3 Losses </a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="156"/>
+                            <col width="63"/>
+                            <col width="120"/>
+                            <col width="99"/>
+                            <col width="145"/>
+                            <col width="148"/>
+                        </colgroup>
+                        <tbody>
+                        <tr height="43">
+                            <td class="trhead" height="43" width="156">
+                                Incident
+                            </td>
+                            <td colspan="2" height="43" width="63">
+                                <select id="selectbasic" name="selectbasic" class="form-control"
+                                        style="width:100%;font-weight:400;">
+                                    <option value="1">Option one</option>
+                                    <option value="2">Option two</option>
+                                </select>
+                            </td>
+                            <td class="trhead" height="43" width="120">
+                                District
+                            </td>
+                            <td colspan="2" height="43" width="343">
+                                <select id="selectbasic" name="selectbasic" class="form-control"
+                                        style="width:100%;font-weight:400;">
+                                    <option value="1">Option one</option>
+                                    <option value="2">Option two</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr class="trheadc" height="19">
+                            <td colspan="6" height="19" width="739">
+                                Totally Destroyed
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="156">
+                                Assets
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                Number of Totally Destroyed
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                Number of Square Meters
+                            </td>
+                            <td height="19" width="148">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="156">
+                                Structures
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td height="19" width="148">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                1 floor structure
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                2-3 floors structure
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                More than 3 floors
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Total
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="126">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Informations</a>
+                    <br>
+                </div>
+
+
+                <div class="tab-pane fade" id="step2">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr height="19">
+                            <td class="trheadc" colspan="6" height="19" width="739">
+                                Partially Damaged
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="156">
+                                Assets
+                            </td>
+                            <td height="19" width="63">
+                                Partially Damaged
+                            </td>
+                            <td colspan="3" height="19" width="339">
+                                Damaged in Square Meters
+                            </td>
+                            <td rowspan="2" height="38" width="148">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td height="19" width="156">
+                                Structure
+                            </td>
+                            <td height="19" width="63">
+                                Number
+                            </td>
+                            <td height="19" width="120">
+                                Roof
+                            </td>
+                            <td height="19" width="99">
+                                Walls
+                            </td>
+                            <td height="19" width="145">
+                                Floors
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    1 floor structure
+                                </td>
+                                <td height="19" width="63">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="120">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="99">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="145">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    2-3 floors structure
+                                </td>
+                                <td height="19" width="63">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="120">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="99">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="145">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    More than 3 floors
+                                </td>
+                                <td height="19" width="63">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="120">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="99">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="145">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Total
+                                </td>
+                                <td class="tdpa" height="19" width="63">
+                                    <br/>
+                                </td>
+                                <td class="tdpa" height="19" width="120">
+                                    <br/>
+                                </td>
+                                <td class="tdpa" height="19" width="99">
+                                    <br/>
+                                </td>
+                                <td class="tdpa" height="19" width="145">
+                                    <br/>
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td height="19" width="156">
+                                    Assets
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    Number of Totally Destroyed
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    Number of Partially Damaged
+                                </td>
+                                <td height="19" width="148">
+                                    Damages (LKR)
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td height="19" width="156">
+                                    Office Equipment
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <br/>
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <br/>
+                                </td>
+                                <td height="19" width="148">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Computers
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Furniture
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Others
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Total
+                                </td>
+                                <td class="tdpa" colspan="2" height="19" width="126">
+                                    <br/>
+                                </td>
+                                <td class="tdpa" colspan="2" height="19" width="198">
+                                    <br/>
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td height="19" width="156">
+                                    Machinery
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <br/>
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <br/>
+                                </td>
+                                <td height="19" width="148">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Vehicles
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Generators
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Elevators
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Others
+                                </td>
+                                <td colspan="2" height="19" width="126">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td colspan="2" height="19" width="198">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    Total
+                                </td>
+                                <td class="tdpa" colspan="2" height="19" width="126">
+                                    <br/>
+                                </td>
+                                <td class="tdpa" colspan="2" height="19" width="198">
+                                    <br/>
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            <tr height="19">
+                                <td class="tdpa" height="19" width="156">
+                                    TOTAL DAMAGES
+                                </td>
+                                <td class="tdpa" colspan="2" height="19" width="126">
+                                    <br/>
+                                </td>
+                                <td class="tdpa" colspan="2" height="19" width="198">
+                                    <br/>
+                                </td>
+                                <td height="19" width="148">
+                                    -
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                    <br>
+
+                    <br>
+                </div>
+
+
+                <div class="tab-pane fade" id="step3">
+
+
+                    <table class="table table-bordered">
+                        <tbody>
+
+                        <tr class="trheadc" height="19">
+                            <td colspan="6" height="19" width="739">
+                                Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="156">
+                                Type of Losses
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                Year 1
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                Year 2
+                            </td>
+                            <td height="19" width="148">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Foregone income
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Cleaning up of debris
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Higher operating costs
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Other unexpected expenses
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                TOTAL LOSSES
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                -
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

@@ -11,7 +11,7 @@ class BhsPlc(models.Model):
     female = models.IntegerField(blank=True, null=True)
     children = models.IntegerField(blank=True, null=True)
     elderly = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bhsplc_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -30,7 +30,7 @@ class BhsComDiseases(models.Model):
     female = models.IntegerField(blank=True, null=True)
     children = models.IntegerField(blank=True, null=True)
     elderly = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bhscomdiseases_district',  blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -49,7 +49,7 @@ class BhsOi(models.Model):
     female = models.IntegerField(blank=True, null=True)
     children = models.IntegerField(blank=True, null=True)
     elderly = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bhsoi_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -69,7 +69,7 @@ class BhsVi(models.Model):
     female = models.IntegerField(blank=True, null=True)
     children = models.IntegerField(blank=True, null=True)
     elderly = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bhsVi_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -93,7 +93,7 @@ class BmfPubMf(models.Model):
     created_date = models.DateTimeField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bmfpubmf_district', blank=True, null=True)
     bs_date = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
@@ -112,7 +112,7 @@ class BmfPvtMf(models.Model):
     created_date = models.DateTimeField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bmfpvtmf_district', blank=True, null=True)
     bs_date = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
@@ -131,7 +131,7 @@ class BucOmarMequipment(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucomarmequipment_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -153,7 +153,7 @@ class BucOmarOassets(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucomaroassets_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -175,7 +175,7 @@ class BucOmarStructure(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucomarstructure_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -197,7 +197,7 @@ class BucOmarSupplies(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucomarsupplies_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -219,7 +219,7 @@ class BucOmarcCrpm(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucomarccrpm_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -241,7 +241,7 @@ class BucOmarcMequipment(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucOmarcmequipment_district',  blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -263,7 +263,7 @@ class BucOmarcOassets(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucomarcoassets_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -285,7 +285,7 @@ class BucOmarcStructure(models.Model):
     pri_med_cunits = models.FloatField(blank=True, null=True)
     pri_health_ccenters = models.FloatField(blank=True, null=True)
     mat_child_health_clinics = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucomarcstructure_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -306,7 +306,7 @@ class BdSessionKeys(models.Model):
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
     full_bs_date = models.DateField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bdsessionkeys_district', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -322,7 +322,7 @@ class BucMarStructure(models.Model):
     district_general_hospital = models.FloatField(blank=True, null=True)
     office = models.FloatField(blank=True, null=True)
     other = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmarstructure_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -342,7 +342,7 @@ class BucMarcStructures(models.Model):
     district_general_hospital = models.FloatField(blank=True, null=True)
     office = models.FloatField(blank=True, null=True)
     other = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmarcstructures_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -360,7 +360,7 @@ class BucMarSupplies(models.Model):
     teaching_hospital = models.FloatField(blank=True, null=True)
     provincial_general_hospital = models.FloatField(blank=True, null=True)
     district_general_hospital = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmarsupplies_district',  blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -380,7 +380,7 @@ class BucMarcCrpm(models.Model):
     district_general_hospital = models.FloatField(blank=True, null=True)
     office = models.FloatField(blank=True, null=True)
     other = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmarccrpm_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -398,7 +398,7 @@ class BucMarMequipment(models.Model):
     teaching_hospital = models.FloatField(blank=True, null=True)
     provincial_general_hospital = models.FloatField(blank=True, null=True)
     district_general_hospital = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmarmequipment_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -416,7 +416,7 @@ class BucMarcMequipment(models.Model):
     teaching_hospital = models.FloatField(blank=True, null=True)
     provincial_general_hospital = models.FloatField(blank=True, null=True)
     district_general_hospital = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmarcmequipment_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -436,7 +436,7 @@ class BucMarOassets(models.Model):
     district_general_hospital = models.FloatField(blank=True, null=True)
     office = models.FloatField(blank=True, null=True)
     other = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmaroassets_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -456,7 +456,7 @@ class BucMarcOassets(models.Model):
     district_general_hospital = models.FloatField(blank=True, null=True)
     office = models.FloatField(blank=True, null=True)
     other = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bucmarcoassets_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -473,7 +473,7 @@ class BucMarcOassets(models.Model):
 
 class PreSchools(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_preschools_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -487,7 +487,7 @@ class PreSchools(models.Model):
 
 class PrimarySchools(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_primaryschools_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -501,7 +501,7 @@ class PrimarySchools(models.Model):
 
 class SecondarySchools(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_SecondarySchools_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -515,7 +515,7 @@ class SecondarySchools(models.Model):
 
 class TechInstitutes(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_techInstitutes_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -529,7 +529,7 @@ class TechInstitutes(models.Model):
 
 class Universities(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_universities_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -546,7 +546,7 @@ class BefPubSchools(models.Model):
     total_number = models.IntegerField(blank=True, null=True)
     avg_male = models.IntegerField(blank=True, null=True)
     avg_female = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_befpubschools_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -561,7 +561,7 @@ class BefPubSchools(models.Model):
 class BefPubOffices(models.Model):
     type_facilities = models.CharField(max_length=255, blank=True, null=True)
     total_number = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_befpuboffices_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -578,7 +578,7 @@ class BefPvt(models.Model):
     total_number = models.IntegerField(blank=True, null=True)
     avg_male = models.IntegerField(blank=True, null=True)
     avg_female = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_befpvt_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -600,7 +600,7 @@ class BugAfr(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugAfr_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -622,7 +622,7 @@ class BugArcEquipment(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugArcEquipment_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -644,7 +644,7 @@ class BugArcStructures(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugArcStructures_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -666,7 +666,7 @@ class BugArcSupplies(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugArcSupplies_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -688,7 +688,7 @@ class BugArpcEquipment(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugArpcEquipment_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -710,7 +710,7 @@ class BugArpcStructures(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugArpcStructures_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -732,7 +732,7 @@ class BugArpcSupplies(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugArpcSupplies_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -754,7 +754,7 @@ class BugCrp(models.Model):
     training_colleges = models.FloatField(blank=True, null=True)
     tc_crc_resc = models.FloatField(blank=True, null=True)
     min_pzd_offices = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ed_BugCrp_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -766,7 +766,8 @@ class BugCrp(models.Model):
         db_table = 'bug_crp'
 
 
-# mining
+#mining
+
 class Ownership(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
 
@@ -777,8 +778,8 @@ class Ownership(models.Model):
 
 class Department(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
-    ownership = models.ForeignKey(Ownership, db_column='ownership', blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    ownership = models.ForeignKey(Ownership, db_column='ownership', related_name='mi_Department_ownership', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district',  related_name='mi_Department_district', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -788,7 +789,7 @@ class Department(models.Model):
 class Firm(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_Firm_district', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -801,7 +802,7 @@ class BmaAmMin(models.Model):
     female = models.IntegerField(blank=True, null=True)
     avg_per_year = models.FloatField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_BmaAmMin_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -817,7 +818,7 @@ class BmaAmMinNum(models.Model):
     male = models.IntegerField(blank=True, null=True)
     female = models.IntegerField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_BmaAmMinNum_district',  blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -831,7 +832,7 @@ class BmaAmMinNum(models.Model):
 class BmaImFn(models.Model):
     name_min_outputs = models.CharField(max_length=255, blank=True, null=True)
     avg_per_year = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_BmaImFn_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -848,7 +849,7 @@ class BmaImFirmNum(models.Model):
     male = models.IntegerField(blank=True, null=True)
     female = models.IntegerField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_BmaImFirmNum_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -868,7 +869,7 @@ class BcsMachinery(models.Model):
     asset = models.CharField(max_length=255, blank=True, null=True)
     avg_rep_cost = models.FloatField(blank=True, null=True)
     avg_repair_cost = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='oth_BcsMachinery_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -884,7 +885,7 @@ class BcsOfficeEquipment(models.Model):
     asset = models.CharField(max_length=255, blank=True, null=True)
     avg_rep_cost = models.FloatField(blank=True, null=True)
     avg_repair_cost = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='oth_BcsOfficeEquipment_district',  blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -902,7 +903,7 @@ class BcsStructure(models.Model):
     avg_repair_cost_roof = models.FloatField(blank=True, null=True)
     avg_repair_cost_wall = models.FloatField(blank=True, null=True)
     avg_repair_cost_flooring = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='oth_BcsStructure_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
@@ -914,3 +915,12 @@ class BcsStructure(models.Model):
         db_table = 'bcs_structure'
 
 
+#transport_land
+
+
+class Company(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'company'

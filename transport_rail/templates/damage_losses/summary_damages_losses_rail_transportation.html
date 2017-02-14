@@ -1,202 +1,202 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 
-    <!-- Main content -->
-    <main class="main">
+<!-- Main content -->
+<main class="main" ng-app="dlRailTransSumDisApp" ng-controller="dlRailTransSumDisController">
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			<li class="breadcrumb-item"><a href="#">Transport Sector</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Rail sub Sector</a>
-            </li>
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of damages and losses in the rail transportation</span></li>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
 
-           
-        </ol>
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Rail sub Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of damages and losses in the rail transportation</span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="281"/>
+                        <col width="170"/>
+                        <col width="130"/>
+                        <col width="125"/>
+                    </colgroup>
+                    <tbody>
+                    <tr height="20">
+
+                        <td class="trhead" width="130">
+                            Incident
+                        </td>
+                        <td width="125">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData(health_summery_damageloss_province)">Load
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td width="281" height="20">
+                            Name of District
+                        </td>
+                        <td colspan="3" width="425">
+                            Total Damage (LKR)
+                        </td>
+                    </tr>
+                    <table ng-repeat="(key, value) in dlRailTransSumDis.transport_rail.Table_3"
+                           class="table table-bordered">
+                        <tbody>
+                        <tr  height="20" ng-init="getTotal('TotDmgProvince','tot_damages', $index,key);">
+                            <td ng-bind="key"  class="tdpa" width="275">
+                            </td>
+                            <td width="400" ng-bind="value.TotDmgProvince[0].tot_damages" >
+                            </td>
+
+                        </tr>
+
+                        <tr height="20">
+                        <td class="boldash" width="281" height="20">
+                            TOTAL
+                        </td>
+                        <td width="425" colspan="3" >
+                            <span ng-bind="total"></span>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
 
 
-        <div class="container-fluid">
+                <div class="pull-right">
+                    <br>
 
-      
-				
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane active" id="step1">
-						 <table class="table table-bordered" >		
-    <colgroup>
-        <col width="281"/>
-        <col width="170"/>
-        <col width="130"/>
-        <col width="125"/>
-    </colgroup>
-    <tbody>
-        <tr height="20">
-            <td class="trhead" width="281" height="20">
-                Province
-            </td>
-            <td width="170">
-			 <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-            <td class="trhead" width="130">
-                Incident
-            </td>
-            <td width="125">
-               <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-        </tr>
-        <tr class="trheadc" height="20">
-            <td width="281" height="20">
-                Name of District
-            </td>
-            <td colspan="3" width="425">
-                Total Damage (LKR)
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" width="281" height="20">
-                District 1
-            </td>
-            <td colspan="3" width="425">
-                -
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" width="281" height="20">
-                District 2
-            </td>
-            <td colspan="3">
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" width="281" height="20">
-                District N
-            </td>
-            <td colspan="3">
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" width="281" height="20">
-                TOTAL
-            </td>
-            <td colspan="3" width="425">
-                -
-            </td>
-        </tr>
-    </tbody>
-</table>
+                </div>
 
-                          
-                      <div class="pull-right">
-		<br>
-<button type="button" class="btn btn-info">Clear</button>
-<button type="button" class="btn btn-success">Submit</button>
-</div>	     
-                           
-                         
-           </div> 
-                        	
-                               
-                                <br><br><br>
-       
+
+            </div>
+
+
+            <br><br><br>
+
         </div>
-							
-							
-			
-								
-                            </div>
+
+
+    </div>
+    </div>
+
+
+    </div>
+    <!-- add model -->
+    <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Add Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
                         </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
 
-        
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
 
         </div>
-		<!-- add model -->
-		<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								Add Railroad Company
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			<!-- edit model -->
-			<div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								Edit Railroad Company
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-        <!-- /.conainer-fluid -->
-    </main>
-  
-  
+
+    </div>
+    <!-- edit model -->
+    <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Edit Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+
+
 {% endblock content %}

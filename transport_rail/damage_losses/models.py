@@ -103,3 +103,16 @@ class DlBuildingAstLoss(models.Model):
     class Meta:
         managed = False
         db_table = 'dl_building_ast_loss'
+
+
+class TotDmgProvince(models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.TimeField(blank=True, null=True)
+    created_date = models.TimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tot_dmg_province'

@@ -86,7 +86,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             });
         }
     }
-$scope.provinces = [];
+    $scope.provinces = [];
 
     function fetchProvinces()
     {

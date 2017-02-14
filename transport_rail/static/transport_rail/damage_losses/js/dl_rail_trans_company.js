@@ -6,10 +6,9 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.company;
     $scope.dlDate;
     $scope.bs_data={};
-
+    var total=0;
     $scope.baselineDate;
     $scope.DlMovingAstLoss_tot_damages = null;
-
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.DlBuildingAstLoss_no_of_tot_destroyed = null;
@@ -293,6 +292,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 
 
     }
+
 
 
 

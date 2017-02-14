@@ -187,7 +187,8 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
                 data: angular.toJson({
                     'model': 'Company',
                     'model_fields': $scope.new_company,
-                     'is_edit' : false
+                     'is_edit' : false,
+                     'sector':'transport_rail'
                 }),
 
             }).success(function(data) {

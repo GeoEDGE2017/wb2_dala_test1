@@ -1,17 +1,21 @@
 from django.shortcuts import render
-from settings.models import District
-from dala.views import fetch_districts
+from incidents.models import IncidentReport
 from users.decorators import permission_required
+from dala.views import fetch_districts
 
 # Table 4
+
+
 @permission_required("district", 'transport_land')
 def dl_roads_bridges(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
 
     context = {
         'districts': filtered_districts,
+        'incidents': incidents
     }
 
     return render(request, 'damage_losses/damages_losses_roads_bridges.html', context)
@@ -23,9 +27,11 @@ def dl_oth_lnd_trnspt_asts(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
 
     context = {
         'districts': filtered_districts,
+        'incidents': incidents
     }
 
     return render(request, 'damage_losses/damages_losses_other_land_transportation_assets.html', context)
@@ -37,9 +43,11 @@ def dl_govn_admin_aset(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
 
     context = {
         'districts': filtered_districts,
+        'incidents': incidents
     }
 
     return render(request, 'damage_losses/damages_losses_government_administrative_assets.html', context)

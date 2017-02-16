@@ -1,11 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from settings.models import District,Province
+from settings.models import District, Province
 from incidents.models import IncidentReport
 
-
-# Create your models here.
 
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
@@ -152,3 +150,75 @@ class DlWaterLosOther(models.Model):
     class Meta:
         managed = False
         db_table = 'dl_water_los_other'
+
+
+class DlWaterDmgPubProvince(models.Model):
+    tot_dmg_public = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_water_dmg_pub_province'
+
+
+class DlWaterDmgPvtProvince(models.Model):
+    tot_dmg_private = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_water_dmg_pvt_province'
+
+
+class DlWaterLosProvince(models.Model):
+    year_1_pub = models.FloatField(blank=True, null=True)
+    year_2_pub = models.FloatField(blank=True, null=True)
+    year_1_pvt = models.FloatField(blank=True, null=True)
+    year_2_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_water_los_province'
+
+
+# national
+
+
+class DlWaterDmgPubNational(models.Model):
+    tot_dmg_public = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        # db_table = 'transport_water\".\"dl_water_dmg_pub_national'
+        db_table = 'dl_water_dmg_pub_national'
+
+
+class DlWaterDmgPvtNational(models.Model):
+    tot_dmg_private = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        # db_table = 'transport_water\".\"dl_water_dmg_pvt_national'
+        db_table = 'dl_water_dmg_pvt_national'
+
+
+class DlWaterLosNational(models.Model):
+    year_1_pub = models.FloatField(blank=True, null=True)
+    year_2_pub = models.FloatField(blank=True, null=True)
+    year_1_pvt = models.FloatField(blank=True, null=True)
+    year_2_pvt = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        # db_table = 'transport_water\".\"dl_water_los_national'
+        db_table = 'dl_water_los_national'

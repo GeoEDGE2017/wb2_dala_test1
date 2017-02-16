@@ -34,11 +34,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                     num_part_dest_pvt : null,
                     tot_damages_pvt : null,
                 },{
-                    private_vehicles : 'Other Vehicles',
-                    num_tot_dest_pvt : null,
-                    num_part_dest_pvt : null,
-                    tot_damages_pvt : null,
-                },{
                     private_vehicles : 'Total',
                     num_tot_dest_pvt : null,
                     num_part_dest_pvt : null,
@@ -351,12 +346,13 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BsMovingAst','BsEquipMachineryAst','BsMatSuppliesAst','BsStructuresAst','BsBuildingAst'],
-                  'com_data': {
+                    'db_tables': ['BsGtlAstPvehicles'],
+                    'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        },
-                   'table_name': 'Table_1'
+                    },
+                    'table_name': 'Table_2',
+                    'sector':'transport_land',
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -364,11 +360,51 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                 angular.forEach(data, function(value, key) {
                   $scope.bs_data[key] = JSON.parse(value);
                 });
-
+                generateRefencedData();
             }, function errorCallback(response) {
 
             });
         }
+    }
+
+    function generateRefencedData() {
+        data_array = ['BsGtlAstPvehicles'];
+
+        angular.forEach(data_array, function(value, key) {
+            obj_array = $scope.bs_data[value];
+            model_name = value;
+            var dl_model1 = null;
+
+            var particular_value_1 = null;
+
+            if(model_name == 'BsGtlAstPvehicles') {
+                dl_model1 = 'DlOtherDmgsPvehicles';
+                particular_value_1 = 'Total';
+            }
+
+            $scope.dlOthLndAsets.transport_land.Table_5[dl_model1] = [];
+
+            var obj1 = {
+                private_vehicles : particular_value_1 ,
+                num_tot_dest_pvt : null,
+                num_part_dest_pvt : null,
+                tot_damages_pvt : null,
+            };
+
+            angular.forEach(obj_array, function(value, key) {
+                var obj1 = {
+                    private_vehicles : value.fields.private_vehicles,
+                    num_tot_dest_pvt : null,
+                    num_part_dest_pvt : null,
+                    tot_damages_pvt : null,
+                };
+
+                if(model_name == 'BsGtlAstPvehicles') {
+                   $scope.dlOthLndAsets.transport_land.Table_5[dl_model1].push(obj1);
+                }
+            });
+            $scope.dlOthLndAsets.transport_land.Table_5[dl_model1].push(obj1);
+        });
     }
 
     $scope.saveDlData = function(form) {

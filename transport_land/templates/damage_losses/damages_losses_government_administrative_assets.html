@@ -32,25 +32,45 @@
                             <col width="148"/>
                         </colgroup>
                         <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.incident.$error.required">
+                                    Please select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                        </tr>
                         <tr height="43">
                             <td class="trhead" height="43" width="156">
                                 Incident
                             </td>
                             <td colspan="2" height="43" width="63">
-                                <select id="selectbasic" name="selectbasic" class="form-control"
-                                        style="width:100%;font-weight:400;">
-                                    <option value="1">Option one</option>
-                                    <option value="2">Option two</option>
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                    </option>
+                                    {% endfor %}
                                 </select>
                             </td>
                             <td class="trhead" height="43" width="120">
                                 District
                             </td>
                             <td colspan="2" height="43" width="343">
-                                <select id="selectbasic" name="selectbasic" class="form-control"
-                                        style="width:100%;font-weight:400;">
-                                    <option value="1">Option one</option>
-                                    <option value="2">Option two</option>
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                    <option value="" selected>Select District</option>
                                 </select>
                             </td>
                         </tr>
@@ -88,57 +108,24 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                1 floor structure
+                        <!--Structures-->
+                        <tr height="19" ng-repeat="dlGacDmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures" ng-if="$index < 3">
+                            <td class="tdpa" height="19" width="156" ng-bind="dlGacDmgStructures.assets">
                             </td>
                             <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlGacDmgStructures.num_tot_destroyed">
                             </td>
                             <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlGacDmgStructures.num_square_meters">
                             </td>
-                            <td height="19" width="148">
-                                -
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                2-3 floors structure
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td height="19" width="148">
-                                -
+                            <td height="19" width="148" ng-bind="dlGacDmgStructures.damages">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                More than 3 floors
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td height="19" width="148">
-                                -
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                Total
+                        <!--Structures Total-->
+                        <tr height="19" ng-repeat="dlGacDmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures" ng-if="dlGacDmgStructures.assets == 'Total'">
+                            <td class="tdpa" height="19" width="156" ng-bind="dlGacDmgStructures.assets">
                             </td>
                             <td class="tdpa" colspan="2" height="19" width="126">
                                 <br/>
@@ -146,8 +133,7 @@
                             <td class="tdpa" colspan="2" height="19" width="198">
                                 <br/>
                             </td>
-                            <td height="19" width="148">
-                                -
+                            <td height="19" width="148" ng-bind="dlGacDmgStructures.damages">
                             </td>
                         </tr>
                         </tbody>
@@ -203,81 +189,31 @@
                     <div id="boxscroll" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    1 floor structure
+                            <tr height="19" ng-repeat="dlGacPdmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures" ng-if="$index < 3">
+                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgStructures.assets">
                                 </td>
                                 <td height="19" width="63">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgStructures.num_part_damaged">
                                 </td>
                                 <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_roof">
                                 </td>
                                 <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_walls">
                                 </td>
                                 <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_floors">
                                 </td>
-                                <td height="19" width="148">
-                                    -
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    2-3 floors structure
-                                </td>
-                                <td height="19" width="63">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="148">
-                                    -
+                                <td height="19" width="148" ng-bind="dlGacPdmgStructures.damages">
                                 </td>
                             </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    More than 3 floors
-                                </td>
-                                <td height="19" width="63">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="148">
-                                    -
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Total
+                            <!--Total-->
+                            <tr height="19" ng-repeat="dlGacPdmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures" ng-if="dlGacPdmgStructures.assets == 'Total'">
+                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgStructures.assets">
                                 </td>
                                 <td class="tdpa" height="19" width="63">
                                     <br/>
@@ -291,8 +227,7 @@
                                 <td class="tdpa" height="19" width="145">
                                     <br/>
                                 </td>
-                                <td height="19" width="148">
-                                    -
+                                <td height="19" width="148" ng-bind="dlGacPdmgStructures.damages">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -323,57 +258,23 @@
                                     <br/>
                                 </td>
                             </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Computers
+                            <tr height="19" ng-repeat="dlGacPdmgEquipment in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment" ng-if="dlGacPdmgEquipment.assets != 'Total'">
+                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgEquipment.assets">
                                 </td>
                                 <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgEquipment.num_tot_destroyed">
                                 </td>
                                 <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgEquipment.num_part_damaged">
                                 </td>
-                                <td height="19" width="148">
-                                    -
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Furniture
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="148">
-                                    -
+                                <td height="19" width="148" ng-bind="dlGacPdmgEquipment.damages">
                                 </td>
                             </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Others
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="148">
-                                    -
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Total
+                            <!--Office Equipment Total-->
+                            <tr height="19" ng-repeat="dlGacPdmgEquipment in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment" ng-if="dlGacPdmgEquipment.assets == 'Total'">
+                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgEquipment.assets">
                                 </td>
                                 <td class="tdpa" colspan="2" height="19" width="126">
                                     <br/>
@@ -381,8 +282,7 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148">
-                                    -
+                                <td height="19" width="148" ng-bind="dlGacPdmgEquipment.damages">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -399,72 +299,24 @@
                                     <br/>
                                 </td>
                             </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
+                            <tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets != 'Total' && dlGacPdmgMachinery.assets != 'TOTAL DAMAGES'">
+                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets">
                                     Vehicles
                                 </td>
                                 <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgMachinery.num_tot_destroyed">
                                 </td>
                                 <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlGacPdmgMachinery.num_part_damaged">
                                 </td>
-                                <td height="19" width="148">
-                                    -
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Generators
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="148">
-                                    -
+                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
                                 </td>
                             </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Elevators
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="148">
-                                    -
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    Others
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </td>
-                                <td height="19" width="148">
-                                    -
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
+                            <!--Machinery Total-->
+                            <tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets == 'Total'">
+                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets">
                                     Total
                                 </td>
                                 <td class="tdpa" colspan="2" height="19" width="126">
@@ -473,13 +325,12 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148">
-                                    -
+                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
                                 </td>
                             </tr>
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">
-                                    TOTAL DAMAGES
+                            <!--Machinery TOTAL DAMAGES-->
+                            <tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets == 'TOTAL DAMAGES'">
+                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets">
                                 </td>
                                 <td class="tdpa" colspan="2" height="19" width="126">
                                     <br/>
@@ -487,8 +338,7 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148">
-                                    -
+                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
                                 </td>
                             </tr>
                             </tbody>
@@ -498,17 +348,11 @@
                     <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                     <br>
-
                     <br>
                 </div>
-
-
                 <div class="tab-pane fade" id="step3">
-
-
                     <table class="table table-bordered">
                         <tbody>
-
                         <tr class="trheadc" height="19">
                             <td colspan="6" height="19" width="739">
                                 Losses (LKR)
@@ -528,52 +372,18 @@
                                 Total (LKR)
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                Foregone income
+                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="$index < 3">
+                            <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
                             </td>
                             <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlGacLosType.los_year_1">
                             </td>
                             <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlGacLosType.los_year_2">
                             </td>
-                            <td height="19" width="148">
-                                -
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                Cleaning up of debris
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td height="19" width="148">
-                                -
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                Higher operating costs
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td height="19" width="148">
-                                -
+                            <td height="19" width="148" ng-bind="dlGacLosType.total">
                             </td>
                         </tr>
                         <tr height="19">
@@ -581,52 +391,41 @@
                                 Other unexpected expenses
                             </td>
                             <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td height="19" width="148">
                                 -
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                TOTAL LOSSES
+                        <!--TOTAL LOSSES-->
+                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets == 'TOTAL LOSSES'">
+                            <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
                             </td>
-                            <td colspan="2" height="19" width="126">
-                                -
+                            <td colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_1">
                             </td>
-                            <td colspan="2" height="19" width="198">
-                                -
+                            <td colspan="2" height="19" width="198" ng-model="dlGacLosType.los_year_2">
                             </td>
-                            <td height="19" width="148">
-                                -
+                            <td height="19" width="148" ng-bind="dlGacLosType.total">
                             </td>
                         </tr>
                         </tbody>
                     </table>
-
-
                     <br>
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" class="btn btn-success">Submit</button>
+                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_govn_admn_asets)">Submit</button>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-
     </div>
-
     </div>
-
     <!-- /.conainer-fluid -->
 </main>
 

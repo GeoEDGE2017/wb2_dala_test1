@@ -1280,33 +1280,79 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_damages',
                  ],
 
-
         }
 
     },
     'transport_water': {
         'Table_1': {
             'BsAstWaterWcrafts':
-                ['assets ',
+                ['assets',
                  'public',
                  'private',
                  'avg_replace_cost',
                  'avg_repair_cost',
                  'id'],
-            # 'BsAstWaterEquipment':
-            #     ['assets ',
-            #      'public',
-            #      'private',
-            #      'avg_replace_cost',
-            #      'avg_repair_cost',
-            #      'id'],
-            # 'BsAstWaterMaterials':
-            #     ['assets ',
-            #      'public',
-            #      'private',
-            #      'avg_replace_cost',
-            #      'avg_repair_cost',
-            #      'id'],
+            'BsAstWaterEquipment':
+                ['assets',
+                 'public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstWaterMaterials':
+                ['assets',
+                 'public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstWaterStructures':
+                ['assets',
+                 'public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstWaterBuildings':
+                ['assets',
+                 'public',
+                 'private',
+                 'avg_replace_cost',
+                 'avg_repair_cost_roof',
+                 'avg_repair_cost_wall',
+                 'avg_repair_cost_floor',
+                 'id'],
+            'BsAstWaterEmployment':
+                ['assets',
+                 'public',
+                 'private',
+                 'male',
+                 'female',
+                 'id'],
+
+        },
+        'Table_3': {
+            'DlWaterDmgPubProvince':
+                ['tot_dmg_public'],
+            'DlWaterDmgPvtProvince':
+                ['tot_dmg_private'],
+            'DlWaterLosProvince':
+                ['year_1_pub',
+                 'year_2_pub',
+                 'year_1_pvt',
+                 'year_2_pvt'],
+
+        },
+        'Table_4': {
+            'DlWaterDmgPubNational':
+                ['tot_dmg_public'],
+            'DlWaterDmgPvtNational':
+                ['tot_dmg_private'],
+            'DlWaterLosNational':
+                ['year_1_pub',
+                 'year_2_pub',
+                 'year_1_pvt',
+                 'year_2_pvt'],
 
         }
 
@@ -1407,9 +1453,65 @@ TABLE_PROPERTY_MAPPER = {
                  'avg_repair_cost',
                  'id'],
 
+        },
+        'Table_4': {
+            'DlRbdTbridges':
+                ['tot_dest_2_lanes',
+                 'tot_dest_multi_lanes',
+                 'part_dest_2_lanes',
+                 'part_dest_multi_lanes',
+                 'part_dest_gravel',
+                 'part_dest_earth',
+                 'damages',
+                 'type_bridges',
+                 'id'],
+            'DlRbdTculverts':
+                ['tot_destroyed',
+                 'part_destroyed',
+                 'damages',
+                 'type_culverts',
+                 'id'],
+            'DlRbdTrwalls':
+                ['tot_destroyed',
+                 'part_destroyed',
+                 'damages',
+                 'type_retain_walls',
+                 'id'],
+            'DlRbdTdrains':
+                ['tot_destroyed',
+                 'part_destroyed',
+                 'damages',
+                 'type_drains',
+                 'id'],
+            'DlOtherDmgsPvehicles':
+                ['num_tot_dest_pvt',
+                 'num_part_dest_pvt',
+                 'tot_damages_pvt',
+                 'private_vehicles',
+                 'id'],
+            'DlRbdRclassification':
+                ['tot_dest_concrete',
+                 'tot_dest_asphalt',
+                 'tot_dest_gravel',
+                 'tot_dest_earth',
+                 'part_dest_concrete',
+                 'part_dest_asphalt',
+                 'part_dest_gravel',
+                 'part_dest_earth',
+                 'damages',
+                 'road_classification',
+                 'id'],
+            'DlRbdLosses':
+                ['year_1',
+                 'year_2',
+                 'part_destroyed',
+                 'losses',
+                 'loss_type',
+                 'id'],
+
         }
 
-    }
+    },
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

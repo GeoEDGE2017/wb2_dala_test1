@@ -356,7 +356,8 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                         },
-                   'table_name': 'Table_1'
+                   'table_name': 'Table_1',
+                   'sector': 'transport_land'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {

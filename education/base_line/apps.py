@@ -4,6 +4,6 @@ from django.apps import AppConfig
 
 
 class BaseLineConfig(AppConfig):
-    name = 'mining.base_line'
-    verbose_name = 'mining.base_line'
-    label = 'mining.base_line'
+    name = 'education.base_line'
+    verbose_name = 'education.base_line'
+    label = 'education.base_line'

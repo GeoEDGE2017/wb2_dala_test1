@@ -68,6 +68,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
                         'incident': $scope.incident,
                     },
                     'is_edit' : $scope.is_edit,
+                    'sector':'health'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -112,8 +113,8 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':  'Table_4',
-            'sector': 'other_govn_services',
+            'table_name':  'Table_9',
+            'sector': 'health',
             'com_data': {
                     'province': $scope.province,
                     'incident': $scope.incident,

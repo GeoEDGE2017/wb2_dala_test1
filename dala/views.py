@@ -116,7 +116,7 @@ def bs_save_data(request):
                     bs_year = split_date[1]
                     bs_full_date = datetime.date(int(bs_year), int(bs_month), 1)
 
-                    bd_session = BdSessionKeys(bs_date=com_data['bs_date'], table_name=interface_table,
+                    bd_session = sub_app_session(bs_date=com_data['bs_date'], table_name=interface_table,
                                                date=todate, district_id=district, data_type='base_line',
                                                full_bs_date=bs_full_date)
                     bd_session.save()

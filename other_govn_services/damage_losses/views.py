@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from settings.models import District, Province
-from health.base_line.models import Ownership, Department
+from other_govn_services.base_line.models import Ownership, Department
 from incidents.models import IncidentReport
 from users.decorators import permission_required
 from dala.views import fetch_districts
@@ -11,12 +11,9 @@ from django.conf import settings
 from health.damage_losses.models import DlSessionKeys
 from django.apps import apps
 from django.core.serializers.json import DjangoJSONEncoder
-from health.base_line.models import Ownership
-from health.damage_losses.models import DlagdDmgDistrict
+from other_govn_services.damage_losses.models import DlagdDmgDistrict
 
 
-
-# Table 2
 @permission_required("district", "Other Government Services")
 def dl_assessment_of_govn_dep_or_ofc_in_a_district(request):
     user = request.user

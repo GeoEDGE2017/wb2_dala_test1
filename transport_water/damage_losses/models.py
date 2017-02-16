@@ -18,7 +18,7 @@ class DlSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_session_keys'
+        db_table = 'transport_water\".\"dl_session_keys'
 
 
 class DlWaterDmgBuildings(models.Model):
@@ -38,7 +38,7 @@ class DlWaterDmgBuildings(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_buildings'
+        db_table = 'transport_water\".\"dl_water_dmg_buildings'
 
 
 class DlWaterDmgEquipment(models.Model):
@@ -57,7 +57,7 @@ class DlWaterDmgEquipment(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_equipment'
+        db_table = 'transport_water\".\"dl_water_dmg_equipment'
 
 
 class DlWaterDmgMaterials(models.Model):
@@ -76,7 +76,7 @@ class DlWaterDmgMaterials(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_materials'
+        db_table = 'transport_water\".\"dl_water_dmg_materials'
 
 
 class DlWaterDmgStructures(models.Model):
@@ -94,7 +94,7 @@ class DlWaterDmgStructures(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_structures'
+        db_table = 'transport_water\".\"dl_water_dmg_structures'
 
 
 class DlWaterDmgWcrafts(models.Model):
@@ -113,7 +113,7 @@ class DlWaterDmgWcrafts(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_wcrafts'
+        db_table = 'transport_water\".\"dl_water_dmg_wcrafts'
 
 
 class DlWaterLosFi(models.Model):
@@ -132,7 +132,7 @@ class DlWaterLosFi(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_los_fi'
+        db_table = 'transport_water\".\"dl_water_los_fi'
 
 
 class DlWaterLosOther(models.Model):
@@ -151,4 +151,4 @@ class DlWaterLosOther(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_los_other'
+        db_table = 'transport_water\".\"dl_water_los_other'

@@ -663,7 +663,8 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                     'district': $scope.district.district__id,
                     'incident': $scope.incident,
                     },
-               'table_name': 'Table_4'
+               'table_name': 'Table_4',
+               'sector': 'health'
             }),
             dataType: 'json',
         }).then(function successCallback(response) {

@@ -15,7 +15,7 @@ class BdSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bd_session_keys'
+        db_table = 'transport_rail\".\"bd_session_keys'
 
 
 class Company(models.Model):
@@ -23,7 +23,7 @@ class Company(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'company'
+        db_table = 'transport_rail\".\"company'
 
 
 class BsBuildingAst(models.Model):
@@ -41,7 +41,7 @@ class BsBuildingAst(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_building_ast'
+        db_table = 'transport_rail\".\"bs_building_ast'
 
 
 class BsEquipMachineryAst(models.Model):
@@ -57,7 +57,7 @@ class BsEquipMachineryAst(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_equip_machinery_ast'
+        db_table = 'transport_rail\".\"bs_equip_machinery_ast'
 
 
 class BsIncAstRailCompany(models.Model):
@@ -72,7 +72,7 @@ class BsIncAstRailCompany(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_inc_ast_rail_company'
+        db_table = 'transport_rail\".\"bs_inc_ast_rail_company'
 
 
 class BsIncAstRailIncome(models.Model):
@@ -86,7 +86,7 @@ class BsIncAstRailIncome(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_inc_ast_rail_income'
+        db_table = 'transport_rail\".\"bs_inc_ast_rail_income'
 
 
 class BsMatSuppliesAst(models.Model):
@@ -102,7 +102,7 @@ class BsMatSuppliesAst(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_mat_supplies_ast'
+        db_table = 'transport_rail\".\"bs_mat_supplies_ast'
 
 
 class BsMovingAst(models.Model):
@@ -118,7 +118,7 @@ class BsMovingAst(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_moving_ast'
+        db_table = 'transport_rail\".\"bs_moving_ast'
 
 
 class BsStructuresAst(models.Model):
@@ -134,7 +134,7 @@ class BsStructuresAst(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_structures_ast'
+        db_table = 'transport_rail\".\"bs_structures_ast'
 
 
 class BsTotEmpRailCompny(models.Model):
@@ -151,4 +151,4 @@ class BsTotEmpRailCompny(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_tot_emp_rail_compny'
+        db_table = 'transport_rail\".\"bs_tot_emp_rail_compny'

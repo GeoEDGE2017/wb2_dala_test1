@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from settings.models import District, Province
 from incidents.models import IncidentReport
-from .models import BmfPubMf, BhsPlc, BhsComDiseases, BhsVi, BhsOi, BucOmarStructure
 import json
 import yaml
 from django.views.decorators.csrf import csrf_protect, csrf_exempt

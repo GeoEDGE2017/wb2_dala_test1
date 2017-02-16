@@ -2,7 +2,6 @@ from django.shortcuts import render
 from settings.models import District
 from dala.views import fetch_districts
 from users.decorators import permission_required
-from health.base_line.models import Company
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 import json

@@ -534,7 +534,6 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
 
         if($scope.incident && $scope.selectedDistrict ) {
-            alert('hi');
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -545,7 +544,8 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                         'district': $scope.selectedDistrict,
                         'incident': $scope.incident,
                         },
-                   'table_name': 'Table_3'
+                   'table_name': 'Table_3',
+                   'sector': 'health'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {

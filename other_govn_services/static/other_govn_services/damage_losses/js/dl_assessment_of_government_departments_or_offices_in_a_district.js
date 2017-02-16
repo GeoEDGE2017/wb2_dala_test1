@@ -220,7 +220,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                   'table_name': 'Table_1'
+                   'table_name': 'Table_1',
+                   'sector': 'other_govn_services',
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {

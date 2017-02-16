@@ -2,7 +2,6 @@ from django.db import models
 from settings.models import District
 
 
-# Create your models here.
 class BdSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)

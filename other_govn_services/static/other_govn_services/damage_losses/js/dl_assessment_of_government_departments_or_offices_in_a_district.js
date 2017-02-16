@@ -339,7 +339,8 @@ $scope.fetchDepartments = function()
     url: "/fetch_entities",
     data: angular.toJson({
     'district':  $scope.district.district__id,
-    'model': 'Department'
+    'model': 'Department',
+    'sector':'other_govn_services'
      }),
     }).success(function(data) {
         $scope.departments = data;

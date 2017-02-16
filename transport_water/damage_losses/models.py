@@ -5,8 +5,6 @@ from settings.models import District,Province
 from incidents.models import IncidentReport
 
 
-# Create your models here.
-
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)

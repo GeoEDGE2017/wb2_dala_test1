@@ -4,6 +4,20 @@ from other_govn_services.base_line.models import Ownership, Department
 from incidents.models import IncidentReport
 
 
+class DlSessionKeys(models.Model):
+    data_type = models.CharField(max_length=120, blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    user = models.IntegerField(blank=True, null=True)
+    table_name = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='ogs_dl_province', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ogs_dl_district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'other_government\".\"dl_session_keys'
+
+
 class DlaOagenciesNatn(models.Model):
     asset_owship = models.CharField(max_length=255, blank=True, null=True)
     damages = models.FloatField(blank=True, null=True)
@@ -18,7 +32,7 @@ class DlaOagenciesNatn(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dla_oagencies_natn'
+        db_table = 'other_government\".\"dla_oagencies_natn'
 
 
 class DlaProvince(models.Model):
@@ -35,7 +49,7 @@ class DlaProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dla_province'
+        db_table = 'other_government\".\"dla_province'
 
 
 class DladAowshipDgovn(models.Model):
@@ -52,7 +66,7 @@ class DladAowshipDgovn(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlad_aowship_dgovn'
+        db_table = 'other_government\".\"dlad_aowship_dgovn'
 
 
 class DladAowshipPgovn(models.Model):
@@ -69,7 +83,7 @@ class DladAowshipPgovn(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlad_aowship_pgovn'
+        db_table = 'other_government\".\"dlad_aowship_pgovn'
 
 
 class DladAowshipMoagency(models.Model):
@@ -86,7 +100,7 @@ class DladAowshipMoagency(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlad_aowship_moagency'
+        db_table = 'other_government\".\"dlad_aowship_moagency'
 
 
 class DlagdDmgMachinery(models.Model):
@@ -102,7 +116,7 @@ class DlagdDmgMachinery(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_dmg_machinery'
+        db_table = 'other_government\".\"dlagd_dmg_machinery'
 
 
 class DlagdDmgOfficeEquipment(models.Model):
@@ -118,7 +132,7 @@ class DlagdDmgOfficeEquipment(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_dmg_office_equipment'
+        db_table = 'other_government\".\"dlagd_dmg_office_equipment'
 
 
 class DlagdDmgStructure(models.Model):
@@ -138,7 +152,7 @@ class DlagdDmgStructure(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_dmg_structure'
+        db_table = 'other_government\".\"dlagd_dmg_structure'
 
 
 class DlagdLosses(models.Model):
@@ -154,7 +168,7 @@ class DlagdLosses(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_losses'
+        db_table = 'other_government\".\"dlagd_losses'
 
 
 class DlagdDmgDistrict(models.Model):
@@ -165,7 +179,7 @@ class DlagdDmgDistrict(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_dmg_district'
+        db_table = 'other_government\".\"dlagd_dmg_district'
 
 
 class DlagdLossesDistrict(models.Model):
@@ -178,7 +192,7 @@ class DlagdLossesDistrict(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_losses_district'
+        db_table = 'other_government\".\"dlagd_losses_district'
 
 
 class DlagdDmgProvince(models.Model):
@@ -189,7 +203,7 @@ class DlagdDmgProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_dmg_province'
+        db_table = 'other_government\".\"dlagd_dmg_province'
 
 
 class DlagdLossesProvince(models.Model):
@@ -202,7 +216,7 @@ class DlagdLossesProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_losses_province'
+        db_table = 'other_government\".\"dlagd_losses_province'
 
 
 class DlagdDmgNational(models.Model):
@@ -213,7 +227,7 @@ class DlagdDmgNational(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_dmg_national'
+        db_table = 'other_government\".\"dlagd_dmg_national'
 
 
 class DlagdLossesNational(models.Model):
@@ -226,5 +240,5 @@ class DlagdLossesNational(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"dlagd_losses_national'
+        db_table = 'other_government\".\"dlagd_losses_national'
 

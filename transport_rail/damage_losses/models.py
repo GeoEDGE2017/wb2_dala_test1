@@ -3,9 +3,6 @@ from django.db import models
 from settings.models import District,Province
 from incidents.models import IncidentReport
 
-# Create your models here.
-# transport_rail
-
 
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)

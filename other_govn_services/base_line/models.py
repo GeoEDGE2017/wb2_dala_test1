@@ -2,12 +2,27 @@ from django.db import models
 from settings.models import District, Province
 
 
+class BdSessionKeys(models.Model):
+    data_type = models.CharField(max_length=120, blank=True, null=True)
+    key = models.BigIntegerField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    user = models.IntegerField(blank=True, null=True)
+    bs_date = models.CharField(max_length=255, blank=True, null=True)
+    table_name = models.CharField(max_length=255, blank=True, null=True)
+    full_bs_date = models.DateField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ogs_bs_district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'other_government\".\"bd_session_keys'
+
+
 class Ownership(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"ownership'
+        db_table = 'other_government\".\"ownership'
 
 
 class Department(models.Model):
@@ -17,7 +32,7 @@ class Department(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"department'
+        db_table = 'other_government\".\"department'
 
 
 class BcsMachinery(models.Model):
@@ -33,7 +48,7 @@ class BcsMachinery(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"bcs_machinery'
+        db_table = 'other_government\".\"bcs_machinery'
 
 
 class BcsOfficeEquipment(models.Model):
@@ -49,7 +64,7 @@ class BcsOfficeEquipment(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"bcs_office_equipment'
+        db_table = 'other_government\".\"bcs_office_equipment'
 
 
 class BcsStructure(models.Model):
@@ -67,6 +82,6 @@ class BcsStructure(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'other_govn_services\".\"bcs_structure'
+        db_table = 'other_government\".\"bcs_structure'
 
 

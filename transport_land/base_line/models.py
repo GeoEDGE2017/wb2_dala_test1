@@ -1,8 +1,6 @@
 from django.db import models
 from settings.models import District
 
-# Create your models here.
-
 
 class BdSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
@@ -16,7 +14,7 @@ class BdSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bd_session_keys'
+        db_table = 'transport_land\".\"bd_session_keys'
 
 
 class BiaGacLandMachinery(models.Model):
@@ -32,7 +30,7 @@ class BiaGacLandMachinery(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bia_gac_land_machinery'
+        db_table = 'transport_land\".\"bia_gac_land_machinery'
 
 
 class BiaGacLandOequipment(models.Model):
@@ -48,7 +46,7 @@ class BiaGacLandOequipment(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bia_gac_land_oequipment'
+        db_table = 'transport_land\".\"bia_gac_land_oequipment'
 
 
 class BiaGacLandPbuilding(models.Model):
@@ -65,7 +63,7 @@ class BiaGacLandPbuilding(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bia_gac_land_pbuilding'
+        db_table = 'transport_land\".\"bia_gac_land_pbuilding'
 
 
 class BiaGacLandStructure(models.Model):
@@ -80,7 +78,7 @@ class BiaGacLandStructure(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bia_gac_land_structure'
+        db_table = 'transport_land\".\"bia_gac_land_structure'
 
 
 class BsGtlAstBcompanies(models.Model):
@@ -98,7 +96,7 @@ class BsGtlAstBcompanies(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_gtl_ast_bcompanies'
+        db_table = 'transport_land\".\"bs_gtl_ast_bcompanies'
 
 
 class BsGtlAstPvehicles(models.Model):
@@ -115,7 +113,7 @@ class BsGtlAstPvehicles(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_gtl_ast_pvehicles'
+        db_table = 'transport_land\".\"bs_gtl_ast_pvehicles'
 
 
 class BsGtlAstTcompanies(models.Model):
@@ -133,7 +131,7 @@ class BsGtlAstTcompanies(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_gtl_ast_tcompanies'
+        db_table = 'transport_land\".\"bs_gtl_ast_tcompanies'
 
 
 class BsGtlAstTrcompanies(models.Model):
@@ -151,7 +149,7 @@ class BsGtlAstTrcompanies(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_gtl_ast_trcompanies'
+        db_table = 'transport_land\".\"bs_gtl_ast_trcompanies'
 
 
 class BsGtlAstTucompanies(models.Model):
@@ -169,7 +167,7 @@ class BsGtlAstTucompanies(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_gtl_ast_tucompanies'
+        db_table = 'transport_land\".\"bs_gtl_ast_tucompanies'
 
 
 class BsRbuRclassificattion(models.Model):
@@ -191,7 +189,7 @@ class BsRbuRclassificattion(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_rbu_rclassificattion'
+        db_table = 'transport_land\".\"bs_rbu_rclassificattion'
 
 
 class BsRbuTbridges(models.Model):
@@ -209,7 +207,7 @@ class BsRbuTbridges(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_rbu_tbridges'
+        db_table = 'transport_land\".\"bs_rbu_tbridges'
 
 
 class BsRbuTculverts(models.Model):
@@ -225,7 +223,7 @@ class BsRbuTculverts(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_rbu_tculverts'
+        db_table = 'transport_land\".\"bs_rbu_tculverts'
 
 
 class BsRbuTdrains(models.Model):
@@ -241,7 +239,7 @@ class BsRbuTdrains(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_rbu_tdrains'
+        db_table = 'transport_land\".\"bs_rbu_tdrains'
 
 
 class BsRbuTrwalls(models.Model):
@@ -257,4 +255,4 @@ class BsRbuTrwalls(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_rbu_trwalls'
+        db_table = 'transport_land\".\"bs_rbu_trwalls'

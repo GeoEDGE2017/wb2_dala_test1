@@ -16,7 +16,7 @@ class DlSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_session_keys'
+        db_table = 'transport_water\".\"dl_session_keys'
 
 
 class DlWaterDmgBuildings(models.Model):
@@ -36,7 +36,7 @@ class DlWaterDmgBuildings(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_buildings'
+        db_table = 'transport_water\".\"dl_water_dmg_buildings'
 
 
 class DlWaterDmgEquipment(models.Model):
@@ -55,7 +55,7 @@ class DlWaterDmgEquipment(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_equipment'
+        db_table = 'transport_water\".\"dl_water_dmg_equipment'
 
 
 class DlWaterDmgMaterials(models.Model):
@@ -74,7 +74,7 @@ class DlWaterDmgMaterials(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_materials'
+        db_table = 'transport_water\".\"dl_water_dmg_materials'
 
 
 class DlWaterDmgStructures(models.Model):
@@ -92,7 +92,7 @@ class DlWaterDmgStructures(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_structures'
+        db_table = 'transport_water\".\"dl_water_dmg_structures'
 
 
 class DlWaterDmgWcrafts(models.Model):
@@ -111,7 +111,7 @@ class DlWaterDmgWcrafts(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_wcrafts'
+        db_table = 'transport_water\".\"dl_water_dmg_wcrafts'
 
 
 class DlWaterLosFi(models.Model):
@@ -130,7 +130,7 @@ class DlWaterLosFi(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_los_fi'
+        db_table = 'transport_water\".\"dl_water_los_fi'
 
 
 class DlWaterLosOther(models.Model):
@@ -149,7 +149,7 @@ class DlWaterLosOther(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_los_other'
+        db_table = 'transport_water\".\"dl_water_los_other'
 
 
 class DlWaterDmgPubProvince(models.Model):
@@ -159,7 +159,7 @@ class DlWaterDmgPubProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_pub_province'
+        db_table = 'transport_water\".\"dl_water_dmg_pub_province'
 
 
 class DlWaterDmgPvtProvince(models.Model):
@@ -169,7 +169,7 @@ class DlWaterDmgPvtProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_dmg_pvt_province'
+        db_table = 'transport_water\".\"dl_water_dmg_pvt_province'
 
 
 class DlWaterLosProvince(models.Model):
@@ -182,12 +182,10 @@ class DlWaterLosProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_water_los_province'
+        db_table = 'transport_water\".\"dl_water_los_province'
 
 
 # national
-
-
 class DlWaterDmgPubNational(models.Model):
     tot_dmg_public = models.FloatField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
@@ -195,8 +193,7 @@ class DlWaterDmgPubNational(models.Model):
 
     class Meta:
         managed = False
-        # db_table = 'transport_water\".\"dl_water_dmg_pub_national'
-        db_table = 'dl_water_dmg_pub_national'
+        db_table = 'transport_water\".\"dl_water_dmg_pub_national'
 
 
 class DlWaterDmgPvtNational(models.Model):
@@ -206,8 +203,7 @@ class DlWaterDmgPvtNational(models.Model):
 
     class Meta:
         managed = False
-        # db_table = 'transport_water\".\"dl_water_dmg_pvt_national'
-        db_table = 'dl_water_dmg_pvt_national'
+        db_table = 'transport_water\".\"dl_water_dmg_pvt_national'
 
 
 class DlWaterLosNational(models.Model):
@@ -220,5 +216,6 @@ class DlWaterLosNational(models.Model):
 
     class Meta:
         managed = False
-        # db_table = 'transport_water\".\"dl_water_los_national'
-        db_table = 'dl_water_los_national'
+        db_table = 'transport_water\".\"dl_water_los_national'
+
+

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from settings.models import District
 from incidents.models import IncidentReport
-from health.base_line.models import Firm
 import yaml, json
 from django.http import HttpResponse
 from django.conf import settings

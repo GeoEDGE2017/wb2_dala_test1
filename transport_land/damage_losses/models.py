@@ -1,6 +1,7 @@
 from django.db import models
-from settings.models import District,Province
 from incidents.models import IncidentReport
+from settings.models import District, Province
+
 
 
 class DlSessionKeys(models.Model):
@@ -14,7 +15,7 @@ class DlSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_session_keys'
+        db_table = 'transport_land\".\"dl_session_keys'
 
 
 class DlRbdTbridges(models.Model):
@@ -35,7 +36,7 @@ class DlRbdTbridges(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_rbd_tbridges'
+        db_table = 'transport_land\".\"dl_rbd_tbridges'
 
 
 class DlRbdTculverts(models.Model):
@@ -52,7 +53,7 @@ class DlRbdTculverts(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_rbd_tculverts'
+        db_table = 'transport_land\".\"dl_rbd_tculverts'
 
 
 class DlRbdTrwalls(models.Model):
@@ -69,7 +70,7 @@ class DlRbdTrwalls(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_rbd_trwalls'
+        db_table = 'transport_land\".\"dl_rbd_trwalls'
 
 
 class DlRbdTdrains(models.Model):
@@ -86,7 +87,7 @@ class DlRbdTdrains(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_rbd_tdrains'
+        db_table = 'transport_land\".\"dl_rbd_tdrains'
 
 
 class DlOtherDmgsPvehicles(models.Model):
@@ -103,7 +104,7 @@ class DlOtherDmgsPvehicles(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_other_dmgs_pvehicles'
+        db_table = 'transport_land\".\"dl_other_dmgs_pvehicles'
 
 
 class DlRbdRclassification(models.Model):
@@ -126,7 +127,7 @@ class DlRbdRclassification(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_rbd_rclassification'
+        db_table = 'transport_land\".\"dl_rbd_rclassification'
 
 
 class DlRbdLosses(models.Model):
@@ -144,4 +145,5 @@ class DlRbdLosses(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_rbd_losses'
+        db_table = 'transport_land\".\"dl_rbd_losses'
+

@@ -353,6 +353,8 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                     },
                     'table_name': 'Table_2',
                     'sector':'transport_land',
+                        },
+
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {

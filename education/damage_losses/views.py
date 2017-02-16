@@ -10,8 +10,6 @@ from django.apps import apps
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from django.conf import settings
-from health.damage_losses.models import DpefBefPreSchool, DpefBefSecSchool, \
-    DpefBefPrmSchool, DpefBefPreSchool, DpefBefTechInst, DpefBefUnv
 from django.db.models import Count
 
 
@@ -97,7 +95,7 @@ def fetch_schools(request):
     bs_schools = {}
 
     for school in schools:
-        model_class = apps.get_model('base_line', school)
+        model_class = apps.get_model('education.base_line', school)
         model_array = model_class.objects.filter(district=district_id).values('name', 'id').order_by('id')
 
         bs_schools[school] = list(model_array)

@@ -18,7 +18,7 @@ class BdSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bd_session_keys'
+        db_table = 'transport_water\".\"bd_session_keys'
 
 
 class BsAstWaterWcrafts(models.Model):
@@ -35,7 +35,7 @@ class BsAstWaterWcrafts(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_ast_water_wcrafts'
+        db_table = 'transport_water\".\"bs_ast_water_wcrafts'
 
 
 class BsAstWaterEquipment(models.Model):
@@ -52,7 +52,7 @@ class BsAstWaterEquipment(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_ast_water_equipment'
+        db_table = 'transport_water\".\"bs_ast_water_equipment'
 
 
 class BsAstWaterMaterials(models.Model):
@@ -69,7 +69,7 @@ class BsAstWaterMaterials(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_ast_water_materials'
+        db_table = 'transport_water\".\"bs_ast_water_materials'
 
 
 class BsAstWaterStructures(models.Model):
@@ -86,7 +86,7 @@ class BsAstWaterStructures(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_ast_water_structures'
+        db_table = 'transport_water\".\"bs_ast_water_structures'
 
 
 class BsAstWaterBuildings(models.Model):
@@ -105,7 +105,7 @@ class BsAstWaterBuildings(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_ast_water_buildings'
+        db_table = 'transport_water\".\"bs_ast_water_buildings'
 
 
 class BsAstWaterEmployment(models.Model):
@@ -123,4 +123,4 @@ class BsAstWaterEmployment(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_ast_water_employment'
+        db_table = 'transport_water\".\"bs_ast_water_employment'

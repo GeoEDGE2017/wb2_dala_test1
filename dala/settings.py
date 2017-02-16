@@ -46,9 +46,12 @@ INSTALLED_APPS = [
     'health.base_line',
     'health.damage_losses',
     'education',
+    'education.base_line',
+    'education.damage_losses',
     # 'db_tools'
     'other_govn_services',
-    # 'other_govn_services.damage_losses',
+    'other_govn_services.base_line',
+    'other_govn_services.damage_losses',
     'mining.base_line',
     'mining.damage_losses',
     'mining',
@@ -101,10 +104,10 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
-        },
-        'NAME': 'dala_2017',
+        # 'OPTIONS': {
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
+        # },
+        'NAME': 'dala_new',
         'USER': 'postgres',
 
     },
@@ -214,41 +217,6 @@ TABLE_PROPERTY_MAPPER = {
             },
         'Table_10':
             {
-                # 'DsnPubPnLmh': ['facilities_assets', 'total_num_affected', 'male', 'female',
-                #                 'total_damages', 'losses_y1',
-                #                 'losses_y2', 'total_losses', 'id'],
-                #
-                # 'DsnPubPnMoh': ['facilities_assets', 'total_num_affected', 'male', 'female',
-                #                 'total_damages', 'losses_y1',
-                #                 'losses_y2', 'total_losses', 'id'],
-                #
-                # 'DsnPubPnOmc': ['facilities_assets', 'total_num_affected', 'male', 'female',
-                #                 'total_damages', 'losses_y1',
-                #                 'losses_y2', 'total_losses', 'id'],
-                #
-                # 'DsnPvtPn': ['facilities_assets', 'total_num_affected', 'male', 'female',
-                #              'total_damages', 'losses_y1',
-                #              'losses_y2', 'total_losses', 'id'],
-                #
-                # 'DsnPubP1Lmh': ['facilities_assets', 'total_num_affected', 'male', 'female',
-                #                 'total_damages', 'losses_y1',
-                #                 'losses_y2', 'total_losses', 'id'],
-                # 'DsnPubP1Moh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1',
-                #                 'losses_y2', 'total_losses', 'id'],
-                #
-                # 'DsnPubP1Omc': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1',
-                #                 'losses_y2', 'total_losses', 'id'],
-                #
-                # 'DsnPvtP1': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages', 'losses_y1',
-                #              'losses_y2', 'total_losses', 'id'],
-                #
-                # 'DsnTdlOwship': ['ownership',
-                #                  'damages',
-                #                  'losses_y1',
-                #                  'losses_y2',
-                #                  'total', 'id']
 
                 'DshPubLmhProvince': ['facilities_assets', 'total_num_affected', 'male', 'female',
                                       'total_damages', 'losses_y1',
@@ -329,24 +297,7 @@ TABLE_PROPERTY_MAPPER = {
                                 'est_losses_y1', 'est_losses_y2', 'total_losses', 'id']
             }, 'Table_9':
             {
-                # 'DspPubD1Lmh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspPubD1Moh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspPubD1Omc': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspPubDnLmh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspPubDnMoh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspPubDnOmc': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #                 'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspPvtD1': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #              'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspPvtDn': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                #              'losses_y1', 'losses_y2', 'total_losses', 'id'],
-                # 'DspTdlOwship': ['ownership', 'damages', 'losses_y1', 'losses_y2', 'total'],
-                'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
+                          'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                       'losses_y1', 'losses_y2', 'total_losses', 'id', 'district'],
                 'DshPubMohDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                       'losses_y1', 'losses_y2', 'total_losses', 'id', 'district'],

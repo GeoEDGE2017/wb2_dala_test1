@@ -3,9 +3,6 @@ from django.db import models
 from settings.models import District,Province
 from incidents.models import IncidentReport
 
-# Create your models here.
-# transport_rail
-
 
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
@@ -18,7 +15,7 @@ class DlSessionKeys(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_session_keys'
+        db_table = 'transport_rail\".\"dl_session_keys'
 
 
 class DlMovingAstLoss(models.Model):
@@ -34,7 +31,7 @@ class DlMovingAstLoss(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_moving_ast_loss'
+        db_table = 'transport_rail\".\"dl_moving_ast_loss'
 
 
 class DlEquipMachineryAstLoss(models.Model):
@@ -50,7 +47,7 @@ class DlEquipMachineryAstLoss(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_equip_machinery_ast_loss'
+        db_table = 'transport_rail\".\"dl_equip_machinery_ast_loss'
 
 
 class DlMatSuppliesAstLoss(models.Model):
@@ -66,7 +63,7 @@ class DlMatSuppliesAstLoss(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_mat_supplies_ast_loss'
+        db_table = 'transport_rail\".\"dl_mat_supplies_ast_loss'
 
 
 class DlStructuresAstLoss(models.Model):
@@ -82,7 +79,7 @@ class DlStructuresAstLoss(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_structures_ast_loss'
+        db_table = 'transport_rail\".\"dl_structures_ast_loss'
 
 
 class DlBuildingAstLoss(models.Model):
@@ -102,7 +99,7 @@ class DlBuildingAstLoss(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_building_ast_loss'
+        db_table = 'transport_rail\".\"dl_building_ast_loss'
 
 
 class TotDmgProvince(models.Model):
@@ -115,4 +112,4 @@ class TotDmgProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tot_dmg_province'
+        db_table = 'transport_rail\".\"tot_dmg_province'

@@ -64,6 +64,9 @@ INSTALLED_APPS = [
     'transport_land',
     'transport_land.base_line',
     'transport_land.damage_losses',
+    'transport_air',
+    'transport_air.base_line',
+    'transport_air.damage_losses'
 
 ]
 
@@ -107,7 +110,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
         # },
-        'NAME': 'dala_new',
+        'NAME': 'dala',
         'USER': 'postgres',
 
     },

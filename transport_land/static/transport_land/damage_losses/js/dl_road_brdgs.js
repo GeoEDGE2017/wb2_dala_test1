@@ -229,7 +229,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 console.log($scope.bs_data);
             }, function errorCallback(response) {
 
-                console.log(response);
+//                console.log(response);
             });
         }
     }

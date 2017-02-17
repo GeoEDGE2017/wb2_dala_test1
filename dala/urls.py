@@ -48,13 +48,14 @@ urlpatterns = [
     # transport_rail
     url(r'^transport_rail/', include('transport_rail.urls', namespace='transport_rail')),
 
-     # transport-water
-     url(r'^transport_water/', include('transport_water.urls', namespace='transport_water')),
+    # transport-water
+    url(r'^transport_water/', include('transport_water.urls', namespace='transport_water')),
 
-     # transport-land
-     url(r'^transport_land/', include('transport_land.urls', namespace='transport_land')),
+    # transport-land
+    url(r'^transport_land/', include('transport_land.urls', namespace='transport_land')),
 
-
+    # transport_air
+    url(r'^transport_air/', include('transport_air.urls', namespace='transport_air')),
 
 
 

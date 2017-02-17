@@ -154,7 +154,18 @@
                                 <input name="textinput" type="number" placeholder="" id=""
                                        class="form-control input-md" ng-model="dlRbdRclassification.part_dest_earth">
                             </td>
-                            <td height="19" width="63" ng-bind="dlRbdRclassification.damages">
+
+                            <td height="19" width="63" ng-model="dlRbdRclassification.damages"
+                                 ng-bind="dlRbdRclassification.damages =
+                                          dlRbdRclassification.tot_dest_concrete * bs_data['BsRbuRclassificattion'][$index].fields.avg_replace_concrete +
+                                          dlRbdRclassification.tot_dest_asphalt * bs_data['BsRbuRclassificattion'][$index].fields.avg_replace_asphalt +
+                                          dlRbdRclassification.tot_dest_gravel * bs_data['BsRbuRclassificattion'][$index].fields.avg_replace_gravel +
+                                          dlRbdRclassification.tot_dest_earth * bs_data['BsRbuRclassificattion'][$index].fields.avg_replace_earth +
+                                          dlRbdRclassification.part_dest_concrete * bs_data['BsRbuRclassificattion'][$index].fields.avg_repair_concrete +
+                                          dlRbdRclassification.part_dest_asphalt * bs_data['BsRbuRclassificattion'][$index].fields.avg_repair_asphalt +
+                                          dlRbdRclassification.part_dest_gravel * bs_data['BsRbuRclassificattion'][$index].fields.avg_repair_gravel +
+                                          dlRbdRclassification.part_dest_earth * bs_data['BsRbuRclassificattion'][$index].fields.avg_repair_earth">
+
                             </td>
                         </tr>
                         <tr height="19">
@@ -187,6 +198,7 @@
                             <td height="19" width="63" ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].damages">
                                 -
                             </td>
+
                         </tr>
                         </tbody>
                     </table>
@@ -267,7 +279,12 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdTbridges.part_dest_multi_lanes">
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdTbridges.damages">
+                                <td height="19" width="63" ng-model="dlRbdTbridges.damages"
+                                 ng-bind="dlRbdTbridges.damages =
+                                          dlRbdTbridges.tot_dest_2_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_replace_2_lanes +
+                                          dlRbdTbridges.tot_dest_multi_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_replace_multi_lanes +
+                                          dlRbdTbridges.part_dest_2_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_repair_2_lanes +
+                                          dlRbdTbridges.part_dest_multi_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_repair_multi_lanes">
                                 </td>
                             </tr>
 
@@ -314,7 +331,10 @@
                                     <input id="textinput" name="textinput" type="text" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdTculverts.part_destroyed">
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdTculverts.damages">
+                                <td height="19" width="63" ng-model="dlRbdTculverts.damages"
+                                 ng-bind="dlRbdTculverts.damages =
+                                          dlRbdTculverts.tot_destroyed * bs_data['BsRbuTculverts'][$index].fields.avg_replace_cost +
+                                          dlRbdTculverts.part_destroyed * bs_data['BsRbuTculverts'][$index].fields.avg_repair_cost">
                                 </td>
                             </tr>
 
@@ -356,7 +376,10 @@
                                     <input id="textinput" name="textinput" type="text" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdTrwalls.part_destroyed">
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdTrwalls.damages">
+                                 <td height="19" width="63" ng-model="dlRbdTrwalls.damages"
+                                 ng-bind="dlRbdTrwalls.damages =
+                                          dlRbdTrwalls.tot_destroyed * bs_data['BsRbuTrwalls'][$index].fields.avg_replace_cost +
+                                          dlRbdTrwalls.part_destroyed * bs_data['BsRbuTrwalls'][$index].fields.avg_repair_cost">
                                 </td>
                             </tr>
                             <tr height="19" ng-repeat="dlRbdTrwalls in dlRoadBrdgs.transport_land.Table_4.DlRbdTrwalls" ng-if="dlRbdTrwalls.type_retain_walls == 'Total'">
@@ -397,7 +420,11 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdTdrains.part_destroyed">
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdTdrains.damages">
+
+                                <td height="19" width="63" ng-model="dlRbdTdrains.damages"
+                                 ng-bind="dlRbdTdrains.damages =
+                                          dlRbdTdrains.tot_destroyed * bs_data['BsRbuTdrains'][$index].fields.avg_replace_cost +
+                                          dlRbdTdrains.part_destroyed * bs_data['BsRbuTdrains'][$index].fields.avg_repair_cost">
                                 </td>
                             </tr>
                             <tr height="19" ng-repeat="dlRbdTdrains in dlRoadBrdgs.transport_land.Table_4.DlRbdTdrains" ng-if="dlRbdTdrains.type_drains == 'Total'">
@@ -441,14 +468,14 @@
                                 <td class="boldash" colspan="5" height="19" width="594" ng-bind="dlRbdLosses.loss_type">
                                 </td>
                                 <td colspan="2" height="19" width="296">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdLosses.year_1">
                                 </td>
                                 <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdLosses.year_2">
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdLosses.part_destroyed">
+                                <td height="19" width="63" ng-model="dlRbdLosses.part_destroyed" ng-bind="dlRbdLosses.part_destroyed = dlRbdLosses.year_1 + dlRbdLosses.year_2">
                                 </td>
                             </tr>
                             <tr height="19">

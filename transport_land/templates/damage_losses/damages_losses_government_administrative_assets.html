@@ -120,7 +120,9 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlGacDmgStructures.num_square_meters">
                             </td>
-                            <td height="19" width="148" ng-bind="dlGacDmgStructures.damages">
+                            <td height="19" width="148" ng-model="dlGacDmgStructures.damages"
+                                ng-bind="dlGacDmgStructures.damages =
+                                dlGacDmgStructures.num_square_meters * bs_data['BiaGacLandStructure'][$index].fields.avg_repair_cost">
                             </td>
                         </tr>
                         <!--Structures Total-->
@@ -133,7 +135,7 @@
                             <td class="tdpa" colspan="2" height="19" width="198">
                                 <br/>
                             </td>
-                            <td height="19" width="148" ng-bind="dlGacDmgStructures.damages">
+                            <td height="19" width="148" ng-model="dlGacDmgStructures.damages">
                             </td>
                         </tr>
                         </tbody>
@@ -208,7 +210,10 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_floors">
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgStructures.damages">
+                                <td height="19" width="148" ng-model="dlGacPdmgStructures.damages" ng-bind="dlGacPdmgStructures.damages =
+                                dlGacPdmgStructures.damaged_roof * bs_data['BiaGacLandPbuilding'][$index].fields.avg_repair_cost_floor_1 +
+                                dlGacPdmgStructures.damaged_walls * bs_data['BiaGacLandPbuilding'][$index].fields.avg_repair_cost_floor_2_3 +
+                                dlGacPdmgStructures.damaged_floors * bs_data['BiaGacLandPbuilding'][$index].fields.avg_repair_cost_floor_more_3">
                                 </td>
                             </tr>
                             <!--Total-->
@@ -269,7 +274,10 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlGacPdmgEquipment.num_part_damaged">
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgEquipment.damages">
+                                <td height="19" width="148" ng-model="dlGacPdmgEquipment.damages" ng-bind="dlGacPdmgEquipment.damages =
+                                dlGacPdmgEquipment.num_tot_destroyed * bs_data['BiaGacLandOequipment'][$index].fields.avg_replace_cost +
+                                dlGacPdmgEquipment.num_part_damaged * bs_data['BiaGacLandOequipment'][$index].fields.avg_repair_cost ">
+
                                 </td>
                             </tr>
                             <!--Office Equipment Total-->
@@ -311,7 +319,10 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlGacPdmgMachinery.num_part_damaged">
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
+
+                                <td height="19" width="148" ng-model="dlGacPdmgMachinery.damages" ng-bind="dlGacPdmgMachinery.damages =
+                                dlGacPdmgMachinery.num_tot_destroyed * bs_data['BiaGacLandMachinery'][$index].fields.avg_replace_cost +
+                                dlGacPdmgMachinery.num_part_damaged * bs_data['BiaGacLandMachinery'][$index].fields.avg_repair_cost ">
                                 </td>
                             </tr>
                             <!--Machinery Total-->
@@ -372,7 +383,7 @@
                                 Total (LKR)
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="$index < 3">
+                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="$index < 4">
                             <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
                             </td>
                             <td colspan="2" height="19" width="126">
@@ -383,25 +394,10 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlGacLosType.los_year_2">
                             </td>
-                            <td height="19" width="148" ng-bind="dlGacLosType.total">
+                            <td height="19" width="148" ng-model="dlGacLosType.total" ng-bind="dlGacLosType.total = dlGacLosType.los_year_1 + dlGacLosType.los_year_2  ">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" height="19" width="156">
-                                Other unexpected expenses
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td height="19" width="148">
-                                -
-                            </td>
-                        </tr>
+
                         <!--TOTAL LOSSES-->
                         <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets == 'TOTAL LOSSES'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
@@ -419,7 +415,16 @@
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_govn_admn_asets)">Submit</button>
+                        <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                                ng-click="saveDlData(form_dl_govn_admn_asets)"
+                                class="btn btn-success">Submit</button>
+
                     </div>
                 </div>
             </div>

@@ -107,7 +107,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
         # },
-        'NAME': 'dala_new',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
 
     },
@@ -297,7 +297,7 @@ TABLE_PROPERTY_MAPPER = {
                                 'est_losses_y1', 'est_losses_y2', 'total_losses', 'id']
             }, 'Table_9':
             {
-                          'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
+                'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                       'losses_y1', 'losses_y2', 'total_losses', 'id', 'district'],
                 'DshPubMohDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                       'losses_y1', 'losses_y2', 'total_losses', 'id', 'district'],
@@ -1458,6 +1458,110 @@ TABLE_PROPERTY_MAPPER = {
                  'part_destroyed',
                  'losses',
                  'loss_type',
+                 'id'],
+
+        },
+        'Table_5': {
+            'DlOtherDmgsPvehicles':
+                ['num_tot_dest_pvt',
+                 'num_part_dest_pvt',
+                 'tot_damages_pvt',
+                 'private_vehicles',
+                 'id'],
+            'DlOtherDmgsBcompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'bus_companies',
+                 'id'],
+            'DlOtherDmgsTcompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'taxi_companies',
+                 'id'],
+            'DlOtherDmgsTrcompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'truck_companies',
+                 'id'],
+            'DlOtherDmgsTucompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'tuk_companies',
+                 'id'],
+            'DlOtherLosPub':
+                ['fi_year_1',
+                 'fi_year_2',
+                 'cl_debris_year_1',
+                 'cl_debris_year_2',
+                 'hoc_year_1',
+                 'hoc_year_2',
+                 'oue_year_1',
+                 'oue_year_2',
+                 'tot_los',
+                 'tr_company',
+                 'id'],
+            'DlOtherLosPvt':
+                ['fi_year_1',
+                 'fi_year_2',
+                 'cl_debris_year_1',
+                 'cl_debris_year_2',
+                 'hoc_year_1',
+                 'hoc_year_2',
+                 'oue_year_1',
+                 'oue_year_2',
+                 'tot_los',
+                 'tr_company',
+                 'id'],
+
+        },
+        'Table_6': {
+            'DlGacDmgStructures':
+                ['assets',
+                 'num_tot_destroyed',
+                 'num_square_meters',
+                 'damages',
+                 'id'],
+            'DlGacLosType':
+                ['assets',
+                 'los_year_1',
+                 'los_year_2',
+                 'total',
+                 'id'],
+            'DlGacPdmgEquipment':
+                ['assets',
+                 'num_tot_destroyed',
+                 'num_part_damaged',
+                 'damages',
+                 'id'],
+            'DlGacPdmgMachinery':
+                ['assets',
+                 'num_tot_destroyed',
+                 'num_part_damaged',
+                 'damages',
+                 'id'],
+            'DlGacPdmgStructures':
+                ['assets',
+                 'num_part_damaged',
+                 'damaged_roof',
+                 'damaged_walls',
+                 'damaged_floors',
+                 'damages',
                  'id'],
 
         }

@@ -178,14 +178,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                     num_part_dest_pvt : null,
                     tot_damages_pub : null,
                     tot_damages_pvt : null,
-                },{
-                    tuk_companies: 'TOTAL DAMAGES',
-                    num_tot_dest_pub : null,
-                    num_tot_dest_pvt : null,
-                    num_part_dest_pub : null,
-                    num_part_dest_pvt : null,
-                    tot_damages_pub : null,
-                    tot_damages_pvt : null,
                 },],
                 //Tab 2
                 'DlOtherLosPub' : [{
@@ -346,7 +338,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsGtlAstPvehicles'],
+                    'db_tables': ['BsGtlAstPvehicles','BsGtlAstBcompanies','BsGtlAstTrcompanies','BsGtlAstTucompanies','BsGtlAstTcompanies'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -412,7 +404,65 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            alert('Save Table 5');
+            $http({
+            method: 'POST',
+            url:'/dl_save_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dlOthLndAsets,
+                'com_data': {
+                    'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+
+                },
+                'is_edit' : $scope.is_edit,
+
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+
+                 if(response.data == 'False')
+             $scope.is_valid_data = false;
+                else
+             $("#modal-container-239453").modal('show');
+
+        }, function errorCallback(response) {
+
+            console.log(response);
+        });
         }
     }
+
+    $scope.dlDataEdit = function(form)
+{
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_5',
+    'sector':'transport_land',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlOthLndAsets = data;
+    })
+
+}
+    $scope.cancelEdit = function()
+{
+     $scope.is_edit = false;
+     $scope.dlOthLndAsets = init_data;
+}
 });

@@ -200,7 +200,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-                console.log(data);
+
             })
         }
 
@@ -210,7 +210,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains'],
+                  'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains','BsRbuRclassificattion'],
                   'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -226,10 +226,8 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 });
 
                 generateRefencedData();
-                console.log($scope.bs_data);
-            }, function errorCallback(response) {
 
-//                console.log(response);
+            }, function errorCallback(response) {
             });
         }
     }
@@ -272,7 +270,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                particular_value_4 = 'Total';
                $scope.dlRoadBrdgs.transport_land.Table_4[dl_model4] = [];
             }
-            console.log(dl_model1,dl_model2,dl_model3,dl_model4);
+
 
 
             var obj1 = {
@@ -363,7 +361,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
             }
 
         });
-        console.log($scope.dlRoadBrdgs.transport_land.Table_4);
+
 
     }
 
@@ -390,13 +388,12 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                else
                     $("#modal-container-239453").modal('show');
             }, function errorCallback(response) {
-                console.log(response);
+
             });
         }
     }
 
-      $scope.dlDataEdit = function(form)
-{
+    $scope.dlDataEdit = function(form){
 
    $scope.is_edit = true;
    $scope.submitted = true;
@@ -415,18 +412,17 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
            }),
     }).success(function(data) {
 
-    console.log(data);
-
-
     $scope.dlRoadBrdgs = data;
     })
 
 }
-    $scope.cancelEdit = function()
-{
+
+    $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlRoadBrdgs = init_data;
 }
+
+
 
 });
 

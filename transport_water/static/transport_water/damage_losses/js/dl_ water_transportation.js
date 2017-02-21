@@ -1,6 +1,6 @@
-var app = angular.module('dlWaterTransApp', []);
+var app = angular.module('dlWaterTransApp', ['underscore']);
 
-app.controller("DlWaterTransController", ['$scope','$http',function ($scope,$http) {
+app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
  $scope.district;
  $scope.incident;
@@ -10,6 +10,11 @@ app.controller("DlWaterTransController", ['$scope','$http',function ($scope,$htt
  $scope.submitted = false;
  $scope.Districts=[];
  $scope.is_valid_data = true;
+ $scope.DlWaterDmgWcrafts_num_tdestroyed_public = null;
+ $scope.DlWaterDmgWcrafts_num_tdestroyed_private = null;
+ $scope.DlWaterDmgWcrafts_num_pdestroyed_public = null;
+ $scope.DlWaterDmgWcrafts_num_pdestroyed_private = null;
+
 
     var init_data = {
     'transport_water':{
@@ -95,41 +100,41 @@ app.controller("DlWaterTransController", ['$scope','$http',function ($scope,$htt
                 tot_dmg_private: null,
                 tot_dmg_public: null,
             }],
-//             'DlWaterDmgMaterials': [ {
-//                assets: 'Fuel (Liters)',
-//                num_tdestroyed_public: null,
-//                num_tdestroyed_private: null,
-//                num_pdestroyed_public: null,
-//                num_pdestroyed_private: null,
-//                tot_dmg_private: null,
-//                tot_dmg_public: null,
-//            },
-//            {
-//                assets: 'Total',
-//                num_tdestroyed_public: null,
-//                num_tdestroyed_private: null,
-//                num_pdestroyed_public: null,
-//                num_pdestroyed_private: null,
-//                tot_dmg_private: null,
-//                tot_dmg_public: null,
-//            },
-//            ],
-//            'DlWaterDmgStructures': [ {
-//                assets: 'Ports',
-//                num_tdestroyed_num: null,
-//                num_tdestroyed_meters: null,
-//                num_pdestroyed_num: null,
-//                num_pdestroyed_meters: null,
-//                tot_damages: null,
-//            },
-//            {
-//                assets: 'Total',
-//                num_tdestroyed_num: null,
-//                num_tdestroyed_meters: null,
-//                num_pdestroyed_num: null,
-//                num_pdestroyed_meters: null,
-//                tot_damages: null,
-//            },],
+             'DlWaterDmgMaterials': [ {
+                assets: 'Fuel (Liters)',
+                num_tdestroyed_public: null,
+                num_tdestroyed_private: null,
+                num_pdestroyed_public: null,
+                num_pdestroyed_private: null,
+                tot_dmg_private: null,
+                tot_dmg_public: null,
+            },
+            {
+                assets: 'Total',
+                num_tdestroyed_public: null,
+                num_tdestroyed_private: null,
+                num_pdestroyed_public: null,
+                num_pdestroyed_private: null,
+                tot_dmg_private: null,
+                tot_dmg_public: null,
+            },
+            ],
+            'DlWaterDmgStructures': [ {
+                assets: 'Ports',
+                num_tdestroyed_num: null,
+                num_tdestroyed_meters: null,
+                num_pdestroyed_num: null,
+                num_pdestroyed_meters: null,
+                tot_damages: null,
+            },
+            {
+                assets: 'Total',
+                num_tdestroyed_num: null,
+                num_tdestroyed_meters: null,
+                num_pdestroyed_num: null,
+                num_pdestroyed_meters: null,
+                tot_damages: null,
+            },],
             'DlWaterDmgBuildings': [{
                 assets:'1 floor',
                 tdestroyed_num: null,
@@ -342,31 +347,30 @@ function generateRefencedData(){
     {
        dl_model1 = 'DlWaterDmgWcrafts';
        particular_value_1 = 'Total';
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
 
     }
     if(model_name == 'BsAstWaterEquipment')
     {
        dl_model1 = 'DlWaterDmgEquipment';
        particular_value_1 = 'Total';
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
 
     }
      if(model_name == 'BsAstWaterMaterials')
     {
        dl_model1 = 'DlWaterDmgMaterials';
        particular_value_1 = 'Total';
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
 
     }
-//     if(model_name == 'BsAstWaterStructures')
-//    {
-//       dl_model2 = 'DlWaterDmgStructures';
-//       particular_value_2 = 'Total';
-//
-//    }
+     if(model_name == 'BsAstWaterStructures')
+    {
+       dl_model2 = 'DlWaterDmgStructures';
+       particular_value_2 = 'Total';
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2] = [];
 
-    $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
-//    $scope.dlWaterTransportation.transport_water.Table_2[dl_model2] = [];
-
-
+    }
 
     var obj1 = {
        assets: particular_value_1,
@@ -377,13 +381,13 @@ function generateRefencedData(){
        tot_dmg_private: null,
        tot_dmg_public: null,
     };
-//      var obj2 = {
-//        assets: particular_value_2,
-//        num_tdestroyed_num: null,
-//        num_tdestroyed_meters: null,
-//        num_pdestroyed_num: null,
-//        num_pdestroyed_meters: null,
-//    };
+      var obj2 = {
+        assets: particular_value_2,
+        num_tdestroyed_num: null,
+        num_tdestroyed_meters: null,
+        num_pdestroyed_num: null,
+        num_pdestroyed_meters: null,
+    };
 
     angular.forEach(obj_array, function(value, key) {
     var obj1 = {
@@ -395,13 +399,13 @@ function generateRefencedData(){
                 tot_dmg_private: null,
                 tot_dmg_public: null,
               };
-//    var obj2 = {
-//                assets: value.fields.assets,
-//                num_tdestroyed_num: null,
-//                num_tdestroyed_meters: null,
-//                num_pdestroyed_num: null,
-//                num_pdestroyed_meters: null,
-//              };
+    var obj2 = {
+                assets: value.fields.assets,
+                num_tdestroyed_num: null,
+                num_tdestroyed_meters: null,
+                num_pdestroyed_num: null,
+                num_pdestroyed_meters: null,
+              };
 
 
 
@@ -413,30 +417,62 @@ function generateRefencedData(){
     {
        $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
     }
-//    if(model_name == 'BsAstWaterMaterials')
-//    {
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
-//    }
-//    if(model_name == 'BsAstWaterStructures')
-//    {
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
-//    }
+    if(model_name == 'BsAstWaterMaterials')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+    }
+    if(model_name == 'BsAstWaterStructures')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
+    }
 
 
     });
 
-    $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
-//    $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
+    if(model_name == 'BsAstWaterWcrafts')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+    }
+    if(model_name == 'BsAstWaterEquipment')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+    }
+    if(model_name == 'BsAstWaterMaterials')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+    }
+    if(model_name == 'BsAstWaterStructures')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
+    }
 
 
   });
 
-  console.log( dl_model2);
+
 
 
 }
 
+    $scope.getTotal = function(model, property) {
 
-}])
+        var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
+        var cumulative = null;
+        var sums = _.map(array, function(obj) {
+            cumulative += obj[property];
+            return cumulative;
+            console.log(cumulative);
+
+        });
+        var the_string = model + '_' + property;
+        var model = $parse(the_string);
+        model.assign($scope, cumulative);
+
+
+
+    }
+
+
+})
 
 

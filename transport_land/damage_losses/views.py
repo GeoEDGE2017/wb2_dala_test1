@@ -51,3 +51,31 @@ def dl_govn_admin_aset(request):
     }
 
     return render(request, 'damage_losses/damages_losses_government_administrative_assets.html', context)
+
+
+def dl_tr_land_province(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents
+    }
+
+    return render(request, 'damage_losses/summary_damage_losses_land_transportation_sub_sector_province.html', context)
+
+
+def dl_tr_land_national(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents
+    }
+
+    return render(request, 'damage_losses/summary_damage_losses_land_transportation_sub_sector_nationwide.html', context)

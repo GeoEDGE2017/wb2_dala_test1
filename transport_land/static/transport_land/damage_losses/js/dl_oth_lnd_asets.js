@@ -5,12 +5,12 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
-
     $scope.dlDate;
     $scope.bs_data={};
-
+    var total=null;
+    $scope.total=null;
     $scope.baselineDate;
-
+    $scope.DlOtherDmgsPvehicles_total = null;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
 
@@ -433,8 +433,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlDataEdit = function(form)
-{
+    $scope.dlDataEdit = function(form){
 
    $scope.is_edit = true;
    $scope.submitted = true;
@@ -460,9 +459,9 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     })
 
 }
-    $scope.cancelEdit = function()
-{
+    $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlOthLndAsets = init_data;
 }
+
 });

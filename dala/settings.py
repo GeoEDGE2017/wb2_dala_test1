@@ -1564,7 +1564,34 @@ TABLE_PROPERTY_MAPPER = {
                  'damages',
                  'id'],
 
-        }
+        },
+        'Table_8': {
+            'DlGacPubProvince':
+                ['damages'],
+            'DlGacPvtProvince':
+                ['tot_damages_pvt'],
+            'DlOtherLosPubDistrict':
+                ['year_1_pub',
+                 'year_2_pub',
+                 ],
+            'DlOtherLosPvtDistrict':
+                ['year_1_pvt',
+                 'year_2_pub',
+                 ],
+
+        },
+        'Table_9': {
+            'DlGacPubNational':
+                ['damages'],
+            'DlGacPvtNational':
+                ['tot_damages_pvt'],
+            'DlOtherLosPvtNational':
+                ['year_1_pvt',
+                 'year_2_pub',
+                 ],
+
+        },
+
 
     },
 }

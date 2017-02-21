@@ -111,7 +111,7 @@ DATABASES = {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
         # },
         # 'OPTIONS': {
-        #     'options': '-c search_path=transport_land'
+        #     'options': '-c search_path=transport_air'
         # },
         'NAME': 'dala',
         'USER': 'postgres',
@@ -1576,8 +1576,26 @@ TABLE_PROPERTY_MAPPER = {
                 ['damages', 'incident', 'district'],
             'DlRbdTbridgesDistrict':
                 ['damages', 'incident', 'district'],
-        }
+            'DlRbdTculvertsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTdrainsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTrwallsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlOtherDmgsPvehiclesDistrict':
+                ['tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsBcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTrcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTucompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlGacPubDistrict':
+                ['damages', 'incident', 'district'],
 
+        },
     },
 }
 

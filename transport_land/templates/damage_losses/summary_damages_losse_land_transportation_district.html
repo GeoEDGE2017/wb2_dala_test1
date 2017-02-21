@@ -19,7 +19,7 @@
                 <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
                 <li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
             </ul>
-            <div id="myTabContent" class="tab-content">
+            <div id="myTabContent" class="tab-content" ng-form name="form_dlsum_transland_dist">
                 <div class="tab-pane active" id="step1">
                     <table class="table table-bordered">
                         <colgroup>
@@ -32,6 +32,22 @@
                             <col width="63"/>
                         </colgroup>
                         <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="isLoded && form_dlsum_transland_dist.incident.$error.required">
+                                    Please select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="isLoded && form_dlsum_transland_dist.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                        </tr>
                         <tr height="43">
                             <td class="trhead" height="43" width="156">
                                 Incident
@@ -58,7 +74,7 @@
                                 </select>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success" ng-click="loadData()">Submit</button>
+                                <button type="submit" class="btn btn-success" ng-click="loadData(form_dlsum_transland_dist)">Load</button>
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -80,12 +96,11 @@
                                 Total (LKR)
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="data in data.transport_land.Table_7.DlRbdRclassificationDistrict">
+                        <tr height="19">
                             <td class="tdpa" height="19" width="156">
                                 Public Roads
                             </td>
-                            <td colspan="2" height="19" width="126">
-                                -
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdRclassificationDistrict[0].damages">
                             </td>
                             <td class="tdpa" colspan="2" height="19" width="198">
                                 <br/>
@@ -98,7 +113,7 @@
                             <td class="tdpa" height="19" width="156">
                                 Public Bridges
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTbridgesDistrict[0].damages">
                                 -
                             </td>
                             <td class="tdpa" colspan="2" height="19" width="198">
@@ -112,7 +127,7 @@
                             <td class="tdpa" height="19" width="156">
                                 Culverts
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTculvertsDistrict[0].damages">
                                 -
                             </td>
                             <td class="tdpa" colspan="2" height="19" width="198">
@@ -126,7 +141,7 @@
                             <td class="tdpa" height="19" width="156">
                                 Retaining Walls
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTrwallsDistrict[0].damages">
                                 -
                             </td>
                             <td class="tdpa" colspan="2" height="19" width="198">
@@ -140,7 +155,7 @@
                             <td class="tdpa" height="19" width="156">
                                 Drains
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTdrainsDistrict[0].damages">
                                 -
                             </td>
                             <td class="tdpa" colspan="2" height="19" width="198">
@@ -157,7 +172,7 @@
                             <td class="tdpa" colspan="2" height="19" width="126">
                                 <br/>
                             </td>
-                            <td colspan="2" height="19" width="198">
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsPvehiclesDistrict[0].tot_damages_pvt">
                                 -
                             </td>
                             <td colspan="2" height="19" width="296">
@@ -168,10 +183,10 @@
                             <td class="tdpa" height="19" width="156">
                                 Bus Companies
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsBcompaniesDistrict[0].tot_damages_pub">
                                 -
                             </td>
-                            <td colspan="2" height="19" width="198">
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsBcompaniesDistrict[0].tot_damages_pvt">
                                 -
                             </td>
                             <td colspan="2" height="19" width="296">
@@ -182,10 +197,10 @@
                             <td class="tdpa" height="19" width="156">
                                 Taxi Companies
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsTcompaniesDistrict[0].tot_damages_pub">
                                 -
                             </td>
-                            <td colspan="2" height="19" width="198">
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsTcompaniesDistrict[0].tot_damages_pvt">
                                 -
                             </td>
                             <td colspan="2" height="19" width="296">
@@ -196,10 +211,10 @@
                             <td class="tdpa" height="19" width="156">
                                 Truck Companies
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsTrcompaniesDistrict[0].tot_damages_pub">
                                 -
                             </td>
-                            <td colspan="2" height="19" width="198">
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsTrcompaniesDistrict[0].tot_damages_pvt">
                                 -
                             </td>
                             <td colspan="2" height="19" width="296">
@@ -210,10 +225,10 @@
                             <td class="tdpa" height="19" width="156">
                                 Tuk tuk Companies
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsTucompaniesDistrict[0].tot_damages_pub">
                                 -
                             </td>
-                            <td colspan="2" height="19" width="198">
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsTucompaniesDistrict[0].tot_damages_pvt">
                                 -
                             </td>
                             <td colspan="2" height="19" width="296">
@@ -224,7 +239,7 @@
                             <td class="tdpa" height="19" width="156">
                                 Government agency assets
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlGacPubDistrict[0].damages">
                                 -
                             </td>
                             <td class="tdpa" colspan="2" height="19" width="198">

@@ -410,6 +410,103 @@ class DlRbdTbridgesDistrict(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'transport_land\".\"dl_rbd_rclassification_district'
+        db_table = 'transport_land\".\"dl_rbd_tbridges_district'
+
+
+class DlRbdTculvertsDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_rbd_tculverts_district'
+
+
+class DlRbdTdrainsDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_rbd_tdrains_district'
+
+
+class DlRbdTrwallsDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_rbd_trwalls_district'
+
+
+class DlOtherDmgsPvehiclesDistrict(models.Model):
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_other_dmgs_pvehicles_district'
+
+
+class DlOtherDmgsBcompaniesDistrict(models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_other_dmgs_bcompanies_district'
+
+
+class DlOtherDmgsTcompaniesDistrict(models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_other_dmgs_tcompanies_district'
+
+
+class DlOtherDmgsTrcompaniesDistrict(models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_other_dmgs_trcompanies_district'
+
+
+class DlOtherDmgsTucompaniesDistrict(models.Model):
+    tot_damages_pub = models.FloatField(blank=True, null=True)
+    tot_damages_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_other_dmgs_tucompanies_district'
+
+
+class DlGacPubDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_gac_pub_district'
+
+
+
 
 

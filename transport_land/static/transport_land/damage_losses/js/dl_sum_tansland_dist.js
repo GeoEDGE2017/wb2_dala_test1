@@ -5,6 +5,7 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
+    $scope.isLoded = false;
 
     $scope.dlDate;
     $scope.bs_data={};
@@ -33,25 +34,32 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
         }
     }
 
-    $scope.loadData = function() {
-        alert('LoadData');
-        $scope.tot_damages = null;
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        $http({
-            method: "POST",
-            url: '/dl_fetch_total_data',
-            data: angular.toJson({
-                'table_name':  'Table_7',
-                'sector':'transport_land',
-                'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
-                'is_edit':$scope.is_edit
-            }),
-        }).success(function(data) {
-            $scope.data=data;
-        })
+    $scope.loadData = function(form) {
+        $scope.isLoded = true;
+        if(form.$valid) {
+            alert('in');
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+
+            $http({
+                method: "POST",
+                url: '/dl_fetch_total_data',
+                data: angular.toJson({
+                    'table_name':  'Table_7',
+                    'sector':'transport_land',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.data=data;
+            })
+        }
+        else {
+            alert('out');
+        }
+
     }
 });

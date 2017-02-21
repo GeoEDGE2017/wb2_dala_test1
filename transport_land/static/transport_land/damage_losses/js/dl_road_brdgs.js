@@ -499,12 +499,13 @@ function getObj(){
  return $scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts;
 }
 
-$scope.calculateTotal=function(){
-var obj_array = getObj();
-console.log("array-",obj_array);
+$scope.calculateTotal=function(arr){
+//var obj_array = getObj();
+
+console.log("array-",arr);
 var finaltotal = 0;
 
-angular.forEach(obj_array, function(value, key) {
+angular.forEach(arr, function(value, key) {
 
  finaltotal = finaltotal + value.damages;
  console.log(value);

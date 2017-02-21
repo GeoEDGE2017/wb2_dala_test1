@@ -29,6 +29,7 @@ def dl_rail_trnspt_cmpny(request):
     return render(request, 'damage_losses/damages_losses_rail_transportation_company.html', context)
 
 
+@permission_required("provincial", 'transport_land')
 def dl_rail_trnspt_dis_summary(request):
     user = request.user
     fetch_data = fetch_districts(user)
@@ -44,6 +45,7 @@ def dl_rail_trnspt_dis_summary(request):
     return render(request, 'damage_losses/summary_damages_losses_rail_transportation.html', context)
 
 
+@permission_required("national", 'transport_land')
 def dl_rail_trans_nat_summary(request):
     user = request.user
     fetch_data = fetch_districts(user)

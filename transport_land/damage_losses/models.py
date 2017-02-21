@@ -378,6 +378,7 @@ class DlGacPdmgStructures(models.Model):
         db_table = 'transport_land\".\"dl_gac_pdmg_structures'
 
 
+
 class DlGacPubProvince(models.Model):
     damages = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
@@ -450,3 +451,26 @@ class DlOtherLosPvtNational(models.Model):
     class Meta:
         managed = False
         db_table = 'transport_land\".\"dl_other_los_national'
+
+
+# Views Models
+class DlRbdRclassificationDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_rbd_rclassification_district'
+
+
+class DlRbdTbridgesDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_land\".\"dl_rbd_rclassification_district'
+
+

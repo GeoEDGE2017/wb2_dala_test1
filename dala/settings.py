@@ -64,6 +64,9 @@ INSTALLED_APPS = [
     'transport_land',
     'transport_land.base_line',
     'transport_land.damage_losses',
+    'transport_air',
+    'transport_air.base_line',
+    'transport_air.damage_losses'
 
 ]
 
@@ -107,7 +110,10 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
         # },
-        'NAME': 'dala_2017',
+        # 'OPTIONS': {
+        #     'options': '-c search_path=transport_land'
+        # },
+        'NAME': 'dala',
         'USER': 'postgres',
 
     },
@@ -1565,6 +1571,7 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
 
         },
+
         'Table_8': {
             'DlGacPubProvince':
                 ['damages'],
@@ -1592,6 +1599,12 @@ TABLE_PROPERTY_MAPPER = {
 
         },
 
+        'Table_7': {
+            'DlRbdRclassificationDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTbridgesDistrict':
+                ['damages', 'incident', 'district'],
+        }
 
     },
 }

@@ -230,8 +230,6 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                  $scope.calTotal();
 
             }, function errorCallback(response) {
-
-
             });
         }
     }

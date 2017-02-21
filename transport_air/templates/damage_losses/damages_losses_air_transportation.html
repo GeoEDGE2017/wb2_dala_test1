@@ -1,0 +1,953 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlAirTrnspotationApp" ng-controller="dlAirTrnspotationController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and losses to air transportation</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_dl_air_trnspotation">
+        <ul class='nav nav-wizard'>
+            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="218"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_air_trnspotation.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_air_trnspotation.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="218" height="19">
+                            Name of District:
+                        </td>
+                        <td colspan="4" width="567" height="19">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            Incident:
+                        </td>
+                        <td colspan="5">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" width="218" height="38" style="width:27.8%;">
+                            Assets
+                        </td>
+                        <td colspan="3" width="189" height="19">
+                            Number of Totally Destroyed
+                        </td>
+                        <td colspan="4" width="252" height="19">
+                            Number of Partially Damaged
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Total Damages (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td colspan="2" width="126" height="19" style="width:16%;">
+                            Public
+                        </td>
+                        <td width="63" height="19" style="width:8%;">
+                            Private
+                        </td>
+                        <td colspan="2" width="126" height="19" style="width:16%;">
+                            Public
+                        </td>
+                        <td colspan="2" width="126" height="19" style="width:16.4%;">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="218"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                        </colgroup>
+                        <tbody>
+                        <tr class="trheadc" height="19">
+                            <td width="218" height="19">
+                                Aircrafts
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlAirDmgAircrafts in dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts" ng-if="dlAirDmgAircrafts.assets != 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgAircrafts.assets">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgAircrafts.tot_destroyed_pub">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgAircrafts.tot_destroyed_pvt">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgAircrafts.part_damaged_pub">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgAircrafts.part_damaged_pvt">
+                            </td>
+                            <td width="63" height="19">
+                                -**
+                            </td>
+                            <td width="63" height="19">
+                                -**
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="19">
+                            <td width="218" height="19">
+                                Others(Populated from Table 1)
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlAirDmgAircrafts in dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts" ng-if="dlAirDmgAircrafts.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgAircrafts.assets">
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" width="218" height="38">
+                                Government Equipment
+                            </td>
+                            <td colspan="3" rowspan="2" width="189" height="38">
+                                Number of Totally Destroyed
+                            </td>
+                            <td colspan="4" rowspan="2" width="252" height="38">
+                                Number of Partially Damaged
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Total Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td width="63" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlAirDmgEquipment in dlAirTrnspotation.transport_air.Table_2.DlAirDmgEquipment" ng-if="dlAirDmgEquipment.assets != 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgEquipment.assets">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgEquipment.tot_destroyed">
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgEquipment.part_damaged">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgEquipment.tot_dmg_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="218" height="19">
+                                Others (Populated from Table 1)
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Total-->
+                        <tr height="19" ng-repeat="dlAirDmgEquipment in dlAirTrnspotation.transport_air.Table_2.DlAirDmgEquipment" ng-if="dlAirDmgEquipment.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgEquipment.assets">
+                            </td>
+                            <td class="tdpa" colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="4" width="252" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgEquipment.tot_dmg_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" width="218" height="38">
+                                Materials and supplies
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                Number of Totally Destroyed
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                Number of Partially Damaged
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Total Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td colspan="2" width="126" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Public
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Private
+                            </td>
+                            <td width="63" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                        </tr>
+                        <!--Materials and supplies-->
+                        <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets != 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
+                                Fuel (Liters)
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgSupplies.tot_destroyed_pub">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgSupplies.tot_destroyed_pvt">
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt">
+                            </td>
+                        </tr>
+                        <!--Materials and supplies Total-->
+                        <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
+                                Total
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" width="218" height="38">
+                                Others
+                            </td>
+                            <td colspan="3" rowspan="2" width="189" height="38">
+                                Totally Destroyed (in Meters)
+                            </td>
+                            <td colspan="4" rowspan="2" width="252" height="38">
+                                Partially Damaged (in Meters)
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Total Damage (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td width="63" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                        </tr>
+                        <!--Others-->
+                        <tr height="19" ng-repeat="dlAirDmgOthers in dlAirTrnspotation.transport_air.Table_2.DlAirDmgOthers" ng-if="dlAirDmgOthers.assets != 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgOthers.assets">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgOthers.tot_destroyed">
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgOthers.part_damaged">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgOthers.tot_dmg_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Others Total-->
+                        <tr height="19" ng-repeat="dlAirDmgOthers in dlAirTrnspotation.transport_air.Table_2.DlAirDmgOthers" ng-if="dlAirDmgOthers.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgOthers.assets">
+                            </td>
+                            <td class="tdpa" colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="4" width="252" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgOthers.tot_dmg_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="218" height="19">
+                                Government Structures
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                Number of Totally Destroyed Structures
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                Partially Damaged
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Total Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="32">
+                            <td width="218" height="32">
+                                <br/>
+                            </td>
+                            <td width="63" height="32">
+                                1 floor
+                            </td>
+                            <td width="63" height="32">
+                                2-3 floors
+                            </td>
+                            <td width="63" height="32">
+                                More than 3 floors
+                            </td>
+                            <td width="63" height="32">
+                                Number
+                            </td>
+                            <td width="63" height="32">
+                                Roof (sqm)
+                            </td>
+                            <td width="63" height="32">
+                                Wall (sqm)
+                            </td>
+                            <td width="63" height="32">
+                                Floor (sqm)
+                            </td>
+                            <td width="63" height="32">
+                                Public
+                            </td>
+                            <td width="63" height="32">
+                                Private
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlAirDmgGstructures in dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures" ng-if="dlAirDmgGstructures.assets != 'Total' && dlAirDmgGstructures.assets != 'TOTAL DAMAGES'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgGstructures.assets">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.tdest_floor_1">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.tdest_floor_2_3">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.tdest_floor_than_3">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_number">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_roof">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_wall">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_floor">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Total-->
+                        <tr height="19" ng-repeat="dlAirDmgGstructures in dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures" ng-if="dlAirDmgGstructures.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgGstructures.assets">
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlAirDmgGstructures in dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures" ng-if="dlAirDmgGstructures.assets == 'TOTAL DAMAGES'">
+                            <td class="tdpa" width="218" height="19">
+                                TOTAL DAMAGES
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <br>
+                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                <br>
+            </div>
+            <div class="tab-pane fade" id="step2">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr class="trheadc" height="19">
+                        <td width="218" height="19">
+                            Type of Losses
+                        </td>
+                        <td colspan="3" width="189" height="19">
+                            Year 1
+                        </td>
+                        <td colspan="4" width="252" height="19">
+                            Year2
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Total Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="218" height="19">
+                            <br/>
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Public
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="218" height="19">
+                            Foregone Income
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <br/>
+                        </td>
+                        <td width="63" height="19">
+                            <br/>
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <br/>
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <br/>
+                        </td>
+                        <td width="63" height="19">
+                            <br/>
+                        </td>
+                        <td width="63" height="19">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="dlAirLosFi in dlAirTrnspotation.transport_air.Table_2.DlAirLosFi" ng-if="dlAirLosFi.assets != 'Total'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosFi.assets">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_1_pub">
+                        </td>
+                        <td width="63" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_1_pvt">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_2_pub">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_2_pvt">
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <!--Total-->
+                    <tr height="19" ng-repeat="dlAirLosFi in dlAirTrnspotation.transport_air.Table_2.DlAirLosFi" ng-if="dlAirLosFi.assets == 'Total'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosFi.assets">
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosFi.year_1_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosFi.year_1_pvt">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosFi.year_2_pub">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosFi.year_2_pvt">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="218" height="19" >
+                            Higher operating costs
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <br/>
+                        </td>
+                        <td width="63" height="19">
+                            <br/>
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <br/>
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <br/>
+                        </td>
+                        <td width="63" height="19">
+                            <br/>
+                        </td>
+                        <td width="63" height="19">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr height="34" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets != 'Total' && dlAirLosHoc.assets != 'Cleaning up of debris' && dlAirLosHoc.assets != 'Other unexpected expenses' && dlAirLosHoc.assets != 'TOTAL LOSSES'">
+                        <td class="tdpa" width="218" height="34" ng-bind="dlAirLosHoc.type_los">
+                        </td>
+                        <td colspan="2" width="126" height="34">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
+                        </td>
+                        <td width="63" height="34">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
+                        </td>
+                        <td colspan="2" width="126" height="34">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
+                        </td>
+                        <td colspan="2" width="126" height="34">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
+                        </td>
+                        <td width="63" height="34" ng-bind="dlAirLosHoc.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="34" ng-bind="dlAirLosHoc.tot_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Total'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosHoc.type_los">
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosHoc.year_1_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.year_1_pvt">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosHoc.year_2_pub">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosHoc.year_2_pvt">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <!--Cleaning up of debris-->
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Cleaning up of debris'">
+                        <td class="tdpa" width="218" height="19" ng-model="dlAirLosHoc.type_los">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
+                        </td>
+                        <td width="63" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <!--Other unexpected expenses-->
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Other unexpected expenses'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosHoc.type_los">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
+                        </td>
+                        <td width="63" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
+                        </td>
+                        <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <!--TOTAL LOSSES-->
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'TOTAL LOSSES'">
+                        <td class="tdpa" width="218" height="19" ng-model="dlAirLosHoc.type_los">
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_1_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-model="dlAirLosHoc.year_1_pvt">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pub">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pvt">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info" ng-click="saveDlData(form_dl_air_trnspotation)">Clear</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    </div>
+    <!-- add model -->
+    <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Add Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- edit model -->
+    <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Edit Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

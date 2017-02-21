@@ -329,15 +329,16 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsGtlAstPvehicles'],
+                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'table_name': 'Table_2',
+                    'table_name': 'Table_1',
                     'sector':'transport_air',
                         }),
                   dataType: 'json',
+
 
             }).then(function successCallback(response) {
                 var data = response.data;
@@ -352,7 +353,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     }
 
     function generateRefencedData() {
-    alert("hi");
+
         data_array = ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures'];
             var dl_model1 = null;
             var dl_model2 = null;
@@ -461,32 +462,32 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
 
 
                 if(model_name == 'BsAstAirAircrafts') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model1].push(obj1);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model1].push(obj1);
                 }
                 if(model_name == 'BsAstAirEquipment') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model2].push(obj2);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model2].push(obj2);
                 }
                 if(model_name == 'BsAstAirSupplies') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model3].push(obj3);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model3].push(obj3);
                 }
                 if(model_name == 'BsAstAirStructures') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model4].push(obj4);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model4].push(obj4);
                 }
             });
 
             if(model_name == 'BsAstAirAircrafts') {
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model1].push(obj1);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model1].push(obj1);
             }
             if(model_name == 'BsAstAirEquipment') {
 
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model2].push(obj2);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model2].push(obj2);
             }
             if(model_name == 'BsAstAirSupplies') {
 
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model3].push(obj3);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model3].push(obj3);
             }
             if(model_name == 'BsAstAirStructures') {
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model4].push(obj4);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model4].push(obj4);
             }
         });
     }

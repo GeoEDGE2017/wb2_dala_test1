@@ -2,6 +2,7 @@ from django.shortcuts import render
 from incidents.models import IncidentReport
 from users.decorators import permission_required
 from dala.views import fetch_districts
+from settings.models import District, Province
 
 
 # Table 2

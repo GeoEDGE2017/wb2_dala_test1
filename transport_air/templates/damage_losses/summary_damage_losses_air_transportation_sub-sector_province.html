@@ -20,7 +20,7 @@
         </ol>
 
 
-        <div class="container-fluid">
+        <div class="container-fluid" ng-form name="form_dlsum_trnsair_povn">
 
       
 				
@@ -44,10 +44,12 @@
                 Province
             </td>
             <td colspan="8" width="504" height="19">
-                <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
+                <select name="province" ng-model="province"
+                    class="form-control" style="width:100%;font-weight:400;" ng-change="changedValue(false)" required>
+                    <option value="" selected="true">Select Province</option>
+                    <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                        ng-bind="province.district__province__name"></option>
+                </select>
             </td>
         </tr>
         <tr class="trheadc" height="19">

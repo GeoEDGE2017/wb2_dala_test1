@@ -113,7 +113,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=transport_air'
         # },
-        'NAME': 'dala_2017',
+        'NAME': 'dala',
         'USER': 'postgres',
 
     },

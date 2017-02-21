@@ -1625,6 +1625,18 @@ TABLE_PROPERTY_MAPPER = {
 
         },
     },
+    'transport_air': {
+        'Table_2': {
+            'BsAstAirAircrafts':
+                ['assets', 'num_pub', 'num_pvt', 'avg_replace_cost', 'avg_repair_cost'],
+            'BsAstAirEquipment':
+                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
+            'BsAstAirSupplies':
+                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
+            'BsAstAirStructures':
+                ['assets', 'repc_1_floor', 'repc_2_3_floor', 'repc_moret_3_floor', 'repairc_roof', 'repairc_wall', 'repairc_floor']
+        }
+    }
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

@@ -963,17 +963,11 @@ $scope.calTotal = function(model,property)
 
 }
 
-//$scope.calculateFinalTot = function(){
-//console.log(total);
-//$scope.dugNdafSupTot = total;
-//return $scope.dugNdafSupTot ;
-//
-//}
 
 $scope.getTotal =function (value){
 
 $scope.dugNdafTot = $scope.dugNdafTot + value.total;
-//console.log($scope.dugNdafTot);
+
 }
 
 $scope.getGrandTot = function (property){

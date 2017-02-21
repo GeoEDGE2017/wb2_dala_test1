@@ -52,7 +52,6 @@ def dl_govn_admin_aset(request):
     return render(request, 'damage_losses/damages_losses_government_administrative_assets.html', context)
 
 
-# Table 7
 @permission_required("district", 'transport_land')
 def dl_sum_trnsland_distc(request):
     user = request.user
@@ -82,6 +81,7 @@ def dl_sum_trnsland_povnc(request):
     }
 
     return render(request, 'damage_losses/summary_damage_losses_land_transportation_sub_sector_province.html', context)
+
 
 
 # Table 9

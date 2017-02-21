@@ -5,14 +5,15 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
-
     $scope.dlDate;
     $scope.bs_data={};
-
     $scope.baselineDate;
-
+    var total=0;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    $scope.DlRbdLosses_year_2 = null;
+    $scope.DlRbdLosses_year_1 = null;
+    $scope.tot = null;
 
     var init_data = {
         'transport_land' : {
@@ -226,6 +227,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 });
 
                 generateRefencedData();
+                 $scope.calTotal();
 
             }, function errorCallback(response) {
             });
@@ -240,7 +242,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
             var dl_model4 = null;
 
         angular.forEach(data_array, function(value, key) {
-            obj_array = $scope.bs_data[value];
+            var obj_array = $scope.bs_data[value];
             model_name = value;
 
             var particular_value_1 = null;
@@ -422,6 +424,96 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
      $scope.dlRoadBrdgs = init_data;
 }
 
+$scope.calTotal = function(model,property){
+     var obj_array;
+     total=0;
+     obj_array = $scope.bs_data.BsRbuRclassificattion;
+
+
+
+     if( property == 'tot_dest_concrete')
+      {
+
+        bsProperty = 'avg_replace_concrete' ;
+
+      }
+       if( property == 'tot_dest_asphalt')
+      {
+
+        bsProperty = 'avg_replace_asphalt' ;
+
+      }
+       if( property == 'tot_dest_gravel')
+      {
+
+        bsProperty = 'avg_replace_gravel' ;
+
+      }
+       if( property == 'tot_dest_earth')
+      {
+
+        bsProperty = 'avg_replace_earth' ;
+
+      }
+       if( property == 'part_dest_concrete')
+      {
+
+        bsProperty = 'avg_repair_concrete' ;
+
+      }
+       if( property == 'part_dest_asphalt')
+      {
+
+        bsProperty = 'avg_repair_asphalt' ;
+
+      }
+      if( property == 'part_dest_gravel')
+      {
+
+        bsProperty = 'avg_repair_gravel' ;
+
+      }
+       if( property == 'part_dest_earth')
+      {
+
+        bsProperty = 'avg_repair_earth' ;
+
+      }
+
+
+    angular.forEach(obj_array, function(value, key) {
+
+
+//    total = total + ($scope.dlRoadBrdgs.transport_land.Table_4[model][key][property] * value.fields[bsProperty]);
+
+
+    })
+
+    return total;
+    }
+
+$scope.tot=0;
+
+
+function getObj(){
+ return $scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts;
+}
+
+$scope.calculateTotal=function(){
+var obj_array = getObj();
+console.log("array-",obj_array);
+var finaltotal = 0;
+
+angular.forEach(obj_array, function(value, key) {
+
+ finaltotal = finaltotal + value.damages;
+ console.log(value);
+})
+
+
+return finaltotal;
+
+}
 
 
 });

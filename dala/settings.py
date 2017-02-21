@@ -108,12 +108,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
         # },
         # 'OPTIONS': {
         #     'options': '-c search_path=transport_air'
         # },
-        'NAME': 'dala',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
 
     },
@@ -1577,9 +1577,9 @@ TABLE_PROPERTY_MAPPER = {
                 ['damages'],
             'DlGacPvtProvince':
                 ['tot_damages_pvt'],
-            'DlOtherLosPubDistrict':
-                ['year_1_pub',
-                 'year_2_pub',
+            'DlYearsPubProvince':
+                ['year_1',
+                 'year_2',
                  ],
             'DlOtherLosPvtDistrict':
                 ['year_1_pvt',
@@ -1595,6 +1595,10 @@ TABLE_PROPERTY_MAPPER = {
             'DlOtherLosPvtNational':
                 ['year_1_pvt',
                  'year_2_pub',
+                 ],
+            'DlYearsPubNational':
+                ['year_1',
+                 'year_2',
                  ],
 
         },

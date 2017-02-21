@@ -80,25 +80,25 @@ app.controller("DlSummeryTLProController", ['$scope','$http',function ($scope,$h
                          $scope.dlLandTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[$index].tot_damages_pvt : 0 ;
 
          $scope.totalyear1pub = $scope.totalyear1pub +
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPubDistrict[$index].year_1_pub ?
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPubDistrict[$index].year_1_pub : 0 ;
+                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_1 ?
+                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_1 : 0 ;
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt +
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt ?
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt : 0 ;
+//         $scope.totalyear1pvt = $scope.totalyear1pvt +
+//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt ?
+//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt : 0 ;
 
          $scope.totalyear2pub = $scope.totalyear1pvt +
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPubDistrict[$index].year_2_pub ?
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPubDistrict[$index].year_2_pub : 0 ;
+                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_2 ?
+                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_2 : 0 ;
 
-         $scope.totalyear2pvt = $scope.totalyear1pvt +
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub ?
-                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub : 0 ;
+//         $scope.totalyear2pvt = $scope.totalyear1pvt +
+//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub ?
+//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub : 0 ;
 
 
          $scope.finaltotalpublic =$scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
 
-         $scope.finaltotalprivate =$scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
+//         $scope.finaltotalprivate =$scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
 
 

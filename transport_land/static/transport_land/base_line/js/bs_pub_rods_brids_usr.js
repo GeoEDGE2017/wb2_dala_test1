@@ -170,7 +170,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                         'bs_date': $scope.bs_date,
                     },
                     'is_edit': $scope.is_edit,
-                    'sector':'bsPubRodsBridsUsr'
+                    'sector':'transport_land'
                 }),
             }).success(function(data) {
 

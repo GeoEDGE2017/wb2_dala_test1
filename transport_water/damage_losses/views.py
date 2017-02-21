@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from incidents.models import IncidentReport, District,Province
-from dala.views import fetch_districts
+from users.decorators import permission_required
 
 
+@permission_required("district", 'transport_land')
 def dl_water_transport(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()
@@ -14,6 +15,7 @@ def dl_water_transport(request):
     return render(request, 'damage_losses/damage_losses_ water_transportation.html', context)
 
 
+@permission_required("provincial", 'transport_water')
 def dl_summary_trans_water_pro(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()
@@ -27,6 +29,7 @@ def dl_summary_trans_water_pro(request):
     return render(request, 'damage_losses/summary_damage_losses_ water_transportation_sub-sector_province.html', context)
 
 
+@permission_required("national", 'transport_water')
 def dl_summary_trans_water_nat(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()

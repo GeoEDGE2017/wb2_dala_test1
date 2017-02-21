@@ -3,9 +3,8 @@ from incidents.models import IncidentReport
 from users.decorators import permission_required
 from dala.views import fetch_districts
 
+
 # Table 4
-
-
 @permission_required("district", 'transport_land')
 def dl_roads_bridges(request):
     user = request.user

@@ -334,10 +334,11 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'table_name': 'Table_2',
+                    'table_name': 'Table_1',
                     'sector':'transport_air',
-                }),
-                dataType: 'json',
+                        }),
+                  dataType: 'json',
+
 
             }).then(function successCallback(response) {
                 var data = response.data;
@@ -352,7 +353,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     }
 
     function generateRefencedData() {
-        alert('hi');
+
         data_array = ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures'];
             var dl_model1 = null;
             var dl_model2 = null;
@@ -461,34 +462,91 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
 
 
                 if(model_name == 'BsAstAirAircrafts') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model1].push(obj1);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model1].push(obj1);
                 }
                 if(model_name == 'BsAstAirEquipment') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model2].push(obj2);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model2].push(obj2);
                 }
                 if(model_name == 'BsAstAirSupplies') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model3].push(obj3);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model3].push(obj3);
                 }
                 if(model_name == 'BsAstAirStructures') {
-                   $scope.dlRoadBrdgs.transport_air.Table_2[dl_model4].push(obj4);
+                   $scope.dlAirTrnspotation.transport_air.Table_2[dl_model4].push(obj4);
                 }
             });
 
             if(model_name == 'BsAstAirAircrafts') {
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model1].push(obj1);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model1].push(obj1);
             }
             if(model_name == 'BsAstAirEquipment') {
 
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model2].push(obj2);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model2].push(obj2);
             }
             if(model_name == 'BsAstAirSupplies') {
 
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model3].push(obj3);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model3].push(obj3);
             }
             if(model_name == 'BsAstAirStructures') {
-                $scope.dlRoadBrdgs.transport_air.Table_2[dl_model4].push(obj4);
+                $scope.dlAirTrnspotation.transport_air.Table_2[dl_model4].push(obj4);
             }
         });
     }
+
+    $scope.saveDlData = function(form) {
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: 'POST',
+                url: '/dl_save_data',
+               contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlAirTrnspotation,
+                    'com_data': {
+                       'district': $scope.district.district__id,
+                        'incident' : $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit,
+                    'sector':'transport_air'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+               else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
+
+            });
+        }
+    }
+
+//    $scope.dlDataEdit = function(form){
+//
+//   $scope.is_edit = true;
+//   $scope.submitted = true;
+//
+//    $http({
+//    method: "POST",
+//    url: '/dl_fetch_edit_data',
+//    data: angular.toJson({
+//    'table_name':  'Table_4',
+//    'sector':'transport_land',
+//    'com_data': {
+//           'district':  $scope.district.district__id,
+//            'incident': $scope.incident,
+//          },
+//           'is_edit':$scope.is_edit
+//           }),
+//    }).success(function(data) {
+//
+//    $scope.dlRoadBrdgs = data;
+//    })
+//
+//}
+//
+//    $scope.cancelEdit = function(){
+//     $scope.is_edit = false;
+//     $scope.dlRoadBrdgs = init_data;
+//}
 
 }]);

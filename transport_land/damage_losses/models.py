@@ -9,8 +9,8 @@ class DlSessionKeys(models.Model):
     user = models.IntegerField(blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
     incident = models.IntegerField(blank=True, null=True)
-    province = models.ForeignKey(Province, db_column='province', related_name='tl_dl_province', blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', related_name='tl_dl_district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -424,7 +424,7 @@ class DlYearsPubProvince(models.Model):
 # National
 class DlGacPubNational(models.Model):
     damages = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province',  blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     class Meta:
@@ -434,7 +434,7 @@ class DlGacPubNational(models.Model):
 
 class DlGacPvtNational(models.Model):
     tot_damages_pvt = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province',  blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     class Meta:
@@ -445,18 +445,18 @@ class DlGacPvtNational(models.Model):
 class DlOtherLosPvtNational(models.Model):
     year_1_pvt = models.FloatField(blank=True, null=True)
     year_2_pub = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'transport_land\".\"dl_other_los_national'
+        db_table = 'transport_land\".\"dl_other_los_pvt_national'
 
 
 class DlYearsPubNational(models.Model):
     year_1 = models.FloatField(blank=True, null=True)
     year_2 = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     class Meta:

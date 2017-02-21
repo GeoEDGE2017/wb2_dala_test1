@@ -19,89 +19,77 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
     // declaring total variables
     $scope.total_num_affected = 0;
 
-    // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
 
-        if($scope.incident && selectProvinces) {
-          fetchProvinces();
-        }
-
-    }
-    $scope.provinces = [];
-
-    function fetchProvinces()
-    {
-          $http({
-            method: "POST",
-            url: '/fetch_incident_provinces',
-            data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-
-            })
-
-    }
-
-    $scope.fetchDlData = function(form){
+     $scope.fetchDlData = function(){
         $scope.is_edit = true;
         $scope.submitted = true;
-
+        console.log($scope.incident);
             $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':  'Table_8',
+            'table_name':'Table_9',
             'sector': 'transport_land',
             'com_data': {
-                    'province': $scope.province,
                     'incident': $scope.incident,
                   },
                    }),
             }).success(function(data) {
 
             console.log('load ', data);
-
             $scope.dlLandTransSumNat = data;
 
             })
 
     }
 
- $scope.getTotal = function($index,key) {
+    $scope.convertToInt = function(val1,val2,val3){
+
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return sum;
+    }
+
+    $scope.convertTotalInt = function(val1,val2,val3,val4){
+
+        var sum = parseInt(val1) + parseInt(val2) +parseInt(val3) +parseInt(val4);
+        console.log(sum);
+        return sum;
+    }
+
+
+    $scope.getTotal = function($index,key) {
+
+     $scope.finaltotalprivate = 0;
+
          $scope.totaldpub = $scope.totaldpub +
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlGacPubNational[$index].damages ?
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlGacPubNational[$index].damages : 0 ;
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[$index].damages ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[$index].damages : 0 ;
 
          $scope.totaldpvt = $scope.totaldpvt +
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlGacPvtNational[$index].tot_damages_pvt ?
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlGacPvtNational[$index].tot_damages_pvt : 0 ;
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPvtNational[$index].tot_damages_pvt ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPvtNational[$index].tot_damages_pvt : 0 ;
 
          $scope.totalyear1pub = $scope.totalyear1pub +
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlYearsPubNational[$index].year_1 ?
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlYearsPubNational[$index].year_1 : 0 ;
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[$index].year_1 ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[$index].year_1 : 0 ;
 
          $scope.totalyear1pvt = $scope.totalyear1pvt +
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlOtherLosPvtNational[$index].year_1_pvt ?
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlOtherLosPvtNational[$index].year_1_pvt : 0 ;
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[$index].year_1_pvt ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[$index].year_1_pvt : 0 ;
 
          $scope.totalyear2pub = $scope.totalyear1pvt +
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlYearsPubNational[$index].year_2 ?
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlYearsPubNational[$index].year_2 : 0 ;
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[$index].year_2 ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[$index].year_2 : 0 ;
 
          $scope.totalyear2pvt = $scope.totalyear1pvt +
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlOtherLosPvtNational[$index].year_2_pub ?
-                         $scope.dlLandTransSumNat.transport_land.Table_8[key].DlOtherLosPvtNational[$index].year_2_pub : 0 ;
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[$index].year_2_pub ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[$index].year_2_pub : 0 ;
 
 
          $scope.finaltotalpublic =$scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
 
-         $scope.finaltotalprivate =$scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
-
-
+        $scope.finaltotalprivate  = $scope.convertTotalInt($scope.finaltotalprivate , $scope.totaldpvt , $scope.totalyear1pvt , $scope.totalyear2pvt)
 
 
 

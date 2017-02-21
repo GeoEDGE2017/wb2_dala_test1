@@ -206,35 +206,6 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.saveBsData = function(form) {
-        $scope.submitted = true;
-        if (form.$valid) {
-            alert('Table 1 Save');
-            $http({
-                method: "POST",
-                url: "/bs_save_data",
-                data: angular.toJson({
-                    'table_data': ($scope.bsInfoAsetTrans),
-                    'com_data': {
-                        'district': $scope.district,
-                        'bs_date': $scope.bs_date,
-                    },
-                    'is_edit': $scope.is_edit,
-                    'sector':'transport_air'
-                }),
-            }).success(function(data) {
-
-                $scope.bsLandTrnsAsst = init_data;
-                $scope.is_edit = false;
-
-                if (data == 'False')
-                    $scope.is_valid_data = false;
-                else
-                    $("#modal-container-239453").modal('show');
-
-            })
-        }
-    }
 
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
@@ -265,31 +236,31 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-//    $scope.bsHsDataEdit = function(form)
-//    {
-//    $scope.submitted = true;
-//
-//       $scope.is_edit = true;
-//        $http({
-//        method: "POST",
-//        url: "/bs_fetch_edit_data",
-//        data: angular.toJson({
-//              'table_name': 'Table_1',
-//              'sector': 'transport_land',
-//              'com_data': {'district': $scope.district,
-//              'bs_date': $scope.bs_date} }),
-//        }).success(function(data) {
-//
-//        console.log(data);
-//        $scope.bsPubRodsBridsUsr = data;
-//        })
-//
-//
-//    }
-//
-//    $scope.cancelEdit = function()
-//    {
-//        $scope.is_edit = false;
-//        $scope.bsPubRodsBridsUsr = init_data;
-//    }
+    $scope.bsHsDataEdit = function(form)
+    {
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_1',
+              'sector': 'transport_air',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date} }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsInfoAsetTrans = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function()
+    {
+        $scope.is_edit = false;
+        $scope.bsInfoAsetTrans = init_data;
+    }
 }]);

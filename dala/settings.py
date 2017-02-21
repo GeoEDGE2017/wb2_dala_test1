@@ -1536,6 +1536,31 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
 
         },
+        'Table_7': {
+            'DlRbdRclassificationDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTbridgesDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTculvertsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTdrainsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTrwallsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlOtherDmgsPvehiclesDistrict':
+                ['tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsBcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTrcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTucompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlGacPubDistrict':
+                ['damages', 'incident', 'district'],
+
+        },
         'Table_6': {
             'DlGacDmgStructures':
                 ['assets',
@@ -1571,7 +1596,6 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
 
         },
-
         'Table_8': {
             'DlGacPubProvince':
                 ['damages'],
@@ -1600,34 +1624,51 @@ TABLE_PROPERTY_MAPPER = {
                 ['year_1',
                  'year_2',
                  ],
+        },
+    },
+    'transport_air': {
 
+        'Table_1': {
+            'BsAstAirAircrafts':
+                ['assets',
+                 'num_pub',
+                 'num_pvt',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirEquipment':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirSupplies':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirOthers':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirStructures':
+                ['assets',
+                 'repc_1_floor',
+                 'repc_2_3_floor',
+                 'repc_moret_3_floor',
+                 'repairc_roof',
+                 'repairc_wall',
+                 'repairc_floor',
+                 'id'],
+
+            'BsAstAirEmployment':
+                ['assets',
+                 'male',
+                 'female',
+                 'total',
+                 'id'],
         },
 
-        'Table_7': {
-            'DlRbdRclassificationDistrict':
-                ['damages', 'incident', 'district'],
-            'DlRbdTbridgesDistrict':
-                ['damages', 'incident', 'district'],
-            'DlRbdTculvertsDistrict':
-                ['damages', 'incident', 'district'],
-            'DlRbdTdrainsDistrict':
-                ['damages', 'incident', 'district'],
-            'DlRbdTrwallsDistrict':
-                ['damages', 'incident', 'district'],
-            'DlOtherDmgsPvehiclesDistrict':
-                ['tot_damages_pvt', 'incident', 'district'],
-            'DlOtherDmgsBcompaniesDistrict':
-                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
-            'DlOtherDmgsTcompaniesDistrict':
-                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
-            'DlOtherDmgsTrcompaniesDistrict':
-                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
-            'DlOtherDmgsTucompaniesDistrict':
-                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
-            'DlGacPubDistrict':
-                ['damages', 'incident', 'district'],
-
-        },
     },
     'transport_air': {
         'Table_2': {

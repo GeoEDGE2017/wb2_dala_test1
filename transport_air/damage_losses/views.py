@@ -36,3 +36,35 @@ def dl_air_trnspt_dstrct(request):
     return render(request, 'damage_losses/summary_damages_losses_air_transportation_district.html', context)
 
 
+# Table 4
+@permission_required("provincial", 'transport_air')
+def dl_air_trnspt_provn(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents
+    }
+
+    return render(request, 'damage_losses/summary_damage_losses_air_transportation_sub-sector_province.html', context)
+
+
+# Table 5
+@permission_required("national", 'transport_air')
+def dl_air_trnspt_natnal(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents
+    }
+
+    return render(request, 'damage_losses/summary_damage_losses_air_transportation_sub-sector_nationwide.html', context)
+
+

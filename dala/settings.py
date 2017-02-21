@@ -110,6 +110,9 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
         # },
+        # 'OPTIONS': {
+        #     'options': '-c search_path=transport_land'
+        # },
         'NAME': 'dala',
         'USER': 'postgres',
 
@@ -1567,6 +1570,12 @@ TABLE_PROPERTY_MAPPER = {
                  'damages',
                  'id'],
 
+        },
+        'Table_7': {
+            'DlRbdRclassificationDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTbridgesDistrict':
+                ['damages', 'incident', 'district'],
         }
 
     },

@@ -13,7 +13,7 @@
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and losses to air transportation</span>
         </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_dl_air_trnspotation">
         <ul class='nav nav-wizard'>
             <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
             <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
@@ -34,6 +34,22 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_air_trnspotation.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_air_trnspotation.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trheadc" height="19">
                         <td width="218" height="19">
                             Name of District:
@@ -318,6 +334,7 @@
                                 Private
                             </td>
                         </tr>
+                        <!--Materials and supplies-->
                         <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets != 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
                                 Fuel (Liters)
@@ -336,42 +353,14 @@
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.">
-                                -
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub">
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.">
-                                -
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Others(Populated from Table 1)
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
+                        <!--Materials and supplies Total-->
+                        <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
                                 Total
                             </td>
                             <td class="tdpa" colspan="2" width="126" height="19">
@@ -386,11 +375,9 @@
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pub">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pvt">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -415,66 +402,27 @@
                                 Private
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Runway
+                        <!--Others-->
+                        <tr height="19" ng-repeat="dlAirDmgOthers in dlAirTrnspotation.transport_air.Table_2.DlAirDmgOthers" ng-if="dlAirDmgOthers.assets != 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgOthers.assets">
                             </td>
                             <td colspan="3" width="189" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                       class="form-control input-md" ng-model="dlAirDmgOthers.tot_destroyed">
                             </td>
                             <td colspan="4" width="252" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                       class="form-control input-md" ng-model="dlAirDmgOthers.part_damaged">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgOthers.tot_dmg_pub">
                             </td>
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Apron Parking areas
-                            </td>
-                            <td colspan="3" width="189" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="4" width="252" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Piers
-                            </td>
-                            <td colspan="3" width="189" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="4" width="252" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Total
+                        <!--Others Total-->
+                        <tr height="19" ng-repeat="dlAirDmgOthers in dlAirTrnspotation.transport_air.Table_2.DlAirDmgOthers" ng-if="dlAirDmgOthers.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgOthers.assets">
                             </td>
                             <td class="tdpa" colspan="3" width="189" height="19">
                                 <br/>
@@ -482,8 +430,7 @@
                             <td class="tdpa" colspan="4" width="252" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgOthers.tot_dmg_pub">
                             </td>
                             <td class="tdpa" width="63" height="19">
                                 <br/>
@@ -535,390 +482,75 @@
                                 Private
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Airport Terminal buildings
+                        <tr height="19" ng-repeat="dlAirDmgGstructures in dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures" ng-if="dlAirDmgGstructures.assets != 'Total' && dlAirDmgGstructures.assets != 'TOTAL DAMAGES'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgGstructures.assets">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.tdest_floor_1">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.tdest_floor_2_3">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.tdest_floor_than_3">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_number">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_roof">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_wall">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_floor">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
                             </td>
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
                         </tr>
-                        <tr height="34">
-                            <td class="tdpa" width="218" height="34">
-                                Aircraft Hangars and associated buildings
+                        <!--Total-->
+                        <tr height="19" ng-repeat="dlAirDmgGstructures in dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures" ng-if="dlAirDmgGstructures.assets == 'Total'">
+                            <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgGstructures.assets">
                             </td>
-                            <td width="63" height="34">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="34">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="34">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="34">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="34">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="34">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="34">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="34">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="34">
+                            <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Administrative buildings
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
                             </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
                             </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
                             </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
                             </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
                             </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
                             </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
                             </td>
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Fire services buildings
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Airport Maintenance
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Sri Lankan Airlines office complex
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Navigation services complex
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Control tower
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Others(Populated from Table 1)
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Total
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
+                        <tr height="19" ng-repeat="dlAirDmgGstructures in dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures" ng-if="dlAirDmgGstructures.assets == 'TOTAL DAMAGES'">
                             <td class="tdpa" width="218" height="19">
                                 TOTAL DAMAGES
                             </td>
@@ -943,11 +575,9 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
                             </td>
                         </tr>
                         </tbody>
@@ -963,8 +593,6 @@
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
                     <tbody>
-
-
                     <tr class="trheadc" height="19">
                         <td width="218" height="19">
                             Type of Losses
@@ -1025,85 +653,57 @@
                             <br/>
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Income of airline companies
+                    <tr height="19" ng-repeat="dlAirLosFi in dlAirTrnspotation.transport_air.Table_2.DlAirLosFi" ng-if="dlAirLosFi.assets != 'Total'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosFi.assets">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_1_pub">
                         </td>
                         <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_1_pvt">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_2_pub">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosFi.year_2_pvt">
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pub">
                             -
                         </td>
-                        <td width="63" height="19">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Income of airports
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
-                            -
-                        </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pvt">
                             -
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Total
+                    <!--Total-->
+                    <tr height="19" ng-repeat="dlAirLosFi in dlAirTrnspotation.transport_air.Table_2.DlAirLosFi" ng-if="dlAirLosFi.assets == 'Total'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosFi.assets">
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosFi.year_1_pub">
                             -
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosFi.year_1_pvt">
                             -
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosFi.year_2_pub">
                             -
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosFi.year_2_pvt">
                             -
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pub">
                             -
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosFi.tot_los_pvt">
                             -
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
-                        <td width="218" height="19">
+                        <td width="218" height="19" >
                             Higher operating costs
                         </td>
                         <td colspan="2" width="126" height="19">
@@ -1125,229 +725,142 @@
                             <br/>
                         </td>
                     </tr>
-                    <tr height="34">
-                        <td class="tdpa" width="218" height="34">
-                            Costs incurred in placing alternate arrangements
+                    <tr height="34" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets != 'Total' && dlAirLosHoc.assets != 'Cleaning up of debris' && dlAirLosHoc.assets != 'Other unexpected expenses' && dlAirLosHoc.assets != 'TOTAL LOSSES'">
+                        <td class="tdpa" width="218" height="34" ng-bind="dlAirLosHoc.type_los">
                         </td>
                         <td colspan="2" width="126" height="34">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
                         </td>
                         <td width="63" height="34">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
                         </td>
                         <td colspan="2" width="126" height="34">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
                         </td>
                         <td colspan="2" width="126" height="34">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
                         </td>
-                        <td width="63" height="34">
+                        <td width="63" height="34" ng-bind="dlAirLosHoc.tot_los_pub">
                             -
                         </td>
-                        <td width="63" height="34">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Hiring costs
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
-                            -
-                        </td>
-                        <td width="63" height="19">
+                        <td width="63" height="34" ng-bind="dlAirLosHoc.tot_los_pvt">
                             -
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Standards assessment costs
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Total'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosHoc.type_los">
                         </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosHoc.year_1_pub">
                             -
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.year_1_pvt">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosHoc.year_2_pub">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosHoc.year_2_pvt">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
+                            -
+                        </td>
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
                             -
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Losses due to operational constraints
+                    <!--Cleaning up of debris-->
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Cleaning up of debris'">
+                        <td class="tdpa" width="218" height="19" ng-model="dlAirLosHoc.type_los">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
                         </td>
                         <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
                             -
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
                             -
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Total
+                    <!--Other unexpected expenses-->
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Other unexpected expenses'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosHoc.type_los">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            -
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
                         </td>
                         <td width="63" height="19">
-                            -
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
                         </td>
                         <td colspan="2" width="126" height="19">
-                            -
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
                         </td>
                         <td colspan="2" width="126" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
+                        </td>
+                        <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pub">
                             -
                         </td>
-                        <td width="63" height="19">
-                            -
-                        </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pvt">
                             -
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Cleaning up of debris
+                    <!--TOTAL LOSSES-->
+                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'TOTAL LOSSES'">
+                        <td class="tdpa" width="218" height="19" ng-model="dlAirLosHoc.type_los">
                         </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
+                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_1_pub">
                             -
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-model="dlAirLosHoc.year_1_pvt">
                             -
                         </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            Other unexpected expenses
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="63" height="19">
+                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pub">
                             -
                         </td>
-                        <td width="63" height="19">
+                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pvt">
                             -
                         </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="218" height="19">
-                            TOTAL LOSSES
-                        </td>
-                        <td colspan="2" width="126" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
                             -
                         </td>
-                        <td width="63" height="19">
-                            -
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            -
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            -
-                        </td>
-                        <td width="63" height="19">
-                            -
-                        </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
                             -
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-info" ng-click="saveDlData(form_dl_air_trnspotation)">Clear</button>
                     <button type="button" class="btn btn-success">Submit</button>
                 </div>
                 <br><br><br>
             </div>
         </div>
-
-
     </div>
     </div>
 

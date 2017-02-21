@@ -36,8 +36,8 @@ bsHealthStatusApp.controller('DlAirTrnspotController', function DlEduDistrictCon
             method: "POST",
             url: '/dl_fetch_total_data',
             data: angular.toJson({
-                'table_name':  'Table_5',
-                'sector':'education',
+                'table_name': 'Table_3',
+                'sector':'transport_air',
                 'com_data': {
                     'district':  $scope.district.district__id,
                     'incident': $scope.incident,
@@ -46,6 +46,7 @@ bsHealthStatusApp.controller('DlAirTrnspotController', function DlEduDistrictCon
            }),
         }).success(function(data) {
             $scope.data=data;
+            console.log(data);
         })
     }
 })

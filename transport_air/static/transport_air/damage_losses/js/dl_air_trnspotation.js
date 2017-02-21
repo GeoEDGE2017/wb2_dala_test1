@@ -278,8 +278,9 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                     year_2_pvt : null,
                     tot_los_pub : null,
                     tot_los_pvt : null,
-                }, {
-                    type_los : 'Cleaning up of debris',
+                }],
+                'DlAirLosOther':[{
+                    assets : 'Cleaning up of debris',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,
@@ -287,7 +288,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                     tot_los_pub : null,
                     tot_los_pvt : null,
                 }, {
-                    type_los : 'Other unexpected expenses',
+                    assets : 'Other unexpected expenses',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,
@@ -295,7 +296,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                     tot_los_pub : null,
                     tot_los_pvt : null,
                 }, {
-                    type_los : 'TOTAL LOSSES',
+                    assets : 'TOTAL LOSSES',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,

@@ -729,79 +729,52 @@
                         </td>
                     </tr>
                     <!--Cleaning up of debris-->
-                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Cleaning up of debris'">
-                        <td class="tdpa" width="218" height="19" ng-model="dlAirLosHoc.type_los">
+                    <tr height="19" ng-repeat="dlAirLosOther in dlAirTrnspotation.transport_air.Table_2.DlAirLosOther" ng-if="dlAirLosOther.assets != 'TOTAL LOSSES'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosOther.assets">
                         </td>
                         <td colspan="2" width="126" height="19">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
+                                   class="form-control input-md" ng-model="dlAirLosOther.year_1_pub">
                         </td>
                         <td width="63" height="19">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
+                                   class="form-control input-md" ng-model="dlAirLosOther.year_1_pvt">
                         </td>
                         <td colspan="2" width="126" height="19">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
+                                   class="form-control input-md" ng-model="dlAirLosOther.year_2_pub">
                         </td>
                         <td colspan="2" width="126" height="19">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
+                                   class="form-control input-md" ng-model="dlAirLosOther.year_2_pvt">
                         </td>
                         <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
                             -
                         </td>
                         <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
-                            -
-                        </td>
-                    </tr>
-                    <!--Other unexpected expenses-->
-                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'Other unexpected expenses'">
-                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosHoc.type_los">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pub">
-                        </td>
-                        <td width="63" height="19">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_1_pvt">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pub">
-                        </td>
-                        <td colspan="2" width="126" height="19">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlAirLosHoc.year_2_pvt">
-                        </td>
-                        <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pub">
-                            -
-                        </td>
-                        <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pvt">
                             -
                         </td>
                     </tr>
                     <!--TOTAL LOSSES-->
-                    <tr height="19" ng-repeat="dlAirLosHoc in dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc" ng-if="dlAirLosHoc.assets == 'TOTAL LOSSES'">
-                        <td class="tdpa" width="218" height="19" ng-model="dlAirLosHoc.type_los">
+                    <tr height="19" ng-repeat="dlAirLosOther in dlAirTrnspotation.transport_air.Table_2.DlAirLosOther" ng-if="dlAirLosOther.assets == 'TOTAL LOSSES'">
+                        <td class="tdpa" width="218" height="19" ng-bind="dlAirLosOther.assets">
                         </td>
-                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_1_pub">
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosOther.year_1_pub">
                             -
                         </td>
-                        <td width="63" height="19" ng-model="dlAirLosHoc.year_1_pvt">
+                        <td width="63" height="19" ng-bind="dlAirLosOther.year_1_pvt">
                             -
                         </td>
-                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pub">
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosOther.year_2_pub">
                             -
                         </td>
-                        <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pvt">
+                        <td colspan="2" width="126" height="19" ng-bind="dlAirLosOther.year_2_pvt">
                             -
                         </td>
-                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pub">
+                        <td width="63" height="19" ng-bind="dlAirLosOther.tot_los_pub">
                             -
                         </td>
-                        <td width="63" height="19" ng-bind="dlAirLosHoc.tot_los_pvt">
+                        <td width="63" height="19" ng-bind="dlAirLosOther.tot_los_pvt">
                             -
                         </td>
                     </tr>

@@ -20,7 +20,6 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
     $scope.total_num_affected = 0;
 
 
-
      $scope.fetchDlData = function(){
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -44,7 +43,24 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
 
     }
 
-        $scope.getTotal = function($index,key) {
+    $scope.convertToInt = function(val1,val2,val3){
+
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return sum;
+    }
+
+    $scope.convertTotalInt = function(val1,val2,val3,val4){
+
+        var sum = parseInt(val1) + parseInt(val2) +parseInt(val3) +parseInt(val4);
+        console.log(sum);
+        return sum;
+    }
+
+
+    $scope.getTotal = function($index,key) {
+
+     $scope.finaltotalprivate = 0;
+
          $scope.totaldpub = $scope.totaldpub +
                          $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[$index].damages ?
                          $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[$index].damages : 0 ;
@@ -72,10 +88,8 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
 
          $scope.finaltotalpublic =$scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
 
-         $scope.finaltotalprivate =$scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
-
-
+        $scope.finaltotalprivate  = $scope.convertTotalInt($scope.finaltotalprivate , $scope.totaldpvt , $scope.totalyear1pvt , $scope.totalyear2pvt)
 
 
 

@@ -170,40 +170,14 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlAirDmgAircrafts.part_damaged_pvt">
                             </td>
-                            <td width="63" height="19">
-                                -**
+                            <td width="63" height="19" ng-bind="dlAirDmgAircrafts.tot_dmg_pub">
+
                             </td>
-                            <td width="63" height="19">
-                                -**
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="218" height="19">
-                                Others(Populated from Table 1)
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
-                            </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlAirDmgAircrafts.tot_dmg_pvt">
+
                             </td>
                         </tr>
+
                         <tr height="19" ng-repeat="dlAirDmgAircrafts in dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts" ng-if="dlAirDmgAircrafts.assets == 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgAircrafts.assets">
                             </td>
@@ -260,25 +234,6 @@
                                        class="form-control input-md" ng-model="dlAirDmgEquipment.part_damaged">
                             </td>
                             <td width="63" height="19" ng-bind="dlAirDmgEquipment.tot_dmg_pub">
-                            </td>
-                            <td class="tdpa" width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="218" height="19">
-                                Others (Populated from Table 1)
-                            </td>
-                            <td colspan="3" width="189" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="4" width="252" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                -
                             </td>
                             <td class="tdpa" width="63" height="19">
                                 <br/>
@@ -855,8 +810,16 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="saveDlData(form_dl_air_trnspotation)">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_air_trnspotation)"
+                    class="btn btn-success">Submit
+                    </button>
                 </div>
                 <br><br><br>
             </div>

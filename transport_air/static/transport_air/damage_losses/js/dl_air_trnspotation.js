@@ -492,4 +492,61 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
         });
     }
 
+    $scope.saveDlData = function(form) {
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: 'POST',
+                url: '/dl_save_data',
+               contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlAirTrnspotation,
+                    'com_data': {
+                       'district': $scope.district.district__id,
+                        'incident' : $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit,
+                    'sector':'transport_air'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+               else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
+
+            });
+        }
+    }
+
+//    $scope.dlDataEdit = function(form){
+//
+//   $scope.is_edit = true;
+//   $scope.submitted = true;
+//
+//    $http({
+//    method: "POST",
+//    url: '/dl_fetch_edit_data',
+//    data: angular.toJson({
+//    'table_name':  'Table_4',
+//    'sector':'transport_land',
+//    'com_data': {
+//           'district':  $scope.district.district__id,
+//            'incident': $scope.incident,
+//          },
+//           'is_edit':$scope.is_edit
+//           }),
+//    }).success(function(data) {
+//
+//    $scope.dlRoadBrdgs = data;
+//    })
+//
+//}
+//
+//    $scope.cancelEdit = function(){
+//     $scope.is_edit = false;
+//     $scope.dlRoadBrdgs = init_data;
+//}
+
 }]);

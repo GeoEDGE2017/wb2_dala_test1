@@ -1237,6 +1237,13 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_damages',
                  ],
 
+        },
+        'Table_4': {
+
+            'TotDmgNational':
+                ['tot_damages',
+                 ],
+
         }
 
     },
@@ -1627,7 +1634,6 @@ TABLE_PROPERTY_MAPPER = {
         },
     },
     'transport_air': {
-
         'Table_1': {
             'BsAstAirAircrafts':
                 ['assets',
@@ -1668,9 +1674,6 @@ TABLE_PROPERTY_MAPPER = {
                  'total',
                  'id'],
         },
-
-    },
-    'transport_air': {
         'Table_2': {
             'BsAstAirAircrafts':
                 ['assets', 'num_pub', 'num_pvt', 'avg_replace_cost', 'avg_repair_cost'],
@@ -1679,9 +1682,28 @@ TABLE_PROPERTY_MAPPER = {
             'BsAstAirSupplies':
                 ['assets', 'avg_replace_cost', 'avg_repair_cost'],
             'BsAstAirStructures':
-                ['assets', 'repc_1_floor', 'repc_2_3_floor', 'repc_moret_3_floor', 'repairc_roof', 'repairc_wall', 'repairc_floor']
+                ['assets', 'repc_1_floor', 'repc_2_3_floor', 'repc_moret_3_floor', 'repairc_roof', 'repairc_wall',
+                 'repairc_floor']
+        },
+        'Table_4': {
+            'DlAirDmgPubProvince':
+                ['tot_destroyed_pub'],
+            'DlAirDmgPvtProvince':
+                ['tot_destroyed_pvt'],
+            'DlAirLosProvince':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+        },
+        'Table_5': {
+            'DlAirDmgPubNational':
+                ['tot_destroyed_pub'],
+            'DlAirDmgPvtNational':
+                ['tot_destroyed_pvt'],
+            'DlAirLosNational':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
         }
-    }
+
+    },
+
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

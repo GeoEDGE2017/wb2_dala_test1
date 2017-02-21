@@ -9,7 +9,7 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
     $scope.dl_data={};
     $scope.submitted = false;
     $scope.Districts=[];
-    $scope.dmLosMinFirmsNation = null;
+    $scope.dmLosTransAirNation = null;
 
 
     $scope.loadData = function()
@@ -21,8 +21,8 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
         method: "POST",
         url: '/dl_fetch_district_disagtn',
         data: angular.toJson({
-        'table_name':  'Table_6',
-        'sector':'mining',
+        'table_name':  'Table_4',
+        'sector':'transport_rail',
         'com_data': {
                 'incident': $scope.incident,
               },
@@ -30,13 +30,21 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
                }),
         }).success(function(data) {
 
-            $scope.dmLosMinFirmsNation = data;
+            $scope.dmLosTransAirNation = data;
 
 
 
         })
 
 
+    }
+
+     $scope.getTotal = function(model, property,$index,key) {
+
+
+         $scope.total = $scope.total +
+                         $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages ?
+                         $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages : 0 ;
     }
 
 })

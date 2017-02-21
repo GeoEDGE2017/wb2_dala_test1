@@ -1,269 +1,298 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 
-  <!-- Main content -->
-    <main class="main">
+<!-- Main content -->
+<main class="main" ng-app="dlSummeryTAProApp" ng-controller="dlSummeryTAProController">
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			<li class="breadcrumb-item"><a href="#">Transport Sector</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
-            </li>
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damage and losses in the air transportation sub-sector in a province</span></li>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
 
-           
-        </ol>
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damage and losses in the air transportation sub-sector in a province</span>
+        </li>
 
 
-        <div class="container-fluid">
+    </ol>
 
-      
-				
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane active" id="step1">
-						 <table class="table table-bordered" >		
-      <colgroup>
-        <col width="218"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-    </colgroup>
-    <tbody>
-        <tr class="trheadc" height="19">
-            <td width="218" height="19">
-                Province
-            </td>
-            <td colspan="8" width="504" height="19">
-                <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="3" width="218" height="57">
-                Districts
-            </td>
-            <td colspan="4" width="252" height="19">
-                Year 1
-            </td>
-            <td colspan="2" width="126" height="19">
-                Year 2
-            </td>
-            <td colspan="2" rowspan="2" width="126" height="38">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td colspan="2" width="126" height="19">
-                Damages (LKR)
-            </td>
-            <td colspan="2" width="126" height="19">
-                Losses (LKR)
-            </td>
-            <td colspan="2" width="126" height="19">
-                Losses (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="218" height="19">
-                District 1
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="218" height="19">
-                TOTAL
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-    </tbody>
-</table>
 
-                          
-                      <div class="pull-right">
-		<br>
-<button type="button" class="btn btn-info">Clear</button>
-<button type="button" class="btn btn-success">Submit</button>
-</div>	     
-                           
-                         
-           </div> 
-                        	
-                               
-                                <br><br><br>
-       
+    <div class="container-fluid">
+
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="218"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
+                     <tr height="19">
+                        <td class="trhead" width="130" colspan="2">
+                            Incident
+                        </td>
+                        <td width="125" colspan="2">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170" colspan="2">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData(health_summery_damageloss_province)">Load
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="3" width="218" height="57">
+                            Districts
+                        </td>
+                        <td colspan="4" width="252" height="19">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="126" height="38">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td colspan="2" width="126" height="19">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                    </tr>
+       <table ng-repeat="(key, value) in dlAirTransSumPro.transport_air.Table_4"
+                           class="table table-bordered">
+                        <tbody>
+                        <tr  height="20" ng-init="getTotal($index,key);">
+
+                        <td ng-bind="key" class="tdpa" width="253" height="19">
+
+                        </td>
+                        <td width="147" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub">
+
+                        </td>
+                        <td width="151" ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt">
+
+                        </td>
+                        <td width="165" ng-bind="value.DlAirLosProvince[0].year_1_pub">
+
+                        </td>
+                        <td width="170" ng-bind="value.DlAirLosProvince[0].year_1_pvt">
+
+                        </td>
+                        <td width="135" ng-bind="value.DlAirLosProvince[0].year_2_pub">
+
+                        </td>
+                        <td width="133" ng-bind="value.DlAirLosProvince[0].year_2_pvt">
+
+                        </td>
+                        <td width="126" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub + value.DlAirLosProvince[0].year_1_pub + value.DlAirLosProvince[0].year_2_pub ">
+
+                        </td>
+
+                        <td width="85" ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt + value.DlAirLosProvince[0].year_1_pvt + value.DlAirLosProvince[0].year_2_pvt ">
+
+                        </td>
+
+                        </tr>
+                        <tr height="19">
+                        <td class="boldash" width="253" height="19">
+                            TOTAL
+                        </td>
+                        <td width="147" ng-bind="totaldpub">
+
+                        </td>
+                        <td width="151" ng-bind="totaldpvt"  >
+
+                        </td>
+                        <td width="165" ng-bind="totalyear1pub"  >
+
+                        </td>
+                        <td width="170"  ng-bind="totalyear1pvt"  >
+
+                        </td>
+                        <td width="135" ng-bind="totalyear2pub"  >
+
+                        </td>
+                        <td width="133" ng-bind="totalyear2pvt"  >
+
+                        </td>
+                        <td width="126" ng-bind="finaltotalpublic">
+
+                        </td>
+                        <td width="85" ng-bind="finaltotalprivate">
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+         <div class="pull-right">
+                    <br>
+
+                </div>
+
+            </div>
+
+
+            <br><br><br>
+
         </div>
-							
-							
-			
-								
-                            </div>
+
+
+    </div>
+    </div>
+
+
+    </div>
+    <!-- add model -->
+    <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Add Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
                         </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
 
-        
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
 
         </div>
-		<!-- add model -->
-		<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								Add Railroad Company
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			<!-- edit model -->
-			<div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								Edit Railroad Company
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-        <!-- /.conainer-fluid -->
-    </main> 
-  
-  
+
+    </div>
+    <!-- edit model -->
+    <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Edit Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+
+
 {% endblock content %}

@@ -166,6 +166,7 @@ class DlAirLosOther(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

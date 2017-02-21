@@ -18,9 +18,12 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
     $scope.finaltotalprivate = null;
     // declaring total variables
     $scope.total_num_affected = 0;
+    $scope.isLoded = false;
 
 
-     $scope.fetchDlData = function(){
+     $scope.fetchDlData = function(form){
+        $scope.isLoded = true;
+        if(form.$valid) {
         $scope.is_edit = true;
         $scope.submitted = true;
         console.log($scope.incident);
@@ -40,6 +43,7 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
             $scope.dlLandTransSumNat = data;
 
             })
+        }
 
     }
 

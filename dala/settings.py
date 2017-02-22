@@ -64,6 +64,9 @@ INSTALLED_APPS = [
     'transport_land',
     'transport_land.base_line',
     'transport_land.damage_losses',
+    'transport_air',
+    'transport_air.base_line',
+    'transport_air.damage_losses'
 
 ]
 
@@ -105,7 +108,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
         # },
         'NAME': 'dala_new',
         'USER': 'postgres',
@@ -297,7 +300,7 @@ TABLE_PROPERTY_MAPPER = {
                                 'est_losses_y1', 'est_losses_y2', 'total_losses', 'id']
             }, 'Table_9':
             {
-                          'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
+                'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                       'losses_y1', 'losses_y2', 'total_losses', 'id', 'district'],
                 'DshPubMohDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                       'losses_y1', 'losses_y2', 'total_losses', 'id', 'district'],
@@ -1188,6 +1191,13 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_damages',
                  ],
 
+        },
+        'Table_4': {
+
+            'TotDmgNational':
+                ['tot_damages',
+                 ],
+
         }
 
     },
@@ -1417,9 +1427,237 @@ TABLE_PROPERTY_MAPPER = {
                  'loss_type',
                  'id'],
 
+        },
+        'Table_5': {
+            'DlOtherDmgsPvehicles':
+                ['num_tot_dest_pvt',
+                 'num_part_dest_pvt',
+                 'tot_damages_pvt',
+                 'private_vehicles',
+                 'id'],
+            'DlOtherDmgsBcompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'bus_companies',
+                 'id'],
+            'DlOtherDmgsTcompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'taxi_companies',
+                 'id'],
+            'DlOtherDmgsTrcompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'truck_companies',
+                 'id'],
+            'DlOtherDmgsTucompanies':
+                ['num_tot_dest_pub',
+                 'num_tot_dest_pvt',
+                 'num_part_dest_pub',
+                 'num_part_dest_pvt',
+                 'tot_damages_pub',
+                 'tot_damages_pvt',
+                 'tuk_companies',
+                 'id'],
+            'DlOtherLosPub':
+                ['fi_year_1',
+                 'fi_year_2',
+                 'cl_debris_year_1',
+                 'cl_debris_year_2',
+                 'hoc_year_1',
+                 'hoc_year_2',
+                 'oue_year_1',
+                 'oue_year_2',
+                 'tot_los',
+                 'tr_company',
+                 'id'],
+            'DlOtherLosPvt':
+                ['fi_year_1',
+                 'fi_year_2',
+                 'cl_debris_year_1',
+                 'cl_debris_year_2',
+                 'hoc_year_1',
+                 'hoc_year_2',
+                 'oue_year_1',
+                 'oue_year_2',
+                 'tot_los',
+                 'tr_company',
+                 'id'],
+
+        },
+        'Table_7': {
+            'DlRbdRclassificationDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTbridgesDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTculvertsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTdrainsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlRbdTrwallsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlOtherDmgsPvehiclesDistrict':
+                ['tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsBcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTrcompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlOtherDmgsTucompaniesDistrict':
+                ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
+            'DlGacPubDistrict':
+                ['damages', 'incident', 'district'],
+
+        },
+        'Table_6': {
+            'DlGacDmgStructures':
+                ['assets',
+                 'num_tot_destroyed',
+                 'num_square_meters',
+                 'damages',
+                 'id'],
+            'DlGacLosType':
+                ['assets',
+                 'los_year_1',
+                 'los_year_2',
+                 'total',
+                 'id'],
+            'DlGacPdmgEquipment':
+                ['assets',
+                 'num_tot_destroyed',
+                 'num_part_damaged',
+                 'damages',
+                 'id'],
+            'DlGacPdmgMachinery':
+                ['assets',
+                 'num_tot_destroyed',
+                 'num_part_damaged',
+                 'damages',
+                 'id'],
+            'DlGacPdmgStructures':
+                ['assets',
+                 'num_part_damaged',
+                 'damaged_roof',
+                 'damaged_walls',
+                 'damaged_floors',
+                 'damages',
+                 'id'],
+
+        },
+        'Table_8': {
+            'DlGacPubProvince':
+                ['damages'],
+            'DlGacPvtProvince':
+                ['tot_damages_pvt'],
+            'DlYearsPubProvince':
+                ['year_1',
+                 'year_2',
+                 ],
+            'DlOtherLosPvtDistrict':
+                ['year_1_pvt',
+                 'year_2_pub',
+                 ],
+
+        },
+        'Table_9': {
+            'DlGacPubNational':
+                ['damages'],
+            'DlGacPvtNational':
+                ['tot_damages_pvt'],
+            'DlOtherLosPvtNational':
+                ['year_1_pvt',
+                 'year_2_pub',
+                 ],
+            'DlYearsPubNational':
+                ['year_1',
+                 'year_2',
+                 ],
+        },
+    },
+    'transport_air': {
+        'Table_1': {
+            'BsAstAirAircrafts':
+                ['assets',
+                 'num_pub',
+                 'num_pvt',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirEquipment':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirSupplies':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirOthers':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsAstAirStructures':
+                ['assets',
+                 'repc_1_floor',
+                 'repc_2_3_floor',
+                 'repc_moret_3_floor',
+                 'repairc_roof',
+                 'repairc_wall',
+                 'repairc_floor',
+                 'id'],
+
+            'BsAstAirEmployment':
+                ['assets',
+                 'male',
+                 'female',
+                 'total',
+                 'id'],
+        },
+        'Table_2': {
+            'BsAstAirAircrafts':
+                ['assets', 'num_pub', 'num_pvt', 'avg_replace_cost', 'avg_repair_cost'],
+            'BsAstAirEquipment':
+                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
+            'BsAstAirSupplies':
+                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
+            'BsAstAirStructures':
+                ['assets', 'repc_1_floor', 'repc_2_3_floor', 'repc_moret_3_floor', 'repairc_roof', 'repairc_wall',
+                 'repairc_floor']
+        },
+        'Table_4': {
+            'DlAirDmgPubProvince':
+                ['tot_destroyed_pub'],
+            'DlAirDmgPvtProvince':
+                ['tot_destroyed_pvt'],
+            'DlAirLosProvince':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+        },
+        'Table_5': {
+            'DlAirDmgPubNational':
+                ['tot_destroyed_pub'],
+            'DlAirDmgPvtNational':
+                ['tot_destroyed_pvt'],
+            'DlAirLosNational':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
         }
 
     },
+
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

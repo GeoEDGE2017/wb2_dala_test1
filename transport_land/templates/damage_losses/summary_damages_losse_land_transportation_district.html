@@ -1,476 +1,484 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlSumTransLandDistApp" ng-controller="dlSumTransLandDistController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7. Summary of damages and losses to land transportation in a district</span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div>
+            <ul class='nav nav-wizard'>
+                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
+                <li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content" ng-form name="form_dlsum_transland_dist">
+                <div class="tab-pane active" id="step1">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="156"/>
+                            <col width="63"/>
+                            <col width="120"/>
+                            <col width="99"/>
+                            <col width="145"/>
+                            <col width="148"/>
+                            <col width="63"/>
+                        </colgroup>
+                        <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="isLoded && form_dlsum_transland_dist.incident.$error.required">
+                                    Please select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="isLoded && form_dlsum_transland_dist.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                        </tr>
+                        <tr height="43">
+                            <td class="trhead" height="43" width="156">
+                                Incident
+                            </td>
+                            <td colspan="3" height="43" width="63">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
 
-    <!-- Main content -->
-    <main class="main">
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="trhead" height="43" width="120">
+                                District
+                            </td>
+                            <td colspan="2" height="43" width="491">
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                    <option value="" selected>Select District</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-success" ng-click="loadData(form_dlsum_transland_dist)">Load</button>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" height="38" width="156">
+                                Land Transportation
+                            </td>
+                            <td colspan="6" height="19" width="638">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td colspan="2" height="19" width="126">
+                                Public
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                Private
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Public Roads
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdRclassificationDistrict[0].damages">
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Public Bridges
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTbridgesDistrict[0].damages">
+                                -
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Culverts
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTculvertsDistrict[0].damages">
+                                -
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Retaining Walls
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTrwallsDistrict[0].damages">
+                                -
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Drains
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlRbdTdrainsDistrict[0].damages">
+                                -
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Private Vehicles
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="126">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsPvehiclesDistrict[0].tot_damages_pvt">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Bus Companies
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsBcompaniesDistrict[0].tot_damages_pub">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsBcompaniesDistrict[0].tot_damages_pvt">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Taxi Companies
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsTcompaniesDistrict[0].tot_damages_pub">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsTcompaniesDistrict[0].tot_damages_pvt">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Truck Companies
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsTrcompaniesDistrict[0].tot_damages_pub">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsTrcompaniesDistrict[0].tot_damages_pvt">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Tuk tuk Companies
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlOtherDmgsTucompaniesDistrict[0].tot_damages_pub">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="198" ng-bind="data.transport_land.Table_7.DlOtherDmgsTucompaniesDistrict[0].tot_damages_pvt">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Government agency assets
+                            </td>
+                            <td colspan="2" height="19" width="126" ng-bind="data.transport_land.Table_7.DlGacPubDistrict[0].damages">
+                                -
+                            </td>
+                            <td class="tdpa" colspan="2" height="19" width="198">
+                                <br/>
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                TOTAL
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                -
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-            </li>
-			  <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
-            </li>
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7. Summary of damages and losses to land transportation in a district</span></li>
-
-           
-        </ol>
+                    <br>
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                    <br>
+                </div>
 
 
-        <div class="container-fluid">
-		<div>
-  <ul class='nav nav-wizard'>
-				    <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
-				    <li id="li2" ><a href='#step2' data-toggle="tab">2 Losses </a></li>
-                   
-                   
-				    
-				   
-				  </ul>
-       
-				
-					<div id="myTabContent" class="tab-content">
-					<div class="tab-pane active" id="step1">
-				<table class="table table-bordered">
-    <colgroup>
-        <col width="156"/>
-        <col width="63"/>
-        <col width="120"/>
-        <col width="99"/>
-        <col width="145"/>
-        <col width="148"/>
-        <col width="63"/>
-    </colgroup>
-    <tbody>
-        <tr height="43">
-            <td class="trhead" height="43" width="156">
-                Incident
-            </td>
-            <td colspan="3" height="43" width="63">
-                <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-            <td class="trhead" height="43" width="120">
-                District
-            </td>
-            <td colspan="2" height="43" width="491">
-                <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="2" height="38" width="156">
-                Land Transportation
-            </td>
-            <td colspan="6" height="19" width="638">
-                Damages (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td colspan="2" height="19" width="126">
-                Public
-            </td>
-            <td colspan="2" height="19" width="198">
-                Private
-            </td>
-            <td colspan="2" height="19" width="296">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Public Roads
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td class="tdpa" colspan="2" height="19" width="198">
-                <br/>
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Public Bridges
-            </td>
-            <td colspan="2" height="19" width="126">
-               -
-            </td>
-            <td class="tdpa" colspan="2" height="19" width="198">
-                <br/>
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Culverts
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td class="tdpa" colspan="2" height="19" width="198">
-                <br/>
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Retaining Walls
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td class="tdpa" colspan="2" height="19" width="198">
-                <br/>
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Drains
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td class="tdpa" colspan="2" height="19" width="198">
-                <br/>
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Private Vehicles
-            </td>
-            <td class="tdpa" colspan="2" height="19" width="126">
-                <br/>
-            </td>
-            <td colspan="2" height="19" width="198">
-               -
-            </td>
-            <td colspan="2" height="19" width="296">
-               -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Bus Companies
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td colspan="2" height="19" width="198">
-                -
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Taxi Companies
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td colspan="2" height="19" width="198">
-                -
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Truck Companies
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td colspan="2" height="19" width="198">
-                -
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Tuk tuk Companies
-            </td>
-            <td colspan="2" height="19" width="126">
-                -
-            </td>
-            <td colspan="2" height="19" width="198">
-                -
-            </td>
-            <td colspan="2" height="19" width="296">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Government agency assets
-            </td>
-            <td colspan="2" height="19" width="126">
-               -
-            </td>
-            <td class="tdpa" colspan="2" height="19" width="198">
-                <br/>
-            </td>
-            <td colspan="2" height="19" width="296">
-               -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                TOTAL
-            </td>
-            <td colspan="2" height="19" width="126">
-               -
-            </td>
-            <td colspan="2" height="19" width="198">
-                -
-            </td>
-            <td colspan="2" height="19" width="296">
-               -
-            </td>
-        </tr>
-</tbody>
-</table>		
-						
-		  <br>
-<a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
-               <br>        				         
-           </div> 
-					
-					
-					
-					
-							<div class="tab-pane fade" id="step2">
-						
-<table class="table table-bordered">
-<tbody>
-        <tr class="trheadc" height="19">
-            <td height="19" width="156">
-                <br/>
-            </td>
-            <td colspan="6" height="19" width="638">
-                Losses (LKR)
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="2" height="38" width="156">
-                Losses
-            </td>
-            <td colspan="2" height="19" width="126">
-                Year 1
-            </td>
-            <td colspan="2" height="19" width="198">
-                Year 2
-            </td>
-            <td colspan="2" height="19" width="296">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td height="19" width="63">
-                Public
-            </td>
-            <td height="19" width="120">
-                Private
-            </td>
-            <td height="19" width="99">
-                Public
-            </td>
-            <td height="19" width="145">
-                Private
-            </td>
-            <td height="19" width="148">
-                Public
-            </td>
-            <td height="19" width="63">
-                Private
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Roads and bridges
-            </td>
-            <td height="19" width="63">
-                -
-            </td>
-            <td height="19" width="120">
-                <br/>
-            </td>
-            <td height="19" width="99">
-                -
-            </td>
-            <td height="19" width="145">
-                <br/>
-            </td>
-            <td height="19" width="148">
-                -
-            </td>
-            <td class="tdpa" height="19" width="63">
-                <br/>
-            </td>
-        </tr>
-        <tr height="34">
-            <td class="tdpa" height="34" width="156">
-                Land transportation companies and vehicles
-            </td>
-            <td height="34" width="63">
-                -
-            </td>
-            <td height="34" width="120">
-                -
-            </td>
-            <td height="34" width="99">
-                -
-            </td>
-            <td height="34" width="145">
-                -
-            </td>
-            <td height="34" width="148">
-                -
-            </td>
-            <td height="34" width="63">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                Government agency
-            </td>
-            <td height="19" width="63">
-                -
-            </td>
-            <td class="tdpa" height="19" width="120">
-                <br/>
-            </td>
-            <td height="19" width="99">
-                -
-            </td>
-            <td class="tdpa" height="19" width="145">
-                <br/>
-            </td>
-            <td height="19" width="148">
-                -
-            </td>
-            <td class="tdpa" height="19" width="63">
-                <br/>
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="156">
-                TOTAL
-            </td>
-            <td height="19" width="63">
-                -
-            </td>
-            <td height="19" width="120">
-                -
-            </td>
-            <td height="19" width="99">
-                -
-            </td>
-            <td height="19" width="145">
-                -
-            </td>
-            <td height="19" width="148">
-                -
-            </td>
-            <td height="19" width="63">
-                -
-            </td>
-        </tr>
-    </tbody>
-</table>
+                <div class="tab-pane fade" id="step2">
 
-						
-						
-						 <br>
-                   <div class="pull-right">
-		<br>
-<button type="button" class="btn btn-info">Clear</button>
-<button type="button" class="btn btn-success">Submit</button>
-</div>	         
-           </div> 
-                        
-								
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="156">
+                                <br/>
+                            </td>
+                            <td colspan="6" height="19" width="638">
+                                Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" height="38" width="156">
+                                Losses
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                Year 1
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                Year 2
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td height="19" width="63">
+                                Public
+                            </td>
+                            <td height="19" width="120">
+                                Private
+                            </td>
+                            <td height="19" width="99">
+                                Public
+                            </td>
+                            <td height="19" width="145">
+                                Private
+                            </td>
+                            <td height="19" width="148">
+                                Public
+                            </td>
+                            <td height="19" width="63">
+                                Private
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Roads and bridges
+                            </td>
+                            <td height="19" width="63">
+                                -
+                            </td>
+                            <td height="19" width="120">
+                                <br/>
+                            </td>
+                            <td height="19" width="99">
+                                -
+                            </td>
+                            <td height="19" width="145">
+                                <br/>
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                            <td class="tdpa" height="19" width="63">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="34">
+                            <td class="tdpa" height="34" width="156">
+                                Land transportation companies and vehicles
+                            </td>
+                            <td height="34" width="63">
+                                -
+                            </td>
+                            <td height="34" width="120">
+                                -
+                            </td>
+                            <td height="34" width="99">
+                                -
+                            </td>
+                            <td height="34" width="145">
+                                -
+                            </td>
+                            <td height="34" width="148">
+                                -
+                            </td>
+                            <td height="34" width="63">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                Government agency
+                            </td>
+                            <td height="19" width="63">
+                                -
+                            </td>
+                            <td class="tdpa" height="19" width="120">
+                                <br/>
+                            </td>
+                            <td height="19" width="99">
+                                -
+                            </td>
+                            <td class="tdpa" height="19" width="145">
+                                <br/>
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                            <td class="tdpa" height="19" width="63">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="156">
+                                TOTAL
+                            </td>
+                            <td height="19" width="63">
+                                -
+                            </td>
+                            <td height="19" width="120">
+                                -
+                            </td>
+                            <td height="19" width="99">
+                                -
+                            </td>
+                            <td height="19" width="145">
+                                -
+                            </td>
+                            <td height="19" width="148">
+                                -
+                            </td>
+                            <td height="19" width="63">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
-        </div>
-							
-							
-			
-								
-                          
 
-         <div class="col-md-12">
-			
-			
-			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			
-		</div>           </div>    
+
+        <div class="col-md-12">
+
+
+            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+                 aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title">
+                                <span id="bookId"> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput">Name</label>
+                                <div class="col-md-10">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
 
         </div>
-		
-        <!-- /.conainer-fluid -->
-    </main>
-  
-  
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
 {% endblock content %}

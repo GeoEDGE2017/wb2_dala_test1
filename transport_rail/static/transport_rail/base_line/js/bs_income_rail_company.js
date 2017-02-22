@@ -15,7 +15,7 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.new_company = {id: null, name: null};
 
     var init_data = {
-        'transportation_rail': {
+        'transport_rail': {
             'Table_1': {
                 'BsIncAstRailIncome': [{
                     annual_income: null,

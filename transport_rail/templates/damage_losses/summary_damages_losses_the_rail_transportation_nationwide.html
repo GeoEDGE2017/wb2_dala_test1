@@ -35,6 +35,32 @@
                         <col width="125"/>
                     </colgroup>
                     <tbody>
+                    <tr height="19" class="trhead">
+                         <td colspan="2" style="padding-left:5px;">
+                                Incident
+                            </td>
+                            <td colspan="5" style="background:#EFEFEF;">
+
+                                <select id="select" name="incident" ng-model="incident"
+                                        class="form-control"
+                                        style="width:100%;font-weight:400;"
+                                        ng-change="changedValue(incident)" required>
+
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                    </option>
+                                    {% endfor %}
+
+                                </select>
+
+                            </td>
+                            <td colspan="2">
+                                <button class="btn btn-info btn-block" ng-click="loadData()">Load</button>
+                            </td>
+                    </tr>
                     <tr height="20">
                         <td class="trhead" width="281" height="20">
                             Name of Railroad Company
@@ -55,147 +81,32 @@
                             Total Damages (LKR)
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            Province 1
-                        </td>
-                        <td colspan="3" width="425">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            Province 2
-                        </td>
-                        <td colspan="3">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            Province N
-                        </td>
-                        <td colspan="3">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
+            <table ng-repeat="(key, value) in dmLosTransAirNation.transport_rail.Table_4"
+                           class="table table-bordered">
+                        <tbody>
+                        <tr  height="20" ng-init="getTotal('TotDmgNational','tot_damages', $index,key);">
+                            <td ng-bind="key"  class="tdpa" width="275">
+                            </td>
+                            <td width="400" ng-bind="value.TotDmgNational[0].tot_damages" >
+                            </td>
+
+                        </tr>
+
+                        <tr height="20">
+                        <td class="boldash" width="281" height="20">
                             TOTAL
                         </td>
-                        <td colspan="3" width="425">
-                            -
+                        <td width="425" colspan="3" >
+                            <span ng-bind="total"></span>
                         </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="281" height="20">
-                            Type of Losses
-                        </td>
-                        <td width="170">
-                            Year 1
-                        </td>
-                        <td width="130">
-                            Year2
-                        </td>
-                        <td width="125">
-                            Total Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            Foregone income of rail company
-                        </td>
-                        <td width="170">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="130">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="125">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            Cleaning up of debris
-                        </td>
-                        <td width="170">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="130">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="125">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            Higher operating costs
-                        </td>
-                        <td width="170">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="130">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="125">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            Other unexpected expenses
-                        </td>
-                        <td width="170">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="130">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="125">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="281" height="20">
-                            TOTAL LOSSES
-                        </td>
-                        <td width="170">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="130">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="125">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
+
                     </tr>
                     </tbody>
                 </table>
 
-
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
 
 

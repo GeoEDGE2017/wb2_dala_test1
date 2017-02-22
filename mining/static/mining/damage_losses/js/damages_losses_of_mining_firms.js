@@ -428,9 +428,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         },
         true);
 
-
-
-
     $scope.insertFirm = function(table) {
 
         console.log($scope.dmLosOfMinFirms.mining.Table_3[table]);

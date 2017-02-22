@@ -161,7 +161,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BiaGacLandOequipment'],
+                    'db_tables': ['BiaGacLandOequipment','BiaGacLandStructure','BiaGacLandPbuilding','BiaGacLandMachinery'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -236,7 +236,67 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            alert('Save Table 6');
+            $http({
+            method: 'POST',
+            url:'/dl_save_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dlGovnAdmnAsets,
+                'com_data': {
+                    'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+
+                },
+                'is_edit' : $scope.is_edit,
+
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+
+                 if(response.data == 'False')
+             $scope.is_valid_data = false;
+                else
+             $("#modal-container-239453").modal('show');
+
+        }, function errorCallback(response) {
+
+            console.log(response);
+        });
         }
     }
+
+        $scope.dlDataEdit = function(form)
+{
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_6',
+    'sector':'transport_land',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlGovnAdmnAsets = data;
+    })
+
+}
+    $scope.cancelEdit = function()
+{
+     $scope.is_edit = false;
+     $scope.dlGovnAdmnAsets = init_data;
+}
+
+
 });

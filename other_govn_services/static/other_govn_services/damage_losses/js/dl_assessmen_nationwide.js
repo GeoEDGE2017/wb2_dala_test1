@@ -1,13 +1,7 @@
 var app = angular.module('dlNationwideApp', ['underscore']);
 
 app.controller("dlNationwideController", function ($scope,$http, _) {
-    $scope.district;
     $scope.incident;
-    $scope.bs_data={};
-    $scope.dl_data={};
-    $scope.is_edit = false;
-    $scope.submitted = false;
-    $scope.Districts=[];
 
 $scope.dlNationwideSys = null;
 
@@ -19,7 +13,7 @@ $scope.fetchDlData = function(){
     'table_name':  'Table_5',
     'sector': 'other_govn_services',
     'com_data': {
-            'incident': 9,
+            'incident': $scope.incident,
           },
            }),
     }).success(function(data) {

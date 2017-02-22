@@ -91,7 +91,7 @@ def dl_fetch_district_disagtn(request):
     com_data = data['com_data']
     incident = com_data['incident']
     ownerships = Ownership.objects.all()
-    models = ['DlagdDmgDistrict', 'DlagdLossesDistrict']
+    models = ['other_govn_services.DlagdDmgDistrict', 'other_govn_services.DlagdLossesDistrict']
 
     dl_mtable_data = {sector: {}}
     dl_mtable_data[sector][table_name] = {}
@@ -117,7 +117,7 @@ def dl_fetch_district_disagtn(request):
             filter_fields = {'incident': incident, 'district': 1, 'department': department_id}
             dl_mtable_data[sector][table_name][ownership_name][department_name] = {}
             for model in models:
-                model_class = apps.get_model('damage_losses', model)
+                model_class = apps.get_model('other_govn_services.damage_losses', model)
                 model_fields = settings.TABLE_PROPERTY_MAPPER[sector][table_name][model]
                 dmg_data = model_class.objects.filter(**filter_fields).values(*model_fields)
                 dl_mtable_data[sector][table_name][ownership_name][department_name][model] = list(dmg_data)
@@ -141,6 +141,7 @@ def dl_fetch_disagtn_data(request):
 
     dl_mtable_data = {sector: {}}
     dl_mtable_data[sector][table_name] = {}
+    sub_app_name = sector + '.damage_losses'
 
     filter_fields = {}
 
@@ -150,7 +151,8 @@ def dl_fetch_disagtn_data(request):
     else:
         filter_fields = {'incident': incident}
 
-    dl_sessions = DlSessionKeys.objects.filter(**filter_fields)
+    dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
+    dl_sessions = dl_session_model.objects.filter(**filter_fields)
 
     for dl_session in dl_sessions:
 
@@ -187,7 +189,7 @@ def dl_fetch_disagtn_data(request):
                     dl_mtable_data[sector][table_name][category_name][ownership_name][table] = {}
 
                     table_fields = tables[table]
-                    model_class = apps.get_model('damage_losses', table)
+                    model_class = apps.get_model('other_govn_services.damage_losses', table)
 
                     table_fields = tables[table]
 

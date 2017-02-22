@@ -427,7 +427,7 @@ def dl_fetch_district_disagtn(request):
 
     dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
     dl_sessions = dl_session_model.objects.filter(**filter_fields)
-
+    print dl_sessions
     for dl_session in dl_sessions:
 
         category_name = None
@@ -447,7 +447,6 @@ def dl_fetch_district_disagtn(request):
             dl_mtable_data[sector][table_name][category_name] = {}
 
             for table in tables:
-                print table
                 table_fields = tables[table]
 
                 dl_mtable_data[sector][table_name][category_name][table] = {}
@@ -456,7 +455,6 @@ def dl_fetch_district_disagtn(request):
                 model_class = apps.get_model(sub_app_name, table)
 
                 table_fields = tables[table]
-                print table_fields
                 dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
                                                                                 filter(**filter_fields)
                                                                                 .values(*table_fields))
@@ -525,7 +523,6 @@ def dl_fetch_district_disagtn(request):
     sector = data['sector']
     com_data = data['com_data']
     incident = com_data['incident']
-    print settings.TABLE_PROPERTY_MAPPER[sector]
     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
 
     dl_mtable_data = {sector: {}}
@@ -541,6 +538,7 @@ def dl_fetch_district_disagtn(request):
         filter_fields = {'incident': incident}
 
     dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
+    # should be checking against table name as well
     dl_sessions = dl_session_model.objects.filter(**filter_fields)
 
     for dl_session in dl_sessions:
@@ -558,6 +556,8 @@ def dl_fetch_district_disagtn(request):
                 category_name = dl_session.province.name
             filter_fields = {'incident': incident, 'province': province_id}
 
+        print dl_session.district.province
+
         if category_name is not None:
             dl_mtable_data[sector][table_name][category_name] = {}
 
@@ -571,7 +571,6 @@ def dl_fetch_district_disagtn(request):
                 model_class = apps.get_model(sub_app_name, table)
 
                 table_fields = tables[table]
-                print table_fields
                 dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
                                                                                 filter(**filter_fields)
                                                                                 .values(*table_fields))

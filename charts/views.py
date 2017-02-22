@@ -8,8 +8,10 @@ from django.conf import settings
 import yaml
 import json
 
+
 def index_chart(request):   
     return render(request, 'charts/index_chart.html')
+
 
 def chart_tabel8(request):
     districts = District.objects.all()
@@ -38,6 +40,14 @@ def chart_tabel10(request):
     incidents = IncidentReport.objects.all()
     context = {
         'districts': districts,
+        'incidents': incidents
+    }
+    return render(request, 'charts/chart_tabel10.html', context)
+
+
+def education_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
         'incidents': incidents
     }
     return render(request, 'charts/chart_tabel10.html', context)

@@ -110,7 +110,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
         # },
-        'NAME': 'dala_new',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
 
     },
@@ -1201,7 +1201,7 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_5': {
             'DlTypeLos':
-                ['loss_type','year_1','year_2','tot_los'],
+                ['loss_type','year_1','year_2','tot_los','id'],
         }
 
     },

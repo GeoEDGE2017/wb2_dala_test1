@@ -92,6 +92,35 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
 
             }
 
+   $scope.dlDataEdit = function(form){
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_5',
+    'sector':'transport_rail',
+    'com_data': {
+
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    $scope.dlTypeLossRail = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlTypeLossRail = init_data;
+}
+
 
 
 

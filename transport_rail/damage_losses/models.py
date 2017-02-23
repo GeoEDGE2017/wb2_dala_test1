@@ -114,7 +114,7 @@ class DlTypeLos(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dl_type_los'
+        db_table = 'transport_rail\".\"dl_type_los'
 
 
 class TotDmgProvince(models.Model):

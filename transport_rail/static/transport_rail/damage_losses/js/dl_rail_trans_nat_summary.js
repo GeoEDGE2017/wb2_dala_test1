@@ -10,6 +10,7 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.dmLosTransAirNation = null;
+    $scope.total = 0;
 
 
     $scope.loadData = function()
@@ -42,9 +43,10 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
      $scope.getTotal = function(model, property,$index,key) {
 
 
-         $scope.total = $scope.total +
+         $scope.total =  $scope.total +
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages ?
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages : 0 ;
+         console.log($scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages);
     }
 
 })

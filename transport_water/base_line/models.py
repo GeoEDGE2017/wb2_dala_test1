@@ -90,8 +90,6 @@ class BsAstWaterStructures(models.Model):
 
 
 class BsAstWaterBuildings(models.Model):
-    public = models.BigIntegerField(blank=True, null=True)
-    private = models.BigIntegerField(blank=True, null=True)
     avg_replace_cost = models.FloatField(blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)

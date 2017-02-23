@@ -102,6 +102,22 @@ class DlBuildingAstLoss(models.Model):
         db_table = 'transport_rail\".\"dl_building_ast_loss'
 
 
+class DlTypeLos(models.Model):
+    loss_type = models.CharField(max_length=255, blank=True, null=True)
+    year_1 = models.FloatField(blank=True, null=True)
+    year_2 = models.FloatField(blank=True, null=True)
+    tot_los = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.TimeField(blank=True, null=True)
+    created_date = models.TimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dl_type_los'
+
+
 class TotDmgProvince(models.Model):
     tot_damages = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)

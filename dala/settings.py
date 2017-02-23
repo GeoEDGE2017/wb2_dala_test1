@@ -1629,15 +1629,22 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
         },
         'Table_2': {
-            'BsAstAirAircrafts':
-                ['assets', 'num_pub', 'num_pvt', 'avg_replace_cost', 'avg_repair_cost'],
-            'BsAstAirEquipment':
-                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
-            'BsAstAirSupplies':
-                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
-            'BsAstAirStructures':
-                ['assets', 'repc_1_floor', 'repc_2_3_floor', 'repc_moret_3_floor', 'repairc_roof', 'repairc_wall',
-                 'repairc_floor']
+            'DlAirDmgAircrafts': ['tot_destroyed_pub', 'tot_destroyed_pvt', 'tot_dmg_pub', 'tot_dmg_pvt',
+                                  'part_damaged_pub', 'part_damaged_pvt', 'assets','id'],
+            'DlAirDmgEquipment': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets','id'],
+
+            'DlAirDmgSupplies': ['tot_destroyed_pub', 'tot_destroyed_pvt', 'tot_dmg_pub', 'tot_dmg_pvt',
+                                 'part_damaged_pub', 'part_damaged_pvt', 'assets','id'],
+            'DlAirDmgOthers': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets','id'],
+
+            'DlAirDmgGstructures': ['tdest_floor_1', 'tdest_floor_2_3', 'tdest_floor_than_3', 'pdmg_number',
+                                    'pdmg_roof', 'pdmg_wall', 'pdmg_floor', 'tot_pub', 'assets','id'],
+            'DlAirLosFi': ['year_1_pub','year_1_pvt','year_2_pub','year_2_pvt','tot_los_pub','tot_los_pvt','type_los','id'],
+
+            'DlAirLosHoc': ['year_1_pub','year_1_pvt','year_2_pub','year_2_pvt','tot_los_pub','tot_los_pvt','type_los','id'],
+
+            'DlAirLosOther': ['year_1_pub','year_1_pvt','year_2_pub','year_2_pvt','tot_los_pub','tot_los_pvt','assets','id']
+
         },
         'Table_4': {
             'DlAirDmgPubProvince':

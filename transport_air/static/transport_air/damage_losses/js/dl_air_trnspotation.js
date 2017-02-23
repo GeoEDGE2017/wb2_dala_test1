@@ -1,16 +1,13 @@
-//Table 2
 var app = angular.module('dlAirTrnspotationApp', [])
 
 app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scope, $http) {
+
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
-
     $scope.dlDate;
     $scope.bs_data={};
-
     $scope.baselineDate;
-
     $scope.is_edit = false;
     $scope.is_valid_data = true;
 
@@ -214,7 +211,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                 }],
                 //Tab 2
                 'DlAirLosFi': [{
-                    assets : 'Income of airline companies',
+                    type_los : 'Income of airline companies',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,
@@ -222,7 +219,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                     tot_los_pub : null,
                     tot_los_pvt : null,
                 }, {
-                    assets : 'Income of airports',
+                    type_los : 'Income of airports',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,
@@ -230,7 +227,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                     tot_los_pub : null,
                     tot_los_pvt : null,
                 }, {
-                    assets : 'Total',
+                    type_los : 'Total',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,
@@ -330,7 +327,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures'],
+                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures','BsAstAirEmployment','BsAstAirOthers'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -346,6 +343,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                 angular.forEach(data, function(value, key) {
                   $scope.bs_data[key] = JSON.parse(value);
                 });
+                console.log(data);
                 generateRefencedData();
             }, function errorCallback(response) {
 
@@ -521,33 +519,86 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
         }
     }
 
-//    $scope.dlDataEdit = function(form){
-//
-//   $scope.is_edit = true;
-//   $scope.submitted = true;
-//
-//    $http({
-//    method: "POST",
-//    url: '/dl_fetch_edit_data',
-//    data: angular.toJson({
-//    'table_name':  'Table_4',
-//    'sector':'transport_land',
-//    'com_data': {
-//           'district':  $scope.district.district__id,
-//            'incident': $scope.incident,
-//          },
-//           'is_edit':$scope.is_edit
-//           }),
-//    }).success(function(data) {
-//
-//    $scope.dlRoadBrdgs = data;
-//    })
-//
-//}
-//
-//    $scope.cancelEdit = function(){
-//     $scope.is_edit = false;
-//     $scope.dlRoadBrdgs = init_data;
-//}
+    $scope.dlDataEdit = function(form){
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_2',
+    'sector':'transport_air',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    $scope.dlAirTrnspotation = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlAirTrnspotation = init_data;
+}
+
+    $scope.calculatePubAirTotal=function(arr){
+     var finaltotal = 0;
+    angular.forEach(arr, function(value, key) {
+     finaltotal = finaltotal + value.tot_destroyed_pub  + value.part_damaged_pub ;
+    })
+    return finaltotal;
+    }
+
+    $scope.calculatePvtAirTotal=function(arr){
+    var finaltotal = 0;
+    angular.forEach(arr, function(value, key) {
+    finaltotal = finaltotal + value.tot_destroyed_pvt + value.part_damaged_pvt ;
+    })
+    return finaltotal;
+    }
+
+    $scope.calculatePubEquTotal=function(arr){
+    var finaltotal = 0;
+    angular.forEach(arr, function(value, key) {
+    finaltotal = finaltotal + value.tot_destroyed + value.part_damaged ;
+    })
+    return finaltotal;
+    }
+
+    $scope.calculatePubOtherTotal=function(arr){
+    var finaltotal = 0;
+    angular.forEach(arr, function(value, key) {
+    finaltotal = finaltotal + value.tot_destroyed + value.part_damaged ;
+    })
+    return finaltotal;
+    }
+
+    $scope.calculatePubStrucTotal=function(arr){
+    var finaltotal = 0;
+    angular.forEach(arr, function(value, key) {
+    finaltotal = finaltotal + value.tdest_floor_1 +
+    value.tdest_floor_2_3 +
+    value.tdest_floor_than_3 +
+    value.pdmg_roof +
+    value.pdmg_wall +
+    value.pdmg_floor;
+    })
+    return finaltotal;
+    }
+
+    $scope.getTotal=function (){
+
+
+    }
+
+
+
 
 }]);

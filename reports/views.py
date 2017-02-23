@@ -73,6 +73,38 @@ def other_govn_services_summary(request):
     return render(request, 'reports/report_other_govn_services.html', context)
 
 
+def transport_land_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_land.html', context)
+
+
+def transport_rail_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_rail.html', context)
+
+
+def transport_water_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_water.html', context)
+
+
+def transport_air_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_air.html', context)
+
+
 @csrf_exempt
 def dl_fetch_report_data(request):
 

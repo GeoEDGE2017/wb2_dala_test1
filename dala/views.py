@@ -426,7 +426,7 @@ def dl_fetch_district_disagtn(request):
         filter_fields = {'incident': incident}
 
     dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
-    dl_sessions = dl_session_model.objects.filter(**filter_fields)
+    dl_sessions = dl_session_model.objects.filter(**filter_fields).distinct()
     print dl_sessions
     for dl_session in dl_sessions:
 

@@ -69,12 +69,15 @@
 
 
                 </div>
+                <span style="color:red;" ng-show="isDataAvailable">
+                                       No Data available
+                                 </span>
                 <!--/row-->
             </div>
         </div>
 
         <!--national -->
-        <div  ng-if="!checkIfNull()" id="print_report" style="max-height:400px;overflow:auto;">
+        <div ng-if="!checkIfNull()" id="print_report" style="max-height:400px;overflow:auto;">
 
             <table ng-repeat="(key, value) in data.education.Table_7" class="table table-bordered">
                 <tbody>

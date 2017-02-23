@@ -9,6 +9,7 @@ app.controller("dlRailTransNatReportController", function($scope,$http,$parse, _
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.dmLosTransAirNation = null;
+    $scope.isDataAvailable = false;
 
 $scope.checkIfNull = function()
 {
@@ -22,6 +23,8 @@ $scope.loadData = function(form)
 {
 
    $scope.submitted = true;
+   $scope.isDataAvailable = false;
+
    if(form.$valid){
     $http({
     method: "POST",
@@ -36,6 +39,7 @@ $scope.loadData = function(form)
     }).success(function(data) {
 
         $scope.dmLosTransAirNation = data;
+        $scope.isDataAvailable = $scope.checkIfNull();
 
     })
 }

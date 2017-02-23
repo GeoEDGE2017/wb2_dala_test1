@@ -11,7 +11,7 @@ $scope.bs_date;
 $scope.submitted = false;
 $scope.data = null;
 $scope.incident;
-
+$scope.isDataAvailable = false;
 
     $scope.changedValue = function getDlData() {
 
@@ -27,7 +27,7 @@ $scope.incident;
 
 $scope.loadData = function(form){
 $scope.submitted = true;
-
+$scope.isDataAvailable = false;
 if(form.$valid){
 
         $http({
@@ -43,7 +43,8 @@ if(form.$valid){
         }).success(function(data) {
         console.log(data.education.Table_7);
         $scope.data = data;
-
+        $scope.submitted = false;
+        $scope.isDataAvailable = $scope.checkIfNull();
         })
 }
 }

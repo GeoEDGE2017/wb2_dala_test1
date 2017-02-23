@@ -4,11 +4,14 @@ app.controller("dlNationwideReportController", function ($scope,$http, _) {
 
 $scope.incident;
 $scope.submitted = false;
+$scope.isDataAvailable = false;
 
 $scope.dlNationwideSys = null;
 
 $scope.loadData = function(form){
 $scope.submitted = true;
+$scope.isDataAvailable = false;
+
 if(form.$valid){
     $http({
     method: "POST",
@@ -24,6 +27,8 @@ if(form.$valid){
 
     console.log('load ', data);
     $scope.dlNationwideSys = data;
+    $scope.isDataAvailable = $scope.checkIfNull();
+
 })
 }
 }

@@ -8,6 +8,7 @@ app.controller("DlFirmsNatReportController", function($scope,$http,$parse, _) {
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.dmLosMinFirmsNation = null;
+    $scope.isDataAvailable = false;
 
 $scope.checkIfNull = function()
 {
@@ -21,6 +22,8 @@ $scope.loadData = function(form)
 {
 
    $scope.submitted = true;
+   $scope.isDataAvailable = false;
+
    if(form.$valid){
     $http({
     method: "POST",
@@ -36,6 +39,7 @@ $scope.loadData = function(form)
 
         $scope.dmLosMinFirmsNation = data;
 
+        $scope.isDataAvailable = $scope.checkIfNull();
 
 
     })

@@ -17,6 +17,7 @@ app.controller("DlTWNatReportController", ['$scope','$http',function ($scope,$ht
     $scope.finaltotalprivate = null;
     // declaring total variables
     $scope.total_num_affected = 0;
+    $scope.isDataAvailable = false;
 
 $scope.checkIfNull = function()
 {
@@ -29,6 +30,8 @@ $scope.checkIfNull = function()
 $scope.fetchDlData = function(form){
 
     $scope.submitted = true;
+    $scope.isDataAvailable = false;
+
     if(form.$valid){
 
         $http({
@@ -45,6 +48,7 @@ $scope.fetchDlData = function(form){
 
         console.log('load ', data);
         $scope.dlWaterTransSumNat = data;
+        $scope.isDataAvailable = $scope.checkIfNull();
 
         })
 }

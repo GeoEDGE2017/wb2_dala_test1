@@ -18,6 +18,7 @@ app.controller("DlTlNatReportController", ['$scope','$http',function ($scope,$ht
     // declaring total variables
     $scope.total_num_affected = 0;
     $scope.isLoded = false;
+    $scope.isDataAvailable = false;
 
 $scope.checkIfNull = function()
 {
@@ -29,6 +30,8 @@ $scope.checkIfNull = function()
 
      $scope.fetchDlData = function(form){
         $scope.submitted = true;
+        $scope.isDataAvailable = false;
+
         if(form.$valid) {
             $http({
             method: "POST",
@@ -43,6 +46,7 @@ $scope.checkIfNull = function()
             }).success(function(data) {
 
             $scope.dlLandTransSumNat = data;
+            $scope.isDataAvailable = $scope.checkIfNull();
 
             })
         }

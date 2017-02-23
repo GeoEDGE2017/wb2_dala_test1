@@ -1,11 +1,12 @@
-var app = angular.module('dlNationwideApp', ['underscore']);
+var app = angular.module('dlNationwideReportApp', ['underscore']);
 
-app.controller("dlNationwideController", function ($scope,$http, _) {
+app.controller("dlNationwideReportController", function ($scope,$http, _) {
     $scope.incident;
+
 
 $scope.dlNationwideSys = null;
 
-$scope.fetchDlData = function(){
+$scope.loadData = function(){
     $http({
     method: "POST",
     url: '/other_govn_services/damage_losses/dl_fetch_disagtn_data',
@@ -22,6 +23,14 @@ $scope.fetchDlData = function(){
     $scope.dlNationwideSys = data;
 })
 }
+
+$scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlNationwideSys ? angular.equals({}, $scope.dlNationwideSys.other_govn_services.Table_5) : true;
+        return isNull;
+
+   }
+
 })
 
 

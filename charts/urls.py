@@ -12,5 +12,7 @@ urlpatterns = [
     # fetch data
     url(r'^dl_fetch_chart_data$', views.dl_fetch_chart_data, name='dl_fetch_chart_data'),
 
+    # education
+    url(r'^education_summary$', views.education_summary, name='education_summary'),
 
 ]

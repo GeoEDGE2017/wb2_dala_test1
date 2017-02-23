@@ -1,0 +1,670 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+<!-- Main content -->
+<main class="main" ng-app="dlHsDistrictApp" ng-controller="DlHsDistrictController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Health Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Summery</span>
+        </li>
+
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-header">
+                <strong>Search</strong>
+
+            </div>
+            <div class="card-block">
+
+
+                <div ng-form name="report_sum_dl_dis" class="row">
+                     <div class="col-sm-3">
+
+                        <div class="form-group">
+                            <label for="cvv">Incident</label>
+                            <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident" class="form-control" required>
+                            <option value="">-- Select --</option>
+                            {% for incident in incidents %}
+                            <option value="{{ incident.id }}">{{ incident.reported_date_time }}{{ incident.disaster_type }}</option>
+                            {% endfor %}
+                        </select>
+                            <span style="color:red;" ng-show="submitted && report_sum_dl_dis.incident.$error.required">
+                                       Please select Incident
+                                 </span>
+                        </div>
+
+                    </div>
+					
+					
+					
+                 
+
+
+
+
+                    <div class="col-sm-1">
+
+                        <div class="form-group">
+
+                            <button ng-click="filterData(report_sum_dl_dis)" type="button" class="btn btn-sm btn-primary" style="padding:7px;margin-top:28px;"><i
+                                    class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/row-->
+            </div>
+        </div>
+        <div>
+           
+
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active" id="step1">
+				
+						
+						
+						
+
+					 <table ng-show="dlHsNational" class="table table-bordered" style="width:100%;">
+                        <colgroup>
+                            <col width="202"/>
+                            <col width="90" span="7"/>
+                        </colgroup>
+                        <tbody>
+                        <tr >
+<td colspan="8" class="trheadc">
+Public Sector
+</td> 
+</tr>
+
+                        <tr height="34" class="trheadc">
+                            <td rowspan="2" width="242" height="54" style="text-align:left;padding-left:5px;">
+                                Facilities and Assets
+                            </td>
+                            <td rowspan="2" width="90" style="text-align:center;">
+                                Total Number Affected
+                            </td>
+                            <td colspan="2" width="180">
+                                Total Number of Patients Affected
+                            </td>
+                            <td rowspan="2" width="90">
+                                Total Damages (LKR)
+                            </td>
+                            <td colspan="2" width="180" style="text-align:center;">
+                                Losses (LKR)
+                            </td>
+                            <td rowspan="2" width="90">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr height="20" class="trsubc">
+                            <td width="90" height="20">
+                                Male
+                            </td>
+                            <td width="90">
+                                Female
+                            </td>
+                            <td width="90">
+                                Year 1
+                            </td>
+                            <td width="90">
+                                Year 2
+                            </td>
+                        </tr>
+                       
+                            <!--tr height="20" class="trhead">
+                                <td width="202" height="20" class="trhead">
+                                    Province 1
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+                            <tr height="20" class="trhead">
+                                <td width="202" height="20" class="trheadc">
+                                    Line Ministry Health System
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+                            <tr ng-repeat="dsnPubP1Lmh in dlHsNational.Table_10.DsnPubP1Lmh"
+                                height="20">
+
+                                <td ng-bind="dsnPubP1Lmh.facilities_assets"
+                                    ng-if="dsnPubP1Lmh.facilities_assets=='Total'" width="264" height="20"
+                                    class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPubP1Lmh.facilities_assets"
+                                    ng-if="dsnPubP1Lmh.facilities_assets!='Total'" width="264" height="20" class="tdpa">
+
+                                </td>
+                                <td  ng-bind="dsnPubP1Lmh.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Lmh.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Lmh.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Lmh.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Lmh.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Lmh.losses_y2" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Lmh.total_losses" width="98">
+                                </td>
+
+                            </tr>
+
+                            <tr height="20" class="trheadc">
+                                <td width="202" height="20">
+                                    MOH
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+                            <tr ng-repeat="dsnPubP1Moh in dlHsNational.Table_10.DsnPubP1Moh"
+                                height="20">
+
+                                <td ng-bind="dsnPubP1Moh.facilities_assets"
+                                    ng-if="dsnPubP1Moh.facilities_assets=='Total'" width="264" height="20"
+                                    class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPubP1Moh.facilities_assets"
+                                    ng-if="dsnPubP1Moh.facilities_assets!='Total'" width="264" height="20" class="tdpa">
+
+                                </td>
+                                <td  ng-bind="dsnPubP1Moh.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Moh.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Moh.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Moh.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Moh.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Moh.losses_y2" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Moh.total_losses" width="98">
+                                </td>
+
+                            </tr>
+
+
+                            <tr height="20" class="trheadc">
+                                <td width="202" height="20">
+                                    Other medical facilities
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+                            <tr ng-repeat="dsnPubP1Omc in dlHsNational.Table_10.DsnPubP1Omc"
+                                height="20">
+
+                                <td ng-bind="dsnPubP1Omc.facilities_assets"
+                                    ng-if="dsnPubP1Omc.facilities_assets=='Total' || dsnPubP1Omc.facilities_assets=='TOTAL'"
+                                    width="264" height="20"
+                                    class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPubP1Omc.facilities_assets"
+                                    ng-if="dsnPubP1Omc.facilities_assets!='Total' && dsnPubP1Omc.facilities_assets!='TOTAL'"
+                                    width="264" height="20" class="tdpa">
+
+                                </td>
+                                <td  ng-bind="dsnPubP1Omc.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Omc.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Omc.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Omc.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Omc.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Omc.losses_y2" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubP1Omc.total_losses" width="98">
+                                </td>
+
+                            </tr-->
+
+                            <tr height="20" class="trhead">
+                                <td width="202" height="20">
+                                    Province N
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+                            <tr height="20" class="trheadc">
+                                <td width="202" height="20">
+                                    Line Ministry Health System
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="dsnPubPnLmh in dlHsNational.Table_10.DsnPubPnLmh"
+                                height="20">
+
+                                <td ng-bind="dsnPubPnLmh.facilities_assets"
+                                    ng-if="dsnPubPnLmh.facilities_assets=='Total'"
+                                    width="264" height="20" class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPubPnLmh.facilities_assets"
+                                    ng-if="dsnPubPnLmh.facilities_assets!='Total'"
+                                    width="264" height="20" class="tdpa">
+
+                                </td>
+                               <td  ng-bind="dsnPubPnLmh.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnLmh.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnLmh.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnLmh.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnLmh.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnLmh.losses_y2" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnLmh.total_losses" width="98">
+                                </td>
+
+                            </tr>
+
+                            <tr height="20" class="trheadc">
+                                <td width="202" height="20">
+                                    MOH
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="dsnPubPnMoh in dlHsNational.Table_10.DsnPubPnMoh"
+                                height="20">
+
+                                <td ng-bind="dsnPubPnMoh.facilities_assets"
+                                    ng-if="dsnPubPnMoh.facilities_assets=='Total'"
+                                    width="264" height="20" class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPubPnMoh.facilities_assets"
+                                    ng-if="dsnPubPnMoh.facilities_assets!='Total'"
+                                    width="264" height="20" class="tdpa">
+
+                                </td>
+                                <td  ng-bind="dsnPubPnMoh.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnMoh.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnMoh.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnMoh.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnMoh.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnMoh.losses_y2" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnMoh.total_losses" width="98">
+                                </td>
+
+                            </tr>
+
+                            <tr height="20" class="trheadc">
+                                <td width="202" height="20">
+                                    Other Medical Facilities
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+                            <tr ng-repeat="dsnPubPnOmc in dlHsNational.Table_10.DsnPubPnOmc"
+                                height="20">
+
+                                <td ng-bind="dsnPubPnOmc.facilities_assets"
+                                    ng-if="dsnPubPnOmc.facilities_assets=='Total' || dsnPubPnOmc.facilities_assets=='TOTAL' || dsnPubPnOmc.facilities_assets=='GRAND TOTAL' "
+                                    width="264" height="20" class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPubPnOmc.facilities_assets"
+                                    ng-if="dsnPubPnOmc.facilities_assets!='Total' && dsnPubPnOmc.facilities_assets!='TOTAL' && dsnPubPnOmc.facilities_assets!='GRAND TOTAL'"
+                                    width="264" height="20" class="tdpa">
+
+                                </td>
+
+                                <td width="98">
+                                    <span ng-bind="dsnPubPnOmc.total_losses"></span>
+                                </td>
+                                <td  ng-bind="dsnPubPnOmc.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnOmc.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnOmc.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnOmc.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnOmc.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPubPnOmc.losses_y2" width="98">
+                                </td>
+
+                            </tr>
+
+                           
+
+                        <tr height="34" class="trheadc">
+                            <td rowspan="2" width="202" height="54" style="text-align:left;padding-left:5px;">
+                                Facilities and Assets
+                            </td>
+                            <td rowspan="2" width="90">
+                                Total Number Affected
+                            </td>
+                            <td colspan="2" width="180" style="text-align:center;">
+                                Total Number of Patients Affected
+                            </td>
+                            <td rowspan="2" width="90">
+                                Total Damages (LKR)
+                            </td>
+                            <td colspan="2" width="180" style="text-align:center;">
+                                Losses (LKR)
+                            </td>
+                            <td rowspan="2" width="90">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr height="20" class="trsubc">
+                            <td width="90" height="20">
+                                Male
+                            </td>
+                            <td width="90">
+                                Female
+                            </td>
+                            <td width="90">
+                                Year 1
+                            </td>
+                            <td width="90">
+                                Year 2
+                            </td>
+                        </tr>
+                      
+                            <!--tr height="20" class="trheadc">
+                                <td width="202" height="20">
+                                    Province 1
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="dsnPvtP1 in dlHsNational.Table_10.DsnPvtP1"
+                                height="20">
+
+                                <td ng-bind="dsnPvtP1.facilities_assets"
+                                    ng-if="dsnPvtP1.facilities_assets=='Total'"
+                                    width="264" height="20" class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPvtP1.facilities_assets"
+                                    ng-if="dsnPvtP1.facilities_assets!='Total'"
+                                    width="264" height="20" class="tdpa">
+
+                                </td>
+
+                               <td width="98">
+                                    <span ng-bind="dsnPvtP1.total_losses"></span>
+                                </td>
+                                <td  ng-bind="dsnPvtP1.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtP1.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtP1.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtP1.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtP1.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtP1.losses_y2" width="98">
+                                </td>
+
+                            </tr-->
+
+                            <tr height="20" class="trheadc">
+                                <td width="202" height="20">
+                                    Province N
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="dsnPvtPn in dlHsNational.Table_10.DsnPvtPn"
+                                height="20">
+
+                                <td ng-bind="dsnPvtPn.facilities_assets"
+                                    ng-if="dsnPvtPn.facilities_assets=='Total' || dsnPvtPn.facilities_assets=='TOTAL'"
+                                    width="264" height="20" class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnPvtPn.facilities_assets"
+                                    ng-if="dsnPvtPn.facilities_assets!='Total' && dsnPvtPn.facilities_assets!='TOTAL'"
+                                    width="264" height="20" class="tdpa">
+
+                                </td>
+                               <td width="98">
+                                    <span ng-bind="dsnPvtPn.total_losses"></span>
+                                </td>
+                                <td  ng-bind="dsnPvtPn.total_num_affected" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtPn.male" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtPn.female" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtPn.total_damages" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtPn.losses_y1" width="98">
+                                </td>
+                                <td  ng-bind="dsnPvtPn.losses_y2" width="98">
+                                </td>
+
+                            </tr>
+
+                           
+
+                        <tr height="20" class="trheadc">
+                            <td rowspan="2" width="202" height="40" style="text-align:left;padding-left:5px;">
+                                Ownership
+                            </td>
+                            <td colspan="2" rowspan="2" width="180">
+                                Damages (LKR)
+                            </td>
+                            <td colspan="4" width="202" style="text-align:center;">
+                                Losses (LKR)
+                            </td>
+                            <td rowspan="2" width="90">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr height="20" style="background:#E4E5E6;" class="trsubc">
+                            <td colspan="2" width="180" height="20">
+                                Year 1
+                            </td>
+                            <td colspan="2" width="180">
+                                Year 2
+                            </td>
+                        </tr>
+                       
+                            <tr ng-repeat="dsnTdlOwship in dlHsNational.Table_10.DsnTdlOwship"
+                                height="20">
+
+                                <td  ng-bind="dsnTdlOwship.ownership"
+                                    ng-if="dsnTdlOwship.ownership=='TOTAL'"
+                                    width="264" height="20" class="boldash">
+
+                                </td>
+                                <td ng-bind="dsnTdlOwship.ownership"
+                                    ng-if="dsnTdlOwship.ownership!='TOTAL'"
+                                    width="264" height="20" class="tdpa">
+
+                                </td>
+
+                                 <td colspan="2"  ng-bind="dsnTdlOwship.damages" width="98">
+                                </td>
+                                <td colspan="2"  ng-bind="dsnTdlOwship.losses_y1" width="98">
+                                </td>
+                                <td colspan="2"  ng-bind="dsnTdlOwship.losses_y2" width="98">
+                                </td>
+                                <td  ng-bind="dsnTdlOwship.total" width="98">
+                                </td>
+
+
+                            </tr>
+                            </tbody>
+                        </table>
+                
+
+
+                <br><br>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

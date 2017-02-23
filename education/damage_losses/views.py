@@ -133,7 +133,7 @@ def dl_fetch_school_disagtn(request):
 
         school_model = schools_types[schools_type]
 
-        model_class = apps.get_model('damage_losses', school_model)
+        model_class = apps.get_model('education.damage_losses', school_model)
 
         admin_area = com_data['district']
         filter_fields = {'incident': incident, 'district': admin_area}

@@ -107,13 +107,10 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
-        },
         # 'OPTIONS': {
-        #     'options': '-c search_path=transport_air'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
         # },
-        'NAME': 'dala_2017',
+        'NAME': 'dala_new',
         'USER': 'postgres',
 
     },
@@ -1153,49 +1150,6 @@ TABLE_PROPERTY_MAPPER = {
                 'tc_crc_resc',
 
             ],
-            'transport_water': {
-                'Table_1': {
-                    'BsAstWaterWcrafts': ['assets',
-                                          'public',
-                                          'private',
-                                          'avg_replace_cost',
-                                          'avg_repair_cost',
-                                          'id'],
-                    'BsAstWaterEquipment': ['assets',
-                                            'public',
-                                            'private',
-                                            'avg_replace_cost',
-                                            'avg_repair_cost',
-                                            'id'],
-                    'BsAstWaterMaterials': ['assets',
-                                            'public',
-                                            'private',
-                                            'avg_replace_cost',
-                                            'avg_repair_cost',
-                                            'id'],
-                    'BsAstWaterStructures': ['assets',
-                                             'public',
-                                             'private',
-                                             'avg_replace_cost',
-                                             'avg_repair_cost',
-                                             'id'],
-                    'BsAstWaterBuildings': ['assets',
-                                            'public',
-                                            'private',
-                                            'avg_repair_cost_roof',
-                                            'avg_repair_cost_wall',
-                                            'avg_repair_cost_floor',
-                                            'id'],
-                    'BsAstWaterEmployment': ['assets',
-                                             'public',
-                                             'private',
-                                             'male',
-                                             'female',
-                                             'total',
-                                             'id'],
-                }
-            }
-
         },
 
     },

@@ -66,8 +66,10 @@ INSTALLED_APPS = [
     'transport_land.damage_losses',
     'transport_air',
     'transport_air.base_line',
-    'transport_air.damage_losses'
-
+    'transport_air.damage_losses',
+    'transport_summary',
+    'agri_agrarian',
+    'agri_agrarian.base_line',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -108,10 +110,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
         # },
         # 'OPTIONS': {
-        #     'options': '-c search_path=transport_air'
+        #     'options': '-c search_path=agri_agrarian'
         # },
         'NAME': 'dala',
         'USER': 'postgres',
@@ -1627,7 +1629,6 @@ TABLE_PROPERTY_MAPPER = {
         },
     },
     'transport_air': {
-
         'Table_1': {
             'BsAstAirAircrafts':
                 ['assets',
@@ -1668,9 +1669,6 @@ TABLE_PROPERTY_MAPPER = {
                  'total',
                  'id'],
         },
-
-    },
-    'transport_air': {
         'Table_2': {
             'BsAstAirAircrafts':
                 ['assets', 'num_pub', 'num_pvt', 'avg_replace_cost', 'avg_repair_cost'],
@@ -1680,8 +1678,26 @@ TABLE_PROPERTY_MAPPER = {
                 ['assets', 'avg_replace_cost', 'avg_repair_cost'],
             'BsAstAirStructures':
                 ['assets', 'repc_1_floor', 'repc_2_3_floor', 'repc_moret_3_floor', 'repairc_roof', 'repairc_wall', 'repairc_floor']
-        }
-    }
+        },
+        'Table_3': {
+            'DlAirDmgAircraftsDistrict':
+                ['tot_destroyed_pub', 'tot_destroyed_pvt', 'incident', 'district'],
+            'DlAirDmgGstructuresDistrict':
+                ['tot_pub', 'incident', 'district'],
+            'DlAirDmgEquipmentDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
+            'DlAirDmgSuppliesDistrict':
+                ['tot_dmg_pub', 'tot_dmg_pvt', 'incident', 'district'],
+            'DlAirDmgOthersDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
+
+            'DlAirLosFiDistrict':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident', 'district'],
+            'DlAirLosHocDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
+
+        },
+    },
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

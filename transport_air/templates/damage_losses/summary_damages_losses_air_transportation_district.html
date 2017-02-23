@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main" ng-app="dlAirTrnspotApp" ng-controller="DlAirTrnspotController">
+<main class="main" ng-app="dlSumTrnsAirDistApp" ng-controller="dlSumTrnsAirDistController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -13,7 +13,7 @@
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of damages and losses to air transportation in a district</span>
         </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_dlsum_air_distr">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <br/>
@@ -28,9 +28,25 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dlsum_air_distr.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dlsum_air_distr.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trheadc" height="19">
                         <td width="218" height="19">
-                            Name of District:
+                            Incident:
                         </td>
                         <td colspan="0" width="567" height="19">
                             <select id="selectbasic" name="incident" ng-model="incident"
@@ -45,7 +61,7 @@
                             </select>
                         </td>
                         <td colspan="0">
-                            Incident:
+                            Name of District:
                         </td>
                         <td colspan="3">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
@@ -55,7 +71,7 @@
                             </select>
                         </td>
                         <td  style="background:#EFEFEF;">
-                            <button type="button" class="btn btn-info" ng-click="LoadData(district,incident)">Load
+                            <button type="button" class="btn btn-info" ng-click="LoadData(form_dlsum_air_distr)">Load
                             </button>
                         </td>
                     </tr>
@@ -82,10 +98,10 @@
                         <td class="tdpa" width="218" height="19">
                             Aircrafts
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pub">
                             -
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt">
                             -
                         </td>
                         <td colspan="2" width="126" height="19">
@@ -96,7 +112,7 @@
                         <td class="tdpa" width="218" height="19">
                             Structures
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgGstructuresDistrict[0].tot_pub">
                             -
                         </td>
                         <td class="tdpa" colspan="2" width="126" height="19">
@@ -110,7 +126,7 @@
                         <td class="tdpa" width="218" height="19">
                             Equipment
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgEquipmentDistrict[0].tot_dmg_pub">
                             -
                         </td>
                         <td class="tdpa" colspan="2" width="126" height="19">
@@ -124,10 +140,10 @@
                         <td class="tdpa" width="218" height="19">
                             Materials and supplies
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pub">
                             -
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pvt">
                             -
                         </td>
                         <td colspan="2" width="126" height="19">
@@ -138,7 +154,7 @@
                         <td class="tdpa" width="218" height="19">
                             Others
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgOthersDistrict[0].tot_dmg_pub">
                             -
                         </td>
                         <td class="tdpa" colspan="2" width="126" height="19">

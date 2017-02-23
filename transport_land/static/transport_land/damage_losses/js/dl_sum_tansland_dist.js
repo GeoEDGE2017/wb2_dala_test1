@@ -37,7 +37,6 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
     $scope.loadData = function(form) {
         $scope.isLoded = true;
         if(form.$valid) {
-            alert('in');
             $scope.tot_damages = null;
             $scope.is_edit = true;
 
@@ -57,9 +56,5 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
                 $scope.data=data;
             })
         }
-        else {
-            alert('out');
-        }
-
     }
 });

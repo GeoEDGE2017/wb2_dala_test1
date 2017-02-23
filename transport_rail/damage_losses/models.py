@@ -10,8 +10,8 @@ class DlSessionKeys(models.Model):
     user = models.IntegerField(blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
     incident = models.IntegerField(blank=True, null=True)
-    province = models.ForeignKey(Province, db_column='province', related_name='ta_dl_province', blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', related_name='ta_dl_district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='tr_dl_province', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='tr_dl_district', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -107,7 +107,6 @@ class DlTypeLos(models.Model):
     year_1 = models.FloatField(blank=True, null=True)
     year_2 = models.FloatField(blank=True, null=True)
     tot_los = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)

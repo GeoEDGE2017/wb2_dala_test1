@@ -46,7 +46,7 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
          $scope.total =  $scope.total +
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages ?
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages : 0 ;
-         console.log($scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages);
+
     }
 
 })

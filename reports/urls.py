@@ -22,4 +22,16 @@ urlpatterns = [
     #other government services
     url(r'^other_govn_services_summary$', views.other_govn_services_summary, name='other_govn_services_summary'),
 
+    #transport land
+    url(r'^transport_land_summary$', views.transport_land_summary, name='transport_land_summary'),
+
+    #transport rail
+    url(r'^transport_rail_summary$', views.transport_rail_summary, name='transport_rail_summary'),
+
+    #transport water
+    url(r'^transport_water_summary$', views.transport_water_summary, name='transport_water_summary'),
+
+    #transport air
+    url(r'^transport_air_summary$', views.transport_air_summary, name='transport_air_summary'),
+
 ]

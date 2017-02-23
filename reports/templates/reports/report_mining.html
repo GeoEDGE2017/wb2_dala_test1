@@ -28,7 +28,7 @@
             <div class="card-block">
 
 
-                <div ng-form name="report_sum_dl_dis" class="row">
+                <div ng-form name="report_sum_dl_nat" class="row">
                     <div class="col-sm-3">
 
                         <div class="form-group">
@@ -42,7 +42,7 @@
                                 </option>
                                 {% endfor %}
                             </select>
-                            <span style="color:red;" ng-show="submitted && report_sum_dl_dis.incident.$error.required">
+                            <span style="color:red;" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
                                        Please select Incident
                                  </span>
                         </div>
@@ -54,23 +54,30 @@
 
                         <div class="form-group">
 
-                            <button ng-click="loadData()" type="button" class="btn btn-sm btn-primary"
+                            <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-sm btn-primary"
                                     style="padding:7px;margin-top:28px;"><i
                                     class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <button ng-print print-element-id="print_report" class="btn btn-info">Print
+                                Report
                             </button>
                         </div>
 
                     </div>
 
                 </div>
-                <!--/row-->
+                <span style="color:red;" ng-show="isDataAvailable">
+                                       No Data available
+                                 </span>
             </div>
         </div>
         <div>
 
 
             <div id="myTabContent" class="tab-content">
-                <div ng-if="!checkIfNull()" class="tab-pane active" id="step1">
+                <div id="print_report" ng-if="!checkIfNull()" class="tab-pane active">
                     <table class="table table-bordered">
 
                         <colgroup>

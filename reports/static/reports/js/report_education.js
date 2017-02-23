@@ -1,5 +1,5 @@
 
-var bsHealthStatusApp = angular.module('dlEduNationReportApp', ['ui.bootstrap', 'popoverToggle']);
+var bsHealthStatusApp = angular.module('dlEduNationReportApp', ['ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 bsHealthStatusApp.controller('DlEduNationReportController', function DlEduProvinceController($scope, $http) {
 
@@ -8,11 +8,10 @@ $scope.total;
 $scope.iter_tot;
 $scope.district;
 $scope.bs_date;
-$scope.is_edit = false;
 $scope.submitted = false;
 $scope.data = null;
 $scope.incident;
-
+$scope.isDataAvailable = false;
 
     $scope.changedValue = function getDlData() {
 
@@ -26,28 +25,28 @@ $scope.incident;
 
    }
 
-   $scope.loadData = function(){
+$scope.loadData = function(form){
+$scope.submitted = true;
+$scope.isDataAvailable = false;
+if(form.$valid){
 
-    $scope.is_edit = true;
-    $scope.submitted = true;
-
-            $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':  'Table_7',
-            'sector': '',
-            'com_data': {
-                    'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-            console.log(data.education.Table_7);
-            $scope.data = data;
-
-            })
-
-
+        $http({
+        method: "POST",
+        url: '/dl_fetch_district_disagtn',
+        data: angular.toJson({
+        'table_name':  'Table_7',
+        'sector': 'education',
+        'com_data': {
+                'incident': $scope.incident,
+              },
+               }),
+        }).success(function(data) {
+        console.log(data.education.Table_7);
+        $scope.data = data;
+        $scope.submitted = false;
+        $scope.isDataAvailable = $scope.checkIfNull();
+        })
+}
 }
 
 

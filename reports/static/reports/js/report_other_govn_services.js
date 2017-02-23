@@ -1,12 +1,18 @@
-var app = angular.module('dlNationwideReportApp', ['underscore']);
+var app = angular.module('dlNationwideReportApp', ['underscore', 'ngPrint']);
 
 app.controller("dlNationwideReportController", function ($scope,$http, _) {
-    $scope.incident;
 
+$scope.incident;
+$scope.submitted = false;
+$scope.isDataAvailable = false;
 
 $scope.dlNationwideSys = null;
 
-$scope.loadData = function(){
+$scope.loadData = function(form){
+$scope.submitted = true;
+$scope.isDataAvailable = false;
+
+if(form.$valid){
     $http({
     method: "POST",
     url: '/other_govn_services/damage_losses/dl_fetch_disagtn_data',
@@ -21,7 +27,10 @@ $scope.loadData = function(){
 
     console.log('load ', data);
     $scope.dlNationwideSys = data;
+    $scope.isDataAvailable = $scope.checkIfNull();
+
 })
+}
 }
 
 $scope.checkIfNull = function()

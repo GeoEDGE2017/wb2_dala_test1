@@ -28,7 +28,7 @@
             <div class="card-block">
 
 
-                <div ng-form name="report_sum_dl_dis" class="row">
+                <div ng-form name="report_sum_dl_nat" class="row">
                     <div class="col-sm-3">
 
                         <div class="form-group">
@@ -42,7 +42,7 @@
                                 </option>
                                 {% endfor %}
                             </select>
-                            <span style="color:red;" ng-show="submitted && report_sum_dl_dis.incident.$error.required">
+                            <span style="color:red;" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
                                        Please select Incident
                                  </span>
                         </div>
@@ -54,265 +54,30 @@
 
                         <div class="form-group">
 
-                            <button ng-click="loadData()" type="button"
+                            <button ng-click="loadData(report_sum_dl_nat)" type="button"
                                     class="btn btn-sm btn-primary" style="padding:7px;margin-top:28px;"><i
                                     class="fa fa-search"></i> Search
                             </button>
-                        </div>
 
+                        </div>
+                        <div class="form-group">
+                            <button ng-print print-element-id="print_report" class="btn btn-info">Print
+                                Report
+                            </button>
+                        </div>
                     </div>
 
+
                 </div>
+                <span style="color:red;" ng-show="isDataAvailable">
+                                       No Data available
+                                 </span>
                 <!--/row-->
             </div>
         </div>
 
         <!--national -->
-        <div ng-if="!checkIfNull()" id="boxscroll" style="max-height:400px;overflow:auto;">
-            <table ng-repeat="(key, value) in data.education.Table_7" class="table table-bordered">
-                <tbody>
-                <tr height="20" class="trheadc">
-                    <td ng-bind="key" width="202" height="20">
-
-                    </td>
-                    <td width="90">
-                    </td>
-                    <td width="90">
-                    </td>
-                    <td width="90">
-                    </td>
-                    <td width="90">
-                    </td>
-                    <td width="90">
-                    </td>
-                    <td width="90">
-                    </td>
-                    <td width="90">
-                    </td>
-                </tr>
-                <tr height="17" colspan="2">
-                    <td class="tdpa" width="307" height="17">
-                        1AB, 1C
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].ab1_1c">
-
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][0].ab1_1c">
-
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][1].ab1_1c">
-
-                    </td>
-                    <td width="110" ng-bind="value['DugNdafNational'][0].ab1_1c">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][0].ab1_1c">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][1].ab1_1c">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][2].ab1_1c">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17">Type 2
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].type_2">
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][0].type_2">
-
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][1].type_2">
-
-                    </td>
-                    <td width="110" ng-bind="value['DugNdafNational'][0].type_2">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][0].type_2">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][1].type_2">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][2].type_2">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17">Type 3
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].type_3">
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][0].type_3">
-
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][1].type_3">
-
-                    </td>
-                    </td>
-                    <td width="110" ng-bind="value['DugNdafNational'][0].type_3">
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][0].type_3">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][1].type_3">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][2].type_3">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17">Pirivena
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].pirivena">
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][0].pirivena">
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][1].pirivena">
-                    </td>
-                    <td width="110" ng-bind="value['DugNdafNational'][0].pirivena">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][0].pirivena">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][1].pirivena">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][2].pirivena">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17">Training Institutes
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].training_institutes">
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DugNsaNational'][0].training_institutes">
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DugNsaNational'][1].training_institutes">
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DugNdafNational'][0].training_institutes">
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DpefBefNational'][0].training_institutes">
-
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DpefBefNational'][1].training_institutes">
-
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DpefBefNational'][2].training_institutes">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17">NCOE, Training Colleges
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].training_colleges">
-
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DugNsaNational'][0].training_colleges">
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DugNsaNational'][1].training_colleges">
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DugNdafNational'][0].training_colleges">
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DpefBefNational'][0].training_colleges">
-
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DpefBefNational'][1].training_colleges">
-
-                    </td>
-                    <td width="110"
-                        ng-bind="value['DpefBefNational'][2].training_colleges">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17">TC, CRC, RESC
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].tc_crc_resc">
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][0].tc_crc_resc">
-                    </td>
-                    <td width="110" ng-bind="value['DugNsaNational'][1].tc_crc_resc">
-                    </td>
-                    <td width="110" ng-bind="value['DugNdafNational'][0].tc_crc_resc">
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][0].tc_crc_resc">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][1].tc_crc_resc">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][2].tc_crc_resc">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17">Ministry, Provincial, Zonal, Divisional Offices,
-                        NIE
-                    </td>
-                    <td width="110" ng-bind="value['DugDfNational'][0].min_pzd_offices">
-                    </td>
-                    <td class="tdpa" width="110">
-
-                    </td>
-                    <td class="tdpa" width="110">
-
-                    </td>
-                    <td width="110" ng-bind="value['DugNdafNational'][0].min_pzd_offices">
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][0].min_pzd_offices">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][1].min_pzd_offices">
-
-                    </td>
-                    <td width="110" ng-bind="value['DpefBefNational'][2].min_pzd_offices">
-
-                    </td>
-                </tr>
-                <tr height="17">
-                    <td class="tdpa" width="307" height="17"> Total
-                    </td>
-                    <td width="110">
-                        <span ng-bind="$parent.sumFunc8(value['DugDfNational'][0].ab1_1c, value['DugDfNational'][0].type_2, value['DugDfNational'][0].type_3, value['DugDfNational'][0].pirivena, value['DugDfNational'][0].training_institutes, value['DugDfNational'][0].training_colleges, value['DugDfNational'][0].tc_crc_resc, value['DugDfNational'][0].min_pzd_offices)"></span>
-                    </td>
-                    <td width="110">
-                        <span ng-bind="$parent.sumFunc8(value['DugNsaNational'][0].ab1_1c, value['DugNsaNational'][0].type_2, value['DugNsaNational'][0].type_3, value['DugNsaNational'][0].pirivena, value['DugNsaNational'][0].training_institutes, value['DugNsaNational'][0].training_colleges, value['DugNsaNational'][0].tc_crc_resc, 0)"></span>
-                    </td>
-                    <td width="110">
-                        <span ng-bind="$parent.sumFunc8(value['DugNsaNational'][1].ab1_1c, value['DugNsaNational'][1].type_2, value['DugNsaNational'][1].type_3, value['DugNsaNational'][1].pirivena, value['DugNsaNational'][1].training_institutes, value['DugNsaNational'][1].training_colleges, value['DugNsaNational'][1].tc_crc_resc, 0)"></span>
-                    </td>
-                    <td width="110">
-                        <!--<span ng-bind="$parent.sumFunc8(value['DugNdafNational'][0].ab1_1c, value['DugNdafNational'][0].type_2, value['DugNdafNational'][0].type_3, value['DugNdafNational'][0].pirivena, value['DugNdafNational'][0].training_institutes, value['DugNdafNational'][0].training_colleges, value['DugNdafNational'][0].tc_crc_resc, value['DugNdafNational'][0].min_pzd_offices"></span>-->
-                    </td>
-                    <td width="110">
-                        <span ng-bind="$parent.sumFunc8(value['DpefBefNational'][0].ab1_1c, value['DpefBefNational'][0].type_2, value['DpefBefNational'][0].type_3, value['DpefBefNational'][0].pirivena, value['DpefBefNational'][0].training_institutes, value['DpefBefNational'][0].training_colleges, value['DpefBefNational'][0].tc_crc_resc, value['DpefBefNational'][0].min_pzd_offices)"></span>
-                    </td>
-                    <td width="110">
-                        <span ng-bind="$parent.sumFunc8(value['DpefBefNational'][1].ab1_1c, value['DpefBefNational'][1].type_2, value['DpefBefNational'][1].type_3, value['DpefBefNational'][1].pirivena, value['DpefBefNational'][1].training_institutes, value['DpefBefNational'][1].training_colleges, value['DpefBefNational'][1].tc_crc_resc, value['DpefBefNational'][1].min_pzd_offices)"></span>
-                    </td>
-                    <td width="110">
-                        <span ng-bind="$parent.sumFunc8(value['DpefBefNational'][2].ab1_1c, value['DpefBefNational'][2].type_2, value['DpefBefNational'][2].type_3, value['DpefBefNational'][2].pirivena, value['DpefBefNational'][2].training_institutes, value['DpefBefNational'][2].training_colleges, value['DpefBefNational'][2].tc_crc_resc, value['DpefBefNational'][2].min_pzd_offices)"></span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div ng-if="!checkIfNull()" id="print_report" style="max-height:400px;overflow:auto;">
 
             <table ng-repeat="(key, value) in data.education.Table_7" class="table table-bordered">
                 <tbody>

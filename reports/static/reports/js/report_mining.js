@@ -1,15 +1,14 @@
-var app = angular.module('dlMinFirmsNatReportApp', ['underscore']);
+var app = angular.module('dlMinFirmsNatReportApp', ['underscore', 'ngPrint']);
 
 app.controller("DlFirmsNatReportController", function($scope,$http,$parse, _) {
 
-
     $scope.district;
-    $scope.is_edit = false;
     $scope.incident;
     $scope.dl_data={};
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.dmLosMinFirmsNation = null;
+    $scope.isDataAvailable = false;
 
 $scope.checkIfNull = function()
 {
@@ -19,11 +18,13 @@ $scope.checkIfNull = function()
 
 }
 
-$scope.loadData = function()
+$scope.loadData = function(form)
 {
 
-   $scope.is_edit = true;
    $scope.submitted = true;
+   $scope.isDataAvailable = false;
+
+   if(form.$valid){
     $http({
     method: "POST",
     url: '/dl_fetch_district_disagtn',
@@ -38,10 +39,11 @@ $scope.loadData = function()
 
         $scope.dmLosMinFirmsNation = data;
 
+        $scope.isDataAvailable = $scope.checkIfNull();
 
 
     })
-
+}
 
 }
 

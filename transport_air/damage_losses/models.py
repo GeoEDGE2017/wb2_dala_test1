@@ -185,6 +185,61 @@ class DlAirDmgAircraftsDistrict(models.Model):
         db_table = 'transport_air\".\"dl_air_dmg_aircrafts_district'
 
 
+class DlAirDmgPubProvince(models.Model):
+    tot_destroyed_pub = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_air\".\"dl_air_dmg_pub_province'
+
+
+class DlAirDmgPvtProvince(models.Model):
+    tot_destroyed_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_air\".\"dl_air_dmg_pvt_province'
+
+
+class DlAirLosProvince(models.Model):
+    year_1_pub = models.FloatField(blank=True, null=True)
+    year_1_pvt = models.FloatField(blank=True, null=True)
+    year_2_pub = models.FloatField(blank=True, null=True)
+    year_2_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_air\".\"dl_air_los_province'
+
+# National
+
+
+class DlAirDmgPubNational(models.Model):
+    tot_destroyed_pub = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_air\".\"dl_air_dmg_pub_national'
+
+
+class DlAirDmgPvtNational(models.Model):
+    tot_destroyed_pvt = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_air\".\"dl_air_dmg_pvt_national'
+
+
 class DlAirDmgGstructuresDistrict(models.Model):
     tot_pub = models.FloatField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
@@ -193,6 +248,19 @@ class DlAirDmgGstructuresDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'transport_air\".\"dl_air_dmg_gstructures_district'
+
+
+class DlAirLosNational(models.Model):
+    year_1_pub = models.FloatField(blank=True, null=True)
+    year_1_pvt = models.FloatField(blank=True, null=True)
+    year_2_pub = models.FloatField(blank=True, null=True)
+    year_2_pvt = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_air\".\"dl_air_los_national'
 
 
 class DlAirDmgEquipmentDistrict(models.Model):
@@ -254,6 +322,8 @@ class DlAirLosHocDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'transport_air\".\"dl_air_los_hoc_district'
+
+
 
 
 

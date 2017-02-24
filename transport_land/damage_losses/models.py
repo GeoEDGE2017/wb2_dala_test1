@@ -129,24 +129,6 @@ class DlRbdRclassification(models.Model):
         db_table = 'transport_land\".\"dl_rbd_rclassification'
 
 
-class DlRbdLosses(models.Model):
-    year_1 = models.FloatField(blank=True, null=True)
-    year_2 = models.FloatField(blank=True, null=True)
-    part_destroyed = models.FloatField(blank=True, null=True)
-    losses = models.FloatField(blank=True, null=True)
-    created_user = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-    lmu = models.IntegerField(blank=True, null=True)
-    lmd = models.DateTimeField(blank=True, null=True)
-    created_date = models.DateTimeField(blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    loss_type = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'transport_land\".\"dl_rbd_losses'
-
-
 class DlOtherDmgsTrcompanies(models.Model):
     num_tot_dest_pub = models.BigIntegerField(blank=True, null=True)
     num_tot_dest_pvt = models.BigIntegerField(blank=True, null=True)

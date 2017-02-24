@@ -15,11 +15,6 @@ def index_report(request):
     return render(request, 'reports/index_report.html')
 
 
-@super_user_permission()
-def index_chart(request):   
-    return render(request, 'reports/index_chart.html')
-
-
 def health_summery_damageloss_dis_report(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()
@@ -52,6 +47,62 @@ def health_summery_damageloss_province_report(request):
         'provinces': provinces
     }
     return render(request, 'reports/health_summery_damageloss_province_report.html', context)
+
+
+def education_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_education.html', context)
+
+
+def mining_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_mining.html', context)
+
+
+def other_govn_services_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_other_govn_services.html', context)
+
+
+def transport_land_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_land.html', context)
+
+
+def transport_rail_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_rail.html', context)
+
+
+def transport_water_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_water.html', context)
+
+
+def transport_air_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+    }
+    return render(request, 'reports/report_transport_air.html', context)
 
 
 @csrf_exempt

@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- Main content -->
-  <main class="main" ng-app="dlRailTransSumNatApp" ng-controller="dlRailTransSumNatController">
+<main class="main" ng-app="dlTypeLossRailApp" ng-controller="DlTypeLossRailController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -14,7 +14,7 @@
         <li class="breadcrumb-item"><a href="#">Rail sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses in the rail transportation nationwide</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of damages and losses in the rail transportation nationwide / Types of Losses</span>
         </li>
 
 
@@ -35,67 +35,95 @@
                         <col width="125"/>
                     </colgroup>
                     <tbody>
-                    <tr height="19" class="trhead">
-                         <td colspan="2" style="padding-left:5px;">
-                                Incident
-                            </td>
-                            <td colspan="5" style="background:#EFEFEF;">
+                    <td class="trheadc" colspan="2" style="padding-left:5px;">
+                        Incident
+                    </td>
+                    <td colspan="5" style="background:#EFEFEF;">
 
-                                <select id="select" name="incident" ng-model="incident"
-                                        class="form-control"
-                                        style="width:100%;font-weight:400;"
-                                        ng-change="changedValue(incident)" required>
+                        <select id="select" name="incident" ng-model="incident"
+                                class="form-control"
+                                style="width:100%;font-weight:400;"
+                                ng-change="changedValue(incident)" required>
 
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
+                            <option value="" selected="true">Select an Incident</option>
+                            {% for incident in incidents %}
 
-                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
-                                        {{incident.reported_date_time}}
-                                    </option>
-                                    {% endfor %}
+                            <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                {{incident.reported_date_time}}
+                            </option>
+                            {% endfor %}
 
-                                </select>
+                        </select>
 
-                            </td>
-                            <td colspan="2">
-                                <button class="btn btn-info btn-block" ng-click="loadData()">Load</button>
-                            </td>
-                    </tr>
+                    </td>
+
 
                     <tr class="trheadc" height="20">
                         <td width="281" height="20">
-                            Name of Province
+                            Type of Losses
                         </td>
-                        <td colspan="3" width="425">
-                            Total Damages (LKR)
+                        <td width="170">
+                            Year 1
+                        </td>
+                        <td width="130">
+                            Year2
+                        </td>
+                        <td width="125">
+                            Total Losses (LKR)
                         </td>
                     </tr>
-            <table ng-repeat="(key, value) in dmLosTransAirNation.transport_rail.Table_4"
-                           class="table table-bordered">
-                        <tbody>
-                        <tr  height="20" ng-init="getTotal('TotDmgNational','tot_damages', $index,key);">
-                            <td ng-bind="key"  class="tdpa" width="275">
-                            </td>
-                            <td width="400" ng-bind="value.TotDmgNational[0].tot_damages" >
-                            </td>
+                    <tr height="20" ng-repeat="dlTypeLos in dlTypeLossRail.transport_rail.Table_5.DlTypeLos"
+                        ng-if="dlTypeLos.loss_type != 'TOTAL LOSSES'">
+                        <td class="tdpa" width="281" height="20" ng-bind="dlTypeLos.loss_type">
 
-                        </tr>
-
-                        <tr height="20">
-                        <td class="boldash" width="281" height="20">
-                            TOTAL
                         </td>
-                        <td width="425" colspan="3" >
-                            <span ng-bind="total"></span>
+                        <td width="170">
+                            <input id="textinput" name="textinput" type="number" placeholder="" ng-model="dlTypeLos.year_1" ng-change="getTotal('year_1')"
+                                   class="form-control input-md">
                         </td>
+                        <td width="130">
+                            <input id="textinput" name="textinput" type="number" placeholder="" ng-model="dlTypeLos.year_2" ng-change="getTotal('year_2')"
+                                   class="form-control input-md">
+                        </td>
+                        <td width="125"  ng-model="dlTypeLos.tot_los" ng-bind="dlTypeLos.tot_los = dlTypeLos.year_1 + dlTypeLos.year_2">
+                        </td>
+                    </tr>
 
+                    <tr height="20" ng-repeat="dlTypeLos in dlTypeLossRail.transport_rail.Table_5.DlTypeLos"
+                      ng-if="dlTypeLos.loss_type == 'TOTAL LOSSES'">
+
+                    <td class="boldash" width="281" height="20" ng-bind="dlTypeLos.loss_type">
+
+                    </td>
+
+                    <td width="170" ng-model="dlTypeLos.year_1" ng-bind="dlTypeLos.year_1 = DlTypeLos_year_1">
+
+                    </td>
+                    <td width="130" ng-model="dlTypeLos.year_2" ng-bind="dlTypeLos.year_2 = DlTypeLos_year_2">
+
+                    </td>
+                    <td width="125" ng-model="dlTypeLos.tot_los" ng-bind="dlTypeLos.tot_los = DlTypeLos_year_1 + DlTypeLos_year_2 ">
+
+
+                    </td>
                     </tr>
                     </tbody>
                 </table>
 
+
                 <div class="pull-right">
                     <br>
-
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                            ng-click="saveDlData()"
+                            class="btn btn-success">Submit
+                    </button>
                 </div>
 
 

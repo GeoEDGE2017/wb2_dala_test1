@@ -331,7 +331,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
     }
 
-function generateRefencedData(){
+   function generateRefencedData(){
   data_array = ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterStructures'];
   var dl_model1 = null;
   var dl_model2 = null;

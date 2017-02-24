@@ -112,9 +112,6 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
         # },
-        # 'OPTIONS': {
-        #     'options': '-c search_path=agri_agrarian'
-        # },
         'NAME': 'dala',
         'USER': 'postgres',
 
@@ -1155,49 +1152,6 @@ TABLE_PROPERTY_MAPPER = {
                 'tc_crc_resc',
 
             ],
-            'transport_water': {
-                'Table_1': {
-                    'BsAstWaterWcrafts': ['assets',
-                                          'public',
-                                          'private',
-                                          'avg_replace_cost',
-                                          'avg_repair_cost',
-                                          'id'],
-                    'BsAstWaterEquipment': ['assets',
-                                            'public',
-                                            'private',
-                                            'avg_replace_cost',
-                                            'avg_repair_cost',
-                                            'id'],
-                    'BsAstWaterMaterials': ['assets',
-                                            'public',
-                                            'private',
-                                            'avg_replace_cost',
-                                            'avg_repair_cost',
-                                            'id'],
-                    'BsAstWaterStructures': ['assets',
-                                             'public',
-                                             'private',
-                                             'avg_replace_cost',
-                                             'avg_repair_cost',
-                                             'id'],
-                    'BsAstWaterBuildings': ['assets',
-                                            'public',
-                                            'private',
-                                            'avg_repair_cost_roof',
-                                            'avg_repair_cost_wall',
-                                            'avg_repair_cost_floor',
-                                            'id'],
-                    'BsAstWaterEmployment': ['assets',
-                                             'public',
-                                             'private',
-                                             'male',
-                                             'female',
-                                             'total',
-                                             'id'],
-                }
-            }
-
         },
 
     },
@@ -1239,6 +1193,17 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_damages',
                  ],
 
+        },
+        'Table_4': {
+
+            'TotDmgNational':
+                ['tot_damages',
+                 ],
+
+        },
+        'Table_5': {
+            'DlTypeLos':
+                ['loss_type','year_1','year_2','tot_los','id'],
         }
 
     },
@@ -1670,14 +1635,25 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
         },
         'Table_2': {
-            'BsAstAirAircrafts':
-                ['assets', 'num_pub', 'num_pvt', 'avg_replace_cost', 'avg_repair_cost'],
-            'BsAstAirEquipment':
-                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
-            'BsAstAirSupplies':
-                ['assets', 'avg_replace_cost', 'avg_repair_cost'],
-            'BsAstAirStructures':
-                ['assets', 'repc_1_floor', 'repc_2_3_floor', 'repc_moret_3_floor', 'repairc_roof', 'repairc_wall', 'repairc_floor']
+
+            'DlAirDmgAircrafts': ['tot_destroyed_pub', 'tot_destroyed_pvt', 'tot_dmg_pub', 'tot_dmg_pvt',
+                                  'part_damaged_pub', 'part_damaged_pvt', 'assets', 'id'],
+            'DlAirDmgEquipment': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets', 'id'],
+
+            'DlAirDmgSupplies': ['tot_destroyed_pub', 'tot_destroyed_pvt', 'tot_dmg_pub', 'tot_dmg_pvt',
+                                 'part_damaged_pub', 'part_damaged_pvt', 'assets', 'id'],
+            'DlAirDmgOthers': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets', 'id'],
+
+            'DlAirDmgGstructures': ['tdest_floor_1', 'tdest_floor_2_3', 'tdest_floor_than_3', 'pdmg_number',
+                                    'pdmg_roof', 'pdmg_wall', 'pdmg_floor', 'tot_pub', 'assets', 'id'],
+            'DlAirLosFi': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                           'type_los', 'id'],
+
+            'DlAirLosHoc': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                            'type_los', 'id'],
+
+            'DlAirLosOther': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                              'assets', 'id']
         },
         'Table_3': {
             'DlAirDmgAircraftsDistrict':
@@ -1695,8 +1671,23 @@ TABLE_PROPERTY_MAPPER = {
                 ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident', 'district'],
             'DlAirLosHocDistrict':
                 ['tot_dmg_pub', 'incident', 'district'],
-
         },
+        'Table_4': {
+            'DlAirDmgPubProvince':
+                ['tot_destroyed_pub'],
+            'DlAirDmgPvtProvince':
+                ['tot_destroyed_pvt'],
+            'DlAirLosProvince':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+        },
+        'Table_5': {
+            'DlAirDmgPubNational':
+                ['tot_destroyed_pub'],
+            'DlAirDmgPvtNational':
+                ['tot_destroyed_pvt'],
+            'DlAirLosNational':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+        }
     },
 }
 

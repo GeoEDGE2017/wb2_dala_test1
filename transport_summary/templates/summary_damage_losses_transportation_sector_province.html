@@ -1,0 +1,470 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Summary of damages and losses in the transportation sector in a province</span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="197"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead" height="17">
+                        <td width="197" height="17">
+                            Province
+                        </td>
+                        <td colspan="4" width="504" height="17">
+                            <select id="selectbasic" name="selectbasic" class="form-control"
+                                    style="width:100%;font-weight:400;">
+                                <option value="1">Option one</option>
+                                <option value="2">Option two</option>
+                            </select>
+                        </td>
+                        <td width="504" height="17" style="text-align:right;">
+                            Incident
+                        </td>
+                        <td colspan="4" width="504" height="17">
+                            <select id="selectbasic" name="selectbasic" class="form-control"
+                                    style="width:100%;font-weight:400;">
+                                <option value="1">Option one</option>
+                                <option value="2">Option two</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="17">
+                        <td width="197" height="17">
+                            <br/>
+                        </td>
+                        <td colspan="4" width="252" height="17">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Year 2
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Total
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="17">
+                        <td rowspan="2" width="197" height="34">
+                            Districts
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="17">
+                        <td width="63" height="17">
+                            Public
+                        </td>
+                        <td width="63" height="17">
+                            Private
+                        </td>
+                        <td width="63" height="17">
+                            Public
+                        </td>
+                        <td width="63" height="17">
+                            Private
+                        </td>
+                        <td width="63" height="17">
+                            Public
+                        </td>
+                        <td width="63" height="17">
+                            Private
+                        </td>
+                        <td width="63" height="17">
+                            Public
+                        </td>
+                        <td width="63" height="17">
+                            Private
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="17">
+                        <td class="trhead" width="197" height="17">
+                            District 1
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" width="197" height="17">
+                            Land Transportation
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" width="197" height="17">
+                            Air Transportation
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" width="197" height="17">
+                            Water Transportation
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" width="197" height="17">
+                            Rail Transportation
+                        </td>
+                        <td width="63" height="17">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td class="tdpa" width="63" height="17">
+                            <br/>
+                        </td>
+                        <td class="tdpa" width="63" height="17">
+                            <br/>
+                        </td>
+                        <td class="tdpa" width="63" height="17">
+                            <br/>
+                        </td>
+                        <td class="tdpa" width="63" height="17">
+                            <br/>
+                        </td>
+                        <td class="tdpa" width="63" height="17">
+                            <br/>
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td class="tdpa" width="63" height="17">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" width="197" height="17">
+                            Total
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" width="197" height="17">
+                            GRAND TOTAL
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                        <td width="63" height="17">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="17">
+                        <td rowspan="2" width="197" height="34">
+                            PROVINCIAL SUMMARY
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Damages
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Losses Year 1
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Losses Year 2
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td colspan="2" width="126" height="17">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            -
+                        </td>
+                        <td colspan="2" width="126" height="17">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+
+
+            </div>
+
+
+            <br><br><br>
+
+        </div>
+
+
+    </div>
+    </div>
+
+
+    </div>
+    <!-- add model -->
+    <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Add Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- edit model -->
+    <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width:50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        Edit Railroad Company
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

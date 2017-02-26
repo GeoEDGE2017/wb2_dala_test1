@@ -69,7 +69,9 @@ INSTALLED_APPS = [
     'transport_air.damage_losses',
     # 'transport_summary',
     # 'transport_summary.damage_losses',
-
+    'transport_summary',
+    'agri_agrarian',
+    'agri_agrarian.base_line',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -110,9 +112,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
         # },
-        'NAME': 'dala_2017',
+        'NAME': 'dala',
         'USER': 'postgres',
 
     },
@@ -1635,6 +1637,7 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
         },
         'Table_2': {
+
             'DlAirDmgAircrafts': ['tot_destroyed_pub', 'tot_destroyed_pvt', 'tot_dmg_pub', 'tot_dmg_pvt',
                                   'part_damaged_pub', 'part_damaged_pvt', 'assets', 'id'],
             'DlAirDmgEquipment': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets', 'id'],
@@ -1653,7 +1656,23 @@ TABLE_PROPERTY_MAPPER = {
 
             'DlAirLosOther': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
                               'assets', 'id']
+        },
+        'Table_3': {
+            'DlAirDmgAircraftsDistrict':
+                ['tot_destroyed_pub', 'tot_destroyed_pvt', 'incident', 'district'],
+            'DlAirDmgGstructuresDistrict':
+                ['tot_pub', 'incident', 'district'],
+            'DlAirDmgEquipmentDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
+            'DlAirDmgSuppliesDistrict':
+                ['tot_dmg_pub', 'tot_dmg_pvt', 'incident', 'district'],
+            'DlAirDmgOthersDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
 
+            'DlAirLosFiDistrict':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident', 'district'],
+            'DlAirLosHocDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
         },
         'Table_4': {
             'DlAirDmgPubProvince':
@@ -1671,7 +1690,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlAirLosNational':
                 ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
         }
-
     },
     # 'transport_summary': {
     #     'Table_1': {
@@ -1702,6 +1720,7 @@ TABLE_PROPERTY_MAPPER = {
     #     }
     #
     # },
+
 
 }
 

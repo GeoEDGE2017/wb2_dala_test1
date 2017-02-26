@@ -66,7 +66,9 @@ INSTALLED_APPS = [
     'transport_land.damage_losses',
     'transport_air',
     'transport_air.base_line',
-    'transport_air.damage_losses'
+    'transport_air.damage_losses',
+    # 'transport_summary',
+    # 'transport_summary.damage_losses',
 
 ]
 
@@ -1201,7 +1203,7 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_5': {
             'DlTypeLos':
-                ['loss_type','year_1','year_2','tot_los','id'],
+                ['loss_type', 'year_1', 'year_2', 'tot_los', 'id'],
         }
 
     },
@@ -1671,6 +1673,35 @@ TABLE_PROPERTY_MAPPER = {
         }
 
     },
+    # 'transport_summary': {
+    #     'Table_1': {
+    #         'DlGacPubProvince': ['damages'],
+    #         'DlGacPvtProvince': ['tot_damages_pvt'],
+    #         'DlYearsPubProvince': ['year_1', 'year_2'],
+    #         'DlOtherLosPvtDistrict': ['year_1_pvt', 'year_2_pub', ],
+    #         'DlAirDmgPubProvince': ['tot_destroyed_pub'],
+    #         'DlAirDmgPvtProvince': ['tot_destroyed_pvt'],
+    #         'DlAirLosProvince': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+    #         'DlWaterDmgPubProvince': ['tot_dmg_public'],
+    #         'DlWaterDmgPvtProvince': ['tot_dmg_private'],
+    #         'DlWaterLosProvince': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
+    #         'TotDmgProvince': ['tot_damages'],
+    #     },
+    #     'Table_3': {
+    #         'DlGacPubNational': ['damages'],
+    #         'DlGacPvtNational': ['tot_damages_pvt'],
+    #         'DlOtherLosPvtNational': ['year_1_pvt', 'year_2_pub'],
+    #         'DlYearsPubNational': ['year_1', 'year_2'],
+    #         'TotDmgNational': ['tot_damages'],
+    #         'DlAirDmgPubNational': ['tot_destroyed_pub'],
+    #         'DlAirDmgPvtNational': ['tot_destroyed_pvt'],
+    #         'DlAirLosNational': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+    #         'DlWaterDmgPubNational': ['tot_dmg_public'],
+    #         'DlWaterDmgPvtNational': ['tot_dmg_private'],
+    #         'DlWaterLosNational': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
+    #     }
+    #
+    # },
 
 }
 

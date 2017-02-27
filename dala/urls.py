@@ -36,8 +36,6 @@ urlpatterns = [
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
 
-    # agri_agrarian
-    url(r'^agri_agrarian/', include('agri_agrarian.urls', namespace='agri_agrarian')),
 
     # transport_summary
     url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),

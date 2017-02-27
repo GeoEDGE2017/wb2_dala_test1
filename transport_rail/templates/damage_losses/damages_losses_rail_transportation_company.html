@@ -180,7 +180,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85"  ng-bind="dlMovingAstLoss[$index].tot_damages">
+                            <td width="85"  ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss)">
 
                             </td>
                         </tr>
@@ -221,7 +221,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85">
+                            <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlEquipMachineryAstLoss)">
 
                             </td>
                         </tr>
@@ -251,7 +251,13 @@
                             <td colspan="3" ng-if="dlMatSuppliesAstLoss.asset =='Fuel (Liters)'" class="tdpa">
 
                             </td>
-                            <td width="85" ng-model="dlMatSuppliesAstLoss.tot_damages"
+                            <td width="85" ng-model="dlMatSuppliesAstLoss.tot_damages" ng-if="$parent.dlMatSuppliesAstLoss.asset =='Fuel (Liters)'"
+                                 ng-bind="dlMatSuppliesAstLoss.tot_damages =
+                                          dlMatSuppliesAstLoss.no_of_tot_destroyed * bs_data['BsMatSuppliesAst'][$index].fields.avg_replace_cost
+                                          ">
+
+                            </td>
+                            <td width="85" ng-model="dlMatSuppliesAstLoss.tot_damages" ng-if="$parent.dlMatSuppliesAstLoss.asset !='Fuel (Liters)'"
                                  ng-bind="dlMatSuppliesAstLoss.tot_damages =
                                           dlMatSuppliesAstLoss.no_of_tot_destroyed * bs_data['BsMatSuppliesAst'][$index].fields.avg_repair_cost +
                                           dlMatSuppliesAstLoss.no_of_partially_damaged * bs_data['BsMatSuppliesAst'][$index].fields.avg_replace_cost">
@@ -265,7 +271,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85">
+                            <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss)">
 
                             </td>
                         </tr>
@@ -305,7 +311,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85">
+                            <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss)">
 
                             </td>
                         </tr>
@@ -362,7 +368,7 @@
 
                         </td>
                         <td width="170" >
-                            <input id="textinput" ng-change="getTotal('no_of_tot_destroyed')" ng-model="dlBuildingAstLoss.no_of_tot_destroyed" name="textinput" type="number" placeholder=""
+                            <input id="textinput"  ng-model="dlBuildingAstLoss.no_of_tot_destroyed" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="130">
@@ -370,7 +376,7 @@
                                    class="form-control input-md">
                         </td>
                         <td width="125">
-                            <input id="textinput" ng-change="getTotal('no_of_partially_damaged')" ng-model="dlBuildingAstLoss.no_of_partially_damaged" name="textinput" type="number" placeholder=""
+                            <input id="textinput" ng-model="dlBuildingAstLoss.no_of_partially_damaged" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="112">
@@ -412,8 +418,8 @@
                         </td>
                         <td class="tdpa" width="85">
                         </td>
-                        <td width="85">
-                             -
+                        <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss)">
+
                         </td>
                     </tr>
                     <tr height="20">
@@ -432,8 +438,8 @@
                         </td>
                         <td class="tdpa" width="85">
                         </td>
-                        <td width="85">
-                             -
+                        <td width="85" ng-bind="calGrandTotal()">
+
                         </td>
                     </tr>
                     </tbody>

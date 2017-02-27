@@ -276,23 +276,55 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
         }
     }
 
-     $scope.getTotal = function(property) {
-        var array = $scope.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss;
-        var cumulative = null;
-        var sums = _.map(array, function(obj) {
-            cumulative += obj[property];
-            return cumulative;
-            console.log(array);
+    $scope.calTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
 
-        });
-        var the_string = 'DlBuildingAstLoss_' + property;
-        var model = $parse(the_string);
-        model.assign($scope, cumulative);
-
-
-
+     finaltotal = finaltotal + value.tot_damages ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
     }
 
+
+    $scope.calGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var grantot = 0;
+
+    var array1=$scope.dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss;
+    var array2 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlEquipMachineryAstLoss;
+    var array3 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss;
+    var array4 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss;
+    var array5 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss;
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.tot_damages ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.tot_damages ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.tot_damages ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.tot_damages ;
+    })
+    angular.forEach(array5, function(value, key) {
+
+     finaltotal5 = finaltotal5 + value.tot_damages ;
+    })
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    return grantot;
+    }
 
 
 

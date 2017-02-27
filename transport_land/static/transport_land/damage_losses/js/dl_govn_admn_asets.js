@@ -265,8 +265,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
         }
     }
 
-        $scope.dlDataEdit = function(form)
-{
+    $scope.dlDataEdit = function(form){
 
    $scope.is_edit = true;
    $scope.submitted = true;
@@ -292,11 +291,65 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
     })
 
 }
-    $scope.cancelEdit = function()
-{
+
+    $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlGovnAdmnAsets = init_data;
 }
 
+    $scope.calTotal=function(arr){
+        var finaltotal = 0;
+         console.log(arr);
+        angular.forEach(arr, function(value, key) {
 
+         finaltotal = finaltotal + value.damages ;
+        })
+          console.log(finaltotal);
+        return finaltotal;
+        }
+
+    $scope.calGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures;
+    var array2 =$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment;
+    var array3 =$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.damages ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.damages ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.damages ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
+    return grantot;
+    }
+
+    $scope.calGrandTypeLossTotal=function(){
+    var finaltotal1 = 0;
+    var grantot = 0;
+
+    var array1=$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.total ;
+    })
+
+    grantot = grantot + finaltotal1;
+    return grantot;
+    }
 });

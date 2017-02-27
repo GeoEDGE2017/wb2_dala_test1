@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'report_builder',
     'incidents',
     'dashboard',
     # 'tastypie',
@@ -94,6 +95,8 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.static',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -112,12 +115,20 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
         # },
-        'NAME': 'dala_2017',
+        'NAME': 'dala_new',
         'USER': 'postgres',
 
     },
 
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
+REPORT_BUILDER_INCLUDE = ['health.damage_losses.models.DsnPubPnLmh', 'health.report_builder_report']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

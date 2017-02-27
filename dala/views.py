@@ -262,6 +262,7 @@ def dl_save_data(request):
     com_data = dl_data['com_data']
     todate = timezone.now()
     is_edit = dl_data['is_edit']
+    admin_area = None
 
     filter_fields = {}
 
@@ -317,6 +318,8 @@ def dl_save_data(request):
                                 print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
                                 model_object.save()
 
+                    district = District.objects.get(pk=admin_area)
+                    filter_fields['province_id'] = district.province.id
                     dl_session = sub_app_session(**filter_fields)
                     dl_session.date = todate
                     dl_session.save()

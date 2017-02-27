@@ -14,12 +14,13 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
     $scope.los_year1;
     $scope.los_year2;
     $scope.tot_losses;
-    $scope.dPubTot = null;
-    $scope.dPvtTot = null;
-    $scope.dPubLosyear1 = null;
-    $scope.dPubLosyear2 = null;
-    $scope.dPvtLosTot = null;
-    $scope.dPubLosTot = null;
+//    $scope.dPubTot = null;
+//    $scope.dPvtTot = null;
+//    $scope.dPubLosyear1 = null;
+//    $scope.dPubLosyear2 = null;
+//    $scope.dPvtLosTot = null;
+//    $scope.dPubLosTot = null;
+
 
 
     $scope.changedValue = function getDlData() {
@@ -82,18 +83,21 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
         var ownership = $scope.data.mining.Table_5.DloDmgDistrict[$index].ownership;
 
         if(ownership == 'Private'){
+        console.log($scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages);
+        console.log($scope.dPvtTot + $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages );
 
         $scope.dPvtTot = $scope.dPvtTot +
                          $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages ?
                          $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages : 0;
 
+
         $scope.dPvtLosyear1 = $scope.dPvtLosyear1 +
-                         $scope.data.mining.Table_5.DloDmgDistrict[$index].los_year1 ?
-                         $scope.data.mining.Table_5.DloDmgDistrict[$index].los_year1 : 0;
+                         $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 ?
+                         $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 : 0;
 
         $scope.dPvtLosyear2 = $scope.dPvtLosyear2 +
-                         $scope.data.mining.Table_5.DloDmgDistrict[$index].los_year2 ?
-                         $scope.data.mining.Table_5.DloDmgDistrict[$index].los_year2 : 0;
+                         $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 ?
+                         $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 : 0;
 
         }
         else{
@@ -115,8 +119,14 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
 
         }
 
+
+
+       if($scope.dPvtTot||$scope.dPvtLosyear1||$scope.dPvtLosyear2) {
         $scope.dPvtLosTot = $scope.dPvtTot + $scope.dPvtLosyear1 + $scope.dPvtLosyear2 ;
+        }
+        if($scope.dPubTot||$scope.dPubLosyear1||$scope.dPubLosyear2) {
         $scope.dPubLosTot = $scope.dPubTot + $scope.dPubLosyear1 + $scope.dPubLosyear2;
+        }
 
     }
 

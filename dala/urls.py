@@ -37,8 +37,8 @@ urlpatterns = [
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
 
 
-    # transport_summary
-    url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
+    # # transport_summary
+    # url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
 
     # other govn services
     url(r'^other_govn_services/', include('other_govn_services.urls', namespace='other_govn_services')),
@@ -61,8 +61,8 @@ urlpatterns = [
     # transport_air
     url(r'^transport_air/', include('transport_air.urls', namespace='transport_air')),
 
-    # transport_air
-    url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
+    # # transport_air
+    # url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
 
 
 

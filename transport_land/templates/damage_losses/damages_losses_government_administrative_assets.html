@@ -135,7 +135,7 @@
                             <td class="tdpa" colspan="2" height="19" width="198">
                                 <br/>
                             </td>
-                            <td height="19" width="148" ng-model="dlGacDmgStructures.damages">
+                            <td height="19" width="148" ng-bind="calTotal($parent.dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures)">
                             </td>
                         </tr>
                         </tbody>
@@ -232,7 +232,7 @@
                                 <td class="tdpa" height="19" width="145">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgStructures.damages">
+                                <td height="19" width="148" ng-bind="calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures)">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -290,7 +290,7 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgEquipment.damages">
+                                <td height="19" width="148" ng-bind="calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment)">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -336,7 +336,7 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
+                                <td height="19" width="148" ng-bind="calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery)">
                                 </td>
                             </tr>
                             <!--Machinery TOTAL DAMAGES-->
@@ -349,7 +349,7 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
+                                <td height="19" width="148" ng-bind="calGrandTotal()">
                                 </td>
                             </tr>
                             </tbody>
@@ -383,7 +383,7 @@
                                 Total (LKR)
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="$index < 4">
+                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets != 'TOTAL LOSSES'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
                             </td>
                             <td colspan="2" height="19" width="126">
@@ -402,11 +402,19 @@
                         <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets == 'TOTAL LOSSES'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
                             </td>
-                            <td colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_1">
+                            <td colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_1" ng-bind="dlGacLosType.los_year_1 =
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[0].los_year_1+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[1].los_year_1+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[2].los_year_1+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_1">
                             </td>
-                            <td colspan="2" height="19" width="198" ng-model="dlGacLosType.los_year_2">
+                            <td colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_2" ng-bind="dlGacLosType.los_year_2 =
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[0].los_year_2+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[1].los_year_2+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[2].los_year_2+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_2">
                             </td>
-                            <td height="19" width="148" ng-bind="dlGacLosType.total">
+                            <td height="19" width="148" ng-bind="calGrandTypeLossTotal()">
                             </td>
                         </tr>
                         </tbody>

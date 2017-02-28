@@ -149,11 +149,6 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     tot_destroyed : null,
                     part_destroyed : null,
                     damages : null,
-                },{
-                    type_drains : 'TOTAL DAMAGES',
-                    tot_destroyed : null,
-                    part_destroyed : null,
-                    damages : null,
                 }],
                 'DlRbdLosses' : [{
                     loss_type : 'Foregone income from toll fees',
@@ -424,98 +419,55 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
      $scope.dlRoadBrdgs = init_data;
 }
 
-$scope.calTotal = function(model,property){
-     var obj_array;
-     total=0;
-     obj_array = $scope.bs_data.BsRbuRclassificattion;
 
+  $scope.calTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
 
-
-     if( property == 'tot_dest_concrete')
-      {
-
-        bsProperty = 'avg_replace_concrete' ;
-
-      }
-       if( property == 'tot_dest_asphalt')
-      {
-
-        bsProperty = 'avg_replace_asphalt' ;
-
-      }
-       if( property == 'tot_dest_gravel')
-      {
-
-        bsProperty = 'avg_replace_gravel' ;
-
-      }
-       if( property == 'tot_dest_earth')
-      {
-
-        bsProperty = 'avg_replace_earth' ;
-
-      }
-       if( property == 'part_dest_concrete')
-      {
-
-        bsProperty = 'avg_repair_concrete' ;
-
-      }
-       if( property == 'part_dest_asphalt')
-      {
-
-        bsProperty = 'avg_repair_asphalt' ;
-
-      }
-      if( property == 'part_dest_gravel')
-      {
-
-        bsProperty = 'avg_repair_gravel' ;
-
-      }
-       if( property == 'part_dest_earth')
-      {
-
-        bsProperty = 'avg_repair_earth' ;
-
-      }
-
-
-    angular.forEach(obj_array, function(value, key) {
-
-
-//    total = total + ($scope.dlRoadBrdgs.transport_land.Table_4[model][key][property] * value.fields[bsProperty]);
-
-
+     finaltotal = finaltotal + value.damages ;
     })
-
-    return total;
+      console.log(finaltotal);
+    return finaltotal;
     }
 
-$scope.tot=0;
+  $scope.calGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var grantot = 0;
 
+    var array1=$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification;
+    var array2 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges;
+    var array3 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts;
+    var array4 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTrwalls;
+    var array5 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTdrains;
 
-function getObj(){
- return $scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts;
-}
+    angular.forEach(array1, function(value, key) {
 
-$scope.calculateTotal=function(arr){
-//var obj_array = getObj();
+     finaltotal1 = finaltotal1 + value.damages ;
+    })
+    angular.forEach(array2, function(value, key) {
 
-console.log("array-",arr);
-var finaltotal = 0;
+     finaltotal2 = finaltotal2 + value.damages ;
+    })
+    angular.forEach(array3, function(value, key) {
 
-angular.forEach(arr, function(value, key) {
+     finaltotal3 = finaltotal3 + value.damages ;
+    })
+    angular.forEach(array4, function(value, key) {
 
- finaltotal = finaltotal + value.damages;
- console.log(value);
-})
+     finaltotal4 = finaltotal4 + value.damages ;
+    })
+    angular.forEach(array5, function(value, key) {
 
-
-return finaltotal;
-
-}
-
+     finaltotal5 = finaltotal5 + value.damages ;
+    })
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    return grantot;
+    }
 
 });
 

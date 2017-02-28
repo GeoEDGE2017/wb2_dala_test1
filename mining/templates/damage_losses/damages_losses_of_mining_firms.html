@@ -190,14 +190,14 @@
 
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgStructures.rep_tot_dassets"
-                                ng-change="getTotal('DloDmgStructures','rep_tot_dassets'); getColumnTotal('DloDmgStructures');"
+                                ng-change="getTotal('DloDmgStructures','rep_tot_dassets',$index); getColumnTotal('DloDmgStructures');"
                                 id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" >
                             </td>
 
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgStructures.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgStructures','repair_pdmg_assets'); getColumnTotal('DloDmgStructures');"
+                                       ng-change="getTotal('DloDmgStructures','repair_pdmg_assets',$index); getColumnTotal('DloDmgStructures');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -225,12 +225,12 @@
                             <td  ng-bind="dloDmgStructures.assets"
                                 height="20" width="264"
                                 class="boldash"></td>
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgStructures[$index].rep_tot_dassets = DloDmgStructures_rep_tot_dassets"></td>
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgStructures[$index].repair_pdmg_assets = DloDmgStructures_repair_pdmg_assets"></td>
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgStructures[$index].tot_damages = DloDmgStructures_total"></td>
+                            <td width="98" colspan="2" ng-model="dloDmgStructures.rep_tot_dassets"
+                                ng-bind="dloDmgStructures.rep_tot_dassets = DloDmgStructures_rep_tot_dassets"></td>
+                            <td width="98" colspan="2" ng-model="dloDmgStructures.repair_pdmg_assets"
+                                ng-bind="dloDmgStructures.repair_pdmg_assets = DloDmgStructures_repair_pdmg_assets"></td>
+                            <td width="98" colspan="2" ng-model="dloDmgStructures.tot_damages "
+                                ng-bind="dloDmgStructures.tot_damages = DloDmgStructures_total"></td>
                         </tr>
                         <tr class="trheadc" height="19">
                             <td height="19" width="171">
@@ -262,13 +262,13 @@
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgEquipment.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgEquipment','rep_tot_dassets');getColumnTotal('DloDmgEquipment');"
+                                       ng-change="getTotal('DloDmgEquipment','rep_tot_dassets',$index);getColumnTotal('DloDmgEquipment');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgEquipment.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgEquipment','repair_pdmg_assets');getColumnTotal('DloDmgEquipment');"
+                                       ng-change="getTotal('DloDmgEquipment','repair_pdmg_assets',$index);getColumnTotal('DloDmgEquipment');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -298,12 +298,12 @@
                                 height="20" width="264"
                                 class="boldash">
                             </td>
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgEquipment[$index].rep_tot_dassets = DloDmgEquipment_rep_tot_dassets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgEquipment[$index].repair_pdmg_assets = DloDmgEquipment_repair_pdmg_assets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgEquipment[$index].tot_damages= DloDmgEquipment_total">
+                            <td width="98" colspan="2" ng-model="dloDmgEquipment.rep_tot_dassets"
+                                ng-bind="dloDmgEquipment.rep_tot_dassets = DloDmgEquipment_rep_tot_dassets">
+                            <td width="98" colspan="2" ng-model="dloDmgEquipment.repair_pdmg_assets"
+                                ng-bind="dloDmgEquipment.repair_pdmg_assets = DloDmgEquipment_repair_pdmg_assets">
+                            <td width="98" colspan="2" ng-model="dloDmgEquipment.tot_damages"
+                                ng-bind="dloDmgEquipment.tot_damages= DloDmgEquipment_total">
                         </tr>
                         <tr class="trheadc" height="19">
                             <td height="19" width="171">
@@ -336,14 +336,14 @@
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgMachinery.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgMachinery','rep_tot_dassets');getColumnTotal('DloDmgMachinery');"
+                                       ng-change="getTotal('DloDmgMachinery','rep_tot_dassets',$index);getColumnTotal('DloDmgMachinery');"
 
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgMachinery.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgMachinery','repair_pdmg_assets');getColumnTotal('DloDmgMachinery');"
+                                       ng-change="getTotal('DloDmgMachinery','repair_pdmg_assets',$index);getColumnTotal('DloDmgMachinery');"
 
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
@@ -373,12 +373,12 @@
                                 class="boldash">
                             </td>
 
-                            <td width="98" colspan="2"
-                                ng-bind=" dloDmgMachinery[$index].rep_tot_dassets =  DloDmgMachinery_rep_tot_dassets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgMachinery[$index].repair_pdmg_assets = DloDmgMachinery_repair_pdmg_assets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgMachinery[$index].tot_damages = DloDmgMachinery_total">
+                            <td width="98" colspan="2" ng-model="dloDmgMachinery.rep_tot_dassets"
+                                ng-bind=" dloDmgMachinery.rep_tot_dassets =  DloDmgMachinery_rep_tot_dassets">
+                            <td width="98" colspan="2" ng-model="dloDmgMachinery.repair_pdmg_assets"
+                                ng-bind="dloDmgMachinery.repair_pdmg_assets = DloDmgMachinery_repair_pdmg_assets">
+                            <td width="98" colspan="2" ng-model="dloDmgMachinery.tot_damage"
+                                ng-bind="dloDmgMachinery.tot_damages = DloDmgMachinery_total">
                         </tr>
                         <tr class="trheadc" height="19">
                             <td height="19" width="171">
@@ -410,13 +410,13 @@
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgVehicles.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgVehicles','rep_tot_dassets');getColumnTotal('DloDmgVehicles');"
+                                       ng-change="getTotal('DloDmgVehicles','rep_tot_dassets',$index);getColumnTotal('DloDmgVehicles');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgVehicles.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgVehicles','repair_pdmg_assets');getColumnTotal('DloDmgVehicles');"
+                                       ng-change="getTotal('DloDmgVehicles','repair_pdmg_assets',$index);getColumnTotal('DloDmgVehicles');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -444,12 +444,12 @@
                                 height="20" width="264"
                                 class="boldash">
                             </td>
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgVehicles[$index].rep_tot_dassets = DloDmgVehicles_rep_tot_dassets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgVehicles[$index].repair_pdmg_assets = DloDmgVehicles_repair_pdmg_assets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgVehicles[$index].tot_damages = DloDmgVehicles_total">
+                            <td width="98" colspan="2" ng-model="dloDmgVehicles.rep_tot_dassets "
+                                ng-bind="dloDmgVehicles.rep_tot_dassets = DloDmgVehicles_rep_tot_dassets">
+                            <td width="98" colspan="2" ng-model="dloDmgVehicles.repair_pdmg_assets"
+                                ng-bind="dloDmgVehicles.repair_pdmg_assets = DloDmgVehicles_repair_pdmg_assets">
+                            <td width="98" colspan="2"ng-model="dloDmgVehicles.tot_damages"
+                                ng-bind="dloDmgVehicles.tot_damages = DloDmgVehicles_total">
                         </tr>
                         <tr class="trheadc" height="19">
                             <td height="19" width="171">
@@ -485,13 +485,13 @@
                             <td colspan="2" width="98">
 
                                 <input ng-model="dloDmgStocks.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgStocks','rep_tot_dassets');getColumnTotal('DloDmgStocks','rep_tot_dassets');"
+                                       ng-change="getTotal('DloDmgStocks','rep_tot_dassets',$index);getColumnTotal('DloDmgStocks','rep_tot_dassets');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgStocks.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgStocks','repair_pdmg_assets');getColumnTotal('DloDmgStocks','repair_pdmg_assets');"
+                                       ng-change="getTotal('DloDmgStocks','repair_pdmg_assets',$index);getColumnTotal('DloDmgStocks','repair_pdmg_assets');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -519,12 +519,12 @@
                                 height="20" width="264"
                                 class="boldash">
                             </td>
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgStocks[$index].rep_tot_dassets = DloDmgStocks_rep_tot_dassets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgStocks[$index].repair_pdmg_assets = DloDmgStocks_repair_pdmg_assets">
-                            <td width="98" colspan="2"
-                                ng-bind="dloDmgStocks[$index].tot_damages = DloDmgStocks_total">
+                            <td width="98" colspan="2" ng-model="dloDmgStocks.rep_tot_dassets"
+                                ng-bind="dloDmgStocks.rep_tot_dassets = DloDmgStocks_rep_tot_dassets">
+                            <td width="98" colspan="2" ng-model="dloDmgStocks.repair_pdmg_assets"
+                                ng-bind="dloDmgStocks.repair_pdmg_assets = DloDmgStocks_repair_pdmg_assets">
+                            <td width="98" colspan="2" ng-model="dloDmgStocks.tot_damages"
+                                ng-bind="dloDmgStocks.tot_damages = DloDmgStocks_total">
                         </tr>
 
                         <tr ng-repeat="dloDmgStocks in dmLosOfMinFirms.mining.Table_3.DloDmgStocks"
@@ -535,11 +535,11 @@
                                 class="boldash">
                             </td>
                             <td width="98" colspan="2"
-                                ng-bind="dloDmgStocks[$index].rep_tot_dassets = DloDmg_rep_tot_dassets_grnd">
+                                ng-bind="dloDmgStocks.rep_tot_dassets = DloDmg_rep_tot_dassets_grnd">
                             <td width="98" colspan="2"
-                                ng-bind="dloDmgStocks[$index].repair_pdmg_assets = DloDmg_repair_pdmg_assets_grnd">
+                                ng-bind="dloDmgStocks.repair_pdmg_assets = DloDmg_repair_pdmg_assets_grnd">
                             <td width="98" colspan="2"
-                                ng-bind="dloDmgStocks[$index].tot_damages = DloDmg_tot_damages_grnd">
+                                ng-bind="dloDmgStocks.tot_damages = DloDmg_tot_damages_grnd">
                         </tr>
 
                         </tbody>
@@ -669,12 +669,12 @@
                         <td width="98" colspan="2" class="boldash" >
                         <td width="98" colspan="1" class="boldash">
                         <td width="98" colspan="1" class="boldash">
-                        <td width="98" colspan="1"
-                            ng-bind="dloLosPlos[$index].los_year1 = DloLosPlos_los_year1">
-                        <td width="98" colspan="1"
-                            ng-bind="dloLosPlos[$index].los_year2 = DloLosPlos_los_year2">
-                        <td width="98" colspan="1"
-                            ng-bind="dloLosPlos[$index].tot_losses = DloLosPlos_total">
+                        <td width="98" colspan="1" ng-model="dloLosPlos.los_year1"
+                            ng-bind="dloLosPlos.los_year1 = DloLosPlos_los_year1">
+                        <td width="98" colspan="1" ng-model="dloLosPlos.los_year2"
+                            ng-bind="dloLosPlos.los_year2 = DloLosPlos_los_year2">
+                        <td width="98" colspan="1" ng-model="dloLosPlos.tot_losses "
+                            ng-bind="dloLosPlos.tot_losses = DloLosPlos_total">
                     </tr>
                     <tr class="trheadc" height="19">
                         <td height="19" width="171">
@@ -709,13 +709,13 @@
                         <td colspan="1" width="98">
                             <input ng-model="dloLosOlos.los_year1"
                                    id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('DloLosOlos','los_year1');getColumnTotal('DloLosOlos','los_year1');"
+                                   ng-change="getTotal('DloLosOlos','los_year1',$index);getColumnTotal('DloLosOlos','los_year1');"
                                    class="form-control input-md">
                         </td>
                         <td colspan="1" width="98">
                             <input ng-model="dloLosOlos.los_year2"
                                    id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('DloLosOlos','los_year2');getColumnTotal('DloLosOlos','los_year2');"
+                                   ng-change="getTotal('DloLosOlos','los_year2',$index);getColumnTotal('DloLosOlos','los_year2');"
                                    class="form-control input-md">
                         </td>
                         <td colspan="1" width="98">
@@ -734,12 +734,12 @@
                         <td width="98" colspan="2" class="boldash"></td>
                         <td width="98" colspan="1" class="boldash"></td>
                         <td width="98" colspan="1" class="boldash"></td>
-                        <td width="98" colspan="1"
-                            ng-bind="dloLosOlos[$index].los_year1 = DloLosOlos_los_year1"></td>
-                        <td width="98" colspan="1"
-                            ng-bind="dloLosOlos[$index].los_year2 = DloLosOlos_los_year2"></td>
-                        <td width="98" colspan="1"
-                            ng-bind="dloLosOlos[$index].tot_losses = DloLosOlos_total"></td>
+                        <td width="98" colspan="1" ng-model="dloLosOlos.los_year1 "
+                            ng-bind="dloLosOlos.los_year1 = DloLosOlos_los_year1"></td>
+                        <td width="98" colspan="1" ng-model="dloLosOlos.los_year2"
+                            ng-bind="dloLosOlos.los_year2 = DloLosOlos_los_year2"></td>
+                        <td width="98" colspan="1" ng-model="dloLosOlos.tot_losses"
+                            ng-bind="dloLosOlos.tot_losses = DloLosOlos_total"></td>
                     </tr>
                     <tr ng-repeat="dloLosOlos in dmLosOfMinFirms.mining.Table_3.DloLosOlos"
                         ng-if="dloLosOlos.type_los=='GRAND TOTAL' && $index=='4'" height="20" >
@@ -752,11 +752,11 @@
                         <td width="98" colspan="1" class="boldash"></td>
                         <td width="98" colspan="1" class="boldash"></td>
                         <td width="98" colspan="1"
-                            ng-bind="dloLosOlos[$index].los_year1 = DloLosOlos_los_year1_grnd"></td>
+                            ng-bind="dloLosOlos.los_year1 = DloLosOlos_los_year1_grnd"></td>
                         <td width="98" colspan="1"
-                            ng-bind="dloLosOlos[$index].los_year2 = DloLosOlos_los_year2_grnd"></td>
+                            ng-bind="dloLosOlos.los_year2 = DloLosOlos_los_year2_grnd"></td>
                         <td width="98" colspan="1"
-                            ng-bind="dloLosOlos[$index].tot_losses = DloLosOlos_tot_losses_grnd"></td>
+                            ng-bind="dloLosOlos.tot_losses = DloLosOlos_tot_losses_grnd"></td>
                     </tr>
                     </tbody>
                 </table>

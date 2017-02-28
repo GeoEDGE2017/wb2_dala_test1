@@ -300,31 +300,54 @@
                         <!--Materials and supplies-->
                         <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets != 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
-                                Fuel (Liters)
+
                             </td>
                             <td colspan="2" width="126" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlAirDmgSupplies.tot_destroyed_pub">
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" colspan="">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlAirDmgSupplies.tot_destroyed_pvt">
                             </td>
-                            <td class="tdpa" colspan="2" width="126" height="19">
+                            <td class="tdpa" colspan="2" width="126" height="19" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'">
+
+                            </td>
+                            <td  height="19" colspan="2" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgSupplies.part_damaged_pub">
+                            </td>
+                            <td class="tdpa" colspan="2" width="126" height="19" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'">
                                 <br/>
                             </td>
-                            <td class="tdpa" colspan="2" width="126" height="19">
-                                <br/>
+                            <td height="19" colspan="2" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlAirDmgSupplies.part_damaged_pvt">
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub">
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'"
+                                ng-bind="dlAirDmgSupplies.tot_dmg_pub =
+                                dlAirDmgSupplies.tot_destroyed_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost">
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt">
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'"
+                                ng-bind="dlAirDmgSupplies.tot_dmg_pub =
+                                dlAirDmgSupplies.tot_destroyed_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost +
+                                dlAirDmgSupplies.part_damaged_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_repair_cost">
+                            </td>
+
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'"
+                                ng-bind="dlAirDmgSupplies.tot_dmg_pvt =
+                                dlAirDmgSupplies.tot_destroyed_pvt  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost">
+                            </td>
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'"
+                                ng-bind="dlAirDmgSupplies.tot_dmg_pvt =
+                                dlAirDmgSupplies.tot_destroyed_pvt  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost +
+                                dlAirDmgSupplies.part_damaged_pvt  * bs_data['BsAstAirSupplies'][$index].fields.avg_repair_cost">
                             </td>
                         </tr>
                         <!--Materials and supplies Total-->
                         <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets == 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
-                                Total
+
                             </td>
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
@@ -338,9 +361,9 @@
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pub">
+                            <td width="63" height="19" ng-bind="calculatePubMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
                             </td>
-                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pvt">
+                            <td width="63" height="19" ng-bind="calculatePvtMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -550,9 +573,9 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
+                            <td width="63" height="19" ng-bind="calGrandTotalPub()">
                             </td>
-                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pvt">
+                            <td width="63" height="19" ng-bind="calGrandTotalPvt()">
                             </td>
                         </tr>
                         </tbody>

@@ -31,13 +31,31 @@
         <col width="118" span="4"/>
     </colgroup>
     <tbody>
-        <tr border="0">
-        <td colspan="4" style="border:1px solid #fff;">
-        </td>
-        
-        
-            <td style="border:1px solid #fff;"><button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button></td>
-        </tr>
+     <tr class="trhead">
+
+                        <td style="padding-left:5px;"> Incident</td>
+                        <td colspan="7" style="background:#EFEFEF;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue()"
+                                    style="width:100%;font-weight:400;" required>
+
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+                        </td>
+
+                        <td colspan="2" style="background:#EFEFEF;">
+                            <button type="button" class="btn btn-block btn-info" ng-click="fetchDlData()">Load
+                            </button>
+                        </td>
+                    </tr>
+
        
         <tr class="trheadc" height="20">
             

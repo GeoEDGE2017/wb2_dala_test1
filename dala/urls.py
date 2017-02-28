@@ -20,6 +20,9 @@ urlpatterns = [
     url(r'^reports/', include('reports.urls', namespace='reports')),
     url(r'^charts/', include('charts.urls', namespace='charts')),
 
+    # report builder
+    url(r'^report_builder/', include('report_builder.urls')),
+
     # common functions
     url(r'^bs_get_data$', views.bs_get_data, name='bs_get_data'),
     url(r'^bs_get_data_mock$', views.bs_get_data_mock, name='bs_get_data_mock'),

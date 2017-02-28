@@ -70,7 +70,12 @@ INSTALLED_APPS = [
     'transport_air.damage_losses',
     'transport_summary',
     # 'transport_summary.damage_losses',
-
+    'agri_agrarian',
+    'agri_agrarian.base_line',
+    'agri_agrarian.damage_losses',
+    'agri_irrigation',
+    'agri_irrigation.base_line',
+    'agri_irrigation.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [

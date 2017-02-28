@@ -1,0 +1,678 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main"  ng-app="dlInvsmntLosApp" ng-controller="dlInvsmntLosController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Investment Losses</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_dl_invsmnt_los">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="249"/>
+                        <col width="148"/>
+                        <col width="121"/>
+                        <col width="117" span="2"/>
+                        <col width="112"/>
+                        <col width="99"/>
+                        <col width="85" span="2"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_invsmnt_los.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_invsmnt_los.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="19">
+                        <td width="218" height="19">
+                            Incident:
+                        </td>
+                        <td colspan="4" width="567" height="19">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            Name of District:
+                        </td>
+                        <td colspan="5">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td colspan="9" width="1133" height="19">
+                            LOSSES FOR THE DISASTER YEAR 1
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="4" width="249" height="76">
+                            Sub-Sector
+                        </td>
+                        <td colspan="8" width="884">
+                            Investment Losses
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td colspan="8" width="884" height="19">
+                            Totally Destroyed by Stage of Growth
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td colspan="2" width="269" height="19">
+                            Newly Planted (Acre)
+                        </td>
+                        <td colspan="2" width="234">
+                            Middle Stage (Acre)
+                        </td>
+                        <td colspan="2" width="211">
+                            Harvest Stage (Acre)
+                        </td>
+                        <td colspan="2" width="170">
+                            Investment Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="148" height="19">
+                            Public
+                        </td>
+                        <td width="121">
+                            Private
+                        </td>
+                        <td width="117">
+                            Public
+                        </td>
+                        <td width="117">
+                            Private
+                        </td>
+                        <td width="112">
+                            Public
+                        </td>
+                        <td width="99">
+                            Private
+                        </td>
+                        <td width="85">
+                            Public
+                        </td>
+                        <td width="85">
+                            Private
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="249" height="19">
+                            Seasonal Crops
+                        </td>
+                        <td width="148">
+                        </td>
+                        <td width="121">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="112">
+                        </td>
+                        <td width="99">
+                        </td>
+                        <td width="85">
+                        </td>
+                        <td width="85">
+                        </td>
+                    </tr>
+                    <!--Seasonal Crops-->
+                    <tr height="19" ng-repeat="dildSeasonalCrops in dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops" ng-if="dildSeasonalCrops.seasonal_crops != 'Total'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildSeasonalCrops.seasonal_crops">
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildSeasonalCrops.new_plant_pub">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildSeasonalCrops.new_plant_pvt">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildSeasonalCrops.mid_stage_pub">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildSeasonalCrops.mid_stage_pvt">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildSeasonalCrops.harvest_stage_pub">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildSeasonalCrops.harvest_stage_pvt">
+                        </td>
+                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="249" height="19">
+                            Other seasonal crops
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                    </tr>
+                    <!--Total-->
+                    <tr height="19" ng-repeat="dildSeasonalCrops in dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops" ng-if="dildSeasonalCrops.seasonal_crops == 'Total'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildSeasonalCrops.seasonal_crops">
+                        </td>
+                        <td class="tdpa" width="148" ng-bind="dildSeasonalCrops.new_plant_pub">
+                        </td>
+                        <td class="tdpa" width="121" ng-bind="dildSeasonalCrops.new_plant_pvt">
+                        </td>
+                        <td class="tdpa" width="117" ng-bind="dildSeasonalCrops.mid_stage_pub">
+                        </td>
+                        <td class="tdpa" width="117" ng-bind="dildSeasonalCrops.mid_stage_pvt">
+                        </td>
+                        <td class="tdpa" width="112" ng-bind="dildSeasonalCrops.harvest_stage_pub">
+                        </td>
+                        <td class="tdpa" width="99" ng-bind="dildSeasonalCrops.harvest_stage_pvt">
+                        </td>
+                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="249" height="19">
+                            Plantation Crops
+                        </td>
+                        <td width="148">
+                        </td>
+                        <td width="121">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="112">
+                        </td>
+                        <td width="99">
+                        </td>
+                        <td width="85">
+                        </td>
+                        <td width="85">
+                        </td>
+                    </tr>
+                    <!--Plantation Crops-->
+                    <tr height="19" ng-repeat="dildPlantnCrops in dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops" ng-if="dildPlantnCrops.plantn_crops != 'Total'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildPlantnCrops.plantn_crops">
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildPlantnCrops.new_plant_pub">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildPlantnCrops.new_plant_pvt">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildPlantnCrops.mid_stage_pub">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildPlantnCrops.mid_stage_pvt">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildPlantnCrops.harvest_stage_pub">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildPlantnCrops.harvest_stage_pvt">
+                        </td>
+                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="249" height="19">
+                            Other plantation crops
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                    </tr>
+                    <!--Total-->
+                    <tr height="19" ng-repeat="dildPlantnCrops in dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops" ng-if="dildPlantnCrops.plantn_crops == 'Total'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildPlantnCrops.plantn_crops">
+                        </td>
+                        <td class="tdpa" width="148" ng-bind="dildPlantnCrops.new_plant_pub">
+                        </td>
+                        <td class="tdpa" width="121" ng-bind="dildPlantnCrops.new_plant_pvt">
+                        </td>
+                        <td class="tdpa" width="117" ng-bind="dildPlantnCrops.mid_stage_pub">
+                        </td>
+                        <td class="tdpa" width="117" ng-bind="dildPlantnCrops.mid_stage_pvt">
+                        </td>
+                        <td class="tdpa" width="112" ng-bind="dildPlantnCrops.harvest_stage_pub">
+                        </td>
+                        <td class="tdpa" width="99" ng-bind="dildPlantnCrops.harvest_stage_pvt">
+                        </td>
+                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="249" height="19">
+                            Export Crops
+                        </td>
+                        <td width="148">
+                        </td>
+                        <td width="121">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="112">
+                        </td>
+                        <td width="99">
+                        </td>
+                        <td width="85">
+                        </td>
+                        <td width="85">
+                        </td>
+                    </tr>
+                    <!--Export Crops-->
+                    <tr height="19" ng-repeat="dildExportCrops in dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops" ng-if="dildExportCrops.export_crops != 'Total'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildExportCrops.export_crops">
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildExportCrops.new_plant_pub">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildExportCrops.new_plant_pvt">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildExportCrops.mid_stage_pub">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildExportCrops.mid_stage_pvt">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildExportCrops.harvest_stage_pub">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildExportCrops.harvest_stage_pvt">
+                        </td>
+                        <td width="85" ng-bind="dildExportCrops.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildExportCrops.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="249" height="19">
+                            Others
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                    </tr>
+                    <!--Total-->
+                    <tr height="19" ng-repeat="dildExportCrops in dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops" ng-if="dildExportCrops.export_crops == 'Total'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildExportCrops.export_crops">
+                        </td>
+                        <td class="tdpa" width="148" ng-bind="dildExportCrops.new_plant_pub">
+                        </td>
+                        <td class="tdpa" width="121" ng-bind="dildExportCrops.new_plant_pvt">
+                        </td>
+                        <td class="tdpa" width="117" ng-bind="dildExportCrops.mid_stage_pub">
+                        </td>
+                        <td class="tdpa" width="117" ng-bind="dildExportCrops.mid_stage_pvt">
+                        </td>
+                        <td class="tdpa" width="112" ng-bind="dildExportCrops.harvest_stage_pub">
+                        </td>
+                        <td class="tdpa" width="99" ng-bind="dildExportCrops.harvest_stage_pvt">
+                        </td>
+                        <td width="85" ng-bind="dildExportCrops.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildExportCrops.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="249" height="19">
+                            Forestry
+                        </td>
+                        <td width="148">
+                        </td>
+                        <td width="121">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="112">
+                        </td>
+                        <td width="99">
+                        </td>
+                        <td width="85">
+                        </td>
+                        <td width="85">
+                        </td>
+                    </tr>
+                    <!--Forestry-->
+                    <tr height="19" ng-repeat="dildForestry in dlInvsmntLos.agri_agrarian.Table_6.DildForestry" ng-if="dildForestry.forestry != 'Total' && dildForestry.forestry != 'GRAND TOTAL'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildForestry.forestry">
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildForestry.new_plant_pub">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildForestry.new_plant_pvt">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildForestry.mid_stage_pub">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildForestry.mid_stage_pvt">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildForestry.harvest_stage_pub">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dildForestry.harvest_stage_pvt">
+                        </td>
+                        <td width="85" ng-bind="dildForestry.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildForestry.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="249" height="19">
+                            Others
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="99">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                    </tr>
+                    <!--Total-->
+                    <tr height="19" ng-repeat="dildForestry in dlInvsmntLos.agri_agrarian.Table_6.DildForestry" ng-if="dildForestry.forestry == 'Total'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildForestry.forestry">
+                        </td>
+                        <td class="tdpa" width="148">
+                        </td>
+                        <td class="tdpa" width="121">
+                        </td>
+                        <td class="tdpa" width="117">
+                        </td>
+                        <td class="tdpa" width="117">
+                        </td>
+                        <td class="tdpa" width="112">
+                        </td>
+                        <td class="tdpa" width="99">
+                        </td>
+                        <td width="85" ng-bind="dildForestry.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildForestry.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="dildForestry in dlInvsmntLos.agri_agrarian.Table_6.DildForestry" ng-if="dildForestry.forestry == 'GRAND TOTAL'">
+                        <td class="tdpa" width="249" height="19" ng-bind="dildForestry.forestry">
+                        </td>
+                        <td class="tdpa" width="148">
+                        </td>
+                        <td class="tdpa" width="121">
+                        </td>
+                        <td class="tdpa" width="117">
+                        </td>
+                        <td class="tdpa" width="117">
+                        </td>
+                        <td class="tdpa" width="112">
+                        </td>
+                        <td class="tdpa" width="99">
+                        </td>
+                        <td width="85" ng-bind="dildForestry.invest_los_pub">
+                            -
+                        </td>
+                        <td width="85" ng-bind="dildForestry.invest_los_pvt">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_invsmnt_los)">Submit</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+
+
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

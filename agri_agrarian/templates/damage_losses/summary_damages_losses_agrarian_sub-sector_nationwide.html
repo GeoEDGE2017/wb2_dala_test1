@@ -1,0 +1,244 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 10. Summary of damages and losses in the agrarian sub-sector nationwide</span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="249"/>
+                        <col width="148"/>
+                        <col width="121"/>
+                        <col width="117" span="2"/>
+                        <col width="112"/>
+                        <col width="99"/>
+                        <col width="85" span="2"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead" height="20">
+                        <td colspan="4" width="85">
+                            Incident
+                        </td>
+                        <td colspan="5" width="85">
+                            <select id="selectbasic" name="selectbasic" class="form-control"
+                                    style="width:100%;font-weight:400;">
+                                <option value="1">Option one</option>
+                                <option value="2">Option two</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td rowspan="3" width="249" height="60">
+                            Province
+                        </td>
+                        <td colspan="4" width="503">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="211">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="170">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td colspan="2" width="269" height="20">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="234">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="211">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="20">
+                        <td width="148" height="20">
+                            Public
+                        </td>
+                        <td width="121">
+                            Private
+                        </td>
+                        <td width="117">
+                            Public
+                        </td>
+                        <td width="117">
+                            Private
+                        </td>
+                        <td width="112">
+                            Public
+                        </td>
+                        <td width="99">
+                            Private
+                        </td>
+                        <td width="85">
+                            Public
+                        </td>
+                        <td width="85">
+                            Private
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="249" height="20">
+                            Province 1
+                        </td>
+                        <td width="148">
+                            -
+                        </td>
+                        <td width="121">
+                            -
+                        </td>
+                        <td width="117">
+                            -
+                        </td>
+                        <td width="117">
+                            -
+                        </td>
+                        <td width="112">
+                            -
+                        </td>
+                        <td width="99">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="249" height="20">
+                            Province N
+                        </td>
+                        <td width="148">
+                        </td>
+                        <td width="121">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="112">
+                        </td>
+                        <td width="99">
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="249" height="20">
+                            GRAND TOTAL
+                        </td>
+                        <td width="148">
+                            -
+                        </td>
+                        <td width="121">
+                            -
+                        </td>
+                        <td width="117">
+                            -
+                        </td>
+                        <td width="117">
+                            -
+                        </td>
+                        <td width="112">
+                            -
+                        </td>
+                        <td width="99">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                        <td width="85">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+
+
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

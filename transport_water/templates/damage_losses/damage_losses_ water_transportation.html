@@ -261,11 +261,11 @@
                         <td width="170" class="tdpa">
 
                         </td>
-                        <td colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_private" width="268">
-                            -
+                        <td colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment)" width="268">
+
                         </td>
-                        <td width="126" ng-model="dlWaterDmgEquipment.tot_dmg_public">
-                            -
+                         <td colspan="2" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment)" width="268">
+
                         </td>
                     </tr>
 
@@ -361,11 +361,11 @@
                         <td width="170" class="tdpa">
 
                         </td>
-                        <td colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private" width="268">
-                             -
+                        <td colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials)" width="268">
+
                         </td>
-                        <td width="126" ng-model="dlWaterDmgMaterials.tot_dmg_public">
-                             -
+                        <td width="126" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials)">
+
                         </td>
                     </tr>
 
@@ -434,8 +434,11 @@
                                    type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
-                        <td width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages">
-                             -
+                        <td width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages"
+                       ng-bind="dlWaterDmgStructures.tot_damages=
+                       $parent.dlWaterDmgMaterials.num_tdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_replace_cost +
+                       $parent.dlWaterDmgMaterials.num_pdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_repair_cost">
+
                         </td>
                     </tr>
                     </tr>
@@ -457,8 +460,8 @@
                         <td width="165" class="tdpa">
 
                         </td>
-                        <td width="126" ng-model="dlWaterDmgStructures.tot_damages" colspan="4">
-                             -
+                        <td width="126" ng-bind="CalStruTot(dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures)" colspan="4">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -533,9 +536,16 @@
                                    placeholder=""
                                    class="form-control input-md">
                         </td>
-                        <td width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages">
-                            -
+                        <td width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages"
+
+                       ng-bind="
+                        $parent.dlWaterDmgBuildings.tdestroyed_smeters * bs_data['BsAstWaterBuildings'][$index].fields.avg_replace_cost +
+                       $parent.dlWaterDmgBuildings.pdamaged_roof * bs_data['BsAstWaterBuildings'][$index].fields.avg_repair_cost_roof+
+                       $parent.dlWaterDmgBuildings.wall *bs_data['BsAstWaterBuildings'][$index].fields.avg_repair_cost_wall+
+                       $parent.dlWaterDmgBuildings.floor *bs_data['BsAstWaterBuildings'][$index].fields.avg_repair_cost_floor">
+
                         </td>
+
                     </tr>
                     <tr height="19"
                         ng-repeat="dlWaterDmgBuildings in dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings"
@@ -562,8 +572,8 @@
                         <td width="165" class="tdpa">
 
                         </td>
-                        <td width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages">
-                            -
+                        <td width="126" colspan="4" ng-bind="CalStruTot(dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings)">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -693,31 +703,23 @@
 
                         </td>
                         <td width="147">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_1_pub" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
+
                         </td>
                         <td width="151">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_1_pvt" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
+
                         </td>
                         <td width="165">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_2_pub" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
+
                         </td>
 
                         <td width="165">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_2_pvt" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
+
                         </td>
-                        <td width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pub">
-                            -
+                        <td width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pub"
+                           ng-bind="CalFiPub(dlWaterTransportation.transport_water.Table_2.DlWaterLosFi)">
                         </td>
-                        <td width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pvt">
-                            -
+                        <td width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pvt"
+                           ng-bind="CalFiPvt(dlWaterTransportation.transport_water.Table_2.DlWaterLosFi)">
                         </td>
                     </tr>
 

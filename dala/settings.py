@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'transport_land.damage_losses',
     'transport_air',
     'transport_air.base_line',
-    'transport_air.damage_losses'
+    'transport_air.damage_losses',
 
 ]
 
@@ -111,7 +111,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
         # },
         'NAME': 'dala_new',
         'USER': 'postgres',
@@ -1209,6 +1209,10 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_damages',
                  ],
 
+        },
+        'Table_5': {
+            'DlTypeLos':
+                ['loss_type', 'year_1', 'year_2', 'tot_los', 'id'],
         }
 
     },
@@ -1640,22 +1644,42 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
         },
         'Table_2': {
+
             'DlAirDmgAircrafts': ['tot_destroyed_pub', 'tot_destroyed_pvt', 'tot_dmg_pub', 'tot_dmg_pvt',
-                                  'part_damaged_pub', 'part_damaged_pvt', 'assets','id'],
-            'DlAirDmgEquipment': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets','id'],
+                                  'part_damaged_pub', 'part_damaged_pvt', 'assets', 'id'],
+            'DlAirDmgEquipment': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets', 'id'],
 
             'DlAirDmgSupplies': ['tot_destroyed_pub', 'tot_destroyed_pvt', 'tot_dmg_pub', 'tot_dmg_pvt',
-                                 'part_damaged_pub', 'part_damaged_pvt', 'assets','id'],
-            'DlAirDmgOthers': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets','id'],
+                                 'part_damaged_pub', 'part_damaged_pvt', 'assets', 'id'],
+            'DlAirDmgOthers': ['tot_destroyed', 'part_damaged', 'tot_dmg_pub', 'assets', 'id'],
 
             'DlAirDmgGstructures': ['tdest_floor_1', 'tdest_floor_2_3', 'tdest_floor_than_3', 'pdmg_number',
-                                    'pdmg_roof', 'pdmg_wall', 'pdmg_floor', 'tot_pub', 'assets','id'],
-            'DlAirLosFi': ['year_1_pub','year_1_pvt','year_2_pub','year_2_pvt','tot_los_pub','tot_los_pvt','type_los','id'],
+                                    'pdmg_roof', 'pdmg_wall', 'pdmg_floor', 'tot_pub', 'assets', 'id'],
+            'DlAirLosFi': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                           'type_los', 'id'],
 
-            'DlAirLosHoc': ['year_1_pub','year_1_pvt','year_2_pub','year_2_pvt','tot_los_pub','tot_los_pvt','type_los','id'],
+            'DlAirLosHoc': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                            'type_los', 'id'],
 
-            'DlAirLosOther': ['year_1_pub','year_1_pvt','year_2_pub','year_2_pvt','tot_los_pub','tot_los_pvt','assets','id']
+            'DlAirLosOther': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                              'assets', 'id']
+        },
+        'Table_3': {
+            'DlAirDmgAircraftsDistrict':
+                ['tot_destroyed_pub', 'tot_destroyed_pvt', 'incident', 'district'],
+            'DlAirDmgGstructuresDistrict':
+                ['tot_pub', 'incident', 'district'],
+            'DlAirDmgEquipmentDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
+            'DlAirDmgSuppliesDistrict':
+                ['tot_dmg_pub', 'tot_dmg_pvt', 'incident', 'district'],
+            'DlAirDmgOthersDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
 
+            'DlAirLosFiDistrict':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident', 'district'],
+            'DlAirLosHocDistrict':
+                ['tot_dmg_pub', 'incident', 'district'],
         },
         'Table_4': {
             'DlAirDmgPubProvince':
@@ -1673,8 +1697,37 @@ TABLE_PROPERTY_MAPPER = {
             'DlAirLosNational':
                 ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
         }
+    },
+    'transport_summary': {
+        'Table_1': {
+            'DlGacPubProvince': ['damages'],
+            'DlGacPvtProvince': ['tot_damages_pvt'],
+            'DlYearsPubProvince': ['year_1', 'year_2'],
+            'DlOtherLosPvtDistrict': ['year_1_pvt', 'year_2_pub', ],
+            'DlAirDmgPubProvince': ['tot_destroyed_pub'],
+            'DlAirDmgPvtProvince': ['tot_destroyed_pvt'],
+            'DlAirLosProvince': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+            'DlWaterDmgPubProvince': ['tot_dmg_public'],
+            'DlWaterDmgPvtProvince': ['tot_dmg_private'],
+            'DlWaterLosProvince': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
+            'TotDmgProvince': ['tot_damages'],
+        },
+        'Table_3': {
+            'DlGacPubNational': ['damages'],
+            'DlGacPvtNational': ['tot_damages_pvt'],
+            'DlOtherLosPvtNational': ['year_1_pvt', 'year_2_pub'],
+            'DlYearsPubNational': ['year_1', 'year_2'],
+            'TotDmgNational': ['tot_damages'],
+            'DlAirDmgPubNational': ['tot_destroyed_pub'],
+            'DlAirDmgPvtNational': ['tot_destroyed_pvt'],
+            'DlAirLosNational': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+            'DlWaterDmgPubNational': ['tot_dmg_public'],
+            'DlWaterDmgPvtNational': ['tot_dmg_private'],
+            'DlWaterLosNational': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
+        }
 
     },
+
 
 }
 

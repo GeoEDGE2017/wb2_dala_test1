@@ -305,7 +305,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterStructures'],
+                  'db_tables': ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterStructures','BsAstWaterBuildings'],
                   'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -331,7 +331,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
     }
 
-   function generateRefencedData(){
+  function generateRefencedData(){
   data_array = ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterStructures'];
   var dl_model1 = null;
   var dl_model2 = null;
@@ -454,23 +454,59 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
 }
 
-    $scope.getTotal = function(model, property) {
+  $scope.CalPub=function(arr){
+    var finaltotal = 0;
+    console.log(arr);
+    angular.forEach(arr, function(value, key) {
 
-        var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
-        var cumulative = null;
-        var sums = _.map(array, function(obj) {
-            cumulative += obj[property];
-            return cumulative;
-            console.log(cumulative);
-
-        });
-        var the_string = model + '_' + property;
-        var model = $parse(the_string);
-        model.assign($scope, cumulative);
-
-
-
+     finaltotal = finaltotal + value.tot_dmg_public ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
     }
+
+  $scope.CalPvt=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.tot_dmg_private ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+  $scope.CalStruTot=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.tot_dmg_private ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+     $scope.CalFiPub=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.tot_los_pub ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+       $scope.CalFiPvt=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.tot_los_pvt ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
 
 
 })

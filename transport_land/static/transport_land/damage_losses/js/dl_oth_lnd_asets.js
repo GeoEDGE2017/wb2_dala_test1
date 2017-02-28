@@ -13,6 +13,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.DlOtherDmgsPvehicles_total = null;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    $scope.DlOtherLosPub_fi_year_1= null;
 
     var init_data = {
         'transport_land' : {
@@ -458,9 +459,141 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     })
 
 }
+
     $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlOthLndAsets = init_data;
+       $scope.is_edit = false;
+        $scope.dlOthLndAsets = init_data;
+
 }
+
+    $scope.calPvtTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.tot_damages_pvt ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calPubTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.tot_damages_pub ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calGrandPvtTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var grantot = 0;
+
+    var array1=$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles;
+    var array2 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies;
+    var array3 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies;
+    var array4 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies;
+    var array5 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies;
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.tot_damages_pvt ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.tot_damages_pvt ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.tot_damages_pvt ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.tot_damages_pvt ;
+    })
+    angular.forEach(array5, function(value, key) {
+
+     finaltotal5 = finaltotal5 + value.tot_damages_pvt ;
+    })
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    return grantot;
+    }
+
+    $scope.calGrandPubTotal=function(){
+
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var grantot = 0;
+
+    var array2 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies;
+    var array3 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies;
+    var array4 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies;
+    var array5 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies;
+
+
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.tot_damages_pvt ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.tot_damages_pvt ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.tot_damages_pvt ;
+    })
+    angular.forEach(array5, function(value, key) {
+
+     finaltotal5 = finaltotal5 + value.tot_damages_pvt ;
+    })
+    grantot = grantot + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    return grantot;
+    }
+
+    $scope.calTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.tot_los ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPub;
+    var array2 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.tot_los ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.tot_los ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 ;
+    return grantot;
+    }
+
+
 
 });

@@ -1,2 +1,2 @@
 
-default_app_config = 'health.damage_losses.apps.DamageLossesConfig'
+default_app_config = 'agri_agrarian.damage_losses.apps.DamageLossesConfig'

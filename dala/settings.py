@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     'transport_air',
     'transport_air.base_line',
     'transport_air.damage_losses',
+    'transport_summary',
+    'transport_summary.damage_losses',
 
 ]
 

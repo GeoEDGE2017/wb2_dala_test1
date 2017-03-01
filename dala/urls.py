@@ -47,6 +47,7 @@ urlpatterns = [
     url(r'^bs_mining_fetch_edit_data$', views.bs_mining_fetch_edit_data, name='bs_mining_fetch_edit_data'),
     url(r'^dl_fetch_district_disagtn$', views.dl_fetch_district_disagtn, name='dl_fetch_district_disagtn'),
     url(r'^dl_fetch_total_data$', views.dl_fetch_total_data, name='dl_fetch_total_data'),
+    url(r'^dl_fetch_summary_disagtn$', views.dl_fetch_summary_disagtn, name='dl_fetch_summary_disagtn'),
 
     # transport_rail
     url(r'^transport_rail/', include('transport_rail.urls', namespace='transport_rail')),
@@ -60,7 +61,7 @@ urlpatterns = [
     # transport_air
     url(r'^transport_air/', include('transport_air.urls', namespace='transport_air')),
 
-
+    url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
 
 
 ]

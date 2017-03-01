@@ -21,10 +21,8 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
-    alert('hi');
-
         if($scope.incident && selectProvinces) {
-          fetchProvinces();
+//          fetchProvinces();
         }
 
     }
@@ -52,12 +50,12 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
 
             $http({
             method: "POST",
-            url: '/dl_fetch_district_disagtn',
+            url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':  {'Table_8','Table_4'},
-            'sector': {'transport_land','transport_air'},
+            'table_name':  ['Table_8','Table_4'],
+            'sector': ['transport_land','transport_air'],
             'com_data': {
-                    'province': $scope.province,
+                    'province': 1,
                     'incident': $scope.incident,
                   },
                    }),
@@ -70,6 +68,7 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
             })
 
     }
+
 //   $scope.convertToInt = function(val1,val2,val3){
 //
 //        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);

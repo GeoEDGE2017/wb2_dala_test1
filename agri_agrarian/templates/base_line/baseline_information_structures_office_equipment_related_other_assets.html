@@ -1,0 +1,263 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="bsInfoSeroAssetsApp" ng-controller="bsInfoSeroAssetsController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Baseline information on structures, office equipment and related other assets</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_bs_info_acfo_assets">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="249"/>
+                        <col width="148"/>
+                        <col width="121"/>
+                        <col width="117" span="2"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            </td>
+                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_bs_info_acfo_assets.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_bs_info_acfo_assets.baselineDate.$error.required">
+                                    Please select Date
+                                </span>
+                            </td>
+                        </tr>
+                    <tr class="trhead" height="19">
+                        <td width="249" height="19">
+                            District:
+                        </td>
+                        <td colspan="2" width="269">
+                            <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select a District</option>
+                                {% for district in districts %}
+                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td width="117">
+                            Year/Month
+                        </td>
+                        <td width="117">
+                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" width="249" height="38">
+                            Asset
+                        </td>
+                        <td rowspan="2" width="148">
+                            Average Replacement Cost (LKR/sqm)
+                        </td>
+                        <td colspan="3" width="355">
+                            Average Repair Cost (LKR/sqm)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="121" height="19">
+                            Roof
+                        </td>
+                        <td width="117">
+                            Wall
+                        </td>
+                        <td width="117">Incident
+                            Flooring
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="249" height="19">
+                            Structure
+                        </td>
+                        <td width="148">
+                        </td>
+                        <td width="121">
+                        </td>
+                        <td width="117">
+                        </td>
+                        <td width="117">
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="bsoeStructure in bsInfoSeroAssets.agri_agrarian.Table_3.BsoeStructure">
+                        <td class="tdpa" width="249" height="19" ng-bind="bsoeStructure.assets">
+                            1 floor structure
+                        </td>
+                        <td width="148">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeStructure.avg_replace_cost">
+                        </td>
+                        <td width="121">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeStructure.avg_repair_wall">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeStructure.avg_repair_roof">
+                        </td>
+                        <td width="117">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeStructure.avg_repair_flooring">
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="249" height="19">
+                            Office Equipment
+                        </td>
+                        <td colspan="2" width="269">
+                            Average Replacement Cost (LKR/Unit)
+                        </td>
+                        <td colspan="2" width="234">
+                            Average Repair Cost (LKR/Unit)
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="bsoeOequipment in bsInfoSeroAssets.agri_agrarian.Table_3.BsoeOequipment">
+                        <td class="tdpa" width="249" height="19" ng-bind="bsoeOequipment.assets" ng-if="$index < 2">
+                        </td>
+                        <td width="98" ng-if="$index > 1">
+                            {% verbatim %}
+                            <button id="delete" ng-click="removeItem('BsoeOequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <input style="width:90%;float:right;" name="bsoeOequipment_{{$index}}" ng-model="bsoeOequipment.assets"
+                                popover="This field is required"
+                                popover-toggle="form_bs_nopopl_agrb_actv['bsoeOequipment_' + $index].$dirty && !form_bs_nopopl_agrb_actv['bsoeOequipment_' + $index].$valid"
+                                popover-placement="top" required
+                                type="text"
+                                class="form-control input-md">
+                            {% endverbatim %}
+                        </td>
+                        <td colspan="2">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeOequipment.avg_replace_cost">
+                        </td>
+                        <td colspan="2">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeOequipment.avg_repair_cost">
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="19">
+                        <td class="tdpa" width="249" height="19">
+                            Others &nbsp;&nbsp;
+                            <button ng-click="insertAsset('BsoeOequipment')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </td>
+                        <td colspan="2">
+                        </td>
+                        <td colspan="2">
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="249" height="19">
+                            Machinery
+                        </td>
+                        <td colspan="2">
+                        </td>
+                        <td colspan="2">
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="bsoeMachinery in bsInfoSeroAssets.agri_agrarian.Table_3.BsoeMachinery">
+                        <td class="tdpa" width="249" height="19" ng-bind="bsoeMachinery.assets" ng-if="$index < 3">
+                        </td>
+                        <td width="98" ng-if="$index > 2">
+                            {% verbatim %}
+                            <button id="delete" ng-click="removeItem('BsoeMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <input style="width:90%;float:right;" name="bsoeMachinery_{{$index}}" ng-model="bsoeMachinery.assets"
+                                popover="This field is required"
+                                popover-toggle="form_bs_nopopl_agrb_actv['bsoeMachinery_' + $index].$dirty && !form_bs_nopopl_agrb_actv['bsoeMachinery_' + $index].$valid"
+                                popover-placement="top" required
+                                type="text"
+                                class="form-control input-md">
+                            {% endverbatim %}
+                        </td>
+                        <td colspan="2">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeMachinery.avg_replace_cost">
+                        </td>
+                        <td colspan="2">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsoeMachinery.avg_repair_cost">
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="19">
+                        <td class="tdpa" width="249" height="19">
+                            Others &nbsp;&nbsp;
+                            <button ng-click="insertAsset('BsoeMachinery')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </td>
+                        <td colspan="2">
+                        </td>
+                        <td colspan="2">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_info_acfo_assets)">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

@@ -1,0 +1,680 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 8. Summary of damages and losses to agrarian sub-sector in the District</span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div>
+            <ul class='nav nav-wizard'>
+                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Assets</a></li>
+                <li id="li2"><a href='#step2' data-toggle="tab">2 Type of Crops </a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="249"/>
+                            <col width="148"/>
+                            <col width="121"/>
+                            <col width="117" span="2"/>
+                            <col width="112"/>
+                            <col width="99"/>
+                            <col width="85" span="2"/>
+                        </colgroup>
+                        <tbody>
+                        <tr class="trhead" height="20">
+                            <td width="249" height="20">
+                                District
+                            </td>
+                            <td colspan="3" width="386">
+                                <select id="selectbasic" name="selectbasic" class="form-control"
+                                        style="width:100%;font-weight:400;">
+                                    <option value="1">Option one</option>
+                                    <option value="2">Option two</option>
+                                </select>
+                            </td>
+                            <td colspan="4" width="413">
+                                Incident
+                            </td>
+                            <td width="85">
+                                <select id="selectbasic" name="selectbasic" class="form-control"
+                                        style="width:100%;font-weight:400;">
+                                    <option value="1">Option one</option>
+                                    <option value="2">Option two</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td rowspan="2" width="249" height="40">
+                                Assets
+                            </td>
+                            <td colspan="8" width="884">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="20">
+                            <td colspan="3" width="386" height="20">
+                                Public
+                            </td>
+                            <td colspan="3" width="328">
+                                Private
+                            </td>
+                            <td colspan="2" width="170">
+                                Total Damages
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Structures
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Office Equipment
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Machinery
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Farm Equipment
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Stocks
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Total
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="249" height="20">
+                                Harvested Products
+                            </td>
+                            <td colspan="3">
+                            </td>
+                            <td colspan="3">
+                            </td>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Seasonal Crops
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Plantation Crops
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Export Crops
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Forestry
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Others Products
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Total
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                TOTAL
+                            </td>
+                            <td colspan="3" width="386">
+                                -
+                            </td>
+                            <td colspan="3" width="328">
+                                -
+                            </td>
+                            <td colspan="2" width="170">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br>
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Type of Crops Informations</a>
+                    <br>
+                </div>
+
+
+                <div class="tab-pane fade" id="step2">
+
+                    <table class="table table-bordered">
+
+                        <tr class="trheadc" height="20">
+                            <td rowspan="5" width="249" height="100">
+                                Type of Crops
+                            </td>
+                            <td colspan="8" width="884">
+                                Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td colspan="6" width="714" height="20">
+                                Types of Losses
+                            </td>
+                            <td colspan="2" rowspan="3" width="170">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td colspan="4" width="503" height="20">
+                                Year 1
+                            </td>
+                            <td colspan="2" width="211">
+                                Year 2
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td colspan="2" width="269" height="20">
+                                Investment Losses
+                            </td>
+                            <td colspan="2" width="234">
+                                Production Losses
+                            </td>
+                            <td colspan="2" width="211">
+                                Production Losses
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="20">
+                            <td width="148" height="20">
+                                Public
+                            </td>
+                            <td width="121">
+                                Private
+                            </td>
+                            <td width="117">
+                                Public
+                            </td>
+                            <td width="117">
+                                Private
+                            </td>
+                            <td width="112">
+                                Public
+                            </td>
+                            <td width="99">
+                                Private
+                            </td>
+                            <td width="85">
+                                Public
+                            </td>
+                            <td width="85">
+                                Private
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Seasonal Crops
+                            </td>
+                            <td width="148">
+                                -
+                            </td>
+                            <td width="121">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="112">
+                                -
+                            </td>
+                            <td width="99">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Plantation Crops
+                            </td>
+                            <td width="148">
+                                -
+                            </td>
+                            <td width="121">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="112">
+                                -
+                            </td>
+                            <td width="99">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Export Crops
+                            </td>
+                            <td width="148">
+                                -
+                            </td>
+                            <td width="121">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="112">
+                                -
+                            </td>
+                            <td width="99">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Forestry
+                            </td>
+                            <td width="148">
+                                -
+                            </td>
+                            <td width="121">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="112">
+                                -
+                            </td>
+                            <td width="99">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Others Products
+                            </td>
+                            <td class="tdpa" width="148">
+                            </td>
+                            <td class="tdpa" width="121">
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="112">
+                                -
+                            </td>
+                            <td width="99">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Total
+                            </td>
+                            <td width="148">
+                                -
+                            </td>
+                            <td width="121">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="112">
+                                -
+                            </td>
+                            <td width="99">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="249" height="20">
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td colspan="2" width="234">
+                                Year 1
+                            </td>
+                            <td colspan="2" width="211">
+                                Year 2
+                            </td>
+                            <td colspan="2" width="170">
+                                Total Losses
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="20">
+                            <td width="249" height="20">
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                                Public
+                            </td>
+                            <td width="117">
+                                Private
+                            </td>
+                            <td width="112">
+                                Public
+                            </td>
+                            <td width="99">
+                                Private
+                            </td>
+                            <td width="85">
+                                Public
+                            </td>
+                            <td width="85">
+                                Private
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                Other Losses
+                            </td>
+                            <td class="tdpa" width="148">
+                            </td>
+                            <td class="tdpa" width="121">
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="117">
+                                -
+                            </td>
+                            <td width="112">
+                                -
+                            </td>
+                            <td width="99">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td class="tdpa" width="249" height="20">
+                                GRAND TOTAL
+                            </td>
+                            <td class="tdpa" width="148">
+                            </td>
+                            <td class="tdpa" width="121">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="112">
+                            </td>
+                            <td class="tdpa" width="99">
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                            <td width="85">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+
+
+            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+                 aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title">
+                                <span id="bookId"> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput">Name</label>
+                                <div class="col-md-10">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

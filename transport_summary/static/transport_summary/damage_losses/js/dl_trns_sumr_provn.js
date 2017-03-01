@@ -22,6 +22,7 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
 
+
         if($scope.incident && selectProvinces) {
           fetchProvinces();
         }
@@ -53,10 +54,10 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':  ['Table_8','Table_4'],
-            'sector': ['transport_land','transport_air'],
+            'table_name':  {'Table_8','Table_4'},
+            'sector': {'transport_land','transport_air'},
             'com_data': {
-                    'province': 1,
+                    'province': $scope.province,
                     'incident': $scope.incident,
                   },
                    }),

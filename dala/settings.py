@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'report_builder',
+    # 'report_builder',
     'incidents',
     'dashboard',
     # 'tastypie',
@@ -70,7 +70,10 @@ INSTALLED_APPS = [
     'transport_air.damage_losses',
     'transport_summary',
     'transport_summary.damage_losses',
-
+    'agri_agrarian',
+    'agri_agrarian.base_line',
+    'agri_agrarian.damage_losses',
+    
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -1700,32 +1703,79 @@ TABLE_PROPERTY_MAPPER = {
                 ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
         }
     },
-    'transport_summary': {
+    # 'transport_summary': {
+    #     'Table_1': {
+    #         'DlGacPubProvince': ['damages'],
+    #         'DlGacPvtProvince': ['tot_damages_pvt'],
+    #         'DlYearsPubProvince': ['year_1', 'year_2'],
+    #         'DlOtherLosPvtDistrict': ['year_1_pvt', 'year_2_pub', ],
+    #         'DlAirDmgPubProvince': ['tot_destroyed_pub'],
+    #         'DlAirDmgPvtProvince': ['tot_destroyed_pvt'],
+    #         'DlAirLosProvince': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+    #         'DlWaterDmgPubProvince': ['tot_dmg_public'],
+    #         'DlWaterDmgPvtProvince': ['tot_dmg_private'],
+    #         'DlWaterLosProvince': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
+    #         'TotDmgProvince': ['tot_damages'],
+    #     },
+    #     'Table_3': {
+    #         'DlGacPubNational': ['damages'],
+    #         'DlGacPvtNational': ['tot_damages_pvt'],
+    #         'DlOtherLosPvtNational': ['year_1_pvt', 'year_2_pub'],
+    #         'DlYearsPubNational': ['year_1', 'year_2'],
+    #         'TotDmgNational': ['tot_damages'],
+    #         'DlAirDmgPubNational': ['tot_destroyed_pub'],
+    #         'DlAirDmgPvtNational': ['tot_destroyed_pvt'],
+    #         'DlAirLosNational': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
+    #         'DlWaterDmgPubNational': ['tot_dmg_public'],
+    #         'DlWaterDmgPvtNational': ['tot_dmg_private'],
+    #         'DlWaterLosNational': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
+    #     }
+    #
+    # },
+    'agri_agrarian': {
         'Table_1': {
-            'DlGacPubProvince': ['damages'],
-            'DlGacPvtProvince': ['tot_damages_pvt'],
-            'DlYearsPubProvince': ['year_1', 'year_2'],
-            'DlOtherLosPvtDistrict': ['year_1_pvt', 'year_2_pub', ],
-            'DlAirDmgPubProvince': ['tot_destroyed_pub'],
-            'DlAirDmgPvtProvince': ['tot_destroyed_pvt'],
-            'DlAirLosProvince': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
-            'DlWaterDmgPubProvince': ['tot_dmg_public'],
-            'DlWaterDmgPvtProvince': ['tot_dmg_private'],
-            'DlWaterLosProvince': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
-            'TotDmgProvince': ['tot_damages'],
-        },
-        'Table_3': {
-            'DlGacPubNational': ['damages'],
-            'DlGacPvtNational': ['tot_damages_pvt'],
-            'DlOtherLosPvtNational': ['year_1_pvt', 'year_2_pub'],
-            'DlYearsPubNational': ['year_1', 'year_2'],
-            'TotDmgNational': ['tot_damages'],
-            'DlAirDmgPubNational': ['tot_destroyed_pub'],
-            'DlAirDmgPvtNational': ['tot_destroyed_pvt'],
-            'DlAirLosNational': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
-            'DlWaterDmgPubNational': ['tot_dmg_public'],
-            'DlWaterDmgPvtNational': ['tot_dmg_private'],
-            'DlWaterLosNational': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
+            'BcagSeasonalCrops':
+                ['seasonal_crops',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+            'BcagPlantnCrops':
+                ['plantn_crops',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+            'BcagExportCrops':
+                ['export_crops',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+            'BcagForestry':
+                ['forestry',
+                'avg_value',
+                'productn_pub',
+                'productn_pvt',
+                'productn_cost_nplanted',
+                'productn_cost_mstage',
+                'productn_cost_hstage',
+                 'id'],
+            'BacfOther':
+                ['other_products',
+                'avg_value',
+                'productn_pub',
+                'productn_pvt',
+                'productn_cost_nplanted',
+                'productn_cost_mstage',
+                'productn_cost_hstage',
+                 'id'],
         }
 
     },

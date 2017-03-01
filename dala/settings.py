@@ -69,13 +69,11 @@ INSTALLED_APPS = [
     'transport_air.base_line',
     'transport_air.damage_losses',
     'transport_summary',
-    # 'transport_summary.damage_losses',
+    'transport_summary.damage_losses',
     'agri_agrarian',
     'agri_agrarian.base_line',
     'agri_agrarian.damage_losses',
-    'agri_irrigation',
-    'agri_irrigation.base_line',
-    'agri_irrigation.damage_losses',
+    
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,7 +118,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
         # },
-        'NAME': 'dala',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
 
     },
@@ -1734,6 +1732,53 @@ TABLE_PROPERTY_MAPPER = {
     #     }
     #
     # },
+    'agri_agrarian': {
+        'Table_1': {
+            'BcagSeasonalCrops':
+                ['seasonal_crops',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+            'BcagPlantnCrops':
+                ['plantn_crops',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+            'BcagExportCrops':
+                ['export_crops',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+            'BcagForestry':
+                ['forestry',
+                'avg_value',
+                'productn_pub',
+                'productn_pvt',
+                'productn_cost_nplanted',
+                'productn_cost_mstage',
+                'productn_cost_hstage',
+                 'id'],
+            'BacfOther':
+                ['other_products',
+                'avg_value',
+                'productn_pub',
+                'productn_pvt',
+                'productn_cost_nplanted',
+                'productn_cost_mstage',
+                'productn_cost_hstage',
+                 'id'],
+        }
+
+    },
 
 
 }

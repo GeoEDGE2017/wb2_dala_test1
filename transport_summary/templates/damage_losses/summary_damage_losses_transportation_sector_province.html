@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSummeryTSProApp" ng-controller="DlSummeryTSProController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -28,25 +28,38 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead" height="17">
-                        <td width="197" height="17">
-                            Province
-                        </td>
-                        <td colspan="4" width="504" height="17">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
-                            </select>
-                        </td>
-                        <td width="504" height="17" style="text-align:right;">
+                         <td class="trhead" width="130" colspan="2">
                             Incident
                         </td>
-                        <td colspan="4" width="504" height="17">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                        <td width="125" colspan="2">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
                             </select>
+                        </td>
+                        <td class="trhead" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170" colspan="2">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData()">Load
+                            </button>
                         </td>
                     </tr>
                     <tr class="trheadc" height="17">
@@ -106,6 +119,9 @@
                             Private
                         </td>
                     </tr>
+                     <table ng-repeat="(key, value) in dlLandTransSumPro.transport_land.Table_8"
+                           class="table table-bordered">
+                        <tbody>
                     <tr class="trhead" height="17">
                         <td class="trhead" width="197" height="17">
                             District 1
@@ -364,9 +380,7 @@
 
 
                 <div class="pull-right">
-                    <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
 
 

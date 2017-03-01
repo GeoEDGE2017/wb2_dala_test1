@@ -409,63 +409,63 @@ def dl_fetch_edit_data(request):
     )
 
 
-@csrf_exempt
-def dl_fetch_district_disagtn(request):
-    data = (yaml.safe_load(request.body))
-    table_name = data['table_name']
-    sector = data['sector']
-    com_data = data['com_data']
-    incident = com_data['incident']
-    tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
-
-    dl_mtable_data = {sector: {}}
-    dl_mtable_data[sector][table_name] = {}
-    sub_app_name = sector + '.damage_losses'
-
-    if 'province' in com_data:
-        admin_area = com_data['province']
-        filter_fields = {'incident': incident, 'district__province': admin_area}
-    else:
-        filter_fields = {'incident': incident}
-
-    dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
-    dl_sessions = dl_session_model.objects.filter(**filter_fields).distinct()
-    print dl_sessions
-    for dl_session in dl_sessions:
-
-        category_name = None
-
-        if 'province' in com_data:
-            district_id = dl_session.district.id
-            filter_fields = {'incident': incident, 'district': district_id}
-            category_name = dl_session.district.name
-        else:
-            province_id = None
-            if dl_session.province:
-                province_id = dl_session.province.id
-                category_name = dl_session.province.name
-            filter_fields = {'incident': incident, 'province': province_id}
-
-        if category_name is not None:
-            dl_mtable_data[sector][table_name][category_name] = {}
-
-            for table in tables:
-                table_fields = tables[table]
-
-                dl_mtable_data[sector][table_name][category_name][table] = {}
-
-                table_fields = tables[table]
-                model_class = apps.get_model(sub_app_name, table)
-
-                table_fields = tables[table]
-                dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
-                                                                                filter(**filter_fields)
-                                                                                .values(*table_fields))
-
-    return HttpResponse(
-        json.dumps((dl_mtable_data), cls=DjangoJSONEncoder),
-        content_type='application/javascript; charset=utf8'
-    )
+# @csrf_exempt
+# def dl_fetch_district_disagtn(request):
+#     data = (yaml.safe_load(request.body))
+#     table_name = data['table_name']
+#     sector = data['sector']
+#     com_data = data['com_data']
+#     incident = com_data['incident']
+#     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
+#
+#     dl_mtable_data = {sector: {}}
+#     dl_mtable_data[sector][table_name] = {}
+#     sub_app_name = sector + '.damage_losses'
+#
+#     if 'province' in com_data:
+#         admin_area = com_data['province']
+#         filter_fields = {'incident': incident, 'district__province': admin_area}
+#     else:
+#         filter_fields = {'incident': incident}
+#
+#     dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
+#     dl_sessions = dl_session_model.objects.filter(**filter_fields).distinct()
+#     print dl_sessions
+#     for dl_session in dl_sessions:
+#
+#         category_name = None
+#
+#         if 'province' in com_data:
+#             district_id = dl_session.district.id
+#             filter_fields = {'incident': incident, 'district': district_id}
+#             category_name = dl_session.district.name
+#         else:
+#             province_id = None
+#             if dl_session.province:
+#                 province_id = dl_session.province.id
+#                 category_name = dl_session.province.name
+#             filter_fields = {'incident': incident, 'province': province_id}
+#
+#         if category_name is not None:
+#             dl_mtable_data[sector][table_name][category_name] = {}
+#
+#             for table in tables:
+#                 table_fields = tables[table]
+#
+#                 dl_mtable_data[sector][table_name][category_name][table] = {}
+#
+#                 table_fields = tables[table]
+#                 model_class = apps.get_model(sub_app_name, table)
+#
+#                 table_fields = tables[table]
+#                 dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
+#                                                                                 filter(**filter_fields)
+#                                                                                 .values(*table_fields))
+#
+#     return HttpResponse(
+#         json.dumps((dl_mtable_data), cls=DjangoJSONEncoder),
+#         content_type='application/javascript; charset=utf8'
+#     )
 
 
 @csrf_exempt
@@ -580,6 +580,76 @@ def dl_fetch_district_disagtn(request):
 
     return HttpResponse(
         json.dumps((dl_mtable_data), cls=DjangoJSONEncoder),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
+@csrf_exempt
+def dl_fetch_summary_disagtn(request):
+    data = (yaml.safe_load(request.body))
+    table_names = data['table_name']
+    sectors = data['sector']
+    com_data = data['com_data']
+    incident = com_data['incident']
+
+    dl_data = {}
+
+    if 'province' in com_data:
+        admin_area = com_data['province']
+        filter_fields = {'incident': incident, 'district__province': admin_area}
+    else:
+        filter_fields = {'incident': incident}
+
+    i = 0
+
+    for sector in sectors:
+
+        table_name = table_names[i]
+        tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
+
+        dl_mtable_data = {sector: {}}
+        dl_mtable_data[sector][table_name] = {}
+        sub_app_name = sector + '.damage_losses'
+
+        dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
+        dl_sessions = dl_session_model.objects.filter(**filter_fields).distinct()
+        print dl_mtable_data
+        for dl_session in dl_sessions:
+
+            category_name = None
+
+            if 'province' in com_data:
+                district_id = dl_session.district.id
+                filter_fields = {'incident': incident, 'district': district_id}
+                category_name = dl_session.district.name
+            else:
+                province_id = None
+                if dl_session.province:
+                    province_id = dl_session.province.id
+                    category_name = dl_session.province.name
+                filter_fields = {'incident': incident, 'province': province_id}
+
+            if category_name is not None:
+                dl_mtable_data[sector][table_name][category_name] = {}
+
+                for table in tables:
+                    table_fields = tables[table]
+
+                    dl_mtable_data[sector][table_name][category_name][table] = {}
+
+                    table_fields = tables[table]
+                    model_class = apps.get_model(sub_app_name, table)
+
+                    table_fields = tables[table]
+                    dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
+                                                                                    filter(**filter_fields)
+                                                                                    .values(*table_fields))
+
+        dl_data.update(dl_mtable_data)
+        i += 1
+
+    return HttpResponse(
+        json.dumps((dl_data), cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
     )
 

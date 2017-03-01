@@ -118,7 +118,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
         # },
-        'NAME': 'dala_2017',
+        'NAME': 'dala_new',
         'USER': 'postgres',
 
     },

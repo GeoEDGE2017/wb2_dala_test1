@@ -242,7 +242,56 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
-            alert('Save');
+             $http({
+                method: "POST",
+                url: "/bs_save_data",
+                data: angular.toJson({
+                    'table_data': ($scope.bsInfoAcfoAssets),
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    },
+                    'is_edit': $scope.is_edit,
+                    'sector':'agri_agrarian'
+                }),
+            }).success(function(data) {
+
+                $scope.bsInfoAcfoAssets = init_data;
+                $scope.is_edit = false;
+
+                if (data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+
+            })
         }
     }
+
+    $scope.bsHsDataEdit = function(form){
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_2',
+              'sector': 'agri_agrarian',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date } }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsInfoAcfoAssets = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function(){
+        $scope.is_edit = false;
+        $scope.bsNopoplAgrbActv = init_data;
+    }
+
 }]);

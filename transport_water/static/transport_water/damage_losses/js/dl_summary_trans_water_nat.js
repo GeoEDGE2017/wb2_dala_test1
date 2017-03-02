@@ -13,7 +13,7 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
     $scope.totalyear1pub = null;
     $scope.totalyear1pvt = null;
     $scope.totalyear2pub = null;
-    $scope.totalyear2vt = null;
+    $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
     // declaring total variables

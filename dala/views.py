@@ -754,9 +754,9 @@ def dl_fetch_summary_disagtn(request):
 
     if 'province' in com_data:
         admin_area = com_data['province']
-        filter_fields = {'incident': incident, 'district__province': admin_area}
+        filter_fields_session = {'incident': incident, 'district__province': admin_area}
     else:
-        filter_fields = {'incident': incident}
+        filter_fields_session = {'incident': incident}
 
     i = 0
 
@@ -770,7 +770,7 @@ def dl_fetch_summary_disagtn(request):
         sub_app_name = sector + '.damage_losses'
 
         dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
-        dl_sessions = dl_session_model.objects.filter(**filter_fields).distinct()
+        dl_sessions = dl_session_model.objects.filter(**filter_fields_session).distinct()
         print dl_mtable_data
         for dl_session in dl_sessions:
 

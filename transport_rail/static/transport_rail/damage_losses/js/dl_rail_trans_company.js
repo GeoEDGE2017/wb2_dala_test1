@@ -287,7 +287,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     return finaltotal;
     }
 
-
     $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;

@@ -598,8 +598,6 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     return finaltotal;
     }
 
-    calGrandTotalPub
-
     $scope.calGrandTotalPub=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;

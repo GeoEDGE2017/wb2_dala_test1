@@ -1,5 +1,5 @@
-//Table 1
 var app = angular.module('bsNopoplAgrbActvApp', [])
+
 app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
@@ -211,9 +211,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         }
     }
 
-
-    $scope.bsHsDataEdit = function(form)
-    {
+    $scope.bsHsDataEdit = function(form){
     $scope.submitted = true;
 
        $scope.is_edit = true;
@@ -234,8 +232,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
 
     }
 
-    $scope.cancelEdit = function()
-    {
+    $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsNopoplAgrbActv = init_data;
     }

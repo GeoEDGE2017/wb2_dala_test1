@@ -52,10 +52,10 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
 
             $http({
             method: "POST",
-            url: '/dl_fetch_district_disagtn',
+            url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':  {'Table_8','Table_4'},
-            'sector': {'transport_land','transport_air'},
+            'table_name':  ['Table_8','Table_4'],
+            'sector': ['transport_land','transport_air'],
             'com_data': {
                     'province': $scope.province,
                     'incident': $scope.incident,

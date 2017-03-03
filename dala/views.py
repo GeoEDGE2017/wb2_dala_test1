@@ -596,11 +596,29 @@ def dl_fetch_summary_disagtn(request):
 
     if 'province' in com_data:
         admin_area = com_data['province']
-        filter_fields = {'incident': incident, 'district__province': admin_area}
+        filter_fields_sessions = {'incident': incident, 'district__province': admin_area}
     else:
-        filter_fields = {'incident': incident}
+        filter_fields_sessions = {'incident': incident}
 
     i = 0
+
+    dl_sessions_all = []
+
+    for sector in sectors:
+        sub_app_name = sector + '.damage_losses'
+        dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
+        sector_dl_sessions = dl_session_model.objects.filter(**filter_fields_sessions).distinct()
+        print sector
+        print sector_dl_sessions
+        for sector_dl_session in sector_dl_sessions:
+            if 'province' in com_data:
+                # cannot have same district twice
+                if not sector_dl_session.district in dl_sessions_all:
+                    dl_sessions_all.append(sector_dl_session)
+            else:
+                # cannot have same province twice
+                if not sector_dl_session.province in dl_sessions_all:
+                    dl_sessions_all.append(sector_dl_session)
 
     for sector in sectors:
 
@@ -612,9 +630,9 @@ def dl_fetch_summary_disagtn(request):
         sub_app_name = sector + '.damage_losses'
 
         dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
-        dl_sessions = dl_session_model.objects.filter(**filter_fields).distinct()
-        print dl_mtable_data
-        for dl_session in dl_sessions:
+        dl_sessions = dl_session_model.objects.filter(**filter_fields_sessions).distinct()
+
+        for dl_session in dl_sessions_all:
 
             category_name = None
 

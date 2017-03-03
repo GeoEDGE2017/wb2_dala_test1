@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^dl_get_data$', views.dl_get_data, name='dl_get_data'),
     url(r'^dl_fetch_edit_data$', views.dl_fetch_edit_data, name='dl_fetch_edit_data'),
     url(r'^dl_fetch_district_disagtn$', views.dl_fetch_district_disagtn, name='dl_fetch_district_disagtn'),
+    url(r'^dl_fetch_summary_disagtn$', views.dl_fetch_summary_disagtn, name='dl_fetch_summary_disagtn'),
 
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),

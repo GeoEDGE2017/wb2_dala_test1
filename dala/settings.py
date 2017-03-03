@@ -601,28 +601,25 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_6': {
 
-            'DldTmfIfProvince': [
-                'year1_damages_pub',
-                'year1_damages_pvt',
-                'year1_losses_pub',
-                'year1_losses_pvt',
-                'year2_losses_pub',
-                'year2_losses_pvt',
-                'province',
-                'incident',
-                'id'
+            'DlaDmgNational': [
+                'tot_damages',
+
             ],
-            'DldTmfAmProvince': [
-                'year1_damages_pub',
-                'year1_damages_pvt',
-                'year1_losses_pub',
-                'year1_losses_pvt',
-                'year2_losses_pub',
-                'year2_losses_pvt',
-                'province',
-                'incident',
-                'id'
-            ]
+            'DlaLosNational': [
+                'los_year1',
+                'los_year2',
+                'tot_losses',
+            ],
+            'DloDmgNational': [
+                'tot_damages',
+                'ownership'
+            ],
+            'DloLosNational': [
+                'los_year1',
+                'los_year2',
+                'tot_losses',
+                'ownership'
+            ],
 
         }
 

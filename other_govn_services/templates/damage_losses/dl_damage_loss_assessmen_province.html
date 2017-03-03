@@ -44,24 +44,54 @@
                         <col width="191"/>
                         <col width="118" span="4"/>
                     </colgroup>
-                    <tbody>
+                    <tbody ng-form name="form_province">
                     <tr class="trheadc" height="20">
-                        <td width="107" height="20">
-                            Province
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_province.incident.$error.required">
+                                    Please select Incident
+                                </span>
+                            </td>
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_province.province.$error.required">
+                                    Please select Province
+                                </span>
+                            </td>
+                        </tr>
+                    <tr class="trhead" height="17">
+                        <td colspan="2" style="padding-right:5px;text-align:right;">
+                            Incident
                         </td>
-                        <td class="trsub" colspan="3" width="663">
-                            <select name="province" ng-model="province"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(false)" required>
-                                <option value="" selected="true">Select Province</option>
-                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
-                                        ng-bind="province.district__province__name"></option>
+                        <td colspan="2" style="background:#EFEFEF;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
                             </select>
+
+                        </td>
+                        <td style="padding-left:5px;"> Province</td>
+                        <td colspan="2" style="background:#EFEFEF;">
+                             <select ng-options="province as province.district__province__name for province in provinces track by province.district__province_id"
+                                        name="province" id="ccyear" ng-model="province" style="font-weight:400;" class="form-control" required>
+                                    <option value="" selected>Select Province</option>
+                                </select>
+
                         </td>
                         <td>
                             <button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>
                         </td>
+                    </tr>
+
                     </tr>
                     <tr class="trheadc" height="20">
 

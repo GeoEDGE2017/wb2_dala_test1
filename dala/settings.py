@@ -73,7 +73,7 @@ INSTALLED_APPS = [
     'agri_agrarian',
     'agri_agrarian.base_line',
     'agri_agrarian.damage_losses',
-    
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -1679,9 +1679,11 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_dmg_pub', 'incident', 'district'],
 
             'DlAirLosFiDistrict':
-                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident', 'district'],
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident',
+                 'district'],
             'DlAirLosHocDistrict':
-                ['tot_dmg_pub', 'incident', 'district'],
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident',
+                 'district'],
         },
         'Table_4': {
             'DlAirDmgPubProvince':
@@ -1700,35 +1702,6 @@ TABLE_PROPERTY_MAPPER = {
                 ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
         }
     },
-    # 'transport_summary': {
-    #     'Table_1': {
-    #         'DlGacPubProvince': ['damages'],
-    #         'DlGacPvtProvince': ['tot_damages_pvt'],
-    #         'DlYearsPubProvince': ['year_1', 'year_2'],
-    #         'DlOtherLosPvtDistrict': ['year_1_pvt', 'year_2_pub', ],
-    #         'DlAirDmgPubProvince': ['tot_destroyed_pub'],
-    #         'DlAirDmgPvtProvince': ['tot_destroyed_pvt'],
-    #         'DlAirLosProvince': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
-    #         'DlWaterDmgPubProvince': ['tot_dmg_public'],
-    #         'DlWaterDmgPvtProvince': ['tot_dmg_private'],
-    #         'DlWaterLosProvince': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
-    #         'TotDmgProvince': ['tot_damages'],
-    #     },
-    #     'Table_3': {
-    #         'DlGacPubNational': ['damages'],
-    #         'DlGacPvtNational': ['tot_damages_pvt'],
-    #         'DlOtherLosPvtNational': ['year_1_pvt', 'year_2_pub'],
-    #         'DlYearsPubNational': ['year_1', 'year_2'],
-    #         'TotDmgNational': ['tot_damages'],
-    #         'DlAirDmgPubNational': ['tot_destroyed_pub'],
-    #         'DlAirDmgPvtNational': ['tot_destroyed_pvt'],
-    #         'DlAirLosNational': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
-    #         'DlWaterDmgPubNational': ['tot_dmg_public'],
-    #         'DlWaterDmgPvtNational': ['tot_dmg_private'],
-    #         'DlWaterLosNational': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
-    #     }
-    #
-    # },
     'agri_agrarian': {
         'Table_1': {
             'BcagSeasonalCrops':
@@ -1757,26 +1730,278 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
             'BcagForestry':
                 ['forestry',
-                'avg_value',
-                'productn_pub',
-                'productn_pvt',
-                'productn_cost_nplanted',
-                'productn_cost_mstage',
-                'productn_cost_hstage',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+            'BcagOther':
+                ['other_products',
+                 'areas_cultivated',
+                 'avg_val_land',
+                 'num_families',
+                 'num_male',
+                 'num_female',
+                 'id'],
+        },
+        'Table_2': {
+            'BacfSeasonalCrops':
+                ['seasonal_crops',
+                 'avg_value',
+                 'productn_pub',
+                 'productn_pvt',
+                 'productn_cost_nplanted',
+                 'productn_cost_mstage',
+                 'productn_cost_hstage',
+                 'id'],
+            'BacfPlantnCrops':
+                ['plantn_crops',
+                 'avg_value',
+                 'productn_pub',
+                 'productn_pvt',
+                 'productn_cost_nplanted',
+                 'productn_cost_mstage',
+                 'productn_cost_hstage',
+                 'id'],
+            'BacfExportCrops':
+                ['export_crops',
+                 'avg_value',
+                 'productn_pub',
+                 'productn_pvt',
+                 'productn_cost_nplanted',
+                 'productn_cost_mstage',
+                 'productn_cost_hstage',
+                 'id'],
+            'BacfForestry':
+                ['forestry',
+                 'avg_value',
+                 'productn_pub',
+                 'productn_pvt',
+                 'productn_cost_nplanted',
+                 'productn_cost_mstage',
+                 'productn_cost_hstage',
                  'id'],
             'BacfOther':
                 ['other_products',
-                'avg_value',
-                'productn_pub',
-                'productn_pvt',
-                'productn_cost_nplanted',
-                'productn_cost_mstage',
-                'productn_cost_hstage',
+                 'avg_value',
+                 'productn_pub',
+                 'productn_pvt',
+                 'productn_cost_nplanted',
+                 'productn_cost_mstage',
+                 'productn_cost_hstage',
                  'id'],
+            'BacfFarmEquipment':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BacfStocks':
+                ['assets',
+                 'avg_value',
+                 'id'],
+
+        },
+        'Table_3': {
+            'BsoeStructure':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_wall',
+                 'avg_repair_roof',
+                 'avg_repair_flooring',
+                 'id'],
+            'BsoeOequipment':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+            'BsoeMachinery':
+                ['assets',
+                 'avg_replace_cost',
+                 'avg_repair_cost',
+                 'id'],
+
+        },
+        'Table_4': {
+            'DcpfFarmEquipment':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'num_dmg_pub',
+                 'num_dmg_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfSeasonalCrops':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfSeasonalCrops':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfExportCrops':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfForestry':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfOther':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfStocks':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'tot_dest_pub',
+                 'tot_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+
+        },
+        'Table_5': {
+            'DsorDestStructures':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'tot_dest_pub',
+                 'tot_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DsorDmgPubStructure':
+                ['assets',
+                 'num_part_dmg',
+                 'tot_dmg_roof',
+                 'tot_dmg_walls',
+                 'tot_dmg_floors',
+                 'damages',
+                 'id'],
+            'DsorDmgPvtStructures':
+                ['assets',
+                 'num_part_dmg',
+                 'tot_dmg_roof',
+                 'tot_dmg_walls',
+                 'tot_dmg_floors',
+                 'damages',
+                 'id'],
+            'DsorDmgPvtOequipment':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'num_dmg_pub',
+                 'num_dmg_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DsorDmgPvtMachinery':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'num_dmg_pub',
+                 'num_dmg_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+
+        },
+        'Table_6': {
+            'DildSeasonalCrops':
+                ['seasonal_crops',
+                 'new_plant_pub',
+                 'new_plant_pvt',
+                 'mid_stage_pub',
+                 'mid_stage_pvt',
+                 'harvest_stage_pub',
+                 'harvest_stage_pvt',
+                 'invest_los_pub',
+                 'invest_los_pvt',
+                 'id'],
+            'DildPlantnCrops':
+                ['plantn_crops',
+                 'new_plant_pub',
+                 'new_plant_pvt',
+                 'mid_stage_pub',
+                 'mid_stage_pvt',
+                 'harvest_stage_pub',
+                 'harvest_stage_pvt',
+                 'invest_los_pub',
+                 'invest_los_pvt',
+                 'id'],
+            'DildExportCrops':
+                ['export_crops',
+                 'new_plant_pub',
+                 'new_plant_pvt',
+                 'mid_stage_pub',
+                 'mid_stage_pvt',
+                 'harvest_stage_pub',
+                 'harvest_stage_pvt',
+                 'invest_los_pub',
+                 'invest_los_pvt',
+                 'id'],
+            'DildForestry':
+                ['forestry',
+                 'new_plant_pub',
+                 'new_plant_pvt',
+                 'mid_stage_pub',
+                 'mid_stage_pvt',
+                 'harvest_stage_pub',
+                 'harvest_stage_pvt',
+                 'invest_los_pub',
+                 'invest_los_pvt',
+                 'id'],
+
+        },
+        'Table_9': {
+            'DsorDmgLosProvince':
+                ['dmg_los_pub',
+                 'dmg_los_pvt',
+                ],
+            'DsorLosYear1Province':
+                ['dmg_los_pub',
+                 'dmg_los_pvt',
+                ],
+            'DsorLosYear2Province':
+                ['dmg_los_pub',
+                 'dmg_los_pvt',
+                ]
+
+        },
+        'Table_10': {
+            'DsorDmgLosNational':
+                ['dmg_los_pub',
+                 'dmg_los_pvt',
+                ],
+            'DsorLosYear1National':
+                ['dmg_los_pub',
+                 'dmg_los_pvt',
+                ],
+            'DsorLosYear2National':
+                ['dmg_los_pub',
+                 'dmg_los_pvt',
+                ]
         }
 
     },
-
 
 }
 

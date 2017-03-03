@@ -687,6 +687,9 @@ def dl_fetch_summary_disagtn(request):
         filter_fields_sessions = {'incident': incident, 'district__province': admin_area}
     else:
         filter_fields_sessions = {'incident': incident}
+        filter_fields_session = {'incident': incident, 'district__province': admin_area}
+    else:
+        filter_fields_session = {'incident': incident}
 
     i = 0
 
@@ -721,6 +724,9 @@ def dl_fetch_summary_disagtn(request):
         dl_sessions = dl_session_model.objects.filter(**filter_fields_sessions).distinct()
 
         for dl_session in dl_sessions_all:
+        dl_sessions = dl_session_model.objects.filter(**filter_fields_session).distinct()
+        print dl_mtable_data
+        for dl_session in dl_sessions:
 
             category_name = None
 

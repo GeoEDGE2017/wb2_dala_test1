@@ -91,9 +91,9 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
                          $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages : 0;
 
 
-        $scope.dPvtLosyear1 = $scope.dPvtLosyear1 +
-                         $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 ?
-                         $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 : 0;
+        $scope.dPvtLosyear1 = $scope.dPvtLosyear1 + ($scope.data.mining.Table_5.DloLosDistrict[$index] ?
+                         ($scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 ?
+                         $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 : 0) : 0) ;
 
         $scope.dPvtLosyear2 = $scope.dPvtLosyear2 +
                          $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 ?

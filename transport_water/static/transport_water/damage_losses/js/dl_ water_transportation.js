@@ -473,14 +473,13 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     }
 
   $scope.CalStruTot=function(arr){
-   console.log(arr);
+
     var finaltotal = 0;
 
     angular.forEach(arr, function(value, key) {
      if(value.tot_damages){
      finaltotal = finaltotal + value.tot_damages ;
-     console.log(value);
-     console.log(value.tot_damages);
+
      }
     })
 
@@ -547,7 +546,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     var array1 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
     var array2 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment;
     var array3 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials;
-//    var array4 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures;
+    var array4 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures;
     var array5 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings;
 
 
@@ -563,15 +562,14 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
      finaltotal3 = finaltotal3 + value.tot_dmg_public ;
     })
-//    angular.forEach(array4, function(value, key) {
-//
-//     finaltotal4 = finaltotal4 + tot_dmg_public ;
-//    })
+    angular.forEach(array4, function(value, key) {
+     finaltotal4 = finaltotal4 + value.tot_damages ;
+    })
     angular.forEach(array5, function(value, key) {
 
      finaltotal5 = finaltotal5 + value.tot_damages;
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal5;
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3  + finaltotal5;
 
     return grantot;
     }
@@ -595,7 +593,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     })
     angular.forEach(array2, function(value, key) {
 
-     finaltotal2 = finaltotal2 + value.tot_dmg_public ;
+     finaltotal2 = finaltotal2 + value.tot_dmg_private ;
     })
     angular.forEach(array3, function(value, key) {
 

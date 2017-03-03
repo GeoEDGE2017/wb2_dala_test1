@@ -13,7 +13,7 @@ app.controller("DlSummeryTLProController", ['$scope','$http',function ($scope,$h
     $scope.totalyear1pub = null;
     $scope.totalyear1pvt = null;
     $scope.totalyear2pub = null;
-    $scope.totalyear2vt = null;
+    $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
     // declaring total variables
@@ -82,7 +82,7 @@ app.controller("DlSummeryTLProController", ['$scope','$http',function ($scope,$h
 
  $scope.getTotal = function($index,key) {
 
-        $scope.finaltotalprivate = 0;
+         $scope.finaltotalprivate = 0;
 
          $scope.totaldpub = $scope.totaldpub +
                          $scope.dlLandTransSumPro.transport_land.Table_8[key].DlGacPubProvince[$index].damages ?

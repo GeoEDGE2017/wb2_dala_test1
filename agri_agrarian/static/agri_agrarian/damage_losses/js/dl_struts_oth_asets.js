@@ -198,7 +198,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsoeOequipment', 'BsoeMachinery'],
+                    'db_tables': ['BsoeOequipment', 'BsoeMachinery','BsoeStructure'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -288,7 +288,168 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            alert('Save Table 5');
+            $http({
+                method: 'POST',
+                url: '/dl_save_data',
+               contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlStrutsOthAsets,
+                    'com_data': {
+                       'district': $scope.district.district__id,
+                        'incident' : $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+               else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+
         }
     }
+
+    $scope.dlDataEdit = function(form){
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_5',
+    'sector':'agri_agrarian',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlStrutsOthAsets = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlStrutsOthAsets = init_data;
+}
+
+    $scope.calPubTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.dmg_pub ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calPvtTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.dmg_pvt ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calDamgTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.damages ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calGrandPubTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
+    var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructures;
+    var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
+    var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.dmg_pub ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.damages;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.dmg_pub ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.dmg_pub ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+    return grantot;
+    }
+
+    $scope.calGrandPvtTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
+    var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures;
+    var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
+    var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.dmg_pvt ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.damages;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.dmg_pvt ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.dmg_pvt ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+    return grantot;
+    }
+
+
+
+
+
 }]);

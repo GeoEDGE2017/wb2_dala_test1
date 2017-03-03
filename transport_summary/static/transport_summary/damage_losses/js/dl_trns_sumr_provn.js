@@ -21,8 +21,10 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
+
         if($scope.incident && selectProvinces) {
-//          fetchProvinces();
+
+         fetchProvinces();
         }
 
     }
@@ -30,6 +32,7 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
 
     function fetchProvinces()
     {
+
           $http({
             method: "POST",
             url: '/fetch_incident_provinces',
@@ -39,6 +42,7 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
             }).success(function(data) {
                 $scope.provinces = data;
                 $scope.province = "";
+                console.log(data);
 
             })
 
@@ -47,73 +51,107 @@ app.controller("DlSummeryTSProController", ['$scope','$http',function ($scope,$h
     $scope.fetchDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
-
             $http({
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':  ['Table_8','Table_4'],
-            'sector': ['transport_land','transport_air'],
+            'table_name':  ['Table_8','Table_4','Table_3','Table_3'],
+            'sector': ['transport_land','transport_air','transport_water','transport_rail'],
             'com_data': {
-                    'province': 1,
+                    'province': $scope.province,
                     'incident': $scope.incident,
                   },
                    }),
             }).success(function(data) {
 
-            console.log('load ', data);
+            angular.forEach(data, function(value, key) {
+             if(key == 'transport_land'){
+              console.log(value.Table_8);
+              angular.forEach(value.Table_8, function(value, key) {
+                 console.log('land',key);
+            });
+              }
+            });
 
             $scope.dlTransSumPro = data;
 
             })
+    }
+
+   $scope.convertToInt = function(val1,val2,val3){
+
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return sum;
+    }
+    $scope.convertTotal = function(val1,val2,val3,val4){
+
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
+        return sum;
+    }
+
+ $scope.getTotal = function($index,key) {
+
+        console.log(key);
+
+         $scope.finaltotalprivate = 0;
+
+         $scope.totaldpub =
+                         ( $scope.dlTransSumPro.transport_land.Table_8[key].DlGacPubProvince[$index].damages ?
+                         $scope.dlTransSumPro.transport_land.Table_8[key].DlGacPubProvince[$index].damages : 0) +
+                         ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirDmgPubProvince[$index].tot_destroyed_pub ?
+                         $scope.dlTransSumPro.transport_air.Table_4[key].DlAirDmgPubProvince[$index].tot_destroyed_pub : 0)+
+                         ($scope.dlTransSumPro.transport_water.Table_3[key].DlWaterDmgPubProvince[$index].tot_dmg_public ? +
+                         $scope.dlTransSumPro.transport_rail.Table_3[key].TotDmgProvince[$index].tot_damages : 0 );
+
+         $scope.totaldpvt =$scope.convertToInt(
+                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[$index].tot_damages_pvt ?
+                         $scope.dlTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[$index].tot_damages_pvt : 0 ),
+                         ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirDmgPvtProvince[$index].tot_destroyed_pvt ?
+                         $scope.dlTransSumPro.transport_air.Table_4[key].DlAirDmgPvtProvince[$index].tot_destroyed_pvt : 0),
+                         ($scope.dlTransSumPro.transport_water.Table_3[key].DlWaterDmgPvtProvince[$index].tot_dmg_private ?
+                         $scope.dlTransSumPro.transport_water.Table_3[key].DlWaterDmgPvtProvince[$index].tot_dmg_private : 0
+                         ));
+
+         $scope.totalyear1pub =
+                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_1 ?
+                         $scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_1 : 0)  +
+                         ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_1_pub ?
+                         $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_1_pub : 0) +
+                         ($scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_1_pub ?
+                         $scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_1_pub : 0 );
+
+
+         $scope.totalyear1pvt =
+                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt ?
+                         $scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt : 0) +
+                         ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_1_pvt ?
+                         $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_1_pvt : 0) +
+                         ($scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_1_pvt ?
+                         $scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_1_pvt : 0 )
+
+
+         $scope.totalyear2pub =
+                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_2 ?
+                         $scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_2 : 0 )+
+                         ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_2_pub ?
+                         $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_2_pub : 0) +
+                         ($scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_2_pub ?
+                         $scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_2_pub : 0);
+
+         $scope.totalyear2pvt =
+                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub ?
+                         $scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub : 0 )+
+                         ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_2_pvt ?
+                         $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[$index].year_2_pvt : 0) +
+                         ($scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_2_pvt ?
+                         $scope.dlTransSumPro.transport_water.Table_3[key].DlWaterLosProvince[$index].year_2_pvt : 0) ;
+
+         $scope.finaltotalpublic =$scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
+
+         $scope.finaltotalprivate =$scope.convertTotal($scope.finaltotalprivate , $scope.totaldpvt , $scope.totalyear1pvt ,$scope.totalyear2pvt);
+
 
     }
 
-//   $scope.convertToInt = function(val1,val2,val3){
-//
-//        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
-//        return sum;
-//    }
-//    $scope.convertTotal = function(val1,val2,val3,val4){
-//
-//        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
-//        return sum;
-//    }
-
-// $scope.getTotal = function($index,key) {
-//
-//        $scope.finaltotalprivate = 0;
-//
-//         $scope.totaldpub = $scope.totaldpub +
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlGacPubProvince[$index].damages ?
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlGacPubProvince[$index].damages : 0 ;
-//
-//         $scope.totaldpvt = $scope.totaldpvt +
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[$index].tot_damages_pvt ?
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[$index].tot_damages_pvt : 0 ;
-//
-//         $scope.totalyear1pub = $scope.totalyear1pub +
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_1 ?
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_1 : 0 ;
-//
-//         $scope.totalyear1pvt = $scope.totalyear1pvt +
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt ?
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_1_pvt : 0 ;
-//
-//         $scope.totalyear2pub = $scope.totalyear1pvt +
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_2 ?
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[$index].year_2 : 0 ;
-//
-//         $scope.totalyear2pvt = $scope.totalyear1pvt +
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub ?
-//                         $scope.dlLandTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[$index].year_2_pub : 0 ;
-//
-//
-//         $scope.finaltotalpublic =$scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
-//
-//         $scope.finaltotalprivate =$scope.convertTotal($scope.finaltotalprivate , $scope.totaldpvt , $scope.totalyear1pvt ,$scope.totalyear2pvt);
-//
-//
-//    }
 
  }])

@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSummeryTSNatApp" ng-controller="DlSummeryTSNatController">>
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -28,15 +28,25 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead" height="17">
-                        <td width="504" height="17" style="text-align:right;">
+                         <td class="trhead" width="130" colspan="3">
                             Incident
                         </td>
-                        <td colspan="8" width="504" height="17">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                        <td width="125" colspan="4">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
                             </select>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData()">Load
+                            </button>
                         </td>
                     </tr>
                     <tr class="trheadc" height="17">
@@ -96,9 +106,13 @@
                             Private
                         </td>
                     </tr>
-                    <tr class="trhead" height="17">
-                        <td class="trhead" width="197" height="17">
-                            Province 1
+                   
+                    <table class="table table-bordered">
+                        <tbody ng-repeat="(key1, value1) in dlTransSumNat.transport_land.Table_9">
+                        <!--<tr><td ng-bind="value.Table_9"></td></tr>-->
+                    <tr class="trhead" height="17" ng-init="getTotal($index,key1);" >
+                        <td ng-bind="key1" class="trhead" width="253" height="19">
+
                         </td>
                         <td width="63" height="17">
                             <br/>
@@ -124,184 +138,191 @@
                         <td width="63" height="17">
                             <br/>
                         </td>
+
                     </tr>
-                    <tr height="17">
+
+
+                      <tr height="17">
                         <td class="tdpa" width="197" height="17">
                             Land Transportation
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="value1.DlGacPubNational[0].damages">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="value1.DlGacPvtNational[0].tot_damages_pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="value1.DlYearsPubNational[0].year_1">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="value1.DlOtherLosPvtNational[0].year_1_pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="value1.DlYearsPubNational[0].year_2">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="value1.DlOtherLosPvtNational[0].year_2_pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"  ng-bind="value1.DlGacPubNational[0].damages + value1.DlYearsPubNational[0].year_1 + value1.DlYearsPubNational[0].year_2">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="convertToInt(value1.DlGacPvtNational[0].tot_damages_pvt,value1.DlOtherLosPvtNational[0].year_1_pvt , value1.DlOtherLosPvtNational[0].year_2_pub)">
+
                         </td>
                     </tr>
-                    <tr height="17">
+                        <tr height="17" ng-init="getTotal($index,key1);">
                         <td class="tdpa" width="197" height="17">
                             Air Transportation
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirDmgPubNational[0].tot_destroyed_pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirDmgPvtNational[0].tot_destroyed_pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_1_pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_1_pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_2_pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_2_pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirDmgPubNational[0].tot_destroyed_pub +dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_1_pub + dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_2_pub ">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_air.Table_5[key1].DlAirDmgPvtNational[0].tot_destroyed_pvt +dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_1_pvt + dlTransSumNat.transport_air.Table_5[key1].DlAirLosNational[0].year_2_pvt ">
+
                         </td>
                     </tr>
-                    <tr height="17">
+                         <tr height="17" ng-init="getTotal($index,key1);">
                         <td class="tdpa" width="197" height="17">
                             Water Transportation
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPubNational[0].tot_dmg_public">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPvtNational[0].tot_dmg_private">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPubNational[0].tot_dmg_public +dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pub + dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pub ">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPvtNational[0].tot_dmg_private + dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pvt + dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pvt">
+
                         </td>
                     </tr>
-                    <tr height="17">
+                    </tr>
+                         <tr height="17" ng-init="getTotal($index,key1);">
                         <td class="tdpa" width="197" height="17">
                             Rail Transportation
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_rail.Table_4[key1].TotDmgNational[0].tot_damages">
+
                         </td>
-                        <td class="tdpa" width="63" height="17">
-                            <br/>
+                        <td width="63" height="17" class="tdpa">
+
                         </td>
-                        <td class="tdpa" width="63" height="17">
-                            <br/>
+                        <td width="63" height="17" class="tdpa">
+
                         </td>
-                        <td class="tdpa" width="63" height="17">
-                            <br/>
+                        <td width="63" height="17"class="tdpa">
+
                         </td>
-                        <td class="tdpa" width="63" height="17">
-                            <br/>
+                        <td width="63" height="17" class="tdpa">
+
                         </td>
-                        <td class="tdpa" width="63" height="17">
-                            <br/>
+                        <td width="63" height="17" class="tdpa">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_rail.Table_4[key1].TotDmgNational[0].tot_damages">
+
                         </td>
-                        <td class="tdpa" width="63" height="17">
-                            <br/>
+                        <td width="63" height="17" class="tdpa">
+
                         </td>
-                    </tr>
+
                     <tr height="17">
-                        <td class="tdpa" width="197" height="17">
+                        <td class="boldash" width="197" height="17">
                             Total
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-model="totaldpub" ng-bind="totaldpub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="totaldpvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="totalyear1pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"  ng-bind="totalyear1pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="totalyear2pub">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="totalyear2pvt">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="finaltotalpublic">
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="finaltotalprivate">
+
                         </td>
                     </tr>
-                    <tr height="17">
-                        <td class="tdpa" width="197" height="17">
+
+
+                    </tbody>
+                         <tr height="17">
+                        <td class="boldash" width="197" height="17">
                             GRAND TOTAL
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                         <td width="63" height="17">
-                            -
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="17">
                         <td rowspan="2" width="197" height="34">
-                            PROVINCIAL SUMMARY
+                            NATIONAL SUMMARY
                         </td>
                         <td colspan="2" width="126" height="17">
                             Damages
@@ -318,26 +339,23 @@
                     </tr>
                     <tr height="17">
                         <td colspan="2" width="126" height="17">
-                            -
+
                         </td>
                         <td colspan="2" width="126" height="17">
-                            -
+
                         </td>
                         <td colspan="2" width="126" height="17">
-                            -
+
                         </td>
                         <td colspan="2" width="126" height="17">
-                            -
+
                         </td>
                     </tr>
-                    </tbody>
                 </table>
 
 
                 <div class="pull-right">
-                    <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
 
 

@@ -135,12 +135,15 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDestStructures.tot_dest_pvt">
                             </td>
-                            <td width="85" ng-bind="dsorDestStructures.dmg_pub">
-                                -
-                            </td>
-                            <td width="85" ng-bind="dsorDestStructures.dmg_pvt">
-                                -
-                            </td>
+
+                            <td width="85" ng-model="dsorDestStructures.dmg_pub"
+                             ng-bind="dsorDestStructures.dmg_pub =
+                                          dsorDestStructures.tot_dest_pub * bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
+                        </td>
+                           <td width="85" ng-model="dsorDestStructures.dmg_pvt"
+                             ng-bind="dsorDestStructures.dmg_pvt =
+                                          dsorDestStructures.tot_dest_pvt * bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
+                        </td>
                         </tr>
                         <tr height="19" ng-repeat="dsorDestStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures" ng-if="dsorDestStructures.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDestStructures.assets">
@@ -158,11 +161,11 @@
                             <td class="tdpa" colspan="2" ng-bind="dsorDestStructures.tot_dest_pvt">
 
                             </td>
-                            <td width="85" ng-bind="dsorDestStructures.dmg_pub">
-                                -
+                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
+
                             </td>
-                            <td width="85" ng-bind="dsorDestStructures.dmg_pvt">
-                                -
+                            <td width="85" ng-bind="calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
+
                             </td>
                         </tr>
                         </tbody>
@@ -241,9 +244,12 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPubStructure.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-bind="dsorDmgPubStructure.damages">
-                                -
-                            </td>
+                             <td colspan="2" width="170"  ng-model="dsorDmgPubStructure.damages"
+                             ng-bind="dsorDmgPubStructure.damages =
+                                     dsorDmgPubStructure.tot_dmg_roof * bs_data['BsoeStructure'][$index].fields.avg_repair_roof +
+                                     dsorDmgPubStructure.tot_dmg_walls * bs_data['BsoeStructure'][$index].fields.avg_repair_wall +
+                                     dsorDmgPubStructure.tot_dmg_floors * bs_data['BsoeStructure'][$index].fields.avg_repair_flooring ">
+                        </td>
                         </tr>
                         <tr height="19" ng-repeat="dsorDmgPubStructure in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure" ng-if="dsorDmgPubStructure.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPubStructure.assets">
@@ -256,8 +262,8 @@
                             </td>
                             <td class="tdpa" width="99" ng-bind="dsorDmgPubStructure.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-bind="dsorDmgPubStructure.damages">
-                                -
+                            <td colspan="2" width="170" ng-bind="calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure)">
+
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -309,9 +315,12 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPvtStructures.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-bind="dsorDmgPvtStructures.damages">
-                                -
-                            </td>
+                            <td colspan="2" width="170"  ng-model="dsorDmgPvtStructures.damages"
+                             ng-bind="dsorDmgPvtStructures.damages =
+                                     dsorDmgPvtStructures.tot_dmg_roof * bs_data['BsoeStructure'][$index].fields.avg_repair_roof +
+                                     dsorDmgPvtStructures.tot_dmg_walls * bs_data['BsoeStructure'][$index].fields.avg_repair_wall +
+                                     dsorDmgPvtStructures.tot_dmg_floors * bs_data['BsoeStructure'][$index].fields.avg_repair_flooring ">
+                        </td>
                         </tr>
                         <tr height="19" ng-repeat="dsorDmgPvtStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures" ng-if="dsorDmgPvtStructures.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtStructures.assets">
@@ -324,8 +333,8 @@
                             </td>
                             <td class="tdpa" width="99" ng-bind="dsorDmgPvtStructures.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-bind="dsorDmgPvtStructures.damages">
-                                -
+                            <td colspan="2" width="170" ng-bind="calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures)">
+
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -385,40 +394,19 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPvtOequipment.num_dmg_pvt">
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtOequipment.dmg_pub">
-                                -
-                            </td>
-                            <td width="85" ng-bind="dsorDmgPvtOequipment.dmg_pvt">
-                                -
-                            </td>
+
+                            <td width="85"  ng-model="dsorDmgPvtOequipment.dmg_pub"
+                             ng-bind="dsorDmgPvtOequipment.dmg_pub =
+                                     dsorDmgPvtOequipment.num_dest_pub * bs_data['BsoeOequipment'][$index].fields.avg_replace_cost +
+                                     dsorDmgPvtOequipment.num_dmg_pub * bs_data['BsoeOequipment'][$index].fields.avg_repair_cost">
+                        </td>
+                            <td width="85"  ng-model="dsorDmgPvtOequipment.dmg_pvt"
+                             ng-bind="dsorDmgPvtOequipment.dmg_pvt =
+                                     dsorDmgPvtOequipment.num_dest_pvt * bs_data['BsoeOequipment'][$index].fields.avg_replace_cost +
+                                     dsorDmgPvtOequipment.num_dmg_pvt * bs_data['BsoeOequipment'][$index].fields.avg_repair_cost">
+                        </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Others
-                            </td>
-                            <td width="148">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="121">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="85">
-                                -
-                            </td>
-                            <td width="85">
-                                -
-                            </td>
-                        </tr>
+
                         <!--Total-->
                         <tr height="19" ng-repeat="dsorDmgPvtOequipment in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment" ng-if="dsorDmgPvtOequipment.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtOequipment.assets">
@@ -431,11 +419,11 @@
                             </td>
                             <td class="tdpa" colspan="2" ng-model="dsorDmgPvtOequipment.num_dmg_pvt">
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtOequipment.dmg_pub">
-                                -
+                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
+
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtOequipment.dmg_pvt">
-                                -
+                            <td width="85" ng-bind="calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
+
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -475,40 +463,19 @@
                                 <input id="textinput" name="textinput" type="numbe" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPvtMachinery.num_dmg_pvt">
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtMachinery.dmg_pub">
-                                -
-                            </td>
-                            <td width="85" ng-bind="dsorDmgPvtMachinery.dmg_pvt">
-                                -
-                            </td>
+
+                            <td width="85"  ng-model="dsorDmgPvtMachinery.dmg_pub"
+                             ng-bind="dsorDmgPvtMachinery.dmg_pub =
+                                     dsorDmgPvtMachinery.num_dest_pub * bs_data['BsoeMachinery'][$index].fields.avg_replace_cost +
+                                     dsorDmgPvtMachinery.num_dmg_pub * bs_data['BsoeMachinery'][$index].fields.avg_repair_cost">
+                        </td>
+                          <td width="85"  ng-model="dsorDmgPvtMachinery.dmg_pvt"
+                             ng-bind="dsorDmgPvtMachinery.dmg_pvt =
+                                     dsorDmgPvtMachinery.num_dest_pvt * bs_data['BsoeMachinery'][$index].fields.avg_replace_cost +
+                                     dsorDmgPvtMachinery.num_dmg_pvt * bs_data['BsoeMachinery'][$index].fields.avg_repair_cost">
+                        </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Others
-                            </td>
-                            <td width="148">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="121">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="85">
-                                -
-                            </td>
-                            <td width="85">
-                                -
-                            </td>
-                        </tr>
+
                         <!--Total-->
                         <tr height="19" ng-repeat="dsorDmgPvtMachinery in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery" ng-if="dsorDmgPvtMachinery.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtMachinery.assets">
@@ -521,22 +488,22 @@
                             </td>
                             <td class="tdpa" colspan="2" ng-bind="dsorDmgPvtMachinery.num_dmg_pvt">
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtMachinery.dmg_pub">
-                                -
+                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
+
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtMachinery.dmg_pvt">
-                                -
+                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
+
                             </td>
                         </tr>
                         <!--GRAND TOTAL-->
                         <tr height="19" ng-repeat="dsorDmgPvtMachinery in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery" ng-if="dsorDmgPvtMachinery.assets == 'GRAND TOTAL'">
                             <td class="tdpa" colspan="7" width="963" height="19" ng-bind="dsorDmgPvtMachinery.assets">
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtMachinery.dmg_pub">
-                                -
+                            <td width="85" ng-bind="calGrandPubTotal()">
+
                             </td>
-                            <td width="85" ng-bind="dsorDmgPvtMachinery.dmg_pvt">
-                                -
+                            <td width="85" ng-bind="calGrandPvtTotal()">
+
                             </td>
                         </tr>
                         </tbody>
@@ -545,9 +512,16 @@
 
                     <br>
                     <div class="pull-right">
-                        <br>
                         <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_struts_oth_asets)">Submit</button>
+                    <button type="button" ng-click="dlDataEdit(form_dl_struts_oth_asets)" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_struts_oth_asets)"
+                    class="btn btn-success">Submit
+                    </button>
                     </div>
                 </div>
 

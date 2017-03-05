@@ -76,6 +76,9 @@ INSTALLED_APPS = [
     'agri_irrigation',
     'agri_irrigation.base_line',
     'agri_irrigation.damage_losses',
+    'agri_livestock',
+    'agri_livestock.base_line',
+    'agri_livestock.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -118,7 +121,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian,agri_irrigation,agri_livestock'
+        # },
+        # 'OPTIONS': {
+        #     'options': '-c search_path=agri_agrarian'
         # },
         'NAME': 'dala',
         'USER': 'postgres',
@@ -1272,6 +1278,13 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_3': {
+            'DlAstWaterWcraftsDistrict': ['tot_dmg_private', 'tot_dmg_public', 'incident', 'district'],
+            'DlWaterDmgEquipmentDistrict': ['tot_dmg_private', 'tot_dmg_public', 'incident', 'district'],
+            'DlWaterDmgMaterialsDistrict': ['tot_dmg_private', 'tot_dmg_public', 'incident', 'district'],
+            'DlWaterDmgStructuresDistrict': ['tot_damages', 'incident', 'district'],
+            'DlWaterDmgBuildingsDistrict': ['tot_damages', 'incident', 'district'],
+        },
+        'Table_4': {
             'DlWaterDmgPubProvince':
                 ['tot_dmg_public'],
             'DlWaterDmgPvtProvince':
@@ -1283,7 +1296,7 @@ TABLE_PROPERTY_MAPPER = {
                  'year_2_pvt'],
 
         },
-        'Table_4': {
+        'Table_5': {
             'DlWaterDmgPubNational':
                 ['tot_dmg_public'],
             'DlWaterDmgPvtNational':
@@ -1542,7 +1555,12 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
             'DlGacPubDistrict':
                 ['damages', 'incident', 'district'],
-
+            'DlOtherLosPubDistrict':
+                ['year_1_pub', 'year_2_pub', 'incident', 'district'],
+            'DlOtherLosPvtDistrict':
+                ['year_1_pvt', 'year_2_pub', 'incident', 'district'],
+            'DlGacLosTypeDistrict':
+                ['los_year_1', 'los_year_2', 'incident', 'district'],
         },
         'Table_6': {
             'DlGacDmgStructures':
@@ -1682,11 +1700,12 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_dmg_pub', 'tot_dmg_pvt', 'incident', 'district'],
             'DlAirDmgOthersDistrict':
                 ['tot_dmg_pub', 'incident', 'district'],
-
             'DlAirLosFiDistrict':
-                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident', 'district'],
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident',
+                 'district'],
             'DlAirLosHocDistrict':
-                ['tot_dmg_pub', 'incident', 'district'],
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident',
+                 'district'],
         },
         'Table_4': {
             'DlAirDmgPubProvince':
@@ -1734,8 +1753,85 @@ TABLE_PROPERTY_MAPPER = {
     #     }
     #
     # },
+    'agri_agrarian': {
+        'Table_8': {
+            'DsorDmgPubStrusturesDistrict':
+                ['damages', 'incident', 'district'],
+            'DsorDmgPvtStrusturesDistrict':
+                ['damages', 'incident', 'district'],
+            'DsorDmgPvtOequipmentDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DsorDmgPvtMachineryDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfFarmEquipmentDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfStocksDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
 
+            'DcpfSeasonalCropsDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfPlantnCropsDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfExportCropsDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfForestryDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfOtherDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
 
+            'DildSeasonalCropsDistrict':
+                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldySeasonalCropsDistrict':
+                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'DildPlantnCropsDistrict':
+                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldyPlantnCropsDistrict':
+                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'DildExportCropsDistrict':
+                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldyExportCropsDistrict':
+                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'DildForestryDistrict':
+                ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
+            'PldyForestryDistrict':
+                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+            'PldyOtherDistrict':
+                ['prod_year_1_pub', 'prod_year_1_pvt', 'prod_year_2_pub', 'prod_year_2_pvt', 'incident', 'district'],
+
+            'PldyOtherLosDistrict':
+                ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'incident', 'district'],
+        }
+    },
+    'agri_irrigation': {
+        'Table_4': {
+            'DlMajorTanksDistrict':
+                ['damages', 'incident', 'district'],
+            'DlLosMajorTanksDistrict':
+                ['total_los', 'incident', 'district'],
+            'DlMediumTanksDistrict':
+                ['damages', 'incident', 'district'],
+            'DlLosMediumTanksDistrict':
+                ['total_los', 'incident', 'district'],
+            'DlMinorTanksDistrict':
+                ['damages', 'incident', 'district'],
+            'DlLosMinorTanksDistrict':
+                ['total_los', 'incident', 'district'],
+            'DlAnicutsDistrict':
+                ['damages', 'incident', 'district'],
+            'DlLosAnicutsDistrict':
+                ['total_los', 'incident', 'district'],
+            'DlOtherStructuresDistrict':
+                ['damages', 'incident', 'district'],
+            'DlLosOtherDistrict':
+                ['total_los', 'irrigation_assets', 'incident', 'district'],
+            'DlRiverRmbankmntDistrict':
+                ['damages', 'incident', 'district'],
+            # dl_los_other_district
+            'DlBuildingsDistrict':
+                ['damages', 'incident', 'district'],
+            # dl_los_other_district
+        }
+    },
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

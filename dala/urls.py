@@ -45,6 +45,9 @@ urlpatterns = [
     # agri_agrarian
     url(r'^agri_agrarian/', include('agri_agrarian.urls', namespace='agri_agrarian')),
 
+    # agri_livestock
+    url(r'^agri_livestock/', include('agri_livestock.urls', namespace='agri_livestock')),
+
     # # transport_summary
     # url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
 

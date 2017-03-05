@@ -1,7 +1,7 @@
-//Table 8
-var app = angular.module('dlSumAgrarianDstrApp', [])
+//Table_3
+var bsHealthStatusApp = angular.module('dlSumTransWaterDstApp', ['ui.bootstrap', 'popoverToggle']);
 
-app.controller('dlSumAgrarianDstrController', ['$scope', '$http', function($scope, $http) {
+bsHealthStatusApp.controller('dlSumTransWaterDstController', function DlEduDistrictController($scope, $http) {
 
     $scope.dlEduDistrict;
     $scope.total;
@@ -39,8 +39,8 @@ app.controller('dlSumAgrarianDstrController', ['$scope', '$http', function($scop
                 method: "POST",
                 url: '/dl_fetch_total_data',
                 data: angular.toJson({
-                    'table_name': 'Table_8',
-                    'sector':'agri_agrarian',
+                    'table_name': 'Table_3',
+                    'sector':'transport_water',
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -53,4 +53,4 @@ app.controller('dlSumAgrarianDstrController', ['$scope', '$http', function($scop
             })
         }
     }
-}]);
+})

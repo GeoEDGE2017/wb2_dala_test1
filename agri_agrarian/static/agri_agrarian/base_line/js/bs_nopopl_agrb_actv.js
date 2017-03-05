@@ -85,7 +85,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
                     num_female : null
                 }],
                 'BcagForestry': [{
-                    export_crops : 'Timber',
+                    forestry : 'Timber',
                     areas_cultivated : null,
                     avg_val_land : null,
                     num_families : null,

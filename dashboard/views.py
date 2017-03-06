@@ -26,3 +26,24 @@ def othergov_main(request):
 @permission_required("district", "Education")	
 def education_main(request):   
     return render(request, 'dashboard/education_main.html')
+    
+@permission_required("district", "Transport Air")	
+def transport_air_main(request):   
+    return render(request, 'dashboard/transport_air_main.html')
+    
+@permission_required("district", "Transport Land")	
+def transport_land_main(request):   
+    return render(request, 'dashboard/transport_land_main.html')
+    
+@permission_required("district", "Transport Rail")	
+def transport_rail_main(request):   
+    return render(request, 'dashboard/transport_rail_main.html')
+    
+    
+@permission_required("district", "Transport Water")	
+def transport_water_main(request):   
+    return render(request, 'dashboard/transport_water_main.html')
+    
+    
+    
+    

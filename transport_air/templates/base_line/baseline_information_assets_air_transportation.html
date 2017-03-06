@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
+  });
+</script>
+
 <!-- Main content -->
 <main class="main" ng-app="bsInfoAsetTransApp" ng-controller="bsInfoAsetTransController">
     <!-- Breadcrumb -->
@@ -10,13 +18,13 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline information on the assets in the air transportation sub-sector</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on the Assets in the Air Transportation Sub-sector</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_info_aset_trns">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Structures</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Structures</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -34,21 +42,23 @@
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_info_aset_trns.district.$error.required">
                                 Please select District
                             </span>
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_info_aset_trns.baselineDate.$error.required">
-                                Please select Date
+                                Please Select Date
                             </span>
                         </td>
                     </tr>
                     <tr class="trhead" height="19">
-                        <td height="19" width="218">
+                        <td height="19" width="218" style="padding:5px;">
                             Name of District:
                         </td>
                         <td colspan="3" height="19" width="378">
@@ -59,15 +69,15 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td colspan="2">
-                            Year/Month
+                        <td colspan="2" style="padding:5px;">
+                            Year/Month:
                         </td>
                         <td colspan="2">
-                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
                     <tr class="trheadc" height="34">
-                        <td rowspan="2" height="53" width="218">
+                        <td rowspan="2" height="53" width="218" style="width:36.5%;">
                             Assets
                         </td>
                         <td colspan="2" height="34" width="126">
@@ -81,30 +91,45 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td height="19" width="63">
+                        <td height="19" width="63" style="width:10.8%;">
                             Public
                         </td>
-                        <td height="19" width="63">
+                        <td height="19" width="63" style="width:10.5%;">
                             Private
                         </td>
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="2" height="19" width="126" style="width:21.2%;">
                             (LKR/Unit)
                         </td>
                         <td colspan="2" height="19" width="126">
                             (LKR/Unit)
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+                     
+                    <div id="boxscroll1" style="max-height:400px;overflow:auto;">
+                    <table class="table table-bordered">
+                    <colgroup>
+                        <col width="218"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
                     <tr class="trheadc" height="19">
-                        <td height="19" width="218">
+                        <td height="19" width="218" style="width:36.5%;">
                             Aircrafts
                         </td>
-                        <td height="19" width="63">
+                        <td height="19" width="63" style="width:10.8%;">
                             <br/>
                         </td>
-                        <td height="19" width="63">
+                        <td height="19" width="63" style="width:10.5%;">
                             <br/>
                         </td>
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="2" height="19" width="126" style="width:21.2%;">
                             <br/>
                         </td>
                         <td colspan="2" height="19" width="126">
@@ -112,7 +137,7 @@
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="bsAstAirAircrafts in bsInfoAsetTrans.transport_air.Table_1.BsAstAirAircrafts">
-                        <td class="tdpa" height="19" width="218" ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 2">
+                        <td class="tdpa" height="19" width="218"  ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 2">
                         </td>
                         <td width="98" ng-if="$index > 1">
                             {% verbatim %}
@@ -216,7 +241,7 @@
                     </tr>
                     <tr class="trheadc" height="19">
                         <td height="19" width="218">
-                            Materials and supplies
+                            Materials and Supplies
                         </td>
                         <td colspan="3" height="19" width="189">
                             (LKR/Unit)
@@ -289,8 +314,9 @@
                     </tr>
                     </tbody>
                 </table>
+                </div>
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Structures Informations</a>
                 <br>
             </div>
@@ -310,13 +336,13 @@
                     </tr>
                     <tr class="trsubc" height="34">
                         <td height="34" width="63">
-                            1 floor
+                            1 Floor
                         </td>
                         <td height="34" width="63">
-                            2-3 floors
+                            2-3 Floors
                         </td>
                         <td height="34" width="63">
-                            More than 3 floors
+                            More Than 3 Floors
                         </td>
                         <td height="34" width="63">
                             Roof

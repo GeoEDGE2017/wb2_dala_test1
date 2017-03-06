@@ -23,6 +23,7 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
     $scope.fetchDlData = function(){
         $scope.is_edit = true;
         $scope.submitted = true;
+        if(form.$valid) {
         console.log($scope.incident);
             $http({
             method: "POST",
@@ -40,7 +41,7 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
             $scope.dlWaterTransSumNat = data;
 
             })
-
+        }
     }
 
  $scope.getTotal = function($index,key) {

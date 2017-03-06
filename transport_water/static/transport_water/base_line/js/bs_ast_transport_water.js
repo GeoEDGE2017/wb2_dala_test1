@@ -4,6 +4,7 @@ var bsAstTransWaterApp = angular.module('bsAstTransWaterApp', ['ui.bootstrap', '
 bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWaterController($scope, $http) {
 
 $scope.district;
+$scope.baselineDate;
 $scope.bs_date;
 $scope.is_edit = false;
 $scope.submitted = false;
@@ -195,6 +196,7 @@ else if(table == 'BsAstWaterStructures'){
 $scope.saveBsData = function()
 {
 $scope.submitted = true;
+if (form.$valid) {
 console.log($scope.district + '-' + $scope.bs_date );
  $http({
     method: "POST",
@@ -216,6 +218,7 @@ console.log($scope.district + '-' + $scope.bs_date );
       $("#modal-container-239453").modal('show');
 
  })
+ }
 
 }
 

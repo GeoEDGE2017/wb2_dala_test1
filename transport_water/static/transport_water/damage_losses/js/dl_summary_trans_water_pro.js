@@ -48,7 +48,7 @@ app.controller("DlSummeryTWProController", ['$scope','$http',function ($scope,$h
     $scope.fetchDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
-
+        if(form.$valid) {
             $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
@@ -67,6 +67,7 @@ app.controller("DlSummeryTWProController", ['$scope','$http',function ($scope,$h
             $scope.dlWaterTransSumPro = data;
 
             })
+        }
 
     }
 

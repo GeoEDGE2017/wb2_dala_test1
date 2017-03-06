@@ -85,4 +85,31 @@ def dl_sum_agrarian_dstr(request):
     return render(request, 'damage_losses/summary_damages_losses_agrarian_sub-sector_district.html', context)
 
 
+def dl_sum_agrarian_prov(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents
+    }
+
+    return render(request, 'damage_losses/summary_damages_losses_agrarian_sub-sector_province.html', context)
+
+
+def dl_sum_agrarian_nat(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents
+    }
+
+    return render(request, 'damage_losses/summary_damages_losses_agrarian_sub-sector_nationwide.html', context)
+
 

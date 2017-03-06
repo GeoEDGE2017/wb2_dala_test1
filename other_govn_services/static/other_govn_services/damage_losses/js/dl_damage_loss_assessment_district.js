@@ -10,35 +10,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
     $scope.submitted = false;
     $scope.Districts=[];
 
-    var init_data = {
-        'other_govn_services': {
-            'Table_2': {
-                'DladAowshipDgovn': [{
-                    asset_owship : '1 Floor Structure',
-                    damages : null,
-                    los_year1 : null,
-                    los_year2 : null,
-                    total : null,
-                }],
-                'DladAowshipPgovn': [{
-                    asset_owship : '1 Floor Structure',
-                    damages : null,
-                    los_year1 : null,
-                    los_year2 : null,
-                    total : null,
-                }],
-                'DladAowshipMoagency': [{
-                    asset_owship : '1 Floor Structure',
-                    damages : null,
-                    los_year1 : null,
-                    los_year2 : null,
-                    total : null,
-                }]
-            }
-        }
-    }
-
-    $scope.dlAssessmentDistrictSys = init_data;
+    $scope.dlAssessmentDistrictSys = null;
 
     $scope.insertAsset = function(table) {
         console.log($scope.dlAssessmentDistrictSys.other_govn_services.Table_2[table]);

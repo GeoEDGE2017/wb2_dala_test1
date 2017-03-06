@@ -18,6 +18,21 @@ class DlSessionKeys(models.Model):
 
 
 # Table 4
+
+class DlSessionKeys(models.Model):
+    data_type = models.CharField(max_length=120, blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    user = models.IntegerField(blank=True, null=True)
+    table_name = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='ag_dl_province', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='ag_dl_district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dl_session_keys'
+
+
 class DcpfFarmEquipment(models.Model):
     assets = models.CharField(max_length=255, blank=True, null=True)
     num_dest_pub = models.BigIntegerField(blank=True, null=True)
@@ -719,41 +734,69 @@ class PldyOtherLosDistrict(models.Model):
         db_table = 'agri_agrarian\".\"pldy_other_los_district'
 
 
+# Table 9
+class DsorDmgLosProvince(models.Model):
+    dmg_los_pub = models.CharField(max_length=255, blank=True, null=True)
+    dmg_los_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_los_province'
 
 
+class DsorLosYear1Province(models.Model):
+    dmg_los_pub = models.CharField(max_length=255, blank=True, null=True)
+    dmg_los_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_los_year1_province'
 
 
+class DsorLosYear2Province(models.Model):
+    dmg_los_pub = models.CharField(max_length=255, blank=True, null=True)
+    dmg_los_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_los_year2_province'
+
+# Tbale 10
+
+class DsorDmgLosNational(models.Model):
+    dmg_los_pub = models.CharField(max_length=255, blank=True, null=True)
+    dmg_los_pvt = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_los_national'
 
 
+class DsorLosYear1National(models.Model):
+    dmg_los_pub = models.CharField(max_length=255, blank=True, null=True)
+    dmg_los_pvt = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_los_year1_national'
 
 
+class DsorLosYear2National(models.Model):
+    dmg_los_pub = models.CharField(max_length=255, blank=True, null=True)
+    dmg_los_pvt = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_los_year2_national'

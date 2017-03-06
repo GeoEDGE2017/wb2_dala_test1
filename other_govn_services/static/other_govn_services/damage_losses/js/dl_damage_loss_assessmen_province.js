@@ -8,9 +8,27 @@ app.controller("dlAssessmenProvinceController", function ($scope,$http, _) {
     $scope.dl_data={};
     $scope.is_edit = false;
     $scope.submitted = false;
-    $scope.Districts=[];
+    $scope.province;
 
     $scope.dlAssessmenProvinceSys = null;
+
+ $scope.changedValue = function getDlData() {
+
+        if ($scope.incident) {
+
+           $http({
+            method: "POST",
+            url: '/fetch_incident_provinces',
+            data: angular.toJson({
+                    'incident': $scope.incident
+                   }),
+            }).success(function(data) {
+                $scope.provinces = data;
+                $scope.province = "";
+
+            })
+        }
+    }
 
 $scope.fetchDlData = function(){
     $http({
@@ -20,15 +38,13 @@ $scope.fetchDlData = function(){
     'table_name':  'Table_4',
     'sector': 'other_govn_services',
     'com_data': {
-            'province': 1,
-            'incident': 9,
+            'province': $scope.province.district__province_id,
+            'incident': $scope.incident,
           },
            }),
     }).success(function(data) {
 
-    console.log('load ', data);
     $scope.dlAssessmenProvinceSys = data;
-
 
 })
 }

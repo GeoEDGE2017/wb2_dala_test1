@@ -35,12 +35,13 @@ urlpatterns = [
     url(r'^dl_get_data$', views.dl_get_data, name='dl_get_data'),
     url(r'^dl_fetch_edit_data$', views.dl_fetch_edit_data, name='dl_fetch_edit_data'),
     url(r'^dl_fetch_district_disagtn$', views.dl_fetch_district_disagtn, name='dl_fetch_district_disagtn'),
+    url(r'^dl_fetch_summary_disagtn$', views.dl_fetch_summary_disagtn, name='dl_fetch_summary_disagtn'),
 
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
 
     # agri_irrigation
-    url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),
+    # url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),
 
     # agri_agrarian
     url(r'^agri_agrarian/', include('agri_agrarian.urls', namespace='agri_agrarian')),
@@ -59,6 +60,7 @@ urlpatterns = [
     url(r'^bs_mining_fetch_edit_data$', views.bs_mining_fetch_edit_data, name='bs_mining_fetch_edit_data'),
     url(r'^dl_fetch_district_disagtn$', views.dl_fetch_district_disagtn, name='dl_fetch_district_disagtn'),
     url(r'^dl_fetch_total_data$', views.dl_fetch_total_data, name='dl_fetch_total_data'),
+    url(r'^dl_fetch_summary_disagtn$', views.dl_fetch_summary_disagtn, name='dl_fetch_summary_disagtn'),
 
     # transport_rail
     url(r'^transport_rail/', include('transport_rail.urls', namespace='transport_rail')),
@@ -72,12 +74,8 @@ urlpatterns = [
     # transport_air
     url(r'^transport_air/', include('transport_air.urls', namespace='transport_air')),
 
-
-    # # transport_air
-    # url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
-
-
-
+    # transport_summary
+    url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
 
 
 ]

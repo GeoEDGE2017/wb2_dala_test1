@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSummeryAgProApp" ng-controller="DlSummeryAgProController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -28,25 +28,38 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead" height="20">
-                        <td width="249" height="20">
-                            Name of Province:
-                        </td>
-                        <td colspan="6" width="714">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
-                            </select>
-                        </td>
-                        <td width="85">
+                        <td class="trhead" width="130" colspan="2">
                             Incident
                         </td>
-                        <td width="85">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                        <td width="125" colspan="2">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
                             </select>
+                        </td>
+                        <td class="trhead" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170" colspan="2">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData(health_summery_damageloss_province)">Load
+                            </button>
                         </td>
                     </tr>
                     <tr class="trheadc" height="20">
@@ -100,94 +113,77 @@
                             Private
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="249" height="20">
-                            District 1
-                        </td>
-                        <td width="148">
-                            -
-                        </td>
-                        <td width="121">
-                            -
-                        </td>
-                        <td width="117">
-                            -
-                        </td>
-                        <td width="117">
-                            -
-                        </td>
-                        <td width="112">
-                            -
-                        </td>
-                        <td width="99">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="249" height="20">
-                            District N
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="249" height="20">
-                            GRAND TOTAL
-                        </td>
-                        <td width="148">
-                            -
-                        </td>
-                        <td width="121">
-                            -
-                        </td>
-                        <td width="117">
-                            -
-                        </td>
-                        <td width="117">
-                            -
-                        </td>
-                        <td width="112">
-                            -
-                        </td>
-                        <td width="99">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
+
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+                     <table ng-repeat="(key, value) in dlAgriAgrarianPro.agri_agrarian.Table_9"
+                           class="table table-bordered">
+                        <tbody>
+                        <tr  height="20" ng-init="getTotal($index,key);">
+
+                        <td ng-bind="key" class="tdpa" width="253" height="19">
+
+                        </td>
+                        <td width="147" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub">
+
+                        </td>
+                        <td width="151" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt">
+
+                        </td>
+                        <td width="165" ng-bind="value.DsorLosYear1Province[0].dmg_los_pub">
+
+                        </td>
+                        <td width="170" ng-bind="value.DsorLosYear1Province[0].dmg_los_pvt">
+
+                        </td>
+                        <td width="135" ng-bind="value.DsorLosYear2Province[0].dmg_los_pub">
+
+                        </td>
+                        <td width="133" ng-bind="value.DsorLosYear2Province[0].dmg_los_pvt">
+
+                        </td>
+                        <td width="126" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub + value.DsorLosYear1Province[0].dmg_los_pub + value.DsorLosYear2Province[0].dmg_los_pub ">
+
+                        </td>
+                        <td width="85" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt + value.DsorLosYear1Province[0].dmg_los_pvt + value.DsorLosYear2Province[0].dmg_los_pvt ">
+
+                        </td>
+
+                        </tr>
+                        <tr height="19">
+                        <td class="boldash" width="253" height="19">
+                            GRAND TOTAL
+                        </td>
+                        <td width="147" ng-bind="totaldpub">
+
+                        </td>
+                        <td width="151" ng-bind="totaldpvt"  >
+
+                        </td>
+                        <td width="165" ng-bind="totalyear1pub"  >
+
+                        </td>
+                        <td width="170"  ng-bind="totalyear1pvt"  >
+
+                        </td>
+                        <td width="135" ng-bind="totalyear2pub"  >
+
+                        </td>
+                        <td width="133" ng-bind="totalyear2pvt"  >
+
+                        </td>
+                        <td width="126" ng-bind="finaltotalpublic">
+
+                        </td>
+                        <td width="85" ng-bind="finaltotalprivate">
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>

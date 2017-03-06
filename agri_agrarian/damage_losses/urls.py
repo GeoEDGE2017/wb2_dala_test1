@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^dl_struts_oth_asets', views.dl_struts_oth_asets, name='dl_struts_oth_asets'),
     url(r'^dl_invsmnt_los', views.dl_invsmnt_los, name='dl_invsmnt_los'),
     url(r'^dl_prdctn_los', views.dl_prdctn_los, name='dl_prdctn_los'),
-
     url(r'^dl_sum_agrarian_dstr', views.dl_sum_agrarian_dstr, name='dl_sum_agrarian_dstr'),
+    url(r'^dl_sum_agrarian_prov', views.dl_sum_agrarian_prov, name='dl_sum_agrarian_prov'),
+    url(r'^dl_sum_agrarian_nat', views.dl_sum_agrarian_nat, name='dl_sum_agrarian_nat'),
 ]

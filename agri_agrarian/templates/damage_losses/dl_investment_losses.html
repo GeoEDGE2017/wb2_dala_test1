@@ -176,51 +176,24 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dildSeasonalCrops.harvest_stage_pvt">
                         </td>
-                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pub">
-                            -
+
+                        <td width="85" ng-model="dildSeasonalCrops.invest_los_pub"
+                             ng-bind="dildSeasonalCrops.invest_los_pub =
+                                          dildSeasonalCrops.new_plant_pub * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_nplanted+
+                                          dildSeasonalCrops.mid_stage_pub * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_mstage +
+                                          dildSeasonalCrops.harvest_stage_pub * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_hstage">
                         </td>
-                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pvt">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="249" height="19">
-                            Other seasonal crops
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="112">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="99">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
+                        <td width="85" ng-model="dildSeasonalCrops.invest_los_pvt"
+                             ng-bind="dildSeasonalCrops.invest_los_pvt =
+                                          dildSeasonalCrops.new_plant_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_nplanted+
+                                          dildSeasonalCrops.mid_stage_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_mstage +
+                                          dildSeasonalCrops.harvest_stage_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_hstage">
                         </td>
                     </tr>
+
                     <!--Total-->
                     <tr height="19" ng-repeat="dildSeasonalCrops in dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops" ng-if="dildSeasonalCrops.seasonal_crops == 'Total'">
-                        <td class="tdpa" width="249" height="19" ng-bind="dildSeasonalCrops.seasonal_crops">
+                        <td class="boldash" width="249" height="19" ng-bind="dildSeasonalCrops.seasonal_crops">
                         </td>
                         <td class="tdpa" width="148" ng-bind="dildSeasonalCrops.new_plant_pub">
                         </td>
@@ -234,11 +207,11 @@
                         </td>
                         <td class="tdpa" width="99" ng-bind="dildSeasonalCrops.harvest_stage_pvt">
                         </td>
-                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pub">
-                            -
+                        <td width="85" ng-bind="calPubTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops)">
+
                         </td>
-                        <td width="85" ng-bind="dildSeasonalCrops.invest_los_pvt">
-                            -
+                        <td width="85" ng-bind="calPvtTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops)">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -290,51 +263,23 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dildPlantnCrops.harvest_stage_pvt">
                         </td>
-                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pub">
-                            -
+                        <td width="85" ng-model="dildPlantnCrops.invest_los_pub"
+                             ng-bind="dildPlantnCrops.invest_los_pub =
+                                          dildPlantnCrops.new_plant_pub * bs_data['BacfPlantnCrops'][$index].fields.productn_cost_nplanted+
+                                          dildPlantnCrops.mid_stage_pub * bs_data['BacfPlantnCrops'][$index].fields.productn_cost_mstage +
+                                          dildPlantnCrops.harvest_stage_pub * bs_data['BacfPlantnCrops'][$index].fields.productn_cost_hstage">
                         </td>
-                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pvt">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" width="249" height="19">
-                            Other plantation crops
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="112">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="99">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
+                        <td width="85" ng-model="dildPlantnCrops.invest_los_pvt"
+                             ng-bind="dildPlantnCrops.invest_los_pvt =
+                                          dildPlantnCrops.new_plant_pvt * bs_data['BacfPlantnCrops'][$index].fields.productn_cost_nplanted+
+                                          dildPlantnCrops.mid_stage_pvt * bs_data['BacfPlantnCrops'][$index].fields.productn_cost_mstage +
+                                          dildPlantnCrops.harvest_stage_pvt * bs_data['BacfPlantnCrops'][$index].fields.productn_cost_hstage">
                         </td>
                     </tr>
+
                     <!--Total-->
                     <tr height="19" ng-repeat="dildPlantnCrops in dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops" ng-if="dildPlantnCrops.plantn_crops == 'Total'">
-                        <td class="tdpa" width="249" height="19" ng-bind="dildPlantnCrops.plantn_crops">
+                        <td class="boldash" width="249" height="19" ng-bind="dildPlantnCrops.plantn_crops">
                         </td>
                         <td class="tdpa" width="148" ng-bind="dildPlantnCrops.new_plant_pub">
                         </td>
@@ -348,11 +293,11 @@
                         </td>
                         <td class="tdpa" width="99" ng-bind="dildPlantnCrops.harvest_stage_pvt">
                         </td>
-                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pub">
-                            -
+                        <td width="85" ng-bind="calPubTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops)">
+
                         </td>
-                        <td width="85" ng-bind="dildPlantnCrops.invest_los_pvt">
-                            -
+                        <td width="85" ng-bind="calPvtTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops)">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -404,16 +349,22 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dildExportCrops.harvest_stage_pvt">
                         </td>
-                        <td width="85" ng-bind="dildExportCrops.invest_los_pub">
-                            -
+                        <td width="85" ng-model="dildExportCrops.invest_los_pub"
+                             ng-bind="dildExportCrops.invest_los_pub =
+                                          dildExportCrops.new_plant_pub * bs_data['BacfExportCrops'][$index].fields.productn_cost_nplanted+
+                                          dildExportCrops.mid_stage_pub * bs_data['BacfExportCrops'][$index].fields.productn_cost_mstage +
+                                          dildExportCrops.harvest_stage_pub * bs_data['BacfExportCrops'][$index].fields.productn_cost_hstage">
                         </td>
-                        <td width="85" ng-bind="dildExportCrops.invest_los_pvt">
-                            -
+                        <td width="85" ng-model="dildExportCrops.invest_los_pvt"
+                             ng-bind="dildExportCrops.invest_los_pvt =
+                                          dildExportCrops.new_plant_pvt * bs_data['BacfExportCrops'][$index].fields.productn_cost_nplanted+
+                                          dildExportCrops.mid_stage_pvt * bs_data['BacfExportCrops'][$index].fields.productn_cost_mstage +
+                                          dildExportCrops.harvest_stage_pvt * bs_data['BacfExportCrops'][$index].fields.productn_cost_hstage">
                         </td>
                     </tr>
                     <!--Total-->
                     <tr height="19" ng-repeat="dildExportCrops in dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops" ng-if="dildExportCrops.export_crops == 'Total'">
-                        <td class="tdpa" width="249" height="19" ng-bind="dildExportCrops.export_crops">
+                        <td class="boldash" width="249" height="19" ng-bind="dildExportCrops.export_crops">
                         </td>
                         <td class="tdpa" width="148" ng-bind="dildExportCrops.new_plant_pub">
                         </td>
@@ -427,11 +378,11 @@
                         </td>
                         <td class="tdpa" width="99" ng-bind="dildExportCrops.harvest_stage_pvt">
                         </td>
-                        <td width="85" ng-bind="dildExportCrops.invest_los_pub">
-                            -
+                        <td width="85" ng-bind="calPubTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops)">
+
                         </td>
-                        <td width="85" ng-bind="dildExportCrops.invest_los_pvt">
-                            -
+                        <td width="85" ng-bind="calPvtTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops)">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -483,51 +434,45 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dildForestry.harvest_stage_pvt">
                         </td>
-                        <td width="85" ng-bind="dildForestry.invest_los_pub">
-                            -
+                        <td width="85" ng-model="dildForestry.invest_los_pub"
+                             ng-bind="dildForestry.invest_los_pub =
+                                          dildForestry.new_plant_pub * bs_data['BacfForestry'][$index].fields.productn_cost_nplanted+
+                                          dildForestry.mid_stage_pub * bs_data['BacfForestry'][$index].fields.productn_cost_mstage +
+                                          dildForestry.harvest_stage_pub * bs_data['BacfForestry'][$index].fields.productn_cost_hstage">
                         </td>
-                        <td width="85" ng-bind="dildForestry.invest_los_pvt">
-                            -
+                        <td width="85" ng-model="dildForestry.invest_los_pvt"
+                             ng-bind="dildForestry.invest_los_pvt =
+                                          dildForestry.new_plant_pvt * bs_data['BacfForestry'][$index].fields.productn_cost_nplanted+
+                                          dildForestry.mid_stage_pvt * bs_data['BacfForestry'][$index].fields.productn_cost_mstage +
+                                          dildForestry.harvest_stage_pvt * bs_data['BacfForestry'][$index].fields.productn_cost_hstage">
+                        </td>
+                    </tr>
+
+                    <!--Total-->
+                    <tr height="19" ng-repeat="dildForestry in dlInvsmntLos.agri_agrarian.Table_6.DildForestry" ng-if="dildForestry.forestry == 'Total'">
+                        <td class="boldash" width="249" height="19" ng-bind="dildForestry.forestry">
+                        </td>
+                        <td class="tdpa" width="148">
+                        </td>
+                        <td class="tdpa" width="121">
+                        </td>
+                        <td class="tdpa" width="117">
+                        </td>
+                        <td class="tdpa" width="117">
+                        </td>
+                        <td class="tdpa" width="112">
+                        </td>
+                        <td class="tdpa" width="99">
+                        </td>
+                        <td width="85" ng-bind="calPubTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildForestry)">
+
+                        </td>
+                        <td width="85" ng-bind="calPvtTotal($parent.dlInvsmntLos.agri_agrarian.Table_6.DildForestry)">
+
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" width="249" height="19">
-                            Others
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="112">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="99">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    <!--Total-->
-                    <tr height="19" ng-repeat="dildForestry in dlInvsmntLos.agri_agrarian.Table_6.DildForestry" ng-if="dildForestry.forestry == 'Total'">
-                        <td class="tdpa" width="249" height="19" ng-bind="dildForestry.forestry">
+                        <td class="boldash" width="249" height="19" > GRAND TOTAL
                         </td>
                         <td class="tdpa" width="148">
                         </td>
@@ -541,33 +486,11 @@
                         </td>
                         <td class="tdpa" width="99">
                         </td>
-                        <td width="85" ng-bind="dildForestry.invest_los_pub">
-                            -
+                        <td width="85" ng-bind="calGrandPubTotal()">
+
                         </td>
-                        <td width="85" ng-bind="dildForestry.invest_los_pvt">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="dildForestry in dlInvsmntLos.agri_agrarian.Table_6.DildForestry" ng-if="dildForestry.forestry == 'GRAND TOTAL'">
-                        <td class="tdpa" width="249" height="19" ng-bind="dildForestry.forestry">
-                        </td>
-                        <td class="tdpa" width="148">
-                        </td>
-                        <td class="tdpa" width="121">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="112">
-                        </td>
-                        <td class="tdpa" width="99">
-                        </td>
-                        <td width="85" ng-bind="dildForestry.invest_los_pub">
-                            -
-                        </td>
-                        <td width="85" ng-bind="dildForestry.invest_los_pvt">
-                            -
+                        <td width="85" ng-bind="calGrandPvtTotal()">
+
                         </td>
                     </tr>
                     </tbody>
@@ -578,7 +501,16 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_invsmnt_los)">Submit</button>
+                    <button type="button" ng-click="dlDataEdit(form_dl_invsmnt_los)" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_invsmnt_los)"
+                    class="btn btn-success">Submit
+                    </button>
+
                 </div>
             </div>
 

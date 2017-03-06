@@ -482,8 +482,27 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            console.log($scope.dlPrdctnLos);
-            alert('Save Table 7');
+            $http({
+                method: 'POST',
+                url: '/dl_save_data',
+               contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlPrdctnLos,
+                    'com_data': {
+                       'district': $scope.district.district__id,
+                        'incident' : $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+               else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
+                console.log(response);
+            });
         }
     }
 }]);

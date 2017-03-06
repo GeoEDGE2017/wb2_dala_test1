@@ -373,7 +373,155 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            alert('Save Table 6');
+           $http({
+                method: 'POST',
+                url: '/dl_save_data',
+               contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlInvsmntLos,
+                    'com_data': {
+                       'district': $scope.district.district__id,
+                        'incident' : $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+               else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+
         }
     }
+
+    $scope.dlDataEdit = function(form){
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_6',
+    'sector':'agri_agrarian',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlInvsmntLos = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlInvsmntLos = init_data;
+}
+
+    $scope.calPubTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.invest_los_pub ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calPvtTotal=function(arr){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+
+     finaltotal = finaltotal + value.invest_los_pvt ;
+    })
+      console.log(finaltotal);
+    return finaltotal;
+    }
+
+    $scope.calGrandPubTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+    var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+    var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
+    var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.invest_los_pub ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.invest_los_pub ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.invest_los_pub ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.invest_los_pub ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+    return grantot;
+    }
+
+    $scope.calGrandPvtTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+    var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+    var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
+    var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.invest_los_pvt ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.invest_los_pvt ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.invest_los_pvt ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.invest_los_pvt ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+    return grantot;
+    }
+
+
+
 }]);

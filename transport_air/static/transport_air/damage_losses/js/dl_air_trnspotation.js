@@ -598,19 +598,6 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     return finaltotal;
     }
 
-    $scope.calculatePubStrucTotal=function(arr){
-    var finaltotal = 0;
-    angular.forEach(arr, function(value, key) {
-    finaltotal = finaltotal + value.tdest_floor_1 +
-    value.tdest_floor_2_3 +
-    value.tdest_floor_than_3 +
-    value.pdmg_roof +
-    value.pdmg_wall +
-    value.pdmg_floor;
-    })
-    return finaltotal;
-    }
-
     $scope.calGrandTotalPub=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;

@@ -247,7 +247,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     $scope.dlWaterTransportation = init_data;
     $scope.saveDlData = function() {
 
-    console.log($scope.dlWaterTransportation);
+
 
     $scope.submitted = true;
 
@@ -275,7 +275,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
         }, function errorCallback(response) {
 
-            console.log(response);
+
         });
 
 
@@ -293,7 +293,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
         }).success(function(data) {
             $scope.districts = data;
             $scope.district = "";
-            console.log(data);
+
 
     })
         }
@@ -325,7 +325,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
             }, function errorCallback(response) {
 
-                console.log(response);
+
             });
         }
 
@@ -446,65 +446,162 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
        $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
     }
 
-
   });
-
-
-
 
 }
 
   $scope.CalPub=function(arr){
     var finaltotal = 0;
-    console.log(arr);
+
     angular.forEach(arr, function(value, key) {
 
      finaltotal = finaltotal + value.tot_dmg_public ;
     })
-      console.log(finaltotal);
+
     return finaltotal;
     }
 
   $scope.CalPvt=function(arr){
     var finaltotal = 0;
-     console.log(arr);
+
     angular.forEach(arr, function(value, key) {
 
      finaltotal = finaltotal + value.tot_dmg_private ;
     })
-      console.log(finaltotal);
+
     return finaltotal;
     }
 
   $scope.CalStruTot=function(arr){
-    var finaltotal = 0;
-     console.log(arr);
-    angular.forEach(arr, function(value, key) {
 
-     finaltotal = finaltotal + value.tot_dmg_private ;
+    var finaltotal = 0;
+
+    angular.forEach(arr, function(value, key) {
+     if(value.tot_damages){
+     finaltotal = finaltotal + value.tot_damages ;
+
+     }
     })
-      console.log(finaltotal);
+
     return finaltotal;
     }
-     $scope.CalFiPub=function(arr){
+
+   $scope.CalBuildingTot=function(arr){
+
     var finaltotal = 0;
-     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+     finaltotal = finaltotal + value.tot_damages ;
+    })
+
+    return finaltotal;
+    }
+
+  $scope.CalFiPub=function(arr){
+    var finaltotal = 0;
+
     angular.forEach(arr, function(value, key) {
 
      finaltotal = finaltotal + value.tot_los_pub ;
     })
-      console.log(finaltotal);
+
     return finaltotal;
     }
-       $scope.CalFiPvt=function(arr){
+
+  $scope.CalFiPvt=function(arr){
     var finaltotal = 0;
-     console.log(arr);
+
     angular.forEach(arr, function(value, key) {
 
      finaltotal = finaltotal + value.tot_los_pvt ;
     })
-      console.log(finaltotal);
+
     return finaltotal;
+    }
+
+  $scope.getTotal = function(model, property) {
+
+        var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
+        var cumulative = null;
+        var sums = _.map(array, function(obj) {
+            cumulative += obj[property];
+            return cumulative;
+
+        });
+        var the_string = model + '_' + property;
+        var model = $parse(the_string);
+        model.assign($scope, cumulative);
+
+
+
+    }
+
+  $scope.calGrandTotalPub=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var grantot = 0;
+
+    var array1 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
+    var array2 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment;
+    var array3 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials;
+    var array4 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures;
+    var array5 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.tot_dmg_public ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.tot_dmg_public ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.tot_dmg_public ;
+    })
+    angular.forEach(array4, function(value, key) {
+     finaltotal4 = finaltotal4 + value.tot_damages ;
+    })
+    angular.forEach(array5, function(value, key) {
+
+     finaltotal5 = finaltotal5 + value.tot_damages;
+    })
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3  + finaltotal5;
+
+    return grantot;
+    }
+
+  $scope.calGrandTotalPvt=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+
+    var grantot = 0;
+
+    var array1 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
+    var array2 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment;
+    var array3 = $scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials;
+
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.tot_dmg_private ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.tot_dmg_private ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.tot_dmg_private ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 ;
+    return grantot;
     }
 
 

@@ -1,8 +1,8 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
-<!--<main class="main" ng-app="sumDlTrnsptDistController" ng-controller="dlSumTrnsAirDistController">-->
+<!--<main class="main">-->
+<main class="main" ng-app="dlSumTrnsptDstControllerApp" ng-controller="dlSumTrnsptDstControllerController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -12,7 +12,7 @@
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;"> Summary of damages and losses in the transportation sector in a district</span>
         </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_sum_dl_trnspt_district">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
@@ -28,6 +28,22 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_sum_dl_trnspt_district.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_sum_dl_trnspt_district.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead" height="17">
                         <td width="197" height="17">
                             Incident
@@ -53,6 +69,9 @@
                                     class="form-control" required>
                                 <option value="" selected>Select district</option>
                             </select>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-success" ng-click="loadData(form_sum_dl_trnspt_district)">Load</button>
                         </td>
                     </tr>
                     <tr class="trheadc" height="17">

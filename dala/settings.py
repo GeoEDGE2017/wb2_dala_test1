@@ -73,9 +73,9 @@ INSTALLED_APPS = [
     'agri_agrarian',
     'agri_agrarian.base_line',
     'agri_agrarian.damage_losses',
-    # 'agri_irrigation',
-    # 'agri_irrigation.base_line',
-    # 'agri_irrigation.damage_losses',
+    'agri_irrigation',
+    'agri_irrigation.base_line',
+    'agri_irrigation.damage_losses',
     # 'agri_livestock',
     # 'agri_livestock.base_line',
     # 'agri_livestock.damage_losses',
@@ -126,7 +126,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=agri_agrarian'
         # },
-        'NAME': 'dala_new',
+        'NAME': 'dala',
         'USER': 'postgres',
 
     },
@@ -1275,11 +1275,15 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_3': {
+            # Views
             'DlAstWaterWcraftsDistrict': ['tot_dmg_private', 'tot_dmg_public', 'incident', 'district'],
             'DlWaterDmgEquipmentDistrict': ['tot_dmg_private', 'tot_dmg_public', 'incident', 'district'],
             'DlWaterDmgMaterialsDistrict': ['tot_dmg_private', 'tot_dmg_public', 'incident', 'district'],
             'DlWaterDmgStructuresDistrict': ['tot_damages', 'incident', 'district'],
             'DlWaterDmgBuildingsDistrict': ['tot_damages', 'incident', 'district'],
+            # Tables
+            'DlWaterLosFi': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'type_los', 'incident', 'district'],
+            'DlWaterLosOther': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'type_los', 'incident', 'district'],
         },
         'Table_4': {
             'DlWaterDmgPubProvince':

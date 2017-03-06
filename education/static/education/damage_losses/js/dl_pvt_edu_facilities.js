@@ -294,7 +294,8 @@ $scope.addSchool = function()
     data: angular.toJson({
     'model_fields': $scope.new_school[$scope.schoolType],
     'model': $scope.schoolType,
-    'is_edit': $scope.is_edit_model
+    'is_edit': $scope.is_edit_model,
+    'sector': 'education'
      }),
     }).success(function(data) {
 

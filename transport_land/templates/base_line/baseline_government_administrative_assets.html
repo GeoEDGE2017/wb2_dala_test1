@@ -29,21 +29,21 @@
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_gov_admin_aset.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_gov_admin_aset.baselineDate.$error.required">
-                                Please select Date
+                                Please Select Date
                             </span>
                         </td>
                     </tr>
                     <tr class="trhead" height="43">
-                        <td height="43" width="156">
+                        <td height="43" width="156" style="padding:5px;">
                             District
                         </td>
                         <td colspan="2" height="43" width="63">
@@ -54,11 +54,11 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td height="43" width="240">
+                        <td height="43" width="240" style="padding:5px;">
                             Year/Month
                         </td>
                         <td height="43" width="145" >
-                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -66,7 +66,7 @@
                             Asset
                         </td>
                         <td colspan="4" height="19" width="345">
-                            Average Replacement Cost per Square Meter (LKR/sqm)
+                            Average Replacement Cost Per Square Meter (LKR/sqm)
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -90,7 +90,7 @@
                             <br/>
                         </td>
                         <td colspan="4" height="19" width="345">
-                            Average Repair Cost per Square Meter (LKR/sqm)
+                            Average Repair Cost Per Square Meter (LKR/sqm)
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -142,7 +142,7 @@
                             <button id="delete" ng-click="removeItem('BiaGacLandOequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="biaGacLandOequipment_{{$index}}" ng-model="biaGacLandOequipment.asset"
+                            <input style="width:80%;float:right;" name="biaGacLandOequipment_{{$index}}" ng-model="biaGacLandOequipment.asset"
                                 popover="This field is required"
                                 popover-toggle="form_pop_lat_census['biaGacLandOequipment_' + $index].$dirty && !form_pop_lat_census['biaGacLandOequipment_' + $index].$valid"
                                 popover-placement="top" required
@@ -192,7 +192,7 @@
                             <button id="delete" ng-click="removeItem('BiaGacLandMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="biaGacLandMachinery_{{$index}}" ng-model="biaGacLandMachinery.asset"
+                            <input style="width:80%;float:right;" name="biaGacLandMachinery_{{$index}}" ng-model="biaGacLandMachinery.asset"
                                 popover="This field is required"
                                 popover-toggle="form_pop_lat_census['biaGacLandMachinery_' + $index].$dirty && !form_pop_lat_census['biaGacLandMachinery_' + $index].$valid"
                                 popover-placement="top" required
@@ -227,7 +227,7 @@
                 </table>
                 <br>
                 <div class="pull-right">
-                    <br>
+                    
                     <button type="button" class="btn btn-info">Clear</button>
                     <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
                         Edit

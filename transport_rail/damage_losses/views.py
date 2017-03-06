@@ -75,3 +75,19 @@ def dl_rail_trans_nat_summary(request):
         'company': company,
     }
     return render(request, 'damage_losses/summary_damages_losses_the_rail_transportation_nationwide.html', context)
+    
+    
+@permission_required("national", 'transport_land')
+def dl_rail_trans_nat_type_summary(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    filtered_incidents = fetch_data['incidents']
+    company = Company.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': filtered_incidents,
+        'company': company,
+    }
+    return render(request, 'damage_losses/summary_damages_losses_the_rail_transportation_nationwide_types_of_losses.html', context)

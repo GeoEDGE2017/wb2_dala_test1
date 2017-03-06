@@ -30,7 +30,7 @@
 
         </ul>
 
-        <div id="myTabContent" class="tab-content" ng-form name="form_dl_water_transportation">
+        <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
 
 
@@ -47,22 +47,6 @@
                         <col width="126"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.incident.$error.required">
-                                Please select Incident
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.district.$error.required">
-                                Please select District
-                            </span>
-                        </td>
-                    </tr>
                     <tr class="trhead">
 
                         <td style="padding-right:5px;">
@@ -196,10 +180,13 @@
                         </td>
                         <td width="170" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private" ng-bind="DlWaterDmgWcrafts_num_pdestroyed_private">
                         </td>
+
                         </td>
                         <td colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts)" width="268">
+
                         </td>
                          <td colspan="2" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts)" width="268">
+
                         </td>
                     </tr>
                     <tr class="trheadc">
@@ -813,7 +800,7 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_water_transportation)"
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData()"
                     class="btn btn-success">Submit
                     </button>
                 </div>

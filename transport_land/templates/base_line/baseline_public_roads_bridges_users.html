@@ -13,7 +13,7 @@
         <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline of public roads, bridges and users</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline of Public Roads, Bridges and Users</span>
         </li>
     </ol>
 
@@ -22,7 +22,7 @@
         <div>
             <ul class='nav nav-wizard'>
                 <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Road Classification</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Other Assest </a></li>
+                <li id="li2"><a href='#step2' data-toggle="tab">2 Other Assets </a></li>
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_pub_rod_brg_use">
                 <div class="tab-pane active" id="step1">
@@ -40,26 +40,26 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0" >
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;" border="0" >
                             </td>
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="4"  style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.district.$error.required">
                                     Please select District
                                 </span>
                             </td>
-                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.baselineDate.$error.required">
                                     Please select Date
                                 </span>
                             </td>
                         </tr>
-                        <tr height="19" class="trhead">
+                        <tr height="19" colspan="3" class="trhead">
                             <td style="padding-left:5px;" height="19" width="171">
                                 District
                             </td>
-                            <td colspan="1" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                            <td colspan="4" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
                                 <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
@@ -70,8 +70,8 @@
                             <td class="trhead" width="240" height="19">
                                 Year/Month
                             </td>
-                            <td colspan="2" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
-                                <input name="baselineDate" type="text" placeholder="" id="datepicker"
+                            <td colspan="3" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker"
                                        ng-model="bs_date" class="form-control input-md" required>
                             </td>
                         </tr>
@@ -153,7 +153,7 @@
                     </table>
 
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill ther Assest Informations</a>
                     <br>
                 </div>
@@ -173,14 +173,14 @@
                         </colgroup>
                         <tbody>
 
-                        <tr class="trhead" height="42">
-                            <td rowspan="2" width="156" height="61">
+                        <tr class="trhead" style="padding-left:5px;" height="42">
+                            <td rowspan="2" style="padding-left:5px;width:32%;" width="156" height="61">
                                 Types of Bridges
                             </td>
-                            <td colspan="4" width="345" height="42">
+                            <td colspan="4" style="padding-left:5px;" width="345" height="42">
                                 Average Replacement Cost per Meter (LKR/m)
                             </td>
-                            <td colspan="4" width="422" height="42">
+                            <td colspan="4" style="padding-left:5px;" width="422" height="42">
                                 Average Repair Cost per Meter (LKR/m)
                             </td>
                         </tr>

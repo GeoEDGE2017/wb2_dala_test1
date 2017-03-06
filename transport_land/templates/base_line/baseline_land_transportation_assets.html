@@ -1,5 +1,16 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+  
+   
+    
+  });
+  
+
+</script>
 <!-- Main content -->
 <main class="main" ng-app="bsLandTrnsAsstApp" ng-controller="bsLandTrnsAsstController">
     <!-- Breadcrumb -->
@@ -30,24 +41,24 @@
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_land_trns_aset.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_land_trns_aset.baselineDate.$error.required">
-                                Please select Date
+                                Please Select Date
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="43">
+                    <tr class="trhead" height="">
                         <td class="trhead" height="43" width="156">
                             District
                         </td>
-                        <td colspan="2" height="43" width="63">
+                        <td colspan="2" height="" width="63">
                             <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
@@ -55,18 +66,18 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td class="trhead" height="43" width="240">
+                        <td class="trhead" height="" width="240">
                             Year/Month
                         </td>
-                        <td height="43" width="145">
-                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                        <td height="" width="145">
+                            <input name="baselineDate" type="text" style="font-weight:normal;" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
                     <tr class="trheadc" height="51">
-                        <td rowspan="2" height="70" width="156">
-                            Land transportation
+                        <td rowspan="2" height="70" width="156" style="width:27%;">
+                            Land Transportation
                         </td>
-                        <td colspan="2" height="51" width="126">
+                        <td colspan="2" height="51" width="126" >
                             Number
                         </td>
                         <td height="51" width="99">
@@ -77,13 +88,13 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td height="19" width="63">
+                        <td height="19" width="63" style="width:10.5%;">
                             Public
                         </td>
-                        <td height="19" width="120">
+                        <td height="19" width="120" style="width:20.7%;">
                             Private
                         </td>
-                        <td height="19" width="99">
+                        <td height="19" width="99" style="width:17%;">
                             (LKR/Unit)
                         </td>
                         <td height="19" width="145">
@@ -92,7 +103,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <div id="boxscroll" style="height:400px;overflow:auto;">
+                <div id="boxscroll1" style="height:400px;overflow:auto;">
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="156"/>
@@ -126,7 +137,7 @@
                                 <button id="delete" ng-click="removeItem('BsGtlAstPvehicles', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bsGtlAstPvehicles_{{$index}}" ng-model="bsGtlAstPvehicles.private_vehicles"
+                                <input style="width:80%;float:right;" name="bsGtlAstPvehicles_{{$index}}" ng-model="bsGtlAstPvehicles.private_vehicles"
                                     popover="This field is required"
                                     popover-toggle="form_pop_lat_census['bsGtlAstPvehicles_' + $index].$dirty && !form_pop_lat_census['bsGtlAstPvehicles_' + $index].$valid"
                                     popover-placement="top" required
@@ -211,7 +222,7 @@
                         </tr>
                         <tr class="trheadc" height="19">
                             <td height="19" width="156">
-                                Taxi companies
+                                Taxi Companies
                             </td>
                             <td height="19" width="63">
                                 <br/>
@@ -248,7 +259,7 @@
                         </tr>
                         <tr class="trheadc" height="19">
                             <td height="19" width="156">
-                                Truck companies
+                                Truck Companies
                             </td>
                             <td height="19" width="63">
                                 <br/>
@@ -286,7 +297,7 @@
                         </tr>
                         <tr class="trheadc" height="19">
                             <td height="19" width="156">
-                                Tuk tuk Companies
+                                Tuk Tuk Companies
                             </td>
                             <td height="19" width="63">
                                 <br/>

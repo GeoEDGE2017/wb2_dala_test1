@@ -18,21 +18,6 @@ class DlSessionKeys(models.Model):
 
 
 # Table 4
-
-class DlSessionKeys(models.Model):
-    data_type = models.CharField(max_length=120, blank=True, null=True)
-    date = models.DateTimeField(blank=True, null=True)
-    user = models.IntegerField(blank=True, null=True)
-    table_name = models.CharField(max_length=255, blank=True, null=True)
-    incident = models.IntegerField(blank=True, null=True)
-    province = models.ForeignKey(Province, db_column='province', related_name='ag_dl_province', blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', related_name='ag_dl_district', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'agri_agrarian\".\"dl_session_keys'
-
-
 class DcpfFarmEquipment(models.Model):
     assets = models.CharField(max_length=255, blank=True, null=True)
     num_dest_pub = models.BigIntegerField(blank=True, null=True)

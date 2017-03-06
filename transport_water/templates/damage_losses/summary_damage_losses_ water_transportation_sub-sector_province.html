@@ -22,7 +22,7 @@
     <div class="container-fluid">
 
 
-        <div id="myTabContent" class="tab-content" ng-form name="form_dl_summary_trans_water_pro">
+        <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
 
                 <table class="table table-bordered">
@@ -38,22 +38,6 @@
                         <col width="85"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_summary_trans_water_pro.incident.$error.required">
-                                Please select Incident
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_summary_trans_water_pro.province.$error.required">
-                                Please select Province
-                            </span>
-                        </td>
-                    </tr>
                     <tr height="19">
                         <td class="trhead" width="130" colspan="2">
                             Incident
@@ -85,7 +69,7 @@
                         </td>
                         <td colspan="2">
                             <button class="btn btn-info btn-block"
-                                    ng-click="fetchDlData(form_dl_summary_trans_water_pro)">Load
+                                    ng-click="fetchDlData(health_summery_damageloss_province)">Load
                             </button>
                         </td>
                     </tr>
@@ -141,7 +125,7 @@
                         </td>
                     </tr>
 
-                       <table ng-repeat="(key, value) in dlWaterTransSumPro.transport_water.Table_4"
+                       <table ng-repeat="(key, value) in dlWaterTransSumPro.transport_water.Table_3"
                            class="table table-bordered">
                         <tbody>
                         <tr  height="20" ng-init="getTotal($index,key);">

@@ -1269,7 +1269,7 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
 
         },
-        'Table_3': {
+        'Table_4': {
             'DlWaterDmgPubProvince':
                 ['tot_dmg_public'],
             'DlWaterDmgPvtProvince':
@@ -1281,7 +1281,7 @@ TABLE_PROPERTY_MAPPER = {
                  'year_2_pvt'],
 
         },
-        'Table_4': {
+        'Table_5': {
             'DlWaterDmgPubNational':
                 ['tot_dmg_public'],
             'DlWaterDmgPvtNational':

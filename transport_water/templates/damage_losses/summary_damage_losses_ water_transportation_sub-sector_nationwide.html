@@ -14,7 +14,7 @@
         <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of damage and losses in the water transportation sub-sector nationwide</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of Damage and Losses in the Water Transportation Sub-sector Nationwide</span>
         </li>
     </ol>
 
@@ -22,7 +22,7 @@
     <div class="container-fluid">
 
 
-        <div id="myTabContent" class="tab-content">
+        <div id="myTabContent" class="tab-content" ng-form name="form_dl_summary_trans_water_nat">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
                     <colgroup>
@@ -37,6 +37,15 @@
                         <col width="85"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_summary_trans_water_nat.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                    </tr>
                     <tr height="19" class="trhead">
                          <td colspan="2" style="padding-left:5px;">
                                 Incident
@@ -60,7 +69,7 @@
 
                             </td>
                             <td colspan="2">
-                                <button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>
+                                <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dl_summary_trans_water_nat)">Load</button>
                             </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -116,7 +125,7 @@
                             Private
                         </td>
                     </tr>
-                     <table ng-repeat="(key, value) in dlWaterTransSumNat.transport_water.Table_4"
+                     <table ng-repeat="(key, value) in dlWaterTransSumNat.transport_water.Table_5"
                            class="table table-bordered">
                         <tbody>
                         <tr  height="20" ng-init="getTotal($index,key);">

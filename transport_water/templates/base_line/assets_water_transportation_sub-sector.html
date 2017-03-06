@@ -14,7 +14,7 @@
         <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Assets in the water transportation sub-sector</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Assets in the Water Transportation Sub-sector</span>
         </li>
 
 
@@ -24,13 +24,13 @@
     <div class="container-fluid">
 
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
-            <li class=""><a href='#step2' data-toggle="tab">2 - Equipment and machinery</a></li>
-            <li><a href='#step3' data-toggle="tab">3 - Buildings</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
+            <li id="li2" class=""><a href='#step2' data-toggle="tab">2 - Equipment and machinery</a></li>
+            <li id="li3"><a href='#step3' data-toggle="tab">3 - Buildings</a></li>
 
         </ul>
 
-        <div id="myTabContent" class="tab-content">
+        <div id="myTabContent" class="tab-content" ng-form name="bs_info_aset_trns">
             <div class="tab-pane active" id="step1">
 
 
@@ -43,6 +43,22 @@
                         <col width="170"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && bs_info_aset_trns.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && bs_info_aset_trns.baselineDate.$error.required">
+                                Please select Date
+                            </span>
+                        </td>
+                    </tr>
                     <tr height="19">
                         <td class="trhead"> Name of District or RDH</td>
 
@@ -62,10 +78,7 @@
                             Year/Month
                         </td>
                         <td colspan="2" style="background:#EFEFEF;font-weight:normal;">
-                            <input ng-model="bs_date" required name="bs_date" type="text" placeholder=""
-                                   id="datepicker"
-                                   class="form-control input-md">
-
+                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -110,7 +123,7 @@
                             <button id="delete" ng-click="removeItem('BsAstWaterWcrafts', $index)"
                                     class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsAstWaterWcrafts_{{$index}}"
+                            <input style="width:80%;float:right;" name="bsAstWaterWcrafts_{{$index}}"
                                    ng-model="bsAstWaterWcrafts.assets"
                                    popover="This field is required"
                                    popover-toggle="form_pop_lat_census['bsAstWaterWcrafts_' + $index].$dirty && !form_pop_lat_census['bsAstWaterWcrafts_' + $index].$valid"
@@ -160,7 +173,7 @@
                 </table>
 
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Equipment and machinery Informations</a>
                 <br>
             </div>
@@ -176,7 +189,7 @@
 
                     <tr class="trheadc" height="19">
                         <td rowspan="2" width="253" height="38">
-                            Equipment and machinery
+                            Equipment and Machinery
                         </td>
                         <td colspan="2" width="298">
                             Average Replacement Cost
@@ -207,7 +220,7 @@
                             <button id="delete" ng-click="removeItem('BsAstWaterEquipment', $index)"
                                     class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsAstWaterEquipment_{{$index}}"
+                            <input style="width:80%;float:right;" name="bsAstWaterEquipment_{{$index}}"
                                    ng-model="bsAstWaterEquipment.assets"
                                    popover="This field is required"
                                    popover-toggle="form_pop_lat_census['bsAstWaterEquipment_' + $index].$dirty && !form_pop_lat_census['bsAstWaterEquipment_' + $index].$valid"
@@ -268,7 +281,7 @@
                             <button id="delete" ng-click="removeItem('BsAstWaterMaterials', $index)"
                                     class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsAstWaterMaterials_{{$index}}"
+                            <input style="width:80%;float:right;" name="bsAstWaterMaterials_{{$index}}"
                                    ng-model="bsAstWaterMaterials.assets"
                                    popover="This field is required"
                                    popover-toggle="form_pop_lat_census['bsAstWaterMaterials_' + $index].$dirty && !form_pop_lat_census['bsAstWaterMaterials_' + $index].$valid"
@@ -333,7 +346,7 @@
                             <button id="delete" ng-click="removeItem('BsAstWaterStructures', $index)"
                                     class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsAstWaterStructures_{{$index}}"
+                            <input style="width:80%;float:right;" name="bsAstWaterStructures_{{$index}}"
                                    ng-model="bsAstWaterStructures.assets"
                                    popover="This field is required"
                                    popover-toggle="form_pop_lat_census['bsAstWaterStructures_' + $index].$dirty && !form_pop_lat_census['bsAstWaterStructures_' + $index].$valid"
@@ -373,7 +386,7 @@
 
 
                 <br>
-                <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Building Informations</a>
                 <br>
             </div>
@@ -524,7 +537,7 @@
                             </button>
                             <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit
                             </button>
-                            <button type="button" ng-click="saveBsData()" class="btn btn-success">Submit
+                            <button type="button" ng-click="saveBsData(bs_info_aset_trns)" class="btn btn-success">Submit
                             </button>
                 </div>
                 <br><br><br>
@@ -562,7 +575,7 @@
                             </div>
                         </div>
                     </div>
-                    <br><br>
+                    <br>
                     <div class="modal-footer">
 
                        <button type="button" class="btn btn-info">Clear</button>

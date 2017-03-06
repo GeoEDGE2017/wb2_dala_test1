@@ -91,7 +91,7 @@ def dl_fetch_district_disagtn(request):
     com_data = data['com_data']
     incident = com_data['incident']
     ownerships = Ownership.objects.all()
-    models = ['other_govn_services.DlagdDmgDistrict', 'other_govn_services.DlagdLossesDistrict']
+    models = ['DlagdDmgDistrict', 'DlagdLossesDistrict']
 
     dl_mtable_data = {sector: {}}
     dl_mtable_data[sector][table_name] = {}

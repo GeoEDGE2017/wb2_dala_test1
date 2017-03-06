@@ -1,5 +1,16 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+  
+   
+    
+  });
+  
+
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlAirTrnspotationApp" ng-controller="dlAirTrnspotationController">
     <!-- Breadcrumb -->
@@ -10,13 +21,13 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and losses to air transportation</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses to Air Transportation</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_air_trnspotation">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -50,8 +61,8 @@
                             </span>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
-                        <td width="218" height="19">
+                    <tr class="trhead" height="19">
+                        <td width="218" height="19" style="padding-left:5px;">
 
                             Incident:
                         </td>
@@ -71,7 +82,7 @@
                             Name of District:
                         </td>
                         <td colspan="5">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                            <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
                                 name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                 <option value="" selected>Select District</option>
                             </select>
@@ -114,7 +125,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <div id="boxscroll" style="height:400px;overflow:auto;">
+                <div id="boxscroll1" style="height:400px;overflow:auto;">
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="218"/>
@@ -265,7 +276,7 @@
                         </tr>
                         <tr class="trheadc" height="19">
                             <td rowspan="2" width="218" height="38">
-                                Materials and supplies
+                                Materials and Supplies
                             </td>
                             <td colspan="3" width="189" height="19">
                                 Number of Totally Destroyed
@@ -300,54 +311,31 @@
                         <!--Materials and supplies-->
                         <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets != 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
-
+                                Fuel (Liters)
                             </td>
                             <td colspan="2" width="126" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlAirDmgSupplies.tot_destroyed_pub">
                             </td>
-                            <td width="63" height="19" colspan="">
+                            <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlAirDmgSupplies.tot_destroyed_pvt">
                             </td>
-                            <td class="tdpa" colspan="2" width="126" height="19" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'">
-
-                            </td>
-                            <td  height="19" colspan="2" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlAirDmgSupplies.part_damaged_pub">
-                            </td>
-                            <td class="tdpa" colspan="2" width="126" height="19" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'">
+                            <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
                             </td>
-                            <td height="19" colspan="2" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlAirDmgSupplies.part_damaged_pvt">
+                            <td class="tdpa" colspan="2" width="126" height="19">
+                                <br/>
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'"
-                                ng-bind="dlAirDmgSupplies.tot_dmg_pub =
-                                dlAirDmgSupplies.tot_destroyed_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost">
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub">
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'"
-                                ng-bind="dlAirDmgSupplies.tot_dmg_pub =
-                                dlAirDmgSupplies.tot_destroyed_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost +
-                                dlAirDmgSupplies.part_damaged_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_repair_cost">
-                            </td>
-
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'"
-                                ng-bind="dlAirDmgSupplies.tot_dmg_pvt =
-                                dlAirDmgSupplies.tot_destroyed_pvt  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost">
-                            </td>
-                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt" ng-if="dlAirDmgSupplies.assets !='Fuel (per Liter)'"
-                                ng-bind="dlAirDmgSupplies.tot_dmg_pvt =
-                                dlAirDmgSupplies.tot_destroyed_pvt  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost +
-                                dlAirDmgSupplies.part_damaged_pvt  * bs_data['BsAstAirSupplies'][$index].fields.avg_repair_cost">
+                            <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt">
                             </td>
                         </tr>
                         <!--Materials and supplies Total-->
                         <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets == 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
-
+                                Total
                             </td>
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
@@ -361,9 +349,9 @@
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="calculatePubMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
+                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pub">
                             </td>
-                            <td width="63" height="19" ng-bind="calculatePvtMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
+                            <td width="63" height="19" ng-bind="dlAirDmgSupplies.tot_dmg_pvt">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -573,9 +561,9 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="calGrandTotalPub()">
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pub">
                             </td>
-                            <td width="63" height="19" ng-bind="calGrandTotalPvt()">
+                            <td width="63" height="19" ng-bind="dlAirDmgGstructures.tot_pvt">
                             </td>
                         </tr>
                         </tbody>
@@ -584,7 +572,7 @@
 
 
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                 <br>
             </div>
@@ -599,7 +587,7 @@
                             Year 1
                         </td>
                         <td colspan="4" width="252" height="19">
-                            Year2
+                            Year 2
                         </td>
                         <td colspan="2" width="126" height="19">
                             Total Losses (LKR)
@@ -723,7 +711,7 @@
                     </tr>
                     <tr class="trheadc" height="19">
                         <td width="218" height="19" >
-                            Higher operating costs
+                            Higher Operating Costs
                         </td>
                         <td colspan="2" width="126" height="19">
                             <br/>

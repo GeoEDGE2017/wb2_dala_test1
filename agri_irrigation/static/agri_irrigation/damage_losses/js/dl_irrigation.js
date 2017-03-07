@@ -381,7 +381,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'table_name': 'Table_3',
+                    'table_name': 'Table_1',
                     'sector':'agri_irrigation',
                         }),
                   dataType: 'json',

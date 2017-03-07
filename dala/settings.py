@@ -1283,8 +1283,10 @@ TABLE_PROPERTY_MAPPER = {
             'DlWaterDmgStructuresDistrict': ['tot_damages', 'incident', 'district'],
             'DlWaterDmgBuildingsDistrict': ['tot_damages', 'incident', 'district'],
             # Tables
-            'DlWaterLosFi': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'type_los', 'incident', 'district'],
-            'DlWaterLosOther': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'type_los', 'incident', 'district'],
+            'DlWaterLosFi': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                             'type_los', 'incident', 'district'],
+            'DlWaterLosOther': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                                'type_los', 'incident', 'district'],
         },
         'Table_4': {
             'DlWaterDmgPubProvince':
@@ -1726,35 +1728,7 @@ TABLE_PROPERTY_MAPPER = {
                 ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
         }
     },
-    # 'transport_summary': {
-    #     'Table_1': {
-    #         'DlGacPubProvince': ['damages'],
-    #         'DlGacPvtProvince': ['tot_damages_pvt'],
-    #         'DlYearsPubProvince': ['year_1', 'year_2'],
-    #         'DlOtherLosPvtDistrict': ['year_1_pvt', 'year_2_pub', ],
-    #         'DlAirDmgPubProvince': ['tot_destroyed_pub'],
-    #         'DlAirDmgPvtProvince': ['tot_destroyed_pvt'],
-    #         'DlAirLosProvince': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
-    #         'DlWaterDmgPubProvince': ['tot_dmg_public'],
-    #         'DlWaterDmgPvtProvince': ['tot_dmg_private'],
-    #         'DlWaterLosProvince': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
-    #         'TotDmgProvince': ['tot_damages'],
-    #     },
-    #     'Table_3': {
-    #         'DlGacPubNational': ['damages'],
-    #         'DlGacPvtNational': ['tot_damages_pvt'],
-    #         'DlOtherLosPvtNational': ['year_1_pvt', 'year_2_pub'],
-    #         'DlYearsPubNational': ['year_1', 'year_2'],
-    #         'TotDmgNational': ['tot_damages'],
-    #         'DlAirDmgPubNational': ['tot_destroyed_pub'],
-    #         'DlAirDmgPvtNational': ['tot_destroyed_pvt'],
-    #         'DlAirLosNational': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt'],
-    #         'DlWaterDmgPubNational': ['tot_dmg_public'],
-    #         'DlWaterDmgPvtNational': ['tot_dmg_private'],
-    #         'DlWaterLosNational': ['year_1_pub', 'year_2_pub', 'year_1_pvt', 'year_2_pvt'],
-    #     }
-    #
-    # },
+
     'agri_agrarian': {
         'Table_8': {
             'DsorDmgPubStrusturesDistrict':
@@ -1832,7 +1806,82 @@ TABLE_PROPERTY_MAPPER = {
             'DlBuildingsDistrict':
                 ['damages', 'incident', 'district'],
             # dl_los_other_district
-        }
+        },
+        'Table_1': {
+            'BsIfMajor':
+                ['irrigation_facility',
+                 'capacity',
+                 'irrigated_area_paddy',
+                 'irrigated_area_ofc',
+                 'income_paddy',
+                 'income_ofc',
+                 'num_farmer_families', 'id'],
+            'BsIfMedium':
+                ['irrigation_facility',
+                 'capacity',
+                 'irrigated_area_paddy',
+                 'irrigated_area_ofc',
+                 'income_paddy',
+                 'income_ofc',
+                 'num_farmer_families', 'id'],
+            'BsIfMedium':
+                ['irrigation_facility',
+                 'capacity',
+                 'irrigated_area_paddy',
+                 'irrigated_area_ofc',
+                 'income_paddy',
+                 'income_ofc',
+                 'num_farmer_families', 'id'],
+            'BsIfAnicuts':
+                ['irrigation_facility',
+                 'capacity',
+                 'irrigated_area_paddy',
+                 'irrigated_area_ofc',
+                 'income_paddy',
+                 'income_ofc',
+                 'num_farmer_families', 'id']
+
+        },
+        'Table_2': {
+            'BsRciaMajorTanks':
+                ['irrigation_facility',
+                 'avg_repair_cost',
+                 'avg_replacement_cost',
+                 'id'],
+            'BsRciaMediumTanks':
+                ['irrigation_facility',
+                 'avg_repair_cost',
+                 'avg_replacement_cost',
+                 'id'],
+            'BsRciaMinorTanks':
+                ['irrigation_facility',
+                 'avg_repair_cost',
+                 'avg_replacement_cost',
+                 'id'],
+            'BsRciaAnicuts':
+                ['irrigation_facility',
+                 'avg_repair_cost',
+                 'avg_replacement_cost',
+                 'id'],
+            'BsRciaOtherStructures':
+                ['irrigation_facility',
+                 'avg_repair_cost',
+                 'avg_replacement_cost',
+                 'id'],
+            'BsRciRiverEmbankmnt':
+                ['irrigation_facility',
+                 'avg_repair_cost',
+                 'avg_replacement_cost',
+                 'id'],
+            'BsRciBuildings':
+                ['irrigation_facility',
+                 'avg_repair_roof',
+                 'avg_repair_wall',
+                 'avg_repair_floor',
+                 'avg_replacement_cost',
+                 'id'],
+
+        },
     },
     'agri_agrarian': {
         'Table_1': {
@@ -2107,30 +2156,30 @@ TABLE_PROPERTY_MAPPER = {
             'DsorDmgLosProvince':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
-                ],
+                 ],
             'DsorLosYear1Province':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
-                ],
+                 ],
             'DsorLosYear2Province':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
-                ]
+                 ]
 
         },
         'Table_10': {
             'DsorDmgLosNational':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
-                ],
+                 ],
             'DsorLosYear1National':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
-                ],
+                 ],
             'DsorLosYear2National':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
-                ]
+                 ]
         }
 
     },

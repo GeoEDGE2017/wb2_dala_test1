@@ -1,7 +1,7 @@
 //Table 1
-var app = angular.module('bsIrgFacilitiesApp', [])
+var app = angular.module('bsIrgFacilitiesApp', ['underscore'])
 
-app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope, $http) {
+app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
     $scope.district;
     $scope.baselineDate;
     $scope.division;
@@ -23,6 +23,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_facility : 'Tank 2',
                     capacity : null,
@@ -31,6 +33,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'BsIfMedium': [{
                     irrigation_facility : 'Tank 1',
@@ -40,6 +44,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_facility : 'Tank 2',
                     capacity : null,
@@ -48,6 +54,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'BsIfMinor': [{
                     irrigation_facility : 'Tank 1',
@@ -57,6 +65,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_facility : 'Tank 2',
                     capacity : null,
@@ -65,6 +75,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'BsIfAnicuts': [{
                     irrigation_facility : 'Anicut 1',
@@ -74,6 +86,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_facility : 'Anicut 2',
                     capacity : null,
@@ -82,6 +96,8 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
                     income_paddy : null,
                     income_ofc : null,
                     num_farmer_families : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }]
             }
         }
@@ -155,10 +171,65 @@ app.controller('bsIrgFacilitiesController', ['$scope', '$http', function($scope,
     }
 
     $scope.saveBsData = function(form) {
+    var array = $scope.bsIrgFacilities.agri_irrigation.Table_1;
+      var details = _.map(array, function(model_array) {
+      _.map(model_array, function(model) {
+          model.division = $scope.division;
+          model.region = $scope.region;
+
+
+      });
+      });
         $scope.submitted = true;
         if (form.$valid) {
-            console.log($scope.bsIrgFacilities);
-            alert('Save table 1');
+            $http({
+            method: "POST",
+            url: "/bs_save_data",
+            data: angular.toJson({
+            'table_data': ($scope.bsIrgFacilities),
+            'com_data': {'district': $scope.district,
+            'bs_date': $scope.bs_date,
+            },
+            'is_edit': $scope.is_edit }),
+            }).success(function(data) {
+
+             $scope.bsIrgFacilities = init_data;
+             $scope.is_edit = false;
+
+             if(data == 'False')
+              $scope.is_valid_data = false;
+             else
+              $("#modal-container-239453").modal('show');
+        })
         }
+
     }
-}]);
+
+$scope.bsHsDataEdit = function()
+{
+$scope.submitted = true;
+
+   $scope.is_edit = true;
+    $http({
+    method: "POST",
+    url: "/bs_fetch_edit_data",
+    data: angular.toJson({'table_name': 'Table_1', 'sector': 'agri_irrigation',
+    'com_data': {
+          'district': $scope.district,
+          'bs_date': $scope.bs_date,
+          'division': $scope.division,
+          'region':$scope.region,
+          } }),
+    }).success(function(data) {
+
+    console.log(data);
+    $scope.bsIrgFacilities = data;
+    })
+}
+
+$scope.cancelEdit = function()
+{
+    $scope.is_edit = false;
+    $scope.bsIrgFacilities = init_data;
+}
+});

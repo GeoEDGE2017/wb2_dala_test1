@@ -2,7 +2,7 @@
 <!--DOCTYPE html-->
 <html lang="en" style="overflow-x:hidden;">
 
-<head  >
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-   
+
 
     <title>DALA - Admin</title>
 
@@ -20,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" href='{% static "dashboard/css/bootstrap-nav-wizard.css" %}'>
 	<link rel="stylesheet" type="text/css" href='{% static "dashboard/css/datepicker.css" %}'>
     <link href="{% static 'dashboard/css/datepicker.css' %}" rel="stylesheet">
-	
+
 	<script src='{% static "dashboard/js/jquery.min.js" %}'></script>
 	<script src='{% static "dashboard/js/jquery.nicescroll.min.js" %}'></script>
     <script src='{% static "dashboard/js/bootstrap.min.js" %}'></script>
@@ -34,8 +34,16 @@
     <script src="{% static 'health/base_line/js/bs_health_status.js' %}"></script>
     <!--<script src="{% static 'damage_losses/js/dl_health_damagelost_other_medi.js' %}"></script>-->
 
+
+    <!--agri_irrigation-->
+    <!--<script src='{% static "agri_irrigation/base_line/js/bs_irg_facilities.js" %}'></script>-->
+    <!--<script src='{% static "agri_irrigation/base_line/js/bs_rparpl_cos_assts.js" %}'></script>-->
+
+    <!--<script src='{% static "agri_irrigation/damage_losses/js/dl_irrigation.js" %}'></script>-->
+    <!--<script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_district.js" %}'></script>-->
+
     <!--transport_summary-->
-    <script src='{% static "transport_summary/js/sum_dl_trnspt_district.js" %}'></script>
+    <script src='{% static "transport_summary/damage_losses/js/sum_dl_trnspt_district.js" %}'></script>
     <script src='{% static "transport_summary/damage_losses/js/dl_trns_sumr_provn.js" %}'></script>
     <script src='{% static "transport_summary/damage_losses/js/dl_trns_sumr_national.js" %}'></script>
 
@@ -60,6 +68,7 @@
     <script src='{% static "transport_air/damage_losses/js/dl_air_trnspot_dtrs.js" %}'></script>
     <script src='{% static "transport_air/base_line/js/bs_info_aset_trns.js" %}'></script>
 
+
     <!-- Education -->
     <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
     <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
@@ -76,6 +85,7 @@
     <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_nat.js" %}'></script>
     <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_pro.js" %}'></script>
     <script src='{% static "transport_water/damage_losses/js/dl_ water_transportation.js" %}'></script>
+    <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_dst.js" %}'></script>
 
     <script src="{% static 'health/base_line/js/bs_health_pub_med_facilities.js' %}"></script>
     <script src="{% static 'health/base_line/js/bs_health_other_med_facilities_unit_cost.js' %}"></script>
@@ -190,7 +200,7 @@ $('#s4').on('click', function(){
 });
 </script>
 </head>
-     
+
 
 	<body class="navbar-fixed sidebar-nav fixed-nav">
     <header class="navbar">
@@ -203,7 +213,7 @@ $('#s4').on('click', function(){
                 </li>
             </ul>
             <ul class="nav navbar-nav float-xs-right hidden-md-down">
-              
+
               <li class="nav-item">
              <!-- Split button -->
 <div class="btn-group">
@@ -216,15 +226,15 @@ $('#s4').on('click', function(){
     <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">English</a></li>
     <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">සිංහල </a></li>
     <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">தமிழ்</a></li>
-   
+
   </ul>
 </div>
                </li>
-               
+
                 <!--li class="nav-item">
                     <a class="nav-link aside-toggle" href="#"><i class="fa fa-envelope-o"></i><span style="font-size:11px;" class="tag tag-pill tag-danger">5</span></a>
                 </li-->
-               
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <img src="{% static 'dashboard/img/default-user-image.png' %}" class="img-avatar" alt="">
@@ -235,12 +245,12 @@ $('#s4').on('click', function(){
                         <div class="dropdown-header text-xs-center">
                             <strong>Account</strong>
                         </div>
-                        
+
                         <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
                         <a class="dropdown-item" href="{% url 'dashboard:logout' %}"><i class="fa fa-lock"></i> Logout</a>
                     </div>
                 </li>
-                <li class="nav-item"> 
+                <li class="nav-item">
                 &nbsp;
                  </li>
             </ul>
@@ -258,59 +268,59 @@ $('#s4').on('click', function(){
               <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:health_main' %}"><i class="icon-speedometer"></i> Health </a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:education_main' %}"><i class="icon-speedometer"></i> Education </a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:mining_main' %}"><i class="icon-speedometer"></i> Mining </a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:othergov_main' %}"><i class="icon-speedometer"></i> Other Gov. Services </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="watersupply_main.html"><i class="icon-speedometer"></i> Water Supply </a>
                 </li>
-                
-                
-                
+
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Transportation </a>
                 </li>
-                
+
                   <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Power Supply </a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Agriculture </a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Housing </a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Tourism </a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Industry and Services</a>
                 </li>
-                
+
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Telecommunications</a>
                 </li>
-               
+
   <li class="nav-item">
                     <a class="nav-link" href="{% url 'reports:index_report' %}"><i class="icon-speedometer"></i> Report </a>
                 </li>
 		 <li class="nav-item">
                     <a class="nav-link" href="{% url 'charts:index_chart' %}"><i class="icon-speedometer"></i> Chart</a>
-                </li>	
+                </li>
             </ul>
         </nav>
     </div>
@@ -319,26 +329,26 @@ $('#s4').on('click', function(){
 
 
 
-    
 
-  
+
+
     {% block content %}
-   
-	
+
+
 
     {% endblock content %}
-  
+
 
 
     <aside class="aside-menu">
-       
+
 
         <!-- Tab panes -->
         <div class="tab-content">
-            
+
             <div class="tab-pane active p-1" id="messages" role="tabpanel">
                 <div class="message">
-                    
+
                     <div>
                         <small class="text-muted">Lukasz Holeczek</small>
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
@@ -348,7 +358,7 @@ $('#s4').on('click', function(){
                 </div>
                 <hr>
                  <div class="message">
-                    
+
                     <div>
                         <small class="text-muted">Lukasz Holeczek</small>
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
@@ -358,7 +368,7 @@ $('#s4').on('click', function(){
                 </div>
                 <hr>
                  <div class="message">
-                    
+
                     <div>
                         <small class="text-muted">Lukasz Holeczek</small>
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
@@ -368,7 +378,7 @@ $('#s4').on('click', function(){
                 </div>
                 <hr>
                 <div class="message">
-                    
+
                     <div>
                         <small class="text-muted">Lukasz Holeczek</small>
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
@@ -378,7 +388,7 @@ $('#s4').on('click', function(){
                 </div>
                 <hr>
                 <div class="message">
-                    
+
                     <div>
                         <small class="text-muted">Lukasz Holeczek</small>
                         <small class="text-muted float-xs-right mt-q">1:52 PM</small>
@@ -387,19 +397,19 @@ $('#s4').on('click', function(){
                     <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
                 </div>
             </div>
-          
+
         </div>
     </aside>
     <footer class="footer">
 
 <div class="col-md-12">
-			 
-			
+
+
 			<div class="modal fade" id="modal-container-239453" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							 
+
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 								×
 							</button>
@@ -411,20 +421,20 @@ $('#s4').on('click', function(){
 							<h4>Data Saved Successfully! </h4>
 						</div>
 						<div class="modal-footer">
-							 
+
 							<button type="button" class="btn btn-default" data-dismiss="modal">
 								Close
-							</button> 
+							</button>
 							<button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary">
 								OK
 							</button>
 						</div>
 					</div>
-					
+
 				</div>
-				
+
 			</div>
-			
+
 		</div>
 
 

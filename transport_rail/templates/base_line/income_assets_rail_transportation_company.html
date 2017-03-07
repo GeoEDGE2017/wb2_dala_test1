@@ -1,6 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
 
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+      
+  });
+ 
+</script>
 <!-- Main content -->
 <main class="main" ng-app="bsIncomeRailCompanyApp" ng-controller="bsIncomeRailCompanyController">
 
@@ -14,7 +21,7 @@
         <li class="breadcrumb-item"><a href="#">Rail sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Income and assets in the rail transportation company</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Income and Assets in the Rail Transportation Company</span>
         </li>
 
 
@@ -24,8 +31,8 @@
     <div ng-init="fetchCompanies()" class="container-fluid">
 
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Average Annual Income of Rail Company</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Buildings</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Average Annual Income of Rail Company</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Buildings</a></li>
 
         </ul>
 
@@ -50,7 +57,7 @@
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box"
                                   ng-show="submitted && form_income_rail_trns_company.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -58,7 +65,7 @@
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box"
                                   ng-show="submitted && form_income_rail_trns_company.baselineDate.$error.required">
-                                Please select Date
+                                Please Select Date
                             </span>
                         </td>
                     </tr>
@@ -78,8 +85,8 @@
                         <td style="padding-left:5px;" height="19" width="171">
                             Year/Month
                         </td>
-                        <td colspan="2" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
-                            <input name="baselineDate" type="text" placeholder="" id="datepicker"
+                        <td colspan="3" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker"
                                    ng-model="baselineDate" class="form-control input-md" required>
                         </td>
                     </tr>
@@ -87,18 +94,17 @@
                         <td class="trhead" width="281" height="20">
                             Name of Railroad Company
                         </td>
-                        <td colspan="2" width="622">
+                        <td colspan="3" width="622">
                             <select ng-options="company as company.name for company in companies track by company.id"
                                     name="company" id="ccyear" ng-model="selectedCompany" class="form-control" required>
                                 <option value="" selected>Select Company</option>
                             </select>
-                        </td>
-                        <td>
-                            <span class="arrow_box"
+                            <span class="arrow_box1"
                                   ng-show="submitted && form_income_rail_trns_company.company.$error.required">
-                                Please select Company
+                               <small style="color:red;"> Please Select Company </small>
                             </span>
                         </td>
+                       
                         <td width="">
                             <a id="" href="#modal-container-218029" role="button" data-toggle="modal"
                                class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add</a>
@@ -162,16 +168,16 @@
                     </tr>
                     </tbody>
                 </table>
-                <div id="boxscroll" style="height:400px;overflow:auto;cursor:auto;">
+                <div id="boxscroll1" style="height:400px;overflow:auto;cursor:auto;">
                     <table class="table table-bordered">
                         <tr class="trheadc" height="20">
-                            <td width="320" height="20">
+                            <td width="320" height="20" style="width:23.7%;">
                                 Moving Assets
                             </td>
                             <td colspan="2">
 
                             </td>
-                            <td colspan="3">
+                            <td colspan="3" style="width:27.5%;">
 
                             </td>
                         </tr>
@@ -190,7 +196,7 @@
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="281" height="20">
-                                Equipment and machinery
+                                Equipment and Machinery
                             </td>
                             <td colspan="2" width="300">
                                 (LKR/Unit)
@@ -202,7 +208,7 @@
                         <tr height="20"
                             ng-repeat="bsEquipMachineryAst in bsIncomeRailCompany.transport_rail.Table_1.BsEquipMachineryAst">
                             <td class="tdpa" width="281" height="20" ng-bind="bsEquipMachineryAst.asset">
-                                Signal equipment
+                                Signal Equipment
                             </td>
                             <td colspan="2">
                                 <input ng-model="bsEquipMachineryAst.avg_replace_cost" id="textinput" name="textinput"
@@ -215,7 +221,7 @@
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="281" height="20">
-                                Materials and supplies
+                                Materials and Supplies
                             </td>
                             <td colspan="2" width="300">
                                 (LKR/Unit)
@@ -269,7 +275,7 @@
                 </div>
 
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Buildings Informations</a>
                 <br>
             </div>
@@ -326,7 +332,7 @@
 
                 <br>
                 <div class="pull-right">
-                    <br>
+                   
                     <button type="button" class="btn btn-info">Clear</button>
                     <button type="button" ng-click="editDlData(form_income_rail_trns_company)" ng-if="!is_edit"
                             class="btn btn-success">
@@ -339,7 +345,7 @@
                         Submit
                     </button>
                 </div>
-                <br><br><br>
+                <br><br>
             </div>
         </div>
 

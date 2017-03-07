@@ -219,3 +219,57 @@ class DlWaterLosNational(models.Model):
         db_table = 'transport_water\".\"dl_water_los_national'
 
 
+# Table 3
+class DlAstWaterWcraftsDistrict(models.Model):
+    tot_dmg_private = models.FloatField(blank=True, null=True)
+    tot_dmg_public = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_water\".\"dl_ast_water_wcrafts_district'
+
+
+class DlWaterDmgEquipmentDistrict(models.Model):
+    tot_dmg_private = models.FloatField(blank=True, null=True)
+    tot_dmg_public = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_water\".\"dl_water_dmg_equipment_district'
+
+
+class DlWaterDmgMaterialsDistrict(models.Model):
+    tot_dmg_private = models.FloatField(blank=True, null=True)
+    tot_dmg_public = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_water\".\"dl_water_dmg_materials_district'
+
+
+class DlWaterDmgStructuresDistrict(models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_water\".\"dl_water_dmg_structures_district'
+
+
+class DlWaterDmgBuildingsDistrict(models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_water\".\"dl_water_dmg_buildings_district'
+
+

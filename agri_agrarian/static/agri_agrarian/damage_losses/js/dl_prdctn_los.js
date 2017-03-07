@@ -293,17 +293,15 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BcagSeasonalCrops', 'BcagPlantnCrops', 'BcagExportCrops', 'BcagForestry', 'BcagOther'],
+                    'db_tables': ['BcagSeasonalCrops','BcagPlantnCrops','BcagExportCrops','BcagForestry','BcagOther'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_7',
                     'sector':'agri_agrarian',
-                        }),
-                  dataType: 'json',
-
-
+                }),
+                dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
@@ -505,7 +503,6 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
             }, function errorCallback(response) {
                 console.log(response);
             });
-
         }
     }
 }]);

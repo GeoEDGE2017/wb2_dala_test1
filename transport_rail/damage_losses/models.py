@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 from settings.models import District,Province
 from incidents.models import IncidentReport
 

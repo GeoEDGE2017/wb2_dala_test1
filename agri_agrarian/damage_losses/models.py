@@ -1,9 +1,7 @@
 from django.db import models
-from settings.models import District, Province
 from incidents.models import IncidentReport
+from settings.models import District, Province
 
-
-# Table 4
 
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
@@ -11,14 +9,15 @@ class DlSessionKeys(models.Model):
     user = models.IntegerField(blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
     incident = models.IntegerField(blank=True, null=True)
-    province = models.ForeignKey(Province, db_column='province', related_name='ag_dl_province', blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', related_name='ag_dl_district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='aagr_dl_province', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='aagr_dl_district', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'agri_agrarian\".\"dl_session_keys'
 
 
+# Table 4
 class DcpfFarmEquipment(models.Model):
     assets = models.CharField(max_length=255, blank=True, null=True)
     num_dest_pub = models.BigIntegerField(blank=True, null=True)
@@ -475,9 +474,252 @@ class PldyOtherLos(models.Model):
         managed = False
         db_table = 'agri_agrarian\".\"pldy_other_los'
 
+
+# Table 8
+class DsorDmgPubStrusturesDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pub_strustures_district'
+
+
+class DsorDmgPvtStrusturesDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pvt_strustures_district'
+
+
+class DsorDmgPvtOequipmentDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pvt_oequipment_district'
+
+
+class DsorDmgPvtMachineryDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pvt_machinery_district'
+
+
+class DcpfFarmEquipmentDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_farm_equipment_district'
+
+
+class DcpfStocksDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_stocks_district'
+
+
+# --------------
+class DcpfSeasonalCropsDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_seasonal_crops_district'
+
+
+class DcpfPlantnCropsDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_plantn_crops_district'
+
+
+class DcpfExportCropsDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_export_crops_district'
+
+
+class DcpfForestryDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_forestry_district'
+
+
+class DcpfOtherDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_other_district'
+
+
+# ----------
+class DildSeasonalCropsDistrict(models.Model):
+    invest_los_pub = models.FloatField(blank=True, null=True)
+    invest_los_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dild_seasonal_crops_district'
+
+
+class PldySeasonalCropsDistrict(models.Model):
+    prod_year_1_pub = models.FloatField(blank=True, null=True)
+    prod_year_1_pvt = models.FloatField(blank=True, null=True)
+    prod_year_2_pub = models.FloatField(blank=True, null=True)
+    prod_year_2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"pldy_seasonal_crops_district'
+
+
+class DildPlantnCropsDistrict(models.Model):
+    invest_los_pub = models.FloatField(blank=True, null=True)
+    invest_los_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dild_plantn_crops_district'
+
+
+class PldyPlantnCropsDistrict(models.Model):
+    prod_year_1_pub = models.FloatField(blank=True, null=True)
+    prod_year_1_pvt = models.FloatField(blank=True, null=True)
+    prod_year_2_pub = models.FloatField(blank=True, null=True)
+    prod_year_2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"pldy_plantn_crops_district'
+
+
+class DildExportCropsDistrict(models.Model):
+    invest_los_pub = models.FloatField(blank=True, null=True)
+    invest_los_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dild_export_crops_district'
+
+
+class PldyExportCropsDistrict(models.Model):
+    prod_year_1_pub = models.FloatField(blank=True, null=True)
+    prod_year_1_pvt = models.FloatField(blank=True, null=True)
+    prod_year_2_pub = models.FloatField(blank=True, null=True)
+    prod_year_2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"pldy_export_crops_district'
+
+
+class DildForestryDistrict(models.Model):
+    invest_los_pub = models.FloatField(blank=True, null=True)
+    invest_los_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dild_forestry_district'
+
+
+class PldyForestryDistrict(models.Model):
+    prod_year_1_pub = models.FloatField(blank=True, null=True)
+    prod_year_1_pvt = models.FloatField(blank=True, null=True)
+    prod_year_2_pub = models.FloatField(blank=True, null=True)
+    prod_year_2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"pldy_forestry_district'
+
+
+class PldyOtherDistrict(models.Model):
+    prod_year_1_pub = models.FloatField(blank=True, null=True)
+    prod_year_1_pvt = models.FloatField(blank=True, null=True)
+    prod_year_2_pub = models.FloatField(blank=True, null=True)
+    prod_year_2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"pldy_other_district'
+
+
+class PldyOtherLosDistrict(models.Model):
+    year_1_pub = models.FloatField(blank=True, null=True)
+    year_1_pvt = models.FloatField(blank=True, null=True)
+    year_2_pub = models.FloatField(blank=True, null=True)
+    year_2_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"pldy_other_los_district'
+
+
 # Table 9
-
-
 class DsorDmgLosProvince(models.Model):
     dmg_los_pub = models.CharField(max_length=255, blank=True, null=True)
     dmg_los_pvt = models.FloatField(blank=True, null=True)

@@ -202,7 +202,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther'],
+                    'db_tables': ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,

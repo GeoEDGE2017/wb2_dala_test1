@@ -4,6 +4,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
+    $scope.Districts=[];
 
     $scope.dlDate;
     $scope.bs_data={};

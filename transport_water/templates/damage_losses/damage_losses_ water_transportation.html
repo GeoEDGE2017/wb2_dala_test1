@@ -14,7 +14,7 @@
         <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and losses to water transportation</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses to Water Transportation</span>
         </li>
 
 
@@ -24,13 +24,13 @@
     <div class="container-fluid">
 
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
-            <li class=""><a href='#step2' data-toggle="tab">2 - Structures/Buildings</a></li>
-            <li><a href='#step3' data-toggle="tab">3 - Losses</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
+            <li id="li2" class=""><a href='#step2' data-toggle="tab">2 - Structures/Buildings</a></li>
+            <li id="li3"><a href='#step3' data-toggle="tab">3 - Losses</a></li>
 
         </ul>
 
-        <div id="myTabContent" class="tab-content">
+        <div id="myTabContent" class="tab-content" ng-form name="form_dl_water_transportation">
             <div class="tab-pane active" id="step1">
 
 
@@ -47,12 +47,28 @@
                         <col width="126"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead">
 
-                        <td style="padding-right:5px;text-align:right;">
+                        <td style="padding-right:5px;">
                             Incident
                         </td>
-                        <td colspan="3" style="background:#EFEFEF;">
+                        <td colspan="2" style="background:#EFEFEF;">
 
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
@@ -71,9 +87,9 @@
                         </td>
                         <td colspan="3" style="padding-left:5px;"> Name of District</td>
 
-                        <td colspan="2" style="background:#EFEFEF;">
+                        <td colspan="3" style="background:#EFEFEF;">
 
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                            <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                     class="form-control" ng-change="changedValue(false)" required>
 
@@ -183,18 +199,15 @@
                         </td>
                         <td width="170" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private" ng-bind="DlWaterDmgWcrafts_num_pdestroyed_private">
                         </td>
-
                         </td>
                         <td colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts)" width="268">
-
                         </td>
                          <td colspan="2" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts)" width="268">
-
                         </td>
                     </tr>
                     <tr class="trheadc">
                         <td width="253" height="19">
-                            Equipment and machinery
+                            Equipment and Machinery
                         </td>
                         <td width="147">
                         </td>
@@ -277,7 +290,7 @@
 
                     <tr class="trheadc" height="19">
                         <td width="253" height="19">
-                            Materials and supplies
+                            Materials and Supplies
                         </td>
                         <td width="147">
                         </td>
@@ -378,7 +391,7 @@
                 </table>
 
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Structures/Buildings Informations</a>
                 <br>
             </div>
@@ -607,7 +620,7 @@
 
 
                 <br>
-                <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                 <br>
             </div>
@@ -793,7 +806,7 @@
                 </table>
 
 
-                <br>
+
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
@@ -803,7 +816,7 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData()"
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_water_transportation)"
                     class="btn btn-success">Submit
                     </button>
                 </div>

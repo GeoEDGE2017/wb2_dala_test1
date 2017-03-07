@@ -518,23 +518,6 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     return finaltotal;
     }
 
-  $scope.getTotal = function(model, property) {
-
-        var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
-        var cumulative = null;
-        var sums = _.map(array, function(obj) {
-            cumulative += obj[property];
-            return cumulative;
-
-        });
-        var the_string = model + '_' + property;
-        var model = $parse(the_string);
-        model.assign($scope, cumulative);
-
-
-
-    }
-
   $scope.calGrandTotalPub=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -603,6 +586,32 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 ;
     return grantot;
     }
+
+
+
+
+
+  $scope.getTotal = function(model, property) {
+
+        var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
+         console.log(array);
+        var cumulative = null;
+        var sums = _.map(array, function(obj) {
+          if(obj.assets != 'Total')
+            cumulative += obj[property];
+            console.log(obj);
+            return cumulative;
+
+        });
+
+        var the_string = model + '_' + property;
+        var model = $parse(the_string);
+        model.assign($scope, cumulative);
+
+
+
+    }
+
 
 
 

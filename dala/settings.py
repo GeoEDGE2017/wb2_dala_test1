@@ -130,7 +130,7 @@ DATABASES = {
         #     'options': '-c search_path=agri_livestock'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
 
     },

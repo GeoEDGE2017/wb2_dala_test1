@@ -430,48 +430,48 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             if(model_name == 'BsRciaMajorTanks') {
                dl_model1 = 'DlMajorTanks';
                particular_value_1 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model1] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model1] = [];
             }
             if(model_name == 'BsRciaMediumTanks') {
                dl_model2 = 'DlMediumTanks';
                particular_value_2 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model2] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model2] = [];
             }
             if(model_name == 'BsRciaMinorTanks') {
                dl_model3 = 'DlMinorTanks';
                particular_value_3 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model3] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model3] = [];
             }
             if(model_name == 'BsRciaAnicuts') {
                dl_model4 = 'DlAnicuts';
                particular_value_4 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model4] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model4] = [];
             }
             if(model_name == 'BsRciaOtherStructures') {
                dl_model5 = 'DlOtherStructures';
                particular_value_5 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model5] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model5] = [];
             }
 
             if(model_name == 'BsIfMajor') {
                dl_model6 = 'DlLosMajorTanks';
                particular_value_6 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model6] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model6] = [];
             }
             if(model_name == 'BsIfMedium') {
                dl_model7 = 'DlLosMediumTanks';
                particular_value_7 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model7] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model7] = [];
             }
             if(model_name == 'BsIfMinor') {
                dl_model8 = 'DlLosMinorTanks';
                particular_value_8 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model8] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model8] = [];
             }
             if(model_name == 'BsIfAnicuts') {
                dl_model9 = 'DlLosAnicuts';
                particular_value_9 = 'Total';
-               $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model9] = [];
+               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model9] = [];
             }
 
             var obj1 = {
@@ -588,64 +588,65 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 };
 
                 if(model_name == 'BsRciaMajorTanks') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model1].push(obj1);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model1].push(obj1);
                 }
                 if(model_name == 'BsRciaMediumTanks') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model2].push(obj2);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model2].push(obj2);
                 }
                 if(model_name == 'BsRciaMinorTanks') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model3].push(obj3);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model3].push(obj3);
                 }
                 if(model_name == 'BsRciaAnicuts') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model4].push(obj4);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model4].push(obj4);
                 }
                 if(model_name == 'BsRciaOtherStructures') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model5].push(obj5);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model5].push(obj5);
                 }
 
                 if(model_name == 'BsIfMajor') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model6].push(obj6);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model6].push(obj6);
                 }
                 if(model_name == 'BsIfMedium') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model7].push(obj7);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model7].push(obj7);
                 }
                 if(model_name == 'BsIfMinor') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model8].push(obj8);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model8].push(obj8);
                 }
                 if(model_name == 'BsIfAnicuts') {
-                   $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model9].push(obj9);
+                   $scope.dlIrrigation.agri_irrigation.Table_3[dl_model9].push(obj9);
                 }
             });
 
             if(model_name == 'BsRciaMajorTanks') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model1].push(obj1);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model1].push(obj1);
             }
             if(model_name == 'BsRciaMediumTanks') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model2].push(obj2);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model2].push(obj2);
             }
             if(model_name == 'BsRciaMinorTanks') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model3].push(obj3);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model3].push(obj3);
             }
             if(model_name == 'BsRciaAnicuts') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model4].push(obj4);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model4].push(obj4);
             }
             if(model_name == 'BsRciaOtherStructures') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model5].push(obj5);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model5].push(obj5);
             }
 
             if(model_name == 'BsIfMajor') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model6].push(obj6);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model6].push(obj6);
             }
             if(model_name == 'BsIfMedium') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model7].push(obj7);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model7].push(obj7);
             }
             if(model_name == 'BsIfMinor') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model8].push(obj8);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model8].push(obj8);
             }
             if(model_name == 'BsIfAnicuts') {
-                $scope.dlAirTrnspotation.agri_irrigation.Table_3[dl_model9].push(obj9);
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model9].push(obj9);
             }
         });
+
     }
 
     $scope.saveDlData = function(form) {

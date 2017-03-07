@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^charts/', include('charts.urls', namespace='charts')),
 
     # report builder
-    url(r'^report_builder/', include('report_builder.urls')),
+    #url(r'^report_builder/', include('report_builder.urls')),
 
     # common functions
     url(r'^bs_get_data$', views.bs_get_data, name='bs_get_data'),
@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
 
+
     #agri_irrigation
     url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),
 
@@ -49,8 +50,9 @@ urlpatterns = [
     # agri_livestock
     #url(r'^agri_livestock/', include('agri_livestock.urls', namespace='agri_livestock')),
 
-    # # transport_summary
-    # url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
+    # agri_fisheries
+    #url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
+
 
     # other govn services
     url(r'^other_govn_services/', include('other_govn_services.urls', namespace='other_govn_services')),

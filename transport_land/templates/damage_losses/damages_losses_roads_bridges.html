@@ -1,6 +1,5 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
 <!-- Main content -->
 <main class="main" ng-app="dlRoadBrdgsApp" ng-controller="dlRoadBrdgsController">
     <!-- Breadcrumb -->
@@ -11,7 +10,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Roads and Bridges</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Roads and bridges</span>
         </li>
     </ol>
 
@@ -38,22 +37,22 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1"  style="border:1px solid #fff;text-align:center;">
+                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="2" style="border:1px solid #fff;text-align:center;">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_road_brdgs.incident.$error.required">
                                     Please select Incident
                                 </span>
                             </td>
-                            <td colspan="3" style="border:1px solid #fff;text-align:center;">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="2" style="border:1px solid #fff;text-align:center;">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_road_brdgs.district.$error.required">
                                     Please select District
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" height="33">
+                        <tr height="33">
                             <td class="trhead" height="43" width="156">
                                 Incident
                             </td>
@@ -69,12 +68,12 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td class="trhead"  height="43" width="120">
+                            <td class="trhead" height="43" width="120">
                                 District
                             </td>
                             <td colspan="4" height="43" width="680">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" style="font-weight:normal;" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
@@ -172,58 +171,31 @@
                             <td class="tdpa" height="19" width="156" ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].road_classification">
 
                             </td>
-                            <td class="tdpa" height="19" width="63"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_concrete"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_concrete =
-                                calTotal('DlRbdRclassification','tot_dest_concrete')">
+                            <td class="tdpa" height="19" width="63">
 
                             </td>
-                            <td class="tdpa" height="19" width="120"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_asphalt"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_asphalt =
-                                calTotal('DlRbdRclassification' ,'tot_dest_asphalt')">
+                            <td class="tdpa" height="19" width="120">
                                 <br/>
                             </td>
-                            <td class="tdpa" height="19" width="99"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_gravel"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_gravel =
-                                calTotal('DlRbdRclassification' ,'tot_dest_gravel')">
+                            <td class="tdpa" height="19" width="99">
                                 <br/>
                             </td>
-                            <td class="tdpa" height="19" width="145"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_earth"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].tot_dest_earth =
-                                 calTotal('DlRbdRclassification' ,'tot_dest_earth')">
+                            <td class="tdpa" height="19" width="145">
                                 <br/>
                             </td>
-                            <td class="tdpa" height="19" width="148"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_concrete"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_concrete =
-                                 calTotal('DlRbdRclassification' ,'part_dest_concrete')">
+                            <td class="tdpa" height="19" width="148">
                                 <br/>
                             </td>
-                            <td class="tdpa" height="19" width="63"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_asphalt"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_asphalt =
-                                calTotal('DlRbdRclassification' ,'part_dest_asphalt')">
+                            <td class="tdpa" height="19" width="63">
                                 <br/>
                             </td>
-                            <td class="tdpa" height="19" width="63"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_gravel"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_gravel =
-                                calTotal('DlRbdRclassification' ,'part_dest_gravel')">
+                            <td class="tdpa" height="19" width="63">
                                 <br/>
                             </td>
-                            <td class="tdpa" height="19" width="63"
-                                ng-mdoel="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_earth"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].part_dest_earth=
-                                calTotal('DlRbdRclassification' ,'part_dest_earth')">
+                            <td class="tdpa" height="19" width="63">
                                 <br/>
                             </td>
-                            <td height="19" width="63"
-                                ng-model="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].damages"
-                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].damages=
-                                getTot('DlRbdRclassification')">
+                            <td height="19" width="63" ng-bind="calTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification)">
 
                             </td>
 
@@ -231,7 +203,7 @@
                         </tbody>
                     </table>
                     <br>
-                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill ther Assest Informations</a>
                     <br>
                 </div>
@@ -283,7 +255,11 @@
                             </td>
                         </tr>
 
-                       
+                        </tbody>
+                    </table>
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                        <table class="table table-bordered">
+                            <tbody>
                             <tr height="19" ng-repeat="dlRbdTbridges in dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges" ng-if="dlRbdTbridges.type_bridges != 'Total'">
                                 <td class="tdpa" height="19" width="156" ng-bind="dlRbdTbridges.type_bridges">
                                 </td>
@@ -328,8 +304,7 @@
                                     <br/>
                                 </td>
                                 <td height="19" width="63"
-                                    ng-model="dlRbdTbridges.damages"
-                                    ng-bind="dlRbdTbridges.damages">
+                                   ng-bind="calTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges)">
                                 </td>
 
                             </tr>
@@ -375,7 +350,7 @@
                                 <td class="tdpa" colspan="4" height="19" width="422" ng-bind="dlRbdTculverts.part_destroyed">
                                     <br/>
                                 </td>
-                                <td height="19" width="63" ng-model="dlRbdTculverts.damages" ng-bind="dlRbdTculverts.damages = $parent.calculateTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts)">
+                                <td height="19" width="63" ng-bind="calTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts)">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="34">
@@ -419,7 +394,7 @@
                                 <td class="tdpa" colspan="4" height="19" width="422" ng-bind="dlRbdTrwalls.part_destroyed">
                                     <br/>
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdTrwalls.damages">
+                                <td height="19" width="63" ng-bind="calTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdTrwalls)">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="34">
@@ -463,13 +438,15 @@
                                 <td class="tdpa" colspan="4" height="19" width="422" ng-bind="dlRbdTdrains.part_destroyed">
                                     <br/>
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdTdrains.damages">
+                                <td height="19" width="63" ng-bind="calTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdTdrains)">
                                 </td>
                             </tr>
-                            <tr height="19" ng-repeat="dlRbdTdrains in dlRoadBrdgs.transport_land.Table_4.DlRbdTdrains" ng-if="dlRbdTdrains.type_drains == 'TOTAL DAMAGES'">
-                                <td class="tdpa" colspan="9" height="19" width="1013" ng-bind="dlRbdTdrains.type_drains">
+                            <tr height="19" >
+                                <td class="tdpa" class="boldash" colspan="9" height="19" width="1013">
+                                    TOTAL DAMAGES
                                 </td>
-                                <td height="19" width="63" ng-bind="dlRbdTdrains.damages">
+
+                                <td height="19" width="63" ng-bind="calGrandTotal()">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -531,7 +508,7 @@
                             </tr>
                             </tbody>
                         </table>
-                    
+                    </div>
 
 
                     <br>
@@ -549,7 +526,6 @@
                     </button>
 
                     </div>
-                    <br><br>
                 </div>
 
 
@@ -608,6 +584,4 @@
 
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

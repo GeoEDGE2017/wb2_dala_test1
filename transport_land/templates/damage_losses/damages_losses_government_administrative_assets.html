@@ -1,13 +1,5 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-      
-  });
- 
-</script>
 <!-- Main content -->
 <main class="main" ng-app="dlGovnAdmnAsetsApp" ng-controller="dlGovnAdmnAsetsController">
     <!-- Breadcrumb -->
@@ -18,7 +10,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Damages and Losses to Government Agency in Charge of Land Transportation</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Damages and losses to government agency in charge of land transportation</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_govn_admn_asets">
@@ -45,18 +37,18 @@
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.incident.$error.required">
-                                    Please Select Incident
+                                    Please select Incident
                                 </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.district.$error.required">
-                                    Please Select District
+                                    Please select District
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" height="43">
+                        <tr height="43">
                             <td class="trhead" height="43" width="156">
                                 Incident
                             </td>
@@ -77,7 +69,7 @@
                             </td>
                             <td colspan="2" height="43" width="343">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" style="font-weight:normal;" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
@@ -143,13 +135,13 @@
                             <td class="tdpa" colspan="2" height="19" width="198">
                                 <br/>
                             </td>
-                            <td height="19" width="148" ng-model="dlGacDmgStructures.damages">
+                            <td height="19" width="148" ng-bind="calTotal($parent.dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures)">
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <br>
-                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Informations</a>
                     <br>
                 </div>
@@ -196,7 +188,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div id="boxscroll1" style="height:400px;overflow:auto;">
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
                             <tr height="19" ng-repeat="dlGacPdmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures" ng-if="$index < 3">
@@ -240,7 +232,7 @@
                                 <td class="tdpa" height="19" width="145">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgStructures.damages">
+                                <td height="19" width="148" ng-bind="calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures)">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -298,7 +290,7 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgEquipment.damages">
+                                <td height="19" width="148" ng-bind="calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment)">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="19">
@@ -344,7 +336,7 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
+                                <td height="19" width="148" ng-bind="calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery)">
                                 </td>
                             </tr>
                             <!--Machinery TOTAL DAMAGES-->
@@ -357,14 +349,14 @@
                                 <td class="tdpa" colspan="2" height="19" width="198">
                                     <br/>
                                 </td>
-                                <td height="19" width="148" ng-bind="dlGacPdmgMachinery.damages">
+                                <td height="19" width="148" ng-bind="calGrandTotal()">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <br>
-                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                     <br>
                     <br>
@@ -378,7 +370,7 @@
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
-                            <td height="19" width="156" style="width:30%;">
+                            <td height="19" width="156">
                                 Type of Losses
                             </td>
                             <td colspan="2" height="19" width="126">
@@ -391,7 +383,7 @@
                                 Total (LKR)
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="$index < 4">
+                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets != 'TOTAL LOSSES'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
                             </td>
                             <td colspan="2" height="19" width="126">
@@ -410,16 +402,24 @@
                         <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets == 'TOTAL LOSSES'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
                             </td>
-                            <td colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_1">
+                            <td colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_1" ng-bind="dlGacLosType.los_year_1 =
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[0].los_year_1+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[1].los_year_1+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[2].los_year_1+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_1">
                             </td>
-                            <td colspan="2" height="19" width="198" ng-model="dlGacLosType.los_year_2">
+                            <td colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_2" ng-bind="dlGacLosType.los_year_2 =
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[0].los_year_2+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[1].los_year_2+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[2].los_year_2+
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_2">
                             </td>
-                            <td height="19" width="148" ng-bind="dlGacLosType.total">
+                            <td height="19" width="148" ng-bind="calGrandTypeLossTotal()">
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                   
+                    <br>
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
@@ -434,7 +434,6 @@
                                 class="btn btn-success">Submit</button>
 
                     </div>
-                    <br><br> <br>
                 </div>
             </div>
         </div>
@@ -442,6 +441,4 @@
     </div>
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

@@ -56,7 +56,7 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
             });
               }
             });
-           $scope.dlTransSumNat = data;
+           $scope.dlTransSumNat = data  ;
 
             })
 

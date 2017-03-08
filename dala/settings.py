@@ -76,12 +76,12 @@ INSTALLED_APPS = [
     'agri_irrigation',
     'agri_irrigation.base_line',
     'agri_irrigation.damage_losses',
-    'agri_livestock',
-    'agri_livestock.base_line',
-    'agri_livestock.damage_losses',
-    'agri_fisheries',
-    'agri_fisheries.base_line',
-    'agri_fisheries.damage_losses',
+    #'agri_livestock',
+    #'agri_livestock.base_line',
+    #'agri_livestock.damage_losses',
+    #'agri_fisheries',
+    #'agri_fisheries.base_line',
+    #'agri_fisheries.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [

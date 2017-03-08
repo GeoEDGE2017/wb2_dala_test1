@@ -80,11 +80,7 @@
                                 Division
                             </td>
                             <td colspan="7" width="118">
-                                <select id="selectbasic" name="selectbasic" class="form-control"
-                                        style="width:100%;font-weight:400;">
-                                    <option value="1">Option one</option>
-                                    <option value="2">Option two</option>
-                                </select>
+                                 <input type="text" name="division" ng-model="division" required>
                             </td>
                         </tr>
                         <tr class="trhead" height="19">
@@ -92,11 +88,7 @@
                                 Region
                             </td>
                             <td colspan="7" width="118">
-                                <select id="selectbasic" name="selectbasic" class="form-control"
-                                        style="width:100%;font-weight:400;">
-                                    <option value="1">Option one</option>
-                                    <option value="2">Option two</option>
-                                </select>
+                                 <input type="text" name="region" ng-model="region" required>
                             </td>
                         </tr>
                         <tr class="trheadc" height="34">
@@ -136,7 +128,10 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlMajorTanks.totally_destroyed">
                             </td>
-                            <td width="85" ng-bind="dlMajorTanks.damages">
+                            <td width="85" ng-model="dlMajorTanks.damages"
+                                ng-bind="dlMajorTanks.damages =
+                            dlMajorTanks.partially_damaged * bs_data['BsRciaMajorTanks'][$index].fields.avg_repair_cost +
+                            dlMajorTanks.totally_destroyed * bs_data['BsRciaMajorTanks'][$index].fields.avg_replacement_cost">
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="dlMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlMajorTanks" ng-if="dlMajorTanks.irrigation_assets == 'Total'">

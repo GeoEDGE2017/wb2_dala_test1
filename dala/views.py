@@ -747,6 +747,7 @@ def dl_fetch_summary_disagtn(request):
                     model_class = apps.get_model(sub_app_name, table)
 
                     table_fields = tables[table]
+                    print table
                     dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
                                                                                     filter(**filter_fields)
                                                                                     .values(*table_fields))

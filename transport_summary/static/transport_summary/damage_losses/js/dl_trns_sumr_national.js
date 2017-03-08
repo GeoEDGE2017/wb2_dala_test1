@@ -16,7 +16,6 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
     $scope.totalyear2vt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.grndtotaldpub = 0;
     $scope.grndtotaldpvt = 0;
@@ -42,7 +41,6 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
             'table_name':  ['Table_9','Table_5','Table_5','Table_4'],
             'sector': ['transport_land','transport_air','transport_water','transport_rail'],
             'com_data': {
-
                     'incident': $scope.incident,
                   },
                    }),

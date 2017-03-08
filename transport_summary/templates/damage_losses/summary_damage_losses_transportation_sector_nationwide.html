@@ -110,7 +110,7 @@
                     <table class="table table-bordered">
                         <tbody ng-repeat="(key1, value1) in dlTransSumNat.transport_land.Table_9">
                         <!--<tr><td ng-bind="value.Table_9"></td></tr>-->
-                    <tr class="trhead" height="17" ng-init="getTotal($index,key1);" >
+                    <tr class="trhead" height="17" ng-init="getTotal(key1)">
                         <td ng-bind="key1" class="trhead" width="253" height="19">
 
                         </td>
@@ -142,7 +142,7 @@
                     </tr>
 
 
-                      <tr height="17">
+                      <tr height="17" >
                         <td class="tdpa" width="197" height="17">
                             Land Transportation
                         </td>
@@ -171,7 +171,7 @@
 
                         </td>
                     </tr>
-                        <tr height="17" ng-init="getTotal($index,key1);">
+                        <tr height="17" >
                         <td class="tdpa" width="197" height="17">
                             Air Transportation
                         </td>
@@ -200,37 +200,37 @@
 
                         </td>
                     </tr>
-                         <tr height="17" ng-init="getTotal($index,key1);">
+                         <tr height="17" >
                         <td class="tdpa" width="197" height="17">
                             Water Transportation
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPubNational[0].tot_dmg_public">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterDmgPubNational[0].tot_dmg_public">
 
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPvtNational[0].tot_dmg_private">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterDmgPvtNational[0].tot_dmg_private">
 
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pub">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_1_pub">
 
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pvt">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_1_pvt">
 
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pub">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_2_pub">
 
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pvt">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_2_pvt">
 
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPubNational[0].tot_dmg_public +dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pub + dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pub ">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterDmgPubNational[0].tot_dmg_public +dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_1_pub + dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_2_pub ">
 
                         </td>
-                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_4[key1].DlWaterDmgPvtNational[0].tot_dmg_private + dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_1_pvt + dlTransSumNat.transport_water.Table_4[key1].DlWaterLosNational[0].year_2_pvt">
+                        <td width="63" height="17" ng-bind="dlTransSumNat.transport_water.Table_5[key1].DlWaterDmgPvtNational[0].tot_dmg_private + dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_1_pvt + dlTransSumNat.transport_water.Table_5[key1].DlWaterLosNational[0].year_2_pvt">
 
                         </td>
                     </tr>
                     </tr>
-                         <tr height="17" ng-init="getTotal($index,key1);">
+                         <tr height="17">
                         <td class="tdpa" width="197" height="17">
                             Rail Transportation
                         </td>
@@ -259,64 +259,84 @@
 
                         </td>
 
-                    <tr height="17">
+                             <tr height="17">
                         <td class="boldash" width="197" height="17">
                             Total
                         </td>
-                        <td width="63" height="17" ng-model="totaldpub" ng-bind="totaldpub">
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totaldpub" ng-bind="totaldpub = {{'totaldpub_'+key1}}">
 
                         </td>
-                        <td width="63" height="17" ng-bind="totaldpvt">
+                        {% endverbatim %}
+
+                        {% verbatim %}
+                        <td width="63" height="17" mg-model="totaldpvt" ng-bind="totaldpvt = {{'totaldpvt_'+key1}}">
 
                         </td>
-                        <td width="63" height="17" ng-bind="totalyear1pub">
+                        {% endverbatim %}
+
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear1pub" ng-bind="totalyear1pub = {{'totalyear1pub_'+key1}}">
 
                         </td>
-                        <td width="63" height="17"  ng-bind="totalyear1pvt">
+                        {% endverbatim %}
+
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear1pvt" ng-bind="totalyear1pvt = {{'totalyear1pvt_'+key1}}" >
 
                         </td>
-                        <td width="63" height="17" ng-bind="totalyear2pub">
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear2pub" ng-bind="totalyear2pub = {{'totalyear2pub_'+key1}}" >
 
                         </td>
-                        <td width="63" height="17" ng-bind="totalyear2pvt">
+                        {% endverbatim %}
+
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear2pvt" ng-bind="totalyear2pvt = {{'totalyear2pvt_'+key1}}">
 
                         </td>
-                        <td width="63" height="17" ng-bind="finaltotalpublic">
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="finaltotalpublic" ng-bind="finaltotalpublic = {{'finaltotalpublic_'+key1}}">
 
                         </td>
-                        <td width="63" height="17" ng-bind="finaltotalprivate">
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="finaltotalprivate" ng-bind="finaltotalprivate = {{'finaltotalprivate_'+key1}}">
 
                         </td>
+                        {% endverbatim %}
                     </tr>
 
 
                     </tbody>
                          <tr height="17">
-                        <td class="boldash" width="197" height="17">
+                       <td class="boldash" width="197" height="17">
                             GRAND TOTAL
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndtotaldpub">
 
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndtotaldpvt">
 
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndtotalyear1pub">
 
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndtotalyear1pvt">
 
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndtotalyear2pub">
 
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndtotalyear2pvt">
 
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndfinaltotalpublic">
 
                         </td>
-                        <td width="63" height="17">
+                        <td width="63" height="17" ng-bind="grndfinaltotalprivate">
 
                         </td>
                     </tr>
@@ -338,16 +358,16 @@
                         </td>
                     </tr>
                     <tr height="17">
-                        <td colspan="2" width="126" height="17">
+                        <td colspan="2" width="126" height="17" ng-bind="summaryDamages">
 
                         </td>
-                        <td colspan="2" width="126" height="17">
+                        <td colspan="2" width="126" height="17" ng-bind="summaryLossYear1">
 
                         </td>
-                        <td colspan="2" width="126" height="17">
+                        <td colspan="2" width="126" height="17" ng-bind="summaryLossYear2">
 
                         </td>
-                        <td colspan="2" width="126" height="17">
+                        <td colspan="2" width="126" height="17" ng-bind="summaryTotal">
 
                         </td>
                     </tr>

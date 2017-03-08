@@ -31,9 +31,6 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
         }).success(function(data) {
 
             $scope.dmLosMinFirmsNation = data;
-
-
-
         })
 
 

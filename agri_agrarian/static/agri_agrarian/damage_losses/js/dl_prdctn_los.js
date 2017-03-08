@@ -293,12 +293,13 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BcagSeasonalCrops','BcagPlantnCrops','BcagExportCrops','BcagForestry','BcagOther'],
+                    'db_tables': 
+                    ['BacfSeasonalCrops','BacfPlantnCrops','BacfExportCrops','BacfForestry','BacfOther','BacfFarmEquipment','BacfStocks'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'table_name': 'Table_7',
+                    'table_name': 'Table_2',
                     'sector':'agri_agrarian',
                 }),
                 dataType: 'json',
@@ -316,7 +317,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     }
 
     function generateRefencedData() {
-        data_array = ['BcagSeasonalCrops', 'BcagPlantnCrops', 'BcagExportCrops', 'BcagForestry', 'BcagOther'];
+        data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther'];
         var dl_model1 = null;
         var dl_model2 = null;
         var dl_model3 = null;
@@ -333,27 +334,27 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
             var particular_value_4 = null;
             var particular_value_5 = null;
 
-            if(model_name == 'BcagSeasonalCrops') {
+            if(model_name == 'BacfSeasonalCrops') {
                dl_model1 = 'PldySeasonalCrops';
                particular_value_1 = 'Total';
                $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model1] = [];
             }
-            if(model_name == 'BcagPlantnCrops') {
+            if(model_name == 'BacfPlantnCrops') {
                dl_model2 = 'PldyPlantnCrops';
                particular_value_2 = 'Total';
                $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model2] = [];
             }
-            if(model_name == 'BcagExportCrops') {
+            if(model_name == 'BacfExportCrops') {
                dl_model3 = 'PldyExportCrops';
                particular_value_3 = 'Total';
                $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model3] = [];
             }
-            if(model_name == 'BcagForestry') {
+            if(model_name == 'BacfForestry') {
                dl_model4 = 'PldyForestry';
                particular_value_4 = 'Total';
                $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model4] = [];
             }
-            if(model_name == 'BcagOther') {
+            if(model_name == 'BacfOther') {
                dl_model5 = 'PldyOther';
                particular_value_5 = 'Total';
                $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model5] = [];
@@ -442,38 +443,38 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                     num_female : null,
                 };
 
-                if(model_name == 'BcagSeasonalCrops') {
+                if(model_name == 'BacfSeasonalCrops') {
                    $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model1].push(obj1);
                 }
-                if(model_name == 'BcagPlantnCrops') {
+                if(model_name == 'BacfPlantnCrops') {
                    $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model2].push(obj2);
                 }
-                if(model_name == 'BcagExportCrops') {
+                if(model_name == 'BacfExportCrops') {
                    $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model3].push(obj3);
                 }
-                if(model_name == 'BcagForestry') {
+                if(model_name == 'BacfForestry') {
                    $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model4].push(obj4);
                 }
-                if(model_name == 'BcagOther') {
+                if(model_name == 'BacfOther') {
                    $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model5].push(obj5);
                 }
             });
 
-            if(model_name == 'BcagSeasonalCrops') {
+            if(model_name == 'BacfSeasonalCrops') {
                 $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model1].push(obj1);
             }
-            if(model_name == 'BcagPlantnCrops') {
+            if(model_name == 'BacfPlantnCrops') {
 
                 $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model2].push(obj2);
             }
-            if(model_name == 'BcagExportCrops') {
+            if(model_name == 'BacfExportCrops') {
 
                 $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model3].push(obj3);
             }
-            if(model_name == 'BcagForestry') {
+            if(model_name == 'BacfForestry') {
                 $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model4].push(obj4);
             }
-            if(model_name == 'BcagOther') {
+            if(model_name == 'BacfOther') {
                 $scope.dlPrdctnLos.agri_agrarian.Table_7[dl_model5].push(obj5);
             }
         });

@@ -1,5 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
+  });
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlRoadBrdgsApp" ng-controller="dlRoadBrdgsController">
     <!-- Breadcrumb -->
@@ -8,9 +14,9 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Transport Sector</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
+        <li class="breadcrumb-item"><a href="#">Land Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Roads and bridges</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Roads and Bridges</span>
         </li>
     </ol>
 
@@ -41,14 +47,14 @@
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_road_brdgs.incident.$error.required">
-                                    Please select Incident
+                                    Please Select Incident
                                 </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_road_brdgs.district.$error.required">
-                                    Please select District
+                                    Please Select District
                                 </span>
                             </td>
                         </tr>
@@ -56,7 +62,7 @@
                             <td class="trhead" height="43" width="156">
                                 Incident
                             </td>
-                            <td colspan="4" height="43" width="63">
+                            <td class="trhead" colspan="4" height="43" width="63">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
@@ -71,7 +77,7 @@
                             <td class="trhead" height="43" width="120">
                                 District
                             </td>
-                            <td colspan="4" height="43" width="680">
+                            <td class="trhead" colspan="4" height="43" width="680">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
@@ -203,8 +209,8 @@
                         </tbody>
                     </table>
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill ther Assest Informations</a>
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Other Assest Informations</a>
                     <br>
                 </div>
 
@@ -257,7 +263,7 @@
 
                         </tbody>
                     </table>
-                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <div id="boxscroll1" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
                             <tr height="19" ng-repeat="dlRbdTbridges in dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges" ng-if="dlRbdTbridges.type_bridges != 'Total'">
@@ -267,7 +273,7 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdTbridges.tot_dest_2_lanes">
                                 </td>
-                                <td colspan="2" height="19" width="198">
+                                <td style="width:19%;" colspan="2" height="19" width="198">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlRbdTbridges.tot_dest_multi_lanes">
                                 </td>
@@ -513,7 +519,7 @@
 
                     <br>
                     <div class="pull-right">
-                        <br>
+                       
                         <button type="button" class="btn btn-info">Clear</button>
                     <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
                         Edit
@@ -526,6 +532,7 @@
                     </button>
 
                     </div>
+                    <br><br>
                 </div>
 
 

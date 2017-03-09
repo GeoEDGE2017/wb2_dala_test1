@@ -9,7 +9,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Transport Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;"> Summary of damages and losses in the transportation sector in a district</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;"> Summary of Damages and Losses in the Transportation Sector in a District</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_sum_dl_trnspt_district">
@@ -29,18 +29,18 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="isLoded && form_sum_dl_trnspt_district.incident.$error.required">
-                                Please select Incident
+                                Please Select Incident
                             </span>
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="isLoded && form_sum_dl_trnspt_district.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
                     </tr>
@@ -48,7 +48,7 @@
                         <td width="197" height="17">
                             Incident
                         </td>
-                        <td colspan="4" width="504" height="17">
+                        <td colspan="3" width="504" height="17">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
@@ -63,14 +63,14 @@
                         <td width="504" height="17" style="text-align:right;">
                             District
                         </td>
-                        <td colspan="4" width="504" height="17">
+                        <td colspan="3" width="504" height="17">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
                                     class="form-control" required>
                                 <option value="" selected>Select district</option>
                             </select>
                         </td>
-                        <td>
+                        <td >
                             <button type="submit" class="btn btn-success" ng-click="loadData(form_sum_dl_trnspt_district)">Load</button>
                         </td>
                     </tr>
@@ -136,94 +136,92 @@
                             Land Transportation
                         </td>
                         <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlGacPubProvince[0].damages">
-                            -
+
+                        </td>
                         </td>
                         <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlGacPvtProvince[0].damages">
                             -
+
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_1">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_2">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlGacPubProvince[0].damages +
+                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
+                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_2">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
+                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub">
                         </td>
                     </tr>
                     <tr height="17">
                         <td class="tdpa" width="197" height="17">
                             Air Transportation
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt">
                         </td>
                     </tr>
                     <tr height="17">
                         <td class="tdpa" width="197" height="17">
                             Water Transportation
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt">
                         </td>
                     </tr>
                     <tr height="17">
+                        <!--TotDmgProvince-->
                         <td class="tdpa" width="197" height="17">
                             Rail Transportation
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.TotDmgProvince[0].tot_damages">
                         </td>
                         <td class="tdpa" width="63" height="17">
                             <br/>
@@ -240,8 +238,7 @@
                         <td class="tdpa" width="63" height="17">
                             <br/>
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17" ng-bind="data.transport_summary.Table_1.TotDmgProvince[0].tot_damages">
                         </td>
                         <td class="tdpa" width="63" height="17">
                             <br/>
@@ -251,29 +248,59 @@
                         <td class="tdpa" width="197" height="17">
                             GRAND TOTAL
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlGacPubProvince[0].damages +
+                                     data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
+                                     data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
+                                     data.transport_summary.Table_1.TotDmgProvince[0].tot_damages">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
+                                     data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
+                                     data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_2 +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="(data.transport_summary.Table_1.DlGacPubProvince[0].damages +
+                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
+                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_2) +
+                                     (data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub)+
+                                     (data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub)+
+                                     (data.transport_summary.Table_1.TotDmgProvince[0].tot_damages)">
                         </td>
-                        <td width="63" height="17">
-                            -
+                        <td width="63" height="17"
+                            ng-bind="(data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
+                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub) +
+                                     (data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt) +
+                                     (data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt)">
                         </td>
                     </tr>
                     <tr class="trheadc" height="17">
@@ -294,17 +321,51 @@
                         </td>
                     </tr>
                     <tr height="17">
-                        <td colspan="2" width="126" height="17">
-                            -
+                        <td colspan="2" width="126" height="17"
+                            ng-bind="(data.transport_summary.Table_1.DlGacPubProvince[0].damages +
+                                     data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
+                                     data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
+                                     data.transport_summary.Table_1.TotDmgProvince[0].tot_damages) +
+                                     (data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
+                                     data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
+                                     data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private)">
                         </td>
-                        <td colspan="2" width="126" height="17">
-                            -
+                        <td colspan="2" width="126" height="17"
+                            ng-bind="(data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub) +
+                                     (data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt)">
                         </td>
-                        <td colspan="2" width="126" height="17">
-                            -
+                        <td colspan="2" width="126" height="17"
+                            ng-bind="(data.transport_summary.Table_1.DlYearsPubProvince[0].year_2 +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub) +
+                                     (data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt)">
                         </td>
-                        <td colspan="2" width="126" height="17">
-                            -
+                        <td colspan="2" width="126" height="17"
+                            ng-bind="((data.transport_summary.Table_1.DlGacPubProvince[0].damages +
+                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
+                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_2) +
+                                     (data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub)+
+                                     (data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub)+
+                                     (data.transport_summary.Table_1.TotDmgProvince[0].tot_damages)) +
+                                     ((data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
+                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub) +
+                                     (data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt) +
+                                     (data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt +
+                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt))">
                         </td>
                     </tr>
                     </tbody>
@@ -313,8 +374,7 @@
 
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+                    
                 </div>
 
 

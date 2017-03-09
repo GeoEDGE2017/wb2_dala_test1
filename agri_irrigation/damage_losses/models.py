@@ -363,7 +363,7 @@ class DlLosOtherDistrict(models.Model):
         db_table = 'agri_irrigation\".\"dl_los_other_district'
 
 
-class DlRiverRmbankmntDistrict(models.Model):
+class DlRiverEmbankmntDistrict(models.Model):
     damages = models.FloatField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)

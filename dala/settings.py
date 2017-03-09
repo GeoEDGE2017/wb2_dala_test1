@@ -1883,6 +1883,34 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
 
         },
+        'Table_5': {
+            'DlMediumTanksDistrict':
+                ['damages'],
+            'DlLosMediumTanksDistrict':
+                ['total_los'],
+            'DlMajorTanksDistrict':
+                ['damages'],
+            'DlLosMajorTanksDistrict':
+                ['total_los'],
+            'DlMinorTanksDistrict':
+                ['damages'],
+            'DlLosMinorTanksDistrict':
+                ['total_los'],
+            'DlAnicutsDistrict':
+                ['damages'],
+            'DlLosAnicutsDistrict':
+                ['total_los'],
+            'DlOtherStructuresDistrict':
+                ['damages'],
+            'DlLosOtherDistrict':
+                ['total_los'],
+            'DlRiverEmbankmntDistrict':
+                ['damages'],
+            'DlBuildingsDistrict':
+                ['damages'],
+
+
+        },
     },
     'agri_agrarian': {
         'Table_1': {

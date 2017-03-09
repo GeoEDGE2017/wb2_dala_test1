@@ -153,27 +153,27 @@
                         </td>
                         <td width="118">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="bsIfMajor.avg_value">
+                                   class="form-control input-md" ng-model="bsIfMajor.capacity">
                         </td>
                         <td width="116">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
+                                   class="form-control input-md" ng-model="bsIfMajor.irrigated_area_paddy">
                         </td>
                         <td width="128">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
+                                   class="form-control input-md" ng-model="bsIfMajor.irrigated_area_ofc">
                         </td>
                         <td width="183">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
+                                   class="form-control input-md" ng-model="bsIfMajor.income_paddy">
                         </td>
                         <td width="85">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
+                                   class="form-control input-md" ng-model="bsIfMajor.income_ofc">
                         </td>
                         <td width="85">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
+                                   class="form-control input-md" ng-model="bsIfMajor.num_farmer_families">
                         </td>
                     </tr>
                     <tr height="19">
@@ -438,8 +438,15 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_irg_facilities)">Submit</button>
+                     <button type="button" class="btn btn-info">Clear</button>
+                            <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">Edit
+                            </button>
+                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit
+                            </button>
+                            <button type="button" ng-click="saveBsData(form_bs_irg_facilities)" class="btn btn-success">Submit
+                            </button>
+
+
                 </div>
             </div>
 

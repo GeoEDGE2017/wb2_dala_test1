@@ -36,4 +36,17 @@ def dl_sum_irg_district(request):
     return render(request, 'damage_losses/summary_damages_losses_irrigation_district.html', context)
 
 
+def dl_sum_irg_province(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents
+    }
+
+    return render(request, 'damage_losses/summary_damages_losses_irrigation_sub_sectorp_province.html', context)
+
 

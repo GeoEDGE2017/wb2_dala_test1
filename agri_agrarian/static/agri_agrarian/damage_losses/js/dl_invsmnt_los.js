@@ -207,7 +207,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'table_name': 'Table_6',
+                    'table_name': 'Table_2',
                     'sector':'agri_agrarian',
                 }),
                 dataType: 'json',

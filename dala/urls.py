@@ -40,7 +40,8 @@ urlpatterns = [
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
 
-    # agri_irrigation
+
+    #agri_irrigation
     url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),
 
     # agri_agrarian
@@ -52,8 +53,6 @@ urlpatterns = [
     # agri_fisheries
     #url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
 
-    # # transport_summary
-    # url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
 
     # other govn services
     url(r'^other_govn_services/', include('other_govn_services.urls', namespace='other_govn_services')),

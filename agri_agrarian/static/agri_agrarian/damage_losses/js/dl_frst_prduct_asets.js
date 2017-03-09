@@ -194,7 +194,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'table_name': 'Table_4',
+                    'table_name': 'Table_2',
                     'sector':'agri_agrarian',
                         }),
                   dataType: 'json',

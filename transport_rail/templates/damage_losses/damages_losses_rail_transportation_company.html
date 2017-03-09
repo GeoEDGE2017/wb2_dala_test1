@@ -1,5 +1,12 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
+   
+  });
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlIncomeRailCompanyApp" ng-controller="dlIncomeRailCompanyController">
     <!-- Breadcrumb -->
@@ -9,10 +16,10 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Transport Sector</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Rail sub Sector</a>
+        <li class="breadcrumb-item"><a href="#">Rail Sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and losses to the rail transportation company</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses to the Rail Transportation Company</span>
         </li>
 
 
@@ -22,8 +29,8 @@
     <div class="container-fluid">
 
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Type of Assets</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Buildings</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Type of Assets</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Buildings</a></li>
 
         </ul>
 
@@ -47,14 +54,14 @@
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_rail_trans_cmpny.incident.$error.required">
-                                Please select Incident
+                                Please Select Incident
                             </span>
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="4s" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_rail_trans_cmpny.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
                     </tr>
@@ -128,7 +135,7 @@
 
                     </tbody>
                 </table>
-                <div id="boxscroll" style="height:400px;overflow:auto;cursor:auto;">
+                <div id="boxscroll1" style="height:400px;overflow:auto;cursor:auto;">
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="281"/>
@@ -142,7 +149,7 @@
                             <td width="281" height="20">
                                 Moving Assets
                             </td>
-                            <td colspan="3">
+                            <td colspan="3" style="width:38.7%;">
 
                             </td>
                             <td colspan="3">
@@ -184,7 +191,7 @@
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="281" height="20">
-                                Equipment and machinery
+                                Equipment and Machinery
                             </td>
                             <td colspan="3">
                             </td>
@@ -225,7 +232,7 @@
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="281" height="20">
-                                Materials and supplies
+                                Materials and Supplies
                             </td>
                             <td colspan="3">
                             </td>
@@ -318,7 +325,7 @@
                 </div>
 
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Buildings Informations</a>
                 <br>
             </div>

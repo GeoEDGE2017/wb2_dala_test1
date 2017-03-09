@@ -13,7 +13,7 @@
 			 <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
             </li>
 
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of damages and losses to water transportation in a district</span></li>
+			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of Damages and Losses to Water Transportation in a District</span></li>
 
 
         </ol>
@@ -42,14 +42,14 @@
             </td>
             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                 <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.incident.$error.required">
-                    Please select Incident
+                    Please Select Incident
                 </span>
             </td>
-            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
             </td>
             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                 <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.district.$error.required">
-                    Please select District
+                    Please Select District
                 </span>
             </td>
         </tr>
@@ -57,7 +57,7 @@
             <td class="trhead" width="170">
                 Incident
             </td>
-            <td colspan="2" width="268">
+            <td lass="trhead" colspan="2" width="268">
                 <select id="selectbasic" name="incident" ng-model="incident"
                         class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                     <option value="" selected="true">Select an Incident</option>
@@ -69,17 +69,17 @@
                 </select>
             </td>
             <td class="trhead" width="253" height="20">
-                Name of District:
+                Name of District
             </td>
-            <td colspan="3" width="463">
+            <td lass="trhead" colspan="2" width="463">
 			    <select ng-options="district as district.district__name for district in districts track by district.district__id"
                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
                         class="form-control" required>
-                    <option value="" selected>Select district</option>
+                    <option value="" selected>Select District</option>
                 </select>
             </td>
             <td  style="background:#EFEFEF;">
-                <button type="button" class="btn btn-info" ng-click="loadData(form_dlsum_trans_water_dst)">Load
+                <button type="button" class="btn btn-block btn-info" ng-click="loadData(form_dlsum_trans_water_dst)">Load
                 </button>
             </td>
         </tr>
@@ -117,7 +117,7 @@
         </tr>
         <tr height="19">
             <td class="tdpa" width="253" height="19">
-                Equipment and machinery
+                Equipment and Machinery
             </td>
             <td colspan="2" width="298" ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private">
             </td>
@@ -130,7 +130,7 @@
         </tr>
         <tr height="19">
             <td class="tdpa" width="253" height="19">
-                Materials and supplies
+                Materials and Supplies
             </td>
             <td colspan="2" width="298" ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private">
             </td>
@@ -234,7 +234,7 @@
         </tr>
         <tr height="19">
             <td class="tdpa" width="253" height="19">
-                Foregone income of companies
+                Foregone Income of Companies
             </td>
             <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub">
             </td>
@@ -255,7 +255,7 @@
         </tr>
         <tr height="19">
             <td class="tdpa" width="253" height="19">
-                Foregone income of ports
+                Foregone Income of Ports
             </td>
             <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub">
             </td>
@@ -276,7 +276,7 @@
         </tr>
         <tr height="19">
             <td class="tdpa" width="253" height="19">
-                Cleaning up of debris
+                Cleaning Up of Debris
             </td>
             <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub">
             </td>
@@ -297,7 +297,7 @@
         </tr>
         <tr height="19">
             <td class="tdpa" width="253" height="19">
-                Higher operating costs
+                Higher Operating Costs
             </td>
             <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pub">
             </td>
@@ -318,7 +318,7 @@
         </tr>
         <tr height="19">
             <td class="tdpa" width="253" height="19">
-                Other unexpected expenses
+                Other Unexpected Expenses
             </td>
             <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pub">
             </td>
@@ -400,14 +400,7 @@
 
 
 						 <br>
-                   <div class="pull-right">
-		<br>
-<button type="button" class="btn btn-info">Clear</button>
-<button type="button" class="btn btn-success">Submit</button>
-</div>
-           </div>
-
-			<br><br><br>
+                   
         </div>
         </div>
 

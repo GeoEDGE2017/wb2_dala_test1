@@ -10,7 +10,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7. Summary of damages and losses to land transportation in a district</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7. Summary of Damages and Losses to Land Transportation in a District</span>
         </li>
     </ol>
     <div class="container-fluid">
@@ -33,18 +33,18 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="isLoded && form_dlsum_transland_dist.incident.$error.required">
-                                    Please select Incident
+                                    Please Select Incident
                                 </span>
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="isLoded && form_dlsum_transland_dist.district.$error.required">
-                                    Please select District
+                                    Please Select District
                                 </span>
                             </td>
                         </tr>
@@ -52,7 +52,7 @@
                             <td class="trhead" height="43" width="156">
                                 Incident
                             </td>
-                            <td colspan="3" height="43" width="63">
+                            <td class="trhead" colspan="2" height="43" width="63">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
@@ -67,14 +67,14 @@
                             <td class="trhead" height="43" width="120">
                                 District
                             </td>
-                            <td colspan="2" height="43" width="491">
+                            <td class="trhead" colspan="2" height="43" width="491">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
-                            <td>
-                                <button type="submit" class="btn btn-success" ng-click="loadData(form_dlsum_transland_dist)">Load</button>
+                            <td class="trhead">
+                                <button type="submit" class="btn btn-block btn-success" ng-click="loadData(form_dlsum_transland_dist)">Load</button>
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -275,8 +275,8 @@
                     </table>
 
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> View Losses Informations</a>
                     <br>
                 </div>
 
@@ -349,7 +349,7 @@
                         </tr>
                         <tr height="34">
                             <td class="tdpa" height="34" width="156">
-                                Land transportation companies and vehicles
+                                Land Transportation Companies and Vehicles
                             </td>
                             <td height="34" width="63" ng-bind="data.transport_land.Table_7.DlOtherLosPubDistrict[0].year_1_pub">
                             </td>
@@ -366,7 +366,7 @@
                         </tr>
                         <tr height="19">
                             <td class="tdpa" height="19" width="156">
-                                Government agency
+                                Government Agency
                             </td>
                             <td height="19" width="63" ng-bind="data.transport_land.Table_7.DlGacLosTypeDistrict[0].los_year_1">
                             </td>
@@ -418,11 +418,7 @@
 
 
                     <br>
-                    <div class="pull-right">
-                        <br>
-                        <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" class="btn btn-success">Submit</button>
-                    </div>
+                    
                 </div>
 
 

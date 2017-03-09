@@ -54,6 +54,8 @@
 
     <script src='{% static "agri_irrigation/damage_losses/js/dl_irrigation.js" %}'></script>
     <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_district.js" %}'></script>
+    <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_province.js" %}'></script>
+    <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_national.js" %}'></script>
 
     <!--transport_summary-->
     <script src='{% static "transport_summary/damage_losses/js/sum_dl_trnspt_district.js" %}'></script>
@@ -281,59 +283,84 @@ $('#s4').on('click', function(){
               <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:health_main' %}"><i class="icon-speedometer"></i> Health </a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:education_main' %}"><i class="icon-speedometer"></i> Education </a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:mining_main' %}"><i class="icon-speedometer"></i> Mining </a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard:othergov_main' %}"><i class="icon-speedometer"></i> Other Gov. Services </a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="watersupply_main.html"><i class="icon-speedometer"></i> Water Supply </a>
+                
+                 <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-speedometer"></i> Transportation</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard:transport_air_main' %}"> Air</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard:transport_land_main' %}"> Land</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard:transport_rail_main' %}"> Rail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard:transport_water_main' %}"> Water </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard:transport_summary_main' %}"> Transportation Summary </a>
+                        </li>
+                       
+                        <li class="nav-item">
+                            
+                        </li>
+                    </ul>
                 </li>
-
-
-
+                
                 <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-speedometer"></i> Water Supply </a>
+                </li>
+                
+                
+                
+                <!--li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Transportation </a>
-                </li>
-
+                </li-->
+                
                   <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Power Supply </a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Agriculture </a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Housing </a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Tourism </a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Industry and Services</a>
                 </li>
-
+                
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-speedometer"></i> Telecommunications</a>
                 </li>
-
+               
   <li class="nav-item">
                     <a class="nav-link" href="{% url 'reports:index_report' %}"><i class="icon-speedometer"></i> Report </a>
                 </li>
-		 <li class="nav-item">
+         <li class="nav-item">
                     <a class="nav-link" href="{% url 'charts:index_chart' %}"><i class="icon-speedometer"></i> Chart</a>
-                </li>
+                </li>   
             </ul>
         </nav>
     </div>

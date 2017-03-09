@@ -1883,6 +1883,62 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
 
         },
+        'Table_5': {
+            'DlMediumTanksDistrict':
+                ['damages'],
+            'DlLosMediumTanksDistrict':
+                ['total_los'],
+            'DlMajorTanksDistrict':
+                ['damages'],
+            'DlLosMajorTanksDistrict':
+                ['total_los'],
+            'DlMinorTanksDistrict':
+                ['damages'],
+            'DlLosMinorTanksDistrict':
+                ['total_los'],
+            'DlAnicutsDistrict':
+                ['damages'],
+            'DlLosAnicutsDistrict':
+                ['total_los'],
+            'DlOtherStructuresDistrict':
+                ['damages'],
+            'DlLosOtherDistrict':
+                ['total_los'],
+            'DlRiverEmbankmntDistrict':
+                ['damages'],
+            'DlBuildingsDistrict':
+                ['damages'],
+
+
+        },
+        'Table_6': {
+            'DlMediumTanksNational':
+                ['damages'],
+            'DlLosMediumTanksNational':
+                ['total_los'],
+            'DlMajorTanksNational':
+                ['damages'],
+            'DlLosMajorTanksNational':
+                ['total_los'],
+            'DlMinorTanksNational':
+                ['damages'],
+            'DlLosMinorTanksNational':
+                ['total_los'],
+            'DlAnicutsNational':
+                ['damages'],
+            'DlLosAnicutsNational':
+                ['total_los'],
+            'DlOtherStructuresNational':
+                ['damages'],
+            'DlLosOtherNational':
+                ['total_los'],
+            'DlRiverEmbankmntNational':
+                ['damages'],
+            'DlBuildingsNational':
+                ['damages'],
+
+
+        },
     },
     'agri_agrarian': {
         'Table_1': {
@@ -2291,6 +2347,29 @@ TABLE_PROPERTY_MAPPER = {
             'DlpLosOther': [
                 'others', 'los_year_1', 'los_year_2', 'id',
             ],
+        },
+        'Table_1': {
+            'BelLivestock': [
+                'livestock',
+                'pub_own_families',
+                'pub_own_male',
+                'pub_own_female',
+                'pvt_own_families',
+                'pvt_own_male',
+                'pvt_own_female',
+                'id',
+            ],
+            'BelPoultry': [
+                'poultry',
+                'pub_own_families',
+                'pub_own_male',
+                'pub_own_female',
+                'pvt_own_families',
+                'pvt_own_male',
+                'pvt_own_female',
+                'id',
+            ],
+
         },
     },
 }

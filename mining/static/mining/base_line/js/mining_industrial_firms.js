@@ -219,8 +219,4 @@ $scope.fetchFirms = function()
     })
 }
 
-
-
-
-
 })

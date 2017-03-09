@@ -19,21 +19,29 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Riprap',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Spill',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Main Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Distributor Canals',
                     partially_damaged : null,
@@ -44,11 +52,15 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Total',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlMediumTanks': [{
                     irrigation_assets : 'Bund',
@@ -60,185 +72,257 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Spill',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Main Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Distributor Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Field Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Total',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlMinorTanks': [{
                     irrigation_assets : 'Bund',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Riprap',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Spill',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Main Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Distributor Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Field Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Total',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlAnicuts': [{
                     irrigation_assets : 'Bund',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Riprap',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Spill',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Main Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Distributor Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Field Canals',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Total',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlOtherStructures': [{
                     irrigation_assets : 'Roads',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Bridges',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Culverts',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Causeways',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Retaining walls',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Interlock pavings',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Regulators',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Turnout',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Drops',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Retaining walls',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Canal linings',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Canal spill',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Under Crossing',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Over crossing',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Total',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlRiverEmbankmnt': [{
                     irrigation_assets : 'River Embankmentss',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlBuildings': [{
                     building : '1 floor',
@@ -249,6 +333,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     tot_destroyed_num : null,
                     tot_destroyed_area : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     building : '2-3 floors',
                     part_damaged_num : null,
@@ -258,6 +344,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     tot_destroyed_num : null,
                     tot_destroyed_area : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     building : 'More than 3 floors',
                     part_damaged_num : null,
@@ -267,6 +355,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     tot_destroyed_num : null,
                     tot_destroyed_area : null,
                     damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     building : 'Total',
                     part_damaged_num : null,
@@ -276,15 +366,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     tot_destroyed_num : null,
                     tot_destroyed_area : null,
                     damages : null,
-                }, {
-                    building : 'TOTAL DAMAGES',
-                    part_damaged_num : null,
-                    part_damaged_roof : null,
-                    part_damaged_wall : null,
-                    part_damaged_floor : null,
-                    tot_destroyed_num : null,
-                    tot_destroyed_area : null,
-                    damages : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 //Tab 2     DlLosMajorTanks, DlLosMediumTanks, DlLosMinorTanks, DlLosAnicuts, DlLosOther
                 'DlLosMajorTanks': [{
@@ -292,55 +375,76 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Tank 2',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlLosMediumTanks':[{
                     irrigation_assets : 'Tank 1',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Tank 2',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlLosMinorTanks':[{
                     irrigation_assets : 'Tank 1',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Tank 2',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlLosAnicuts':[{
                     irrigation_assets : 'Anicut 1',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'Anicut 2',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
                 'DlLosOther':[{
                     irrigation_assets : 'Other Structures',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }, {
                     irrigation_assets : 'River Embankments',
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
+
                 }, {
                     irrigation_assets : 'Buildings',
                     high_operation_cost : null,
@@ -351,6 +455,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
+                    division:$scope.division,
+                    region:$scope.region,
                 }],
             }
         }
@@ -376,7 +482,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsIfMajor', 'BsIfMedium', 'BsIfMinor', 'BsIfAnicuts', 'BsRciaMajorTanks', 'BsRciaMediumTanks', 'BsRciaMinorTanks', 'BsRciaAnicuts', 'BsRciaOtherStructures', 'BsRciRiverEmbankmnt'],
+                    'db_tables': ['BsIfMajor', 'BsIfMedium', 'BsIfMinor', 'BsIfAnicuts', 'BsRciaMajorTanks', 'BsRciaMediumTanks', 'BsRciaMinorTanks', 'BsRciaAnicuts', 'BsRciaOtherStructures', 'BsRciRiverEmbankmnt','BsRciBuildings'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -455,22 +561,22 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
 
             if(model_name == 'BsIfMajor') {
                dl_model6 = 'DlLosMajorTanks';
-               particular_value_6 = 'Total';
+
                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model6] = [];
             }
             if(model_name == 'BsIfMedium') {
                dl_model7 = 'DlLosMediumTanks';
-               particular_value_7 = 'Total';
+
                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model7] = [];
             }
             if(model_name == 'BsIfMinor') {
                dl_model8 = 'DlLosMinorTanks';
-               particular_value_8 = 'Total';
+
                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model8] = [];
             }
             if(model_name == 'BsIfAnicuts') {
                dl_model9 = 'DlLosAnicuts';
-               particular_value_9 = 'Total';
+
                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model9] = [];
             }
 
@@ -505,83 +611,60 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 damages : null,
             };
 
-            var obj6 = {
-                irrigation_assets : particular_value_6,
-                high_operation_cost : null,
-                other_unexpected_expenses : null,
-                total_los : null,
-            };
-            var obj7 = {
-                irrigation_assets : particular_value_7,
-                high_operation_cost : null,
-                other_unexpected_expenses : null,
-                total_los : null,
-            };
-            var obj8 = {
-                irrigation_assets : particular_value_8,
-                high_operation_cost : null,
-                other_unexpected_expenses : null,
-                total_los : null,
-            };
-            var obj9 = {
-                irrigation_assets : particular_value_9,
-                high_operation_cost : null,
-                other_unexpected_expenses : null,
-                total_los : null,
-            };
+
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
                 };
                 var obj2 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
                 };
                 var obj3 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
                 };
                 var obj4 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
                 };
                 var obj5 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
                 };
 
                 var obj6 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
                 };
                 var obj7 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
                 };
                 var obj8 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
                 };
                 var obj9 = {
-                    irrigation_assets : value.fields.irrigation_assets,
+                    irrigation_assets : value.fields.irrigation_facility,
                     high_operation_cost : null,
                     other_unexpected_expenses : null,
                     total_los : null,
@@ -633,27 +716,297 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 $scope.dlIrrigation.agri_irrigation.Table_3[dl_model5].push(obj5);
             }
 
-            if(model_name == 'BsIfMajor') {
-                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model6].push(obj6);
-            }
-            if(model_name == 'BsIfMedium') {
-                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model7].push(obj7);
-            }
-            if(model_name == 'BsIfMinor') {
-                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model8].push(obj8);
-            }
-            if(model_name == 'BsIfAnicuts') {
-                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model9].push(obj9);
-            }
+
         });
 
     }
 
     $scope.saveDlData = function(form) {
-        alert('dsfdsf');
+ var array = $scope.dlIrrigation.agri_irrigation.Table_3;
+      var details = _.map(array, function(model_array) {
+      _.map(model_array, function(model) {
+          model.division = $scope.division;
+          model.region = $scope.region;
+
+
+      });
+      });
         $scope.submitted = true;
         if(form.$valid) {
-            alert('Save Table 3');
+              $http({
+            method: 'POST',
+            url:'/dl_save_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dlIrrigation,
+                'com_data': {
+                    'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+
+                },
+                'is_edit' : $scope.is_edit,
+
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+
+                 if(response.data == 'False')
+             $scope.is_valid_data = false;
+                else
+             $("#modal-container-239453").modal('show');
+
+        }, function errorCallback(response) {
+
+
+        });
         }
     }
+
+    $scope.CalTot=function(arr){
+    var finaltotal = 0;
+
+    angular.forEach(arr, function(value, key) {
+    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal = finaltotal + value.damages ;
+     }
+    })
+     return finaltotal;
+    }
+
+     $scope.convertToInt = function(val1,val2,val3,val4,val5,val6){
+
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5)+ parseInt(val6);
+        return sum;
+    }
+
+    $scope.calGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var finaltotal5 = 0;
+    var finaltotal6 = 0;
+
+
+    var grantot = 0;
+
+    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks;
+    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMediumTanks;
+    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks;
+    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlAnicuts;
+    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlOtherStructures;
+    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlBuildings;
+
+
+    angular.forEach(array1, function(value, key) {
+     if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal1 = finaltotal1 + value.damages ;
+     }
+    })
+    angular.forEach(array2, function(value, key) {
+    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal2 = finaltotal2 + value.damages ;
+     }
+    })
+    angular.forEach(array3, function(value, key) {
+if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal3 = finaltotal3 + value.damages ;
+     }
+    })
+    angular.forEach(array4, function(value, key) {
+    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal4 = finaltotal4 + value.damages ;
+     }
+    })
+    angular.forEach(array5, function(value, key) {
+if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal5 = finaltotal5 + value.damages;
+     }
+    })
+     angular.forEach(array6, function(value, key) {
+if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal6 = finaltotal6 + value.damages;
+     }
+    })
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3  + finaltotal4 + finaltotal5 + finaltotal6 ;
+    console.log(grantot);
+    return grantot;
+    }
+
+    $scope.calTotalOperatingLos=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var finaltotal6 = 0;
+
+
+
+    var grantot = 0;
+
+    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
+    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
+    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
+    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingTanks;
+    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
+    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
+
+
+
+    angular.forEach(array1, function(value, key) {
+if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal1 = finaltotal1 + value.high_operation_cost ;
+     }
+    })
+    angular.forEach(array2, function(value, key) {
+if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal2 = finaltotal2 + value.high_operation_cost ;
+     }
+    })
+    angular.forEach(array3, function(value, key) {
+if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal3 = finaltotal3 + value.high_operation_cost ;
+     }
+    })
+    angular.forEach(array4, function(value, key) {
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal4 = finaltotal4 + value.high_operation_cost ;
+     }
+    })
+    angular.forEach(array5, function(value, key) {
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal5 = finaltotal5 + value.high_operation_cost ;
+     }
+    })
+    angular.forEach(array6, function(value, key) {
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal6 = finaltotal6 + value.high_operation_cost ;
+     }
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4+ finaltotal5+finaltotal6;
+    console.log(grantot);
+    return grantot;
+    }
+
+    $scope.calTotalOther=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var finaltotal6 = 0;
+
+
+
+    var grantot = 0;
+
+    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
+    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
+    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
+    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingsTanks;
+    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
+    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
+
+
+
+    angular.forEach(array1, function(value, key) {
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal1 = finaltotal1 + value.other_unexpected_expenses ;
+     }
+    })
+    angular.forEach(array2, function(value, key) {
+if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal2 = finaltotal2 + value.other_unexpected_expenses ;
+     }
+    })
+    angular.forEach(array3, function(value, key) {
+if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal3 = finaltotal3 + value.other_unexpected_expenses ;
+     }
+    })
+    angular.forEach(array4, function(value, key) {
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal4 = finaltotal4 + value.other_unexpected_expenses ;
+     }
+    })
+    angular.forEach(array5, function(value, key) {
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal5 = finaltotal5 + value.other_unexpected_expenses ;
+     }
+    })
+    angular.forEach(array6, function(value, key) {
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal6 = finaltotal6 + value.other_unexpected_expenses ;
+     }
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6;
+    console.log(grantot);
+    return grantot;
+    }
+
+    $scope.calTotalLosses=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var finaltotal6 = 0;
+
+
+
+    var grantot = 0;
+
+    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
+    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
+    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
+    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingsTanks;
+    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
+    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
+
+
+
+    angular.forEach(array1, function(value, key) {
+
+    if(value.irrigation_assets != 'TOTAL LOSSES'){
+
+     finaltotal1 = finaltotal1 + value.total_los ;
+     }
+    })
+    angular.forEach(array2, function(value, key) {
+     if(value.irrigation_assets != 'TOTAL LOSSES' ){
+     finaltotal2 = finaltotal2 + value.total_los ;
+     }
+    })
+    angular.forEach(array3, function(value, key) {
+     if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal3 = finaltotal3 + value.total_los ;
+     }
+    })
+    angular.forEach(array4, function(value, key) {
+     if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal4 = finaltotal4 + value.total_los ;
+     }
+    })
+     angular.forEach(array5, function(value, key) {
+      if(value.irrigation_assets != 'TOTAL LOSSES' ){
+     finaltotal5 = finaltotal5 + value.total_los ;
+     }
+    })
+     angular.forEach(array6, function(value, key) {
+      if(value.irrigation_assets != 'TOTAL LOSSES'){
+     finaltotal6 = finaltotal6 + value.total_los ;
+     }
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
+    console.log(grantot);
+    return grantot;
+    }
+
+
+
 }]);

@@ -95,13 +95,14 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
-    $scope.convertTotal = function(val1,val2,val3,val4){
+
+   $scope.convertTotal = function(val1,val2,val3,val4){
 
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
 
- $scope.getTotal = function(key) {
+   $scope.getTotal = function(key) {
 
         $scope.finaltotalprivate = 0;
 

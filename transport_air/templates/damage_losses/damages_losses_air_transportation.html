@@ -1,5 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
+  });
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlAirTrnspotationApp" ng-controller="dlAirTrnspotationController">
     <!-- Breadcrumb -->
@@ -8,15 +14,15 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Transport Sector</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
+        <li class="breadcrumb-item"><a href="#">Air Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and losses to air transportation</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses to Air Transportation</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_air_trnspotation">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -39,23 +45,23 @@
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_air_trnspotation.incident.$error.required">
-                                Please select Incident
+                                Please Select Incident
                             </span>
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_air_trnspotation.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
-                        <td width="218" height="19">
+                    <tr class="trhead" height="19">
+                        <td class="trhead" width="218" height="19">
 
                             Incident:
                         </td>
-                        <td colspan="4" width="567" height="19">
+                        <td colspan="3" width="567" height="19">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                 class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
@@ -67,12 +73,12 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td>
+                        <td class="trhead" colspan="2s">
                             Name of District:
                         </td>
                         <td colspan="5">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" style="font-weight:normal;" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -114,7 +120,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <div id="boxscroll" style="height:400px;overflow:auto;">
+                <div id="boxscroll1" style="height:400px;overflow:auto;">
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="218"/>
@@ -584,7 +590,7 @@
 
 
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                 <br>
             </div>
@@ -592,7 +598,7 @@
                 <table class="table table-bordered">
                     <tbody>
                     <tr class="trheadc" height="19">
-                        <td width="218" height="19">
+                        <td width="218" height="19" style="width:30%;">
                             Type of Losses
                         </td>
                         <td colspan="3" width="189" height="19">
@@ -723,7 +729,7 @@
                     </tr>
                     <tr class="trheadc" height="19">
                         <td width="218" height="19" >
-                            Higher operating costs
+                            Higher Operating Costs
                         </td>
                         <td colspan="2" width="126" height="19">
                             <br/>

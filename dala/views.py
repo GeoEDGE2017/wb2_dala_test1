@@ -656,6 +656,8 @@ def add_entity(request):
 
     if is_edit == False:
         print 'new'
+        print model_fields
+        model_fields = {'name': None, 'district_id': 1, 'ownership': None}
         model_object = model_class(**model_fields)
         model_object.save()
 

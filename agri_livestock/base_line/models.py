@@ -3,6 +3,16 @@ from settings.models import District, Province
 from incidents.models import IncidentReport
 
 
+class Organization(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'organization'
+
+
 class BdSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
@@ -240,7 +250,6 @@ class BlpApyPoultry(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_livestock\".\"blp_apy_poultry'
-
 
 
 

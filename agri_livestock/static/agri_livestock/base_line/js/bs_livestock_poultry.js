@@ -6,7 +6,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
-
+    $scope.new_organization = {id: null, name: null, ownership: null, district_id: 1};
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
@@ -398,4 +398,27 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
             console.log($scope.bsLivestockPoultry);
         }
     }
+
+    $scope.saveOrganization = function(form)
+{
+
+    $http({
+    method: "POST",
+    url: "/add_entity",
+    data: angular.toJson({
+    'model_fields': $scope.new_organization,
+    'is_edit' :false,
+    'model': 'Organization',
+    'sector': 'agri_livestock',
+     }),
+    }).success(function(data) {
+     console.log(data);
+    if(data)
+        $scope.organizations.push($scope.new_organization);
+
+    })
+
+}
+
+
 }]);

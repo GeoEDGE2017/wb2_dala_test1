@@ -117,7 +117,52 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
-            console.log($scope.bsLivestockPoultryDst);
+            $http({
+            method: "POST",
+            url: "/bs_save_data",
+            data: angular.toJson({
+            'table_data': $scope.bsLivestockPoultryDst,
+            'com_data': {'district': $scope.district,
+            'bs_date': $scope.bs_date,
+            },
+            'is_edit': $scope.is_edit }),
+            }).success(function(data) {
+
+             $scope.bsLivestockPoultryDst = init_data;
+             $scope.is_edit = false;
+
+             if(data == 'False')
+              $scope.is_valid_data = false;
+             else
+              $("#modal-container-239453").modal('show');
+        })
         }
     }
+
+$scope.bsHsDataEdit = function()
+{
+$scope.submitted = true;
+
+   $scope.is_edit = true;
+    $http({
+    method: "POST",
+    url: "/bs_fetch_edit_data",
+    data: angular.toJson({'table_name': 'Table_1', 'sector': 'agri_livestock',
+    'com_data': {
+          'district': $scope.district,
+          'bs_date': $scope.bs_date,
+
+          } }),
+    }).success(function(data) {
+
+    console.log(data);
+    $scope.bsLivestockPoultryDst = data;
+    })
+}
+
+$scope.cancelEdit = function()
+{
+    $scope.is_edit = false;
+    $scope.bsLivestockPoultryDst = init_data;
+}
 }]);

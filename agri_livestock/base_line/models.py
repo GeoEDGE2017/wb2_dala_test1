@@ -10,7 +10,7 @@ class Organization(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'organization'
+        db_table = 'agri_livestock\".\"organization'
 
 
 class BdSessionKeys(models.Model):

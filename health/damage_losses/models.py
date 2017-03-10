@@ -1734,3 +1734,4 @@ class DapBefOtherDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'health\".\"dap_bef_other_district'
+

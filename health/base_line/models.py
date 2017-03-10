@@ -471,3 +471,4 @@ class PrivateClinic(models.Model):
     class Meta:
         managed = False
         db_table = 'health\".\"private_clinic'
+

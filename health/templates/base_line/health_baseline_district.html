@@ -1,0 +1,332 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+   
+   
+    
+  });
+  
+</script>
+
+<!-- Main content -->
+
+<main class="main" ng-app="bsPubMedicalFacilitiesApp" ng-controller="BsPubMedicalFacilitiesController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Health Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2: Baseline Information of Medical Facilities in a District</span>
+        </li>
+
+
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <div class="col-sm-12" style="padding:0;">
+            <div class="card">
+
+                <div class="card-block" ng-form name="form_health_baseline_district">
+  <span style="color:red" ng-show="submitted && form_health_baseline_district.$error.required">
+                                       Please fill all required fields
+                     </span>
+                    <span style="color:red" ng-show="!is_valid_data">
+                        This request can't be proceed, there is data-set available for this selection.
+                     </span>
+
+                    <table  class="table table-bordered"
+                           style="background:#E4E5E6;">
+                        <colgroup>
+                            <col width="264"/>
+                            <col width="98" span="3"/>
+                        </colgroup>
+                        <tbody>
+<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+<td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0" >
+
+</td>
+
+<td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+<span class="arrow_box" ng-show="submitted && form_health_baseline_district.district.$error.required">
+                                Please select District
+                                </span>
+</td>
+<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+</td>
+
+<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+<span class="arrow_box" ng-show="submitted && form_health_baseline_district.baselineDate.$error.required">
+                                    Please select Date
+                                   </span>
+</td>
+</tr>
+                        <tr class="trhead">
+                            <td style="padding-left:5px;"> Name of District or RDH</td>
+ 
+                            <td colspan="1" style="background:#EFEFEF;">
+                                <select id="selectbasic" name="district" ng-model='district' class="form-control"
+                                        style="font-weight:400;" required>
+
+                                    <option value="" selected="true">Select a District</option>
+                                    {% for district in districts %}
+
+                                    <option value={{district.id}}>{{district.name}}
+                                        {% endfor %}
+                                </select>
+                               
+                            </td>
+                            <td colspan="1" style="padding-right:5px;text-align:right;">
+                                Year/Month
+                            </td>
+                            <td colspan="1" style="background:#EFEFEF;font-weight:normal;">
+                                <input id="datepicker" type="text" placeholder="mm/yy" ng-model="baselineDate"
+                                       class="form-control input-md" name ="baselineDate" required>
+                                   
+                            </td>
+
+                        </tr>
+
+
+                        <tr height="34" class="trheadc">
+                            <td rowspan="2" width="264" height="54">
+                                Type of Public Medical Facilities
+                            </td>
+                            <td rowspan="2" width="98">
+                                Number
+                            </td>
+                            <td colspan="2" width="196" style="text-align:center;">
+                                Average Number of Patients Per Day
+                            </td>
+                        </tr>
+                        <tr height="20" class="trsubc">
+                            <td width="98" height="20">
+                                Male
+                            </td>
+                            <td width="98">
+                                Female
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+
+                        <table class="table table-bordered">
+                            <colgroup>
+                                <col width="264"/>
+                                <col width="98" span="3"/>
+                            </colgroup>
+                            <tbody>
+
+
+                            <tr height="20" class="trheadc">
+                                <td width="264" height="20">
+                                    Hospitals
+                                </td>
+                                <td width="98">
+
+                                </td>
+                                <td width="98">
+
+                                </td>
+                                <td width="98">
+
+                                </td>
+                            </tr>
+                            <tr ng-repeat="bmfPubMf in bsDataMedicalFacilities.health.Table_2.BmfPubMf" ng-if="$index < 12"
+                                height="20">
+
+                                <td ng-bind="bmfPubMf.type_pub_mf" width="264"
+                                    height="20" class="tdpa">
+
+                                </td>
+
+                                <td
+                                        width="98">
+                                    <input id="text" ng-model="bmfPubMf.number" name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td
+                                        width="98">
+                                    <input id="text" ng-model="bmfPubMf.male" name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td
+                                        width="98">
+                                    <input id="text" ng-model="bmfPubMf.female" name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+
+
+                            </tr>
+                            <tr height="20">
+                                <td ng-bind="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].type_pub_mf" width="264"
+                                    height="20" class="boldash">
+
+                                </td>
+
+                                <td width="98">
+
+                                    <input id="text"
+                                           ng-value="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].number=bsDataMedicalFacilities.health.Table_2.BmfPubMf[0].number + bsDataMedicalFacilities.health.Table_2.BmfPubMf[1].number + bsDataMedicalFacilities.health.Table_2.BmfPubMf[2].number + bsDataMedicalFacilities.health.Table_2.BmfPubMf[3].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[4].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[5].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[6].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[7].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[8].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[9].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[10].number +bsDataMedicalFacilities.health.Table_2.BmfPubMf[11].number"
+
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].number"
+                                           name="textinput" type="text"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="98">
+
+                                    <input id="text"
+                                           ng-value="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].male=bsDataMedicalFacilities.health.Table_2.BmfPubMf[0].male + bsDataMedicalFacilities.health.Table_2.BmfPubMf[1].male + bsDataMedicalFacilities.health.Table_2.BmfPubMf[2].male + bsDataMedicalFacilities.health.Table_2.BmfPubMf[3].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[4].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[5].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[6].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[7].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[8].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[9].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[10].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[11].male"
+
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].male" name="textinput"
+                                           type="text"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="98">
+
+                                    <input id="text"
+                                           ng-value="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].female=bsDataMedicalFacilities.health.Table_2.BmfPubMf[0].female + bsDataMedicalFacilities.health.Table_2.BmfPubMf[1].female + bsDataMedicalFacilities.health.Table_2.BmfPubMf[2].female + bsDataMedicalFacilities.health.Table_2.BmfPubMf[3].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[4].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[5].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[6].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[7].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[8].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[9].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[10].female +bsDataMedicalFacilities.health.Table_2.BmfPubMf[11].female"
+
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].female"
+                                           name="textinput" type="text"
+                                           placeholder=""
+                                           class="form-control input-md">
+
+                                </td>
+
+                            </tr>
+
+                            <tr height="20" class="trheadc">
+                                <td width="264" height="20">
+                                    Type of Private Medical Facilities
+                                </td>
+                                <td width="98">
+
+                                </td>
+                                <td width="98">
+
+                                </td>
+                                <td width="98">
+
+                                </td>
+                            </tr>
+
+                            <tr ng-repeat="bmfPvtMf in bsDataMedicalFacilities.health.Table_2.BmfPvtMf" ng-if="$index < 2"
+                                height="20">
+
+                                <td ng-bind="bmfPvtMf.type_pvt_mf" width="264"
+                                    height="20" class="tdpa">
+
+                                </td>
+
+                                <td
+                                        width="98">
+                                    <input id="text" ng-model="bmfPvtMf.number" name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td
+                                        width="98">
+                                    <input id="text" ng-model="bmfPvtMf.male" name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td
+                                        width="98">
+                                    <input id="text" ng-model="bmfPvtMf.female" name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+
+
+                            </tr>
+
+                            <tr height="20">
+                                <td ng-bind="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].type_pvt_mf" width="264"
+                                    height="20" class="boldash">
+
+                                </td>
+
+                                <td width="98">
+
+                                    <input id="text"
+                                           ng-value="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].number = bsDataMedicalFacilities.health.Table_2.BmfPvtMf[0].number + bsDataMedicalFacilities.health.Table_2.BmfPvtMf[1].number"
+
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].number"
+                                           name="textinput" type="text"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="98">
+
+                                    <input id="text"
+                                           ng-value="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].male = bsDataMedicalFacilities.health.Table_2.BmfPvtMf[0].male + bsDataMedicalFacilities.health.Table_2.BmfPvtMf[1].male"
+
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].male" name="textinput"
+                                           type="text"
+                                           placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="98">
+
+                                    <input id="text"
+                                           ng-value="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].female = bsDataMedicalFacilities.health.Table_2.BmfPvtMf[0].female + bsDataMedicalFacilities.health.Table_2.BmfPvtMf[1].female"
+
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].female"
+                                           name="textinput" type="text"
+                                           placeholder=""
+                                           class="form-control input-md">
+
+                                </td>
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="bsHsDataEdit(form_health_baseline_district)" ng-if="!is_edit" class="btn btn-success">Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-click="saveBsData(form_health_baseline_district)"
+                                class="btn btn-success">Submit
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

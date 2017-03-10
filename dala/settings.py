@@ -123,12 +123,16 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian,agri_irrigation,agri_livestock, agri_fisheries'
-        # },
+        'OPTIONS': {
+            'options': '-c search_path=health,public,other_government,education,mining,'
+                       'transport_rail,transport_water,transport_land,transport_air,'
+                       'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        },
+
         # 'OPTIONS': {
         #     'options': '-c search_path=agri_fisheries'
         # },
+
         'NAME': 'dala_2017',
         'USER': 'postgres',
     },
@@ -192,16 +196,29 @@ TABLE_PROPERTY_MAPPER = {
                 'BmfPvtMf': ['type_pvt_mf', 'number', 'male', 'female', 'id']
 
             },
-        'Table_8':{
-                'DshPubLmh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                              'losses_y1', 'losses_y2', 'total_losses'],
-                'DshPubMoh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                              'losses_y1', 'losses_y2', 'total_losses'],
-                'DshPubOmf': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                              'losses_y1', 'losses_y2', 'total_losses'],
-                'DshPvtFa': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                             'losses_y1', 'losses_y2', 'total_losses'],
-                'DshTdlOwship': ['ownership', 'damages', 'losses_y1', 'losses_y2', 'total']
+
+        'Table_8':
+            {
+                'DmhLmhMohDistrict': ['teaching_hospital', 'provincial_general_hospital', 'district_general_hospital',
+                                      'office', 'other'],
+                'DmhPafDistrict': ['num_patients_affected', 'teaching_hospital', 'provincial_general_hospital',
+                                      'district_general_hospital', 'office', 'other'],
+                'DmhDamagesDistrict': ['teaching_hospital', 'provincial_general_hospital',
+                                      'district_general_hospital'],
+                'DmhLosDistrict': ['teaching_hospital', 'provincial_general_hospital',
+                                      'district_general_hospital'],
+                'DmhDamagesMohDistrict': ['office', 'other'],
+                'DmfTotAffectedDistrict': ['base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DmfOmfTpaDistrict': ['num_patients_affected', 'base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DmfDamagesDistrict': ['base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DmfLosDistrict': ['type_of_losses', 'base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DapPvtDistrict': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
+                'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
+                'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
             },
         'Table_4':{
                 'BucOmarStructure': ['particulars', 'base_hospital', 'divisional_hospital',

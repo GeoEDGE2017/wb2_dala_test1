@@ -7,7 +7,7 @@ from settings.models import UserRole, Sector
 
 
 def permission_required(perm, sector):
-
+    print 'admin'
     def has_perm(user):
         print 'you here '
         if user.id is not None:
@@ -50,6 +50,8 @@ def permission_required(perm, sector):
 
 
 def super_user_permission():
+    print 'admin'
+
     def has_perm(user):
         print 'you here '
         if user.id is not None:

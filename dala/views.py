@@ -655,6 +655,8 @@ def add_entity(request):
 
     if is_edit == False:
         print 'new'
+        print model_fields
+        model_fields = {'name': None, 'district_id': 1, 'ownership': None}
         model_object = model_class(**model_fields)
         model_object.save()
 
@@ -761,7 +763,7 @@ def dl_fetch_summary_disagtn(request):
 
 
 @csrf_exempt
-def dl_fetch_summary_dis_data(request):
+def dl_fetch_summary_dis_disagtn(request):
     data = (yaml.safe_load(request.body))
     table_name = data['table_name']
     sectors = data['sector']

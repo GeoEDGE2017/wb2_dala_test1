@@ -76,12 +76,12 @@ INSTALLED_APPS = [
     'agri_irrigation',
     'agri_irrigation.base_line',
     'agri_irrigation.damage_losses',
-    #'agri_livestock',
-    #'agri_livestock.base_line',
-    #'agri_livestock.damage_losses',
-    #'agri_fisheries',
-    #'agri_fisheries.base_line',
-    #'agri_fisheries.damage_losses',
+    'agri_livestock',
+    'agri_livestock.base_line',
+    'agri_livestock.damage_losses',
+    # 'agri_fisheries',
+    # 'agri_fisheries.base_line',
+    # 'agri_fisheries.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -128,12 +128,12 @@ DATABASES = {
                        'transport_rail,transport_water,transport_land,transport_air,'
                        'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
         },
+
         # 'OPTIONS': {
-        #     'options': '-c search_path=agri_livestock'
+        #     'options': '-c search_path=agri_fisheries'
         # },
         'NAME': 'dala_new',
         'USER': 'postgres',
-
     },
 
 }
@@ -1898,6 +1898,62 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
 
         },
+        'Table_5': {
+            'DlMediumTanksDistrict':
+                ['damages'],
+            'DlLosMediumTanksDistrict':
+                ['total_los'],
+            'DlMajorTanksDistrict':
+                ['damages'],
+            'DlLosMajorTanksDistrict':
+                ['total_los'],
+            'DlMinorTanksDistrict':
+                ['damages'],
+            'DlLosMinorTanksDistrict':
+                ['total_los'],
+            'DlAnicutsDistrict':
+                ['damages'],
+            'DlLosAnicutsDistrict':
+                ['total_los'],
+            'DlOtherStructuresDistrict':
+                ['damages'],
+            'DlLosOtherDistrict':
+                ['total_los'],
+            'DlRiverEmbankmntDistrict':
+                ['damages'],
+            'DlBuildingsDistrict':
+                ['damages'],
+
+
+        },
+        'Table_6': {
+            'DlMediumTanksNational':
+                ['damages'],
+            'DlLosMediumTanksNational':
+                ['total_los'],
+            'DlMajorTanksNational':
+                ['damages'],
+            'DlLosMajorTanksNational':
+                ['total_los'],
+            'DlMinorTanksNational':
+                ['damages'],
+            'DlLosMinorTanksNational':
+                ['total_los'],
+            'DlAnicutsNational':
+                ['damages'],
+            'DlLosAnicutsNational':
+                ['total_los'],
+            'DlOtherStructuresNational':
+                ['damages'],
+            'DlLosOtherNational':
+                ['total_los'],
+            'DlRiverEmbankmntNational':
+                ['damages'],
+            'DlBuildingsNational':
+                ['damages'],
+
+
+        },
     },
     'agri_agrarian': {
         'Table_1': {
@@ -2198,6 +2254,138 @@ TABLE_PROPERTY_MAPPER = {
                  ]
         }
 
+    },
+    'agri_livestock': {
+        'Table_2': {
+            'BlpAnmLivestock': [
+                'livestock',
+                'young_male',
+                'young_female',
+                'juvenile_male',
+                'juvenile_female',
+                'mature_male',
+                'mature_female',
+                'avg_val_young_male',
+                'avg_val_young_female',
+                'avg_val_juvenile_female',
+                'avg_val_juvenile_male',
+                'avg_val_mature_male',
+                'avg_val_mature_female',
+            ],
+            'BlpAnmPoultry': [
+                'poultry',
+                'young_male',
+                'young_female',
+                'juvenile_male',
+                'juvenile_female',
+                'mature_male',
+                'mature_female',
+                'avg_val_young_male',
+                'avg_val_young_female',
+                'avg_val_juvenile_female',
+                'avg_val_juvenile_male',
+                'avg_val_mature_male',
+                'avg_val_mature_female',],
+            'BlpAstLivestock': [
+                'livestock',
+                'avg_replacec_anm_shed',
+                'avg_replacec_feeds',
+                'avg_replacec_medicines',
+                'avg_replacec_tools',
+                'avg_replacec_others',
+                'avg_repairc_anm_shed',
+                'avg_repairc_tools',
+                'avg_repairc_others'],
+            'BlpAstPoultry': [
+                'poultry',
+                'avg_replacec_anm_shed',
+                'avg_replacec_feeds',
+                'avg_replacec_medicines',
+                'avg_replacec_tools',
+                'avg_replacec_others',
+                'avg_repairc_anm_shed',
+                'avg_repairc_tools',
+                'avg_repairc_others',
+            ],
+            'BlpAstStructures': [
+                'structures',
+                'avg_replace_cost',
+                'avg_repair_roof',
+                'avg_repair_wall',
+                'avg_repair_floor',
+            ],
+            'BlpAstOther': [
+                'other_assets',
+                'avg_replace_cost',
+                'avg_repair_cost',
+                'created_user',
+            ],
+            'BlpApyLivestock': [
+                'livestock',
+                'milk',
+                'meat',
+                'eggs',
+                'others',
+            ],
+            'BlpApyPoultry': [
+                'poultry',
+                'meat',
+                'eggs',
+                'others',
+            ],
+        },
+        'Table_3': {
+            'DlpNdaLivestock': [
+                'animals', 'dead_young_male', 'dead_young_female', 'dead_juvenile_male', 'dead_juvenile_female', 'dead_mature_female', 'dead_mature_male', 'damages', 'id',
+            ],
+            'DlpNdaPoultry': [
+                'animals', 'dead_young_male', 'dead_young_female', 'dead_juvenile_male', 'dead_juvenile_female', 'dead_mature_female', 'dead_mature_male', 'damages', 'id',
+            ],
+            'DlpPafLivestock': [
+                'animals', 'dest_animal_shed', 'dest_feeds', 'dest_medicines', 'dest_tools', 'dest_others', 'dmg_animal_shed', 'dmg_tools', 'dmg_others', 'damages' 'id',
+            ],
+            'DlpPafPoultry': [
+                'animals', 'dest_animal_shed', 'dest_feeds', 'dest_medicines', 'dest_tools', 'dest_others', 'dmg_animal_shed', 'dmg_tools', 'dmg_others', 'damages' 'id',
+            ],
+            'DlpStructStructures': [
+                'structures', 'dest_num', 'dest_sqm', 'pdmg_num', 'pdmg_roof', 'pdmg_wall', 'pdmg_floor', 'damages', 'id',
+            ],
+            'DlpStructOther': [
+                'other_assets', 'num_tot_dest', 'num_part_dmg', 'damages', 'id',
+            ],
+            'DlpLosLivestock': [
+                'animals', 'milk_year_1', 'milk_year_2', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'los_year_1', 'los_year_2', 'id',
+            ],
+            'DlpLosPoultry': [
+                'animals', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'eggs_year_1', 'eggs_year_2', 'los_year_1', 'los_year_2', 'id',
+            ],
+            'DlpLosOther': [
+                'others', 'los_year_1', 'los_year_2', 'id',
+            ],
+        },
+        'Table_1': {
+            'BelLivestock': [
+                'livestock',
+                'pub_own_families',
+                'pub_own_male',
+                'pub_own_female',
+                'pvt_own_families',
+                'pvt_own_male',
+                'pvt_own_female',
+                'id',
+            ],
+            'BelPoultry': [
+                'poultry',
+                'pub_own_families',
+                'pub_own_male',
+                'pub_own_female',
+                'pvt_own_families',
+                'pvt_own_male',
+                'pvt_own_female',
+                'id',
+            ],
+
+        },
     },
 }
 

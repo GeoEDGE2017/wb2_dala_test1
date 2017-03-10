@@ -1,0 +1,1308 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlLivestockPoultryApp" ng-controller="dlLivestockPoultryController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Livestock Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and losses for livestock and poultry</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_dl_livestock_poultry">
+        <div>
+            <ul class='nav nav-wizard'>
+                <li class="active"><a href='#step1' data-toggle="tab">1 Number of Dead Animals</a></li>
+                <li><a href='#step2' data-toggle="tab">2 Production Assets Affected</a></li>
+                <li><a href='#step3' data-toggle="tab">3 Losses</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="113"/>
+                            <col width="117"/>
+                            <col width="122"/>
+                            <col width="103"/>
+                            <col width="136"/>
+                            <col width="143"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                        </colgroup>
+                        <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_dl_livestock_poultry.incident.$error.required">
+                                    Please select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_dl_livestock_poultry.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead" height="19">
+                            <td width="113" height="19">
+                                Incident
+                            </td>
+                            <td width="117" height="19">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td colspan="2" width="244" height="19">
+                                District
+                            </td>
+                            <td colspan="7" width="667" height="19">
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                    <option value="" selected>Select District</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="34">
+                            <td width="113" height="34">
+                                Name of Organization
+                            </td>
+                            <td colspan="10" width="990" height="34">
+                                <select id="selectbasic" name="selectbasic" class="form-control"
+                                        style="width:100%;font-weight:400;">
+                                    <option value="1">Option one</option>
+                                    <option value="2">Option two</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="34">
+                            <td width="113" height="34">
+                                Ownership (Public or Private)
+                            </td>
+                            <td colspan="10" width="990" height="34">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="11" width="1099" height="19">
+                                Number of Dead Animals
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Animals
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                Young
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                Juvenile
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                Mature
+                            </td>
+                            <td colspan="4" rowspan="2" width="252" height="38">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td width="113" height="19">
+                                Livestock
+                            </td>
+                            <td width="117" height="19">
+                                Male
+                            </td>
+                            <td width="122" height="19">
+                                Female
+                            </td>
+                            <td width="103" height="19">
+                                Male
+                            </td>
+                            <td width="136" height="19">
+                                Female
+                            </td>
+                            <td width="143" height="19">
+                                Male
+                            </td>
+                            <td width="63" height="19">
+                                Female
+                            </td>
+                        </tr>
+                        <!--Livestock-->
+                        <tr height="19" ng-repeat="dlpNdaLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock" ng-if="dlpNdaLivestock.animals != 'Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpNdaLivestock.animals">
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaLivestock.dead_young_male">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaLivestock.dead_young_female">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaLivestock.dead_juvenile_male">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaLivestock.dead_juvenile_female">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaLivestock.dead_mature_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaLivestock.dead_mature_male">
+                            </td>
+                            <td colspan="4" width="252" height="19" ng-model="dlpNdaLivestock.damages">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <!--Livestock Total-->
+                        <tr height="19" ng-repeat="dlpNdaLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock" ng-if="dlpNdaLivestock.animals == 'Total'">
+                            <td class="tdpa" width="113" height="19">
+                                Total
+                            </td>
+                            <td class="tdpa" width="117" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="122" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="103" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="136" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="143" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="4" width="252" height="19" ng-bind="dlpNdaLivestock.damages">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpNdaPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry" ng-if="dlpNdaPoultry.animals != 'Total' && dlpNdaPoultry.animals != 'TOTAL'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpNdaPoultry.animals">
+                                Chicken
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_young_male">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_young_female">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_juvenile_male">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_juvenile_female">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_male">
+                            </td>
+                            <td colspan="4" width="252" height="19" ng-bind="dlpNdaPoultry.damages">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="4" width="252" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <!--Poultry Total-->
+                        <tr height="19" ng-repeat="dlpNdaPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry" ng-if="dlpNdaPoultry.animals == 'Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpNdaPoultry.animals">
+
+                            </td>
+                            <td class="tdpa" width="117" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="122" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="103" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="136" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="143" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="4" width="252" height="19" ng-bind="dlpNdaPoultry.damages">
+                            </td>
+                        </tr>
+                        <!--Poultry TOTAL-->
+                        <tr height="19" ng-repeat="dlpNdaPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry" ng-if="dlpNdaPoultry.animals == 'TOTAL'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpNdaPoultry.animals">
+                            </td>
+                            <td class="tdpa" width="117" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="122" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="103" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="136" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="143" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="4" width="252" height="19" ng-bind="dlpNdaPoultry.damages">
+                                -
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Production Assets Affected Informations</a>
+
+
+                </div>
+
+                <div class="tab-pane" id="step2">
+                    <table class="table table-bordered">
+
+
+                        <tr class="trheadc" height="19">
+                            <td colspan="11" width="1099" height="19">
+                                Production Assets Affected
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" width="113" height="53">
+                                Animals
+                            </td>
+                            <td colspan="5" width="595" height="19">
+                                Number of Totally Destroyed
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                Number of Partially Damaged
+                            </td>
+                            <td colspan="2" rowspan="2" width="126" height="53">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="34">
+                            <td width="117" height="34">
+                                Animal Shed
+                            </td>
+                            <td width="122" height="34">
+                                Feeds
+                            </td>
+                            <td width="103" height="34">
+                                Sets of Medicines
+                            </td>
+                            <td width="136" height="34">
+                                Tools
+                            </td>
+                            <td width="143" height="34">
+                                Others
+                            </td>
+                            <td width="63" height="34">
+                                Animal Shed
+                            </td>
+                            <td width="63" height="34">
+                                Tools
+                            </td>
+                            <td width="63" height="34">
+                                Others
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Livestock
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpPafLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock" ng-if="dlpPafLivestock.animals != 'Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpPafLivestock.animals">
+                                Swine
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dest_animal_shed">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dest_feeds">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dest_medicines">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dest_tools">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dest_others">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dmg_animal_shed">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dmg_tools">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dmg_others">
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpNdaPoultry.damages">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpPafLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock" ng-if="dlpPafLivestock.animals == 'Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpPafLivestock.animals">
+                            </td>
+                            <td class="tdpa" width="117" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="122" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="103" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="136" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="143" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpNdaPoultry.damages">
+                                -
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpPafPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry" ng-if="dlpPafPoultry.animals != 'Total' && dlpPafPoultry.animals != 'TOTAL'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpPafPoultry.animals">
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dest_animal_shed">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dest_feeds">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dest_medicines">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dest_tools">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dest_others">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dmg_animal_shed">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dmg_tools">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpPafPoultry.dmg_others">
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpPafPoultry.damages">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="43" ng-repeat="dlpPafPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry" ng-if="dlpPafPoultry.animals == 'Total'">
+                            <td class="tdpa" width="113" height="43">
+                                Total
+                            </td>
+                            <td class="tdpa" width="117" height="43">
+                            </td>
+                            <td class="tdpa" width="122" height="43">
+                            </td>
+                            <td class="tdpa" width="103" height="43">
+                            </td>
+                            <td class="tdpa" width="136" height="43">
+                            </td>
+                            <td class="tdpa" width="143" height="43">
+                            </td>
+                            <td class="tdpa" width="63" height="43">
+                            </td>
+                            <td class="tdpa" width="63" height="43">
+                            </td>
+                            <td class="tdpa" width="63" height="43">
+                            </td>
+                            <td colspan="2" width="126" height="43" ng-bind="dlpPafPoultry.damages">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpPafPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry" ng-if="dlpPafPoultry.animals == 'TOTAL'">
+                            <td class="tdpa" width="113" height="19">
+                                TOTAL
+                            </td>
+                            <td class="tdpa" width="117" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="122" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="103" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="136" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="143" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpPafPoultry.damages">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="11" width="1099" height="19">
+                                Structures
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="3" rowspan="2" width="343" height="53">
+                                Structures
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                Totally Destroyed
+                            </td>
+                            <td colspan="4" width="412" height="19">
+                                Partially Damaged
+                            </td>
+                            <td colspan="2" rowspan="2" width="126" height="53">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="34">
+                            <td width="103" height="34">
+                                Number
+                            </td>
+                            <td width="136" height="34">
+                                Total sqm
+                            </td>
+                            <td width="143" height="34">
+                                Number
+                            </td>
+                            <td width="63" height="34">
+                                Roof (sqm)
+                            </td>
+                            <td width="63" height="34">
+                                Wall (sqm)
+                            </td>
+                            <td width="63" height="34">
+                                Floor (sqm)
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpStructStructures in dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures" ng-if="dlpStructStructures.structures != 'Total'">
+                            <td class="tdpa" colspan="3" width="343" height="19" ng-bind="dlpStructStructures.structures">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructStructures.dest_num">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructStructures.dest_sqm">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructStructures.pdmg_num">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructStructures.pdmg_roof">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructStructures.pdmg_wall">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructStructures.pdmg_floor">
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpStructStructures.damages">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpStructStructures in dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures" ng-if="dlpStructStructures.structures == 'Total'">
+                            <td class="tdpa" colspan="3" width="343" height="19" ng-bind="dlpStructStructures.structures">
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpStructStructures.damages">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="3" width="343" height="19">
+                                Other Assets
+                            </td>
+                            <td colspan="3" width="342" height="19">
+                                Number of Totally Destroyed
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                Number of Partially Damaged
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpStructOther in dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther" ng-if="dlpStructOther.other_assets != 'Total' && dlpStructOther.other_assets != 'TOTAL OF DAMAGES'">
+                            <td class="tdpa" colspan="3" width="343" height="19" ng-bind="dlpStructOther.other_assets">
+                            </td>
+                            <td colspan="3" width="342" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructOther.num_tot_dest">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpStructOther.num_part_dmg">
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpStructOther.damages">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="3" width="343" height="19">
+                                Others
+                            </td>
+                            <td colspan="3" width="342" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpStructOther in dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther" ng-if="dlpStructOther.other_assets == 'Total'">
+                            <td class="tdpa" colspan="3" width="343" height="19">
+                                Total
+                            </td>
+                            <td class="tdpa" colspan="3" width="342" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpStructOther.damages">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpStructOther in dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther" ng-if="dlpStructOther.other_assets == 'TOTAL OF DAMAGES'">
+                            <td class="tdpa" colspan="3" width="343" height="19">
+                                TOTAL OF DAMAGES
+                            </td>
+                            <td class="tdpa" colspan="3" width="342" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19" ng-bind="dlpStructOther.damages">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                </div>
+                <div class="tab-pane" id="step3">
+                    <table class="table table-bordered">
+                        <tr class="trheadc" height="19">
+                            <td colspan="11" width="1099" height="19">
+                                Average Percentage Reduction in the Value of Production per
+                                Year (%/Year)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Animals
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                Milk (%)
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                Meat (%)
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                Eggs (%)
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Others (%)
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Livestock
+                            </td>
+                            <td width="117" height="19">
+                                Year 1
+                            </td>
+                            <td width="122" height="19">
+                                Year 2
+                            </td>
+                            <td width="103" height="19">
+                                Year 1
+                            </td>
+                            <td width="136" height="19">
+                                Year 2
+                            </td>
+                            <td width="143" height="19">
+                                Year 1
+                            </td>
+                            <td width="63" height="19">
+                                Year 2
+                            </td>
+                            <td width="63" height="19">
+                                Year 1
+                            </td>
+                            <td width="63" height="19">
+                                Year 2
+                            </td>
+                            <td width="63" height="19">
+                                Year 1
+                            </td>
+                            <td width="63" height="19">
+                                Year 2
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpLosLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock" ng-if="dlpLosLivestock.animals != 'Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpLosLivestock.animals">
+                            </td>
+                            <td class="tdpa" width="117" height="19" ng-if="dlpLosLivestock.animals == 'Swine' || dlpLosLivestock.animals == 'Sheep'">
+
+                            </td>
+                            <td width="117" height="19" ng-if="dlpLosLivestock.animals != 'Swine' &&  dlpLosLivestock.animals != 'Sheep'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosLivestock.milk_year_1">
+                            </td>
+                            <td class="tdpa" width="117" height="19" ng-if="dlpLosLivestock.animals == 'Swine' || dlpLosLivestock.animals == 'Sheep'">
+
+                            </td>
+                            <td width="122" height="19" ng-if="dlpLosLivestock.animals != 'Swine' && dlpLosLivestock.animals != 'Sheep'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosLivestock.milk_year_2">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosLivestock.meat_year_1">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosLivestock.meat_year_2">
+                            </td>
+                            <td width="143" class="tdpa" height="19">
+                            </td>
+                            <td width="63" class="tdpa" height="19">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosLivestock.others_year_1">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosLivestock.others_year_2">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosLivestock.los_year_1">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosLivestock.los_year_2">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <!--Livestock Total-->
+                        <tr height="19" ng-repeat="dlpLosLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock" ng-if="dlpLosLivestock.animals == 'Total'">
+                            <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosLivestock.animals">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosLivestock.los_year_1">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosLivestock.los_year_2">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals != 'Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpLosPoultry.animals">
+                            </td>
+                            <td width="117" height="19">
+                            </td>
+                            <td width="122" height="19">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.meat_year_1">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.meat_year_2">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.others_year_1">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.others_year_2">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.eggs_year_1">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.eggs_year_2">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2">
+                            </td>
+                        </tr>
+                        <tr height="56">
+                            <td class="tdpa" width="113" height="56">
+                                Others
+                            </td>
+                            <td width="117" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="122" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="103" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="143" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="56">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="56" class="tdpa">
+                                -
+                            </td>
+                            <td width="63" height="56" class="tdpa">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals == 'Total'">
+                            <td class="tdpa" colspan="9" width="973" height="19">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals == 'Total Production Losses'">
+                            <td class="tdpa" colspan="9" width="973" height="19">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2">
+                            </td>
+                        </tr>
+                        <!--Cleaning of Debris-->
+                        <tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others != 'TOTAL OF LOSSES'">
+                            <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosOther.los_year_1">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosOther.los_year_2">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others == 'TOTAL OF LOSSES'">
+                            <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">
+                                TOTAL OF LOSSES
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosOther.los_year_1">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosOther.los_year_2">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </tbody>
+                    </table>
+                    <br>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_livestock_poultry)">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-0001" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-container-0002" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

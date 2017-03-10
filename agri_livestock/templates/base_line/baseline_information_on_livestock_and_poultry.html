@@ -1,0 +1,1172 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="bsLivestockPoultryApp" ng-controller="bsLivestockPoultryController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Livestock Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline information on livestock and poultry</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_bs_livestock_poultry">
+        <div>
+            <ul class='nav nav-wizard'>
+                <li class="active"><a href='#step1' data-toggle="tab">1 Animals</a></li>
+                <li><a href='#step2' data-toggle="tab">2 Production Assets</a></li>
+                <li><a href='#step3' data-toggle="tab">3 Average Value of Production per Year (LKR/Year)</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="113"/>
+                            <col width="117"/>
+                            <col width="122"/>
+                            <col width="103"/>
+                            <col width="136"/>
+                            <col width="143"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                        </colgroup>
+                        <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            </td>
+                            <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_bs_livestock_poultry.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_bs_livestock_poultry.baselineDate.$error.required">
+                                    Please Select Date
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead" height="19">
+                            <td width="113" height="19">
+                                District
+                            </td>
+                            <td width="117" height="19">
+                                <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select a District</option>
+                                    {% for district in districts %}
+                                        <option value={{ district.id }}>{{ district.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td colspan="2" width="244" height="19">
+                                Year/Month
+                            </td>
+                            <td colspan="9" width="793" height="19">
+                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="34">
+                            <td width="113" height="34">
+                                Name Of the Organization
+                            </td>
+                            <td colspan="2">
+                            <select ng-options="organization as organization.name for organization in organizations track by organization.id"
+                                    name="district" id="ccyear" ng-model="selectedOrganization" class="form-control" required>
+                                <option value="" selected>Select Organization</option>
+                            </select>
+                        </td>
+                            <td width="136" height="34">
+                                <a id="" href="#modal-container-469842" role="button" data-toggle="modal"
+                                   class="open-modal-container-469842 btn btn-sm btn-block btn-primary btn-info">Add</a>
+                            </td>
+                            <td width="143" height="34">
+                                <a id="" href="#modal-container-0002" role="button" data-toggle="modal"
+                                   class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+                            </td>
+                            <td colspan="7" width="441" height="34">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="34">
+                            <td width="113" height="34">
+                                Ownership (Public or Private)
+                            </td>
+                            <td colspan="12" width="1116" height="34">
+                                <select id="selectbasic" name="selectbasic" class="form-control"
+                                        style="width:100%;font-weight:400;">
+                                    <option value="1">Option one</option>
+                                    <option value="2">Option two</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="13" width="1225" height="19">
+                                Animals
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" width="113" height="38">
+                                Assets
+                            </td>
+                            <td colspan="6" width="738" height="19">
+                                Number of Heads
+                            </td>
+                            <td colspan="6" width="378" height="19">
+                                Average Value (LKR/Head)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="234" height="19">
+                                Young
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                Juvenile
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                Mature
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Young
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Juvenile
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Mature
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Livestock
+                            </td>
+                            <td width="117" height="19">
+                                Male
+                            </td>
+                            <td width="122" height="19">
+                                Female
+                            </td>
+                            <td width="103" height="19">
+                                Male
+                            </td>
+                            <td width="136" height="19">
+                                Female
+                            </td>
+                            <td width="143" height="19">
+                                Male
+                            </td>
+                            <td width="63" height="19">
+                                Female
+                            </td>
+                            <td width="63" height="19">
+                                Male
+                            </td>
+                            <td width="63" height="19">
+                                Female
+                            </td>
+                            <td width="63" height="19">
+                                Male
+                            </td>
+                            <td width="63" height="19">
+                                Female
+                            </td>
+                            <td width="63" height="19">
+                                Male
+                            </td>
+                            <td width="63" height="19">
+                                Female
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="blpAnmLivestock in bsLivestockPoultry.agri_livestock.Table_2.BlpAnmLivestock">
+                            <td class="tdpa" width="113" height="19" ng-bind="blpAnmLivestock.livestock" ng-if="$index < 5">
+                            </td>
+                            <td width="98" ng-if="$index > 4">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BlpAnmLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:90%;float:right;" name="blpAnmLivestock_{{$index}}" ng-model="blpAnmLivestock.livestock"
+                                    popover="This field is required"
+                                    popover-toggle="form_bs_livestock_poultry_dst['blpAnmLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAnmLivestock_' + $index].$valid"
+                                    popover-placement="top" required
+                                    type="text"
+                                    class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.young_male">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.young_female">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.juvenile_male">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.juvenile_female">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.mature_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.mature_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.avg_val_young_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.avg_val_young_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.avg_val_juvenile_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.avg_val_juvenile_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.avg_val_mature_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmLivestock.avg_val_mature_female">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="34">
+                            <td width="113" height="34">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertAsset('BlpAnmLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td width="117" height="34">
+                                <br/>
+                            </td>
+                            <td width="122" height="34">
+                                <br/>
+                            </td>
+                            <td width="103" height="34">
+                                <br/>
+                            </td>
+                            <td width="136" height="34">
+                                <br/>
+                            </td>
+                            <td width="143" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="blpAnmPoultry in bsLivestockPoultry.agri_livestock.Table_2.BlpAnmPoultry">
+                            <td class="tdpa" width="113" height="19" ng-bind="blpAnmPoultry.poultry" ng-if="$index < 2">
+                                Chicken
+                            </td>
+                            <td width="98" ng-if="$index > 1">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BlpAnmPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:90%;float:right;" name="blpAnmPoultry_{{$index}}" ng-model="blpAnmPoultry.poultry"
+                                    popover="This field is required"
+                                    popover-toggle="form_bs_livestock_poultry_dst['blpAnmPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAnmPoultry_' + $index].$valid"
+                                    popover-placement="top" required
+                                    type="text"
+                                    class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.young_male">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.young_female">
+                            </td>
+                            <td width="103" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.juvenile_male">
+                            </td>
+                            <td width="136" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.juvenile_female">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.mature_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.mature_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.avg_val_young_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.avg_val_young_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.avg_val_juvenile_female">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.avg_val_juvenile_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.avg_val_mature_male">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAnmPoultry.avg_val_mature_female">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="42">
+                            <td width="113" height="42">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertAsset('BlpAnmPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td width="117" height="42">
+                                <br/>
+                            </td>
+                            <td width="122" height="42">
+                                <br/>
+                            </td>
+                            <td width="103" height="42">
+                                <br/>
+                            </td>
+                            <td width="136" height="42">
+                                <br/>
+                            </td>
+                            <td width="143" height="42">
+                                <br/>
+                            </td>
+                            <td width="63" height="42">
+                                <br/>
+                            </td>
+                            <td width="63" height="42">
+                                <br/>
+                            </td>
+                            <td width="63" height="42">
+                                <br/>
+                            </td>
+                            <td width="63" height="42">
+                                <br/>
+                            </td>
+                            <td width="63" height="42">
+                                <br/>
+                            </td>
+                            <td width="63" height="42">
+                                <br/>
+                            </td>
+                            <td width="63" height="42">
+                                <br/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Production Assets Informations</a>
+                </div>
+                <div class="tab-pane" id="step2">
+                    <table class="table table-bordered">
+                        <tr class="trheadc" height="19">
+                            <td colspan="13" width="1225" height="19">
+                                Production Assets
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="6" width="738" height="19">
+                                Average Replacement Cost (LKR)
+                            </td>
+                            <td colspan="6" width="378" height="19">
+                                Average Repair Cost (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td width="113" height="19">
+                                <br/>
+                            </td>
+                            <td width="117" height="19">
+                                Animal Shed
+                            </td>
+                            <td width="122" height="19">
+                                Feeds
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                Sets of Medicines
+                            </td>
+                            <td width="143" height="19">
+                                Tools
+                            </td>
+                            <td width="63" height="19">
+                                Others
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Animal Shed
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Tools
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Others
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="trheadc" width="113" height="19">
+                                Livestock
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="blpAstLivestock in bsLivestockPoultry.agri_livestock.Table_2.BlpAstLivestock">
+                            <td class="tdpa" width="113" height="19" ng-bind="blpAstLivestock.livestock" ng-if="$index < 5">
+                            </td>
+                            <td width="98" ng-if="$index > 4">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BlpAstLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:90%;float:right;" name="blpAstLivestock_{{$index}}" ng-model="blpAstLivestock.livestock"
+                                    popover="This field is required"
+                                    popover-toggle="form_bs_livestock_poultry_dst['blpAstLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAstLivestock_' + $index].$valid"
+                                    popover-placement="top" required
+                                    type="text"
+                                    class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="117" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_replacec_anm_shed">
+                            </td>
+                            <td width="122" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_replacec_feeds">
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_replacec_medicines">
+                            </td>
+                            <td width="143" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_replacec_tools">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_replacec_others">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_repairc_anm_shed">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_repairc_tools">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstLivestock.avg_repairc_others">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="34">
+                            <td width="113" height="34">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertAsset('BlpAstLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td width="117" height="34">
+                                <br/>
+                            </td>
+                            <td width="122" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="206" height="34">
+                                <br/>
+                            </td>
+                            <td width="143" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="34">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="21" ng-repeat="blpAstPoultry in bsLivestockPoultry.agri_livestock.Table_2.BlpAstPoultry">
+                            <td class="tdpa" width="113" height="21" ng-bind="blpAstPoultry.poultry" ng-if="$index < 2">
+                            </td>
+                            <td width="98" ng-if="$index > 1">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BlpAstPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:90%;float:right;" name="blpAstPoultry_{{$index}}" ng-model="blpAstPoultry.poultry"
+                                    popover="This field is required"
+                                    popover-toggle="form_bs_livestock_poultry_dst['blpAstPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAstPoultry_' + $index].$valid"
+                                    popover-placement="top" required
+                                    type="text"
+                                    class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="117" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_replacec_anm_shed">
+                            </td>
+                            <td width="122" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_replacec_feeds">
+                            </td>
+                            <td colspan="2" width="206" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_replacec_medicines">
+                            </td>
+                            <td width="143" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_replacec_tools">
+                            </td>
+                            <td width="63" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_replacec_others">
+                            </td>
+                            <td colspan="2" width="126" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_repairc_anm_shed">
+                            </td>
+                            <td colspan="2" width="126" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_repairc_tools">
+                            </td>
+                            <td colspan="2" width="126" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstPoultry.avg_repairc_others">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="34">
+                            <td width="113" height="34">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertAsset('BlpAstPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td width="117" height="34">
+                                <br/>
+                            </td>
+                            <td width="122" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="206" height="34">
+                                <br/>
+                            </td>
+                            <td width="143" height="34">
+                                <br/>
+                            </td>
+                            <td width="63" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="126" height="34">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="3" rowspan="2" width="343" height="38">
+                                Structures/Buildings
+                            </td>
+                            <td colspan="4" rowspan="2" width="485" height="38">
+                                Average Replacement Cost (LKR/square meter)
+                            </td>
+                            <td colspan="6" width="378" height="19">
+                                Average Repair Cost (LKR/square meter)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td colspan="2" width="126" height="19">
+                                Roof
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Wall
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Floor
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="3" width="343" height="19">
+                                1 floor
+                            </td>
+                            <td colspan="4" width="485" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="3" width="343" height="19">
+                                2-3 floors
+                            </td>
+                            <td colspan="4" width="485" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="3" width="343" height="19">
+                                More than 3 floors
+                            </td>
+                            <td colspan="4" width="485" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="3" width="343" height="19">
+                                Other Assets
+                            </td>
+                            <td colspan="4" width="485" height="19">
+                                Average Replacement Cost (LKR)
+                            </td>
+                            <td colspan="6" width="378" height="19">
+                                Average Repair Cost (LKR)
+                            </td>
+                        </tr>
+                        <tr height="24" ng-repeat="blpAstOther in bsLivestockPoultry.agri_livestock.Table_2.BlpAstOther">
+                            <td class="tdpa" colspan="3" width="343" height="24" ng-bind="blpAstOther.other_assets" ng-if="$index < 4">
+                                Computers
+                            </td>
+                            <td width="98" ng-if="$index > 3">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BlpAstOther', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:90%;float:right;" name="blpAstOther_{{$index}}" ng-model="blpAstOther.other_assets"
+                                    popover="This field is required"
+                                    popover-toggle="form_bs_livestock_poultry_dst['blpAstOther_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAstOther_' + $index].$valid"
+                                    popover-placement="top" required
+                                    type="text"
+                                    class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="4" width="485" height="24">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstOther.avg_replace_cost">
+                            </td>
+                            <td colspan="6" width="378" height="24">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpAstOther.avg_repair_cost">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="19">
+                            <td colspan="3" width="343" height="19">
+                                Other office equipment
+                                <button ng-click="insertAsset('BlpAstOther')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="4" width="485" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="6" width="378" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="3" width="343" height="19">
+                                Others
+                            </td>
+                            <td colspan="4" width="485" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="6" width="378" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                        <span class="glyphicon glyphicon-arrow-right"></span> Fill Average Value of Production per Year Informations
+                    </a>
+                </div>
+                <div class="tab-pane" id="step3">
+                    <table class="table table-bordered">
+                        <tr class="trheadc" height="19">
+                            <td colspan="13" width="1225" height="19">
+                                Average Value of Production per Year (LKR/Year)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="356" height="19">
+                                Milk
+                            </td>
+                            <td colspan="3" width="415" height="19">
+                                Meat
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                Eggs
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                Others
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Livestock
+                            </td>
+                            <td colspan="3" width="356" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="415" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="blpApyLivestock in bsLivestockPoultry.agri_livestock.Table_2.BlpApyLivestock">
+                            <td class="tdpa" width="113" height="19" ng-bind="blpApyLivestock.livestock" ng-if="$index < 5">
+                            </td>
+                            <td width="98" ng-if="$index > 4">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BlpApyLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:90%;float:right;" name="blpApyLivestock_{{$index}}" ng-model="blpApyLivestock.livestock"
+                                    popover="This field is required"
+                                    popover-toggle="form_bs_livestock_poultry_dst['blpApyLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpApyLivestock_' + $index].$valid"
+                                    popover-placement="top" required
+                                    type="text"
+                                    class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="3" width="356" height="19" ng-if="blpApyLivestock.livestock != 'Swine' || blpApyLivestock.livestock != 'Sheep'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpApyLivestock.milk">
+                            </td>
+                            <td colspan="3" width="415" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpApyLivestock.meat">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpApyLivestock.others">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="34">
+                            <td width="113" height="34">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertAsset('BlpApyLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="3" width="356" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="415" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="34">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td colspan="3" width="356" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="415" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="21" ng-repeat="blpApyPoultry in bsLivestockPoultry.agri_livestock.Table_2.BlpApyPoultry">
+                            <td class="tdpa" width="113" height="21" ng-bind="blpApyPoultry.poultry" ng-if="$index < 2">
+                                Chicken
+                            </td>
+                            <td width="98" ng-if="$index > 1">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BlpApyPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:90%;float:right;" name="blpApyPoultry_{{$index}}" ng-model="blpApyPoultry.poultry"
+                                    popover="This field is required"
+                                    popover-toggle="form_bs_livestock_poultry_dst['blpApyPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpApyPoultry_' + $index].$valid"
+                                    popover-placement="top" required
+                                    type="text"
+                                    class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="3" width="356" height="21">
+                            </td>
+                            <td colspan="3" width="415" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpApyPoultry.meat">
+                            </td>
+                            <td colspan="3" width="189" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpApyPoultry.eggs">
+                            </td>
+                            <td colspan="3" width="189" height="21">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="blpApyPoultry.others">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Ducks
+                            </td>
+                            <td colspan="3" width="356" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="3" width="415" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="3" width="189" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="34">
+                            <td width="113" height="34">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertAsset('BlpApyPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="3" width="356" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="415" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="34">
+                                <br/>
+                            </td>
+                            <td colspan="3" width="189" height="34">
+                                <br/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_livestock_poultry)">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+                <div class="modal fade" id="modal-container-469842" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Add Firm
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Firm Name</label>
+                            <div class="col-md-5">
+                                <input id="textinput" name="textinput" ng-model="new_firm.name" type="text"
+                                       placeholder=""
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group" style="margin-top:5px;">
+                            <label class="col-md-4 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-5">
+                                <select id="selectbasic" name="ownership" ng-model='new_firm.ownership'
+                                        class="form-control"
+                                        style="font-weight:400;" required>
+
+                                    <option value="" selected="true">Select Ownership</option>
+
+                                    <option value="Public">Public</option>
+                                    <option value="Private">Private</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                        <br>
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button id="button1id" name="button1id" class="btn btn-warning">Cancel</button>
+                        <button id="button2id" ng-click="saveOrganization()" name="button2id" class="btn btn-success">Save
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="modal-container-0002" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

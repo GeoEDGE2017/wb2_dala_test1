@@ -1,5 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
+  });
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlOthLndAsetsApp" ng-controller="dlOthLndAsetsController">
     <!-- Breadcrumb -->
@@ -8,9 +14,9 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Transport Sector</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
+        <li class="breadcrumb-item"><a href="#">Land Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Damages and losses to other land transportation assets</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Damages and Losses to Other Land Transportation Assets</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_oth_lnd_asets">
@@ -58,7 +64,7 @@
                             <td class="trhead" height="43" width="156">
                                 Incident
                             </td>
-                            <td colspan="4" height="43" width="63">
+                            <td class="trhead" colspan="4" height="43" width="63">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true)"
                                         style="width:100%;font-weight:400;" required>
@@ -74,7 +80,7 @@
                             <td class="trhead" height="43" width="120">
                                 District
                             </td>
-                            <td colspan="4" height="43" width="680">
+                            <td class="trhead" colspan="4" height="43" width="680">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                         class="form-control" ng-change="changedValue(false)" required>
@@ -84,7 +90,7 @@
                         </tr>
 
                         <tr class="trheadc" height="19">
-                            <td colspan="2" height="19" width="312">
+                            <td colspan="2" height="19" width="312" style="width:27%;">
                                 Type of Land Transportation Vehicles
                             </td>
                             <td colspan="2" height="19" width="240">
@@ -113,7 +119,7 @@
                             <td height="19" width="148">
                                 Private
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" style="width:11%;">
                                 Public
                             </td>
                             <td colspan="2" height="19" width="126">
@@ -124,7 +130,7 @@
                         </tbody>
                     </table>
                     <!--Private Vehicles-->
-                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <div id="boxscroll1" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tr class="trheadc" height="19">
                                 <td colspan="2" height="19" width="312">
@@ -590,8 +596,8 @@
                         </table>
                     </div>
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill ther Losses Informations</a>
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Other Losses Informations</a>
                     <br>
                 </div>
 
@@ -614,13 +620,13 @@
                                 Foregone Income
                             </td>
                             <td colspan="2" height="19" width="198">
-                                Cleaning up of debris
+                                Cleaning Up of Debris
                             </td>
                             <td colspan="2" height="19" width="296">
-                                Higher operating costs
+                                Higher Operating Costs
                             </td>
                             <td colspan="2" height="19" width="126">
-                                Other unexpected expenses
+                                Other Unexpected Expenses
                             </td>
                         </tr>
                         <tr class="trsubc" height="19">
@@ -832,7 +838,7 @@
                         <tr height="19" ng-repeat="dlOtherLosPvt in dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt"
                             ng-if="$index < 5">
                             <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company">
-                                Private vehicles
+                                Private Vehicles
                             </td>
                             <td height="19" width="63">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -982,7 +988,7 @@
                     </table>
                     <br>
                     <div class="pull-right">
-                        <br>
+                       
                         <button type="button" class="btn btn-info">Clear</button>
                         <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
                             Edit
@@ -994,6 +1000,7 @@
                                 ng-click="saveDlData(form_dl_oth_lnd_asets)"
                                 class="btn btn-success">Submit</button>
                     </div>
+                    <br><br>
                 </div>
 
 

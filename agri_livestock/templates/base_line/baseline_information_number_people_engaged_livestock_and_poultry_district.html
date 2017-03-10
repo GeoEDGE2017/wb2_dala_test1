@@ -1,0 +1,319 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="bsLivestockPoultryDstApp" ng-controller="bsLivestockPoultryDstController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Livestock Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline information on the number of people engaged in livestock and poultry in a district</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_bs_livestock_poultry_dst">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="113"/>
+                        <col width="117"/>
+                        <col width="122"/>
+                        <col width="103"/>
+                        <col width="136"/>
+                        <col width="143"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_bs_livestock_poultry_dst.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_bs_livestock_poultry_dst.baselineDate.$error.required">
+                                Please Select Date
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="19">
+                        <td height="19" width="218" style="padding:5px;">
+                            District
+                        </td>
+                        <td colspan="3" height="19" width="378">
+                            <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select a District</option>
+                                {% for district in districts %}
+                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td colspan="2" style="padding:5px;">
+                            Year/Month:
+                        </td>
+                        <td colspan="2">
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="54">
+                        <td rowspan="2" width="113" height="73">
+                            Sub-sector
+                        </td>
+                        <td colspan="6" width="738" height="54">
+                            Number of Growers-Farmers by Ownership
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td colspan="3" width="356" height="19">
+                            Public Ownership
+                        </td>
+                        <td colspan="3" width="415" height="19">
+                            Private Ownership
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="113" height="19">
+                            Livestock
+                        </td>
+                        <td width="117" height="19">
+                            Families
+                        </td>
+                        <td width="122" height="19">
+                            Male
+                        </td>
+                        <td width="103" height="19">
+                            Female
+                        </td>
+                        <td width="136" height="19">
+                            Families
+                        </td>
+                        <td width="143" height="19">
+                            Male
+                        </td>
+                        <td width="63" height="19">
+                            Female
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="belLivestock in bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock">
+                        <td class="tdpa" width="113" height="19" ng-bind="belLivestock.livestock" ng-if="$index < 5">
+                        </td>
+                        <td width="98" ng-if="$index > 4">
+                            {% verbatim %}
+                            <button id="delete" ng-click="removeItem('BelLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <input style="width:90%;float:right;" name="belLivestock_{{$index}}" ng-model="belLivestock.livestock"
+                                popover="This field is required"
+                                popover-toggle="form_bs_livestock_poultry_dst['belLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['belLivestock_' + $index].$valid"
+                                popover-placement="top" required
+                                type="text"
+                                class="form-control input-md">
+                            {% endverbatim %}
+                        </td>
+                        <td width="117" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belLivestock.pub_own_families">
+                        </td>
+                        <td width="122" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belLivestock.pub_own_male">
+                        </td>
+                        <td width="103" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belLivestock.pub_own_female">
+                        </td>
+                        <td width="136" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belLivestock.pvt_own_families">
+                        </td>
+                        <td width="143" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belLivestock.pvt_own_male">
+                        </td>
+                        <td width="63" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belLivestock.pvt_own_female">
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="34">
+                        <td width="113" height="34">
+                            Others
+                            <button ng-click="insertAsset('BelLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </td>
+                        <td width="117" height="34">
+                            <br/>
+                        </td>
+                        <td width="122" height="34">
+                            <br/>
+                        </td>
+                        <td width="103" height="34">
+                            <br/>
+                        </td>
+                        <td width="136" height="34">
+                            <br/>
+                        </td>
+                        <td width="143" height="34">
+                            <br/>
+                        </td>
+                        <td width="63" height="34">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="113" height="19">
+                            Poultry
+                        </td>
+                        <td width="117" height="19">
+                            <br/>
+                        </td>
+                        <td width="122" height="19">
+                            <br/>
+                        </td>
+                        <td width="103" height="19">
+                            <br/>
+                        </td>
+                        <td width="136" height="19">
+                            <br/>
+                        </td>
+                        <td width="143" height="19">
+                            <br/>
+                        </td>
+                        <td width="63" height="19">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="belPoultry in bsLivestockPoultryDst.agri_livestock.Table_1.BelPoultry">
+                        <td class="tdpa" width="113" height="19" ng-bind="belPoultry.poultry" ng-if="$index < 2">
+                        </td>
+                        <td width="98" ng-if="$index > 1">
+                            {% verbatim %}
+                            <button id="delete" ng-click="removeItem('BelPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <input style="width:90%;float:right;" name="belPoultry_{{$index}}" ng-model="belPoultry.poultry"
+                                popover="This field is required"
+                                popover-toggle="form_bs_livestock_poultry_dst['belPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['belPoultry_' + $index].$valid"
+                                popover-placement="top" required
+                                type="text"
+                                class="form-control input-md">
+                            {% endverbatim %}
+                        </td>
+                        <td width="117" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belPoultry.pub_own_families">
+                        </td>
+                        <td width="122" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belPoultry.pub_own_male">
+                        </td>
+                        <td width="103" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belPoultry.pub_own_female">
+                        </td>
+                        <td width="136" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belPoultry.pvt_own_families">
+                        </td>
+                        <td width="143" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belPoultry.pvt_own_male">
+                        </td>
+                        <td width="63" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="belPoultry.pvt_own_female">
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="34">
+                        <td width="113" height="34">
+                            Others &nbsp;&nbsp;
+                            <button ng-click="insertAsset('BelPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </td>
+                        <td width="117" height="34">
+                            <br/>
+                        </td>
+                        <td width="122" height="34">
+                            <br/>
+                        </td>
+                        <td width="103" height="34">
+                            <br/>
+                        </td>
+                        <td width="136" height="34">
+                            <br/>
+                        </td>
+                        <td width="143" height="34">
+                            <br/>
+                        </td>
+                        <td width="63" height="34">
+                            <br/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="pull-right">
+                    <br>
+                     <button type="button" class="btn btn-info">Clear</button>
+                            <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">Edit
+                            </button>
+                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit
+                            </button>
+                            <button type="button" ng-click="saveBsData(form_bs_livestock_poultry_dst)" class="btn btn-success">Submit
+                            </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

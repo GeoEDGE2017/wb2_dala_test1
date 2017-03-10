@@ -43,6 +43,10 @@ def transport_rail_main(request):
 @permission_required("district", "Transport Water")	
 def transport_water_main(request):   
     return render(request, 'dashboard/transport_water_main.html')
+
+@permission_required("district", "Transport Summary")	
+def transport_summary_main(request):   
+    return render(request, 'dashboard/transport_summary_main.html')
     
     
     

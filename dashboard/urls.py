@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^transport_land_main$', views.transport_land_main, name='transport_land_main'),
     url(r'^transport_rail_main$', views.transport_rail_main, name='transport_rail_main'),
     url(r'^transport_water_main$', views.transport_water_main, name='transport_water_main'),
+    url(r'^transport_summary_main$', views.transport_summary_main, name='transport_summary_main'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/admin/login/'}, name='logout'),
 
 

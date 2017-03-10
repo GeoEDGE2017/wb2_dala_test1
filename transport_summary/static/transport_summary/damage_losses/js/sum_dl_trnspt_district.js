@@ -49,7 +49,6 @@ app.controller('dlSumTrnsptDstControllerController', function($scope, $http) {
                         'district':  $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
                 $scope.data=data;

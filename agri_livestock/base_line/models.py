@@ -10,7 +10,7 @@ class Organization(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'organization'
+        db_table = 'agri_livestock\".\"organization'
 
 
 class BdSessionKeys(models.Model):
@@ -26,15 +26,6 @@ class BdSessionKeys(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_livestock\".\"bd_session_keys'
-
-
-class Organization(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    ownership = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'agri_livestock\".\"organization'
 
 
 # Table 1

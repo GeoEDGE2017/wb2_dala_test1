@@ -79,9 +79,9 @@ INSTALLED_APPS = [
     'agri_livestock',
     'agri_livestock.base_line',
     'agri_livestock.damage_losses',
-    #'agri_fisheries',
-    #'agri_fisheries.base_line',
-    #'agri_fisheries.damage_losses',
+    # 'agri_fisheries',
+    # 'agri_fisheries.base_line',
+    # 'agri_fisheries.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -124,10 +124,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian,agri_irrigation,agri_livestock'
+        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian,agri_irrigation,agri_livestock, agri_fisheries'
         # },
         # 'OPTIONS': {
-        #     'options': '-c search_path=agri_livestock'
+        #     'options': '-c search_path=agri_fisheries'
         # },
         'NAME': 'dala_2017',
         'USER': 'postgres',

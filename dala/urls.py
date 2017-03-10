@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^charts/', include('charts.urls', namespace='charts')),
 
     # report builder
-    #url(r'^report_builder/', include('report_builder.urls')),
+    url(r'^report_builder/', include('report_builder.urls')),
 
     # common functions
     url(r'^bs_get_data$', views.bs_get_data, name='bs_get_data'),
@@ -36,12 +36,12 @@ urlpatterns = [
     url(r'^dl_fetch_edit_data$', views.dl_fetch_edit_data, name='dl_fetch_edit_data'),
     url(r'^dl_fetch_district_disagtn$', views.dl_fetch_district_disagtn, name='dl_fetch_district_disagtn'),
     url(r'^dl_fetch_summary_disagtn$', views.dl_fetch_summary_disagtn, name='dl_fetch_summary_disagtn'),
+    url(r'^dl_fetch_summary_dis_disagtn$', views.dl_fetch_summary_dis_disagtn, name='dl_fetch_summary_dis_disagtn'),
 
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
 
-
-    #agri_irrigation
+    # agri_irrigation
     url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),
 
     # agri_agrarian
@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^agri_livestock/', include('agri_livestock.urls', namespace='agri_livestock')),
 
     # agri_fisheries
-    #url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
+    url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
 
 
     # other govn services

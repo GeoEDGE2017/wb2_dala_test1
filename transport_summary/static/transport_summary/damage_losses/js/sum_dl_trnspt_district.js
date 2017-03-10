@@ -41,7 +41,7 @@ app.controller('dlSumTrnsptDstControllerController', function($scope, $http) {
 
             $http({
                 method: "POST",
-                url: '/dl_fetch_summary_disagtn',
+                url: '/dl_fetch_summary_dis_disagtn',
                 data: angular.toJson({
                     'table_name':  ['Table_8','Table_4','Table_4','Table_3'],
                     'sector': ['transport_land','transport_air','transport_water','transport_rail'],

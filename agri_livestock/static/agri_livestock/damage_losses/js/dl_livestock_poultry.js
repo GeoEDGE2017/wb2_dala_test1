@@ -474,7 +474,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
-            model_name = value;BlpAstLivestock
+            model_name = value;
 
             var particular_value_1 = null;
             var particular_value_2 = null;

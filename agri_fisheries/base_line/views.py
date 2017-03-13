@@ -12,6 +12,7 @@ def bs_info_fshrs(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_fisheries'
     }
     return render(request, 'base_line/baseline_information_fisheries.html', context)
 
@@ -25,6 +26,7 @@ def bs_no_npopl_fshrs(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_fisheries'
     }
     return render(request, 'base_line/baseline_information_the_number_of_people_engaged_fisheries.html', context)
 

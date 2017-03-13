@@ -11,6 +11,7 @@ def bs_edu_facilities(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'education'
     }
     return render(request, 'base_line/baseline_information_educational_facilities_district.html', context)
 
@@ -22,6 +23,7 @@ def bs_ucost_gedu_facilities(request):
     filtered_districts = fetch_data['districts']
     context = {
         'districts': filtered_districts,
+        'module': 'education'
     }
     return render(request, 'base_line/baseline_information_unitcost_government_educational_facilities_district.html', context)
 

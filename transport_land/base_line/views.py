@@ -16,6 +16,7 @@ def bs_pub_rod_brid_user(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'transport_land'
     }
 
     return render(request, 'base_line/baseline_public_roads_bridges_users.html', context)
@@ -30,6 +31,7 @@ def bs_trans_assets(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'transport_land'
     }
 
     return render(request, 'base_line/baseline_land_transportation_assets.html', context)
@@ -44,6 +46,7 @@ def bs_gov_admn_aset(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'transport_land'
     }
 
     return render(request, 'base_line/baseline_government_administrative_assets.html', context)

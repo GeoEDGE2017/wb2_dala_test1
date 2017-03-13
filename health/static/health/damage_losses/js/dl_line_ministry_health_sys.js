@@ -441,14 +441,6 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     office : null,
                     other : null,
                     total : null,
-                }, {
-                    type_of_losses : 'TOTAL VALUE OF LOSSES',
-                    teaching_hospital : null,
-                    provincial_general_hospital : null,
-                    district_general_hospital : null,
-                    office : null,
-                    other : null,
-                    total : null,
                 }],
             }
         }
@@ -468,16 +460,13 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
             data: angular.toJson({
                 'table_data': $scope.dlMinistryHealthSys,
                 'com_data': {
-                    'district': $scope.selectedDistrict,
+                    'district': $scope.district.district__id,
                     'incident': $scope.incident,
                 },
                 'is_edit': $scope.is_edit
             }),
             dataType: 'json',
         }).then(function mySucces(response) {
-//            //if data sent to server side method successfull
-//$("#modal-container-239453").modal('show');
-//            console.log(response);
             console.log(response);
             if(response.data == 'False')
                 $scope.is_valid_data = false;

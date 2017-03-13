@@ -13,6 +13,7 @@
 
 
 </script>
+
 <!-- Main content -->
 <main class="main" ng-app="dlHealthSectorDistrictApp" ng-controller="DlHealthSectorDistrictController">
 
@@ -28,7 +29,6 @@
         </li>
 
     </ol>
-
 
     <div class="container-fluid">
 
@@ -178,58 +178,49 @@
                                 <td width="98">
                                 </td>
                             </tr>
-                            <!--Table 8 :table one:tab1  first row-->
                             <tr ng-repeat="(key, value) in lmh_hospitals" height="20">
 
-                                <td ng-bind="value"
+                                <td ng-bind="value.name"
                                     width="264" height="20" class="tdpa">
 
                                 </td>
 
-                                <td ng-bind="dlSummaryDis.health.Table_8.DmhLmhMohDistrict[key].teaching_hospital" width="98"
-                                    ng-model="">
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhLmhMohDistrict[0][value.property]" width="98">
 
                                 </td>
-                                <td ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[0].teaching_hospital"width="98"
-                                    ng-model="">
-
-
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[0][value.property]" width="98">
+                                </td>
+                                 <td ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[1][value.property]" width="98">
+                                </td>
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhDamagesDistrict[0][value.property]" width="98">
+                                </td>
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhLosDistrict[0][value.property]" width="98" >
+                                </td>
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhLosDistrict[1][value.property]" width="98">
+                                </td>
+                                <td width="98">
                                 </td>
 
-                                <td width="98"
-                                    ng-model="">
+                            </tr>
+                            <tr height="20">
 
-
+                                <td width="264" height="20" class="tdpa"> Total
                                 </td>
 
-                                <td width="98"
-
-                                    ng-model=""
-
-                                    ng-bind="">
-
-
+                                <td  width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model=""
-
-                                    ng-bind="">
-
+                                <td width="98">
                                 </td>
-
-                                <td width="98"
-                                    ng-model=""
-
-                                    ng-bind="">
-
+                                 <td  width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model=""
-
-                                    ng-bind="">
-
+                                <td width="98">
                                 </td>
-
+                                <td width="98" >
+                                </td>
+                                <td width="98">
+                                </td>
+                                <td width="98">
+                                </td>
 
                             </tr>
 
@@ -254,197 +245,49 @@
                                 </td>
                             </tr>
 
-                            <!--Table 8 :table two:tab1  first row-->
 
-                            <tr height="20">
+                            <tr ng-repeat="(key, value) in moh_hospitals" height="20">
 
-                                <td ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].facilities_assets"
+                                <td ng-bind="value.name"
                                     width="264" height="20" class="tdpa">
-
                                 </td>
-
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[0].total_num_affected"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].total_num_affected=dl_data['DmhDfNum'][0].fields.office + dl_data['DmhPdfaNum'][0].fields.office ">
-
-
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhLmhMohDistrict[0][value.property]" width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[0].male"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].male=dl_data['DmhDfPaf'][0].fields.office + dl_data['DmhPdfaPaf'][0].fields.office">
-
-
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[0][value.property]" width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[0].female"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].female=dl_data['DmhDfPaf'][1].fields.office + dl_data['DmhPdfaPaf'][1].fields.office">
-
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[1][value.property]" width="98">
                                 </td>
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[0].total_damages"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].total_damages=dl_data['DmhPdfaOassets'][7].fields.office">
-
-
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhDamagesMohDistrict[0][value.property]" width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y1"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y1=dl_data['DmhLosFi'][0].fields.office+ dl_data['DmhLosCud'][0].fields.office + dl_data['DmhLosHoc'][0].fields.office + dl_data['DmhLosOue'][0].fields.office ">
-
-
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhLosDistrict[0][value.property]" width="98">
                                 </td>
-
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y2"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y2=dl_data['DmhLosFi'][1].fields.office+ dl_data['DmhLosCud'][1].fields.office + dl_data['DmhLosHoc'][1].fields.office + dl_data['DmhLosOue'][1].fields.office ">
-
-
+                                <td ng-bind="dlSummaryDis.health.Table_8.DmhLosDistrict[1][value.property]" width="98">
                                 </td>
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[0].total_losses"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[0].total_losses=dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y1 + dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y2">
-
-
-                                </td>
-
-
-                            </tr>
-                            <!--Table 8 :table two:tab1  second row-->
-
-                            <tr height="20">
-
-                                <td ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].facilities_assets"
-                                    width="264" height="20" class="tdpa">
-
-                                </td>
-
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[1].total_num_affected"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].total_num_affected=dl_data['DmhDfNum'][0].fields.other + dl_data['DmhPdfaNum'][0].fields.other ">
-
-
-                                </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[1].male"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].male=dl_data['DmhDfPaf'][0].fields.other + dl_data['DmhPdfaPaf'][0].fields.other">
-
-
-                                </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[1].female"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].female=dl_data['DmhDfPaf'][1].fields.other + dl_data['DmhPdfaPaf'][1].fields.other">
-
-                                </td>
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[1].total_damages"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].total_damages=dl_data['DmhPdfaOassets'][7].fields.other">
-
-
-                                </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y1"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y1=dl_data['DmhLosFi'][0].fields.other+ dl_data['DmhLosCud'][0].fields.other + dl_data['DmhLosHoc'][0].fields.other + dl_data['DmhLosOue'][0].fields.other ">
-
-
-                                </td>
-
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y2"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y2=dl_data['DmhLosFi'][1].fields.other+ dl_data['DmhLosCud'][1].fields.other + dl_data['DmhLosHoc'][1].fields.other + dl_data['DmhLosOue'][1].fields.other ">
-
-
-                                </td>
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[1].total_losses"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[1].total_losses=dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y1 + dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y2">
-
-
+                                <td width="98">
                                 </td>
 
 
                             </tr>
 
-                            <!--Table 8 :table two:tab1  third row-->
                             <tr height="20">
 
-                                <td ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].facilities_assets"
-                                    width="264" height="20" class="boldash">
-
+                                <td width="264" height="20" class="tdpa"> Total
                                 </td>
 
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[2].total_num_affected"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].total_num_affected=dlSummaryDis.health.Table_8.DshPubMoh[0].total_num_affected + dlSummaryDis.health.Table_8.DshPubMoh[1].total_num_affected">
-
-
+                                <td  width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[2].male"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].male=dlSummaryDis.health.Table_8.DshPubMoh[0].male + dlSummaryDis.health.Table_8.DshPubMoh[1].male ">
-
-
+                                <td width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[2].female"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].female=dlSummaryDis.health.Table_8.DshPubMoh[0].female + dlSummaryDis.health.Table_8.DshPubMoh[1].female ">
-
-
+                                 <td  width="98">
                                 </td>
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[2].total_damages"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].total_damages=dlSummaryDis.health.Table_8.DshPubMoh[0].total_damages + dlSummaryDis.health.Table_8.DshPubMoh[1].total_damages">
-
-
+                                <td width="98">
                                 </td>
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[2].losses_y1"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].losses_y1=dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y1 + dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y1">
-
-
+                                <td width="98" >
                                 </td>
-
-                                <td width="98"
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[2].losses_y2"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].losses_y2=dlSummaryDis.health.Table_8.DshPubMoh[0].losses_y2 + dlSummaryDis.health.Table_8.DshPubMoh[1].losses_y2">
-
-
+                                <td width="98">
                                 </td>
-                                <td width="98"
-
-                                    ng-model="dlSummaryDis.health.Table_8.DshPubMoh[2].total_losses"
-
-                                    ng-bind="dlSummaryDis.health.Table_8.DshPubMoh[2].total_losses=dlSummaryDis.health.Table_8.DshPubMoh[0].total_losses + dlSummaryDis.health.Table_8.DshPubMoh[1].total_losses">
-
-
+                                <td width="98">
                                 </td>
-
 
                             </tr>
 

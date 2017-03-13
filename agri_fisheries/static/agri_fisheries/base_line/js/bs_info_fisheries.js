@@ -1,7 +1,7 @@
 //Table 2
 var app = angular.module('bsInfoFisheriesApp', [])
 
-app.controller('bsInfoFisheriesController', ['$scope', '$http', function($scope, $http) {
+app.controller('bsInfoFisheriesController', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};
@@ -235,8 +235,56 @@ app.controller('bsInfoFisheriesController', ['$scope', '$http', function($scope,
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
-            alert('Table 2');
-            console.log($scope.bsInfoFisheries);
+            $http({
+                method: "POST",
+                url: "/bs_save_data",
+                data: angular.toJson({
+                    'table_data': ($scope.bsInfoFisheries),
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    },
+                    'is_edit': $scope.is_edit,
+                    'sector':'agri_fisheries'
+                }),
+            }).success(function(data) {
+
+                $scope.bsInfoFisheries = init_data;
+                $scope.is_edit = false;
+
+                if (data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+
+            })
         }
     }
-}]);
+
+     $scope.bsHsDataEdit = function(form){
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_2',
+              'sector': 'agri_fisheries',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date } }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsInfoFisheries = data;
+        })
+
+
+    }
+
+     $scope.cancelEdit = function(){
+        $scope.is_edit = false;
+        $scope.bsInfoFisheries = init_data;
+    }
+
+});

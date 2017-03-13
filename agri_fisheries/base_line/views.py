@@ -4,31 +4,27 @@ from users.decorators import permission_required
 
 
 # Table 1
-@permission_required("district", "agri_livestock")
-def bs_livestock_poultry_dst(request):
+@permission_required("district", "agri_fisheries")
+def bs_info_fshrs(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
 
     context = {
         'districts': filtered_districts,
-        'module': 'agri_livestock'
     }
-    return render(request, 'base_line/baseline_information_number_people_engaged_livestock_and_poultry_district.html', context)
+    return render(request, 'base_line/baseline_information_fisheries.html', context)
 
 
 # Table 2
-@permission_required("district", "agri_livestock")
-def bs_livestock_poultry(request):
+@permission_required("district", "agri_fisheries")
+def bs_no_npopl_fshrs(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
 
     context = {
         'districts': filtered_districts,
-        'module': 'agri_livestock'
     }
-    return render(request, 'base_line/baseline_information_on_livestock_and_poultry.html', context)
-
-
+    return render(request, 'base_line/baseline_information_the_number_of_people_engaged_fisheries.html', context)
 

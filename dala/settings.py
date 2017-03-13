@@ -79,9 +79,9 @@ INSTALLED_APPS = [
     'agri_livestock',
     'agri_livestock.base_line',
     'agri_livestock.damage_losses',
-    # 'agri_fisheries',
-    # 'agri_fisheries.base_line',
-    # 'agri_fisheries.damage_losses',
+    'agri_fisheries',
+    'agri_fisheries.base_line',
+    'agri_fisheries.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -123,11 +123,11 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=health,public,other_government,education,mining,'
-                       'transport_rail,transport_water,transport_land,transport_air,'
-                       'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
-        },
+        # 'OPTIONS': {
+        #     'options': '-c search_path=health,public,other_government,education,mining,'
+        #                'transport_rail,transport_water,transport_land,transport_air,'
+        #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        # },
 
         # 'OPTIONS': {
         #     'options': '-c search_path=agri_fisheries'
@@ -499,10 +499,7 @@ TABLE_PROPERTY_MAPPER = {
         'Table_1': {'BmaImFn': ['name_min_outputs',
                         'avg_per_year',
                         'firm_id',
-                        'id'],'BmaImFirmNum': ['male',
-                             'female',
-                             'firm_id',
-                             'id'],},
+                        'id'],'BmaImFirmNum': ['male','female','firm_id','id'],},
         'Table_2': {
 
             'BmaAmMin': ['minerals',
@@ -635,7 +632,6 @@ TABLE_PROPERTY_MAPPER = {
             ],
 
         }
-
     },
     'other_govn_services': {
         'Table_3': {
@@ -2374,8 +2370,45 @@ TABLE_PROPERTY_MAPPER = {
             ],
 
         },
+        'Table_4': {
+            'DlpNdaPubProvince': [
+                'damages',
+            ],
+             'DlpNdaPvtProvince': [
+                'damages',
+            ],
+             'DlpLosPubProvince': [
+                'los_year_1',
+                'los_year_2',
+            ],
+            'DlpLosPvtProvince': [
+                'los_year_1',
+                'los_year_2',
+            ],
+        },
+            'Table_5': {
+            'DlpNdaPubNational': [
+                'damages',
+            ],
+             'DlpNdaPvtNational': [
+                'damages',
+            ],
+             'DlpLosPubNational': [
+                'los_year_1',
+                'los_year_2',
+            ],
+            'DlpLosPvtNational': [
+                'los_year_1',
+                'los_year_2',
+            ],
+
+
+        },
     },
 }
+
+
+
 
 AUTH_USER_MODEL = 'users.MyUser'
 

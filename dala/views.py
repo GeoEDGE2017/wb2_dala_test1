@@ -73,6 +73,7 @@ def bs_save_data(request):
     is_edit = bs_data['is_edit']
 
     if not is_edit:
+        print 'in'
         for sector in bs_table_hs_data:
 
             sub_app_name = sector + '.base_line'
@@ -655,6 +656,9 @@ def add_entity(request):
 
     if is_edit == False:
         print 'new'
+
+        print model_fields
+
         model_object = model_class(**model_fields)
         model_object.save()
 

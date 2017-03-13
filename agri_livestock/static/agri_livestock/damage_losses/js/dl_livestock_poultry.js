@@ -10,6 +10,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    $scope.organizations = [];
+    $scope.selectedOrganization;
 
     var init_data = {
         'agri_livestock': {
@@ -474,7 +476,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
-            model_name = value;BlpAstLivestock
+            model_name = value;
 
             var particular_value_1 = null;
             var particular_value_2 = null;
@@ -487,37 +489,37 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
             if(model_name == 'BlpAnmLivestock') {
                dl_model1 = 'DlpNdaLivestock';
                particular_value_1 = 'Total';
-               $scope.dlAirTrnspotation.agri_livestock.Table_3[dl_model1] = [];
+               $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model1] = [];
             }
             if(model_name == 'BlpAnmPoultry') {
                dl_model2 = 'DlpNdaPoultry';
                particular_value_2 = 'Total';
-               $scope.dlAirTrnspotation.agri_livestock.Table_3[dl_model2] = [];
+               $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model2] = [];
             }
             if(model_name == 'BlpAstLivestock') {
                dl_model2 = 'DlpPafLivestock';
                particular_value_2 = 'Total';
-               $scope.dlAirTrnspotation.agri_livestock.Table_3[dl_model3] = [];
+               $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model3] = [];
             }
             if(model_name == 'BlpAstPoultry') {
                dl_model2 = 'DlpPafPoultry';
                particular_value_2 = 'Total';
-               $scope.dlAirTrnspotation.agri_livestock.Table_3[dl_model4] = [];
+               $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model4] = [];
             }
             if(model_name == 'BlpAstOther') {
                dl_model2 = 'DlpStructOther';
                particular_value_2 = 'Total';
-               $scope.dlAirTrnspotation.agri_livestock.Table_3[dl_model5] = [];
+               $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model5] = [];
             }
             if(model_name == 'BlpApyLivestock') {
                dl_model2 = 'DlpLosLivestock';
                particular_value_2 = 'Total';
-               $scope.dlAirTrnspotation.agri_livestock.Table_3[dl_model6] = [];
+               $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model6] = [];
             }
             if(model_name == 'BlpApyPoultry') {
                dl_model2 = 'DlpLosPoultry';
                particular_value_2 = 'Total';
-               $scope.dlAirTrnspotation.agri_livestock.Table_3[dl_model7] = [];
+               $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model7] = [];
             }
 
             var obj1 = {
@@ -721,4 +723,23 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
             console.log($scope.dlLivestockPoultry);
         }
     }
+
+    $scope.fetchOrganization = function(){
+
+    $http({
+    method: "POST",
+    url: "/fetch_entities",
+    data: angular.toJson({
+    'district':  $scope.district.district__id,
+    'model': 'Organization',
+    'sector':'agri_livestock'
+     }),
+    }).success(function(data) {
+
+    console.log(data);
+    $scope.organizations = data;
+
+    })
+}
+
 }]);

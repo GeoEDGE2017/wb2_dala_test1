@@ -38,8 +38,56 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
-            alert('Table 1');
-            console.log($scope.bsNoofPeplEngdFisheries);
+            $http({
+                method: "POST",
+                url: "/bs_save_data",
+                data: angular.toJson({
+                    'table_data': ($scope.bsNoofPeplEngdFisheries),
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    },
+                    'is_edit': $scope.is_edit,
+                    'sector':'agri_fisheries'
+                }),
+            }).success(function(data) {
+
+                $scope.bsNoofPeplEngdFisheries = init_data;
+                $scope.is_edit = false;
+
+                if (data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+
+            })
         }
     }
+
+    $scope.bsHsDataEdit = function(form){
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_1',
+              'sector': 'agri_fisheries',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date } }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsNoofPeplEngdFisheries = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function(){
+        $scope.is_edit = false;
+        $scope.bsNoofPeplEngdFisheries = init_data;
+    }
+
 }]);

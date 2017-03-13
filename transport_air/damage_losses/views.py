@@ -15,7 +15,8 @@ def dl_air_trnspt(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_air'
     }
 
     return render(request, 'damage_losses/damages_losses_air_transportation.html', context)
@@ -31,7 +32,8 @@ def dl_air_trnspt_dstrct(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_air'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_air_transportation_district.html', context)
@@ -47,7 +49,8 @@ def dl_air_trnspt_provn(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_air'
     }
 
     return render(request, 'damage_losses/summary_damage_losses_air_transportation_sub-sector_province.html', context)
@@ -63,7 +66,8 @@ def dl_air_trnspt_natnal(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_air'
     }
 
     return render(request, 'damage_losses/summary_damage_losses_air_transportation_sub-sector_nationwide.html', context)

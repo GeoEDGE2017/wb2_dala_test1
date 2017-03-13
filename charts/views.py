@@ -18,7 +18,8 @@ def chart_tabel8(request):
     incidents = IncidentReport.objects.all()
     context = {
         'districts': districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'charts'
     }
     return render(request, 'charts/chart_tabel8.html', context)
 
@@ -30,7 +31,8 @@ def chart_tabel9(request):
     context = {
         'districts': districts,
         'incidents': incidents,
-        'provinces': provinces
+        'provinces': provinces,
+        'module': 'charts'
     }
     return render(request, 'charts/chart_tabel9.html', context)
 
@@ -40,7 +42,8 @@ def chart_tabel10(request):
     incidents = IncidentReport.objects.all()
     context = {
         'districts': districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'charts'
     }
     return render(request, 'charts/chart_tabel10.html', context)
 
@@ -48,7 +51,8 @@ def chart_tabel10(request):
 def education_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'charts'
     }
     return render(request, 'charts/chart_tabel10.html', context)
 

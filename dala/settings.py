@@ -206,7 +206,7 @@ TABLE_PROPERTY_MAPPER = {
                 'DmhDamagesDistrict': ['teaching_hospital', 'provincial_general_hospital',
                                        'district_general_hospital'],
                 'DmhLosDistrict': ['teaching_hospital', 'provincial_general_hospital',
-                                   'district_general_hospital'],
+                                      'district_general_hospital', 'type_of_losses', 'office', 'other'],
                 'DmhDamagesMohDistrict': ['office', 'other'],
                 'DmfTotAffectedDistrict': ['base_hospital', 'divisional_hospital', 'rural_hospital',
                                            'central_dispensary', 'pmcus', 'phccs', 'mchcs'],

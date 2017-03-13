@@ -1611,9 +1611,12 @@ class DmhDamagesDistrict(models.Model):
 
 
 class DmhLosDistrict(models.Model):
+    type_of_losses = models.CharField(max_length=255, blank=True, null=True)
     teaching_hospital = models.FloatField(blank=True, null=True)
     provincial_general_hospital = models.FloatField(blank=True, null=True)
     district_general_hospital = models.FloatField(blank=True, null=True)
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 

@@ -13,11 +13,10 @@ def dl_livestock_poultry(request):
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
 
-
     context = {
         'districts': filtered_districts,
         'incidents': incidents,
-
+        'module': 'agri_livestock'
     }
 
     return render(request, 'damage_losses/damages_and_losses_for_livestock_and_poultry.html', context)
@@ -33,7 +32,8 @@ def dlsum_livestock_poultry_dst(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'agri_livestock'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_livestock_poultry_the_district.html', context)

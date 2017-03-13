@@ -22,7 +22,8 @@ def dl_govn_edu_facilities(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': filtered_incidents
+        'incidents': filtered_incidents,
+        'module': 'education'
 
     }
     return render(request, 'damage_losses/damage_loss_assessment_government_education_facilities_district.html', context)
@@ -37,7 +38,8 @@ def dl_pvt_edu_facilities(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': filtered_incidents
+        'incidents': filtered_incidents,
+        'module': 'education'
 
     }
     return render(request, 'damage_losses/damage_loss_assessment_private_education_facility.html', context)
@@ -52,7 +54,8 @@ def dl_edu_district(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': filtered_incidents
+        'incidents': filtered_incidents,
+        'module': 'education'
 
     }
     return render(request, 'damage_losses/summary_damages_losses_education_district.html', context)
@@ -68,6 +71,7 @@ def dl_edu_province(request):
         'districts': districts,
         'provinces': provinces,
         'incidents': incidents,
+        'module': 'education'
     }
     return render(request, 'damage_losses/summary_damage_losses_education_sector_province.html', context)
 
@@ -82,6 +86,7 @@ def dl_edu_nationwide(request):
         'districts': districts,
         'provinces': provinces,
         'incidents': incidents,
+        'module': 'education'
     }
     return render(request, 'damage_losses/summary_damage_losses_education_sector_nationwide.html', context)
 

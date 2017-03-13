@@ -14,7 +14,8 @@ def mn_bs_info_industrial(request):
     fetch_data = fetch_districts(request.user)
     districts = fetch_data['districts']
     context = {
-        'districts': districts
+        'districts': districts,
+        'module': 'mining'
     }
 
     return render(request, 'base_line/mining_industrial_firms.html', context)
@@ -25,7 +26,8 @@ def mn_bs_info_artisanal(request):
     fetch_data = fetch_districts(request.user)
     districts = fetch_data['districts']
     context = {
-        'districts': districts
+        'districts': districts,
+        'module': 'mining'
     }
     return render(request, 'base_line/mining_artisanal_firms.html', context)
 

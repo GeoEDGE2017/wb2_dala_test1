@@ -79,9 +79,9 @@ INSTALLED_APPS = [
     'agri_livestock',
     'agri_livestock.base_line',
     'agri_livestock.damage_losses',
-    # 'agri_fisheries',
-    # 'agri_fisheries.base_line',
-    # 'agri_fisheries.damage_losses',
+    'agri_fisheries',
+    'agri_fisheries.base_line',
+    'agri_fisheries.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -133,7 +133,7 @@ DATABASES = {
         #     'options': '-c search_path=agri_fisheries'
         # },
 
-        'NAME': 'dala_2017',
+        'NAME': 'dala_new',
         'USER': 'postgres',
     },
 

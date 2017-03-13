@@ -656,7 +656,9 @@ def add_entity(request):
 
     if is_edit == False:
         print 'new'
+
         print model_fields
+
         model_object = model_class(**model_fields)
         model_object.save()
 
@@ -765,13 +767,13 @@ def dl_fetch_summary_disagtn(request):
 @csrf_exempt
 def dl_fetch_summary_dis_disagtn(request):
     data = (yaml.safe_load(request.body))
-    table_name = data['table_name']
+    table_names = data['table_name']
     sectors = data['sector']
     com_data = data['com_data']
     incident = com_data['incident']
-    tables = settings.TABLE_PROPERTY_MAPPER[sectors][table_name]
 
     filter_fields = {}
+    dl_data = {}
 
     if 'province' in com_data:
         admin_area = com_data['province']
@@ -782,20 +784,30 @@ def dl_fetch_summary_dis_disagtn(request):
     else:
         filter_fields = {'incident': incident}
 
+    i = 0
+
     for sector in sectors:
+        print sector
         sub_app_name = sector + '.damage_losses'
         dl_mtable_data = {sector: {}}
+
+        table_name = table_names[i]
+        tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
         dl_mtable_data[sector][table_name] = {}
 
         for table in tables:
-            print table
+
+            dl_mtable_data[sector][table_name][table] = {}
             table_fields = tables[table]
             model_class = apps.get_model(sub_app_name, table)
             dl_mtable_data[sector][table_name][table] = list(model_class.objects.
                                                              filter(**filter_fields).
                                                              values(*table_fields))
+            print dl_mtable_data
+            dl_data.update(dl_mtable_data)
+        i += 1
 
     return HttpResponse(
-        json.dumps(dl_mtable_data, cls=DjangoJSONEncoder),
+        json.dumps(dl_data, cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
     )

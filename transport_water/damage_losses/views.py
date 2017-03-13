@@ -10,7 +10,8 @@ def dl_water_transport(request):
 
     context = {
         'districts': districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_water'
     }
     return render(request, 'damage_losses/damage_losses_ water_transportation.html', context)
 
@@ -23,6 +24,7 @@ def dl_summary_trans_water_dst(request):
     context = {
         'districts': districts,
         'incidents': incidents,
+        'module': 'transport_water'
     }
     return render(request, 'damage_losses/summary _damages_losses_water_transportation_district.html', context)
 
@@ -36,7 +38,8 @@ def dl_summary_trans_water_pro(request):
     context = {
         'districts': districts,
         'incidents': incidents,
-        'province':province
+        'province': province,
+        'module': 'transport_water'
     }
     return render(request, 'damage_losses/summary_damage_losses_ water_transportation_sub-sector_province.html', context)
 
@@ -50,7 +53,8 @@ def dl_summary_trans_water_nat(request):
     context = {
         'districts': districts,
         'incidents': incidents,
-        'province': province
+        'province': province,
+        'module': 'transport_water'
     }
     return render(request, 'damage_losses/summary_damage_losses_ water_transportation_sub-sector_nationwide.html', context)
 

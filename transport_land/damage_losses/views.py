@@ -14,7 +14,8 @@ def dl_roads_bridges(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_land'
     }
 
     return render(request, 'damage_losses/damages_losses_roads_bridges.html', context)
@@ -30,7 +31,8 @@ def dl_oth_lnd_trnspt_asts(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_land'
     }
 
     return render(request, 'damage_losses/damages_losses_other_land_transportation_assets.html', context)
@@ -46,7 +48,8 @@ def dl_govn_admin_aset(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_land'
     }
 
     return render(request, 'damage_losses/damages_losses_government_administrative_assets.html', context)
@@ -61,7 +64,8 @@ def dl_sum_trnsland_distc(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_land'
     }
 
     return render(request, 'damage_losses/summary_damages_losse_land_transportation_district.html', context)
@@ -77,14 +81,13 @@ def dl_sum_trnsland_povnc(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_land'
     }
 
     return render(request, 'damage_losses/summary_damage_losses_land_transportation_sub_sector_province.html', context)
 
 
-
-# Table 9
 @permission_required("national", 'transport_land')
 def dl_sum_trnsland_natnal(request):
     user = request.user
@@ -94,7 +97,8 @@ def dl_sum_trnsland_natnal(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'transport_land'
     }
 
     return render(request, 'damage_losses/summary_damage_losses_land_transportation_sub_sector_nationwide.html', context)

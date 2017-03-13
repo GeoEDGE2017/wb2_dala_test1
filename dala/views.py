@@ -662,7 +662,7 @@ def add_entity(request):
         print 'update'
         object_id = model_fields['id']
         modified_model = model_class.objects.filter(pk=object_id)
-        modified_model.update(name=model_fields['name'])
+        modified_model.update(**model_fields)
         return HttpResponse(object_id)
 
     if model_object.id is not None:

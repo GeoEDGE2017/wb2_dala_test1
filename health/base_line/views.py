@@ -36,7 +36,8 @@ def bs_health_status(request):
     filtered_incidents = fetch_data['incidents']
     context = {
         'districts': filtered_districts,
-        'incidents': filtered_incidents
+        'incidents': filtered_incidents,
+        'module': 'health'
     }
     return render(request, 'base_line/health_baseline_rdh.html', context)
 
@@ -44,7 +45,8 @@ def bs_health_status(request):
 def bs_health_information_health_status(request):
     districts = District.objects.all()
     context = {
-        'districts': districts
+        'districts': districts,
+        'module': 'health'
     }
     return render(request, 'base_line/health_baseline_rdh.html', context)
 
@@ -55,7 +57,8 @@ def bs_health_medical_facilities(request):
     fetch_data = fetch_districts(request.user)
     districts = fetch_data['districts']
     context = {
-    'districts': districts
+        'districts': districts,
+        'module': 'health'
     }
     return render(request, 'base_line/health_baseline_district.html', context)
 
@@ -63,7 +66,8 @@ def bs_health_medical_facilities(request):
 def bs_health_info_unit_cost_ministry_health(request):
     districts = District.objects.all()
     context = {
-        'districts': districts
+        'districts': districts,
+        'module': 'health'
     }
     return render(request, 'base_line/health_baseline_unitcost_district.html', context)
 
@@ -74,7 +78,8 @@ def bs_health_other_medical_facilities_unit_cost(request):
     fetch_data = fetch_districts(request.user)
     districts = fetch_data['districts']
     context = {
-        'districts': districts
+        'districts': districts,
+        'module': 'health'
     }
     return render(request, 'base_line/health_baseline_unitcost_othermedi_district.html', context)
 
@@ -90,7 +95,8 @@ def ministry_health_system(request):
 
     context = {
         'districts': districts,
-        'provinces': provinces
+        'provinces': provinces,
+        'module': 'health'
     }
     return render(request, 'base_line/health_baseline_unitcost_district.html', context)
 

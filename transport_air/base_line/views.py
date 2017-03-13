@@ -16,6 +16,7 @@ def bs_info_aset_trns(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'transport_air'
     }
 
     return render(request, 'base_line/baseline_information_assets_air_transportation.html', context)

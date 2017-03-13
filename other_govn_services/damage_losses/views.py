@@ -25,7 +25,8 @@ def dl_assessment_of_govn_dep_or_ofc_in_a_district(request):
     context = {
         'districts': filtered_districts,
         'incidents': filtered_incidents,
-        'ownership': ownership
+        'ownership': ownership,
+        'module': 'other_govn_services'
     }
     return render(request, 'damage_losses/dl_assessment_of_government_departments_or_offices_in_a_district.html', context)
 
@@ -42,7 +43,8 @@ def dl_damage_loss_assessment_district(request):
     context = {
         'districts': filtered_districts,
         'incidents': filtered_incidents,
-        'ownership': ownership
+        'ownership': ownership,
+        'module': 'other_govn_services'
     }
 
     return render(request, 'damage_losses/dl_damage_loss_assessment_district.html', context)
@@ -55,7 +57,8 @@ def dl_damage_loss_assessmen_province(request):
     incidents = IncidentReport.objects.all()
     context = {
         'provinces': provinces,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'other_govn_services'
     }
     return render(request, 'damage_losses/dl_damage_loss_assessmen_province.html', context)
 
@@ -65,7 +68,8 @@ def dl_damage_loss_assessmen_province(request):
 def dl_assessmen_nationwide(request):
     incidents = IncidentReport.objects.all()
     context = {
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'other_govn_services'
     }
     return render(request, 'damage_losses/dl_assessmen_nationwide.html', context)
 

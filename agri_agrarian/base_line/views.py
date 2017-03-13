@@ -12,6 +12,7 @@ def bs_nopopl_agrb_actv(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_agrarian'
     }
     return render(request, 'base_line/baseline_information_areas_cultivated_number_of_people_agrarian_activities.html', context)
 
@@ -25,6 +26,7 @@ def bs_info_acfo_assets(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_agrarian'
     }
     return render(request, 'base_line/baseline_information_agricultural_crops_forest_products_related_other_assets.html', context)
 
@@ -38,6 +40,7 @@ def bs_info_sero_assets(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_agrarian'
     }
     return render(request, 'base_line/baseline_information_structures_office_equipment_related_other_assets.html', context)
 

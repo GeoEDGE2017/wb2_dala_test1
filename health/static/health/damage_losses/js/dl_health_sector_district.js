@@ -9,7 +9,10 @@ app.controller("DlHealthSectorDistrictController", ['$scope','$http',function ($
  $scope.submitted = false;
  $scope.is_valid_data = true;
  $scope.districts=[];
- $scope.lmh_hospitals = ['Teaching Hospitals', 'Provincial General Hospitals', 'District General Hospitals'];
+ $scope.lmh_hospitals = [{ property: 'teaching_hospital', name: 'Teaching Hospitals'}, {property: 'provincial_general_hospital', name: 'Provincial General Hospitals'},
+ {property: 'district_general_hospital', name: 'District General Hospitals'}];
+
+ $scope.moh_hospitals = [{ property: 'office', name: 'Offices'}, {property: 'other', name: 'Others'}];
 
 $scope.getDistrict = function getDistrict(){
      if($scope.incident){

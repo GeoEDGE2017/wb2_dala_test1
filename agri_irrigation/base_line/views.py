@@ -12,6 +12,7 @@ def bs_irg_facilities(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_irrigation'
     }
     return render(request, 'base_line/baseline_irrigation_facilities.html', context)
 
@@ -25,5 +26,6 @@ def bs_rparpl_cos_assts(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_irrigation'
     }
     return render(request, 'base_line/baseline_repair_replacement_costs_of_irrigation_assets.html', context)

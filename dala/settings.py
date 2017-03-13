@@ -123,13 +123,17 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,transport_rail,transport_water,transport_land,transport_air,agri_agrarian,agri_irrigation,agri_livestock, agri_fisheries'
-        # },
+        'OPTIONS': {
+            'options': '-c search_path=health,public,other_government,education,mining,'
+                       'transport_rail,transport_water,transport_land,transport_air,'
+                       'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        },
+
         # 'OPTIONS': {
         #     'options': '-c search_path=agri_fisheries'
         # },
-        'NAME': 'dala',
+
+        'NAME': 'dala_new',
         'USER': 'postgres',
     },
 
@@ -182,32 +186,41 @@ STATIC_URL = '/static/'
 # table properties
 TABLE_PROPERTY_MAPPER = {
     'health': {
-        'Table_1':
-            {'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
+        'Table_1':{'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
              'BhsComDiseases': ['com_disease', 'male', 'female', 'children', 'elderly', 'id'],
              'BhsVi': ['children', 'elderly', 'female', 'male', 'vital_indicators', 'id'],
              'BhsOi': ['unit_measure', 'other_indicators', 'id']
              },
-        'Table_2':
-            {
+        'Table_2':{
                 'BmfPubMf': ['type_pub_mf', 'number', 'male', 'female', 'id'],
                 'BmfPvtMf': ['type_pvt_mf', 'number', 'male', 'female', 'id']
 
             },
+
         'Table_8':
             {
-                'DshPubLmh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                              'losses_y1', 'losses_y2', 'total_losses'],
-                'DshPubMoh': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                              'losses_y1', 'losses_y2', 'total_losses'],
-                'DshPubOmf': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                              'losses_y1', 'losses_y2', 'total_losses'],
-                'DshPvtFa': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
-                             'losses_y1', 'losses_y2', 'total_losses'],
-                'DshTdlOwship': ['ownership', 'damages', 'losses_y1', 'losses_y2', 'total']
+                'DmhLmhMohDistrict': ['teaching_hospital', 'provincial_general_hospital', 'district_general_hospital',
+                                      'office', 'other'],
+                'DmhPafDistrict': ['num_patients_affected', 'teaching_hospital', 'provincial_general_hospital',
+                                      'district_general_hospital', 'office', 'other'],
+                'DmhDamagesDistrict': ['teaching_hospital', 'provincial_general_hospital',
+                                      'district_general_hospital'],
+                'DmhLosDistrict': ['teaching_hospital', 'provincial_general_hospital',
+                                      'district_general_hospital'],
+                'DmhDamagesMohDistrict': ['office', 'other'],
+                'DmfTotAffectedDistrict': ['base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DmfOmfTpaDistrict': ['num_patients_affected', 'base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DmfDamagesDistrict': ['base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DmfLosDistrict': ['type_of_losses', 'base_hospital', 'divisional_hospital', 'rural_hospital',
+                                      'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
+                'DapPvtDistrict': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
+                'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
+                'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
             },
-        'Table_4':
-            {
+        'Table_4':{
                 'BucOmarStructure': ['particulars', 'base_hospital', 'divisional_hospital',
                                      'rural_hospital',
                                      'central_dispensary', 'pri_med_cunits', 'pri_health_ccenters',
@@ -244,8 +257,7 @@ TABLE_PROPERTY_MAPPER = {
                                     'mat_child_health_clinics', 'id']
 
             },
-        'Table_10':
-            {
+        'Table_10':{
 
                 'DshPubLmhProvince': ['facilities_assets', 'total_num_affected', 'male', 'female',
                                       'total_damages', 'losses_y1',
@@ -261,9 +273,7 @@ TABLE_PROPERTY_MAPPER = {
                                      'losses_y2', 'total_losses', 'id'],
 
             },
-
-        'Table_3':
-            {
+        'Table_3':{
                 'BucMarStructure': ['particulars', 'teaching_hospital', 'provincial_general_hospital',
                                     'district_general_hospital', 'office', 'other', 'id'],
                 'BucMarSupplies': ['particulars', 'teaching_hospital', 'provincial_general_hospital',
@@ -281,8 +291,7 @@ TABLE_PROPERTY_MAPPER = {
                 'BucMarcCrpm': ['particulars', 'teaching_hospital', 'provincial_general_hospital',
                                 'district_general_hospital', 'office', 'other', 'id'],
             },
-        'Table_5':
-            {
+        'Table_5':{
                 'DmhDfNum': ['num_des_facilities', 'teaching_hospital', 'provincial_general_hospital',
                              'district_general_hospital', 'office', 'other', 'total', 'id'],
                 'DmhDfPaf': ['num_patients_affected', 'teaching_hospital', 'provincial_general_hospital',
@@ -313,8 +322,8 @@ TABLE_PROPERTY_MAPPER = {
                               'district_general_hospital', 'office', 'other', 'total', 'id'],
                 'DmhLosOue': ['type_of_losses', 'teaching_hospital', 'provincial_general_hospital',
                               'district_general_hospital', 'office', 'other', 'total', 'id'],
-            }, 'Table_7':
-            {
+            },
+        'Table_7':{
                 'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female', 'id'],
 
                 'DapBefPc1': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
@@ -324,8 +333,8 @@ TABLE_PROPERTY_MAPPER = {
                               'est_losses_y1', 'est_losses_y2', 'total_losses', 'id'],
                 'DapBefOther': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
                                 'est_losses_y1', 'est_losses_y2', 'total_losses', 'id']
-            }, 'Table_9':
-            {
+            },
+        'Table_9':{
                 'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                       'losses_y1', 'losses_y2', 'total_losses', 'id', 'district'],
                 'DshPubMohDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
@@ -335,8 +344,7 @@ TABLE_PROPERTY_MAPPER = {
                 'DshPvtFaDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',
                                      'losses_y1', 'losses_y2', 'total_losses', 'id', 'district']
             },
-        'Table_6':
-            {
+        'Table_6':{
                 'DmfDfaNum': ['num_des_facilities',
                               'base_hospital',
                               'divisional_hospital',
@@ -488,18 +496,13 @@ TABLE_PROPERTY_MAPPER = {
 
     },
     'mining': {
-        'Table_1': {
-
-            'BmaImFn': ['name_min_outputs',
+        'Table_1': {'BmaImFn': ['name_min_outputs',
                         'avg_per_year',
                         'firm_id',
-                        'id'],
-            'BmaImFirmNum': ['male',
+                        'id'],'BmaImFirmNum': ['male',
                              'female',
                              'firm_id',
-                             'id'],
-
-        },
+                             'id'],},
         'Table_2': {
 
             'BmaAmMin': ['minerals',

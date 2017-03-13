@@ -3,6 +3,7 @@ from django.db import models
 from settings.models import District, Province
 from incidents.models import IncidentReport
 from incidents.models import IncidentReport
+from health.base_line.models import PrivateClinic
 
 
 class DlSessionKeys(models.Model):
@@ -1018,6 +1019,28 @@ class DapBefPc1(models.Model):
         db_table = 'health\".\"dap_bef_pc1'
 
 
+class DapBefPc(models.Model):
+    pvt_clinics = models.CharField(max_length=255, blank=True, null=True)
+    est_replacement_cost = models.FloatField(blank=True, null=True)
+    est_repair_cost = models.FloatField(blank=True, null=True)
+    total_damages = models.FloatField(blank=True, null=True)
+    est_losses_y1 = models.FloatField(blank=True, null=True)
+    est_losses_y2 = models.FloatField(blank=True, null=True)
+    total_losses = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    key = models.BigIntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    private_clinic = models.ForeignKey(PrivateClinic, db_column='private_clinic', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dap_bef_pc'
+
+
 class DapBefPcn(models.Model):
     pvt_clinics = models.CharField(max_length=255, blank=True, null=True)
     est_replacement_cost = models.FloatField(blank=True, null=True)
@@ -1544,3 +1567,171 @@ class DshPvtFaDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'health\".\"dsh_pvt_fa_district'
+
+
+class DmhLmhMohDistrict(models.Model):
+    teaching_hospital = models.BigIntegerField(blank=True, null=True)
+    provincial_general_hospital = models.BigIntegerField(blank=True, null=True)
+    district_general_hospital = models.BigIntegerField(blank=True, null=True)
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_lmh_moh_district'
+
+
+class DmhPafDistrict(models.Model):
+    num_patients_affected = models.CharField(max_length=255, blank=True, null=True)
+    teaching_hospital = models.BigIntegerField(blank=True, null=True)
+    provincial_general_hospital = models.BigIntegerField(blank=True, null=True)
+    district_general_hospital = models.BigIntegerField(blank=True, null=True)
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_paf_district'
+
+
+class DmhDamagesDistrict(models.Model):
+    teaching_hospital = models.FloatField(blank=True, null=True)
+    provincial_general_hospital = models.FloatField(blank=True, null=True)
+    district_general_hospital = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_damages_district'
+
+
+class DmhLosDistrict(models.Model):
+    teaching_hospital = models.FloatField(blank=True, null=True)
+    provincial_general_hospital = models.FloatField(blank=True, null=True)
+    district_general_hospital = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_los_district'
+
+
+class DmhDamagesMohDistrict(models.Model):
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_damages_moh_district'
+
+
+class DmfTotAffectedDistrict(models.Model):
+    base_hospital = models.BigIntegerField(blank=True, null=True)
+    divisional_hospital = models.IntegerField(blank=True, null=True)
+    rural_hospital = models.BigIntegerField(blank=True, null=True)
+    central_dispensary = models.BigIntegerField(blank=True, null=True)
+    pmcus = models.BigIntegerField(blank=True, null=True)
+    phccs = models.BigIntegerField(blank=True, null=True)
+    mchcs = models.BigIntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_tot_affected_district'
+
+
+class DmfOmfTpaDistrict(models.Model):
+    num_patients_affected = models.CharField(max_length=255, blank=True, null=True)
+    base_hospital = models.BigIntegerField(blank=True, null=True)
+    divisional_hospital = models.IntegerField(blank=True, null=True)
+    rural_hospital = models.BigIntegerField(blank=True, null=True)
+    central_dispensary = models.BigIntegerField(blank=True, null=True)
+    pmcus = models.BigIntegerField(blank=True, null=True)
+    phccs = models.BigIntegerField(blank=True, null=True)
+    mchcs = models.BigIntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_omf_tpa_district'
+
+
+class DmfDamagesDistrict(models.Model):
+    base_hospital = models.FloatField(blank=True, null=True)
+    divisional_hospital = models.FloatField(blank=True, null=True)
+    rural_hospital = models.FloatField(blank=True, null=True)
+    central_dispensary = models.FloatField(blank=True, null=True)
+    pmcus = models.FloatField(blank=True, null=True)
+    phccs = models.FloatField(blank=True, null=True)
+    mchcs = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_damages_district'
+
+
+class DmfLosDistrict(models.Model):
+    type_of_losses = models.CharField(max_length=255, blank=True, null=True)
+    base_hospital = models.FloatField(blank=True, null=True)
+    divisional_hospital = models.FloatField(blank=True, null=True)
+    rural_hospital = models.FloatField(blank=True, null=True)
+    central_dispensary = models.FloatField(blank=True, null=True)
+    pmcus = models.FloatField(blank=True, null=True)
+    phccs = models.FloatField(blank=True, null=True)
+    mchcs = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_los_district'
+
+
+class DapPvtDistrict(models.Model):
+    type_med_fac = models.CharField(max_length=255, blank=True, null=True)
+    num_affected_fac = models.BigIntegerField(blank=True, null=True)
+    male = models.BigIntegerField(blank=True, null=True)
+    female = models.BigIntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dap_pvt_district'
+
+
+class DapBefPcDistrict(models.Model):
+    est_replacement_cost = models.FloatField(blank=True, null=True)
+    est_losses_y1 = models.FloatField(blank=True, null=True)
+    est_losses_y2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dap_bef_pc_district'
+
+
+class DapBefOtherDistrict(models.Model):
+    est_replacement_cost = models.FloatField(blank=True, null=True)
+    est_losses_y1 = models.FloatField(blank=True, null=True)
+    est_losses_y2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dap_bef_other_district'
+

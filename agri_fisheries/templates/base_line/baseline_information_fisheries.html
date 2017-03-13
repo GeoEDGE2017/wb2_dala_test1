@@ -130,7 +130,7 @@
                                        class="form-control input-md" ng-model="bifProduction.area_pub">
                             </td>
                             <td class="tdpa" width="115" height="19" ng-if="bifProduction.types != 'Inland fisheries'">
-                                p1
+
                                 <br/>
                             </td>
 
@@ -140,7 +140,7 @@
                             </td>
                             <td class="tdpa" width="115" height="19" ng-if="bifProduction.types != 'Inland fisheries'">
                                 <br/>
-                                p2
+
                             </td>
 
                             <td width="63" height="19" ng-if="bifProduction.types != 'Inland fisheries'">
@@ -149,7 +149,7 @@
                             </td>
                             <td class="tdpa" width="115" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
                                 <br/>
-                                p3
+
                             </td>
 
                             <td width="63" height="19">
@@ -163,7 +163,7 @@
                             </td>
                             <td class="tdpa" width="63" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
                                 <br/>
-                                p4
+
                             </td>
                             <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -602,21 +602,21 @@
                         </tr>
                         <tr height="19" ng-repeat="bifAstBuildings in bsInfoFisheries.agri_fisheries.Table_2.BifAstBuildings">
                             <td class="tdpa" width="125" height="19" ng-bind="bifAstBuildings.assets">
-                                1 floor
+
                             </td>
-                            <td colspan="3" width="301" height="19">
+                            <td colspan="3" width="301" height="19" ng-bind="bifAstBuildings.avg_replace_cost">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" ng-bind="bifAstBuildings.avg_repair_cost_roof">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" ng-bind="bifAstBuildings.avg_repair_cost_wall">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" ng-bind="bifAstBuildings.avg_repair_cost_floor">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -626,7 +626,14 @@
                     <br>
                     <div class="pull-right">
                         <br>
-                        <button type="button" class="btn btn-info">Clear</button>
+                         <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+
                         <button type="button" class="btn btn-success" ng-click="saveBsData(form_info_fisheries)">Submit</button>
                     </div>
                 </div>

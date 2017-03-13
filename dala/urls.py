@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^agri_livestock/', include('agri_livestock.urls', namespace='agri_livestock')),
 
     # agri_fisheries
-    #url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
+    url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
 
 
     # other govn services

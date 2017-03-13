@@ -139,8 +139,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         }
     }
 
-$scope.bsHsDataEdit = function()
-{
+    $scope.bsHsDataEdit = function(){
 $scope.submitted = true;
 
    $scope.is_edit = true;
@@ -160,8 +159,7 @@ $scope.submitted = true;
     })
 }
 
-$scope.cancelEdit = function()
-{
+    $scope.cancelEdit = function(){
     $scope.is_edit = false;
     $scope.bsLivestockPoultryDst = init_data;
 }

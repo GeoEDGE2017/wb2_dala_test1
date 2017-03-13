@@ -3,12 +3,14 @@ var app = angular.module('bsLivestockPoultryApp', [])
 
 app.controller('bsLivestockPoultryController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
-    $scope.baselineDate;
+    $scope.bs_date;
     $scope.bs_data={};
     $scope.is_edit = false;
-    $scope.new_organization = {id: null, name: null, ownership: null, district_id: 1};
+    $scope.selectedOrganization;
+    $scope.new_organization = {id: null, name: null, ownership: null, district_id: null};
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.organizations = [];
 
     var init_data = {
         'agri_livestock': {
@@ -28,6 +30,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_juvenile_male : null,
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Sheep',
                     young_male : null,
@@ -42,6 +45,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_juvenile_male : null,
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Goat',
                     young_male : null,
@@ -56,6 +60,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_juvenile_male : null,
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Cattle',
                     young_male : null,
@@ -70,6 +75,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_juvenile_male : null,
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Buffalo',
                     young_male : null,
@@ -84,6 +90,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_juvenile_male : null,
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 'BlpAnmPoultry': [{
                     poultry : 'Chicken',
@@ -99,6 +106,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_juvenile_male : null,
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     poultry : 'Ducks',
                     young_male : null,
@@ -113,6 +121,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_val_juvenile_male : null,
                     avg_val_mature_male : null,
                     avg_val_mature_female : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 //Tab 2
                 'BlpAstLivestock': [{
@@ -125,6 +134,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_anm_shed : null,
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Sheep',
                     avg_replacec_anm_shed : null,
@@ -135,6 +145,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_anm_shed : null,
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Goat',
                     avg_replacec_anm_shed : null,
@@ -145,6 +156,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_anm_shed : null,
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Cattle',
                     avg_replacec_anm_shed : null,
@@ -155,6 +167,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_anm_shed : null,
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Buffalo',
                     avg_replacec_anm_shed : null,
@@ -165,6 +178,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_anm_shed : null,
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 'BlpAstPoultry': [{
                     poultry : 'Chicken',
@@ -176,6 +190,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_anm_shed : null,
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     poultry : 'Ducks',
                     avg_replacec_anm_shed : null,
@@ -186,6 +201,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repairc_anm_shed : null,
                     avg_repairc_tools : null,
                     avg_repairc_others : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 'BlpAstStructures': [{
                     structures : '1 floor',
@@ -193,39 +209,46 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repair_roof : null,
                     avg_repair_wall : null,
                     avg_repair_floor : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     structures : '2-3 floors',
                     avg_replace_cost : null,
                     avg_repair_roof : null,
                     avg_repair_wall : null,
                     avg_repair_floor : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     structures : 'More than 3 floors',
                     avg_replace_cost : null,
                     avg_repair_roof : null,
                     avg_repair_wall : null,
                     avg_repair_floor : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 'BlpAstOther': [{
                     other_assets : 'Computers',
                     avg_replace_cost : null,
                     avg_repair_cost : null,
                     created_user : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     other_assets : 'Furniture',
                     avg_replace_cost : null,
                     avg_repair_cost : null,
                     created_user : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     other_assets : 'Office supplies',
                     avg_replace_cost : null,
                     avg_repair_cost : null,
                     created_user : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     other_assets : 'Vehicles',
                     avg_replace_cost : null,
                     avg_repair_cost : null,
                     created_user : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 //Tab 3
                 'BlpApyLivestock': [{
@@ -234,41 +257,48 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     meat : null,
                     eggs : null,
                     others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Sheep',
                     milk : null,
                     meat : null,
                     eggs : null,
                     others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Goat',
                     milk : null,
                     meat : null,
                     eggs : null,
                     others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Cattle',
                     milk : null,
                     meat : null,
                     eggs : null,
                     others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     livestock : 'Buffalo',
                     milk : null,
                     meat : null,
                     eggs : null,
                     others : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 'BlpApyPoultry': [{
                     poultry : 'Chicken',
                     meat : null,
                     eggs : null,
                     others : null,
+                    organization_id:$scope.selectedOrganization,
                 }, {
                     poultry : 'Ducks',
                     meat : null,
                     eggs : null,
                     others : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
             }
         }
@@ -393,32 +423,92 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     }
 
     $scope.saveBsData = function(form) {
-       $scope.submitted = true;
+      $scope.submitted = true;
+      alert('hi');
+      var array = $scope.bsLivestockPoultry.agri_livestock.Table_2;
+      var details = _.map(array, function(model_array) {
+      _.map(model_array, function(model) {
+          model.organization_id = $scope.selectedOrganization.id;
+
+
+      });
         if (form.$valid) {
-            console.log($scope.bsLivestockPoultry);
+             $http({
+            method: 'POST',
+            url: '/bs_save_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.bsLivestockPoultry,
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+
+                },
+                'is_edit': $scope.is_edit
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+	$("#modal-container-239453").modal('show');
+            console.log(response);
+
+
+        }, function errorCallback(response) {
+
+            console.log(response);
+        });
         }
+    })
     }
 
-    $scope.saveOrganization = function(form)
-{
-
+    $scope.saveOrganization = function(form){
+    console.log($scope.new_organization);
+    $scope.new_organization.district_id = $scope.district;
+    if($scope.selectedOrganization){
+    $scope.new_organization.id = $scope.selectedOrganization.id;
+    $scope.new_organization.name = $scope.selectedOrganization.name;
+    $scope.new_organization.ownership = $scope.selectedOrganization.ownership;
+    }
     $http({
     method: "POST",
     url: "/add_entity",
     data: angular.toJson({
     'model_fields': $scope.new_organization,
-    'is_edit' :false,
+    'is_edit' :$scope.is_edit,
     'model': 'Organization',
     'sector': 'agri_livestock',
      }),
     }).success(function(data) {
      console.log(data);
-    if(data)
+        if(data)
         $scope.organizations.push($scope.new_organization);
+      $scope.new_organization.id = data;
+            console.log($scope.new_organization);
 
     })
 
 }
+
+     $scope.fetchOrganization = function(){
+
+    $scope.new_organization.district_id = $scope.district;
+
+    $http({
+    method: "POST",
+    url: "/fetch_entities",
+    data: angular.toJson({
+    'district':  $scope.district,
+    'model': 'Organization',
+    'sector':'agri_livestock'
+     }),
+    }).success(function(data) {
+
+    console.log(data);
+    $scope.organizations = data;
+
+    })
+}
+
+
 
 
 }]);

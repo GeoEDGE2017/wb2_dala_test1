@@ -73,6 +73,7 @@ def bs_save_data(request):
     is_edit = bs_data['is_edit']
 
     if not is_edit:
+        print 'in'
         for sector in bs_table_hs_data:
 
             sub_app_name = sector + '.base_line'
@@ -656,7 +657,6 @@ def add_entity(request):
     if is_edit == False:
         print 'new'
         print model_fields
-        model_fields = {'name': None, 'district_id': 1, 'ownership': None}
         model_object = model_class(**model_fields)
         model_object.save()
 
@@ -664,7 +664,7 @@ def add_entity(request):
         print 'update'
         object_id = model_fields['id']
         modified_model = model_class.objects.filter(pk=object_id)
-        modified_model.update(name=model_fields['name'])
+        modified_model.update(**model_fields)
         return HttpResponse(object_id)
 
     if model_object.id is not None:

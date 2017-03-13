@@ -28,3 +28,5 @@ def bs_livestock_poultry(request):
     }
     return render(request, 'base_line/baseline_information_on_livestock_and_poultry.html', context)
 
+
+

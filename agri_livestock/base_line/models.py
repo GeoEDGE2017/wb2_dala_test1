@@ -28,15 +28,6 @@ class BdSessionKeys(models.Model):
         db_table = 'agri_livestock\".\"bd_session_keys'
 
 
-class Organization(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    ownership = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'agri_livestock\".\"organization'
-
-
 # Table 1
 class BelLivestock(models.Model):
     livestock = models.CharField(max_length=255, blank=True, null=True)

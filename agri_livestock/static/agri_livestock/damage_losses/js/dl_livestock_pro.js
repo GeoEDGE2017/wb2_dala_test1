@@ -53,7 +53,7 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':  'Table_4',
+            'table_name':  'Table_5',
             'sector': 'agri_livestock',
             'com_data': {
                     'province': $scope.province,
@@ -71,29 +71,29 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
     }
 
  $scope.getTotal = function($index,key) {
-         $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpNdaPubProvince[$index] ? (
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpNdaPubProvince[$index].damages ?
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpNdaPubProvince[$index].damages : 0 ): 0) ;
+         $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index] ? (
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index].damages ?
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index].damages : 0 ): 0) ;
 
-         $scope.totaldpvt = $scope.totaldpvt + ($scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpNdaPvtProvince[$index] ? (
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpNdaPvtProvince[$index].damages ?
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpNdaPvtProvince[$index].damages : 0 ) : 0) ;
+         $scope.totaldpvt = $scope.totaldpvt + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPvtProvince[$index] ? (
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPvtProvince[$index].damages ?
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPvtProvince[$index].damages : 0 ) : 0) ;
 
-         $scope.totalyear1pub = $scope.totalyear1pub + ($scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPubProvince[$index] ? (
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPubProvince[$index].los_year_1 ?
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPubProvince[$index].los_year_1 : 0 ) : 0) ;
+         $scope.totalyear1pub = $scope.totalyear1pub + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index] ? (
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index].los_year_1 ?
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index].los_year_1 : 0 ) : 0) ;
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt + ($scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPvtProvince[$index] ? (
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPvtProvince[$index].los_year_1 ?
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPvtbProvince[$index].los_year_1 : 0 ) : 0 );
+         $scope.totalyear1pvt = $scope.totalyear1pvt + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index] ? (
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index].los_year_1 ?
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtbProvince[$index].los_year_1 : 0 ) : 0 );
 
-         $scope.totalyear2pub = $scope.totalyear2pub + ($scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPubProvince[$index] ? (
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPubProvince[$index].los_year_2 ?
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPubProvince[$index].los_year_2 : 0 ) : 0) ;
+         $scope.totalyear2pub = $scope.totalyear2pub + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index] ? (
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index].los_year_2 ?
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index].los_year_2 : 0 ) : 0) ;
 
-         $scope.totalyear2pvt =($scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPvtProvince[$index] ? (
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPvtProvince[$index].los_year_2 ?
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_4[key].DlpLosPvtProvince[$index].los_year_2 : 0 ) : 0);
+         $scope.totalyear2pvt =($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index] ? (
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index].los_year_2 ?
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index].los_year_2 : 0 ) : 0);
 
 
          $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;

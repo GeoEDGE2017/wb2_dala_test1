@@ -88,7 +88,12 @@
                             </button>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    </tbody>
+                    </table>
+
+                       <table class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody>
+                        <tr class="trheadc" height="19">
                         <td rowspan="3" width="253" height="57" style="width:19.5%;">
                             Districts
                         </td>
@@ -139,11 +144,7 @@
                             Private
                         </td>
                     </tr>
-
-                       <table ng-repeat="(key, value) in dlWaterTransSumPro.transport_water.Table_4"
-                           class="table table-bordered">
-                        <tbody>
-                        <tr  height="20" ng-init="getTotal($index,key);">
+                        <tr  ng-repeat="(key, value) in dlWaterTransSumPro.transport_water.Table_4" height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 

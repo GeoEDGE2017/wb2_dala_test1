@@ -23,7 +23,6 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
     $scope.fetchDlData = function(){
         $scope.is_edit = true;
         $scope.submitted = true;
-        if(form.$valid) {
         console.log($scope.incident);
             $http({
             method: "POST",
@@ -41,38 +40,44 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
             $scope.dlWaterTransSumNat = data;
 
             })
-        }
+
     }
+            $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlWaterTransSumNat ? angular.equals({}, $scope.dlWaterTransSumNat.transport_water.Table_5) : true;
+        return isNull;
+
+   }
 
  $scope.getTotal = function($index,key) {
-         $scope.totaldpub = $scope.totaldpub +
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPubNational[$index].tot_dmg_public ?
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPubNational[$index].tot_dmg_public : 0 ;
+         $scope.totaldpub = $scope.totaldpub + (
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPubNational[0].tot_dmg_public ?
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPubNational[0].tot_dmg_public : 0) ;
 
-         $scope.totaldpvt = $scope.totaldpvt +
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPvtNational[$index].tot_dmg_private ?
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPvtNational[$index].tot_dmg_private : 0 ;
+         $scope.totaldpvt = $scope.totaldpvt +(
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPvtNational[0].tot_dmg_private ?
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPvtNational[0].tot_dmg_private : 0 ) ;
 
-         $scope.totalyear1pub = $scope.totalyear1pub +
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_1_pub ?
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_1_pub : 0 ;
+         $scope.totalyear1pub = $scope.totalyear1pub +(
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_1_pub ?
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_1_pub : 0) ;
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt +
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_1_pvt ?
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_1_pvt : 0 ;
+         $scope.totalyear1pvt = $scope.totalyear1pvt +(
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_1_pvt ?
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_1_pvt :0 ) ;
 
-         $scope.totalyear2pub = $scope.totalyear1pvt +
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_2_pub ?
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_2_pub : 0 ;
+         $scope.totalyear2pub = $scope.totalyear2pub +(
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_2_pub ?
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_2_pub : 0) ;
 
-         $scope.totalyear2pvt = $scope.totalyear1pvt +
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_2_pvt ?
-                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[$index].year_2_pvt : 0 ;
+         $scope.totalyear2pvt = $scope.totalyear2pvt +(
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_2_pvt ?
+                         $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterLosNational[0].year_2_pvt : 0 ) ;
 
 
-         $scope.finaltotalpublic =$scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
+         $scope.finaltotalpublic = $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
 
-         $scope.finaltotalprivate =$scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
+         $scope.finaltotalprivate =$scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
 
 

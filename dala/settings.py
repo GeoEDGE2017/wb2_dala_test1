@@ -1734,30 +1734,30 @@ TABLE_PROPERTY_MAPPER = {
     'agri_irrigation': {
         'Table_4': {
             'DlMajorTanksDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages',],
             'DlLosMajorTanksDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los',],
             'DlMediumTanksDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages',],
             'DlLosMediumTanksDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los',],
             'DlMinorTanksDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages'],
             'DlLosMinorTanksDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los'],
             'DlAnicutsDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages'],
             'DlLosAnicutsDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los'],
             'DlOtherStructuresDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages', ],
             'DlLosOtherDistrict':
-                ['total_los', 'irrigation_assets', 'incident', 'district'],
-            'DlRiverRmbankmntDistrict':
-                ['damages', 'incident', 'district'],
+                ['total_los', 'irrigation_assets'],
+            'DlRiverEmbankmntDistrict':
+                ['damages'],
             # dl_los_other_district
             'DlBuildingsDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages'],
             # dl_los_other_district
         },
         'Table_1': {

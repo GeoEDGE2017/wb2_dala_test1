@@ -212,9 +212,184 @@ class DlpLosOther(models.Model):
         db_table= 'agri_livestock\".\"dlp_los_other'
 
 
-# Views Tbale 4
+# Views Table 4
+class DlpNdaLivestockPubDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_nda_livestock_pub_district'
 
 
+class DlpNdaLivestockPvtDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_nda_livestock_pvt_district'
+
+
+class DlpNdaPoultryPubDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_nda_poultry_pub_district'
+
+
+class DlpNdaPoultryPvtDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_nda_poultry_pvt_district'
+
+
+class DlpPafPubDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_paf_pub_district'
+
+
+class DlpPafPvtDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_paf_pvt_district'
+
+
+class DlpStructStructuresPubDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_struct_structures_pub_district'
+
+
+class DlpStructStructuresPvtDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_struct_structures_pvt_district'
+
+
+class DlpStructOtherPubDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_struct_other_pub_district'
+
+
+class DlpStructOtherPvtDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_struct_other_pvt_district'
+
+
+class DlpLosLivestockPubDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    los_year_1 = models.FloatField(blank=True, null=True)
+    los_year_2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_los_livestock_pub_district'
+
+
+class DlpLosLivestockPvtDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    los_year_1 = models.FloatField(blank=True, null=True)
+    los_year_2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_los_livestock_pvt_district'
+
+
+class DlpLosPoultryPubDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    los_year_1 = models.FloatField(blank=True, null=True)
+    los_year_2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_los_poultry_pub_district'
+
+
+class DlpLosPoultryPvtDistrict(models.Model):
+    animals = models.CharField(max_length=255, blank=True, null=True)
+    los_year_1 = models.FloatField(blank=True, null=True)
+    los_year_2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_los_poultry_pvt_district'
+
+
+class DlpLosOtherPubDistrict(models.Model):
+    others = models.CharField(max_length=255, blank=True, null=True)
+    los_year_1 = models.FloatField(blank=True, null=True)
+    los_year_2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_los_other_pub_district'
+
+
+class DlpLosOtherPvtDistrict(models.Model):
+    others = models.CharField(max_length=255, blank=True, null=True)
+    los_year_1 = models.FloatField(blank=True, null=True)
+    los_year_2 = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_los_other_pvt_district'
+
+
+# Views Table 5
 class DlpNdaPubProvince(models.Model):
 
     damages = models.FloatField(blank=True, null=True)

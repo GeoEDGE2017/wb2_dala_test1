@@ -1,645 +1,475 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 
-    <!-- Main content -->
-    <main class="main">
+<!-- Main content -->
+<main class="main" ng-app="dlAgriFisheriesProApp" ng-controller="DlAgriFisheriesProController">
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
-            </li>
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of damages and losses in the fisheries sub-sector in the Province</span></li>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
 
-           
-        </ol>
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of damages and losses in the fisheries sub-sector in the Province</span>
+        </li>
 
 
-        <div class="container-fluid">
+    </ol>
 
-       
-				
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane active" id="step1">
-						
-<table class="table table-bordered">
 
-  
-  <colgroup>
-        <col width="125"/>
-        <col width="95"/>
-        <col width="111"/>
-        <col width="115"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-    </colgroup>
-    <tbody>
-        <tr class="trhead" height="19">
-            <td width="125" height="19">
-                Incident
-            </td>
-            <td width="95" height="19">
-                Dropdown
-            </td>
-            <td width="111" height="19">
-                Province
-            </td>
-            <td colspan="6" width="482" height="19">
-                Dropdown
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="3" width="125" height="57">
-                District
-            </td>
-            <td colspan="4" width="416" height="19">
-                Year 1
-            </td>
-            <td colspan="2" width="126" height="19">
-                Year 2
-            </td>
-            <td colspan="2" rowspan="2" width="126" height="38">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td colspan="2" width="190" height="19">
-                Damages (LKR)
-            </td>
-            <td colspan="2" width="230" height="19">
-                Losses (LKR)
-            </td>
-            <td colspan="2" width="126" height="19">
-                Losses (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td width="95" height="19">
-                Public
-            </td>
-            <td width="111" height="19">
-                Private
-            </td>
-            <td width="115" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td width="125" height="19">
-                District 1
-            </td>
-            <td width="95" height="19">
-                <br/>
-            </td>
-            <td width="111" height="19">
-                <br/>
-            </td>
-            <td width="115" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                Inland Fisheries
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                River fisheries
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                Marine fisheries
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                Total
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td width="125" height="19">
-                District N
-            </td>
-            <td width="95" height="19">
-                <br/>
-            </td>
-            <td width="111" height="19">
-                <br/>
-            </td>
-            <td width="115" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                Inland Fisheries
-            </td>
-            <td width="95" height="19">
-                <br/>
-            </td>
-            <td width="111" height="19">
-                <br/>
-            </td>
-            <td width="115" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                River fisheries
-            </td>
-            <td width="95" height="19">
-                <br/>
-            </td>
-            <td width="111" height="19">
-                <br/>
-            </td>
-            <td width="115" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                Marine fisheries
-            </td>
-            <td width="95" height="19">
-                <br/>
-            </td>
-            <td width="111" height="19">
-                <br/>
-            </td>
-            <td width="115" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                Total
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                GRAND TOTAL
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td colspan="9" width="823" height="19">
-                AGGREGATE DAMAGES AND LOSSES IN THE PROVINCE
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="3" width="125" height="57">
-                Districts
-            </td>
-            <td colspan="4" width="416" height="19">
-                Year 1
-            </td>
-            <td colspan="2" width="126" height="19">
-                Year 2
-            </td>
-            <td colspan="2" rowspan="2" width="126" height="38">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td colspan="2" width="190" height="19">
-                Damages (LKR)
-            </td>
-            <td colspan="2" width="230" height="19">
-                Losses (LKR)
-            </td>
-            <td colspan="2" width="126" height="19">
-                Losses (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td width="95" height="19">
-                Public
-            </td>
-            <td width="111" height="19">
-                Private
-            </td>
-            <td width="115" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-            <td width="63" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-        </tr>
-        <tr  height="19">
-            <td class="tdpa" width="125" height="19">
-                District 1
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                District N
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="125" height="19">
-                TOTAL
-            </td>
-            <td width="95" height="19">
-                -
-            </td>
-            <td width="111" height="19">
-                -
-            </td>
-            <td width="115" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-            <td width="63" height="19">
-                -
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="container-fluid">
 
-						
-						
-						
-						 <br>
-                   <div class="pull-right">
-		<br>
-<button type="button" class="btn btn-info">Clear</button>
-<button type="button" class="btn btn-success">Submit</button>
-</div>	         
-           </div> 
-                        
-								
-        </div>
-        </div>
-							
-							
-			
-								
-                          
 
-         <div class="col-md-12">
-			
-			
-			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			
-		</div>           </div>    
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+
+                <table class="table table-bordered">
+
+
+                    <colgroup>
+                        <col width="125"/>
+                        <col width="95"/>
+                        <col width="111"/>
+                        <col width="115"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead" height="20">
+                        <td class="trhead" width="130" >
+                            Incident
+                        </td>
+                        <td width="125" colspan="3">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170" colspan="3" >
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData(form_dl_summary_trans_water_pro)">Load
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="3" width="125" height="57">
+                            District
+                        </td>
+                        <td colspan="4" width="416" height="19">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="126" height="38">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td colspan="2" width="190" height="19">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="230" height="19">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="95" height="19">
+                            Public
+                        </td>
+                        <td width="111" height="19">
+                            Private
+                        </td>
+                        <td width="115" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                    </tr>
+                    <table ng-repeat="(key, value) in dlAgriFisheriesPro.agri_fisheries.Table_5"
+                           class="table table-bordered">
+                        <tbody>
+                    <tr class="trhead" height="20" ng-init="getTotal(key)">
+                        <td ng-bind="key" width="253" height="19" colspan="4">
+
+                        </td>
+
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="125" height="19">
+                            Inland Fisheries
+                        </td>
+                        <td width="95" height="19" ng-bind="value.DlfDmgPubDistrict[0].dmg_pub">
+
+                        </td>
+                        <td width="111" height="19" ng-bind="value.DlfDmgPvtDistrict[0].dmg_pvt">
+
+                        </td>
+                        <td width="115" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pub">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pvt">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_2_pub">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfDmgPubDistrict[0].dmg_pub + value.DlfLosIfisheriesDistrict[0].los_year_1_pub +value.DlfLosIfisheriesDistrict[0].los_year_2_pub ">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfDmgPvtDistrict[0].dmg_pvt + value.DlfLosIfisheriesDistrict[0].los_year_1_pvt + value.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
+
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="125" height="19">
+                            River fisheries
+                        </td>
+                        <td width="95" height="19" ng-bind="value.DlfDmgPubDistrict[1].dmg_pub">
+
+                        </td>
+                        <td width="111" height="19" ng-bind="value.DlfDmgPvtDistrict[1].dmg_pvt">
+
+                        </td>
+                        <td width="115" height="19" ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_1_pub">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_1_pvt">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_2_pub">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosRfisheriesDistrict[0].los_year_2_pvt">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfDmgPubDistrict[1].dmg_pub + value.DlfLosRfisheriesDistrict[0].los_year_1_pub  + value.DlfLosRfisheriesDistrict[0].los_year_2_pub ">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfDmgPvtDistrict[1].dmg_pvt + value.DlfLosRfisheriesDistrict[0].los_year_1_pvt + value.DlfLosRfisheriesDistrict[0].los_year_2_pvt">
+
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="125" height="19">
+                            Marine fisheries
+                        </td>
+                        <td width="95" height="19" ng-bind="value.DlfDmgPubDistrict[2].dmg_pub">
+
+                        </td>
+                        <td width="111" height="19" ng-bind="value.DlfDmgPvtDistrict[2].dmg_pvt">
+
+                        </td>
+                       <td width="115" height="19" ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_1_pub">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_1_pvt">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_2_pub">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfDmgPubDistrict[2].dmg_pub + value.DlfLosMfisheriesDistrict[0].los_year_1_pub +value.DlfLosMfisheriesDistrict[0].los_year_2_pub ">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="value.DlfDmgPvtDistrict[1].dmg_pvt + value.DlfLosMfisheriesDistrict[0].los_year_1_pvt + value.DlfLosMfisheriesDistrict[0].los_year_2_pvt ">
+
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="boldash" width="125" height="19">
+                            Total
+                        </td>
+                        <td width="95" height="19" ng-model="damagesPublic"
+                        ng-bind="damagesPublic = value.DlfDmgPubDistrict[0].dmg_pub +value.DlfDmgPubDistrict[1].dmg_pub + value.DlfDmgPubDistrict[2].dmg_pub  ">
+
+                        </td>
+                        <td width="111" height="19" ng-model="damagesPrivate"
+                            ng-bind="damagesPrivate = value.DlfDmgPvtDistrict[0].dmg_pvt + value.DlfDmgPvtDistrict[1].dmg_pvt + value.DlfDmgPvtDistrict[2].dmg_pvt ">
+
+                        </td>
+                        <td width="115" height="19" ng-model="losYear1Public"
+                            ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pub +value.DlfLosRfisheriesDistrict[0].los_year_1_pub + value.DlfLosMfisheriesDistrict[0].los_year_1_pub">
+
+                        </td>
+                        <td width="63" height="19"  ng-model="losYear1Private"
+                            ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_1_pvt + value.DlfLosRfisheriesDistrict[0].los_year_1_pvt + value.DlfLosMfisheriesDistrict[0].los_year_1_pvt">
+
+                        </td>
+                        <td width="63" height="19"  ng-model="losYear2Public"
+                            ngbind="value.DlfLosIfisheriesDistrict[0].los_year_2_pub + value.DlfLosRfisheriesDistrict[0].los_year_2_pub + value.DlfLosMfisheriesDistrict[0].los_year_2_pub">
+
+                        </td>
+                        <td width="63" height="19"  ng-model="losYear2Private"
+                            ng-bind="value.DlfLosIfisheriesDistrict[0].los_year_2_pvt +value.DlfLosRfisheriesDistrict[0].los_year_2_pvt + value.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="damagesPublic + losYear1Public + losYear2Public">
+
+                        </td>
+                        <td width="63" height="19" ng-bind="damagesPrivate + losYear1Private + losYear2Private">
+
+                        </td>
+                    </tr>
+
+                        <td class="boldash" width="125" height="19">
+                            GRAND TOTAL
+                        </td>
+                        <td width="95" height="19" ng-bind="grnddamagepublic">
+
+                        </td>
+                        <td width="111" height="19" ng-bind="grnddamageprivate">
+
+                        </td>
+                        <td width="115" height="19" ng-bind="losPubliceyear1">
+
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td colspan="9" width="823" height="19">
+                            AGGREGATE DAMAGES AND LOSSES IN THE PROVINCE
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="3" width="125" height="57">
+                            Districts
+                        </td>
+                        <td colspan="4" width="416" height="19">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="126" height="38">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td colspan="2" width="190" height="19">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="230" height="19">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="126" height="19">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="95" height="19">
+                            Public
+                        </td>
+                        <td width="111" height="19">
+                            Private
+                        </td>
+                        <td width="115" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                        <td width="63" height="19">
+                            Public
+                        </td>
+                        <td width="63" height="19">
+                            Private
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="125" height="19">
+                            District 1
+                        </td>
+                        <td width="95" height="19">
+                            -
+                        </td>
+                        <td width="111" height="19">
+                            -
+                        </td>
+                        <td width="115" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                    </tr>
+
+                    <tr height="19">
+                        <td class="boldash" width="125" height="19">
+                            TOTAL
+                        </td>
+                        <td width="95" height="19">
+                            -
+                        </td>
+                        <td width="111" height="19">
+                            -
+                        </td>
+                        <td width="115" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                        <td width="63" height="19">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+                <div class="pull-right">
+                    <br>
+
+                </div>
+            </div>
+
 
         </div>
-		
-        <!-- /.conainer-fluid -->
-    </main>
-  
-  
+    </div>
+
+
+    <div class="col-md-12">
+
+
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
 {% endblock content %}

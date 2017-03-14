@@ -3,6 +3,20 @@ from settings.models import District, Province
 from incidents.models import IncidentReport
 
 
+class DlSessionKeys(models.Model):
+    data_type = models.CharField(max_length=120, blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    user = models.IntegerField(blank=True, null=True)
+    table_name = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', related_name='agrifi_dl_province', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='agrifi_dl_district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_fisheries\".\"dl_session_keys'
+
+
 class FishingTypes(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
 

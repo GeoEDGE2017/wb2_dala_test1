@@ -16,6 +16,7 @@ def dl_trns_sumr_distr(request):
         'districts': filtered_districts,
         'incidents': filtered_incidents,
         'company': company,
+        'module': 'transport_summary'
     }
     return render(request, 'damage_losses/summary_damage_losses_transportation_sector_district.html', context)
 
@@ -32,6 +33,7 @@ def dl_trns_sumr_provn(request):
         'districts': filtered_districts,
         'incidents': filtered_incidents,
         'company': company,
+        'module': 'transport_summary'
     }
     return render(request, 'damage_losses/summary_damage_losses_transportation_sector_province.html', context)
 
@@ -48,5 +50,6 @@ def dl_trns_sumr_natal(request):
         'districts': filtered_districts,
         'incidents': filtered_incidents,
         'company': company,
+        'module': 'transport_summary'
     }
     return render(request, 'damage_losses/summary_damage_losses_transportation_sector_nationwide.html', context)

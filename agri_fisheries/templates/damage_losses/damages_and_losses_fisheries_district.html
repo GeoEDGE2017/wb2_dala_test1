@@ -1,0 +1,1155 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlFisheriesDistrictApp" ng-controller="dlFisheriesDistrictController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and losses in fisheries in a District</span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div>
+            <ul class='nav nav-wizard'>
+                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
+                <li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content" ng-form name="form_dl_fisheries_district">
+                <div class="tab-pane active" id="step1">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="125"/>
+                            <col width="95"/>
+                            <col width="111"/>
+                            <col width="115"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                        </colgroup>
+                        <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_dl_fisheries_district.incident.$error.required">
+                                    Please select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_dl_fisheries_district.district.$error.required">
+                                    Please select District
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead" height="19">
+                            <td width="125" height="19">
+                                Incident
+                            </td>
+                            <td width="95" height="19">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true)"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td width="111" height="19">
+                                District
+                            </td>
+                            <td colspan="5" width="419" height="19">
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                        class="form-control" ng-change="changedValue(false)" required>
+                                    <option value="" selected>Select District</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="125" height="19">
+                                Type of Fishing
+                            </td>
+                            <td width="95" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="6" width="526" height="19" ng-init="getFishingTypes()">
+
+                                <!--<select name="selectbasic" id="selectbasic" class="form-control" ng-model="fishing_type" >-->
+                                <!--<option value="0">Select a Fishing Type</option>-->
+                                <!--<option ng-repeat="fishing_type in fishing_types">-->
+                                <!--{{fishing_type.name}}-->
+                                <!--</option>-->
+                                <!--</select>-->
+                                <select name="selectbasic" id="selectbasic" class="form-control"
+                                        ng-model="fishing_type"
+                                        ng-options="fishing_type as fishing_type.name for fishing_type in fishing_types track by fishing_type.id">
+                                 <option value="" selected>Select a Fishing Type</option>
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="8" width="760" height="19">
+                                Damages
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="43">
+                            <td colspan="2" rowspan="2" width="250" height="85">
+                                Assets
+                            </td>
+                            <td colspan="2" width="222" height="43">
+                                Number of Totally Destroyed
+                            </td>
+                            <td colspan="2" width="126" height="43">
+                                Number of Partially Damaged
+                            </td>
+                            <td colspan="2" width="126" height="43">
+                                Damages (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="42">
+                            <td width="111" height="42">
+                                Public
+                            </td>
+                            <td width="115" height="42">
+                                Private
+                            </td>
+                            <td width="63" height="42">
+                                Public
+                            </td>
+                            <td width="63" height="42">
+                                Private
+                            </td>
+                            <td width="63" height="42">
+                                Public
+                            </td>
+                            <td width="63" height="42">
+                                Private
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                Fishing Equipment
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Fishing Equipment-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgFequipment in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment"
+                            ng-if="dlfDmgFequipment.assets != 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgFequipment.assets">
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgFequipment.dmg_dest_pub">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgFequipment.dmg_dst_pvt">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgFequipment.dmg_pdmg_pub">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgFequipment.dmg_pdmg_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgFequipment.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgFequipment.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="2" width="250" height="19">
+                                Others
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <!--Fishing Equipment Total-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgFequipment in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment"
+                            ng-if="dlfDmgFequipment.assets == 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgFequipment.assets">
+                            </td>
+                            <td class="tdpa" width="111" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="115" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgFequipment.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgFequipment.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                Office equipment
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Office equipment-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgOequipment in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment"
+                            ng-if="dlfDmgOequipment.assets != 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgOequipment.assets">
+                            </td>
+                            <td width="111" height="19" ng-model="dlfDmgOequipment.dmg_dest_pub">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="115" height="19" ng-model="dlfDmgOequipment.dmg_dst_pvt">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19" ng-model="dlfDmgOequipment.dmg_pdmg_pub">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19" ng-model="dlfDmgOequipment.dmg_pdmg_pvt">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgOequipment.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgOequipment.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="2" width="250" height="19">
+                                Others
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <!--Office equipment Total-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgOequipment in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment"
+                            ng-if="dlfDmgOequipment.assets == 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgOequipment.assets">
+                            </td>
+                            <td class="tdpa" width="111" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="115" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgOequipment.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgOequipment.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                Machinery
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Machinery-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgMachinery in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery"
+                            ng-if="dlfDmgMachinery.assets != 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgMachinery.assets">
+                                Vehicles
+                            </td>
+                            <td width="111" height="19" ng-model="dlfDmgMachinery.dmg_dest_pub">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="115" height="19" ng-model="dlfDmgMachinery.dmg_dst_pvt">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19" ng-model="dlfDmgMachinery.dmg_pdmg_pub">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19" ng-model="dlfDmgMachinery.dmg_pdmg_pvt">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgMachinery.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgMachinery.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="2" width="250" height="19">
+                                Others
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <!--Machinery Total-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgMachinery in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery"
+                            ng-if="dlfDmgMachinery.assets == 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgMachinery.assets">
+                            </td>
+                            <td class="tdpa" width="111" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="115" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgMachinery.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgMachinery.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                Structures
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Structures-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgStructures in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures"
+                            ng-if="dlfDmgStructures.assets != 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgStructures.assets">
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgStructures.dmg_dest_pub">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgStructures.dmg_dst_pvt">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgStructures.dmg_pdmg_pub">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgStructures.dmg_pdmg_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgStructures.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgStructures.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" colspan="2" width="250" height="19">
+                                Others
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <!--Structures Total-->
+                        <tr height="19"
+                            ng-repeat="dlfDmgStructures in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures"
+                            ng-if="dlfDmgStructures.assets == 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgStructures.assets">
+                            </td>
+                            <td class="tdpa" width="111" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="115" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgStructures.dmg_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgStructures.dmg_pvt">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" width="125" height="53">
+                                Buildings
+                            </td>
+                            <td colspan="2" width="190" height="19">
+                                Totally destroyed
+                            </td>
+                            <td colspan="4" width="356" height="19">
+                                Partially Damaged
+                            </td>
+                            <td rowspan="2" width="63" height="53">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <!--Buildings-->
+                        <tr class="trsubc" height="34">
+                            <td width="95" height="34">
+                                Number
+                            </td>
+                            <td width="111" height="34">
+                                Total sqm
+                            </td>
+                            <td width="115" height="34">
+                                Number
+                            </td>
+                            <td width="63" height="34">
+                                Roof (sqm)
+                            </td>
+                            <td width="63" height="34">
+                                Wall (sqm)
+                            </td>
+                            <td width="63" height="34">
+                                Floor (sqm)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="125" height="19">
+                                Public
+                            </td>
+                            <td width="95" height="19">
+                                <br/>
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Public-->
+                        <tr height="19" ng-repeat="dlfDmgPub in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPub"
+                            ng-if="dlfDmgPub.assets != 'Total'">
+                            <td class="tdpa" width="125" height="19" ng-bind="dlfDmgPub.assets">
+                            </td>
+                            <td width="95" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPub.tot_dest_num">
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPub.tot_dest_sqm">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPub.pdmg_num">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPub.pdmg_roof">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPub.pdmg_wall">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPub.pdmg_floor">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgPub.total">
+                            </td>
+                        </tr>
+                        <!--Public Total-->
+                        <tr height="19" ng-repeat="dlfDmgPub in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPub"
+                            ng-if="dlfDmgPub.assets == 'Total'">
+                            <td class="tdpa" width="125" height="19" ng-bind="dlfDmgPub.assets">
+                            </td>
+                            <td class="tdpa" width="95" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="111" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="115" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgPub.total">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="125" height="19">
+                                Private
+                            </td>
+                            <td width="95" height="19">
+                                <br/>
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Private-->
+                        <tr height="19" ng-repeat="dlfDmgPvt in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPvt"
+                            ng-if="dlfDmgPvt.assets != 'Total'">
+                            <td class="tdpa" width="125" height="19" ng-bind="dlfDmgPvt.assets">
+                            </td>
+                            <td width="95" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPvt.tot_dest_num">
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPvt.tot_dest_sqm">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPvt.pdmg_num">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPvt.pdmg_roof">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPvt.pdmg_wall">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfDmgPvt.pdmg_floor">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgPvt.total">
+                            </td>
+                        </tr>
+                        <!--Private Total-->
+                        <tr height="19" ng-repeat="dlfDmgPvt in dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPvt"
+                            ng-if="dlfDmgPvt.assets == 'Total'">
+                            <td class="tdpa" width="125" height="19" ng-bind="dlfDmgPvt.assets">
+                            </td>
+                            <td class="tdpa" width="95" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="111" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="115" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td class="tdpa" width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfDmgPvt.total">
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td colspan="6" rowspan="2" width="634" height="38">
+                                TOTAL OF DAMAGES
+                            </td>
+                            <td width="63" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                    <br>
+                </div>
+                <div class="tab-pane fade" id="step2">
+                    <table class="table table-bordered">
+                        <tr class="trheadc" height="19">
+                            <td colspan="8" width="760" height="19">
+                                LOSSES
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="222" height="19">
+                                Year 1
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Year 2
+                            </td>
+                            <td colspan="2" width="126" height="19">
+                                Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                <br/>
+                            </td>
+                            <td width="111" height="19">
+                                Public
+                            </td>
+                            <td width="115" height="19">
+                                Private
+                            </td>
+                            <td width="63" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                            <td width="63" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered" ng-if="fishing_type.name=='Inland Fisheries'">
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                Inland Fisheries
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="36" ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
+                            ng-if="dlfLosIfisheries.assets != 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="36" ng-bind="dlfLosIfisheries.assets">
+                            </td>
+                            <td class="tdpa" width="111" height="36"
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
+                                       dlfLosIfisheries.assets == 'Production losses (Private)'">p1
+                                <br/>
+                            </td>
+                            <td width="115" height="36"
+                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
+                                       dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pub">
+                            </td>
+
+                            <td width="63" height="36">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pvt">
+                            </td>
+
+                            <td class="tdpa" width="63" height="36"
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
+                                       dlfLosIfisheries.assets == 'Production losses (Private)'">p2
+                                <br/>
+                            </td>
+                            <td width="115" height="36"
+                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
+                                       dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pub">
+                            </td>
+
+                            <td width="63" height="36">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pvt">
+                            </td>
+
+                            <td class="tdpa" width="63" height="36"
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
+                                       dlfLosIfisheries.assets == 'Production losses (Private)'">p3
+                                <br/>
+                            </td>
+                            <td width="115" height="36"
+                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
+                                       dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="36"
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">p4
+                                <br/>
+                            </td>
+
+                            <td width="63" height="36" ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_pvt">
+                            </td>
+                        </tr>
+                        <!--Total-->
+                        <tr height="19" ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
+                            ng-if="dlfLosIfisheries.assets == 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosIfisheries.assets">
+                            </td>
+                            <td width="111" height="19" ng-bind="dlfLosIfisheries.los_year_1_pub">
+                            </td>
+                            <td width="115" height="19" ng-bind="dlfLosIfisheries.los_year_1_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_year_2_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_pvt">
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered" ng-if="fishing_type.name=='River Fisheries'">
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" width="250" height="19">
+                                River Fisheries
+                            </td>
+                            <td width="111" height="19">
+                                <br/>
+                            </td>
+                            <td width="115" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="19" ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
+                            ng-if="dlfLosRfisheries.assets != 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_1_pub">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_1_pvt">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_2_pub">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pub">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pvt">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Total-->
+                        <tr class="tdpa" height="19" ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
+                            ng-if="dlfLosRfisheries.assets == 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
+                            </td>
+                            <td width="111" height="19" ng-bind="dlfLosRfisheries.los_year_1_pub">
+                            </td>
+                            <td width="115" height="19" ng-bind="dlfLosRfisheries.los_year_1_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pvt">
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered" ng-if="fishing_type.name=='Marine Fisheries'">
+                        <tr class="trheadc" height="31">
+                            <td colspan="2" width="250" height="31">
+                                Marine Fisheries
+                            </td>
+                            <td width="111" height="31">
+                                <br/>
+                            </td>
+                            <td width="115" height="31">
+                                <br/>
+                            </td>
+                            <td width="63" height="31">
+                                <br/>
+                            </td>
+                            <td width="63" height="31">
+                                <br/>
+                            </td>
+                            <td width="63" height="31">
+                                <br/>
+                            </td>
+                            <td width="63" height="31">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="31" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
+                            ng-if="dlfLosMfisheries.assets != 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosMfisheries.assets">
+                            </td>
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_1_pub">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_1_pvt">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_2_pub">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_pub">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
+                                <br/>
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_pvt">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
+                                <br/>
+                            </td>
+                        </tr>
+                        <!--Total-->
+                        <tr class="tdpa" height="19" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
+                            ng-if="dlfLosMfisheries.assets == 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
+                            </td>
+                            <td width="111" height="19" ng-bind="dlfLosRfisheries.los_year_1_pub">
+                            </td>
+                            <td width="115" height="19" ng-bind="dlfLosRfisheries.los_year_1_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pub">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pvt">
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr height="19">
+                            <td colspan="2" width="250" height="19">
+                                TOTAL LOSSES
+                            </td>
+                            <td width="111" height="19">
+                                -
+                            </td>
+                            <td width="115" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                            <td width="63" height="19">
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" class="btn btn-info">Clear</button>
+                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_fisheries_district)">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+                 aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title">
+                                <span id="bookId"> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput">Name</label>
+                                <div class="col-md-10">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

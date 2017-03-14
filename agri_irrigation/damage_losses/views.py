@@ -14,7 +14,8 @@ def dl_irrigation(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'agri_irrigation'
     }
 
     return render(request, 'damage_losses/damages_losses.html', context)
@@ -30,7 +31,8 @@ def dl_sum_irg_district(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'agri_irrigation'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_irrigation_district.html', context)
@@ -44,9 +46,23 @@ def dl_sum_irg_province(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'agri_irrigation'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_irrigation_sub_sectorp_province.html', context)
 
 
+def dl_sum_irg_national(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents,
+        'module': 'agri_irrigation'
+    }
+
+    return render(request, 'damage_losses/summary_damages_losses_irrigation_sub_sectorp_nationwide.html', context)

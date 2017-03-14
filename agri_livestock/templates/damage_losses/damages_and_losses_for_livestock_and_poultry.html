@@ -74,31 +74,33 @@
                             </td>
                             <td colspan="7" width="667" height="19">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false);fetchOrganization();" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
                         </tr>
-                        <tr class="trheadc" height="34">
-                            <td width="113" height="34">
-                                Name of Organization
-                            </td>
-                            <td colspan="10" width="990" height="34">
-                                <select id="selectbasic" name="selectbasic" class="form-control"
-                                        style="width:100%;font-weight:400;">
-                                    <option value="1">Option one</option>
-                                    <option value="2">Option two</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="34">
-                            <td width="113" height="34">
-                                Ownership (Public or Private)
-                            </td>
-                            <td colspan="10" width="990" height="34">
-                                <br/>
-                            </td>
-                        </tr>
+                         <tr class="trhead" height="19">
+                        <td height="19" width="171" colspan="3">
+                            Name of Organization
+                        </td>
+                        <td class="trsub" colspan="5" height="19" width="400">
+                            <select ng-options="organization as organization.name for organization in organizations track by organization.id"
+                                    name="firm" id="ccyear" ng-model="selectedOrganization" class="form-control" style="font-weight:400;" required>
+                                <option value="" selected>Select Organization</option>
+                            </select>
+                        </td>
+
+
+                    </tr>
+                    <tr  height="19">
+                        <td class="trhead" height="19" width="171">
+                            Ownership
+                        </td>
+                        <td colspan="15">
+                            <span ng-bind="selectedOrganization.ownership"></span>
+
+                        </td>
+                    </tr>
                         <tr class="trheadc" height="19">
                             <td colspan="11" width="1099" height="19">
                                 Number of Dead Animals

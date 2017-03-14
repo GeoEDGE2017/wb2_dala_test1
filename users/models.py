@@ -158,4 +158,5 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         verbose_name_plural = "Users"
+        db_table = 'public\".\"users_myuser'
         

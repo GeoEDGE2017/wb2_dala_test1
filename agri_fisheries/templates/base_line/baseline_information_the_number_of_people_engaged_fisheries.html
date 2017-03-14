@@ -1,0 +1,162 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="bsNoofPeplEngdFisheriesApp" ng-controller="bsNoofPeplEngdFisheriesController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline information on the number of people engaged in fisheries </span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_bs_noof_pepl_engd_fisheries">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="125"/>
+                        <col width="95"/>
+                        <col width="111"/>
+                        <col width="115"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_bs_noof_pepl_engd_fisheries.district.$error.required">
+                                Please Select District
+                            </span>
+                        </td>
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_bs_noof_pepl_engd_fisheries.baselineDate.$error.required">
+                                Please Select Date
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="19">
+                        <td width="125" height="19">
+                            District
+                        </td>
+                        <td width="95" height="19">
+                            <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select a District</option>
+                                {% for district in districts %}
+                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td width="111" height="19">
+                            Year/Month
+                        </td>
+                        <td width="115" height="19">
+                            <input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="125" height="19">
+                            Sub-sector
+                        </td>
+                        <td colspan="3" width="301" height="19">
+                            Number of Fishers/Growers
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="125" height="19">
+                            Fisheries
+                        </td>
+                        <td width="95" height="19">
+                            Families
+                        </td>
+                        <td width="111" height="19">
+                            Male
+                        </td>
+                        <td width="115" height="19">
+                            Female
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="bsPeoFisheries in bsNoofPeplEngdFisheries.agri_fisheries.Table_1.BsPeoFisheries">
+                        <td class="tdpa" width="125" height="19" ng-bind="bsPeoFisheries.fisheries">
+                        </td>
+                        <td width="95" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsPeoFisheries.num_families">
+                        </td>
+                        <td width="111" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsPeoFisheries.num_male">
+                        </td>
+                        <td width="115" height="19">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="bsPeoFisheries.num_female">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="pull-right">
+                    <br>
+                     <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="button" ng-click="saveBsData(form_bs_noof_pepl_engd_fisheries)"
+
+                    class="btn btn-success">Submit
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

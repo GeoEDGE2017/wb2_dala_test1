@@ -22,6 +22,7 @@ def damages_losses_of_mining_firms(request):
     context = {
         'districts': filtered_districts,
         'incidents': filtered_incidents,
+        'module': 'mining'
     }
 
     return render(request, 'damage_losses/damages_losses_of_mining_firms.html', context)
@@ -37,6 +38,7 @@ def damages_losses_artisanal_mining(request):
     context = {
         'districts': filtered_districts,
         'incidents': filtered_incidents,
+        'module': 'mining'
     }
 
     return render(request, 'damage_losses/damages_losses_artisanal_mining.html', context)
@@ -52,6 +54,7 @@ def summary_damage_losses_district(request):
     context = {
         'districts': filtered_districts,
         'incidents': filtered_incidents,
+        'module': 'mining'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_district.html', context)
@@ -65,6 +68,7 @@ def summary_damage_losses_nationwide(request):
 
     context = {
         'incidents': filtered_incidents,
+        'module': 'mining'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_nationwide.html', context)

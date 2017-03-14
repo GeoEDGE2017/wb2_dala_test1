@@ -19,6 +19,7 @@ def bs_inc_ast_rail_cmpy(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'transport_rail'
     }
 
     return render(request, 'base_line/income_assets_rail_transportation_company.html', context)

@@ -73,6 +73,7 @@ def bs_save_data(request):
     is_edit = bs_data['is_edit']
 
     if not is_edit:
+        print 'in'
         for sector in bs_table_hs_data:
 
             sub_app_name = sector + '.base_line'
@@ -609,13 +610,12 @@ def dl_fetch_total_data(request):
     dl_mtable_data[sector][table_name] = {}
 
     for table in tables:
+        print table
         table_fields = tables[table]
         model_class = apps.get_model(sub_app_name, table)
         dl_mtable_data[sector][table_name][table] = list(model_class.objects.
                                                          filter(**filter_fields).
                                                          values(*table_fields))
-
-        print dl_mtable_data
 
     return HttpResponse(
         json.dumps(dl_mtable_data, cls=DjangoJSONEncoder),
@@ -656,6 +656,9 @@ def add_entity(request):
 
     if is_edit == False:
         print 'new'
+
+        print model_fields
+
         model_object = model_class(**model_fields)
         model_object.save()
 
@@ -663,7 +666,7 @@ def add_entity(request):
         print 'update'
         object_id = model_fields['id']
         modified_model = model_class.objects.filter(pk=object_id)
-        modified_model.update(name=model_fields['name'])
+        modified_model.update(**model_fields)
         return HttpResponse(object_id)
 
     if model_object.id is not None:
@@ -757,5 +760,54 @@ def dl_fetch_summary_disagtn(request):
 
     return HttpResponse(
         json.dumps((dl_data), cls=DjangoJSONEncoder),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
+@csrf_exempt
+def dl_fetch_summary_dis_disagtn(request):
+    data = (yaml.safe_load(request.body))
+    table_names = data['table_name']
+    sectors = data['sector']
+    com_data = data['com_data']
+    incident = com_data['incident']
+
+    filter_fields = {}
+    dl_data = {}
+
+    if 'province' in com_data:
+        admin_area = com_data['province']
+        filter_fields = {'incident': incident, 'province': admin_area}
+    elif 'district' in com_data:
+        admin_area = com_data['district']
+        filter_fields = {'incident': incident, 'district': admin_area}
+    else:
+        filter_fields = {'incident': incident}
+
+    i = 0
+
+    for sector in sectors:
+        print sector
+        sub_app_name = sector + '.damage_losses'
+        dl_mtable_data = {sector: {}}
+
+        table_name = table_names[i]
+        tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
+        dl_mtable_data[sector][table_name] = {}
+
+        for table in tables:
+
+            dl_mtable_data[sector][table_name][table] = {}
+            table_fields = tables[table]
+            model_class = apps.get_model(sub_app_name, table)
+            dl_mtable_data[sector][table_name][table] = list(model_class.objects.
+                                                             filter(**filter_fields).
+                                                             values(*table_fields))
+            print dl_mtable_data
+            dl_data.update(dl_mtable_data)
+        i += 1
+
+    return HttpResponse(
+        json.dumps(dl_data, cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
     )

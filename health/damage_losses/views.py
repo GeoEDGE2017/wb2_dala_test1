@@ -16,7 +16,8 @@ def dl_health_damagelost_other_medical_facilities(request):
 
     context = {
         'districts': districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'health'
     }
     return render(request, 'damage_losses/health_damagelost_other_medi.html', context)
 
@@ -31,7 +32,8 @@ def health_damagelost_ministry_helth(request):
     context = {
         'districts': districts,
         'provinces': provinces,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'health'
     }
     return render(request, 'damage_losses/health_damagelost_ministry_helth.html', context)
 
@@ -46,6 +48,7 @@ def health_damagelost_private(request):
         'districts': districts,
         'provinces': provinces,
         'incidents': incidents,
+        'module': 'health'
     }
     return render(request, 'damage_losses/health_damagelost_private.html', context)
 
@@ -60,6 +63,7 @@ def health_summery_damageloss_province(request):
         'districts': districts,
         'provinces': provinces,
         'incidents': incidents,
+        'module': 'health'
     }
     return render(request, 'damage_losses/health_summery_damageloss_province.html', context)
 
@@ -70,6 +74,7 @@ def dl_health_summary_sector_district(request):
     context = {
         'districts': districts,
         'incidents': incidents,
+        'module': 'health'
     }
     return render(request, 'damage_losses/health_summery_damageloss_dis.html', context)
 
@@ -82,6 +87,7 @@ def dl_health_summary_damage_nationwide(request):
     context = {
         'districts': districts,
         'incidents': incidents,
+        'module': 'health'
     }
     return render(request, 'damage_losses/health_summery_damageloss_national.html', context)
 

@@ -12,7 +12,8 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
     $scope.grnddamage = null;
     $scope.totalLoss = null;
     $scope.grndLoss = null;
-
+    $scope.grndfinaltotal = null;
+    $scope.finalgrandtot = null;
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
 
@@ -150,14 +151,13 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
 
         $scope.grndLoss = $scope.grndLoss + totalLoss ;
 
-        var finaltotalprivate = $scope.grndLoss + $scope.grnddamage ;
+        var finalgrandtot = $scope.grndLoss + $scope.grnddamage ;
 
-         var finaltotalprivatestring = "finaltotalprivate_"+ key;
+         var finalgrandtotstring = "finalgrandtot_"+ key;
 
-         var model = $parse(finaltotalprivatestring);
-         model.assign($scope, finaltotalprivate);
-         $scope.grndfinaltotalprivate = $scope.grndfinaltotalprivate + finaltotalprivate ;
-         $scope.summaryTotal = $scope.grndfinaltotalpublic + $scope.grndfinaltotalprivate;
+         var model = $parse(finalgrandtotstring);
+         model.assign($scope, finalgrandtot);
+         $scope.grndfinaltotal = $scope.grndfinaltotal + finalgrandtot ;
 
 
     }

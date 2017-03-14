@@ -11,8 +11,11 @@ from users.decorators import super_user_permission
 
 
 @super_user_permission()
-def index_report(request):   
-    return render(request, 'reports/index_report.html')
+def index_report(request):
+    context = {
+        'module': 'reports'
+    }
+    return render(request, 'reports/index_report.html', context)
 
 
 def health_summery_damageloss_dis_report(request):
@@ -20,7 +23,8 @@ def health_summery_damageloss_dis_report(request):
     incidents = IncidentReport.objects.all()
     context = {
         'districts': districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/health_summery_damageloss_dis_report.html', context)
 
@@ -32,7 +36,8 @@ def health_summery_damageloss_national_report(request):
     context = {
         'districts': districts,
         'incidents': incidents,
-        'provinces': provinces
+        'provinces': provinces,
+        'module': 'reports'
     }
     return render(request, 'reports/health_summery_damageloss_national_report.html', context)
 
@@ -44,7 +49,8 @@ def health_summery_damageloss_province_report(request):
     context = {
         'districts': districts,
         'incidents': incidents,
-        'provinces': provinces
+        'provinces': provinces,
+        'module': 'reports'
     }
     return render(request, 'reports/health_summery_damageloss_province_report.html', context)
 
@@ -53,6 +59,7 @@ def education_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
         'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/report_education.html', context)
 
@@ -61,6 +68,7 @@ def mining_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
         'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/report_mining.html', context)
 
@@ -69,6 +77,7 @@ def other_govn_services_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
         'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/report_other_govn_services.html', context)
 
@@ -77,6 +86,7 @@ def transport_land_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
         'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/report_transport_land.html', context)
 
@@ -85,6 +95,7 @@ def transport_rail_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
         'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/report_transport_rail.html', context)
 
@@ -93,6 +104,7 @@ def transport_water_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
         'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/report_transport_water.html', context)
 
@@ -101,6 +113,7 @@ def transport_air_summary(request):
     incidents = IncidentReport.objects.all()
     context = {
         'incidents': incidents,
+        'module': 'reports'
     }
     return render(request, 'reports/report_transport_air.html', context)
 

@@ -219,9 +219,9 @@
                             <td class="tdpa" width="258" height="19" ng-bind="dlMinorTanks.irrigation_assets">
                                 Total
                             </td>
-                            <td class="tdpa" colspan="4" ng-bind="dlMinorTanks.partially_damaged">
+                            <td class="tdpa" colspan="4">
                             </td>
-                            <td class="tdpa" colspan="2" ng-bind="dlMinorTanks.totally_destroyed">
+                            <td class="tdpa" colspan="2">
                             </td>
                             <td width="85" ng-model="dlMinorTanks.damages" ng-bind="dlMinorTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks)">
 
@@ -399,7 +399,7 @@
                         <tr height="19" ng-repeat="dlBuildings in dlIrrigation.agri_irrigation.Table_3.DlBuildings" ng-if="dlBuildings.building == 'Total'">
                             <td class="tdpa" colspan="7" width="973" height="19" ng-bind="dlBuildings.building">
                             </td>
-                            <td width="85" ng-bind="CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlBuildings)">
+                            <td width="85"  ng-model="dlBuildings.damages" ng-bind="dlBuildings.damages=CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlBuildings)">
                             </td>
                         </tr>
                         <!--TOTAL DAMAGES-->
@@ -555,18 +555,18 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlLosOther.other_unexpected_expenses">
                             </td>
-                            <td width="85" ng-model="dlLosOther.total_los" ng-bind="dlLosOther.total_los + dlLosOther.high_operation_cost + dlLosOther.other_unexpected_expenses">
+                            <td width="85" ng-model="dlLosOther.total_los" ng-bind="dlLosOther.total_los = dlLosOther.high_operation_cost + dlLosOther.other_unexpected_expenses">
                             </td>
                         </tr>
                         <!--TOTAL LOSSES-->
                         <tr height="19" ng-repeat="dlLosOther in dlIrrigation.agri_irrigation.Table_3.DlLosOther" ng-if="dlLosOther.irrigation_assets == 'TOTAL LOSSES'">
                             <td class="tdpa" width="258" height="19" ng-bind="dlLosOther.irrigation_assets">
                             </td>
-                            <td colspan="4" width="545" ng-model="dlLosOther.high_operation_cost" ng-bind="calTotalOperatingLos()">
+                            <td colspan="4" width="545" ng-model="dlLosOther.high_operation_cost" ng-bind="dlLosOther.high_operation_cost = calTotalOperatingLos()">
                             </td>
-                            <td colspan="2" width="170" ng-model="dlLosOther.other_unexpected_expenses" ng-bind="calTotalOther()">
+                            <td colspan="2" width="170" ng-model="dlLosOther.other_unexpected_expenses" ng-bind="dlLosOther.other_unexpected_expenses = calTotalOther()">
                             </td>
-                            <td width="85"  ng-bind="calTotalLosses()">
+                            <td width="85"  ng-model="dlLosOther.total_los" ng-bind="dlLosOther.total_los = calTotalLosses()">
                             </td>
                         </tr>
                         </tbody>

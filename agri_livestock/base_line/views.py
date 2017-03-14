@@ -12,6 +12,7 @@ def bs_livestock_poultry_dst(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_livestock'
     }
     return render(request, 'base_line/baseline_information_number_people_engaged_livestock_and_poultry_district.html', context)
 
@@ -25,6 +26,9 @@ def bs_livestock_poultry(request):
 
     context = {
         'districts': filtered_districts,
+        'module': 'agri_livestock'
     }
     return render(request, 'base_line/baseline_information_on_livestock_and_poultry.html', context)
+
+
 

@@ -66,8 +66,15 @@
                                 <button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>
                             </td>
                     </tr>
+                    </tbody>
+                    </table>
 
-                    <tr class="trheadc" height="19">
+
+
+                    <table
+                           class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody>
+                        <tr class="trheadc" height="19">
                         <td rowspan="3" width="218" height="57" style="width:19.3%;">
                             Province
                         </td>
@@ -119,11 +126,7 @@
                         </td>
                     </tr>
 
-
-                    <table ng-repeat="(key, value) in dlAirTransSumNat.transport_air.Table_5"
-                           class="table table-bordered">
-                        <tbody>
-                        <tr  height="20" ng-init="getTotal($index,key);">
+                        <tr  ng-repeat="(key, value) in dlAirTransSumNat.transport_air.Table_5" height="20" ng-init="getTotal($index,key)">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 
@@ -155,6 +158,9 @@
                         </td>
 
                         </tr>
+
+
+                    </tbody>
                         <tr height="19">
                         <td class="boldash" width="253" height="19">
                             TOTAL
@@ -184,8 +190,6 @@
 
                         </td>
                     </tr>
-
-                    </tbody>
                 </table>
                 <div class="pull-right">
                     <br>

@@ -82,9 +82,9 @@ INSTALLED_APPS = [
     'agri_fisheries',
     'agri_fisheries.base_line',
     'agri_fisheries.damage_losses',
-    'water_supply',
-    'water_supply.base_line',
-    'water_supply.damage_losses',
+    # 'water_supply',
+    # 'water_supply.base_line',
+    # 'water_supply.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -132,11 +132,7 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
         # },
 
-        # 'OPTIONS': {
-        #     'options': '-c search_path=water_supply'
-        # },
-
-        'NAME': 'dala',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
     },
 
@@ -209,7 +205,7 @@ TABLE_PROPERTY_MAPPER = {
                 'DmhDamagesDistrict': ['teaching_hospital', 'provincial_general_hospital',
                                        'district_general_hospital'],
                 'DmhLosDistrict': ['teaching_hospital', 'provincial_general_hospital',
-                                      'district_general_hospital', 'type_of_losses', 'office', 'other'],
+                                   'district_general_hospital', 'type_of_losses', 'office', 'other'],
                 'DmhDamagesMohDistrict': ['office', 'other'],
                 'DmfTotAffectedDistrict': ['base_hospital', 'divisional_hospital', 'rural_hospital',
                                            'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
@@ -2375,7 +2371,7 @@ TABLE_PROPERTY_MAPPER = {
             ],
 
         },
-        'Table_4': {
+        'Table_5': {
             'DlpNdaPubProvince': [
                 'damages',
             ],
@@ -2391,7 +2387,7 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2',
             ],
         },
-        'Table_5': {
+        'Table_6': {
             'DlpNdaPubNational': [
                 'damages',
             ],
@@ -2480,6 +2476,46 @@ TABLE_PROPERTY_MAPPER = {
                 'id',
             ],
 
+        },
+        'Table_5': {
+            'DlfDmgPubDistrict': [
+                'fishing_type',
+                'dmg_pub',
+            ],
+            'DlfDmgPvtDistrict': [
+                'name',
+                'dmg_pvt',
+            ],
+            'DlfLosIfisheriesDistrict': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfLosRfisheriesDistrict': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfLosMfisheriesDistrict': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfDmgPubProvince': [
+                'dmg_pub',
+            ],
+            'DlfDmgPvtProvince': [
+                'dmg_pvt',
+            ],
+            'DlfLosProvince': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
         },
 
     },

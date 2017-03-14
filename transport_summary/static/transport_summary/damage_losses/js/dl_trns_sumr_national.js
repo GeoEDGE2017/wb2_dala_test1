@@ -46,14 +46,7 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
                    }),
             }).success(function(data) {
 
-            angular.forEach(data, function(value, key) {
-             if(key == 'transport_land'){
-              console.log(value.Table_9);
-              angular.forEach(value.Table_9, function(value, key) {
-                 console.log('land',key);
-            });
-              }
-            });
+
            $scope.dlTransSumNat = data  ;
 
             })
@@ -71,6 +64,17 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
+
+            $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlTransSumNat ?
+         ((angular.equals({}, $scope.dlTransSumNat.transport_land.Table_9) ) ||
+         (angular.equals({}, $scope.dlTransSumNat.transport_air.Table_5)) ||
+         (angular.equals({}, $scope.dlTransSumNat.transport_water.Table_5)) ||
+         (angular.equals({}, $scope.dlTransSumNat.transport_rail.Table_4))) : true ;
+        return isNull;
+
+   }
 
    $scope.getTotal = function(key) {
 

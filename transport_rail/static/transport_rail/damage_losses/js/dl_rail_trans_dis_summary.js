@@ -64,12 +64,19 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
 
     }
 
+          $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlRailTransSumDis ? angular.equals({}, $scope.dlRailTransSumDis.transport_rail.Table_3) : true;
+        return isNull;
+
+   }
+
  $scope.getTotal = function(model, property,$index,key) {
 
 
-         $scope.total = $scope.total +
-                         $scope.dlRailTransSumDis.transport_rail.Table_3[key].TotDmgProvince[$index].tot_damages ?
-                         $scope.dlRailTransSumDis.transport_rail.Table_3[key].TotDmgProvince[$index].tot_damages : 0 ;
+         $scope.total = $scope.total + (
+                         $scope.dlRailTransSumDis.transport_rail.Table_3[key].TotDmgProvince[0].tot_damages ?
+                         $scope.dlRailTransSumDis.transport_rail.Table_3[key].TotDmgProvince[0].tot_damages : 0 ) ;
     }
 
 })

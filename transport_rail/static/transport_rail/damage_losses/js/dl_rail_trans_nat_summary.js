@@ -39,13 +39,19 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
 
 
     }
+             $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dmLosTransAirNation ? angular.equals({}, $scope.dmLosTransAirNation.transport_rail.Table_4) : true;
+        return isNull;
+
+   }
 
      $scope.getTotal = function(model, property,$index,key) {
 
 
-         $scope.total =  $scope.total +
-                         $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages ?
-                         $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages : 0 ;
+         $scope.total =  $scope.total + (
+                         $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[0].tot_damages ?
+                         $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[0].tot_damages : 0 ) ;
 
     }
 

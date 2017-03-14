@@ -435,21 +435,10 @@ class DlpLosPvtProvince(models.Model):
         managed = False
         db_table= 'agri_livestock\".\"dlp_los-pvt_province'
 
-# Views Tbale 5
+# Views Tbale 6
 
 
-class DlpNdaPubProvince(models.Model):
-
-    damages = models.FloatField(blank=True, null=True)
-    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table= 'agri_livestock\".\"dlp_nda-pub_province'
-
-
-class DlpNdaPvtProvince(models.Model):
+class DlpNdaPubNational(models.Model):
 
     damages = models.FloatField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
@@ -457,10 +446,21 @@ class DlpNdaPvtProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_nda-pvt_province'
+        db_table= 'agri_livestock\".\"dlp_nda-pub_national'
 
 
-class DlpLosPubProvince(models.Model):
+class DlpNdaPvtNational(models.Model):
+
+    damages = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table= 'agri_livestock\".\"dlp_nda-pvt_national'
+
+
+class DlpLosPubNational(models.Model):
 
     los_year_1 = models.FloatField(blank=True, null=True)
     los_year_2 = models.FloatField(blank=True, null=True)
@@ -469,10 +469,10 @@ class DlpLosPubProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_los-pub_province'
+        db_table= 'agri_livestock\".\"dlp_los-pub_national'
 
 
-class DlpLosPvtProvince(models.Model):
+class DlpLosPvtNational(models.Model):
 
     los_year_1 = models.FloatField(blank=True, null=True)
     los_year_2 = models.FloatField(blank=True, null=True)
@@ -481,4 +481,4 @@ class DlpLosPvtProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_los-pvt_province'
+        db_table= 'agri_livestock\".\"dlp_los-pvt_national'

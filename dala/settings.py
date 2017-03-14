@@ -82,9 +82,9 @@ INSTALLED_APPS = [
     'agri_fisheries',
     'agri_fisheries.base_line',
     'agri_fisheries.damage_losses',
-    'water_supply',
-    'water_supply.base_line',
-    'water_supply.damage_losses',
+    # 'water_supply',
+    # 'water_supply.base_line',
+    # 'water_supply.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -132,11 +132,7 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
         # },
 
-        # 'OPTIONS': {
-        #     'options': '-c search_path=water_supply'
-        # },
-
-        'NAME': 'dala',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
     },
 
@@ -2515,10 +2511,10 @@ TABLE_PROPERTY_MAPPER = {
                 'dmg_pvt',
             ],
             'DlfLosProvince': [
-                'los_year_1_pub'
-    'los_year_1_pvt'
-    'los_year_2_pub'
-    'los_year_2_pvt'
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
             ],
         },
 

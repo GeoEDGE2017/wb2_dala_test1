@@ -45,7 +45,8 @@ def dl_livestock_pro(request):
     incidents = IncidentReport.objects.all()
 
     context = {
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'agri_livestock'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_livestock_poultry_the_province.html', context)
@@ -57,7 +58,8 @@ def dl_livestock_nat(request):
     incidents = IncidentReport.objects.all()
 
     context = {
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'agri_livestock'
     }
 
     return render(request, 'damage_losses/summary_damages_losses_livestock_poultry_the_nationwide.html', context)

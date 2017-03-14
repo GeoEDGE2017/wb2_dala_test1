@@ -82,6 +82,9 @@ INSTALLED_APPS = [
     'agri_fisheries',
     'agri_fisheries.base_line',
     'agri_fisheries.damage_losses',
+    'water_supply',
+    'water_supply.base_line',
+    'water_supply.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -130,10 +133,10 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=agri_fisheries'
+        #     'options': '-c search_path=water_supply'
         # },
 
-        'NAME': 'dala_2017',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 

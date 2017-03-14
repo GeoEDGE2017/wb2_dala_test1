@@ -384,8 +384,6 @@ class DlBuildingsDistrict(models.Model):
 
 
 # Table_6
-
-
 class DlMajorTanksNational(models.Model):
     damages = models.FloatField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)

@@ -845,8 +845,8 @@
                             <td class="tdpa" colspan="2" width="250" height="36" ng-bind="dlfLosIfisheries.assets">
                             </td>
                             <td class="tdpa" width="111" height="36"
-                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' &&
-                                       dlfLosIfisheries.assets == 'Production losses (Private)'">
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
+                                       dlfLosIfisheries.assets == 'Production losses (Private)'">p1
                                 <br/>
                             </td>
                             <td width="115" height="36"
@@ -855,49 +855,66 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pub">
                             </td>
+
                             <td width="63" height="36">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pvt">
                             </td>
+
                             <td class="tdpa" width="63" height="36"
-                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' &&
-                                       dlfLosIfisheries.assets == 'Production losses (Private)'">
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
+                                       dlfLosIfisheries.assets == 'Production losses (Private)'">p2
                                 <br/>
                             </td>
-                            <td width="63" height="36"
+                            <td width="115" height="36"
                                 ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
                                        dlfLosIfisheries.assets != 'Production losses (Private)'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pvt">
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pub">
                             </td>
-                            <td class="tdpa" width="63" height="36">
+
+                            <td width="63" height="36">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pvt">
+                            </td>
+
+                            <td class="tdpa" width="63" height="36"
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
+                                       dlfLosIfisheries.assets == 'Production losses (Private)'">p3
                                 <br/>
                             </td>
-                            <td class="tdpa" width="63" height="36">
+                            <td width="115" height="36"
+                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
+                                       dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_pub">
+                            </td>
+                            <td class="tdpa" width="63" height="36"
+                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">p4
                                 <br/>
+                            </td>
+
+                            <td width="63" height="36" ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_pvt">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" colspan="2" width="250" height="19">
-                                Total
+                        <!--Total-->
+                        <tr height="19" ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
+                            ng-if="dlfLosIfisheries.assets == 'Total'">
+                            <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosIfisheries.assets">
                             </td>
-                            <td width="111" height="19">
-                                -
+                            <td width="111" height="19" ng-bind="dlfLosIfisheries.los_year_1_pub">
                             </td>
-                            <td width="115" height="19">
-                                -
+                            <td width="115" height="19" ng-bind="dlfLosIfisheries.los_year_1_pvt">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_year_2_pub">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_year_2_pvt">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_pub">
                             </td>
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="dlfLosIfisheries.los_pvt">
                             </td>
                         </tr>
                     </table>
@@ -925,142 +942,57 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Percentage Reduction in Value of Yield (%)
+                        <tr class="tdpa" height="19" ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
+                            ng-if="dlfLosRfisheries.assets != 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
                             </td>
                             <td width="111" height="19">
-                                <br/>
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_1_pub">
                             </td>
                             <td width="115" height="19">
-                                <br/>
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_1_pvt">
                             </td>
                             <td width="63" height="19">
-                                <br/>
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_2_pub">
                             </td>
                             <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pub">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosRfisheries.los_pvt">
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" ng-if="dlfLosRfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
                                 <br/>
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Production losses
+                        <!--Total-->
+                        <tr class="tdpa" height="19" ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
+                            ng-if="dlfLosRfisheries.assets == 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
                             </td>
-                            <td width="111" height="19">
-                                <br/>
+                            <td width="111" height="19" ng-bind="dlfLosRfisheries.los_year_1_pub">
                             </td>
-                            <td width="115" height="19">
-                                <br/>
+                            <td width="115" height="19" ng-bind="dlfLosRfisheries.los_year_1_pvt">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pub">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pvt">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pub">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Cleaning of Debris
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Higher operating expenses
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Other unexpected expenses
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Total
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pvt">
                             </td>
                         </tr>
                     </table>
@@ -1088,142 +1020,57 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr class="tdpa" height="31">
-                            <td colspan="2" width="250" height="31">
-                                Percentage Reduction in Value of Yield (%)
+                        <tr class="tdpa" height="31" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
+                            ng-if="dlfLosMfisheries.assets != 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosMfisheries.assets">
                             </td>
-                            <td width="111" height="31">
+                            <td width="111" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_1_pub">
+                            </td>
+                            <td width="115" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_1_pvt">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_2_pub">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_pub">
+                            </td>
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
                                 <br/>
                             </td>
-                            <td width="115" height="31">
-                                <br/>
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosMfisheries.los_pvt">
                             </td>
-                            <td width="63" height="31">
-                                <br/>
-                            </td>
-                            <td width="63" height="31">
-                                <br/>
-                            </td>
-                            <td width="63" height="31">
-                                <br/>
-                            </td>
-                            <td width="63" height="31">
+                            <td width="63" height="19" ng-if="dlfLosMfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
                                 <br/>
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Production losses
+                        <!--Total-->
+                        <tr class="tdpa" height="19" ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
+                            ng-if="dlfLosMfisheries.assets == 'Total'">
+                            <td colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
                             </td>
-                            <td width="111" height="19">
-                                <br/>
+                            <td width="111" height="19" ng-bind="dlfLosRfisheries.los_year_1_pub">
                             </td>
-                            <td width="115" height="19">
-                                <br/>
+                            <td width="115" height="19" ng-bind="dlfLosRfisheries.los_year_1_pvt">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pub">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_year_2_pvt">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pub">
                             </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Cleaning of Debris
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Higher operating expenses
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Other unexpected expenses
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td colspan="2" width="250" height="19">
-                                Total
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
+                            <td width="63" height="19" ng-bind="dlfLosRfisheries.los_pvt">
                             </td>
                         </tr>
                     </table>

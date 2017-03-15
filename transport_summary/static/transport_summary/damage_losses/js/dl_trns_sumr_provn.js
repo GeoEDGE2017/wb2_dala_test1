@@ -76,19 +76,23 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
                    }),
             }).success(function(data) {
 
-            angular.forEach(data, function(value, key) {
-             if(key == 'transport_land'){
-              console.log(value.Table_8);
-              angular.forEach(value.Table_8, function(value, key) {
-                 console.log('land',key);
-            });
-              }
-            });
+
 
             $scope.dlTransSumPro = data;
 
             })
     }
+
+           $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlTransSumPro ?
+         ((angular.equals({}, $scope.dlTransSumPro.transport_land.Table_8) ) ||
+         (angular.equals({}, $scope.dlTransSumPro.transport_air.Table_4)) ||
+         (angular.equals({}, $scope.dlTransSumPro.transport_water.Table_4)) ||
+         (angular.equals({}, $scope.dlTransSumPro.transport_rail.Table_3))) : true ;
+        return isNull;
+
+   }
 
    $scope.convertToInt = function(val1,val2,val3){
 

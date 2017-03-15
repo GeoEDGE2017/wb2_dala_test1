@@ -79,7 +79,12 @@
                                 <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dlsum_trnsair_natl)">Load</button>
                             </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+
+                    </tbody>
+                    </table>
+              <table class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody>
+                        <tr class="trheadc" height="19">
                         <td rowspan="2" height="38" width="156">
                             Provinces
                         </td>
@@ -133,10 +138,7 @@
                             Private
                         </td>
                     </tr>
-      <table ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"
-                           class="table table-bordered">
-                        <tbody>
-                        <tr  height="20" ng-init="getTotal($index,key);">
+                        <tr ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"  height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 
@@ -159,7 +161,7 @@
                         <td width="133" ng-bind="value.DlOtherLosPvtNational[0].year_2_pub">
 
                         </td>
-                        <td width="126" ng-bind="value.DlGacPubNational[0].damges + value.DlYearsPubNational[0].year_1 + value.DlYearsPubNational[0].year_2 ">
+                        <td width="126" ng-bind="value.DlGacPubNational[0].damages + value.DlYearsPubNational[0].year_1 + value.DlYearsPubNational[0].year_2 ">
 
                         </td>
                         <td width="85" ng-bind="convertToInt(value.DlGacPvtNational[0].tot_damages_pvt,value.DlOtherLosPvtNational[0].year_1_pvt, value.DlOtherLosPvtNational[0].year_2_pub)">
@@ -167,7 +169,10 @@
                         </td>
 
                         </tr>
-                        <tr height="19">
+
+
+                    </tbody>
+                    <tr height="19">
                         <td class="boldash" width="253" height="19">
                             TOTAL
                         </td>
@@ -195,10 +200,9 @@
                         <td width="85" ng-bind="finaltotalprivate">
 
                         </td>
-                    </tr>
-
-                    </tbody>
                 </table>
+
+                    </tr>
 
                 <div class="pull-right">
                     <br>

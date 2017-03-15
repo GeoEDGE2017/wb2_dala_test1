@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^dl_rail_trnspt_dis_summary', views.dl_rail_trnspt_dis_summary, name='dl_rail_trnspt_dis_summary'),
     #url(r'^dl_rail_trans_nat_summary', views.dl_rail_trans_nat_summary, name='dl_rail_trans_nat_summary'),
     url(r'^dl_rail_trans_nat_type_summary', views.dl_rail_trans_nat_type_summary, name='dl_rail_trans_nat_type_summary'),
-    url(r'^dl_rail_type_loss_summary', views.dl_rail_type_loss_summary, name='dl_rail_type_loss_summary'),
+    # url(r'^dl_rail_type_loss_summary', views.dl_rail_type_loss_summary, name='dl_rail_type_loss_summary'),
 ]

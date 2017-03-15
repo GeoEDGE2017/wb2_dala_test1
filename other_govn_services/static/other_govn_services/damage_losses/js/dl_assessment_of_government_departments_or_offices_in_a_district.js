@@ -430,6 +430,7 @@ $scope.fetchDlData = function(){
     'sector': 'other_govn_services',
     'com_data': {
             'incident': $scope.incident,
+             'district': $scope.district.district__id
           },
            }),
     }).success(function(data) {

@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from settings.models import District, Province
 from incidents.models import IncidentReport
-from education.base_line.models import PreSchools, PrimarySchools, SecondarySchools, Universities, TechInstitutes
+from education.base_line.models import PreSchools, PrimarySchools, SecondarySchools, Universities, TechInstitutes, OtherSchools
 
 
 class DlSessionKeys(models.Model):
@@ -456,6 +456,27 @@ class DpefBefUnv(models.Model):
     class Meta:
         managed = False
         db_table = 'education\".\"dpef_bef_unv'
+
+
+class DpefBefOtherSchool(models.Model):
+    other_school = models.ForeignKey(OtherSchools, db_column='other_school', blank=True, null=True)
+    est_rep_cost = models.FloatField(blank=True, null=True)
+    est_repair_cost = models.FloatField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    est_los_year_1 = models.FloatField(blank=True, null=True)
+    est_los_year_2 = models.FloatField(blank=True, null=True)
+    tot_los = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    asset = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'education\".\"dpef_bef_other_school'
 
 
 class DpefNaf(models.Model):

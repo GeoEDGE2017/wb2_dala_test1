@@ -82,6 +82,9 @@ INSTALLED_APPS = [
     'agri_fisheries',
     'agri_fisheries.base_line',
     'agri_fisheries.damage_losses',
+    # 'water_supply',
+    # 'water_supply.base_line',
+    # 'water_supply.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -123,11 +126,11 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,'
-        #                'transport_rail,transport_water,transport_land,transport_air,'
-        #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
-        # },
+        'OPTIONS': {
+            'options': '-c search_path=health,public,other_government,education,mining,'
+                       'transport_rail,transport_water,transport_land,transport_air,'
+                       'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        },
 
         'NAME': 'dala_new',
         'USER': 'postgres',
@@ -202,7 +205,7 @@ TABLE_PROPERTY_MAPPER = {
                 'DmhDamagesDistrict': ['teaching_hospital', 'provincial_general_hospital',
                                        'district_general_hospital'],
                 'DmhLosDistrict': ['teaching_hospital', 'provincial_general_hospital',
-                                      'district_general_hospital', 'type_of_losses', 'office', 'other'],
+                                   'district_general_hospital', 'type_of_losses', 'office', 'other'],
                 'DmhDamagesMohDistrict': ['office', 'other'],
                 'DmfTotAffectedDistrict': ['base_hospital', 'divisional_hospital', 'rural_hospital',
                                            'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
@@ -1727,30 +1730,30 @@ TABLE_PROPERTY_MAPPER = {
     'agri_irrigation': {
         'Table_4': {
             'DlMajorTanksDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages',],
             'DlLosMajorTanksDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los',],
             'DlMediumTanksDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages',],
             'DlLosMediumTanksDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los',],
             'DlMinorTanksDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages'],
             'DlLosMinorTanksDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los'],
             'DlAnicutsDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages'],
             'DlLosAnicutsDistrict':
-                ['total_los', 'incident', 'district'],
+                ['total_los'],
             'DlOtherStructuresDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages', ],
             'DlLosOtherDistrict':
-                ['total_los', 'irrigation_assets', 'incident', 'district'],
-            'DlRiverRmbankmntDistrict':
-                ['damages', 'incident', 'district'],
+                ['total_los', 'irrigation_assets'],
+            'DlRiverEmbankmntDistrict':
+                ['damages'],
             # dl_los_other_district
             'DlBuildingsDistrict':
-                ['damages', 'incident', 'district'],
+                ['damages'],
             # dl_los_other_district
         },
         'Table_1': {
@@ -2368,7 +2371,7 @@ TABLE_PROPERTY_MAPPER = {
             ],
 
         },
-        'Table_4': {
+        'Table_5': {
             'DlpNdaPubProvince': [
                 'damages',
             ],
@@ -2384,7 +2387,7 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2',
             ],
         },
-        'Table_5': {
+        'Table_6': {
             'DlpNdaPubNational': [
                 'damages',
             ],
@@ -2473,6 +2476,46 @@ TABLE_PROPERTY_MAPPER = {
                 'id',
             ],
 
+        },
+        'Table_5': {
+            'DlfDmgPubDistrict': [
+                'fishing_type',
+                'dmg_pub',
+            ],
+            'DlfDmgPvtDistrict': [
+                'name',
+                'dmg_pvt',
+            ],
+            'DlfLosIfisheriesDistrict': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfLosRfisheriesDistrict': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfLosMfisheriesDistrict': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfDmgPubProvince': [
+                'dmg_pub',
+            ],
+            'DlfDmgPvtProvince': [
+                'dmg_pvt',
+            ],
+            'DlfLosProvince': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
         },
 
     },

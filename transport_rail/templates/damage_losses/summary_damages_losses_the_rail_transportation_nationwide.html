@@ -62,26 +62,29 @@
                             </td>
                     </tr>
 
-                    <tr class="trheadc" height="20">
+                    </tbody>
+                    </table>
+            <table  class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody>
+                        <tr class="trheadc" height="20">
                         <td colspan="2" width="281" height="20" style="width:41%;">
                             Name of Province
                         </td>
-                        <td colspan="5" width="425">
+                        <td colspan="3" width="425">
                             Total Damages (LKR)
                         </td>
                     </tr>
-            <table ng-repeat="(key, value) in dmLosTransAirNation.transport_rail.Table_4"
-                           class="table table-bordered">
-                        <tbody>
-                        <tr  height="20" ng-init="getTotal('TotDmgNational','tot_damages', $index,key);">
-                            <td ng-bind="key"  class="tdpa" width="275">
+                        <tr  height="20" ng-repeat="(key, value) in dmLosTransAirNation.transport_rail.Table_4" ng-init="getTotal('TotDmgNational','tot_damages', $index,key);">
+                            <td colspan="2" ng-bind="key"  class="tdpa" width="275">
                             </td>
-                            <td width="400" ng-bind="value.TotDmgNational[0].tot_damages" >
+                            <td colspan="3" width="400" ng-bind="value.TotDmgNational[0].tot_damages" >
                             </td>
 
                         </tr>
 
-                        <tr height="20">
+
+                    </tbody>
+                <tr height="20">
                         <td class="boldash" width="281" height="20">
                             TOTAL
                         </td>
@@ -90,7 +93,6 @@
                         </td>
 
                     </tr>
-                    </tbody>
                 </table>
 
                 <div class="pull-right">

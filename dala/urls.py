@@ -53,6 +53,8 @@ urlpatterns = [
     # agri_fisheries
     url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
 
+    # water_supply
+    # url(r'^water_supply/', include('water_supply.urls', namespace='water_supply')),
 
     # other govn services
     url(r'^other_govn_services/', include('other_govn_services.urls', namespace='other_govn_services')),

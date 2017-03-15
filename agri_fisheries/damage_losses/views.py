@@ -24,7 +24,6 @@ def fetch_fishing_types(user):
     )
 
 
-
 # Table 3
 @permission_required("district", 'agri_fisheries')
 def dl_fisheries_dst(request):

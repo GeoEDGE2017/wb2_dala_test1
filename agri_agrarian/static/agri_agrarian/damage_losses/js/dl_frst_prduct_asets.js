@@ -403,7 +403,6 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model2].push(obj2);
             }
             if(model_name == 'BacfPlantnCrops') {
-
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model3].push(obj3);
             }
             if(model_name == 'BacfExportCrops') {

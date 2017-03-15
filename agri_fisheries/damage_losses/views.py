@@ -37,7 +37,8 @@ def dl_fisheries_dst(request):
     context = {
         'districts': filtered_districts,
         'incidents': incidents,
-        'fishing_types': fishing_types
+        'fishing_types': fishing_types,
+        'module': 'agri_fisheries',
     }
 
     return render(request, 'damage_losses/damages_and_losses_fisheries_district.html', context)
@@ -53,7 +54,8 @@ def dl_sum_fisheries_dst(request):
 
     context = {
         'districts': filtered_districts,
-        'incidents': incidents
+        'incidents': incidents,
+        'module': 'agri_fisheries',
     }
 
     return render(request, 'damage_losses/summary_damages_losses_fisheries_in_the_district.html', context)
@@ -70,6 +72,7 @@ def dl_sum_fisheries_pro(request):
     context = {
         'districts': filtered_districts,
         'incidents': incidents,
+        'module': 'agri_fisheries',
     }
 
     return render(request, 'damage_losses/summary_damages_losses_fisheries_in_the_province.html', context)

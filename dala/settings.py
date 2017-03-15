@@ -132,7 +132,7 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
         # },
 
-        'NAME': 'dala_2017',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 

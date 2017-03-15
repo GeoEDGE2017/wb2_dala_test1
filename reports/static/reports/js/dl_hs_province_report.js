@@ -832,7 +832,7 @@ $scope.submit = function submit()
           'incident': $scope.incident, 'province': $scope.province} }),
     })*/
     data: angular.toJson({'table_data': $scope.dlHsProvince, 'com_data': {'province': $scope.province,
-     'incident': $scope.incident},
+     'incident_id': $scope.incident},
     'is_edit': false})
     })
     .success(function(data) {

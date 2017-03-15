@@ -1,6 +1,7 @@
 from django.db import models
-from settings.models import District,Province
+from settings.models import District, Province
 from incidents.models import IncidentReport
+from transport_rail.base_line.models import Company
 
 
 class DlSessionKeys(models.Model):
@@ -8,9 +9,10 @@ class DlSessionKeys(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     user = models.IntegerField(blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
-    incident = models.IntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='tr_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='tr_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='tr_dl_district', blank=True, null=True)
+    company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -27,6 +29,7 @@ class DlMovingAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -43,6 +46,7 @@ class DlEquipMachineryAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -59,6 +63,7 @@ class DlMatSuppliesAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -75,6 +80,7 @@ class DlStructuresAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -95,6 +101,7 @@ class DlBuildingAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
 
     class Meta:
         managed = False

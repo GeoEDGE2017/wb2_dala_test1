@@ -129,11 +129,7 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
         # },
 
-        # 'OPTIONS': {
-        #     'options': '-c search_path=agri_fisheries'
-        # },
-
-        'NAME': 'dala_2017',
+        'NAME': 'dala_new',
         'USER': 'postgres',
     },
 

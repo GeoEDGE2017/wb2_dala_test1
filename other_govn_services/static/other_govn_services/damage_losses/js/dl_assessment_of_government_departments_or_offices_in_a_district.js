@@ -10,6 +10,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.is_edit_model = false;
+    $scope.is_valid_data = true;
 
     $scope.districtData = [];
 
@@ -241,7 +242,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
-       //if(form.$valid){
+       if(form.$valid){
         $http({
             method: 'POST',
             url:'/dl_save_data',
@@ -249,22 +250,25 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
             data: angular.toJson({
                 'table_data': $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys,
                 'com_data': {
-                    'district': $scope.district.district__id,
-                    'incident': $scope.incident,
-
+                    'district_id': $scope.district.district__id,
+                    'incident_id': $scope.incident,
+                    'department_id': $scope.new_department.id
                 },
                 'is_edit' : $scope.is_edit
             }),
             dataType: 'json',
         }).then(function successCallback(response) {
-            $("#modal-container-239453").modal('show');
+            if(response.data == 'False')
+                $scope.is_valid_data = false;
+            else
+                $("#modal-container-239453").modal('show');
             console.log(response);
 
         }, function errorCallback(response) {
 
             console.log(response);
         });
-        //}
+        }
 
     }
 
@@ -275,13 +279,15 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         if(form.$valid){
             $http({
                 method: "POST",
-                url: '/health/damage_losses/dl_fetch_edit_data',
+                url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                    'table_name':  'Table_6',
+                    'table_name':  'Table_2',
                     'com_data': {
-                        'district': $scope.district,
+                        'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'department_id': $scope.new_department.id
                     },
+                   'sector': 'other_govn_services',
                    'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
@@ -331,6 +337,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
 $scope.fetchDepartments = function()
 {
+  if($scope.district){
     console.log($scope.district);
     $scope.new_department.district_id = $scope.district.district__id;
 
@@ -348,6 +355,10 @@ $scope.fetchDepartments = function()
 
 
     })
+   }
+   else{
+      $scope.departments = null;
+   }
 }
 
 $scope.saveDepartment = function(form)
@@ -364,7 +375,8 @@ $scope.saveDepartment = function(form)
     data: angular.toJson({
     'model': 'Department',
     'model_fields': $scope.new_department,
-    'is_edit': $scope.is_edit_model
+    'is_edit': $scope.is_edit_model,
+    'sector': 'other_govn_services'
      }),
     }).success(function(data) {
       console.log(data);
@@ -391,18 +403,20 @@ $scope.saveDepartment = function(form)
 
 $scope.fetchOwnership = function()
 {
-    $http({
-    method: "POST",
-    url: "/other_govn_services/damage_losses/fetch_ownership",
-    data: angular.toJson({
-    'department': $scope.new_department.id,
-     }),
-    }).success(function(data) {
-        $scope.ownership = data;
-        console.log(data);
+    if($scope.new_department){
+        $http({
+        method: "POST",
+        url: "/other_govn_services/damage_losses/fetch_ownership",
+        data: angular.toJson({
+        'department': $scope.new_department.id,
+         }),
+        }).success(function(data) {
+            $scope.ownership = data;
+            console.log(data);
 
 
-    })
+        })
+    }
 
 }
 

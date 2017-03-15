@@ -295,8 +295,8 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                 data: angular.toJson({
                     'table_data': $scope.dlStrutsOthAsets,
                     'com_data': {
-                       'district': $scope.district.district__id,
-                        'incident' : $scope.incident,
+                       'district_id': $scope.district.district__id,
+                        'incident_id' : $scope.incident,
                     },
                     'is_edit':$scope.is_edit
                 }),

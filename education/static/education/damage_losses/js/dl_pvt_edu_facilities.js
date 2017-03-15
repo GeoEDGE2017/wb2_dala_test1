@@ -349,8 +349,8 @@ $scope.submitted = true;
     url: "/dl_save_data",
     data: angular.toJson({
     'table_data': ($scope.dlPvtEduFacilities),
-    'com_data': {'district': $scope.district,
-    'incident': 9,
+    'com_data': {'district_id': $scope.district.district__id,
+    'incident_id': $scope.incident,
     },
     'is_edit': $scope.is_edit }),
     }).success(function(data) {
@@ -434,8 +434,8 @@ $scope.fetchSchoolData = function(){
                 data: angular.toJson({
                     'table_data': $scope.dlPvtEduFacilities,
                     'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
                     },
                     'is_edit': $scope.is_edit
                 }),

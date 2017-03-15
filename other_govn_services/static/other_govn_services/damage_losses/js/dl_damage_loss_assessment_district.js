@@ -100,8 +100,8 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
             data: angular.toJson({
                 'table_data': $scope.dlAssessmentDistrictSys,
                 'com_data': {
-                    'district': $scope.district,
-                    'incident': $scope.incident,
+                    'district_id': $scope.district,
+                    'incident_id': $scope.incident,
 
                 },
                 'is_edit' : $scope.is_edit

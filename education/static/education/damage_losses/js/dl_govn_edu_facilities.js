@@ -748,8 +748,8 @@ $scope.saveDlData = function(form) {
                 data: angular.toJson({
                     'table_data': $scope.dlGovnEduFacilities,
                     'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
                     },
                     'is_edit': $scope.is_edit
                 }),

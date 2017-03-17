@@ -96,11 +96,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                     num_tot_destroyed : null,
                     num_partial_damaged : null,
                     damages : null,
-                }, {
-                    name_dept : 'TOTAL DAMAGES',
-                    num_tot_destroyed : null,
-                    num_partial_damaged : null,
-                    damages : null,
                 }],
                 'DlagdLosses': [{
                     name_dept : 'Foregone Income',

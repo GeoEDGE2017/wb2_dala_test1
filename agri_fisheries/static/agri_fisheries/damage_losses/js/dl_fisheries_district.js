@@ -388,7 +388,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BifAstFequipment','BifAstOequipment','BifAstMachinery','BifAstStructures'],
+                    'db_tables': ['BifAstFequipment','BifAstOequipment','BifAstMachinery','BifAstStructures','BifAstBuildings'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,

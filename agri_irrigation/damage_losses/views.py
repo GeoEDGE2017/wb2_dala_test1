@@ -38,6 +38,7 @@ def dl_sum_irg_district(request):
     return render(request, 'damage_losses/summary_damages_losses_irrigation_district.html', context)
 
 
+@permission_required("provincial", 'agri_irrigation')
 def dl_sum_irg_province(request):
     user = request.user
     fetch_data = fetch_districts(user)
@@ -53,6 +54,7 @@ def dl_sum_irg_province(request):
     return render(request, 'damage_losses/summary_damages_losses_irrigation_sub_sectorp_province.html', context)
 
 
+@permission_required("national", 'agri_irrigation')
 def dl_sum_irg_national(request):
     user = request.user
     fetch_data = fetch_districts(user)

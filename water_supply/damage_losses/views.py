@@ -46,7 +46,7 @@ def dlsum_wter_sply_dst(request):
 
 
 # Table 6
-@permission_required("district", 'water_supply')
+@permission_required("provincial", 'water_supply')
 def dlsum_wter_sply_pro(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()
@@ -60,7 +60,7 @@ def dlsum_wter_sply_pro(request):
 
 
 # Table 7
-@permission_required("district", 'water_supply')
+@permission_required("national", 'water_supply')
 def dlsum_wter_sply_nat(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()

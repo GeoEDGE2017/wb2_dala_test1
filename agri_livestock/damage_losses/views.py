@@ -39,6 +39,7 @@ def dlsum_livestock_poultry_dst(request):
     return render(request, 'damage_losses/summary_damages_losses_livestock_poultry_the_district.html', context)
 
 
+@permission_required("provincial", 'agri_livestock')
 def dl_livestock_pro(request):
     user = request.user
     fetch_data = fetch_districts(user)
@@ -52,6 +53,7 @@ def dl_livestock_pro(request):
     return render(request, 'damage_losses/summary_damages_losses_livestock_poultry_the_province.html', context)
 
 
+@permission_required("national", 'agri_livestock')
 def dl_livestock_nat(request):
     user = request.user
     fetch_data = fetch_districts(user)

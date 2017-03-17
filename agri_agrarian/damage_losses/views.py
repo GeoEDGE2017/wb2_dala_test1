@@ -90,6 +90,7 @@ def dl_sum_agrarian_dstr(request):
     return render(request, 'damage_losses/summary_damages_losses_agrarian_sub-sector_district.html', context)
 
 
+@permission_required("provincial", 'agri_agrarian')
 def dl_sum_agrarian_prov(request):
     user = request.user
     fetch_data = fetch_districts(user)
@@ -105,6 +106,7 @@ def dl_sum_agrarian_prov(request):
     return render(request, 'damage_losses/summary_damages_losses_agrarian_sub-sector_province.html', context)
 
 
+@permission_required("national", 'agri_agrarian')
 def dl_sum_agrarian_nat(request):
     user = request.user
     fetch_data = fetch_districts(user)

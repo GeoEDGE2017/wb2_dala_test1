@@ -61,7 +61,7 @@ def dl_sum_fisheries_dst(request):
 
 
 # Table 5
-@permission_required("district", 'agri_fisheries')
+@permission_required("provincial", 'agri_fisheries')
 def dl_sum_fisheries_pro(request):
     user = request.user
     fetch_data = fetch_districts(user)

@@ -85,6 +85,9 @@ INSTALLED_APPS = [
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
+    'housing',
+    'housing.base_line',
+    'housing.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [

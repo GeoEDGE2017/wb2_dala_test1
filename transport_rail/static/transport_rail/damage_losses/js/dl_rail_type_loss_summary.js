@@ -76,7 +76,7 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
                 data: angular.toJson({
                     'table_data': $scope.dlTypeLossRail,
                     'com_data': {
-                        'incident' : $scope.incident,
+                        'incident_id' : $scope.incident,
                     },
                     'is_edit':$scope.is_edit
                 }),

@@ -26,7 +26,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
                 'table_data': $scope.dlhealthsummarydamageprovince,
                 'com_data': {
                     'province': $scope.province,
-                    'incident': $scope.incident,
+                    'incident_id': $scope.incident,
                 },
                 'is_edit': false
             }),

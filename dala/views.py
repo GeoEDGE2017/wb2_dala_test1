@@ -275,15 +275,9 @@ def dl_save_data(request):
 
             for interface_table in dl_table_data[sector]:
 
-                incident = com_data['incident']
-                if 'province' in com_data:
-                    admin_area = com_data['province']
-                    filter_fields = {'table_name': interface_table, 'incident': incident, 'province': admin_area}
-                elif 'district' in com_data:
-                    admin_area = com_data['district']
-                    filter_fields = {'table_name': interface_table, 'incident': incident, 'district_id': admin_area}
-                else:
-                    filter_fields = {'table_name': interface_table, 'incident': incident}
+                com_data['table_name'] = interface_table
+
+                filter_fields = com_data
 
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
                 record_exist = sub_app_session.objects.filter(**filter_fields)
@@ -304,12 +298,10 @@ def dl_save_data(request):
                             # assigning common properties to model object
                             model_object.created_date = todate
                             model_object.lmd = todate
-                            if 'province' in com_data:
-                                model_object.province_id = com_data['province']
-                            elif 'district' in com_data:
-                                model_object.district_id = com_data['district']
 
-                            model_object.incident_id = com_data['incident']
+                            for com_property in com_data:
+                                print com_data[com_property]
+                                setattr(model_object, com_property, com_data[com_property])
 
                             print 'row', ' --> ', row, '\n', ' object '
 
@@ -318,12 +310,16 @@ def dl_save_data(request):
 
                                 print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
                                 model_object.save()
-
-                    district = District.objects.get(pk=admin_area)
-                    filter_fields['province_id'] = district.province.id
-                    dl_session = sub_app_session(**filter_fields)
-                    dl_session.date = todate
-                    dl_session.save()
+                    if 'district_id' in com_data:
+                        district = District.objects.get(pk=com_data['district_id'])
+                        filter_fields['province_id'] = district.province.id
+                        dl_session = sub_app_session(**filter_fields)
+                        dl_session.date = todate
+                        dl_session.save()
+                    else:
+                        dl_session = sub_app_session(**filter_fields)
+                        dl_session.date = todate
+                        dl_session.save()
 
                     return HttpResponse(True)
 
@@ -381,16 +377,7 @@ def dl_fetch_edit_data(request):
     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
 
     sub_app_name = sector + '.damage_losses'
-    filter_fields = {}
-
-    if 'province' in com_data:
-        admin_area = com_data['province']
-        filter_fields = {'incident': incident, 'province': admin_area}
-    elif 'district' in com_data:
-        admin_area = com_data['district']
-        filter_fields = {'incident': incident, 'district': admin_area}
-    else:
-        filter_fields = {'incident': incident}
+    filter_fields = com_data
 
     dl_mtable_data = {sector: {}}
     dl_mtable_data[sector][table_name] = {}

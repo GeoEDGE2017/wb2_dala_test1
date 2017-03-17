@@ -566,8 +566,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
       var details = _.map(array, function(model_array) {
       _.map(model_array, function(model) {
           model.firm_id = $scope.selectedFirm.id;
-
-
       });
 
         });
@@ -581,8 +579,9 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
             data: angular.toJson({
                 'table_data': $scope.dmLosOfMinFirms,
                 'com_data': {
-                    'district': $scope.district.district__id,
-                    'incident': $scope.incident,
+                    'district_id': $scope.district.district__id,
+                    'incident_id': $scope.incident,
+                    'firm_id': $scope.selectedFirm.id
 
                 },
                 'is_edit': $scope.is_edit
@@ -616,6 +615,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'firm_id': $scope.selectedFirm.id
                     },
                }),
             }).success(function(data) {

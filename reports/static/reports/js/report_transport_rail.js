@@ -49,9 +49,10 @@ $scope.loadData = function(form)
      $scope.getTotal = function(model, property,$index,key) {
 
 
-         $scope.total = $scope.total +
+         $scope.total =  $scope.total +
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages ?
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[$index].tot_damages : 0 ;
+
     }
 
 })

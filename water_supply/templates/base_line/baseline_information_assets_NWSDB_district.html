@@ -1,0 +1,448 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="bsAstsNwsdbDisApp" ng-controller="bsAstsNwsdbDisController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Water Supply Sector</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Baseline information on assets of NWSDB in the District
+            </span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_bs_asts_nwsdb_dis">
+        <ul class='nav nav-wizard'>
+            <li class="active"><a href='#step1' data-toggle="tab">1 - Type of User</a></li>
+            <li><a href='#step2' data-toggle="tab">2 - Assets</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="223"/>
+                        <col width="108" span="4"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_bs_asts_nwsdb_dis.district.$error.required">
+                                Please Select District
+                            </span>
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_bs_asts_nwsdb_dis.baselineDate.$error.required">
+                                Please Select Date
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead">
+                        <td style="padding-left:5px;"> Name of District</td>
+                        <td colspan="1" style="background:#EFEFEF;">
+                            <select ng-model="district" id="selectbasic" name="district" class="form-control"
+                                    style="font-weight:400;" required>
+                                <option value="">Select District</option>
+                                {% for district in districts %}
+                                <option value="{{ district.id }}">{{ district.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td colspan="2" style="padding-right:5px;text-align:right;">
+                            Year/Month
+                        </td>
+                        <td colspan="1" style="background:#EFEFEF;font-weight:normal;">
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date"
+                                   class="form-control input-md" required>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="18">
+                        <td rowspan="2" width="223" height="36">
+                            Number of Employees
+                        </td>
+                        <td colspan="2" width="216">
+                            Male
+                        </td>
+                        <td colspan="2" width="216">
+                            Female
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="biaNumEmployees in bsAstsNwsdbDis.water_supply.Table_1.BiaNumEmployees">
+                        <td colspan="2" width="216" height="18">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="biaNumEmployees.male">
+                        </td>
+                        <td colspan="2" width="216">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="biaNumEmployees.female">
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="18">
+                        <td rowspan="2" width="223" height="36">
+                            Types of Water Users
+                        </td>
+                        <td rowspan="2" width="108">
+                            Number of Clients
+                        </td>
+                        <td width="108">
+                            Daily Demand
+                        </td>
+                        <td width="108">
+                            Annual Demand
+                        </td>
+                        <td width="108">
+                            Rate
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="18">
+                        <td width="108" height="18">
+                            Liters/day
+                        </td>
+                        <td width="108">
+                            Liters/Year
+                        </td>
+                        <td width="108">
+                            LKR/Liter
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
+                            ng-if="biaWaterUsers.type_wusers != 'Average Income Per Year (LKR/Year)' && biaWaterUsers.type_wusers != 'Total'">
+                        <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers" ng-if="$index < 3">
+                        </td>
+                        <td width="98" ng-if="$index > 2">
+                            {% verbatim %}
+                            <button id="delete" ng-click="removeItem('BiaWaterUsers', $index)"
+                                    class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                            </button>
+                            <input style="width:80%;float:right;" name="biaWaterUsers_{{$index}}"
+                                   ng-model="biaWaterUsers.type_wusers"
+                                   popover="This field is required"
+                                   popover-toggle="form_pop_lat_census['biaWaterUsers_' + $index].$dirty && !form_pop_lat_census['biaWaterUsers_' + $index].$valid"
+                                   popover-placement="top" required
+                                   type="text"
+                                   class="form-control input-md">
+                            {% endverbatim %}
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="biaWaterUsers.num_clients">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="biaWaterUsers.daily_demand">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="biaWaterUsers.annual_demand">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="biaWaterUsers.rate">
+                        </td>
+                    </tr>
+                    <tr height="18">
+                        <td class="tdpa" width="223" height="18">
+                            Others
+                            <button ng-click="insertAssets('BiaWaterUsers')"
+                                    class="btn btn-sm btn-info btn-circle"
+                                    id="insert"><span
+                                    class="fa fa-plus"></span>
+                            </button>
+                        </td>
+                        <td class="tdpa">
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
+                            ng-if="biaWaterUsers.type_wusers == 'Total'">
+                        <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
+                        </td>
+                        <td width="108" ng-bind="biaWaterUsers.num_clients">
+                        </td>
+                        <td width="108" ng-bind="biaWaterUsers.daily_demand">
+                        </td>
+                        <td width="108" ng-bind="biaWaterUsers.annual_demand">
+                        </td>
+                        <td width="108" ng-bind="biaWaterUsers.rate">
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
+                            ng-if="biaWaterUsers.type_wusers == 'Average Income Per Year (LKR/Year)'">
+                        <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
+                        </td>
+                        <td colspan="4" width="432">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="biaWaterUsers.rates">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
+                <br>
+            </div>
+            <div class="tab-pane fade" id="step2">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr class="trheadc" height="34">
+                        <td width="223" height="34">
+                            Components
+                        </td>
+                        <td colspan="2" width="216">
+                            Average Replacement Cost (LKR)
+                        </td>
+                        <td colspan="2" width="216">
+                            Average Repair Cost (LKR)
+                        </td>
+                    </tr>
+                </table>
+                <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <table class="table table-bordered">
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Water Intake
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaWaterIntake in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterIntake">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterIntake.components" ng-if="$index < 2">
+                            </td>
+                            <td width="98" ng-if="$index > 1">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BiaWaterIntake', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="biaWaterIntake_{{$index}}"
+                                       ng-model="biaWaterIntake.components"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['biaWaterIntake_' + $index].$dirty && !form_pop_lat_census['biaWaterIntake_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaWaterIntake.avg_replace_cost">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaWaterIntake.avg_repair_cost">
+                            </td>
+                        </tr>
+                        <tr height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BiaWaterIntake')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Treatment Plant
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaTreatmentPlant in bsAstsNwsdbDis.water_supply.Table_1.BiaTreatmentPlant">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaTreatmentPlant.components" ng-if="$index < 2">
+                            </td>
+                            <td width="98" ng-if="$index > 1">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BiaTreatmentPlant', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="biaTreatmentPlant_{{$index}}"
+                                       ng-model="biaTreatmentPlant.components"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['biaTreatmentPlant_' + $index].$dirty && !form_pop_lat_census['biaTreatmentPlant_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaTreatmentPlant.avg_replace_cost">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaTreatmentPlant.avg_repair_cost">
+                            </td>
+                        </tr>
+                        <tr height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BiaTreatmentPlant')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Water Distribution
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaWaterDistribution in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterDistribution">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterDistribution.components" ng-if="$index < 2">
+                            </td>
+                            <td width="98" ng-if="$index > 1">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BiaWaterDistribution', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="biaWaterDistribution_{{$index}}"
+                                       ng-model="biaWaterDistribution.components"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['biaWaterDistribution_' + $index].$dirty && !form_pop_lat_census['biaWaterDistribution_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaWaterDistribution.avg_replace_cost">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaWaterDistribution.avg_repair_cost">
+                            </td>
+                        </tr>
+                        <tr height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BiaWaterDistribution')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Main Office
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaMainOffice in bsAstsNwsdbDis.water_supply.Table_1.BiaMainOffice">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaMainOffice.components" ng-if="$index < 4">
+                            </td>
+                            <td width="98" ng-if="$index > 3">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BiaMainOffice', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="biaMainOffice_{{$index}}"
+                                       ng-model="biaMainOffice.components"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['biaMainOffice_' + $index].$dirty && !form_pop_lat_census['biaMainOffice_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaMainOffice.avg_replace_cost">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaMainOffice.avg_repair_cost">
+                            </td>
+                        </tr>
+                        <tr height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BiaMainOffice')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_asts_nwsdb_dis)">Submit</button>
+                </div>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

@@ -1,0 +1,309 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Water Supply Sector</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 7. Summary of damages and losses in the Nationwide
+            </span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="298"/>
+                        <col width="98" span="5"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead">
+                        <td colspan="" style="padding-right:5px;text-align:right;">
+                            Incident
+                        </td>
+                        <td colspan="5" style="background:#EFEFEF;font-weight:normal;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="20">
+                        <td rowspan="2" width="298" height="40">
+                            Number of Affected Clients of Commercial Water Supply
+                        </td>
+                        <td width="98">
+                            Residential
+                        </td>
+                        <td width="98">
+                            Commercial
+                        </td>
+                        <td width="98">
+                            Industrial
+                        </td>
+                        <td width="98">
+                            Others
+                        </td>
+                        <td width="98">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td width="98" height="20">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td rowspan="2" width="298" height="40">
+                            Number of Affected Rural Water Supply Users (Families)
+                        </td>
+                        <td width="98">
+                            Type 1
+                        </td>
+                        <td width="98">
+                            Type 2
+                        </td>
+                        <td width="98">
+                            Type 3
+                        </td>
+                        <td width="98">
+                            Type 4
+                        </td>
+                        <td width="98">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td width="98" height="20">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20">
+                        <td rowspan="3" width="298" height="60">
+                            Type of Water Supply System
+                        </td>
+                        <td colspan="3" width="294">
+                            Damages and Losses (LKR)
+                        </td>
+                        <td colspan="2" rowspan="3" width="196">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td colspan="2" width="196" height="20">
+                            Year 1
+                        </td>
+                        <td width="98">
+                            Year 2
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td width="98" height="20">
+                            Damages
+                        </td>
+                        <td width="98">
+                            Losses
+                        </td>
+                        <td width="98">
+                            Losses
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="20">
+                        <td width="298" height="20">
+                            NWSDB Commercial Water Supply
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td colspan="2" width="196">
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="298" height="20">
+                            Province 1
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td colspan="2" width="196">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="298" height="20">
+                            Province N
+                        </td>
+                        <td width="98">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="98">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="98">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td colspan="2" width="196">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="298" height="20">
+                            Total - Commercial Water Supply
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td colspan="2" width="196">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="20">
+                        <td width="298" height="20">
+                            Rural Water Supply
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td colspan="2" width="196">
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="298" height="20">
+                            Province 1
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td class="tdpa" width="98">
+                        </td>
+                        <td colspan="2" width="196">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="298" height="20">
+                            Province N
+                        </td>
+                        <td width="98">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td width="98">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
+                        </td>
+                        <td class="tdpa" width="98">
+                        </td>
+                        <td colspan="2" width="196">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="298" height="20">
+                            Total - Rural Water Supply
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td class="tdpa" width="98">
+                        </td>
+                        <td colspan="2" width="196">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="298" height="20">
+                            GRAND TOTAL
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td width="98">
+                            -
+                        </td>
+                        <td colspan="2" width="196">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

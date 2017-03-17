@@ -1,0 +1,425 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlComWtrSplyApp" ng-controller="dlComWtrSplyController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Water Supply Sector</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 3. Damages and losses to NWSDB commercial water supply system
+            </span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <ul class='nav nav-wizard'>
+            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1" ng-form name="form_dl_com_wtr_sply">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="223"/>
+                        <col width="108" span="4"/>
+                        <col width="101" span="2"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_com_wtr_sply.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_com_wtr_sply.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead">
+                        <td colspan="2" style="padding-right:5px;text-align:right;">
+                            Incident
+                        </td>
+                        <td colspan="2" style="background:#EFEFEF;font-weight:normal;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td colspan="2" style="padding-left:5px;">
+                            Name of District
+                        </td>
+                        <td colspan="2" style="background:#EFEFEF;">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false);fetchOrganization();" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="18">
+                        <td rowspan="2" width="223" height="18">
+                            Number of Clients Affected
+                        </td>
+                        <td width="108">
+                            Residential
+                        </td>
+                        <td width="108">
+                            Commercial
+                        </td>
+                        <td width="108">
+                            Industrial
+                        </td>
+                        <td width="108">
+                            Others
+                        </td>
+                        <td colspan="2" width="108">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="dlcwNumClients in dlComWtrSply.water_supply.Table_3.DlcwNumClients">
+                        <td class="tdpa" height="19" width="156">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwNumClients.residential">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwNumClients.commercial">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwNumClients.industrial">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwNumClients.others">
+                        </td>
+                        <td colspan="2" width="108" ng-bind="dlcwNumClients.total">
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="18">
+                        <td rowspan="2" width="108" height="18">
+                            Number of Employees
+                        </td>
+                        <td colspan="2" width="216">
+                            Male
+                        </td>
+                        <td colspan="2" width="216">
+                            Female
+                        </td>
+                        <td colspan="2" width="108">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="dlcwNumEmployees in dlComWtrSply.water_supply.Table_3.DlcwNumEmployees">
+                        <td colspan="2" width="223" height="18">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="DlcwNumEmployees.male">
+                        </td>
+                        <td colspan="2" width="216">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="DlcwNumEmployees.female">
+                        </td>
+                        <td colspan="2" width="108" ng-total="DlcwNumEmployees.total">
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="18">
+                        <td colspan="7" width="857" height="18">
+                            DAMAGES
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="34">
+                        <td width="223" height="34">
+                            Assets
+                        </td>
+                        <td colspan="2" width="216">
+                            Number of Totally Destroyed Assets
+                        </td>
+                        <td colspan="2" width="216">
+                            Number of Partially Damaged Assets
+                        </td>
+                        <td colspan="2" width="202">
+                            Total Value of Damages
+                            <br/>
+                            (LKR)
+                        </td>
+                    </tr>
+                </table>
+                <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Water Intake
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="202">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="dlcwDmgWaterIntake in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterIntake">
+                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterIntake.assets">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgWaterIntake.num_tot_destoyed">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgWaterIntake.num_part_damaged">
+                            </td>
+                            <td colspan="2" ng-bind="dlcwDmgWaterIntake.total_dmgs">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Water Treatment
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="dlcwDmgWaterTreatment in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterTreatment">
+                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterTreatment.assets">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgWaterTreatment.num_tot_destoyed">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgWaterTreatment.num_part_damaged">
+                            </td>
+                            <td colspan="2" ng-bind="dlcwDmgWaterTreatment.total_dmgs">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Water Distribution
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="dlcwDmgWaterDisribution in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterDisribution">
+                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterDisribution.assets">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgWaterDisribution.num_tot_destoyed">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgWaterDisribution.num_part_damaged">
+                            </td>
+                            <td colspan="2" ng-bind="dlcwDmgWaterDisribution.total_dmgs">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="18">
+                            <td width="223" height="18">
+                                Main Office
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="216">
+                            </td>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="dlcwDmgMainOffice in dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice"
+                                ng-if="dlcwDmgMainOffice.assets != 'TOTAL'">
+                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgMainOffice.assets">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgMainOffice.num_tot_destoyed">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dlcwDmgMainOffice.num_part_damaged">
+                            </td>
+                            <td colspan="2" ng-bind="dlcwDmgMainOffice.total_dmgs">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="dlcwDmgMainOffice in dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice"
+                                ng-if="dlcwDmgMainOffice.assets == 'TOTAL'">
+                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgMainOffice.assets">
+                            </td>
+                            <td class="tdpa" colspan="2" width="216">
+                            </td>
+                            <td class="tdpa" colspan="2" width="216">
+                            </td>
+                            <td colspan="2" width="202" ng-bind="dlcwDmgMainOffice.total_dmgs">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                <br>
+            </div>
+            <div class="tab-pane fade" id="step2">
+                <table class="table table-bordered">
+                    <tr class="trheadc" height="34">
+                        <td rowspan="2" width="223" height="52">
+                        </td>
+                        <td rowspan="2" width="108">
+                            Average Income per Year (LKR/Year)
+                        </td>
+                        <td colspan="2" width="216">
+                            Estimated Reduction in Income (%)
+                        </td>
+                        <td colspan="2" width="209">
+                            Total Losses (LKR/Year)
+                        </td>
+                        <td rowspan="2" width="101">
+                            Total Loses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="18">
+                        <td width="108" height="18">
+                            Year 1
+                        </td>
+                        <td width="108">
+                            Year 2
+                        </td>
+                        <td width="108">
+                            Year 1
+                        </td>
+                        <td width="101">
+                            Year2
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="dlcwLosProduction in dlComWtrSply.water_supply.Table_3.DlcwLosProduction">
+                        <td class="tdpa" width="223" height="18" ng-bind="dlcwLosProduction.avg_income">
+                            Production Losses
+                        </td>
+                        <td width="108" ng-bind="dlcwLosProduction.avg_income">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwLosProduction.est_inc_year_1">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwLosProduction.est_inc_year_2">
+                        </td>
+                        <td width="108" ng-bind="dlcwLosProduction.tot_los_year_1">
+                        </td>
+                        <td width="101" ng-bind="dlcwLosProduction.tot_los_year_2">
+                        </td>
+                        <td width="101" ng-bind="dlcwLosProduction.tot_los">
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="18">
+                        <td colspan="4" width="547" height="18">
+                            Other Losses
+                        </td>
+                        <td width="108">
+                        </td>
+                        <td width="101">
+                        </td>
+                        <td width="101">
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="dlcwLosOther in dlComWtrSply.water_supply.Table_3.DlcwLosOther" ng-if="dlcwLosOther.other_los != 'TOTAL'">
+                        <td class="tdpa" colspan="4" width="547" height="18" ng-bind="dlcwLosOther.other_los">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwLosOther.tot_los_year_1">
+                        </td>
+                        <td width="101">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwLosOther.tot_los_year_2">
+                        </td>
+                        <td width="101" ng-bind="dlcwLosOther.tot_los">
+                        </td>
+                    </tr>
+                    <tr height="18" ng-repeat="dlcwLosOther in dlComWtrSply.water_supply.Table_3.DlcwLosOther" ng-if="dlcwLosOther.other_los == 'TOTAL'">
+                        <td class="tdpa" colspan="4" width="547" height="18" ng-bind="dlcwLosOther.other_los">
+                        </td>
+                        <td width="108" ng-model="dlcwLosOther.tot_los_year_1">
+                        </td>
+                        <td width="101" ng-model="dlcwLosOther.tot_los_year_2">
+                        </td>
+                        <td width="101" ng-bind="dlcwLosOther.tot_los">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info" ng-click="testFunction(form_dl_com_wtr_sply)">Clear</button>
+                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_com_wtr_sply)">Submit</button>
+                </div>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

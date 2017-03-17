@@ -82,9 +82,9 @@ INSTALLED_APPS = [
     'agri_fisheries',
     'agri_fisheries.base_line',
     'agri_fisheries.damage_losses',
-    # 'water_supply',
-    # 'water_supply.base_line',
-    # 'water_supply.damage_losses',
+    'water_supply',
+    'water_supply.base_line',
+    'water_supply.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -130,6 +130,10 @@ DATABASES = {
         #     'options': '-c search_path=health,public,other_government,education,mining,'
         #                'transport_rail,transport_water,transport_land,transport_air,'
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        # },
+
+        # 'OPTIONS': {
+        #     'options': '-c search_path=water_supply'
         # },
 
         'NAME': 'dala',

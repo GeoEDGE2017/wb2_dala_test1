@@ -1,0 +1,238 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlRuralWtrSplyApp" ng-controller="dlRuralWtrSplyController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Water Supply Sector</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 4. Damages and losses in the rural water supply sector
+            </span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <ul class='nav nav-wizard'>
+            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content" ng-form name="form_dl_rul_wtr_sply">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="240"/>
+                        <col width="125" span="4"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_rul_wtr_sply.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_rul_wtr_sply.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead">
+                        <td colspan="" style="padding-right:5px;text-align:right;">
+                            Incident
+                        </td>
+                        <td colspan="2" style="background:#EFEFEF;font-weight:normal;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td colspan="" style="padding-left:5px;"> Name of District</td>
+                        <td colspan="2" style="background:#EFEFEF;">
+                            <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false)" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" width="240" height="53">
+                            Type of Water Supply
+                        </td>
+                        <td colspan="3" width="375">
+                            Number of
+                        </td>
+                        <td rowspan="2" width="125">
+                            Total Damages (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="34">
+                        <td width="125" height="34">
+                            Families Affected
+                        </td>
+                        <td width="125">
+                            Totally Destroyed Assets
+                        </td>
+                        <td width="125">
+                            Partially Damaged Assets
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="dlRuralDmg in dlRuralWtrSply.water_supply.Table_4.DlRuralDmg"
+                        ng-if="dlRuralDmg.type_water_supply != 'TOTAL'">
+                        <td class="tdpa" width="240" height="19" ng-bind="dlRuralDmg.type_water_supply">
+                        </td>
+                        <td width="125">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlRuralDmg.families_affected">
+                        </td>
+                        <td width="125">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlRuralDmg.tot_destroyed_assets">
+                        </td>
+                        <td width="125">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlRuralDmg.part_damaged_assets">
+                        </td>
+                        <td width="125" ng-bind="dlRuralDmg.tot_damages">
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="dlRuralDmg in dlRuralWtrSply.water_supply.Table_4.DlRuralDmg"
+                        ng-if="dlRuralDmg.type_water_supply == 'TOTAL'">
+                        <td class="tdpa" width="240" height="19" ng-bind="dlRuralDmg.type_water_supply">
+                        </td>
+                        <td width="125" ng-bind="dlRuralDmg.families_affected">
+                        </td>
+                        <td width="125" ng-bind="dlRuralDmg.tot_destroyed_assets">
+                        </td>
+                        <td width="125" ng-bind="dlRuralDmg.part_damaged_assets">
+                        </td>
+                        <td width="125" ng-bind="dlRuralDmg.tot_damages">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                <br>
+            </div>
+            <div class="tab-pane fade" id="step2">
+                <table class="table table-bordered">
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" width="240" height="53">
+                            Type of Water Supply
+                        </td>
+                        <td colspan="3" width="375">
+                            Types of Losses
+                        </td>
+                        <td rowspan="2" width="125">
+                            Total Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="34">
+                        <td width="125" height="34">
+                            Cleaning up of debris
+                        </td>
+                        <td width="125">
+                            Higher operating costs
+                        </td>
+                        <td width="125">
+                            Other unexpected expenses
+                        </td>
+                    </tr>
+                    <tr height="20" ng-repeat="dlRuralLos in dlRuralWtrSply.water_supply.Table_4.DlRuralLos"
+                        ng-if="dlRuralLos.type_water_supply != 'TOTAL'">
+                        <td class="tdpa" width="240" height="20" ng-bind="dlRuralLos.type_water_supply">
+                        </td>
+                        <td width="125">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlRuralLos.cleaning_debris">
+                        </td>
+                        <td width="125">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlRuralLos.high_ocost">
+                        </td>
+                        <td width="125">
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlRuralLos.other_unexpected_exps">
+                        </td>
+                        <td width="125" ng-bind="dlRuralLos.tot_los">
+                        </td>
+                    </tr>
+                    <tr height="20" ng-repeat="dlRuralLos in dlRuralWtrSply.water_supply.Table_4.DlRuralLos"
+                        ng-if="dlRuralLos.type_water_supply == 'TOTAL'">
+                        <td class="tdpa" width="240" height="20" ng-bind="dlRuralLos.type_water_supply">
+                        </td>
+                        <td width="125" ng-bind="dlRuralLos.cleaning_debris">
+                        </td>
+                        <td width="125" ng-bind="dlRuralLos.high_ocost">
+                        </td>
+                        <td width="125" ng-bind="dlRuralLos.high_ocost">
+                        </td>
+                        <td width="125" ng-bind="dlRuralLos.other_unexpected_exps">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_rul_wtr_sply)">Submit</button>
+                </div>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

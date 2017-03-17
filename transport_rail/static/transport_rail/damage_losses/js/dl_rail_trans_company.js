@@ -258,8 +258,9 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 data: angular.toJson({
                     'table_data': $scope.dlIncomeRailCompany,
                     'com_data': {
-                       'district': $scope.district.district__id,
-                        'incident' : $scope.incident,
+                       'district_id': $scope.district.district__id,
+                        'incident_id' : $scope.incident,
+                        'company_id' : $scope.company
                     },
                     'is_edit':$scope.is_edit
                 }),

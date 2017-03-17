@@ -66,12 +66,11 @@
                             District
                         </td>
                         <td colspan="1" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="" selected="true">Select a District</option>
-                                {% for district in districts %}
-                                <option value={{ district.id }}>{{ district.name }}</option>
-                                {% endfor %}
+                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-change="fetchDepartments()"
+                                    style="font-weight:400;" ng-change="changedValue(false)"
+                                    class="form-control" required>
+                                <option value="" selected>Select District</option>
                             </select>
                         </td>
                         <td>

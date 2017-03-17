@@ -394,7 +394,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_2',
-                    'sector':'agri_fisheries'
+                    'sector': 'agri_fisheries'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -445,21 +445,23 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
             if(model_name == 'BifAstFequipment') {
                 dl_model1 = 'DlfDmgFequipment';
                 particular_value_1 = 'Total';
+                $scope.dlFisheriesDistrict.agri_fisheries.Table_3[dl_model1] = [];
             }
             if(model_name == 'BifAstOequipment') {
-                dl_model1 = 'DlfDmgOequipment';
-                particular_value_1 = 'Total';
+                dl_model2 = 'DlfDmgOequipment';
+                particular_value_2 = 'Total';
+                $scope.dlFisheriesDistrict.agri_fisheries.Table_3[dl_model2] = [];
             }
             if(model_name == 'BifAstMachinery') {
-                dl_model1 = 'DlfDmgMachinery';
-                particular_value_1 = 'Total';
+                dl_model3 = 'DlfDmgMachinery';
+                particular_value_3 = 'Total';
+                $scope.dlFisheriesDistrict.agri_fisheries.Table_3[dl_model3] = [];
             }
             if(model_name == 'BifAstStructures') {
-                dl_model1 = 'DlfDmgStructures';
-                particular_value_1 = 'Total';
+                dl_model4 = 'DlfDmgStructures';
+                particular_value_4 = 'Total';
+                $scope.dlFisheriesDistrict.agri_fisheries.Table_3[dl_model4] = [];
             }
-
-            $scope.dlFisheriesDistrict.agri_fisheries.Table_3[dl_model1] = [];
 
             var obj1 = {
                 assets : particular_value_1,
@@ -535,8 +537,6 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                     mf_avg_replace_cost : null,
                     mf_avg_repair_cost : null,
                 };
-
-                console.log(value);
 
                 if(model_name == 'BifAstFequipment') {
                     $scope.dlFisheriesDistrict.agri_fisheries.Table_3[dl_model1].push(obj1);

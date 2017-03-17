@@ -403,7 +403,6 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model2].push(obj2);
             }
             if(model_name == 'BacfPlantnCrops') {
-
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model3].push(obj3);
             }
             if(model_name == 'BacfExportCrops') {
@@ -433,8 +432,8 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 data: angular.toJson({
                     'table_data': $scope.dlFrstPrductAsets,
                     'com_data': {
-                       'district': $scope.district.district__id,
-                        'incident' : $scope.incident,
+                       'district_id': $scope.district.district__id,
+                        'incident_id' : $scope.incident,
                     },
                     'is_edit':$scope.is_edit
                 }),

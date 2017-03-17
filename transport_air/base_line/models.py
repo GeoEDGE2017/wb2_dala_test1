@@ -1,5 +1,4 @@
 from django.db import models
-from incidents.models import IncidentReport
 from settings.models import District, Province
 
 

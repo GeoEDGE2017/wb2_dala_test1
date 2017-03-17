@@ -1,0 +1,297 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<!-- Main content -->
+<main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Water Supply Sector</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 5. Summary of damages and losses in a district
+            </span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_dlsum_wter_sply_dst">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="160"/>
+                        <col width="107" span="5"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead">
+                        <td colspan="2" style="padding-left:5px;"> Name of District</td>
+
+                        <td colspan="" style="background:#EFEFEF;">
+                            <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false)" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                        <td colspan="" style="padding-right:5px;text-align:right;">
+                            Incident
+                        </td>
+                        <td colspan="2" style="background:#EFEFEF;font-weight:normal;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="34">
+                        <td rowspan="2" width="160" height="55">
+                            Number of Affected Clients of Commercial Water Supply
+                        </td>
+                        <td width="107">
+                            Residential
+                        </td>
+                        <td width="107">
+                            Commercial
+                        </td>
+                        <td width="107">
+                            Industrial
+                        </td>
+                        <td width="107">
+                            Others
+                        </td>
+                        <td width="107">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="21">
+                        <td width="107" height="21">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="34">
+                        <td rowspan="2" width="160" height="55">
+                            Number of Affected Rural Water Supply Users (Families)
+                        </td>
+                        <td width="107">
+                            Type 1
+                        </td>
+                        <td width="107">
+                            Type 2
+                        </td>
+                        <td width="107">
+                            Type 3
+                        </td>
+                        <td width="107">
+                            Type 4
+                        </td>
+                        <td width="107">
+                            Total
+                        </td>
+                    </tr>
+                    <tr height="21">
+                        <td width="107" height="21">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="21">
+                        <td rowspan="3" width="160" height="63">
+                            Type of Water Supply System
+                        </td>
+                        <td colspan="3" width="321">
+                            Damages and Losses (LKR)
+                        </td>
+                        <td colspan="2" rowspan="3" width="214">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="21">
+                        <td colspan="2" width="214" height="21">
+                            Year 1
+                        </td>
+                        <td width="107">
+                            Year 2
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="21">
+                        <td width="107" height="21">
+                            Damages
+                        </td>
+                        <td width="107">
+                            Losses
+                        </td>
+                        <td width="107">
+                            Losses
+                        </td>
+                    </tr>
+                    <tr height="21">
+                        <td class="tdpa" width="160" height="21">
+                            Commercial Water Supply
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td colspan="2" width="214">
+                            -
+                        </td>
+                    </tr>
+                    <tr class="tdpa" height="21">
+                        <td width="160" height="21">
+                            Rural Water Supply
+                        </td>
+                        <td width="107">
+                        </td>
+                        <td width="107">
+                        </td>
+                        <td width="107">
+                        </td>
+                        <td colspan="2" width="214">
+                        </td>
+                    </tr>
+                    <tr height="21">
+                        <td class="tdpa" class="tdpa" width="160" height="21">
+                            Type 1
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td class="tdpa" width="107">
+                        </td>
+                        <td colspan="2" width="214">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="21">
+                        <td class="tdpa" width="160" height="21">
+                            Type 2
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td class="tdpa" width="107">
+                        </td>
+                        <td colspan="2" width="214">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="21">
+                        <td class="tdpa" width="160" height="21">
+                            Type 3
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td class="tdpa" width="107">
+                        </td>
+                        <td colspan="2" width="214">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="21">
+                        <td class="tdpa" width="160" height="21">
+                            Type 4
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td class="tdpa" width="107">
+                        </td>
+                        <td colspan="2" width="214">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" width="160" height="20">
+                            Total
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td width="107">
+                            -
+                        </td>
+                        <td class="tdpa" width="107">
+                        </td>
+                        <td colspan="2" width="214">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" height="17">
+                            GRAND TOTAL
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td colspan="2">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+{% endblock content %}

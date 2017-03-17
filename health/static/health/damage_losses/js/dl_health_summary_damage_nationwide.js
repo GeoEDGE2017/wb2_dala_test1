@@ -9,51 +9,6 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
  $scope.submitted = false;
  $scope.is_valid_data = true;
 
-   $scope.saveDlData = function(form) {
-        console.log($scope.data);
-
-    $scope.submitted = true;
-    console.log(init_data);
-
-    if(form.$valid){
-
-
-        $http({
-            method: 'POST',
-            url: '/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlhealthsummarydamagenationwide,
-                'com_data': {
-
-                    'incident' : $scope.incident,
-                },
-                'is_edit':$scope.is_edit
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-//            $scope.dlhealthsummarydamagenationwide = init_data;
-//            $scope.is_edit = false;
-            if(response.data == 'False')
-                $scope.is_valid_data = false;
-            else
-                $("#modal-container-239453").modal('show');
-
-
-
-
-        }, function errorCallback(response) {
-
-            console.log(response);
-        });
-
-    }
-    }
-
-
-    // get relevant damage_losses data for calculations
-
-
     $scope.changedValue = function getDlData()
     {
 

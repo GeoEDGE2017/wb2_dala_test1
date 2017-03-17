@@ -25,7 +25,7 @@ def dl_assessment_of_govn_dep_or_ofc_in_a_district(request):
     context = {
         'districts': filtered_districts,
         'incidents': filtered_incidents,
-        'ownership': ownership,
+        'ownerships': ownership,
         'module': 'other_govn_services'
     }
     return render(request, 'damage_losses/dl_assessment_of_government_departments_or_offices_in_a_district.html', context)
@@ -94,6 +94,7 @@ def dl_fetch_district_disagtn(request):
     sector = data['sector']
     com_data = data['com_data']
     incident = com_data['incident']
+    district = com_data['district']
     ownerships = Ownership.objects.all()
     models = ['DlagdDmgDistrict', 'DlagdLossesDistrict']
 
@@ -109,7 +110,7 @@ def dl_fetch_district_disagtn(request):
         print ownership_name
         dl_mtable_data[sector][table_name][ownership_name] = {}
 
-        depmnt_filter_fields = {'incident': incident, 'district': 1, 'department__ownership': ownership.id}
+        depmnt_filter_fields = {'incident': incident, 'district': district, 'department__ownership': ownership.id}
         departments = DlagdDmgDistrict.objects.filter(**depmnt_filter_fields).values('department__ownership', 'department', 'department__name')
 
         for department in departments:
@@ -118,7 +119,7 @@ def dl_fetch_district_disagtn(request):
             department_ownership = department['department__ownership']
 
             print department_ownership
-            filter_fields = {'incident': incident, 'district': 1, 'department': department_id}
+            filter_fields = {'incident': incident, 'district': district, 'department': department_id}
             dl_mtable_data[sector][table_name][ownership_name][department_name] = {}
             for model in models:
                 model_class = apps.get_model('other_govn_services.damage_losses', model)

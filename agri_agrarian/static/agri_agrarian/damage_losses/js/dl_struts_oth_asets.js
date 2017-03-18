@@ -198,12 +198,12 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsoeOequipment', 'BsoeMachinery','BsoeStructure'],
+                    'db_tables': ['BsoeOequipment', 'BsoeMachinery'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                    'table_name': 'Table_5',
+                    'table_name': 'Table_3',
                     'sector':'agri_agrarian',
                         }),
                   dataType: 'json',

@@ -273,52 +273,54 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
             var obj1 = {
                 assets : particular_value_1,
-                avg_replace_cost : null,
-                avg_repair_cost : null,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                num_dmg_pub : null,
+                num_dmg_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
             };
             var obj2 = {
-                seasonal_crops : particular_value_2,
-                areas_cultivated : null,
-                avg_val_land : null,
-                num_families : null,
-                num_male : null,
-                num_female : null,
+                assets : particular_value_2,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
             };
             var obj3 = {
-                plantn_crops : particular_value_3,
-                areas_cultivated : null,
-                avg_val_land : null,
-                num_families : null,
-                num_male : null,
-                num_female : null,
+                assets : particular_value_3,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
             };
             var obj4 = {
-                export_crops : particular_value_4,
-                areas_cultivated : null,
-                avg_val_land : null,
-                num_families : null,
-                num_male : null,
-                num_female : null,
+                assets : particular_value_4,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
             };
             var obj5 = {
-                forestry : particular_value_5,
-                areas_cultivated : null,
-                avg_val_land : null,
-                num_families : null,
-                num_male : null,
-                num_female : null,
+                assets : particular_value_5,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
             };
             var obj6 = {
-                other_products : particular_value_6,
-                areas_cultivated : null,
-                avg_val_land : null,
-                num_families : null,
-                num_male : null,
-                num_female : null,
+                assets : particular_value_6,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
             };
             var obj7 = {
                 assets : particular_value_7,
-                avg_value : null,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
             };
 
             angular.forEach(obj_array, function(value, key) {
@@ -328,7 +330,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     avg_repair_cost : null,
                 };
                 var obj2 = {
-                    seasonal_crops : value.fields.seasonal_crops,
+                    assets : value.fields.seasonal_crops,
                     areas_cultivated : null,
                     avg_val_land : null,
                     num_families : null,
@@ -336,7 +338,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_female : null,
                 };
                 var obj3 = {
-                    plantn_crops : value.fields.plantn_crops,
+                    assets : value.fields.plantn_crops,
                     areas_cultivated : null,
                     avg_val_land : null,
                     num_families : null,
@@ -344,7 +346,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_female : null,
                 };
                 var obj4 = {
-                    export_crops : value.fields.export_crops,
+                    assets : value.fields.export_crops,
                     areas_cultivated : null,
                     avg_val_land : null,
                     num_families : null,
@@ -352,7 +354,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_female : null,
                 };
                 var obj5 = {
-                    forestry : value.fields.forestry,
+                    assets : value.fields.forestry,
                     areas_cultivated : null,
                     avg_val_land : null,
                     num_families : null,
@@ -360,7 +362,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     num_female : null,
                 };
                 var obj6 = {
-                    other_products : value.fields.other_products,
+                    assets : value.fields.other_products,
                     areas_cultivated : null,
                     avg_val_land : null,
                     num_families : null,

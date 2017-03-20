@@ -132,19 +132,19 @@
                             {% endverbatim %}
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
+                            <input id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('BiaWaterUsers','num_clients')"
                                    class="form-control input-md" ng-model="biaWaterUsers.num_clients">
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
+                            <input id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('BiaWaterUsers','daily_demand')"
                                    class="form-control input-md" ng-model="biaWaterUsers.daily_demand">
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
+                            <input id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('BiaWaterUsers','annual_demand')"
                                    class="form-control input-md" ng-model="biaWaterUsers.annual_demand">
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
+                            <input id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('BiaWaterUsers','rate')"
                                    class="form-control input-md" ng-model="biaWaterUsers.rate">
                         </td>
                     </tr>
@@ -164,13 +164,13 @@
                             ng-if="biaWaterUsers.type_wusers == 'Total'">
                         <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
                         </td>
-                        <td width="108" ng-bind="biaWaterUsers.num_clients">
+                        <td width="108" ng-model="biaWaterUsers.num_clients" ng-bind="biaWaterUsers.num_clients = BiaWaterUsers_num_clients">
                         </td>
-                        <td width="108" ng-bind="biaWaterUsers.daily_demand">
+                        <td width="108" ng-model="biaWaterUsers.daily_demand" ng-bind="biaWaterUsers.daily_demand = BiaWaterUsers_daily_demand">
                         </td>
-                        <td width="108" ng-bind="biaWaterUsers.annual_demand">
+                        <td width="108" ng-model="biaWaterUsers.annual_demand" ng-bind="biaWaterUsers.annual_demand = BiaWaterUsers_annual_demand">
                         </td>
-                        <td width="108" ng-bind="biaWaterUsers.rate">
+                        <td width="108" ng-model="biaWaterUsers.rate" ng-bind="biaWaterUsers.rate = BiaWaterUsers_rate">
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
@@ -397,7 +397,17 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_asts_nwsdb_dis)">Submit</button>
+                    <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_asts_nwsdb_dis)"
+
+                    class="btn btn-success">Submit
+                    </button>
+
                 </div>
                 <br><br><br>
             </div>

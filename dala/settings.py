@@ -129,17 +129,17 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=health,public,other_government,education,mining,'
-                       'transport_rail,transport_water,transport_land,transport_air,'
-                       'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
-        },
+        # 'OPTIONS': {
+        #     'options': '-c search_path=health,public,other_government,education,mining,'
+        #                'transport_rail,transport_water,transport_land,transport_air,'
+        #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        # },
 
         # 'OPTIONS': {
         #     'options': '-c search_path=water_supply'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'dala_2017',
         'USER': 'postgres',
     },
 
@@ -1737,13 +1737,13 @@ TABLE_PROPERTY_MAPPER = {
     'agri_irrigation': {
         'Table_4': {
             'DlMajorTanksDistrict':
-                ['damages',],
+                ['damages', ],
             'DlLosMajorTanksDistrict':
-                ['total_los',],
+                ['total_los', ],
             'DlMediumTanksDistrict':
-                ['damages',],
+                ['damages', ],
             'DlLosMediumTanksDistrict':
-                ['total_los',],
+                ['total_los', ],
             'DlMinorTanksDistrict':
                 ['damages'],
             'DlLosMinorTanksDistrict':
@@ -2526,6 +2526,41 @@ TABLE_PROPERTY_MAPPER = {
         },
 
     },
+    'water_supply': {
+        'Table_1': {
+            'BiaNumEmployees': ['male', 'female', 'id'],
+            'BiaWaterUsers': ['type_wusers', 'num_clients', 'daily_demand', 'annual_demand', 'rate', 'id'],
+            'BiaWaterIntake': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+            'BiaTreatmentPlant': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+            'BiaWaterDistribution': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+            'BiaMainOffice': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],},
+        'Table_2': {
+            'BimRuralWater': ['type_water_supply','num_users','avg_replace_cost','avg_repair_cost','id',]},
+
+        'Table_3': {
+            'DlcwNumClients': ['residential','commerciadlpNdaLivestockl','industrial','others','total','id',],
+            'DlcwNumEmployees': ['male','female','total','id',],
+            'DlcwDmgWaterIntake': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
+            'DlcwDmgWaterTreatment': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
+            'DlcwDmgWaterDisribution': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
+            'DlcwDmgMainOffice': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
+            'DlcwLosProduction': ['production_los','avg_income','est_inc_year_1','est_inc_year_2','tot_los_year_1','tot_los_year_2','tot_los','id',],
+            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
+       },
+        'Table_4': {
+            'DlRuralDmg': ['type_water_supply',
+                    'families_affected',
+                    'tot_destroyed_assets',
+                    'part_damaged_assets',
+                    'tot_damages','id',],
+            'DlRuralLos': ['type_water_supply',
+                    'cleaning_debris',
+                    'high_ocost',
+                    'other_unexpected_exps',
+                    'tot_los','id',],
+
+       }
+    }
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

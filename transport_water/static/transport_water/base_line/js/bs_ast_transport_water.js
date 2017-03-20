@@ -196,7 +196,7 @@ else if(table == 'BsAstWaterStructures'){
 $scope.saveBsData = function()
 {
 $scope.submitted = true;
-if (form.$valid) {
+
 console.log($scope.district + '-' + $scope.bs_date );
  $http({
     method: "POST",
@@ -218,7 +218,6 @@ console.log($scope.district + '-' + $scope.bs_date );
       $("#modal-container-239453").modal('show');
 
  })
- }
 
 }
 

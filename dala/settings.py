@@ -85,9 +85,12 @@ INSTALLED_APPS = [
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
-    # 'housing',
-    # 'housing.base_line',
-    # 'housing.damage_losses',
+    'housing',
+    'housing.base_line',
+    'housing.damage_losses',
+    'tourism',
+    'tourism.base_line',
+    'tourism.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -136,7 +139,7 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=water_supply'
+        #     'options': '-c search_path=housing'
         # },
 
         'NAME': 'dala_2017',

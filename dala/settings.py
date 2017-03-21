@@ -2565,7 +2565,18 @@ TABLE_PROPERTY_MAPPER = {
                     'tot_los','id',],
 
        }
+    },
+    'tourism': {
+        'Table_1': {
+            'BsTouBusiness': ['business', 'num_bis_private', 'num_bis_public', 'num_emp_male', 'num_empfemale', 'id'],
+            'BsCultSites': ['site', 'num_bis_private', 'num_bis_public', 'num_emp_male', 'num_empfemale', 'id'],
+            'BsNatFormation': ['site', 'num_bis_private', 'num_bis_public', 'num_emp_male', 'num_empfemale', 'id'],
+        },
+
     }
+
+
+
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

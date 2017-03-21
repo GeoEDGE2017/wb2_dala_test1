@@ -95,6 +95,31 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
                 $scope.selectedDistrict = "";
             })
         }
+        if($scope.incident && $scope.district ) {
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BimRuralWater'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_2',
+                    'sector': 'water_supply',
+                }),
+                  dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+                });
+                console.log(data);
+            }, function errorCallback(response) {
+
+            });
+        }
     }
 
     $scope.saveDlData = function(form) {
@@ -124,4 +149,42 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
             });
         }
     }
+
+     $scope.dlDataEdit = function(form){
+
+    $scope.is_edit = true;
+    $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_4',
+    'sector':'water_supply',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlRuralWtrSply = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+       $scope.is_edit = false;
+        $scope.dlRuralWtrSply = init_data;
+
+}
+
+
+
+
+
 }]);

@@ -106,20 +106,43 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlRuralDmg.part_damaged_assets">
                         </td>
-                        <td width="125" ng-bind="dlRuralDmg.tot_damages">
+                        <td width="125" ng-model="dlRuralDmg.tot_damages"
+                            ng-bind="dlRuralDmg.tot_damages =
+                        dlRuralDmg.tot_destroyed_assets * bs_data['BimRuralWater'][$index].fields.avg_replace_cost +
+                        dlRuralDmg.part_damaged_assets * bs_data['BimRuralWater'][$index].fields.avg_repair_cost ">
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="dlRuralDmg in dlRuralWtrSply.water_supply.Table_4.DlRuralDmg"
                         ng-if="dlRuralDmg.type_water_supply == 'TOTAL'">
                         <td class="tdpa" width="240" height="19" ng-bind="dlRuralDmg.type_water_supply">
                         </td>
-                        <td width="125" ng-bind="dlRuralDmg.families_affected">
+                        <td width="125" ng-model="dlRuralDmg.families_affected"
+                            ng-bind="dlRuralDmg.families_affected =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[0].families_affected +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[1].families_affected +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[2].families_affected +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[3].families_affected">
                         </td>
-                        <td width="125" ng-bind="dlRuralDmg.tot_destroyed_assets">
+                        <td width="125" ng-model="dlRuralDmg.tot_destroyed_assets"
+                            ng-bind="dlRuralDmg.tot_destroyed_assets =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[0].tot_destroyed_assets +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[1].tot_destroyed_assets +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[2].tot_destroyed_assets +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[3].tot_destroyed_assets">
                         </td>
-                        <td width="125" ng-bind="dlRuralDmg.part_damaged_assets">
+                        <td width="125" ng-model="dlRuralDmg.part_damaged_assets"
+                            ng-bind="dlRuralDmg.part_damaged_assets =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[0].part_damaged_assets +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[1].part_damaged_assets +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[2].part_damaged_assets +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[3].part_damaged_assets">
                         </td>
-                        <td width="125" ng-bind="dlRuralDmg.tot_damages">
+                        <td width="125" ng-model="dlRuralDmg.tot_damages"
+                            ng-bind="dlRuralDmg.tot_damages =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[0].tot_damages +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[1].tot_damages +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[2].tot_damages +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralDmg[3].tot_damages">
                         </td>
                     </tr>
                     </tbody>
@@ -169,20 +192,42 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlRuralLos.other_unexpected_exps">
                         </td>
-                        <td width="125" ng-bind="dlRuralLos.tot_los">
+                        <td width="125" ng-model="dlRuralLos.tot_los"
+                            ng-bind="dlRuralLos.tot_los =
+                            dlRuralLos.cleaning_debris + dlRuralLos.high_ocost + dlRuralLos.other_unexpected_exps ">
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dlRuralLos in dlRuralWtrSply.water_supply.Table_4.DlRuralLos"
                         ng-if="dlRuralLos.type_water_supply == 'TOTAL'">
                         <td class="tdpa" width="240" height="20" ng-bind="dlRuralLos.type_water_supply">
                         </td>
-                        <td width="125" ng-bind="dlRuralLos.cleaning_debris">
+                        <td width="125" ng-mode="dlRuralWtrSply.cleaning_debris"
+                            ng-bind="dlRuralWtrSply.cleaning_debris =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[0].cleaning_debris +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[1].cleaning_debris +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[2].cleaning_debris +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[3].cleaning_debris">
                         </td>
-                        <td width="125" ng-bind="dlRuralLos.high_ocost">
+                        <td width="125" ng-model="dlRuralWtrSply.high_ocost"
+                        ng-bind="dlRuralWtrSply.high_ocost =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[0].high_ocost +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[1].high_ocost +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[2].high_ocost +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[3].high_ocost">
                         </td>
-                        <td width="125" ng-bind="dlRuralLos.high_ocost">
+                        <td width="125" ng-model="dlRuralWtrSply.other_unexpected_exps"
+                            ng-bind="dlRuralWtrSply.other_unexpected_exps =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[0].other_unexpected_exps +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[1].other_unexpected_exps +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[2].other_unexpected_exps +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[3].other_unexpected_exps">
                         </td>
-                        <td width="125" ng-bind="dlRuralLos.other_unexpected_exps">
+                        <td width="125" ng-model="dlRuralWtrSply.tot_los"
+                            ng-bind="dlRuralWtrSply.tot_los =
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[0].tot_los +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[1].tot_los +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[2].tot_los +
+                            dlRuralWtrSply.water_supply.Table_4.DlRuralLos[3].tot_los">
                         </td>
                     </tr>
                     </tbody>
@@ -190,7 +235,14 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
+                      <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+
                     <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_rul_wtr_sply)">Submit</button>
                 </div>
                 <br><br><br>

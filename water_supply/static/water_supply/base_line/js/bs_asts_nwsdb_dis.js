@@ -1,12 +1,16 @@
 //Table 1
-var app = angular.module('bsAstsNwsdbDisApp', []);
-app.controller('bsAstsNwsdbDisController', function($scope, $http) {
+var app = angular.module('bsAstsNwsdbDisApp', ['underscore']);
+app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_date;
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.BiaWaterUsers_num_clients = null;
+    $scope.BiaWaterUsers_daily_demand = null;
+    $scope.BiaWaterUsers_annual_demand = null;
+    $scope.BiaWaterUsers_rate = null;
 
     var init_data = {
         'water_supply' : {
@@ -183,4 +187,54 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http) {
             })
         }
     }
+
+    $scope.getTotal = function(model, property) {
+        console.log(model);
+        var array = $scope.bsAstsNwsdbDis.water_supply.Table_1[model];
+
+        var cumulative = null;
+        var sums = _.map(array, function(obj) {
+          if(obj.type_wusers != 'Total' &&  obj.type_wusers != 'Average Income Per Year (LKR/Year)')
+            cumulative += obj[property];
+            console.log(cumulative);
+            return cumulative;
+
+        });
+
+        var the_string = model + '_' + property;
+        var model = $parse(the_string);
+        model.assign($scope, cumulative);
+
+
+
+    }
+
+    $scope.bsHsDataEdit = function(form)
+    {
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_1',
+              'sector': 'water_supply',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date} }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsAstsNwsdbDis = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function()
+    {
+        $scope.is_edit = false;
+        $scope.bsLandTrnsAsst = init_data;
+    }
+
 })

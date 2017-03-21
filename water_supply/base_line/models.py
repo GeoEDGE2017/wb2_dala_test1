@@ -127,6 +127,7 @@ class BimRuralWater(models.Model):
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:

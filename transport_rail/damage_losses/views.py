@@ -48,7 +48,7 @@ def dl_rail_trnspt_dis_summary(request):
 
 
 @permission_required("national", 'transport_land')
-def dl_rail_type_loss_summary(request):
+def dl_rail_trans_nat_summary(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
@@ -61,7 +61,7 @@ def dl_rail_type_loss_summary(request):
         'company': company,
         'module': 'transport_rail'
     }
-    return render(request, 'damage_losses/summary_damages_losses_the_rail_transportation_nationwide_types_of_losses.html', context)
+    return render(request, 'damage_losses/summary_damages_losses_the_rail_transportation_nationwide.html', context)
 
 
 @permission_required("national", 'transort_land')

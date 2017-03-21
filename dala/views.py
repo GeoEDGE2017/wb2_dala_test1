@@ -72,16 +72,23 @@ def bs_save_data(request):
     todate = timezone.now()
     is_edit = bs_data['is_edit']
 
+    print 'in adding' , is_edit
+    print bs_table_hs_data
+
     if not is_edit:
         print 'in'
         for sector in bs_table_hs_data:
 
             sub_app_name = sector + '.base_line'
 
+            print 'sub_app_name :', sub_app_name
+
             for interface_table in bs_table_hs_data[sector]:
                 print 'interface table', ' -->', interface_table, '\n'
 
                 sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+                print 'got model'
                 record_exist = sub_app_session.objects.filter(bs_date=com_data['bs_date'],
                                                             table_name=interface_table,
                                                             district=district)

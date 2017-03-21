@@ -85,9 +85,9 @@ INSTALLED_APPS = [
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
-    'housing',
-    'housing.base_line',
-    'housing.damage_losses',
+    # 'housing',
+    # 'housing.base_line',
+    # 'housing.damage_losses',
     'tourism',
     'tourism.base_line',
     'tourism.damage_losses',
@@ -132,11 +132,13 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,'
-        #                'transport_rail,transport_water,transport_land,transport_air,'
-        #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
-        # },
+        #  'OPTIONS': {
+        #     'options': '-c search_path='
+        # #                 'health,public,other_government,education,mining,'
+        # #                'transport_rail,transport_water,transport_land,transport_air,'
+        # #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        #                     'tourism'
+        #  },
 
         # 'OPTIONS': {
         #     'options': '-c search_path=housing'

@@ -107,7 +107,8 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlcwNumClients.others">
                         </td>
-                        <td colspan="2" width="108" ng-bind="dlcwNumClients.total">
+                        <td colspan="2" width="108" ng-model="dlcwNumClients.total"
+                            ng-bind="dlcwNumClients.total = dlcwNumClients.residential + dlcwNumClients.commercial + dlcwNumClients.industrial + dlcwNumClients.others ">
                         </td>
                     </tr>
                     <tr class="trheadc" height="18">
@@ -133,7 +134,8 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="DlcwNumEmployees.female">
                         </td>
-                        <td colspan="2" width="108" ng-total="DlcwNumEmployees.total">
+                        <td colspan="2" width="108" ng-model="DlcwNumEmployees.total"
+                            ng-bind="DlcwNumEmployees.total = DlcwNumEmployees.male + DlcwNumEmployees.female ">
                         </td>
                     </tr>
                     <tr class="trheadc" height="18">
@@ -183,8 +185,12 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlcwDmgWaterIntake.num_part_damaged">
                             </td>
-                            <td colspan="2" ng-bind="dlcwDmgWaterIntake.total_dmgs">
+                            <td colspan="2" ng-model="dlcwDmgWaterIntake.total_dmgs"
+                            ng-bind="dlcwDmgWaterIntake.total_dmgs =
+                            dlcwDmgWaterIntake.num_tot_destoyed * bs_data['BiaWaterIntake'][$index].fields.avg_replace_cost +
+                            dlcwDmgWaterIntake.num_part_damaged * bs_data['BiaWaterIntake'][$index].fields.avg_repair_cost  ">
                             </td>
+
                         </tr>
                         <tr class="trheadc" height="18">
                             <td width="223" height="18">
@@ -208,7 +214,11 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlcwDmgWaterTreatment.num_part_damaged">
                             </td>
-                            <td colspan="2" ng-bind="dlcwDmgWaterTreatment.total_dmgs">
+
+                            <td colspan="2" ng-model="dlcwDmgWaterTreatment.total_dmgs"
+                            ng-bind="dlcwDmgWaterTreatment.total_dmgs =
+                            dlcwDmgWaterTreatment.num_tot_destoyed * bs_data['BiaTreatmentPlant'][$index].fields.avg_replace_cost +
+                            dlcwDmgWaterTreatment.num_part_damaged * bs_data['BiaTreatmentPlant'][$index].fields.avg_repair_cost  ">
                             </td>
                         </tr>
                         <tr class="trheadc" height="18">
@@ -233,7 +243,11 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlcwDmgWaterDisribution.num_part_damaged">
                             </td>
-                            <td colspan="2" ng-bind="dlcwDmgWaterDisribution.total_dmgs">
+
+                            <td colspan="2" ng-model="dlcwDmgWaterDisribution.total_dmgs"
+                            ng-bind="dlcwDmgWaterDisribution.total_dmgs =
+                            dlcwDmgWaterDisribution.num_tot_destoyed * bs_data['BiaWaterDistribution'][$index].fields.avg_replace_cost +
+                            dlcwDmgWaterDisribution.num_part_damaged * bs_data['BiaWaterDistribution'][$index].fields.avg_repair_cost  ">
                             </td>
                         </tr>
                         <tr class="trheadc" height="18">
@@ -259,7 +273,11 @@
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md" ng-model="dlcwDmgMainOffice.num_part_damaged">
                             </td>
-                            <td colspan="2" ng-bind="dlcwDmgMainOffice.total_dmgs">
+
+                            <td colspan="2" ng-model="dlcwDmgMainOffice.total_dmgs"
+                            ng-bind="dlcwDmgMainOffice.total_dmgs =
+                            dlcwDmgMainOffice.num_tot_destoyed * bs_data['BiaMainOffice'][$index].fields.avg_replace_cost +
+                            dlcwDmgMainOffice.num_part_damaged * bs_data['BiaMainOffice'][$index].fields.avg_repair_cost  ">
                             </td>
                         </tr>
                         <tr height="18" ng-repeat="dlcwDmgMainOffice in dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice"
@@ -270,7 +288,7 @@
                             </td>
                             <td class="tdpa" colspan="2" width="216">
                             </td>
-                            <td colspan="2" width="202" ng-bind="dlcwDmgMainOffice.total_dmgs">
+                            <td colspan="2" width="202" ng-mpdel="dlcwDmgMainOffice.total_dmgs" ng-bind="calGrandTotal()">
                             </td>
                         </tr>
                         </tbody>
@@ -314,10 +332,12 @@
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="dlcwLosProduction in dlComWtrSply.water_supply.Table_3.DlcwLosProduction">
-                        <td class="tdpa" width="223" height="18" ng-bind="dlcwLosProduction.avg_income">
+                        <td class="tdpa" width="223" height="18" ng-bind="dlcwLosProduction.production_los">
                             Production Losses
                         </td>
-                        <td width="108" ng-bind="dlcwLosProduction.avg_income">
+                        <td width="108" >
+                             <input id="textinput" name="textinput" type="number" placeholder=""
+                                   class="form-control input-md" ng-model="dlcwLosProduction.avg_income">
                         </td>
                         <td width="108">
                             <input id="textinput" name="textinput" type="number" placeholder=""
@@ -327,11 +347,15 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlcwLosProduction.est_inc_year_2">
                         </td>
-                        <td width="108" ng-bind="dlcwLosProduction.tot_los_year_1">
+                        <td width="108" ng-bind="dlcwLosProduction.tot_los_year_1 = dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_1" ng-model="dlcwLosProduction.tot_los_year_1">
                         </td>
-                        <td width="101" ng-bind="dlcwLosProduction.tot_los_year_2">
+                        <td width="101" ng-model="dlcwLosProduction.tot_los_year_2" ng-bind="dlcwLosProduction.tot_los_year_2 = dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_2 ">
                         </td>
-                        <td width="101" ng-bind="dlcwLosProduction.tot_los">
+                        <td width="101" ng-model="dlcwLosProduction.tot_los" ng-bind="dlcwLosProduction.tot_los =
+                        (dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_1) +
+                        (dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_2) +
+                        dlcwLosProduction.tot_los_year_1 +
+                        dlcwLosProduction.tot_los_year_2">
                         </td>
                     </tr>
                     <tr class="tdpa" height="18">
@@ -356,17 +380,30 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlcwLosOther.tot_los_year_2">
                         </td>
-                        <td width="101" ng-bind="dlcwLosOther.tot_los">
+                        <td width="101" ng-model="dlcwLosOther.tot_los" ng-bind="dlcwLosOther.tot_los = dlcwLosOther.tot_los_year_1 + dlcwLosOther.tot_los_year_2">
                         </td>
                     </tr>
-                    <tr height="18" ng-repeat="dlcwLosOther in dlComWtrSply.water_supply.Table_3.DlcwLosOther" ng-if="dlcwLosOther.other_los == 'TOTAL'">
+                    <tr height="18" ng-repeat="dlcwLosOther in dlComWtrSply.water_supply.Table_3.DlcwLosOther"
+                        ng-if="dlcwLosOther.other_los == 'TOTAL'">
                         <td class="tdpa" colspan="4" width="547" height="18" ng-bind="dlcwLosOther.other_los">
                         </td>
-                        <td width="108" ng-model="dlcwLosOther.tot_los_year_1">
+                        <td width="108" ng-model="dlcwLosOther.tot_los_year_1"
+                        ng-bind="dlcwLosOther.tot_los_year_1 =
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los_year_1 +
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los_year_1 +
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los_year_1">
                         </td>
-                        <td width="101" ng-model="dlcwLosOther.tot_los_year_2">
+                        <td width="101" ng-model="dlcwLosOther.tot_los_year_2"
+                             ng-bind="dlcwLosOther.tot_los_year_2 =
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los_year_2 +
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los_year_2 +
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los_year_2">
                         </td>
-                        <td width="101" ng-bind="dlcwLosOther.tot_los">
+                        <td width="101" ng-model="dlcwLosOther.tot_los"
+                            ng-bind="dlcwLosOther.tot_los =
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los +
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los +
+                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los ">
                         </td>
                     </tr>
                     </tbody>
@@ -374,8 +411,17 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="testFunction(form_dl_com_wtr_sply)">Clear</button>
-                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_com_wtr_sply)">Submit</button>
+
+                     <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_com_wtr_sply)"
+                    class="btn btn-success">Submit
+                    </button>
                 </div>
                 <br><br><br>
             </div>

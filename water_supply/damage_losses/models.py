@@ -121,6 +121,7 @@ class DlcwDmgMainOffice(models.Model):
 
 
 class DlcwLosProduction(models.Model):
+    production_los = models.CharField(max_length=255, blank=True, null=True)
     avg_income = models.FloatField(blank=True, null=True)
     est_inc_year_1 = models.FloatField(blank=True, null=True)
     est_inc_year_2 = models.FloatField(blank=True, null=True)

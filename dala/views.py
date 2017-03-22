@@ -2,9 +2,11 @@ from __future__ import absolute_import
 import datetime
 from django.core.serializers.json import DjangoJSONEncoder
 
+
 from health.base_line.models import BdSessionKeys
 from health.damage_losses.models import DlSessionKeys
 from incidents.models import IncidentReport
+from tourism.base_line.models import TouBusiness
 import yaml, json
 from django.apps import apps
 from django.views.decorators.csrf import csrf_exempt
@@ -60,6 +62,27 @@ def fetch_incident_provinces(request):
         json.dumps(list(affected_provinces)),
         content_type='application/javascript; charset=utf8'
     )
+
+
+@csrf_exempt
+def fetch_business_types(request):
+    dl_data = (yaml.safe_load(request.body))
+
+    # change appropiately in the future
+    # business_types = TouBusiness.objects.all()
+    # business_types = TouBusiness.objects.filter(~Q(business=''))
+    # from django.db.models import Q  ## for not operator
+
+    business_types = TouBusiness.objects.all()
+    business_types_json = business_types.values('id', 'business')
+
+    return HttpResponse(
+        json.dumps(list(business_types_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+    # data = serializers.serialize('json', business_types)
+    # return HttpResponse(data, mimetype="application/json")
 
 
 @csrf_exempt
@@ -662,6 +685,43 @@ def add_entity(request):
         modified_model = model_class.objects.filter(pk=object_id)
         modified_model.update(**model_fields)
         return HttpResponse(object_id)
+
+    if model_object.id is not None:
+        return HttpResponse(model_object.id)
+    else:
+        return HttpResponse(False)
+
+# add entities with district ids
+@csrf_exempt
+def add_entity_with_district(request):
+    data = (yaml.safe_load(request.body))
+    model_fields = data['model_fields']
+    model_name = data['model']
+    is_edit = data['is_edit']
+    sector = data['sector']
+    district_id = data['district_id']
+
+    sub_app_name = sector + '.base_line'
+
+    model_class = apps.get_model(sub_app_name, model_name)
+
+    print is_edit
+
+    if is_edit == False:
+        print 'new'
+
+        model_object = model_class(**model_fields)
+        model_object.district_id = district_id
+        model_object.save()
+        print model_object
+
+    # update has to be done in the future for district
+    # else:
+    #     print 'update'
+    #     object_id = model_fields['id']
+    #     modified_model = model_class.objects.filter(pk=object_id)
+    #     modified_model.update(**model_fields)
+    #     return HttpResponse(object_id)
 
     if model_object.id is not None:
         return HttpResponse(model_object.id)

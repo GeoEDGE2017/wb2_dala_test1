@@ -7,6 +7,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
+    $scope.ownership;
 
     $scope.submitted = false;
     $scope.is_valid_data = true;

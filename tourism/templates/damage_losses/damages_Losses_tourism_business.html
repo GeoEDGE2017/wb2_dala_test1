@@ -1,0 +1,725 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+    <!-- Main content -->
+    <main class="main" ng-app="dlTouismInfrstrctApp" ng-controller="dlTouismInfrstrctController">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            
+            <li class="breadcrumb-item"><a href="#">Admin</a>
+            </li>
+			 <li class="breadcrumb-item"><a href="#">Tourism Sector</a>
+            </li>
+           
+			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses in Tourism Business</span></li>
+
+           
+        </ol>
+
+
+        <div class="container-fluid" ng-form name="form_dl_tou_buss ">
+
+        <ul class='nav nav-wizard'>
+				    <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+				    <li><a href='#step2' data-toggle="tab">2 - Tourism</a></li>
+				   
+				  </ul>
+				
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane active" id="step1">
+						 
+                          
+                             <table class="table table-bordered" >
+    <colgroup>
+        <col width="229"/>
+        <col width="100" span="6"/>
+    </colgroup>
+    <tbody>
+       
+        <tr class="trhead" height="20">
+            <td width="229" height="20">
+                District
+            </td>
+            <td colspan="2" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
+                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                        class="form-control" ng-change="changedValue(false);" required>
+                    <!--fetchFirms();-->
+                    <option value="" selected>Select District</option>
+                </select>
+            </td>
+			 <td width="229" height="20">
+                Incident
+            </td>
+            <td colspan="2" width="600">
+            <select id="selectbasic" name="incident" ng-model="incident"
+                    class="form-control" ng-change="changedValue(true)"
+                    style="width:100%;font-weight:400;" required>
+                <option value="" selected="true">Select an Incident</option>
+                {% for incident in incidents %}
+
+                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                    {{incident.reported_date_time}}
+                </option>
+                {% endfor %}
+            </select>
+            </td>
+            
+
+        </tr>
+        <tr class="trhead" height="20">
+            <td width="229" height="20">
+                Name of Firm
+            </td>
+            <td colspan="4" width="600">
+            <select ng-options="firm as firm.name for firm in firms track by firm.id"
+                    name="district" id="ccyear" ng-model="selectedFirm" class="form-control" required>
+                <option value="" selected="true">Select Firm</option>
+            </select>
+
+            </td>
+             <td>
+            <a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add " class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
+            </td>
+            <td>
+            <a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+            </td>
+        </tr>
+        <tr class="trhead" height="20">
+            <td width="229" height="20">
+                Type of Business
+            </td>
+            <td colspan="4" width="200">
+               <select id="selectbasic" name="selectbasic"
+                       ng-options="businessType as businessType.business for  businessType in businessTypes"
+                    name="district" id="ccyear" ng-model="selectedType"
+                       class="form-control"
+                       style="width:100%;font-weight:400;">
+
+                <option value="" selected="true">Select Business Type</option>
+
+
+
+            </select>
+            </td>
+             <td>
+            <a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add" class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
+            </td>
+            <td>
+            <a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+            </td>
+        </tr>
+        <tr class="trhead" height="20">
+            <td width="229" height="20">
+                Ownership
+            </td>
+            <td colspan="6" width="600">
+                <select id="selectbasic" name="selectbasic" ng-model="ownership"  class="form-control" style="width:100%;font-weight:400;">
+                  <option value="" selected="true">Select Ownership</option>
+                   <option value="Public">Public</option>
+                   <option value="Private">Private</option>
+
+    </select>
+            </td>
+        </tr>
+        <tr class="trheadc" height="20">
+            <td rowspan="2" width="229" height="40">
+                Number of Employees
+            </td>
+            <td colspan="3" width="300">
+                Male
+            </td>
+            <td colspan="3" width="300">
+                Female
+            </td>
+        </tr>
+        <tr height="20">
+            <td colspan="3" width="300" height="20">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="3" width="300">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+        </tr>
+        
+        <tr class="trheadc" height="34">
+            <td width="229" height="34">
+                Assets
+            </td>
+            <td colspan="2" width="200">
+                Replacement Value of Totally Destroyed Asset (LKR)
+            </td>
+            <td colspan="2" width="200">
+                Repair Cost of Partially Damaged Asset (LKR)
+            </td>
+            <td colspan="2" width="200">
+                Total Damages (LKR)
+            </td>
+        </tr>
+        <tr class="trheadc" height="20">
+            <td width="229" height="20">
+                Structures
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Buildings
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr class="tdpa" height="20">
+            <td class="tdpa" width="229" height="20">
+                 Others &nbsp;&nbsp;<button class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Total
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr class="trheadc" height="20">
+            <td width="229" height="20">
+                Equipment
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Computers
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr class="tdpa" height="20">
+            <td class="tdpa" width="229" height="20">
+               Others &nbsp;&nbsp;<button class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Total
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr class="trheadc" height="20">
+            <td width="229" height="20">
+                Machinery
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Generators
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr class="tdpa" height="20">
+            <td class="tdpa" width="229" height="20">
+                 Others &nbsp;&nbsp;<button class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Total
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr class="trheadc" height="20">
+            <td width="229" height="20">
+                Vehicles
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Cars
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Others
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Total
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr class="trheadc" height="20">
+            <td width="229" height="20">
+                Inventories
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+            <td colspan="2" width="200">
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Beds
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Furniture
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Others
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Total
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                GRAND TOTAL
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+            <td colspan="2" width="200">
+                -
+            </td>
+        </tr>
+       
+</table>		
+                                
+                           
+                            <br>
+<a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Tourism Informations</a>
+               <br>        
+           </div> 
+                        	<div class="tab-pane fade" id="step2">
+                             
+			 <table class="table table-bordered" >					
+        <tr class="trheadc" height="51">
+            <td width="229" height="51">
+                Types of Losses
+            </td>
+            <td width="100">
+                Average Value of Income per Year
+            </td>
+            <td colspan="2" width="200">
+                Reduction in Value Of Income (%)
+            </td>
+            <td colspan="2" width="200">
+                Losses (LKR)
+            </td>
+            <td rowspan="2" width="100">
+                Total Losses (LKR)
+            </td>
+        </tr>
+        <tr class="trsubc" height="20">
+            <td width="229" height="20">
+            </td>
+            <td width="100">
+                LKR/Year
+            </td>
+            <td width="100">
+                Year 1
+            </td>
+            <td width="100">
+                Year 2
+            </td>
+            <td width="100">
+                Year 1
+            </td>
+            <td width="100">
+                Year 2
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Income Losses
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+                -
+            </td>
+            <td width="100">
+                -
+            </td>
+            <td width="100">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Cleaning up of debris
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Higher operating costs
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                Other unexpected expenses
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td width="100">
+                -
+            </td>
+        </tr>
+        <tr height="20">
+            <td class="tdpa" width="229" height="20">
+                GRAND TOTAL
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td class="tdpa" width="100">
+            </td>
+            <td width="100">
+                -
+            </td>
+            <td width="100">
+                -
+            </td>
+            <td width="100">
+                -
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+								
+                                <br>
+                                <div class="pull-right">
+		<br>
+<button type="button" class="btn btn-info">Clear</button>
+<button type="button" class="btn btn-success">Submit</button>
+</div>	
+                                <br><br><br>
+        </div>
+        </div>
+							
+							
+			
+								
+                            </div>
+                        </div>
+
+         <div class="col-md-12">
+			
+			//Add model
+			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+				<div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_firm_add">
+					<div class="modal-content">
+						<div class="modal-header">
+							 
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<h5 class="modal-title" >
+								<span id="bookId"> </span>
+							</h5>
+						</div>
+						<div class="modal-body">
+						<!-- Text input-->
+                            <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Firm Name</label>
+                            <div class="col-md-5">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       ng-model="new_firm.name" name="firm_name"
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group" style="margin-top:5px;">
+                            <label class="col-md-4 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-5">
+                                <select id="selectbasic" name="ownership" ng-model='ownership' class="form-control"
+                                        style="font-weight:400;" required>
+
+                                    <option value="" selected="true">Select Ownership</option>
+
+                                    <option value="Public">Public</option>
+                                    <option value="Private">Private</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                        <br>
+                        </div>
+                        <br><br>
+						<div class="modal-footer">
+							 
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button> 
+							<button type="button" class="btn btn-primary" ng-click="saveFirm(form_tourism_firm_add)">
+								Save Firm
+							</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+
+             //Edit
+             <div class="modal fade" id="modal-container-218030" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+				<div class="modal-dialog" style="width:50%;">
+					<div class="modal-content">
+						<div class="modal-header">
+
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<h5 class="modal-title" >
+								<span id="bookId"> </span>
+							</h5>
+						</div>
+						<div class="modal-body">
+						<!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-2 control-label" for="textinput">Name</label>
+                              <div class="col-md-10">
+                              <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+
+                              </div>
+                            </div>
+                        </div>
+                        <br><br>
+						<div class="modal-footer">
+
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button>
+							<button type="button" class="btn btn-primary">
+								Save changes
+							</button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			
+			
+		</div>           </div>    
+
+        </div>
+		
+        <!-- /.conainer-fluid -->
+    </main>
+  
+  
+{% endblock content %}

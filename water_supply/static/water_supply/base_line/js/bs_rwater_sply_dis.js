@@ -64,4 +64,33 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
             })
         }
     }
+
+     $scope.bsHsDataEdit = function(form)
+    {
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_2',
+              'sector': 'water_supply',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date} }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsRwaterSplyDis = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function()
+    {
+        $scope.is_edit = false;
+        $scope.bsRwaterSplyDis = init_data;
+    }
+
 })

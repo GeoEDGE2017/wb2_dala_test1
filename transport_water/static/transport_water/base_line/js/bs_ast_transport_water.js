@@ -218,7 +218,7 @@ console.log($scope.district + '-' + $scope.bs_date );
       $("#modal-container-239453").modal('show');
 
  })
- 
+
 
 }
 

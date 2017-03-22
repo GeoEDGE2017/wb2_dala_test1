@@ -87,6 +87,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 }],
                 //Tab 2
                 'DlcwLosProduction':[{
+                    production_los :'Production Losses',
                     avg_income : null,
                     est_inc_year_1 : null,
                     est_inc_year_2 : null,
@@ -179,9 +180,11 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             var particular_value_4 = null;
 
             if(model_name == 'BiaWaterIntake') {
+                console.log($scope.dlComWtrSply);
                 dl_model1 = 'DlcwDmgWaterIntake';
 
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model1] = [];
+                console.log($scope.dlComWtrSply);
             }
             if(model_name == 'BiaTreatmentPlant') {
                 dl_model2 = 'DlcwDmgWaterTreatment';
@@ -279,12 +282,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         });
     }
 
-//    $scope.saveDlData = function(form) {
-//        $scope.submitted = true;
-//        if(form.$valid) {
-//            console.log($scope.dlComWtrSply);
-//        }
-//    }
 
     $scope.saveDlData = function(form) {
         if(form.$valid) {
@@ -313,9 +310,74 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
     }
 
-    $scope.testFunction = function(form) {
-        console.log($scope.dlComWtrSply);
-        console.log($scope.incident);
-        console.log($scope.district);
+    $scope.calGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+
+    var grantot = 0;
+
+    var array1 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterIntake;
+    var array2 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterTreatment;
+    var array3 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterDisribution;
+    var array4 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice;
+
+    console.log(array4);
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.num_tot_destoyed  + value.num_part_damaged  ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.num_tot_destoyed + value.num_part_damaged ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.num_tot_destoyed + value.num_part_damaged ;
+    })
+    angular.forEach(array4, function(value, key) {
+
+     finaltotal4 = finaltotal4 + value.num_tot_destoyed + value.num_part_damaged ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+    return grantot;
     }
+
+    $scope.dlDataEdit = function(form){
+
+    $scope.is_edit = true;
+    $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_3',
+    'sector':'water_supply',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlComWtrSply = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+       $scope.is_edit = false;
+        $scope.dlComWtrSply = init_data;
+
+}
+
+
 }]);

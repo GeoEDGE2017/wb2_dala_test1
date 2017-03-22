@@ -15,7 +15,7 @@ class Province(models.Model):
 class District(models.Model):
     province = models.ForeignKey('Province')
     name = models.CharField(max_length=255, blank=True, null=True)
-
+    id = models.BigIntegerField(primary_key=True)
     class Meta:
         managed = False
         db_table = 'district'

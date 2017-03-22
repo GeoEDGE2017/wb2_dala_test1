@@ -12,7 +12,7 @@ class DlSessionKeys(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='tr_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='tr_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='tr_dl_district', blank=True, null=True)
-    company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
+    
 
     class Meta:
         managed = False

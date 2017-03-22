@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^charts/', include('charts.urls', namespace='charts')),
 
     # report builder
-    url(r'^report_builder/', include('report_builder.urls')),
+   # url(r'^report_builder/', include('report_builder.urls')),
 
     # common functions
     url(r'^bs_get_data$', views.bs_get_data, name='bs_get_data'),

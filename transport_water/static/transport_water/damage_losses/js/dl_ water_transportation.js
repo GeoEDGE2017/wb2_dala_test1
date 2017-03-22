@@ -248,7 +248,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     $scope.saveDlData = function() {
 
 
-    if(form.$valid) {
+    
     $scope.submitted = true;
 
         $http({
@@ -277,7 +277,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
 
         });
-    }
+    
 
     }
 

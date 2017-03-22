@@ -113,10 +113,6 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 new_row = {'assets': '','val_dst':null, 'val_pdmg':null, 'tot_dmg':null, }
                 $scope.dl_tourism_business.tourism.Table_2[table].push(new_row);
             }
-
-
-
-
         }
 
         $scope.removeItem = function removeItem(table, index) {
@@ -184,7 +180,6 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }).success(function(data) {
 
         $scope.businessTypes = data;
-        //console.log($scope.businessTypes);
 
         })
     }
@@ -223,9 +218,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }
     }
 
-    $scope.calculate = function(){
 
-    }
 
     //Correct way of binding data to avoid NaN
     $scope.sum_of_dst_dpmg = function(a, b, field, totalField){

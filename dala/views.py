@@ -6,7 +6,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from health.base_line.models import BdSessionKeys
 from health.damage_losses.models import DlSessionKeys
 from incidents.models import IncidentReport
-from tourism.base_line.models import TouBusiness
+from tourism.base_line.models import TouBusiness, InfType
 import yaml, json
 from django.apps import apps
 from django.views.decorators.csrf import csrf_exempt
@@ -81,8 +81,24 @@ def fetch_business_types(request):
         content_type='application/javascript; charset=utf8'
     )
 
-    # data = serializers.serialize('json', business_types)
-    # return HttpResponse(data, mimetype="application/json")
+
+# Tourism Infrastructure types
+@csrf_exempt
+def fetch_tourism_infrastructure_types(request):
+    dl_data = (yaml.safe_load(request.body))
+
+    # change appropiately in the future
+    # business_types = TouBusiness.objects.all()
+    # business_types = TouBusiness.objects.filter(~Q(business=''))
+    # from django.db.models import Q  ## for not operator
+
+    inf_types = InfType.objects.all()
+    inf_types_json = inf_types.values('infrastructure')
+
+    return HttpResponse(
+        json.dumps(list(inf_types_json)),
+        content_type='application/javascript; charset=utf8'
+    )
 
 
 @csrf_exempt
@@ -691,6 +707,7 @@ def add_entity(request):
     else:
         return HttpResponse(False)
 
+
 # add entities with district ids
 @csrf_exempt
 def add_entity_with_district(request):
@@ -716,6 +733,7 @@ def add_entity_with_district(request):
         print model_object
 
     # update has to be done in the future for district
+
     # else:
     #     print 'update'
     #     object_id = model_fields['id']

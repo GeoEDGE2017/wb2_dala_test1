@@ -40,7 +40,7 @@
                             && form_bs_tourism_facilities.district.$error.required">
                                 Please Select District
                             </span>
-
+                            <!--district == undefined-->
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
@@ -98,8 +98,8 @@
             </td>
         </tr>
        <!--Tourism Bussiness-->
-        <tr height="20" ng-repeat="DmgBusAstStructure in bs_tourism_facilities.tourism.Table_1.DmgBusAstStructures">
-            <td class="tdpa" width="172" height="20" ng-bind="DmgBusAstStructures.business" ng-if="$index < 6">
+        <tr height="20" ng-repeat="BsTourrismBussines in bs_tourism_facilities.tourism.Table_1.BsTouBusiness">
+            <td class="tdpa" width="172" height="20" ng-bind="BsTourrismBussines.business" ng-if="$index < 6">
             </td>
             <td width="98" ng-if="$index > 5">
                         {% verbatim %}
@@ -309,16 +309,8 @@
    <div class="pull-right">
 		<br>
 
-   <button type="button" ng-click="clear()"  class="btn btn-warning">
+   <button type="button" ng-click="cancelEdit()"  class="btn btn-warning">
         Clear</button>
-
-      <button type="button" ng-click="bsTouDataEdit(form_bs_tourism_facilities)"
-            ng-if="!is_edit" class="btn btn-success">Edit
-        </button>
-        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-            Edit
-        </button>
-
     <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_tourism_facilities)"
 
         class="btn btn-success">Submit

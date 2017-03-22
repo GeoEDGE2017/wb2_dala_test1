@@ -46,6 +46,11 @@ urlpatterns = [
     # get Business Types
     url(r'^fetch_business_types$', views.fetch_business_types, name='fetch_business_types'),
 
+    # get Business Types
+    url(r'^fetch_tourism_infrastructure_types$', views.fetch_tourism_infrastructure_types, name='fetch_tourism_infrastructure_types'),
+
+
+
 
 
     # agri_irrigation

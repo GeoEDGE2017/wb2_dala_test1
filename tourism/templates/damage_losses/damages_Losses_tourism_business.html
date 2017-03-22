@@ -168,23 +168,45 @@
             <td colspan="2" width="200">
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Buildings
+        <tr height="20" ng-repeat="dmgBusAstStructure in
+                dl_tourism_business.tourism.Table_2.DmgBusAstStructures">
+
+            <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstStructure.assets" ng-if="$index < 1">
+            </td>
+             <td width="98" ng-if="$index > 0">
+                        {% verbatim %}
+                        <button id="delete" ng-click="removeItem('DmgBusAstStructures', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input style="width:80%;float:right;" name="DmgBusAstStructures_{{$index}}" ng-model="dmgBusAstStructure.assets"
+                            popover="This field is required"
+                            popover-toggle="form_pop_lat_census['DmgBusAstStructures_' + $index].$dirty && !form_pop_lat_census['DmgBusAstStructures_' + $index].$valid"
+                            popover-placement="top" required
+                            type="text"
+                            class="form-control input-md">
+                        {% endverbatim %}
+            </td>
+
+
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstStructure.val_dst" placeholder="" class="form-control input-md">
             </td>
             <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstStructure.val_pdmg" placeholder="" class="form-control input-md">
             </td>
-            <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200"
+                ng-bind="sum_of_dst_dpmg(dmgBusAstStructure.val_dst,
+                dmgBusAstStructure.val_pdmg, dmgBusAstStructure, 'tot_dmg')">
                 -
             </td>
         </tr>
-        <tr class="tdpa" height="20">
+        <tr class="tdpa" height="20" >
             <td class="tdpa" width="229" height="20">
-                 Others &nbsp;&nbsp;<button class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+                 Others &nbsp;
+                        <button ng-click="insertBussiness('DmgBusAstStructures')"
+                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
             </td>
             <td colspan="2" width="200">
             </td>
@@ -198,13 +220,13 @@
             <td class="tdpa" width="229" height="20">
                 Total
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstStructures', 'val_dst')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstStructures', 'val_pdmg')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstStructures', 'tot_dmg')">
                 -
             </td>
         </tr>
@@ -219,23 +241,44 @@
             <td colspan="2" width="200">
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Computers
+        <tr height="20" ng-repeat="dmgBusAstEquipment in
+        dl_tourism_business.tourism.Table_2.DmgBusAstEquipment">
+            <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstEquipment.assets" ng-if="$index < 1">
+
+            </td>
+            <td width="98" ng-if="$index > 0">
+                        {% verbatim %}
+                        <button id="delete" ng-click="removeItem('DmgBusAstEquipment', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input style="width:80%;float:right;" name="DmgBusAstEquipment{{$index}}" ng-model="dmgBusAstEquipment.assets"
+                            popover="This field is required"
+                            popover-toggle="form_pop_lat_census['DmgBusAstEquipment_' + $index].$dirty && !form_pop_lat_census['DmgBusAstEquipment_' + $index].$valid"
+                            popover-placement="top" required
+                            type="text"
+                            class="form-control input-md">
+                        {% endverbatim %}
+            </td>
+
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstEquipment.val_dst" placeholder="" class="form-control input-md">
             </td>
             <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstEquipment.val_pdmg" placeholder="" class="form-control input-md">
             </td>
-            <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-model="dmgBusAstEquipment.tot_dmg"
+                ng-bind="sum_of_dst_dpmg(dmgBusAstEquipment.val_dst, dmgBusAstEquipment.val_pdmg,
+                dmgBusAstEquipment, 'tot_dmg')">
                 -
-            </td>
         </tr>
         <tr class="tdpa" height="20">
             <td class="tdpa" width="229" height="20">
-               Others &nbsp;&nbsp;<button class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+               Others &nbsp;&nbsp;
+                        <button ng-click="insertBussiness('DmgBusAstEquipment')"
+                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+
             </td>
             <td colspan="2" width="200">
             </td>
@@ -249,15 +292,16 @@
             <td class="tdpa" width="229" height="20">
                 Total
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstEquipment', 'val_dst')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstEquipment', 'val_pdmg')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstEquipment', 'tot_dmg')">
                 -
             </td>
+
         </tr>
         <tr class="trheadc" height="20">
             <td width="229" height="20">
@@ -270,23 +314,47 @@
             <td colspan="2" width="200">
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Generators
+
+        <<tr height="20" ng-repeat="dmgBusAstMachinery in
+        dl_tourism_business.tourism.Table_2.DmgBusAstMachinery">
+            <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstMachinery.assets" ng-if="$index < 1">
+
+            </td>
+            <td width="98" ng-if="$index > 0">
+                        {% verbatim %}
+                        <button id="delete" ng-click="removeItem('DmgBusAstMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input style="width:80%;float:right;" name="DmgBusAstMachinery{{$index}}"
+                               ng-model="dmgBusAstMachinery.assets"
+                            popover="This field is required"
+                            popover-toggle="form_pop_lat_census['DmgBusAstMachinery_' + $index].$dirty
+                            && !form_pop_lat_census['DmgBusAstMachinery_' + $index].$valid"
+                            popover-placement="top" required
+                            type="text"
+                            class="form-control input-md">
+                        {% endverbatim %}
+            </td>
+
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstMachinery.val_dst" placeholder="" class="form-control input-md">
             </td>
             <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstMachinery.val_pdmg" placeholder="" class="form-control input-md">
             </td>
-            <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2" width="200">
-                -
-            </td>
+            <td colspan="2" width="200"
+                ng-bind="sum_of_dst_dpmg(dmgBusAstMachinery.val_dst, dmgBusAstMachinery.val_pdmg,
+                dmgBusAstMachinery, 'tot_dmg')">
+
         </tr>
         <tr class="tdpa" height="20">
             <td class="tdpa" width="229" height="20">
-                 Others &nbsp;&nbsp;<button class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+                 Others &nbsp;&nbsp;
+                        <button ng-click="insertBussiness('DmgBusAstMachinery')"
+                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+
             </td>
             <td colspan="2" width="200">
             </td>
@@ -300,15 +368,16 @@
             <td class="tdpa" width="229" height="20">
                 Total
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstMachinery', 'val_dst')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstMachinery', 'val_pdmg')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstMachinery', 'tot_dmg')">
                 -
             </td>
+
         </tr>
         <tr class="trheadc" height="20">
             <td width="229" height="20">
@@ -321,23 +390,46 @@
             <td colspan="2" width="200">
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Cars
+        <tr height="20" ng-repeat="dmgBusAstVehicle in
+                dl_tourism_business.tourism.Table_2.DmgBusAstVehicle">
+
+            <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstVehicle.assets" ng-if="$index < 1">
+            </td>
+             <td width="98" ng-if="$index > 0">
+                        {% verbatim %}
+                        <button id="delete" ng-click="removeItem('DmgBusAstVehicle', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input style="width:80%;float:right;" name="DmgBusAstVehicle_{{$index}}" ng-model="dmgBusAstVehicle.assets"
+                            popover="This field is required"
+                            popover-toggle="form_pop_lat_census['DmgBusAstVehicle_' + $index].$dirty && !form_pop_lat_census['DmgBusAstVehicle_' + $index].$valid"
+                            popover-placement="top" required
+                            type="text"
+                            class="form-control input-md">
+                        {% endverbatim %}
+            </td>
+
+
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstVehicle.val_dst" placeholder="" class="form-control input-md">
             </td>
             <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstVehicle.val_pdmg" placeholder="" class="form-control input-md">
             </td>
-            <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200"
+                ng-bind="sum_of_dst_dpmg(dmgBusAstVehicle.val_dst, dmgBusAstVehicle.val_pdmg,
+                dmgBusAstVehicle, 'tot_dmg')">
                 -
             </td>
         </tr>
         <tr height="20">
             <td class="tdpa" width="229" height="20">
                 Others
+                      <button ng-click="insertBussiness('DmgBusAstVehicle')"
+                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+
             </td>
             <td colspan="2" width="200">
             <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
@@ -353,15 +445,16 @@
             <td class="tdpa" width="229" height="20">
                 Total
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstVehicle', 'val_dst')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstVehicle', 'val_pdmg')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstVehicle', 'tot_dmg')">
                 -
             </td>
+
         </tr>
         <tr class="trheadc" height="20">
             <td width="229" height="20">
@@ -374,37 +467,48 @@
             <td colspan="2" width="200">
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Beds
+        <tr height="20" ng-repeat="dmgBusAstInventories in
+                dl_tourism_business.tourism.Table_2.DmgBusAstInventories">
+
+            <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstInventories.assets" ng-if="$index < 2">
+            </td>
+             <td width="98" ng-if="$index > 1">
+                        {% verbatim %}
+                        <button id="delete" ng-click="removeItem('DmgBusAstInventories', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input style="width:80%;float:right;" name="DmgBusAstInventories_{{$index}}" ng-model="dmgBusAstInventories.assets"
+                            popover="This field is required"
+                            popover-toggle="form_pop_lat_census['DmgBusAstInventories_' + $index].$dirty
+                            && !form_pop_lat_census['DmgBusAstInventories_' + $index].$valid"
+                            popover-placement="top" required
+                            type="text"
+                            class="form-control input-md">
+                        {% endverbatim %}
+            </td>
+
+
+            <td colspan="2" width="200">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstInventories.val_dst" placeholder="" class="form-control input-md">
             </td>
             <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dmgBusAstInventories.val_pdmg" placeholder="" class="form-control input-md">
             </td>
-            <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200"
+                ng-bind="sum_of_dst_dpmg(dmgBusAstInventories.val_dst, dmgBusAstInventories.val_pdmg,
+                dmgBusAstInventories, 'tot_dmg')">
                 -
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Furniture
-            </td>
-            <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2" width="200">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2" width="200">
-                -
-            </td>
-        </tr>
+
         <tr height="20">
             <td class="tdpa" width="229" height="20">
                 Others
+                   <button ng-click="insertBussiness('DmgBusAstInventories')"
+                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+
             </td>
             <td colspan="2" width="200">
             <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
@@ -420,27 +524,28 @@
             <td class="tdpa" width="229" height="20">
                 Total
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstInventories', 'val_dst')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstInventories', 'val_pdmg')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstInventories', 'tot_dmg')">
                 -
             </td>
+
         </tr>
         <tr height="20">
             <td class="tdpa" width="229" height="20">
                 GRAND TOTAL
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getGrandTotalCol('val_dst')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getGrandTotalCol('val_pdmg')">
                 -
             </td>
-            <td colspan="2" width="200">
+            <td colspan="2" width="200" ng-bind="getGrandTotalCol('tot_dmg')">
                 -
             </td>
         </tr>
@@ -492,30 +597,44 @@
             </td>
         </tr>
         <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Income Losses
+            <td class="tdpa" width="229" height="20"
+                ng-bind="dl_tourism_business.tourism.Table_2.DlBusLosses.los_type">
             </td>
             <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number"
+                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.avg_val_income_year"
+                   placeholder="" class="form-control input-md">
             </td>
             <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="text" placeholder="" type="number"
+                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year1"
+                   class="form-control input-md">
             </td>
             <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="text" placeholder="" type="number"
+                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year2"
+                   class="form-control input-md">
             </td>
-            <td width="100">
+            <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year1"
+            ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses.avg_val_income_year
+            ,dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year1,1)" >
                 -
             </td>
-            <td width="100">
+            <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year2"
+                ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses.avg_val_income_year
+            ,dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year2,2)">
                 -
             </td>
-            <td width="100">
+            <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.tol_losses"
+                ng-bind="getSumOfTwo(dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year1,
+                dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year2,
+                dl_tourism_business.tourism.Table_2.DlBusLosses, 'tol_losses')"
+            >
                 -
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
+        <tr height="20" ng-repeat="dlInfLosses in dl_tourism_business.tourism.Table_2.DlInfLosses" >
+            <td class="tdpa" width="229" height="20" ng-bind="dlInfLosses.los_type">
                 Cleaning up of debris
             </td>
             <td class="tdpa" width="100">
@@ -525,72 +644,35 @@
             <td class="tdpa" width="100">
             </td>
             <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number" ng-model="dlInfLosses.val_los_year1" placeholder="" class="form-control input-md">
             </td>
             <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            <input id="textinput" name="textinput" type="number" ng-model="dlInfLosses.val_los_year2" class="form-control input-md">
             </td>
-            <td width="100">
+            <td width="100" ng-model="dlInfLosses.tol_losses"
+            ng-bind="getSumOfTwo(dlInfLosses.val_los_year1,dlInfLosses.val_los_year2,
+                dlInfLosses, 'tol_losses')">
                 -
             </td>
         </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Higher operating costs
-            </td>
-            <td class="tdpa" width="100">
-            </td>
-            <td class="tdpa" width="100">
-            </td>
-            <td class="tdpa" width="100">
-            </td>
-            <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="100">
-                -
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" width="229" height="20">
-                Other unexpected expenses
-            </td>
-            <td class="tdpa" width="100">
-            </td>
-            <td class="tdpa" width="100">
-            </td>
-            <td class="tdpa" width="100">
-            </td>
-            <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="100">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="100">
-                -
-            </td>
-        </tr>
+
         <tr height="20">
             <td class="tdpa" width="229" height="20">
                 GRAND TOTAL
             </td>
-            <td class="tdpa" width="100">
+            <td class="tdpa" width="100" >
             </td>
-            <td class="tdpa" width="100">
+            <td class="tdpa" width="100" >
             </td>
-            <td class="tdpa" width="100">
+            <td class="tdpa" width="100" >
             </td>
-            <td width="100">
+            <td width="100" ng-bind="getGrandTotalCol('val_los_year1')">
                 -
             </td>
-            <td width="100">
+            <td width="100" ng-bind="getGrandTotalCol('val_los_year2')">
                 -
             </td>
-            <td width="100">
+            <td width="100" ng-bind="getGrandTotalCol('tol_losses')">
                 -
             </td>
         </tr>
@@ -601,7 +683,7 @@
                                 <br>
                                 <div class="pull-right">
 		<br>
-<button type="button" class="btn btn-info">Clear</button>
+<button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
 <button type="button" class="btn btn-success">Submit</button>
 </div>	
                                 <br><br><br>
@@ -616,7 +698,7 @@
 
          <div class="col-md-12">
 			
-			//Add model
+			<!--Add model-->
 			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
 				<div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_firm_add">
 					<div class="modal-content">
@@ -674,7 +756,7 @@
 				
 			</div>
 
-             //Edit
+             <!--Edit-->
              <div class="modal fade" id="modal-container-218030" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
 				<div class="modal-dialog" style="width:50%;">
 					<div class="modal-content">

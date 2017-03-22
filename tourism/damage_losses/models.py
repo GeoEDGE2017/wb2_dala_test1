@@ -130,6 +130,7 @@ class DmgBusAstMachinery(models.Model):
 #         tourism
 # 'transport_land\".\"bs_gtl_ast_pvehicles'
 
+
 class DmgBusAstStructures(models.Model):
     firm_id = models.IntegerField(blank=True, null=True)
     ownership_id = models.IntegerField(blank=True, null=True)

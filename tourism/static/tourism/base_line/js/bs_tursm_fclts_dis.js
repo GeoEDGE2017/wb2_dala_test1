@@ -176,7 +176,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         //clear the data from table
         $scope.clear = function()
         {
-            console.log("init")
+
             $scope.is_edit = false;
             $scope.bs_tourism_facilities = angular.copy(init_data);
 

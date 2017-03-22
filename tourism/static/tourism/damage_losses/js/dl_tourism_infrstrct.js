@@ -20,10 +20,116 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     var init_data = {
         'tourism': {
             'Table_2': {
-
+                'DlNumEmpBusiness':{
+                    num_emp_male:null,
+                    num_emp_female:null,
+                },
+                'DmgBusAstStructures':[
+                {
+                    'assets': 'Buildings',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },],
+                'DmgBusAstEquipment':[
+                {
+                    'assets': 'Computers',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },],
+                'DmgBusAstMachinery':[
+                {
+                    'assets': 'Generators',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },],
+                'DmgBusAstVehicle': [
+                {
+                    'assets': 'Cars',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },],
+                'DmgBusAstInventories':[
+                {
+                    'assets': 'Beds',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },{
+                    'assets': 'Furniture',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },],
+                'DlBusLosses':{
+                    'los_type':'Income Losses',
+                    'avg_val_income_year':null,
+                    'val_income_year1':null,
+                    'val_income_year2':null,
+                    'val_los_year1':null,
+                    'val_los_year2':null,
+                    'tol_losses':null,
+                },
+                'DlInfLosses':[
+                    {
+                    'los_type':'Cleaning up of debris',
+                    'val_los_year1':null,
+                    'val_los_year2':null,
+                    'tol_losses':null,
+                },{
+                    'los_type':'Higher operating costs1',
+                    'val_los_year1':null,
+                    'val_los_year2':null,
+                    'tol_losses':null,
+                },
+                {
+                    'los_type':'Other unexpected expenses',
+                    'val_los_year1':null,
+                    'val_los_year2':null,
+                    'tol_losses':null,
+                }
+                ],
 
                 }
             }
+        }
+
+    $scope.dl_tourism_business = angular.copy(init_data);
+
+    //console.log($scope.dl_tourism_business);
+
+    $scope.insertBussiness = function(table){
+
+            var new_row;
+            if((table == 'DmgBusAstStructures')
+                || (table == 'DmgBusAstMachinery')
+                || (table == 'DmgBusAstEquipment')
+                || (table == 'DmgBusAstVehicle')
+                || (table == 'DmgBusAstInventories')
+            ) {
+                new_row = {'assets': '','val_dst':null, 'val_pdmg':null, 'tot_dmg':null, }
+                $scope.dl_tourism_business.tourism.Table_2[table].push(new_row);
+            }
+
+
+
+
+        }
+
+        $scope.removeItem = function removeItem(table, index) {
+
+            if((table == 'DmgBusAstStructures')
+                || (table == 'DmgBusAstMachinery')
+                || (table == 'DmgBusAstEquipment')
+                || (table == 'DmgBusAstVehicle')
+                || (table == 'DmgBusAstInventories')
+            ){
+                $scope.dl_tourism_business.tourism.Table_2[table].splice(index, 1);
+            }
+
         }
 
     $scope.changedValue=function getBsData(selectedValue) {
@@ -35,7 +141,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-                console.log($scope.districts);
+                //console.log($scope.districts);
             })
         }
 
@@ -58,7 +164,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
          }),
         }).success(function(data) {
 
-        console.log(data);
+        //console.log(data);
         $scope.firms = data;
 
         })
@@ -78,13 +184,13 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }).success(function(data) {
 
         $scope.businessTypes = data;
-        console.log($scope.businessTypes);
+        //console.log($scope.businessTypes);
 
         })
     }
 
     $scope.saveFirm = function(form) {
-    console.log("adding");
+    //console.log("adding");
         if(form.$valid) {
         //validate following filds later
         $scope.new_firm.ownership = $scope.ownership;
@@ -109,7 +215,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 if(data) {
 
                     $scope.firms.push($scope.new_firm);
-                    console.log($scope.new_firm);
+                    //console.log($scope.new_firm);
                 }
 
                 $("#modal-container-218029").modal('hide');
@@ -117,7 +223,84 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }
     }
 
+    $scope.calculate = function(){
 
+    }
+
+    //Correct way of binding data to avoid NaN
+    $scope.sum_of_dst_dpmg = function(a, b, field, totalField){
+
+        if(field){
+            field[totalField] = a + b;
+            //totalField
+            return field[totalField]; //tot_dmg
+        }
+        return 0;
+
+    }
+
+
+    $scope.getTotalCol = function(subTable, column){
+
+        var table = $scope.dl_tourism_business.tourism.Table_2;
+        var final_total = 0;
+
+        angular.forEach(table[subTable], function(value, key) {
+            final_total += value[column] ;
+        })
+
+        return final_total;
+    }
+
+    $scope.getGrandTotalCol = function(column){
+
+        var table = $scope.dl_tourism_business.tourism.Table_2;
+        var final_total = 0;
+
+        angular.forEach(table, function(subTable, key) {
+
+            angular.forEach(subTable, function(value, key) {
+                if(value){
+                    if(value[column]){
+                        final_total += value[column];
+                    }
+                }
+        })
+
+        })
+        return final_total;
+
+    }
+
+    $scope.getMulitiplyedYearLoss = function(avgincome, reduction, year){
+
+        var subTable = $scope.dl_tourism_business.tourism.Table_2.DlBusLosses;
+
+        var yearName = 'val_los_year'+year;
+
+        var finalValue;
+
+        finalValue = avgincome * reduction;
+
+        subTable[yearName] = finalValue;
+
+        return finalValue;
+    }
+
+    $scope.getSumOfTwo = function(val_a, val_b, total_object, total_field){
+
+            total_object[total_field] = val_a + val_b;
+
+            return total_object[total_field];
+    }
+
+     $scope.clear = function()
+        {
+
+            $scope.is_edit = false;
+            $scope.dl_tourism_business = angular.copy(init_data);
+
+        }
 
 });
 

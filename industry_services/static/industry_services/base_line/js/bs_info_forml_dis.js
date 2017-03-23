@@ -1,0 +1,240 @@
+
+
+var app = angular.module('bsindustryServicesInfoFormalApp', [])
+
+app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', function($scope, $http) {
+
+    $scope.district;
+    $scope.bs_date;
+    $scope.is_edit = false;
+
+    $scope.submitted = false;
+    $scope.is_valid_data = true;
+
+    var init_data = {
+        'industry_services': {
+            'Table_1': {
+                    'BsFrmNumBusIndustry':[
+                    {
+                        'industry':'Textile and Garments',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    {
+                        'industry':'Tea processing',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    {
+                        'industry':'Petroleum',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    {
+                        'industry':'Construction',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    {
+                        'industry':'Beverages',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    {
+                        'industry':'Chemicals',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    {
+                        'industry':'Pharmaceutical',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    ],
+                    'BsFrmNumBusServices':[
+                    {
+                        'service':'Finance and Insurance',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },{
+                        'service':'Wholesale Trade',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },{
+                        'service':'Retail Trade',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },{
+                        'service':'Real estate',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },{
+                        'service':'Private services',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                    },
+                    ],
+                }
+            }
+        }
+
+    $scope.bs_ind_ser_info_forml = angular.copy(init_data);
+
+    $scope.insertRow = function(table){
+
+            var new_row;
+            if(table == 'BsFrmNumBusIndustry') {
+                new_row = {
+                        'industry':'',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                }
+            }
+
+            if(table == 'BsFrmNumBusServices') {
+                new_row = {
+                        'service':'',
+                        'num_micro':null,
+                        'num_small':null,
+                        'num_medium': null,
+                        'num_large': null,
+                        'num_male': null,
+                        'num_female': null,
+                }
+            }
+
+            $scope.bs_ind_ser_info_forml.industry_services.Table_1[table].push(new_row);
+            }
+
+                   $scope.removeItem = function removeItem(table, index) {
+            // Following conditions can be checked in a single if
+            // separated for readability
+
+            if(table == 'BsFrmNumBusIndustry') {
+                $scope.bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusIndustry.splice(index, 1);
+            }
+            else if(table == 'BsFrmNumBusServices'){
+                $scope.bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusServices.splice(index, 1);
+            }
+
+        }
+
+
+        $scope.getGrandTotalCol = function(column){
+
+        var table = $scope.bs_ind_ser_info_forml.industry_services.Table_1;
+        var final_total = 0;
+
+        angular.forEach(table, function(subTable, key) {
+
+            angular.forEach(subTable, function(value, key) {
+                if(value){
+                    if(value[column]){
+                        final_total += value[column];
+                    }
+                }
+        })
+
+        })
+        return final_total;
+
+    }
+
+
+    //clear the data from table
+        $scope.cancelEdit = function()
+        {
+            //console.log("init")
+            $scope.is_edit = false;
+            $scope.bs_ind_ser_info_forml = angular.copy(init_data);
+        }
+
+        $scope.saveBsData = function(form) {
+            $scope.submitted = true;
+
+            if (form.$valid) {
+                $http({
+                    method: "POST",
+                    url: "/bs_save_data",
+                    data: angular.toJson({
+                        'table_data': ($scope.bs_ind_ser_info_forml),
+                        'com_data': {
+                            'district': $scope.district,
+                            'bs_date': $scope.bs_date,
+                        },
+                        'is_edit': $scope.is_edit,
+                        'sector':'industry_services', //check this line
+                    }),
+                }).success(function(data) {
+
+                    $scope.bs_tourism_facilities = init_data;
+                    $scope.is_edit = false;
+
+                    if (data == 'False')
+                        $scope.is_valid_data = false;
+                    else
+                        $("#modal-container-239453").modal('show');
+
+                })
+            }
+            else{
+                console.log("invalid");
+            }
+        }
+
+
+
+
+}]);

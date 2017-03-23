@@ -74,6 +74,9 @@ urlpatterns = [
     # tourism
     url(r'^tourism/', include('tourism.urls', namespace='tourism')),
 
+    # industry_services
+    url(r'^industry_services/', include('industry_services.urls', namespace='industry_services')),
+
     # other govn services
     url(r'^other_govn_services/', include('other_govn_services.urls', namespace='other_govn_services')),
 

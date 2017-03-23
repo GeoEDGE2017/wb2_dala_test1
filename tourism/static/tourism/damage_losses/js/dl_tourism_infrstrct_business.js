@@ -13,7 +13,9 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     $scope.ownership;
     $scope.isOwnershipPublic;
     $scope.selectedFirm;
+    $scope.selectedType;
     $scope.businessTypes = [];
+    $scope.is_edit = false;
     $scope.new_firm = {id: null, name: null, ownership: null,};
 
 
@@ -21,8 +23,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         'tourism': {
             'Table_2': {
                 'DlNumEmpBusiness':{
-                    num_emp_male:null,
-                    num_emp_female:null,
+                    'num_emp_male':null,
+                    'num_emp_female':null,
                 },
                 'DmgBusAstStructures':[
                 {
@@ -184,7 +186,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         })
     }
 
-    $scope.saveFirm = function(form) {
+    $scope.saveForm = function(form) {
     //console.log("adding");
         if(form.$valid) {
         //validate following filds later
@@ -294,6 +296,53 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
             $scope.dl_tourism_business = angular.copy(init_data);
 
         }
+
+        $scope.saveDlData = function(form) {
+        $scope.submitted = true;
+            if (form.$valid) {
+                $http({
+            method: 'POST',
+            url: '/dl_save_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dl_tourism_business,
+                'com_data': {
+                    'district_id': $scope.district.district__id,
+                    'incident_id': $scope.incident,
+                    'firm':$scope.selectedFirm.id,
+                    'ownership':$scope.ownership
+
+
+                },
+                'is_edit': $scope.is_edit
+            }),
+            dataType: 'json',
+        }).success(function(data) {
+
+                    $scope.bs_tourism_facilities = init_data;
+                    $scope.is_edit = false;
+
+                    if (data == 'False')
+                        $scope.is_valid_data = false;
+                    else
+                        $("#modal-container-239453").modal('show');
+
+                })
+            }
+            else{
+                console.log("invalid");
+
+            }
+        }
+
+        //clear the data from table
+        $scope.cancelEdit = function()
+        {
+            //console.log("init")
+            $scope.is_edit = false;
+            $scope.bs_tourism_facilities = angular.copy(init_data);
+        }
+
 
 });
 

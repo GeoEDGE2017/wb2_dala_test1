@@ -9,9 +9,9 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.selectedDistrict;
     $scope.incident;
     $scope.ownership;
+    $scope.is_edit = false;
     $scope.inf_types = [];
     $scope.infrastructures = [];
-
 
     var init_data = {
         'tourism': {
@@ -201,5 +201,43 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
             $scope.is_edit = false;
             $scope.dl_tourism_infrs = angular.copy(init_data);
 
+        }
+
+     $scope.saveDlData = function(form) {
+     $scope.submitted = true;
+
+     console.log("adding")
+
+            if (form.$valid) {
+                $http({
+            method: 'POST',
+            url: '/dl_save_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dl_tourism_infrs,
+                'com_data': {
+                    'district_id': $scope.district.district__id,
+                    'incident_id': $scope.incident,
+
+                },
+                'is_edit': $scope.is_edit
+            }),
+            dataType: 'json',
+            }).success(function(data) {
+
+                    $scope.bs_tourism_facilities = init_data;
+                    $scope.is_edit = false;
+
+                    if (data == 'False')
+                        $scope.is_valid_data = false;
+                    else
+                        $("#modal-container-239453").modal('show');
+
+                })
+            }
+            else{
+                console.log("invalid");
+
+            }
         }
 })

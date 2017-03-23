@@ -156,20 +156,9 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
             }
 
             $scope.bs_ind_ser_info_forml.industry_services.Table_1[table].push(new_row);
-            }
+      }
 
-                   $scope.removeItem = function removeItem(table, index) {
-            // Following conditions can be checked in a single if
-            // separated for readability
-
-            if(table == 'BsFrmNumBusIndustry') {
-                $scope.bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusIndustry.splice(index, 1);
-            }
-            else if(table == 'BsFrmNumBusServices'){
-                $scope.bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusServices.splice(index, 1);
-            }
-
-        }
+      get
 
 
         $scope.getGrandTotalCol = function(column){

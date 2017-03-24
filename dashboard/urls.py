@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^agri_irrigation_main$', views.agri_irrigation_main, name='agri_irrigation_main'),
     url(r'^agri_livestock_main$', views.agri_livestock_main, name='agri_livestock_main'),
     url(r'^agri_summary_main$', views.agri_summary_main, name='agri_summary_main'),
+    url(r'^water_supply_main$', views.water_supply_main, name='water_supply_main'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/admin/login/'}, name='logout'),
 
 

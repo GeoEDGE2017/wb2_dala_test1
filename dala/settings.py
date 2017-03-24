@@ -85,12 +85,15 @@ INSTALLED_APPS = [
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
-    # 'housing',
-    # 'housing.base_line',
-    # 'housing.damage_losses',
+    'housing',
+    'housing.base_line',
+    'housing.damage_losses',
     'tourism',
     'tourism.base_line',
     'tourism.damage_losses',
+    'telecommunication',
+    'telecommunication.base_line',
+    'telecommunication.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -135,11 +138,12 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=health,public,other_government,education,mining,'
         #                'transport_rail,transport_water,transport_land,transport_air,'
-        #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
+        #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
+        #                'housing, telecommunication'
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=housing'
+        #     'options': '-c search_path=telecommunication'
         # },
 
         'NAME': 'dala',

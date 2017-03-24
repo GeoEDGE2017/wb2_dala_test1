@@ -42,7 +42,7 @@ def dlsum_wter_sply_dst(request):
         'incidents': incidents,
         'module': 'water_supply',
     }
-    return render(request, 'damage_losses/summary_damages_losses_district.html', context)
+    return render(request, 'damage_losses/summary_damages_losses_water_supply_district.html', context)
 
 
 # Table 6

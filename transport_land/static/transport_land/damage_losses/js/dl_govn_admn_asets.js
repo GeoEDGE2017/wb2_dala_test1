@@ -297,7 +297,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
      $scope.dlGovnAdmnAsets = init_data;
 }
 
-    $scope.calTotal=function(arr){
+        $scope.calTotal=function(arr){
         var finaltotal = 0;
          console.log(arr);
         angular.forEach(arr, function(value, key) {

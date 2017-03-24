@@ -6,7 +6,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from health.base_line.models import BdSessionKeys
 from health.damage_losses.models import DlSessionKeys
 from incidents.models import IncidentReport
-from tourism.base_line.models import TouBusiness
+from tourism.base_line.models import BsTouBusiness, InfType
 import yaml, json
 from django.apps import apps
 from django.views.decorators.csrf import csrf_exempt
@@ -73,16 +73,35 @@ def fetch_business_types(request):
     # business_types = TouBusiness.objects.filter(~Q(business=''))
     # from django.db.models import Q  ## for not operator
 
-    business_types = TouBusiness.objects.all()
+    print "before getting objects"
+    business_types = BsTouBusiness.objects.all()
+    print "got objects"
     business_types_json = business_types.values('id', 'business')
+    print "converted"
 
     return HttpResponse(
         json.dumps(list(business_types_json)),
         content_type='application/javascript; charset=utf8'
     )
 
-    # data = serializers.serialize('json', business_types)
-    # return HttpResponse(data, mimetype="application/json")
+
+# Tourism Infrastructure types
+@csrf_exempt
+def fetch_tourism_infrastructure_types(request):
+    dl_data = (yaml.safe_load(request.body))
+
+    # change appropiately in the future
+    # business_types = TouBusiness.objects.all()
+    # business_types = TouBusiness.objects.filter(~Q(business=''))
+    # from django.db.models import Q  ## for not operator
+
+    inf_types = InfType.objects.all()
+    inf_types_json = inf_types.values('infrastructure')
+
+    return HttpResponse(
+        json.dumps(list(inf_types_json)),
+        content_type='application/javascript; charset=utf8'
+    )
 
 
 @csrf_exempt
@@ -298,22 +317,26 @@ def dl_save_data(request):
     filter_fields = {}
 
     if not is_edit:
+        print "not edit"
 
         for sector in dl_table_data:
 
             sub_app_name = sector + '.damage_losses'
+            print "app name ", sub_app_name
 
             for interface_table in dl_table_data[sector]:
 
                 com_data['table_name'] = interface_table
 
                 filter_fields = com_data
-
+                print "be fore getting model"
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
+                print "before filtering", com_data
                 record_exist = sub_app_session.objects.filter(**filter_fields)
-                print record_exist
+                print "record_exist"
 
                 if not record_exist:
+                    print "record does not exist"
 
                     print 'interface table', ' -->', interface_table, '\n'
                     for db_table in dl_table_data[sector][interface_table]:
@@ -546,6 +569,7 @@ def dl_fetch_district_disagtn(request):
     incident = com_data['incident']
     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
 
+    print tables
     dl_mtable_data = {sector: {}}
     dl_mtable_data[sector][table_name] = {}
 
@@ -691,6 +715,7 @@ def add_entity(request):
     else:
         return HttpResponse(False)
 
+
 # add entities with district ids
 @csrf_exempt
 def add_entity_with_district(request):
@@ -716,6 +741,7 @@ def add_entity_with_district(request):
         print model_object
 
     # update has to be done in the future for district
+
     # else:
     #     print 'update'
     #     object_id = model_fields['id']

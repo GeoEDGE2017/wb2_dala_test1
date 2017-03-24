@@ -91,6 +91,9 @@ INSTALLED_APPS = [
     'tourism',
     'tourism.base_line',
     'tourism.damage_losses',
+    'industry_services',
+    'industry_services.base_line',
+    'industry_services.damage_losses'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -132,19 +135,21 @@ WSGI_APPLICATION = 'dala.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #  'OPTIONS': {
-        #     'options': '-c search_path='
+         # 'OPTIONS': {
+         #    'options': '-c search_path='
         # #                 'health,public,other_government,education,mining,'
         # #                'transport_rail,transport_water,transport_land,transport_air,'
-        # #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply'
-        #                     'tourism'
+        # #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
+        #                     'tourism,'
+        #                       'industry_services'
         #  },
 
         # 'OPTIONS': {
         #     'options': '-c search_path=housing'
         # },
 
-        'NAME': 'dala',
+
+        'NAME': 'new',
         'USER': 'postgres',
     },
 
@@ -2541,9 +2546,8 @@ TABLE_PROPERTY_MAPPER = {
             'BiaMainOffice': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],},
         'Table_2': {
             'BimRuralWater': ['type_water_supply','num_users','avg_replace_cost','avg_repair_cost','id',]},
-
         'Table_3': {
-            'DlcwNumClients': ['residential','commerciadlpNdaLivestockl','industrial','others','total','id',],
+            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
             'DlcwNumEmployees': ['male','female','total','id',],
             'DlcwDmgWaterIntake': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
             'DlcwDmgWaterTreatment': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
@@ -2553,16 +2557,29 @@ TABLE_PROPERTY_MAPPER = {
             'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
        },
         'Table_4': {
-            'DlRuralDmg': ['type_water_supply',
-                    'families_affected',
-                    'tot_destroyed_assets',
-                    'part_damaged_assets',
-                    'tot_damages','id',],
-            'DlRuralLos': ['type_water_supply',
-                    'cleaning_debris',
-                    'high_ocost',
-                    'other_unexpected_exps',
-                    'tot_los','id',],
+            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
+            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
+
+       },
+        'Table_5': {
+            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
+            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
+            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
+            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
+            'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
+            'DlRuralTotDmgDistrict': ['tot_damages'],
+            'DlRuralTotLosDistrict': ['tot_los'],
+
+
+       },
+        'Table_6': {
+            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
+            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
+            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
+            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
+            'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
+            'DlRuralTotDmgDistrict': ['tot_damages'],
+            'DlRuralTotLosDistrict': ['tot_los'],
 
        }
     },
@@ -2572,6 +2589,17 @@ TABLE_PROPERTY_MAPPER = {
             'BsCultSites': ['site', 'num_bis_private', 'num_bis_public', 'num_emp_male', 'num_empfemale', 'id'],
             'BsNatFormation': ['site', 'num_bis_private', 'num_bis_public', 'num_emp_male', 'num_empfemale', 'id'],
         },
+        'Table_2':{
+            'DlNumEmpBusiness': ['num_emp_male', 'num_emp_female', 'id'],
+            'DmgBusAstStructures': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
+            'DmgBusAstEquipment': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
+            'DmgBusAstMachinery': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
+            'DmgBusAstVehicle': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
+            'DmgBusAstInventories': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
+            'DlBusLosses': ['los_type', 'avg_val_income_year', 'val_income_year1', 'val_income_year2', 'val_los_year1', 'val_los_year2','tol_losses','id'],
+            'DlInfLosses': ['los_type', 'val_los_year1', 'val_los_year2', 'tol_losses', 'id'],
+
+        }
 
     }
 

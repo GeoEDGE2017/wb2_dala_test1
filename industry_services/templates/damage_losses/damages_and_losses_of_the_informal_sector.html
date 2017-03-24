@@ -1,0 +1,783 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+
+   <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            
+            <li class="breadcrumb-item"><a href="#">Admin</a>
+            </li>
+			 <li class="breadcrumb-item"><a href="#">Industry & Services Sector</a>
+            </li>
+			
+           
+			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and losses of the informal sector</span></li>
+
+           
+        </ol>
+
+
+        <div class="container-fluid">
+ <ul class='nav nav-wizard'>
+				    <li class="active"><a href='#step1' data-toggle="tab">1 Damages </a></li>
+				    <li><a href='#step2' data-toggle="tab">2 Losses  </a></li>
+                    
+                  
+				   
+				  </ul>
+       
+				
+					<div id="myTabContent" class="tab-content">
+					
+					
+					<div class="tab-pane active" id="step1">
+					<table class="table table-bordered" >
+    <colgroup>
+        <col width="212"/>
+        <col width="108"/>
+        <col width="110"/>
+        <col width="100"/>
+        <col width="108"/>
+        <col width="127"/>
+        <col width="143"/>
+    </colgroup>
+    <tbody>
+        <tr class="trhead" height="19">
+            <td height="19" width="212">
+                Incident
+            </td>
+            <td height="19" width="108">
+                 <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
+      <option value="1">Option one</option>
+      <option value="2">Option two</option>
+    </select>
+            </td>
+            <td colspan="2" height="19" width="220">
+                District
+            </td>
+            <td colspan="3" height="19" width="343">
+                 <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
+      <option value="1">Option one</option>
+      <option value="2">Option two</option>
+    </select>
+            </td>
+        </tr>
+       
+        <tr class="trheadc" height="51">
+            <td height="51" width="212">
+                Type of businesses
+            </td>
+            <td height="51" width="108">
+                Total Number of Businesses Affected
+            </td>
+            <td colspan="2" height="51" width="220">
+                Replacement Value of Totally Destroyed Assets (LKR)
+            </td>
+            <td colspan="2" height="51" width="216">
+                Repair Cost for Partially Damaged Assets (LKR)
+            </td>
+            <td height="51" width="143">
+                Total Damages (LKR)
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Trading
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="220">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="216">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Services
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="220">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="216">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Food processing
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="220">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="216">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Others
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="220">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td colspan="2" height="19" width="216">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Total
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td colspan="2" height="19" width="220">
+                -
+            </td>
+            <td colspan="2" height="19" width="216">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+<br>
+					</div>
+					
+					<div class="tab-pane " id="step2">
+					<table class="table table-bordered" >
+    <colgroup>
+        <col width="212"/>
+        <col width="108"/>
+        <col width="110"/>
+        <col width="100"/>
+        <col width="108"/>
+        <col width="127"/>
+        <col width="143"/>
+    </colgroup>
+    <tbody>
+       
+        <tr class="trheadc" height="34">
+            <td height="34" width="212">
+                Types of Losses
+            </td>
+            <td height="34" width="108">
+                Average Value of Output per Year
+            </td>
+            <td colspan="2" height="34" width="220">
+                Reduction in Value 0f Output (%)
+            </td>
+            <td colspan="2" height="34" width="216">
+                Losses (LKR)
+            </td>
+            <td rowspan="2" height="53" width="143">
+                Total Losses (LKR)
+            </td>
+        </tr>
+        <tr class="trsubc" height="19">
+            <td height="19" width="212">
+                Trading
+            </td>
+            <td height="19" width="108">
+                LKR/Year
+            </td>
+            <td height="19" width="110">
+                Year 1
+            </td>
+            <td height="19" width="100">
+                Year 2
+            </td>
+            <td height="19" width="108">
+                Year 1
+            </td>
+            <td height="19" width="127">
+                Year 2
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Production Losses
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="110">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="100">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Cleaning up of debris
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Higher operating costs
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Other unexpected expenses
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Total
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr class="trheadc" height="19">
+            <td height="19" width="212">
+                Services
+            </td>
+            <td height="19" width="108">
+            </td>
+            <td height="19" width="110">
+            </td>
+            <td height="19" width="100">
+            </td>
+            <td height="19" width="108">
+            </td>
+            <td height="19" width="127">
+            </td>
+            <td height="19" width="143">
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Production Losses
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="110">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="100">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Cleaning up of debris
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Higher operating costs
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Other unexpected expenses
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Total
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr class="trheadc" height="19">
+            <td height="19" width="212">
+                Food processing
+            </td>
+            <td height="19" width="108">
+            </td>
+            <td height="19" width="110">
+            </td>
+            <td height="19" width="100">
+            </td>
+            <td height="19" width="108">
+            </td>
+            <td height="19" width="127">
+            </td>
+            <td height="19" width="143">
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Production Losses
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="110">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="100">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Cleaning up of debris
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Higher operating costs
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Other unexpected expenses
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Total
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr class="trheadc" height="19">
+            <td height="19" width="212">
+                Others
+            </td>
+            <td height="19" width="108">
+            </td>
+            <td height="19" width="110">
+            </td>
+            <td height="19" width="100">
+            </td>
+            <td height="19" width="108">
+            </td>
+            <td height="19" width="127">
+            </td>
+            <td height="19" width="143">
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Production Losses
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="110">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="100">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Cleaning up of debris
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Higher operating costs
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Other unexpected expenses
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="127">
+			<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                Total
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="212">
+                GRAND TOTAL
+            </td>
+            <td class="tdpa" height="19" width="108">
+            </td>
+            <td class="tdpa" height="19" width="110">
+            </td>
+            <td class="tdpa" height="19" width="100">
+            </td>
+            <td height="19" width="108">
+                -
+            </td>
+            <td height="19" width="127">
+                -
+            </td>
+            <td height="19" width="143">
+                -
+            </td>
+        </tr>
+    </tbody>
+</table>
+ <br>
+                   <div class="pull-right">
+		<br>
+<button type="button" class="btn btn-info">Clear</button>
+<button type="button" class="btn btn-success">Submit</button>
+</div>	 
+					</div>
+					
+					
+					
+						
+                        
+								
+        </div>
+        </div>
+							
+							
+			
+								
+                          
+
+         <div class="col-md-12">
+			
+			
+			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+				<div class="modal-dialog" style="width:50%;">
+					<div class="modal-content">
+						<div class="modal-header">
+							 
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×
+							</button>
+							<h5 class="modal-title" >
+								<span id="bookId"> </span>
+							</h5>
+						</div>
+						<div class="modal-body">
+						<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-2 control-label" for="textinput">Name</label>  
+  <div class="col-md-10">
+  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+</div>
+<br><br>
+						<div class="modal-footer">
+							 
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Close
+							</button> 
+							<button type="button" class="btn btn-primary">
+								Save changes
+							</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			
+		</div>           </div>    
+
+        </div>
+		
+        <!-- /.conainer-fluid -->
+    </main>
+  
+  
+{% endblock content %}

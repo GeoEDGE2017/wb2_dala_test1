@@ -2,6 +2,7 @@ from django.db import models
 from settings.models import District
 from incidents.models import IncidentReport
 
+
 class BdSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
@@ -15,6 +16,7 @@ class BdSessionKeys(models.Model):
     class Meta:
         managed = False
         db_table = 'tourism\".\"bd_session_keys'
+
 
 class BsCultSites(models.Model):
     site = models.CharField(max_length=255, blank=True, null=True)
@@ -114,10 +116,19 @@ class Ownership(models.Model):
         db_table = 'tourism\".\"ownership'
 
 
-class TouBusiness(models.Model):
+class BsTouBusiness(models.Model):
     business = models.CharField(max_length=255, blank=True, null=True)
-    id = models.BigIntegerField(primary_key=True)
+    num_bis_private = models.BigIntegerField(blank=True, null=True)
+    num_bis_public = models.BigIntegerField(blank=True, null=True)
+    num_emp_male = models.BigIntegerField(blank=True, null=True)
+    num_empfemale = models.BigIntegerField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    bs_date = models.CharField(max_length=255, blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'tourism\".\"tou_business'
+        db_table = 'tourism\".\"bs_tou_business'

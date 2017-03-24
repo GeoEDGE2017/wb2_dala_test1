@@ -76,4 +76,20 @@ def dl_sum_fisheries_pro(request):
 
     return render(request, 'damage_losses/summary_damages_losses_fisheries_in_the_province.html', context)
 
+    # Table 6
+@permission_required("provincial", 'agri_fisheries')
+def dl_sum_fisheries_nat(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents,
+        'module': 'agri_fisheries',
+    }
+
+    return render(request, 'damage_losses/summary_damages_losses_fisheries_in_the_nationwide.html', context)
+
 

@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^charts/', include('charts.urls', namespace='charts')),
 
     # report builder
-    url(r'^report_builder/', include('report_builder.urls')),
+   # url(r'^report_builder/', include('report_builder.urls')),
 
     # common functions
     url(r'^bs_get_data$', views.bs_get_data, name='bs_get_data'),
@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^bs_save_data$', views.bs_save_data, name='bs_save_data'),
     url(r'^fetch_entities$', views.fetch_entities, name='fetch_entities'),
     url(r'^add_entity$', views.add_entity, name='add_entity'),
+    # add_entity_with_district
+    url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),
 
     url(r'^dl_save_data$', views.dl_save_data, name='dl_save_data'),
     url(r'^dl_get_data$', views.dl_get_data, name='dl_get_data'),
@@ -40,6 +42,21 @@ urlpatterns = [
 
     url(r'^fetch_incident_districts$', views.fetch_incident_districts, name='fetch_incident_districts'),
     url(r'^fetch_incident_provinces$', views.fetch_incident_provinces, name='fetch_incident_provinces'),
+
+    # get Business Types
+    url(r'^fetch_business_types$', views.fetch_business_types, name='fetch_business_types'),
+
+    # get Business Types
+    url(r'^fetch_tourism_infrastructure_types$', views.fetch_tourism_infrastructure_types, name='fetch_tourism_infrastructure_types'),
+
+    # get entities all data
+    url(r'^fetch_entities_plain$', views.fetch_entities_plain,
+        name='fetch_entities_plain'),
+
+
+
+
+
 
     # agri_irrigation
     url(r'^agri_irrigation/', include('agri_irrigation.urls', namespace='agri_irrigation')),
@@ -64,6 +81,9 @@ urlpatterns = [
 
     # tourism
     url(r'^tourism/', include('tourism.urls', namespace='tourism')),
+
+    # industry_services
+    url(r'^industry_services/', include('industry_services.urls', namespace='industry_services')),
 
     # other govn services
     url(r'^other_govn_services/', include('other_govn_services.urls', namespace='other_govn_services')),

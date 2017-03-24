@@ -2,9 +2,11 @@ from __future__ import absolute_import
 import datetime
 from django.core.serializers.json import DjangoJSONEncoder
 
+
 from health.base_line.models import BdSessionKeys
 from health.damage_losses.models import DlSessionKeys
 from incidents.models import IncidentReport
+from tourism.base_line.models import BsTouBusiness, InfType
 import yaml, json
 from django.apps import apps
 from django.views.decorators.csrf import csrf_exempt
@@ -63,6 +65,64 @@ def fetch_incident_provinces(request):
 
 
 @csrf_exempt
+def fetch_business_types(request):
+    dl_data = (yaml.safe_load(request.body))
+
+    # change appropiately in the future
+    # business_types = TouBusiness.objects.all()
+    # business_types = TouBusiness.objects.filter(~Q(business=''))
+    # from django.db.models import Q  ## for not operator
+
+    print "before getting objects"
+    business_types = BsTouBusiness.objects.all()
+    print "got objects"
+    business_types_json = business_types.values('id', 'business')
+    print "converted"
+
+    return HttpResponse(
+        json.dumps(list(business_types_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
+# Tourism Infrastructure types
+@csrf_exempt
+def fetch_tourism_infrastructure_types(request):
+    dl_data = (yaml.safe_load(request.body))
+
+    # change appropiately in the future
+    # business_types = TouBusiness.objects.all()
+    # business_types = TouBusiness.objects.filter(~Q(business=''))
+    # from django.db.models import Q  ## for not operator
+
+    inf_types = InfType.objects.all()
+    inf_types_json = inf_types.values('infrastructure')
+
+    return HttpResponse(
+        json.dumps(list(inf_types_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
+# this method returns single columned data
+@csrf_exempt
+def fetch_entities_plain(request):
+    data = (yaml.safe_load(request.body))
+    model_name = data['model']
+    sector = data['sector']
+
+    sub_app_name = sector + '.base_line'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.all()
+    fetched_data_json = fetched_data.values()
+
+    return HttpResponse(
+        json.dumps(list(fetched_data_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
+@csrf_exempt
 def bs_save_data(request):
     bs_data = (yaml.safe_load(request.body))
     bs_table_hs_data = bs_data['table_data']
@@ -72,16 +132,23 @@ def bs_save_data(request):
     todate = timezone.now()
     is_edit = bs_data['is_edit']
 
+    print 'in adding' , is_edit
+    print bs_table_hs_data
+
     if not is_edit:
         print 'in'
         for sector in bs_table_hs_data:
 
             sub_app_name = sector + '.base_line'
 
+            print 'sub_app_name :', sub_app_name
+
             for interface_table in bs_table_hs_data[sector]:
                 print 'interface table', ' -->', interface_table, '\n'
 
                 sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+                print 'got model'
                 record_exist = sub_app_session.objects.filter(bs_date=com_data['bs_date'],
                                                             table_name=interface_table,
                                                             district=district)
@@ -268,22 +335,26 @@ def dl_save_data(request):
     filter_fields = {}
 
     if not is_edit:
+        print "not edit"
 
         for sector in dl_table_data:
 
             sub_app_name = sector + '.damage_losses'
+            print "app name ", sub_app_name
 
             for interface_table in dl_table_data[sector]:
 
                 com_data['table_name'] = interface_table
 
                 filter_fields = com_data
-
+                print "be fore getting model"
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
+                print "before filtering", com_data
                 record_exist = sub_app_session.objects.filter(**filter_fields)
-                print record_exist
+                print "record_exist"
 
                 if not record_exist:
+                    print "record does not exist"
 
                     print 'interface table', ' -->', interface_table, '\n'
                     for db_table in dl_table_data[sector][interface_table]:
@@ -516,6 +587,7 @@ def dl_fetch_district_disagtn(request):
     incident = com_data['incident']
     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
 
+    print tables
     dl_mtable_data = {sector: {}}
     dl_mtable_data[sector][table_name] = {}
 
@@ -655,6 +727,45 @@ def add_entity(request):
         modified_model = model_class.objects.filter(pk=object_id)
         modified_model.update(**model_fields)
         return HttpResponse(object_id)
+
+    if model_object.id is not None:
+        return HttpResponse(model_object.id)
+    else:
+        return HttpResponse(False)
+
+
+# add entities with district ids
+@csrf_exempt
+def add_entity_with_district(request):
+    data = (yaml.safe_load(request.body))
+    model_fields = data['model_fields']
+    model_name = data['model']
+    is_edit = data['is_edit']
+    sector = data['sector']
+    district_id = data['district_id']
+
+    sub_app_name = sector + '.base_line'
+
+    model_class = apps.get_model(sub_app_name, model_name)
+
+    print is_edit
+
+    if is_edit == False:
+        print 'new'
+
+        model_object = model_class(**model_fields)
+        model_object.district_id = district_id
+        model_object.save()
+        print model_object
+
+    # update has to be done in the future for district
+
+    # else:
+    #     print 'update'
+    #     object_id = model_fields['id']
+    #     modified_model = model_class.objects.filter(pk=object_id)
+    #     modified_model.update(**model_fields)
+    #     return HttpResponse(object_id)
 
     if model_object.id is not None:
         return HttpResponse(model_object.id)

@@ -276,7 +276,6 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
         });
 
-
     }
 
     // get relevant base-line data for calculations

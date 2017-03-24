@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="bsInfoAcfoAssetsApp" ng-controller="bsInfoAcfoAssetsController">
     <!-- Breadcrumb -->
@@ -10,7 +18,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline information on agricultural crops, forest products and related other assets</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline Information on Agricultural Crops, Forest Products and Related Other Assets</span>
         </li>
     </ol>
     <div class="container-fluid">
@@ -34,21 +42,21 @@
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                             </td>
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_info_sero_assets.district.$error.required">
-                                    Please select District
+                                    Please Select District
                                 </span>
                             </td>
-                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_info_sero_assets.baselineDate.$error.required">
-                                    Please select Date
+                                    Please Select Date
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" height="19">
-                            <td width="249" height="19">
+                        <tr class="trhead1" height="19">
+                            <td width="249" style="padding-left:5px;" height="19">
                                 District:
                             </td>
                             <td colspan="2" width="269">
@@ -59,14 +67,14 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td colspan="3" width="346">
-                                Year/Month
+                            <td colspan="2" style="padding-left:5px;"s width="346">
+                                Year/Month:
                             </td>
-                            <td width="99">
-                                <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <td colspan="2"s width="99">
+                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td width="249" height="19">
                                 Sub-Sector
                             </td>
@@ -80,7 +88,7 @@
                                 Production Cost Per Acre Per Stage of Growth (LKR/Acre)
                             </td>
                         </tr>
-                        <tr class="trheadc" height="34">
+                        <tr class="trheadc1" height="34">
                             <td width="249" height="34">
                                 Crops
                             </td>
@@ -100,6 +108,11 @@
                                 Harvest Stage (Fully Matured)
                             </td>
                         </tr>
+                        </tbody>
+                        </table>
+                        <div id="boxscroll" style="height:400px;overflow:auto;">
+                         <table class="table table-bordered">
+
                         <tr class="trheadc" height="19">
                             <td width="249" height="19">
                                 Seasonal Crops
@@ -125,7 +138,7 @@
                                 <button id="delete" ng-click="removeItem('BacfSeasonalCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bacfSeasonalCrops_{{$index}}" ng-model="bacfSeasonalCrops.seasonal_crops"
+                                <input style="width:80%;float:right;" name="bacfSeasonalCrops_{{$index}}" ng-model="bacfSeasonalCrops.seasonal_crops"
                                     popover="This field is required"
                                     popover-toggle="form_bs_info_sero_assets['bacfSeasonalCrops_' + $index].$dirty && !form_bs_info_sero_assets['bacfSeasonalCrops_' + $index].$valid"
                                     popover-placement="top" required
@@ -158,9 +171,9 @@
                                        class="form-control input-md" ng-model="bacfSeasonalCrops.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr height="19">
+                        <tr class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
-                                Other seasonal crops
+                                Other Seasonal Crops
                                 <button ng-click="insertAsset('BacfSeasonalCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
@@ -203,7 +216,7 @@
                                 <button id="delete" ng-click="removeItem('BacfPlantnCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bacfPlantnCrops_{{$index}}" ng-model="bacfPlantnCrops.plantn_crops"
+                                <input style="width:80%;float:right;" name="bacfPlantnCrops_{{$index}}" ng-model="bacfPlantnCrops.plantn_crops"
                                     popover="This field is required"
                                     popover-toggle="form_bs_info_sero_assets['bacfPlantnCrops_' + $index].$dirty && !form_bs_info_sero_assets['bacfSeasonalCrops_' + $index].$valid"
                                     popover-placement="top" required
@@ -236,9 +249,9 @@
                                        class="form-control input-md" ng-model="bacfPlantnCrops.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr height="19">
+                        <tr class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
-                                Other plantation crops
+                                Other Plantation Crops
                                 <button ng-click="insertAsset('BacfPlantnCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
@@ -281,7 +294,7 @@
                                 <button id="delete" ng-click="removeItem('BacfExportCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bacfExportCrops_{{$index}}" ng-model="bacfExportCrops.export_crops"
+                                <input style="width:80%;float:right;" name="bacfExportCrops_{{$index}}" ng-model="bacfExportCrops.export_crops"
                                     popover="This field is required"
                                     popover-toggle="form_bs_info_sero_assets['bacfExportCrops_' + $index].$dirty && !form_bs_info_sero_assets['bacfExportCrops_' + $index].$valid"
                                     popover-placement="top" required
@@ -314,7 +327,7 @@
                                        class="form-control input-md" ng-model="bacfExportCrops.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr height="19">
+                        <tr class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
                                 Others
                                 <button ng-click="insertAsset('BacfExportCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
@@ -359,7 +372,7 @@
                                 <button id="delete" ng-click="removeItem('BacfForestry', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bacfForestry_{{$index}}" ng-model="bacfForestry.forestry"
+                                <input style="width:80%;float:right;" name="bacfForestry_{{$index}}" ng-model="bacfForestry.forestry"
                                     popover="This field is required"
                                     popover-toggle="form_bs_info_sero_assets['bacfForestry_' + $index].$dirty && !form_bs_info_sero_assets['bacfForestry_' + $index].$valid"
                                     popover-placement="top" required
@@ -392,7 +405,7 @@
                                        class="form-control input-md" ng-model="bacfForestry.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr height="19">
+                        <tr class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
                                 Others
                                 <button ng-click="insertAsset('BacfForestry')" class="btn btn-sm btn-info btn-circle" id="insert">
@@ -437,7 +450,7 @@
                                 <button id="delete" ng-click="removeItem('BacfOther', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bacfOther_{{$index}}" ng-model="bacfOther.other_products"
+                                <input style="width:80%;float:right;" name="bacfOther_{{$index}}" ng-model="bacfOther.other_products"
                                     popover="This field is required"
                                     popover-toggle="form_bs_info_sero_assets['bacfOther_' + $index].$dirty && !form_bs_info_sero_assets['bacfOther_' + $index].$valid"
                                     popover-placement="top" required
@@ -470,7 +483,7 @@
                                        class="form-control input-md" ng-model="bacfOther.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr height="19">
+                        <tr class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
                                 Others
                                 <button ng-click="insertAsset('BacfOther')" class="btn btn-sm btn-info btn-circle" id="insert">
@@ -492,8 +505,9 @@
                         </tr>
                         <tbody>
                     </table>
+                   </div>
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
                     <br>
                 </div>
@@ -503,7 +517,7 @@
 
                     <table class="table table-bordered">
                         <tbody>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td width="249" height="19">
                                 Assets
                             </td>
@@ -531,7 +545,7 @@
                                 <button id="delete" ng-click="removeItem('BacfFarmEquipment', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bacfFarmEquipment_{{$index}}" ng-model="bacfFarmEquipment.assets"
+                                <input style="width:80%;float:right;" name="bacfFarmEquipment_{{$index}}" ng-model="bacfFarmEquipment.assets"
                                     popover="This field is required"
                                     popover-toggle="form_bs_info_sero_assets['bacfFarmEquipment_' + $index].$dirty && !form_bs_info_sero_assets['bacfFarmEquipment_' + $index].$valid"
                                     popover-placement="top" required
@@ -548,7 +562,7 @@
                                        class="form-control input-md" ng-model="bacfFarmEquipment.avg_repair_cost">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
+                        <tr class="tdpa" class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
                                 Others &nbsp;&nbsp;
                                 <button ng-click="insertAsset('BacfFarmEquipment')" class="btn btn-sm btn-info btn-circle" id="insert">
@@ -576,7 +590,7 @@
                                 <button id="delete" ng-click="removeItem('BacfStocks', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bacfStocks_{{$index}}" ng-model="bacfStocks.assets"
+                                <input style="width:80%;float:right;" name="bacfStocks_{{$index}}" ng-model="bacfStocks.assets"
                                     popover="This field is required"
                                     popover-toggle="form_bs_info_sero_assets['bacfStocks_' + $index].$dirty && !form_bs_info_sero_assets['bacfStocks_' + $index].$valid"
                                     popover-placement="top" required
@@ -589,7 +603,7 @@
                                        class="form-control input-md" ng-model="bacfStocks.avg_values">
                             </td>
                         </tr>
-                        <tr height="19">
+                        <tr class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
                                 Others
                                 <button ng-click="insertAsset('BacfStocks')" class="btn btn-sm btn-info btn-circle" id="insert">
@@ -603,7 +617,7 @@
                     </table>
 
 
-                    <br>
+                  
                     <div class="pull-right">
                         <br>
                      <button type="button" class="btn btn-info">Clear</button>
@@ -619,7 +633,7 @@
                     </button>
 
                     </div>
-                    <br><br>
+                    <br><br><br>
                 </div>
 
 

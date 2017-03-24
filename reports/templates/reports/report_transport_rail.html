@@ -1,11 +1,24 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<style>
+@media print
+{    
 
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    #in {width:100%;}
+   .table th, .table td {color:#000!important;} 
+}
+.table th, .table td
+{padding-left:5px;}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlRailTransNatReportApp" ng-controller="dlRailTransNatReportController">
 
     <!-- Breadcrumb -->
-    <ol class="breadcrumb">
+    <ol class="breadcrumb no-print">
 
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
@@ -14,7 +27,7 @@
         <li class="breadcrumb-item"><a href="#">Rail sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses in the rail transportation nationwide</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Report</span>
         </li>
 
 
@@ -22,12 +35,21 @@
 
 
     <div class="container-fluid">
+    <div class="card">
+            <div class="card-header">
+                <strong>Transport Rail Sub Sector Report</strong>
+
+            </div>
+            <div class="card-block">
 
         <div ng-form name="report_sum_dl_nat" class="row">
-            <div class="col-sm-3">
+         <div class="col-sm-1">
+   <label for="cvv">Incident</label>
+         </div>
+            <div class="col-sm-3" id="in">
 
                 <div class="form-group">
-                    <label for="cvv">Incident</label>
+                 
                     <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
                             class="form-control" required>
                         <option value="">-- Select --</option>
@@ -45,28 +67,33 @@
             </div>
 
 
-            <div class="col-sm-1">
+           <div class="no-print">
+                    <div class="col-sm-2">
 
                 <div class="form-group">
 
-                    <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-sm btn-primary"
-                            style="padding:7px;margin-top:28px;"><i
+                    <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-success"
+                            style=""><i
                             class="fa fa-search"></i> Search
                     </button>
                 </div>
+                </div>
+                <div class="col-sm-1">
                 <div class="form-group">
-                    <button ng-print print-element-id="print_report" class="btn btn-info">Print
+                    <button ng-print print-element-id="print_report" class="btn btn-info"><i
+                            class="fa fa-print"></i> Print
                         Report
                     </button>
                 </div>
 
             </div>
-
+</div>
         </div>
+
         <span style="color:red;" ng-show="isDataAvailable">
                                        No Data available
                                  </span>
-        <div id="myTabContent" class="tab-content">
+        <div id="myTabContent" class="tab-content1">
             <div class="tab-pane active" id="print_report">
                 <table ng-if="!checkIfNull()" class="table table-bordered">
 
@@ -91,7 +118,7 @@
                         </td>
                     </tr>
                     <tr class="trheadc" height="20">
-                        <td width="281" height="20">
+                        <td width="281" height="20" style="width:29.5%;">
                             Name of Province
                         </td>
                         <td colspan="3" width="425">
@@ -104,7 +131,7 @@
                        class="table table-bordered">
                     <tbody>
                     <tr height="20" ng-init="getTotal('TotDmgNational','tot_damages', $index,key);">
-                        <td ng-bind="key" class="tdpa" width="275">
+                        <td ng-bind="key" class="tdpa" width="275" style="width:29.5%;">
                         </td>
                         <td width="400" ng-bind="value.TotDmgNational[0].tot_damages">
                         </td>
@@ -131,7 +158,7 @@
             </div>
 
 
-            <br><br><br>
+            <br>
 
         </div>
 

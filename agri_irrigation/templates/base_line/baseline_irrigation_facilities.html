@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="bsIrgFacilitiesApp" ng-controller="bsIrgFacilitiesController">
     <!-- Breadcrumb -->
@@ -29,22 +37,22 @@
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_irg_facilities.district.$error.required">
                                 Please select District
                             </span>
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_irg_facilities.baselineDate.$error.required">
                                 Please select Date
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td width="258" height="19">
-                            District
+                            District:
                         </td>
                         <td colspan="2" width="118">
                             <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
@@ -55,39 +63,39 @@
                             </select>
                         </td>
                         <td width="85">
-                            Year/Month
+                            Year/Month:
                         </td>
                         <td colspan="3" width="85">
-                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td width="258" height="19">
                             Division
                         </td>
                         <td colspan="5" width="118">
-                            <input type="text" name="division" ng-model="division" required>
+                            <input type="text" class="form-control" name="division" ng-model="division" required>
                         </td>
                         <td>
                             <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.division.$error.required" ng-model="division">
-                                Please select division
+                                Please Select Division
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td width="258" height="19">
                             Region
                         </td>
                         <td colspan="5" width="118">
-                            <input type="text" name="region" ng-model="region" required>
+                            <input type="text" class="form-control" name="region" ng-model="region" required>
                         </td>
                         <td>
                             <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.region.$error.required" ng-model="region">
-                                Please select region
+                                Please Select Region
                             </span>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" width="258" height="38">
                             Type and Name of Irrigation Facility
                         </td>
@@ -118,6 +126,13 @@
                             OFC
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+
+
+ <table class="table table-bordered">
                     <tr class="trheadc" height="19">
                         <td width="258" height="19">
                             Major
@@ -143,7 +158,7 @@
                             <button id="delete" ng-click="removeItem('BsIfMajor', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsIfMajor_{{$index}}" ng-model="bsIfMajor.irrigation_facility"
+                            <input style="width:80%;float:right;" name="bsIfMajor_{{$index}}" ng-model="bsIfMajor.irrigation_facility"
                                 popover="This field is required"
                                 popover-toggle="form_bs_irg_facilities['bsIfMajor_' + $index].$dirty && !form_bs_irg_facilities['bsIfMajor_' + $index].$valid"
                                 popover-placement="top" required
@@ -222,7 +237,7 @@
                             <button id="delete" ng-click="removeItem('BsIfMedium', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsIfMedium_{{$index}}" ng-model="bsIfMedium.irrigation_facility"
+                            <input style="width:80%;float:right;" name="bsIfMedium_{{$index}}" ng-model="bsIfMedium.irrigation_facility"
                                 popover="This field is required"
                                 popover-toggle="form_bs_irg_facilities['bsIfMedium_' + $index].$dirty && !form_bs_irg_facilities['bsIfMedium_' + $index].$valid"
                                 popover-placement="top" required
@@ -300,7 +315,7 @@
                             <button id="delete" ng-click="removeItem('BsIfMinor', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsIfMinor_{{$index}}" ng-model="bsIfMinor.irrigation_facility"
+                            <input style="width:80%;float:right;" name="bsIfMinor_{{$index}}" ng-model="bsIfMinor.irrigation_facility"
                                 popover="This field is required"
                                 popover-toggle="form_bs_irg_facilities['bsIfMinor_' + $index].$dirty && !form_bs_irg_facilities['bsIfMinor_' + $index].$valid"
                                 popover-placement="top" required
@@ -378,7 +393,7 @@
                             <button id="delete" ng-click="removeItem('BsIfAnicuts', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsIfAnicuts_{{$index}}" ng-model="bsIfAnicuts.irrigation_facility"
+                            <input style="width:80%;float:right;" name="bsIfAnicuts_{{$index}}" ng-model="bsIfAnicuts.irrigation_facility"
                                 popover="This field is required"
                                 popover-toggle="form_bs_irg_facilities['bsIfAnicuts_' + $index].$dirty && !form_bs_irg_facilities['bsIfAnicuts_' + $index].$valid"
                                 popover-placement="top" required
@@ -435,7 +450,7 @@
                 </table>
 
 
-                <br>
+                
                 <div class="pull-right">
                     <br>
                      <button type="button" class="btn btn-info">Clear</button>
@@ -448,6 +463,7 @@
 
 
                 </div>
+                <br><br>
             </div>
 
 

@@ -219,6 +219,7 @@ console.log($scope.district + '-' + $scope.bs_date );
 
  })
 
+
 }
 
 $scope.bsHsDataEdit = function()

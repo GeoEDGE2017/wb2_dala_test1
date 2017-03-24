@@ -10,7 +10,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 8. Summary of damages and losses to agrarian sub-sector in the District</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 8. Summary of Damages and Losses to Agrarian Sub-sector in the District</span>
         </li>
     </ol>
     <div class="container-fluid">
@@ -33,26 +33,26 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="3"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="isLoded && form_dlsum_agri_distr.incident.$error.required">
-                                    Please select Incident
+                                    Please Select Incident
                                 </span>
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td  style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="isLoded && form_dlsum_agri_distr.district.$error.required">
-                                    Please select District
+                                    Please Select District
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" height="20">
-                            <td colspan="4" width="413">
-                                Incident
+                        <tr class="trhead1" height="20">
+                            <td colspan="3" width="413" style="padding-left:5px;">
+                                Incident:
                             </td>
-                            <td width="85">
+                            <td width="85" colspan="2">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true)"
                                         style="width:100%;font-weight:400;" required>
@@ -64,22 +64,22 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td width="249" height="20">
-                                District
+                            <td width="249" height="20" style="padding-left:5px;">
+                                District:
                             </td>
-                            <td colspan="3" width="386">
+                            <td colspan="2" width="386">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
                                         class="form-control" required>
-                                    <option value="" selected>Select district</option>
+                                    <option value="" selected>Select District</option>
                                 </select>
                             </td>
                             <td  style="background:#EFEFEF;">
-                                <button type="button" class="btn btn-info" ng-click="loadData(form_dlsum_agri_distr)">Load
+                                <button type="button" class="btn btn-block btn-info" ng-click="loadData(form_dlsum_agri_distr)">Load
                                 </button>
                             </td>
                         </tr>
-                        <tr class="trheadc" height="20">
+                        <tr class="trheadc1" height="20">
                             <td rowspan="2" width="249" height="40">
                                 Assets
                             </td>
@@ -276,8 +276,8 @@
 
 
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill Type of Crops Informations</a>
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Type of Crops Informations</a>
                     <br>
                 </div>
 
@@ -286,7 +286,7 @@
 
                     <table class="table table-bordered">
 
-                        <tr class="trheadc" height="20">
+                        <tr class="trheadc1" height="20">
                             <td rowspan="5" width="249" height="100">
                                 Type of Crops
                             </td>
@@ -294,7 +294,7 @@
                                 Losses (LKR)
                             </td>
                         </tr>
-                        <tr class="trheadc" height="20">
+                        <tr class="trheadc1" height="20">
                             <td colspan="6" width="714" height="20">
                                 Types of Losses
                             </td>
@@ -302,7 +302,7 @@
                                 Total Losses (LKR)
                             </td>
                         </tr>
-                        <tr class="trheadc" height="20">
+                        <tr class="trheadc1" height="20">
                             <td colspan="4" width="503" height="20">
                                 Year 1
                             </td>
@@ -310,7 +310,7 @@
                                 Year 2
                             </td>
                         </tr>
-                        <tr class="trheadc" height="20">
+                        <tr class="trheadc1" height="20">
                             <td colspan="2" width="269" height="20">
                                 Investment Losses
                             </td>
@@ -491,7 +491,7 @@
                                 -
                             </td>
                         </tr>
-                        <tr class="trheadc" height="20">
+                        <tr class="trheadc1" height="20">
                             <td width="249" height="20">
                             </td>
                             <td width="148">
@@ -591,7 +591,7 @@
                         <button type="button" class="btn btn-success">Submit</button>
                     </div>
                 </div>
-
+<br><br>
 
             </div>
         </div>

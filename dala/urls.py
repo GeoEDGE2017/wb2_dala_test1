@@ -57,7 +57,7 @@ urlpatterns = [
     url(r'^water_supply/', include('water_supply.urls', namespace='water_supply')),
 
     # housing
-    url(r'^housing/', include('housing.urls', namespace='housing')),
+    # url(r'^housing/', include('housing.urls', namespace='housing')),
 
     # tourism
     url(r'^tourism/', include('tourism.urls', namespace='tourism')),

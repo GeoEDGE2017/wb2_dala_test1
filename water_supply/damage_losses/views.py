@@ -42,7 +42,20 @@ def dlsum_wter_sply_dst(request):
         'incidents': incidents,
         'module': 'water_supply',
     }
-    return render(request, 'damage_losses/summary_damages_losses_district.html', context)
+    return render(request, 'damage_losses/summary_damages_losses_water_supply_district.html', context)
+
+
+@permission_required("provincial", 'water_supply')
+def dlsum_wter_temp(request):
+    districts = District.objects.all()
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': districts,
+        'incidents': incidents,
+        'module': 'water_supply',
+    }
+    return render(request, 'damage_losses/summary_damages_losses_water_supply_district.html', context)
 
 
 # Table 6

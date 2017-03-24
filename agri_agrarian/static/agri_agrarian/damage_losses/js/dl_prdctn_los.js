@@ -9,6 +9,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    var finaltotal = 0;
 
     var init_data = {
         'agri_agrarian': {
@@ -317,7 +318,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     }
 
     function generateRefencedData() {
-        data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther'];
+        data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther',];
         var dl_model1 = null;
         var dl_model2 = null;
         var dl_model3 = null;
@@ -505,5 +506,18 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                 console.log(response);
             });
         }
+    }
+
+    $scope.CalTot=function(arr,property){
+    var finaltotal = 0;
+
+    angular.forEach(arr, function(value, key) {
+    if(value.seasonal_crops != 'Total' || value.plantn_crops != 'Total' ){
+    console.log(value[property]);
+     finaltotal = finaltotal + value[property] ;
+
+     }
+    })
+     return finaltotal;
     }
 }]);

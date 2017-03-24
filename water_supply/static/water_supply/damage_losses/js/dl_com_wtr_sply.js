@@ -23,7 +23,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 }],
                 'DlcwNumEmployees': [{
                     male : null,
-                    female : 10,
+                    female : null,
                     total : null,
                 }],
                 'DlcwDmgWaterIntake': [{
@@ -291,8 +291,8 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 data: angular.toJson({
                     'table_data': $scope.dlComWtrSply,
                     'com_data': {
-                        'district' :  $scope.district.district__id,
-                        'incident' : $scope.incident,
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
                     },
                     'is_edit' : $scope.is_edit,
                 }),

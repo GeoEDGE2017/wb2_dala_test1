@@ -1,187 +1,198 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-   <!-- Main content -->
-    <main class="main" ng-app="dlSumTransWaterDstApp" ng-controller="dlSumTransWaterDstController">
+<!-- Main content -->
+<main class="main" ng-app="dlSumTransWaterDstApp" ng-controller="dlSumTransWaterDstController">
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
 
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
-            </li>
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
+        </li>
 
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of Damages and Losses to Water Transportation in a District</span></li>
-
-
-        </ol>
-
-
-        <div class="container-fluid">
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of Damages and Losses to Water Transportation in a District</span>
+        </li>
+    </ol>
 
 
+    <div class="container-fluid">
 
-					<div id="myTabContent" class="tab-content" ng-form name="form_dlsum_trans_water_dst">
-						<div class="tab-pane active" id="step1">
 
-						 <table class="table table-bordered" >
-    <colgroup>
-        <col width="253"/>
-        <col width="147"/>
-        <col width="151"/>
-        <col width="165"/>
-        <col width="170"/>
-        <col width="135"/>
-        <col width="133"/>
-    </colgroup>
-    <tbody>
-        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-            </td>
-            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+        <div id="myTabContent" class="tab-content" ng-form name="form_dlsum_trans_water_dst">
+            <div class="tab-pane active" id="step1">
+
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="253"/>
+                        <col width="147"/>
+                        <col width="151"/>
+                        <col width="165"/>
+                        <col width="170"/>
+                        <col width="135"/>
+                        <col width="133"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                 <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.incident.$error.required">
                     Please Select Incident
                 </span>
-            </td>
-            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-            </td>
-            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                 <span class="arrow_box" ng-show="isLoded && form_dlsum_trans_water_dst.district.$error.required">
                     Please Select District
                 </span>
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="trhead" width="170">
-                Incident
-            </td>
-            <td lass="trhead" colspan="2" width="268">
-                <select id="selectbasic" name="incident" ng-model="incident"
-                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
-                    <option value="" selected="true">Select an Incident</option>
-                    {% for incident in incidents %}
-                        <option value={{incident.id}}>{{incident.disaster_type.name}}
-                        {{incident.reported_date_time}}
-                    </option>
-                    {% endfor %}
-                </select>
-            </td>
-            <td class="trhead" width="253" height="20">
-                Name of District
-            </td>
-            <td lass="trhead" colspan="2" width="463">
-			    <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
-                        class="form-control" required>
-                    <option value="" selected>Select District</option>
-                </select>
-            </td>
-            <td  style="background:#EFEFEF;">
-                <button type="button" class="btn btn-block btn-info" ng-click="loadData(form_dlsum_trans_water_dst)">Load
-                </button>
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="2" width="253" height="38">
-                Assets
-            </td>
-            <td colspan="6" width="901">
-                Damages (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td colspan="2" width="298" height="19">
-                Public
-            </td>
-            <td colspan="2" width="335">
-                Private
-            </td>
-            <td colspan="2" width="268">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Watercrafts
-            </td>
-            <td colspan="2" width="298" ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private">
-            </td>
-            <td colspan="2" width="335" ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public">
-            </td>
-            <td colspan="2" width="268"
-                ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="trhead" width="170">
+                            Incident
+                        </td>
+                        <td lass="trhead" colspan="2" width="268">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead" width="253" height="20">
+                            Name of District
+                        </td>
+                        <td lass="trhead" colspan="2" width="463">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    style="font-weight:400;"
+                                    class="form-control" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                        <td style="background:#EFEFEF;">
+                            <button type="button" class="btn btn-block btn-info"
+                                    ng-click="loadData(form_dlsum_trans_water_dst)">Load
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" width="253" height="38">
+                            Assets
+                        </td>
+                        <td colspan="6" width="901">
+                            Damages (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td colspan="2" width="298" height="19">
+                            Public
+                        </td>
+                        <td colspan="2" width="335">
+                            Private
+                        </td>
+                        <td colspan="2" width="268">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Watercrafts
+                        </td>
+                        <td colspan="2" width="298"
+                            ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private">
+                        </td>
+                        <td colspan="2" width="335"
+                            ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public">
+                        </td>
+                        <td colspan="2" width="268"
+                            ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Equipment and Machinery
-            </td>
-            <td colspan="2" width="298" ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private">
-            </td>
-            <td colspan="2" width="335" ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public">
-            </td>
-            <td colspan="2" width="268"
-                ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Equipment and Machinery
+                        </td>
+                        <td colspan="2" width="298"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private">
+                        </td>
+                        <td colspan="2" width="335"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public">
+                        </td>
+                        <td colspan="2" width="268"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Materials and Supplies
-            </td>
-            <td colspan="2" width="298" ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private">
-            </td>
-            <td colspan="2" width="335" ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public">
-            </td>
-            <td colspan="2" width="268"
-                ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private +
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Materials and Supplies
+                        </td>
+                        <td colspan="2" width="298"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private">
+                        </td>
+                        <td colspan="2" width="335"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public">
+                        </td>
+                        <td colspan="2" width="268"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Structures
-            </td>
-            <td colspan="2" width="298" ng-bind="data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages">
-            </td>
-            <td class="tdpa" colspan="2">
-            </td>
-            <td colspan="2" width="268" ng-bind="data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Buildings
-            </td>
-            <td colspan="2" width="298" ng-bind="data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages">
-            </td>
-            <td class="tdpa" colspan="2">
-            </td>
-            <td colspan="2" width="268" ng-bind="data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                TOTAL
-            </td>
-            <td colspan="2" width="298"
-                ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Structures
+                        </td>
+                        <td colspan="2" width="298"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages">
+                        </td>
+                        <td class="tdpa" colspan="2">
+                        </td>
+                        <td colspan="2" width="268"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages">
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Buildings
+                        </td>
+                        <td colspan="2" width="298"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages">
+                        </td>
+                        <td class="tdpa" colspan="2">
+                        </td>
+                        <td colspan="2" width="268"
+                            ng-bind="data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages">
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            TOTAL
+                        </td>
+                        <td colspan="2" width="298"
+                            ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages +
                          data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages">
-            </td>
-            <td colspan="2" width="335"
-                ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public +
+                        </td>
+                        <td colspan="2" width="335"
+                            ng-bind="data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public +
                          data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public +
                          data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public">
-            </td>
-            <td colspan="2" width="268"
-                ng-bind="(data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
+                        </td>
+                        <td colspan="2" width="268"
+                            ng-bind="(data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlAstWaterWcraftsDistrict[0].tot_dmg_public) +
                          (data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_private +
                          data.transport_water.Table_3.DlWaterDmgEquipmentDistrict[0].tot_dmg_public) +
@@ -189,188 +200,188 @@
                          data.transport_water.Table_3.DlWaterDmgMaterialsDistrict[0].tot_dmg_public) +
                          (data.transport_water.Table_3.DlWaterDmgStructuresDistrict[0].tot_damages) +
                          (data.transport_water.Table_3.DlWaterDmgBuildingsDistrict[0].tot_damages)">
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td width="253" height="19">
-            </td>
-            <td colspan="6" width="901">
-                Losses (LKR)
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="2" width="253" height="38">
-                Type of Losses
-            </td>
-            <td colspan="2" width="298">
-                Year 1
-            </td>
-            <td colspan="2" width="335">
-                Year2
-            </td>
-            <td colspan="2" width="268">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="19">
-            <td width="147" height="19">
-                Public
-            </td>
-            <td width="151">
-                Private
-            </td>
-            <td width="165">
-                Public
-            </td>
-            <td width="170">
-                Private
-            </td>
-            <td width="135">
-                Public
-            </td>
-            <td width="133">
-                Private
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Foregone Income of Companies
-            </td>
-            <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub">
-            </td>
-            <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt">
-            </td>
-            <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub">
-            </td>
-            <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt">
-            </td>
-            <td width="135"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub +
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td width="253" height="19">
+                        </td>
+                        <td colspan="6" width="901">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" width="253" height="38">
+                            Type of Losses
+                        </td>
+                        <td colspan="2" width="298">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="335">
+                            Year2
+                        </td>
+                        <td colspan="2" width="268">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td width="147" height="19">
+                            Public
+                        </td>
+                        <td width="151">
+                            Private
+                        </td>
+                        <td width="165">
+                            Public
+                        </td>
+                        <td width="170">
+                            Private
+                        </td>
+                        <td width="135">
+                            Public
+                        </td>
+                        <td width="133">
+                            Private
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Foregone Income of Companies
+                        </td>
+                        <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub">
+                        </td>
+                        <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt">
+                        </td>
+                        <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub">
+                        </td>
+                        <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt">
+                        </td>
+                        <td width="135"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub">
-            </td>
-            <td width="133"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt +
+                        </td>
+                        <td width="133"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Foregone Income of Ports
-            </td>
-            <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub">
-            </td>
-            <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt">
-            </td>
-            <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_2_pub">
-            </td>
-            <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_2_pvt">
-            </td>
-            <td width="135"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub +
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Foregone Income of Ports
+                        </td>
+                        <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub">
+                        </td>
+                        <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt">
+                        </td>
+                        <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_2_pub">
+                        </td>
+                        <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_2_pvt">
+                        </td>
+                        <td width="135"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_2_pub">
-            </td>
-            <td width="133"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt +
+                        </td>
+                        <td width="133"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_2_pvt">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Cleaning Up of Debris
-            </td>
-            <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub">
-            </td>
-            <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pvt">
-            </td>
-            <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_2_pub">
-            </td>
-            <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_2_pvt">
-            </td>
-            <td width="135"
-                ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub +
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Cleaning Up of Debris
+                        </td>
+                        <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub">
+                        </td>
+                        <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pvt">
+                        </td>
+                        <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_2_pub">
+                        </td>
+                        <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_2_pvt">
+                        </td>
+                        <td width="135"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosOther[0].year_2_pub">
-            </td>
-            <td width="133"
-                ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pvt +
+                        </td>
+                        <td width="133"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosOther[0].year_1_pvt +
                         data.transport_water.Table_3.DlWaterLosOther[0].year_2_pvt">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Higher Operating Costs
-            </td>
-            <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pub">
-            </td>
-            <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pvt">
-            </td>
-            <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_2_pub">
-            </td>
-            <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_2_pvt">
-            </td>
-            <td width="135"
-                ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pub +
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Higher Operating Costs
+                        </td>
+                        <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pub">
+                        </td>
+                        <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pvt">
+                        </td>
+                        <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_2_pub">
+                        </td>
+                        <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_2_pvt">
+                        </td>
+                        <td width="135"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosOther[1].year_2_pub">
-            </td>
-            <td width="133"
-                ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pvt +
+                        </td>
+                        <td width="133"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosOther[1].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[1].year_2_pvt">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                Other Unexpected Expenses
-            </td>
-            <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pub">
-            </td>
-            <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pvt">
-            </td>
-            <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_2_pub">
-            </td>
-            <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_2_pvt">
-            </td>
-            <td width="135"
-                ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pub +
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            Other Unexpected Expenses
+                        </td>
+                        <td width="147" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pub">
+                        </td>
+                        <td width="151" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pvt">
+                        </td>
+                        <td width="165" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_2_pub">
+                        </td>
+                        <td width="170" ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_2_pvt">
+                        </td>
+                        <td width="135"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosOther[2].year_2_pub">
-            </td>
-            <td width="133"
-                ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pvt +
+                        </td>
+                        <td width="133"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosOther[2].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[2].year_2_pvt">
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="253" height="19">
-                TOTAL
-            </td>
-            <td width="147"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub +
+                        </td>
+                    </tr>
+                    <tr height="19">
+                        <td class="tdpa" width="253" height="19">
+                            TOTAL
+                        </td>
+                        <td width="147"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosOther[0].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosOther[1].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosOther[2].year_1_pub">
-            </td>
-            <td width="151"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt +
+                        </td>
+                        <td width="151"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[0].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[1].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[2].year_1_pvt">
-            </td>
-            <td width="165"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub +
+                        </td>
+                        <td width="165"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_2_pub +
                          data.transport_water.Table_3.DlWaterLosOther[0].year_2_pub +
                          data.transport_water.Table_3.DlWaterLosOther[1].year_2_pub +
                          data.transport_water.Table_3.DlWaterLosOther[2].year_2_pub ">
-            </td>
-            <td width="170"
-                ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt +
+                        </td>
+                        <td width="170"
+                            ng-bind="data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_2_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[0].year_2_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[1].year_2_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[2].year_2_pvt">
-            </td>
-            <td width="135"
-                ng-bind="(data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub +
+                        </td>
+                        <td width="135"
+                            ng-bind="(data.transport_water.Table_3.DlWaterLosFi[0].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosFi[0].year_2_pub)+
                          (data.transport_water.Table_3.DlWaterLosFi[1].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_2_pub)+
@@ -380,9 +391,9 @@
                          data.transport_water.Table_3.DlWaterLosOther[1].year_2_pub)+
                          (data.transport_water.Table_3.DlWaterLosOther[1].year_1_pub +
                          data.transport_water.Table_3.DlWaterLosOther[1].year_2_pub)">
-            </td>
-            <td width="133"
-                ng-bind="(data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt +
+                        </td>
+                        <td width="133"
+                            ng-bind="(data.transport_water.Table_3.DlWaterLosFi[0].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosFi[0].year_2_pvt) +
                          (data.transport_water.Table_3.DlWaterLosFi[1].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosFi[1].year_2_pvt) +
@@ -392,71 +403,69 @@
                          data.transport_water.Table_3.DlWaterLosOther[1].year_2_pvt) +
                          (data.transport_water.Table_3.DlWaterLosOther[2].year_1_pvt +
                          data.transport_water.Table_3.DlWaterLosOther[2].year_2_pvt)">
-            </td>
-        </tr>
-    </tbody>
-</table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
 
+                <br>
 
-						 <br>
-                   
-        </div>
-        </div>
-
-
-
-
-
-
-         <div class="col-md-12">
-
-
-			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button>
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-
-
-		</div>           </div>
-
+            </div>
         </div>
 
-        <!-- /.conainer-fluid -->
-    </main>
+
+        <div class="col-md-12">
+
+
+            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+                 aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title">
+                                <span id="bookId"> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput">Name</label>
+                                <div class="col-md-10">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
 
 
 {% endblock content %}

@@ -85,9 +85,9 @@ INSTALLED_APPS = [
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
-    'housing',
-    'housing.base_line',
-    'housing.damage_losses',
+    # 'housing',
+    # 'housing.base_line',
+    # 'housing.damage_losses',
     'tourism',
     'tourism.base_line',
     'tourism.damage_losses',
@@ -142,7 +142,7 @@ DATABASES = {
         #     'options': '-c search_path=housing'
         # },
 
-        'NAME': 'dala_2017',
+        'NAME': 'new',
         'USER': 'postgres',
     },
 
@@ -2539,9 +2539,8 @@ TABLE_PROPERTY_MAPPER = {
             'BiaMainOffice': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],},
         'Table_2': {
             'BimRuralWater': ['type_water_supply','num_users','avg_replace_cost','avg_repair_cost','id',]},
-
         'Table_3': {
-            'DlcwNumClients': ['residential','commerciadlpNdaLivestockl','industrial','others','total','id',],
+            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
             'DlcwNumEmployees': ['male','female','total','id',],
             'DlcwDmgWaterIntake': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
             'DlcwDmgWaterTreatment': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
@@ -2551,16 +2550,29 @@ TABLE_PROPERTY_MAPPER = {
             'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
        },
         'Table_4': {
-            'DlRuralDmg': ['type_water_supply',
-                    'families_affected',
-                    'tot_destroyed_assets',
-                    'part_damaged_assets',
-                    'tot_damages','id',],
-            'DlRuralLos': ['type_water_supply',
-                    'cleaning_debris',
-                    'high_ocost',
-                    'other_unexpected_exps',
-                    'tot_los','id',],
+            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
+            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
+
+       },
+        'Table_5': {
+            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
+            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
+            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
+            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
+            'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
+            'DlRuralTotDmgDistrict': ['tot_damages'],
+            'DlRuralTotLosDistrict': ['tot_los'],
+
+
+       },
+        'Table_6': {
+            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
+            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
+            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
+            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
+            'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
+            'DlRuralTotDmgDistrict': ['tot_damages'],
+            'DlRuralTotLosDistrict': ['tot_los'],
 
        }
     }

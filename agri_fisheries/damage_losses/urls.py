@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^dl_fisheries_dst', views.dl_fisheries_dst, name='dl_fisheries_dst'),
     url(r'^dl_sum_fisheries_dst', views.dl_sum_fisheries_dst, name='dl_sum_fisheries_dst'),
     url(r'^dl_sum_fisheries_pro', views.dl_sum_fisheries_pro, name='dl_sum_fisheries_pro'),
-    # url(r'^dl_sum_fisheries_nat', views.dl_sum_fisheries_nat, name='dl_sum_fisheries_nat'),
+    url(r'^dl_sum_fisheries_nat', views.dl_sum_fisheries_nat, name='dl_sum_fisheries_nat'),
 ]

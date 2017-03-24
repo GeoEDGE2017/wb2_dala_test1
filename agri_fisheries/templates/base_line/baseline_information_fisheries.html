@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="bsInfoFisheriesApp" ng-controller="bsInfoFisheriesController">
     <!-- Breadcrumb -->
@@ -10,7 +18,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline information on fisheries</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline Information on Fisheries</span>
         </li>
     </ol>
     <div class="container-fluid">
@@ -48,9 +56,9 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" class="trhead" height="19">
-                            <td width="125" height="19">
-                                District
+                        <tr class="trhead1" class="trhead" height="19">
+                            <td width="125" height="19" style="padding-left:5px;">
+                                District:
                             </td>
                             <td width="95" height="19">
                                 <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
@@ -60,19 +68,19 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td width="111" height="19">
-                                Year/Month
+                            <td width="111" height="19" style="padding-left:5px;">
+                                Year/Month:
                             </td>
                             <td colspan="4" width="356" height="19">
                                 <input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
                         </tr>
-                        <tr class="trheadc" class="trheadc" height="19">
+                        <tr class="trheadc1" class="trheadc" height="19">
                             <td colspan="7" width="697" height="19">
                                 Production
                             </td>
                         </tr>
-                        <tr class="trheadc" class="trhead" height="19">
+                        <tr class="trheadc1" class="trhead" height="19">
                             <td rowspan="2" width="125" height="38">
                                 Types
                             </td>
@@ -86,7 +94,7 @@
                                 Production Cost
                             </td>
                         </tr>
-                        <tr class="trheadc" class="trhead" height="19">
+                        <tr class="trheadc1" class="trhead" height="19">
                             <td colspan="2" width="190" height="19">
                                 (Acres)
                             </td>
@@ -173,7 +181,7 @@
                         </tbody>
                     </table>
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
                     <br>
                 </div>
@@ -181,7 +189,7 @@
 
                     <table class="table table-bordered">
                         <tbody>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td width="125" height="19">
                                 <br/>
                             </td>
@@ -195,8 +203,8 @@
                                 Marine Fisheries
                             </td>
                         </tr>
-                        <tr class="trheadc" height="68">
-                            <td width="125" height="68">
+                        <tr class="trheadc1" height="68">
+                            <td width="125" height="68" style="width:19.7%;">
                                 Types of Assets
                             </td>
                             <td width="95" height="68">
@@ -218,26 +226,33 @@
                                 Average Repair Cost (LKR)
                             </td>
                         </tr>
+                        </tbody>
+                        </table>
+
+                        <div id="boxscroll" style="height:400px;overflow:auto;">
+
+
+ <table class="table table-bordered">
                         <tr class="trheadc" height="19">
-                            <td width="125" height="19">
+                            <td width="125" height="19" style="width:19.7%;">
                                 Fishing Equipment
                             </td>
                             <td width="95" height="19">
                                 <br/>
                             </td>
-                            <td width="111" height="19">
+                            <td width="111" height="19" style="width:16.3%;">
                                 <br/>
                             </td>
-                            <td width="115" height="19">
+                            <td width="115" height="19" style="width:18.5%;">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:10.2%;">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:12.4%;">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:9.4%;">
                                 <br/>
                             </td>
                         </tr>
@@ -249,7 +264,7 @@
                                 <button id="delete" ng-click="removeItem('BifAstFequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bifAstFequipment_{{$index}}" ng-model="bifAstFequipment.assets"
+                                <input style="width:80%;float:right;" name="bifAstFequipment_{{$index}}" ng-model="bifAstFequipment.assets"
                                     popover="This field is required"
                                     popover-toggle="form_info_fisheries['bifAstFequipment_' + $index].$dirty && !form_info_fisheries['bifAstFequipment_' + $index].$valid"
                                     popover-placement="top" required
@@ -339,7 +354,7 @@
                                 <button id="delete" ng-click="removeItem('BifAstOequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bifAstOequipment_{{$index}}" ng-model="bifAstOequipment.assets"
+                                <input style="width:80%;float:right;" name="bifAstOequipment_{{$index}}" ng-model="bifAstOequipment.assets"
                                     popover="This field is required"
                                     popover-toggle="form_info_fisheries['bifAstOequipment_' + $index].$dirty && !form_info_fisheries['bifAstOequipment_' + $index].$valid"
                                     popover-placement="top" required
@@ -429,7 +444,7 @@
                                 <button id="delete" ng-click="removeItem('BifAstMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bifAstMachinery_{{$index}}" ng-model="bifAstMachinery.assets"
+                                <input style="width:80%;float:right;" name="bifAstMachinery_{{$index}}" ng-model="bifAstMachinery.assets"
                                     popover="This field is required"
                                     popover-toggle="form_info_fisheries['bifAstMachinery_' + $index].$dirty && !form_info_fisheries['bifAstMachinery_' + $index].$valid"
                                     popover-placement="top" required
@@ -519,7 +534,7 @@
                                 <button id="delete" ng-click="removeItem('BifAstStructures', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:90%;float:right;" name="bifAstStructures_{{$index}}" ng-model="bifAstStructures.assets"
+                                <input style="width:80%;float:right;" name="bifAstStructures_{{$index}}" ng-model="bifAstStructures.assets"
                                     popover="This field is required"
                                     popover-toggle="form_info_fisheries['bifAstStructures_' + $index].$dirty && !form_info_fisheries['bifAstStructures_' + $index].$valid"
                                     popover-placement="top" required
@@ -578,7 +593,7 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td rowspan="2" width="125" height="38">
                                 Buildings
                             </td>
@@ -623,7 +638,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <br>
+                    
                     <div class="pull-right">
                         <br>
                          <button type="button" class="btn btn-info">Clear</button>

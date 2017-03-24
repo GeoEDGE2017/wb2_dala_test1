@@ -12,16 +12,16 @@
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 3. Damages and losses for livestock and poultry
+                Table 3. Damages and Losses for Livestock and Poultry
             </span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_livestock_poultry">
         <div>
             <ul class='nav nav-wizard'>
-                <li class="active"><a href='#step1' data-toggle="tab">1 Number of Dead Animals</a></li>
-                <li><a href='#step2' data-toggle="tab">2 Production Assets Affected</a></li>
-                <li><a href='#step3' data-toggle="tab">3 Losses</a></li>
+                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Number of Dead Animals</a></li>
+                <li id="li2"><a href='#step2' data-toggle="tab">2 Production Assets Affected</a></li>
+                <li id="li3"><a href='#step3' data-toggle="tab">3 Losses</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
@@ -56,7 +56,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" height="19">
+                        <tr class="trhead1" height="19">
                             <td width="113" height="19">
                                 Incident
                             </td>
@@ -82,7 +82,7 @@
                                 </select>
                             </td>
                         </tr>
-                         <tr class="trhead" height="19">
+                         <tr class="trhead1" height="19">
                         <td height="19" width="171" colspan="3">
                             Name of Organization
                         </td>
@@ -95,8 +95,8 @@
 
 
                     </tr>
-                    <tr  height="19">
-                        <td class="trhead" height="19" width="171">
+                    <tr class="trhead1" height="19">
+                        <td class="trhead1" height="19" width="171">
                             Ownership
                         </td>
                         <td colspan="15">
@@ -104,12 +104,12 @@
 
                         </td>
                     </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="11" width="1099" height="19">
                                 Number of Dead Animals
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td width="113" height="19">
                                 Animals
                             </td>
@@ -384,22 +384,22 @@
                     </table>
 
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Production Assets Affected Informations</a>
 
-
+                <br>
                 </div>
 
                 <div class="tab-pane" id="step2">
                     <table class="table table-bordered">
 
 
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="11" width="1099" height="19">
                                 Production Assets Affected
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td rowspan="2" width="113" height="53">
                                 Animals
                             </td>
@@ -413,7 +413,7 @@
                                 Damages (LKR)
                             </td>
                         </tr>
-                        <tr class="trheadc" height="34">
+                        <tr class="trheadc1" height="34">
                             <td width="117" height="34">
                                 Animal Shed
                             </td>
@@ -745,12 +745,12 @@
                             <td colspan="2" width="126" height="19" ng-bind="dlpPafPoultry.damages">
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="11" width="1099" height="19">
                                 Structures
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="3" rowspan="2" width="343" height="53">
                                 Structures
                             </td>
@@ -764,7 +764,7 @@
                                 Damages (LKR)
                             </td>
                         </tr>
-                        <tr class="trheadc" height="34">
+                        <tr class="trheadc1" height="34">
                             <td width="103" height="34">
                                 Number
                             </td>
@@ -838,7 +838,7 @@
                             <td colspan="2" width="126" height="19" ng-bind="dlpStructStructures.damages">
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="3" width="343" height="19">
                                 Other Assets
                             </td>
@@ -910,18 +910,19 @@
                         </tbody>
                     </table>
                     <br>
-                    <a href="#step3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                            <br>
                 </div>
                 <div class="tab-pane" id="step3">
                     <table class="table table-bordered">
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="11" width="1099" height="19">
                                 Average Percentage Reduction in the Value of Production per
                                 Year (%/Year)
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td width="113" height="19">
                                 Animals
                             </td>
@@ -941,7 +942,7 @@
                                 Losses (LKR)
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td width="113" height="19">
                                 Livestock
                             </td>
@@ -1142,45 +1143,45 @@
                             </td>
                         </tr>
                         <tr height="56">
-                            <td class="tdpa" width="113" height="56">
+                            <td class="tdpa" width="113" height="19">
                                 Others
                             </td>
-                            <td width="117" height="56">
+                            <td width="117" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="122" height="56">
+                            <td width="122" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="103" height="56">
+                            <td width="103" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="136" height="56">
+                            <td width="136" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="143" height="56">
+                            <td width="143" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="63" height="56">
+                            <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="63" height="56">
+                            <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="63" height="56">
+                            <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="63" height="56" class="tdpa">
+                            <td width="63" height="19" class="tdpa">
                                 -
                             </td>
-                            <td width="63" height="56" class="tdpa">
+                            <td width="63" height="19" class="tdpa">
                                 -
                             </td>
                         </tr>
@@ -1226,12 +1227,13 @@
                     </table>
                     </tbody>
                     </table>
-                    <br>
+                    
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
                         <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_livestock_poultry)">Submit</button>
                     </div>
+                    <br><br>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlWaterSupplyApp" ng-controller="DlWaterSupplyController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -24,21 +24,13 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead">
-                        <td colspan="2" style="padding-left:5px;"> Name of District</td>
-
-                        <td colspan="" style="background:#EFEFEF;">
-                            <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    class="form-control" ng-change="changedValue(false)" required>
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                        <td colspan="" style="padding-right:5px;text-align:right;">
-                            Incident
-                        </td>
-                        <td colspan="2" style="background:#EFEFEF;font-weight:normal;">
+                        <tr height="43">
+                            <td class="trhead" height="43" width="156">
+                                Incident
+                            </td>
+                             <td lass="trhead" colspan="2" width="268">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
+                                    class="form-control" ng-change="getDistrict();"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -48,6 +40,20 @@
                                 {% endfor %}
                             </select>
                         </td>
+                            <td class="trhead" width="253" height="20">
+                            Name of District
+                        </td>
+                        <td lass="trhead" colspan="2" width="463">
+                            <select ng-change="changedValue()" ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    style="font-weight:400;"
+                                    class="form-control" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+
+
+
                     </tr>
                     <tr class="trheadc" height="34">
                         <td rowspan="2" width="160" height="55">
@@ -70,20 +76,20 @@
                         </td>
                     </tr>
                     <tr height="21">
-                        <td width="107" height="21">
-                            -
+                        <td width="107" height="21" ng-bind="data.water_supply.Table_5.DlcwNumClients[0].residential">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlcwNumClients[0].commercial">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlcwNumClients[0].industrial">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlcwNumClients[0].others">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlcwNumClients[0].total">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="34">
@@ -107,20 +113,20 @@
                         </td>
                     </tr>
                     <tr height="21">
-                        <td width="107" height="21">
-                            -
+                        <td width="107" height="21" ng-bind="data.water_supply.Table_5.DlRuralDmg[0].families_affected">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralDmg[1].families_affected">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralDmg[2].families_affected">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralDmg[3].families_affected">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralDmg[4].families_affected">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="21">
@@ -157,17 +163,20 @@
                         <td class="tdpa" width="160" height="21">
                             Commercial Water Supply
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlcwTotDmgDistrict[0].dlcw_tot_dmg">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_1">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_2">
+
                         </td>
-                        <td colspan="2" width="214">
-                            -
+                        <td colspan="2" width="214"
+                            ng-bind="data.water_supply.Table_5.DlcwTotDmgDistrict[0].dlcw_tot_dmg +
+                            data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_1 +
+                            data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_2">
+
                         </td>
                     </tr>
                     <tr class="tdpa" height="21">
@@ -187,105 +196,107 @@
                         <td class="tdpa" class="tdpa" width="160" height="21">
                             Type 1
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[1].tot_damages">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotLosDistrict[1].tot_los">
+
                         </td>
                         <td class="tdpa" width="107">
                         </td>
-                        <td colspan="2" width="214">
-                            -
+                        <td colspan="2" width="214"
+                        ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[1].tot_damages + data.water_supply.Table_5.DlRuralTotLosDistrict[1].tot_los">
+
                         </td>
                     </tr>
                     <tr height="21">
                         <td class="tdpa" width="160" height="21">
                             Type 2
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[2].tot_damages">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotLosDistrict[2].tot_los">
+
                         </td>
                         <td class="tdpa" width="107">
                         </td>
-                        <td colspan="2" width="214">
-                            -
+                        <td colspan="2" width="214" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[2].tot_damages + data.water_supply.Table_5.DlRuralTotLosDistrict[2].tot_los">
+
                         </td>
                     </tr>
                     <tr height="21">
                         <td class="tdpa" width="160" height="21">
                             Type 3
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[3].tot_damages">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotLosDistrict[2].tot_los">
+
                         </td>
                         <td class="tdpa" width="107">
                         </td>
-                        <td colspan="2" width="214">
-                            -
+                        <td colspan="2" width="214" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[3].tot_damages + data.water_supply.Table_5.DlRuralTotLosDistrict[2].tot_los">
+
                         </td>
                     </tr>
                     <tr height="21">
                         <td class="tdpa" width="160" height="21">
                             Type 4
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[4].tot_damages">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotLosDistrict[4].tot_los">
+
                         </td>
                         <td class="tdpa" width="107">
                         </td>
-                        <td colspan="2" width="214">
-                            -
+                        <td colspan="2" width="214" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[4].tot_damages + data.water_supply.Table_5.DlRuralTotLosDistrict[4].tot_los">
+
                         </td>
                     </tr>
                     <tr height="20">
                         <td class="tdpa" width="160" height="20">
                             Total
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[0].tot_damages">
+
                         </td>
-                        <td width="107">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_5.DlRuralTotLosDistrict[0].tot_los">
+
                         </td>
                         <td class="tdpa" width="107">
                         </td>
-                        <td colspan="2" width="214">
-                            -
+                        <td colspan="2" width="214" ng-bind="data.water_supply.Table_5.DlRuralTotDmgDistrict[0].tot_damages + data.water_supply.Table_5.DlRuralTotLosDistrict[0].tot_los">
+
                         </td>
                     </tr>
                     <tr height="17">
-                        <td class="tdpa" height="17">
+                        <td class="boldash" height="17">
                             GRAND TOTAL
                         </td>
-                        <td>
-                            -
+                        <td ng-bind="data.water_supply.Table_5.DlcwTotDmgDistrict[0].dlcw_tot_dmg + data.water_supply.Table_5.DlRuralTotDmgDistrict[0].tot_damages">
+
                         </td>
-                        <td>
-                            -
+                        <td ng-bind="data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_1 + data.water_supply.Table_5.DlRuralTotLosDistrict[0].tot_los">
+
                         </td>
-                        <td>
-                            -
+                         <td ng-bind="data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_2">
+
                         </td>
-                        <td colspan="2">
-                            -
+                        <td colspan="2" width="214" ng-bind="data.water_supply.Table_5.DlcwTotDmgDistrict[0].dlcw_tot_dmg +
+                            data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_1 +
+                            data.water_supply.Table_5.DlcwLosOther[0].tot_los_year_2 + data.water_supply.Table_5.DlRuralTotDmgDistrict[0].tot_damages + data.water_supply.Table_5.DlRuralTotLosDistrict[0].tot_los">
+
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
                 <br>
                 <br>

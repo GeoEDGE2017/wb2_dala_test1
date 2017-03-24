@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlPrdctnLosApp" ng-controller="dlPrdctnLosController">
     <!-- Breadcrumb -->
@@ -28,23 +36,23 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td   style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_prdctn_los.incident.$error.required">
                                 Please select Incident
                             </span>
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="5" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_prdctn_los.district.$error.required">
                                 Please select District
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
-                        <td width="218" height="19">
+                    <tr class="trhead1" height="19">
+                        <td width="218" height="19" style="padding-left:5px;">
 
                             Incident:
                         </td>
@@ -60,7 +68,7 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td>
+                        <td style="padding-left:5px;">
                             Name of District:
                         </td>
                         <td colspan="5">
@@ -70,13 +78,13 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="11" width="1303" height="19">
                             LOSSES FOR THE DISASTER YEAR 1 AND YEAR 2
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
-                        <td rowspan="5" width="249" height="95">
+                    <tr class="trheadc1" height="19">
+                        <td rowspan="5" width="249" height="95" style="width:18.5%;">
                             Sub-Sector
                         </td>
                         <td colspan="8" width="884">
@@ -86,12 +94,12 @@
                             TOTAL PRODUCTION LOSSES (LKR)
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="8" width="884" height="19">
                             Partially Damaged
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="4" width="503" height="19">
                             Reduction in Yield (%)
                         </td>
@@ -99,7 +107,7 @@
                             Production Losses (LKR)
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="2" width="269" height="19">
                             Year 1
                         </td>
@@ -123,7 +131,7 @@
                         <td width="117">
                             Public
                         </td>
-                        <td width="117">
+                        <td width="117" style="width:8%;">
                             Private
                         </td>
                         <td width="112">
@@ -145,6 +153,11 @@
                             Private
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <table class="table table-bordered">
                     <tr class="trheadc" height="19">
                         <td width="249" height="19">
                             Seasonal Crops
@@ -190,48 +203,67 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="pldySeasonalCrops.redctn_year_2_pvt">
                         </td>
-                        <td width="112" ng-model="pldySeasonalCrops.prod_year_1_pub" ng-bind="pldySeasonalCrops.prod_year_1_pub">
+                        <td width="112" ng-model="pldySeasonalCrops.prod_year_1_pub"
+                            ng-bind="pldySeasonalCrops.prod_year_1_pub =
+                            pldySeasonalCrops.redctn_year_1_pub * bs_data['BacfSeasonalCrops'][$index].fields.productn_pub">
                         </td>
-                        <!--<td width="85" ng-model="dildSeasonalCrops.invest_los_pvt"-->
-                             <!--ng-bind="dildSeasonalCrops.invest_los_pvt =-->
-                                          <!--dildSeasonalCrops.new_plant_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_nplanted+-->
-                                          <!--dildSeasonalCrops.mid_stage_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_mstage +-->
-                                          <!--dildSeasonalCrops.harvest_stage_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_cost_hstage">-->
-                        <!--</td>-->
-                        <td width="99" ng-bind="pldySeasonalCrops.prod_year_1_pvt">
+
+                        <td width="99" ng-model="pldySeasonalCrops.prod_year_1_pvt"
+                            ng-bind="pldySeasonalCrops.prod_year_1_pvt =
+                        pldySeasonalCrops.redctn_year_1_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.prod_year_2_pub">
+                        <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pub"
+                        ng-bind="pldySeasonalCrops.prod_year_2_pub =
+                        pldySeasonalCrops.redctn_year_2_pub * bs_data['BacfSeasonalCrops'][$index].fields.productn_pub">
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.prod_year_2_pvt">
+
+                        <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pvt"
+                            ng-bind="pldySeasonalCrops.prod_year_2_pvt =
+                        pldySeasonalCrops.redctn_year_2_pvt * bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt">
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.tot_prod_pub">
+                        <td width="85" ng-model="pldySeasonalCrops.tot_prod_pub"
+                            ng-bind="pldySeasonalCrops.tot_prod_pub =
+                            pldySeasonalCrops.prod_year_1_pub + pldySeasonalCrops.prod_year_2_pub">
+
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.tot_prod_pvt">
+                        <td width="85" ng-model="pldySeasonalCrops.tot_prod_pvt"
+                            ng-bind="pldySeasonalCrops.tot_prod_pvt = pldySeasonalCrops.prod_year_1_pvt + pldySeasonalCrops.prod_year_2_pvt">
                         </td>
                     </tr>
                     <!--Total-->
                     <tr height="19" ng-repeat="pldySeasonalCrops in dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops" ng-if="pldySeasonalCrops.seasonal_crops == 'Total'">
                         <td class="tdpa" width="249" height="19" ng-bind="pldySeasonalCrops.seasonal_crops">
                         </td>
-                        <td class="tdpa" width="148" ng-bind="pldySeasonalCrops.redctn_year_1_pub">
+                        <td class="tdpa" width="148">
                         </td>
-                        <td class="tdpa" width="121" ng-bind="pldySeasonalCrops.redctn_year_1_pvt">
+                        <td class="tdpa" width="121" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldySeasonalCrops.redctn_year_2_pub">
+                        <td class="tdpa" width="117" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldySeasonalCrops.redctn_year_2_pvt">
+                        <td class="tdpa" width="117" >
                         </td>
-                        <td width="112" ng-bind="pldySeasonalCrops.prod_year_1_pub">
+                        <td width="112" ng-model="pldySeasonalCrops.prod_year_1_pub"
+                            ng-bind="pldySeasonalCrops.prod_year_1_pub = CalTot($parent.dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops,'prod_year_1_pub')">
                         </td>
-                        <td width="99" ng-bind="pldySeasonalCrops.prod_year_1_pvt">
+                        <td width="99" ng-model="pldySeasonalCrops.prod_year_1_pvt"
+                        ng-bind="pldySeasonalCrops.prod_year_1_pvt = CalTot($parent.dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops,'prod_year_1_pvt')">
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.prod_year_2_pub">
+                        <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pub"
+                        ng-bind="pldySeasonalCrops.prod_year_2_pub = CalTot($parent.dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops,'prod_year_2_pub')">
+
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.prod_year_2_pvt">
+                        <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pvt"
+                        ng-bind="pldySeasonalCrops.prod_year_2_pvt = CalTot($parent.dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops,'prod_year_2_pvt')">
+
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.tot_prod_pub">
+                        <td width="85" ng-model="pldySeasonalCrops.tot_prod_pub"
+                        ng-bind="pldySeasonalCrops.tot_prod_pub = CalTot($parent.dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops,'tot_prod_pub')">
+
                         </td>
-                        <td width="85" ng-bind="pldySeasonalCrops.tot_prod_pvt">
+                        <td width="85" ng-model="pldySeasonalCrops.tot_prod_pvt"
+                          ng-bind="pldySeasonalCrops.tot_prod_pvt = CalTot($parent.dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops,'tot_prod_pvt')">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -279,32 +311,50 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="pldyPlantnCrops.redctn_year_2_pvt">
                         </td>
-                        <td width="112" ng-bind="pldyPlantnCrops.prod_year_1_pub">
+                        <td width="112" ng-model="pldyPlantnCrops.prod_year_1_pub"
+                            ng-bind="pldyPlantnCrops.prod_year_1_pub =
+                        pldyPlantnCrops.redctn_year_1_pub * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="99" ng-bind="pldyPlantnCrops.prod_year_1_pvt">
+                        <td width="99" ng-model="pldyPlantnCrops.prod_year_1_pvt"
+                            ng-bind="pldyPlantnCrops.prod_year_1_pvt =
+                        pldyPlantnCrops.redctn_year_1_pvt * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="85" ng-bind="pldyPlantnCrops.prod_year_2_pub">
+                        <td width="85" ng-model="pldyPlantnCrops.prod_year_2_pub"
+                        ng-bind="pldyPlantnCrops.prod_year_2_pub =
+                        pldyPlantnCrops.redctn_year_2_pub * bs_data['BacfPlantnCrops'][$index].fields.productn_pub">
                         </td>
-                        <td width="85" ng-bind="pldyPlantnCrops.prod_year_2_pvt">
+
+                        <td width="85" ng-model="pldyPlantnCrops.prod_year_2_pvt"
+                            ng-bind="pldyPlantnCrops.prod_year_2_pvt =
+                        pldyPlantnCrops.redctn_year_2_pvt * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
                         </td>
-                        <td width="85" ng-bind="pldyPlantnCrops.tot_prod_pub">
+                        <td width="85" ng-model="pldyPlantnCrops.tot_prod_pub"
+                            ng-bind="pldyPlantnCrops.tot_prod_pub =
+                            pldyPlantnCrops.prod_year_1_pub + pldyPlantnCrops.prod_year_2_pub">
+
                         </td>
-                        <td width="85" ng-bind="pldyPlantnCrops.tot_prod_pvt">
+                        <td width="85" ng-model="pldyPlantnCrops.tot_prod_pvt"
+                            ng-bind="pldyPlantnCrops.tot_prod_pvt = pldyPlantnCrops.prod_year_1_pvt + pldyPlantnCrops.prod_year_2_pvt">
                         </td>
                     </tr>
                     <!--Total-->
                     <tr height="19" ng-repeat="pldyPlantnCrops in dlPrdctnLos.agri_agrarian.Table_7.PldyPlantnCrops" ng-if="pldyPlantnCrops.plantn_crops == 'Total'">
                         <td class="tdpa" width="249" height="19" ng-bind="pldyPlantnCrops.plantn_crops">
                         </td>
-                        <td class="tdpa" width="148" ng-bind="pldyPlantnCrops.redctn_year_1_pub">
+                        <td class="tdpa" width="148" >
                         </td>
-                        <td class="tdpa" width="121" ng-bind="pldyPlantnCrops.redctn_year_1_pvt">
+                        <td class="tdpa" width="121" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldyPlantnCrops.redctn_year_2_pub">
+                        <td class="tdpa" width="117" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldyPlantnCrops.redctn_year_2_pvt">
+                        <td class="tdpa" width="117" >
                         </td>
-                        <td width="112" ng-bind="pldyPlantnCrops.prod_year_1_pub">
+                        <td width="112" ng-model="pldyPlantnCrops.prod_year_1_pub"
+                        ng-bind="pldyPlantnCrops.prod_year_1_pub =
+                        CalTot($parent.dlPrdctnLos.agri_agrarian.Table_7.PldyPlantnCrops,'prod_year_1_pub')">
+
                         </td>
                         <td width="99"ng-bind="pldyPlantnCrops.prod_year_1_pvt">
                         </td>
@@ -362,30 +412,46 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="pldyExportCrops.redctn_year_2_pvt">
                         </td>
-                        <td width="112" ng-bind="pldyExportCrops.prod_year_1_pub">
+
+                        <td width="112" ng-model="pldyExportCrops.prod_year_1_pub"
+                            ng-bind="pldyExportCrops.prod_year_1_pub =
+                        pldyExportCrops.redctn_year_1_pub * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="99" ng-bind="pldyExportCrops.prod_year_1_pvt">
+                        <td width="99" ng-model="pldyExportCrops.prod_year_1_pvt"
+                            ng-bind="pldyExportCrops.prod_year_1_pvt =
+                        pldyExportCrops.redctn_year_1_pvt * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="85" ng-bind="pldyExportCrops.prod_year_2_pub">
+                        <td width="85" ng-model="pldyExportCrops.prod_year_2_pub"
+                        ng-bind="pldyExportCrops.prod_year_2_pub =
+                        pldyExportCrops.redctn_year_2_pub * bs_data['BacfExportCrops'][$index].fields.productn_pub">
                         </td>
-                        <td width="85" ng-bind="pldyExportCrops.prod_year_2_pvt">
+
+                        <td width="85" ng-model="pldyExportCrops.prod_year_2_pvt"
+                            ng-bind="pldyExportCrops.prod_year_2_pvt =
+                        pldyExportCrops.redctn_year_2_pvt * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
                         </td>
-                        <td width="85" ng-bind="pldyExportCrops.tot_prod_pub">
+                        <td width="85" ng-model="pldyExportCrops.tot_prod_pub"
+                            ng-bind="pldyExportCrops.tot_prod_pub =
+                            pldyExportCrops.prod_year_1_pub + BacfExportCrops.prod_year_2_pub">
+
                         </td>
-                        <td width="85" ng-bind="pldyExportCrops.tot_prod_pvt">
+                        <td width="85" ng-model="pldyExportCrops.tot_prod_pvt"
+                            ng-bind="pldyExportCrops.tot_prod_pvt = pldyExportCrops.prod_year_1_pvt + pldyExportCrops.prod_year_2_pvt">
                         </td>
                     </tr>
                     <!--Total-->
                     <tr height="19" ng-repeat="pldyExportCrops in dlPrdctnLos.agri_agrarian.Table_7.PldyExportCrops" ng-if="pldyExportCrops.export_crops == 'Total'">
                         <td class="tdpa" width="249" height="19" ng-bind="pldyExportCrops.export_crops">
                         </td>
-                        <td class="tdpa" width="148" ng-bind="pldyExportCrops.redctn_year_1_pub">
+                        <td class="tdpa" width="148" >
                         </td>
-                        <td class="tdpa" width="121" ng-bind="pldyExportCrops.redctn_year_1_pvt">
+                        <td class="tdpa" width="121" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldyExportCrops.redctn_year_2_pub">
+                        <td class="tdpa" width="117" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldyExportCrops.redctn_year_2_pvt">
+                        <td class="tdpa" width="117" >
                         </td>
                         <td width="112" ng-bind="pldyExportCrops.prod_year_1_pub">
                         </td>
@@ -445,30 +511,46 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="pldyForestry.redctn_year_2_pvt">
                         </td>
-                        <td width="112" ng-bind="pldyForestry.prod_year_1_pub">
+
+                        <td width="112" ng-model="pldyForestry.prod_year_1_pub"
+                            ng-bind="pldyForestry.prod_year_1_pub =
+                        pldyForestry.redctn_year_1_pub * bs_data['BacfForestry'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="99" ng-bind="pldyForestry.prod_year_1_pvt">
+                        <td width="99" ng-model="pldyForestry.prod_year_1_pvt"
+                            ng-bind="pldyForestry.prod_year_1_pvt =
+                        pldyForestry.redctn_year_1_pvt * bs_data['BacfForestry'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="85" ng-bind="pldyForestry.prod_year_2_pub">
+                        <td width="85" ng-model="pldyForestry.prod_year_2_pub"
+                        ng-bind="pldyForestry.prod_year_2_pub =
+                        pldyForestry.redctn_year_2_pub * bs_data['BacfForestry'][$index].fields.productn_pub">
                         </td>
-                        <td width="85" ng-bind="pldyForestry.prod_year_2_pvt">
+
+                        <td width="85" ng-model="pldyForestry.prod_year_2_pvt"
+                            ng-bind="pldyForestry.prod_year_2_pvt =
+                        pldyForestry.redctn_year_2_pvt * bs_data['BacfForestry'][$index].fields.productn_pvt">
                         </td>
-                        <td width="85" ng-bind="pldyForestry.tot_prod_pub">
+                        <td width="85" ng-model="pldyForestry.tot_prod_pub"
+                            ng-bind="pldyForestry.tot_prod_pub =
+                            pldyForestry.prod_year_1_pub + BacfForestry.prod_year_2_pub">
+
                         </td>
-                        <td width="85" ng-bind="pldyForestry.tot_prod_pvt">
+                        <td width="85" ng-model="pldyForestry.tot_prod_pvt"
+                            ng-bind="pldyForestry.tot_prod_pvt = pldyForestry.prod_year_1_pvt + pldyForestry.prod_year_2_pvt">
                         </td>
                     </tr>
                     <!--Total-->
                     <tr height="19" ng-repeat="pldyForestry in dlPrdctnLos.agri_agrarian.Table_7.PldyForestry" ng-if="pldyForestry.forestry == 'Total'">
                         <td class="tdpa" width="249" height="19" ng-bind="pldyForestry.forestry">
                         </td>
-                        <td class="tdpa" width="148" ng-bind="pldyForestry.redctn_year_1_pub">
+                        <td class="tdpa" width="148" >
                         </td>
-                        <td class="tdpa" width="121" ng-bind="pldyForestry.redctn_year_1_pvt">
+                        <td class="tdpa" width="121" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldyForestry.redctn_year_2_pub">
+                        <td class="tdpa" width="117" >
                         </td>
-                        <td class="tdpa" width="117" ng-bind="pldyForestry.redctn_year_2_pvt">
+                        <td class="tdpa" width="117d">
                         </td>
                         <td width="112" ng-bind="pldyForestry.prod_year_1_pub">
                         </td>
@@ -527,17 +609,33 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="pldyOther.redctn_year_2_pvt">
                         </td>
-                        <td width="112" ng-bind="pldyOther.prod_year_1_pub">
+
+                        <td width="112" ng-model="pldyOther.prod_year_1_pub"
+                            ng-bind="pldyOther.prod_year_1_pub =
+                        pldyOther.redctn_year_1_pub * bs_data['BacfOther'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="99" ng-bind="pldyOther.prod_year_1_pvt">
+                        <td width="99" ng-model="pldyOther.prod_year_1_pvt"
+                            ng-bind="pldyOther.prod_year_1_pvt =
+                        pldyOther.redctn_year_1_pvt * bs_data['BacfOther'][$index].fields.productn_pvt">
+
                         </td>
-                        <td width="85" ng-bind="pldyOther.prod_year_2_pub">
+                        <td width="85" ng-model="pldyOther.prod_year_2_pub"
+                        ng-bind="pldyOther.prod_year_2_pub =
+                        pldyOther.redctn_year_2_pub * bs_data['BacfOther'][$index].fields.productn_pub">
                         </td>
-                        <td width="85" ng-bind="pldyOther.prod_year_2_pvt">
+
+                        <td width="85" ng-model="pldyOther.prod_year_2_pvt"
+                            ng-bind="pldyOther.prod_year_2_pvt =
+                        pldyOther.redctn_year_2_pvt * bs_data['BacfOther'][$index].fields.productn_pvt">
                         </td>
-                        <td width="85" ng-bind="pldyOther.tot_prod_pub">
+                        <td width="85" ng-model="pldyOther.tot_prod_pub"
+                            ng-bind="pldyOther.tot_prod_pub =
+                            pldyOther.prod_year_1_pub + pldyPlantnCrops.prod_year_2_pub">
+
                         </td>
-                        <td width="85" ng-bind="pldyOther.tot_prod_pvt">
+                        <td width="85" ng-model="pldyOther.tot_prod_pvt"
+                            ng-bind="pldyOther.tot_prod_pvt = pldyPlantnCrops.prod_year_1_pvt + pldyPlantnCrops.prod_year_2_pvt">
                         </td>
                     </tr>
                     <!--Total-->
@@ -590,7 +688,7 @@
                         <td width="85" ng-bind="pldyOther.tot_prod_pvt">
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="5" rowspan="2" width="752" height="38">
                             Other losses
                         </td>
@@ -644,33 +742,64 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="pldyOtherLos.year_2_pvt">
                         </td>
-                        <td width="85" ng-bind="pldyOtherLos.tot_pub">
-                            -
+                        <td width="85" ng-model="pldyOtherLos.tot_pub"
+                            ng-bind="pldyOtherLos.tot_pub = pldyOtherLos.year_1_pub + pldyOtherLos.year_2_pub">
+
                         </td>
-                        <td width="85" ng-bind="pldyOtherLos.tot_pvt">
-                            -
+                         <td width="85" ng-model="pldyOtherLos.tot_pvt"
+                             ng-bind="pldyOtherLos.tot_pvt = pldyOtherLos.year_1_pvt + pldyOtherLos.year_2_pvt
+                            ">
+
                         </td>
                     </tr>
                     <!--Other losses TOTAL-->
                     <tr height="19" ng-repeat="pldyOtherLos in dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos" ng-if="pldyOtherLos.other_los == 'TOTAL'">
                         <td class="tdpa" colspan="5" width="752" height="19" ng-bind="pldyOtherLos.other_los">
                         </td>
-                        <td width="112" ng-bind="pldyOtherLos.year_1_pub">
+                        <td width="112" ng-model="pldyOtherLos.year_1_pub"
+                            ng-bind="pldyOtherLos.year_1_pub =
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[0].year_1_pub +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[1].year_1_pub +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[2].year_1_pub
+                            ">
                         </td>
-                        <td width="99" ng-bind="pldyOtherLos.year_1_pvt">
+                        <td width="112" ng-model="pldyOtherLos.year_1_pvt"
+                            ng-bind="pldyOtherLos.year_1_pvt =
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[0].year_1_pvt +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[1].year_1_pvt +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[2].year_1_pvt">
                         </td>
-                        <td width="85" ng-bind="pldyOtherLos.year_2_pub">
+                        <td width="112" ng-model="pldyOtherLos.year_2_pub"
+                            ng-bind="pldyOtherLos.year_2_pub =
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[0].year_2_pub +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[1].year_2_pub +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[2].year_2_pub">
                         </td>
-                        <td width="85" ng-bind="pldyOtherLos.year_2_pvt">
+                         <td width="112" ng-model="pldyOtherLos.year_2_pvt"
+                            ng-bind="pldyOtherLos.year_2_pvt =
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[0].year_2_pvt +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[1].year_2_pvt +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[2].year_2_pvt">
                         </td>
-                        <td width="85" ng-bind="pldyOtherLos.tot_pub">
+
+                        <td width="85" ng-model="pldyOtherLos.tot_pub"
+                            ng-bind="pldyOtherLos.tot_pub =
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLo[0].tot_pub +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[1].tot_pub +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[2].tot_pub">
+
                         </td>
-                        <td width="85" ng-bind="pldyOtherLos.tot_pvt">
+                         <td width="85" ng-model="pldyOtherLos.tot_pvt"
+                            ng-bind="pldyOtherLos.tot_pvt =
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[0].tot_pvt +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[1].tot_pvt +
+                            dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[2].tot_pvt">
+
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <br>
+               
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>

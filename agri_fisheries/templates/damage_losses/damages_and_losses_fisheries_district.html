@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlFisheriesDistrictApp" ng-controller="dlFisheriesDistrictController">
     <!-- Breadcrumb -->
@@ -10,7 +18,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and losses in fisheries in a District</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and Losses in Fisheries in a District</span>
         </li>
     </ol>
     <div class="container-fluid">
@@ -34,25 +42,25 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box"
                                       ng-show="submitted && form_dl_fisheries_district.incident.$error.required">
                                     Please select Incident
                                 </span>
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="5" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box"
                                       ng-show="submitted && form_dl_fisheries_district.district.$error.required">
                                     Please select District
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" height="19">
-                            <td width="125" height="19">
+                        <tr class="trhead1" height="19">
+                            <td width="125" height="19" style="padding-left:5px;">
                                 Incident
                             </td>
                             <td width="95" height="19">
@@ -68,7 +76,7 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td width="111" height="19">
+                            <td width="111" height="19" style="padding-left:5px;">
                                 District
                             </td>
                             <td colspan="5" width="419" height="19">
@@ -79,14 +87,12 @@
                                 </select>
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td width="125" height="19">
                                 Type of Fishing
                             </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="6" width="526" height="19" ng-init="getFishingTypes()">
+                           
+                            <td colspan="7" width="526" height="19" ng-init="getFishingTypes()">
 
 
                                 <select name="selectbasic" id="selectbasic" class="form-control"
@@ -97,12 +103,12 @@
 
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="8" width="760" height="19">
                                 Damages
                             </td>
                         </tr>
-                        <tr class="trheadc" height="43">
+                        <tr class="trheadc1" height="43">
                             <td colspan="2" rowspan="2" width="250" height="85">
                                 Assets
                             </td>
@@ -136,6 +142,13 @@
                                 Private
                             </td>
                         </tr>
+                        </tbody>
+                        </table>
+
+                        <div id="boxscroll" style="height:400px;overflow:auto;">
+
+
+ <table class="table table-bordered">
                         <tr class="trheadc" height="19">
                             <td colspan="2" width="250" height="19">
                                 Fishing Equipment
@@ -239,14 +252,16 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgFequipment.dmg_pub">
+                            <td width="63" height="19" ng-model="dlfDmgFequipment.dmg_pub" ng-bind="dlfDmgFequipment.dmg_pub =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment,'dmg_pub')">
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgFequipment.dmg_pvt">
+                            <td width="63" height="19" ng-model="dlfDmgFequipment.dmg_pvt"
+                                ng-bind="dlfDmgFequipment.dmg_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment,'dmg_pvt')">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
                             <td colspan="2" width="250" height="19">
-                                Office equipment
+                                Office Equipment
                             </td>
                             <td width="111" height="19">
                                 <br/>
@@ -322,7 +337,7 @@
                             </td>
                             <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'" ng-model="dlfDmgOequipment.dmg_pvt"
                                 ng-bind="dlfDmgOequipment.dmg_pvt =
-                                dlfDmgOequipment.dmg_dst_pvt * bs_data['BifAstMachBifAstOequipmentinery'][$index].fields.mf_avg_replace_cost +
+                                dlfDmgOequipment.dmg_dst_pvt * bs_data['BifAstOequipment'][$index].fields.mf_avg_replace_cost +
                                 dlfDmgOequipment.dmg_pdmg_pvt * bs_data['BifAstOequipment'][$index].fields.mf_avg_repair_cost ">
                             </td>
                         </tr>
@@ -345,11 +360,13 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgOequipment.dmg_pub">
-                                -
+
+                            <td width="63" height="19" ng-model="dlfDmgOequipment.dmg_pub" ng-bind="dlfDmgOequipment.dmg_pub =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment,'dmg_pub')">
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgOequipment.dmg_pvt">
-                                -
+
+                            <td width="63" height="19" ng-model="dlfDmgOequipment.dmg_pvt" ng-bind="dlfDmgOequipment.dmg_pvt =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment,'dmg_pvt')">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -456,11 +473,13 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgMachinery.dmg_pub">
-                                -
+
+                            <td width="63" height="19" ng-model="dlfDmgMachinery.dmg_pub" ng-bind="dlfDmgMachinery.dmg_pub =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery,'dmg_pub')">
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgMachinery.dmg_pvt">
-                                -
+
+                            <td width="63" height="19" ng-model="dlfDmgMachinery.dmg_pvt" ng-bind="dlfDmgMachinery.dmg_pvt =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery,'dmg_pvt')">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -566,14 +585,16 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgStructures.dmg_pub">
-                                -
+
+                            <td width="63" height="19" ng-model="dlfDmgStructures.dmg_pub" ng-bind="dlfDmgStructures.dmg_pub =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures,'dmg_pub')">
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgStructures.dmg_pvt">
-                                -
+
+                            <td width="63" height="19" ng-model="dlfDmgStructures.dmg_pvt" ng-bind="dlfDmgStructures.dmg_pvt =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures,'dmg_pvt')">
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td rowspan="2" width="125" height="53">
                                 Buildings
                             </td>
@@ -700,8 +721,9 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgPub.total">
-                                -
+
+                             <td width="63" height="19" ng-model="dlfDmgPub.total" ng-bind="dlfDmgPub.total =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPub,'total')">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -790,10 +812,12 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-bind="dlfDmgPvt.total">
+
+                             <td width="63" height="19" ng-model="dlfDmgPub.total" ng-bind="dlfDmgPub.total =
+                            CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPub,'total')">
                             </td>
                         </tr>
-                        <tr class="trsubc" height="19">
+                        <tr class="trsubc1" height="19">
                             <td colspan="6" rowspan="2" width="634" height="38">
                                 TOTAL OF DAMAGES
                             </td>
@@ -805,8 +829,8 @@
                             </td>
                         </tr>
                         <tr height="19">
-                            <td width="63" height="19">
-                                -
+                            <td width="63" height="19" ng-bind="calGrandPubTotal()">
+
                             </td>
                             <td width="63" height="19">
                                 -
@@ -814,19 +838,20 @@
                         </tr>
                         </tbody>
                     </table>
+                    </div>
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                     <br>
                 </div>
                 <div class="tab-pane fade" id="step2">
                     <table class="table table-bordered">
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="8" width="760" height="19">
                                 LOSSES
                             </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="2" width="250" height="19">
                                 <br/>
                             </td>
@@ -1150,7 +1175,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <br>
+                    
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
@@ -1158,6 +1183,7 @@
                             Submit
                         </button>
                     </div>
+                    <br><br>
                 </div>
             </div>
         </div>

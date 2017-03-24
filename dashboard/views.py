@@ -47,6 +47,27 @@ def transport_water_main(request):
 @permission_required("district", "Transport Summary")	
 def transport_summary_main(request):   
     return render(request, 'dashboard/transport_summary_main.html')
+111
+
+@permission_required("district", "Agri Agrarian")   
+def agri_agrarian_main(request):   
+    return render(request, 'dashboard/agri_agrarian_main.html')
+
+@permission_required("district", "Agri Fisheries")   
+def agri_fisheries_main(request):   
+    return render(request, 'dashboard/agri_fisheries_main.html')
+
+@permission_required("district", "Agri Irrigation")   
+def agri_irrigation_main(request):   
+    return render(request, 'dashboard/agri_irrigation_main.html')
+
+@permission_required("district", "Agri Livestock")   
+def agri_livestock_main(request):   
+    return render(request, 'dashboard/agri_livestock_main.html')
+
+@permission_required("district", "Agri Summary")   
+def agri_summary_main(request):   
+    return render(request, 'dashboard/agri_summary_main.html')
     
     
     

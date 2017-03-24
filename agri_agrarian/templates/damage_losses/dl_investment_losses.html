@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlInvsmntLosApp" ng-controller="dlInvsmntLosController">
     <!-- Breadcrumb -->
@@ -28,23 +36,23 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td   style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_invsmnt_los.incident.$error.required">
                                 Please select Incident
                             </span>
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="5" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_invsmnt_los.district.$error.required">
                                 Please select District
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
-                        <td width="218" height="19">
+                    <tr class="trhead1" height="19">
+                        <td width="218" height="19" style="padding-left:5px;">
                             Incident:
                         </td>
                         <td colspan="4" width="567" height="19">
@@ -59,7 +67,7 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td>
+                        <td style="padding-left:5px;">
                             Name of District:
                         </td>
                         <td colspan="5">
@@ -69,25 +77,25 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="9" width="1133" height="19">
                             LOSSES FOR THE DISASTER YEAR 1
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
-                        <td rowspan="4" width="249" height="76">
+                    <tr class="trheadc1" height="19">
+                        <td rowspan="4" width="249" height="76" style="width:22%;">
                             Sub-Sector
                         </td>
                         <td colspan="8" width="884">
                             Investment Losses
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="8" width="884" height="19">
                             Totally Destroyed by Stage of Growth
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="2" width="269" height="19">
                             Newly Planted (Acre)
                         </td>
@@ -127,6 +135,11 @@
                             Private
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <table class="table table-bordered">
                     <tr class="trheadc" height="19">
                         <td width="249" height="19">
                             Seasonal Crops
@@ -499,8 +512,8 @@
 
                 <br>
                 <div class="pull-right">
-                    <br>
-                    <button type="button" class="btn btn-info">Clear</button>form_dl_invsmnt_los
+                   
+                    <button type="button" class="btn btn-info">Clear</button>
                     <button type="button" ng-click="dlDataEdit(form_dl_invsmnt_los)" ng-if="!is_edit" class="btn btn-success">
                         Edit
                     </button>

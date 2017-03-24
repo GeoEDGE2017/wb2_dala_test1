@@ -10,7 +10,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Baseline information on structures, office equipment and related other assets</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Baseline Information on Structures, Office Equipment and Related Other Assets</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_info_acfo_assets">
@@ -27,7 +27,7 @@
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                             </td>
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_info_acfo_assets.district.$error.required">
                                     Please select District
                                 </span>
@@ -40,8 +40,8 @@
                                 </span>
                             </td>
                         </tr>
-                    <tr class="trhead" height="19">
-                        <td width="249" height="19">
+                    <tr class="trhead1" height="19">
+                        <td width="249" style="padding-left:5px;" height="19">
                             District:
                         </td>
                         <td colspan="2" width="269">
@@ -52,14 +52,14 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td width="117">
-                            Year/Month
+                        <td width="117" style="padding-left:5px;">
+                            Year/Month:
                         </td>
                         <td width="117">
-                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" width="249" height="38">
                             Asset
                         </td>
@@ -96,7 +96,7 @@
                     </tr>
                     <tr height="19" ng-repeat="bsoeStructure in bsInfoSeroAssets.agri_agrarian.Table_3.BsoeStructure">
                         <td class="tdpa" width="249" height="19" ng-bind="bsoeStructure.assets">
-                            1 floor structure
+                            1 Floor Structure
                         </td>
                         <td width="148">
                             <input id="textinput" name="textinput" type="number" placeholder=""
@@ -134,7 +134,7 @@
                             <button id="delete" ng-click="removeItem('BsoeOequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsoeOequipment_{{$index}}" ng-model="bsoeOequipment.assets"
+                            <input style="width:80%;float:right;" name="bsoeOequipment_{{$index}}" ng-model="bsoeOequipment.assets"
                                 popover="This field is required"
                                 popover-toggle="form_bs_nopopl_agrb_actv['bsoeOequipment_' + $index].$dirty && !form_bs_nopopl_agrb_actv['bsoeOequipment_' + $index].$valid"
                                 popover-placement="top" required
@@ -180,7 +180,7 @@
                             <button id="delete" ng-click="removeItem('BsoeMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bsoeMachinery_{{$index}}" ng-model="bsoeMachinery.assets"
+                            <input style="width:80%;float:right;" name="bsoeMachinery_{{$index}}" ng-model="bsoeMachinery.assets"
                                 popover="This field is required"
                                 popover-toggle="form_bs_nopopl_agrb_actv['bsoeMachinery_' + $index].$dirty && !form_bs_nopopl_agrb_actv['bsoeMachinery_' + $index].$valid"
                                 popover-placement="top" required
@@ -213,8 +213,7 @@
                 </table>
                 <br>
                 <div class="pull-right">
-                    <br>
-                    <br>
+                    
                      <button type="button" class="btn btn-info">Clear</button>
                     <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
                         Edit
@@ -227,6 +226,7 @@
                     class="btn btn-success">Submit
                     </button>
                 </div>
+                <br><br>
             </div>
         </div>
     </div>

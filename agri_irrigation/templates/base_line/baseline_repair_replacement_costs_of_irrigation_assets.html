@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="bsRparplCosAsstsApp" ng-controller="bsRparplCosAsstsController">
     <!-- Breadcrumb -->
@@ -10,7 +18,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Irrigation Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Repair and replacement costs of irrigation assets</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Repair and Replacement Costs of Irrigation Assets</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_rparpl_cos_assts">
@@ -35,19 +43,19 @@
                             </td>
                             <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.district.$error.required">
-                                    Please select District
+                                    Please Select District
                                 </span>
                             </td>
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.baselineDate.$error.required">
-                                    Please select Date
+                                    Please Select Date
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead" height="19">
-                            <td width="258" height="19">
+                        <tr class="trhead1" height="19">
+                            <td width="258" height="19" style="padding-left:5px;">
                                 District
                             </td>
                             <td width="118">
@@ -58,60 +66,73 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td width="116">
-                            </td>
-                            <td width="128">
+                           
+                            <td width="128" colspan="2" style="padding-left:5px;">
                                 Year/Month
                             </td>
                             <td width="183">
-                                <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
                         </tr>
-                        <tr class="trhead" height="19">
+                        <tr class="trhead1" height="19">
                             <td width="258" height="19">
                                 Division
                             </td>
-                            <td width="118">
-                                <input type="text" name="division" ng-model="division" required>
-                            </td>
-                            <td colspan="3" width="427">
-                                <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.division.$error.required" ng-model="division">
-                                    Please select division
+                            <td width="118" colspan="3">
+                                <input type="text" class="form-control" name="division" ng-model="division" required>
+                                 <span class="arrow_box1" style="color:red;" ng-show="submitted && form_bs_rparpl_cos_assts.division.$error.required" ng-model="division">
+                                    Please Select division
                                 </span>
                             </td>
+                            <td  width="427">
+                               
+                            </td>
                         </tr>
-                        <tr class="trhead" height="19">
+                        <tr class="trhead1" height="19">
                             <td width="258" height="19">
                                 Region
                             </td>
-                            <td width="118">
-                                <input type="text" name="region" ng-model="region" required>
-                            </td>
-                            <td colspan="3" width="427">
-                                <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.region.$error.required" ng-model="region">
-                                    Please select region
+                            <td width="118" colspan="3">
+                                <input type="text" class="form-control" name="region" ng-model="region" required>
+                                 <span class="arrow_box1" style="color:red;"s ng-show="submitted && form_bs_rparpl_cos_assts.region.$error.required" ng-model="region">
+                                    Please Select region
                                 </span>
                             </td>
+                            <td  width="427">
+                                
+                            </td>
                         </tr>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td colspan="5" width="803" height="19">
                                 Irrigation Assets
                             </td>
                         </tr>
-                        </tbody>
-                    </table>
-                    <div id="boxscroll" style="height:400px;overflow:auto;">
-                        <table class="table table-bordered">
-                            <tbody>
-                            <tr class="trheadc" height="34">
+                        <tr class="trheadc1" height="34">
                                 <td width="258" height="34">
-                                    Major Tanks
+                                    Type
                                 </td>
                                 <td colspan="3" width="362">
                                     Average Repair Cost (LKR/m)
                                 </td>
                                 <td width="183">
                                     Average Replacement Cost (LKR/m)
+                                </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                          <div id="boxscroll" style="height:400px;overflow:auto;">
+                        <table class="table table-bordered">
+                  
+                            <tbody>
+                            <tr class="trheadc" height="34">
+                                <td width="258" height="34" style="width:24.5%;">
+                                    Major Tanks
+                                </td>
+                                <td colspan="3" width="362" style="width:35%;">
+                                    
+                                </td>
+                                <td width="183">
+                                    
                                 </td>
                             </tr>
                             <tr height="19" ng-repeat="bsRciaMajorTanks in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMajorTanks">
@@ -123,7 +144,7 @@
                                     <button id="delete" ng-click="removeItem('BsRciaMajorTanks', $index)" class="btn btn-sm btn-danger btn-circle" >
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:90%;float:right;" name="bsRciaMajorTanks_{{$index}}" ng-model="bsRciaMajorTanks.irrigation_facility"
+                                    <input style="width:80%;float:right;" name="bsRciaMajorTanks_{{$index}}" ng-model="bsRciaMajorTanks.irrigation_facility"
                                         popover="This field is required"
                                         popover-toggle="form_bs_irg_facilities['bsRciaMajorTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMajorTanks_' + $index].$valid"
                                         popover-placement="top" required
@@ -169,7 +190,7 @@
                                     <button id="delete" ng-click="removeItem('BsRciaMediumTanks', $index)" class="btn btn-sm btn-danger btn-circle" >
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:90%;float:right;" name="bsRciaMediumTanks_{{$index}}" ng-model="bsRciaMediumTanks.irrigation_facility"
+                                    <input style="width:80%;float:right;" name="bsRciaMediumTanks_{{$index}}" ng-model="bsRciaMediumTanks.irrigation_facility"
                                         popover="This field is required"
                                         popover-toggle="form_bs_irg_facilities['bsRciaMediumTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMediumTanks_' + $index].$valid"
                                         popover-placement="top" required
@@ -215,7 +236,7 @@
                                     <button id="delete" ng-click="removeItem('BsRciaMinorTanks', $index)" class="btn btn-sm btn-danger btn-circle" >
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:90%;float:right;" name="bsRciaMediumTanks_{{$index}}" ng-model="bsRciaMinorTanks.irrigation_facility"
+                                    <input style="width:80%;float:right;" name="bsRciaMediumTanks_{{$index}}" ng-model="bsRciaMinorTanks.irrigation_facility"
                                         popover="This field is required"
                                         popover-toggle="form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$valid"
                                         popover-placement="top" required
@@ -311,7 +332,7 @@
                                     <button id="delete" ng-click="removeItem('BsRciaOtherStructures', $index)" class="btn btn-sm btn-danger btn-circle" >
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:90%;float:right;" name="bsRciaOtherStructures_{{$index}}" ng-model="bsRciaOtherStructures.irrigation_facility"
+                                    <input style="width:80%;float:right;" name="bsRciaOtherStructures_{{$index}}" ng-model="bsRciaOtherStructures.irrigation_facility"
                                         popover="This field is required"
                                         popover-toggle="form_bs_irg_facilities['bsRciaOtherStructures_' + $index].$dirty && !form_bs_irg_facilities['bsRciaOtherStructures_' + $index].$valid"
                                         popover-placement="top" required
@@ -357,7 +378,7 @@
                         </table>
                     </div>
                     <br>
-                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Buildings Informations</a>
                     <br>
                 </div>
@@ -367,7 +388,7 @@
 
                     <table class="table table-bordered">
                         <tbody>
-                        <tr class="trheadc" height="19">
+                        <tr class="trheadc1" height="19">
                             <td rowspan="2" width="258" height="38">
                                 Buildings
                             </td>
@@ -414,7 +435,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <br>
+                    
                     <div class="pull-right">
                         <br>
                             <button type="button" class="btn btn-info">Clear</button>
@@ -425,6 +446,7 @@
                             <button type="button" ng-click="saveBsData(form_bs_rparpl_cos_assts)" class="btn btn-success">Submit
                             </button>
                     </div>
+                    <br><br>
                 </div>
 
 

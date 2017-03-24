@@ -95,25 +95,6 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         }
     }
 
-//    $scope.fetchFirms = function()
-//    {
-//
-//        $http({
-//        method: "POST",
-//        url: "/fetch_entities",
-//        data: angular.toJson({
-//        'district':  $scope.district.district__id,
-//        'model': 'Firm',
-//        'sector':'tourism'
-//         }),
-//        }).success(function(data) {
-//
-//        //console.log(data);
-//        $scope.firms = data;
-//
-//        })
-//    }
-//
     $scope.fetchInfTypes = function()
     {
 

@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSummTouBusiFaciDisApp" ng-controller="dlSummTouBusiFaciDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -11,7 +11,7 @@
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of Damages and Losses in Tourism Businesses and Facilities in a District</span>
         </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_dl_summ_tou_biss_faci_dis">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
@@ -27,21 +27,29 @@
                         <td height="20" width="263">
                             Name of District:
                         </td>
+
                         <td colspan="4" width="461">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false);" required>
+
+                                <option value="" selected>Select District</option>
                             </select>
                         </td>
                         <td width="85">
                             Incident
                         </td>
                         <td colspan="3" width="255">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
                             </select>
                         </td>
                     </tr>

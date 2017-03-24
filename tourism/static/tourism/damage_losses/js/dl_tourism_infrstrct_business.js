@@ -32,10 +32,21 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'val_dst':null,
                     'val_pdmg':null,
                     'tot_dmg':null,
-                },],
+                },{
+                    'assets': 'Total',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },
+                ],
                 'DmgBusAstEquipment':[
                 {
                     'assets': 'Computers',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },{
+                    'assets': 'Total',
                     'val_dst':null,
                     'val_pdmg':null,
                     'tot_dmg':null,
@@ -46,10 +57,20 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'val_dst':null,
                     'val_pdmg':null,
                     'tot_dmg':null,
+                },{
+                    'assets': 'Total',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
                 },],
                 'DmgBusAstVehicle': [
                 {
                     'assets': 'Cars',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },{
+                    'assets': 'Total',
                     'val_dst':null,
                     'val_pdmg':null,
                     'tot_dmg':null,
@@ -62,6 +83,11 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'tot_dmg':null,
                 },{
                     'assets': 'Furniture',
+                    'val_dst':null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
+                },{
+                    'assets': 'Total',
                     'val_dst':null,
                     'val_pdmg':null,
                     'tot_dmg':null,
@@ -236,10 +262,12 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     }
 
 
-    $scope.getTotalCol = function(subTable, column){
+    $scope.getTotalCol = function(subTable, column, total_object){
 
         var table = $scope.dl_tourism_business.tourism.Table_2;
         var final_total = 0;
+
+        total_object[column] = 0;
 
         angular.forEach(table[subTable], function(value, key) {
             final_total += value[column] ;
@@ -264,7 +292,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         })
 
         })
-        return final_total;
+        return final_total/2; //since we have total fields in the initial model
 
     }
 
@@ -301,6 +329,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         $scope.saveDlData = function(form) {
 
         console.log($scope.selectedType);
+
         $scope.submitted = true;
             if (form.$valid) {
                 $http({
@@ -347,6 +376,18 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
             $scope.is_edit = false;
             $scope.bs_tourism_facilities = angular.copy(init_data);
         }
+
+//        $scope.AppendGrandTotalToSubTable = function (subtable, colname){
+//
+//            var total_row = { 'assets':'Total' }
+//
+//            total_row['val_dst'] = getTotalCol('DmgBusAstStructures','val_dst');
+//            total_row['val_pdmg'] = getTotalCol('DmgBusAstStructures','val_dst');
+//            total_row['val_dst'] = getTotalCol('DmgBusAstStructures','val_dst');
+//
+//            $scope.dl_tourism_business.tourism.Table_2['DmgBusAstStructures'].push(total_row);
+//
+//        }
 
 
 });

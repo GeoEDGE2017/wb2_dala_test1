@@ -190,7 +190,7 @@
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstStructure in
-                dl_tourism_business.tourism.Table_2.DmgBusAstStructures">
+                dl_tourism_business.tourism.Table_2.DmgBusAstStructures" ng-if="dmgBusAstStructure.assets != 'Total'">
 
                         <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstStructure.assets" ng-if="$index < 1">
                         </td>
@@ -237,20 +237,27 @@
                             -
                         </td>
                     </tr>
-                    <tr height="20">
+
+                    <tr height="20" ng-repeat="dmgBusAstStructure in
+                dl_tourism_business.tourism.Table_2.DmgBusAstStructures" ng-if="dmgBusAstStructure.assets == 'Total'">
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstStructures', 'val_dst')">
+                        <td colspan="2" width="200"
+                            ng-bind="dmgBusAstStructure.val_dst = getTotalCol('DmgBusAstStructures', 'val_dst', dmgBusAstStructure )">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstStructures', 'val_pdmg')">
+                        <td colspan="2" width="200"
+                            ng-bind="dmgBusAstStructure.val_pdmg = getTotalCol('DmgBusAstStructures', 'val_pdmg', dmgBusAstStructure)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstStructures', 'tot_dmg')">
+                        <td colspan="2" width="200"
+                            ng-bind="dmgBusAstStructure.tot_dmg = getTotalCol('DmgBusAstStructures', 'tot_dmg', dmgBusAstStructure)">
                             -
                         </td>
                     </tr>
+
+
                     <tr class="trheadc" height="20">
                         <td width="229" height="20">
                             Equipment
@@ -263,7 +270,7 @@
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstEquipment in
-        dl_tourism_business.tourism.Table_2.DmgBusAstEquipment">
+        dl_tourism_business.tourism.Table_2.DmgBusAstEquipment" ng-if="dmgBusAstEquipment.assets != 'Total'">
                         <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstEquipment.assets" ng-if="$index < 1">
 
                         </td>
@@ -309,17 +316,18 @@
                             -
                         </td>
                     </tr>
-                    <tr height="20">
+                    <tr height="20" ng-repeat="dmgBusAstEquipment in
+                dl_tourism_business.tourism.Table_2.DmgBusAstEquipment" ng-if="dmgBusAstEquipment.assets == 'Total'">
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstEquipment', 'val_dst')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstEquipment.val_dst = getTotalCol('DmgBusAstEquipment', 'val_dst', dmgBusAstEquipment)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstEquipment', 'val_pdmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstEquipment.val_pdmg = getTotalCol('DmgBusAstEquipment', 'val_pdmg', dmgBusAstEquipment)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstEquipment', 'tot_dmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstEquipment.tot_dmg = getTotalCol('DmgBusAstEquipment', 'tot_dmg', dmgBusAstEquipment)">
                             -
                         </td>
 
@@ -336,8 +344,8 @@
                         </td>
                     </tr>
 
-                    <<tr height="20" ng-repeat="dmgBusAstMachinery in
-        dl_tourism_business.tourism.Table_2.DmgBusAstMachinery">
+                    <tr height="20" ng-repeat="dmgBusAstMachinery in
+        dl_tourism_business.tourism.Table_2.DmgBusAstMachinery" ng-if="dmgBusAstMachinery.assets != 'Total'">
                         <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstMachinery.assets" ng-if="$index < 1">
 
                         </td>
@@ -385,17 +393,18 @@
                             -
                         </td>
                     </tr>
-                    <tr height="20">
+                    <tr height="20" ng-repeat="dmgBusAstMachinery in
+                dl_tourism_business.tourism.Table_2.DmgBusAstMachinery" ng-if="dmgBusAstMachinery.assets == 'Total'">
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstMachinery', 'val_dst')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstMachinery.val_dst = getTotalCol('DmgBusAstMachinery', 'val_dst', dmgBusAstMachinery)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstMachinery', 'val_pdmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstMachinery.val_pdmg = getTotalCol('DmgBusAstMachinery', 'val_pdmg', dmgBusAstMachinery)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstMachinery', 'tot_dmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstMachinery.tot_dmg = getTotalCol('DmgBusAstMachinery', 'tot_dmg', dmgBusAstMachinery)">
                             -
                         </td>
 
@@ -412,7 +421,7 @@
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstVehicle in
-                dl_tourism_business.tourism.Table_2.DmgBusAstVehicle">
+                dl_tourism_business.tourism.Table_2.DmgBusAstVehicle" ng-if="dmgBusAstVehicle.assets != 'Total'">
 
                         <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstVehicle.assets" ng-if="$index < 1">
                         </td>
@@ -453,26 +462,25 @@
 
                         </td>
                         <td colspan="2" width="200">
-                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="2" width="200">
-                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="2" width="200">
                             -
                         </td>
                     </tr>
-                    <tr height="20">
+                    <tr height="20" ng-repeat="dmgBusAstVehicle in
+                dl_tourism_business.tourism.Table_2.DmgBusAstVehicle" ng-if="dmgBusAstVehicle.assets == 'Total'">
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstVehicle', 'val_dst')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstVehicle.val_dst = getTotalCol('DmgBusAstVehicle', 'val_dst', dmgBusAstVehicle)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstVehicle', 'val_pdmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstVehicle.val_pdmg = getTotalCol('DmgBusAstVehicle', 'val_pdmg', dmgBusAstVehicle)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstVehicle', 'tot_dmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstVehicle.tot_dmg = getTotalCol('DmgBusAstVehicle', 'tot_dmg', dmgBusAstVehicle)">
                             -
                         </td>
 
@@ -489,7 +497,7 @@
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstInventories in
-                dl_tourism_business.tourism.Table_2.DmgBusAstInventories">
+                dl_tourism_business.tourism.Table_2.DmgBusAstInventories" ng-if="dmgBusAstInventories.assets != 'Total'">
 
                         <td class="tdpa" width="229" height="20" ng-bind="dmgBusAstInventories.assets" ng-if="$index < 2">
                         </td>
@@ -532,26 +540,25 @@
 
                         </td>
                         <td colspan="2" width="200">
-                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="2" width="200">
-                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="2" width="200">
                             -
                         </td>
                     </tr>
-                    <tr height="20">
+                    <tr height="20" ng-repeat="dmgBusAstInventories in
+                dl_tourism_business.tourism.Table_2.DmgBusAstInventories" ng-if="dmgBusAstInventories.assets == 'Total'">
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstInventories', 'val_dst')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstInventories.val_dst = getTotalCol('DmgBusAstInventories', 'val_dst', dmgBusAstInventories)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstInventories', 'val_pdmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstInventories.val_pdmg = getTotalCol('DmgBusAstInventories', 'val_pdmg', dmgBusAstInventories)">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getTotalCol('DmgBusAstInventories', 'tot_dmg')">
+                        <td colspan="2" width="200" ng-bind="dmgBusAstInventories.tot_dmg = getTotalCol('DmgBusAstInventories', 'tot_dmg', dmgBusAstInventories)">
                             -
                         </td>
 

@@ -99,9 +99,10 @@
     <script src='{% static "water_supply/damage_losses/js/dlsum_wter_sply_pro.js" %}'></script>
 
     <!--housing-->
-    <!--<script src='{% static "housing/base_line/js/bs_housing_dis.js" %}'></script>-->
-    <!--<script src='{% static "housing/base_line/js/bs_costs_ husng_units.js" %}'></script>-->
-    <!--<script src='{% static "housing/damage_losses/js/dl_assmnt_husing_sector.js" %}'></script>-->
+    {% elif module == 'housing' %}
+    <script src='{% static "housing/base_line/js/bs_housing_dis.js" %}'></script>
+    <script src='{% static "housing/base_line/js/bs_costs_husng_units.js" %}'></script>
+    <script src='{% static "housing/damage_losses/js/dl_assmnt_husing_sector.js" %}'></script>
 
 
     <!-- Education -->
@@ -129,6 +130,12 @@
     <script src='{% static "transport_water/damage_losses/js/dl_ water_transportation.js" %}'></script>
     <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_dst.js" %}'></script>
 
+    <!--telecommunication-->
+    {% elif module == 'telecommunication' %}
+    <script src='{% static "telecommunication/base_line/js/bs_telcom_cmpnys.js" %}'></script>
+    <script src="{% static 'telecommunication/damage_losses/js/dl_telcom_firms.js' %}"></script>
+
+    <!--health-->
     {% elif module == 'health' %}
     <script src="{% static 'health/base_line/js/pub_med_facilities.js' %}"></script>
     <script src="{% static 'health/base_line/js/bs_health_status.js' %}"></script>

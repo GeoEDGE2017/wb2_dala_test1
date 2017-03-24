@@ -72,50 +72,12 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
 
 
     }
-//   $scope.checkIfNull = function()
-//   {
-//        var isNull = $scope.dlWaterTransSumPro ? angular.equals({}, $scope.dlWaterTransSumPro.transport_water.Table_4) : true;
-//        return isNull;
-//
-//   }
+   $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlWaterSupplyPro ? angular.equals({}, $scope.dlWaterSupplyPro.water_supply.Table_6) : true;
+        return isNull;
 
-// $scope.getTotal = function($index,key) {
-//         $scope.totaldpub = $scope.totaldpub + (
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPubProvince[0].tot_dmg_public ?
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPubProvince[0].tot_dmg_public : 0 );
-//
-//         $scope.totaldpvt = $scope.totaldpvt + (
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPvtProvince[0].tot_dmg_private ?
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPvtProvince[0].tot_dmg_private : 0 );
-//
-//         $scope.totalyear1pub = $scope.totalyear1pub + (
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pub ?
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pub : 0);
-//
-//         $scope.totalyear1pvt = $scope.totalyear1pvt + (
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pvt ?
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pvt : 0 );
-//
-//         $scope.totalyear2pub = $scope.totalyear2pub + (
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pub ?
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pub : 0);
-//
-//         $scope.totalyear2pvt = $scope.totalyear2pvt + (
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pvt ?
-//                         $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pvt : 0);
-//
-//
-//         $scope.finaltotalpublic =$scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
-//
-//         $scope.finaltotalprivate =$scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
-//
-//
-//
-//
-//
-//
-//
-//    }
+   }
 
  $scope.getTotal = function(key) {
 

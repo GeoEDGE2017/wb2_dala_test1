@@ -18,14 +18,14 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     $scope.is_edit = false;
     $scope.new_firm = {id: null, name: null, ownership: null,};
 
-
     var init_data = {
         'tourism': {
             'Table_2': {
-                'DlNumEmpBusiness':{
+                    'DlNumEmpBusiness':[{
                     'num_emp_male':null,
                     'num_emp_female':null,
-                },
+
+                }],
                 'DmgBusAstStructures':[
                 {
                     'assets': 'Buildings',
@@ -66,7 +66,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'val_pdmg':null,
                     'tot_dmg':null,
                 },],
-                'DlBusLosses':{
+                'DlBusLosses':[{
                     'los_type':'Income Losses',
                     'avg_val_income_year':null,
                     'val_income_year1':null,
@@ -74,7 +74,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'val_los_year1':null,
                     'val_los_year2':null,
                     'tol_losses':null,
-                },
+                }],
                 'DlInfLosses':[
                     {
                     'los_type':'Cleaning up of debris',
@@ -186,6 +186,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         })
     }
 
+//    form model saving for save Firm NOT the main data
     $scope.saveForm = function(form) {
     //console.log("adding");
         if(form.$valid) {
@@ -277,7 +278,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 
         finalValue = avgincome * reduction;
 
-        subTable[yearName] = finalValue;
+        subTable[0][yearName] = finalValue;
 
         return finalValue;
     }
@@ -298,6 +299,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }
 
         $scope.saveDlData = function(form) {
+
+        console.log($scope.selectedType);
         $scope.submitted = true;
             if (form.$valid) {
                 $http({
@@ -309,8 +312,10 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
-                    'firm':$scope.selectedFirm.id,
-                    'ownership':$scope.ownership
+                    'firm_id':$scope.selectedFirm.id,
+                    'ownership':$scope.ownership,
+                    'tou_business':$scope.selectedType.business,
+
 
 
                 },

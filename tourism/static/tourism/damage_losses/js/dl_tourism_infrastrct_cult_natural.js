@@ -8,6 +8,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.districts;
     $scope.selectedDistrict;
     $scope.incident;
+    $scope.selectedInfrastructure;
+    $scope.selectedType;
     $scope.ownership;
     $scope.is_edit = false;
     $scope.inf_types = [];
@@ -98,11 +100,12 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         $http({
         method: "POST",
-        url: "/fetch_tourism_infrastructure_types",
+//        url: "/fetch_tourism_infrastructure_types",
+        url: "/fetch_entities_plain",
         data: angular.toJson({
-        'district':  $scope.district.district__id,
+//        'district':  $scope.district.district__id,
         'model': 'InfType',
-        'sector':'tourism'
+        'sector':'tourism',
          }),
         }).success(function(data) {
 
@@ -203,11 +206,13 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         }
 
-     $scope.saveDlData = function(form) {
-     $scope.submitted = true;
 
-     console.log("adding")
 
+
+        $scope.saveDlData = function(form) {
+
+        console.log($scope.selectedType);
+        $scope.submitted = true;
             if (form.$valid) {
                 $http({
             method: 'POST',
@@ -218,12 +223,19 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
+                    'inf_id':$scope.selectedInfrastructure.id,
+                    'inf_type_id':$scope.selectedType.id,
+
+                    'ownership':$scope.ownership,
+//                    'tou_business':$scope.selectedType.business,
+
+
 
                 },
                 'is_edit': $scope.is_edit
             }),
             dataType: 'json',
-            }).success(function(data) {
+        }).success(function(data) {
 
                     $scope.bs_tourism_facilities = init_data;
                     $scope.is_edit = false;
@@ -240,4 +252,5 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
             }
         }
+
 })

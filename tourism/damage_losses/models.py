@@ -27,8 +27,10 @@ class DlSessionKeys(models.Model):
     province = models.ForeignKey(Province, db_column='province', related_name='to_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district',  related_name='to_dl_district', blank=True, null=True)
     firm = models.ForeignKey(Firm, db_column='firm', related_name='to_dl_firm', blank=True, null=True)
-    infrastructure = models.ForeignKey(Infrastructure, db_column='infrastructure', blank=True, null=True)
+    inf = models.ForeignKey(Infrastructure, db_column='inf', blank=True, null=True)
+    inf_type = models.ForeignKey(InfType, db_column='inf_type', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
+    tou_business = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -60,7 +62,7 @@ class DlBusLosses(models.Model):
 
 class DlInfLosses(models.Model):
     inf_id = models.IntegerField(blank=True, null=True)
-    inf_type = models.IntegerField(blank=True, null=True)
+    inf_type_id = models.IntegerField(blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     los_type = models.CharField(max_length=255, blank=True, null=True)
     avg_val_income_year = models.FloatField(blank=True, null=True)
@@ -204,7 +206,7 @@ class DmgBusAstVehicle(models.Model):
 
 class DmgInfAssets(models.Model):
     inf_id = models.IntegerField(blank=True, null=True)
-    inf_type = models.IntegerField(blank=True, null=True)
+    inf_type_id = models.IntegerField(blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     val_dst = models.FloatField(blank=True, null=True)
     val_pdmg = models.FloatField(blank=True, null=True)

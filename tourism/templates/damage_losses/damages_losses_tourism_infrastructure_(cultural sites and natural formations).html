@@ -26,6 +26,25 @@
                         <col width="85" span="2"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_infra.district.$error.required">
+                                Please Select District
+                            </span>
+                            <!--district == undefined-->
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_infra.baselineDate.$error.required">
+                                Please Select Date
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead" height="19">
                         <td height="19" width="263">
                             District
@@ -62,7 +81,7 @@
                         <td colspan="4" width="461">
                             <select id="selectbasic" name="selectbasic"
                                        ng-options="infrastructure as infrastructure.name for  infrastructure in infrastructures"
-                                    name="district" id="ccyear" ng-model="selectedType"
+                                    name="district" id="ccyear" ng-model="selectedInfrastructure"
                                        class="form-control"
                                        style="width:100%;font-weight:400;">
 
@@ -325,13 +344,13 @@
                         </td>
                         <td class="tdpa" width="114">
                         </td>
-                        <td align="right" width="118" ng-bind="getTotalCol('DlInfLosse','val_los_year1')">
+                        <td align="right" width="118" ng-bind="getTotalCol('DlInfLosses','val_los_year1')">
                             -
                         </td>
-                        <td align="right" width="85" ng-bind="getTotalCol('DlInfLosse','val_los_year2')">
+                        <td align="right" width="85" ng-bind="getTotalCol('DlInfLosses','val_los_year2')">
                             -
                         </td>
-                        <td align="right" width="85" ng-bind="getTotalCol('DlInfLosse','tol_losses')">
+                        <td align="right" width="85" ng-bind="getTotalCol('DlInfLosses','tol_losses')">
                             -
                         </td>
                     </tr>

@@ -36,7 +36,25 @@
                         <col width="100" span="6"/>
                     </colgroup>
                     <tbody>
-
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_buss.district.$error.required">
+                                Please Select District
+                            </span>
+                            <!--district == undefined-->
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_buss.baselineDate.$error.required">
+                                Please Select Date
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead" height="20">
                         <td width="229" height="20">
                             District
@@ -134,12 +152,15 @@
                             Female
                         </td>
                     </tr>
-                    <tr height="20">
+                    <tr height="20" ng-repeat="dlNumEmpBusiness in
+                dl_tourism_business.tourism.Table_2.DlNumEmpBusiness">
                         <td colspan="3" width="300" height="20">
-                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" min="0"
+                                   ng-model="dlNumEmpBusiness.num_emp_male" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="3" width="300">
-                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" min="0"
+                                   ng-model="dlNumEmpBusiness.num_emp_female"" placeholder="" class="form-control input-md">
                         </td>
                     </tr>
 
@@ -596,39 +617,39 @@
                             Year 2
                         </td>
                     </tr>
-                    <tr height="20">
+                    <tr height="20" >
                         <td class="tdpa" width="229" height="20"
-                            ng-bind="dl_tourism_business.tourism.Table_2.DlBusLosses.los_type">
+                            ng-bind="dl_tourism_business.tourism.Table_2.DlBusLosses[0].los_type">
                         </td>
                         <td width="100">
                             <input id="textinput" name="textinput" type="number"
-                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.avg_val_income_year"
+                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].avg_val_income_year"
                                    placeholder="" class="form-control input-md">
                         </td>
                         <td width="100">
-                            <input id="textinput" name="textinput" type="text" placeholder="" type="number"
-                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year1"
+                            <input id="textinput" name="textinput" type="number" placeholder="" type="number"
+                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year1"
                                    class="form-control input-md">
                         </td>
                         <td width="100">
-                            <input id="textinput" name="textinput" type="text" placeholder="" type="number"
-                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year2"
+                            <input id="textinput" name="textinput" type="number" placeholder="" type="number"
+                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year2"
                                    class="form-control input-md">
                         </td>
-                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year1"
-                            ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses.avg_val_income_year
-            ,dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year1,1)" >
+                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year1"
+                            ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses[0].avg_val_income_year
+            ,dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year1,1)" >
                             -
                         </td>
-                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year2"
-                            ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses.avg_val_income_year
-            ,dl_tourism_business.tourism.Table_2.DlBusLosses.val_income_year2,2)">
+                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year2"
+                            ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses[0].avg_val_income_year
+            ,dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year2,2)">
                             -
                         </td>
-                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses.tol_losses"
-                            ng-bind="getSumOfTwo(dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year1,
-                dl_tourism_business.tourism.Table_2.DlBusLosses.val_los_year2,
-                dl_tourism_business.tourism.Table_2.DlBusLosses, 'tol_losses')"
+                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].tol_losses"
+                            ng-bind="getSumOfTwo(dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year1,
+                dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year2,
+                dl_tourism_business.tourism.Table_2.DlBusLosses[0], 'tol_losses')"
                         >
                             -
                         </td>

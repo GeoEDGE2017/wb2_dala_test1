@@ -419,12 +419,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
         if(form.$valid){
         if($scope.company){
 
-//        var array = $scope.dlIncomeRailCompany.transport_rail.Table_2;
-//            var details = _.map(array, function(model_array) {
-//                _.map(model_array, function(model) {
-//                    model.company_id = parseInt($scope.company);
-//                });
-//            });
             $http({
                 method: 'POST',
                 url: '/dl_save_data',

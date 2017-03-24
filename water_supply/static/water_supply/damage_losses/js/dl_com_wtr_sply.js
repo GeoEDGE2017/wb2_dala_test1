@@ -180,9 +180,11 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             var particular_value_4 = null;
 
             if(model_name == 'BiaWaterIntake') {
+                console.log($scope.dlComWtrSply);
                 dl_model1 = 'DlcwDmgWaterIntake';
 
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model1] = [];
+                console.log($scope.dlComWtrSply);
             }
             if(model_name == 'BiaTreatmentPlant') {
                 dl_model2 = 'DlcwDmgWaterTreatment';

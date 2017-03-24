@@ -1,11 +1,23 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<style>
+@media print
+{    
 
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    #in {width:100%;}
+   .table th, .table td {color:#000!important;} 
+}
+.table th, .table td
+{padding-left:5px;}
+</style>
 <!-- Main content -->
-<main class="main" ng-app="dlTWNatReportApp" ng-controller="DlTWNatReportController">
-
+<main class="main" ng-app="dlSummeryTWNatApp" ng-controller="DlSummeryTWNatController">
     <!-- Breadcrumb -->
-    <ol class="breadcrumb">
+    <ol class="breadcrumb no-print">
 
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
@@ -14,72 +26,78 @@
         <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of damage and losses in the water transportation sub-sector nationwide</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Report</span>
         </li>
     </ol>
 
+  <div class="container-fluid">
+    <div class="card">
+            <div class="card-header">
+                <strong>Transport Water Sub Sector Report</strong>
 
-    <div class="container-fluid">
+            </div>
+            <div class="card-block">
 
-        <div ng-form name="report_sum_dl_nat" class="row">
-            <div class="col-sm-3">
-
-                <div class="form-group">
+                <div ng-form name="report_sum_dl_nat" class="row">
+                 <div class="col-xs-1">
                     <label for="cvv">Incident</label>
-                    <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
-                            class="form-control" required>
-                        <option value="">-- Select --</option>
-                        {% for incident in incidents %}
-                        <option value="{{ incident.id }}">{{ incident.reported_date_time }}{{
-                            incident.disaster_type }}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <span style="color:red;" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
-                                       Please select Incident
+                 </div>
+                    <div class="col-sm-3" id="in">
+
+                        <div class="form-group">
+                            
+                            <select id="ccyear" ng-model="incident" name="incident"
+                                    class="form-control" required>
+                                <option value="">-- Select --</option>
+                                {% for incident in incidents %}
+                                <option value="{{ incident.id }}">{{ incident.reported_date_time }}{{
+                                    incident.disaster_type }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                           <span  style="color:red" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
+                           Please Select Incident
+                           </span>
+                                
+
+                        </div>
+
+                    </div>
+
+<div class="no-print">
+                    <div class="col-sm-2">
+
+                        <div class="form-group">
+
+                            <button ng-click="fetchDlData(report_sum_dl_nat)" type="button"
+                                    class="btn btn-success"
+                                    ><i
+                                    class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+                        </div>
+                         <div class="col-sm-1">
+                        <div class="form-group">
+                            <button ng-print print-element-id="print_report" class="btn btn-info"><i
+                                    class="fa fa-print"></i> Print
+                                Report
+                            </button>
+                        </div>
+
+                    </div>
+</div>
+                </div>
+                <span style="color:red;" ng-show="isDataAvailable">
+                                       No Data Available
                                  </span>
-                </div>
-
-            </div>
+                <div id="print_report">
 
 
-            <div class="col-sm-1">
-
-                <div class="form-group">
-
-                    <button ng-click="fetchDlData(report_sum_dl_nat)" type="button" class="btn btn-sm btn-primary"
-                            style="padding:7px;margin-top:28px;"><i
-                            class="fa fa-search"></i> Search
-                    </button>
-                </div>
-                <div class="form-group">
-                    <button ng-print print-element-id="print_report" class="btn btn-info">Print
-                        Report
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
-        <span style="color:red;" ng-show="isDataAvailable">
-                                       No Data available
-                                 </span>
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active" id="print_report">
-                <table ng-if="!checkIfNull()" class="table table-bordered">
-                    <colgroup>
-                        <col width="253"/>
-                        <col width="147"/>
-                        <col width="151"/>
-                        <col width="165"/>
-                        <col width="170"/>
-                        <col width="135"/>
-                        <col width="133"/>
-                        <col width="126"/>
-                        <col width="85"/>
-                    </colgroup>
-                    <tbody>
-                    <tr class="trheadc" height="19">
+        <div id="myTabContent" class="tab-content" ng-form name="form_dl_summary_trans_water_nat">
+            
+                     <table class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody>
+                        <tr class="trheadc" height="19" >
                         <td rowspan="2" width="253" height="38">
                             Provinces
                         </td>
@@ -132,12 +150,7 @@
                             Private
                         </td>
                     </tr>
-                    </tbody>
-                </table>
-                <table ng-repeat="(key, value) in dlWaterTransSumNat.transport_water.Table_4"
-                       class="table table-bordered">
-                    <tbody>
-                    <tr height="20" ng-init="getTotal($index,key);">
+                        <tr ng-repeat="(key, value) in dlWaterTransSumNat.transport_water.Table_5"  height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 
@@ -160,36 +173,34 @@
                         <td width="133" ng-bind="value.DlWaterLosNational[0].year_2_pvt">
 
                         </td>
-                        <td width="126"
-                            ng-bind="value.DlWaterDmgPubNational[0].tot_dmg_public + value.DlWaterLosNational[0].year_1_pub +value.DlWaterLosNational[0].year_2_pub ">
+                        <td width="126" ng-bind="value.DlWaterDmgPubNational[0].tot_dmg_public + value.DlWaterLosNational[0].year_1_pub +value.DlWaterLosNational[0].year_2_pub ">
 
                         </td>
-                        <td width="85"
-                            ng-bind="value.DlWaterDmgPvtNational[0].tot_dmg_private + value.DlWaterLosNational[0].year_1_pvt +value.DlWaterLosNational[0].year_2_pvt ">
+                        <td width="85" ng-bind="value.DlWaterDmgPvtNational[0].tot_dmg_private + value.DlWaterLosNational[0].year_1_pvt +value.DlWaterLosNational[0].year_2_pvt ">
 
                         </td>
 
-                    </tr>
-                    <tr height="19">
+                        </tr>
+                        <tr height="19">
                         <td class="boldash" width="253" height="19">
                             TOTAL
                         </td>
                         <td width="147" ng-bind="totaldpub">
 
                         </td>
-                        <td width="151" ng-bind="totaldpvt">
+                        <td width="151" ng-bind="totaldpvt"  >
 
                         </td>
-                        <td width="165" ng-bind="totalyear1pub">
+                        <td width="165" ng-bind="totalyear1pub"  >
 
                         </td>
-                        <td width="170" ng-bind="totalyear1pvt">
+                        <td width="170"  ng-bind="totalyear1pvt"  >
 
                         </td>
-                        <td width="135" ng-bind="totalyear2pub">
+                        <td width="135" ng-bind="totalyear2pub"  >
 
                         </td>
-                        <td width="133" ng-bind="totalyear2pvt">
+                        <td width="133" ng-bind="totalyear2pvt"  >
 
                         </td>
                         <td width="126" ng-bind="finaltotalpublic">
@@ -210,7 +221,7 @@
 
                 </div>
             </div>
-            <br><br><br>
+            <br>
 
         </div>
     </div>

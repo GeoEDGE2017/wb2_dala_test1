@@ -1,5 +1,32 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+  function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+</script>
+<script>
+$(document).ready(function(){
+    $("body").delegate('#textinput', 'change', function(){
+        if($(this).val() < 0){
+            $(this).val('0');
+            //return false;
+    return true;
+        }
+    });
+});
+</script>
+
+
 <!-- Main content -->
 <main class="main" ng-app="bsNopoplAgrbActvApp" ng-controller="bsNopoplAgrbActvController">
     <!-- Breadcrumb -->
@@ -10,7 +37,7 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Agrarian Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline information on areas cultivated and number of people in agrarian activities</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on Areas Cultivated and Number of People in Agrarian Activities</span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_nopopl_agrb_actv">
@@ -28,22 +55,22 @@
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_nopopl_agrb_actv.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_nopopl_agrb_actv.baselineDate.$error.required">
-                                Please select Date
+                                Please Select Date
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
-                        <td width="249" height="19">
-                            District
+                    <tr class="trhead1" height="19">
+                        <td width="249" style="padding-left:5px;" height="19">
+                            District:
                         </td>
                         <td colspan="2" width="269">
                             <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
@@ -53,14 +80,14 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td colspan="2" width="234">
-                            Year/Month
+                        <td colspan="2" style="padding-left:5px;" width="234">
+                            Year/Month:
                         </td>
                         <td width="112">
-                            <input name="baselineDate" type="text" placeholder="" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" width="249" height="70">
                             Sub-sector
                         </td>
@@ -85,6 +112,11 @@
                             Female
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <table class="table table-bordered">
+
                     <tr class="trheadc" height="19">
                         <td width="249" height="19">
                             Seasonal Crops
@@ -109,7 +141,7 @@
                             <button id="delete" ng-click="removeItem('BcagSeasonalCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bcagSeasonalCrops_{{$index}}" ng-model="bcagSeasonalCrops.seasonal_crops"
+                            <input style="width:80%;float:right;" name="bcagSeasonalCrops_{{$index}}" ng-model="bcagSeasonalCrops.seasonal_crops"
                                 popover="This field is required"
                                 popover-toggle="form_bs_nopopl_agrb_actv['bcagSeasonalCrops_' + $index].$dirty && !form_bs_nopopl_agrb_actv['bcagSeasonalCrops_' + $index].$valid"
                                 popover-placement="top" required
@@ -118,7 +150,7 @@
                             {% endverbatim %}
                         </td>
                         <td width="148">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
+                            <input id="textinput" name="textinput" type="number" min="0" onkeypress="return isNumberKey(event)" placeholder=""
                                    class="form-control input-md" ng-model="bcagSeasonalCrops.areas_cultivated">
                         </td>
                         <td width="121">
@@ -140,7 +172,7 @@
                     </tr>
                     <tr height="21">
                         <td class="tdpa" width="249" height="21">
-                            Other seasonal crops
+                            Other Seasonal Crops
                             <button ng-click="insertAsset('BcagSeasonalCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
                                 <span class="fa fa-plus"></span>
                             </button>
@@ -180,7 +212,7 @@
                             <button id="delete" ng-click="removeItem('BcagPlantnCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="bcagPlantnCrops_{{$index}}" ng-model="bcagPlantnCrops.plantn_crops"
+                            <input style="width:80%;float:right;" name="bcagPlantnCrops_{{$index}}" ng-model="bcagPlantnCrops.plantn_crops"
                                 popover="This field is required"
                                 popover-toggle="form_bs_nopopl_agrb_actv['bcagPlantnCrops_' + $index].$dirty && !form_bs_nopopl_agrb_actv['bcagPlantnCrops_' + $index].$valid"
                                 popover-placement="top" required
@@ -211,7 +243,7 @@
                     </tr>
                     <tr height="21">
                         <td class="tdpa" width="249" height="21">
-                            Other plantation crops
+                            Other Plantation Crops
                             <button ng-click="insertAsset('BcagPlantnCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
                                 <span class="fa fa-plus"></span>
                             </button>

@@ -186,6 +186,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         })
     }
 
+//    form model saving for save Firm NOT the main data
     $scope.saveForm = function(form) {
     //console.log("adding");
         if(form.$valid) {

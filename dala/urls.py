@@ -49,6 +49,11 @@ urlpatterns = [
     # get Business Types
     url(r'^fetch_tourism_infrastructure_types$', views.fetch_tourism_infrastructure_types, name='fetch_tourism_infrastructure_types'),
 
+    # get entities all data
+    url(r'^fetch_entities_plain$', views.fetch_entities_plain,
+        name='fetch_entities_plain'),
+
+
 
 
 
@@ -70,6 +75,9 @@ urlpatterns = [
 
     # housing
     # url(r'^housing/', include('housing.urls', namespace='housing')),
+
+    # telecommunication
+    # url(r'^telecommunication/', include('telecommunication.urls', namespace='telecommunication')),
 
     # tourism
     url(r'^tourism/', include('tourism.urls', namespace='tourism')),

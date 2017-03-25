@@ -149,7 +149,7 @@
                         </td>
                     </tr>
                     <tr height="18">
-                        <td class="tdpa" width="223" height="18">
+                        <td class="tdpa" width="223" height="18" colspan="4">
                             Others
                             <button ng-click="insertAssets('BiaWaterUsers')"
                                     class="btn btn-sm btn-info btn-circle"
@@ -170,16 +170,15 @@
                         </td>
                         <td width="108" ng-model="biaWaterUsers.annual_demand" ng-bind="biaWaterUsers.annual_demand = BiaWaterUsers_annual_demand">
                         </td>
-                        <td width="108" ng-model="biaWaterUsers.rate" ng-bind="biaWaterUsers.rate = BiaWaterUsers_rate">
+                        <td width="108" class="tdpa">
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
                             ng-if="biaWaterUsers.type_wusers == 'Average Income Per Year (LKR/Year)'">
                         <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
                         </td>
-                        <td colspan="4" width="432">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="biaWaterUsers.rates">
+                        <td colspan="4" width="432" ng-model="biaWaterUsers.rates"
+                            ng-bind="biaWaterUsers.rates = calGrandTotal($parent.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers) ">
                         </td>
                     </tr>
                     </tbody>

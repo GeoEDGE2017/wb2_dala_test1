@@ -5,37 +5,26 @@
   $(document).ready(function() {
 
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  
-   
-    
   });
-  
 
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlAssessmentDistrictApp"
       ng-controller="dlAssessmentDistrictController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Other Government Sector</a>
         </li>
-
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damage and Loss Assessment in a District </span>
         </li>
-
-
     </ol>
 
 
     <div class="container-fluid">
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="183"/>
@@ -43,7 +32,6 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead" height="19">
-                       
                         <td style="padding-left:5px;" height="19" width="171">
                             Incident
                         </td>
@@ -59,14 +47,13 @@
                                     {{incident.reported_date_time}}
                                 </option>
                                 {% endfor %}
-
                             </select>
                         </td>
-                         <td style="padding-left:5px;" height="19" width="171">
+                        <td style="padding-left:5px;" height="19" width="171">
                             District
                         </td>
                         <td colspan="1" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
-                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-change="fetchDepartments()"
                                     style="font-weight:400;" ng-change="changedValue(false)"
                                     class="form-control" required>
@@ -99,7 +86,6 @@
                             Year 2
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
                 <table class="table table-bordered">
@@ -113,7 +99,6 @@
                         <td width="108">
                         </td>
                         <td width="108"></td>
-
                     </tr>
                     <tr ng-repeat="(key, value) in value">
                         <td class="tdpa" ng-bind="key" width="80"></td>
@@ -123,20 +108,40 @@
                         </td>
                         <td ng-bind="value.DlagdLossesDistrict[0].los_year2" width="108">
                         </td>
+                        <td width="108" style="width:9%;" ng-bind="value.DlagdDmgDistrict[0].damages + value.DlagdLossesDistrict[0].los_year1 + value.DlagdLossesDistrict[0].los_year2">
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="tdpa"  width="80"> Total</td>
+                        <td  width="108">
+                        </td>
+                        <td  width="108">
+                        </td>
+                        <td  width="108">
+                        </td>
                         <td width="108" style="width:9%;">
                         </td>
-
                     </tr>
 
                     </tbody>
+                    <tr >
+                        <td class="tdpa"  width="80">Grand Total</td>
+                        <td width="108">
+                        </td>
+                        <td width="108">
+                        </td>
+                        <td width="108">
+                        </td>
+                        <td width="108" style="width:9%;">
+                        </td>
+                    </tr>
                 </table>
 
 
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
                 <br><br><br>
             </div>
@@ -174,6 +179,7 @@ button.onclick = function() {
 
 
 
+
 </script>
 <script>
 /*var button = document.getElementById('insert4');
@@ -194,6 +200,7 @@ button.onclick = function() {
 
 
 
+
 </script>
 <script>
 /*var button = document.getElementById('insert2');
@@ -207,6 +214,7 @@ button.onclick = function() {
  $(this).parent().parent().remove();
 });
 }*/
+
 
 
 

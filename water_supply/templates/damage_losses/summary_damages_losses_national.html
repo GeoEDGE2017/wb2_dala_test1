@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlWaterSupplyNatApp" ng-controller="DlWaterSupplyNatController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -24,22 +24,35 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead">
-                        <td colspan="" style="padding-right:5px;text-align:right;">
+                        <td class="trhead" width="130" colspan="2">
                             Incident
                         </td>
-                        <td colspan="5" style="background:#EFEFEF;font-weight:normal;">
+                        <td width="125">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
                                     {{incident.reported_date_time}}
-                                </option>
-                                {% endfor %}
+                                    {% endfor %}
                             </select>
                         </td>
+                        <td class="trhead" width="281" height="20">
+                            Province
+                        </td>
+
+                        <td >
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData()">Load
+                            </button>
+                        </td>
                     </tr>
+                    </tbody>
+                    </table>
+                    <table class="table table-bordered" ng-if="!checkIfNull()">
+                    <tbody>
                     <tr class="trhead" height="20">
                         <td rowspan="2" width="298" height="40">
                             Number of Affected Clients of Commercial Water Supply
@@ -60,21 +73,22 @@
                             Total
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td width="98" height="20">
-                            -
+                <tr  height="20" ng-repeat="(key, value) in dlWaterSupplySumNat.water_supply.Table_7">
+
+                        <td width="107" height="21" ng-bind="data.water_supply.Table_7[key].DlcwNumAfNational[0].tot_dmg_residential">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlcwNumAfNational[0].tot_dmg_commercial">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlcwNumAfNational[0].tot_dmg_industrial">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlcwNumAfNational[0].tot_dmg_others">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlcwNumAfNational[0].tot_dmg_total">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="20">
@@ -97,21 +111,21 @@
                             Total
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td width="98" height="20">
-                            -
+                    <tr height="20" ng-repeat="(key, value) in dlWaterSupplySumNat.water_supply.Table_7">
+                        <td width="107" height="21" ng-bind="data.water_supply.Table_7[key].DlRuralNumAfNational[4].tot_num_fam_aff">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlRuralNumAfNational[3].tot_num_fam_aff">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlRuralNumAfNational[1].tot_num_fam_aff">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlRuralNumAfNational[0].tot_num_fam_aff">
+
                         </td>
-                        <td width="98">
-                            -
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlRuralNumAfNational[2].tot_num_fam_aff">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="20">
@@ -144,160 +158,150 @@
                             Losses
                         </td>
                     </tr>
-                    <tr class="tdpa" height="20">
-                        <td width="298" height="20">
-                            NWSDB Commercial Water Supply
-                        </td>
-                        <td width="98">
-                        </td>
-                        <td width="98">
-                        </td>
-                        <td width="98">
-                        </td>
-                        <td colspan="2" width="196">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="298" height="20">
-                            Province 1
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td colspan="2" width="196">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="298" height="20">
-                            Province N
-                        </td>
-                        <td width="98">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="98">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="98">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="196">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="298" height="20">
-                            Total - Commercial Water Supply
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td colspan="2" width="196">
-                            -
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="20">
-                        <td width="298" height="20">
-                            Rural Water Supply
-                        </td>
-                        <td width="98">
-                        </td>
-                        <td width="98">
-                        </td>
-                        <td width="98">
-                        </td>
-                        <td colspan="2" width="196">
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="298" height="20">
-                            Province 1
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td class="tdpa" width="98">
-                        </td>
-                        <td colspan="2" width="196">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="298" height="20">
-                            Province N
-                        </td>
-                        <td width="98">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="98">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td class="tdpa" width="98">
-                        </td>
-                        <td colspan="2" width="196">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="298" height="20">
-                            Total - Rural Water Supply
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td class="tdpa" width="98">
-                        </td>
-                        <td colspan="2" width="196">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" width="298" height="20">
-                            GRAND TOTAL
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td width="98">
-                            -
-                        </td>
-                        <td colspan="2" width="196">
-                            -
-                        </td>
-                    </tr>
+                    <!--<tr class="tdpa" height="20">-->
+                        <!--<td width="298" height="20">-->
+                            <!--NWSDB Commercial Water Supply-->
+                        <!--</td>-->
+                        <!--<td width="98">-->
+                        <!--</td>-->
+                        <!--<td width="98">-->
+                        <!--</td>-->
+                        <!--<td width="98">-->
+                        <!--</td>-->
+                        <!--<td colspan="2" width="196">-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr height="20" height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6" ng-init="getTotal(key)">-->
+                        <!--<td class="tdpa" width="298" height="20" ng-bind="key">-->
+
+                        <!--</td>-->
+                        <!--<td width="107" ng-bind="data.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg">-->
+
+                        <!--</td>-->
+                        <!--<td width="107" ng-bind="data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1">-->
+
+                        <!--</td>-->
+                        <!--<td width="107" ng-bind="data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2">-->
+
+                        <!--</td>-->
+                        <!--<td colspan="2" width="214"-->
+                            <!--ng-bind="data.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg +-->
+                            <!--data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1 +-->
+                            <!--data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2">-->
+
+                        <!--</td>-->
+                    <!--</tr>-->
+
+                    <!--<tr height="20" height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6" >-->
+                        <!--<td class="boldash" width="298" height="20">-->
+                            <!--Total - Commercial Water Supply-->
+                        <!--</td>-->
+
+                        <!--{% verbatim %}-->
+                        <!--<td width="98" ng-model="totalDamages" ng-bind="totalDamages= {{'totalDamages'+key}}">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+
+                        <!--{% verbatim %}-->
+                        <!--<td width="98" ng-model="totalLossYear1" ng-bind="totalLossYear1= {{'totalLossYear1'+key}}">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98" ng-model="totalLossYear2" ng-bind="totalLossYear2= {{'totalLossYear2'+key}}">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98" ng-model="total" ng-bind="tot">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                    <!--</tr>-->
+                    <!--<tr class="tdpa" height="20">-->
+                        <!--<td width="298" height="20">-->
+                            <!--Rural Water Supply-->
+                        <!--</td>-->
+                        <!--<td width="98">-->
+                        <!--</td>-->
+                        <!--<td width="98">-->
+                        <!--</td>-->
+                        <!--<td width="98">-->
+                        <!--</td>-->
+                        <!--<td colspan="2" width="196">-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6" ng-init="getTotal(key)">-->
+                        <!--<td class="tdpa" width="298" height="20" ng-bind="key">-->
+
+                        <!--</td>-->
+                        <!--<td width="98" ng-bind="data.water_supply.Table_6[key].DlRuralTotDmgDistrict[0].tot_damages">-->
+
+                        <!--</td>-->
+
+                         <!--<td width="98" ng-bind="data.water_supply.Table_6[key].DlRuralTotLosDistrict[0].tot_los">-->
+
+                        <!--</td>-->
+                        <!--<td class="tdpa" width="98">-->
+                        <!--</td>-->
+                        <!--<td colspan="2" width="196" ng-bind="data.water_supply.Table_6[key].DlRuralTotDmgDistrict[0].tot_damages + data.water_supply.Table_6[key].DlRuralTotLosDistrict[0].tot_los">-->
+
+                        <!--</td>-->
+                    <!--</tr>-->
+
+                    <!--<tr height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">-->
+                        <!--<td class="boldash" width="298" height="20" >-->
+                            <!--Total - Rural Water Supply-->
+                        <!--</td>-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98" ng-model="ruralDamgetot" ng-bind="ruralDamgetot= {{'ruraltotalDamage'+key}}">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98" ng-model="ruralLosstot" ng-bind="ruralLosstot= {{'ruralLosstot'+key}}">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                        <!--<td class="tdpa" width="98">-->
+                        <!--</td>-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98"  ng-bind="ruraltot">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                    <!--</tr>-->
+                    <!--<tr height="20">-->
+                        <!--<td class="tdpa" width="298" height="20">-->
+                            <!--GRAND TOTAL-->
+                        <!--</td>-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98"  ng-bind="grandDamge">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98"  ng-bind="grandLossYear1">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98"  ng-bind="grandLossYear2">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                        <!--{% verbatim %}-->
+                        <!--<td width="98"  ng-bind="grandTot">-->
+
+                        <!--</td>-->
+                        <!--{% endverbatim %}-->
+                    <!--</tr>-->
                     </tbody>
                 </table>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
                 <br>
                 <br>

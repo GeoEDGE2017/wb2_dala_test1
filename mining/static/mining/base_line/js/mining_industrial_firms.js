@@ -10,6 +10,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.new_firm = {id: null, name: null, ownership: null, district_id: null};
     $scope.ownership;
     $scope.firms = [];
+    $scope.is_edit_model = false;
 
     var init_data = {
     'mining':{
@@ -163,20 +164,26 @@ $scope.cancelEdit = function()
 }
 
 $scope.saveFirm = function(form)
-{
+{if(!$scope.is_edit_model){
     $http({
     method: "POST",
     url: "/add_entity",
     data: angular.toJson({
     'model_fields': $scope.new_firm,
     'model': 'Firm',
+    'is_edit': $scope.is_edit_model,
+    'sector': 'mining'
      }),
     }).success(function(data) {
 
     if(data)
         $scope.firms.push($scope.new_firm);
-
+        $("#modal-container-469842").modal('hide');
+        $("#modal-container-469840").modal('hide');
+       $scope.is_edit_model = false;
     })
+
+    }
 
 }
 
@@ -188,7 +195,7 @@ $scope.saveEditFirm = function(form)
     url: "/base_line/edit_firm",
     data: angular.toJson({
     'firm_name':  $scope.selectedFirm,
-    'firm_id' :1,
+    'firm_id' :$scope.selectedFirm.id,
      }),
     }).success(function(data) {
 

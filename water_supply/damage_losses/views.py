@@ -14,7 +14,7 @@ def dl_rul_wtr_sply(request):
         'incidents': incidents,
         'module': 'water_supply',
     }
-    return render(request, 'damage_losses/damages_losses_NWSDB_commercial_water_supply_system.html', context)
+    return render(request, 'damage_losses/damages_ losses_rural_water_supply_sector.html', context)
 
 
 # Table 4
@@ -28,7 +28,7 @@ def dl_com_wtr_sply(request):
         'incidents': incidents,
         'module': 'water_supply',
     }
-    return render(request, 'damage_losses/damages_ losses_rural_water_supply_sector.html', context)
+    return render(request, 'damage_losses/damages_losses_NWSDB_commercial_water_supply_system.html', context)
 
 
 # Table 5

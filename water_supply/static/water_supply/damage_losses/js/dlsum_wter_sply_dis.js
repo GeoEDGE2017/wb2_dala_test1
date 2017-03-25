@@ -49,9 +49,18 @@ if($scope.incident && $scope.district){
     }).success(function(data) {
 
     $scope.data=data;
+    $scope.dlWaterSupplyDis = data;
     })
         }
     }
+
+     $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlWaterSupplyDis ? angular.equals({}, $scope.dlWaterSupplyDis.water_supply.Table_5) : true;
+        return isNull;
+
+   }
+
 
 
 

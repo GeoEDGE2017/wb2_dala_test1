@@ -11,9 +11,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.Districts=[];
     $scope.is_edit_model = false;
     $scope.is_valid_data = true;
-
     $scope.districtData = [];
-
     $scope.departments = [];
     $scope.department = null;
     $scope.ownership = null;
@@ -161,7 +159,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         }
     }
 
-    //get Grand Total using watch
     $scope.$watch(
         function() {
 
@@ -190,7 +187,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         },
         true);
 
-    // get relevant base-line data for calculations
     $scope.changedValue=function getBsData(selectedValue) {
 
         if($scope.incident && selectedValue) {
@@ -297,7 +293,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
          $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = init_data;
     }
 
-
     $scope.getTotal = function(model, property) {
         var array = $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[model];
         var cumulative = 0;
@@ -330,8 +325,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         model.assign($scope, cumulative_total);
     }
 
-$scope.fetchDepartments = function()
-{
+    $scope.fetchDepartments = function(){
   if($scope.district){
     console.log($scope.district);
     $scope.new_department.district_id = $scope.district.district__id;
@@ -356,8 +350,7 @@ $scope.fetchDepartments = function()
    }
 }
 
-$scope.saveDepartment = function(form)
-{
+    $scope.saveDepartment = function(form){
    delete $scope.new_department['ownership']
    $scope.new_department.district_id = $scope.district.district__id;
 
@@ -396,8 +389,7 @@ $scope.saveDepartment = function(form)
 
 }
 
-$scope.fetchOwnership = function()
-{
+    $scope.fetchOwnership = function(){
     if($scope.new_department){
         $http({
         method: "POST",
@@ -415,7 +407,7 @@ $scope.fetchOwnership = function()
 
 }
 
-$scope.fetchDlData = function(){
+    $scope.fetchDlData = function(){
 
     $http({
     method: "POST",

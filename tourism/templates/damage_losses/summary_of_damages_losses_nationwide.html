@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSummTouBusiFaciNatApp" ng-controller="dlSummTouBusiFaciNatController" >
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -28,10 +28,15 @@
                             Incident
                         </td>
                         <td colspan="8" width="340">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="fetchData()"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
                             </select>
                         </td>
                     </tr>
@@ -86,6 +91,11 @@
                             Private
                         </td>
                     </tr>
+                    {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+
                     <tr class="trheadc" height="20">
                         <td height="20" width="263">
                             Province 1

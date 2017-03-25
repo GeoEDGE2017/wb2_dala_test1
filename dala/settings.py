@@ -85,9 +85,9 @@ INSTALLED_APPS = [
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
-    # 'housing',
-    # 'housing.base_line',
-    # 'housing.damage_losses',
+    'housing',
+    'housing.base_line',
+    'housing.damage_losses',
     'tourism',
     'tourism.base_line',
     'tourism.damage_losses',
@@ -2634,6 +2634,23 @@ TABLE_PROPERTY_MAPPER = {
                             'val_los_year2', 'tol_losses', 'id'],
             'DlInfLosses': ['los_type', 'val_los_year1', 'val_los_year2', 'tol_losses', 'id'],
 
+        },
+        'Table_4':{
+            'DlDmgBusDistrict': ['tot_damages', 'assets', 'ownership', 'business'],
+            'DlLosBusDistrict': ['los_year1', 'los_year2', 'los_type', 'ownership', 'business'],
+            'DlDmgInfDistrict': ['sum', 'ownership', 'inf_type'],
+            'DlLosInfDistrict': ['tot_year1', 'tot_year2', 'ownership', 'inf_type']
+
+        },
+        'Table_5':{
+            'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],
+            'DlDmgbusTotDistrict': ['tot_damages', 'ownership'],
+            'DlLosbusTotDistrict': ['los_year1', 'los_year2', 'ownership'],
+            'DlDmgInfTotDistrict': ['sum', 'ownership']
+        },
+        'Table_6':{
+            'DlDmgInfTotNational': ['sum', 'ownership'],
+            'DlLosInfTotNational': ['tot_year1', 'tot_year2', 'ownership']
         }
 
     }

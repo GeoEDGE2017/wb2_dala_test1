@@ -6,25 +6,8 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     
   });
-  
-  function isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    return true;
-}
 </script>
-<script>
-$(document).ready(function(){
-    $("body").delegate('#textinput', 'change', function(){
-        if($(this).val() < 0){
-            $(this).val('0');
-            //return false;
-    return true;
-        }
-    });
-});
-</script>
+
 
 
 <!-- Main content -->
@@ -150,7 +133,7 @@ $(document).ready(function(){
                             {% endverbatim %}
                         </td>
                         <td width="148">
-                            <input id="textinput" name="textinput" type="number" min="0" onkeypress="return isNumberKey(event)" placeholder=""
+                            <input id="textinput" name="textinput" type="number" min="0" placeholder=""
                                    class="form-control input-md" ng-model="bcagSeasonalCrops.areas_cultivated">
                         </td>
                         <td width="121">

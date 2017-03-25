@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="bsAstsNwsdbDisApp" ng-controller="bsAstsNwsdbDisController">
     <!-- Breadcrumb -->
@@ -10,14 +18,14 @@
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 1. Baseline information on assets of NWSDB in the District
+                Table 1. Baseline Information on Assets of NWSDB in the District
             </span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_asts_nwsdb_dis">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Type of User</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Assets</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Type of User</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Assets</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -36,7 +44,7 @@
                                 Please Select District
                             </span>
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box"
@@ -45,9 +53,9 @@
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead">
+                    <tr class="trhead1">
                         <td style="padding-left:5px;"> Name of District</td>
-                        <td colspan="1" style="background:#EFEFEF;">
+                        <td colspan="1" style="">
                             <select ng-model="district" id="selectbasic" name="district" class="form-control"
                                     style="font-weight:400;" required>
                                 <option value="">Select District</option>
@@ -59,12 +67,12 @@
                         <td colspan="2" style="padding-right:5px;text-align:right;">
                             Year/Month
                         </td>
-                        <td colspan="1" style="background:#EFEFEF;font-weight:normal;">
+                        <td colspan="1" style="font-weight:normal;">
                             <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="18">
+                    <tr class="trheadc1" height="18">
                         <td rowspan="2" width="223" height="36">
                             Number of Employees
                         </td>
@@ -85,7 +93,7 @@
                                    class="form-control input-md" ng-model="biaNumEmployees.female">
                         </td>
                     </tr>
-                    <tr class="trheadc" height="18">
+                    <tr class="trheadc1" height="18">
                         <td rowspan="2" width="223" height="36">
                             Types of Water Users
                         </td>
@@ -148,8 +156,9 @@
                                    class="form-control input-md" ng-model="biaWaterUsers.rate">
                         </td>
                     </tr>
-                    <tr height="18">
-                        <td class="tdpa" width="223" height="18" colspan="4">
+
+                    <tr lass="tdpa" height="18">
+                        <td class="tdpa" width="223" height="18">
                             Others
                             <button ng-click="insertAssets('BiaWaterUsers')"
                                     class="btn btn-sm btn-info btn-circle"
@@ -157,7 +166,7 @@
                                     class="fa fa-plus"></span>
                             </button>
                         </td>
-                        <td class="tdpa">
+                        <td colspan="5" class="tdpa">
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
@@ -184,14 +193,14 @@
                     </tbody>
                 </table>
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                     class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
                     <tbody>
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td width="223" height="34">
                             Components
                         </td>
@@ -240,14 +249,14 @@
                                        class="form-control input-md" ng-model="biaWaterIntake.avg_repair_cost">
                             </td>
                         </tr>
-                        <tr height="18">
+                        <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
                                 <button ng-click="insertAssets('BiaWaterIntake')" class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
-                            <td>
+                            <td colspan="4">
                             </td>
                         </tr>
                         <tr class="trheadc" height="18">
@@ -285,17 +294,16 @@
                                        class="form-control input-md" ng-model="biaTreatmentPlant.avg_repair_cost">
                             </td>
                         </tr>
-                        <tr height="18">
+                        <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
                                 <button ng-click="insertAssets('BiaTreatmentPlant')" class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
-                            <td colspan="2" width="216">
+                            <td colspan="4" width="216">
                             </td>
-                            <td colspan="2" width="216">
-                            </td>
+                           
                         </tr>
                         <tr class="trheadc" height="18">
                             <td width="223" height="18">
@@ -332,14 +340,14 @@
                                        class="form-control input-md" ng-model="biaWaterDistribution.avg_repair_cost">
                             </td>
                         </tr>
-                        <tr height="18">
+                        <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
                                 <button ng-click="insertAssets('BiaWaterDistribution')" class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
-                            <td>
+                            <td colspan="4">
                             </td>
                         </tr>
                         <tr class="trheadc" height="18">
@@ -377,17 +385,16 @@
                                        class="form-control input-md" ng-model="biaMainOffice.avg_repair_cost">
                             </td>
                         </tr>
-                        <tr height="18">
+                        <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
                                 <button ng-click="insertAssets('BiaMainOffice')" class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
-                            <td colspan="2" width="216">
+                            <td colspan="4" width="216">
                             </td>
-                            <td colspan="2" width="216">
-                            </td>
+                           
                         </tr>
                         </tbody>
                     </table>

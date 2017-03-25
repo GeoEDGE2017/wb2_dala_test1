@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main" ng-app="dlTouismInfrstrctCultNaturalApp" ng-Controller   ="dlTouismInfrstrctCultNaturalController">
+<main class="main" ng-app="dlTouismInfrstrctCultNaturalApp" ng-Controller="dlTouismInfrstrctCultNaturalController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -171,7 +171,9 @@
                         </td>
                     </tr>
 
-                    <tr height="19" ng-repeat="DmgInfAsset in dl_tourism_infrs.tourism.Table_3.DmgInfAssets" >
+                    <tr height="19" ng-repeat="DmgInfAsset in dl_tourism_infrs.tourism.Table_3.DmgInfAssets"
+                        ng-if="DmgInfAsset.assets != 'Total'">
+
                         <td class="tdpa" height="19" ng-bind="DmgInfAsset.assets" width="263" ng-if="$index < 2">
 
                         </td>
@@ -219,17 +221,18 @@
                             -
                         </td>
                     </tr>
-                    <tr height="19">
+                    <tr height="19" ng-repeat="dmgInfAssets in
+                dl_tourism_infrs.tourism.Table_3.DmgInfAssets" ng-if="dmgInfAssets.assets == 'Total'">
                         <td class="tdpa" height="19" width="263">
                             TOTAL
                         </td>
-                        <td colspan="2" width="229" ng-bind="getTotalCol('DmgInfAssets','val_dst')">
+                        <td colspan="2" width="229" ng-bind="dmgInfAssets.val_dst = getTotalCol('DmgInfAssets','val_dst', dmgInfAssets)">
                             -
                         </td>
-                        <td colspan="2" width="232" ng-bind="getTotalCol('DmgInfAssets','val_pdmg')">
+                        <td colspan="2" width="232" ng-bind="dmgInfAssets.val_pdmg = getTotalCol('DmgInfAssets','val_pdmg', dmgInfAssets)">
                             -
                         </td>
-                        <td colspan="2" width="170" ng-bind="getTotalCol('DmgInfAssets','tot_dmg')">
+                        <td colspan="2" width="170" ng-bind="dmgInfAssets.tot_dmg = getTotalCol('DmgInfAssets','tot_dmg', dmgInfAssets)">
                             -
                         </td>
                     </tr>
@@ -276,7 +279,8 @@
                         <td width="85">
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="DlInfLosse in dl_tourism_infrs.tourism.Table_3.DlInfLosses"  ng-if="$index < 1">
+                    <tr height="19" ng-repeat="DlInfLosse in dl_tourism_infrs.tourism.Table_3.DlInfLosses"
+                        ng-if="($index < 1)">
                         <td class="tdpa" height="19" width="263" ng-bind="DlInfLosse.los_type">
 
                         </td>
@@ -308,7 +312,7 @@
                             -
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="DlInfLosse in dl_tourism_infrs.tourism.Table_3.DlInfLosses"  ng-if="$index > 0">
+                    <tr height="19" ng-repeat="DlInfLosse in dl_tourism_infrs.tourism.Table_3.DlInfLosses"  ng-if="($index > 0) && (DlInfLosse.los_type != 'Total')" >
                         <td class="tdpa" height="19" width="263" ng-bind="DlInfLosse.los_type">
 
                         </td>
@@ -334,7 +338,8 @@
                         </td>
                     </tr>
 
-                    <tr height="19">
+                    <tr height="19" ng-repeat="dlInfLosses in
+                dl_tourism_infrs.tourism.Table_3.DlInfLosses" ng-if="dlInfLosses.los_type == 'Total'">
                         <td class="tdpa" height="19" width="263">
                             TOTAL
                         </td>
@@ -344,13 +349,13 @@
                         </td>
                         <td class="tdpa" width="114">
                         </td>
-                        <td align="right" width="118" ng-bind="getTotalCol('DlInfLosses','val_los_year1')">
+                        <td align="right" width="118" ng-bind="dlInfLosses.val_los_year1 = getTotalCol('DlInfLosses','val_los_year1', dlInfLosses)">
                             -
                         </td>
-                        <td align="right" width="85" ng-bind="getTotalCol('DlInfLosses','val_los_year2')">
+                        <td align="right" width="85" ng-bind="dlInfLosses.val_los_year2 = getTotalCol('DlInfLosses','val_los_year2', dlInfLosses)">
                             -
                         </td>
-                        <td align="right" width="85" ng-bind="getTotalCol('DlInfLosses','tol_losses')">
+                        <td align="right" width="85" ng-bind="dlInfLosses.tol_losses = getTotalCol('DlInfLosses','tol_losses', dlInfLosses)">
                             -
                         </td>
                     </tr>

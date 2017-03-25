@@ -4,20 +4,6 @@ from settings.models import District, Province
 from tourism.base_line.models import Firm, InfType, Infrastructure
 
 
-# class DlSessionKeys(models.Model):
-#     data_type = models.CharField(max_length=120, blank=True, null=True)
-#     date = models.DateTimeField(blank=True, null=True)
-#     user = models.IntegerField(blank=True, null=True)
-#     table_name = models.CharField(max_length=255, blank=True, null=True)
-#     incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='to_dl_incident', blank=True, null=True)
-#     province = models.ForeignKey(Province, db_column='province', related_name='to_dl_province', blank=True, null=True)
-#     district = models.ForeignKey(District, db_column='district', related_name='to_dl_district', blank=True, null=True)
-#     firm = models.ForeignKey(Firm, db_column='firm_id', related_name='tr_dl_firm', blank=True, null=True)
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'tourism\".\"dl_session_keys'
-
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
@@ -279,3 +265,105 @@ class DlLosInfDistrict (models.Model):
     class Meta:
         managed = False
         db_table = 'tourism\".\"dl_los_inf_district'
+
+
+# view
+class DlDmgbusTotDistrict (models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    district = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_bus_tot_district'
+
+
+# view
+class DlLosbusTotDistrict (models.Model):
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    district = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_bus_tot_district'
+
+
+# view
+class DlDmgInfTotDistrict (models.Model):
+    sum = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    district = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_inf_tot_district'
+
+
+# view
+class DlLosInfTotDistrict (models.Model):
+    tot_year1 = models.FloatField(blank=True, null=True)
+    tot_year2 = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    district = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_inf_tot_district'
+
+
+# # view
+# class DlDmgBusTotNational (models.Model):
+#     tot_damages = models.FloatField(blank=True, null=True)
+#     incident = models.IntegerField(blank=True, null=True)
+#     ownership = models.CharField(max_length=255, blank=True, null=True)
+#     id = models.IntegerField(blank=True, null=True)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'tourism\".\"dl_dmg_bus_tot_national'
+
+
+# view has error
+class DlLosBusTotNational (models.Model):
+    sum = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_bus_tot_national'
+
+
+# view
+class DlDmgInfTotNational (models.Model):
+    sum = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_inf_tot_national'
+
+
+# view
+class DlLosInfTotNational(models.Model):
+    tot_year1 = models.FloatField(blank=True, null=True)
+    tot_year2 = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_los_inf_tot_national'
+
+
+#

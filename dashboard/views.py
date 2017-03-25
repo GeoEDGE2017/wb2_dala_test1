@@ -68,6 +68,10 @@ def agri_livestock_main(request):
 @permission_required("district", "Agri Summary")   
 def agri_summary_main(request):   
     return render(request, 'dashboard/agri_summary_main.html')
+
+@permission_required("district", "Water Supply")   
+def water_supply_main(request):   
+    return render(request, 'dashboard/water_supply_main.html')
     
     
     

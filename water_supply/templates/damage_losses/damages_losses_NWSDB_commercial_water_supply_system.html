@@ -1,5 +1,13 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+  
+    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlComWtrSplyApp" ng-controller="dlComWtrSplyController">
     <!-- Breadcrumb -->
@@ -10,14 +18,14 @@
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 3. Damages and losses to NWSDB commercial water supply system
+                Table 3. Damages and Losses to NWSDB Commercial Water Supply System
             </span>
         </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1" ng-form name="form_dl_com_wtr_sply">
@@ -29,26 +37,26 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_com_wtr_sply.incident.$error.required">
-                                Please select Incident
+                                Please Select Incident
                             </span>
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_com_wtr_sply.district.$error.required">
-                                Please select District
+                                Please Select District
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead">
+                    <tr class="trhead1">
                         <td colspan="2" style="padding-right:5px;text-align:right;">
                             Incident
                         </td>
-                        <td colspan="2" style="background:#EFEFEF;font-weight:normal;">
+                        <td colspan="2" style="font-weight:normal;">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                 class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
@@ -63,14 +71,14 @@
                         <td colspan="2" style="padding-left:5px;">
                             Name of District
                         </td>
-                        <td colspan="2" style="background:#EFEFEF;">
+                        <td colspan="2" style="">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                 name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false);fetchOrganization();" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="18">
+                    <tr class="trheadc1" height="18">
                         <td rowspan="2" width="223" height="18">
                             Number of Clients Affected
                         </td>
@@ -111,7 +119,7 @@
                             ng-bind="dlcwNumClients.total = dlcwNumClients.residential + dlcwNumClients.commercial + dlcwNumClients.industrial + dlcwNumClients.others ">
                         </td>
                     </tr>
-                    <tr class="trheadc" height="18">
+                    <tr class="trheadc1" height="18">
                         <td rowspan="2" width="108" height="18">
                             Number of Employees
                         </td>
@@ -138,12 +146,12 @@
                             ng-bind="DlcwNumEmployees.total = DlcwNumEmployees.male + DlcwNumEmployees.female ">
                         </td>
                     </tr>
-                    <tr class="trheadc" height="18">
+                    <tr class="trheadc1" height="18">
                         <td colspan="7" width="857" height="18">
                             DAMAGES
                         </td>
                     </tr>
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td width="223" height="34">
                             Assets
                         </td>
@@ -295,13 +303,13 @@
                     </table>
                 </div>
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td rowspan="2" width="223" height="52">
                         </td>
                         <td rowspan="2" width="108">
@@ -363,10 +371,13 @@
                             Other Losses
                         </td>
                         <td width="108">
+                        <br>
                         </td>
                         <td width="101">
+                        <br>
                         </td>
                         <td width="101">
+                        <br>
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="dlcwLosOther in dlComWtrSply.water_supply.Table_3.DlcwLosOther" ng-if="dlcwLosOther.other_los != 'TOTAL'">

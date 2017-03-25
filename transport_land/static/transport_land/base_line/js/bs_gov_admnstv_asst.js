@@ -115,6 +115,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
 
                 if (data == 'False')
                     $scope.is_valid_data = false;
+
                 else
                     $("#modal-container-239453").modal('show');
 

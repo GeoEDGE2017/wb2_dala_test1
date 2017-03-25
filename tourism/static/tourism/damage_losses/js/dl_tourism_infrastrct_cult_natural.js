@@ -29,6 +29,11 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'val_dst': null,
                     'val_pdmg':null,
                     'tot_dmg':null,
+                },{
+                    'assets':'Total',
+                    'val_dst': null,
+                    'val_pdmg':null,
+                    'tot_dmg':null,
                 }
                 ],
                 'DlInfLosses':[
@@ -67,7 +72,15 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'val_los_year1': null,
                     'val_los_year2':null,
                     'tol_losses':null
-                }
+                },{
+                    'los_type':'Total',
+                    'avg_val_income_year': null,
+                    'val_income_year1': null,
+                    'val_income_year2': null,
+                    'val_los_year1': null,
+                    'val_los_year2':null,
+                    'tol_losses':null
+                },
                 ]
 
             }
@@ -95,25 +108,6 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         }
     }
 
-//    $scope.fetchFirms = function()
-//    {
-//
-//        $http({
-//        method: "POST",
-//        url: "/fetch_entities",
-//        data: angular.toJson({
-//        'district':  $scope.district.district__id,
-//        'model': 'Firm',
-//        'sector':'tourism'
-//         }),
-//        }).success(function(data) {
-//
-//        //console.log(data);
-//        $scope.firms = data;
-//
-//        })
-//    }
-//
     $scope.fetchInfTypes = function()
     {
 
@@ -185,10 +179,24 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
     }
 
-    $scope.getTotalCol = function(subTable, column){
+//    $scope.getTotalCol = function(subTable, column){
+//
+//        var table = $scope.dl_tourism_infrs.tourism.Table_3;
+//        var final_total = 0;
+//
+//        angular.forEach(table[subTable], function(value, key) {
+//            final_total += value[column] ;
+//        })
+//
+//        return final_total;
+//    }
+
+    $scope.getTotalCol = function(subTable, column, total_object){
 
         var table = $scope.dl_tourism_infrs.tourism.Table_3;
         var final_total = 0;
+
+        total_object[column] = 0;
 
         angular.forEach(table[subTable], function(value, key) {
             final_total += value[column] ;
@@ -196,7 +204,6 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         return final_total;
     }
-
     $scope.getMulitiplyedYearLoss = function(avgincome, reduction, year){
 
         var subTable = $scope.dl_tourism_infrs.tourism.Table_3.DlInfLosses;

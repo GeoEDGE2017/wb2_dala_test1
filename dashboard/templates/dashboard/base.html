@@ -213,6 +213,11 @@
     <script src='{% static "tourism/base_line/js/bs_tursm_fclts_dis.js" %}'></script>
     <script src='{% static "tourism/damage_losses/js/dl_tourism_infrstrct_business.js" %}'></script>
     <script src='{% static "tourism/damage_losses/js/dl_tourism_infrastrct_cult_natural.js" %}'></script>
+    <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_dis.js" %}'></script>
+    <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_pov.js" %}'></script>
+    <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_nat.js" %}'></script>
+
+
 
     <!--industry_services-->
     {% elif module == 'industry_services' %}
@@ -257,8 +262,22 @@ $('#s4').on('click', function(){
     $('#li4').removeClass('active');
     $('#li5').addClass('active');
 });
+
+$(".input-md").keypress(function(event) {
+    if ( event.which == 45 ) {
+      event.preventDefault();
+      return false;
+    return true;
+     }
+});
 });
 
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
     </script>
 </head>
 
@@ -398,7 +417,7 @@ $('#s4').on('click', function(){
 
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Water Supply </a>
+                <a class="nav-link" href="{% url 'dashboard:water_supply_main' %}"><i class="icon-speedometer"></i> Water Supply </a>
             </li>
 
 
@@ -518,6 +537,7 @@ $('#s4').on('click', function(){
 
     <div class="col-md-12">
 
+<!-- Save Success Model -->
 
         <div class="modal fade" id="modal-container-239453" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -533,7 +553,40 @@ $('#s4').on('click', function(){
                         </h4>
                     </div>
                     <div class="modal-body alert-success">
-                        <h4>Data Saved Successfully! </h4>
+                        <h4><span class="icon-check"> </span> Data Saved Successfully! </h4>
+                    </div>
+                    <div class="modal-footer">
+
+                        
+                        <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Information already exists Model -->
+
+        <div class="modal fade" id="modal-container-239454" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Save Data
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>span class="icon-info"> </span> Information already exists  ! </h4>
                     </div>
                     <div class="modal-footer">
 
@@ -550,6 +603,44 @@ $('#s4').on('click', function(){
             </div>
 
         </div>
+
+
+
+        <!-- update the baseline Model -->
+
+        <div class="modal fade" id="modal-container-239455" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Save Data
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>span class="icon-close"> </span> Please update the baseline information before you calculate the damage and loss ! </h4>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
 
     </div>
 

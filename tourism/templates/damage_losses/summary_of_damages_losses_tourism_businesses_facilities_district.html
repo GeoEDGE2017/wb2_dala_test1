@@ -31,7 +31,7 @@
                         <td colspan="4" width="461">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    class="form-control" ng-change="changedValue(false);" required>
+                                    class="form-control" ng-change="loadData();" required>
 
                                 <option value="" selected>Select District</option>
                             </select>
@@ -125,184 +125,76 @@
                         <td width="85">
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
+                    <tr height="20" ng-repeat="businessType in businessTypes">
+                        <td class="tdpa" height="20" width="263" ng-bind="businessType.business">
                             Hotels
                         </td>
-                        <td width="115">
+                        <td width="115" ng-model="businessType.yr1DamPub" ng-bind="businessType.yr1DamPub = getConvertedVal(table.business[businessType.business].year1Damage.Public)">
                             -
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="businessType.yr1DamPri = getConvertedVal(table.business[businessType.business].year1Damage.Private)">
                             -
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="businessType.yr1LossPub = getConvertedVal(table.business[businessType.business].year1Loss.Public)">
                             -
                         </td>
-                        <td width="118">
+                        <td width="118" ng-bind="businessType.yr1LossPri = getConvertedVal(table.business[businessType.business].year1Loss.Private)">
                             -
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="businessType.yr2LossPub = getConvertedVal(table.business[businessType.business].year2Loss.Public)">
                             -
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="businessType.yr2LossPri = getConvertedVal(table.business[businessType.business].year2Loss.Private)">
                             -
                         </td>
-                        <td width="85">
+                        <td width="85" ng-model="businessType.totalPub" ng-bind="businessType.totalPub = getSum3(table.business[businessType.business].year1Damage.Public,
+                                                table.business[businessType.business].year1Loss.Public,
+                                                table.business[businessType.business].year2Loss.Public)
+                                                ">
                             -
                         </td>
-                        <td width="85">
+                        <td width="85" ng-model="businessType.totalPri" ng-bind="businessType.totalPri = getSum3(table.business[businessType.business].year1Damage.Private ,
+                                                table.business[businessType.business].year1Loss.Private ,
+                                                table.business[businessType.business].year2Loss.Private)
+                                                ">
 
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
-                            Guest Houses
-                        </td>
-                        <td width="115">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="118">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
-                            Travel Agents
-                        </td>
-                        <td width="115">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="118">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
-                            Tour Guides
-                        </td>
-                        <td width="115">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="118">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
-                            Adventure Tourism Operators
-                        </td>
-                        <td width="115">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="118">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
-                            Ayurveda Resorts
-                        </td>
-                        <td width="115">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="118">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
+
                     <tr height="20">
                         <td class="tdpa" height="20" width="263">
                             Total
                         </td>
-                        <td width="115">
+                        <td width="115"  ng-bind="table.business.year1DamagePub = getAggrigatedTotal('year1Damage','Public','business')">
 
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="table.business.year1DamagePri = getAggrigatedTotal('year1Damage','Private','business')">
 
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="table.business.year1LossPub = getAggrigatedTotal('year1Loss','Public','business')">
 
                         </td>
-                        <td width="118">
+                        <td width="118" ng-bind="table.business.year1LossPri = getAggrigatedTotal('year1Loss','Private','business')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.business.year2LossPub = getAggrigatedTotal('year2Loss','Public','business')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.business.year2LossPri = getAggrigatedTotal('year2Loss','Private','business')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.business.fullTotPub = getPublicColBusinessTotal()">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.business.fullTotPri = getPrivateColBusinessTotal()">
 
                         </td>
                     </tr>
-                    <tr class="trheadc" height="20">
-                        <td height="20" width="263">
+                    <tr class="trheadc" height="20" >
+                        <td height="20" width="263" >
                             Tourism Infrastructure
                         </td>
-                        <td width="115">
+                        <td width="115" >
                         </td>
                         <td width="114">
                         </td>
@@ -319,84 +211,67 @@
                         <td width="85">
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
-                            Cultural Sites
-                        </td>
-                        <td width="115">
+                    <tr height="20" ng-repeat="inf_type in inf_types">
+                        <td class="tdpa" height="20" width="263" ng-bind="inf_type.infrastructure">
 
                         </td>
-                        <td width="114">
+                        <td width="115" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Damage.Public)">
 
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Damage.Private)">
 
                         </td>
-                        <td width="118">
+                        <td width="114" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Loss.Public)">
 
                         </td>
-                        <td width="85">
+                        <td width="118" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Loss.Private)">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year2Loss.Public)">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year2Loss.Public)">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="inf_type.totalPub = getSum3(table.infrastructures[inf_type.id].year1Damage.Public,
+                                                table.infrastructures[inf_type.id].year1Loss.Public,
+                                                table.infrastructures[inf_type.id].year2Loss.Public)">
+
+                        </td>
+                        <td width="85" ng-bind="inf_type.totalPri = getSum3(table.infrastructures[inf_type.id].year1Damage.Private ,
+                                                table.infrastructures[inf_type.id].year1Loss.Private ,
+                                                table.infrastructures[inf_type.id].year2Loss.Private)
+                                                ">
 
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td class="tdpa" height="20" width="263">
-                            Natural Formations
-                        </td>
-                        <td width="115">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="114">
-                        </td>
-                        <td width="118">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                        <td width="85">
-                            -
-                        </td>
-                    </tr>
+
                     <tr height="20">
                         <td class="tdpa" height="20" width="263">
                             Total
                         </td>
-                        <td width="115">
+                        <td width="115" ng-bind="table.infrastructures.year1DamagePub = getAggrigatedTotal('year1Damage','Public','infrastructures')">
 
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="table.infrastructures.year1DamagePri = getAggrigatedTotal('year1Damage','Private','infrastructures')">
 
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="table.infrastructures.year1LossPub = getAggrigatedTotal('year1Loss','Public','infrastructures')">
 
                         </td>
-                        <td width="118">
+                        <td width="118" ng-bind="table.infrastructures.year1LossPri = getAggrigatedTotal('year1Loss','Private','infrastructures')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.infrastructures.year2LossPub = getAggrigatedTotal('year2Loss','Public','infrastructures')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.infrastructures.year2LossPri = getAggrigatedTotal('year2Loss','Private','infrastructures')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.infrastructures.fullTotPub = getPublicColInfrastructuresTotal()">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="table.infrastructures.fullTotPri = getPrivateColInfrastructuresTotal()">
 
                         </td>
                     </tr>
@@ -404,28 +279,28 @@
                         <td class="tdpa" height="20" width="263">
                             GRAND TOTAL
                         </td>
-                        <td width="115">
+                        <td width="115" ng-bind="getGrandTotal('year1DamagePub')">
 
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="getGrandTotal('year1DamagePri')">
 
                         </td>
-                        <td width="114">
+                        <td width="114" ng-bind="getGrandTotal('year1LossPub')">
 
                         </td>
-                        <td width="118">
+                        <td width="118" ng-bind="getGrandTotal('year1LossPri')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="getGrandTotal('year2LossPub')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="getGrandTotal('year2LossPri')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="getGrandTotal('fullTotPub')">
 
                         </td>
-                        <td width="85">
+                        <td width="85" ng-bind="getGrandTotal('fullTotPri')">
 
                         </td>
                     </tr>

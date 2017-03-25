@@ -31,9 +31,13 @@ app.controller('dlSumTrnsptDstControllerController', function($scope, $http) {
 
             })
         }
+        if($scope.incident && !selectedValue){
+            $scope.loadData();
+        }
     }
 
-    $scope.loadData = function(form) {
+    $scope.loadData = function() {
+
         $scope.isLoded = true;
         if(form.$valid) {
             $scope.tot_damages = null;

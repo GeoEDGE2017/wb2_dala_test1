@@ -100,26 +100,66 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'val_los_year1':null,
                     'val_los_year2':null,
                     'tol_losses':null,
-                }],
-                'DlInfLosses':[
-                    {
-                    'los_type':'Cleaning up of debris',
+                },{
+                    'los_type':'Income Losses',
+                    'avg_val_income_year':null,
+                    'val_income_year1':null,
+                    'val_income_year2':null,
                     'val_los_year1':null,
                     'val_los_year2':null,
                     'tol_losses':null,
                 },{
-                    'los_type':'Higher operating costs1',
+                    'los_type':'Cleaning up of debris',
+                    'avg_val_income_year':null,
+                    'val_income_year1':null,
+                    'val_income_year2':null,
                     'val_los_year1':null,
                     'val_los_year2':null,
                     'tol_losses':null,
-                },
-                {
+                },{
+                    'los_type':'Higher operating costs',
+                    'avg_val_income_year':null,
+                    'val_income_year1':null,
+                    'val_income_year2':null,
+                    'val_los_year1':null,
+                    'val_los_year2':null,
+                    'tol_losses':null,
+                },{
                     'los_type':'Other unexpected expenses',
+                    'avg_val_income_year':null,
+                    'val_income_year1':null,
+                    'val_income_year2':null,
                     'val_los_year1':null,
                     'val_los_year2':null,
                     'tol_losses':null,
-                }
-                ],
+                },{
+                    'los_type':'Total',
+                    'avg_val_income_year':null,
+                    'val_income_year1':null,
+                    'val_income_year2':null,
+                    'val_los_year1':null,
+                    'val_los_year2':null,
+                    'tol_losses':null,
+                },],
+//                'DlInfLosses':[
+//                    {
+//                    'los_type':'Cleaning up of debris',
+//                    'val_los_year1':null,
+//                    'val_los_year2':null,
+//                    'tol_losses':null,
+//                },{
+//                    'los_type':'Higher operating costs1',
+//                    'val_los_year1':null,
+//                    'val_los_year2':null,
+//                    'tol_losses':null,
+//                },
+//                {
+//                    'los_type':'Other unexpected expenses',
+//                    'val_los_year1':null,
+//                    'val_los_year2':null,
+//                    'tol_losses':null,
+//                }
+//                ],
 
                 }
             }

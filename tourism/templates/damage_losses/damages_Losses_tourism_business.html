@@ -624,45 +624,48 @@
                             Year 2
                         </td>
                     </tr>
-                    <tr height="20" >
+                    <tr height="20" ng-repeat="dlBusLosses in dl_tourism_business.tourism.Table_2.DlBusLosses" ng-if="(dlBusLosses.los_type != 'Total') && ($index < 1)" >
+
                         <td class="tdpa" width="229" height="20"
-                            ng-bind="dl_tourism_business.tourism.Table_2.DlBusLosses[0].los_type">
+                            ng-bind="dlBusLosses.los_type">
                         </td>
                         <td width="100">
                             <input id="textinput" name="textinput" type="number"
-                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].avg_val_income_year"
+                                   ng-model="dlBusLosses.avg_val_income_year"
                                    placeholder="" class="form-control input-md">
                         </td>
                         <td width="100">
                             <input id="textinput" name="textinput" type="number" placeholder="" type="number"
-                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year1"
+                                   ng-model="dlBusLosses.val_income_year1"
                                    class="form-control input-md">
                         </td>
                         <td width="100">
                             <input id="textinput" name="textinput" type="number" placeholder="" type="number"
-                                   ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year2"
+                                   ng-model="dlBusLosses.val_income_year2"
                                    class="form-control input-md">
                         </td>
-                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year1"
-                            ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses[0].avg_val_income_year
-            ,dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year1,1)" >
+                        <td width="100" ng-model="dlBusLosses.val_los_year1"
+                            ng-bind="getMulitiplyedYearLoss(dlBusLosses.avg_val_income_year
+            ,dlBusLosses.val_income_year1,1)" >
                             -
                         </td>
-                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year2"
-                            ng-bind="getMulitiplyedYearLoss(dl_tourism_business.tourism.Table_2.DlBusLosses[0].avg_val_income_year
-            ,dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_income_year2,2)">
+                        <td width="100" ng-model="dlBusLosses.val_los_year2"
+                            ng-bind="getMulitiplyedYearLoss(dlBusLosses.avg_val_income_year
+            ,dlBusLosses.val_income_year2,2)">
                             -
                         </td>
-                        <td width="100" ng-model="dl_tourism_business.tourism.Table_2.DlBusLosses[0].tol_losses"
-                            ng-bind="getSumOfTwo(dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year1,
-                dl_tourism_business.tourism.Table_2.DlBusLosses[0].val_los_year2,
-                dl_tourism_business.tourism.Table_2.DlBusLosses[0], 'tol_losses')"
+                        <td width="100" ng-model="dlBusLosses.tol_losses"
+                            ng-bind="getSumOfTwo(dlBusLosses.val_los_year1,
+                dlBusLosses.val_los_year2,
+                dlBusLosses, 'tol_losses')"
                         >
                             -
                         </td>
                     </tr>
-                    <tr height="20" ng-repeat="dlInfLosses in dl_tourism_business.tourism.Table_2.DlInfLosses" >
-                        <td class="tdpa" width="229" height="20" ng-bind="dlInfLosses.los_type">
+                    <tr height="20" ng-repeat="dlBusLosses in dl_tourism_business.tourism.Table_2.DlBusLosses"
+                            ng-if="(dlBusLosses.los_type != 'Total') && ($index > 0)" >
+
+                        <td class="tdpa" width="229" height="20" ng-bind="dlBusLosses.los_type">
                             Cleaning up of debris
                         </td>
                         <td class="tdpa" width="100">
@@ -672,35 +675,36 @@
                         <td class="tdpa" width="100">
                         </td>
                         <td width="100">
-                            <input id="textinput" name="textinput" type="number" ng-model="dlInfLosses.val_los_year1" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" ng-model="dlBusLosses.val_los_year1" placeholder="" class="form-control input-md">
                         </td>
                         <td width="100">
-                            <input id="textinput" name="textinput" type="number" ng-model="dlInfLosses.val_los_year2" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" ng-model="dlBusLosses.val_los_year2" class="form-control input-md">
                         </td>
-                        <td width="100" ng-model="dlInfLosses.tol_losses"
-                            ng-bind="getSumOfTwo(dlInfLosses.val_los_year1,dlInfLosses.val_los_year2,
-                dlInfLosses, 'tol_losses')">
+                        <td width="100" ng-model="dlBusLosses.tol_losses"
+                            ng-bind="getSumOfTwo(dlBusLosses.val_los_year1,dlBusLosses.val_los_year2,
+                dlBusLosses, 'tol_losses')">
                             -
                         </td>
                     </tr>
 
-                    <tr height="20">
-                        <td class="tdpa" width="229" height="20">
+                    <tr height="20" ng-repeat="dlBusLosses in dl_tourism_business.tourism.Table_2.DlBusLosses"
+                            ng-if="dlBusLosses.los_type == 'Total'">
+                        <td class="tdpa" width="229" height="20" ng-bind="dlBusLosses.los_type">
                             GRAND TOTAL
                         </td>
-                        <td class="tdpa" width="100" >
+                        <td class="tdpa" width="100" ng-bind="dlBusLosses.avg_val_income_year = getTotalCol('DlBusLosses', 'avg_val_income_year', dlBusLosses)">
                         </td>
-                        <td class="tdpa" width="100" >
+                        <td class="tdpa" width="100" ng-bind="dlBusLosses.val_income_year1 = getTotalCol('DlBusLosses', 'val_income_year1', dlBusLosses)">
                         </td>
-                        <td class="tdpa" width="100" >
+                        <td class="tdpa" width="100" ng-bind="dlBusLosses.val_income_year2 = getTotalCol('DlBusLosses', 'val_income_year2', dlBusLosses)">
                         </td>
-                        <td width="100" ng-bind="getGrandTotalCol('val_los_year1')">
+                        <td width="100" ng-bind="dlBusLosses.val_los_year1 = getTotalCol('DlBusLosses', 'val_los_year1', dlBusLosses)">
                             -
                         </td>
-                        <td width="100" ng-bind="getGrandTotalCol('val_los_year2')">
+                        <td width="100" ng-bind="dlBusLosses.val_los_year2 = getTotalCol('DlBusLosses', 'val_los_year2' ,dlBusLosses)">
                             -
                         </td>
-                        <td width="100" ng-bind="getGrandTotalCol('tol_losses')">
+                        <td width="100" ng-bind="dlBusLosses.tol_losses = getTotalCol('DlBusLosses', 'tol_losses', dlBusLosses)">
                             -
                         </td>
                     </tr>

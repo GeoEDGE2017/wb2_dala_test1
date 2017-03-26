@@ -317,21 +317,22 @@ class DlLosInfTotDistrict (models.Model):
         db_table = 'tourism\".\"dl_los_inf_tot_district'
 
 
-# # view
-# class DlDmgBusTotNational (models.Model):
-#     tot_damages = models.FloatField(blank=True, null=True)
-#     incident = models.IntegerField(blank=True, null=True)
-#     ownership = models.CharField(max_length=255, blank=True, null=True)
-#     id = models.IntegerField(blank=True, null=True)
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'tourism\".\"dl_dmg_bus_tot_national'
+# view
+class DlDmgBusTotNational (models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.IntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tourism\".\"dl_dmg_bus_tot_national'
 
 
 # view has error
 class DlLosBusTotNational (models.Model):
-    sum = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
     incident = models.IntegerField(blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     province = models.IntegerField(blank=True, null=True)
@@ -366,4 +367,4 @@ class DlLosInfTotNational(models.Model):
         db_table = 'tourism\".\"dl_los_inf_tot_national'
 
 
-#
+#dl_dmg_bus_tot_national

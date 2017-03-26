@@ -2588,7 +2588,7 @@ TABLE_PROPERTY_MAPPER = {
             'BsCultSites': ['site', 'num_bis_private', 'num_bis_public', 'num_emp_male', 'num_empfemale', 'id'],
             'BsNatFormation': ['site', 'num_bis_private', 'num_bis_public', 'num_emp_male', 'num_empfemale', 'id'],
         },
-        'Table_2':{
+        'Table_2': {
             'DlNumEmpBusiness': ['num_emp_male', 'num_emp_female', 'id'],
             'DmgBusAstStructures': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
             'DmgBusAstEquipment': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
@@ -2596,25 +2596,29 @@ TABLE_PROPERTY_MAPPER = {
             'DmgBusAstVehicle': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
             'DmgBusAstInventories': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
             'DlBusLosses': ['los_type', 'avg_val_income_year', 'val_income_year1', 'val_income_year2', 'val_los_year1', 'val_los_year2','tol_losses','id'],
-            'DlInfLosses': ['los_type', 'val_los_year1', 'val_los_year2', 'tol_losses', 'id'],
-
         },
-        'Table_4':{
+        'Table_3': {
+            'DmgInfAssets': ['assets', 'tot_dmg', 'val_dst', 'val_pdmg', 'id'],
+            'DlInfLosses': ['avg_val_income_year', 'los_type', 'tol_losses', 'val_income_year1', 'val_income_year2', 'val_los_year1', 'val_los_year2', 'id']
+        },
+            'Table_4': {
             'DlDmgBusDistrict': ['tot_damages', 'assets', 'ownership', 'business'],
             'DlLosBusDistrict': ['los_year1', 'los_year2', 'los_type', 'ownership', 'business'],
             'DlDmgInfDistrict': ['sum', 'ownership', 'inf_type'],
             'DlLosInfDistrict': ['tot_year1', 'tot_year2', 'ownership', 'inf_type']
 
         },
-        'Table_5':{
+        'Table_5': {
             'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],
             'DlDmgbusTotDistrict': ['tot_damages', 'ownership'],
             'DlLosbusTotDistrict': ['los_year1', 'los_year2', 'ownership'],
             'DlDmgInfTotDistrict': ['sum', 'ownership']
         },
-        'Table_6':{
+        'Table_6': {
             'DlDmgInfTotNational': ['sum', 'ownership'],
-            'DlLosInfTotNational': ['tot_year1', 'tot_year2', 'ownership']
+            'DlLosInfTotNational': ['tot_year1', 'tot_year2', 'ownership'],
+            'DlDmgBusTotNational': ['tot_damages', 'ownership'],
+            'DlLosBusTotNational': ['los_year1', 'los_year2', 'ownership'],
         }
 
     }

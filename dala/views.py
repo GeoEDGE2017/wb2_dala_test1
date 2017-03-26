@@ -529,6 +529,7 @@ def dl_fetch_edit_data(request):
 
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data):
+    print "Edit data saving in dl"
     for sector in table_data:
 
         sub_app_name = sector + '.damage_losses'

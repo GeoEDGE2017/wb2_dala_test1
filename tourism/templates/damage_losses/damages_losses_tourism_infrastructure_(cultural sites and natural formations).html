@@ -51,27 +51,27 @@
                         </td>
                         <td colspan="4" width="461">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                        class="form-control" ng-change="changedValue(false);" required>
-                    <!--fetchFirms();-->
-                    <option value="" selected>Select District</option>
-                </select>
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false);" required>
+                                <!--fetchFirms();-->
+                                <option value="" selected>Select District</option>
+                            </select>
                         </td>
                         <td width="85">
                             Incident
                         </td>
                         <td width="85">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                class="form-control" ng-change="changedValue(true)"
-                                style="width:100%;font-weight:400;" required>
-                            <option value="" selected="true">Select an Incident</option>
-                            {% for incident in incidents %}
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
 
-                            <option value={{incident.id}}>{{incident.disaster_type.name}}
-                                {{incident.reported_date_time}}
-                            </option>
-                            {% endfor %}
-                        </select>
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
                         </td>
                     </tr>
                     <tr class="trhead" height="34">
@@ -80,10 +80,10 @@
                         </td>
                         <td colspan="4" width="461">
                             <select id="selectbasic" name="selectbasic"
-                                       ng-options="infrastructure as infrastructure.name for  infrastructure in infrastructures"
+                                    ng-options="infrastructure as infrastructure.name for  infrastructure in infrastructures"
                                     name="district" id="ccyear" ng-model="selectedInfrastructure"
-                                       class="form-control"
-                                       style="width:100%;font-weight:400;">
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;">
 
                                 <option value="" selected="true">Select Infrastructure</option>
 
@@ -107,10 +107,10 @@
                         </td>
                         <td colspan="4" width="461">
                             <select id="selectbasic" name="selectbasic"
-                                       ng-options="inf_type as inf_type.infrastructure for  inf_type in inf_types"
+                                    ng-options="inf_type as inf_type.infrastructure for  inf_type in inf_types"
                                     name="district" id="ccyear" ng-model="selectedType"
-                                       class="form-control"
-                                       style="width:100%;font-weight:400;">
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;">
 
                                 <option value="" selected="true">Select Infrastructure Type</option>
 
@@ -135,9 +135,9 @@
                         </td>
                         <td colspan="4" width="461">
                             <select id="selectbasic" name="selectbasic" ng-model="ownership"  class="form-control" style="width:100%;font-weight:400;">
-                                          <option value="" selected="true">Select Ownership</option>
-                                           <option value="Public">Public</option>
-                                           <option value="Private">Private</option>
+                                <option value="" selected="true">Select Ownership</option>
+                                <option value="Public">Public</option>
+                                <option value="Private">Private</option>
 
                             </select>
                         </td>
@@ -178,19 +178,19 @@
 
                         </td>
                         <td width="98" ng-if="$index > 1">
-                        {% verbatim %}
-                        <button id="delete" ng-click="removeItem('DmgInfAssets', $index)" class="btn btn-sm btn-danger btn-circle" >
-                            <i class="fa fa-minus"></i>
-                        </button>
-                        <input style="width:80%;float:right;" name="DmgBusAstStructures_{{$index}}" ng-model="DmgInfAsset.assets"
-                            popover="This field is required"
-                            popover-toggle="form_pop_lat_census['DmgInfAssets_' + $index].$dirty &&
+                            {% verbatim %}
+                            <button id="delete" ng-click="removeItem('DmgInfAssets', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <input style="width:80%;float:right;" name="DmgBusAstStructures_{{$index}}" ng-model="DmgInfAsset.assets"
+                                   popover="This field is required"
+                                   popover-toggle="form_pop_lat_census['DmgInfAssets_' + $index].$dirty &&
                             !form_pop_lat_census['DmgInfAssets_' + $index].$valid"
-                            popover-placement="top" required
-                            type="text"
-                            class="form-control input-md">
-                        {% endverbatim %}
-            </td>
+                                   popover-placement="top" required
+                                   type="text"
+                                   class="form-control input-md">
+                            {% endverbatim %}
+                        </td>
                         <td colspan="2">
                             <input id="textinput" name="textinput" type="number"
                                    placeholder="" ng-model="DmgInfAsset.val_dst"
@@ -210,8 +210,8 @@
                     <tr class="tdpa" height="19">
                         <td class="tdpa" height="19" width="263">
                             Others &nbsp;&nbsp;
-                        <button ng-click="insertAsset('DmgInfAssets')"
-                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+                            <button ng-click="insertAsset('DmgInfAssets')"
+                                    class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
                         </td>
                         <td colspan="2">
                         </td>
@@ -300,15 +300,15 @@
                                    class="form-control input-md">
                         </td>
                         <td align="right" width="118" ng-model="DlInfLosse.val_los_year1"
-                        ng-bind="getMulitiplyedYearLoss(DlInfLosse.avg_val_income_year, DlInfLosse.val_income_year1, 1)">
+                            ng-bind="getMulitiplyedYearLoss(DlInfLosse.avg_val_income_year, DlInfLosse.val_income_year1, 1)">
                             -
                         </td>
                         <td align="right" width="85" ng-model="DlInfLosse.val_los_year2"
-                        ng-bind="getMulitiplyedYearLoss(DlInfLosse.avg_val_income_year, DlInfLosse.val_income_year2, 2)">
+                            ng-bind="getMulitiplyedYearLoss(DlInfLosse.avg_val_income_year, DlInfLosse.val_income_year2, 2)">
                             -
                         </td>
                         <td align="right" width="85" ng-model="DlInfLosse.tol_losses"
-                        ng-bind="getSumOfTwo(DlInfLosse.val_los_year1, DlInfLosse.val_los_year2, DlInfLosse , 'tol_losses')">
+                            ng-bind="getSumOfTwo(DlInfLosse.val_los_year1, DlInfLosse.val_los_year2, DlInfLosse , 'tol_losses')">
                             -
                         </td>
                     </tr>
@@ -333,7 +333,7 @@
                                    class="form-control input-md">
                         </td>
                         <td align="right" width="85" ng-model="DlInfLosse.tol_losses"
-                        ng-bind="getSumOfTwo(DlInfLosse.val_los_year1, DlInfLosse.val_los_year2, DlInfLosse , 'tol_losses')">
+                            ng-bind="getSumOfTwo(DlInfLosse.val_los_year1, DlInfLosse.val_los_year2, DlInfLosse , 'tol_losses')">
                             -
                         </td>
                     </tr>
@@ -365,6 +365,13 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <button type="button" ng-click="dataEdit()"
+                            ng-if="!is_edit" class="btn btn-success">Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+
                     <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_tou_infra)">Submit</button>
                 </div>
                 <br>
@@ -375,33 +382,54 @@
     <div class="col-md-12">
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
-            <div class="modal-dialog" style="width:50%;">
+            <div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_infra_add">
                 <div class="modal-content">
-                    <div class="modal-header">
+                                        <div class="modal-header">
+
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
-                        <h5 class="modal-title">
+                        <h5 class="modal-title" >
                             <span id="bookId"> </span>
                         </h5>
                     </div>
                     <div class="modal-body">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 control-label" for="textinput">Infrastructure Name</label>
+                            <div class="col-md-5">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
+                                       ng-model="new_infra.name" name="infra_name"
                                        class="form-control input-md">
+
                             </div>
                         </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group" style="margin-top:5px;">
+                            <label class="col-md-4 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-5">
+                                <select id="selectbasic" name="ownership" ng-model='ownership' class="form-control"
+                                        style="font-weight:400;" required>
+
+                                    <option value="" selected="true">Select Ownership</option>
+
+                                    <option value="Public">Public</option>
+                                    <option value="Private">Private</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                        <br>
                     </div>
                     <br><br>
                     <div class="modal-footer">
+
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
+                        <button type="button" class="btn btn-primary" ng-click="saveInfrastructure(form_tourism_infra_add)">
+                            Save Infrastructure
                         </button>
                     </div>
                 </div>

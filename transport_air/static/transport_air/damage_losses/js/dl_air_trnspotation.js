@@ -319,24 +319,21 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
             })
         }
 
-
-
-        if($scope.incident && $scope.district ) {
+        if($scope.incident && $scope.district) {
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures','BsAstAirEmployment','BsAstAirOthers'],
+                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures', 'BsAstAirEmployment', 'BsAstAirOthers'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_1',
                     'sector':'transport_air',
-                        }),
-                  dataType: 'json',
-
+                }),
+                dataType: 'json',
 
             }).then(function successCallback(response) {
                 var data = response.data;

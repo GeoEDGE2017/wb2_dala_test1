@@ -1,3 +1,4 @@
+//Table 2
 var bsHealthStatusApp = angular.module('bsUcostGeduFacilitiesApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcostGeduFacilitiesController($scope, $http) {

@@ -152,7 +152,7 @@ DATABASES = {
         #     'options': '-c search_path=transport_rail'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'dala   ',
         'USER': 'postgres',
     },
 }

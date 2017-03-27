@@ -145,7 +145,7 @@ class BsTotEmpRailCompny(models.Model):
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
-    bd_date = models.CharField(max_length=12, blank=True, null=True)
+    bs_date = models.CharField(max_length=12, blank=True, null=True)
     company = models.ForeignKey(Company, db_column='company', blank=True, null=True)
 
     class Meta:

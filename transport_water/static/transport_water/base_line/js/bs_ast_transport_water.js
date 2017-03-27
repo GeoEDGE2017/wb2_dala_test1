@@ -197,7 +197,6 @@ $scope.saveBsData = function()
 {
 $scope.submitted = true;
 
-console.log($scope.district + '-' + $scope.bs_date );
  $http({
     method: "POST",
     url: "/bs_save_data",

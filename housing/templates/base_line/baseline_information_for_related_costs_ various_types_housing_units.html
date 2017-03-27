@@ -49,7 +49,7 @@
                         <td width="166" height="19">
                             District
                         </td>
-                        <td colspan="5" width="477" height="19">
+                        <td colspan="2" width="477" height="19">
                             <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
@@ -227,6 +227,12 @@
                 <br>
                 <div class="pull-right">
                     <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
                     <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_housing_dis)">Submit</button>
                 </div>
                 <br><br>

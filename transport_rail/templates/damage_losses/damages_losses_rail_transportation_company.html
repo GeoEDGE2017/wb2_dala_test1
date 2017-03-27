@@ -65,34 +65,32 @@
                             </span>
                         </td>
                     </tr>
-                    <tr height="20">
-                        <td class="trhead" width="281" height="20">
-                            Incident
-                        </td>
-                        <td colspan="2" width="300">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true)"
-                                        style="width:100%;font-weight:400;" required>
+                    <tr height="43">
+                            <td class="trhead" height="43" width="156">
+                                Incident
+                            </td>
+                            <td class="trhead" colspan="2" height="43" width="63">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
 
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-
-                                <option value={{incident.id}}>{{incident.disaster_type.name}}
-                                    {{incident.reported_date_time}}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td class="trhead" width="125">
-                            District
-                        </td>
-                        <td colspan="4" width="367">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="trhead" height="43" width="120">
+                                District
+                            </td>
+                            <td class="trhead" colspan="2" height="43" width="343">
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                    </tr>
+                                    <option value="" selected>Select District</option>
+                                </select>
+                            </td>
+                        </tr>
                      <tr height="20">
                         <td class="trhead" width="281" height="20">
                             Company
@@ -185,7 +183,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85"  ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss)">
+                            <td width="85"  ng-model="dlMovingAstLoss.tot_damages" ng-bind="dlMovingAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss)">
 
                             </td>
                         </tr>
@@ -226,7 +224,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlEquipMachineryAstLoss)">
+                            <td width="85" ng-model="dlEquipMachineryAstLoss.tot_damages" ng-bind="dlEquipMachineryAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlEquipMachineryAstLoss)">
 
                             </td>
                         </tr>
@@ -276,7 +274,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss)">
+                            <td width="85" ng-model="dlMatSuppliesAstLoss.tot_damages" ng-bind="dlMatSuppliesAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss)">
 
                             </td>
                         </tr>
@@ -316,7 +314,7 @@
                             </td>
                             <td class="tdpa" colspan="3">
                             </td>
-                            <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss)">
+                            <td width="85" ng-model="dlStructuresAstLoss.tot_damages" ng-bind="dlStructuresAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss)">
 
                             </td>
                         </tr>
@@ -420,9 +418,9 @@
                         </td>
                         <td width="125" ng-model="dlBuildingAstLoss.no_of_partially_damaged"
                             ng-bind="dlBuildingAstLoss.no_of_partially_damaged =
-                        dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss[0].no_of_tot_destroyed +
-                        dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss[1].no_of_tot_destroyed +
-                        dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss[2].no_of_tot_destroyed">
+                        dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss[0].no_of_partially_damaged +
+                        dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss[1].no_of_partially_damaged +
+                        dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss[2].no_of_partially_damaged">
                         </td>
                         <td class="tdpa" width="112">
                         </td>
@@ -430,7 +428,7 @@
                         </td>
                         <td class="tdpa" width="85">
                         </td>
-                        <td width="85" ng-bind="calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss)">
+                        <td width="85"  ng-model="dlBuildingAstLoss.tot_damages" ng-bind="dlBuildingAstLoss.tot_damages = calTotal($parent.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss)">
 
                         </td>
                     </tr>

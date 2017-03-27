@@ -158,145 +158,147 @@
                             Losses
                         </td>
                     </tr>
-                    <!--<tr class="tdpa" height="20">-->
-                        <!--<td width="298" height="20">-->
-                            <!--NWSDB Commercial Water Supply-->
-                        <!--</td>-->
-                        <!--<td width="98">-->
-                        <!--</td>-->
-                        <!--<td width="98">-->
-                        <!--</td>-->
-                        <!--<td width="98">-->
-                        <!--</td>-->
-                        <!--<td colspan="2" width="196">-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20" height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6" ng-init="getTotal(key)">-->
-                        <!--<td class="tdpa" width="298" height="20" ng-bind="key">-->
+                    <tr class="tdpa" height="20">
+                        <td width="298" height="20">
+                            NWSDB Commercial Water Supply
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td colspan="2" width="196">
+                        </td>
+                    </tr>
+                    <tr height="20" height="20" ng-repeat="(key, value) in dlWaterSupplySumNat.water_supply.Table_7" ng-init="getTotal(key)">
+                        <td class="tdpa" width="298" height="20" ng-bind="key">
 
-                        <!--</td>-->
-                        <!--<td width="107" ng-bind="data.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg">-->
+                        </td>
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlcwTotDmgNational[0].total_dmgs">
 
-                        <!--</td>-->
-                        <!--<td width="107" ng-bind="data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1">-->
+                        </td>
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year1">
 
-                        <!--</td>-->
-                        <!--<td width="107" ng-bind="data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2">-->
+                        </td>
+                        <td width="107" ng-bind="data.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year2">
 
-                        <!--</td>-->
-                        <!--<td colspan="2" width="214"-->
-                            <!--ng-bind="data.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg +-->
-                            <!--data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1 +-->
-                            <!--data.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2">-->
+                        </td>
+                        <td colspan="2" width="214"
+                            ng-bind="data.water_supply.Table_7[key].DlcwTotDmgNational[0].total_dmgs +
+                            data.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year1+
+                            data.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year2">
 
-                        <!--</td>-->
-                    <!--</tr>-->
+                        </td>
+                    </tr>
 
-                    <!--<tr height="20" height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6" >-->
-                        <!--<td class="boldash" width="298" height="20">-->
-                            <!--Total - Commercial Water Supply-->
-                        <!--</td>-->
+                    <tr height="20" height="20" ng-repeat="(key, value) in dlWaterSupplySumNat.water_supply.Table_7" >
+                        <td class="boldash" width="298" height="20">
+                            Total - Commercial Water Supply
+                        </td>
 
-                        <!--{% verbatim %}-->
-                        <!--<td width="98" ng-model="totalDamages" ng-bind="totalDamages= {{'totalDamages'+key}}">-->
+                        {% verbatim %}
+                        <td width="98" ng-model="totalDamages" ng-bind="totalDamages= {{'totalDamages'+key}}">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
+                        </td>
+                        {% endverbatim %}
 
-                        <!--{% verbatim %}-->
-                        <!--<td width="98" ng-model="totalLossYear1" ng-bind="totalLossYear1= {{'totalLossYear1'+key}}">-->
+                        {% verbatim %}
+                        <td width="98" ng-model="totalLossYear1" ng-bind="totalLossYear1= {{'totalLossYear1'+key}}">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98" ng-model="totalLossYear2" ng-bind="totalLossYear2= {{'totalLossYear2'+key}}">-->
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="98" ng-model="totalLossYear2" ng-bind="totalLossYear2= {{'totalLossYear2'+key}}">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98" ng-model="total" ng-bind="tot">-->
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="98" colspan="2" ng-model="total" ng-bind="tot">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                    <!--</tr>-->
-                    <!--<tr class="tdpa" height="20">-->
-                        <!--<td width="298" height="20">-->
-                            <!--Rural Water Supply-->
-                        <!--</td>-->
-                        <!--<td width="98">-->
-                        <!--</td>-->
-                        <!--<td width="98">-->
-                        <!--</td>-->
-                        <!--<td width="98">-->
-                        <!--</td>-->
-                        <!--<td colspan="2" width="196">-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6" ng-init="getTotal(key)">-->
-                        <!--<td class="tdpa" width="298" height="20" ng-bind="key">-->
+                        </td>
+                        {% endverbatim %}
+                    </tr>
+                    <tr class="tdpa" height="20">
+                        <td width="298" height="20">
+                            Rural Water Supply
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td width="98">
+                        </td>
+                        <td colspan="2" width="196">
+                        </td>
+                    </tr>
+                    <tr height="20" ng-repeat="(key, value) in dlWaterSupplySumNat.water_supply.Table_7" ng-init="getTotal(key)">
+                        <td class="tdpa" width="298" height="20" ng-bind="key">
 
-                        <!--</td>-->
-                        <!--<td width="98" ng-bind="data.water_supply.Table_6[key].DlRuralTotDmgDistrict[0].tot_damages">-->
+                        </td>
+                        <td width="98" ng-bind="data.water_supply.Table_7[key].DlRuralTotDmgNational[0].tot_damages">
 
-                        <!--</td>-->
+                        </td>
 
-                         <!--<td width="98" ng-bind="data.water_supply.Table_6[key].DlRuralTotLosDistrict[0].tot_los">-->
+                         <td width="98" ng-bind="data.water_supply.Table_7[key].DlRuralTotLosNational[0].tot_los">
 
-                        <!--</td>-->
-                        <!--<td class="tdpa" width="98">-->
-                        <!--</td>-->
-                        <!--<td colspan="2" width="196" ng-bind="data.water_supply.Table_6[key].DlRuralTotDmgDistrict[0].tot_damages + data.water_supply.Table_6[key].DlRuralTotLosDistrict[0].tot_los">-->
+                        </td>
+                        <td class="tdpa" width="98">
+                        </td>
+                        <td colspan="2" width="196"
+                            ng-bind="data.water_supply.Table_7[key].DlRuralTotDmgNational[0].tot_damages +
+                            data.water_supply.Table_7[key].DlRuralTotLosNational[0].tot_los">
 
-                        <!--</td>-->
-                    <!--</tr>-->
+                        </td>
+                    </tr>
 
-                    <!--<tr height="20" ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">-->
-                        <!--<td class="boldash" width="298" height="20" >-->
-                            <!--Total - Rural Water Supply-->
-                        <!--</td>-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98" ng-model="ruralDamgetot" ng-bind="ruralDamgetot= {{'ruraltotalDamage'+key}}">-->
+                    <tr height="20" ng-repeat="(key, value) in dlWaterSupplySumNat.water_supply.Table_7">
+                        <td class="boldash" width="298" height="20" >
+                            Total - Rural Water Supply
+                        </td>
+                        {% verbatim %}
+                        <td width="98" ng-model="ruralDamgetot" ng-bind="ruralDamgetot= {{'ruraltotalDamage'+key}}">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98" ng-model="ruralLosstot" ng-bind="ruralLosstot= {{'ruralLosstot'+key}}">-->
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="98" ng-model="ruralLosstot" ng-bind="ruralLosstot= {{'ruralLosstot'+key}}">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                        <!--<td class="tdpa" width="98">-->
-                        <!--</td>-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98"  ng-bind="ruraltot">-->
+                        </td>
+                        {% endverbatim %}
+                        <td class="tdpa" width="98">
+                        </td>
+                        {% verbatim %}
+                        <td width="98"  colspan="2" ng-bind="ruraltot">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                    <!--</tr>-->
-                    <!--<tr height="20">-->
-                        <!--<td class="tdpa" width="298" height="20">-->
-                            <!--GRAND TOTAL-->
-                        <!--</td>-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98"  ng-bind="grandDamge">-->
+                        </td>
+                        {% endverbatim %}
+                    </tr>
+                    <tr height="20">
+                        <td class="boldash" width="298" height="20">
+                            GRAND TOTAL
+                        </td>
+                        {% verbatim %}
+                        <td width="98"  ng-bind="grandDamge">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98"  ng-bind="grandLossYear1">-->
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="98"  ng-bind="grandLossYear1">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98"  ng-bind="grandLossYear2">-->
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="98"  ng-bind="grandLossYear2">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                        <!--{% verbatim %}-->
-                        <!--<td width="98"  ng-bind="grandTot">-->
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="98" colspan="2" ng-bind="grandTot">
 
-                        <!--</td>-->
-                        <!--{% endverbatim %}-->
-                    <!--</tr>-->
+                        </td>
+                        {% endverbatim %}
+                    </tr>
                     </tbody>
                 </table>
                 <div class="pull-right">

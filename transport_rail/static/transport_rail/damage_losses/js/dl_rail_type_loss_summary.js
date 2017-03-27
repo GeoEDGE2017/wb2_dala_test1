@@ -67,7 +67,7 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
     }
 
     $scope.saveDlData = function(form) {
-        alert($scope.incident);
+
         $scope.submitted = true;
             $http({
                 method: 'POST',

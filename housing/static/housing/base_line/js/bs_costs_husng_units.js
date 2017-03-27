@@ -108,4 +108,34 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
             })
         }
     }
+
+    $scope.bsHsDataEdit = function(form)
+    {
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_2',
+              'sector': 'housing',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date} }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsCostsHusngUnits = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function()
+    {
+        $scope.is_edit = false;
+        $scope.bsCostsHusngUnits = init_data;
+    }
+
+
 }])

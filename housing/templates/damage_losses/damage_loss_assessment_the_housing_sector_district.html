@@ -34,11 +34,29 @@
                         <col width="93"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead" height="19">
-                        <td height="19" width="166">
-                            District
+                    <tr class="trhead1">
+                        <td colspan="" style="padding-right:5px;text-align:right;">
+                            Incident
                         </td>
-                        <td colspan="7" height="19" width="647">
+                        <td colspan="4" style="font-weight:normal;">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td colspan="" style="padding-left:5px;"> Name of District</td>
+                        <td colspan="4" style="">
+                            <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false)" required>
+                                <option value="" selected>Select District</option>
+                            </select>
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">

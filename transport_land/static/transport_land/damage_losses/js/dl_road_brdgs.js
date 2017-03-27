@@ -424,9 +424,14 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-    if(value.type_bridges != 'Total')
-//      console.log('hi',value.type_bridges);
+    if((value.type_bridges != 'Total') &&
+       (value.type_culverts != 'Total') &&
+       (value.type_retain_walls != 'Total') &&
+       (value.type_drains !='Total') &&
+       (value.type_drains !='TOTAL DAMAGES') ){
+      console.log(value);
       finaltotal = finaltotal + value.damages ;
+      }
     })
       console.log(finaltotal);
     return finaltotal;

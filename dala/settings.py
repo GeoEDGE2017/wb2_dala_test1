@@ -146,7 +146,7 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=other_government'
+        #     'options': '-c search_path=transport_rail'
         # },
 
         'NAME': 'new',
@@ -1216,11 +1216,17 @@ TABLE_PROPERTY_MAPPER = {
     'transport_rail': {
         'Table_1': {
 
+            'BsTotEmpRailCompny':
+                ['total_emp', 'particulars', 'no_of_male', 'no_of_female', 'id'],
             'BsMovingAst':
                 ['asset',
                  'avg_replace_cost',
                  'avg_repair_cost',
                  'id'],
+            'BsIncAstRailIncome':
+                ['annual_income',
+                 'id'],
+
             'BsEquipMachineryAst':
                 ['asset',
                  'avg_replace_cost',
@@ -1244,6 +1250,48 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_cost_floor',
                 'id'
             ],
+        },
+        'Table_2': {
+            'DlMovingAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id'
+                 ],
+            'DlEquipMachineryAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id',
+                 ],
+            'DlMatSuppliesAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id',
+                 ],
+            'DlStructuresAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id',
+                 ],
+            'DlBuildingAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_tot_destroyed_sqr_meters',
+                 'no_of_partially_damaged',
+                 'no_of_partially_damaged_roof',
+                 'no_of_partially_damaged_wall',
+                 'no_of_partially_damaged_floor',
+                 'tot_damages',
+                 'id',
+                 ],
+
         },
         'Table_3': {
 
@@ -2614,6 +2662,10 @@ TABLE_PROPERTY_MAPPER = {
             'DlcwNumAfNational': ['tot_dmg_residential', 'tot_dmg_commercial', 'tot_dmg_industrial', 'tot_dmg_others',
                                   'tot_dmg_total'],
             'DlRuralNumAfNational': ['type_water_supply', 'tot_num_fam_aff'],
+            'DlcwTotDmgNational': ['total_dmgs'],
+            'DlcwTotLosNational': ['tot_los_year1', 'tot_los_year2'],
+            'DlRuralTotDmgNational': ['type_water_supply', 'tot_damages'],
+            'DlRuralTotLosNational': ['tot_los'],
 
         }
     },
@@ -2635,23 +2687,47 @@ TABLE_PROPERTY_MAPPER = {
             'DlInfLosses': ['los_type', 'val_los_year1', 'val_los_year2', 'tol_losses', 'id'],
 
         },
-        'Table_4':{
+        'Table_4': {
             'DlDmgBusDistrict': ['tot_damages', 'assets', 'ownership', 'business'],
             'DlLosBusDistrict': ['los_year1', 'los_year2', 'los_type', 'ownership', 'business'],
             'DlDmgInfDistrict': ['sum', 'ownership', 'inf_type'],
             'DlLosInfDistrict': ['tot_year1', 'tot_year2', 'ownership', 'inf_type']
 
         },
-        'Table_5':{
+        'Table_5': {
             'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],
             'DlDmgbusTotDistrict': ['tot_damages', 'ownership'],
             'DlLosbusTotDistrict': ['los_year1', 'los_year2', 'ownership'],
             'DlDmgInfTotDistrict': ['sum', 'ownership']
         },
-        'Table_6':{
+        'Table_6': {
             'DlDmgInfTotNational': ['sum', 'ownership'],
             'DlLosInfTotNational': ['tot_year1', 'tot_year2', 'ownership']
         }
+
+    },
+    'housing': {
+        'Table_1': {
+            'BhClfPermanent': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
+                               'ang_num_occ_female', 'avg_num_occ_male', 'avg_period_construct', 'avg_period_repair',
+                               'id'],
+            'BhClfSmiPermanent': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
+                                  'ang_num_occ_female', 'avg_num_occ_male', 'avg_period_construct', 'avg_period_repair',
+                                  'id'],
+            'BhClfImprovised': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
+                                'ang_num_occ_female', 'avg_num_occ_male', 'avg_period_construct', 'avg_period_repair',
+                                'id'],
+
+        },
+        'Table_2': {
+            'BhClfPermanentCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
+                                   'avg_repair_cost_floor', 'avg_val_content', 'id'],
+            'BhClfImprovisedCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
+                                    'avg_repair_cost_floor', 'avg_val_content', 'id'],
+            'BhClfSmiPermanentCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
+                                      'avg_repair_cost_floor', 'avg_val_content', 'id'],
+
+        },
 
     }
 

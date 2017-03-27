@@ -129,4 +129,34 @@ bsHealthStatusApp.controller('BsHousingDisController', function ($scope, $http) 
             })
         }
     }
+
+
+   $scope.bsHsDataEdit = function(form)
+    {
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_1',
+              'sector': 'housing',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date} }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsHousingDis = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function()
+    {
+        $scope.is_edit = false;
+        $scope.bsHousingDis = init_data;
+    }
+
 });

@@ -76,7 +76,7 @@ def fetch_business_types(request):
     print "before getting objects"
     business_types = BsTouBusiness.objects.all()
     print "got objects"
-    business_types_json = business_types.values('id', 'business')
+    business_types_json = business_types.values('business').distinct()
     print "converted"
 
     return HttpResponse(
@@ -96,7 +96,7 @@ def fetch_tourism_infrastructure_types(request):
     # from django.db.models import Q  ## for not operator
 
     inf_types = InfType.objects.all()
-    inf_types_json = inf_types.values('infrastructure')
+    inf_types_json = inf_types.values('infrastructure').distinct()
 
     return HttpResponse(
         json.dumps(list(inf_types_json)),
@@ -529,6 +529,7 @@ def dl_fetch_edit_data(request):
 
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data):
+    print "Edit d"
     for sector in table_data:
 
         sub_app_name = sector + '.damage_losses'

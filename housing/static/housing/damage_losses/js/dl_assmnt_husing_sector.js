@@ -10,6 +10,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    var finaltotal = 0;
 
     var init_data = {
         'housing': {
@@ -338,7 +339,13 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures','BsAstAirEmployment','BsAstAirOthers'],
+                    'db_tables':
+                    ['BhClfPermanent',
+                    'BhClfSmiPermanent',
+                    'BhClfImprovised',
+                    'BhClfPermanentCost',
+                    'BhClfImprovisedCost',
+                    'BhClfSmiPermanentCost'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -355,7 +362,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(data);
-                generateRefencedData();
+
             }, function errorCallback(response) {
 
             });
@@ -390,5 +397,147 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
             });
         }
     }
+
+
+        $scope.calTotal=function(arr,property){
+        var finaltotal = 0;
+
+        angular.forEach(arr, function(value, key) {
+        if(value.assets !='Total'){
+         finaltotal = finaltotal + value[property] ;
+         }
+        })
+          console.log(finaltotal);
+        return finaltotal;
+        }
+
+
+   $scope.calTotTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlAssmntHusing.housing.Table_3.DlDesPermanent;
+    var array2 =$scope.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent;
+    var array3 =$scope.dlAssmntHusing.housing.Table_3.DlDesImprovised;
+
+
+    angular.forEach(array1, function(value, key) {
+     if(value.assets !='Total'){
+     finaltotal1 = finaltotal1 + value.tot_num_houses ;
+     }
+    })
+    angular.forEach(array2, function(value, key) {
+     if(value.assets !='Total'){
+     finaltotal2 = finaltotal2 + value.tot_num_houses ;
+     }
+    })
+    angular.forEach(array3, function(value, key) {
+     if(value.assets !='Total'){
+     finaltotal3 = finaltotal3 + value.tot_num_houses ;
+     }
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
+    $scope.tot=grantot;
+    return grantot;
+    }
+
+   $scope.calGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlAssmntHusing.housing.Table_3.DlDesPermanent;
+    var array2 =$scope.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent;
+    var array3 =$scope.dlAssmntHusing.housing.Table_3.DlDesImprovised;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.damages ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.damages ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.damages ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
+    return grantot;
+    }
+
+   $scope.calPartialTotTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+
+    var grandparttot = 0;
+
+    var array1=$scope.dlAssmntHusing.housing.Table_3.DlPdesPermanent;
+    var array2 =$scope.dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent;
+    var array3 =$scope.dlAssmntHusing.housing.Table_3.DlPdesImprovised;
+
+
+    angular.forEach(array1, function(value, key) {
+     if(value.assets !='Total'){
+     finaltotal1 = finaltotal1 + value.tot_num_houses ;
+     }
+    })
+    angular.forEach(array2, function(value, key) {
+     if(value.assets !='Total'){
+     finaltotal2 = finaltotal2 + value.tot_num_houses ;
+     }
+    })
+    angular.forEach(array3, function(value, key) {
+     if(value.assets !='Total'){
+     finaltotal3 = finaltotal3 + value.tot_num_houses ;
+     }
+    })
+
+    grandparttot = grandparttot + finaltotal1+ finaltotal2 + finaltotal3;
+    $scope.partialtot = grandparttot;
+    return grandparttot;
+
+    }
+
+   $scope.calPartialGrandTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+
+    var grantot = 0;
+
+    var array1=$scope.dlAssmntHusing.housing.Table_3.DlPdesPermanent;
+    var array2 =$scope.dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent;
+    var array3 =$scope.dlAssmntHusing.housing.Table_3.DlPdesImprovised;
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal1 = finaltotal1 + value.damages ;
+    })
+    angular.forEach(array2, function(value, key) {
+
+     finaltotal2 = finaltotal2 + value.damages ;
+    })
+    angular.forEach(array3, function(value, key) {
+
+     finaltotal3 = finaltotal3 + value.damages ;
+    })
+
+    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
+    return grantot;
+    }
+
+
+
 }]);
 

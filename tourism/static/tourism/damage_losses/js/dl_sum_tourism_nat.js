@@ -5,8 +5,9 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
 
     $scope.data;
     $scope.incident;
-    $scope.provinces = ['a', 'b'];
+    $scope.provinces;
     $scope.table;
+    $scope.provinceTotals = [];
 
 
     $scope.fetchData = function(){
@@ -64,14 +65,14 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
                 $scope.table.infrastructures[value].year1Loss = {};
                 $scope.table.infrastructures[value].year2Loss = {};
 
-//                angular.forEach($scope.data[$scope.provinces].DlDmgbusTotNationat, function(value2, key) {
-//                    $scope.table.business[value].year1Damage[value2.ownership] = value2.tot_damages;
-//                })
-//
-//                angular.forEach($scope.data[$scope.provinces].DlLosbusTotNationa, function(value2, key) {
-//                    $scope.table.business[value].year1Loss[value2.ownership] = value2.los_year1;
-//                    $scope.table.business[value].year2Loss[value2.ownership] = value2.los_year2;
-//                })
+                angular.forEach($scope.data[$scope.provinces].DlDmgBusTotNational, function(value2, key) {
+                    $scope.table.business[value].year1Damage[value2.ownership] = value2.tot_damages;
+                })
+
+                angular.forEach($scope.data[$scope.provinces].DlLosBusTotNational, function(value2, key) {
+                    $scope.table.business[value].year1Loss[value2.ownership] = value2.los_year1;
+                    $scope.table.business[value].year2Loss[value2.ownership] = value2.los_year2;
+                })
 
                 angular.forEach($scope.data[$scope.provinces].DlDmgInfTotNational, function(value2, key) {
                     $scope.table.infrastructures[value].year1Damage[value2.ownership] = value2.sum;
@@ -94,6 +95,33 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
         else{
             console.log("data null");
         }
-        }
+   }
+
+        $scope.getSum3 = function(val1, val2, val3){
+        var final_val = 0;
+        if(!isNaN(val1)) final_val += val1;
+        if(!isNaN(val2)) final_val += val2;
+        if(!isNaN(val3)) final_val += val3;
+
+        return final_val;
+    }
+
+    $scope.getGrandTotCol = function(col){
+        var final_val = 0;
+
+        angular.forEach($scope.provinceTotals, function(value, key) {
+
+            final_val += $scope.getConvertedVal( value[col] );
+        })
+
+        return final_val;
+    }
+
+        $scope.getConvertedVal = function(val){
+        if(!val)    return 0;
+        if(isNaN(val)) return 0;
+        return val;
+    }
+
 
 });

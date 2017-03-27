@@ -17,7 +17,7 @@ def dl_formal_sector(request):
         'incidents': incidents,
         'module': 'industry_services'
     }
-
+    # /home/chamupathi/DALA/wb1_dala/industry_services/templates/damage_losses/damages_losses_firm_in_the_formal_sector.html
     return render(request, 'damage_losses/damages_losses_firm_in_the_formal_sector.html', context)
 
 

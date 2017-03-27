@@ -409,12 +409,57 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
             }
         }
 
-        //clear the data from table
+
+        $scope.dataEdit = function() {
+
+        if($scope.district && $scope.incident && $scope.selectedFirm && $scope.ownership && $scope.selectedType){
+                    $scope.is_edit = true;
+        $scope.submitted = true;
+
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'tourism',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'firm_id':$scope.selectedFirm.id,
+                        'ownership':$scope.ownership,
+                        'tou_business':$scope.selectedType.business
+
+                    }
+                }),
+            }).success(function(data) {
+                console.log("edit", data);
+                // handling response from server if data are not available in this
+                if((data.tourism.Table_2.DlBusLosses.length == 0) ||
+                    (data.tourism.Table_2.DlNumEmpBusiness.length == 0) ||
+                    (data.tourism.Table_2.DmgBusAstEquipment.length == 0) ||
+                    (data.tourism.Table_2.DmgBusAstInventories.length == 0) ||
+                    (data.tourism.Table_2.DmgBusAstMachinery.length == 0) ||
+                    (data.tourism.Table_2.DmgBusAstStructures.length == 0) ||
+                    (data.tourism.Table_2.DmgBusAstVehicle.length == 0)
+                     ){
+                    $scope.is_edit = false;
+                        // do nothing or display msg that data are not available
+                    }
+                else{
+                        $scope.dl_tourism_business = data;
+                    }
+            })
+
+        }
+        else{
+            alert("enter Incident, District, Firm, ownership, Type")
+        }
+
+        }
         $scope.cancelEdit = function()
         {
-            //console.log("init")
-            $scope.is_edit = false;
-            $scope.bs_tourism_facilities = angular.copy(init_data);
+             $scope.is_edit = false;
+             $scope.clear();
         }
 
 //        $scope.AppendGrandTotalToSubTable = function (subtable, colname){

@@ -197,7 +197,6 @@ $scope.saveBsData = function()
 {
 $scope.submitted = true;
 
-console.log($scope.district + '-' + $scope.bs_date );
  $http({
     method: "POST",
     url: "/bs_save_data",
@@ -213,7 +212,10 @@ console.log($scope.district + '-' + $scope.bs_date );
      $scope.is_edit = false;
 
      if(data == 'False')
-      $scope.is_valid_data = false;
+     {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
      else
       $("#modal-container-239453").modal('show');
 

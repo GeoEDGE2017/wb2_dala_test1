@@ -113,7 +113,10 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
                     $scope.is_edit = false;
 
                     if (data == 'False')
-                        $scope.is_valid_data = false;
+                        {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
                     else
                         $("#modal-container-239453").modal('show');
 
@@ -123,6 +126,54 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
                 console.log("invalid");
             }
         }
+
+        $scope.dataEdit = function() {
+
+        if(!($scope.district && $scope.bs_date)){
+            alert("please select date and district");
+            return;
+        }
+
+        $scope.is_edit = true;
+        $scope.submitted = true;
+
+            $http({
+                method: "POST",
+                url: '/bs_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'industry_services',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+
+                    }
+                }),
+            }).success(function(data) {
+
+                console.log("data" , data);
+                // handling response from server if data are not available in this
+                if((data.industry_services.Table_2.BsNumBusSector.length == 0)
+                     ){
+                    $scope.is_edit = false;
+                        // do nothing or display msg that data are not available
+                    }
+                else{
+                        $scope.bs_ind_ser_info_informl = data;
+                    }
+            })
+
+        }
+        $scope.clear = function(){
+               $scope.bs_ind_ser_info_informl = angular.copy(init_data);
+        }
+
+        $scope.cancelEdit = function()
+        {
+             $scope.is_edit = false;
+             $scope.clear();
+        }
+
 
 
 }])

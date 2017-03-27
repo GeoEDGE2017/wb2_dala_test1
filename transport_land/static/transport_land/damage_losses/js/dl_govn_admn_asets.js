@@ -301,8 +301,9 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
         var finaltotal = 0;
          console.log(arr);
         angular.forEach(arr, function(value, key) {
-
+        if(value.assets !='Total'){
          finaltotal = finaltotal + value.damages ;
+         }
         })
           console.log(finaltotal);
         return finaltotal;
@@ -345,8 +346,9 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 
 
     angular.forEach(array1, function(value, key) {
-
+     if(value.assets !='TOTAL LOSSES'){
      finaltotal1 = finaltotal1 + value.total ;
+     }
     })
 
     grantot = grantot + finaltotal1;

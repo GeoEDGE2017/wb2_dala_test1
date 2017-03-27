@@ -11,6 +11,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.selectedInfrastructure;
     $scope.selectedType;
     $scope.ownership;
+    $scope.new_infra;
     $scope.is_edit = false;
     $scope.inf_types = [];
     $scope.infrastructures = [];
@@ -280,5 +281,81 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
             }
         }
+
+        $scope.dataEdit = function() {
+
+        $scope.is_edit = true;
+        $scope.submitted = true;
+
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'tourism',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'inf_id': $scope.selectedFirm,
+                        'inf_type_id': $scope.inf_type_id,
+                        'ownership': $scope.ownership
+
+                    }
+                }),
+            }).success(function(data) {
+                console.log("edit", data);
+                // handling response from server if data are not available in this
+                if((data.tourism.Table_3.DlInfLosses.length == 0) ||
+                    (data.tourism.Table_3.DmgInfAssets.length == 0)
+                     ){
+                    $scope.is_edit = false;
+                        // do nothing or display msg that data are not available
+                    }
+                else{
+                        $scope.dl_tourism_infrs = data;
+                    }
+            })
+
+        }
+        $scope.cancelEdit = function()
+        {
+             $scope.is_edit = false;
+             $scope.clear();
+        }
+
+        $scope.saveInfrastructure = function(form) {
+        if(!$scope.district){
+            alert("please select an Incident and a District");
+            return;
+        }
+        if(form.$valid) {
+        $scope.new_infra.ownership = $scope.ownership;
+
+            $http({
+                method: "POST",
+                url: "/add_entity_with_district",
+                data: angular.toJson({
+                    'model': 'Infrastructure',
+                    'model_fields': $scope.new_infra,
+                     'is_edit' : false,
+                     'sector':'tourism',
+                     'district_id' : $scope.district.district__id
+                }),
+
+            }).success(function(data) {
+
+                console.log(data);
+                $scope.new_infra.id = data;
+                if(data) {
+
+                    $scope.infrastructures.push($scope.new_infra);
+                    //console.log($scope.new_firm);
+                }
+
+                $("#modal-container-218029").modal('hide');
+            })
+        }
+    }
+
 
 })

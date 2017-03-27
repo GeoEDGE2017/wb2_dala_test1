@@ -204,7 +204,10 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
                 $scope.is_edit = false;
 
                 if (data == 'False')
+                    {
+                    $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
+                }
                 else
                     $("#modal-container-239453").modal('show');
 

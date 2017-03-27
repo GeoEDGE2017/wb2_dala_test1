@@ -168,7 +168,10 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
             }).then(function successCallback(response) {
                 console.log(response);
                 if(response.data == 'False')
+                    {
+                    $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
+                }
                 else
                     $("#modal-container-239453").modal('show');
 
@@ -214,5 +217,33 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
             console.log(data);
             $scope.companies = data;
         })
+    }
+
+    $scope.bsHsDataEdit = function(form)
+    {
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_1',
+              'sector': 'transport_rail',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.baselineDate} }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsIncomeRailCompany = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function()
+    {
+        $scope.is_edit = false;
+        $scope.bsIncomeRailCompany = init_data;
     }
 });

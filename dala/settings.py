@@ -94,9 +94,9 @@ INSTALLED_APPS = [
     # 'telecommunication',
     # 'telecommunication.base_line',
     # 'telecommunication.damage_losses',
-    # 'industry_services',
-    # 'industry_services.base_line',
-    # 'industry_services.damage_losses'
+    'industry_services',
+    'industry_services.base_line',
+    'industry_services.damage_losses'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -139,7 +139,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=health,public,other_government,education,mining,'
+        #     'options': '-c search_path=industry_services'
+        #                   'health,public,other_government,education,mining,'
         #                'transport_rail,transport_water,transport_land,transport_air,'
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
@@ -2621,9 +2622,27 @@ TABLE_PROPERTY_MAPPER = {
             'DlLosBusTotNational': ['los_year1', 'los_year2', 'ownership'],
         }
 
-    }
+    },
+    'industry_services': {
+        'Table_1': {
+            'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro', 'num_small', 'id' ],
+            'BsFrmNumBusServices': ['service', 'num_male','num_female',  'num_medium', 'num_micro', 'num_small', 'id'],
+        },
+        'Table_2': {
+            'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],
+        },
+        'Table_3': {
 
+        },
+        'Table_4': {
+             'DlInfDmgTypBusiness': ['assets', 'repair_val_ast_damaged', 'replace_val_ast_destroyed', 'tot_damages', 'tot_num_bus_affected', 'id'],
+             'DlInfLosTypFood': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+             'DlInfLosTypOther': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+             'DlInfLosTypServices': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+             'DlInfLosTypTrading': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+        }
 
+    },
 
 }
 

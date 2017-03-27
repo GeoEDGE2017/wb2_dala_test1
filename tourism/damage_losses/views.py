@@ -63,11 +63,14 @@ def dl_sum_tourism_pov(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    # assuming a district will have maximum 5 districts
+    district_numbers = [1, 2, 3, 4, 5, ]
 
     context = {
         'districts': filtered_districts,
         'incidents': incidents,
-        'module': 'tourism'
+        'module': 'tourism',
+        'district_numbers': district_numbers,
     }
 
     return render(request, 'damage_losses/summary_of_damages_losses_province.html', context)
@@ -80,11 +83,13 @@ def dl_sum_tourism_nat(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    province_numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
     context = {
         'districts': filtered_districts,
         'incidents': incidents,
-        'module': 'tourism'
+        'module': 'tourism',
+        'province_numbers': province_numbers,
     }
 
     return render(request, 'damage_losses/summary_of_damages_losses_nationwide.html', context)

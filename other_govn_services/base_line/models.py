@@ -18,7 +18,7 @@ class BdSessionKeys(models.Model):
 
 
 class Ownership(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
+    ownership_name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

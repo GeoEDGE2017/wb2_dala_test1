@@ -78,7 +78,7 @@ urlpatterns = [
     url(r'^housing/', include('housing.urls', namespace='housing')),
 
     # telecommunication
-    # url(r'^telecommunication/', include('telecommunication.urls', namespace='telecommunication')),
+    url(r'^telecommunication/', include('telecommunication.urls', namespace='telecommunication')),
 
     # tourism
     url(r'^tourism/', include('tourism.urls', namespace='tourism')),

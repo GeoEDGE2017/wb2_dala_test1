@@ -1,4 +1,4 @@
-
+//Table 1
 var bsHealthStatusApp = angular.module('bsEduFacilitiesApp', ['ui.bootstrap', 'popoverToggle', 'underscore']);
 
 bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $http, $parse, _) {

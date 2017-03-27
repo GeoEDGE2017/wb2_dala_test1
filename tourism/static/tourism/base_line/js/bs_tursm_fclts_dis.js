@@ -14,7 +14,8 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         var init_data = {
         'tourism': {
             'Table_1': {
-                'BsTouBusiness': [{
+                'BsTouBusiness': [
+                {
                     business: "Hotels",
                     num_bis_private: null,
                     num_bis_public: null,
@@ -52,7 +53,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                     num_empfemale: null,
                     }],
 
-                    BsCultSites: [
+                    'BsCultSites': [
                     {
                         site: "Temples",
                         num_bis_private: null,
@@ -62,7 +63,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                     }
                     ],
 
-                    BsNatFormation: [
+                    'BsNatFormation': [
                     {
                         site: "Waterfalls",
                         num_bis_private: null,
@@ -175,12 +176,52 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         }
 
         //clear the data from table
+        $scope.clear = function()
+        {
+            console.log("init")
+            $scope.is_edit = false;
+            $scope.bs_tourism_facilities = angular.copy(init_data);
+
+        }
+
+        $scope.bsTouDataEdit = function() {
+
+        $scope.is_edit = true;
+        $scope.submitted = true;
+
+            $http({
+                method: "POST",
+                url: '/bs_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'tourism',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+
+                    }
+                }),
+            }).success(function(data) {
+
+                // handling response from server if data are not available in this
+                if((data.tourism.Table_1.BsCultSites.length == 0) ||
+                    (data.tourism.Table_1.BsNatFormation.length == 0) ||
+                    (data.tourism.Table_1.BsTouBusiness.length == 0) ){
+                    $scope.is_edit = false;
+                        // do nothing or display msg that data are not available
+                    }
+                else{
+                        $scope.bs_tourism_facilities = data;
+                    }
+            })
+
+        }
         $scope.cancelEdit = function()
         {
-            //console.log("init")
-            $scope.is_edit = false;
-            $scope.bs_tourism_facilities = init_data;
+             $scope.is_edit = false;
+             $scope.bs_tourism_facilities = angular.copy(init_data);
         }
+
 
     }]);
 

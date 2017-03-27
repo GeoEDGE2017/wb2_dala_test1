@@ -29,7 +29,7 @@ class DlMovingAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    company = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
+    company_id = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -46,7 +46,7 @@ class DlEquipMachineryAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    company = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
+    company_id = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -63,7 +63,7 @@ class DlMatSuppliesAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    company = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
+    company_id = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -80,7 +80,7 @@ class DlStructuresAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    company = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
+    company_id = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -101,7 +101,7 @@ class DlBuildingAstLoss(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    company = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
+    company_id = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -117,6 +117,7 @@ class DlTypeLos(models.Model):
     lmd = models.TimeField(blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    company_id = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)
 
     class Meta:
         managed = False

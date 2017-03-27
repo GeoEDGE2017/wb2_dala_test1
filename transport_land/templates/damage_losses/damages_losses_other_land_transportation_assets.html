@@ -209,7 +209,8 @@
                                 <td class="tdpa" colspan="2" height="19" width="126">
                                     <br/>
                                 </td>
-                                <td colspan="2" height="19" width="126" ng-bind="calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles)">
+                                <td colspan="2" height="19" width="126" ng-model="dlOtherDmgsPvehicles.tot_damages_pvt"
+                                    ng-bind="dlOtherDmgsPvehicles.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles)">
                                 </td>
                             </tr>
                             <!--Bus Companies-->
@@ -295,9 +296,11 @@
                                 <td class="tdpa" height="19" width="148">
                                     <br/>
                                 </td>
-                                <td colspan="2" height="19" width="126" ng-bind="calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)">
+                                <td colspan="2" height="19" width="126" ng-model="dlOtherDmgsBcompanies.tot_damages_pub"
+                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)">
                                 </td>
-                                <td colspan="2" height="19" width="126" ng-bind="calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)">
+                                <td colspan="2" height="19" width="126" ng-model="dlOtherDmgsBcompanies.tot_damages_pvt"
+                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)">
                                 </td>
                             </tr>
                             <!--Taxi companies-->
@@ -383,9 +386,11 @@
                                 <td class="tdpa" height="19" width="148">
                                     <br/>
                                 </td>
-                                <td colspan="2" height="19" width="126" ng-bind="calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)">
+                                <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pub'
+                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)">
                                 </td>
-                                <td colspan="2" height="19" width="126" ng-bind="calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)">
+                                <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pvt'
+                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)">
                                 </td>
                             </tr>
                             <!--Truck Companies-->
@@ -472,11 +477,11 @@
                                 <td class="tdpa" height="19" width="148">
                                     <br/>
                                 </td>
-                                <td colspan="2" height="19" width="126"
-                                   ng-bind="calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)">
+                                <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pub'
+                                   ng-bind="dlOtherDmgsTrcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)">
                                 </td>
-                                <td colspan="2" height="19" width="126"
-                                   ng-bind="calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)">
+                                <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pvt'
+                                   ng-bind="dlOtherDmgsTrcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)">
                                 </td>
                             </tr>
                             <!--Tuk Tuk Companies-->
@@ -562,11 +567,11 @@
                                 <td class="tdpa" height="19" width="148">
                                     <br/>
                                 </td>
-                                <td colspan="2" height="19" width="126"
-                                    ng-bind="calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)">
+                                <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pub'
+                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)">
                                 </td>
-                                <td colspan="2" height="19" width="126"
-                                    ng-bind="calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)">
+                                <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pvt'
+                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)">
                                 </td>
                             </tr>
                             <tr height="19">
@@ -739,7 +744,8 @@
                             ng-if="dlOtherLosPub.tr_company == 'Total'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPub.tr_company">
                             </td>
-                            <td height="19" width="63" ng-model="dlOtherLosPub.fi_year_1" ng-bind="dlOtherLosPub[$index].fi_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.fi_year_1"
+                                ng-bind="dlOtherLosPub.fi_year_1=
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_1 +
@@ -747,14 +753,15 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].fi_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPub.fi_year_2" ng-bind="dlOtherLosPub[$index].fi_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.fi_year_2" ng-bind="dlOtherLosPub.fi_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].fi_year_2 ">
                             </td>
-                            <td height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_1" ng-bind="dlOtherLosPub[$index].cl_debris_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_1"
+                                ng-bind="dlOtherLosPub.cl_debris_year_1 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_1 +
@@ -762,14 +769,16 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].cl_debris_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_2" ng-bind="dlOtherLosPub[$index].cl_debris_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_2"
+                                ng-bind="dlOtherLosPub.cl_debris_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].cl_debris_year_2 ">
                             </td>
-                            <td height="19" width="63" ng-model="dlOtherLosPub.hoc_year_1" ng-bind="dlOtherLosPub[$index].hoc_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.hoc_year_1"
+                                ng-bind="dlOtherLosPub.hoc_year_1 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_1 +
@@ -777,7 +786,8 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].hoc_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPub.hoc_year_2" ng-bind="dlOtherLosPub[$index].hoc_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.hoc_year_2"
+                                ng-bind="dlOtherLosPub.hoc_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_2 +
@@ -785,7 +795,8 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].hoc_year_2 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPub.oue_year_1" ng-bind="dlOtherLosPub[$index].oue_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.oue_year_1"
+                                ng-bind="dlOtherLosPub.oue_year_1 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_1 +
@@ -793,14 +804,15 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].oue_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPub.oue_year_2" ng-bind="dlOtherLosPub[$index].oue_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPub.oue_year_2"
+                                ng-bind="dlOtherLosPub.oue_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[4].oue_year_2 ">
                             </td>
-                            <td height="19" width="63" ng-bind="calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPub)">
+                            <td height="19" width="63" ng-model="dlOtherLosPub.tot_los" ng-bind="dlOtherLosPub.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPub)">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -888,7 +900,8 @@
                             ng-if="dlOtherLosPvt.tr_company == 'Total'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company">
                             </td>
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.fi_year_1" ng-bind="dlOtherLosPvt[$index].fi_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.fi_year_1"
+                                ng-bind="dlOtherLosPvt.fi_year_1 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_1 +
@@ -896,14 +909,16 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.fi_year_2" ng-bind="dlOtherLosPvt[$index].fi_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.fi_year_2"
+                                ng-bind="dlOtherLosPvt.fi_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].fi_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_2 ">
                             </td>
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_1" ng-bind="dlOtherLosPvt[$index].cl_debris_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_1"
+                                ng-bind="dlOtherLosPvt.cl_debris_year_1 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_1 +
@@ -911,14 +926,16 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_2" ng-bind="dlOtherLosPvt[$index].cl_debris_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_2"
+                                ng-bind="dlOtherLosPvt.cl_debris_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].cl_debris_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_2 ">
                             </td>
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_1" ng-bind="dlOtherLosPvt[$index].hoc_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_1"
+                                ng-bind="dlOtherLosPvt.hoc_year_1 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_1 +
@@ -926,7 +943,8 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_2" ng-bind="dlOtherLosPvt[$index].hoc_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_2"
+                                ng-bind="dlOtherLosPvt.hoc_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_2 +
@@ -934,7 +952,8 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_2 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.oue_year_1" ng-bind="dlOtherLosPvt[$index].oue_year_1 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.oue_year_1"
+                                ng-bind="dlOtherLosPvt.oue_year_1 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_1 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_1 +
@@ -942,14 +961,15 @@
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_1 ">
                             </td>
 
-                            <td height="19" width="63" ng-model="dlOtherLosPvt.oue_year_2" ng-bind="dlOtherLosPvt[$index].oue_year_2 =
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.oue_year_2"
+                                ng-bind="dlOtherLosPvt.oue_year_2 =
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].oue_year_2 +
                             dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_2 ">
                             </td>
-                            <td height="19" width="63" ng-bind="calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt)">
+                            <td height="19" width="63" ng-model="dlOtherLosPvt.tot_los" ng-bind="dlOtherLosPvt.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt)">
                             </td>
                         </tr>
                         <!--TOTAL LOSSES-->

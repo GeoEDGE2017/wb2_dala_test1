@@ -14,181 +14,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.DlBuildingAstLoss_no_of_tot_destroyed = null;
     $scope.DlBuildingAstLoss_no_of_partially_damaged = null;
 
-//  var init_data = {
-//        'transport_rail' : {
-//            'Table_2': {
-//                'DlMovingAstLoss' :[{
-//                    asset : 'Wagon',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Engine',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Others',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                },
-//                {
-//                    asset : 'Total',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }],
-//                'DlEquipMachineryAstLoss' : [{
-//                    asset : 'Signal equipment',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                }, {
-//                    asset : 'Track machinery',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Vehicles',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Computers',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Furniture',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Others',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                },
-//                {
-//                    asset : 'Total',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }],
-//                'DlMatSuppliesAstLoss' : [{
-//                    asset : 'Fuel (Liters)',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Others',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                },
-//                {
-//                    asset : 'Total',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }],
-//                'DlStructuresAstLoss' : [{
-//                    asset : 'Tracks',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Tunnels',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//
-//                }, {
-//                    asset : 'Bridges',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset : 'Culverts',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                },{
-//                    asset : 'Total',
-//                    no_of_tot_destroyed : null,
-//                    no_of_partially_damaged : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }],
-//                'DlBuildingAstLoss': [{
-//                    asset: '1 floor',
-//                    no_of_tot_destroyed : null,
-//                    no_of_tot_destroyed_sqr_meters : null,
-//                    no_of_partially_damaged : null,
-//                    no_of_partially_damaged_roof : null,
-//                    no_of_partially_damaged_wall : null,
-//                    no_of_partially_damaged_floor : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset: '2-3 floors',
-//                    no_of_tot_destroyed : null,
-//                    no_of_tot_destroyed_sqr_meters : null,
-//                    no_of_partially_damaged : null,
-//                    no_of_partially_damaged_roof : null,
-//                    no_of_partially_damaged_wall : null,
-//                    no_of_partially_damaged_floor : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                }, {
-//                    asset: 'More than 3 floors',
-//                    no_of_tot_destroyed : null,
-//                    no_of_tot_destroyed_sqr_meters : null,
-//                    no_of_partially_damaged : null,
-//                    no_of_partially_damaged_roof : null,
-//                    no_of_partially_damaged_wall : null,
-//                    no_of_partially_damaged_floor : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//                },
-//                {
-//                    asset: 'Total',
-//                    no_of_tot_destroyed : null,
-//                    no_of_tot_destroyed_sqr_meters : null,
-//                    no_of_partially_damaged : null,
-//                    no_of_partially_damaged_roof : null,
-//                    no_of_partially_damaged_wall : null,
-//                    no_of_partially_damaged_floor : null,
-//                    tot_damages : null,
-//                    company_id:$scope.company,
-//
-//                },
-//                ],
-//            }
-//        }
-//    }
-
-
-
-
     var init_data = {
         'transport_rail' : {
             'Table_2': {
@@ -428,7 +253,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     'com_data': {
                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
-                        'company_id' : $scope.company,
+                        'company_id' : $scope.company.id,
 
                     },
                     'is_edit':$scope.is_edit
@@ -450,8 +275,9 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+     if(value.asset != 'Total'){
      finaltotal = finaltotal + value.tot_damages ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;
@@ -495,6 +321,38 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     return grantot;
     }
 
+
+    $scope.dlDataEdit = function(form){
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_2',
+    'sector':'transport_rail',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlIncomeRailCompany = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlIncomeRailCompany = init_data;
+}
 
 
 });

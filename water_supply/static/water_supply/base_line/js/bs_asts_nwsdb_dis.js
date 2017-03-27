@@ -240,4 +240,23 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         $scope.bsLandTrnsAsst = init_data;
     }
 
+
+    $scope.calGrandTotal=function(){
+    var finaltotal = 0;
+
+    var grantot = 0;
+
+    var array1 = $scope.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers;
+
+
+
+    angular.forEach(array1, function(value, key) {
+
+     finaltotal = finaltotal + (value.annual_demand  * value.rate );
+
+    })
+    grantot = finaltotal;
+    return grantot;
+    }
+
 })

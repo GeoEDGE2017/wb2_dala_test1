@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^bs_save_data$', views.bs_save_data, name='bs_save_data'),
     url(r'^fetch_entities$', views.fetch_entities, name='fetch_entities'),
     url(r'^add_entity$', views.add_entity, name='add_entity'),
+
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),
 
@@ -74,10 +75,10 @@ urlpatterns = [
     url(r'^water_supply/', include('water_supply.urls', namespace='water_supply')),
 
     # housing
-    # url(r'^housing/', include('housing.urls', namespace='housing')),
+    url(r'^housing/', include('housing.urls', namespace='housing')),
 
     # telecommunication
-    # url(r'^telecommunication/', include('telecommunication.urls', namespace='telecommunication')),
+    url(r'^telecommunication/', include('telecommunication.urls', namespace='telecommunication')),
 
     # tourism
     url(r'^tourism/', include('tourism.urls', namespace='tourism')),

@@ -72,31 +72,31 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
 
      $scope.finaltotalprivate = 0;
 
-         $scope.totaldpub = $scope.totaldpub + (
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[0].damages ?
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[0].damages : 0 ) ;
+         $scope.totaldpub = $scope.totaldpub + ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[0]?
+                         ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[0].damages ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPubNational[0].damages : 0 ):0) ;
 
-         $scope.totaldpvt = $scope.totaldpvt + parseInt(
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPvtNational[0].tot_damages_pvt ?
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPvtNational[0].tot_damages_pvt : 0 );
+         $scope.totaldpvt = $scope.totaldpvt + parseInt($scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPvtNational[0]?
+                         ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPvtNational[0].tot_damages_pvt ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlGacPvtNational[0].tot_damages_pvt : 0 ):0);
 
-         $scope.totalyear1pub = $scope.totalyear1pub + (
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_1 ?
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_1 : 0 ) ;
+         $scope.totalyear1pub = $scope.totalyear1pub + ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0]?
+                         ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_1 ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_1 : 0 ):0) ;
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt + (
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_1_pvt ?
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_1_pvt : 0 ) ;
+         $scope.totalyear1pvt = $scope.totalyear1pvt + ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0]?
+                         ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_1_pvt ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_1_pvt : 0 ):0) ;
 
-         $scope.totalyear2pub = $scope.totalyear2pub + (
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_2 ?
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_2 : 0 );
+         $scope.totalyear2pub = $scope.totalyear2pub + ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0]?
+                         ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_2 ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlYearsPubNational[0].year_2 : 0 ):0);
 
 
 
-         $scope.totalyear2pvt = $scope.totalyear2pvt + (
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_2_pub ?
-                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_2_pub : 0) ;
+         $scope.totalyear2pvt = $scope.totalyear2pvt + ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0]?
+                         ($scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_2_pub ?
+                         $scope.dlLandTransSumNat.transport_land.Table_9[key].DlOtherLosPvtNational[0].year_2_pub : 0):0) ;
 
 
          $scope.finaltotalpublic = $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;

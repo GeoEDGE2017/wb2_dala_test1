@@ -96,12 +96,8 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
     }
 
     $scope.save = function(form) {
-        alert('hi' +  $scope.district + ' - '+form.$valid);
-        console.log($scope.bsCostsOfAssetsOnTheDistrict);
         $scope.submitted = true;
         if(form.$valid) {
-            alert('hi');
-            console.log($scope.data);
             $http({
                 method : 'POST',
                 url : '/bs_save_data',
@@ -128,4 +124,34 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
             });
         }
     }
+
+      $scope.bsHsDataEdit = function(form)
+    {
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_1',
+              'sector': 'other_govn_services',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.baselineDate} }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsCostsOfAssetsOnTheDistrict = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function()
+    {
+        $scope.is_edit = false;
+        $scope.bsCostsOfAssetsOnTheDistrict = init_data;
+    }
+
+
 }])

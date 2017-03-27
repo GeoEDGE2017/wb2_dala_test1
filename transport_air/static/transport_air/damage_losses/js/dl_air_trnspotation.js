@@ -319,24 +319,21 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
             })
         }
 
-
-
-        if($scope.incident && $scope.district ) {
+        if($scope.incident && $scope.district) {
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures','BsAstAirEmployment','BsAstAirOthers'],
+                    'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures', 'BsAstAirEmployment', 'BsAstAirOthers'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_1',
                     'sector':'transport_air',
-                        }),
-                  dataType: 'json',
-
+                }),
+                dataType: 'json',
 
             }).then(function successCallback(response) {
                 var data = response.data;
@@ -549,17 +546,23 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
 }
 
     $scope.calculatePubAirTotal=function(arr){
+
      var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
+    if(value !='Total'){
      finaltotal = finaltotal + value.tot_destroyed_pub  + value.part_damaged_pub ;
+     }
     })
+
     return finaltotal;
     }
 
     $scope.calculatePvtAirTotal=function(arr){
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
+    if(value !='Total'){
     finaltotal = finaltotal + value.tot_destroyed_pvt + value.part_damaged_pvt ;
+    }
     })
     return finaltotal;
     }
@@ -567,7 +570,9 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.calculatePubEquTotal=function(arr){
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
+     if(value !='Total'){
     finaltotal = finaltotal + value.tot_destroyed + value.part_damaged ;
+    }
     })
     return finaltotal;
     }
@@ -575,7 +580,9 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.calculatePubOtherTotal=function(arr){
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
+    if(value !='Total'){
     finaltotal = finaltotal + value.tot_destroyed + value.part_damaged ;
+    }
     })
     return finaltotal;
     }
@@ -583,7 +590,11 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.calculatePubMaterialTotal=function(arr){
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
+    if(value !='Total'){
+    console.log('Test',value);
     finaltotal = finaltotal + value.tot_dmg_pub;
+
+    }
     })
     console.log(arr);
     return finaltotal;
@@ -592,7 +603,9 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.calculatePvtMaterialTotal=function(arr){
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
+    if(value !='Total'){
     finaltotal = finaltotal + value.tot_dmg_pvt ;
+    }
     })
     console.log(arr);
     return finaltotal;
@@ -654,6 +667,17 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     })
     grantot = grantot + finaltotal1+ finaltotal2 ;
     return grantot;
+    }
+
+    $scope.calculatePubStrucTotal=function(arr){
+     var finaltotal = 0;
+    angular.forEach(arr, function(value, key) {
+    if(value!='Total' || value!='TOTAL DAMAGES'){
+
+     finaltotal = finaltotal + value.tot_pub ;
+     }
+    })
+    return finaltotal;
     }
 
 }]);

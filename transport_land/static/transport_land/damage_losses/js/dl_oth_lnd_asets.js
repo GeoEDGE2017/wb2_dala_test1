@@ -470,8 +470,9 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+     if((value.private_vehicles != 'Total') && (value.bus_companies != 'Total' ) && (value.taxi_companies != 'Total' ) && (value.truck_companies != 'Total' ) && (value.tuk_companies != 'Total')){
      finaltotal = finaltotal + value.tot_damages_pvt ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;
@@ -481,8 +482,9 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+     if((value.bus_companies != 'Total') && (value.taxi_companies != 'Total' ) && (value.truck_companies != 'Total') && (value.tuk_companies != 'Total' )){
      finaltotal = finaltotal + value.tot_damages_pub ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;
@@ -564,8 +566,9 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+    if(value.tr_company !='Total'){
      finaltotal = finaltotal + value.tot_los ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;

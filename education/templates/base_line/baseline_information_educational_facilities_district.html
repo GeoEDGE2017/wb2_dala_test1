@@ -200,12 +200,15 @@
                                 <td width="136" ng-if="$index > 4">
                                     {% verbatim %}
                                     <button id="delete" ng-click="removeItem('BefPvt', $index)"
-                                            class="btn btn-sm btn-danger btn-circle">
-                                            <i class="fa fa-minus"></i>
-                                             </button>
-                                            <input id="textinput" style="width:80%;float:right;" name="textinput" type="text" placeholder="" class="form-control input-md">
+                                        class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
                                     </button>
-
+                                    <input style="width:90%;float:right;" name="befPvt_{{$index}}" ng-model="befPvt.type_facilities"
+                                        popover="This field is required"
+                                        popover-toggle="form_bs_edu_fac['befPvt_' + $index].$dirty && !form_bs_edu_fac['befPvt_' + $index].$valid"
+                                        popover-placement="top" required
+                                        type="text"
+                                        class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
 

@@ -85,18 +85,20 @@ INSTALLED_APPS = [
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
-    # 'housing',
-    # 'housing.base_line',
-    # 'housing.damage_losses',
+    'housing',
+    'housing.base_line',
+    'housing.damage_losses',
     'tourism',
     'tourism.base_line',
     'tourism.damage_losses',
-    # 'telecommunication',
-    # 'telecommunication.base_line',
-    # 'telecommunication.damage_losses',
     'industry_services',
     'industry_services.base_line',
     'industry_services.damage_losses'
+
+    # 'telecommunication',
+    # 'telecommunication.base_line',
+    # 'telecommunication.damage_losses',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -147,7 +149,7 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=telecommunication'
+        #     'options': '-c search_path=transport_rail'
         # },
 
         'NAME': 'dala',
@@ -715,6 +717,29 @@ TABLE_PROPERTY_MAPPER = {
                 'total_losses',
                 'id'
             ]
+        },
+        'Table_1': {
+            'BcsMachinery': [
+                'asset',
+                'avg_rep_cost',
+                'avg_repair_cost',
+                'id'
+            ],
+            'BcsOfficeEquipment': [
+                'asset',
+                'avg_rep_cost',
+                'avg_repair_cost',
+                'id'
+            ],
+            'BcsStructure': [
+                'asset',
+                'avg_rep_cost',
+                'avg_repair_cost_roof',
+                'avg_repair_cost_wall',
+                'avg_repair_cost_flooring',
+                'id'
+            ],
+
         }
     },
     'education': {
@@ -1194,11 +1219,17 @@ TABLE_PROPERTY_MAPPER = {
     'transport_rail': {
         'Table_1': {
 
+            'BsTotEmpRailCompny':
+                ['total_emp', 'particulars', 'no_of_male', 'no_of_female', 'id'],
             'BsMovingAst':
                 ['asset',
                  'avg_replace_cost',
                  'avg_repair_cost',
                  'id'],
+            'BsIncAstRailIncome':
+                ['annual_income',
+                 'id'],
+
             'BsEquipMachineryAst':
                 ['asset',
                  'avg_replace_cost',
@@ -1222,6 +1253,48 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_cost_floor',
                 'id'
             ],
+        },
+        'Table_2': {
+            'DlMovingAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id'
+                 ],
+            'DlEquipMachineryAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id',
+                 ],
+            'DlMatSuppliesAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id',
+                 ],
+            'DlStructuresAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_partially_damaged',
+                 'tot_damages',
+                 'id',
+                 ],
+            'DlBuildingAstLoss':
+                ['asset',
+                 'no_of_tot_destroyed',
+                 'no_of_tot_destroyed_sqr_meters',
+                 'no_of_partially_damaged',
+                 'no_of_partially_damaged_roof',
+                 'no_of_partially_damaged_wall',
+                 'no_of_partially_damaged_floor',
+                 'tot_damages',
+                 'id',
+                 ],
+
         },
         'Table_3': {
 
@@ -2543,45 +2616,61 @@ TABLE_PROPERTY_MAPPER = {
             'BiaWaterIntake': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
             'BiaTreatmentPlant': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
             'BiaWaterDistribution': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
-            'BiaMainOffice': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],},
+            'BiaMainOffice': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'], },
         'Table_2': {
-            'BimRuralWater': ['type_water_supply','num_users','avg_replace_cost','avg_repair_cost','id',]},
+            'BimRuralWater': ['type_water_supply', 'num_users', 'avg_replace_cost', 'avg_repair_cost', 'id', ]},
         'Table_3': {
-            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
-            'DlcwNumEmployees': ['male','female','total','id',],
-            'DlcwDmgWaterIntake': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
-            'DlcwDmgWaterTreatment': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
-            'DlcwDmgWaterDisribution': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
-            'DlcwDmgMainOffice': ['assets','num_tot_destoyed','num_part_damaged','total_dmgs','id',],
-            'DlcwLosProduction': ['production_los','avg_income','est_inc_year_1','est_inc_year_2','tot_los_year_1','tot_los_year_2','tot_los','id',],
-            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
-       },
+            'DlcwNumClients': ['residential', 'commercial', 'industrial', 'others', 'total', 'id', ],
+            'DlcwNumEmployees': ['male', 'female', 'total', 'id', ],
+            'DlcwDmgWaterIntake': ['assets', 'num_tot_destoyed', 'num_part_damaged', 'total_dmgs', 'id', ],
+            'DlcwDmgWaterTreatment': ['assets', 'num_tot_destoyed', 'num_part_damaged', 'total_dmgs', 'id', ],
+            'DlcwDmgWaterDisribution': ['assets', 'num_tot_destoyed', 'num_part_damaged', 'total_dmgs', 'id', ],
+            'DlcwDmgMainOffice': ['assets', 'num_tot_destoyed', 'num_part_damaged', 'total_dmgs', 'id', ],
+            'DlcwLosProduction': ['production_los', 'avg_income', 'est_inc_year_1', 'est_inc_year_2', 'tot_los_year_1',
+                                  'tot_los_year_2', 'tot_los', 'id', ],
+            'DlcwLosOther': ['other_los', 'tot_los_year_1', 'tot_los_year_2', 'tot_los', 'id', ],
+        },
         'Table_4': {
-            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
-            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
+            'DlRuralDmg': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
+                           'tot_damages', 'id', ],
+            'DlRuralLos': ['type_water_supply', 'cleaning_debris', 'high_ocost', 'other_unexpected_exps', 'tot_los',
+                           'id', ],
 
-       },
+        },
         'Table_5': {
-            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
-            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
-            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
-            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
+            'DlRuralDmg': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
+                           'tot_damages', 'id', ],
+            'DlRuralLos': ['type_water_supply', 'cleaning_debris', 'high_ocost', 'other_unexpected_exps', 'tot_los',
+                           'id', ],
+            'DlcwNumClients': ['residential', 'commercial', 'industrial', 'others', 'total', 'id', ],
+            'DlcwLosOther': ['other_los', 'tot_los_year_1', 'tot_los_year_2', 'tot_los', 'id', ],
             'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
             'DlRuralTotDmgDistrict': ['tot_damages'],
             'DlRuralTotLosDistrict': ['tot_los'],
 
-
-       },
+        },
         'Table_6': {
-            'DlRuralDmg': ['type_water_supply','families_affected','tot_destroyed_assets','part_damaged_assets','tot_damages','id',],
-            'DlRuralLos': ['type_water_supply','cleaning_debris','high_ocost','other_unexpected_exps','tot_los','id',],
-            'DlcwNumClients': ['residential','commercial','industrial','others','total','id',],
-            'DlcwLosOther': ['other_los','tot_los_year_1','tot_los_year_2','tot_los' ,'id',],
+            'DlRuralDmg': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
+                           'tot_damages', 'id', ],
+            'DlRuralLos': ['type_water_supply', 'cleaning_debris', 'high_ocost', 'other_unexpected_exps', 'tot_los',
+                           'id', ],
+            'DlcwNumClients': ['residential', 'commercial', 'industrial', 'others', 'total', 'id', ],
+            'DlcwLosOther': ['other_los', 'tot_los_year_1', 'tot_los_year_2', 'tot_los', 'id', ],
             'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
             'DlRuralTotDmgDistrict': ['tot_damages'],
             'DlRuralTotLosDistrict': ['tot_los'],
 
-       }
+        },
+        'Table_7': {
+            'DlcwNumAfNational': ['tot_dmg_residential', 'tot_dmg_commercial', 'tot_dmg_industrial', 'tot_dmg_others',
+                                  'tot_dmg_total'],
+            'DlRuralNumAfNational': ['type_water_supply', 'tot_num_fam_aff'],
+            'DlcwTotDmgNational': ['total_dmgs'],
+            'DlcwTotLosNational': ['tot_los_year1', 'tot_los_year2'],
+            'DlRuralTotDmgNational': ['type_water_supply', 'tot_damages'],
+            'DlRuralTotLosNational': ['tot_los'],
+
+        }
     },
     'tourism': {
         'Table_1': {
@@ -2596,13 +2685,22 @@ TABLE_PROPERTY_MAPPER = {
             'DmgBusAstMachinery': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
             'DmgBusAstVehicle': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
             'DmgBusAstInventories': ['assets', 'val_dst', 'val_pdmg', 'tot_dmg', 'id'],
+
             'DlBusLosses': ['los_type', 'avg_val_income_year', 'val_income_year1', 'val_income_year2', 'val_los_year1', 'val_los_year2','tol_losses','id'],
         },
         'Table_3': {
             'DmgInfAssets': ['assets', 'tot_dmg', 'val_dst', 'val_pdmg', 'id'],
             'DlInfLosses': ['avg_val_income_year', 'los_type', 'tol_losses', 'val_income_year1', 'val_income_year2', 'val_los_year1', 'val_los_year2', 'id']
         },
-            'Table_4': {
+        # 'Table_4': {
+        #
+        #     'DlBusLosses': ['los_type', 'avg_val_income_year', 'val_income_year1', 'val_income_year2', 'val_los_year1',
+        #                     'val_los_year2', 'tol_losses', 'id'],
+        #     'DlInfLosses': ['los_type', 'val_los_year1', 'val_los_year2', 'tol_losses', 'id'],
+        #
+        # },
+        'Table_4': {
+
             'DlDmgBusDistrict': ['tot_damages', 'assets', 'ownership', 'business'],
             'DlLosBusDistrict': ['los_year1', 'los_year2', 'los_type', 'ownership', 'business'],
             'DlDmgInfDistrict': ['sum', 'ownership', 'inf_type'],
@@ -2623,6 +2721,7 @@ TABLE_PROPERTY_MAPPER = {
         }
 
     },
+
     'industry_services': {
         'Table_1': {
             'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro', 'num_small', 'id' ],
@@ -2643,6 +2742,32 @@ TABLE_PROPERTY_MAPPER = {
         }
 
     },
+
+    'housing': {
+        'Table_1': {
+            'BhClfPermanent': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
+                               'ang_num_occ_female', 'avg_num_occ_male', 'avg_period_construct', 'avg_period_repair',
+                               'id'],
+            'BhClfSmiPermanent': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
+                                  'ang_num_occ_female', 'avg_num_occ_male', 'avg_period_construct', 'avg_period_repair',
+                                  'id'],
+            'BhClfImprovised': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
+                                'ang_num_occ_female', 'avg_num_occ_male', 'avg_period_construct', 'avg_period_repair',
+                                'id'],
+
+        },
+        'Table_2': {
+            'BhClfPermanentCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
+                                   'avg_repair_cost_floor', 'avg_val_content', 'id'],
+            'BhClfImprovisedCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
+                                    'avg_repair_cost_floor', 'avg_val_content', 'id'],
+            'BhClfSmiPermanentCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
+                                      'avg_repair_cost_floor', 'avg_val_content', 'id'],
+
+        },
+
+    }
+
 
 }
 

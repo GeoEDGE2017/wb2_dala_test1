@@ -44,7 +44,6 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
         }
     }
 
-    // get relevant base-line data for calculations
     $scope.changedValue=function getBsData(selectedValue) {
 //        alert(' - ' + selectedValue);
         if($scope.incident && selectedValue) {
@@ -147,21 +146,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
          $scope.dlAssessmentDistrictSys = init_data;
     }
 
-    $scope.getTotal = function(model, property) {
-        var array = $scope.dmLosOfMinFirms.mining.Table_1[model];
-        var cumulative = 0;
-
-        var sums = _.map(array,function(obj){
-            cumulative += obj[property];
-            return cumulative;
-        });
-
-        var the_string = model+'_'+property;
-        var model = $parse(the_string);
-        model.assign($scope, cumulative);
-    }
-
-$scope.fetchDlData = function(){
+    $scope.fetchDlData = function(){
 
     $http({
     method: "POST",
@@ -179,6 +164,23 @@ $scope.fetchDlData = function(){
        console.log('load ', data);
 
     })
+
+}
+
+    $scope.getTotal = function(key) {
+
+        $scope.finaltotalprivate = 0;
+
+        var totalDamages = 0;
+
+        totalDamages =  totalDamages + ($scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0] ?
+                          ($scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0].damages ?
+                         $scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0].damages : 0):0);
+
+        var totaldpubstring = "totalDamages"+ key;
+
+        var model = $parse(totaldpubstring);
+        model.assign($scope, totalDamages);
 
 }
 

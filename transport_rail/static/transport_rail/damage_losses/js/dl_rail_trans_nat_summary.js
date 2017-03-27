@@ -12,33 +12,38 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
     $scope.dmLosTransAirNation = null;
     $scope.total = 0;
 
-
-    $scope.loadData = function()
+    $scope.loadData = function(form)
     {
+        $scope.isLoded = true;
 
-       $scope.is_edit = true;
-       $scope.submitted = true;
-        $http({
-        method: "POST",
-        url: '/dl_fetch_district_disagtn',
-        data: angular.toJson({
-        'table_name':  'Table_4',
-        'sector':'transport_rail',
-        'com_data': {
-                'incident': $scope.incident,
-              },
-               'is_edit':$scope.is_edit
-               }),
-        }).success(function(data) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        console.log($scope.incident);
+            $http({
+            method: "POST",
+            url: '/dl_fetch_district_disagtn',
+            data: angular.toJson({
+            'table_name':'Table_4',
+            'sector': 'transport_rail',
+            'com_data': {
+                    'incident': $scope.incident,
+                  },
+                   }),
+            }).success(function(data) {
 
+            console.log('load ', data);
             $scope.dmLosTransAirNation = data;
 
+            })
 
 
-        })
+
 
 
     }
+
+
+
              $scope.checkIfNull = function()
    {
         var isNull = $scope.dmLosTransAirNation ? angular.equals({}, $scope.dmLosTransAirNation.transport_rail.Table_4) : true;

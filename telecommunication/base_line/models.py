@@ -10,14 +10,14 @@ class BdSessionKeys(models.Model):
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
     full_bs_date = models.DateField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='tle_bs_incident', blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'bd_session_keys'
+        db_table = 'telecommunication\".\"bd_session_keys'
 
 
-class Ownership(models.Model):
+class Ownearship(models.Model):
     ownership = models.CharField(max_length=255, blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -26,7 +26,7 @@ class Ownership(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'ownership'
+        db_table = 'telecommunication\".\"ownership'
 
 
 # Table 1
@@ -37,7 +37,7 @@ class BsTelCompany(models.Model):
     fixed_data = models.NullBooleanField()
     mobile_voice = models.NullBooleanField()
     mobile_data = models.NullBooleanField()
-    company = models.ForeignKey(Ownership, db_column='company', blank=True, null=True)
+    company = models.ForeignKey(Ownearship, db_column='company', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -47,4 +47,4 @@ class BsTelCompany(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'bs_tel_company'
+        db_table = 'telecommunication\".\"bs_tel_company'

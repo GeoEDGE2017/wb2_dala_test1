@@ -16,4 +16,3 @@ def bs_telcom_cmpnys(request):
     }
     return render(request, 'base_line/baseline_information_telecommunication_companies.html', context)
 
-

@@ -10,7 +10,7 @@ class DlSessionKeys(models.Model):
     table_name = models.CharField(max_length=255, blank=True, null=True)
     incident = models.IntegerField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='hous_dl_incident', blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', related_name='hous_dl_incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='hous_dl_district', blank=True, null=True)
 
     class Meta:
         managed = False

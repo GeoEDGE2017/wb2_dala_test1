@@ -94,9 +94,9 @@ INSTALLED_APPS = [
     'industry_services',
     'industry_services.base_line',
     'industry_services.damage_losses'
-    # 'telecommunication',
-    # 'telecommunication.base_line',
-    # 'telecommunication.damage_losses',
+    #'telecommunication',
+    #'telecommunication.base_line',
+    #'telecommunication.damage_losses',
 
 ]
 

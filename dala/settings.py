@@ -154,7 +154,7 @@ DATABASES = {
         #     'options': '-c search_path=power_supply'
         # },
 
-        'NAME': 'new',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }

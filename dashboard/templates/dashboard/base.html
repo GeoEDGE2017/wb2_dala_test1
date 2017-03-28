@@ -223,7 +223,12 @@
     {% elif module == 'industry_services' %}
     <script src='{% static "industry_services/base_line/js/bs_info_forml_dis.js" %}'></script>
     <script src='{% static "industry_services/base_line/js/bs_info_informl_dis.js" %}'></script>
+    <script src='{% static "industry_services/damage_losses/js/dl_formal_sector.js" %}'></script>
     <script src='{% static "industry_services/damage_losses/js/dl_informal_sector.js" %}'></script>
+    <script src='{% static "industry_services/damage_losses/js/dl_summ_forml_informl_dis.js" %}'></script>
+    <script src='{% static "industry_services/damage_losses/js/dl_sum_forml_informl_dis_inputs.js" %}'></script>
+    <script src='{% static "industry_services/damage_losses/js/summary_of_damages_losses_province.js" %}'></script>
+
 
 
 
@@ -444,25 +449,25 @@ input[type=number] {
             </li-->
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Power Supply </a>
+                <a class="nav-link" href="{% url 'dashboard:power_supply_main' %}"><i class="icon-speedometer"></i> Power Supply </a>
             </li>
 
             
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Housing </a>
+                <a class="nav-link" href="{% url 'dashboard:housing_main' %}"><i class="icon-speedometer"></i> Housing </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Tourism </a>
+                <a class="nav-link" href="{% url 'dashboard:tourism_main' %}"><i class="icon-speedometer"></i> Tourism </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Industry and Services</a>
+                <a class="nav-link" href="{% url 'dashboard:industry_services_main' %}"><i class="icon-speedometer"></i> Industry and Services</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Telecommunications</a>
+                <a class="nav-link" href="{% url 'dashboard:telecom_main' %}"><i class="icon-speedometer"></i> Telecommunications</a>
             </li>
 
             <li class="nav-item">

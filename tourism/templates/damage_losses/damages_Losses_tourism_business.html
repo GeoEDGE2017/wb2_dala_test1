@@ -91,9 +91,13 @@
                             Name of Firm
                         </td>
                         <td colspan="4" width="600">
-                            <select ng-options="firm as firm.name for firm in firms track by firm.id"
-                                    name="district" id="ccyear" ng-model="selectedFirm" ng-value="firm.id" class="form-control" required="true">
-                                <option value="" selected="true">Select Firm</option>
+                            <select id="selectbasic" name="selectbasic"
+                                    ng-options="firm as firm.name for  firm in firms"
+                                    name="selectedType" id="ccyear" ng-model="selectedType"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;">
+
+                                <option value="" selected="true">Select Business Type</option>
                             </select>
 
                         </td>

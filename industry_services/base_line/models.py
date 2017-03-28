@@ -100,3 +100,41 @@ class FormalFirmTypes(models.Model):
     class Meta:
         managed = False
         db_table = 'industry_services\".\"formal_firm_types'
+
+
+class FrmFirm(models.Model):
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    firm_name = models.CharField(max_length=255, blank=True, null=True)
+    firm_type = models.ForeignKey(FormalFirmTypes, db_column='firm_type', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=3000, blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    classification = models.ForeignKey(BusinessClassification,  db_column='classification', blank=True, null=True)
+    num_male_emp = models.BigIntegerField(blank=True, null=True)
+    num_female_emp = models.BigIntegerField(blank=True, null=True)
+    tot_num_emp = models.BigIntegerField(blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"frm_firm'
+
+
+class BsFrmBusIndustry(models.Model):
+    industry = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"bs_frm_bus_industry'
+
+
+class BsFrmBusServices(models.Model):
+    service = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"bs_frm_bus_services'
+

@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from industry_services.base_line.models import FormalFirmTypes, BusinessClassification
+from industry_services.base_line.models import FormalFirmTypes, BusinessClassification, FrmFirm
 from settings.models import District, Province
 from incidents.models import IncidentReport
 
@@ -183,6 +183,7 @@ class DlSessionKeys(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='t_dl_incident',blank=True, null=True)
     province = models.ForeignKey(Province,  db_column='province', related_name='ind_ser_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='ind_ser_dl_district', blank=True, null=True)
+    frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm', related_name='ind_ser_dl_frm_firm', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -192,6 +193,7 @@ class DlSessionKeys(models.Model):
 class DmgAstEquipment(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm',  blank=True,null=True)
     firm_type = models.ForeignKey(FormalFirmTypes, db_column='firm_type', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     classification = models.ForeignKey(BusinessClassification,  db_column='classification', blank=True, null=True)
@@ -212,6 +214,7 @@ class DmgAstEquipment(models.Model):
 class DmgAstMachinery(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm',  blank=True,null=True)
     firm_type = models.ForeignKey(FormalFirmTypes, db_column='firm_type', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     classification = models.ForeignKey(BusinessClassification,  db_column='classification', blank=True, null=True)
@@ -232,6 +235,7 @@ class DmgAstMachinery(models.Model):
 class DmgAstStocks(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm',  blank=True,null=True)
     firm_type = models.ForeignKey(FormalFirmTypes, db_column='firm_type', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     classification = models.ForeignKey(BusinessClassification,  db_column='classification', blank=True, null=True)
@@ -252,6 +256,7 @@ class DmgAstStocks(models.Model):
 class DmgAstStructures(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm',  blank=True,null=True)
     firm_type = models.ForeignKey(FormalFirmTypes, db_column='firm_type', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     classification = models.ForeignKey(BusinessClassification,  db_column='classification', blank=True, null=True)
@@ -272,6 +277,7 @@ class DmgAstStructures(models.Model):
 class DmgAstVehicles(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm',  blank=True,null=True)
     firm_type = models.ForeignKey(FormalFirmTypes, db_column='firm_type', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     classification = models.ForeignKey(BusinessClassification,  db_column='classification', blank=True, null=True)
@@ -287,3 +293,27 @@ class DmgAstVehicles(models.Model):
     class Meta:
         managed = False
         db_table = 'industry_services\".\"dmg_ast_vehicles'
+
+
+class LosTypeLossses(models.Model):
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm',  blank=True,null=True)
+    firm_type = models.ForeignKey(FormalFirmTypes, db_column='firm_type', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    classification = models.ForeignKey(BusinessClassification,  db_column='classification', blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    avg_val_output_year = models.FloatField(blank=True, null=True)
+    est_val_output_year1 = models.FloatField(blank=True, null=True)
+    est_val_output_year2 = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+    tot_losses = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_type_lossses'

@@ -304,6 +304,8 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         return final_total;
     }
 
+
+
     $scope.getGrandTotalCol = function(column){
 
         var table = $scope.dl_dmg_loss_infoml_sec.industry_services.Table_4;

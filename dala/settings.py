@@ -97,6 +97,10 @@ INSTALLED_APPS = [
     'telecommunication',
     'telecommunication.base_line',
     'telecommunication.damage_losses',
+    'power_supply',
+    'power_supply.base_line',
+    'power_supply.damage_losses',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -2729,6 +2733,13 @@ TABLE_PROPERTY_MAPPER = {
             'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],
         },
         'Table_3': {
+            'DmgAstStructures': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstEquipment': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+
 
         },
         'Table_4': {

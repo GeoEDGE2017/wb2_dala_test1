@@ -97,6 +97,9 @@ INSTALLED_APPS = [
     'telecommunication',
     'telecommunication.base_line',
     'telecommunication.damage_losses',
+    'power_supply',
+    'power_supply.base_line',
+    'power_supply.damage_losses',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -150,7 +153,7 @@ DATABASES = {
         #     'options': '-c search_path=telecommunication'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'new',
         'USER': 'postgres',
     },
 }

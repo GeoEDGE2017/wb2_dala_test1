@@ -74,6 +74,9 @@ urlpatterns = [
     # water_supply
     url(r'^water_supply/', include('water_supply.urls', namespace='water_supply')),
 
+    # power_supply
+    url(r'^power_supply/', include('power_supply.urls', namespace='power_supply')),
+
     # housing
     url(r'^housing/', include('housing.urls', namespace='housing')),
 

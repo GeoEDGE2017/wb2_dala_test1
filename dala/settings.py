@@ -149,12 +149,12 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
         # },
-
+        #
         # 'OPTIONS': {
-        #     'options': '-c search_path=telecommunication'
+        #     'options': '-c search_path=power_supply'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'new',
         'USER': 'postgres',
     },
 }

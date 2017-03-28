@@ -11,21 +11,22 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.Districts=[];
     $scope.is_valid_data = true;
 
-//    var init_data = {
-//        'power_supply': {
-//            'Table_2': {
-//                'DlcwNumClients': [{
-//                    residential : null,
-//                    commerciadlpNdaLivestockl : null,
-//                    industrial : null,
-//                    others : null,
-//                    total : null,
-//                }]
-//            }
-//        }
-//    }
+    var init_data = {
+        'power_supply': {
+            'Table_2': {
+                'CebDmgAstGeneration': [{
+                    assets : 'Dams',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                }]
+            }
+        }
+    }
 
-//    $scope.dlPowSupCeb = init_data;
+    $scope.dlPowSupCeb = init_data;
 
 //    $scope.changedValue=function getBsData(selectedValue) {
 //        if($scope.incident && selectedValue) {

@@ -9,7 +9,7 @@ class PvtPwPrdTypes(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'pvt_pw_prd_types'
+        db_table = 'power_supply\".\"pvt_pw_prd_types'
 
 
 class PvtPwProducers(models.Model):
@@ -20,4 +20,4 @@ class PvtPwProducers(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'pvt_pw_producers'
+        db_table = 'power_supply\".\"pvt_pw_producers'

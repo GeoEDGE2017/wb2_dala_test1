@@ -8,6 +8,7 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
     $scope.provinces;
     $scope.table;
     $scope.provinceTotals = [];
+    $scope.data_available;
 
 
     $scope.fetchData = function(){
@@ -27,11 +28,17 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
             }).success(function(data) {
 
             $scope.data = data.tourism.Table_6;
-
             $scope.provinces = Object.keys($scope.data);
             console.log('load ', Object.keys($scope.data));
-            console.log($scope.data);
-            console.log($scope.provinces);
+
+            $scope.data_available = ($scope.provinces.length != 0)
+
+            if(!$scope.data_available){
+                alert("no data available for your selection");
+            }
+
+//            console.log($scope.data);
+//            console.log($scope.provinces);
             $scope.makeTable();
 
             }).error(function(err){

@@ -85,11 +85,14 @@
                             Company Name
                         </td>
                         <td colspan="3" height="19" width="653">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select ng-options="company as company.name for company in companies track by company.id"
+                                    name="company" id="ccyear" ng-model="selectedCompany" class="form-control" required>
+                                <option value="" selected>Select Company</option>
                             </select>
+                            <span class="arrow_box1"
+                                  ng-show="submitted && form_income_rail_trns_company.company.$error.required">
+                               <small style="color:red;"> Please Select Company </small>
+                            </span>
                         </td>
                         <td colspan="2" height="19" width="126">
                             <a id="add_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
@@ -197,7 +200,14 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="textinput">Name</label>
                             <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" ng-model="company" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" ng-model="ownership" type="text" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
@@ -208,8 +218,8 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
+                        <button type="button" class="btn btn-primary" ng-click="addCompany()">
+                            Save
                         </button>
                     </div>
                 </div>

@@ -154,7 +154,7 @@ DATABASES = {
             'options': '-c search_path=power_supply'
         },
 
-        'NAME': 'new',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }
@@ -2733,6 +2733,13 @@ TABLE_PROPERTY_MAPPER = {
             'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],
         },
         'Table_3': {
+            'DmgAstStructures': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstEquipment': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+
 
         },
         'Table_4': {
@@ -2741,6 +2748,11 @@ TABLE_PROPERTY_MAPPER = {
              'DlInfLosTypOther': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
              'DlInfLosTypServices': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
              'DlInfLosTypTrading': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+        },
+        'Table_5': {
+            'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+            'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+
         }
 
     },

@@ -150,9 +150,9 @@ DATABASES = {
         #                'housing, telecommunication'
         # },
 
-        # 'OPTIONS': {
-        #     'options': '-c search_path=telecommunication'
-        # },
+        'OPTIONS': {
+            'options': '-c search_path=power_supply'
+        },
 
         'NAME': 'new',
         'USER': 'postgres',

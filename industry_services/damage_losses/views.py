@@ -70,3 +70,58 @@ def dl_summ_forml_informl_dis(request):
     }
 
     return render(request, 'damage_losses/summary_damages_losses_formal_and_informal_sectors_district.html', context)
+
+
+# Table N summary
+@permission_required("district", 'industry_services')
+def dl_sum_forml_informl_dis_inputs(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents,
+        'module': 'industry_services'
+    }
+
+    return render(request, 'damage_losses/summary_damages_losses_formal_informal_sectors_district_inputs.html', context)
+
+
+# Table province summary
+@permission_required("district", 'industry_services')
+def dl_sum_pro(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents,
+        'module': 'industry_services'
+    }
+
+    return render(request, 'damage_losses/summary_industry_service_of_damages_losses_province.html', context)
+
+
+# Table national summary
+@permission_required("district", 'industry_services')
+def dl_sum_nat(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_districts = fetch_data['districts']
+    incidents = IncidentReport.objects.all()
+
+    context = {
+        'districts': filtered_districts,
+        'incidents': incidents,
+        'module': 'industry_services'
+    }
+
+    return render(request, 'damage_losses/summary_industry_services_of_damages_losses_nationwide.html', context)
+
+# summary_of_damages_losses_province
+
+#

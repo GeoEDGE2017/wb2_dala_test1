@@ -121,6 +121,23 @@ def fetch_entities_plain(request):
         content_type='application/javascript; charset=utf8'
     )
 
+# this method returns single columned data
+@csrf_exempt
+def fetch_entities_plain_column(request):
+    data = (yaml.safe_load(request.body))
+    model_name = data['model']
+    sector = data['sector']
+    col = data['col']
+
+    sub_app_name = sector + '.base_line'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.all()
+    fetched_data_json = fetched_data.values(col).distinct()
+
+    return HttpResponse(
+        json.dumps(list(fetched_data_json)),
+        content_type='application/javascript; charset=utf8'
+    )
 
 @csrf_exempt
 def bs_save_data(request):
@@ -700,6 +717,23 @@ def fetch_entities(request):
     )
 
 
+
+@csrf_exempt
+def fetch_entities_all(request):
+    data = (yaml.safe_load(request.body))
+    district_id = data['district']
+    model_name = data['model']
+    sector = data['sector']
+
+    sub_app_name = sector + '.base_line'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.filter(district_id=district_id).values()
+
+    return HttpResponse(
+        json.dumps(list(fetched_data)),
+        content_type='application/javascript; charset=utf8'
+    )
+
 @csrf_exempt
 def add_entity(request):
     data = (yaml.safe_load(request.body))
@@ -733,6 +767,25 @@ def add_entity(request):
         return HttpResponse(model_object.id)
     else:
         return HttpResponse(False)
+
+
+@csrf_exempt
+def get_entity(request):
+    data = (yaml.safe_load(request.body))
+    model_fields = data['model_fields']
+    model_name = data['model']
+    sector = data['sector']
+
+    sub_app_name = sector + '.base_line'
+    object_id = model_fields['id']
+
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.filter(pk=object_id).values()
+
+    return HttpResponse(
+        json.dumps(list(fetched_data)),
+        content_type='application/javascript; charset=utf8'
+    )
 
 
 # add entities with district ids

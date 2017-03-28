@@ -9,7 +9,7 @@ class DlSessionKeys(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     user = models.IntegerField(blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='ogs_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='ogs_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='ogs_dl_district', blank=True, null=True)
     department = models.ForeignKey(Department, db_column='department', blank=True, null=True)

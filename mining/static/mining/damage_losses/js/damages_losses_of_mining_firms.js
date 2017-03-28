@@ -1,3 +1,4 @@
+//Taable 3
 var app = angular.module('dmLosOfMinFirmsApp', ['underscore']);
 
 app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _) {
@@ -29,7 +30,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 'DloNumEmps': [{
                     male: null,
                     female: null,
-                    firm_id: null,
+
 
 
                 }],
@@ -38,7 +39,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
 
                     },
                     {
@@ -46,7 +46,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
 
                     },
                     {
@@ -54,7 +53,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
 
                     },
                 ],
@@ -63,67 +61,49 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     },
                     {
                         assets: 'Computers',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     },
                     {
                         assets: 'Total',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     }
-
                 ],
                 'DloDmgMachinery': [{
                         assets: 'Generators',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     },
                     {
                         assets: 'Total',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     }
-
                 ],
                 'DloDmgVehicles': [{
                         assets: 'Trucks',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     },
                     {
                         assets: 'Cars',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     }, {
                         assets: 'Total',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     }
 
                 ],
@@ -132,15 +112,11 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     }, {
                         assets: 'GRAND TOTAL',
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                        firm_id: null,
-
                     }
 
                 ],
@@ -152,8 +128,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         los_year1: null,
                         los_year2: null,
                         tot_losses: null,
-                        firm_id: null,
-
                     },
                     {
                         type_los: 'Copper',
@@ -163,7 +137,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         los_year1: null,
                         los_year2: null,
                         tot_losses: null,
-                        firm_id: null,
 
                     },
 
@@ -175,7 +148,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         los_year1: null,
                         los_year2: null,
                         tot_losses: null,
-                        firm_id: null,
 
                     },
 
@@ -187,8 +159,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         los_year1: null,
                         los_year2: null,
                         tot_losses: null,
-                        firm_id: null,
-
                     }
 
 
@@ -561,15 +531,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 
     $scope.saveDlData = function(form) {
 
-
-      var array = $scope.dmLosOfMinFirms.mining.Table_3;
-      var details = _.map(array, function(model_array) {
-      _.map(model_array, function(model) {
-          model.firm_id = $scope.selectedFirm.id;
-      });
-
-        });
-
         $scope.submitted = true;
 
         $http({
@@ -582,7 +543,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'firm_id': $scope.selectedFirm.id
-
                 },
                 'is_edit': $scope.is_edit
             }),
@@ -610,7 +570,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 method: "POST",
                 url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                    'table_name':  'Table_3',
+                    'table_name': 'Table_3',
                     'sector':'mining',
                     'com_data': {
                         'district': $scope.district.district__id,

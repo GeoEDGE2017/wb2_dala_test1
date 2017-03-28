@@ -72,4 +72,3 @@ def dl_sum_telecom_nat(request):
 
     return render(request, 'damage_losses/summary_damages_and_losses_nationwide.html', context)
 
-

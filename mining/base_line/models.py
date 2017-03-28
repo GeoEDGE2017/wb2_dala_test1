@@ -3,6 +3,16 @@ from django.db import models
 from settings.models import District
 
 
+class Firm(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    ownership = models.CharField(max_length=50, blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='mi_bs_firm_district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'mining\".\"firm'
+
+
 class BdSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
@@ -16,16 +26,6 @@ class BdSessionKeys(models.Model):
     class Meta:
         managed = False
         db_table = 'mining\".\"bd_session_keys'
-
-
-class Firm(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    ownership = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', related_name='mi_Firm_district', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'mining\".\"firm'
 
 
 class BmaAmMin(models.Model):

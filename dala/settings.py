@@ -93,11 +93,10 @@ INSTALLED_APPS = [
     'tourism.damage_losses',
     'industry_services',
     'industry_services.base_line',
-    'industry_services.damage_losses'
-
-    # 'telecommunication',
-    # 'telecommunication.base_line',
-    # 'telecommunication.damage_losses',
+    'industry_services.damage_losses',
+    'telecommunication',
+    'telecommunication.base_line',
+    'telecommunication.damage_losses',
 
 ]
 
@@ -149,7 +148,7 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=transport_rail'
+        #     'options': '-c search_path=telecommunication'
         # },
 
         'NAME': 'dala',

@@ -27,6 +27,23 @@
                         <col width="87"/>
                     </colgroup>
                     <tbody>
+                    <tr class="trhead" height="20">
+                        <td width="118">
+                            Incident
+                        </td>
+                        <td colspan="8" width="340">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="fetchData()"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
                     <tr class="trheadc" height="51">
                         <td height="51" width="166">
                             Housing Classification
@@ -67,19 +84,19 @@
                             Type 1. Permanent
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -87,19 +104,19 @@
                             Type 2. Semi-Permanent
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -107,19 +124,19 @@
                             Type 3. Improvised
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -127,19 +144,19 @@
                             TOTAL
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -147,19 +164,19 @@
                             GRAND TOTAL
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     </tbody>
@@ -167,8 +184,7 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
             </div>
         </div>

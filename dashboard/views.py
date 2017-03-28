@@ -72,6 +72,26 @@ def agri_summary_main(request):
 @permission_required("district", "Water Supply")   
 def water_supply_main(request):   
     return render(request, 'dashboard/water_supply_main.html')
+
+@permission_required("district", "Power Supply")   
+def power_supply_main(request):   
+    return render(request, 'dashboard/power_supply_main.html')
+
+@permission_required("district", "Housing")   
+def housing_main(request):   
+    return render(request, 'dashboard/housing_main.html')
+
+@permission_required("district", "Tourism")   
+def tourism_main(request):   
+    return render(request, 'dashboard/tourism_main.html')
+
+@permission_required("district", "Industry & Services")   
+def industry_services_main(request):   
+    return render(request, 'dashboard/industry_services_main.html')
+
+@permission_required("district", " Telecommunications")   
+def telecom_main(request):   
+    return render(request, 'dashboard/telecom_main.html')
     
     
     

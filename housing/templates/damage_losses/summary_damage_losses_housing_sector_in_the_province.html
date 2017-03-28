@@ -27,16 +27,39 @@
                         <col width="87"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead" height="19">
-                        <td height="19" width="166">
+                    <tr height="19">
+                        <td class="trhead" width="130" colspan="2">
+                            Incident
+                        </td>
+                        <td width="125">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead" width="281" height="20">
                             Province
                         </td>
-                        <td colspan="5" height="19" width="477">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                        <td width="170" ">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
                             </select>
+                        </td>
+                        <td >
+                            <button class="btn btn-info btn-block"
+                                    ng-click="">Load
+                            </button>
                         </td>
                     </tr>
                     <tr class="trheadc" height="51">
@@ -79,19 +102,19 @@
                             Type 1. Permanent
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -99,19 +122,19 @@
                             Type 2. Semi-Permanent
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -119,19 +142,19 @@
                             Type 3. Improvised
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -139,19 +162,19 @@
                             TOTAL
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -159,19 +182,19 @@
                             GRAND TOTAL
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="112">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="104">
-                            -
+                            <!-- - -->
                         </td>
                         <td height="19" width="87">
-                            -
+                            <!-- - -->
                         </td>
                     </tr>
                     </tbody>
@@ -179,8 +202,7 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+
                 </div>
             </div>
         </div>

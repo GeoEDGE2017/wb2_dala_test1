@@ -100,6 +100,7 @@ INSTALLED_APPS = [
     'power_supply',
     'power_supply.base_line',
     'power_supply.damage_losses',
+
 ]
 
 MIDDLEWARE_CLASSES = [

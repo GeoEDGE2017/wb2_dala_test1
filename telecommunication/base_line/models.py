@@ -17,7 +17,20 @@ class BdSessionKeys(models.Model):
         db_table = 'telecommunication\".\"bd_session_keys'
 
 
-class Ownearship(models.Model):
+class CompanyName(models.Model):
+    company_name = models.CharField(max_length=255, blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"company_name'
+
+
+class Ownership(models.Model):
     ownership = models.CharField(max_length=255, blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -37,7 +50,7 @@ class BsTelCompany(models.Model):
     fixed_data = models.NullBooleanField()
     mobile_voice = models.NullBooleanField()
     mobile_data = models.NullBooleanField()
-    company = models.ForeignKey(Ownearship, db_column='company', blank=True, null=True)
+    company = models.ForeignKey(Ownership, db_column='company', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)

@@ -429,6 +429,8 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         }
 
         }
+
+
         $scope.cancelEdit = function()
         {
              $scope.is_edit = false;

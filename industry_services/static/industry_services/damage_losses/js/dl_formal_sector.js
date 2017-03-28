@@ -378,6 +378,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
             $scope.is_edit = false;
             $scope.dl_dmg_loss_foml_sec = angular.copy(init_data);
+            $scope.new_firm = null;
 
         }
 

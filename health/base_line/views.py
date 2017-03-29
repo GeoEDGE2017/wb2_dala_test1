@@ -89,14 +89,4 @@ def medical_facilities(request):
     return render(request, 'base_line/health_baseline_district.html')
 
 
-def ministry_health_system(request):
-    districts = District.objects.all()
-    provinces = Province.objects.all()
-
-    context = {
-        'districts': districts,
-        'provinces': provinces,
-        'module': 'health'
-    }
-    return render(request, 'base_line/health_baseline_unitcost_district.html', context)
 

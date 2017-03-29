@@ -2,16 +2,16 @@ var bsHealthStatusApp = angular.module('bsHealthStatusApp', ['ui.bootstrap', 'po
 
 bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatusController($scope, $http) {
 
-$scope.district;
-$scope.number1;
-$scope.number2;
-$scope.sum;
-$scope.bs_date;
-$scope.is_edit = false;
-$scope.submitted = false;
-$scope.is_valid_data = true;
+    $scope.district;
+    $scope.number1;
+    $scope.number2;
+    $scope.sum;
+    $scope.bs_date;
+    $scope.is_edit = false;
+    $scope.submitted = false;
+    $scope.is_valid_data = true;
 
-var init_data = {
+  var init_data = {
 'health':{
 'Table_1':{
 'BhsPlc':[
@@ -73,15 +73,14 @@ unit_measure: null
 }
 }
 
-$scope.dataHealthStatus = init_data;
+  $scope.dataHealthStatus = init_data;
 
-$scope.getSum = function()
-{
-alert($scope.sum);
-}
+//  $scope.getSum = function()
+//   {
+//    alert($scope.sum);
+//   }
 
-$scope.hSDataSubmit = function(form)
-{
+    $scope.hSDataSubmit = function(form){
 $scope.submitted = true;
 
 if(form.$valid){
@@ -109,8 +108,7 @@ if(form.$valid){
 
 }
 
-$scope.insertDisease = function(table)
-{
+    $scope.insertDisease = function(table){
     var new_row;
     if(table == 'BhsOi'){
     new_row = {
@@ -141,8 +139,7 @@ $scope.insertDisease = function(table)
 
 }
 
-$scope.bsHsDataEdit = function(form)
-{
+    $scope.bsHsDataEdit = function(form){
 $scope.submitted = true;
  if(form.$valid){
    $scope.is_edit = true;
@@ -160,14 +157,12 @@ $scope.submitted = true;
 
 }
 
-$scope.cancelEdit = function()
-{
+    $scope.cancelEdit = function(){
     $scope.is_edit = false;
     $scope.dataHealthStatus = init_data;
 }
 
-$scope.removeItem = function removeItem(table, index)
-{
+    $scope.removeItem = function removeItem(table, index){
 if(table == 'BhsComDiseases')
     $scope.dataHealthStatus.health.Table_1.BhsComDiseases.splice(index,1);
 else if(table == 'BhsVi')

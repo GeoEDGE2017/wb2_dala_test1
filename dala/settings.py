@@ -260,7 +260,7 @@ TABLE_PROPERTY_MAPPER = {
             'BucOmarcCrpm': ['particulars', 'base_hospital', 'divisional_hospital',
                              'rural_hospital',
                              'central_dispensary', 'pri_med_cunits',
-                             'pri_health_ccenters'                                 'mat_child_health_clinics',
+                             'pri_health_ccenters','mat_child_health_clinics',
                              'id'],
             'BucOmarcStructure': ['particulars', 'base_hospital', 'divisional_hospital',
                                   'rural_hospital',
@@ -2995,7 +2995,6 @@ TABLE_PROPERTY_MAPPER = {
         }
 
     },
-
     'power_supply': {
         'Table_1': {
             'BsPwGenFirm':
@@ -3087,7 +3086,6 @@ TABLE_PROPERTY_MAPPER = {
         },
 
     },
-
     'telecommunication': {
         'Table_2': {
             'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],

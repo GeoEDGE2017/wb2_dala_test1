@@ -13,6 +13,7 @@
     
   });
   
+
 </script>
 
 <!-- Main content -->
@@ -47,35 +48,35 @@
                         This request can't be proceed, there is data-set available for this selection.
                      </span>
 
-                    <table  class="table table-bordered"
+                    <table class="table table-bordered"
                            style="background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
                             <col width="98" span="3"/>
                         </colgroup>
                         <tbody>
-<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-<td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0" >
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
 
-</td>
+                            </td>
 
-<td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
 <span class="arrow_box" ng-show="submitted && form_health_baseline_district.district.$error.required">
                                 Please select District
                                 </span>
-</td>
-<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-</td>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
 
-<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
 <span class="arrow_box" ng-show="submitted && form_health_baseline_district.baselineDate.$error.required">
                                     Please select Date
                                    </span>
-</td>
-</tr>
+                            </td>
+                        </tr>
                         <tr class="trhead1">
                             <td style="padding-left:5px;"> Name of District or RDH</td>
- 
+
                             <td colspan="1" style="">
                                 <select id="selectbasic" name="district" ng-model='district' class="form-control"
                                         style="font-weight:400;" required>
@@ -86,15 +87,15 @@
                                     <option value={{district.id}}>{{district.name}}
                                         {% endfor %}
                                 </select>
-                               
+
                             </td>
                             <td colspan="1" class="p5">
                                 Year/Month
                             </td>
                             <td colspan="1" style="font-weight:normal;">
-                                <input id="datepicker" type="text" placeholder="mm/yy" ng-model="baselineDate"
-                                       class="form-control input-md" name ="baselineDate" required>
-                                   
+                                <input id="datepicker" type="text" placeholder="mm/yyyy" ng-model="baselineDate"
+                                       class="form-control input-md" name="baselineDate" required>
+
                             </td>
 
                         </tr>
@@ -146,7 +147,8 @@
 
                                 </td>
                             </tr>
-                            <tr ng-repeat="bmfPubMf in bsDataMedicalFacilities.health.Table_2.BmfPubMf" ng-if="$index < 12"
+                            <tr ng-repeat="bmfPubMf in bsDataMedicalFacilities.health.Table_2.BmfPubMf"
+                                ng-if="$index < 12"
                                 height="20">
 
                                 <td ng-bind="bmfPubMf.type_pub_mf" width="264"
@@ -176,7 +178,8 @@
 
                             </tr>
                             <tr height="20">
-                                <td ng-bind="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].type_pub_mf" width="264"
+                                <td ng-bind="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].type_pub_mf"
+                                    width="264"
                                     height="20" class="boldash">
 
                                 </td>
@@ -196,7 +199,8 @@
                                     <input id="text"
                                            ng-value="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].male=bsDataMedicalFacilities.health.Table_2.BmfPubMf[0].male + bsDataMedicalFacilities.health.Table_2.BmfPubMf[1].male + bsDataMedicalFacilities.health.Table_2.BmfPubMf[2].male + bsDataMedicalFacilities.health.Table_2.BmfPubMf[3].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[4].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[5].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[6].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[7].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[8].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[9].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[10].male +bsDataMedicalFacilities.health.Table_2.BmfPubMf[11].male"
 
-                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].male" name="textinput"
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].male"
+                                           name="textinput"
                                            type="text"
                                            placeholder=""
                                            class="form-control input-md">
@@ -230,7 +234,8 @@
                                 </td>
                             </tr>
 
-                            <tr ng-repeat="bmfPvtMf in bsDataMedicalFacilities.health.Table_2.BmfPvtMf" ng-if="$index < 2"
+                            <tr ng-repeat="bmfPvtMf in bsDataMedicalFacilities.health.Table_2.BmfPvtMf"
+                                ng-if="$index < 2"
                                 height="20">
 
                                 <td ng-bind="bmfPvtMf.type_pvt_mf" width="264"
@@ -281,7 +286,8 @@
                                     <input id="text"
                                            ng-value="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].male = bsDataMedicalFacilities.health.Table_2.BmfPvtMf[0].male + bsDataMedicalFacilities.health.Table_2.BmfPvtMf[1].male"
 
-                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].male" name="textinput"
+                                           ng-model="bsDataMedicalFacilities.health.Table_2.BmfPvtMf[2].male"
+                                           name="textinput"
                                            type="text"
                                            placeholder=""
                                            class="form-control input-md">
@@ -310,7 +316,8 @@
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" ng-click="bsHsDataEdit(form_health_baseline_district)" ng-if="!is_edit" class="btn btn-success">Edit
+                        <button type="button" ng-click="bsHsDataEdit(form_health_baseline_district)" ng-if="!is_edit"
+                                class="btn btn-success">Edit
                         </button>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                             Edit

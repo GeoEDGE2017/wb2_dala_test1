@@ -97,6 +97,9 @@ INSTALLED_APPS = [
     'telecommunication',
     'telecommunication.base_line',
     'telecommunication.damage_losses',
+    'power_supply',
+    'power_supply.base_line',
+    'power_supply.damage_losses',
 
 ]
 
@@ -140,15 +143,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=industry_services'
+        #     'options': '-c search_path=power_supply'
         #                   'health,public,other_government,education,mining,'
         #                'transport_rail,transport_water,transport_land,transport_air,'
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
         # },
-
+        #
         # 'OPTIONS': {
-        #     'options': '-c search_path=telecommunication'
+        #     'options': '-c search_path=power_supply'
         # },
 
         'NAME': 'dala',
@@ -2730,6 +2733,13 @@ TABLE_PROPERTY_MAPPER = {
             'BsNumBusSector': ['avg_num_emp_female', 'avg_num_emp_male', 'components', 'num_businesses', 'id'],
         },
         'Table_3': {
+            'DmgAstStructures': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstEquipment': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
+            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+
 
         },
         'Table_4': {
@@ -2738,6 +2748,11 @@ TABLE_PROPERTY_MAPPER = {
              'DlInfLosTypOther': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
              'DlInfLosTypServices': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
              'DlInfLosTypTrading': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+        },
+        'Table_5': {
+            'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+            'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+
         }
 
     },
@@ -2765,9 +2780,19 @@ TABLE_PROPERTY_MAPPER = {
 
         },
 
+    },
+
+    'telecommunication': {
+        'Table_2': {
+            'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
+            'DmgAstTelStructure': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelEquipment': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelMachinery': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
+        }
     }
-
-
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

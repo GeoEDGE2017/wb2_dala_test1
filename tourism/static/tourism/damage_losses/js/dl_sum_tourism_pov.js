@@ -10,6 +10,7 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
     $scope.districts;
     $scope.table;
     $scope.districtTotals = [];
+    $scope.data_available;
 
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -58,6 +59,12 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
             $scope.districts = Object.keys($scope.data);
             console.log('load ', Object.keys($scope.data));
             console.log($scope.data);
+            $scope.data_available = ($scope.districts.length != 0);
+
+            if(!$scope.data_available){
+                alert("no data available for your selection");
+            }
+
             $scope.makeTable();
 
             }).error(function(err){

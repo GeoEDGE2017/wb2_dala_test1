@@ -132,3 +132,5 @@ class BsTouBusiness(models.Model):
     class Meta:
         managed = False
         db_table = 'tourism\".\"bs_tou_business'
+
+

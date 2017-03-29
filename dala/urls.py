@@ -30,6 +30,10 @@ urlpatterns = [
     url(r'^bs_save_data$', views.bs_save_data, name='bs_save_data'),
     url(r'^fetch_entities$', views.fetch_entities, name='fetch_entities'),
     url(r'^add_entity$', views.add_entity, name='add_entity'),
+    url(r'^get_entity$', views.get_entity, name='get_entity'),
+    url(r'^fetch_entities_all$', views.fetch_entities_all, name='fetch_entities_all'),
+
+    url(r'^fetch_company_tele$', views.fetch_company_tele, name='fetch_company_tele'),
 
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),
@@ -51,8 +55,11 @@ urlpatterns = [
     url(r'^fetch_tourism_infrastructure_types$', views.fetch_tourism_infrastructure_types, name='fetch_tourism_infrastructure_types'),
 
     # get entities all data
-    url(r'^fetch_entities_plain$', views.fetch_entities_plain,
-        name='fetch_entities_plain'),
+    url(r'^fetch_entities_plain$', views.fetch_entities_plain, name='fetch_entities_plain'),
+
+    url(r'^fetch_entities_plain_column$', views.fetch_entities_plain_column, name='fetch_entities_plain_column'),
+
+
 
 
 
@@ -73,6 +80,9 @@ urlpatterns = [
 
     # water_supply
     url(r'^water_supply/', include('water_supply.urls', namespace='water_supply')),
+
+    # power_supply
+    url(r'^power_supply/', include('power_supply.urls', namespace='power_supply')),
 
     # housing
     url(r'^housing/', include('housing.urls', namespace='housing')),

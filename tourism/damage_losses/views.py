@@ -73,7 +73,7 @@ def dl_sum_tourism_pov(request):
         'district_numbers': district_numbers,
     }
 
-    return render(request, 'damage_losses/summary_of_damages_losses_province.html', context)
+    return render(request, 'damage_losses/summary_industry_service_of_damages_losses_province.html', context)
 
 
 # Table 6
@@ -92,5 +92,5 @@ def dl_sum_tourism_nat(request):
         'province_numbers': province_numbers,
     }
 
-    return render(request, 'damage_losses/summary_of_damages_losses_nationwide.html', context)
+    return render(request, 'damage_losses/summary_industry_services_of_damages_losses_nationwide.html', context)
 

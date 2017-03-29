@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlHousingDisApp" ng-controller="DlHousingDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -33,9 +33,9 @@
                             <td class="trhead" height="43" width="156">
                                 Incident
                             </td>
-                            <td class="trhead" colspan="2" height="43" width="63">
+                            <td class="trhead" colspan="5" height="43" width="63">
                                 <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                        class="form-control" ng-change="changedValue(true);getDistrict();" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
 
@@ -45,10 +45,10 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td class="trhead" colspan="3"  height="43" width="120">
+                            <td class="trhead" height="43" width="120">
                                 District
                             </td>
-                            <td class="trhead" colspan="3" height="43" width="491">
+                            <td class="trhead" height="43" width="491">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
@@ -56,6 +56,10 @@
                             </td>
 
                         </tr>
+                     </tbody>
+                    </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
+                    <tbody>
                     <tr class="trheadc" height="51">
                         <td height="51" width="166">
                             Housing Classification
@@ -92,103 +96,103 @@
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" height="19" width="166">
+                        <td class="tdpa" height="19" width="166" >
                             1 floor
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesPerDistrict[0].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesPerDistrict[0].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgPerDistrict[0].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosPerDistrict[0].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgPerDistrict[0].tot_damages + data.housing.Table_4.DlLosPerDistrict[0].tot_losses">
+
                         </td>
                     </tr>
                     <tr height="19">
                         <td class="tdpa" height="19" width="166">
                             2-3 floors
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesPerDistrict[1].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesPerDistrict[1].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgPerDistrict[1].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosPerDistrict[1].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgPerDistrict[1].tot_damages + data.housing.Table_4.DlLosPerDistrict[1].tot_losses ">
+
                         </td>
                     </tr>
                     <tr height="19">
                         <td class="tdpa" height="19" width="166">
                             4-5 floors
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesPerDistrict[2].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesPerDistrict[2].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgPerDistrict[2].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosPerDistrict[2].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgPerDistrict[2].tot_damages + data.housing.Table_4.DlLosPerDistrict[2].tot_losses">
+
                         </td>
                     </tr>
                     <tr height="19">
                         <td class="tdpa" height="19" width="166">
                             More than 5 floors
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesPerDistrict[3].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesPerDistrict[3].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgPerDistrict[3].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosPerDistrict[3].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgPerDistrict[3].tot_damages + data.housing.Table_4.DlLosPerDistrict[3].tot_losses">
+
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" height="19" width="166">
+                        <td class="boldash" height="19" width="166">
                             Total
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesPerDistrict[4].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesPerDistrict[4].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                           <!---->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgPerDistrict[4].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosPerDistrict[4].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgPerDistrict[4].tot_damages + data.housing.Table_4.DlLosPerDistrict[4].tot_losses ">
+
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -210,79 +214,79 @@
                         <td class="tdpa" height="19" width="166">
                             1 floor
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesSemiPerDistrict[0].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesSemiPerDistrict[0].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[0].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosSemiPerDistrict[0].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[0].tot_damages + data.housing.Table_4.DlLosSemiPerDistrict[0].tot_losses">
+
                         </td>
                     </tr>
                     <tr height="19">
                         <td class="tdpa" height="19" width="166">
                             2-3 floors
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87"  ng-bind="data.housing.Table_4.DlNumDesSemiPerDistrict[1].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesSemiPerDistrict[1].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[1].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosSemiPerDistrict[1].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[1].tot_damages +data.housing.Table_4.DlLosSemiPerDistrict[1].tot_losses ">
+
                         </td>
                     </tr>
                     <tr height="19">
                         <td class="tdpa" height="19" width="166">
                             4-5 floors
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87"  ng-bind="data.housing.Table_4.DlNumDesSemiPerDistrict[2].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesSemiPerDistrict[2].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104"  ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[2].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosSemiPerDistrict[2].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[2].tot_damages + data.housing.Table_4.DlLosSemiPerDistrict[2].tot_losses">
+
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" height="19" width="166">
+                        <td class="boldash" height="19" width="166">
                             Total
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87"  ng-bind="data.housing.Table_4.DlNumDesSemiPerDistrict[3].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesSemiPerDistrict[3].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104"  ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[3].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosSemiPerDistrict[3].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgSemiPerDistrict[3].tot_damages + data.housing.Table_4.DlLosSemiPerDistrict[3].tot_losses">
                             <!-- - -->
                         </td>
                     </tr>
@@ -305,19 +309,19 @@
                         <td class="tdpa" height="19" width="166">
                             1 floor
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesImpDistrict[1].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesImpDistrict[1].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104"  ng-bind="data.housing.Table_4.DlDmgImpDistrict[0].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosImpDistrict[1].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgImpDistrict[0].tot_damages + data.housing.Table_4.DlLosImpDistrict[1].tot_losses">
                             <!-- - -->
                         </td>
                     </tr>
@@ -325,60 +329,73 @@
                         <td class="tdpa" height="19" width="166">
                             2-3 floors
                         </td>
-                        <td height="19" width="87">
-                            <!--/-->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesImpDistrict[2].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                           <!--/-->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesImpDistrict[2].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgImpDistrict[1].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosImpDistrict[2].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgImpDistrict[1].tot_damages + data.housing.Table_4.DlLosImpDistrict[2].tot_losses ">
+
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" height="19" width="166">
+                        <td class="boldash" height="19" width="166">
                             Total
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlNumDesImpDistrict[0].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="data.housing.Table_4.DlNumPdesImpDistrict[0].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgImpDistrict[2].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosImpDistrict[0].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgImpDistrict[2].tot_damages + data.housing.Table_4.DlLosImpDistrict[0].tot_losses">
+
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" height="19" width="166">
+                        <td class="boldash" height="19" width="166">
                             GRAND TOTAL
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="
+                        data.housing.Table_4.DlNumDesImpDistrict[0].tot_num_houses +
+                        data.housing.Table_4.DlNumDesSemiPerDistrict[3].tot_num_houses +
+                        data.housing.Table_4.DlNumDesPerDistrict[4].tot_num_houses">
+
                         </td>
-                        <td colspan="2" height="19" width="224">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="224" ng-bind="
+                        data.housing.Table_4.DlNumPdesImpDistrict[0].tot_num_houses +
+                        data.housing.Table_4.DlNumPdesSemiPerDistrict[3].tot_num_houses +
+                        data.housing.Table_4.DlNumPdesPerDistrict[4].tot_num_houses">
+
                         </td>
-                        <td height="19" width="104">
-                            <!-- - -->
+                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgImpDistrict[2].tot_damages + data.housing.Table_4.DlDmgSemiPerDistrict[3].tot_damages + data.housing.Table_4.DlDmgPerDistrict[4].tot_damages">
+
                         </td>
-                        <td height="19" width="87">
-                            <!-- - -->
+                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosImpDistrict[0].tot_losses + data.housing.Table_4.DlLosSemiPerDistrict[3].tot_losses + data.housing.Table_4.DlLosPerDistrict[4].tot_losses">
+
                         </td>
-                        <td colspan="2" height="19" width="166">
-                            <!-- - -->
+                        <td colspan="2" height="19" width="166"
+                            ng-bind="
+                            data.housing.Table_4.DlDmgImpDistrict[2].tot_damages +
+                            data.housing.Table_4.DlLosImpDistrict[0].tot_losses +
+                            data.housing.Table_4.DlDmgSemiPerDistrict[3].tot_damages +
+                            data.housing.Table_4.DlLosSemiPerDistrict[3].tot_losses +
+                            data.housing.Table_4.DlDmgPerDistrict[4].tot_damages +
+                            data.housing.Table_4.DlLosPerDistrict[4].tot_losses">
+
                         </td>
                     </tr>
                     </tbody>

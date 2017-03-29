@@ -370,27 +370,25 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     }
 
     $scope.saveDlData = function(form) {
-        $scope.submitted = true;
         if(form.$valid) {
-            console.log($scope.dlAssmntHusing);
+            $scope.submitted = true;
             $http({
                 method: 'POST',
-                url: '/dl_save_data',
-               contentType: 'application/json; charset=utf-8',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
                     'table_data': $scope.dlAssmntHusing,
                     'com_data': {
                         'district_id': $scope.district.district__id,
-                        'incident_id' : $scope.incident,
+                        'incident_id': $scope.incident,
                     },
-                    'is_edit':$scope.is_edit,
-                    'sector':'housing'
+                    'is_edit' : $scope.is_edit,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'False')
                     $scope.is_valid_data = false;
-               else
+                else
                     $("#modal-container-239453").modal('show');
             }, function errorCallback(response) {
 
@@ -398,8 +396,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         }
     }
 
-
-        $scope.calTotal=function(arr,property){
+   $scope.calTotal=function(arr,property){
         var finaltotal = 0;
 
         angular.forEach(arr, function(value, key) {
@@ -410,7 +407,6 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
           console.log(finaltotal);
         return finaltotal;
         }
-
 
    $scope.calTotTotal=function(){
     var finaltotal1 = 0;
@@ -445,6 +441,18 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     return grantot;
     }
 
+   $scope.calLosTotTotal=function(arr,property){
+        var finaltotal = 0;
+        console.log('test',arr);
+        angular.forEach(arr, function(value, key) {
+
+         finaltotal = finaltotal + value[property] ;
+
+        })
+          console.log('test',finaltotal);
+        return finaltotal;
+        }
+
    $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -458,16 +466,19 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
 
     angular.forEach(array1, function(value, key) {
-
+     if(value.assets =='Total'){
      finaltotal1 = finaltotal1 + value.damages ;
+     }
     })
     angular.forEach(array2, function(value, key) {
-
+     if(value.assets =='Total'){
      finaltotal2 = finaltotal2 + value.damages ;
+     }
     })
     angular.forEach(array3, function(value, key) {
-
+    if(value.assets =='Total'){
      finaltotal3 = finaltotal3 + value.damages ;
+     }
     })
 
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
@@ -521,23 +532,56 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
 
     angular.forEach(array1, function(value, key) {
-
+     if(value.assets =='Total'){
      finaltotal1 = finaltotal1 + value.damages ;
+     }
     })
     angular.forEach(array2, function(value, key) {
-
+     if(value.assets =='Total'){
      finaltotal2 = finaltotal2 + value.damages ;
+     }
     })
     angular.forEach(array3, function(value, key) {
-
+     if(value.assets =='Total'){
      finaltotal3 = finaltotal3 + value.damages ;
+     }
     })
 
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
     return grantot;
     }
 
+   $scope.dlDataEdit = function(form){
 
+    $scope.is_edit = true;
+    $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':'Table_3',
+    'sector':'housing',
+    'com_data': {
+            'district_id':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlAssmntHusing = data;
+    })
+
+}
+
+   $scope.cancelEdit = function(){
+       $scope.is_edit = false;
+        $scope.dlAssmntHusing = init_data;
+
+}
 
 }]);
-

@@ -12,16 +12,17 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     $scope.firms;
     $scope.ownership;
     $scope.isOwnershipPublic;
-    $scope.selectedFirm;
+    $scope.selectedFirm = { 'sector':null};
+
     $scope.selectedType;
     $scope.businessTypes = [];
     $scope.formal_formal_types = [];
-    $scope.selected_formal_type;
+    $scope.selected_formal_type = {};
     $scope.is_edit = false;
 
     $scope.services = [];
     $scope.subSectors = {};
-    $scope.subSector;
+    $scope.subSector = {};
 
     $scope.indSubSec;
     $scope.serSubSec;
@@ -32,6 +33,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     $scope.selectedSubSectorSer;
 
     $scope.classificationTypes = [];
+    $scope.classification;
     $scope.selectedClassificationType;
 
     $scope.firm_num_male;
@@ -255,6 +257,8 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         $scope.currentSubSector = $scope.subSectors[$scope.selected_formal_type.firm_type.toLowerCase()];
         $scope.subSector = null;
         $scope.isIndustrySelected = ($scope.selected_formal_type.firm_type.toLowerCase() == 'services');
+        $scope.selectedFirm.firm_type_id = $scope.selected_formal_type.id;
+        console.log("seltd Firm", $scope.selectedFirm);
     }
 
     $scope.loadBusinessClassification = function(){
@@ -313,6 +317,8 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         angular.forEach(table[subTable], function(value, key) {
             final_total += value[column] ;
         })
+
+        total_object[column] = final_total;
 
         return final_total;
     }
@@ -378,11 +384,14 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
             $scope.is_edit = false;
             $scope.dl_dmg_loss_foml_sec = angular.copy(init_data);
-            $scope.new_firm = null;
+            $scope.selectedFirm = {};
 
         }
 
      $scope.saveData = function(form){
+
+        console.log("save firm" , $scope.selectedFirm);
+
         if($scope.is_edit){
             $scope.saveFirm(form);
             $scope.saveDlData(form);
@@ -411,41 +420,28 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
         if(
             ($scope.district ) &&
-            ($scope.firm_name ) &&
-            ($scope.selected_formal_type ) &&
-            ($scope.ownership ) &&
-            ($scope.firm_description ) &&
-            ($scope.selectedClassificationType) &&
-            ($scope.subSector )
+//            ($scope.selectedFirm.firm_name ) &&
+//            ($scope.selected_formal_type ) &&
+//            ($scope.selectedFirm.ownership ) &&
+//            ($scope.selectedFirm.description ) &&
+//            ($scope.selectedFirm.classification_id) &&
+            ($scope.selectedFirm.sector )
         ){
 
 //            alert("valid firm");
 
-            $scope.new_firm.district_id = $scope.district.district__id;
-            $scope.new_firm.firm_name = $scope.firm_name;
-            $scope.new_firm.firm_type = $scope.firm_type;
-            $scope.new_firm.ownership = $scope.ownership;
-            $scope.new_firm.description = $scope.firm_description;
-            $scope.new_firm.classification_id = $scope.selectedClassificationType.id;
-            $scope.new_firm.num_male_emp = $scope.firm_num_male;
-            $scope.new_firm.num_female_emp = $scope.num_female_emp;
-            $scope.new_firm.sector = $scope.subSector;
-
-            console.log("new firm", $scope.new_firm);
-
+            $scope.selectedFirm.district_id = $scope.district.district__id;
             $scope.saveFirm(form);
         }
         else{
             alert("You need to add District, Firm name, Firm type, Ownership, Firm description, Classification")
-            console.log($scope.district )
-            console.log($scope.firm_name )
+            console.log("firmdata", $scope.district )
+            console.log($scope.selectedFirm.firm_name )
             console.log($scope.selected_formal_type )
-            console.log($scope.ownership )
-            console.log($scope.firm_description )
-            console.log($scope.selectedClassificationType)
-            console.log($scope.selectedSubSector )
-            console.log(" fiealds above")
-            console.log($scope.selectedSubSector);
+            console.log($scope.selectedFirm.ownership )
+            console.log($scope.selectedFirm.description )
+            console.log($scope.selectedFirm.classification_id )
+            console.log($scope.selectedFirm.sector )
         }
     }
 
@@ -458,7 +454,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                 method: "POST",
                 url: "/add_entity",
                 data: angular.toJson({
-                'model_fields': $scope.new_firm,
+                'model_fields': $scope.selectedFirm,
                 'model': 'FrmFirm',
                 'is_edit': $scope.is_edit,
                 'sector': 'industry_services'
@@ -467,7 +463,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
                 if(data){
                 //console.log
-                $scope.new_firm.id = data;
+                $scope.selectedFirm.id = data;
 //                    $scope.firms.push($scope.new_firm);
                     $("#modal-container-469842").modal('hide');
                     $("#modal-container-469840").modal('hide');
@@ -497,8 +493,8 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
-                    'frm_firm_id':$scope.new_firm.id,
- //                   'ownership':$scope.ownership,
+                    'frm_firm_id':$scope.selectedFirm.id,
+                    'ownership':$scope.ownership,
 //                    'tou_business':$scope.selectedType.business,
 
 
@@ -509,7 +505,6 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             dataType: 'json',
         }).success(function(data) {
 
-                    $scope.bs_tourism_facilities = init_data;
                     $scope.is_edit = false;
 
                     if (data == 'False')
@@ -533,8 +528,8 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
-                    'frm_firm_id':$scope.new_firm.id,
- //                   'ownership':$scope.ownership,
+                    'frm_firm_id':$scope.selectedFirm.id,
+                    'ownership':$scope.ownership,
 //                    'tou_business':$scope.selectedType.business,
 
 
@@ -597,23 +592,18 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
     }
 
+    $scope.setClassificationID = function(){
+        $scope.selectedFirm.classification_id = $scope.classification.id;
+        console.log("selectedFirm", $scope.selectedFirm);
+    }
+
+
    $scope.loadAllData = function(){
 
         if($scope.district && $scope.incident && $scope.selectedFirm){
                     $scope.is_edit = true;
         $scope.submitted = true;
         $scope.new_firm = $scope.selectedFirm;
-
-            $scope.district.district__id = $scope.new_firm.district_id;
-            $scope.firm_name = $scope.new_firm.firm_name;
-            $scope.firm_type = $scope.new_firm.firm_type;
-            $scope.ownership = $scope.new_firm.ownership;
-            $scope.firm_description = $scope.new_firm.description;
-            $scope.selectedClassificationType = $scope.classificationTypes[ $scope.new_firm.classification_id ];
-            ////////////////////////////////////////////////////////////////////*************
-            $scope.firm_num_male = $scope.new_firm.num_male_emp;
-            $scope.num_female_emp = $scope.new_firm.num_female_emp;
-            $scope.subSector = $scope.new_firm.sector;
 
 
             $http({
@@ -651,6 +641,13 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     }
                 else{
                         $scope.dl_dmg_loss_foml_sec = data;
+                        $scope.classification = {};
+                        $scope.classification.id = $scope.selectedFirm.classification_id;
+                        $scope.selected_formal_type.id = $scope.selectedFirm.firm_type_id;
+                        $scope.subSector.industry = $scope.selectedFirm.sector;
+                        $scope.subSector.service = $scope.selectedFirm.sector;
+//                        $scope.subSector = $scope.selectedFirm.sector;
+                        console.log("classification set4", $scope.selectedFirm);
                     $("#modal-container-469842").modal('hide');
                     $("#modal-container-469840").modal('hide');
 
@@ -664,6 +661,10 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             if(!$scope.selectedFirm) { console.log("no firm") }
             alert("District, Incident needed ! ")
         }
+   }
+
+   $scope.changeSubSector = function(){
+        $scope.selectedFirm.sector = $scope.subSector;
    }
 
     $scope.fetchFormalFirmTypes();

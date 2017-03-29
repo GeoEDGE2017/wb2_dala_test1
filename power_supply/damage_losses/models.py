@@ -1,4 +1,6 @@
 from django.db import models
+
+from power_supply.base_line.models import PvtPwPrdTypes, PvtPwProducers
 from settings.models import District, Province
 from incidents.models import IncidentReport
 
@@ -175,3 +177,57 @@ class CebDmgAstOffEquipment(models.Model):
     class Meta:
         managed = False
         db_table = 'power_supply\".\"ceb_dmg_ast_off_equipment'
+
+
+class PvtNumEmp(models.Model):
+    num_male = models.BigIntegerField(blank=True, null=True)
+    num_female = models.BigIntegerField(blank=True, null=True)
+    tot_emp = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    pw_producer = models.ForeignKey(PvtPwProducers, db_column='pw_producer', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"pvt_num_emp'
+
+
+class PvtDmgAst(models.Model):
+    num_dst_ast = models.BigIntegerField(blank=True, null=True)
+    tot_replace_cost = models.FloatField(blank=True, null=True)
+    num_pdmg_ast = models.FloatField(blank=True, null=True)
+    tot_repair_cost = models.FloatField(blank=True, null=True)
+    tot_damaged_cost = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District,  db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    pw_producer = models.ForeignKey(PvtPwProducers, db_column='pw_producer', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"pvt_dmg_ast'
+
+
+class PvtDmgLosses(models.Model):
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    losses_type = models.CharField(max_length=255, blank=True, null=True)
+    pw_producer = models.ForeignKey(PvtPwProducers, db_column='pw_producer', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'pvt_dmg_losses'

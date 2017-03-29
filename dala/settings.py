@@ -2753,7 +2753,12 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
 
-        }
+        },
+        'Table_6': {
+            'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+            'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+
+        },
 
     },
 
@@ -2780,7 +2785,14 @@ TABLE_PROPERTY_MAPPER = {
 
         },
 
-    }
+    },
+    'power_supply': {
+        'Table_3': {
+            'PvtNumEmp': ['num_male', 'num_female', 'tot_emp', 'id'],
+            'PvtDmgAst': ['assets', 'num_dst_ast', 'tot_replace_cost', 'num_pdmg_ast','tot_repair_cost', 'tot_damaged_cost', 'id'],
+            'PvtDmgLosses': ['los_year1', 'los_year2', 'losses_type', 'id'],
+        }
+    },
 
 
 }

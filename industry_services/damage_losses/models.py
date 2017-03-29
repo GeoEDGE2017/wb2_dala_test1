@@ -184,6 +184,7 @@ class DlSessionKeys(models.Model):
     province = models.ForeignKey(Province,  db_column='province', related_name='ind_ser_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='ind_ser_dl_district', blank=True, null=True)
     frm_firm = models.ForeignKey(FrmFirm, db_column='frm_firm', related_name='ind_ser_dl_frm_firm', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

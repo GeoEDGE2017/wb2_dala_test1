@@ -1,4 +1,4 @@
-//Table 3
+//Table 2
 var app = angular.module('dlPowSupCebApp', [])
 
 app.controller('DlPowSupCebAppController',  function($scope, $http) {

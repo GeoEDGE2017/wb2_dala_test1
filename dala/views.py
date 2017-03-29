@@ -717,7 +717,6 @@ def fetch_entities(request):
     )
 
 
-
 @csrf_exempt
 def fetch_entities_all(request):
     data = (yaml.safe_load(request.body))

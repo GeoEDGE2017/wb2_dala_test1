@@ -2775,9 +2775,19 @@ TABLE_PROPERTY_MAPPER = {
 
         },
 
+    },
+
+    'telecommunication': {
+        'Table_2': {
+            'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
+            'DmgAstTelStructure': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelEquipment': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelMachinery': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
+        }
     }
-
-
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

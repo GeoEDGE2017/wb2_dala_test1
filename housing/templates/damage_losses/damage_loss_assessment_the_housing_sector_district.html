@@ -10,15 +10,15 @@
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 3. Damage and loss assessment of the housing sector in a District
+                Table 3. Damage and Loss Assessment of the Housing Sector in a District
             </span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_assmnt_husing_sector">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 Damages </a></li>
-            <li><a href='#step2' data-toggle="tab">2 Partially Damaged Houses </a></li>
-            <li><a href='#step3' data-toggle="tab">3 Losses</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages </a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 Partially Damaged Houses </a></li>
+            <li id="li3"><a href='#step3' data-toggle="tab">3 Losses</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -51,11 +51,11 @@
                             </span>
                         </td>
                     </tr>
-                     <tr height="43">
-                            <td class="trhead" height="43" width="156">
+                     <tr >
+                            <td class="trhead1 p5"  width="156">
                                 Incident
                             </td>
-                            <td class="trhead" colspan="2" height="43" width="63">
+                            <td class="trhead1" colspan="2"  width="63">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
@@ -67,22 +67,22 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td class="trhead" colspan="2" height="43" width="120">
+                            <td class="trhead1" class="p5" colspan="2"  width="120">
                                 District
                             </td>
-                            <td class="trhead" colspan="3" height="43" width="343">
+                            <td class="trhead1" colspan="3"  width="343">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
                         </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="8" height="19" width="892">
                             Totally Destroyed Houses
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" height="53" width="166">
                             Housing Classification
                         </td>
@@ -307,7 +307,7 @@
                         <col width="93"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trheadc" height="29">
+                    <tr class="trheadc1" height="29">
                         <td rowspan="2" height="63" width="166">
                             Housing Classification
                         </td>
@@ -618,7 +618,7 @@
                         <col width="93"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td height="19" width="166">
                         </td>
                         <td colspan="2" height="19" width="174">
@@ -631,7 +631,7 @@
                             Losses (LKR)
                         </td>
                     </tr>
-                    <tr class="trheadc" height="51">
+                    <tr class="trheadc1" height="51">
                         <td height="51" width="166">
                             Housing Classification
                         </td>
@@ -864,6 +864,7 @@
                     <button type="button" class="btn btn-info">Clear</button>
                     <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_assmnt_husing_sector)">Submit</button>
                 </div>
+                <br><br><br>
             </div>
         </div>
     </div>

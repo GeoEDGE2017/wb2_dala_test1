@@ -718,6 +718,23 @@ def fetch_entities(request):
 
 
 @csrf_exempt
+def fetch_company_tele(request):
+    data = (yaml.safe_load(request.body))
+    district_id = data['district']
+    model_name = data['model']
+    sector = data['sector']
+
+    sub_app_name = sector + '.base_line'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.filter(district_id=district_id).values('company_name', 'id', 'ownership')
+
+    return HttpResponse(
+        json.dumps(list(fetched_data)),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
+@csrf_exempt
 def fetch_entities_all(request):
     data = (yaml.safe_load(request.body))
     district_id = data['district']
@@ -732,6 +749,7 @@ def fetch_entities_all(request):
         json.dumps(list(fetched_data)),
         content_type='application/javascript; charset=utf8'
     )
+
 
 @csrf_exempt
 def add_entity(request):

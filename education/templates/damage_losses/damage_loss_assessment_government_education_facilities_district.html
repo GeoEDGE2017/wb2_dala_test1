@@ -55,27 +55,27 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_govn_edu_facility_dist_dl.incident.$error.required">
                                     Please Select Incident
                                 </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_govn_edu_facility_dist_dl.district.$error.required">
                                     Please Select District
                                 </span>
                             </td>
                         </tr>
-                        <tr class="trhead">
+                        <tr class="trhead1">
 
-                            <td colspan="2" style="padding-right:5px;text-align:right;">
+                            <td colspan="2" style="padding-left:5px;">
                                 Incident
                             </td>
-                            <td colspan="3" style="background:#EFEFEF;">
+                            <td colspan="3" style="">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true);"
                                         style="width:100%;font-weight:400;" required>
@@ -92,7 +92,7 @@
                             </td>
                             <td colspan="2" style="padding-left:5px;"> Name of District</td>
 
-                            <td colspan="3" style="background:#EFEFEF;">
+                            <td colspan="3" style="">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" style="font-weight:400;" ng-change="changedValue(false)"
                                         class="form-control" required>
@@ -101,7 +101,7 @@
                             </td>
                         </tr>
 
-                        <tr class="trheadc" height="17">
+                        <tr class="trheadc1" height="17">
                             <td width="280" height="17">
                             </td>
                             <td colspan="8" width="1088">
@@ -110,7 +110,7 @@
                             <td width="122">
                             </td>
                         </tr>
-                        <tr class="trsubc" height="51">
+                        <tr class="trsubc1" height="51">
                             <td class="trheadc" width="280" height="51" style="width:22%;">
                                 Particular
                             </td>
@@ -280,7 +280,7 @@
                         <tbody>
 
                         <tr class="trsubc" height="51">
-                            <td class="trheadc" width="360" height="51" style="width:19.5%;">
+                            <td class="trheadc1" width="360" height="51" style="width:19.5%;">
                                 Assets
                             </td>
                             <td width="136">
@@ -691,7 +691,7 @@
 
                         <tbody>
 
-                        <tr class="trheadc" height="17">
+                        <tr class="trheadc1" height="17">
                             <td rowspan="2" width="280" height="68" style="height:22%;">
                                 Particular
                             </td>
@@ -869,7 +869,7 @@
                         <tbody>
 
                         <tr class="trsubc" height="51">
-                            <td class="trheadc" width="280" height="51" style="width:19%;" >
+                            <td class="trheadc1" width="280" height="51" style="width:19%;" >
                                 Assets
                             </td>
                             <td width="136">
@@ -1284,7 +1284,7 @@
 
 
                         <tr class="trsubc" height="51">
-                            <td class="trheadc" width="280" height="51" >
+                            <td class="trheadc1" width="280" height="51" >
                                 Types of Losses
                             </td>
                             <td width="136">
@@ -1967,14 +1967,16 @@
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" class="btn btn-success" ng-click="saveDlData()">Submit</button>
+                       
                         <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>
+                         <button type="button" class="btn btn-success" ng-click="saveDlData()">Submit</button>
                     </div>
+                    <br><br><br>
                 </div>
             </div>
         </div>

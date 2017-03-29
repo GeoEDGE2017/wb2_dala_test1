@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^get_entity$', views.get_entity, name='get_entity'),
     url(r'^fetch_entities_all$', views.fetch_entities_all, name='fetch_entities_all'),
 
+    url(r'^fetch_company_tele$', views.fetch_company_tele, name='fetch_company_tele'),
 
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),

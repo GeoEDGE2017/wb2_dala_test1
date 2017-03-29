@@ -115,7 +115,7 @@ $(document).on("click", "#add_technical", function () {
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead">
+                    <tr class="trhead1">
                         <td style="padding-left:5px;">Incident </td>
 
                         <td colspan="2" style="background:#EFEFEF;">
@@ -140,7 +140,7 @@ $(document).on("click", "#add_technical", function () {
                                     {% endfor %}
                                 </select-->
                         </td>
-                        <td colspan="2" style="padding-right:5px;text-align:right;">
+                        <td colspan="2" style="padding-left:5px;">
                            Name of District
                         </td>
                         <td colspan="3" style="background:#EFEFEF;">
@@ -151,7 +151,7 @@ $(document).on("click", "#add_technical", function () {
                             </select>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="21">
+                    <tr class="trheadc1" height="21">
                         <td rowspan="2" width="280" height="42">
                             Types of Educational Facilities
                         </td>
@@ -246,7 +246,7 @@ $(document).on("click", "#add_technical", function () {
                     <tbody>
 
 
-                    <tr class="trheadc" height="28">
+                    <tr class="trheadc1" height="28">
                         <td rowspan="2" width="280" height="49">
                             Type of Schools and Assets
                         </td>
@@ -830,7 +830,7 @@ $(document).on("click", "#add_technical", function () {
                     </colgroup>
                     <tbody>
 
-                    <tr class="trheadc" height="28">
+                    <tr class="trheadc1" height="28">
                         <td rowspan="2" width="224" height="49">
                             Type of Schools and Assets
                         </td>
@@ -881,7 +881,7 @@ $(document).on("click", "#add_technical", function () {
                         </div>
                     </div>
                     
-                    <table ng-repeat="(key, value) in schoolData.other_govn_services.Table_4">
+                    <table class="table table-bordered" ng-repeat="(key, value) in schoolData.other_govn_services.Table_4">
                     <td ng-bind="key"></td>
                      <tr ng-repeat="(key, value) in value">
                      <td ng-bind="key"></td>
@@ -923,13 +923,14 @@ $(document).on("click", "#add_technical", function () {
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_pvt_edu_facility_dl)">Submit</button>
+                    
                     <button type="button" ng-click="dlDataEdit(form_pvt_edu_facility_dl)" ng-if="!is_edit" class="btn btn-success">
                         Edit
                     </button>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>
+                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_pvt_edu_facility_dl)">Submit</button>
                 </div>
                 <br><br><br>
             </div>

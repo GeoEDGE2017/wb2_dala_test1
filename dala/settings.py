@@ -143,7 +143,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=industry_services'
+        #     'options': '-c search_path=power_supply'
         #                   'health,public,other_government,education,mining,'
         #                'transport_rail,transport_water,transport_land,transport_air,'
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
@@ -1121,15 +1121,7 @@ TABLE_PROPERTY_MAPPER = {
                 'tot_los',
 
             ],
-            'DpefBefPrimaryNational': [
-                'est_rep_cost',
-                'est_repair_cost',
-                'tot_damages',
-                'est_los_year_1',
-                'est_los_year_2',
-                'tot_los',
 
-            ],
             'DpefBefPrimaryNational': [
                 'est_rep_cost',
                 'est_repair_cost',
@@ -1253,8 +1245,7 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_cost_roof',
                 'avg_repair_cost_wall',
                 'avg_repair_cost_floor',
-                'id'
-            ],
+                'id'],
         },
         'Table_2': {
             'DlMovingAstLoss':
@@ -1857,14 +1848,7 @@ TABLE_PROPERTY_MAPPER = {
                  'income_paddy',
                  'income_ofc',
                  'num_farmer_families', 'id'],
-            'BsIfMedium':
-                ['irrigation_facility',
-                 'capacity',
-                 'irrigated_area_paddy',
-                 'irrigated_area_ofc',
-                 'income_paddy',
-                 'income_ofc',
-                 'num_farmer_families', 'id'],
+
             'BsIfMedium':
                 ['irrigation_facility',
                  'capacity',
@@ -2108,13 +2092,7 @@ TABLE_PROPERTY_MAPPER = {
                  'dmg_pub',
                  'dmg_pvt',
                  'id'],
-            'DcpfSeasonalCrops':
-                ['assets',
-                 'num_dest_pub',
-                 'num_dest_pvt',
-                 'dmg_pub',
-                 'dmg_pvt',
-                 'id'],
+
             'DcpfSeasonalCrops':
                 ['assets',
                  'num_dest_pub',
@@ -2760,7 +2738,12 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
 
-        }
+        },
+        'Table_6': {
+            'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+            'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+
+        },
 
     },
     'housing': {
@@ -2911,107 +2894,108 @@ TABLE_PROPERTY_MAPPER = {
         'Table_5': {
             'DlDmgImpProvince':
                 [
-                 'tot_damages',
-                 ],
+                    'tot_damages',
+                ],
             'DlDmgPerProvince':
                 [
-                 'tot_damages',
-                 ],
+                    'tot_damages',
+                ],
             'DlDmgSemiPerProvince':
                 [
-                 'tot_damages',
-                 ],
+                    'tot_damages',
+                ],
             'DlLosImpProvince':
                 [
-                 'tot_losses',
-                 ],
+                    'tot_losses',
+                ],
             'DlLosPerProvince':
                 [
-                 'tot_losses',
-                 ],
+                    'tot_losses',
+                ],
             'DlLosSemiPerProvince':
                 [
-                 'tot_losses',
-                 ],
+                    'tot_losses',
+                ],
             'DlNumDesImpProvince':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumDesPerProvince':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumDesSemiPerProvince':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumPdesPerProvince':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumPdesImpProvince':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumPdesSemiPerProvince':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
 
         },
         'Table_6': {
             'DlDmgImpNational':
                 [
-                 'tot_damages',
-                 ],
+                    'tot_damages',
+                ],
             'DlDmgPerNational':
                 [
-                 'tot_damages',
-                 ],
+                    'tot_damages',
+                ],
             'DlDmgSemiPerNational':
                 [
-                 'tot_damages',
-                 ],
+                    'tot_damages',
+                ],
             'DlLosImpNational':
                 [
-                 'tot_losses',
-                 ],
+                    'tot_losses',
+                ],
             'DlLosPerNational':
                 [
-                 'tot_losses',
-                 ],
+                    'tot_losses',
+                ],
             'DlLosSemiPerNational':
                 [
-                 'tot_losses',
-                 ],
+                    'tot_losses',
+                ],
             'DlNumDesImpNational':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumDesPerNational':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumDesSemiPerNational':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumPdesPerNational':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumPdesImpNational':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
             'DlNumPdesSemiPerNational':
                 [
-                 'tot_num_houses',
-                 ],
+                    'tot_num_houses',
+                ],
 
         }
 
     },
+
     'power_supply': {
         'Table_1': {
             'BsPwGenFirm':
@@ -3095,9 +3079,26 @@ TABLE_PROPERTY_MAPPER = {
                  'to_repair_cost',
                  'tot_dmg', 'id'],
         },
+        'Table_3': {
+            'PvtNumEmp': ['num_male', 'num_female', 'tot_emp', 'id'],
+            'PvtDmgAst': ['assets', 'num_dst_ast', 'tot_replace_cost', 'num_pdmg_ast', 'tot_repair_cost',
+                          'tot_damaged_cost', 'id'],
+            'PvtDmgLosses': ['los_year1', 'los_year2', 'losses_type', 'id'],
+        },
 
     },
 
+    'telecommunication': {
+        'Table_2': {
+            'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
+            'DmgAstTelStructure': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelEquipment': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelMachinery': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
+            'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
+        }
+    }
 }
 
 AUTH_USER_MODEL = 'users.MyUser'

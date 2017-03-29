@@ -60,11 +60,11 @@
                             <col width="90" span="7"/>
                         </colgroup>
                         <tbody>
-                        <tr class="trhead">
-                            <td colspan="2" style="padding-right:5px;text-align:right;">
+                        <tr class="trhead1">
+                            <td colspan="2" style="padding-left:5px;">
                                 Incident
                             </td>
-                            <td colspan="2" style="background:#EFEFEF;">
+                            <td colspan="2" style="">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true)"
                                         style="width:100%;font-weight:400;" required>
@@ -75,13 +75,13 @@
                                         {{incident.reported_date_time}}
                                         {% endfor %}
                                 </select>
-                <span class="arrow_box"
+                <span class="arrow_box1" style="color:red;"
                       ng-show="submitted && health_summery_damageloss_province.incident.$error.required">
                                     Please select Incident
                                     </span>
                             </td>
                             <td style="padding-left:5px;"> Province</td>
-                            <td colspan="2" style="background:#EFEFEF;">
+                            <td colspan="2" style="">
                                 <select name="province" ng-model="province"
                                         class="form-control"
                                         style="width:100%;font-weight:400;"
@@ -90,7 +90,7 @@
                                     <option ng-repeat="province in provinces" ng-value="province.district__province_id"
                                             ng-bind="province.district__province__name"></option>
                                 </select>
-                <span class="arrow_box"
+                <span class="arrow_box1" style="color:red;"
                       ng-show="submitted && health_summery_damageloss_province.province.$error.required">
                                     Please select Province
                                     </span>
@@ -100,7 +100,7 @@
                             </td>
 
                         </tr>
-                        <tr height="34" class="trheadc">
+                        <tr height="34" class="trheadc1">
                             <td rowspan="2" width="202" height="54" style="text-align:left;padding-left:5px;">
                                 Facilities and Assets
                             </td>
@@ -136,7 +136,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div style="height:400px;overflow:auto;">
+                    <div id="boxscroll1" style="height:400px;overflow:auto;">
                         <table  ng-repeat="(key, value) in dlhealthsummarydamageprovince.health.Table_9" class="table table-bordered">
                            <tbody>
                             <tr  height="20" class="trhead">
@@ -278,7 +278,7 @@
                             </tbody>
                         </table>
                         <br>
-                        <a href="#step2" id="s1" data-toggle="tab" class="btn btn-sm btn-info pull-right"> Fill Private
+                        <a href="#step2" id="s1" data-toggle="tab" class="btn btn-sm btn-info pull-right"> Private
                             Sector Informations</a>
                     </div>
 
@@ -286,14 +286,14 @@
 
                 <div class="tab-pane" id="step2">
 
-                    <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
+                    <table class="table table-bordered" style="width:100%;">
                         <colgroup>
                             <col width="264"/>
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
 
-                        <tr height="34" class="trheadc">
+                        <tr height="34" class="trheadc1">
                             <td rowspan="2" width="202" height="54" style="text-align:left;padding-left:5px;">
                                 Facilities and Assets
                             </td>
@@ -500,20 +500,20 @@
                             </tbody>
                         </table>
                         <br>
-                        <a href='#step3' id="s2" data-toggle="tab" class="btn btn-sm btn-info pull-right"> Fill Total
+                        <a href='#step3' id="s2" data-toggle="tab" class="btn btn-sm btn-info pull-right"> Total
                             Damages and Losses Informations</a>
 
                     </div>
                 </div>
 
                 <div class="tab-pane" id="step3">
-                    <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
+                    <table class="table table-bordered" style="width:100%;">
                         <colgroup>
                             <col width="202"/>
                             <col width="90" span="7"/>
                         </colgroup>
                         <tbody>
-                        <tr height="20" class="trheadc">
+                        <tr height="20" class="trheadc1">
                             <td rowspan="2" width="202" height="40" style="text-align:left;padding-left:5px;">
                                 Ownership
                             </td>
@@ -527,7 +527,7 @@
                                 Total (LKR)
                             </td>
                         </tr>
-                        <tr height="20" style="background:#E4E5E6;" class="trsubc">
+                        <tr height="20" style="" class="trsubc">
                             <td colspan="2" width="180" height="20">
                                 Year 1
                             </td>
@@ -611,23 +611,7 @@
                         <!--<button type="button" class="btn btn-success" ng-click="saveDlHealthSummeryDamagelossProvince()">Submit</button>-->
                         <!--</div>-->
 
-                        <div class="pull-right">
-                            <br>
-                            <button type="button" class="btn btn-info">Clear</button>
-                            <!--button type="button" class="btn btn-success" ng-click="SaveData()">Submit</button-->
-                            <!--new-->
-                            <button type="button" ng-click="dlDataEdit(health_summery_damageloss_province)"
-                                    ng-if="!is_edit" class="btn btn-success">
-                                Edit
-                            </button>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                                Edit
-                            </button>
-                            <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                                    ng-click="saveDlHealthSummeryDamagelossProvince(health_summery_damageloss_province)"
-                                    class="btn btn-success">Submit
-                            </button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -143,15 +143,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
-        #     'options': '-c search_path=industry_services'
+        #     'options': '-c search_path=power_supply'
         #                   'health,public,other_government,education,mining,'
         #                'transport_rail,transport_water,transport_land,transport_air,'
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
         # },
-
+        #
         # 'OPTIONS': {
-        #     'options': '-c search_path=telecommunication'
+        #     'options': '-c search_path=power_supply'
         # },
 
         'NAME': 'dala',
@@ -2748,6 +2748,11 @@ TABLE_PROPERTY_MAPPER = {
              'DlInfLosTypOther': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
              'DlInfLosTypServices': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
              'DlInfLosTypTrading': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+        },
+        'Table_5': {
+            'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+            'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
+
         }
 
     },

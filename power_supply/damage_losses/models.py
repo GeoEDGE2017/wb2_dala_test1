@@ -1,6 +1,6 @@
 from django.db import models
 
-from power_supply.base_line.models import PvtPwPrdTypes, PvtPwProducers
+from power_supply.base_line.models import PvtPwPrdTypes, PvtPwProducers, BsPwGenFirm
 from settings.models import District, Province
 from incidents.models import IncidentReport
 
@@ -10,10 +10,11 @@ class DlSessionKeys(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     user = models.IntegerField(blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='pow_dl_incident', blank=True,
-                                 null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='pow_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='pow_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='pow_dl_district', blank=True, null=True)
+    # pvt_pw_producers = models.ForeignKey(PvtPwProducers, db_column='pvt_pw_producers', related_name='pow_dl_pvt_pw_producers', blank=True, null=True)
+
 
     class Meta:
         managed = False
@@ -224,7 +225,7 @@ class PvtNumEmp(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    pw_producer = models.ForeignKey(PvtPwProducers, db_column='pw_producer', blank=True, null=True)
+    pw_gen_firm = models.ForeignKey(BsPwGenFirm, db_column='pw_gen_firm', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -244,7 +245,7 @@ class PvtDmgAst(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     assets = models.CharField(max_length=255, blank=True, null=True)
-    pw_producer = models.ForeignKey(PvtPwProducers, db_column='pw_producer', blank=True, null=True)
+    pw_gen_firm = models.ForeignKey(BsPwGenFirm, db_column='pw_gen_firm', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -261,7 +262,7 @@ class PvtDmgLosses(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     losses_type = models.CharField(max_length=255, blank=True, null=True)
-    pw_producer = models.ForeignKey(PvtPwProducers, db_column='pw_producer', blank=True, null=True)
+    pw_gen_firm = models.ForeignKey(BsPwGenFirm, db_column='pw_gen_firm', blank=True, null=True)
 
     class Meta:
         managed = False

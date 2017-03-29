@@ -151,7 +151,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     url: "/fetch_entities_plain",
                     data: angular.toJson({
                     'district':  $scope.district.district__id,
-                    'model': 'BsPwGenFirm',
+                    'model': 'PvtPwProducers',
                     'sector':'power_supply'
                      }),
                     }).success(function(data) {

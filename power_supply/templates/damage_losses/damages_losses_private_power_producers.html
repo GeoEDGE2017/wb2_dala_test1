@@ -107,7 +107,7 @@
                             Name of IPP or SPP
                         </td>
                         <td colspan="6" width="400">
-                            <select ng-options="pvtPwProducer as pvtPwProducer.name for pvtPwProducer in
+                            <select ng-options="pvtPwProducer as pvtPwProducer.assets for pvtPwProducer in
                             pvtPwProducers | filter:{ ownership : pvtPwProducerType.name } "
                                     name="district" id="ccyear" ng-model="selectedProducer" ng-value="pvtPwProducer"
                                     class="form-control"  required>
@@ -283,7 +283,7 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <button type="button" ng-click="dataEdit(form_dl_tou_buss)"
+                    <button type="button" ng-click="dataEdit(form_dl_pow_supp_pri)"
                             ng-if="!is_edit" class="btn btn-success">Edit
                     </button>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel

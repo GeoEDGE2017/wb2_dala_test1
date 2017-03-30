@@ -151,7 +151,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     url: "/fetch_entities_plain",
                     data: angular.toJson({
                     'district':  $scope.district.district__id,
-                    'model': 'PvtPwProducers',
+                    'model': 'BsPwGenFirm',
                     'sector':'power_supply'
                      }),
                     }).success(function(data) {
@@ -258,6 +258,8 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
+                    'pw_gen_firm_id' : $scope.selectedProducer.id,
+
                 },
                 'is_edit': $scope.is_edit
             }),
@@ -281,6 +283,55 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
 
             }
         }
+
+        $scope.dataEdit = function() {
+
+        if($scope.district && $scope.incident && $scope.selectedProducer ){
+                    $scope.is_edit = true;
+        $scope.submitted = true;
+
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'power_supply',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'pw_gen_firm' : $scope.selectedProducer.id,
+
+//                        'pvt_pw_producer': $scope.selectedProducer.id,
+
+                    }
+                }),
+            }).success(function(data) {
+                console.log("edit", data);
+                // handling response from server if data are not available in this
+                if((data.power_supply.Table_3.PvtDmgAst.length == 0) ||
+                    (data.power_supply.Table_3.PvtDmgLosses.length == 0) ||
+                    (data.power_supply.Table_3.PvtNumEmp.length == 0)
+                  ){
+                    $scope.is_edit = false;
+                        // do nothing or display msg that data are not available
+                    }
+                else{
+                        $scope.data = data;
+                    }
+            })
+
+        }
+        else{
+            alert("enter Incident, District, Firm, ownership, Type")
+        }
+
+        }
+        $scope.cancelEdit = function()
+        {
+             $scope.is_edit = false;
+             $scope.clear();
+        }
+
 
     $scope.loadIPP_SPP_types();
     $scope.clear();

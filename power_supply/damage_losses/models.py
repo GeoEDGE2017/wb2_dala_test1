@@ -13,8 +13,7 @@ class DlSessionKeys(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='pow_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='pow_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='pow_dl_district', blank=True, null=True)
-    # pvt_pw_producers = models.ForeignKey(PvtPwProducers, db_column='pvt_pw_producers', related_name='pow_dl_pvt_pw_producers', blank=True, null=True)
-
+    pw_gen_firm = models.ForeignKey(BsPwGenFirm, db_column='pw_gen_firm', blank=True, null=True)
 
     class Meta:
         managed = False

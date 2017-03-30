@@ -4,6 +4,7 @@ from django.db import models
 from settings.models import District
 
 
+
 class PvtPwPrdTypes(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
 

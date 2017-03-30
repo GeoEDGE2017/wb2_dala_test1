@@ -2819,6 +2819,24 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
 
         },
+        # district table
+        'Table_8': {
+            'DmgTotFrmYear1District': ['incident', 'ownership', 'district', 'tot_damages'],
+            'DmgTotInfYear1District': ['incident', 'district', 'tot_damages'],
+            'LosTotFrmYear1District': ['incident', 'ownership', 'district', 'los_year1'],
+            'LosTotFrmYear2District': ['incident', 'ownership', 'district', 'los_year2'],
+            'LosTotInfYear1District': ['incident', 'district', 'los_year1'],
+            'LosTotInfYear2District': ['incident', 'district', 'los_year2'],
+        },
+        # national table
+        'Table_9': {
+            'DmgTotFrmYear1National': ['incident', 'ownership', 'province', 'tot_damages'],
+            'DmgTotInfYear1National': ['incident', 'province', 'tot_damages'],
+            'LosTotFrmYear1National': ['incident', 'ownership', 'province', 'los_year1'],
+            'LosTotFrmYear2National': ['incident', 'ownership', 'province', 'los_year2'],
+            'LosTotInfYear1National': ['incident', 'province', 'los_year1'],
+            'LosTotInfYear2National': ['incident', 'province', 'los_year2'],
+        },
 
     },
     'housing': {

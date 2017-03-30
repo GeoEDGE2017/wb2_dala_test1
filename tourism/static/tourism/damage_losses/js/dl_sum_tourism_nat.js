@@ -124,7 +124,7 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
         return final_val;
     }
 
-        $scope.getConvertedVal = function(val){
+    $scope.getConvertedVal = function(val){
         if(!val)    return 0;
         if(isNaN(val)) return 0;
         return val;

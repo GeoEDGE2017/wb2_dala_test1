@@ -107,7 +107,7 @@
                             Name of IPP or SPP
                         </td>
                         <td colspan="6" width="400">
-                            <select ng-options="pvtPwProducer as pvtPwProducer.name for pvtPwProducer in
+                            <select ng-options="pvtPwProducer as pvtPwProducer.assets for pvtPwProducer in
                             pvtPwProducers | filter:{ ownership : pvtPwProducerType.name } "
                                     name="district" id="ccyear" ng-model="selectedProducer" ng-value="pvtPwProducer"
                                     class="form-control"  required>
@@ -256,7 +256,7 @@
                             <input id="textinput" name="textinput" type="number" ng-model="row.los_year2"
                                    placeholder="" class="form-control input-md">
                         </td>
-                        <td width="107" ng-bind="row.tot = getSum2(row.los_year1, row.los_year2)">
+                        <td width="107" ng-bind="lossTotals[$index].tot = getSum2(row.los_year1, row.los_year2)">
                             -
                         </td>
                     </tr>
@@ -271,7 +271,7 @@
                         <td colspan="2" width="211" ng-bind="row.los_year2 = getTotalCol('PvtDmgLosses','los_year2',row)">
                             -
                         </td>
-                        <td width="107" ng-bind="row.tot = getTotalCol('PvtDmgLosses','tot',row)">
+                        <td width="107" ng-bind="lossTotals[0].tot + lossTotals[1].tot + lossTotals[2].tot + lossTotals[3].tot">
                             -
                         </td>
                     </tr>
@@ -283,7 +283,7 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <button type="button" ng-click="dataEdit(form_dl_tou_buss)"
+                    <button type="button" ng-click="dataEdit(form_dl_pow_supp_pri)"
                             ng-if="!is_edit" class="btn btn-success">Edit
                     </button>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel

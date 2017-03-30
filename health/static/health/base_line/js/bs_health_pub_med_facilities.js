@@ -125,7 +125,10 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 //                $scope.bsDataMedicalFacilities = init_data;
 //                $scope.is_edit = false;
                 if (response.data == 'False')
+                   {
+                    $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
+                }
                 else
                     $("#modal-container-239453").modal('show');
           }, function errorCallback(data) {

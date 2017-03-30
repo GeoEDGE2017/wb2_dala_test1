@@ -198,7 +198,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsoeOequipment', 'BsoeMachinery'],
+                    'db_tables': ['BsoeOequipment', 'BsoeMachinery','BsoeStructure'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -352,8 +352,9 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+    if(value.assets !='Total'){
      finaltotal = finaltotal + value.dmg_pub ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;
@@ -363,8 +364,9 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+ if(value.assets !='Total'){
      finaltotal = finaltotal + value.dmg_pvt ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;
@@ -374,8 +376,9 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+    if(value.assets!='Total'){
      finaltotal = finaltotal + value.damages ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;

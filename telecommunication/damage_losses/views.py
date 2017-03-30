@@ -53,7 +53,7 @@ def dl_sum_telecom_pro(request):
         'module': 'telecommunication'
     }
 
-    return render(request, 'damage_losses/summary_damages_and_losses_province.html', context)
+    return render(request, 'damage_losses/summary_pow_damages_and_losses_province.html', context)
 
 
 # Table 5

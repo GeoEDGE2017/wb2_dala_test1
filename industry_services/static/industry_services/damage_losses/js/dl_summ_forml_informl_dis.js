@@ -8,6 +8,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
     $scope.districts;
     $scope.incident;
     $scope.district;
+    $scope.data;
 
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -23,9 +24,41 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
         }
 
         if($scope.incident && $scope.district ) {
-            //when district change
+             $scope.loadData();
         }
     }
+
+
+    $scope.loadData = function() {
+
+        if($scope.incident && $scope.district && $scope.district.district__id) {
+            $scope.isLoded = true;
+
+        $scope.tot_damages = null;
+        $scope.is_edit = true;
+
+        $http({
+            method: "POST",
+            url: '/dl_fetch_summary_dis_disagtn',
+            data: angular.toJson({
+                'table_name':  ['Table_6'],
+                'sector': ['industry_services'],
+                'com_data': {
+                    'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                },
+            }),
+        }).success(function(data) {
+            $scope.data=data.industry_services.Table_6;
+//            $scope.makeTable();
+            console.log($scope.data);
+        })
+        }
+
+
+    }
+
+
 
 
 }])

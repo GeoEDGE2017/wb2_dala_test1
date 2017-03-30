@@ -2744,6 +2744,15 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
 
         },
+        # national table
+        'Table_9': {
+            'DmgTotFrmYear1National': ['incident', 'ownership', 'province', 'tot_damages'],
+            'DmgTotInfYear1National': ['incident', 'province', 'tot_damages'],
+            'LosTotFrmYear1National': ['incident', 'ownership', 'province', 'los_year1'],
+            'LosTotFrmYear2National': ['incident', 'ownership', 'province', 'los_year2'],
+            'LosTotInfYear1National': ['incident', 'province', 'los_year1'],
+            'LosTotInfYear2National': ['incident', 'province', 'los_year2'],
+        }
 
     },
     'housing': {

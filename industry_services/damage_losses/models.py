@@ -318,3 +318,82 @@ class LosTypeLossses(models.Model):
     class Meta:
         managed = False
         db_table = 'industry_services\".\"los_type_lossses'
+
+
+class DmgTotFrmYear1National(models.Model):
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_tot_frm_year1_national'
+
+
+class DmgTotInfYear1National(models.Model):
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_tot_inf_year1_national'
+
+
+class LosTotFrmYear1National(models.Model):
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_frm_year1_national'
+
+
+class LosTotFrmYear2National(models.Model):
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_frm_year2_national'
+
+
+class LosTotInfYear1National(models.Model):
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_inf_year1_national'
+
+
+class LosTotInfYear2National(models.Model):
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_tot_inf_year2_national'
+                #
+            # los_year1
+#

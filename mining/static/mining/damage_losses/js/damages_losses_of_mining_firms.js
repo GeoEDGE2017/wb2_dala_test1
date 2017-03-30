@@ -550,7 +550,10 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         }).then(function successCallback(response) {
 
             if (response.data == 'False')
-                $scope.is_valid_data = false;
+                {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
             else
                 $("#modal-container-239453").modal('show');
 

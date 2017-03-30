@@ -15,6 +15,7 @@ class DlSessionKeys(models.Model):
     district = models.ForeignKey(District, db_column='district', related_name='pow_dl_district', blank=True, null=True)
     # pvt_pw_producers = models.ForeignKey(PvtPwProducers, db_column='pvt_pw_producers', related_name='pow_dl_pvt_pw_producers', blank=True, null=True)
 
+
     class Meta:
         managed = False
         db_table = 'power_supply\".\"dl_session_keys'
@@ -26,10 +27,10 @@ class CebNumEmp(models.Model):
     tot_emp = models.FloatField(blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
 
-    district = models.ForeignKey(District,  db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport,  db_column='incident', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     created_date = models.DateTimeField(blank=True, null=True)
 
@@ -48,7 +49,7 @@ class CebNumCusAff(models.Model):
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport,  db_column='incident', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     created_date = models.DateTimeField(blank=True, null=True)
 
@@ -65,10 +66,10 @@ class CebDmgAstGeneration(models.Model):
     tot_dmg = models.FloatField(blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
 
-    district = models.ForeignKey(District,  db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport,  db_column='incident', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     created_date = models.DateTimeField(blank=True, null=True)
     assets = models.CharField(max_length=255, blank=True, null=True)
@@ -85,10 +86,10 @@ class CebDmgAstTransmision(models.Model):
     to_repair_cost = models.FloatField(blank=True, null=True)
     tot_dmg = models.FloatField(blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District,  db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport,  db_column='incident', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
     created_date = models.DateTimeField(blank=True, null=True)
     assets = models.CharField(max_length=255, blank=True, null=True)
@@ -149,6 +150,7 @@ class CebLosAstIncome(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -194,6 +196,25 @@ class CebDmgAstOffEquipment(models.Model):
         db_table = 'power_supply\".\"ceb_dmg_ast_off_equipment'
 
 
+class CebDmgAstOther(models.Model):
+    num_dst_ast = models.FloatField(blank=True, null=True)
+    tot_replace_cost = models.FloatField(blank=True, null=True)
+    num_dmg_ast = models.FloatField(blank=True, null=True)
+    to_repair_cost = models.FloatField(blank=True, null=True)
+    tot_dmg = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"ceb_dmg_ast_other'
+
+
 class PvtNumEmp(models.Model):
     num_male = models.BigIntegerField(blank=True, null=True)
     num_female = models.BigIntegerField(blank=True, null=True)
@@ -218,7 +239,7 @@ class PvtDmgAst(models.Model):
     tot_repair_cost = models.FloatField(blank=True, null=True)
     tot_damaged_cost = models.FloatField(blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District,  db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)

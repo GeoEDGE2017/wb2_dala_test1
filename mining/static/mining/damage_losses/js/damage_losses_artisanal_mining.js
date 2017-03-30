@@ -475,7 +475,10 @@ $scope.saveData = function(form) {
         }).then(function mySucces(response) {
             console.log(response);
             if(response.data == 'False')
-                $scope.is_valid_data = false;
+               {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
             else
                 $("#modal-container-239453").modal('show');
             }, function myError(response) {

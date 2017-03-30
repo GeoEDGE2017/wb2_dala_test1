@@ -256,7 +256,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
             console.log(response);
 
         }, function errorCallback(response) {
-
+ $("#modal-container-239454").modal('show');
             console.log(response);
         });
         }

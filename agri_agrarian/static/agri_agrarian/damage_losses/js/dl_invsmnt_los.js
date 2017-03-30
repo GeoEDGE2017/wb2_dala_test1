@@ -388,7 +388,10 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'False')
+                   {
+                    $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
+                }
                else
                     $("#modal-container-239453").modal('show');
             }, function errorCallback(response) {

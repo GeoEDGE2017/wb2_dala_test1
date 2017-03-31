@@ -1,14 +1,17 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSumTeleDisApp" ng-controller="dlSumTeleDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Telecommunication Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3.  Summary of damages and losses in a District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 3.  Summary of damages and losses in a District
+            </span>
         </li>
     </ol>
     <div class="container-fluid">
@@ -33,11 +36,11 @@
                         </td>
                         <td colspan="0" width="567" height="19">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
+                                class="form-control" ng-change="changedValue(true);getDistrict();" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
                                     {{incident.reported_date_time}}
                                 </option>
                                 {% endfor %}
@@ -47,10 +50,11 @@
                             District:
                         </td>
                         <td colspan="2">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
+                            <select ng-change="changedValue()" ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    style="font-weight:400;"
                                     class="form-control" required>
-                                <option value="" selected>Select district</option>
+                                <option value="" selected>Select District</option>
                             </select>
                         </td>
                         <td class="trhead1" >

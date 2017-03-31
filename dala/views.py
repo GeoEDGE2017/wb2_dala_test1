@@ -206,7 +206,7 @@ def bs_save_data(request):
                                                full_bs_date=bs_full_date)
                     bd_session.save()
 
-                    return HttpResponse(True)
+                    c
 
                 else:
                     return HttpResponse(False)

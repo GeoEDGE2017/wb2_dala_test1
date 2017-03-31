@@ -149,9 +149,9 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
         # },
-        #
+
         # 'OPTIONS': {
-        #     'options': '-c search_path=power_supply'
+        #     'options': '-c search_path=agri_fisheries'
         # },
 
         'NAME': 'dala',
@@ -260,7 +260,7 @@ TABLE_PROPERTY_MAPPER = {
             'BucOmarcCrpm': ['particulars', 'base_hospital', 'divisional_hospital',
                              'rural_hospital',
                              'central_dispensary', 'pri_med_cunits',
-                             'pri_health_ccenters'                                 'mat_child_health_clinics',
+                             'pri_health_ccenters', 'mat_child_health_clinics',
                              'id'],
             'BucOmarcStructure': ['particulars', 'base_hospital', 'divisional_hospital',
                                   'rural_hospital',
@@ -2125,8 +2125,6 @@ TABLE_PROPERTY_MAPPER = {
                 ['assets',
                  'num_dest_pub',
                  'num_dest_pvt',
-                 'tot_dest_pub',
-                 'tot_dest_pvt',
                  'dmg_pub',
                  'dmg_pvt',
                  'id'],
@@ -2222,6 +2220,83 @@ TABLE_PROPERTY_MAPPER = {
                  'harvest_stage_pvt',
                  'invest_los_pub',
                  'invest_los_pvt',
+                 'id'],
+
+        },
+        'Table_7': {
+            'PldySeasonalCrops':
+                ['seasonal_crops',
+                 'redctn_year_1_pub',
+                 'redctn_year_1_pvt',
+                 'redctn_year_2_pub',
+                 'redctn_year_2_pvt',
+                 'prod_year_1_pub',
+                 'prod_year_1_pvt',
+                 'prod_year_2_pub',
+                 'prod_year_2_pvt',
+                 'tot_prod_pub',
+                 'tot_prod_pvt',
+                 'id'],
+            'PldyPlantnCrops':
+                ['plantn_crops',
+                 'redctn_year_1_pub',
+                 'redctn_year_1_pvt',
+                 'redctn_year_2_pub',
+                 'redctn_year_2_pvt',
+                 'prod_year_1_pub',
+                 'prod_year_1_pvt',
+                 'prod_year_2_pub',
+                 'prod_year_2_pvt',
+                 'tot_prod_pub',
+                 'tot_prod_pvt',
+                 'id'],
+            'PldyExportCrops':
+                ['export_crops',
+                 'redctn_year_1_pub',
+                 'redctn_year_1_pvt',
+                 'redctn_year_2_pub',
+                 'redctn_year_2_pvt',
+                 'prod_year_1_pub',
+                 'prod_year_1_pvt',
+                 'prod_year_2_pub',
+                 'prod_year_2_pvt',
+                 'tot_prod_pub',
+                 'tot_prod_pvt',
+                 'id'],
+            'PldyForestry':
+                ['forestry',
+                 'redctn_year_1_pub',
+                 'redctn_year_1_pvt',
+                 'redctn_year_2_pub',
+                 'redctn_year_2_pvt',
+                 'prod_year_1_pub',
+                 'prod_year_1_pvt',
+                 'prod_year_2_pub',
+                 'prod_year_2_pvt',
+                 'tot_prod_pub',
+                 'tot_prod_pvt',
+                 'id'],
+            'PldyOther':
+                ['other_products',
+                 'redctn_year_1_pub',
+                 'redctn_year_1_pvt',
+                 'redctn_year_2_pub',
+                 'redctn_year_2_pvt',
+                 'prod_year_1_pub',
+                 'prod_year_1_pvt',
+                 'prod_year_2_pub',
+                 'prod_year_2_pvt',
+                 'tot_prod_pub',
+                 'tot_prod_pvt',
+                 'id'],
+            'PldyOtherLos':
+                ['other_los',
+                 'year_1_pub',
+                 'year_1_pvt',
+                 'year_2_pub',
+                 'year_2_pvt',
+                 'tot_pub',
+                 'tot_pvt',
                  'id'],
 
         },
@@ -2744,6 +2819,24 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
 
         },
+        # district table
+        'Table_8': {
+            'DmgTotFrmYear1District': ['incident', 'ownership', 'district', 'tot_damages'],
+            'DmgTotInfYear1District': ['incident', 'district', 'tot_damages'],
+            'LosTotFrmYear1District': ['incident', 'ownership', 'district', 'los_year1'],
+            'LosTotFrmYear2District': ['incident', 'ownership', 'district', 'los_year2'],
+            'LosTotInfYear1District': ['incident', 'district', 'los_year1'],
+            'LosTotInfYear2District': ['incident', 'district', 'los_year2'],
+        },
+        # national table
+        'Table_9': {
+            'DmgTotFrmYear1National': ['incident', 'ownership', 'province', 'tot_damages'],
+            'DmgTotInfYear1National': ['incident', 'province', 'tot_damages'],
+            'LosTotFrmYear1National': ['incident', 'ownership', 'province', 'los_year1'],
+            'LosTotFrmYear2National': ['incident', 'ownership', 'province', 'los_year2'],
+            'LosTotInfYear1National': ['incident', 'province', 'los_year1'],
+            'LosTotInfYear2National': ['incident', 'province', 'los_year2'],
+        },
 
     },
     'housing': {
@@ -2995,7 +3088,6 @@ TABLE_PROPERTY_MAPPER = {
         }
 
     },
-
     'power_supply': {
         'Table_1': {
             'BsPwGenFirm':
@@ -3085,9 +3177,15 @@ TABLE_PROPERTY_MAPPER = {
                           'tot_damaged_cost', 'id'],
             'PvtDmgLosses': ['los_year1', 'los_year2', 'losses_type', 'id'],
         },
+        'Table_5': {
+            'DlNumAffProvince': ['domestic', 'industrial', 'commercial', 'other'],
+            'TotDmgCebProvince': ['tot_dmg'],
+            'TotLosCebProvince': ['losses_y1', 'losses_y2'],
+            'TotDmgPvtProvince': ['tot_replace_cost', 'ownership'],
+            'TotLossesPvtProvince': ['losses_y1', 'losses_y2', 'ownership'],
+        },
 
     },
-
     'telecommunication': {
         'Table_2': {
             'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
@@ -3097,7 +3195,18 @@ TABLE_PROPERTY_MAPPER = {
             'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
             'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
             'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
-        }
+        },
+        'Table_3': {
+            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+        },
+        'Table_5': {
+            'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
+            'DlDmgFirmNational': ['tot_damages', 'incident', 'firm', 'ownership', 'province', 'company_name'],
+            'LosFirmYear1National': ['year1_los', 'incident', 'firm', 'ownership', 'province'],
+            'LosFirmYear2National': ['year2_los', 'incident', 'firm', 'ownership', 'province'],
+        },
     }
 }
 

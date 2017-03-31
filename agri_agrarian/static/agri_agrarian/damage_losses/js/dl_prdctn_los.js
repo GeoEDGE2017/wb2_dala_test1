@@ -515,12 +515,46 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     var finaltotal = 0;
 
     angular.forEach(arr, function(value, key) {
-    if(value.seasonal_crops != 'Total' || value.plantn_crops != 'Total' ){
-    console.log(value[property]);
+    if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' && value.forestry !='Total' && value.other_products!='Total'){
+    console.log('Test',value[property]);
      finaltotal = finaltotal + value[property] ;
 
      }
     })
      return finaltotal;
     }
+
+   $scope.dlDataEdit = function(){
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_7',
+    'sector':'agri_agrarian',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlPrdctnLos = data;
+    })
+
+}
+
+   $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlPrdctnLos = init_data;
+}
+
+
 }]);

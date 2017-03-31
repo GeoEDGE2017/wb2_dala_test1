@@ -37,3 +37,19 @@ def dl_pvt_pow_prod(request):
     }
     return render(request, 'damage_losses/damages_losses_private_power_producers.html', context)
 
+
+# Table 5
+@permission_required("province", 'power_supply')
+def dl_sum_irg_province(request):
+    districts = District.objects.all()
+    provinces = Province.objects.all()
+    filtered_incidents = fetch_districts(request.user)
+    incidents = filtered_incidents['incidents']
+    context = {
+        'districts': districts,
+        'provinces': provinces,
+        'incidents': incidents,
+        'module': 'power_supply'
+    }
+    return render(request, 'damage_losses/summary_pow_damages_and_losses_province.html', context)
+

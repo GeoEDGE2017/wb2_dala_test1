@@ -437,8 +437,9 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+    if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
      finaltotal = finaltotal + value.invest_los_pub ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;
@@ -448,8 +449,9 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
+if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
      finaltotal = finaltotal + value.invest_los_pvt ;
+     }
     })
       console.log(finaltotal);
     return finaltotal;

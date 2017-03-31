@@ -424,7 +424,7 @@ $scope.fetchSchoolData = function(){
     }
 
     $scope.saveDlData = function(form) {
-        alert('dis '+$scope.district.district__id+ '-ind '+$scope.incident);
+//        alert('dis '+$scope.district.district__id+ '-ind '+$scope.incident);
         $scope.submitted = true;
         console.log($scope.dlPvtEduFacilities);
         if(form.$valid) {

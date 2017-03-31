@@ -494,7 +494,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'frm_firm_id':$scope.selectedFirm.id,
-                    'ownership':$scope.ownership,
+                    'ownership':$scope.selectedFirm.ownership,
 //                    'tou_business':$scope.selectedType.business,
 
 
@@ -529,7 +529,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'frm_firm_id':$scope.selectedFirm.id,
-                    'ownership':$scope.ownership,
+                    'ownership':$scope.selectedFirm.ownership,
 //                    'tou_business':$scope.selectedType.business,
 
 

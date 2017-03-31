@@ -489,8 +489,9 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
             url: '/dl_fetch_edit_data',
             data: angular.toJson({
                 'table_name':  'Table_5',
+                'sector':'health',
                 'com_data': {
-                    'district': $scope.selectedDistrict,
+                    'district': $scope.district.district__id,
                     'incident': $scope.incident,
 
                 },
@@ -508,9 +509,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
          $scope.dlHealthDamagelostPrivateSys = init_data;
     }
 
-    // get relevant base-line data for calculations
     $scope.changedValue=function getBsData(selectedValue) {
-//        alert($scope.selectedDistrict + ' - ' + $scope.incident);
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -523,7 +522,8 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
             })
         }
 
-        if($scope.incident && $scope.selectedDistrict ) {
+        if($scope.incident && $scope.district ) {
+
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -531,7 +531,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                 data: angular.toJson({
                   'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
                   'com_data': {
-                        'district': $scope.selectedDistrict,
+                        'district': $scope.district.district__id,
                         'incident': $scope.incident,
                         },
                    'table_name': 'Table_3',

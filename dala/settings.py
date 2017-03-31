@@ -149,9 +149,9 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
         # },
-        #
+
         # 'OPTIONS': {
-        #     'options': '-c search_path=power_supply'
+        #     'options': '-c search_path=agri_fisheries'
         # },
 
         'NAME': 'dala',
@@ -2791,7 +2791,18 @@ TABLE_PROPERTY_MAPPER = {
             'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
             'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
             'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
-        }
+        },
+        'Table_3': {
+            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+        },
+        'Table_5': {
+            'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
+            'DlDmgFirmNational': ['tot_damages', 'incident', 'firm', 'ownership', 'province', 'company_name'],
+            'LosFirmYear1National': ['year1_los', 'incident', 'firm', 'ownership', 'province'],
+            'LosFirmYear2National': ['year2_los', 'incident', 'firm', 'ownership', 'province'],
+        },
     }
 }
 

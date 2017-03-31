@@ -3,13 +3,11 @@
 
 <script>
   $(document).ready(function() {
-
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  
-   
-    
   });
   
+
+
 
 </script>
 <!-- Main content -->
@@ -18,8 +16,6 @@
   .popover {
     background: tomato;
 }
-
-
 
     </style>
     <!-- Breadcrumb -->
@@ -31,19 +27,13 @@
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1: Baseline Information on Health Status in a District or RDH</span>
         </li>
-
-
     </ol>
-
-
     <div class="container-fluid">
-
         <div class="col-sm-12" style="padding:0;">
             <div class="card">
-
                 <div ng-form name="form_pop_lat_census" class="card-block">
                      <span style="color:red" ng-show="submitted && form_pop_lat_census.$error.required">
-                                       Please fill all required fields
+                         Please fill all required fields
                      </span>
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
@@ -58,11 +48,10 @@
 
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td style="background:#fff;border:1px solid #fff;text-align:center;">
-
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
  <span class="arrow_box" ng-show="submitted && form_pop_lat_census.district.$error.required">
-                                       Please select District
+                                       Please Select District
                                  </span>
                             </td>
 
@@ -70,20 +59,20 @@
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
   <span class="arrow_box" ng-show="submitted && form_pop_lat_census.bs_date.$error.required">
-                                       Please select Date
+                                       Please Select Date
                                  </span>
                             </td>
                         </tr>
 
 
-                        <tr style="background:#4679B2;">
-                            <td class="trhead"> Name of District or RDH</td>
+                        <tr class="trhead1 p5">
+                            <td class=""> Name of District or RDH</td>
 
-                            <td colspan="2" style="background:#EFEFEF;">
+                            <td colspan="2">
 
                                 <select ng-model="district" id="selectbasic" name="district" class="form-control"
                                         style="font-weight:400;" required>
-                                    <option value="">-- Select --</option>
+                                    <option value="">Select the District or RDH</option>
                                     {% for district in districts %}
                                     <option value="{{ district.id }}">{{ district.name }}</option>
                                     {% endfor %}
@@ -91,17 +80,17 @@
 
                             </td>
 
-                            <td colspan="1" style="padding-right:5px;text-align:right;">
+                            <td colspan="1" class="p5">
                                 Year/Month
                             </td>
-                            <td colspan="2" style="background:#EFEFEF;font-weight:normal;">
-                                <input ng-model="bs_date" required name="bs_date" type="text" placeholder="mm/yy"
+                            <td colspan="2">
+                                <input ng-model="bs_date" required name="bs_date" type="text" placeholder="mm/yyyy"
                                        id="datepicker"
                                        class="form-control input-md">
 
                             </td>
                         </tr>
-                        <tr height="20" class="trhead">
+                        <tr height="20" class="trhead1">
                             <td rowspan="3" height="60" width="264" style="padding-left:5px;">
                                 Population as of Latest Census
                             </td>
@@ -154,7 +143,7 @@
 
                             {% endverbatim %}
                         </tr>
-                        <tr height="34" class="trhead">
+                        <tr height="34" class="trhead1">
                             <td rowspan="2" height="54" width="264" style="padding-left:5px;text-align:center;">
                                 Common Diseases
                             </td>
@@ -245,8 +234,8 @@
                                 </td>
                             </tr>
 
-                            <tr height="20" style="background:#4679B2;color:#fff;">
-                                <td height="20" width="264" class="trheadc">
+                            <tr height="20" class="trheadc">
+                                <td height="20" width="264">
                                     Vital Indicators
                                 </td>
                                 <td width="98" colspan="4">
@@ -412,6 +401,8 @@ button.onclick = function() {
 
 
 
+
+
 </script>
 <script>
 /*var button = document.getElementById('insert4');
@@ -432,6 +423,8 @@ button.onclick = function() {
 
 
 
+
+
 </script>
 <script>
 /*var button = document.getElementById('insert2');
@@ -445,6 +438,8 @@ button.onclick = function() {
  $(this).parent().parent().remove();
 });
 }*/
+
+
 
 
 

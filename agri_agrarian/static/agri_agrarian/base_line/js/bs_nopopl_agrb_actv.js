@@ -150,6 +150,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
                 num_families : null,
                 num_male : null,
                 num_female : null,
+
             }
         }
         else if(table == 'BcagOther') {
@@ -186,6 +187,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
+        console.log($scope.bsNopoplAgrbActv);
              $http({
                 method: "POST",
                 url: "/bs_save_data",

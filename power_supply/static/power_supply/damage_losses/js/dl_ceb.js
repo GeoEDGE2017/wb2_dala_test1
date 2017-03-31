@@ -1,4 +1,4 @@
-//Table 3
+//Table 2
 var app = angular.module('dlPowSupCebApp', [])
 
 app.controller('DlPowSupCebAppController',  function($scope, $http) {
@@ -14,6 +14,17 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     var init_data = {
         'power_supply': {
             'Table_2': {
+                'CebNumEmp': [{
+                    num_male : null,
+                    num_female: null,
+                }],
+                'CebNumCusAff': [{
+                    num_domestic : null,
+                    num_industrial : null,
+                    num_commercial : null,
+                    num_other : null,
+                    num_total : null,
+                }],
                 'CebDmgAstGeneration': [{
                     assets : 'Dams',
                     num_dst_ast:null,
@@ -21,6 +32,268 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
+                },{
+                    assets : 'Tunnels',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Turbines',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Generators',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Control systems',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Others',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                 {
+                    assets : 'Total',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                }],
+                'CebDmgAstTransmision': [{
+                    assets : 'High-voltage power lines ',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Grid substations',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Control centers',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Total',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                }],
+                'CebDmgAstDistribution': [{
+                    assets : 'MV Line (Km)',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'LV Lines (Km)',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Primary sub stations',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Distribution sub stations',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Control centers',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Total',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                }],
+                'CebDmgAstStructures': [{
+                    assets : 'Office buildings',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Storage buildings',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Access roads (Km)',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Others',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Total',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                }],
+                 'CebDmgAstOffEquipment': [{
+                    assets : 'Computers',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Air conditioners',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Others',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Total',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                }],
+                  'CebDmgAstOther': [{
+                    assets : 'Equipment/machinery',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'Tools',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },
+                {
+                    assets : 'Others',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
+                    assets : 'GRAND TOTAL',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg: null,
+                }],
+                  'CebLosAstIncome': [{
+                    assets : 'Income Losses',
+                    avg_income : null,
+                    reduction_y1 : null,
+                    reduction_y2 : null,
+                    losses_y1 : null,
+                    losses_y2 : null,
+                    tot_losses : null,
+                }],
+                 'CebLosAstOther': [{
+                    assets : 'Cleaning up of debris',
+                    avg_income : null,
+                    reduction_y1 : null,
+                    reduction_y2 : null,
+                    losses_y1 : null,
+                    losses_y2 : null,
+                    tot_losses : null,
+                },
+                {
+                    assets : 'Higher operating costs',
+                    avg_income : null,
+                    reduction_y1 : null,
+                    reduction_y2 : null,
+                    losses_y1 : null,
+                    losses_y2 : null,
+                    tot_losses : null,
+                },
+                {
+                    assets : 'Other unexpected expenses',
+                    avg_income : null,
+                    reduction_y1 : null,
+                    reduction_y2 : null,
+                    losses_y1 : null,
+                    losses_y2 : null,
+                    tot_losses : null,
+                },
+                 {
+                    assets : 'TOTAL',
+                    avg_income : null,
+                    reduction_y1 : null,
+                    reduction_y2 : null,
+                    losses_y1 : null,
+                    losses_y2 : null,
+                    tot_losses : null,
                 }]
             }
         }
@@ -28,106 +301,158 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
 
     $scope.dlPowSupCeb = init_data;
 
-//    $scope.changedValue=function getBsData(selectedValue) {
-//        if($scope.incident && selectedValue) {
-//            $http({
-//                method: "POST",
-//                url: "/fetch_incident_districts",
-//                data: angular.toJson({'incident': $scope.incident }),
-//            }).success(function(data) {
-//                $scope.districts = data;
-//                $scope.selectedDistrict = "";
-//            })
-//        }
-//
-//        if($scope.incident && $scope.district ) {
-//            $http({
-//                method: 'POST',
-//                url: '/bs_get_data_mock',
-//                contentType: 'application/json; charset=utf-8',
-//                data: angular.toJson({
-//                    'db_tables': ['BiaWaterIntake', 'BiaTreatmentPlant', 'BiaWaterDistribution', 'BiaMainOffice'],
-//                    'com_data': {
-//                        'district': $scope.district.district__id,
-//                        'incident': $scope.incident,
-//                    },
-//                    'table_name': 'Table_1',
-//                    'sector': 'water_supply',
-//                }),
-//                  dataType: 'json',
-//            }).then(function successCallback(response) {
-//                var data = response.data;
-//                angular.forEach(data, function(value, key) {
-//                    $scope.bs_data[key] = JSON.parse(value);
-//                });
-//                console.log(data);
-//                generateRefencedData();
-//            }, function errorCallback(response) {
-//
-//            });
-//        }
-//    }
+    $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            $http({
+                method: "POST",
+                url: "/fetch_incident_districts",
+                data: angular.toJson({'incident': $scope.incident }),
+            }).success(function(data) {
+                $scope.districts = data;
+                $scope.selectedDistrict = "";
+            })
+        }
+    }
 
-//
-//    $scope.saveDlData = function(form) {
-//        if(form.$valid) {
-//            $scope.submitted = true;
-//            $http({
-//                method: 'POST',
-//                url:'/dl_save_data',
-//                contentType: 'application/json; charset=utf-8',
-//                data: angular.toJson({
-//                    'table_data': $scope.dlComWtrSply,
-//                    'com_data': {
-//                        'district_id': $scope.district.district__id,
-//                        'incident_id': $scope.incident,
-//                    },
-//                    'is_edit' : $scope.is_edit,
-//                }),
-//                dataType: 'json',
-//            }).then(function successCallback(response) {
-//                if(response.data == 'False')
-//                    $scope.is_valid_data = false;
-//                else
-//                    $("#modal-container-239453").modal('show');
-//            }, function errorCallback(response) {
-//
-//            });
-//        }
-//    }
-//
-//    $scope.dlDataEdit = function(form){
-//
-//    $scope.is_edit = true;
-//    $scope.submitted = true;
-//
-//    $http({
-//    method: "POST",
-//    url: '/dl_fetch_edit_data',
-//    data: angular.toJson({
-//    'table_name':  'Table_3',
-//    'sector':'water_supply',
-//    'com_data': {
-//           'district':  $scope.district.district__id,
-//            'incident': $scope.incident,
-//          },
-//           'is_edit':$scope.is_edit
-//           }),
-//    }).success(function(data) {
-//
-//    console.log(data);
-//
-//
-//    $scope.dlComWtrSply = data;
-//    })
-//
-//}
-//
-//    $scope.cancelEdit = function(){
-//       $scope.is_edit = false;
-//        $scope.dlComWtrSply = init_data;
-//
-//}
+
+    $scope.saveDlData = function(form) {
+
+            $scope.submitted = true;
+            $http({
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlPowSupCeb,
+                    'com_data': {
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                    },
+                    'is_edit' : $scope.is_edit,
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
+
+            });
+
+    }
+
+    $scope.dlDataEdit = function(form){
+
+    $scope.is_edit = true;
+    $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_2',
+    'sector':'power_supply',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+
+
+    $scope.dlPowSupCeb = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+       $scope.is_edit = false;
+        $scope.dlPowSupCeb = init_data;
+
+}
+
+
+    $scope.CalTotal=function(arr,property){
+    var finaltotal = 0;
+     console.log(arr);
+    angular.forEach(arr, function(value, key) {
+     if(value.assets !='Total' && value.assets !='GRAND TOTAL' ){
+     finaltotal = finaltotal + value[property] ;
+     }
+    })
+
+    return finaltotal;
+    }
+
+    $scope.CalLosYear1Total=function(){
+    var finalIncometotal = 0;
+    var finaltotal = 0;
+    var grandTot = 0;
+    var arrayincome = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstIncome;
+    var arrayOther = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstOther;
+
+
+    angular.forEach(arrayincome, function(value, key) {
+
+     finalIncometotal = finalIncometotal + value.losses_y1 ;
+
+    })
+     angular.forEach(arrayOther, function(value, key) {
+     if(value.assets !='TOTAL' ){
+     finaltotal = finaltotal + value.losses_y1 ;
+     }
+    })
+    grandTot = finalIncometotal + finaltotal;
+    return grandTot;
+    }
+
+    $scope.CalLosYear2Total=function(){
+    var finalIncometotal = 0;
+    var finaltotal = 0;
+    var grandTot = 0;
+    var arrayincome = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstIncome;
+    var arrayOther = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstOther;
+
+
+    angular.forEach(arrayincome, function(value, key) {
+
+     finalIncometotal = finalIncometotal + value.losses_y2 ;
+
+    })
+     angular.forEach(arrayOther, function(value, key) {
+     if(value.assets !='TOTAL' ){
+     finaltotal = finaltotal + value.losses_y2 ;
+     }
+    })
+    grandTot = finalIncometotal + finaltotal;
+    return grandTot;
+    }
+
+    $scope.CalLosTotal=function(){
+    var finalIncometotal = 0;
+    var finaltotal = 0;
+    var grandTot = 0;
+    var arrayincome = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstIncome;
+    var arrayOther = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstOther;
+
+
+    angular.forEach(arrayincome, function(value, key) {
+
+     finalIncometotal = finalIncometotal + value.tot_losses ;
+
+    })
+     angular.forEach(arrayOther, function(value, key) {
+     if(value.assets !='TOTAL' ){
+     finaltotal = finaltotal + value.tot_losses ;
+     }
+    })
+    grandTot = finalIncometotal + finaltotal;
+    return grandTot;
+    }
 
 
 });

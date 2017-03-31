@@ -63,12 +63,12 @@ s{% extends "dashboard/base.html" %}
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead">
+                    <tr class="trhead1">
 
-                        <td colspan="2" style="padding-right:5px;text-align:right;">
+                        <td colspan="2" style="padding-left:5px;">
                             Incident
                         </td>
-                        <td colspan="3" style="background:#EFEFEF;">
+                        <td colspan="3" style="">
                             <select id="select" name="incident" ng-model="incident"
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
@@ -84,7 +84,7 @@ s{% extends "dashboard/base.html" %}
                             </select>
                         </td>
                         <td style="padding-left:5px;">District</td>
-                        <td colspan="2" style="background:#EFEFEF;">
+                        <td colspan="2" style="">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
                                     class="form-control" ng-change="changedValue(false)" required>
@@ -93,7 +93,7 @@ s{% extends "dashboard/base.html" %}
                         </td>
                     </tr>
 
-                        <tr class="trheadc" height="34">
+                        <tr class="trheadc1" height="34">
                             <td width="171" height="34" style="width:25%;">
                                 Assets
                             </td>
@@ -117,12 +117,12 @@ s{% extends "dashboard/base.html" %}
 
 
                         <tr class="trheadc" height="20">
-                            <td width="171" height="20">
+                            <td width="171" height="20" style="width:25%;">
                                 Structures
                             </td>
-                            <td colspan="2" width="238" style="width:26.5%;">
+                            <td colspan="2" width="238" style="width:26%;">
                             </td>
-                            <td colspan="2" width="238" style="width:26.5%;">
+                            <td colspan="2" width="238" style="width:26%;">
                             </td>
                             <td colspan="2" width="239">
                             </td>
@@ -517,7 +517,7 @@ s{% extends "dashboard/base.html" %}
                     </colgroup>
                     <tbody>
 
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td height="34" width="171">
                             Types of losses
                         </td>
@@ -534,7 +534,7 @@ s{% extends "dashboard/base.html" %}
                             Total Losses (LKR)
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td height="19" width="171">
                             Production Losses
                         </td>
@@ -790,13 +790,14 @@ s{% extends "dashboard/base.html" %}
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success" ng-click="saveData(form_mining_artisanal_dl)">Submit</button>
+                   
                     <button type="button" ng-click="dlDataEdit(form_mining_artisanal_dl)" ng-if="!is_edit" class="btn btn-success">
                         Edit
                     </button>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel edit
                     </button>
+                     <button type="button" class="btn btn-success" ng-click="saveData(form_mining_artisanal_dl)">Submit</button>
                 </div>
                 <br><br><br>
             </div>

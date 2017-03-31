@@ -79,7 +79,7 @@
                             Ownership
                         </td>
                         <td colspan="6" height="19" width="661">
-                            <select id="selectbasic" name="selectbasic" ng-model="ownership"  class="form-control" style="width:100%;font-weight:400;" required="true">
+                            <select id="selectbasic" name="selectbasic" ng-model="selectedFirm.ownership"  class="form-control" style="width:100%;font-weight:400;" required="true">
                                 <option value="" selected="true">Select Ownership</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
@@ -93,8 +93,9 @@
                             Type of Business
                         </td>
                         <td colspan="6" height="19" width="661">
-                            <select ng-options="formal_formal_type as formal_formal_type.firm_type for formal_formal_type in formal_formal_types"
-                                    name="formal_formal_type" id="ccyear" ng-model="selected_formal_type"
+                            <select ng-options="formal_formal_type as formal_formal_type.firm_type
+                            for formal_formal_type in formal_formal_types track by formal_formal_type.id"
+                                    name="formal_formal_type" id="ccyear" ng-model="selected_formal_type" ng-value="formal_formal_type.id"
                                     class="form-control" ng-change="changeBusinessSubSectors()" required="true">
 
                                 <option value="" selected>Select Type of Business</option>
@@ -105,35 +106,51 @@
                         <td height="19" width="212">
                             Industry sub Sector
                         </td>
-                        <td colspan="6" height="19" width="661">
+                        <td colspan="6" height="19" width="661" >
 
-                            <select ng-model="subSector" class="form-control" ng-disabled="isIndustrySelected">
+                            <select ng-model="subSector" ng-change="changeSubSector()" class="form-control" ng-disabled="isIndustrySelected">
+                                <option value="" selected="true">Select Industry sub sector</option>
                                 <option ng-repeat="subSec in indSubSec" ng-bind="subSec.industry" ng-value="subSec.industry">{{ subSec.industry }}</option>
                             </select>
                         </td>
+                        <!--<td colspan="6" height="19" width="661" ng-if="is_edit" >-->
+                            <!--<input type="text" ng-model="selectedFirm.sector" class="form-control" disabled="true">-->
+                        <!--</td>-->
                     </tr>
                     <tr class="trhead" height="19" >
                         <td height="19" width="212">
                             Service sub Sector
                         </td>
-                        <td colspan="6" height="19" width="661">
+                        <td colspan="6" height="19" width="661" >
 
-                            <select ng-model="subSector" class="form-control" ng-disabled="!isIndustrySelected">
-                                <option ng-repeat="subSec in serSubSec" ng-bind="subSec.service" ng-value="subSec.industry">{{ subSec.industry }}</option>
+                            <select ng-model="selectedFirm.sector" class="form-control" ng-disabled="!isIndustrySelected">
+                                <option value="" selected="true">Select Service sub sector</option>
+                                <option ng-repeat="subSec in serSubSec" ng-bind="subSec.service" ng-value="subSec.service">{{ subSec.service }}</option>
                             </select>
                         </td>
-                    </tr>
+                        <!--<td colspan="6" height="19" width="661" ng-if="is_edit && !isIndustrySelected" >-->
+                            <!--<input type="text" ng-model="selectedFirm.sector" class="form-control" disabled="true">-->
+                        <!--</td>-->
+                    <!--</tr>-->
                     <tr class="trhead" height="19">
                         <td height="19" width="212">
                             Classification of Firm
                         </td>
                         <!--classificationTypes-->
                         <td colspan="6" height="19" width="661">
-                            <select ng-options="classificationType as classificationType.classification for classificationType in classificationTypes"
-                                    name="formal_formal_type" id="ccyear" ng-model="selectedClassificationType"
-                                    class="form-control" required="true">
+                            <!--<select ng-options="classificationType as classificationType.classification for classificationType in classificationTypes"-->
+                                    <!--name="formal_formal_type" id="ccyear" ng-model="selectedFirm.classification_id" ng-value="classificationType.id"-->
+                                    <!--class="form-control" required="true">-->
 
-                                <option value="" selected>Select Service classification</option>
+                                <!--<option value="" selected>Select Service classification</option>-->
+                            <!--</select>-->
+                            <select ng-options="classificationType as classificationType.classification for
+
+                            classificationType in classificationTypes track by classificationType.id"
+                                    name="district" id="ccyear" ng-model="classification" ng-value="classificationType.id"
+                                    class="form-control"  required ng-change="setClassificationID()">
+
+                                <option value="" selected="true">Select Service classification</option>
                             </select>
                         </td>
                     </tr>
@@ -142,7 +159,7 @@
                             Firm Name
                         </td>
                         <td colspan="6" height="19" width="661">
-                            <input id="textinput" name="firm_name" type="text"  ng-model="firm_name" required="true" placeholder="Firm Name" class="form-control input-md">
+                            <input id="textinput" name="firm_name" type="text"  ng-model="selectedFirm.firm_name" required="true" placeholder="Firm Name" class="form-control input-md">
                         </td>
                     </tr>
                     <tr class="trhead" height="19">
@@ -150,7 +167,7 @@
                             Brief Description of Firm
                         </td>
                         <td colspan="6" height="19" width="661">
-                            <input id="textinput" name="firm_name" type="text" ng-model="firm_description" required="true" placeholder="Brief Description of Firm" class="form-control input-md">
+                            <input id="textinput" name="firm_name" type="text" ng-model="selectedFirm.description" required="true" placeholder="Brief Description of Firm" class="form-control input-md">
                         </td>
                     </tr>
 
@@ -172,12 +189,12 @@
                         <td class="tdpa" height="21" width="212">
                         </td>
                         <td colspan="2" height="21" width="216">
-                            <input id="textinput" name="textinput" type="number" ng-model="firm_num_male" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" ng-model="selectedFirm.num_male_emp" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="2" height="21" width="200">
-                            <input id="textinput" name="textinput" type="text" ng-model="firm_num_female" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" ng-model="selectedFirm.num_female_emp" placeholder="" class="form-control input-md">
                         </td>
-                        <td colspan="2" height="21" width="254" ng-bind="firm_num_male + firm_num_female">
+                        <td colspan="2" height="21" width="254" ng-bind="selectedFirm.tot_num_emp = getSum2(selectedFirm.num_male_emp, selectedFirm.num_female_emp)">
                             -
                         </td>
                     </tr>
@@ -276,9 +293,9 @@
 
                         </td>
                     </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="212"  ng-repeat="dmgRow in
+                    <tr height="21" ng-repeat="dmgRow in
                 dl_dmg_loss_foml_sec.industry_services.Table_3.DmgAstStructures" ng-if="dmgRow.assets == 'Total'">
+                        <td class="tdpa" height="21" width="212"  >
                             Total
                         </td>
                         <td class="tdpa" colspan="2" height="21" width="216"
@@ -350,9 +367,9 @@
 
                         </td>
                     </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="212"  ng-repeat="dmgRow in
+                    <tr height="21" ng-repeat="dmgRow in
                 dl_dmg_loss_foml_sec.industry_services.Table_3.DmgAstEquipment" ng-if="dmgRow.assets == 'Total'">
+                        <td class="tdpa" height="21" width="212"  >
                             Total
                         </td>
                         <td class="tdpa" colspan="2" height="21" width="216"
@@ -424,9 +441,9 @@
 
                         </td>
                     </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="212"  ng-repeat="dmgRow in
+                    <tr height="21" ng-repeat="dmgRow in
                 dl_dmg_loss_foml_sec.industry_services.Table_3.DmgAstMachinery" ng-if="dmgRow.assets == 'Total'">
+                        <td class="tdpa" height="21" width="212"  >
                             Total
                         </td>
                         <td class="tdpa" colspan="2" height="21" width="216"
@@ -501,9 +518,9 @@
 
                         </td>
                     </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="212"  ng-repeat="dmgRow in
+                    <tr height="21" ng-repeat="dmgRow in
                 dl_dmg_loss_foml_sec.industry_services.Table_3.DmgAstVehicles" ng-if="dmgRow.assets == 'Total'">
+                        <td class="tdpa" height="21" width="212"  >
                             Total
                         </td>
                         <td class="tdpa" colspan="2" height="21" width="216"
@@ -577,9 +594,9 @@
 
                         </td>
                     </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="212"  ng-repeat="dmgRow in
+                    <tr height="21" ng-repeat="dmgRow in
                 dl_dmg_loss_foml_sec.industry_services.Table_3.DmgAstStocks" ng-if="dmgRow.assets == 'Total'">
+                        <td class="tdpa" height="21" width="212"  >
                             Total
                         </td>
                         <td class="tdpa" colspan="2" height="21" width="216"
@@ -751,7 +768,7 @@
                     <button type="button" ng-click="dataEdit(form_dl_ind_serv_forml_sec)"
                             ng-if="!is_edit" class="btn btn-success">Edit
                     </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                    <button type="button" ng-click="clear()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
                     <button type="button" class="btn btn-success" ng-click="saveData(form_dl_ind_serv_informl_sec)">Submit</button>

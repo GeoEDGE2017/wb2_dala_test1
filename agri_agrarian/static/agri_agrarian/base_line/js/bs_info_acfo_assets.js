@@ -192,24 +192,15 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         }
         else if(table == 'BacfFarmEquipment') {
             new_row = {
-                other_products : '',
-                avg_value : null,
-                productn_pub : null,
-                productn_pvt : null,
-                productn_cost_nplanted : null,
-                productn_cost_mstage : null,
-                productn_cost_hstage : null,
+                assets : '',
+                avg_replace_cost : null,
+                avg_repair_cost : null,
             }
         }
         else if(table == 'BacfStocks') {
             new_row = {
-                other_products : '',
+                assets : '',
                 avg_value : null,
-                productn_pub : null,
-                productn_pvt : null,
-                productn_cost_nplanted : null,
-                productn_cost_mstage : null,
-                productn_cost_hstage : null,
             }
         }
         $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[table].push(new_row);
@@ -242,6 +233,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
+        console.log($scope.bsInfoAcfoAssets);
              $http({
                 method: "POST",
                 url: "/bs_save_data",

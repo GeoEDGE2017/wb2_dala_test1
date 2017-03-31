@@ -138,33 +138,35 @@
 
                             <td width="85" ng-model="dsorDestStructures.dmg_pub"
                              ng-bind="dsorDestStructures.dmg_pub =
-                                          dsorDestStructures.tot_dest_pub * bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
+                                          dsorDestStructures.tot_dest_pub *
+                                          bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
                         </td>
                            <td width="85" ng-model="dsorDestStructures.dmg_pvt"
                              ng-bind="dsorDestStructures.dmg_pvt =
-                                          dsorDestStructures.tot_dest_pvt * bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
+                                          dsorDestStructures.tot_dest_pvt *
+                                          bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
                         </td>
                         </tr>
                         <tr height="19" ng-repeat="dsorDestStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures" ng-if="dsorDestStructures.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDestStructures.assets">
                                 Total
                             </td>
-                            <td class="tdpa" width="148" ng-bind="dsorDestStructures.num_dest_pub">
+                            <td class="tdpa" width="148">
 
                             </td>
-                            <td class="tdpa" width="121" ng-bind="dsorDestStructures.num_dest_pvt">
+                            <td class="tdpa" width="121">
 
                             </td>
-                            <td class="tdpa" colspan="2" ng-bind="dsorDestStructures.tot_dest_pub">
+                            <td class="tdpa" colspan="2">
 
                             </td>
-                            <td class="tdpa" colspan="2" ng-bind="dsorDestStructures.tot_dest_pvt">
+                            <td class="tdpa" colspan="2">
 
                             </td>
-                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
+                            <td width="85" ng-model="dsorDestStructures.dmg_pub" ng-bind="dsorDestStructures.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
 
                             </td>
-                            <td width="85" ng-bind="calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
+                            <td width="85" ng-model="dsorDestStructures.dmg_pvt" ng-bind="dsorDestStructures.dmg_pvt = calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
 
                             </td>
                         </tr>
@@ -254,15 +256,15 @@
                         <tr height="19" ng-repeat="dsorDmgPubStructure in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure" ng-if="dsorDmgPubStructure.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPubStructure.assets">
                             </td>
-                            <td class="tdpa" colspan="2" ng-bind="dsorDmgPubStructure.num_part_dmg">
+                            <td class="tdpa" colspan="2">
                             </td>
-                            <td class="tdpa" width="117" ng-bind="dsorDmgPubStructure.tot_dmg_roof">
+                            <td class="tdpa" width="117">
                             </td>
-                            <td class="tdpa" colspan="2" ng-bind="dsorDmgPubStructure.tot_dmg_walls">
+                            <td class="tdpa" colspan="2">
                             </td>
-                            <td class="tdpa" width="99" ng-bind="dsorDmgPubStructure.tot_dmg_floors">
+                            <td class="tdpa" width="99">
                             </td>
-                            <td colspan="2" width="170" ng-bind="calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure)">
+                            <td colspan="2" width="170" ng-model="dsorDmgPubStructure.damages" ng-bind="dsorDmgPubStructure.damages = calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure)">
 
                             </td>
                         </tr>
@@ -333,7 +335,7 @@
                             </td>
                             <td class="tdpa" width="99" ng-bind="dsorDmgPvtStructures.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-bind="calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures)">
+                            <td colspan="2" width="170" ng-model="dsorDmgPvtStructures.damages" ng-bind="dsorDmgPvtStructures.damages = calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures)">
 
                             </td>
                         </tr>
@@ -411,18 +413,18 @@
                         <tr height="19" ng-repeat="dsorDmgPvtOequipment in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment" ng-if="dsorDmgPvtOequipment.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtOequipment.assets">
                             </td>
-                            <td class="tdpa" width="148" ng-model="dsorDmgPvtOequipment.num_dest_pub">
+                            <td class="tdpa" width="148">
                             </td>
-                            <td class="tdpa" width="121" ng-model="dsorDmgPvtOequipment.num_dest_pvt">
+                            <td class="tdpa" width="121">
                             </td>
-                            <td class="tdpa" colspan="2" ng-model="dsorDmgPvtOequipment.num_dmg_pub">
+                            <td class="tdpa" colspan="2">
                             </td>
-                            <td class="tdpa" colspan="2" ng-model="dsorDmgPvtOequipment.num_dmg_pvt">
+                            <td class="tdpa" colspan="2">
                             </td>
-                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
+                            <td width="85" ng-model="dsorDmgPvtOequipment.dmg_pub" ng-bind="dsorDmgPvtOequipment.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
 
                             </td>
-                            <td width="85" ng-bind="calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
+                            <td width="85" ng-model="dsorDmgPvtOequipment.dmg_pvt" ng-bind="dsorDmgPvtOequipment.dmg_pvt = calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
 
                             </td>
                         </tr>
@@ -488,10 +490,10 @@
                             </td>
                             <td class="tdpa" colspan="2" ng-bind="dsorDmgPvtMachinery.num_dmg_pvt">
                             </td>
-                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
+                            <td width="85" ng-model="dsorDmgPvtMachinery.dmg_pub" ng-bind="dsorDmgPvtMachinery.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
 
                             </td>
-                            <td width="85" ng-bind="calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
+                            <td width="85" ng-model="dsorDmgPvtMachinery.dmg_pvt" ng-bind="dsorDmgPvtMachinery.dmg_pvt = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
 
                             </td>
                         </tr>

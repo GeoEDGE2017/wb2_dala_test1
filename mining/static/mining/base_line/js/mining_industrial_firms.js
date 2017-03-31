@@ -123,7 +123,7 @@ if(table == 'BmaImFn'){
 
 
         }, function errorCallback(response) {
-
+$("#modal-container-239454").modal('show');
             console.log(response);
         });
 

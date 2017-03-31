@@ -1,441 +1,354 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 
-   <!-- Main content -->
-    <main class="main">
+<!-- Main content -->
+<main class="main" ng-app="dlPowSupPrivateApp" ng-controller="DlPowSupCebAppController">
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Power Supply Sector</a>
-            </li>
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and losses of private power producers</span></li>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
 
-           
-        </ol>
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Power Supply Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and losses of private power producers</span></li>
 
 
-        <div class="container-fluid">
+    </ol>
+
+
+    <div class="container-fluid" ng-form name="form_dl_pow_supp_pri">
 
         <ul class='nav nav-wizard'>
-				    <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-				    <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
-				   
-				  </ul>
-				
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane active" id="step1">
-						 
-                          
-                             <table class="table table-bordered" >
-  
-    <colgroup>
-        <col width="244"/>
-        <col width="112"/>
-        <col width="108" span="2"/>
-        <col width="103"/>
-        <col width="107"/>
-    </colgroup>
-    <tbody>
-        <tr class="trhead" height="19">
-            <td height="19" width="244">
-                District
-            </td>
-            <td colspan="3" width="328">
-            <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-            <td width="103">
-                Incident
-            </td>
-            <td width="107">
-               <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td height="19" width="244">
-                Private power producers Type
-            </td>
-            <td colspan="5" width="538">
-                IPP1 or SPP1
-            </td>
-        </tr>
-        <tr  height="34">
-            <td class="trhead" height="34" width="244">
-                Name of IPP or SPP
-            </td>
-            <td colspan="3" width="328">
-                <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="103">
-                <a id="add_preschool" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add" class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
-            </td>
-            <td width="107">
-                <a id="edit_preschool" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="2" height="38" width="244">
-                Number of Employees
-            </td>
-            <td colspan="2" width="220">
-                Male
-            </td>
-            <td colspan="3" width="318">
-                Female
-            </td>
-        </tr>
-        <tr height="19">
-            <td colspan="2" height="19">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="3">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="2" height="70" width="244">
-                Assets
-            </td>
-            <td colspan="5" width="538">
-                Damages
-            </td>
-        </tr>
-        <tr class="trsubc" height="51">
-            <td height="51" width="112">
-                Number of Totally Destroyed Assets
-            </td>
-            <td width="108">
-                Total Replacement Cost (LKR)
-            </td>
-            <td width="108">
-                Number of Partially Damaged Assets
-            </td>
-            <td width="103">
-                Total Repair Costs (LKR)
-            </td>
-            <td width="107">
-                Total Damages (LKR)
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Power generation equipment
-            </td>
-            <td width="112">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="103">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Machinery
-            </td>
-            <td width="112">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="103">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Structures
-            </td>
-            <td width="112">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="103">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Office equipment
-            </td>
-            <td width="112">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="103">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Vehicles
-            </td>
-            <td width="112">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="103">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Others
-            </td>
-            <td width="112">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="108">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="103">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Total
-            </td>
-            <td class="tdpa" width="112">
-            </td>
-            <td width="108">
-                -
-            </td>
-            <td class="tdpa" width="108">
-            </td>
-            <td width="103">
-                -
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-    </tbody>
-</table>
-                                
-                           
-                            <br>
-<a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
-               <br>        
-           </div> 
-                        	<div class="tab-pane fade" id="step2">
-                             
-			 <table class="table table-bordered" >					
-      
-    <colgroup>
-        <col width="244"/>
-        <col width="112"/>
-        <col width="108" span="2"/>
-        <col width="103"/>
-        <col width="107"/>
-    </colgroup>
-    <tbody>
-        <tr class="trheadc" height="19">
-            <td height="19" width="244">
-                Types of Losses
-            </td>
-            <td colspan="2" width="220">
-                Year 1 (LKR)
-            </td>
-            <td colspan="2" width="211">
-                Year 2 (LKR)
-            </td>
-            <td width="107">
-                Total Losses (LKR)
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Income Losses
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Cleaning up of debris
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Higher operating costs
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Other unexpected expenses
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td colspan="2">
-            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="244">
-                Total
-            </td>
-            <td colspan="2" width="220">
-                -
-            </td>
-            <td colspan="2" width="211">
-                -
-            </td>
-            <td width="107">
-                -
-            </td>
-        </tr>
-    </tbody>
-</table>
+            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
 
-								
-                                <br>
-                                <div class="pull-right">
-		<br>
-<button type="button" class="btn btn-info">Clear</button>
-<button type="button" class="btn btn-success">Submit</button>
-</div>	
-                                <br><br><br>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+
+
+                <table class="table table-bordered" >
+
+                    <colgroup>
+                        <col width="244"/>
+                        <col width="112"/>
+                        <col width="108" span="2"/>
+                        <col width="103"/>
+                        <col width="107"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_buss.district.$error.required">
+                                Please Select District
+                            </span>
+                            <!--district == undefined-->
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_buss.baselineDate.$error.required">
+                                Please Select Date
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead" height="19">
+                        <td height="19" width="244">
+                            District
+                        </td>
+                        <td colspan="3" width="328">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false);" required>
+                                <!--fetchFirms();-->
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                        <td width="103">
+                            Incident
+                        </td>
+                        <td width="107">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td height="19" width="244">
+                            Private power producers Type
+                        </td>
+                        <td colspan="5" width="328">
+                            <select ng-options="pvtPwProducerType as pvtPwProducerType.name for pvtPwProducerType in
+                            pvtPwProducerTypes | filter:{ name : '!CEB' }"
+                                    name="district" id="ccyear" ng-model="pvtPwProducerType" ng-value="pvtPwProducerType"
+                                    class="form-control"  required>
+                                <option value="" selected>Select Power Producer Type</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <!--pvtPwProducers-->
+                    <tr  height="34">
+                        <td class="trhead" height="34" width="244">
+                            Name of IPP or SPP
+                        </td>
+                        <td colspan="6" width="400">
+                            <select ng-options="pvtPwProducer as pvtPwProducer.assets for pvtPwProducer in
+                            pvtPwProducers | filter:{ ownership : pvtPwProducerType.name } "
+                                    name="district" id="ccyear" ng-model="selectedProducer" ng-value="pvtPwProducer"
+                                    class="form-control"  required>
+                                <option value="" selected>Select Power Producer</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" height="38" width="244">
+                            Number of Employees
+                        </td>
+                        <td colspan="2" width="220">
+                            Male
+                        </td>
+                        <td colspan="3" width="318">
+                            Female
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="row in
+                data.power_supply.Table_3.PvtNumEmp" ng-if="row.assets != 'Total'">
+                        <td colspan="2" height="19">
+                            <input id="textinput" name="textinput" type="number" ng-model="row.num_male" placeholder="" class="form-control input-md">
+                        </td>
+                        <td colspan="3">
+                            <input id="textinput" name="textinput" type="text" ng-model="row.num_female" placeholder="" class="form-control input-md">
+                        </td>
+                        <td colspan="0" ng-bind="row.tot_emp = row.num_male + row.num_female" ng-if="false">
+                        </td>
+
+
+                    </tr>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" height="70" width="244">
+                            Assets
+                        </td>
+                        <td colspan="5" width="538">
+                            Damages
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="51">
+                        <td height="51" width="112">
+                            Number of Totally Destroyed Assets
+                        </td>
+                        <td width="108">
+                            Total Replacement Cost (LKR)
+                        </td>
+                        <td width="108">
+                            Number of Partially Damaged Assets
+                        </td>
+                        <td width="103">
+                            Total Repair Costs (LKR)
+                        </td>
+                        <td width="107">
+                            Total Damages (LKR)
+                        </td>
+                    </tr>
+                    <tr height="19"  ng-repeat="row in
+                data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets != 'Total'">
+                        <td class="tdpa" height="19" width="244" ng-bind="row.assets">
+                            Power generation equipment
+                        </td>
+                        <td width="112">
+                            <input id="textinput" name="textinput" type="number"
+                                   ng-model="row.num_dst_ast" placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput"
+                                   ng-model="row.tot_replace_cost" type="number" placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="108">
+                            <input id="textinput" name="textinput" type="number"
+                                   ng-model="row.num_pdmg_ast" placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="103">
+                            <input id="textinput" name="textinput" type="number"
+                                   ng-model="row.tot_repair_cost" placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="107" ng-bind="row.tot_damaged_cost = getSum2(row.num_pdmg_ast , row.tot_repair_cost)">
+                            -
+                        </td>
+                    </tr>
+
+                    <tr height="19" ng-repeat="row in
+                data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets == 'Total'">
+                        <td class="tdpa" height="19" width="244" >
+                            Total
+                        </td>
+                        <td class="tdpa" width="112" ng-bind = "row.num_dst_ast = getTotalCol('PvtDmgAst','num_dst_ast', row)">
+                        </td>
+                        <td width="108" ng-bind = "row.tot_replace_cost = getTotalCol('PvtDmgAst','tot_replace_cost', row)">
+                            -
+                        </td>
+                        <td class="tdpa" width="108" ng-bind = "row.num_pdmg_ast = getTotalCol('PvtDmgAst','num_pdmg_ast', row)">
+                        </td>
+                        <td width="103" ng-bind = "row.tot_repair_cost = getTotalCol('PvtDmgAst','tot_repair_cost', row)">
+                            -
+                        </td>
+                        <td width="107" ng-bind = "row.tot_damaged_cost = getTotalCol('PvtDmgAst','tot_damaged_cost', row)">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                <br>
+            </div>
+            <div class="tab-pane fade" id="step2">
+
+                <table class="table table-bordered" >
+
+                    <colgroup>
+                        <col width="244"/>
+                        <col width="112"/>
+                        <col width="108" span="2"/>
+                        <col width="103"/>
+                        <col width="107"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trheadc" height="19">
+                        <td height="19" width="244">
+                            Types of Losses
+                        </td>
+                        <td colspan="2" width="220">
+                            Year 1 (LKR)
+                        </td>
+                        <td colspan="2" width="211">
+                            Year 2 (LKR)
+                        </td>
+                        <td width="107">
+                            Total Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="row in
+                data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type != 'Total'">
+                        <td class="tdpa" height="19" width="244" ng-bind="row.losses_type">
+                            Income Losses
+                        </td>
+                        <td colspan="2">
+                            <input id="textinput" name="textinput" type="number" ng-model="row.los_year1"
+                                   placeholder="" class="form-control input-md">
+                        </td>
+                        <td colspan="2">
+                            <input id="textinput" name="textinput" type="number" ng-model="row.los_year2"
+                                   placeholder="" class="form-control input-md">
+                        </td>
+                        <td width="107" ng-bind="lossTotals[$index].tot = getSum2(row.los_year1, row.los_year2)">
+                            -
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="row in
+                data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type == 'Total'">
+                        <td class="tdpa" height="19" width="244">
+                            Total
+                        </td>
+                        <td colspan="2" width="220" ng-bind="row.los_year1 = getTotalCol('PvtDmgLosses','los_year1',row)">
+                            -
+                        </td>
+                        <td colspan="2" width="211" ng-bind="row.los_year2 = getTotalCol('PvtDmgLosses','los_year2',row)">
+                            -
+                        </td>
+                        <td width="107" ng-bind="lossTotals[0].tot + lossTotals[1].tot + lossTotals[2].tot + lossTotals[3].tot">
+                            -
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+                <div class="pull-right">
+                    <br>
+                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <button type="button" ng-click="dataEdit(form_dl_pow_supp_pri)"
+                            ng-if="!is_edit" class="btn btn-success">Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+                    <button type="button" ng-click="saveDlData(form_dl_pow_supp_pri)" class="btn btn-success">Submit</button>
+                </div>
+                <br><br><br>
+            </div>
         </div>
-        </div>
-							
-							
-			
-								
+
+
+
+
+    </div>
+    </div>
+
+    <div class="col-md-12">
+
+
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title" >
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput" >Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" ng-model="newPvtPwProducer.name" placeholder="" class="form-control input-md">
+
                             </div>
                         </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
 
-         <div class="col-md-12">
-			
-			
-			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			
-		</div>           </div>    
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-click="savePvtPwProducers()">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
-		
-        <!-- /.conainer-fluid -->
-    </main>
-  
-  
+
+
+    </div>           </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
 {% endblock content %}

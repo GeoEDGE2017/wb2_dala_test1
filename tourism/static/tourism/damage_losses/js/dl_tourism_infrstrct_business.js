@@ -404,7 +404,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 })
             }
             else{
-                console.log("invalid");
+                alert("invalid data ! You may have entered decimal values for a number");
 
             }
         }
@@ -413,6 +413,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         $scope.dataEdit = function() {
 
         if($scope.district && $scope.incident && $scope.selectedFirm && $scope.ownership && $scope.selectedType){
+
+
                     $scope.is_edit = true;
         $scope.submitted = true;
 

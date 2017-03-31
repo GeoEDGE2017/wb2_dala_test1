@@ -284,6 +284,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         $scope.dataEdit = function() {
 
+    if($scope.district && $scope.incident && $scope.selectedFirm && $scope.ownership && $scope.selectedType){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -315,6 +316,10 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                         $scope.dl_tourism_infrs = data;
                     }
             })
+        }
+        else{
+            alert("enter Incident, District, Firm, ownership, Type")
+        }   
 
         }
         $scope.cancelEdit = function()

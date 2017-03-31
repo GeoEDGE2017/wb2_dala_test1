@@ -284,7 +284,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         $scope.dataEdit = function() {
 
-    if($scope.district && $scope.incident && $scope.selectedFirm && $scope.ownership && $scope.selectedType){
+    if($scope.district && $scope.incident && $scope.selectedInfrastructure && $scope.ownership ){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -297,7 +297,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        'inf_id': $scope.selectedFirm,
+                        'inf_id': $scope.selectedInfrastructure.id,
 //                        'inf_type_id': $scope.selectedType.id,
                         'ownership': $scope.ownership
 
@@ -317,9 +317,13 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     }
             })
         }
-        else{
-            alert("enter Incident, District, Firm, ownership, Type")
-        }   
+            else{
+                alert("enter Incident, District, Infrastructure, ownership");
+                    console.log($scope.district);
+                    console.log($scope.incident);
+                    console.log($scope.selectedFirm);
+                    console.log($scope.ownership);
+            }
 
         }
         $scope.cancelEdit = function()

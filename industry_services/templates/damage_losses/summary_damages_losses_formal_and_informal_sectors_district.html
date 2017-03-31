@@ -162,253 +162,74 @@
                         <td height="19" width="63">
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
+                    <tr height="19" ng-repeat="ind in indSubSec">
+                        <td class="tdpa" height="19" width="212" ng-bind="ind.industry">
                             Textile and Garments
                         </td>
-                        <td height="19" width="108">
+                        <td height="19" width="108" ng-bind="industryTotals[$index].numAffPub = getConvertedVal(table.industry[ind.industry].numAffected.num_bus_public)">
                         </td>
-                        <td height="19" width="110">
+                        <td height="19" width="110" ng-bind="industryTotals[$index].numAffPri = getConvertedVal(table.industry[ind.industry].numAffected.num_bus_private)">
                         </td>
-                        <td height="19" width="100">
+                        <td height="19" width="100" ng-bind="industryTotals[$index].y1DamPubBus = getConvertedVal(table.industry[ind.industry].year1Damage.Public)">
                             -
                         </td>
-                        <td height="19" width="108">
+                        <td height="19" width="108" ng-bind="industryTotals[$index].y1DamPriBus = getConvertedVal(table.industry[ind.industry].year1Damage.Private)">
                         </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
+                        <td width="114" ng-bind="industryTotals[$index].y1LossPubBus = getConvertedVal(table.industry[ind.industry].year1Loss.Public)">
                             -
                         </td>
-                        <td height="19" width="63">
+                        <td width="118" ng-bind="industryTotals[$index].y1LossPriBus = getConvertedVal(table.industry[ind.industry].year1Loss.Private)">
                             -
                         </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Tea processing
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
+                        <td width="85" ng-bind="industryTotals[$index].y2LossPubBus = getConvertedVal(table.industry[ind.industry].year2Loss.Public)">
                             -
                         </td>
-                        <td height="19" width="63">
+                        <td width="85" ng-bind="industryTotals[$index].y2LossPriBus = getConvertedVal(table.industry[ind.industry].year2Loss.Private)">
+                            -
+                        </td>
+                        <td width="85" ng-bind="industryTotals[$index].PubTotBus = getSum3(table.industry[ind.industry].year1Damage.Public,
+                                                table.industry[ind.industry].year1Loss.Public,
+                                                table.industry[ind.industry].year2Loss.Public)
+                                                ">
+                            -
+                        </td>
+                        <td width="85" ng-bind="industryTotals[$index].PriTotBus = getSum3(table.industry[ind.industry].year1Damage.Private,
+                                                table.industry[ind.industry].year1Loss.Private,
+                                                table.industry[ind.industry].year2Loss.Private)
+                                                ">
                             -
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Petroleum
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Construction
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Beverages
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Chemicals
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Pharmaceutical
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Others (Specify)
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
+
                     <tr height="21">
                         <td class="tdpa" height="21" width="212">
                             Total
                         </td>
-                        <td height="21" width="108">
+                        <td height="21" width="108" ng-bind=" industryTotal.numAffPub = getindustryTotal( 'numAffPub' )">
                             -
                         </td>
-                        <td height="21" width="110">
+                        <td height="21" width="110" ng-bind=" industryTotal.numAffPri = getindustryTotal( 'numAffPri' )">
                             -
                         </td>
-                        <td height="21" width="100">
+                        <td height="21" width="100" ng-bind=" industryTotal.y1DamPubBus = getindustryTotal( 'y1DamPubBus' )">
                             -
                         </td>
-                        <td height="21" width="108">
+                        <td height="21" width="108" ng-bind=" industryTotal.y1DamPriBus = getindustryTotal( 'y1DamPriBus' )">
                             -
                         </td>
-                        <td height="21" width="127">
+                        <td height="21" width="127" ng-bind=" industryTotal.y1LossPubBus = getindustryTotal( 'y1LossPubBus' )">
                         </td>
-                        <td height="21" width="143">
+                        <td height="21" width="127" ng-bind=" industryTotal.y1LossPriBus = getindustryTotal( 'y1LossPriBus' )">
+                        </td>
+                        <td height="21" width="143" ng-bind=" industryTotal.y2LossPubBus = getindustryTotal( 'y2LossPubBus' )">
                             -
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" ng-bind=" industryTotal.y2LossPriBus = getindustryTotal( 'y2LossPriBus' )">
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" ng-bind=" industryTotal.PubTotBus = getindustryTotal( 'PubTotBus' )">
                             -
                         </td>
-                        <td height="21" width="63">
-                            -
-                        </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" ng-bind=" industryTotal.PriTotBus = getindustryTotal( 'PriTotBus' )">
                             -
                         </td>
                     </tr>
@@ -437,235 +258,73 @@
                         <td height="19" width="63">
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
+                    <tr height="19" ng-repeat="ser in serSubSec">
+                        <td class="tdpa" height="19" width="212" ng-bind="ser.service">
                             Finance and Insurance
                         </td>
-                        <td height="19" width="108">
+                        <td height="19" width="108" ng-bind="serviceTotals[$index].numAffPub = getConvertedVal(table.service[ser.service].numAffected.num_bus_public)">
                         </td>
-                        <td height="19" width="110">
+                        <td height="19" width="110" ng-bind="serviceTotals[$index].numAffPri = getConvertedVal(table.service[ser.service].numAffected.num_bus_private)">
                         </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
+                        <td height="19" width="100" ng-bind="serviceTotals[$index].y1DamPubBus = getConvertedVal(table.service[ser.service].year1Damage.Public)">
                             -
                         </td>
-                        <td height="19" width="63">
+                        <td height="19" width="108" ng-bind="serviceTotals[$index].y1DamPriBus = getConvertedVal(table.service[ser.service].year1Damage.Private)">
+                        </td>
+                        <td width="114" ng-bind="serviceTotals[$index].y1LossPubBus = getConvertedVal(table.service[ser.service].year1Loss.Public)">
                             -
                         </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Wholesale Trade
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
+                        <td width="118" ng-bind="serviceTotals[$index].y1LossPriBus = getConvertedVal(table.service[ser.service].year1Loss.Private)">
                             -
                         </td>
-                        <td height="19" width="63">
+                        <td width="85" ng-bind="serviceTotals[$index].y2LossPubBus = getConvertedVal(table.service[ser.service].year2Loss.Public)">
+                            -
+                        </td>
+                        <td width="85" ng-bind="serviceTotals[$index].y2LossPriBus = getConvertedVal(table.service[ser.service].year2Loss.Private)">
+                            -
+                        </td>
+                        <td width="85" ng-bind="serviceTotals[$index].PubTotBus = getSum3(table.service[ser.service].year1Damage.Public,
+                                                table.service[ser.service].year1Loss.Public,
+                                                table.service[ser.service].year2Loss.Public)
+                                                ">
+                            -
+                        </td>
+                        <td width="85" ng-bind="serviceTotals[$index].PriTotBus = getSum3(table.service[ser.service].year1Damage.Private,
+                                                table.service[ser.service].year1Loss.Private,
+                                                table.service[ser.service].year2Loss.Private)
+                                                ">
                             -
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Retail Trade
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Real estate
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Private services
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Others (Specify)
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                        </td>
-                        <td height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                        </td>
-                        <td height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
+                        <td class="tdpa" height="21" width="212">
                             Total
                         </td>
-                        <td height="19" width="108">
+                        <td height="21" width="108" ng-bind=" serviceTotal.numAffPub = getserviceTotal( 'numAffPub' )">
                             -
                         </td>
-                        <td height="19" width="110">
+                        <td height="21" width="110" ng-bind=" serviceTotal.numAffPri = getserviceTotal( 'numAffPri' )">
                             -
                         </td>
-                        <td height="19" width="100">
+                        <td height="21" width="100" ng-bind=" serviceTotal.y1DamPubBus = getserviceTotal( 'y1DamPubBus' )">
                             -
                         </td>
-                        <td height="19" width="108">
+                        <td height="21" width="108" ng-bind=" serviceTotal.y1DamPriBus = getserviceTotal( 'y1DamPriBus' )">
                             -
                         </td>
-                        <td height="19" width="127">
+                        <td height="21" width="127" ng-bind=" serviceTotal.y1LossPubBus = getserviceTotal( 'y1LossPubBus' )">
+                        </td>
+                        <td height="21" width="127" ng-bind=" serviceTotal.y1LossPriBus = getserviceTotal( 'y1LossPriBus' )">
+                        </td>
+                        <td height="21" width="143" ng-bind=" serviceTotal.y2LossPubBus = getserviceTotal( 'y2LossPubBus' )">
                             -
                         </td>
-                        <td height="19" width="143">
+                        <td height="21" width="63" ng-bind=" serviceTotal.y2LossPriBus = getserviceTotal( 'y2LossPriBus' )">
+                        </td>
+                        <td height="21" width="63" ng-bind=" serviceTotal.PubTotBus = getserviceTotal( 'PubTotBus' )">
                             -
                         </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="212">
-                            TOTAL
-                        </td>
-                        <td height="21" width="108">
-                            -
-                        </td>
-                        <td height="21" width="110">
-                            -
-                        </td>
-                        <td height="21" width="100">
-                            -
-                        </td>
-                        <td height="21" width="108">
-                            -
-                        </td>
-                        <td height="21" width="127">
-                            -
-                        </td>
-                        <td height="21" width="143">
-                            -
-                        </td>
-                        <td height="21" width="63">
-                            -
-                        </td>
-                        <td height="21" width="63">
-                            -
-                        </td>
-                        <td height="21" width="63">
-                            -
-                        </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" ng-bind=" serviceTotal.PriTotBus = getserviceTotal( 'PriTotBus' )">
                             -
                         </td>
                     </tr>
@@ -734,155 +393,77 @@
                             Private
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
+                    <tr height="19" ng-repeat="business in data2.DlInfNumBusDistrict" ng-if="business.assets != 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="business.assets">
                             Trading
                         </td>
                         <td class="tdpa" height="19" width="108">
                         </td>
-                        <td height="19" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
+                        <td height="19" width="110" ng-bind="businessData[$index].numAff = table2[business.assets].tot_num_bus_affected">
                             -
                         </td>
                         <td class="tdpa" height="19" width="63">
                         </td>
-                        <td height="19" width="63">
+                        <td height="19" width="110" ng-bind="businessData[$index].y1Dmg = table3[business.assets].tot_damages">
                             -
                         </td>
                         <td class="tdpa" height="19" width="63">
                         </td>
-                        <td height="19" width="63">
+                        <td height="19" width="110" ng-bind="businessData[$index].tot_los_year1 = table2[business.assets].tot_los_year1">
                             -
                         </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td height="19" width="110" ng-bind="businessData[$index].tot_los_year2 = table2[business.assets].tot_los_year2">
+                            -
+                        </td>
+
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td height="19" width="63" ng-bind="businessData[$index].tot = getSum3(businessData[$index].y1Dmg, businessData[$index].tot_los_year1 , businessData[$index].tot_los_year2)">
+                            -
+                        </td>
+
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Services
+                    <tr height="19" ng-repeat="business in data2.DlInfNumBusDistrict" ng-if="business.assets == 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="business.assets">
+                            Trading
                         </td>
                         <td class="tdpa" height="19" width="108">
                         </td>
-                        <td height="19" width="110">
+                        <td height="19" width="110" ng-bind="(businessData[0].numAff + businessData[1].numAff + businessData[2].numAff
+                        + businessData[3].numAff + businessData[4].numAff)">
+                            -
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td height="19" width="110" ng-bind="(businessData[0].y1Dmg + businessData[1].y1Dmg + businessData[2].y1Dmg
+                        + businessData[3].y1Dmg + businessData[4].y1Dmg)">
                             -
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td height="19" width="108">
+                        <td height="19" width="108" ng-bind="(businessData[0].tot_los_year1 + businessData[1].tot_los_year1 + businessData[2].tot_los_year1
+                        + businessData[3].tot_los_year1 + businessData[4].tot_los_year1)">>
                             -
                         </td>
+                        <td class="tdpa" height="19" width="63">
+
+                        </td>
+                        <td height="19" width="108" ng-bind="(businessData[0].tot_los_year2 + businessData[1].tot_los_year2 +
+                        businessData[2].tot_los_year2
+                        + businessData[3].tot_los_year2 + businessData[4].tot_los_year2)">>
+                            -
+                        </td>
+
                         <td class="tdpa" height="19" width="127">
                         </td>
-                        <td height="19" width="143">
+                        <td height="19" width="63" ng-bind="(businessData[0].tot + businessData[1].tot +
+                        businessData[2].tot
+                        + businessData[3].tot + businessData[4].tot)">
                             -
                         </td>
-                        <td class="tdpa" height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Food processing
-                        </td>
-                        <td class="tdpa" height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Others
-                        </td>
-                        <td class="tdpa" height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="212">
-                            TOTAL
-                        </td>
-                        <td class="tdpa" height="21" width="108">
-                        </td>
-                        <td height="21" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="21" width="100">
-                        </td>
-                        <td height="21" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="21" width="127">
-                        </td>
-                        <td height="21" width="143">
-                            -
-                        </td>
-                        <td class="tdpa" height="21" width="63">
-                        </td>
-                        <td height="21" width="63">
-                            -
-                        </td>
-                        <td class="tdpa" height="21" width="63">
-                        </td>
-                        <td height="21" width="63">
-                            -
-                        </td>
+
                     </tr>
 
                     <tr class="trheadc" height="19">
@@ -969,28 +550,28 @@
                         <td class="tdpa" height="19" width="212">
                             Industry
                         </td>
-                        <td height="19" width="108">
+                        <td height="19" width="108" ng-bind="industryTotal.numAffPub">
                             -
                         </td>
-                        <td height="19" width="110">
+                        <td height="21" width="110" ng-bind=" industryTotal.numAffPri">
                             -
                         </td>
-                        <td height="19" width="100">
+                        <td height="21" width="100" ng-bind=" industryTotal.y1DamPubBus">
                             -
                         </td>
-                        <td height="19" width="108">
+                        <td height="21" width="108" ng-bind=" industryTotal.y1DamPriBus">
                             -
                         </td>
-                        <td height="19" width="127">
+                        <td height="21" width="127" ng-bind=" industryTotal.y1LossPubBus">
+                        </td>
+                        <td height="21" width="127" ng-bind=" industryTotal.y1LossPriBus">
+                        </td>
+                        <td colspan="2" height="19" width="126"
+                            ng-bind="summaryTotal.indPub = getSum3(industryTotal.numAffPub, industryTotal.y1DamPubBus, industryTotal.y1LossPubBus)">
                             -
                         </td>
-                        <td height="19" width="143">
-                            -
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            -
-                        </td>
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="2" height="19" width="126"
+                            ng-bind="summaryTotal.indPri = getSum3(industryTotal.numAffPri, industryTotal.y1DamPriBus, industryTotal.y1LossPriBus)">
                             -
                         </td>
                     </tr>
@@ -998,57 +579,58 @@
                         <td class="tdpa" height="19" width="212">
                             Services
                         </td>
-                        <td height="19" width="108">
+                        <td height="21" width="108" ng-bind=" serviceTotal.numAffPub">
                             -
                         </td>
-                        <td height="19" width="110">
+                        <td height="21" width="110" ng-bind=" serviceTotal.numAffPri">
                             -
                         </td>
-                        <td height="19" width="100">
+                        <td height="21" width="100" ng-bind=" serviceTotal.y1DamPubBus">
                             -
                         </td>
-                        <td height="19" width="108">
+                        <td height="21" width="108" ng-bind=" serviceTotal.y1DamPriBus">
                             -
                         </td>
-                        <td height="19" width="127">
-                            -
+                        <td height="21" width="127" ng-bind=" serviceTotal.y1LossPubBus">
                         </td>
-                        <td height="19" width="143">
-                            -
+                        <td height="21" width="127" ng-bind=" serviceTotal.y1LossPriBus">
                         </td>
-                        <td colspan="2" height="19" width="126">
-                            -
+
+                        <td colspan="2" height="19" width="126"
+                             ng-bind="summaryTotal.serPub = getSum3(serviceTotal.numAffPub, serviceTotal.y1DamPubBus, serviceTotal.y1LossPubBus)">
+                           -
                         </td>
-                        <td colspan="2" height="19" width="126">
-                            -
+                        <td colspan="2" height="19" width="126"
+                             ng-bind="summaryTotal.serPri = getSum3(serviceTotal.numAffPub, serviceTotal.y1DamPubBus, serviceTotal.y1LossPubBus)">
+                           -
                         </td>
                     </tr>
                     <tr height="21">
                         <td class="tdpa" height="21" width="212">
                             Total
                         </td>
-                        <td height="21" width="108">
+                        <td height="21" width="108" ng-bind="summaryTotal.numAffPub = getSum2(industryTotal.numAffPub, serviceTotal.numAffPub)">
                             -
                         </td>
-                        <td height="21" width="110">
+                        <td height="21" width="110" ng-bind="summaryTotal.numAffPri = getSum2(industryTotal.numAffPri, serviceTotal.numAffPri)">
                             -
                         </td>
-                        <td height="21" width="100">
+                        <td height="21" width="100" ng-bind="summaryTotal.y1DamPubBus = getSum2(industryTotal.y1DamPubBus, serviceTotal.y1DamPubBus)">
                             -
                         </td>
-                        <td height="21" width="108">
+                        <td height="21" width="108" ng-bind="summaryTotal.y1DamPriBus = getSum2(industryTotal.y1DamPriBus, serviceTotal.y1DamPriBus)">
                             -
                         </td>
-                        <td height="21" width="127">
+                        <td height="21" width="127" ng-bind="summaryTotal.y1LossPubBus = getSum2(industryTotal.y1LossPubBus, serviceTotal.y1LossPubBus)">
                             -
                         </td>
-                        <td height="21" width="143">
+                        <td height="21" width="143" ng-bind="summaryTotal.y1LossPriBus = getSum2(industryTotal.y1LossPriBus, serviceTotal.y1LossPriBus)">
                             -
                         </td>
-                        <td colspan="2" height="21" width="126">
+                        <td colspan="2" height="21" width="126" ng-bind="summaryTotal.PubTot = getSum2(summaryTotal.serPub, summaryTotal.indPub)">
                             -
                         </td>
-                        <td colspan="2" height="21" width="126">
+                        <td colspan="2" height="21" width="126" ng-bind="summaryTotal.PriTot = getSum2(summaryTotal.serPri, summaryTotal.indPri)">
                             -
                         </td>
                     </tr>
@@ -1073,157 +655,103 @@
                         <td colspan="2" height="19" width="126">
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
+                    <tr height="19" ng-repeat="business in data2.DlInfNumBusDistrict" ng-if="business.assets != 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="business.assets">
+                            Trading
+                        </td>
+                        <!--<td class="tdpa" height="19" width="108">-->
+                        <!--</td>-->
+                        <!--<td height="19" width="110" ng-bind="businessData[$index].numAff = table2[business.assets].tot_num_bus_affected">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td height="19" width="110" ng-bind="businessData[$index].y1Dmg = table3[business.assets].tot_damages">
+                            -
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td height="19" width="110" ng-bind="businessData[$index].tot_los_year1 = table2[business.assets].tot_los_year1">
+                            -
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td height="19" width="110" ng-bind="businessData[$index].tot_los_year2 = table2[business.assets].tot_los_year2">
+                            -
+                        </td>
+
+                        <td class="tdpa" height="19" colspan="2" width="63">
+                        </td>
+                        <td height="19" width="63" colspan="2" ng-bind="businessData[$index].tot = getSum3(businessData[$index].y1Dmg, businessData[$index].tot_los_year1 , businessData[$index].tot_los_year2)">
+                            -
+                        </td>
+
+                    </tr>
+                    <tr height="19" ng-repeat="business in data2.DlInfNumBusDistrict" ng-if="business.assets == 'Total'">
+                        <td class="tdpa" height="19" width="212" ng-bind="business.assets">
                             Trading
                         </td>
                         <td class="tdpa" height="19" width="108">
                         </td>
-                        <td height="19" width="110">
+                        <td height="19" width="110" ng-bind="summaryTotalInf.numAff = (businessData[0].numAff + businessData[1].numAff + businessData[2].numAff
+                        + businessData[3].numAff + businessData[4].numAff)">
+                            -
+                        </td>
+                        <td class="tdpa" height="19" width="63">
+                        </td>
+                        <td height="19" width="110" ng-bind="summaryTotalInf.y1Dmg = (businessData[0].y1Dmg + businessData[1].y1Dmg + businessData[2].y1Dmg
+                        + businessData[3].y1Dmg + businessData[4].y1Dmg)">
                             -
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td height="19" width="108">
+                        <td height="19" width="108" ng-bind="summaryTotalInf.tot_los_year1 = (businessData[0].tot_los_year1 + businessData[1].tot_los_year1 + businessData[2].tot_los_year1
+                        + businessData[3].tot_los_year1 + businessData[4].tot_los_year1)">
                             -
                         </td>
-                        <td class="tdpa" height="19" width="127">
+                        <td class="tdpa" colspan="2" height="19" width="63">
+
                         </td>
-                        <td height="19" width="143">
+                        <td height="19" width="108" colspan="2" ng-bind="summaryTotalInf.PriTot = (businessData[0].tot_los_year2 + businessData[1].tot_los_year2 +
+                        businessData[2].tot_los_year2
+                        + businessData[3].tot_los_year2 + businessData[4].tot_los_year2)">
                             -
                         </td>
-                        <td class="tdpa" colspan="2" height="19" width="126">
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Services
-                        </td>
-                        <td class="tdpa" height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                            -
-                        </td>
-                        <td class="tdpa" colspan="2" height="19" width="126">
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Food processing
-                        </td>
-                        <td class="tdpa" height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                            -
-                        </td>
-                        <td class="tdpa" colspan="2" height="19" width="126">
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Others
-                        </td>
-                        <td class="tdpa" height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                            -
-                        </td>
-                        <td class="tdpa" colspan="2" height="19" width="126">
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            -
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="212">
-                            Total
-                        </td>
-                        <td class="tdpa" height="19" width="108">
-                        </td>
-                        <td height="19" width="110">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="100">
-                        </td>
-                        <td height="19" width="108">
-                            -
-                        </td>
-                        <td class="tdpa" height="19" width="127">
-                        </td>
-                        <td height="19" width="143">
-                            -
-                        </td>
-                        <td class="tdpa" colspan="2" height="19" width="126">
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            -
-                        </td>
+
+                        <!--<td class="tdpa" height="19" width="127">-->
+                        <!--</td>-->
+                        <!--<td height="19" width="63" ng-bind="summaryTotalInf.tot = (businessData[0].tot + businessData[1].tot +-->
+                        <!--businessData[2].tot-->
+                        <!--+ businessData[3].tot + businessData[4].tot)">-->
+                            <!-- - -->
+                        <!--</td>-->
                     </tr>
                     <tr height="21">
                         <td class="tdpa" height="21" width="212">
                             GRAND TOTAL
                         </td>
-                        <td height="21" width="108">
+                        <td height="21" width="108" ng-bind="summaryTotal.numAffPub">
                             -
                         </td>
-                        <td height="21" width="110">
+                            <td height="21" width="110" ng-bind="getSum2(summaryTotal.numAffPri , summaryTotalInf.numAff)">
                             -
                         </td>
-                        <td height="21" width="100">
+                        <td height="21" width="100" ng-bind="summaryTotal.y1DamPubBus">
+                            -Hi
+                        </td>
+                        <td height="21" width="108" ng-bind="getSum2(summaryTotal.y1DamPriBus, summaryTotalInf.tot_los_year1)">
                             -
                         </td>
-                        <td height="21" width="108">
+                        <td height="21" width="127" ng-bind="summaryTotal.y1LossPubBus">
                             -
                         </td>
-                        <td height="21" width="127">
+                        <td height="21" width="143" ng-bind="getSum2(summaryTotal.y1LossPriBus, summaryTotalInf.tot_los_year2)">
                             -
                         </td>
-                        <td height="21" width="143">
+                        <td colspan="2" height="21" width="126" ng-bind="summaryTotal.PubTot">
                             -
                         </td>
-                        <td colspan="2" height="21" width="126">
-                            -
-                        </td>
-                        <td colspan="2" height="21" width="126">
+                        <td colspan="2" height="21" width="126" ng-bind="getSum2(summaryTotal.PriTot, summaryTotalInf.PriTot)">
                             -
                         </td>
                     </tr>

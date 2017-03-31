@@ -91,28 +91,24 @@
                             Name of Firm
                         </td>
                         <td colspan="4" width="600">
-                            <select id="selectbasic" name="selectbasic"
-                                    ng-options="firm as firm.name for  firm in firms"
-                                    name="selectedType" id="ccyear" ng-model="selectedType"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;">
-
-                                <option value="" selected="true">Select Business Type</option>
+                            <select ng-options="firm as firm.name for firm in firms track by firm.id"
+                                    name="district" id="ccyear" ng-model="selectedFirm" ng-value="firm.id" class="form-control" required="true">
+                                <option value="" selected="true">Select Firm</option>
                             </select>
 
                         </td>
                         <td>
                             <a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add " class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
                         </td>
-                        <td>
-                            <a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
-                        </td>
+                        <!--<td>-->
+                            <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
+                        <!--</td>-->
                     </tr>
                     <tr class="trhead" height="20">
                         <td width="229" height="20">
                             Type of Business
                         </td>
-                        <td colspan="4" width="200">
+                        <td colspan="5" width="200">
                             <select id="selectbasic" name="selectbasic"
                                     ng-options="businessType as businessType.business for  businessType in businessTypes"
                                     name="selectedType" id="ccyear" ng-model="selectedType"
@@ -125,12 +121,12 @@
 
                             </select>
                         </td>
-                        <td>
-                            <a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add" class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
-                        </td>
-                        <td>
-                            <a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
-                        </td>
+                        <!--<td>-->
+                            <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add" class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
+                        <!--</td>-->
                     </tr>
                     <tr class="trhead" height="20">
                         <td width="229" height="20">
@@ -789,7 +785,7 @@
                             Close
                         </button>
                         <button type="button" class="btn btn-primary" ng-click="saveForm(form_tourism_firm_add)">
-                            Save Form
+                            Save Firm
                         </button>
                     </div>
                 </div>

@@ -253,7 +253,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'inf_id':$scope.selectedInfrastructure.id,
-                    'inf_type_id':$scope.selectedType.id,
+//                    'inf_type_id':$scope.selectedType.id,
 
                     'ownership':$scope.ownership,
 //                    'tou_business':$scope.selectedType.business,
@@ -297,7 +297,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                         'inf_id': $scope.selectedFirm,
-                        'inf_type_id': $scope.inf_type_id,
+//                        'inf_type_id': $scope.selectedType.id,
                         'ownership': $scope.ownership
 
                     }
@@ -324,8 +324,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         }
 
         $scope.saveInfrastructure = function(form) {
-        if(!$scope.district){
-            alert("please select an Incident and a District");
+        if(!$scope.district && !$scope.selectedType){
+            alert("please select an Incident, Inf Type and a District" );
             return;
         }
         if(form.$valid) {
@@ -339,7 +339,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'model_fields': $scope.new_infra,
                      'is_edit' : false,
                      'sector':'tourism',
-                     'district_id' : $scope.district.district__id
+                     'district_id' : $scope.district.district__id,
+                     'inf_type_id' : $scope.selectedType.id,
                 }),
 
             }).success(function(data) {

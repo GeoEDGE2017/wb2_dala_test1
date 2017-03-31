@@ -21,8 +21,8 @@
     <div class="container-fluid" ng-form name="form_dl_tou_buss">
 
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Tourism</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Tourism</a></li>
 
         </ul>
 
@@ -37,6 +37,15 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_buss.baselineDate.$error.required">
+                                Please Select Incident
+                            </span>
+                        </td>
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
                         <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -46,31 +55,13 @@
                             </span>
                             <!--district == undefined-->
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_dl_tou_buss.baselineDate.$error.required">
-                                Please Select Date
-                            </span>
-                        </td>
                     </tr>
-                    <tr class="trhead" height="20">
-                        <td width="229" height="20">
-                            District
-                        </td>
-                        <td colspan="2" height="19" style="background:#EFEFEF;font-weight:normal;" width="427">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    class="form-control" ng-change="changedValue(false);" required>
-                                <!--fetchFirms();-->
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                        <td width="229" height="20">
+                    <tr class="trhead1" height="20">
+                        
+                        <td width="229" class="p5" height="20">
                             Incident
                         </td>
-                        <td colspan="2" width="600">
+                        <td colspan="3" width="600">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
@@ -83,11 +74,21 @@
                                 {% endfor %}
                             </select>
                         </td>
-
+                        <td width="229" class="p5" height="20">
+                            District
+                        </td>
+                        <td colspan="2" height="19" style="font-weight:normal;" width="427">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false);" required>
+                                <!--fetchFirms();-->
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
 
                     </tr>
-                    <tr class="trhead" height="20">
-                        <td width="229" height="20">
+                    <tr class="trhead1" height="20">
+                        <td width="229" class="p5" height="20">
                             Name of Firm
                         </td>
                         <td colspan="4" width="600">
@@ -108,8 +109,8 @@
                             <a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                         </td>
                     </tr>
-                    <tr class="trhead" height="20">
-                        <td width="229" height="20">
+                    <tr class="trhead1" height="20">
+                        <td width="229" class="p5" height="20">
                             Type of Business
                         </td>
                         <td colspan="4" width="200">
@@ -132,8 +133,8 @@
                             <a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                         </td>
                     </tr>
-                    <tr class="trhead" height="20">
-                        <td width="229" height="20">
+                    <tr class="trhead1"  height="20">
+                        <td width="229" class="p5" height="20">
                             Ownership
                         </td>
                         <td colspan="6" width="600">
@@ -145,7 +146,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="20">
+                    <tr class="trheadc1" height="20">
                         <td rowspan="2" width="229" height="40">
                             Number of Employees
                         </td>
@@ -168,7 +169,7 @@
                         </td>
                     </tr>
 
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td width="229" height="34">
                             Assets
                         </td>
@@ -227,7 +228,7 @@
                             -
                         </td>
                     </tr>
-                    <tr class="tdpa" height="20" >
+                    <tr class="tdpa" class="tdpa" height="20" >
                         <td class="tdpa" width="229" height="20">
                             Others &nbsp;
                             <button ng-click="insertBussiness('DmgBusAstStructures')"
@@ -305,7 +306,7 @@
                 dmgBusAstEquipment, 'tot_dmg')">
                             -
                     </tr>
-                    <tr class="tdpa" height="20">
+                    <tr class="tdpa" class="tdpa" height="20">
                         <td class="tdpa" width="229" height="20">
                             Others &nbsp;&nbsp;
                             <button ng-click="insertBussiness('DmgBusAstEquipment')"
@@ -382,7 +383,7 @@
                 dmgBusAstMachinery, 'tot_dmg')">
 
                     </tr>
-                    <tr class="tdpa" height="20">
+                    <tr class="tdpa" class="tdpa" height="20">
                         <td class="tdpa" width="229" height="20">
                             Others &nbsp;&nbsp;
                             <button ng-click="insertBussiness('DmgBusAstMachinery')"
@@ -458,7 +459,7 @@
                             -
                         </td>
                     </tr>
-                    <tr height="20">
+                    <tr class="tdpa" height="20">
                         <td class="tdpa" width="229" height="20">
                             Others
                             <button ng-click="insertBussiness('DmgBusAstVehicle')"
@@ -536,7 +537,7 @@
                         </td>
                     </tr>
 
-                    <tr height="20">
+                    <tr class="tdpa" height="20">
                         <td class="tdpa" width="229" height="20">
                             Others
                             <button ng-click="insertBussiness('DmgBusAstInventories')"
@@ -586,13 +587,13 @@
 
 
                 <br>
-                <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Tourism Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Tourism Informations</a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
 
                 <table class="table table-bordered" >
-                    <tr class="trheadc" height="51">
+                    <tr class="trheadc1" height="51">
                         <td width="229" height="51">
                             Types of Losses
                         </td>

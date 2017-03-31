@@ -10,7 +10,7 @@
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 3. Damages and losses to tourism infrastructure (cultural sites and natural formations)
+                Table 3. Damages and Losses to Tourism Infrastructure (Cultural Sites and Natural Formations)
             </span>
         </li>
     </ol>
@@ -27,6 +27,15 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted
+                            && form_dl_tou_infra.baselineDate.$error.required">
+                                Please Select Incident
+                            </span>
+                        </td>
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
                         <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -36,28 +45,9 @@
                             </span>
                             <!--district == undefined-->
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_dl_tou_infra.baselineDate.$error.required">
-                                Please Select Date
-                            </span>
-                        </td>
                     </tr>
-                    <tr class="trhead" height="19">
-                        <td height="19" width="263">
-                            District
-                        </td>
-                        <td colspan="4" width="461">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    class="form-control" ng-change="changedValue(false);" required>
-                                <!--fetchFirms();-->
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                        <td width="85">
+                    <tr class="trhead1" height="19">
+                     <td width="85">
                             Incident
                         </td>
                         <td width="85">
@@ -73,8 +63,20 @@
                                 {% endfor %}
                             </select>
                         </td>
+                        <td height="19" width="263">
+                            District
+                        </td>
+                        <td colspan="4" width="461">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false);" required>
+                                <!--fetchFirms();-->
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                       
                     </tr>
-                    <tr class="trhead" height="34">
+                    <tr class="trhead1" height="34">
                         <td height="34" width="263">
                             Name of Tourism Infrastructure
                         </td>
@@ -101,7 +103,7 @@
                                data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="263">
                             Type of Tourism Infrastructure
                         </td>
@@ -129,7 +131,7 @@
                                data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="263">
                             Ownership
                         </td>
@@ -151,12 +153,12 @@
                                data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="7" height="19" width="894">
                             Damages
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td height="19" width="263">
                             Assets
                         </td>
@@ -236,12 +238,12 @@
                             -
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="7" height="19" width="894">
                             Losses
                         </td>
                     </tr>
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td height="34" width="263">
                             Types of Losses
                         </td>
@@ -397,7 +399,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Infrastructure Name</label>
-                            <div class="col-md-5">
+                            <div class="col-md-7">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        ng-model="new_infra.name" name="infra_name"
                                        class="form-control input-md">
@@ -407,7 +409,7 @@
                         <div class="clearfix"></div>
                         <div class="form-group" style="margin-top:5px;">
                             <label class="col-md-4 control-label" for="textinput">Ownership</label>
-                            <div class="col-md-5">
+                            <div class="col-md-7">
                                 <select id="selectbasic" name="ownership" ng-model='ownership' class="form-control"
                                         style="font-weight:400;" required>
 

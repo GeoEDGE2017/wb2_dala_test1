@@ -287,6 +287,43 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         }
     }
 
+//    form model saving for edit Firm NOT the main data
+    $scope.editFirm = function(form) {
+    //console.log("adding");
+        if(form.$valid) {
+        //validate following filds later
+        $scope.new_firm.ownership = $scope.ownership;
+//        $scope.new_firm.district = {};
+//        $scope.new_firm.district.district_id = $scope.district.district__id;
+        //district__id': 4, 'district__name
+
+            $http({
+                method: "POST",
+                url: "/add_entity",
+                data: angular.toJson({
+                    'model': 'Firm',
+                    'model_fields': $scope.selectedFirm,
+                     'is_edit' : true,
+                     'sector':'tourism',
+                     'district_id' : $scope.district.district__id
+                }),
+
+            }).success(function(data) {
+
+                $scope.new_firm.id = data;
+                if(data) {
+                     $scope.fetchFirms();
+                    //$scope.firms.push($scope.new_firm);
+                    //console.log($scope.new_firm);
+                }
+
+                $("#modal-container-218030").modal('hide');
+            })
+        }
+        else{
+            alert("Select a firm to edit")
+        }
+    }
 
 
     //Correct way of binding data to avoid NaN
@@ -382,7 +419,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'firm_id':$scope.selectedFirm.id,
-                    'ownership':$scope.ownership,
+                    'ownership':$scope.selectedFirm.ownership,
                     'tou_business':$scope.selectedType.business,
 
 
@@ -404,7 +441,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 })
             }
             else{
-                alert("invalid data ! You may have entered decimal values for a number");
+                console.log("form Error", form.$error);
+                alert("invalid data ! You may have entered decimal values for a number11");
 
             }
         }
@@ -412,7 +450,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 
         $scope.dataEdit = function() {
 
-        if($scope.district && $scope.incident && $scope.selectedFirm && $scope.ownership && $scope.selectedType){
+        if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
 
 
                     $scope.is_edit = true;
@@ -428,7 +466,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                         'firm_id':$scope.selectedFirm.id,
-                        'ownership':$scope.ownership,
+                        'ownership':$scope.selectedFirm.ownership,
                         'tou_business':$scope.selectedType.business
 
                     }
@@ -475,6 +513,10 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 //            $scope.dl_tourism_business.tourism.Table_2['DmgBusAstStructures'].push(total_row);
 //
 //        }
+
+        changeSelectedType = function(){
+            $scope.selectedFirm = $scope.selectedFirm.ownership;
+        }
 
 
 });

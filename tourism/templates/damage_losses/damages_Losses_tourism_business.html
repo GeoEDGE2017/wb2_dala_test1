@@ -37,7 +37,7 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        
+
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -57,7 +57,7 @@
                         </td>
                     </tr>
                     <tr class="trhead1" height="20">
-                        
+
                         <td width="229" class="p5" height="20">
                             Incident
                         </td>
@@ -101,18 +101,18 @@
                         <td>
                             <a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add " class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
                         </td>
-                        <!--<td>-->
-                            <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
-                        <!--</td>-->
+                        <td>
+                            <a id="edit_primary" href="#modal-container-218030" role="button" data-toggle="modal" data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+                        </td>
                     </tr>
                     <tr class="trhead1" height="20">
                         <td width="229" class="p5" height="20">
                             Type of Business
                         </td>
-                        <td colspan="5" width="200">
+                        <td colspan="6" width="200">
                             <select id="selectbasic" name="selectbasic"
                                     ng-options="businessType as businessType.business for  businessType in businessTypes"
-                                    name="selectedType" id="ccyear" ng-model="selectedType"
+                                    name="selectedType" id="ccyear" ng-model="selectedType" ng-chnage="changeSelectedType()"
                                     class="form-control"
                                     style="width:100%;font-weight:400;">
 
@@ -123,10 +123,10 @@
                             </select>
                         </td>
                         <!--<td>-->
-                            <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add" class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
+                        <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Add" class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
                         <!--</td>-->
                         <!--<td>-->
-                            <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
+                        <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal" data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
                         <!--</td>-->
                     </tr>
                     <tr class="trhead1"  height="20">
@@ -134,7 +134,8 @@
                             Ownership
                         </td>
                         <td colspan="6" width="600">
-                            <select id="selectbasic" name="selectbasic" ng-model="ownership"  class="form-control" style="width:100%;font-weight:400;">
+                            <select id="selectbasic" name="selectbasic" ng-model="selectedFirm.ownership"
+                                    class="form-control" disabled="true"  style="width:100%;font-weight:400;">
                                 <option value="" selected="true">Select Ownership</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
@@ -156,11 +157,11 @@
                     <tr height="20" ng-repeat="dlNumEmpBusiness in
                 dl_tourism_business.tourism.Table_2.DlNumEmpBusiness">
                         <td colspan="3" width="300" height="20">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]"
+                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*"
                                    ng-model="dlNumEmpBusiness.num_emp_male" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="3" width="300">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]"
+                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*"
                                    ng-model="dlNumEmpBusiness.num_emp_female"" placeholder="" class="form-control input-md">
                         </td>
                     </tr>
@@ -747,7 +748,7 @@
                             ×
                         </button>
                         <h5 class="modal-title" >
-                            <span id="bookId"> </span>
+                            <span id="bookId"> Add new Firm </span>
                         </h5>
                     </div>
                     <div class="modal-body">
@@ -797,7 +798,7 @@
 
         <!--Edit-->
         <div class="modal fade" id="modal-container-218030" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-            <div class="modal-dialog" style="width:50%;">
+            <div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_firm_edit">
                 <div class="modal-content">
                     <div class="modal-header">
 
@@ -805,18 +806,36 @@
                             ×
                         </button>
                         <h5 class="modal-title" >
-                            <span id="bookId"> </span>
+                            <span id="bookId"> Edit Firm </span>
                         </h5>
                     </div>
                     <div class="modal-body">
-                        <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+                            <label class="col-md-4 control-label" for="textinput">Firm Name</label>
+                            <div class="col-md-5">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       ng-model="selectedFirm.name" name="firm_name"
+                                       class="form-control input-md" required="true">
 
                             </div>
                         </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group" style="margin-top:5px;">
+                            <label class="col-md-4 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-5">
+                                <select id="selectbasic" name="ownership" ng-model='selectedFirm.ownership' class="form-control"
+                                        style="font-weight:400;" required="true">
+
+                                    <option value="" selected="true">Select Ownership</option>
+
+                                    <option value="Public">Public</option>
+                                    <option value="Private">Private</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+
                     </div>
                     <br><br>
                     <div class="modal-footer">
@@ -824,7 +843,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" ng-click="editFirm(form_tourism_firm_edit)">
                             Save changes
                         </button>
                     </div>

@@ -380,8 +380,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                 })
             }
             else{
-                console.log("invalid");
-
+                alert("invalid data! you may have entered decimal values for number field!")
             }
         }
 

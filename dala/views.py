@@ -317,10 +317,35 @@ def bs_fetch_edit_data(request):
     )
 
 
+# Old method
+# @csrf_exempt
+# def bs_save_edit_data(table_data, com_data):
+#     district = com_data['district']
+#     bs_date = com_data['bs_date']
+#
+#     for sector in table_data:
+#
+#         sub_app_name = sector + '.base_line'
+#
+#         for interface_table in table_data[sector]:
+#             print 'interface table', ' -->', interface_table, '\n'
+#             for db_table in table_data[sector][interface_table]:
+#
+#                 print 'db table', ' -->', db_table, '\n'
+#
+#                 for row in table_data[sector][interface_table][db_table]:
+#                     model_class = apps.get_model(sub_app_name, db_table)
+#                     model_object = model_class.objects.filter(bs_date=bs_date, district=district, id=row['id'])
+#                     model_object.update(**row)
+#
+#                     print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+
+# new method added by chamupathi mendis to work with enum field edit
 @csrf_exempt
 def bs_save_edit_data(table_data, com_data):
     district = com_data['district']
     bs_date = com_data['bs_date']
+    todate = timezone.now()
 
     for sector in table_data:
 
@@ -333,11 +358,30 @@ def bs_save_edit_data(table_data, com_data):
                 print 'db table', ' -->', db_table, '\n'
 
                 for row in table_data[sector][interface_table][db_table]:
-                    model_class = apps.get_model(sub_app_name, db_table)
-                    model_object = model_class.objects.filter(bs_date=bs_date, district=district, id=row['id'])
-                    model_object.update(**row)
+                    print 'row', ' --> ', row
 
-                    print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+                    if not has_the_id(row):
+                        model_class = apps.get_model(sub_app_name, db_table)
+                        model_object = model_class()
+
+                        for property in row:
+                            # assigning common properties to model object
+                            model_object.created_date = todate
+                            model_object.lmd = todate
+                            model_object.district_id = district
+                            model_object.bs_date = bs_date
+                            setattr(model_object, property, row[property])
+
+                            print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
+                        model_object.save()
+                        print "saved-----", model_object.id
+
+                    else:
+                        model_class = apps.get_model(sub_app_name, db_table)
+                        model_object = model_class.objects.filter(bs_date=bs_date, district=district, id=row['id'])
+                        model_object.update(**row)
+
+                        print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
 
 
 @csrf_exempt
@@ -543,9 +587,10 @@ def dl_fetch_edit_data(request):
 #         content_type='application/javascript; charset=utf8'
 #     )
 
-
+# new method is added by chamupathi mendis to support new enum fields in edit mode
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data):
+    todate = timezone.now()
     print "Edit d"
     for sector in table_data:
 
@@ -558,12 +603,65 @@ def dl_save_edit_data(table_data, com_data):
                 print 'db table', ' -->', db_table, '\n'
 
                 for row in table_data[sector][interface_table][db_table]:
+
                     model_class = apps.get_model(sub_app_name, db_table)
-                    model_object = model_class.objects.filter(id=row['id'])
-                    model_object.update(**row)
 
-                    print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+                    if not has_the_id(row):
+                        model_object = model_class()
+                        # assigning common properties to model object
+                        model_object.created_date = todate
+                        model_object.lmd = todate
 
+                        for com_property in com_data:
+                            print com_data[com_property]
+                            setattr(model_object, com_property, com_data[com_property])
+
+                        for property in row:
+                            setattr(model_object, property, row[property])
+
+                            print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
+                        model_object.save()
+                        print "saved--dl---", model_object.id
+                        print "no id found in dl"
+
+                    else:
+                        model_object = model_class.objects.filter(id=row['id'])
+                        model_object.update(**row)
+
+                        print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+
+
+# Old method
+# @csrf_exempt
+# def dl_save_edit_data(table_data, com_data):
+#     print "Edit d"
+#     for sector in table_data:
+#
+#         sub_app_name = sector + '.damage_losses'
+#
+#         for interface_table in table_data[sector]:
+#             print 'interface table', ' -->', interface_table, '\n'
+#             for db_table in table_data[sector][interface_table]:
+#
+#                 print 'db table', ' -->', db_table, '\n'
+#
+#                 for row in table_data[sector][interface_table][db_table]:
+#                     model_class = apps.get_model(sub_app_name, db_table)
+#                     model_object = model_class.objects.filter(id=row['id'])
+#                     model_object.update(**row)
+#
+#                     print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+
+@csrf_exempt
+def has_the_id(row):
+
+    keys = row.keys()
+
+    for item in keys:
+        if item == 'id':
+            return True
+
+    return False
 
 # edit data baseline mining
 

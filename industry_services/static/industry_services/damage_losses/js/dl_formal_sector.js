@@ -565,7 +565,8 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
                 })
             }
-            else{
+            else if (!form.$valid){
+                console.log(form.$error);
                 alert("the data is invalid! check again")
 
             }

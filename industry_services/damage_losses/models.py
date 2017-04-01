@@ -325,7 +325,6 @@ class DmgTotFrmYear1National(models.Model):
     ownership = models.CharField(max_length=255, blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     tot_damages = models.FloatField(blank=True, null=True)
-    los_year1 = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False

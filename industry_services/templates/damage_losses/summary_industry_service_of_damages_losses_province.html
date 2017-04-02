@@ -13,7 +13,7 @@
         </li>
 
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7.  Summary of damages and losses in a province</span></li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7.  Summary of Damages and Losses in a Province</span></li>
 
 
     </ol>
@@ -41,23 +41,10 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead" height="19">
-                        <td height="19" width="212">
-                            Incident
-                        </td>
-                        <td height="19" width="108">
-                            <select name="province" ng-model="province" ng-change="fetchData()"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;"
-
-                                    required>
-                                <option value="" selected="true">Select Province</option>
-                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
-                                        ng-bind="province.district__province__name"></option>
-                            </select>
-                        </td>
+                    <tr class="trhead1" height="19">
+                        
                         <td colspan="2" height="19" width="220">
-                            Province
+                            Incident
                         </td>
                         <td colspan="5" height="19" width="549">
                             <select id="selectbasic" name="incident" ng-model="incident"
@@ -71,8 +58,22 @@
                                     {% endfor %}
                             </select>
                         </td>
+                        <td height="19" width="212">
+                            Province
+                        </td>
+                        <td height="19" width="108">
+                            <select name="province" ng-model="province" ng-change="fetchData()"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+
+                                    required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" height="40" width="212">
                             Name of District
                         </td>
@@ -86,7 +87,7 @@
                             Total (LKR)
                         </td>
                     </tr>
-                    <tr class="trheadc" height="21">
+                    <tr class="trheadc1" height="21">
                         <td colspan="2" height="21" width="216">
                             Damages (LKR)
                         </td>

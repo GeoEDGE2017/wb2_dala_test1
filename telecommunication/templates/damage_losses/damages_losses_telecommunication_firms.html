@@ -10,14 +10,14 @@
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 2.Damages and losses of telecommunication firms
+                Table 2.Damages and Losses of Telecommunication Firms
             </span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_telcom_firms">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 Damages </a></li>
-            <li><a href='#step2' data-toggle="tab">2 Losses </a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages </a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -32,20 +32,20 @@
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_telcom_firms.incident.$error.required">
                                 Please select Incident
                             </span>
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_telcom_firms.district.$error.required">
                                 Please select District
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="293">
                             Incident
                         </td>
@@ -71,18 +71,18 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="293">
                             Name of Firm
                         </td>
-                         <td class="trsub" colspan="5" height="19" width="400">
+                         <td class="trsub" colspan="4" height="19" width="400">
                             <select ng-options="company as company.company_name for company in companies track by company.id"
                                     name="firm" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="293">
                             Services provided
                         </td>
@@ -91,7 +91,7 @@
                                    class="form-control input-md">
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="293">
                             Ownership
                         </td>
@@ -99,7 +99,7 @@
                             <span ng-bind="selectedCompany.ownership"></span>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="293">
                             Number of employees
                         </td>
@@ -139,7 +139,7 @@
                                    class="form-control input-md" ng-model="dlTelcomFirms.telecommunication.Table_2.DlNumEmpDistrict[0].num_clients">
                         </td>
                     </tr>
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td height="34" width="293">
                             Assets
                         </td>
@@ -172,7 +172,7 @@
                             <button id="delete" ng-click="removeItem('DmgAstTelStructure', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="dmgAstTelStructure_{{$index}}" ng-model="dmgAstTelStructure.assets"
+                            <input style="width:80%;float:right;" name="dmgAstTelStructure_{{$index}}" ng-model="dmgAstTelStructure.assets"
                                 popover="This field is required"
                                 popover-toggle="form_dl_telcom_firms['dmgAstTelStructure_' + $index].$dirty && !form_dl_telcom_firms['dmgAstTelStructure_' + $index].$valid"
                                 popover-placement="top" required
@@ -276,7 +276,7 @@
                             <button id="delete" ng-click="removeItem('DmgAstTelEquipment', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="dmgAstTelEquipment_{{$index}}" ng-model="dmgAstTelEquipment.assets"
+                            <input style="width:80%;float:right;" name="dmgAstTelEquipment_{{$index}}" ng-model="dmgAstTelEquipment.assets"
                                 popover="This field is required"
                                 popover-toggle="form_dl_telcom_firms['dmgAstTelEquipment_' + $index].$dirty && !form_dl_telcom_firms['dmgAstTelEquipment_' + $index].$valid"
                                 popover-placement="top" required
@@ -340,7 +340,7 @@
                             <button id="delete" ng-click="removeItem('DmgAstTelMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="dmgAstTelMachinery_{{$index}}" ng-model="dmgAstTelMachinery.assets"
+                            <input style="width:80%;float:right;" name="dmgAstTelMachinery_{{$index}}" ng-model="dmgAstTelMachinery.assets"
                                 popover="This field is required"
                                 popover-toggle="form_dl_telcom_firms['dmgAstTelMachinery_' + $index].$dirty && !form_dl_telcom_firms['dmgAstTelMachinery_' + $index].$valid"
                                 popover-placement="top" required
@@ -429,7 +429,7 @@
                             <button id="delete" ng-click="removeItem('DmgAstTelOthers', $index)" class="btn btn-sm btn-danger btn-circle">
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:90%;float:right;" name="dmgAstTelOthers_{{$index}}" ng-model="dmgAstTelOthers.assets"
+                            <input style="width:8s0%;float:right;" name="dmgAstTelOthers_{{$index}}" ng-model="dmgAstTelOthers.assets"
                                 popover="This field is required"
                                 popover-toggle="form_dl_telcom_firms['dmgAstTelOthers_' + $index].$dirty && !form_dl_telcom_firms['dmgAstTelOthers_' + $index].$valid"
                                 popover-placement="top" required
@@ -503,7 +503,7 @@
                         <col width="221"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td height="19" width="293">
                             Types of Losses
                         </td>
@@ -563,6 +563,7 @@
                         Submit
                     </button>
                 </div>
+                <br><br><br>
             </div>
         </div>
     </div>

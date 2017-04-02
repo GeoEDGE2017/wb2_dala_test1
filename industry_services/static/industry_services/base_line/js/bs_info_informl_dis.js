@@ -123,7 +123,7 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
                 })
             }
             else{
-                console.log("invalid");
+                alert("invalid data! you may have entered decimal values for number field!")
             }
         }
 

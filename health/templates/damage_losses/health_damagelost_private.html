@@ -206,11 +206,8 @@
                                            type="number"
                                            placeholder="" class="form-control input-md">
                                 </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.total_losses" name="textinput"
-                                           type="number"
-                                           ng-value="dapBefOther.total_losses=dapBefOther.est_replacement_cost + dapBefOther.est_repair_cost + dapBefOther.total_damages + dapBefOther.est_losses_y1 + dapBefOther.est_losses_y2"
-                                           placeholder="" class="form-control input-md">
+                                <td width="98" ng-model="dapBefOther.total_losses" name="textinput"
+                                           ng-bind="dapBefOther.total_losses=dapBefOther.est_replacement_cost + dapBefOther.est_repair_cost + dapBefOther.total_damages + dapBefOther.est_losses_y1 + dapBefOther.est_losses_y2">
                                 </td>
                             </tr>
                             <!--</tbody>-->
@@ -308,17 +305,13 @@
                             <td width="264" ng-bind="dapBefPc.pvt_clinics" height="20" class="tdpa"></td>
                             <td width="98">
                                 <input id="textinput" ng-model="dapBefPc.est_replacement_cost" name="textinput"
-                                       type="number"
-                                       placeholder="" class="form-control input-md">
+                                       type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td width="98">
                                 <input id="textinput" ng-model="dapBefPc.est_repair_cost" name="textinput"
-                                       type="number"
-                                       placeholder="" class="form-control input-md">
+                                       type="number" placeholder="" class="form-control input-md">
                             </td>
-                            <td width="98">
-                                <input id="textinput" ng-model="dapBefPc.total_damages" name="textinput" type="number"
-                                       placeholder="" class="form-control input-md">
+                            <td width="98" ng-model="dapBefPc.total_damages" ng-bind="dapBefPc.total_damages=dapBefPc.est_replacement_cost + dapBefPc.est_repair_cost">
                             </td>
                             <td width="98">
                                 <input id="textinput" ng-model="dapBefPc.est_losses_y1" name="textinput" type="number"
@@ -328,11 +321,7 @@
                                 <input id="textinput" ng-model="dapBefPc.est_losses_y2" name="textinput" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
-                            <td width="98">
-                                <input id="textinput" ng-model="dapBefPc1.total_losses"
-                                       ng-value="dapBefPc1.total_losses=dapBefPc1.est_replacement_cost + dapBefPc1.est_repair_cost + dapBefPc1.total_damages + dapBefPc1.est_losses_y1 + dapBefPc1.est_losses_y2"
-                                       name="textinput" type="number"
-                                       placeholder="" class="form-control input-md">
+                            <td width="98" ng-model="dapBefPc1.total_losses" ng-bind="dapBefPc1.total_losses = dapBefPc.est_losses_y1 + dapBefPc.est_losses_y2">
                             </td>
                         </tr>
                         <tr height="20">
@@ -342,7 +331,7 @@
                             </td>
                             <td width="98"
                                 ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_replacement_cost"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_replacement_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[0].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[1].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[2].est_replacement_cost">
+                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_replacement_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[0].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[1].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[2].est_replacement_cost">
                             </td>
                             <td width="98"
                                 ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_repair_cost"
@@ -369,11 +358,10 @@
                          <td colspan="6" height="19" width="801">
                             </td>
                         <td colspan="" height="19" width="378">
-                            <a ng-click="saveDlHealthDamagelostPrivate(saveDlHealthDamagelostPrivate, 'DapBefPc')" role="button"
+                            <a ng-click="saveDlHealthDamagelostPrivate(form_health_damagelost_pvt, 'DapBefPc')" role="button"
                                class=" btn btn-sm btn-block btn-primary btn-info">Save</a>
                         </td>
                         </tr>
-                        
                         </tbody>
                     </table>
                     <br>

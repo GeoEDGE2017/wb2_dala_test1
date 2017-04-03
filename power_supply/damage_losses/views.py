@@ -67,3 +67,19 @@ def dl_sum_irg_province(request):
     }
     return render(request, 'damage_losses/summary_pow_damages_and_losses_province.html', context)
 
+
+# Table 5
+@permission_required("national", 'power_supply')
+def dl_sum_irg_national(request):
+    districts = District.objects.all()
+    provinces = Province.objects.all()
+    filtered_incidents = fetch_districts(request.user)
+    incidents = filtered_incidents['incidents']
+    context = {
+        'districts': districts,
+        'provinces': provinces,
+        'incidents': incidents,
+        'module': 'power_supply'
+    }
+    return render(request, 'damage_losses/summary_power_damages_and_losses_nationwide.html', context)
+

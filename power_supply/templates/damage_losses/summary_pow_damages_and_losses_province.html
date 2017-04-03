@@ -3,8 +3,10 @@
 
 <!-- Main content -->
 <main class="main" ng-app="dlpowSupplyProApp" ng-controller="DlpowSupplyProController">
+
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
+
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Power Supply Sector</a>
@@ -13,6 +15,8 @@
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of damages and losses in the province</span>
         </li>
     </ol>
+
+
     <div class="container-fluid">
 
 
@@ -30,13 +34,13 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                     <tr class="trhead1">
+                      <tr class="trhead1">
                         <td class="trhead1 p5" width="130" colspan="2">
                             Incident
                         </td>
                         <td width="125">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);"
+                                    class="form-control" ng-change="changedValue(true);fetchProvinces();"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -65,10 +69,10 @@
                             </button>
                         </td>
                     </tr>
-                     </tbody>
+                      </tbody>
                     </table>
-                <table cclass="table table-bordered">
-                    <tbody>
+                <table class="table table-bordered" ngif="!checkIfNull()">
+                <tbody>
                     <tr class="trheadc" height="19">
                         <td rowspan="2" height="38" width="193">
                             Number of Customers Affected
@@ -106,7 +110,7 @@
                         data.power_supply.Table_5[key].DlNumAffProvince[0].domestic +
                         data.power_supply.Table_5[key].DlNumAffProvince[0].industrial +
                         data.power_supply.Table_5[key].DlNumAffProvince[0].commercial +
-                        data.power_supply.Table_5[key].DlNumAffProvince[0].other" >
+                        data.power_supply.Table_5[key].DlNumAffProvince[0].other">
 
                         </td>
                     </tr>
@@ -133,8 +137,7 @@
                         </td>
                     </tr>
                     <tr class="trheadc" height="19" ng-repeat="(key, value) in dlPowerSupplyPro.power_supply.Table_5">
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="193" ng-bind="$parent.key">
+                        <td height="19" width="193" ng-bind="key">
 
                         </td>
                         <td colspan="2" height="19" width="194">
@@ -146,8 +149,7 @@
                         <td height="19" width="63">
                         </td>
                     </tr>
-
-                        <tr height="19">
+                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplyPro.power_supply.Table_5">
                         <td class="tdpa" height="19" width="193">
                             CEB
                         </td>
@@ -163,111 +165,102 @@
                         <td height="19" width="63"
                             ng-bind="data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
                             data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
-                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2 ">
+                             data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2">
 
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="193">
+                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplyPro.power_supply.Table_5">
+                        <td class="tdpa" height="19" width="193" >
                             IPPs
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotDmgPvtProvince[0].tot_replace_cost">
+                        <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y1">
+                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y2">
+                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2">
 
                         </td>
-                         <td height="19" width="63" ng-bind="
-                         data.power_supply.Table_5[key].TotDmgPvtProvince[0].tot_replace_cost +
-                         data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y1 +
-                         data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y2 ">
+                        <td height="19" width="63"
+                            ng-bind="data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
+                             data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2">
 
                         </td>
                     </tr>
-                    <tr height="19">
+                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplyPro.power_supply.Table_5">
                         <td class="tdpa" height="19" width="193">
                             SPPs
                         </td>
-
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotDmgPvtProvince[1].tot_replace_cost">
-
-                        </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLossesPvtProvince[1].losses_y1">
+                        <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLossesPvtProvince[1].losses_y2">
+                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y2">
+                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2">
 
                         </td>
-                        <td height="19" width="63" ng-bind="
-                         data.power_supply.Table_5[key].TotDmgPvtProvince[0].tot_replace_cost +
-                         data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y1 +
-                         data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y2 ">
+                        <td height="19" width="63"
+                            ng-bind="data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
+                             data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2">
 
                         </td>
                     </tr>
-                    <tr height="19">
+                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplyPro.power_supply.Table_5">
                         <td class="tdpa" height="19" width="193">
                             Total
                         </td>
-                        <td colspan="2" height="19" width="194" ng-bind="
-                        data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
-                        data.power_supply.Table_5[key].TotDmgPvtProvince[0].tot_replace_cost +
-                        data.power_supply.Table_5[key].TotDmgPvtProvince[1].tot_replace_cost">
+                        <td colspan="2" height="19" width="194"
+                            ng-bind="data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
+                            data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
+                            data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg">
 
                         </td>
-                        <td height="19" width="63" ng-bind="
-                        data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y1 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[1].losses_y1">
-
+                        <td height="19" width="63"
+                            ng-bind="data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1">
                         </td>
-                        <td height="19" width="63" ng-bind="
-                        data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y2 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[1].losses_y2">
-
+                        <td height="19" width="63"
+                            ng-bind="data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2">
                         </td>
-                        <td height="19" width="63" ng-bind="
-                        data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y2 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[1].losses_y2 +
-                        data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[0].losses_y1 +
-                        data.power_supply.Table_5[key].TotLossesPvtProvince[1].losses_y1 +
-                        data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
-                        data.power_supply.Table_5[key].TotDmgPvtProvince[0].tot_replace_cost +
-                        data.power_supply.Table_5[key].TotDmgPvtProvince[1].tot_replace_cost">
+                        <td height="19" width="63" ng-bind="data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
+                            data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
+                            data.power_supply.Table_5[key].TotDmgCebProvince[0].tot_dmg +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y1 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2 +
+                            data.power_supply.Table_5[key].TotLosCebProvince[0].losses_y2"
+                            >
 
                         </td>
                     </tr>
-                    </tr>
+
+                    <!--<tr height="19">-->
+                        <!--<td class="tdpa" height="19" width="193">-->
+                            <!--TOTAL-->
+                        <!--</td>-->
+                        <!--<td colspan="2" height="19" width="194">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <!--<td height="19" width="63">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <!--<td height="19" width="63">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <!--<td height="19" width="63">-->
+                            <!-- - -->
+                        <!--</td>-->
+                    <!--</tr>-->
                     </tbody>
-
-
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="193">
-                            TOTAL
-                        </td>
-                        <td colspan="2" height="19" width="194">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                        <td height="19" width="63">
-                            -
-                        </td>
-                    </tr>
-
                 </table>
 
 

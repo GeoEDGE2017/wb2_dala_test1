@@ -151,10 +151,13 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
+        #     'options': '-c search_path=other_government'
+
         #     'options': '-c search_path=health'
+
         # },
 
-        'NAME': 'dala',
+        'NAME': 'new',
         'USER': 'postgres',
     },
 }
@@ -1847,7 +1850,9 @@ TABLE_PROPERTY_MAPPER = {
                  'irrigated_area_ofc',
                  'income_paddy',
                  'income_ofc',
-                 'num_farmer_families', 'id'],
+                 'num_farmer_families',
+                 'division',
+                 'region', 'id'],
 
             'BsIfMedium':
                 ['irrigation_facility',
@@ -1856,7 +1861,8 @@ TABLE_PROPERTY_MAPPER = {
                  'irrigated_area_ofc',
                  'income_paddy',
                  'income_ofc',
-                 'num_farmer_families', 'id'],
+                 'num_farmer_families', 'division',
+                 'region', 'id'],
             'BsIfAnicuts':
                 ['irrigation_facility',
                  'capacity',
@@ -1864,7 +1870,19 @@ TABLE_PROPERTY_MAPPER = {
                  'irrigated_area_ofc',
                  'income_paddy',
                  'income_ofc',
-                 'num_farmer_families', 'id']
+                 'division',
+                 'region',
+                 'num_farmer_families', 'id'],
+            'BsIfMinor':
+                ['irrigation_facility',
+                 'capacity',
+                 'irrigated_area_paddy',
+                 'irrigated_area_ofc',
+                 'income_paddy',
+                 'income_ofc',
+                 'num_farmer_families',
+                 'division',
+                 'region', 'id']
 
         },
         'Table_2': {
@@ -1904,6 +1922,85 @@ TABLE_PROPERTY_MAPPER = {
                  'avg_repair_wall',
                  'avg_repair_floor',
                  'avg_replacement_cost',
+                 'id'],
+
+        },
+        'Table_3': {
+            'DlMajorTanks':
+                ['irrigation_assets',
+                 'partially_damaged',
+                 'totally_destroyed',
+                 'damages',
+                 'id'],
+            'DlMediumTanks':
+                ['irrigation_assets',
+                 'partially_damaged',
+                 'totally_destroyed',
+                 'damages',
+                 'id'],
+            'DlMinorTanks':
+                ['irrigation_assets',
+                 'partially_damaged',
+                 'totally_destroyed',
+                 'damages',
+                 'id'],
+            'DlAnicuts':
+                ['irrigation_assets',
+                 'partially_damaged',
+                 'totally_destroyed',
+                 'damages',
+                 'id'],
+            'DlOtherStructures':
+                ['irrigation_assets',
+                 'partially_damaged',
+                 'totally_destroyed',
+                 'damages',
+                 'id'],
+            'DlRiverEmbankmnt':
+                ['irrigation_assets',
+                 'partially_damaged',
+                 'totally_destroyed',
+                 'damages',
+                 'id'],
+            'DlBuildings':
+                ['building',
+                 'part_damaged_num',
+                 'part_damaged_roof',
+                 'part_damaged_wall',
+                 'part_damaged_floor',
+                 'tot_destroyed_num',
+                 'tot_destroyed_area',
+                 'damages',
+                 'id'],
+            'DlLosMajorTanks':
+                ['irrigation_assets',
+                 'high_operation_cost',
+                 'other_unexpected_expenses',
+                 'total_los',
+                 'id'],
+            'DlLosMediumTanks':
+                ['irrigation_assets',
+                 'high_operation_cost',
+                 'other_unexpected_expenses',
+                 'total_los',
+                 'id'],
+            'DlLosMinorTanks':
+                ['irrigation_assets',
+                 'high_operation_cost',
+                 'other_unexpected_expenses',
+                 'total_los',
+                 'id'],
+            'DlLosAnicuts':
+                ['irrigation_assets',
+                 'high_operation_cost',
+                 'other_unexpected_expenses',
+                 'total_los',
+                 'id'],
+            'DlLosOther':
+                ['irrigation_assets',
+                 'high_operation_cost',
+                 'other_unexpected_expenses',
+                 'total_los',
                  'id'],
 
         },
@@ -2622,6 +2719,98 @@ TABLE_PROPERTY_MAPPER = {
             ],
 
         },
+        'Table_3': {
+            'DlfDmgFequipment': [
+                'assets',
+                'dmg_dest_pub',
+                'dmg_dst_pvt',
+                'dmg_pdmg_pub',
+                'dmg_pdmg_pvt',
+                'dmg_pub',
+                'dmg_pvt',
+                'id',
+            ],
+            'DlfDmgOequipment': [
+                'assets',
+                'dmg_dest_pub',
+                'dmg_dst_pvt',
+                'dmg_pdmg_pub',
+                'dmg_pdmg_pvt',
+                'dmg_pub',
+                'dmg_pvt',
+                'id',
+            ],
+            'DlfDmgMachinery': [
+                'assets',
+                'dmg_dest_pub',
+                'dmg_dst_pvt',
+                'dmg_pdmg_pub',
+                'dmg_pdmg_pvt',
+                'dmg_pub',
+                'dmg_pvt',
+                'id',
+            ],
+            'DlfDmgStructures': [
+                'assets',
+                'dmg_dest_pub',
+                'dmg_dst_pvt',
+                'dmg_pdmg_pub',
+                'dmg_pdmg_pvt',
+                'dmg_pub',
+                'dmg_pvt',
+                'id',
+            ],
+            'DlfDmgPub': [
+                'assets',
+                'tot_dest_num',
+                'tot_dest_sqm',
+                'pdmg_num',
+                'pdmg_roof',
+                'pdmg_wall',
+                'pdmg_floor',
+                'total',
+                'id',
+            ],
+            'DlfDmgPvt': [
+                'assets',
+                'tot_dest_num',
+                'tot_dest_sqm',
+                'pdmg_num',
+                'pdmg_roof',
+                'pdmg_wall',
+                'pdmg_floor',
+                'total',
+                'id',
+            ],
+            'DlfLosIfisheries': [
+                'assets',
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+                'los_pub',
+                'los_pvt',
+            ],
+            'DlfLosRfisheries': [
+                'assets',
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+                'los_pub',
+                'los_pvt',
+            ],
+            'DlfLosMfisheries': [
+                'assets',
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+                'los_pub',
+                'los_pvt',
+            ],
+
+        },
         'Table_5': {
             'DlfDmgPubDistrict': [
                 'fishing_type',
@@ -3211,7 +3400,7 @@ TABLE_PROPERTY_MAPPER = {
             'TotDmgCebProvince': ['tot_dmg'],
             'TotLosCebProvince': ['losses_y1', 'losses_y2'],
             'TotDmgPvtProvince': ['tot_replace_cost', 'ownership'],
-            'TotLossesPvtProvince': ['losses_y1', 'losses_y2', 'ownership'],
+            'TotLossesPvtProvince': ['los_year1', 'los_year2', 'ownership'],
         },
 
     },

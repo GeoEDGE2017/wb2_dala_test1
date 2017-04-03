@@ -1,73 +1,1259 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+$(document).ready(function(){
+    
+    $('#ccyear').on('change', function() {
 
-  <!-- Main content -->
-    <main class="main">
+      if ( this.value == '1')
+      
+      {
+        $("#agri_agrarian").show();
+      }
+      else
+      {
+        $("#agri_agrarian").hide();
+      }
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-            <li class="breadcrumb-item active">Reports</li>
+       if ( this.value == '2')
+      
+      {
+        $("#agri_fisheries").show();
+      }
+      else
+      {
+        $("#agri_fisheries").hide();
+      }
 
+      if ( this.value == '3')
+      
+      {
+        $("#agri_irrigation").show();
+      }
+      else
+      {
+        $("#agri_irrigation").hide();
+      }
+
+       if ( this.value == '4')
+      
+      {
+        $("#agri_livestock").show();
+      }
+      else
+      {
+        $("#agri_livestock").hide();
+      }
+
+       if ( this.value == '5')
+      
+      {
+        $("#education").show();
+      }
+      else
+      {
+        $("#education").hide();
+      }
+
+      if ( this.value == '6')
+      
+      {
+        $("#health").show();
+      }
+      else
+      {
+        $("#health").hide();
+      }
+
+      if ( this.value == '7')
+      
+      {
+        $("#housing").show();
+      }
+      else
+      {
+        $("#housing").hide();
+      }
+
+      if ( this.value == '8')
+      
+      {
+        $("#industry_services").show();
+      }
+      else
+      {
+        $("#industry_services").hide();
+      }
+
+      if ( this.value == '9')
+      
+      {
+        $("#mining").show();
+      }
+      else
+      {
+        $("#mining").hide();
+      }
+
+      if ( this.value == '10')
+      
+      {
+        $("#other_gov").show();
+      }
+      else
+      {
+        $("#other_gov").hide();
+      }
+
+      if ( this.value == '11')
+      
+      {
+        $("#power_supply").show();
+      }
+      else
+      {
+        $("#power_supply").hide();
+      }
+
+      if ( this.value == '12')
+      
+      {
+        $("#telecom").show();
+      }
+      else
+      {
+        $("#telecom").hide();
+      }
+
+      if ( this.value == '13')
+      
+      {
+        $("#tourism").show();
+      }
+      else
+      {
+        $("#tourism").hide();
+      }
+
+      if ( this.value == '14')
+      
+      {
+        $("#transport_air").show();
+      }
+      else
+      {
+        $("#transport_air").hide();
+      }
+
+      if ( this.value == '15')
+      
+      {
+        $("#transport_land").show();
+      }
+      else
+      {
+        $("#transport_land").hide();
+      }
+
+      if ( this.value == '16')
+      
+      {
+        $("#transport_rail").show();
+      }
+      else
+      {
+        $("#transport_rail").hide();
+      }
+
+      if ( this.value == '17')
+      
+      {
+        $("#transport_water").show();
+      }
+      else
+      {
+        $("#transport_water").hide();
+      }
+
+      if ( this.value == '18')
+      
+      {
+        $("#water_supply").show();
+      }
+      else
+      {
+        $("#water_supply").hide();
+      }
+    });
+
+});
+
+</script>
+<!-- Main content -->
+<main class="main" ng-app="dlHsDistrictApp" ng-controller="DlHsDistrictController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Reports</a>
+        </li>
+
+        
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-header">
+                <strong>Search</strong>
+
+            </div>
+            <div class="card-block">
+
+
+                <div ng-form name="report_sum_dl_dis" class="row">
+                     <div class="col-sm-3">
+
+                        <div class="form-group">
+                            <label for="cvv">Incident</label>
+                            <select ng-change="f" id=""  name="incident" class="form-control" required>
+                            <option value="">-- Select --</option>
+                           
+                            <option value=""></option>
+                           
+                        </select>
+                           
+                        </div>
+
+                    </div>
+                     <div class="col-sm-3">
+
+                        <div class="form-group">
+                            <label for="cvv">Sector</label>
+                            <select  id="ccyear" ng-model="incident" name="incident" class="form-control" required>
+                            <option value="">-- Select --</option>
+                          
+                            <option value="1">Agri - Agrarian</option>
+                            <option value="2">Agri - Fisheries</option>
+                            <option value="3">Agri - Irrigation</option>
+                            <option value="4">Agri - Livestock</option>
+                            <option value="5">Education</option>
+                            <option value="6">Health</option>
+                            <option value="7">Housing</option>
+                            <option value="8">Industry & Services</option>
+                            <option value="9">Mining</option>
+                            <option value="10">Other Government Services</option>
+                            <option value="11">Power Supply</option>
+                            <option value="12">Telecommunication</option>
+                            <option value="13">Tourism</option>
+                            <option value="14">Transport - Air</option>
+                            <option value="15">Transport - Land</option>
+                            <option value="16">Transport - Rail</option>
+                            <option value="17">Transport - Water</option>
+                            <option value="18">Water Supply</option>
+                            
+                            
+                            
+                        </select>
+                            
+                        </div>
+
+                    </div>
+
+                    
+                   
+
+
+
+
+                    <div class="col-sm-1">
+
+                        <div class="form-group">
+
+                            <button  type="button" id="search" class="btn btn-sm btn-primary" style="padding:7px;margin-top:28px;"><i
+                                    class="fa fa-search"></i> Search
+                            </button>
+                        </div>
+
+                    </div>
+
+                     
+
+                </div>
+                <!--/row-->
+          
            
-        </ol>
+<!-- Agri agrarian -->
 
-
-        <div class="container-fluid">
-
-         <div class="row">
+<div class="row" id="agri_agrarian" style="display:none;">
                   
-					
-					                    <div class="col-sm-6 col-md-4">
-										<a href="{% url 'reports:health_summery_damageloss_dis_report' %}" style="text-decoration:none;">
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
                         <div class="card card-inverse card-danger text-xs-center">
                             <div class="card-block">
-							<h3> Report of Damages & Losses</h3>
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Agri Agrarian Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+<!-- Agri - fisheries -->
+
+<div class="row" id="agri_fisheries" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Agri Fisheries Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+<!-- Agri irrigation -->
+
+<div class="row" id="agri_irrigation" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Agri Irrigation Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+<!-- Agri - livestock -->
+
+<div class="row" id="agri_livestock" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Agri Livestock Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+        <!-- Health -->   
+
+         <div class="row" id="health" style="display:none;">
+                  
+                    
+                                        <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
                                 <blockquote class="card-blockquote">
                                     <p>in the health sector in a district</p>
                                     
                                 </blockquote>
                             </div>
                         </div>
-						</a>
+                        </a>
                     </div>
                     <!--/.col-->
-					
-					  <div class="col-sm-6 col-md-4">
-										<a href="{% url 'reports:health_summery_damageloss_province_report' %}" style="text-decoration:none;">
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
                         <div class="card card-inverse card-danger text-xs-center">
                             <div class="card-block">
-							<h3> Report of Damages & Losses</h3>
+                            <h3> Report of Damages & Losses</h3>
                                 <blockquote class="card-blockquote">
                                     <p>in the health sector in the province</p>
                                     
                                 </blockquote>
                             </div>
                         </div>
-						</a>
+                        </a>
                     </div>
                     <!--/.col-->
-					
-					  <div class="col-sm-6 col-md-4">
-										<a href="{% url 'reports:health_summery_damageloss_national_report' %}" style="text-decoration:none;">
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_national_report" style="text-decoration:none;">
                         <div class="card card-inverse card-danger text-xs-center">
                             <div class="card-block">
-							<h3> Report of Damages & Losses</h3>
+                            <h3> Report of Damages & Losses</h3>
                                 <blockquote class="card-blockquote">
-                                    <p> in the health sector nationwide</p>
+                                    <p> in the Health sector Nationwide</p>
                                     
                                 </blockquote>
                             </div>
                         </div>
-						</a>
+                        </a>
                     </div>
                     <!--/.col-->
-					
+                    
                 </div>   
+<!-- Housing -->
+
+<div class="row" id="housing" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Housing Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+<!-- Education -->
+
+<div class="row" id="education" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/education_summary" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Education Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+<!-- Idustry_services -->
+
+<div class="row" id="industry_services" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_national_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Industry & Services Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+<!-- Mining -->
+
+<div class="row" id="mining" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/mining_summary" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Mining Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+
+                <!-- Other Gov -->
+
+<div class="row" id="other_gov" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/other_govn_services_summary" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Other Gov. Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+<!-- Power supply -->
+
+<div class="row" id="power_supply" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_national_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Power Supply Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+<!-- Telecom -->
+
+<div class="row" id="telecom" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_national_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Telecommunication Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+                <!-- Tourism -->
+
+<div class="row" id="tourism" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_national_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Tourism Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+                <!-- Transport air -->
+
+<div class="row" id="transport_air" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/transport_air_summary" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Transport Air Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+                <!-- Transport_land -->
+
+<div class="row" id="transport_land" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/transport_land_summary" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Transport Land Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+                <!-- Transport rail -->
+
+<div class="row" id="transport_rail" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/transport_rail_summary" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Transport Rail Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+                <!-- Transport water -->
+
+<div class="row" id="transport_water" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/transport_water_summary" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Transport Water Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+                <!-- water supply -->
+
+<div class="row" id="water_supply" style="display:none;">
+                  
+                    
+                                        <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_dis_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in a district</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <!--div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_province_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p>in the education sector in the province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="/reports/health_summery_damageloss_national_report" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Report of Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> in the Water Supply Sector Nationwide</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!--/.col-->
+                    
+                </div> 
+
+
+
 
         </div>
-        <!-- /.conainer-fluid -->
-    </main>
+                   
+
+
+
+                
+
+
+               
+
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
 {% endblock content %}

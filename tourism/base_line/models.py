@@ -83,7 +83,7 @@ class Firm(models.Model):
 
 
 class InfType(models.Model):
-    infrastructure = models.CharField(max_length=255, blank=True, null=True)
+    infrastructure = models.CharField(max_length=255,  blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
@@ -98,6 +98,7 @@ class Infrastructure(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     ownership = models.CharField(max_length=50, blank=True, null=True)
     district = models.ForeignKey(District,   db_column='district', blank=True, null=True)
+    inf_type = models.ForeignKey(InfType,   db_column='inf_type', related_name="to_inf_type", blank=True, null=True)
 
     class Meta:
         managed = False

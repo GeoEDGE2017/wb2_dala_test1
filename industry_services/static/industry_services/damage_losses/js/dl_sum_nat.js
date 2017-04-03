@@ -112,7 +112,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
         }
    }
 
-        $scope.getSum3 = function(val1, val2, val3){
+    $scope.getSum3 = function(val1, val2, val3){
         var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;

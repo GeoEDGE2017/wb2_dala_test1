@@ -171,7 +171,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                 })
             }
             else{
-                console.log("invalid");
+                alert("invalid data ! You may have entered decimal values for a number");
             }
         }
 

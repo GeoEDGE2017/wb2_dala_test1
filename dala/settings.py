@@ -154,7 +154,7 @@ DATABASES = {
         #     'options': '-c search_path=agri_fisheries'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'dala_new',
         'USER': 'postgres',
     },
 }
@@ -2785,6 +2785,8 @@ TABLE_PROPERTY_MAPPER = {
 
     },
     'industry_services': {
+
+
         'Table_1': {
             'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro',
                                     'num_small', 'id'],
@@ -2818,14 +2820,29 @@ TABLE_PROPERTY_MAPPER = {
         'Table_5': {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
-
         },
+
         'Table_6': {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
-
+            'DmgFrmYear1District': ['assets', 'incident', 'ownership', 'district', 'tot_damages', 'sector'],
+            'LosFrmYear1District': ['los_year1', 'incident', 'district', 'assets', 'ownership',  'sector'],
+            'LosFrmYear2District': ['los_year2', 'incident', 'district', 'assets', 'ownership',  'sector'],
         },
-        # district table
+        'Table_6_2': {
+            'DlInfNumBusDistrict': ['assets', 'incident', 'district', 'tot_num_bus_affected'],
+            'DlInfTotLodTrdY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLodTrdY2District': ['tot_los_year2', 'incident', 'district'],
+            'DlInfTotLosSerY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLosSerY2District': ['tot_los_year2', 'incident', 'district'],
+            'DlInfTotLosFoodY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLosFoodY2District': ['tot_los_year2', 'incident', 'district'],
+            'DlInfTotLosOthY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLosOthY2District': ['tot_los_year2', 'incident', 'district'],
+        },
+        'Table_6_3': {
+            'DlInfDmgDistrict': ['assets', 'incident', 'district', 'tot_damages'],
+        },
         'Table_8': {
             'DmgTotFrmYear1District': ['incident', 'ownership', 'district', 'tot_damages'],
             'DmgTotInfYear1District': ['incident', 'district', 'tot_damages'],
@@ -2834,7 +2851,6 @@ TABLE_PROPERTY_MAPPER = {
             'LosTotInfYear1District': ['incident', 'district', 'los_year1'],
             'LosTotInfYear2District': ['incident', 'district', 'los_year2'],
         },
-        # national table
         'Table_9': {
             'DmgTotFrmYear1National': ['incident', 'ownership', 'province', 'tot_damages'],
             'DmgTotInfYear1National': ['incident', 'province', 'tot_damages'],

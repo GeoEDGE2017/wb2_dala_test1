@@ -67,12 +67,12 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
     }
 
 
-//   $scope.checkIfNull = function()
-//   {
-//        var isNull = $scope.dlWaterSupplyPro ? angular.equals({}, $scope.dlWaterSupplyPro.water_supply.Table_6) : true;
-//        return isNull;
-//
-//   }
+   $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlPowerSupplyPro ? angular.equals({}, $scope.dlPowerSupplyPro.power_supply.Table_5) : true;
+        return isNull;
+
+   }
 
 // $scope.getTotal = function(key) {
 //

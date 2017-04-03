@@ -227,6 +227,8 @@ $scope.submitted = true;
 
     console.log(data);
     $scope.bsIrgFacilities = data;
+
+
     })
 }
 
@@ -234,5 +236,6 @@ $scope.cancelEdit = function()
 {
     $scope.is_edit = false;
     $scope.bsIrgFacilities = init_data;
+
 }
 });

@@ -70,5 +70,5 @@ def dl_sum_telecom_nat(request):
         'module': 'telecommunication'
     }
 
-    return render(request, 'damage_losses/summary_damages_and_losses_nationwide.html', context)
+    return render(request, 'damage_losses/summary_power_damages_and_losses_nationwide.html', context)
 

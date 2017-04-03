@@ -249,6 +249,13 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     avg_repair_cost : null,
                     created_user : null,
                     organization_id:$scope.selectedOrganization,
+                },
+                {
+                    other_assets : 'Others',
+                    avg_replace_cost : null,
+                    avg_repair_cost : null,
+                    created_user : null,
+                    organization_id:$scope.selectedOrganization,
                 }],
                 //Tab 3
                 'BlpApyLivestock': [{
@@ -422,17 +429,17 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         }
     }
 
-    $scope.saveBsData = function(form) {
+    $scope.saveBsData = function() {
       $scope.submitted = true;
-      alert('hi');
+      console.log($scope.bsLivestockPoultry);
+
       var array = $scope.bsLivestockPoultry.agri_livestock.Table_2;
       var details = _.map(array, function(model_array) {
       _.map(model_array, function(model) {
           model.organization_id = $scope.selectedOrganization.id;
-
-
       });
-        if (form.$valid) {
+      })
+
              $http({
             method: 'POST',
             url: '/bs_save_data',
@@ -456,9 +463,8 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
 $("#modal-container-239454").modal('show');
             console.log(response);
         });
-        }
-    })
-    }
+}
+
 
     $scope.saveOrganization = function(form){
     console.log($scope.new_organization);
@@ -488,7 +494,7 @@ $("#modal-container-239454").modal('show');
 
 }
 
-     $scope.fetchOrganization = function(){
+    $scope.fetchOrganization = function(){
 
     $scope.new_organization.district_id = $scope.district;
 
@@ -507,6 +513,32 @@ $("#modal-container-239454").modal('show');
 
     })
 }
+
+    $scope.bsHsDataEdit = function(form){
+    $scope.submitted = true;
+
+       $scope.is_edit = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_2',
+              'sector': 'agri_livestock',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date } }),
+        }).success(function(data) {
+
+        console.log(data);
+        $scope.bsLivestockPoultry = data;
+        })
+
+
+    }
+
+    $scope.cancelEdit = function(){
+        $scope.is_edit = false;
+        $scope.bsLivestockPoultry = init_data;
+    }
 
 
 

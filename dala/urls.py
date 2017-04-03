@@ -78,6 +78,9 @@ urlpatterns = [
     # agri_fisheries
     url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),
 
+    # agri_summary
+    url(r'^agri_summary/', include('agri_summary.urls', namespace='agri_summary')),
+
     # water_supply
     url(r'^water_supply/', include('water_supply.urls', namespace='water_supply')),
 

@@ -114,23 +114,3 @@ class Ownership(models.Model):
     class Meta:
         managed = False
         db_table = 'tourism\".\"ownership'
-
-
-class BsTouBusiness(models.Model):
-    business = models.CharField(max_length=255, blank=True, null=True)
-    num_bis_private = models.BigIntegerField(blank=True, null=True)
-    num_bis_public = models.BigIntegerField(blank=True, null=True)
-    num_emp_male = models.BigIntegerField(blank=True, null=True)
-    num_empfemale = models.BigIntegerField(blank=True, null=True)
-    created_user = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-    lmu = models.IntegerField(blank=True, null=True)
-    lmd = models.DateTimeField(blank=True, null=True)
-    bs_date = models.CharField(max_length=255, blank=True, null=True)
-    created_date = models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tourism\".\"bs_tou_business'
-
-

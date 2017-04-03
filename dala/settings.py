@@ -2662,7 +2662,13 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pvt',
             ],
         },
-
+        'Table_4': {
+            'DlfDmgPubDistrict': ['dmg_pub', 'district', 'incident', 'fishing_type'],
+            'DlfDmgPvtDistrict': ['dmg_pvt', 'district', 'incident', 'name'],
+            'DlfLosIfisheriesDistrict': ['los_year_1_pub', 'los_year_1_pvt', 'los_year_2_pub', 'los_year_2_pvt', 'district', 'incident'],
+            'DlfLosRfisheriesDistrict': ['los_year_1_pub', 'los_year_1_pvt', 'los_year_2_pub', 'los_year_2_pvt', 'district', 'incident'],
+            'DlfLosMfisheriesDistrict': ['los_year_1_pub', 'los_year_1_pvt', 'los_year_2_pub', 'los_year_2_pvt', 'district', 'incident'],
+        },
     },
     'water_supply': {
         'Table_1': {
@@ -3176,6 +3182,13 @@ TABLE_PROPERTY_MAPPER = {
             'PvtDmgAst': ['assets', 'num_dst_ast', 'tot_replace_cost', 'num_pdmg_ast', 'tot_repair_cost',
                           'tot_damaged_cost', 'id'],
             'PvtDmgLosses': ['los_year1', 'los_year2', 'losses_type', 'id'],
+        },
+        'Table_4': {
+            'DlNumAffDistrict': ['domestic', 'industrial', 'commercial', 'other', 'incident', 'district'],
+            'TotDmgCebDistrict': ['tot_dmg', 'incident', 'district'],
+            'TotLosCebDistrict': ['losses_y1', 'losses_y2', 'incident', 'district'],
+            'TotDmgPvtDistrict': ['tot_replace_cost', 'district', 'incident', 'pw_gen_firm', 'ownership'],
+            'TotLossesPvtDistrict': ['los_year1', 'los_year2', 'district', 'incident', 'pw_gen_firm', 'ownership', 'losses_type'],
         },
         'Table_5': {
             'DlNumAffProvince': ['domestic', 'industrial', 'commercial', 'other'],

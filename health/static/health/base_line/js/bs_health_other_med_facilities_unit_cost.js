@@ -311,7 +311,6 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
 
                 if (response.data == 'False'){
                      $("#modal-container-239454").modal('show');
-                }
                         $scope.is_valid_data = false;
                     }
                 else

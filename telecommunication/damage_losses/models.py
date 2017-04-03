@@ -4,20 +4,6 @@ from settings.models import District, Province
 from telecommunication.base_line.models import Ownership, CompanyName
 
 
-# class DlSessionKeys(models.Model):
-#     data_type = models.CharField(max_length=120, blank=True, null=True)
-#     date = models.DateTimeField(blank=True, null=True)
-#     user = models.IntegerField(blank=True, null=True)
-#     table_name = models.CharField(max_length=255, blank=True, null=True)
-#     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-#     province = models.ForeignKey(Province, db_column='province', related_name='tel_dl_province', blank=True, null=True)
-#     district = models.ForeignKey(District, db_column='district', related_name='tel_dl_district', blank=True, null=True)
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'dl_session_keys'
-
-
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
@@ -158,3 +144,94 @@ class DlLosses(models.Model):
     class Meta:
         managed = False
         db_table = 'telecommunication\".\"dl_losses'
+
+
+# Table 3
+class DlDmgFirmDistrict(models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"dl_dmg_firm_district'
+
+
+class LosFirmYear1District(models.Model):
+    year1_los = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"los_firm_year1_district'
+
+
+class LosFirmYear2District(models.Model):
+    year2_los = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"los_firm_year2_district'
+
+
+# Table 5
+class DlDmgBusTotNational(models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"dl_dmg_bus_tot_national'
+
+
+class DlDmgFirmNational(models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"dl_dmg_firm_national'
+
+
+class LosFirmYear1National(models.Model):
+    year1_los = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    # company_name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"los_firm_year1_national'
+
+
+class LosFirmYear2National(models.Model):
+    year2_los = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    # company_name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'telecommunication\".\"los_firm_year2_national'
+

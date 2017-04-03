@@ -57,7 +57,7 @@ def summary_damage_losses_district(request):
         'module': 'mining'
     }
 
-    return render(request, 'damage_losses/summary_damages_losses_water_supply_district.html', context)
+    return render(request, 'damage_losses/summary_damages_losses_mining_district.html', context)
 
 
 @permission_required("national", "Mining")
@@ -71,5 +71,5 @@ def summary_damage_losses_nationwide(request):
         'module': 'mining'
     }
 
-    return render(request, 'damage_losses/summary_damages_losses_nationwide.html', context)
+    return render(request, 'damage_losses/summary_damages_losses_mining_nationwide.html', context)
 

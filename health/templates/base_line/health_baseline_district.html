@@ -76,8 +76,9 @@
                         </tr>
                         <tr class="trhead1">
                             <td style="padding-left:5px;"> Name of District or RDH</td>
+ 
+                            <td colspan="2" style="">
 
-                            <td colspan="1" style="">
                                 <select id="selectbasic" name="district" ng-model='district' class="form-control"
                                         style="font-weight:400;" required>
 
@@ -102,10 +103,10 @@
 
 
                         <tr height="34" class="trheadc1">
-                            <td rowspan="2" width="264" height="54">
+                            <td rowspan="2" colspan="2" width="264" height="54" style="width:47.3%;">
                                 Type of Public Medical Facilities
                             </td>
-                            <td rowspan="2" width="98">
+                            <td rowspan="3" width="98" style="width:17.7%;">
                                 Number
                             </td>
                             <td colspan="2" width="196" style="text-align:center;">
@@ -113,7 +114,7 @@
                             </td>
                         </tr>
                         <tr height="20" class="trsubc">
-                            <td width="98" height="20">
+                            <td width="98" height="20" style="width:17.5%;">
                                 Male
                             </td>
                             <td width="98">
@@ -133,9 +134,9 @@
                             <tbody>
 
 
-                            <tr height="20" class="trheadc">
-                                <td width="264" height="20">
-                                    Hospitals
+                            <tr height="20" class="tdpa">
+                                <td width="264" height="20" class="p5">
+                                   <strong> Hospitals </strong>
                                 </td>
                                 <td width="98">
 
@@ -152,7 +153,25 @@
                                 height="20">
 
                                 <td ng-bind="bmfPubMf.type_pub_mf" width="264"
-                                    height="20" class="tdpa">
+                                    height="20" class="boldash" ng-if="
+                                    bmfPubMf.type_pub_mf =='Central Dispensary (CH )' ||
+                                    bmfPubMf.type_pub_mf =='Primary Medical Care Units (PMCU)' ||
+                                    bmfPubMf.type_pub_mf =='Primary Health Care Centers (PHCC)' ||
+                                    bmfPubMf.type_pub_mf =='Maternal and Child Health Clinics (MCHC)' ||
+                                    bmfPubMf.type_pub_mf =='MOH Offices'
+                                     
+                                    ">
+
+                                </td>
+                                <td ng-bind="bmfPubMf.type_pub_mf" width="264"
+                                    height="20" class="tdpa" ng-if="
+                                    bmfPubMf.type_pub_mf !='Central Dispensary (CH )' &&
+                                    bmfPubMf.type_pub_mf !='Primary Medical Care Units (PMCU)' &&
+                                    bmfPubMf.type_pub_mf !='Primary Health Care Centers (PHCC)' &&
+                                    bmfPubMf.type_pub_mf !='Maternal and Child Health Clinics (MCHC)' &&
+                                    bmfPubMf.type_pub_mf !='MOH Offices'
+
+                                    ">
 
                                 </td>
 
@@ -180,6 +199,7 @@
                             <tr height="20">
                                 <td ng-bind="bsDataMedicalFacilities.health.Table_2.BmfPubMf[12].type_pub_mf"
                                     width="264"
+
                                     height="20" class="boldash">
 
                                 </td>

@@ -82,7 +82,7 @@ def fetch_ownership(request):
     department = Department.objects.get(pk=department_id)
 
     if department is not None:
-        return HttpResponse(department.ownership.name)
+        return HttpResponse(department.ownership.ownership_name)
     else:
         return HttpResponse(False)
 
@@ -106,7 +106,7 @@ def dl_fetch_district_disagtn(request):
     category_name = None
 
     for ownership in ownerships:
-        ownership_name = ownership.name
+        ownership_name = ownership.ownership_name
         print ownership_name
         dl_mtable_data[sector][table_name][ownership_name] = {}
 
@@ -172,7 +172,7 @@ def dl_fetch_disagtn_data(request):
 
         for ownership in ownerships:
 
-            ownership_name = ownership.name
+            ownership_name = ownership.ownership_name
 
             if 'province' in com_data:
                 district_id = dl_session.district.id

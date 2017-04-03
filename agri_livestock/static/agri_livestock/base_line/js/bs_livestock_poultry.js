@@ -431,8 +431,6 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
 
     $scope.saveBsData = function() {
       $scope.submitted = true;
-      console.log($scope.bsLivestockPoultry);
-
       var array = $scope.bsLivestockPoultry.agri_livestock.Table_2;
       var details = _.map(array, function(model_array) {
       _.map(model_array, function(model) {

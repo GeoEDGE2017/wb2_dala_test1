@@ -205,9 +205,10 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 angular.forEach(data, function(value, key) {
                   $scope.bs_data[key] = JSON.parse(value);
                 });
-                console.log(data);
+                console.log(response);
                 generateRefencedData();
             }, function errorCallback(response) {
+                
 
             });
         }

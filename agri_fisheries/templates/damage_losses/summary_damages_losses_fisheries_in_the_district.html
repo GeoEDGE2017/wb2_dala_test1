@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSumFisheriesInTheDisApp" ng-controller="dlSumFisheriesInTheDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -10,10 +10,13 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses to fisheries in the District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 4. Summary of damages and losses to fisheries in the District
+            </span>
         </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_dl_sum_agrarian_dstr">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
@@ -29,26 +32,51 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="3"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dl_sum_agrarian_dstr.incident.$error.required">
+                                Please Select Incident
+                            </span>
+                        </td>
+                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dl_sum_agrarian_dstr.district.$error.required">
+                                Please Select District
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead1" height="19">
                         <td width="125" height="19">
                             Incident
                         </td>
                         <td width="95" height="19">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
                             </select>
                         </td>
                         <td width="111" height="19">
                             District
                         </td>
                         <td colspan="6" width="482" height="19">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
+                                    class="form-control" required>
+                                <option value="" selected>Select District</option>
                             </select>
+                        </td>
+                        <td  style="background:#EFEFEF;">
+                            <button type="button" class="btn btn-block btn-info" ng-click="loadData(form_dl_sum_agrarian_dstr)">Load
+                            </button>
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
@@ -112,17 +140,13 @@
                         <td width="111" height="19">
                             <!-- - -->
                         </td>
-                        <td width="115" height="19">
-                            <!-- - -->
+                        <td width="115" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pub">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pvt">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pub">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
                         </td>
                         <td width="63" height="19">
                             <!-- - -->
@@ -141,17 +165,13 @@
                         <td width="111" height="19">
                             <!-- - -->
                         </td>
-                        <td width="115" height="19">
-                            <!-- - -->
+                        <td width="115" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pub">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pvt">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pub">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pvt">
                         </td>
                         <td width="63" height="19">
                             <!-- - -->
@@ -170,17 +190,13 @@
                         <td width="111" height="19">
                             <!-- - -->
                         </td>
-                        <td width="115" height="19">
-                            <!-- - -->
+                        <td width="115" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pub">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pvt">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pub">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
                         </td>
                         <td width="63" height="19">
                             <!-- - -->
@@ -224,7 +240,7 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-success" ng-click="loadData(form_dl_sum_agrarian_dstr)">Submit</button>
                 </div>
                 <br><br><br>
             </div>

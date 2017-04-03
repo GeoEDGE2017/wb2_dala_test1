@@ -466,6 +466,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     function generateRefencedData() {
         data_array = ['BlpAnmLivestock', 'BlpAnmPoultry', 'BlpAstLivestock', 'BlpAstPoultry', 'BlpAstOther', 'BlpApyLivestock', 'BlpApyPoultry'];
 
+        console.log(data_array);
+
         var dl_model1 = null;
         var dl_model2 = null;
         var dl_model3 = null;

@@ -1,8 +1,6 @@
-//Table 4
-var app = angular.module('dlSumFisheriesInTheDisApp', [])
-
-app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function($scope, $http) {
-
+//Table_4
+var app = angular.module('dlSumPowsupDisApp', ['ui.bootstrap', 'popoverToggle']);
+app.controller('dlSumPowsupDisController', function($scope, $http) {
     $scope.dlEduDistrict;
     $scope.total;
     $scope.iter_tot;
@@ -11,7 +9,6 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.isLoded = false;
-
 
     $scope.changedValue = function getDlData() {
         if ($scope.incident) {
@@ -29,7 +26,7 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
         }
     }
 
-    $scope.loadData = function(form) {
+    $scope.LoadData = function(form) {
         $scope.isLoded = true;
         if(form.$valid) {
             $scope.tot_damages = null;
@@ -40,7 +37,7 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
                 url: '/dl_fetch_total_data',
                 data: angular.toJson({
                     'table_name': 'Table_4',
-                    'sector':'agri_fisheries',
+                    'sector':'power_supply',
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -53,4 +50,4 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
             })
         }
     }
-}]);
+})

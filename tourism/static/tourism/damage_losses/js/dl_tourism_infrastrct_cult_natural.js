@@ -136,7 +136,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         console.log("fetching");
         $http({
         method: "POST",
-        url: "/fetch_entities",
+        url: "/fetch_entities_all",
         data: angular.toJson({
         'district':  $scope.district.district__id,
         'model': 'Infrastructure',
@@ -253,9 +253,9 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'inf_id':$scope.selectedInfrastructure.id,
-                    'inf_type_id':$scope.selectedType.id,
+//                    'inf_type_id':$scope.selectedType.id,
 
-                    'ownership':$scope.ownership,
+                    'ownership':$scope.selectedInfrastructure.ownership,
 //                    'tou_business':$scope.selectedType.business,
 
 
@@ -284,6 +284,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         $scope.dataEdit = function() {
 
+    if($scope.district && $scope.incident && $scope.selectedInfrastructure  ){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -296,9 +297,9 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        'inf_id': $scope.selectedFirm,
-                        'inf_type_id': $scope.inf_type_id,
-                        'ownership': $scope.ownership
+                        'inf_id': $scope.selectedInfrastructure.id,
+//                        'inf_type_id': $scope.selectedType.id,
+                        'ownership': $scope.selectedInfrastructure.ownership
 
                     }
                 }),
@@ -315,6 +316,14 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                         $scope.dl_tourism_infrs = data;
                     }
             })
+        }
+            else{
+                alert("enter Incident, District, Infrastructure, ownership");
+                    console.log($scope.district);
+                    console.log($scope.incident);
+                    console.log($scope.selectedFirm);
+                    console.log($scope.ownership);
+            }
 
         }
         $scope.cancelEdit = function()
@@ -324,13 +333,13 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         }
 
         $scope.saveInfrastructure = function(form) {
-        if(!$scope.district){
-            alert("please select an Incident and a District");
+        if(!$scope.district && !$scope.selectedType){
+            alert("please select an Incident, Inf Type and a District" );
             return;
         }
         if(form.$valid) {
         $scope.new_infra.ownership = $scope.ownership;
-
+        $scope.new_infra.inf_type_id = $scope.selectedType.id;
             $http({
                 method: "POST",
                 url: "/add_entity_with_district",
@@ -339,7 +348,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'model_fields': $scope.new_infra,
                      'is_edit' : false,
                      'sector':'tourism',
-                     'district_id' : $scope.district.district__id
+                     'district_id' : $scope.district.district__id,
+                     'inf_type_id' : $scope.selectedType.id,
                 }),
 
             }).success(function(data) {
@@ -356,6 +366,39 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
             })
         }
     }
+
+    //    form model saving for edit Firm NOT the main data
+    $scope.editInf = function(form) {
+    //console.log("adding");
+        if(form.$valid) {
+        //validate following filds later
+            $http({
+                method: "POST",
+                url: "/add_entity",
+                data: angular.toJson({
+                    'model': 'Infrastructure',
+                    'model_fields': $scope.selectedInfrastructure,
+                     'is_edit' : true,
+                     'sector':'tourism',
+                     'district_id' : $scope.district.district__id
+                }),
+
+            }).success(function(data) {
+
+                if(data) {
+                     $scope.fetchTourismInfrastructures();
+                    //$scope.firms.push($scope.new_firm);
+                    //console.log($scope.new_firm);
+                }
+
+                $("#modal-container-218030").modal('hide');
+            })
+        }
+        else{
+            alert("Select an Infrastructure to edit")
+        }
+    }
+
 
 
 })

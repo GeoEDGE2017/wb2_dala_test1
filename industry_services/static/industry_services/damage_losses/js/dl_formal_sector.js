@@ -1,5 +1,5 @@
 
-//Table 4
+//Table 3
 var app = angular.module('dlindustryServicesFormalSecApp', [])
 
 app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', function($scope, $http) {
@@ -279,6 +279,24 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 //    BusinessClassification
     }
 
+    $scope.loadFirms = function(){
+        $http({
+            method: "POST",
+            url: "/fetch_entities_all",
+            data: angular.toJson({
+            'model': 'FrmFirm',
+            'sector':'industry_services', //industry_services
+            'district': $scope.district.district__id,
+             }),
+            }).success(function(data) {
+
+            //console.log(data);
+            $scope.firms = data;
+
+            })
+//    BusinessClassification
+    }
+
 
 
     $scope.getSum2 = function(val1, val2){
@@ -531,9 +549,6 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'frm_firm_id':$scope.selectedFirm.id,
                     'ownership':$scope.selectedFirm.ownership,
 //                    'tou_business':$scope.selectedType.business,
-
-
-
                 },
                 'is_edit': $scope.is_edit
             }),
@@ -550,45 +565,74 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
                 })
             }
-            else{
+            else if (!form.$valid){
+                console.log(form.$error);
                 alert("the data is invalid! check again")
 
             }
         }
 
+    $scope.initiateEdit = function(){
+        $scope.loadFirms();
+        if($scope.classification && $scope.district && $scope.incident){
+            $("#modal-container-218029").modal('show');
 
-    $scope.dataEdit = function(form){
+        }
+        else{
+            alert("please select Indident, District and Classification")
+        }
 
-             console.log("editing");
-             if($scope.district){
-
-                 $http({
-                    method: "POST",
-                    url: "/fetch_entities_all",
-                    data: angular.toJson({
-                    'district':  $scope.district.district__id,
-                    'model': 'FrmFirm',
-                    'sector':'industry_services'
-                     }),
-                    }).success(function(data) {
-
-                    console.log(data);
-                    $scope.firms = data;
-
-                })
-                $("#modal-container-218029").modal('show');
-
-             }
-             else{
-                alert("select district")
-             }
+    }
 
 
+   $scope.dataEdit = function() {
 
-             //firms
-            // open model
-            // load firms
-            // click ok
+
+    $("#modal-container-218029").modal('hide');
+
+        if($scope.district && $scope.incident && $scope.selectedFirm.id){
+                    $scope.is_edit = true;
+        $scope.submitted = true;
+
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'industry_services',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'frm_firm': $scope.selectedFirm.id,
+//                        'firm_id':$scope.selectedFirm.id,
+//                        'ownership':$scope.ownership,
+//                        'tou_business':$scope.selectedType.business
+
+                    }
+                }),
+            }).success(function(data) {
+                console.log("edit", data);
+                // handling response from server if data are not available in this
+                if((data.industry_services.Table_3.DmgAstEquipment.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstMachinery.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstStocks.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstStructures.length == 0) ||
+                    (data.industry_services.Table_3.LosTypeLossses.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstVehicles.length == 0)
+                     ){
+                    $scope.is_edit = false;
+                        // do nothing or display msg that data are not available
+                    }
+                else{
+                        $scope.dl_dmg_loss_foml_sec = data;
+                    }
+            })
+
+        }
+        else{
+            alert("enter Incident, District")
+        }
+
 
     }
 

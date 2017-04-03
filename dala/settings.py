@@ -149,9 +149,12 @@ DATABASES = {
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
         # },
-        #
+
         # 'OPTIONS': {
         #     'options': '-c search_path=other_government'
+
+        #     'options': '-c search_path=health'
+
         # },
 
         'NAME': 'new',
@@ -2848,7 +2851,13 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pvt',
             ],
         },
-
+        'Table_4': {
+            'DlfDmgPubDistrict': ['dmg_pub', 'district', 'incident', 'fishing_type'],
+            'DlfDmgPvtDistrict': ['dmg_pvt', 'district', 'incident', 'name'],
+            'DlfLosIfisheriesDistrict': ['los_year_1_pub', 'los_year_1_pvt', 'los_year_2_pub', 'los_year_2_pvt', 'district', 'incident'],
+            'DlfLosRfisheriesDistrict': ['los_year_1_pub', 'los_year_1_pvt', 'los_year_2_pub', 'los_year_2_pvt', 'district', 'incident'],
+            'DlfLosMfisheriesDistrict': ['los_year_1_pub', 'los_year_1_pvt', 'los_year_2_pub', 'los_year_2_pvt', 'district', 'incident'],
+        },
     },
     'water_supply': {
         'Table_1': {
@@ -2965,6 +2974,8 @@ TABLE_PROPERTY_MAPPER = {
 
     },
     'industry_services': {
+
+
         'Table_1': {
             'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro',
                                     'num_small', 'id'],
@@ -2998,14 +3009,29 @@ TABLE_PROPERTY_MAPPER = {
         'Table_5': {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
-
         },
+
         'Table_6': {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
-
+            'DmgFrmYear1District': ['assets', 'incident', 'ownership', 'district', 'tot_damages', 'sector'],
+            'LosFrmYear1District': ['los_year1', 'incident', 'district', 'assets', 'ownership',  'sector'],
+            'LosFrmYear2District': ['los_year2', 'incident', 'district', 'assets', 'ownership',  'sector'],
         },
-        # district table
+        'Table_6_2': {
+            'DlInfNumBusDistrict': ['assets', 'incident', 'district', 'tot_num_bus_affected'],
+            'DlInfTotLodTrdY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLodTrdY2District': ['tot_los_year2', 'incident', 'district'],
+            'DlInfTotLosSerY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLosSerY2District': ['tot_los_year2', 'incident', 'district'],
+            'DlInfTotLosFoodY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLosFoodY2District': ['tot_los_year2', 'incident', 'district'],
+            'DlInfTotLosOthY1District': ['tot_los_year1', 'incident', 'district'],
+            'DlInfTotLosOthY2District': ['tot_los_year2', 'incident', 'district'],
+        },
+        'Table_6_3': {
+            'DlInfDmgDistrict': ['assets', 'incident', 'district', 'tot_damages'],
+        },
         'Table_8': {
             'DmgTotFrmYear1District': ['incident', 'ownership', 'district', 'tot_damages'],
             'DmgTotInfYear1District': ['incident', 'district', 'tot_damages'],
@@ -3014,7 +3040,6 @@ TABLE_PROPERTY_MAPPER = {
             'LosTotInfYear1District': ['incident', 'district', 'los_year1'],
             'LosTotInfYear2District': ['incident', 'district', 'los_year2'],
         },
-        # national table
         'Table_9': {
             'DmgTotFrmYear1National': ['incident', 'ownership', 'province', 'tot_damages'],
             'DmgTotInfYear1National': ['incident', 'province', 'tot_damages'],
@@ -3363,6 +3388,13 @@ TABLE_PROPERTY_MAPPER = {
                           'tot_damaged_cost', 'id'],
             'PvtDmgLosses': ['los_year1', 'los_year2', 'losses_type', 'id'],
         },
+        'Table_4': {
+            'DlNumAffDistrict': ['domestic', 'industrial', 'commercial', 'other', 'incident', 'district'],
+            'TotDmgCebDistrict': ['tot_dmg', 'incident', 'district'],
+            'TotLosCebDistrict': ['losses_y1', 'losses_y2', 'incident', 'district'],
+            'TotDmgPvtDistrict': ['tot_replace_cost', 'district', 'incident', 'pw_gen_firm', 'ownership'],
+            'TotLossesPvtDistrict': ['los_year1', 'los_year2', 'district', 'incident', 'pw_gen_firm', 'ownership', 'losses_type'],
+        },
         'Table_5': {
             'DlNumAffProvince': ['domestic', 'industrial', 'commercial', 'other'],
             'TotDmgCebProvince': ['tot_dmg'],
@@ -3381,7 +3413,18 @@ TABLE_PROPERTY_MAPPER = {
             'DmgAstTelVehicles': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
             'DmgAstTelOthers': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],
             'DlLosses': ['assets', 'year1_los', 'year2_los', 'tot_losses', 'id'],
-        }
+        },
+        'Table_3': {
+            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+        },
+        'Table_5': {
+            'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
+            'DlDmgFirmNational': ['tot_damages', 'incident', 'firm', 'ownership', 'province', 'company_name'],
+            'LosFirmYear1National': ['year1_los', 'incident', 'firm', 'ownership', 'province'],
+            'LosFirmYear2National': ['year2_los', 'incident', 'firm', 'ownership', 'province'],
+        },
     }
 }
 

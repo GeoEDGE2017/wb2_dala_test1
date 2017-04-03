@@ -13,7 +13,7 @@
         </li>
 
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;"> Table 3.Damages and losses of a firm in the formal sector</span></li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;"> Table 3.Damages and Losses of a Firm in the Formal Sector</span></li>
 
 
     </ol>
@@ -21,9 +21,9 @@
 
     <div class="container-fluid" ng-form name="form_dl_ind_serv_informl_sec">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 Firm Info </a></li>
-            <li><a href='#step2' data-toggle="tab">2 Damages  </a></li>
-            <li ><a href='#step3' data-toggle="tab">3 Losses</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Firm Info </a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 Damages  </a></li>
+            <li id="li3"><a href='#step3' data-toggle="tab">3 Losses</a></li>
 
 
 
@@ -45,7 +45,7 @@
                         <col width="143"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="212">
                             Incident
                         </td>
@@ -74,7 +74,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="212">
                             Ownership
                         </td>
@@ -88,7 +88,7 @@
                         </td>
                     </tr>
                     <!--formal_formal_type-->
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="212">
                             Type of Business
                         </td>
@@ -102,7 +102,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19" >
+                    <tr class="trhead1" height="19" >
                         <td height="19" width="212">
                             Industry sub Sector
                         </td>
@@ -114,10 +114,10 @@
                             </select>
                         </td>
                         <!--<td colspan="6" height="19" width="661" ng-if="is_edit" >-->
-                            <!--<input type="text" ng-model="selectedFirm.sector" class="form-control" disabled="true">-->
+                        <!--<input type="text" ng-model="selectedFirm.sector" class="form-control" disabled="true">-->
                         <!--</td>-->
                     </tr>
-                    <tr class="trhead" height="19" >
+                    <tr class="trhead1" height="19" >
                         <td height="19" width="212">
                             Service sub Sector
                         </td>
@@ -129,20 +129,20 @@
                             </select>
                         </td>
                         <!--<td colspan="6" height="19" width="661" ng-if="is_edit && !isIndustrySelected" >-->
-                            <!--<input type="text" ng-model="selectedFirm.sector" class="form-control" disabled="true">-->
+                        <!--<input type="text" ng-model="selectedFirm.sector" class="form-control" disabled="true">-->
                         <!--</td>-->
-                    <!--</tr>-->
-                    <tr class="trhead" height="19">
+                        <!--</tr>-->
+                    <tr class="trhead1" height="19">
                         <td height="19" width="212">
                             Classification of Firm
                         </td>
                         <!--classificationTypes-->
                         <td colspan="6" height="19" width="661">
                             <!--<select ng-options="classificationType as classificationType.classification for classificationType in classificationTypes"-->
-                                    <!--name="formal_formal_type" id="ccyear" ng-model="selectedFirm.classification_id" ng-value="classificationType.id"-->
-                                    <!--class="form-control" required="true">-->
+                            <!--name="formal_formal_type" id="ccyear" ng-model="selectedFirm.classification_id" ng-value="classificationType.id"-->
+                            <!--class="form-control" required="true">-->
 
-                                <!--<option value="" selected>Select Service classification</option>-->
+                            <!--<option value="" selected>Select Service classification</option>-->
                             <!--</select>-->
                             <select ng-options="classificationType as classificationType.classification for
 
@@ -154,7 +154,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="212">
                             Firm Name
                         </td>
@@ -162,7 +162,7 @@
                             <input id="textinput" name="firm_name" type="text"  ng-model="selectedFirm.firm_name" required="true" placeholder="Firm Name" class="form-control input-md">
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="212">
                             Brief Description of Firm
                         </td>
@@ -171,7 +171,7 @@
                         </td>
                     </tr>
 
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td height="19" width="212">
                             Number of Employees
                         </td>
@@ -189,10 +189,10 @@
                         <td class="tdpa" height="21" width="212">
                         </td>
                         <td colspan="2" height="21" width="216">
-                            <input id="textinput" name="textinput" type="number" ng-model="selectedFirm.num_male_emp" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number"  ng-model="selectedFirm.num_male_emp" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="2" height="21" width="200">
-                            <input id="textinput" name="textinput" type="number" ng-model="selectedFirm.num_female_emp" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number"  ng-model="selectedFirm.num_female_emp" placeholder="" class="form-control input-md">
                         </td>
                         <td colspan="2" height="21" width="254" ng-bind="selectedFirm.tot_num_emp = getSum2(selectedFirm.num_male_emp, selectedFirm.num_female_emp)">
                             -
@@ -203,7 +203,7 @@
 
 
                 <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Houses Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Damaged  Informations</a>
                 <br>
             </div>
 
@@ -221,7 +221,7 @@
                     </colgroup>
                     <tbody>
 
-                    <tr class="trheadc" height="53">
+                    <tr class="trheadc1" height="53">
                         <td height="53" width="212">
                             Assets
                         </td>
@@ -644,7 +644,7 @@
                     </colgroup>
                     <tbody>
 
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td height="34" width="212">
                             Types of Losses
                         </td>
@@ -765,7 +765,10 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <button type="button" ng-click="dataEdit(form_dl_ind_serv_forml_sec)"
+                    <!--<button type="button" ng-click="dataEdit(form_dl_ind_serv_forml_sec)"-->
+                    <!--ng-if="!is_edit" class="btn btn-success">Edit-->
+                    <!--</button>-->
+                    <button type="button" ng-click="initiateEdit()"
                             ng-if="!is_edit" class="btn btn-success">Edit
                     </button>
                     <button type="button" ng-click="clear()" ng-if="is_edit" class="btn btn-warning">Cancel
@@ -773,6 +776,7 @@
                     </button>
                     <button type="button" class="btn btn-success" ng-click="saveData(form_dl_ind_serv_informl_sec)">Submit</button>
                 </div>
+                <br><br><br>
             </div>
 
 
@@ -788,7 +792,6 @@
 
     <div class="col-md-12">
 
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
             <div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_firm_select">
                 <div class="modal-content">
@@ -803,18 +806,32 @@
                     </div>
                     <div class="modal-body">
 
+                        <!--<div class="clearfix"></div>-->
+                        <!--<div class="form-group" style="margin-top:5px;">-->
+                            <!--<label class="col-md-4 control-label" for="textinput">Select Sub Sector</label>-->
+
+                            <!--<select ng-options="classificationType as classificationType.classification for-->
+
+                            <!--classificationType in classificationTypes track by classificationType.id"-->
+                                    <!--name="district" id="ccyear" ng-model="classification" ng-value="classificationType.id"-->
+                                    <!--class="form-control"  required ng-change="setClassificationID()">-->
+
+                                <!--<option value="" selected="true">Select Service classification</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+
                         <div class="clearfix"></div>
                         <div class="form-group" style="margin-top:5px;">
                             <label class="col-md-4 control-label" for="textinput">Firm</label>
                             <div class="col-md-5">
                                 <select id="selectbasic" name="selectbasic"
-                                    ng-options="firm as firm.firm_name for  firm in firms"
-                                    name="selectedType" id="ccyear" ng-model="selectedFirm"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;">
+                                        ng-options="firm as firm.firm_name for  firm in firms | filter:{ classification_id : classification.id }"
+                                        name="selectedType" id="ccyear" ng-model="selectedFirm"
+                                        class="form-control"
+                                        style="width:100%;font-weight:400;">
 
-                                <option value="" selected="true">Select Business Type</option>
-                            </select>
+                                    <option value="" selected="true">Select Business Type</option>
+                                </select>
 
 
                             </div>
@@ -827,7 +844,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary" ng-click="loadAllData()">
+                        <button type="button" class="btn btn-primary" ng-click="dataEdit()">
                             Submit
                         </button>
                     </div>
@@ -835,11 +852,60 @@
 
             </div>
 
-        </div>
+            <!--Toselect firm in the edit mode-->
+            <div class="modal fade" id="modal-container-218030" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_firm_select">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title" >
+                                <span id="bookId"> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="clearfix"></div>
+                            <div class="form-group" style="margin-top:5px;">
+                                <label class="col-md-4 control-label" for="textinput">Firm</label>
+                                <div class="col-md-5">
+                                    <select id="selectbasic" name="selectbasic"
+                                            ng-options="firm as firm.firm_name for  firm in firms"
+                                            name="selectedType" id="ccyear" ng-model="selectedFirm"
+                                            class="form-control"
+                                            style="width:100%;font-weight:400;">
+
+                                        <option value="" selected="true">Select Business Type</option>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <br><br>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-click="loadAllData()">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
 
 
 
-    </div>           </div>
+            </div>
+
+
+
+        </div>           </div>
 
     </div>
 

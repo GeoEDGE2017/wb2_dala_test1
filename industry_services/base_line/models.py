@@ -138,3 +138,4 @@ class BsFrmBusServices(models.Model):
         managed = False
         db_table = 'industry_services\".\"bs_frm_bus_services'
 
+

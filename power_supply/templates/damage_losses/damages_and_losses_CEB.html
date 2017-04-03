@@ -1,5 +1,15 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<script>
+  $(document).ready(function() {
+
+   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+   
+   
+    
+  });
+  
+</script>
 <!-- Main content -->
 <main class="main" ng-app="dlPowSupCebApp" ng-controller="DlPowSupCebAppController">
     <!-- Breadcrumb -->
@@ -11,14 +21,14 @@
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 2. Damages and losses of the CEB
+                Table 2. Damages and Losses of the CEB
             </span>
         </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
-            <li class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
+            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -32,7 +42,7 @@
                         <col width="111"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trheadc">
+                    <tr class="trheadc1">
                         <td colspan="" style="padding-right:5px;text-align:right;">
                             Incident
                         </td>
@@ -57,7 +67,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="244">
                             Number of Employees
                         </td>
@@ -78,7 +88,7 @@
                                    class="form-control input-md">
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="244">
                             Number of Customers Affected
                         </td>
@@ -121,7 +131,7 @@
                         </td>
                     </tr>
 
-                    <tr class="trheadc" height="51">
+                    <tr class="trheadc1" height="51">
                         <td height="51" width="244">
                             Assets
                         </td>
@@ -141,8 +151,12 @@
                             Total Damages (LKR)
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+                    <div id="boxscroll1" style="height:400px;overflow:auto;">
+                     <table class="table table-bordered">
                     <tr class="trheadc" height="19">
-                        <td height="19" width="244">
+                        <td height="19" width="244" style="width:27.3%;">
                             Power Generation
                         </td>
                         <td width="112">
@@ -153,7 +167,7 @@
                         </td>
                         <td width="103">
                         </td>
-                        <td colspan="2">
+                        <td colspan="2" style="width:24.6%;">
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="cebDmgAstGeneration in dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration" ng-if="cebDmgAstGeneration.assets != 'Total'">
@@ -489,7 +503,7 @@
                     </tr>
                     </tbody>
                 </table>
-
+</div>
 
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
@@ -509,7 +523,7 @@
                         <col width="111"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td height="19" width="244">
                         </td>
                         <td rowspan="2" width="112">

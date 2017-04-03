@@ -14,6 +14,7 @@ class DlSessionKeys(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='hea_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='hea_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='hea_dl_district', blank=True, null=True)
+    private_clinic = models.ForeignKey(PrivateClinic, db_column='private_clinic', related_name='hea_dl_private_clinic', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -1038,7 +1039,7 @@ class DapBefPc(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'dap_bef_pc'
+        db_table = 'health\".\"dap_bef_pc'
 
 
 class DapBefPcn(models.Model):

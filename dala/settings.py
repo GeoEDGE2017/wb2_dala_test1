@@ -154,7 +154,7 @@ DATABASES = {
         #     'options': '-c search_path=agri_fisheries'
         # },
 
-        'NAME': 'dala_new',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }

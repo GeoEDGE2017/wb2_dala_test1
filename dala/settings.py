@@ -151,7 +151,7 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=agri_fisheries'
+        #     'options': '-c search_path=health'
         # },
 
         'NAME': 'dala',

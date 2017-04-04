@@ -1,273 +1,296 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 
-   <!-- Main content -->
-    <main class="main" ng-app="dlSumIrrigationDstrApp" ng-controller="dlSumIrrigationDstrController">
+<!-- Main content -->
+<main class="main" ng-app="dlSumIrrigationDstrApp" ng-controller="dlSumIrrigationDstrController">
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Irrigation Sub Sector</a>
-            </li>
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses to irrigation in the District</span></li>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
 
-           
-        </ol>
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Irrigation Sub Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses to irrigation in the District</span>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_dlsum_irri_distr">
 
 
-        <div class="container-fluid" ng-form name="form_dlsum_irri_distr">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
 
-       
-				
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane active" id="step1">
-						
-<table class="table table-bordered">
-   
-    <colgroup>
-        <col width="258"/>
-        <col width="118"/>
-        <col width="116"/>
-        <col width="128"/>
-    </colgroup>
-    <tbody>
-        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-            </td>
-            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                <table class="table table-bordered">
+
+                    <colgroup>
+                        <col width="258"/>
+                        <col width="118"/>
+                        <col width="116"/>
+                        <col width="128"/>
+                    </colgroup>
+                    <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                 <span class="arrow_box" ng-show="isLoded && form_dlsum_irri_distr.incident.$error.required">
                     Please select Incident
                 </span>
-            </td>
-            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-            </td>
-            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                 <span class="arrow_box" ng-show="isLoded && form_dlsum_irri_distr.district.$error.required">
                     Please select District
                 </span>
-            </td>
-        </tr>
-        <tr class="trhead1" height="20">
-            <td width="116">
-                Incident
-            </td>
-            <td width="128">
-                <select id="selectbasic" name="incident" ng-model="incident"
-                        class="form-control" ng-change="changedValue(true)"
-                        style="width:100%;font-weight:400;" required>
-                    <option value="" selected="true">Select an Incident</option>
-                    {% for incident in incidents %}
-                        <option value={{incident.id}}>{{incident.disaster_type.name}}
-                        {{incident.reported_date_time}}
-                    </option>
-                    {% endfor %}
-                </select>
-            </td>
-            <td width="258" height="20">
-                Name of District
-            </td>
-            <td width="118">
-                <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
-                        class="form-control" required>
-                    <option value="" selected>Select district</option>
-                </select>
-            </td>
-            <td  style="">
-                <button type="button" class="btn btn-block btn-info" ng-click="loadData(form_dlsum_irri_distr)">Load
-                </button>
-            </td>
-        </tr>
-        <tr class="trheadc1" height="20">
-            <td width="258" colspan="2" height="20">
-                Type of Irrigation Facility
-            </td>
-            <td width="118">
-                Damages (LKR)
-            </td>
-            <td width="116">
-                Losses (LKR)
-            </td>
-            <td width="128">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                Major Tanks
-            </td>
-            <td width="118" ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages">
-            </td>
-            <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los">
-            </td>
-            <td width="128">
-                -
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                Medium Tanks
-            </td>
-            <td width="118" ng-bind="data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages">
-            </td>
-            <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los">
-            </td>
-            <td width="128">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                Minor Tanks
-            </td>
-            <td width="118" ng-bind="data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages">
-            </td>
-            <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los">
-            </td>
-            <td width="128">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                Anicuts
-            </td>
-            <td width="118" ng-bind="data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages">
-            </td>
-            <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
-            </td>
-            <td width="128">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                Other Structures
-            </td>
-            <td width="118" ng-bind="data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages">
-            </td>
-            <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
-            </td>
-            <td width="128">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                River Embankments
-            </td>
-            <td width="118" ng-bind="data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages">
-            </td>
-            <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
-            </td>
-            <td width="128">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                Buildings
-            </td>
-            <td width="118" ng-bind="data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages">
-            </td>
-            <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
-            </td>
-            <td width="128">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="20">
-            <td class="tdpa" colspan="2" width="258" height="20">
-                TOTAL
-            </td>
-            <td width="118">
-                <!-- - -->
-            </td>
-            <td width="116">
-                <!-- - -->
-            </td>
-            <td width="128">
-                <!-- - -->
-            </td>
-        </tr>
-    </tbody>
-</table>
+                        </td>
+                    </tr>
+                    <tr class="trhead1" height="20">
+                        <td width="116">
+                            Incident
+                        </td>
+                        <td width="128">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td width="258" height="20">
+                            Name of District
+                        </td>
+                        <td width="118">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    style="font-weight:400;"
+                                    class="form-control" required>
+                                <option value="" selected>Select district</option>
+                            </select>
+                        </td>
+                        <td style="">
+                            <button type="button" class="btn btn-block btn-info"
+                                    ng-click="loadData(form_dlsum_irri_distr)">Load
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="trheadc1" height="20">
+                        <td width="258" colspan="2" height="20">
+                            Type of Irrigation Facility
+                        </td>
+                        <td width="118">
+                            Damages (LKR)
+                        </td>
+                        <td width="116">
+                            Losses (LKR)
+                        </td>
+                        <td width="128">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            Major Tanks
+                        </td>
+                        <td width="118" ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages">
+                        </td>
+                        <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los">
+                        </td>
+                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los">
+
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            Medium Tanks
+                        </td>
+                        <td width="118" ng-bind="data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages">
+                        </td>
+                        <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los">
+                        </td>
+                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
+                          data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los ">
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            Minor Tanks
+                        </td>
+                        <td width="118" ng-bind="data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages">
+                        </td>
+                        <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los">
+                        </td>
+                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los">
+
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            Anicuts
+                        </td>
+                        <td width="118" ng-bind="data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages">
+                        </td>
+                        <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
+                        </td>
+                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages + data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
+
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            Other Structures
+                        </td>
+                        <td width="118" ng-bind="data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages">
+                        </td>
+                        <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
+                        </td>
+                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
+
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            River Embankments
+                        </td>
+                        <td width="118" ng-bind="data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages">
+                        </td>
+                        <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
+                        </td>
+                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
+
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            Buildings
+                        </td>
+                        <td width="118" ng-bind="data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages">
+                        </td>
+                        <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
+                        </td>
+                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
+
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td class="tdpa" colspan="2" width="258" height="20">
+                            TOTAL
+                        </td>
+                        <td width="118"
+                        ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages">
+
+                        </td>
+                       <td width="116"
+                        ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosOtherStructuresDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosRiverEmbankmntDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosBuildingsDistrict[0].total_los">
 
 
-						
-						
-						
-					
-                   <div class="pull-right">
-		<br>
-<button type="button" class="btn btn-info">Clear</button>
-<button type="button" class="btn btn-success">Submit</button>
-</div>	 
-     <br>    <br>    <br>        
-           </div> 
-                        
-								
-        </div>
-        </div>
-							
-							
-			
-								
-                          
+                        <td width="128"
+                        ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
+                        data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages+
+                        data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosOtherStructuresDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosRiverEmbankmntDistrict[0].total_los +
+                        data.agri_irrigation.Table_4.DlLosBuildingsDistrict[0].total_los">
+                    </tr>
+                    </tbody>
+                </table>
 
-         <div class="col-md-12">
-			
-			
-			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			
-		</div>           </div>    
+
+                <div class="pull-right">
+                    <br>
+
+                </div>
+                <br> <br> <br>
+            </div>
+
 
         </div>
-		
-        <!-- /.conainer-fluid -->
-    </main>
-  
-  
+    </div>
+
+
+    <div class="col-md-12">
+
+
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
 {% endblock content %}

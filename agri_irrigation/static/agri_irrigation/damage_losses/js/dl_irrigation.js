@@ -727,8 +727,6 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
       _.map(model_array, function(model) {
           model.division = $scope.division;
           model.region = $scope.region;
-
-
       });
       });
         $scope.submitted = true;
@@ -751,10 +749,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
         }).then(function successCallback(response) {
 
                  if(response.data == 'False')
-             {
-                    $("#modal-container-239454").modal('show');
-                    $scope.is_valid_data = false;
-                }
+             $scope.is_valid_data = false;
                 else
              $("#modal-container-239453").modal('show');
 
@@ -1010,6 +1005,34 @@ if(value.irrigation_assets != 'TOTAL LOSSES'){
     return grantot;
     }
 
+    $scope.dlDataEdit = function(){
 
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_3',
+    'sector':'agri_irrigation',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+    $scope.dlIrrigation = data;
+    })
+
+}
+
+    $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlIrrigation = init_data;
+}
 
 }]);

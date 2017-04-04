@@ -2,11 +2,11 @@
 {% block content %}
 <script>
   $(document).ready(function() {
-  
+
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-    
+
   });
-  
+
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsLivestockPoultryApp" ng-controller="bsLivestockPoultryController">
@@ -755,69 +755,28 @@
                                 Floor
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" colspan="3" width="343" height="19">
-                                1 floor
+                        <tr height="19" ng-repeat="blpAstStructures in bsLivestockPoultry.agri_livestock.Table_2.BlpAstStructures">
+                            <td class="tdpa" colspan="3" width="343" height="19" ng-bind="blpAstStructures.structures">
+
                             </td>
                             <td colspan="4" width="485" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" ng-model="blpAstStructures.avg_replace_cost" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" ng-model="blpAstStructures.avg_repair_roof"  type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" ng-model="blpAstStructures.avg_repair_wall"  type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" ng-model="blpAstStructures.avg_repair_floor"  type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" colspan="3" width="343" height="19">
-                                2-3 floors
-                            </td>
-                            <td colspan="4" width="485" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" colspan="3" width="343" height="19">
-                                More than 3 floors
-                            </td>
-                            <td colspan="4" width="485" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                        </tr>
+
                         <tr class="trheadc1" height="19">
                             <td colspan="3" width="343" height="19">
                                 Other Assets
@@ -829,11 +788,11 @@
                                 Average Repair Cost (LKR)
                             </td>
                         </tr>
-                        <tr height="24" ng-repeat="blpAstOther in bsLivestockPoultry.agri_livestock.Table_2.BlpAstOther">
-                            <td class="tdpa" colspan="3" width="343" height="24" ng-bind="blpAstOther.other_assets" ng-if="$index < 4">
-                                Computers
+                        <tr height="24" ng-repeat="blpAstOther in bsLivestockPoultry.agri_livestock.Table_2.BlpAstOther" ng-if="blpAstOther.other_assets!='Others'">
+                            <td class="tdpa" colspan="3" width="343" height="24" ng-bind="blpAstOther.other_assets" ng-if="$index < 5 ">
+
                             </td>
-                            <td width="98" ng-if="$index > 3">
+                            <td width="98" ng-if="$index >4">
                                 {% verbatim %}
                                 <button id="delete" ng-click="removeItem('BlpAstOther', $index)" class="btn btn-sm btn-danger btn-circle" >
                                     <i class="fa fa-minus"></i>
@@ -856,27 +815,25 @@
                             </td>
                         </tr>
                         <tr class="tdpa" height="19">
-                            <td colspan="3" width="343" height="19">
+                            <td width="343" colspan="14" height="19">
                                 Other office equipment
                                 <button ng-click="insertAsset('BlpAstOther')" class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
-                            <td colspan="4" width="485" height="19">
-                            </td>
-                            <td colspan="6" width="378" height="19">
-                            </td>
+
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" colspan="3" width="343" height="19">
-                                Others
+                        <tr height="19" ng-repeat="blpAstOther in bsLivestockPoultry.agri_livestock.Table_2.BlpAstOther"
+                            ng-if="blpAstOther.other_assets=='Others'">
+                            <td class="tdpa" colspan="3" width="343" height="19" ng-bind="blpAstOther.other_assets">
+
                             </td>
                             <td colspan="4" width="485" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                <input id="textinput" name="textinput" ng-model="blpAstOther.avg_replace_cost" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="6" width="378" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                <input id="textinput" name="textinput" ng-model="blpAstOther.avg_repair_cost" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                         </tr>
@@ -946,15 +903,18 @@
                                     class="form-control input-md">
                                 {% endverbatim %}
                             </td>
-                            <td colspan="3" width="356" height="19" ng-if="blpApyLivestock.livestock != 'Swine' || blpApyLivestock.livestock != 'Sheep'">
+                            <td colspan="3" width="356" height="19" ng-if="blpApyLivestock.livestock != 'Swine' && blpApyLivestock.livestock != 'Sheep'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="blpApyLivestock.milk">
+                            </td>
+                             <td colspan="3" width="356" class="tdpa" ng-if="blpApyLivestock.livestock == 'Swine' || blpApyLivestock.livestock == 'Sheep'">
+
                             </td>
                             <td colspan="3" width="415" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="blpApyLivestock.meat">
                             </td>
-                            <td colspan="3" width="189" height="19">
+                            <td colspan="3" class="tdpa" width="189" height="19">
                             </td>
                             <td colspan="3" width="189" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -983,7 +943,7 @@
                         </tr>
                         <tr class="trheadc" height="19">
                             <td width="113" height="19">
-                                Poultry***
+                                Poultry
                             </td>
                             <td colspan="3" width="356" height="19">
                                 <br/>
@@ -1015,7 +975,7 @@
                                     class="form-control input-md">
                                 {% endverbatim %}
                             </td>
-                            <td colspan="3" width="356" height="21">
+                            <td colspan="3" class="tdpa" width="356" height="21">
                             </td>
                             <td colspan="3" width="415" height="21">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -1030,6 +990,7 @@
                                        class="form-control input-md" ng-model="blpApyPoultry.others">
                             </td>
                         </tr>
+
                         <tr class="tdpa" height="34">
                             <td width="113" height="34">
                                 Others &nbsp;&nbsp;
@@ -1054,9 +1015,9 @@
                     </table>
                     <br>
                     <div class="pull-right">
-                       
 
-                        
+
+
                     <button type="button" class="btn btn-info">Clear</button>
                     <button type="button" ng-click="bsHsDataEdit(form_bs_livestock_poultry)"
                             ng-if="!is_edit" class="btn btn-success">Edit

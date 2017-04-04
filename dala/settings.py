@@ -2851,6 +2851,46 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pvt',
             ],
         },
+        'Table_6': {
+            'DlfDmgPubNational': [
+                'fishing_type',
+                'dmg_pub',
+            ],
+            'DlfDmgPvtNational': [
+                'name',
+                'dmg_pvt',
+            ],
+            'DlfLosIfisheriesNational': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfLosRfisheriesNational': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfLosMfisheriesNational': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+            'DlfDmgPubNational': [
+                'dmg_pub',
+            ],
+            'DlfDmgPvtNational': [
+                'dmg_pvt',
+            ],
+            'DlfLosNational': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
+        },
         'Table_4': {
             'DlfDmgPubDistrict': ['dmg_pub', 'district', 'incident', 'fishing_type'],
             'DlfDmgPvtDistrict': ['dmg_pvt', 'district', 'incident', 'name'],

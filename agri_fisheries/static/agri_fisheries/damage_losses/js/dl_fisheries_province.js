@@ -14,6 +14,12 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
     $scope.grnddamageprivate = null;
     var losPubliceyear1 = null;
     $scope.grndlosPubliceyear1 = null;
+    $scope.grndlosPPrivateyear1 = null;
+    $scope.grndlosPublicyear2 = null;
+    $scope.grndlosPrivateyear2 = null;
+    $scope.finalGrandTotPublic = null;
+    $scope.finalGrandTotPrivate = null;
+
 
 
     // get relevant damage_losses data for calculations
@@ -25,10 +31,10 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
         }
 
     }
+
     $scope.provinces = [];
 
-    function fetchProvinces()
-    {
+    function fetchProvinces(){
 
           $http({
             method: "POST",
@@ -45,15 +51,16 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
     }
 
-    $scope.fetchDlData = function(form){
+     $scope.fetchDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
+
             $http({
             method: "POST",
-            url: '/dl_fetch_summary_disagtn',
+            url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':  ['Table_5'],
-            'sector': ['agri_fisheries'],
+            'table_name':  'Table_5',
+            'sector': 'agri_fisheries',
             'com_data': {
                     'province': $scope.province,
                     'incident': $scope.incident,
@@ -61,11 +68,14 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
                    }),
             }).success(function(data) {
 
+            console.log('load ', data);
 
-
+            $scope.data = data;
             $scope.dlAgriFisheriesPro = data;
 
             })
+
+
     }
 
    $scope.convertToInt = function(val1,val2,val3){
@@ -79,6 +89,13 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
+
+   $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlAgriFisheriesPro ? angular.equals({}, $scope.dlAgriFisheriesPro.agri_fisheries.Table_5) : true;
+        return isNull;
+
+   }
 
    $scope.getTotal = function(key) {
 
@@ -131,17 +148,17 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
 
           var losPubliceyear1 =
-         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[0] ?
-         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[0].dmg_pvt ?
-         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[0].dmg_pvt : 0) : 0 ) +
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0] ?
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pub ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pub : 0) : 0 ) +
 
-        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[1] ?
-        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[1].dmg_pvt ?
-        $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[1].dmg_pvt : 0):0) +
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_1_pub ?
+        $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_1_pub : 0):0) +
 
-        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[2] ?
-        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[2].dmg_pvt ?
-         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfDmgPvtDistrict[2].dmg_pvt:0):0)
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosMfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosMfisheriesDistrict[0].los_year_1_pub ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosMfisheriesDistrict[0].los_year_1_pub:0):0)
         ;
 
 
@@ -152,10 +169,79 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
         $scope.grndlosPubliceyear1 = $scope.grndlosPubliceyear1 + losPubliceyear1 ;
 
+        var losPrivateyear1 =
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0] ?
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pvt ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_1_pvt : 0) : 0 ) +
+
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_1_pvt ?
+        $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_1_pvt : 0):0) +
+
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_1_pvt ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_1_pvt:0):0)
+        ;
 
 
+        var losPrivateyear1string = "losPrivateyear1_"+ key;
+
+        var model = $parse(losPrivateyear1string);
+        model.assign($scope, losPrivateyear1);
+
+        $scope.grndlosPPrivateyear1 = $scope.grndlosPPrivateyear1 + losPrivateyear1 ;
+        console.log('Test',$scope.grndlosPPrivateyear1);
+
+        var losPublicyear2 =
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0] ?
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_2_pub ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_2_pub : 0) : 0 ) +
+
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pub ?
+        $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pub : 0):0) +
+
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pub ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pub:0):0)
+        ;
 
 
+        var losPublicyear2string = "losPublicyear2_"+ key;
+
+        var model = $parse(losPublicyear2string);
+        model.assign($scope, losPublicyear2);
+
+        $scope.grndlosPublicyear2 = $scope.grndlosPublicyear2 + losPublicyear2 ;
+
+
+        var losPrivateyear2 =
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0] ?
+         ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_2_pvt ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosIfisheriesDistrict[0].los_year_2_pvt : 0) : 0 ) +
+
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pvt ?
+        $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pvt : 0):0) +
+
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0] ?
+        ($scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pvt ?
+         $scope.dlAgriFisheriesPro.agri_fisheries.Table_5[key].DlfLosRfisheriesDistrict[0].los_year_2_pvt:0):0)
+        ;
+
+
+        var losPrivateyear2string = "losPrivateyear2_"+ key;
+
+        var model = $parse(losPubliceyear1string);
+        model.assign($scope, losPublicyear2);
+
+        $scope.grndlosPrivateyear2 = $scope.grndlosPrivateyear2+ losPrivateyear2 ;
+
+        $scope.finalGrandTotPublic =
+        $scope.grnddamagepublic + $scope.grndlosPubliceyear1  + $scope.grndlosPublicyear2 ;
+
+        $scope.finalGrandTotPrivate =
+        $scope.grnddamageprivate + $scope.grndlosPPrivateyear1 + $scope.grndlosPrivateyear2;
     }
 
 

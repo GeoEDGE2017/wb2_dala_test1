@@ -235,14 +235,14 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
         console.log(arr);
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'Total') {
-                finaltotal = finaltotal + value.tot_dmg ;
+                finaltotal = finaltotal + value.tot_dmg;
             }
         })
         console.log(finaltotal);
         return finaltotal;
     }
 
-    $scope.calTotal = function(arr, field_name) {
+    $scope.calTotalInField = function(arr, field_name) {
         var finaltotal = 0;
         console.log(arr);
         angular.forEach(arr, function(value, key) {

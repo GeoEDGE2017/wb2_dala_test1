@@ -36,8 +36,7 @@ app.controller('dlSumTrnsptDstControllerController', function($scope, $http) {
         }
     }
 
-    $scope.loadData = function() {
-
+    $scope.loadData = function(form) {
         $scope.isLoded = true;
         if(form.$valid) {
             $scope.tot_damages = null;
@@ -56,6 +55,7 @@ app.controller('dlSumTrnsptDstControllerController', function($scope, $http) {
                 }),
             }).success(function(data) {
                 $scope.data=data;
+                console.log($scope.data);
             })
         }
     }

@@ -82,6 +82,15 @@ def other_govn_services_summary(request):
     return render(request, 'reports/report_other_govn_services.html', context)
 
 
+def water_supply_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_water_supply.html', context)
+
+
 def transport_land_summary(request):
     incidents = IncidentReport.objects.all()
     context = {

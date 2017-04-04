@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSumAgriDstrApp" ng-controller="dlSumAgriDstrController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -15,7 +15,7 @@
         </li>
     </ol>
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_dl_sum_agri">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
 
@@ -34,16 +34,50 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead" height="17">
-                        <td height="17" width="213">
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dl_sum_agri.incident.$error.required">
+                                Please Select Incident
+                            </span>
+                        </td>
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dl_sum_agri.district.$error.required">
+                                Please Select District
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="trhead1" height="17">
+                        <td width="197" height="17">
+                            Incident
+                        </td>
+                        <td colspan="3" width="504" height="17">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td width="504" height="17" style="text-align:right;">
                             District
                         </td>
-                        <td colspan="8" height="17" width="592">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                        <td colspan="3" width="504" height="17">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
+                                    class="form-control" required>
+                                <option value="" selected>Select district</option>
                             </select>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-success" ng-click="loadData(form_dl_sum_agri)">Load</button>
                         </td>
                     </tr>
                     <tr class="trhead" height="17">

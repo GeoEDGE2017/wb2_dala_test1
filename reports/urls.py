@@ -34,4 +34,7 @@ urlpatterns = [
     #transport air
     url(r'^transport_air_summary$', views.transport_air_summary, name='transport_air_summary'),
 
+     #water_supply
+    url(r'^water_supply_summary$', views.water_supply_summary, name='water_supply_summary'),
+
 ]

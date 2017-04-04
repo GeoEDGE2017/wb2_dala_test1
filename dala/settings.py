@@ -82,6 +82,8 @@ INSTALLED_APPS = [
     'agri_fisheries',
     'agri_fisheries.base_line',
     'agri_fisheries.damage_losses',
+    'agri_summary',
+    'agri_summary.damage_losses',
     'water_supply',
     'water_supply.base_line',
     'water_supply.damage_losses',
@@ -157,7 +159,7 @@ DATABASES = {
 
         # },
 
-        'NAME': 'new',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }
@@ -346,16 +348,21 @@ TABLE_PROPERTY_MAPPER = {
             'DmhLosOue': ['type_of_losses', 'teaching_hospital', 'provincial_general_hospital',
                           'district_general_hospital', 'office', 'other', 'total', 'id'],
         },
+        # 'Table_7': {
+        #     'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female', 'id'],
+        #
+        #     'DapBefPc1': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
+        #                   'est_losses_y1', 'est_losses_y2', 'total_losses', 'id'],
+        #
+        #     'DapBefPcn': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
+        #                   'est_losses_y1', 'est_losses_y2', 'total_losses', 'id'],
+        #     'DapBefOther': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
+        #                     'est_losses_y1', 'est_losses_y2', 'total_losses', 'id']
+        # },
         'Table_7': {
-            'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female', 'id'],
-
-            'DapBefPc1': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
-                          'est_losses_y1', 'est_losses_y2', 'total_losses', 'id'],
-
-            'DapBefPcn': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
-                          'est_losses_y1', 'est_losses_y2', 'total_losses', 'id'],
-            'DapBefOther': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages',
-                            'est_losses_y1', 'est_losses_y2', 'total_losses', 'id']
+            'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
+            'DapBefOther': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1', 'est_losses_y2', 'total_losses'],
+            'DapBefPc': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1', 'est_losses_y2', 'total_losses'],
         },
         'Table_9': {
             'DshPubLmhDistrict': ['facilities_assets', 'total_num_affected', 'male', 'female', 'total_damages',

@@ -175,8 +175,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 //                    total_losses : null,
 //                }],
 
-
-
             }
         }
     }
@@ -302,6 +300,11 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
+    $scope.showObject = function() {
+        alert('dsadsa');
+        console.log($scope.dlHealthDamagelostPrivateSys);
+    }
+
     $scope.dlDataEdit = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -315,7 +318,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         'table_name':  'Table_7',
         'sector':'health',
         'com_data': {
-               'district': $scope.district,
+               'district': $scope.district.district__id,
                 'incident': $scope.incident,
               },
                }),

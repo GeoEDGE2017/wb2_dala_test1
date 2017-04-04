@@ -105,7 +105,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     }
 
-    $scope.fetchDlData = function(form){
+    $scope.fetchDlData = function(){
     console.log($scope.province);
     console.log($scope.incident);
         $scope.is_edit = true;
@@ -134,8 +134,11 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     }
 
-    $scope.cancelEdit = function() {
-         $scope.is_edit = false;
-         $scope.dlhealthsummarydamageprovince = init_data;
-    }
+    $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlhealthsummarydamageprovince ? angular.equals({},
+        $scope.dlhealthsummarydamageprovince.health.Table_8) : true;
+        return isNull;
+
+   }
  }])

@@ -50,11 +50,17 @@ if(form.$valid){
         },
     }),
     }).success(function(data) {
-
+        console.log(data);
     $scope.dlSummaryDis = data;
     })
 }
 }
+
+    $scope.sumFunc5 = function(val1, val2, val3, val4, val5) {
+//      alert('hi');
+      console.log(parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5));
+      return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5);
+    }
 
 }])
 

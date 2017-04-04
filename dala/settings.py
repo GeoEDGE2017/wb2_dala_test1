@@ -3489,6 +3489,13 @@ TABLE_PROPERTY_MAPPER = {
             'TotDmgPvtProvince': ['tot_replace_cost', 'ownership'],
             'TotLossesPvtProvince': ['los_year1', 'los_year2', 'ownership'],
         },
+        'Table_6': {
+            'DlNumAffNational': ['domestic', 'industrial', 'commercial', 'other'],
+            'TotDmgCebNational': ['tot_dmg'],
+            'TotLosCebNational': ['losses_y1', 'losses_y2'],
+            'TotDmgPvtNational': ['tot_replace_cost', 'ownership'],
+            'TotLossesPvtNational': ['los_year1', 'los_year2', 'ownership'],
+        },
 
     },
     'telecommunication': {

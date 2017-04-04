@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^industry_services_main$', views.industry_services_main, name='industry_services_main'),
     url(r'^telecom_main$', views.telecom_main, name='telecom_main'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/admin/login/'}, name='logout'),
+    # url(r'^error_main$', views.error_main, name='error_main'),
 
 
 ]

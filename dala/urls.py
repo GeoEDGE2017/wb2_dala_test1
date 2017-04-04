@@ -124,5 +124,11 @@ urlpatterns = [
     # transport_summary
     url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
 
+    # test
+    # url(r'^transport_summary/', include('transport_summary.urls', namespace='transport_summary')),
+
+
+
+
 
 ]

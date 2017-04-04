@@ -53,39 +53,39 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
         if($scope.incident && selectProvinces) {
           fetchProvinces();
         }
-        if($scope.province && $scope.incident) {
-            console.log($scope.district);
-            console.log($scope.incident);
-            $http({
-                method: 'POST',
-                url: '/dl_get_data',
-                contentType: 'application/json; charset=utf-8',
-                data: angular.toJson({
-                    'table_name': 'Table_9',
-                    'db_tables': ['DshPubLmhProvince', 'DshPubMohProvince', 'DshPubOmfProvince',  'DshPvtFaProvince',  'DshTdlOwshipProvince'],
-                    'com_data': {
-                        'province': $scope.province,
-                        'incident': $scope.incident,
-                    },
-                    'is_edit' : $scope.is_edit,
-                    'sector':'health'
-                }),
-                dataType: 'json',
-            }).then(function successCallback(response) {
-                var data = response.data;
-                angular.forEach(data, function(value, key) {
-                    $scope.bs_data[key] = JSON.parse(value);
-
-
-                });
-
-                console.log($scope.bs_data);
-
-            }, function errorCallback(response) {
-
-                console.log(response);
-            });
-        }
+//        if($scope.province && $scope.incident) {
+//            console.log($scope.district);
+//            console.log($scope.incident);
+//            $http({
+//                method: 'POST',
+//                url: '/dl_get_data',
+//                contentType: 'application/json; charset=utf-8',
+//                data: angular.toJson({
+//                    'table_name': 'Table_9',
+//                    'db_tables': ['DshPubLmhProvince', 'DshPubMohProvince', 'DshPubOmfProvince',  'DshPvtFaProvince',  'DshTdlOwshipProvince'],
+//                    'com_data': {
+//                        'province': $scope.province,
+//                        'incident': $scope.incident,
+//                    },
+//                    'is_edit' : $scope.is_edit,
+//                    'sector':'health'
+//                }),
+//                dataType: 'json',
+//            }).then(function successCallback(response) {
+//                var data = response.data;
+//                angular.forEach(data, function(value, key) {
+//                    $scope.bs_data[key] = JSON.parse(value);
+//
+//
+//                });
+//
+//                console.log($scope.bs_data);
+//
+//            }, function errorCallback(response) {
+//
+//                console.log(response);
+//            });
+//        }
     }
     $scope.provinces = [];
 
@@ -106,6 +106,8 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     }
 
     $scope.fetchDlData = function(form){
+    console.log($scope.province);
+    console.log($scope.incident);
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -113,8 +115,8 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':  'Table_9',
-            'sector': 'health',
+            'table_name':'Table_8',
+            'sector':'health',
             'com_data': {
                     'province': $scope.province,
                     'incident': $scope.incident,
@@ -124,10 +126,11 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
             console.log('load ', data);
 
-
-
+            $scope.data = data;
             $scope.dlhealthsummarydamageprovince = data;
+
             })
+
 
     }
 

@@ -398,7 +398,7 @@ class DlpNdaPubProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_nda-pub_province'
+        db_table= 'agri_livestock\".\"dlp_nda_pub_province'
 
 
 class DlpNdaPvtProvince(models.Model):
@@ -409,7 +409,7 @@ class DlpNdaPvtProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_nda-pvt_province'
+        db_table= 'agri_livestock\".\"dlp_nda_pvt_province'
 
 
 class DlpLosPubProvince(models.Model):
@@ -421,7 +421,7 @@ class DlpLosPubProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_los-pub_province'
+        db_table= 'agri_livestock\".\"dlp_los_pub_province'
 
 
 class DlpLosPvtProvince(models.Model):
@@ -433,7 +433,7 @@ class DlpLosPvtProvince(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_los-pvt_province'
+        db_table= 'agri_livestock\".\"dlp_los_pvt_province'
 
 # Views Tbale 6
 
@@ -446,7 +446,7 @@ class DlpNdaPubNational(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_nda-pub_national'
+        db_table= 'agri_livestock\".\"dlp_nda_pub_national'
 
 
 class DlpNdaPvtNational(models.Model):
@@ -457,7 +457,7 @@ class DlpNdaPvtNational(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_nda-pvt_national'
+        db_table= 'agri_livestock\".\"dlp_nda_pvt_national'
 
 
 class DlpLosPubNational(models.Model):
@@ -469,7 +469,7 @@ class DlpLosPubNational(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_los-pub_national'
+        db_table= 'agri_livestock\".\"dlp_los_pub_national'
 
 
 class DlpLosPvtNational(models.Model):
@@ -481,4 +481,4 @@ class DlpLosPvtNational(models.Model):
 
     class Meta:
         managed = False
-        db_table= 'agri_livestock\".\"dlp_los-pvt_national'
+        db_table= 'agri_livestock\".\"dlp_los_pvt_national'

@@ -1,6 +1,8 @@
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
+from django.template import RequestContext
+from django.http import HttpResponse, HttpResponseNotFound
 from users.decorators import super_user_permission, permission_required
 
 
@@ -9,26 +11,31 @@ from users.decorators import super_user_permission, permission_required
 #     return render(request, 'dashboard/index.html')
 def index(request):
     user = request.user
-    if user.id is not None:
-        print ' there is user f'
-        if user.is_superuser:
-            print 'admin'
-            return render(request, 'dashboard/index.html')
-        else:
-            print user.sector.redirect_url
-            if user.sector_id is not None:
-                if user.sector.redirect_url is not None:
-                    redirect_url = user.sector.redirect_url
-                    return render(request, 'dashboard/' + redirect_url + '.html')
+    try:
+        if user.id is not None:
+            print ' there is user f'
+            if user.is_superuser:
+                print 'admin'
+                return render(request, 'dashboard/index.html')
+            else:
+                print user.sector.redirect_url
+                if user.sector_id is not None:
+                    if user.sector.redirect_url is not None:
+                        redirect_url = user.sector.redirect_url
+                        return render(request, 'dashboard/' + redirect_url + '.html')
+                    else:
+                        PermissionDenied
+
+
                 else:
                     PermissionDenied
 
-            else:
-                raise PermissionDenied
-    else:
-        return redirect('%s?next=%s' % ('/admin/login/', request.path))
-    return render(request, 'dashboard/index.html')
 
+        else:
+            return redirect('%s?next=%s' % ('/admin/login/', request.path))
+        # return render(request, 'dashboard/index.html')
+    except Exception:
+        return HttpResponseNotFound('<h1>Page not found</h1>')
 
 @permission_required("district", 'Health')
 def health_main(request):
@@ -128,3 +135,9 @@ def industry_services_main(request):
 @permission_required("district", " Telecommunications")
 def telecom_main(request):
     return render(request, 'dashboard/telecom_main.html')
+
+# @permission_denied()
+# def handler403(request):
+#     response = render_to_response('dashboard/403.html', {},context_instance=RequestContext(request))
+#     response.status_code = 403
+#     return response

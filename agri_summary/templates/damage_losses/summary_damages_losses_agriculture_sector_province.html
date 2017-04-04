@@ -1,396 +1,435 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 
-   <!-- Main content -->
-    <main class="main">
+<!-- Main content -->
+<main class="main" ng-app="dlSummeryAgriProApp" ng-controller="DlSummeryAgriProController">
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
-            </li>
-			 
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Summary of damages and losses in the agriculture sector in a province</span></li>
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
 
-           
-        </ol>
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Summary of damages and losses in the agriculture sector in a province</span>
+        </li>
+    </ol>
+    <div class="container-fluid">
 
 
-        <div class="container-fluid">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
 
-       
-				
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane active" id="step1">
-						
-						<table class="table table-bordered" >
-  
-	
-    <colgroup>
-        <col width="213"/>
-        <col width="107"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-        <col width="63"/>
-    </colgroup>
-    <tbody>
-        <tr class="trhead" height="17">
-            <td height="17" width="213">
-                Province
-            </td>
-            <td colspan="8" height="17" width="592">
-			 <select id="selectbasic" name="selectbasic" class="form-control" style="width:100%;font-weight:400;">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td rowspan="3" height="53" width="213">
-                Districts
-            </td>
-            <td colspan="4" height="19" width="340">
-                Year 1
-            </td>
-            <td colspan="2" height="19" width="126">
-                Year 2
-            </td>
-            <td colspan="2" height="19" width="126">
-                Total
-            </td>
-        </tr>
-        <tr class="trheadc" height="17">
-            <td colspan="2" height="17" width="214">
-                Damages (LKR)
-            </td>
-            <td colspan="2" height="17" width="126">
-                Losses (LKR)
-            </td>
-            <td colspan="2" height="17" width="126">
-                Losses (LKR)
-            </td>
-            <td colspan="2" height="17" width="126">
-                (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc" height="17">
-            <td height="17" width="107">
-                Public
-            </td>
-            <td height="17" width="63">
-                Private
-            </td>
-            <td height="17" width="63">
-                Public
-            </td>
-            <td height="17" width="63">
-                Private
-            </td>
-            <td height="17" width="63">
-                Public
-            </td>
-            <td height="17" width="63">
-                Private
-            </td>
-            <td height="17" width="63">
-                Public
-            </td>
-            <td height="17" width="63">
-                Private
-            </td>
-        </tr>
-        <tr class="trheadc" height="17">
-            <td height="17" width="213">
-                District 1
-            </td>
-            <td height="17" width="107">
-            </td>
-            <td height="17" width="63">
-            </td>
-            <td height="17" width="63">
-            </td>
-            <td height="17" width="63">
-            </td>
-            <td height="17" width="63">
-            </td>
-            <td height="17" width="63">
-            </td>
-            <td height="17" width="63">
-            </td>
-            <td height="17" width="63">
-            </td>
-        </tr>
-        <tr height="17">
-            <td class="tdpa" height="17" width="213">
-                Agrarian
-            </td>
-            <td height="17" width="107">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="17">
-            <td class="tdpa" height="17" width="213">
-                Livestock
-            </td>
-            <td height="17" width="107">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="17">
-            <td class="tdpa" height="17" width="213">
-                Fisheries
-            </td>
-            <td height="17" width="107">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="17">
-            <td class="tdpa" height="17" width="213">
-                Irrigation
-            </td>
-            <td height="17" width="107">
-                <!-- - -->
-            </td>
-            <td class="tdpa" height="17" width="63">
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td class="tdpa" height="17" width="63">
-            </td>
-            <td class="tdpa" height="17" width="63">
-            </td>
-            <td class="tdpa" height="17" width="63">
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td class="tdpa" height="17" width="63">
-            </td>
-        </tr>
-        <tr height="17">
-            <td class="tdpa" height="17" width="213">
-                Total
-            </td>
-            <td height="17" width="107">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="17">
-            <td class="tdpa" height="17" width="213">
-                GRAND TOTAL
-            </td>
-            <td height="17" width="107">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-            <td height="17" width="63">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr class="trheadc" height="17">
-            <td rowspan="2" height="34" width="213">
-                PROVINCIAL SUMMARY
-            </td>
-            <td colspan="2" height="17" width="214">
-                Damages
-            </td>
-            <td colspan="2" height="17" width="126">
-                Losses Year 1
-            </td>
-            <td colspan="2" height="17" width="126">
-                Losses Year 2
-            </td>
-            <td colspan="2" height="17" width="126">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr height="17">
-            <td colspan="2" height="17" width="214">
-               <!-- - -->
-            </td>
-            <td colspan="2" height="17" width="126">
-                <!-- - -->
-            </td>
-            <td colspan="2" height="17" width="126">
-                <!-- - -->
-            </td>
-            <td colspan="2" height="17" width="126">
-                <!-- - -->
-            </td>
-        </tr>
-    </tbody>
-</table>
-						
-						 <br>
-                          
-           </div> 
-                        
-								
-        </div>
-        </div>
-							
-							
-			
-								
-                          
+                <table class="table table-bordered">
 
-         <div class="col-md-12">
-			
-			
-			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			
-		</div>           </div>    
+
+                    <colgroup>
+                        <col width="213"/>
+                        <col width="107"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trhead1" height="17">
+                         <td class="trhead1" width="130" colspan="">
+                            Incident
+                        </td>
+                        <td width="125" colspan="3">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true);fetchProvinces();"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+                         <td class="trhead1" width="130" colspan="">
+                            Province
+                        </td>
+                        <td width="170" colspan="2">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData()">Load
+                            </button>
+                        </td>
+                     </tbody>
+                    </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody ng-repeat="(key1, value1) in dlAgriSumPro.agri_agrarian.Table_9">
+                    <tr class="trheadc" height="19">
+                        <td rowspan="3" height="53" width="213">
+                            Districts
+                        </td>
+                        <td colspan="4" height="19" width="340">
+                            Year 1
+                        </td>
+                        <td colspan="2" height="19" width="126">
+                            Year 2
+                        </td>
+                        <td colspan="2" height="19" width="126">
+                            Total
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="17">
+                        <td colspan="2" height="17" width="214">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" height="17" width="126">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" height="17" width="126">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" height="17" width="126">
+                            (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="17">
+                        <td height="17" width="107">
+                            Public
+                        </td>
+                        <td height="17" width="63">
+                            Private
+                        </td>
+                        <td height="17" width="63">
+                            Public
+                        </td>
+                        <td height="17" width="63">
+                            Private
+                        </td>
+                        <td height="17" width="63">
+                            Public
+                        </td>
+                        <td height="17" width="63">
+                            Private
+                        </td>
+                        <td height="17" width="63">
+                            Public
+                        </td>
+                        <td height="17" width="63">
+                            Private
+                        </td>
+                    </tr>
+
+
+                    <tr class="trheadc" height="17" ng-init="getTotal(key1)" >
+                        <td height="17" width="213" ng-bind="key1">
+
+                        </td>
+                        <td height="17" width="107">
+                        </td>
+                        <td height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" height="17" width="213">
+                            Agrarian
+                        </td>
+                        <td height="17" width="107" ng-bind="value1.DsorDmgLosProvince[0].dmg_los_pub">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="value1.DsorDmgLosProvince[0].dmg_los_pvt">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="value1.DsorLosYear1Province[0].dmg_los_pub">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="value1.DsorLosYear1Province[0].dmg_los_pvt">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="value1.DsorLosYear2Province[0].dmg_los_pub">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="value1.DsorLosYear2Province[0].dmg_los_pvt">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="value1.DsorDmgLosProvince[0].dmg_los_pub +
+                        value1.DsorLosYear1Province[0].dmg_los_pub + value1.DsorLosYear2Province[1].dmg_los_pub ">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="value1.DsorDmgLosProvince[0].dmg_los_pvt +value1.DsorLosYear1Province[0].dmg_los_pvt + value1.DsorLosYear2Province[0].dmg_los_pvt ">
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" height="17" width="213">
+                            Livestock
+                        </td>
+
+                        <td height="17" width="107" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpNdaPubProvince[0].damages">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpNdaPvtProvince[0].damages">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPubProvince[0].los_year_1">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPvtProvince[0].los_year_1">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPubProvince[0].los_year_2">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPvtProvince[0].los_year_2">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpNdaPubProvince[0].damages +dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPubProvince[0].los_year_1 +dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPubProvince[0].los_year_2">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="dlAgriSumPro.agri_livestock.Table_5[key1].DlpNdaPvtProvince[0].damages +dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPvtProvince[0].los_year_1 +dlAgriSumPro.agri_livestock.Table_5[key1].DlpLosPvtProvince[0].los_year_2">
+
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" height="17" width="213">
+                            Fisheries
+                        </td>
+                        <td height="17" width="107">
+                            <!-- - -->
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" height="17" width="213">
+                            Irrigation
+                        </td>
+                        <td height="17" width="107">
+                            <!-- - -->
+                        </td>
+                        <td class="tdpa" height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td class="tdpa" height="17" width="63">
+                        </td>
+                        <td class="tdpa" height="17" width="63">
+                        </td>
+                        <td class="tdpa" height="17" width="63">
+                        </td>
+                        <td height="17" width="63">
+                            <!-- - -->
+                        </td>
+                        <td class="tdpa" height="17" width="63">
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" height="17" width="213">
+                            Total
+                        </td>
+                         {% verbatim %}
+                        <td width="63" height="17" ng-model="totaldpub" ng-bind="totaldpub = {{'totaldpub_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                         {% verbatim %}
+                        <td width="63" height="17" ng-model="totaldpvt" ng-bind="totaldpvt = {{'totaldpvt_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                         {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear1pub" ng-bind="totalyear1pub = {{'totalyear1pub_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear1pvt" ng-bind="totalyear1pvt = {{'totalyear1pvt_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear2pub" ng-bind="totalyear2pub= {{'totalyear2pub_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear2pvt" ng-bind="totalyear2pvt= {{'totalyear2pvt_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="finaltotalpublic" ng-bind="finaltotalpublic= {{'finaltotalpublic_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="finaltotalprivate" ng-bind="finaltotalprivate= {{'finaltotalprivate_'+key1}}">
+
+                        </td>
+                        {% endverbatim %}
+                    </tr>
+                    <tr height="17">
+                        <td class="tdpa" height="17" width="213">
+                            GRAND TOTAL
+                        </td>
+                         <td width="63" height="17" ng-bind="grndtotaldpub">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="grndtotaldpvt">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="grndtotalyear1pub">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="grndtotalyear1pvt">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="grndtotalyear2pub">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="grndtotalyear2pvt">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="grndfinaltotalpublic">
+
+                        </td>
+                        <td height="17" width="63" ng-bind="grndfinaltotalprivate">
+
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="17">
+                        <td rowspan="2" height="34" width="213">
+                            PROVINCIAL SUMMARY
+                        </td>
+                        <td colspan="2" height="17" width="214">
+                            Damages
+                        </td>
+                        <td colspan="2" height="17" width="126">
+                            Losses Year 1
+                        </td>
+                        <td colspan="2" height="17" width="126">
+                            Losses Year 2
+                        </td>
+                        <td colspan="2" height="17" width="126">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr height="17">
+                        <td colspan="2" height="17" width="214" ng-bind="summaryDamages">
+
+                        </td>
+                        <td colspan="2" height="17" width="126" ng-bind="summaryLossYear1">
+
+                        </td>
+                        <td colspan="2" height="17" width="126" ng-bind="summaryLossYear2">
+
+                        </td>
+                        <td colspan="2" height="17" width="126" ng-bind="summaryTotal">
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+            </div>
+
 
         </div>
-		
-        <!-- /.conainer-fluid -->
-    </main>
-  
-  
+    </div>
+
+
+    <div class="col-md-12">
+
+
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    <!-- /.conainer-fluid -->
+</main>
+
+
 {% endblock content %}

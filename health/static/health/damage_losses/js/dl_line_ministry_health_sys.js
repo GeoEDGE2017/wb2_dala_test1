@@ -523,31 +523,41 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
 
         if($scope.incident && $scope.district ) {
-
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
-                  'com_data': {
+                    'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
+                    'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        },
-                   'table_name': 'Table_3',
-                   'sector': 'health'
+                    },
+                    'table_name': 'Table_3',
+                    'sector': 'health'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
+                var is_null = false;
 
-                console.log($scope.bs_data);
+                angular.forEach($scope.bs_data, function(value, index){
+                    alert(value);
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
 
+                if(is_null == true){
+                    $("#modal-container-239455").modal('show');
+                    console.log('@');
+                    console.log($scope.bs_data);
+                }
             }, function errorCallback(response) {
-
+                console.log('#');
                 console.log(response);
             });
         }

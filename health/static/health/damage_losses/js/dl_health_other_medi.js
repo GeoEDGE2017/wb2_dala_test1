@@ -1,3 +1,4 @@
+//Table 6
 var app = angular.module('dsHealthDamagelostOtherMediApp', []);
 
 app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',function ($scope,$http) {
@@ -11,6 +12,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
  $scope.Districts = [];
  $scope.is_valid_data = true;
 
+//initialize model
     var init_data = {
     'health':{
         'Table_6': {
@@ -600,25 +602,26 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
         }
     }
 
-    $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
+    $scope.dlDataHealthDamagelostOtherMedicalFacilities = angular.copy(init_data);
+
+//Save Data
     $scope.saveDlData = function(form) {
+      $scope.submitted = true;
+           if(form.$valid){
+            $http({
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlDataHealthDamagelostOtherMedicalFacilities,
+                    'com_data': {
+                        'district_id':  $scope.district.district__id,
+                        'incident_id': $scope.incident,
 
-    $scope.submitted = true;
-       if(form.$valid){
-        $http({
-            method: 'POST',
-            url:'/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlDataHealthDamagelostOtherMedicalFacilities,
-                'com_data': {
-                    'district_id':  $scope.district.district__id,
-                    'incident_id': $scope.incident,
-
-                },
-                'is_edit' : $scope.is_edit
-            }),
-            dataType: 'json',
+                    },
+                    'is_edit' : $scope.is_edit
+                }),
+                dataType: 'json',
         }).then(function successCallback(response) {
 
                  if(response.data == 'False')
@@ -634,7 +637,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
 
     }
 
-    // get relevant base-line data for calculations
+//Get Baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
 
         if($scope.incident && selectedValue){
@@ -682,28 +685,24 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     }
     }
 
+//Edit data
+    $scope.dlDataEdit = function(form){
+       $scope.is_edit = true;
+       $scope.submitted = true;
+        if(form.$valid){
 
- // edit relevant damage_losses data
-    $scope.dlDataEdit = function(form)
-{
-
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    if(form.$valid){
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_6',
-    'sector':'health',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
+        $http({
+        method: "POST",
+        url: '/dl_fetch_edit_data',
+        data: angular.toJson({
+        'table_name':  'Table_6',
+        'sector':'health',
+        'com_data': {
+               'district':  $scope.district.district__id,
+                'incident': $scope.incident,
+              },
+               'is_edit':$scope.is_edit
+               }),
     }).success(function(data) {
 
     console.log(data);
@@ -716,14 +715,19 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
 
 }
 
-
-    $scope.cancelEdit = function()
-{
+//Cancel Data
+    $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
 }
 
+//Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlDataHealthDamagelostOtherMedicalFacilities = angular.copy(init_data);
 
+    }
 
 
 }])

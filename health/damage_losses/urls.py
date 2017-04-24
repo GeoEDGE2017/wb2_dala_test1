@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^dl_health_summary_sector_district$', views.dl_health_summary_sector_district, name='dl_health_summary_sector_district'),
     url(r'^health_summery_damageloss_province$', views.health_summery_damageloss_province, name='health_summery_damageloss_province'),
     url(r'^dl_health_summary_damage_nationwide$', views.dl_health_summary_damage_nationwide, name='dl_health_summary_damage_nationwide'),
+
     url(r'^fetch_entities', views.fetch_entities, name='fetch_entities'),
 ]

@@ -1,10 +1,6 @@
 from __future__ import absolute_import
 import datetime
 from django.core.serializers.json import DjangoJSONEncoder
-
-
-from health.base_line.models import BdSessionKeys
-from health.damage_losses.models import DlSessionKeys
 from incidents.models import IncidentReport
 from tourism.base_line.models import BsTouBusiness, InfType
 import yaml, json

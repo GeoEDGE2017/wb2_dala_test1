@@ -1,3 +1,4 @@
+//Table 7
 var app = angular.module('dlHealthDamagelostPrivateApp', [])
 
 app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http, $filter) {
@@ -9,11 +10,10 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.privateClinics = [];
     $scope.private_clinic = {id: null, name: null, district_id: null};
     $scope.is_edit_model = false;
-
     $scope.is_edit = false;
-
     $scope.is_valid_data = true;
 
+//initialize model
     var init_data = {
         'health': {
             'Table_7': {
@@ -179,8 +179,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
-    $scope.dlHealthDamagelostPrivateSys = init_data;
+    $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
 
+//Save Data
     $scope.saveDlHealthDamagelostPrivate = function(form, model) {
         var data = {'health':{'Table_7': {model: []}}};
         data['health']['Table_7'][model] = $scope.dlHealthDamagelostPrivateSys['health']['Table_7'][model];
@@ -215,6 +216,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
+//Save Data
     $scope.saveDlHealthData = function(form) {
         var data = {'health':{'Table_7': {'DapNapTmf': []}}};
         data = {'health':{'Table_7': {'DapBefOther': []}}};
@@ -250,6 +252,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
+//Fetch Entities
     $scope.fetchPrivateClinics = function() {
         $scope.private_clinic.district_id = $scope.district;
 
@@ -267,6 +270,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
     }
 
+//Add Entities
     $scope.addPrivateClinic = function() {
         if($scope.private_clinic) {
         console.log()
@@ -300,11 +304,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
-    $scope.showObject = function() {
-        alert('dsadsa');
-        console.log($scope.dlHealthDamagelostPrivateSys);
-    }
-
+//Edit Data
     $scope.dlDataEdit = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -331,14 +331,14 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
+//Cancel Data
     $scope.cancelEdit = function() {
          $scope.is_edit = false;
          $scope.dlHealthDamagelostPrivateSys = init_data;
     }
 
-    $scope.changeIncident = function getDistrictData()
-    {
-
+//Fetch Districts
+    $scope.changeIncident = function getDistrictData(){
     if($scope.incident) {
             $http({
                 method: "POST",
@@ -353,4 +353,14 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
 
   }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
+
+    }
+
+
 })

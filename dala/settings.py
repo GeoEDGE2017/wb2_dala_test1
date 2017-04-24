@@ -159,7 +159,7 @@ DATABASES = {
 
         # },
 
-        'NAME': 'dala',
+        'NAME': 'new',
         'USER': 'postgres',
     },
 }
@@ -210,6 +210,10 @@ STATIC_URL = '/static/'
 
 # table properties
 TABLE_PROPERTY_MAPPER = {
+    'dashboard': {
+        'IncidentTotal': [
+                'tot_dmgloss', 'incident', 'reported_date_time', 'name'],
+    },
     'health': {
         'Table_1': {'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
                     'BhsComDiseases': ['com_disease', 'male', 'female', 'children', 'elderly', 'id'],

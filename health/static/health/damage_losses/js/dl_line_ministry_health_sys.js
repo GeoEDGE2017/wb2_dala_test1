@@ -1,3 +1,4 @@
+//Table 5
 var app = angular.module('dlInTheLineMinistryHealthSysApp', [])
 
 app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', function($scope, $http) {
@@ -5,15 +6,13 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.selectedDistrict;
     $scope.incident;
     $scope.Districts=[];
-
     $scope.dlDate;
     $scope.bs_data={};
-
     $scope.baselineDate;
-
     $scope.is_edit = false;
     $scope.is_valid_data = true;
 
+//initialize model
     var init_data = {
         'health': {
             'Table_5': {
@@ -446,8 +445,9 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
     }
 
-    $scope.dlMinistryHealthSys = init_data;
+    $scope.dlMinistryHealthSys = angular.copy(init_data);
 
+//Save Data
     $scope.saveBucMarStructure = function(form) {
 
         $scope.submitted = true;
@@ -479,6 +479,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
     }
 
+//Edit Data
     $scope.dlDataEdit = function(form){
          $scope.is_edit = true;
         $scope.submitted = true;
@@ -499,16 +500,18 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }).success(function(data) {
 
             $scope.dlMinistryHealthSys = data;
-            console.log($scope.dlMinistryHealthSys.Table_5.DmhNdatFacStructure);
+
         })
         }
     }
 
+//Cancel Edit
     $scope.cancelEdit = function() {
          $scope.is_edit = false;
-         $scope.dlHealthDamagelostPrivateSys = init_data;
+         $scope.dlMinistryHealthSys = init_data;
     }
 
+//Fetch district
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -551,5 +554,13 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                 console.log(response);
             });
         }
+    }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlMinistryHealthSys = angular.copy(init_data);
+
     }
 }])

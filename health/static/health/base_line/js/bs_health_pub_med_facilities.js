@@ -1,7 +1,7 @@
+//Table 2
 var app = angular.module('bsPubMedicalFacilitiesApp', []);
 
 app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function($scope, $http) {
-
 
     $scope.district;
     $scope.baselineDate;
@@ -9,6 +9,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//initialize model
     var init_data = {
         'health': {
             'Table_2': {
@@ -98,10 +99,9 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
             }
         }
     }
+    $scope.bsDataMedicalFacilities = angular.copy(init_data);
 
-    $scope.bsDataMedicalFacilities = init_data;
-
-
+//Save Data
     $scope.saveBsData = function(form) {
 
         $scope.submitted = true;
@@ -139,7 +139,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 
     }
 
-
+//Edit Data
     $scope.bsHsDataEdit = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
@@ -167,12 +167,19 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 
     }
 
-
+//Cancel Edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsDataMedicalFacilities = init_data;
     }
 
+//Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsDataMedicalFacilities = angular.copy(init_data);
+
+    }
 
 
 }])

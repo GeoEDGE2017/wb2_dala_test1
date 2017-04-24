@@ -49,10 +49,11 @@ def fetch_incident_districts(request):
 @csrf_exempt
 def fetch_incident_provinces(request):
     dl_data = (yaml.safe_load(request.body))
+    print dl_data
     incident_id = dl_data['incident']
     incident = IncidentReport.objects.get(pk=incident_id)
     affected_provinces = incident.effectedarea_set.values('district__id', 'district__province_id',
-                                                          'district__province__name').distinct()
+                                                          'district__province__name').distinct('district__province_id').order_by('district__province_id')
 
     return HttpResponse(
         json.dumps(list(affected_provinces)),
@@ -262,26 +263,43 @@ def bs_get_data_mock(request):
     sub_app_name = sector + '.base_line'
 
     bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
-    bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
-                                              select_params=(incident_date,)). \
-        filter(table_name=table_name, district=district). \
-        values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+    print bs_session_model
+    print '@'
 
-    print bd_sessions
-    bs_date = bd_sessions['bs_date']
+    try:
+        bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
+                                                  select_params=(incident_date,)). \
+            filter(table_name=table_name, district=district). \
+            values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
 
-    for db_table in db_tables:
-        model_class = apps.get_model(sub_app_name, db_table)
-        # assuming there could be multiple data sets for bs_date
-        bs_mtable_data[db_table] = serializers.serialize('json',
-                                                         model_class.objects.filter(bs_date=bs_date,
-                                                                                    district=district).order_by('id'))
+        print '*'
+        print bd_sessions
+        print '**'
+        bs_date = bd_sessions['bs_date']
 
-    return HttpResponse(
-        json.dumps((bs_mtable_data)),
+        for db_table in db_tables:
+            model_class = apps.get_model(sub_app_name, db_table)
+            # assuming there could be multiple data sets for bs_date
+            bs_mtable_data[db_table] = serializers.serialize('json',
+                                                             model_class.objects.filter(bs_date=bs_date,
+                                                                                        district=district).order_by(
+                                                                 'id'))
+        return HttpResponse(
+            json.dumps((bs_mtable_data)),
 
-        content_type='application/javascript; charset=utf8'
-    )
+            content_type='application/javascript; charset=utf8'
+        )
+    except Exception as ex:
+        for db_table in db_tables:
+            model_class = apps.get_model(sub_app_name, db_table)
+            # assuming there could be multiple data sets for bs_date
+            bs_mtable_data[db_table] = None
+
+        return HttpResponse(
+            json.dumps((bs_mtable_data)),
+
+            content_type='application/javascript; charset=utf8'
+        )
 
 
 @csrf_exempt

@@ -12,6 +12,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.BiaWaterUsers_annual_demand = null;
     $scope.BiaWaterUsers_rate = null;
 
+//initialize model
     var init_data = {
         'water_supply' : {
             'Table_1' : {
@@ -98,8 +99,9 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         }
     }
 
-    $scope.bsAstsNwsdbDis = init_data;
+    $scope.bsAstsNwsdbDis = angular.copy(init_data);
 
+//Add Enumerate Fileds
     $scope.insertAssets = function(table) {
         var new_row;
         if(table == 'BiaWaterUsers') {
@@ -143,6 +145,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         $scope.bsAstsNwsdbDis.water_supply.Table_1[table].push(new_row);
     }
 
+//Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BiaWaterUsers') {
             $scope.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers.splice(index, 1);
@@ -161,6 +164,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         }
     }
 
+//Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -191,6 +195,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         }
     }
 
+//Calculate Total
     $scope.getTotal = function(model, property) {
         console.log(model);
         var array = $scope.bsAstsNwsdbDis.water_supply.Table_1[model];
@@ -212,8 +217,8 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
 
     }
 
-    $scope.bsHsDataEdit = function(form)
-    {
+//Edit Data
+    $scope.bsHsDataEdit = function(form){
     $scope.submitted = true;
 
        $scope.is_edit = true;
@@ -234,13 +239,13 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
 
     }
 
-    $scope.cancelEdit = function()
-    {
+//Cancel Edit
+    $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = init_data;
     }
 
-
+//Calculate Grand Total
     $scope.calGrandTotal=function(){
     var finaltotal = 0;
 
@@ -258,5 +263,15 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     grantot = finaltotal;
     return grantot;
     }
+
+//Clear Function
+    $scope.clear = function() {
+
+        $scope.is_edit = false;
+        $scope.bsAstsNwsdbDis = angular.copy(init_data);
+        console.log($scope.bsAstsNwsdbDis);
+
+    }
+
 
 })

@@ -1,0 +1,208 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<style>
+@media print
+{    
+
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    #in {width:100%;}
+   .table th, .table td {color:#000!important;} 
+}
+.table th, .table td
+{padding-left:5px;}
+</style>
+<!-- Main content -->
+<div class="main" ng-app="dlWaterSupplyNatApp" ng-controller="DlWaterSupplyNatController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb no-print">
+
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Power Supply Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Report</span>
+        </li>
+
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-header">
+                <strong>Power Supply Sector Report</strong>
+
+            </div>
+            <div class="card-block">
+
+
+                <div ng-form name="report_sum_dl_nat" class="row">
+                    <div class="col-xs-1">
+ <label for="cvv">Incident</label>
+ </div>
+  <div class="col-xs-3" id="in">
+                        <div class="form-group">
+                           
+                            <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
+                                    class="form-control" required>
+                                <option value="">-- Select --</option>
+                                {% for incident in incidents %}
+                                <option value="{{ incident.id }}">{{ incident.reported_date_time }}{{
+                                    incident.disaster_type }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <span style="color:red;" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
+                                       Please select Incident
+                                 </span>
+                        </div>
+
+                    </div>
+
+<div class="no-print">
+                    <div class="col-xs-2">
+
+                        <div class="form-group">
+
+                            <button ng-click="loadData(report_sum_dl_nat)" type="button"
+                                    class="btn btn-success" style=""><i
+                                    class="fa fa-search"></i> Search
+                            </button>
+
+                        </div>
+                        </div>
+                        <div class="col-xs-1">
+                        <div class="form-group">
+                            <button ng-print print-element-id="print_report" class="btn btn-info" style="margin-left:10px;"><i
+                                    class="fa fa-print"></i> Print
+                                Report
+                            </button>
+                        </div>
+                    </div>
+</div>
+
+                </div>
+                <span style="color:red;" ng-show="isDataAvailable">
+                                       No Data Available
+                                 </span>
+                <!--/row-->
+                  <!--national -->
+        <div ng-if="!checkIfNull()" id="print_report" style="">
+ <table class="table table-bordered">
+
+                    <colgroup>
+                        <col width="193"/>
+                        <col width="97"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+
+                    <tbody>
+                    <tr class="trhead1">
+                        <td class="trhead1 p5" width="130" colspan="2">
+                            Incident
+                        </td>
+                        <td width="125">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+
+
+                        <td>
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData()">Load
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
+
+                    <tbody>
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" height="38" width="193">
+                            Number of Customers Affected
+                        </td>
+                        <td height="19" width="97">
+                            Domestic
+                        </td>
+                        <td height="19" width="63">
+                            Industrial
+                        </td>
+                        <td height="19" width="63">
+                            Commercial
+                        </td>
+                        <td height="19" width="63">
+                            Others
+                        </td>
+                        <td height="19" width="63">
+                            Total
+                        </td>
+                    </tr>
+                    <!--<tr height="19">-->
+                        <!--<td height="19" width="97">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <!--<td height="19" width="63">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <!--<td height="19" width="63">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <!--<td height="19" width="63">-->
+                            <!-- - -->
+                        <!--</td>-->
+                        <!--<td height="19" width="63">-->
+                            <!-- - -->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <tr class="trheadc" height="19">
+                        <td rowspan="2" height="38" width="193">
+                            Province
+                        </td>
+                        <td colspan="2" rowspan="2" height="38" width="194">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" height="19" width="126">
+                            Losses (LKR)
+                        </td>
+                        <td rowspan="2" height="38" width="63">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td height="19" width="63">
+                            Year 1
+                        </td>
+                        <td height="19" width="63">
+                            Year 2
+                        </td>
+                    </tr>
+                  
+                    </tbody>
+                </table>
+        </div>
+            </div>
+        </div>
+
+      
+    </div>
+</div>
+
+</main>
+{% endblock content %}

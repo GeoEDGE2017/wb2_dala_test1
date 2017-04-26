@@ -90,6 +90,22 @@ def water_supply_summary(request):
     }
     return render(request, 'reports/report_water_supply.html', context)
 
+def power_supply_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_power_supply.html', context)
+
+def industry_services_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_industry_services.html', context)
+
 
 def transport_land_summary(request):
     incidents = IncidentReport.objects.all()

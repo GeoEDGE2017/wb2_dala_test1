@@ -37,4 +37,10 @@ urlpatterns = [
      #water_supply
     url(r'^water_supply_summary$', views.water_supply_summary, name='water_supply_summary'),
 
+     #power_supply
+    url(r'^power_supply_summary$', views.power_supply_summary, name='power_supply_summary'),
+
+    #industry_services
+    url(r'^industry_services_summary$', views.industry_services_summary, name='industry_services_summary'),
+
 ]

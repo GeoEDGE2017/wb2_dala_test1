@@ -1,14 +1,16 @@
+//Table 3
 var app= angular.module('unitCostMiniHealthSysApp', [])
 
 app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($scope, $http) {
+
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
-
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//initialize model
     var init_data = {
         'health': {
             'Table_3': {
@@ -205,9 +207,9 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
             }
         }
     }
+    $scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
 
-    $scope.bsUnitCostMiniHealthSys = init_data;
-
+//Save Data
     $scope.saveBucMarStructure = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -242,6 +244,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
         }
     }
 
+//Edit Data
     $scope.blDataEdit = function(form){
         $scope.is_edit = true;
          $scope.submitted = true;
@@ -267,60 +270,19 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     }
     }
 
-
-//    $scope.cancelEdit = function() {
-//         $scope.is_edit = false;
-//         $scope.bsUnitCostMiniHealthSys = init_data;
-//            dataType: 'json',
-//        }).then(function mySucces(response) {
-//
-//            //if data sent to server side method successfull
-//	$("#modal-container-239453").modal('show');
-//            console.log(response);
-//
-//            }, function myError(response) {
-//                //if data sent to server side method unsuccessfull
-//                console.log(response);
-//        });
-//    }
-
-
-
-    $scope.cancelEdit = function()
-{
+//Cancel Edit
+    $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.bsUnitCostMiniHealthSys = init_data;
 }
 
-    // get relevant base-line data for calculations
-//    function getBsData()
-//    {
-//        $http({
-//        method: 'POST',
-//        url: '/base_line/bs_get_data',
-//        contentType: 'application/json; charset=utf-8',
-//        data: angular.toJson({
-//            'db_tables': ['BucOmarStructure', 'BhsComDiseases'],
-//        }),
-//        dataType: 'json',
-//        }).then(function successCallback(response) {
-//            // for calculations base_hospital - row wise , particulars = 1 Floor Structure column wise
-//            var data = response.data;
-//            angular.forEach(data, function(value, key) {
-//              $scope.bs_data[key] = JSON.parse(value);
-//            });
-//
-//            console.log($scope.bs_data);
-//
-//        }, function errorCallback(response) {
-//
-//            console.log(response);
-//        });
-//    }
+//Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
+
+    }
 
 
-//    $scope.init = function init()
-//    {
-//      getBsData();
-//    }
 }])

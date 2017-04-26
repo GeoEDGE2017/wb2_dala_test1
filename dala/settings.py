@@ -146,7 +146,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
         #     'options': '-c search_path=power_supply'
-        #                   'health,public,other_government,education,mining,'
+        #                'health,public,other_government,education,mining,'
         #                'transport_rail,transport_water,transport_land,transport_air,'
         #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
         #                'housing, telecommunication'
@@ -154,9 +154,6 @@ DATABASES = {
 
         # 'OPTIONS': {
         #     'options': '-c search_path=other_government'
-
-        #     'options': '-c search_path=health'
-
         # },
 
         'NAME': 'dala',
@@ -210,6 +207,10 @@ STATIC_URL = '/static/'
 
 # table properties
 TABLE_PROPERTY_MAPPER = {
+    'dashboard': {
+        'IncidentTotal': [
+                'tot_dmgloss', 'incident', 'reported_date_time', 'name'],
+    },
     'health': {
         'Table_1': {'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
                     'BhsComDiseases': ['com_disease', 'male', 'female', 'children', 'elderly', 'id'],

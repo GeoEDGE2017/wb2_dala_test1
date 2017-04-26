@@ -34,6 +34,7 @@
     <script src="{% static 'dashboard/js/bootstrap-datepicker.js' %}"></script>
     <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
     <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
+    <script src='{% static "dashboard/js/dashboard.js" %}'></script>
 
     <!--agri_livestock-->
     {% if module == 'agri_livestock' %}
@@ -242,6 +243,7 @@
     <script src='{% static "industry_services/damage_losses/js/summary_ind_ser_of_damages_losses_province.js" %}'></script>
     <script src='{% static "industry_services/damage_losses/js/dl_sum_nat.js" %}'></script>
 
+
     <!--power_supply-->
     {% elif module == 'power_supply' %}
     <script src='{% static "power_supply/damage_losses/js/dl_ceb.js" %}'></script>
@@ -250,6 +252,10 @@
     <script src='{% static "power_supply/damage_losses/js/dl_sum_powsup_dis.js" %}'></script>
     <script src='{% static "power_supply/damage_losses/js/dl_sum_power_pro.js" %}'></script>
     <script src='{% static "power_supply/damage_losses/js/dl_sum_power_nat.js" %}'></script>
+
+    <!--{% elif module == 'dashboard' %}-->
+    <!--<script src='{% static "dashboard/js/dashboard.js" %}'></script>-->
+
     {% endif %}
 
     <script>
@@ -366,6 +372,7 @@ input[type=number] {
                     <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
                     <a class="dropdown-item" href="{% url 'admin:logout' %}"><i class="fa fa-lock"></i> Logout</a>
                 </div>
+
             </li>
             <li class="nav-item">
                 &nbsp;
@@ -418,7 +425,7 @@ input[type=number] {
                         <a class="nav-link" href="{% url 'dashboard:transport_water_main' %}"> Water </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_summary_main' %}"> 
+                        <a class="nav-link" href="{% url 'dashboard:transport_summary_main' %}">
                             Summary </a>
                     </li>
 
@@ -445,7 +452,7 @@ input[type=number] {
                         <a class="nav-link" href="{% url 'dashboard:agri_livestock_main' %}"> Livestock </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_summary_main' %}"> 
+                        <a class="nav-link" href="{% url 'dashboard:agri_summary_main' %}">
                             Summary </a>
                     </li>
 
@@ -469,7 +476,7 @@ input[type=number] {
                 <a class="nav-link" href="{% url 'dashboard:power_supply_main' %}"><i class="icon-speedometer"></i> Power Supply </a>
             </li>
 
-            
+
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'dashboard:housing_main' %}"><i class="icon-speedometer"></i> Housing </a>
@@ -597,7 +604,7 @@ input[type=number] {
                     </div>
                     <div class="modal-footer">
 
-                        
+
                         <button id="ok" onclick="javascript:window.location.reload()" type="button"
                                 class="btn btn-primary">
                             OK

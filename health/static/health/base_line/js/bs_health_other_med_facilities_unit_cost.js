@@ -9,7 +9,7 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
-//initialize model
+    //initialize model
     var init_data = {
         'health': {
             'Table_4': {

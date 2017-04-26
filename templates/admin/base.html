@@ -46,7 +46,7 @@
                 {% if user.has_usable_password %}
                 <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
                 {% endif %}
-                <a href="{% url 'dashboard:logout' %}">{% trans 'Log out' %}</a>
+                <a href="{% url 'admin:logout' %}" onclick="window.location = 'http://127.0.0.1:8000/'">{% trans 'Log out' %}  </a>
             {% endblock %}
         </div>
         {% endif %}

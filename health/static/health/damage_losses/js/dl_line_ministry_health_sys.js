@@ -1,3 +1,4 @@
+//Table 5
 var app = angular.module('dlInTheLineMinistryHealthSysApp', [])
 
 app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', function($scope, $http) {
@@ -5,15 +6,13 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.selectedDistrict;
     $scope.incident;
     $scope.Districts=[];
-
     $scope.dlDate;
     $scope.bs_data={};
-
     $scope.baselineDate;
-
     $scope.is_edit = false;
     $scope.is_valid_data = true;
 
+    //initialize model
     var init_data = {
         'health': {
             'Table_5': {
@@ -446,70 +445,70 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
     }
 
-    $scope.dlMinistryHealthSys = init_data;
+    $scope.dlMinistryHealthSys = angular.copy(init_data);
 
+    //Save Data
     $scope.saveBucMarStructure = function(form) {
-
         $scope.submitted = true;
-
-       if(form.$valid){
-        $http({
-            method : 'POST',
-            url : '/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlMinistryHealthSys,
-                'com_data': {
-                    'district_id': $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                },
-                'is_edit': $scope.is_edit
-            }),
-            dataType: 'json',
-        }).then(function mySucces(response) {
-            console.log(response);
-            if(response.data == 'False')
-                $scope.is_valid_data = false;
-            else
-                $("#modal-container-239453").modal('show');
+        if(form.$valid){
+            $http({
+                method : 'POST',
+                url : '/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlMinistryHealthSys,
+                    'com_data': {
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function mySucces(response) {
+                console.log(response);
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
             }, function myError(response) {
                 //if data sent to server side method unsuccessfull
                 console.log(response);
-        });
+            });
         }
     }
 
-    $scope.dlDataEdit = function(form){
-         $scope.is_edit = true;
+    //Edit Data
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
         $scope.submitted = true;
 
-       if(form.$valid){
-        $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-                'table_name':  'Table_5',
-                'sector':'health',
-                'com_data': {
-                    'district': $scope.district.district__id,
-                    'incident': $scope.incident,
-
-                },
-            }),
-        }).success(function(data) {
-
-            $scope.dlMinistryHealthSys = data;
-            console.log($scope.dlMinistryHealthSys.Table_5.DmhNdatFacStructure);
-        })
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_5',
+                    'sector':'health',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                $scope.dlMinistryHealthSys = data;
+                console.log($scope.dlMinistryHealthSys.Table_5.DmhNdatFacStructure);
+            })
         }
     }
 
+    //Cancel Edit
     $scope.cancelEdit = function() {
-         $scope.is_edit = false;
-         $scope.dlHealthDamagelostPrivateSys = init_data;
+        $scope.is_edit = false;
+        $scope.dlMinistryHealthSys = init_data;
     }
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    //Fetch district
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -523,33 +522,49 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
 
         if($scope.incident && $scope.district ) {
-
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
-                  'com_data': {
+                    'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
+                    'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        },
-                   'table_name': 'Table_3',
-                   'sector': 'health'
+                    },
+                    'table_name': 'Table_3',
+                    'sector': 'health'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
+                var is_null = false;
 
-                console.log($scope.bs_data);
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
 
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
             }, function errorCallback(response) {
-
+                console.log('baseline tables data retrieving error');
                 console.log(response);
             });
         }
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlMinistryHealthSys = angular.copy(init_data);
     }
 }])

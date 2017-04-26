@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
     <!-- Main content -->
-    <main class="main">
+    <main class="main" ng-app="dashboardApp" ng-controller="DashboardController">
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
@@ -10,12 +10,11 @@
             <li class="breadcrumb-item"><a href="#">Admin</a>
             </li>
             <li class="breadcrumb-item active">Dashboard</li>
-           
-           
+
         </ol>
 
 
-        <div class="container-fluid">
+        <div class="container-fluid" ng-init="fetchIncidentData()">
 
             <div class="animated fadeIn">
                 <div class="row">
@@ -37,8 +36,8 @@
                         <div class="card card-inverse card-info">
                             <div class="card-block pb-0">
                                
-                                <h4 class="mb-0">0 Losses</h4>
-                                <p>in this month</p>
+                                <h4 class="mb-0" ng-bind="month_losses"> </h4>
+                                <p>Losses in this month</p>
                             </div>
                             <div class="chart-wrapper px-1" style="height:40px;">
                                 <canvas id="card-chart2" class="chart" height="50"></canvas>
@@ -50,9 +49,9 @@
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-warning">
                             <div class="card-block pb-0">
-                               
-                                <h4 class="mb-0">Last Inserted Data</h4>
-                                <p>Health - Baseline data</p>
+                                <h4 class="mb-0" ng-bind="lastIncidentDamge "></h4>
+                               <p class="mb-0" ng-bind=" 'Damage and Losses of Last Reported Incident ' + lastIncident"></p>
+
                             </div>
                             <div class="chart-wrapper" style="height:40px;">
                                 <canvas id="card-chart3" class="chart" height="50"></canvas>
@@ -65,7 +64,7 @@
                         <div class="card card-inverse card-danger">
                             <div class="card-block pb-0">
                                 
-                                <h4 class="mb-0">25 Million</h4>
+                                <h4 class="mb-0" ng-bind="total_damages"></h4>
                                 <p>Damages So far this year</p>
                             </div>
                             <div class="chart-wrapper px-1" style="height:40px;">

@@ -33,17 +33,16 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
                 method: "POST",
                 url: '/dl_fetch_total_data',
                 data: angular.toJson({
-                    'table_name':'Table_5',
-                    'sector':'water_supply',
+                    'table_name':'Table_3',
+                    'sector':'telecommunication',
                     'com_data': {
                         'district':  $scope.district.district__id,
                         'incident': $scope.incident,
                     },
                 }),
             }).success(function(data) {
-
-            $scope.data=data;
-            $scope.dlWaterSupplyDis = data;
+                $scope.data=data;
+                $scope.dlWaterSupplyDis = data;
             })
         }
     }

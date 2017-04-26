@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^transport_rail_main$', views.transport_rail_main, name='transport_rail_main'),
     url(r'^transport_water_main$', views.transport_water_main, name='transport_water_main'),
     url(r'^transport_summary_main$', views.transport_summary_main, name='transport_summary_main'),
-
     url(r'^agri_agrarian_main$', views.agri_agrarian_main, name='agri_agrarian_main'),
     url(r'^agri_fisheries_main$', views.agri_fisheries_main, name='agri_fisheries_main'),
     url(r'^agri_irrigation_main$', views.agri_irrigation_main, name='agri_irrigation_main'),
@@ -28,6 +27,9 @@ urlpatterns = [
     url(r'^industry_services_main$', views.industry_services_main, name='industry_services_main'),
     url(r'^telecom_main$', views.telecom_main, name='telecom_main'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/admin/login/'}, name='logout'),
+    # url(r'^logout/$', views.logout, name='logout'),
+    # url(r'^error_main$', views.error_main, name='error_main'),
+    url(r'^fetch_dashboard_data$', views.fetch_dashboard_data, name='fetch_dashboard_data'),
 
 
 ]

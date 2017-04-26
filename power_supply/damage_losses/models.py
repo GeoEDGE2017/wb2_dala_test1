@@ -409,52 +409,52 @@ class DlNumAffNational(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'power_supply\".\"dl_num_aff_province'
+        db_table = 'power_supply\".\"dl_num_aff_national'
 
 
-# class TotDmgCebNational(models.Model):
-#     tot_dmg = models.BigIntegerField(blank=True, null=True)
-#     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-#     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
-#     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'power_supply\".\"tot_dmg_ceb_province'
-#
-#
-# class TotLosCebProvince(models.Model):
-#     losses_y1 = models.BigIntegerField(blank=True, null=True)
-#     losses_y2 = models.BigIntegerField(blank=True, null=True)
-#     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-#     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-#     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'power_supply\".\"tot_los_ceb_province'
-#
-#
-# class TotDmgPvtProvince(models.Model):
-#     tot_replace_cost = models.BigIntegerField(blank=True, null=True)
-#     ownership = models.CharField(max_length=255, blank=True, null=True)
-#     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-#     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-#     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'power_supply\".\"tot_dmg_pvt_province'
-#
-#
-# class TotLossesPvtProvince(models.Model):
-#     los_year1 = models.BigIntegerField(blank=True, null=True)
-#     los_year2 = models.BigIntegerField(blank=True, null=True)
-#     ownership = models.CharField(max_length=255, blank=True, null=True)
-#     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-#     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-#     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'power_supply\".\"tot_losses_pvt_province'
+class TotDmgCebNational(models.Model):
+    tot_dmg = models.BigIntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"tot_dmg_ceb_national'
+
+
+class TotLosCebNational(models.Model):
+    losses_y1 = models.BigIntegerField(blank=True, null=True)
+    losses_y2 = models.BigIntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"tot_los_ceb_national'
+
+
+class TotDmgPvtNational(models.Model):
+    tot_replace_cost = models.BigIntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"tot_dmg_pvt_national'
+
+
+class TotLossesPvtNational(models.Model):
+    los_year1 = models.BigIntegerField(blank=True, null=True)
+    los_year2 = models.BigIntegerField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"tot_losses_pvt_national'

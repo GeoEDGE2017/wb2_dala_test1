@@ -373,8 +373,6 @@ class DlfLosMfisheriesDistrict(models.Model):
 
 
 # National Table
-
-
 class DlfDmgPubNational(models.Model):
     fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
     dmg_pub = models.FloatField(blank=True, null=True)
@@ -467,5 +465,10 @@ class DlfLosNational(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_fisheries\".\"dlf_los_national'
+
+
+#
+
+
 
 

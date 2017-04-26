@@ -1739,3 +1739,173 @@ class DapBefOtherDistrict(models.Model):
         managed = False
         db_table = 'health\".\"dap_bef_other_district'
 
+# National
+
+
+class DmhLmhMohNational(models.Model):
+    teaching_hospital = models.BigIntegerField(blank=True, null=True)
+    provincial_general_hospital = models.BigIntegerField(blank=True, null=True)
+    district_general_hospital = models.BigIntegerField(blank=True, null=True)
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_lmh_moh_national'
+
+
+class DmhPafNational(models.Model):
+    teaching_hospital = models.BigIntegerField(blank=True, null=True)
+    provincial_general_hospital = models.BigIntegerField(blank=True, null=True)
+    district_general_hospital = models.BigIntegerField(blank=True, null=True)
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_paf_national'
+
+
+class DmhDamagesNational(models.Model):
+    teaching_hospital = models.BigIntegerField(blank=True, null=True)
+    provincial_general_hospital = models.BigIntegerField(blank=True, null=True)
+    district_general_hospital = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_damages_national'
+
+
+class DmhLosNational(models.Model):
+    teaching_hospital = models.BigIntegerField(blank=True, null=True)
+    provincial_general_hospital = models.BigIntegerField(blank=True, null=True)
+    district_general_hospital = models.BigIntegerField(blank=True, null=True)
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    type_of_losses = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_los_national'
+
+
+class DmhDamagesMohNational(models.Model):
+    office = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmh_damages_moh_national'
+
+
+class DmfTotAffectedNational(models.Model):
+    base_hospital = models.BigIntegerField(blank=True, null=True)
+    divisional_hospital = models.BigIntegerField(blank=True, null=True)
+    rural_hospital = models.BigIntegerField(blank=True, null=True)
+    central_dispensary = models.BigIntegerField(blank=True, null=True)
+    pmcus = models.BigIntegerField(blank=True, null=True)
+    phccs = models.BigIntegerField(blank=True, null=True)
+    mchcs = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_tot_affected_national'
+
+
+class DmfOmfTpaNational(models.Model):
+    num_patients_affected = models.CharField(max_length=255, blank=True, null=True)
+    base_hospital = models.BigIntegerField(blank=True, null=True)
+    divisional_hospital = models.BigIntegerField(blank=True, null=True)
+    rural_hospital = models.BigIntegerField(blank=True, null=True)
+    central_dispensary = models.BigIntegerField(blank=True, null=True)
+    pmcus = models.BigIntegerField(blank=True, null=True)
+    phccs = models.BigIntegerField(blank=True, null=True)
+    mchcs = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_omf_tpa_national'
+
+
+class DmfDamagesNational(models.Model):
+    base_hospital = models.BigIntegerField(blank=True, null=True)
+    divisional_hospital = models.BigIntegerField(blank=True, null=True)
+    rural_hospital = models.BigIntegerField(blank=True, null=True)
+    central_dispensary = models.BigIntegerField(blank=True, null=True)
+    pmcus = models.BigIntegerField(blank=True, null=True)
+    phccs = models.BigIntegerField(blank=True, null=True)
+    mchcs = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_damages_national'
+
+
+class DmfLosNational(models.Model):
+    type_of_losses = models.CharField(max_length=255, blank=True, null=True)
+    base_hospital = models.BigIntegerField(blank=True, null=True)
+    divisional_hospital = models.BigIntegerField(blank=True, null=True)
+    rural_hospital = models.BigIntegerField(blank=True, null=True)
+    central_dispensary = models.BigIntegerField(blank=True, null=True)
+    pmcus = models.BigIntegerField(blank=True, null=True)
+    phccs = models.BigIntegerField(blank=True, null=True)
+    mchcs = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dmf_los_national'
+
+
+class DapPvtNational(models.Model):
+    type_med_fac = models.CharField(max_length=255, blank=True, null=True)
+    num_affected_fac = models.BigIntegerField(blank=True, null=True)
+    male = models.BigIntegerField(blank=True, null=True)
+    female = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dap_pvt_national'
+
+
+class DapBefPcNational(models.Model):
+    est_replacement_cost = models.BigIntegerField(blank=True, null=True)
+    est_losses_y1 = models.BigIntegerField(blank=True, null=True)
+    est_losses_y2 = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dap_bef_pc_national'
+
+
+class DapBefOtherNational(models.Model):
+    est_replacement_cost = models.BigIntegerField(blank=True, null=True)
+    est_losses_y1 = models.BigIntegerField(blank=True, null=True)
+    est_losses_y2 = models.BigIntegerField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dap_bef_other_national'

@@ -11,6 +11,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
      $scope.Districts=[];
      $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'water_supply': {
             'Table_4': {
@@ -82,8 +83,9 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
         }
     }
 
-    $scope.dlRuralWtrSply = init_data;
+    $scope.dlRuralWtrSply = angular.copy(init_data);
 
+//Get Districts and related baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -122,6 +124,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
         }
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -171,19 +174,25 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
 
     console.log(data);
 
-
     $scope.dlRuralWtrSply = data;
     })
 
 }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
         $scope.dlRuralWtrSply = init_data;
 
 }
 
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlRuralWtrSply = angular.copy(init_data);
 
+    }
 
 
 

@@ -8,6 +8,7 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'housing' : {
             'Table_2' : {
@@ -81,8 +82,9 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
         }
     }
 
-    $scope.bsCostsHusngUnits = init_data;
+    $scope.bsCostsHusngUnits = angular.copy(init_data);
 
+//Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -112,32 +114,42 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
         }
     }
 
-    $scope.bsHsDataEdit = function(form)
-    {
-    $scope.submitted = true;
+//Edit Data
+    $scope.bsHsDataEdit = function(form){
+        $scope.submitted = true;
 
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_2',
-              'sector': 'housing',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date} }),
-        }).success(function(data) {
+           $scope.is_edit = true;
+            $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                  'table_name': 'Table_2',
+                  'sector': 'housing',
+                  'com_data': {'district': $scope.district,
+                  'bs_date': $scope.bs_date} }),
+            }).success(function(data) {
 
-        console.log(data);
-        $scope.bsCostsHusngUnits = data;
-        })
+            console.log(data);
+            $scope.bsCostsHusngUnits = data;
+            })
 
 
     }
 
+//Cancel Edit
     $scope.cancelEdit = function()
     {
         $scope.is_edit = false;
         $scope.bsCostsHusngUnits = init_data;
+    }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsCostsHusngUnits = angular.copy(init_data);
+
+
     }
 
 

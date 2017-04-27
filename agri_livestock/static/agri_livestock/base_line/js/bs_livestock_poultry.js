@@ -12,6 +12,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.is_valid_data = true;
     $scope.organizations = [];
 
+//Initialize data
     var init_data = {
         'agri_livestock': {
             'Table_2': {
@@ -311,8 +312,9 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         }
     }
 
-    $scope.bsLivestockPoultry = init_data;
+    $scope.bsLivestockPoultry = angular.copy(init_data);
 
+//Add Enumerate Fileds
     $scope.insertAsset = function(table) {
         console.log($scope.bsLivestockPoultry.agri_livestock.Table_2[table]);
         var new_row;
@@ -405,6 +407,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         $scope.bsLivestockPoultry.agri_livestock.Table_2[table].push(new_row);
     }
 
+//Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BlpAnmLivestock') {
             $scope.bsLivestockPoultry.agri_livestock.Table_2.BlpAnmLivestock.splice(index, 1);
@@ -429,6 +432,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         }
     }
 
+//Save data
     $scope.saveBsData = function() {
       $scope.submitted = true;
       var array = $scope.bsLivestockPoultry.agri_livestock.Table_2;
@@ -463,7 +467,7 @@ $("#modal-container-239454").modal('show');
         });
 }
 
-
+//Save Organization
     $scope.saveOrganization = function(form){
     console.log($scope.new_organization);
     $scope.new_organization.district_id = $scope.district;
@@ -492,6 +496,7 @@ $("#modal-container-239454").modal('show');
 
 }
 
+//Fetch Organizations
     $scope.fetchOrganization = function(){
 
     $scope.new_organization.district_id = $scope.district;
@@ -512,6 +517,7 @@ $("#modal-container-239454").modal('show');
     })
 }
 
+//Edit Data
     $scope.bsHsDataEdit = function(form){
     $scope.submitted = true;
 
@@ -533,12 +539,20 @@ $("#modal-container-239454").modal('show');
 
     }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsLivestockPoultry = init_data;
     }
 
 
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsLivestockPoultry = angular.copy(init_data);
 
+
+    }
 
 }]);

@@ -11,6 +11,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.Districts=[];
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'water_supply': {
             'Table_3': {
@@ -120,8 +121,9 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
     }
 
-    $scope.dlComWtrSply = init_data;
+    $scope.dlComWtrSply = angular.copy(init_data);
 
+//Get Districts and related baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -162,6 +164,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
     }
 
+//Get Reference Data from Baseline
     function generateRefencedData() {
         data_array = ['BiaWaterIntake', 'BiaTreatmentPlant', 'BiaWaterDistribution', 'BiaMainOffice'];
 
@@ -282,7 +285,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         });
     }
 
-
+//Save Data
     $scope.saveDlData = function(form) {
         if(form.$valid) {
             $scope.submitted = true;
@@ -310,6 +313,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
     }
 
+//Calculate GrandTotal
     $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -346,6 +350,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     return grantot;
     }
 
+//Edit Data
     $scope.dlDataEdit = function(form){
 
     $scope.is_edit = true;
@@ -373,11 +378,21 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
 
 }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
-        $scope.dlComWtrSply = init_data;
+       $scope.dlComWtrSply = init_data;
 
-}
+    }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlComWtrSply = angular.copy(init_data);
+
+    }
+
 
 
 }]);

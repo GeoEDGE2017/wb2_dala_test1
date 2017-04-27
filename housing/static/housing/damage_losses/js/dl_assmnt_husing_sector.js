@@ -12,6 +12,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.is_valid_data = true;
     var finaltotal = 0;
 
+//Initialize Data
     var init_data = {
         'housing': {
             'Table_3': {
@@ -319,8 +320,9 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         }
     }
 
-    $scope.dlAssmntHusing = init_data;
+    $scope.dlAssmntHusing = angular.copy(init_data);
 
+//Get Districts and Related baseline data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -369,6 +371,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         }
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
         if(form.$valid) {
             $scope.submitted = true;
@@ -399,6 +402,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         }
     }
 
+//Calculate Total
    $scope.calTotal=function(arr,property){
         var finaltotal = 0;
 
@@ -411,39 +415,37 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         return finaltotal;
         }
 
+//Calculate Total function
    $scope.calTotTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
-
     var grantot = 0;
-
     var array1=$scope.dlAssmntHusing.housing.Table_3.DlDesPermanent;
     var array2 =$scope.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent;
     var array3 =$scope.dlAssmntHusing.housing.Table_3.DlDesImprovised;
 
-
     angular.forEach(array1, function(value, key) {
      if(value.assets !='Total'){
-     finaltotal1 = finaltotal1 + value.tot_num_houses ;
+         finaltotal1 = finaltotal1 + value.tot_num_houses ;
      }
     })
     angular.forEach(array2, function(value, key) {
      if(value.assets !='Total'){
-     finaltotal2 = finaltotal2 + value.tot_num_houses ;
+         finaltotal2 = finaltotal2 + value.tot_num_houses ;
      }
     })
     angular.forEach(array3, function(value, key) {
      if(value.assets !='Total'){
-     finaltotal3 = finaltotal3 + value.tot_num_houses ;
+         finaltotal3 = finaltotal3 + value.tot_num_houses ;
      }
     })
-
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
     $scope.tot=grantot;
     return grantot;
     }
 
+//Calculate Loss Total
    $scope.calLosTotTotal=function(arr,property){
         var finaltotal = 0;
         console.log('test',arr);
@@ -456,13 +458,12 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         return finaltotal;
         }
 
+//Calculate Grand Total
    $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
-
     var grantot = 0;
-
     var array1=$scope.dlAssmntHusing.housing.Table_3.DlDesPermanent;
     var array2 =$scope.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent;
     var array3 =$scope.dlAssmntHusing.housing.Table_3.DlDesImprovised;
@@ -470,24 +471,24 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
     angular.forEach(array1, function(value, key) {
      if(value.assets =='Total'){
-     finaltotal1 = finaltotal1 + value.damages ;
+         finaltotal1 = finaltotal1 + value.damages ;
      }
     })
     angular.forEach(array2, function(value, key) {
      if(value.assets =='Total'){
-     finaltotal2 = finaltotal2 + value.damages ;
+         finaltotal2 = finaltotal2 + value.damages ;
      }
     })
     angular.forEach(array3, function(value, key) {
     if(value.assets =='Total'){
-     finaltotal3 = finaltotal3 + value.damages ;
+         finaltotal3 = finaltotal3 + value.damages ;
      }
     })
-
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
     return grantot;
     }
 
+//Calculate Partial Total
    $scope.calPartialTotTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -502,26 +503,26 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
     angular.forEach(array1, function(value, key) {
      if(value.assets !='Total'){
-     finaltotal1 = finaltotal1 + value.tot_num_houses ;
+         finaltotal1 = finaltotal1 + value.tot_num_houses ;
      }
     })
     angular.forEach(array2, function(value, key) {
      if(value.assets !='Total'){
-     finaltotal2 = finaltotal2 + value.tot_num_houses ;
+         finaltotal2 = finaltotal2 + value.tot_num_houses ;
      }
     })
     angular.forEach(array3, function(value, key) {
      if(value.assets !='Total'){
-     finaltotal3 = finaltotal3 + value.tot_num_houses ;
+         finaltotal3 = finaltotal3 + value.tot_num_houses ;
      }
     })
-
     grandparttot = grandparttot + finaltotal1+ finaltotal2 + finaltotal3;
     $scope.partialtot = grandparttot;
     return grandparttot;
 
     }
 
+//Calculate Grand Partial Total
    $scope.calPartialGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -536,55 +537,61 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
     angular.forEach(array1, function(value, key) {
      if(value.assets =='Total'){
-     finaltotal1 = finaltotal1 + value.damages ;
+         finaltotal1 = finaltotal1 + value.damages ;
      }
     })
     angular.forEach(array2, function(value, key) {
      if(value.assets =='Total'){
-     finaltotal2 = finaltotal2 + value.damages ;
+         finaltotal2 = finaltotal2 + value.damages ;
      }
     })
     angular.forEach(array3, function(value, key) {
      if(value.assets =='Total'){
-     finaltotal3 = finaltotal3 + value.damages ;
+         finaltotal3 = finaltotal3 + value.damages ;
      }
     })
-
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
     return grantot;
     }
 
+//Edit Data
    $scope.dlDataEdit = function(form){
-
     $scope.is_edit = true;
     $scope.submitted = true;
+        $http({
+        method: "POST",
+        url: '/dl_fetch_edit_data',
+        data: angular.toJson({
+        'table_name':'Table_3',
+        'sector':'housing',
+        'com_data': {
+                'district_id':  $scope.district.district__id,
+                'incident': $scope.incident,
+              },
+               'is_edit':$scope.is_edit
+               }),
+        }).success(function(data) {
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':'Table_3',
-    'sector':'housing',
-    'com_data': {
-            'district_id':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlAssmntHusing = data;
-    })
+        console.log(data);
+        $scope.dlAssmntHusing = data;
+        })
 
 }
 
+//Cancel Edit
    $scope.cancelEdit = function(){
        $scope.is_edit = false;
         $scope.dlAssmntHusing = init_data;
-
 }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlAssmntHusing = angular.copy(init_data);
+
+
+    }
+
 
 }]);

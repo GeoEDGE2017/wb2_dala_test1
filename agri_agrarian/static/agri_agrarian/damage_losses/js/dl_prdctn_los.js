@@ -11,6 +11,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.is_valid_data = true;
     var finaltotal = 0;
 
+//Initialize data
     var init_data = {
         'agri_agrarian': {
             'Table_7': {
@@ -272,10 +273,9 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         }
     }
 
-    $scope.dlPrdctnLos = init_data;
+    $scope.dlPrdctnLos = angular.copy(init_data);
 
-    console.log($scope.dlPrdctnLos);
-
+//Get Districts and Related basline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -317,6 +317,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         }
     }
 
+//Generate Fileds from related basline Data
     function generateRefencedData() {
         data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther',];
         var dl_model1 = null;
@@ -481,6 +482,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         });
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -511,6 +513,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         }
     }
 
+//Calculate Total
     $scope.CalTot=function(arr,property){
     var finaltotal = 0;
 
@@ -524,6 +527,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
      return finaltotal;
     }
 
+//Edit Data
    $scope.dlDataEdit = function(){
 
    $scope.is_edit = true;
@@ -551,10 +555,20 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
 
 }
 
+//Cancel Edit
    $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlPrdctnLos = init_data;
 }
 
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlPrdctnLos = angular.copy(init_data);
+
+
+    }
 
 }]);

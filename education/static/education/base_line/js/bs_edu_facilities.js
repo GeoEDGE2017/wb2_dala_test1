@@ -22,117 +22,117 @@ $scope.BefPvt_avg_female = null;
 
 
 var init_data = {
-'education':{
-'Table_1':{
-'BefPubSchools':[
-{
-type_facilities: '1AB, 1C',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'Type 2',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'Type 3',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'Pirivena',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'Training institutes',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'NCOE, Traninig College',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'TC, CRC, RESC',
-total_number: null,
-avg_male: null,
-avg_female: null,
-}
-],
-'BefPubOffices':[
-{
-type_facilities: 'Ministry Offices',
-total_number: null
-},
-{
-type_facilities: 'Provinicial Offices',
-total_number: null
-},
-{
-type_facilities: 'Zonal Offices',
-total_number: null
-},
-{
-type_facilities: 'Divisional Offices',
-total_number: null
-},
-{
-type_facilities: 'NIE',
-total_number: null
-}
-],
-'BefPvt':[
-{
-type_facilities: 'Pre-school',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'Primary School',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'Secondary School',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'University',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'Technical Institutes',
-total_number: null,
-avg_male: null,
-avg_female: null,
-},
-{
-type_facilities: 'TOTAL',
-total_number: null,
-avg_male: null,
-avg_female: null,
-}
-]
-}
-}
+    'education':{
+        'Table_1':{
+        'BefPubSchools':[
+        {
+            type_facilities: '1AB, 1C',
+            total_number: null,
+            avg_male: null,
+            avg_female: null,
+        },
+        {
+            type_facilities: 'Type 2',
+            total_number: null,
+            avg_male: null,
+            avg_female: null,
+        },
+        {
+            type_facilities: 'Type 3',
+            total_number: null,
+            avg_male: null,
+            avg_female: null,
+        },
+        {
+        type_facilities: 'Pirivena',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'Training institutes',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'NCOE, Traninig College',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'TC, CRC, RESC',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        }
+        ],
+        'BefPubOffices':[
+        {
+        type_facilities: 'Ministry Offices',
+        total_number: null
+        },
+        {
+        type_facilities: 'Provinicial Offices',
+        total_number: null
+        },
+        {
+        type_facilities: 'Zonal Offices',
+        total_number: null
+        },
+        {
+        type_facilities: 'Divisional Offices',
+        total_number: null
+        },
+        {
+        type_facilities: 'NIE',
+        total_number: null
+        }
+        ],
+        'BefPvt':[
+        {
+        type_facilities: 'Pre-school',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'Primary School',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'Secondary School',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'University',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'Technical Institutes',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        },
+        {
+        type_facilities: 'TOTAL',
+        total_number: null,
+        avg_male: null,
+        avg_female: null,
+        }
+        ]
+        }
+    }
 }
 
-$scope.bsEduFacilities = init_data;
+    $scope.bsEduFacilities = angular.copy(init_data);
 
 
  $scope.getTotal = function(model, property) {
@@ -238,34 +238,73 @@ if ( model == 'BefPvt'){
         }
 }
 
+    //Edit Data
+    $scope.bsEditData = function(form) {
+        $scope.submitted = true;
+        if (form.$valid) {
+            $scope.is_edit = true;
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'education',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsEduFacilities = data;
+            })
+        }
+    }
 
+    //Save Data
+    $scope.bsEduDataSubmit = function(form) {
+        $scope.submitted = true;
+        $scope.is_edit = false;
+        if(form.$valid){
+            console.log($scope.bsEduFacilities);
+            $http({
+                method: "POST",
+                url: "/bs_save_data",
+                data: angular.toJson({
+                'table_data': ($scope.bsEduFacilities),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date},
+                    'is_edit': $scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.bsEduFacilities = init_data;
+                $scope.is_edit = false;
 
-$scope.bsEduDataSubmit = function(form){
-$scope.submitted = true;
-
-if(form.$valid){
- $http({
-    method: "POST",
-    url: "/bs_save_data",
-    data: angular.toJson({'table_data': ($scope.bsEduFacilities), 'com_data': {'district': $scope.district,
-          'bs_date': $scope.bs_date}, 'is_edit': $scope.is_edit }),
-    }).success(function(data) {
-
-     $scope.bsEduDataSubmit = init_data;
-     $scope.is_edit = false;
-
-     if(data == 'False')
-      {
+                if(data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-     else
-      $("#modal-container-239453").modal('show');
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            })
+        }
+    }
 
- })
- }
+    //Cancel Edit
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.bsEduFacilities = init_data;
+    }
 
-}
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsEduFacilities = angular.copy(init_data);
+
+    }
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsEduFacilities.education.Table_1[table]);

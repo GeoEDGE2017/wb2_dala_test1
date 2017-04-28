@@ -1,3 +1,4 @@
+//Table 1
 var app= angular.module('bsInfoforCostsOfAssetsOnTheDistrictApp', [])
 
 app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$http', function($scope, $http) {
@@ -57,7 +58,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         }
     }
 
-    $scope.bsCostsOfAssetsOnTheDistrict = init_data;
+    $scope.bsCostsOfAssetsOnTheDistrict = angular.copy(init_data);
 
     $scope.insertAsset = function(table)
     {
@@ -128,11 +129,11 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         }
     }
 
-      $scope.bsHsDataEdit = function(form)
+    $scope.bsHsDataEdit = function(form)
     {
-    $scope.submitted = true;
+        $scope.submitted = true;
 
-       $scope.is_edit = true;
+        $scope.is_edit = true;
         $http({
         method: "POST",
         url: "/bs_fetch_edit_data",
@@ -143,8 +144,8 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
               'bs_date': $scope.baselineDate} }),
         }).success(function(data) {
 
-        console.log(data);
-        $scope.bsCostsOfAssetsOnTheDistrict = data;
+            console.log(data);
+            $scope.bsCostsOfAssetsOnTheDistrict = data;
         })
 
 
@@ -156,5 +157,11 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         $scope.bsCostsOfAssetsOnTheDistrict = init_data;
     }
 
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsCostsOfAssetsOnTheDistrict = angular.copy(init_data);
 
+    }
 }])

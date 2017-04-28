@@ -63,22 +63,11 @@
                         </td>
                     </tr>
                     <tr class="trhead1" height="19">
-                        <td height="19" width="244">
-                            District
-                        </td>
-                        <td colspan="3" width="328">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    class="form-control" ng-change="changedValue(false);" required>
-                                <!--fetchFirms();-->
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
                         <td width="103">
                             Incident
                         </td>
-                        <td width="107">
-                            <select id="selectbasic" name="incident" ng-model="incident"
+                        <td width="107" colspan="3" >
+                            <select id="selectbasic"  name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
@@ -90,6 +79,18 @@
                                 {% endfor %}
                             </select>
                         </td>
+                        <td height="19" width="244">
+                            District
+                        </td>
+                        <td width="328">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false);" required>
+                                <!--fetchFirms();-->
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+
                     </tr>
                     <tr class="trheadc1" height="19">
                         <td height="19" width="244">
@@ -198,12 +199,12 @@
                         <td class="tdpa" height="19" width="244" >
                             Total
                         </td>
-                        <td class="tdpa" width="112" ng-bind = "row.num_dst_ast = getTotalCol('PvtDmgAst','num_dst_ast', row)">
+                        <td class="tdpa" width="112" >
                         </td>
                         <td width="108" ng-bind = "row.tot_replace_cost = getTotalCol('PvtDmgAst','tot_replace_cost', row)">
                             -
                         </td>
-                        <td class="tdpa" width="108" ng-bind = "row.num_pdmg_ast = getTotalCol('PvtDmgAst','num_pdmg_ast', row)">
+                        <td class="tdpa" width="108" >
                         </td>
                         <td width="103" ng-bind = "row.tot_repair_cost = getTotalCol('PvtDmgAst','tot_repair_cost', row)">
                             -

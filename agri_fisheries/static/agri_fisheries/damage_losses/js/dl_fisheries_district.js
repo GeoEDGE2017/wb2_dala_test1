@@ -12,6 +12,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     $scope.is_edit = false;
     $scope.is_valid_data = true;
 
+//Initialize data
     var init_data = {
         'agri_fisheries' : {
             'Table_3': {
@@ -366,8 +367,9 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         }
     }
 
-    $scope.dlFisheriesDistrict = init_data;
+    $scope.dlFisheriesDistrict = angular.copy(init_data);
 
+//Get Districts and baseline related data
     $scope.changedValue=function getBsData(selectedValue) {
 
         if($scope.incident && selectedValue) {
@@ -413,6 +415,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         }
     }
 
+//Get Fishing Types
     $scope.getFishingTypes = function(form) {
         $http({
             method: "POST",
@@ -427,6 +430,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         })
     }
 
+//Generate fields from baseline Data
     function generateRefencedData() {
         data_array = ['BifAstFequipment','BifAstOequipment','BifAstMachinery','BifAstStructures','BifProduction'];
 
@@ -568,6 +572,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         });
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -596,6 +601,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         }
     }
 
+//Calculate total
     $scope.CalTot=function(arr,property){
     var finaltotal = 0;
 
@@ -608,7 +614,8 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     })
      return finaltotal;
     }
-//
+
+//Calculate Grand Total
     $scope.calGrandPubTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -697,7 +704,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
 //    return grantot;
 //    }
 
-
+//Edit Data
     $scope.dlDataEdit = function(){
 
     $scope.is_edit = true;
@@ -725,9 +732,19 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
 
 }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
         $scope.dlFisheriesDistrict = init_data;
 
 }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlFisheriesDistrict = angular.copy(init_data);
+
+
+    }
 });

@@ -12,7 +12,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.is_edit = false;
     $scope.is_valid_data = true;
 
-
+//Initialize Data
     var init_data = {
         'agri_agrarian': {
             'Table_4': {
@@ -169,8 +169,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         }
     }
 
-    $scope.dlFrstPrductAsets = init_data;
+    $scope.dlFrstPrductAsets = angular.copy(init_data);
 
+//Get Districts and related baseline data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -214,6 +215,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         }
     }
 
+//Generate fields Related to baseline Data
     function generateRefencedData() {
         data_array = ['BacfFarmEquipment','BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther', 'BacfStocks'];
             var dl_model1 = null;
@@ -423,6 +425,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         });
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
 
         $scope.submitted = true;
@@ -456,6 +459,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         }
     }
 
+//Edit Data
     $scope.dlDataEdit = function(form){
 
    $scope.is_edit = true;
@@ -483,33 +487,35 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
 }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlFrstPrductAsets = init_data;
 }
 
+//Calculate Public Total
     $scope.calPubTotal=function(arr){
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
-     finaltotal = finaltotal + value.dmg_pub ;
+         finaltotal = finaltotal + value.dmg_pub ;
     })
       console.log(finaltotal);
     return finaltotal;
     }
 
+//Calculate Private Total
     $scope.calPvtTotal=function(arr){
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
-
-     finaltotal = finaltotal + value.dmg_pvt ;
+         finaltotal = finaltotal + value.dmg_pvt ;
     })
       console.log(finaltotal);
     return finaltotal;
     }
 
+//Calculate Grand Public Total
     $scope.calGrandPubTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -560,6 +566,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     return grantot;
     }
 
+//Calculate Grand Private Total
     $scope.calGrandPvtTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -611,4 +618,12 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     }
 
 
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlFrstPrductAsets = angular.copy(init_data);
+
+
+    }
 }]);

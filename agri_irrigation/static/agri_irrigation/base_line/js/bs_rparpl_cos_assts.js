@@ -8,10 +8,10 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
     $scope.region;
     $scope.bs_data={};
     $scope.is_edit = false;
-
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'agri_irrigation': {
             'Table_2': {
@@ -289,8 +289,9 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
         }
     }
 
-    $scope.bsRparplCosAssts = init_data;
+    $scope.bsRparplCosAssts = angular.copy(init_data);
 
+//Add Enumerate Fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsRparplCosAssts.agri_irrigation.Table_2[table]);
         var new_row;
@@ -332,6 +333,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
         $scope.bsRparplCosAssts.agri_irrigation.Table_2[table].push(new_row);
     }
 
+//Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsRciaMajorTanks') {
             $scope.bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMajorTanks.splice(index, 1);
@@ -350,6 +352,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
         }
     }
 
+//Save Data
     $scope.saveBsData = function(form) {
         var array = $scope.bsRparplCosAssts.agri_irrigation.Table_2;
       var details = _.map(array, function(model_array) {
@@ -388,6 +391,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
 
         }
 
+//Edit data
     $scope.bsHsDataEdit = function(){
     $scope.submitted = true;
 
@@ -409,9 +413,19 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
     })
 }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
     $scope.is_edit = false;
     $scope.bsRparplCosAssts = init_data;
 }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsRparplCosAssts = angular.copy(init_data);
+
+
+    }
 
 });

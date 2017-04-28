@@ -266,10 +266,10 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
 
 //Clear Function
     $scope.clear = function() {
-
+        console.log('done');
         $scope.is_edit = false;
         $scope.bsAstsNwsdbDis = angular.copy(init_data);
-        console.log($scope.bsAstsNwsdbDis);
+
 
     }
 

@@ -8,6 +8,7 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//initialize model
     var init_data = {
         'water_supply' : {
             'Table_2' : {
@@ -36,8 +37,9 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
         }
     }
 
-    $scope.bsRwaterSplyDis = init_data;
+    $scope.bsRwaterSplyDis = angular.copy(init_data);
 
+//Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -68,6 +70,7 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
         }
     }
 
+//Edit Data
      $scope.bsHsDataEdit = function(form)
     {
     $scope.submitted = true;
@@ -90,10 +93,21 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
 
     }
 
+//Cancel Edit
     $scope.cancelEdit = function()
     {
         $scope.is_edit = false;
         $scope.bsRwaterSplyDis = init_data;
     }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsRwaterSplyDis = angular.copy(init_data);
+
+
+    }
+
 
 })

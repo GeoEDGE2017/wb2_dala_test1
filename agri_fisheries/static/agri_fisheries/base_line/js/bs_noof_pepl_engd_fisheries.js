@@ -6,10 +6,10 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
-
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'agri_fisheries': {
             'Table_1': {
@@ -33,8 +33,9 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
         }
     }
 
-    $scope.bsNoofPeplEngdFisheries = init_data;
+    $scope.bsNoofPeplEngdFisheries = angular.copy(init_data);
 
+//Save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -67,6 +68,7 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
         }
     }
 
+//Edit Data
     $scope.bsHsDataEdit = function(form){
     $scope.submitted = true;
 
@@ -88,9 +90,18 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
 
     }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsNoofPeplEngdFisheries = init_data;
     }
 
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsNoofPeplEngdFisheries = angular.copy(init_data);
+
+
+    }
 }]);

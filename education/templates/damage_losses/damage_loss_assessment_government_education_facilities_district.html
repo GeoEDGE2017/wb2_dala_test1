@@ -142,52 +142,45 @@
                                 Total Number
                             </td>
                         </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="280" height="17">
-                                No. of Destroyed Facilities
+                        <tr height="17" ng-repeat="dugDfNdf in dlGovnEduFacilities.education.Table_3.DugDfNdf">
+                            <td class="tdpa" width="280" height="17" ng-bind="dugDfNdf.particulars">
+                                <!--No. of Destroyed Facilitiesbins-->
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.ab1_1c" type="number"
+                                <input ng-model="dugDfNdf.ab1_1c" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.type_2" type="number"
+                                <input ng-model="dugDfNdf.type_2" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.type_3" type="number"
+                                <input ng-model="dugDfNdf.type_3" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.pirivena" type="number"
+                                <input ng-model="dugDfNdf.pirivena" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.training_institutes"
+                                <input ng-model="dugDfNdf.training_institutes"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.training_colleges"
+                                <input ng-model="dugDfNdf.training_colleges"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.tc_crc_resc"
+                                <input ng-model="dugDfNdf.tc_crc_resc"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.min_pzd_offices"
+                                <input ng-model="dugDfNdf.min_pzd_offices"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
-                            <td width="122" ng-model="dlGovnEduFacilities.education.Table_3.DugDfNdf.total"
-                                ng-bind="dlGovnEduFacilities.education.Table_3.DugDfNdf.total=
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.ab1_1c +
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.type_2 +
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.type_3 +
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.pirivena +
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.training_institutes +
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.training_colleges +
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.tc_crc_resc +
-                                    dlGovnEduFacilities.education.Table_3.DugDfNdf.min_pzd_offices ">
+                            <td width="122" ng-model="dugDfNdf.total"
+                                ng-bind="dugDfNdf.total = dugDfNdf.ab1_1c +dugDfNdf.type_2 + dugDfNdf.type_3 +dugDfNdf.pirivena + dugDfNdf.training_institutes +
+                                    dugDfNdf.training_colleges + dugDfNdf.tc_crc_resc + dugDfNdf.min_pzd_offices">
                             </td>
                         </tr>
                         <tr class="tdpa" height="17">
@@ -728,56 +721,46 @@
                                 Ministry, Provincial, Zonal, Divisional Offices, NIE
                             </td>
                         </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="280" height="17" style="width:25%;">
-                                No of Partially Damaged Facilities
+                        <tr height="17" ng-repeat="dugPdfaNpdf in dlGovnEduFacilities.education.Table_3.DugPdfaNpdf">
+                            <td class="tdpa" width="280" height="17" style="width:25%;" ng-bind="dugPdfaNpdf.particulars">
+                                <!--No of Partially Damaged Facilities-->
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.ab1_1c" type="number"
+                                <input ng-model="dugPdfaNpdf.ab1_1c" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.type_2" type="number"
+                                <input ng-model="dugPdfaNpdf.type_2" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.type_3" type="number"
+                                <input ng-model="dugPdfaNpdf.type_3" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.pirivena"
+                                <input ng-model="dugPdfaNpdf.pirivena"
                                        type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.training_institutes"
+                                <input ng-model="dugPdfaNpdf.training_institutes"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.training_colleges"
+                                <input ng-model="dugPdfaNpdf.training_colleges"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.tc_crc_resc"
+                                <input ng-model="dugPdfaNpdf.tc_crc_resc"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td width="136">
-                                <input ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.min_pzd_offices"
+                                <input ng-model="dugPdfaNpdf.min_pzd_offices"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
-                            <td width="122" ng-model="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.total"
-                                ng-bind="dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.total=
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.ab1_1c +
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.type_2 +
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.type_3 +
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.pirivena +
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.training_institutes +
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.training_colleges +
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.tc_crc_resc +
-                                    dlGovnEduFacilities.education.Table_3.DugPdfaNpdf.min_pzd_offices ">
-
-
-
+                            <td width="122" ng-model="dugPdfaNpdf.total"
+                                ng-bind="dugPdfaNpdf.total = dugPdfaNpdf.ab1_1c + dugPdfaNpdf.type_2 + dugPdfaNpdf.type_3 + dugPdfaNpdf.pirivena +
+                                    dugPdfaNpdf.training_institutes + dugPdfaNpdf.training_colleges + dugPdfaNpdf.tc_crc_resc + dugPdfaNpdf.min_pzd_offices">
                             </td>
                         </tr>
                         <tr class="trheadc" height="17">
@@ -1968,7 +1951,7 @@
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
                         <button type="button" class="btn btn-success" ng-click="saveDlData(form_govn_edu_facility_dist_dl)">Submit</button>
-                        <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="dlDataEdit(form_govn_edu_facility_dist_dl)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">

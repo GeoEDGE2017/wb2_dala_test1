@@ -10,6 +10,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.is_edit = false;
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'agri_agrarian': {
             'Table_6': {
@@ -182,8 +183,9 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         }
     }
 
-    $scope.dlInvsmntLos = init_data;
+    $scope.dlInvsmntLos = angular.copy(init_data);
 
+//Get Districts and Related Baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -225,6 +227,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         }
     }
 
+//Generate Fields according to basline Data
     function generateRefencedData() {
 
         data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry'];
@@ -370,6 +373,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         });
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -401,6 +405,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         }
     }
 
+//Edit data
     $scope.dlDataEdit = function(form){
 
    $scope.is_edit = true;
@@ -428,11 +433,13 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 
 }
 
+//Cancel Data
     $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlInvsmntLos = init_data;
 }
 
+//Calculate Public Total
     $scope.calPubTotal=function(arr){
     var finaltotal = 0;
      console.log(arr);
@@ -445,6 +452,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     return finaltotal;
     }
 
+//Calculate Private Total
     $scope.calPvtTotal=function(arr){
     var finaltotal = 0;
      console.log(arr);
@@ -457,6 +465,7 @@ if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.expor
     return finaltotal;
     }
 
+//Calculate Grand Public Total
     $scope.calGrandPubTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -492,6 +501,7 @@ if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.expor
     return grantot;
     }
 
+//Calculate Gardn Private Total
     $scope.calGrandPvtTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -527,6 +537,12 @@ if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.expor
     return grantot;
     }
 
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlInvsmntLos = angular.copy(init_data);
 
 
+    }
 }]);

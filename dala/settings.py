@@ -156,7 +156,7 @@ DATABASES = {
         #     'options': '-c search_path=other_government'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'new',
         'USER': 'postgres',
     },
 }
@@ -793,14 +793,19 @@ TABLE_PROPERTY_MAPPER = {
         }
     },
     'education': {
+        'Table_1': {
+          'BefPubSchools': ['type_facilities', 'total_number', 'avg_male', 'avg_female'],
+          'BefPubOffices': ['type_facilities', 'total_number'],
+          'BefPvt': ['type_facilities', 'total_number', 'avg_male', 'avg_female'],
+        },
         'Table_3': {
             'DugDfNdf': [
-                'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges', 'tc_crc_resc',
-                'min_pzd_offices', 'total'
+                'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
             'DugDfNsa': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'total'
+                'tc_crc_resc', 'min_pzd_offices', 'total'
             ],
             'DugNdafStructure': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
@@ -820,7 +825,7 @@ TABLE_PROPERTY_MAPPER = {
             ],
             'DugPdfaNsa': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
+                'tc_crc_resc', 'total'
             ],
             'DugNpdatStructure': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',

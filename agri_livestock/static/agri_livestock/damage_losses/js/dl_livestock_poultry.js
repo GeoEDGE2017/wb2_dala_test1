@@ -13,6 +13,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.organizations = [];
     $scope.selectedOrganization;
 
+//Initialize Data
     var init_data = {
         'agri_livestock': {
             'Table_3': {
@@ -419,8 +420,9 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         }
     }
 
-    $scope.dlLivestockPoultry = init_data;
+    $scope.dlLivestockPoultry = angular.copy(init_data);
 
+//Get Districts and related baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -463,6 +465,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         }
     }
 
+//get fields from baseline data
     function generateRefencedData() {
         data_array = ['BlpAnmLivestock', 'BlpAnmPoultry', 'BlpAstLivestock', 'BlpAstPoultry', 'BlpAstOther', 'BlpApyLivestock', 'BlpApyPoultry'];
 
@@ -718,14 +721,40 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         });
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            alert('Save Table 3');
-            console.log($scope.dlLivestockPoultry);
+              $http({
+            method: 'POST',
+            url:'/dl_save_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dlLivestockPoultry,
+                'com_data': {
+                    'district_id':  $scope.district.district__id,
+                    'incident_id': $scope.incident,
+
+                },
+                'is_edit' : $scope.is_edit,
+
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+
+                 if(response.data == 'False')
+             $scope.is_valid_data = false;
+                else
+             $("#modal-container-239453").modal('show');
+
+        }, function errorCallback(response) {
+
+
+        });
         }
     }
 
+//fetch Organization
     $scope.fetchOrganization = function(){
 
     $http({
@@ -743,5 +772,47 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
     })
 }
+
+
+//Edit Data
+    $scope.dlDataEdit = function(){
+
+   $scope.is_edit = true;
+   $scope.submitted = true;
+
+    $http({
+    method: "POST",
+    url: '/dl_fetch_edit_data',
+    data: angular.toJson({
+    'table_name':  'Table_3',
+    'sector':'agri_livestock',
+    'com_data': {
+           'district':  $scope.district.district__id,
+            'incident': $scope.incident,
+          },
+           'is_edit':$scope.is_edit
+           }),
+    }).success(function(data) {
+
+    console.log(data);
+    $scope.dlLivestockPoultry = data;
+    })
+
+}
+
+//Cancel Data
+    $scope.cancelEdit = function(){
+     $scope.is_edit = false;
+     $scope.dlLivestockPoultry = init_data;
+}
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlLivestockPoultry = angular.copy(init_data);
+
+
+    }
 
 }]);

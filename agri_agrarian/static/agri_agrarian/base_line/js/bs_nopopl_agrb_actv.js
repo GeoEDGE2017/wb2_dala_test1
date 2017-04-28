@@ -9,6 +9,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'agri_agrarian': {
             'Table_1': {
@@ -105,10 +106,9 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         }
     }
 
-    $scope.bsNopoplAgrbActv = init_data;
+    $scope.bsNopoplAgrbActv = angular.copy(init_data);
 
-    console.log($scope.bsNopoplAgrbActv);
-
+//Add Enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsNopoplAgrbActv.agri_agrarian.Table_1[table]);
         var new_row;
@@ -166,6 +166,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         $scope.bsNopoplAgrbActv.agri_agrarian.Table_1[table].push(new_row);
     }
 
+//Remove Enumerate fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BcagSeasonalCrops') {
             $scope.bsNopoplAgrbActv.agri_agrarian.Table_1.BcagSeasonalCrops.splice(index, 1);
@@ -184,6 +185,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         }
     }
 
+//Save data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
@@ -217,6 +219,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         }
     }
 
+//Edit Data
     $scope.bsHsDataEdit = function(form){
     $scope.submitted = true;
 
@@ -238,10 +241,19 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
 
     }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsNopoplAgrbActv = init_data;
     }
 
 
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsNopoplAgrbActv = angular.copy(init_data);
+
+
+    }
 }]);

@@ -11,6 +11,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.Districts=[];
     $scope.is_valid_data = true;
 
+//Initialize model
     var init_data = {
         'power_supply': {
             'Table_2': {
@@ -299,8 +300,9 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         }
     }
 
-    $scope.dlPowSupCeb = init_data;
+    $scope.dlPowSupCeb = angular.copy(init_data);
 
+//Get Districts and related basline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -314,7 +316,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         }
     }
 
-
+//Save Data
     $scope.saveDlData = function(form) {
 
             $scope.submitted = true;
@@ -342,6 +344,8 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
 
     }
 
+
+//Edit Data
     $scope.dlDataEdit = function(form){
 
     $scope.is_edit = true;
@@ -362,39 +366,36 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     }).success(function(data) {
 
     console.log(data);
-
-
     $scope.dlPowSupCeb = data;
     })
 
 }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
         $scope.dlPowSupCeb = init_data;
 
 }
 
-
+//Calculate Total
     $scope.CalTotal=function(arr,property){
     var finaltotal = 0;
-     console.log(arr);
     angular.forEach(arr, function(value, key) {
      if(value.assets !='Total' && value.assets !='GRAND TOTAL' ){
-     finaltotal = finaltotal + value[property] ;
+         finaltotal = finaltotal + value[property] ;
      }
     })
-
     return finaltotal;
     }
 
+//Calculate Year1 Total
     $scope.CalLosYear1Total=function(){
     var finalIncometotal = 0;
     var finaltotal = 0;
     var grandTot = 0;
     var arrayincome = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstIncome;
     var arrayOther = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstOther;
-
 
     angular.forEach(arrayincome, function(value, key) {
 
@@ -410,6 +411,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     return grandTot;
     }
 
+//Calculate Year2 Total
     $scope.CalLosYear2Total=function(){
     var finalIncometotal = 0;
     var finaltotal = 0;
@@ -432,26 +434,33 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     return grandTot;
     }
 
+//Calculate Loss Total
     $scope.CalLosTotal=function(){
     var finalIncometotal = 0;
     var finaltotal = 0;
     var grandTot = 0;
     var arrayincome = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstIncome;
     var arrayOther = $scope.dlPowSupCeb.power_supply.Table_2.CebLosAstOther;
-
-
     angular.forEach(arrayincome, function(value, key) {
-
-     finalIncometotal = finalIncometotal + value.tot_losses ;
-
+         finalIncometotal = finalIncometotal + value.tot_losses ;
     })
      angular.forEach(arrayOther, function(value, key) {
      if(value.assets !='TOTAL' ){
-     finaltotal = finaltotal + value.tot_losses ;
+         finaltotal = finaltotal + value.tot_losses ;
      }
     })
     grandTot = finalIncometotal + finaltotal;
     return grandTot;
+    }
+
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.dlPowSupCeb = angular.copy(init_data);
+
+
     }
 
 

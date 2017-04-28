@@ -6,10 +6,10 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
-
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'agri_fisheries': {
             'Table_2': {
@@ -153,8 +153,9 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         }
     }
 
-    $scope.bsInfoFisheries = init_data;
+    $scope.bsInfoFisheries = angular.copy(init_data);
 
+//Add Enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsInfoFisheries.agri_fisheries.Table_2[table]);
         var new_row;
@@ -214,6 +215,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         $scope.bsInfoFisheries.agri_fisheries.Table_2[table].push(new_row);
     }
 
+//Remove Enumerate fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BifAstFequipment') {
             $scope.bsInfoFisheries.agri_fisheries.Table_2.BifAstFequipment.splice(index, 1);
@@ -232,6 +234,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         }
     }
 
+//Save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -264,7 +267,9 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         }
     }
 
-     $scope.bsHsDataEdit = function(form){
+
+//Edit Data
+    $scope.bsHsDataEdit = function(form){
     $scope.submitted = true;
 
        $scope.is_edit = true;
@@ -285,9 +290,19 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
 
     }
 
+//Cancel Edit
      $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsInfoFisheries = init_data;
+    }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsInfoFisheries = angular.copy(init_data);
+
+
     }
 
 });

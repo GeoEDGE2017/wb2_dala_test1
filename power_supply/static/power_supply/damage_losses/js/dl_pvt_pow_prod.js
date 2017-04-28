@@ -20,7 +20,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
 
     $scope.selectedProducer;
 
-
+//Initalize Data
     var init_data = {
             'power_supply': {
                 'Table_3': {
@@ -116,7 +116,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             }
         }
 
-
+//Get Districts and Related Baseline Data
     $scope.changedValue =function (selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -136,14 +136,15 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         console.log("district", $scope.district);
     }
 
-    $scope.clear = function()
-        {
+//Clear Function
+    $scope.clear = function(){
 
             $scope.is_edit = false;
             $scope.data = angular.copy(init_data);
 
         }
 
+//Load Data IPP_SPP
     $scope.loadIPP_SPP = function(){
         if($scope.district){
 
@@ -166,7 +167,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
              }
     }
 
-
+//Load Data IPP_SPP_types
     $scope.loadIPP_SPP_types = function(){
          $http({
             method: "POST",
@@ -184,6 +185,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         })
     }
 
+//Save Data
     $scope.savePvtPwProducers = function(){
         if($scope.newPvtPwProducer.name && $scope.district){
             var new_prod = {
@@ -212,6 +214,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         }
     }
 
+//Get Total
     $scope.getSum2 = function(val1, val2){
        var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
@@ -220,16 +223,16 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         return final_val;
     }
 
+//Get Total
     $scope.getSum3 = function(val1, val2, val3){
         var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
         if(!isNaN(val3)) final_val += val3;
-
-
         return final_val;
     }
 
+//Get Column Total
         $scope.getTotalCol = function(subTable, column, total_object){
 
         var table = $scope.data.power_supply.Table_3;
@@ -244,6 +247,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         return final_total;
     }
 
+//Save Data
     $scope.saveDlData = function(form) {
 
         console.log($scope.selectedType);
@@ -285,55 +289,56 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             }
         }
 
-        $scope.dataEdit = function() {
+//Edit Data
+    $scope.dataEdit = function() {
 
-        if($scope.district && $scope.incident && $scope.selectedProducer ){
-                    $scope.is_edit = true;
-        $scope.submitted = true;
+    if($scope.district && $scope.incident && $scope.selectedProducer ){
+                $scope.is_edit = true;
+    $scope.submitted = true;
 
-            $http({
-                method: "POST",
-                url: '/dl_fetch_edit_data',
-                data: angular.toJson({
-                    'table_name': 'Table_3',
-                    'sector': 'power_supply',
-                    'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-                        'pw_gen_firm' : $scope.selectedProducer.id,
+        $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+                'table_name': 'Table_3',
+                'sector': 'power_supply',
+                'com_data': {
+                    'district': $scope.district.district__id,
+                    'incident': $scope.incident,
+                    'pw_gen_firm' : $scope.selectedProducer.id,
 
 //                        'pvt_pw_producer': $scope.selectedProducer.id,
 
-                    }
-                }),
-            }).success(function(data) {
-                console.log("edit", data);
-                // handling response from server if data are not available in this
-                if((data.power_supply.Table_3.PvtDmgAst.length == 0) ||
-                    (data.power_supply.Table_3.PvtDmgLosses.length == 0) ||
-                    (data.power_supply.Table_3.PvtNumEmp.length == 0)
-                  ){
-                    $scope.is_edit = false;
-                        // do nothing or display msg that data are not available
-                    }
-                else{
-                        $scope.data = data;
-                    }
-            })
+                }
+            }),
+        }).success(function(data) {
+            console.log("edit", data);
+            // handling response from server if data are not available in this
+            if((data.power_supply.Table_3.PvtDmgAst.length == 0) ||
+                (data.power_supply.Table_3.PvtDmgLosses.length == 0) ||
+                (data.power_supply.Table_3.PvtNumEmp.length == 0)
+              ){
+                $scope.is_edit = false;
+                    // do nothing or display msg that data are not available
+                }
+            else{
+                    $scope.data = data;
+                }
+        })
 
-        }
-        else{
-            alert("enter Incident, District, Firm, ownership, Type")
-        }
+    }
+    else{
+        alert("enter Incident, District, Firm, ownership, Type")
+    }
 
-        }
+    }
         $scope.cancelEdit = function()
         {
              $scope.is_edit = false;
              $scope.clear();
         }
 
-
+//Call Functions
     $scope.loadIPP_SPP_types();
     $scope.clear();
 

@@ -6,10 +6,10 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
-
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
+//Initialize Data
     var init_data = {
         'agri_livestock': {
             'Table_1': {
@@ -75,8 +75,9 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         }
     }
 
-    $scope.bsLivestockPoultryDst = init_data;
+    $scope.bsLivestockPoultryDst = angular.copy(init_data);
 
+//Add Enumerate Fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsLivestockPoultryDst.agri_livestock.Table_1[table]);
         var new_row;
@@ -105,6 +106,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         $scope.bsLivestockPoultryDst.agri_livestock.Table_1[table].push(new_row);
     }
 
+//Remove Fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BelLivestock') {
             $scope.bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock.splice(index, 1);
@@ -114,6 +116,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         }
     }
 
+//Save Data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
@@ -142,8 +145,9 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         }
     }
 
+//Edit Data
     $scope.bsHsDataEdit = function(){
-$scope.submitted = true;
+    $scope.submitted = true;
 
    $scope.is_edit = true;
     $http({
@@ -162,8 +166,18 @@ $scope.submitted = true;
     })
 }
 
+//Cancel Edit
     $scope.cancelEdit = function(){
     $scope.is_edit = false;
     $scope.bsLivestockPoultryDst = init_data;
 }
+
+//Clear Function
+    $scope.clear = function() {
+        console.log('done');
+        $scope.is_edit = false;
+        $scope.bsLivestockPoultryDst = angular.copy(init_data);
+
+
+    }
 }]);

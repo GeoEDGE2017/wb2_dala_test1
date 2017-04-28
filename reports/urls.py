@@ -43,4 +43,25 @@ urlpatterns = [
     #industry_services
     url(r'^industry_services_summary$', views.industry_services_summary, name='industry_services_summary'),
 
+     #Agri_agrarian
+    url(r'^agri_agrarian_summary$', views.agri_agrarian_summary, name='agri_agrarian_summary'),
+
+    #Agri_fisheries
+    url(r'^agri_fisheries_summary$', views.agri_fisheries_summary, name='agri_fisheries_summary'),
+
+    #Agri_livestock
+    url(r'^agri_livestock_summary$', views.agri_livestock_summary, name='agri_livestock_summary'),
+
+    #Agri_irrigation
+    url(r'^agri_irrigation_summary$', views.agri_irrigation_summary, name='agri_irrigation_summary'),
+
+     #Housing
+    url(r'^housing_summary$', views.housing_summary, name='housing_summary'),
+
+     #Telecom
+    url(r'^telecom_summary$', views.telecom_summary, name='telecom_summary'),
+
+    #tourism
+    url(r'^tourism_summary$', views.tourism_summary, name='tourism_summary'),
+
 ]

@@ -143,6 +143,63 @@ def transport_air_summary(request):
     return render(request, 'reports/report_transport_air.html', context)
 
 
+def agri_agrarian_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_agrarian.html', context)
+
+def agri_fisheries_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_fisheries.html', context)
+
+def agri_livestock_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_livestock.html', context)
+
+def agri_irrigation_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_irrigation.html', context)
+
+def housing_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_housing.html', context)
+
+def telecom_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_telecom.html', context)
+
+def tourism_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_tourism.html', context)
+
+
 @csrf_exempt
 def dl_fetch_report_data(request):
 

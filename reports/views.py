@@ -29,7 +29,7 @@ def health_summery_damageloss_dis_report(request):
     return render(request, 'reports/health_summery_damageloss_dis_report.html', context)
 
 
-def health_summery_damageloss_national_report(request):
+def report_health(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()
     provinces = Province.objects.all()
@@ -39,7 +39,7 @@ def health_summery_damageloss_national_report(request):
         'provinces': provinces,
         'module': 'reports'
     }
-    return render(request, 'reports/health_summery_damageloss_national_report.html', context)
+    return render(request, 'reports/report_health.html', context)
 
 
 def health_summery_damageloss_province_report(request):

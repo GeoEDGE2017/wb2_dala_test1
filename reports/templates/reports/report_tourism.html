@@ -103,23 +103,23 @@
                             <col width="85" span="4"/>
                         </colgroup>
                         <tbody>
-                        <tr class="trhead" height="20">
-                            <td width="118">
-                                Incident
-                            </td>
-                            <td colspan="8" width="340">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="fetchData()"
-                                        style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
+                        <!--<tr class="trhead" height="20">-->
+                            <!--<td width="118">-->
+                                <!--Incident-->
+                            <!--</td>-->
+                            <!--<td colspan="8" width="340">-->
+                                <!--<select id="selectbasic" name="incident" ng-model="incident"-->
+                                        <!--class="form-control" ng-change="fetchData()"-->
+                                        <!--style="width:100%;font-weight:400;" required>-->
+                                    <!--<option value="" selected="true">Select an Incident</option>-->
+                                    <!--{% for incident in incidents %}-->
 
-                                    <option value={{incident.id}}>{{incident.disaster_type.names}}
-                                        {{incident.reported_date_time}}
-                                        {% endfor %}
-                                </select>
-                            </td>
-                        </tr>
+                                    <!--<option value={{incident.id}}>{{incident.disaster_type.names}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        <!--{% endfor %}-->
+                                <!--</select>-->
+                            <!--</td>-->
+                        <!--</tr>-->
                         <tr class="trheadc" height="20">
                             <td rowspan="3" height="60" width="263">
                                 Province
@@ -707,7 +707,7 @@
                         </tr>
 
 
-                        <tr height="20">
+                        <tr height="20" ng-if="data_available">
                             <td class="tdpa" height="20" width="263">
                                 GRAND TOTAL
                             </td>

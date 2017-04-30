@@ -10,6 +10,9 @@ app.controller('reportSummTouBusiFaciNatController', function($scope, $http, $pa
     $scope.provinceTotals = [];
     $scope.data_available;
 
+     $scope.loadData = function(form){
+        $scope.fetchData();
+    }
 
     $scope.fetchData = function(){
 

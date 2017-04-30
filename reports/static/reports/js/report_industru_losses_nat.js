@@ -1,7 +1,7 @@
 //Table 6
-var app = angular.module('dl_sum_natApp', ['underscore'])
+var app = angular.module('report_natApp', ['underscore'])
 
-app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
+app.controller('report_natController', function($scope, $http, $parse, _) {
 
     $scope.data;
     $scope.incident;
@@ -9,7 +9,13 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
     $scope.table;
     $scope.provinceTotals = [];
     $scope.data_available;
+    $scope.test = "test";
     $scope.isDataAvailable = false;
+
+
+    $scope.loadData = function(form){
+        $scope.fetchData();
+    }
 
 
     $scope.fetchData = function(){
@@ -37,9 +43,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
 
             if(!$scope.data_available){
                 alert("no data available for your selection");
-                $scope.isDataAvailable = false;
             }
-            $scope.isDataAvailable = true;
 
 //            console.log($scope.data);
 //            console.log($scope.provinces);

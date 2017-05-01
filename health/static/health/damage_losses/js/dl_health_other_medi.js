@@ -606,8 +606,8 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
 
 //Save Data
     $scope.saveDlData = function(form) {
-      $scope.submitted = true;
-           if(form.$valid){
+        $scope.submitted = true;
+        if(form.$valid){
             $http({
                 method: 'POST',
                 url:'/dl_save_data',
@@ -617,24 +617,21 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                     'com_data': {
                         'district_id':  $scope.district.district__id,
                         'incident_id': $scope.incident,
-
                     },
                     'is_edit' : $scope.is_edit
                 }),
                 dataType: 'json',
-        }).then(function successCallback(response) {
-
-                 if(response.data == 'False')
-             $scope.is_valid_data = false;
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
                 else
-             $("#modal-container-239453").modal('show');
+                    $("#modal-container-239453").modal('show');
 
-        }, function errorCallback(response) {
+            }, function errorCallback(response) {
 
             console.log(response);
-        });
+            });
         }
-
     }
 
 //Get Baseline Data

@@ -29,7 +29,7 @@ def health_summery_damageloss_dis_report(request):
     return render(request, 'reports/health_summery_damageloss_dis_report.html', context)
 
 
-def health_summery_damageloss_national_report(request):
+def report_health(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()
     provinces = Province.objects.all()
@@ -39,7 +39,7 @@ def health_summery_damageloss_national_report(request):
         'provinces': provinces,
         'module': 'reports'
     }
-    return render(request, 'reports/health_summery_damageloss_national_report.html', context)
+    return render(request, 'reports/report_health.html', context)
 
 
 def health_summery_damageloss_province_report(request):
@@ -141,6 +141,63 @@ def transport_air_summary(request):
         'module': 'reports'
     }
     return render(request, 'reports/report_transport_air.html', context)
+
+
+def agri_agrarian_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_agrarian.html', context)
+
+def agri_fisheries_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_fisheries.html', context)
+
+def agri_livestock_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_livestock.html', context)
+
+def agri_irrigation_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_agri_irrigation.html', context)
+
+def housing_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_housing.html', context)
+
+def telecom_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_telecom.html', context)
+
+def tourism_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_tourism.html', context)
 
 
 @csrf_exempt

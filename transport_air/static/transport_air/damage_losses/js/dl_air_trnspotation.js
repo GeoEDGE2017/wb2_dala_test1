@@ -1,3 +1,4 @@
+//Table 2
 var app = angular.module('dlAirTrnspotationApp', [])
 
 app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scope, $http) {
@@ -338,10 +339,25 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
+                var is_null = false;
                 console.log(data);
-                generateRefencedData();
+
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
+                else {
+                    generateRefencedData();
+                }
             }, function errorCallback(response) {
 
             });
@@ -516,36 +532,35 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
         }
     }
 
-    $scope.dlDataEdit = function(form){
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
+        $http({
+        method: "POST",
+        url: '/dl_fetch_edit_data',
+        data: angular.toJson({
+        'table_name':  'Table_2',
+        'sector':'transport_air',
+        'com_data': {
+               'district':  $scope.district.district__id,
+                'incident': $scope.incident,
+              },
+               'is_edit':$scope.is_edit
+               }),
+        }).success(function(data) {
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_2',
-    'sector':'transport_air',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
+        $scope.dlAirTrnspotation = data;
+        })
 
-    $scope.dlAirTrnspotation = data;
-    })
+    }
 
-}
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlAirTrnspotation = init_data;
+    }
 
-    $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlAirTrnspotation = init_data;
-}
-
-    $scope.calculatePubAirTotal=function(arr){
+    $scope.calculatePubAirTotal=function(arr) {
 
      var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
@@ -678,6 +693,13 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
      }
     })
     return finaltotal;
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlAirTrnspotation = angular.copy(init_data);
     }
 
 }]);

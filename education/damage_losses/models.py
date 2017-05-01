@@ -52,6 +52,7 @@ class DugDfNsa(models.Model):
     training_institutes = models.IntegerField(blank=True, null=True)
     training_colleges = models.IntegerField(blank=True, null=True)
     tc_crc_resc = models.IntegerField(blank=True, null=True)
+    min_pzd_offices = models.IntegerField(blank=True, null=True)
     total = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)

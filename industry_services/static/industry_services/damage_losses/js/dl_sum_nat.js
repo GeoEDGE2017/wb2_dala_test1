@@ -9,6 +9,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
     $scope.table;
     $scope.provinceTotals = [];
     $scope.data_available;
+    $scope.isDataAvailable = false;
 
 
     $scope.fetchData = function(){
@@ -36,7 +37,9 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
 
             if(!$scope.data_available){
                 alert("no data available for your selection");
+                $scope.isDataAvailable = false;
             }
+            $scope.isDataAvailable = true;
 
 //            console.log($scope.data);
 //            console.log($scope.provinces);

@@ -33,6 +33,7 @@ var init_data = {
 'Table_3':{
 'DugDfNdf':[
 {
+particulars: 'No. of Destroyed Facilities',
 ab1_1c: null,
 type_2: null,
 type_3: null,
@@ -54,6 +55,7 @@ pirivena: null,
 training_institutes: null,
 training_colleges: null,
 tc_crc_resc: null,
+min_pzd_offices: null,
 total: null
 },
 {
@@ -65,6 +67,7 @@ pirivena: null,
 training_institutes: null,
 training_colleges: null,
 tc_crc_resc: null,
+min_pzd_offices: null,
 total: null
 }
 ],
@@ -258,7 +261,7 @@ total: null
 ],
 'DugPdfaNpdf':[
 {
-particulars: 'Computers',
+particulars: 'No of Partially Damaged Facilities',
 ab1_1c: null,
 type_2: null,
 type_3: null,
@@ -738,7 +741,7 @@ $scope.changedValue=function getBsData(selectedValue) {
         }
     }
 
-$scope.saveDlData = function(form) {
+    $scope.saveDlData = function(form) {
         $scope.submitted = true;
         console.log($scope.dlGovnEduFacilities);
         if(form.$valid) {
@@ -770,7 +773,7 @@ $scope.saveDlData = function(form) {
         }
     }
 
-$scope.dlDataEdit = function(form) {
+    $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -785,17 +788,18 @@ $scope.dlDataEdit = function(form) {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
+                    'is_edit':$scope.is_edit
                }),
             }).success(function(data) {
                 console.log(data);
-                $scope.dmLosOfMinFirms = data;
+                $scope.dlGovnEduFacilities = data;
             })
         }
     }
 
 $scope.cancelEdit = function() {
          $scope.is_edit = false;
-         $scope.dmLosOfMinFirms = init_data;
+         $scope.dlGovnEduFacilities = init_data;
     }
 
 $scope.fetchDlData = function(){

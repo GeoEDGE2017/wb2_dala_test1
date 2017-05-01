@@ -597,6 +597,11 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     return grantot;
     }
 
-
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlOthLndAsets = angular.copy(init_data);
+    }
 
 });

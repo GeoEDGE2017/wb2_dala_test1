@@ -341,30 +341,31 @@ $scope.fetchSchools = function()
     })
 }
 
-$scope.dlDataSubmit = function()
-{
-$scope.submitted = true;
+$scope.dlDataSubmit = function() {
+    $scope.submitted = true;
 
- $http({
-    method: "POST",
-    url: "/dl_save_data",
-    data: angular.toJson({
-    'table_data': ($scope.dlPvtEduFacilities),
-    'com_data': {'district_id': $scope.district.district__id,
-    'incident_id': $scope.incident,
-    },
-    'is_edit': $scope.is_edit }),
+    $http({
+        method: "POST",
+        url: "/dl_save_data",
+        data: angular.toJson({
+            'table_data': ($scope.dlPvtEduFacilities),
+            'com_data': {
+                'district_id': $scope.district.district__id,
+                'incident_id': $scope.incident,
+                
+            },
+            'is_edit': $scope.is_edit
+        }),
     }).success(function(data) {
+        $scope.dlPvtEduFacilities = init_data;
+        $scope.is_edit = false;
 
-     $scope.dlPvtEduFacilities = init_data;
-     $scope.is_edit = false;
+        if(data == 'False')
+            $scope.is_valid_data = false;
+        else
+            $("#modal-container-239453").modal('show');
 
-     if(data == 'False')
-      $scope.is_valid_data = false;
-     else
-      $("#modal-container-239453").modal('show');
-
- })
+    })
 }
 
 $scope.fetchSchoolData = function(){

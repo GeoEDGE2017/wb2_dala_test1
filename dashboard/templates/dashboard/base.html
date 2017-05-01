@@ -175,7 +175,14 @@
     {% elif module == 'reports' %}
     <script src='{% static "reports/js/dl_hs_district_report.js" %}'></script>
     <script src='{% static "reports/js/dl_hs_province_report.js" %}'></script>
-    <script src='{% static "reports/js/dl_hs_national_report.js" %}'></script>
+
+    <!--new js copied and edited for the health sector following one is the old one-->
+    <!--<script src='{% static "reports/js/dl_hs_national_report.js" %}'></script>-->
+
+    <!--copied and edited new js for health sector-->
+    <!--reports_health_summary_damage_nationwide.js-->
+    <script src='{% static "reports/js/reports_health_summary_damage_nationwide.js" %}'></script>
+
     <script src='{% static "reports/js/report_education.js" %}'></script>
     <script src='{% static "reports/js/report_mining.js" %}'></script>
     <script src='{% static "reports/js/report_other_govn_services.js" %}'></script>
@@ -184,6 +191,15 @@
     <script src='{% static "reports/js/report_transport_water.js" %}'></script>
     <script src='{% static "reports/js/report_transport_air.js" %}'></script>
     <script src='{% static "reports/js/dlsum_wter_sply_nat.js" %}'></script>
+    <script src='{% static "reports/js/report_industru_losses_nat.js" %}'></script>
+    <script src='{% static "reports/js/reports_agrarian_nat.js" %}'></script>
+    <script src='{% static "reports/js/reports_housing_nat.js" %}'></script>
+    <script src='{% static "reports/js/reports_power_nat.js" %}'></script>
+    <script src='{% static "reports/js/reports_tourism_nat.js" %}'></script>
+    <script src='{% static "reports/js/report_irg_national.js" %}'></script>
+    <script src='{% static "reports/js/reports_rail_trans_nat_summary.js" %}'></script>
+    <script src='{% static "reports/js/reports_wter_sply_nat.js" %}'></script>
+    <script src='{% static "reports/js/report_fisheries_national.js" %}'></script>
 
     <!-- Charts -->
     {% elif module == 'reports' %}
@@ -688,7 +704,39 @@ input[type=number] {
 
         </div>
 
+ <!-- No related Data Model -->
 
+        <div class="modal fade" id="modal-container-239456" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Edit Data
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4><span class="icon-close"> </span> No Related data found! </h4>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 

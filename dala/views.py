@@ -14,7 +14,7 @@ from django.http import HttpResponse
 
 
 def fetch_districts(user):
-    districts = District.objects.all()
+    districts = District.objects.all().order_by('name')
     incidents = IncidentReport.objects.all()
     if user.is_superuser:
         return {'districts': districts, 'incidents': incidents}
@@ -38,7 +38,7 @@ def fetch_incident_districts(request):
     dl_data = (yaml.safe_load(request.body))
     incident_id = dl_data['incident']
     incident = IncidentReport.objects.get(pk=incident_id)
-    affected_district = incident.effectedarea_set.values('district__id', 'district__name').distinct()
+    affected_district = incident.effectedarea_set.values('district__id', 'district__name').distinct().order_by('district__name')
 
     return HttpResponse(
         json.dumps(list(affected_district)),
@@ -52,8 +52,8 @@ def fetch_incident_provinces(request):
     print dl_data
     incident_id = dl_data['incident']
     incident = IncidentReport.objects.get(pk=incident_id)
-    affected_provinces = incident.effectedarea_set.values('district__id', 'district__province_id',
-                                                          'district__province__name').distinct('district__province_id').order_by('district__province_id')
+    affected_provinces = incident.effectedarea_set.values('district__id', 'district__province_id', 'district__province__name').\
+        distinct('district__province__name').order_by('district__province__name')
 
     return HttpResponse(
         json.dumps(list(affected_provinces)),

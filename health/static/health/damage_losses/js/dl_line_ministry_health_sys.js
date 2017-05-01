@@ -11,6 +11,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    $scope.is_null = false;
 
     //initialize model
     var init_data = {

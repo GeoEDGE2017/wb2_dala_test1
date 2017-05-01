@@ -156,9 +156,7 @@ DATABASES = {
         #     'options': '-c search_path=other_government'
         # },
 
-        # 'NAME': 'dala',
         'NAME': 'dala',
-
         'USER': 'postgres',
     },
 }
@@ -680,10 +678,8 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_6': {
-
             'DlaDmgNational': [
                 'tot_damages',
-
             ],
             'DlaLosNational': [
                 'los_year1',

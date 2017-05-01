@@ -218,12 +218,15 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.getTotal = function(model, property) {
         var array = $scope.dmLosOfMinFirms.mining.Table_3[model];
         var cumulative = null;
+
         var sums = _.map(array, function(obj) {
+
             cumulative += obj[property];
             return cumulative;
             console.log(cumulative);
 
         });
+
         var the_string = model + '_' + property;
         var model = $parse(the_string);
         model.assign($scope, cumulative);

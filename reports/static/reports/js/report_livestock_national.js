@@ -1,6 +1,6 @@
-var app = angular.module('dlAgriLivestocknNatApp', []);
+var app = angular.module('reportAgriLivestocknNatApp', []);
 
-app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($scope,$http) {
+app.controller("reportAgriLivestocknNatController", ['$scope','$http',function ($scope,$http) {
     $scope.district;
     $scope.incident;
     $scope.bs_data={};
@@ -19,6 +19,9 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
     // declaring total variables
     $scope.total_num_affected = 0;
 
+    $scope.loadData = function(form){
+        $scope.fetchDlData(form);
+    }
 
 //    $scope.fetchDlData = function(){
 //        $scope.is_edit = true;
@@ -97,7 +100,7 @@ $scope.fetchDlData = function(form){
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_2 ?
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_2 : 0 ) : 0) ;
 
-         $scope.totalyear2pvt =$scope.totalyear2pvt + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index] ? (
+         $scope.totalyear2pvt =($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index] ? (
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_2 ?
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_2 : 0 ) : 0);
 

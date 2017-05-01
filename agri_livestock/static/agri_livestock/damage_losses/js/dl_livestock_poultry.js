@@ -12,6 +12,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.is_valid_data = true;
     $scope.organizations = [];
     $scope.selectedOrganization;
+    $scope.is_null = false;
 
 //Initialize Data
     var init_data = {
@@ -457,8 +458,22 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 angular.forEach(data, function(value, key) {
                   $scope.bs_data[key] = JSON.parse(value);
                 });
-                console.log(data);
+//                console.log(data);
+
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
+                else{
                 generateRefencedData();
+                }
             }, function errorCallback(response) {
 
             });
@@ -469,7 +484,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     function generateRefencedData() {
         data_array = ['BlpAnmLivestock', 'BlpAnmPoultry', 'BlpAstLivestock', 'BlpAstPoultry', 'BlpAstOther', 'BlpApyLivestock', 'BlpApyPoultry'];
 
-        console.log(data_array);
+//        console.log(data_array);
 
         var dl_model1 = null;
         var dl_model2 = null;
@@ -481,7 +496,9 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
-            model_name = value;
+            console.log(obj_array);
+
+            model_name = obj_array;
 
             var particular_value_1 = null;
             var particular_value_2 = null;
@@ -767,7 +784,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
      }),
     }).success(function(data) {
 
-    console.log(data);
+//    console.log(data);
     $scope.organizations = data;
 
     })
@@ -794,7 +811,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
            }),
     }).success(function(data) {
 
-    console.log(data);
+//    console.log(data);
     $scope.dlLivestockPoultry = data;
     })
 
@@ -808,7 +825,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
 //Clear Function
     $scope.clear = function() {
-        console.log('done');
+//        console.log('done');
         $scope.is_edit = false;
         $scope.dlLivestockPoultry = angular.copy(init_data);
 

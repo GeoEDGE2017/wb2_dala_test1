@@ -10,6 +10,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     var finaltotal = 0;
+    $scope.is_null = false;
 
 //Initialize data
     var init_data = {
@@ -310,7 +311,19 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(data);
-                generateRefencedData();
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
+                else{
+                generateRefencedData();}
             }, function errorCallback(response) {
 
             });

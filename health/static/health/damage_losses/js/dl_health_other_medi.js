@@ -11,6 +11,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
  $scope.submitted = false;
  $scope.Districts = [];
  $scope.is_valid_data = true;
+ $scope.is_null=false;
 
 //initialize model
     var init_data = {
@@ -674,6 +675,17 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
             });
 
             console.log($scope.bs_data);
+             angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
 
         }, function errorCallback(response) {
 

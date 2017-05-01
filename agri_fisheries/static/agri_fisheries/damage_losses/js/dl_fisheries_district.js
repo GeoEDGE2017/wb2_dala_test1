@@ -11,6 +11,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    $scope.is_null = false;
 
 //Initialize data
     var init_data = {
@@ -407,7 +408,21 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
+
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
+                else{
                 generateRefencedData();
+                }
                 console.log($scope.dlFisheriesDistrict);
             }, function errorCallback(response) {
                 console.log(response);

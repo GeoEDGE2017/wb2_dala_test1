@@ -11,6 +11,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    $scope.is_null = false;
 
 //Initialize Data
     var init_data = {
@@ -207,7 +208,20 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(response);
-                generateRefencedData();
+
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
+                else
+                {
+                generateRefencedData();}
             }, function errorCallback(response) {
                 
 
@@ -453,7 +467,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                else
                     $("#modal-container-239453").modal('show');
             }, function errorCallback(response) {
-                console.log(response);
+//                console.log(response);
             });
 
         }
@@ -479,7 +493,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
            }),
     }).success(function(data) {
 
-    console.log(data);
+//    console.log(data);
 
 
     $scope.dlFrstPrductAsets = data;
@@ -496,22 +510,22 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 //Calculate Public Total
     $scope.calPubTotal=function(arr){
     var finaltotal = 0;
-     console.log(arr);
+//     console.log(arr);
     angular.forEach(arr, function(value, key) {
          finaltotal = finaltotal + value.dmg_pub ;
     })
-      console.log(finaltotal);
+//      console.log(finaltotal);
     return finaltotal;
     }
 
 //Calculate Private Total
     $scope.calPvtTotal=function(arr){
     var finaltotal = 0;
-     console.log(arr);
+//     console.log(arr);
     angular.forEach(arr, function(value, key) {
          finaltotal = finaltotal + value.dmg_pvt ;
     })
-      console.log(finaltotal);
+//      console.log(finaltotal);
     return finaltotal;
     }
 
@@ -620,7 +634,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
 //Clear Function
     $scope.clear = function() {
-        console.log('done');
+//        console.log('done');
         $scope.is_edit = false;
         $scope.dlFrstPrductAsets = angular.copy(init_data);
 

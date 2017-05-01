@@ -52,8 +52,8 @@ def fetch_incident_provinces(request):
     print dl_data
     incident_id = dl_data['incident']
     incident = IncidentReport.objects.get(pk=incident_id)
-    affected_provinces = incident.effectedarea_set.values('district__id', 'district__province_id', 'district__province__name').\
-        distinct('district__province__name').order_by('district__province__name')
+    affected_provinces = incident.effectedarea_set.values('district__id', 'district__province_id',
+                                                          'district__province__name').distinct('district__province_id').order_by('district__province_id')
 
     return HttpResponse(
         json.dumps(list(affected_provinces)),

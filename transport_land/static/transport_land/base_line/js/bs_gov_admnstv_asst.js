@@ -1,3 +1,4 @@
+//Table 3
 var app = angular.module('bsGovAdmnstvAssetApp', [])
 
 app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scope, $http) {
@@ -64,7 +65,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
-    $scope.bsGovAdmnstvAsset = init_data;
+    $scope.bsGovAdmnstvAsset = angular.copy(init_data);
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsGovAdmnstvAsset.transport_land.Table_3[table]);
@@ -156,7 +157,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsGovAdmnstvAsset = angular.copy(init_data);
     }

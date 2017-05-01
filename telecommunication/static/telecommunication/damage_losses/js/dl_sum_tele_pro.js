@@ -40,17 +40,43 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
         }).success(function(data) {
             $scope.provinces = data;
             $scope.province = "";
+            console.log(data);
         })
     }
 
-    $scope.fetchDlData = function(form) {
+//    $scope.fetchDlData = function(form) {
+//        alert($scope.province);
+//        $scope.is_edit = true;
+//        $scope.submitted = true;
+//        $http({
+//            method: "POST",
+//            url: '/dl_fetch_district_disagtn',
+//            data: angular.toJson({
+//                'table_name': 'Table_4',
+//                'sector': 'telecommunication',
+//                'com_data': {
+//                    'province': $scope.province,
+//                    'incident_id': $scope.incident,
+//                },
+//            }),
+//        }).success(function(data) {
+////            console.log('load ', data);
+//            $scope.data = data;
+//            $scope.dlWaterSupplyPro = data;
+//        })
+//    }
+
+    $scope.fetchDlData = function(form){
+        console.log($scope.province);
+        console.log($scope.incident);
         $scope.is_edit = true;
         $scope.submitted = true;
+
         $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-                'table_name': 'Table_4',
+                'table_name':  'Table_4',
                 'sector': 'telecommunication',
                 'com_data': {
                     'province': $scope.province,
@@ -60,7 +86,7 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
         }).success(function(data) {
             console.log('load ', data);
             $scope.data = data;
-            $scope.dlWaterSupplyPro = data;
+            $scope.dlSumTelePro = data;
         })
     }
 

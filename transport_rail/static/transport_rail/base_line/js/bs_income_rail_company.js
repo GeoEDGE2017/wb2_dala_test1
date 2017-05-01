@@ -1,3 +1,4 @@
+//Table 1
 var app= angular.module('bsIncomeRailCompanyApp', ['underscore'])
 
 app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, _) {
@@ -139,7 +140,7 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
         }
     }
 
-    $scope.bsIncomeRailCompany = init_data;
+    $scope.bsIncomeRailCompany = angular.copy(init_data);
 
     $scope.saveBsData = function(form) {
 

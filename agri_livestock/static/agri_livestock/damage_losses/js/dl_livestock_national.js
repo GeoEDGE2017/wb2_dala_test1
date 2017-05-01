@@ -20,28 +20,61 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
     $scope.total_num_affected = 0;
 
 
-    $scope.fetchDlData = function(){
+//    $scope.fetchDlData = function(){
+//        $scope.is_edit = true;
+//        $scope.submitted = true;
+//        console.log($scope.incident);
+//            $http({
+//            method: "POST",
+//            url: '/dl_fetch_summary_disagtn',
+//            data: angular.toJson({
+//            'table_name':'Table_6',
+//            'sector': 'agri_livestock',
+//            'com_data': {
+//                    'incident': $scope.incident,
+//                  },
+//                   }),
+//            }).success(function(data) {
+//
+//            console.log('load ', data);
+//            $scope.dlAgriLivestockSumNat = data;
+//
+//            })
+//
+//    }
+
+$scope.fetchDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
-        console.log($scope.incident);
+
             $http({
             method: "POST",
-            url: '/dl_fetch_district_disagtn',
+            url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':'Table_6',
-            'sector': 'agri_livestock',
+            'table_name':  ['Table_6'],
+            'sector': ['agri_livestock'],
             'com_data': {
                     'incident': $scope.incident,
                   },
                    }),
             }).success(function(data) {
 
-            console.log('load ', data);
-            $scope.dlAgriLivestockSumNat = data;
+            angular.forEach(data, function(value, key) {
+
+            });
+           $scope.dlAgriLivestockSumNat = data  ;
 
             })
 
     }
+
+               $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlAgriLivestockSumNat ? angular.equals({},
+         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6) : true;
+        return isNull;
+
+   }
 
  $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[$index] ? (

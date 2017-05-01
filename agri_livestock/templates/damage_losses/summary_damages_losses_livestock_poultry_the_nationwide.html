@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- Main content -->
-<main class="main" ng-app="dlAgriLivestocknNatApp" ng-controller = "DlAgriLivestocknNatController">
+<main class="main" ng-app="dlAgriLivestocknNatApp" ng-controller="DlAgriLivestocknNatController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -13,14 +13,9 @@
         </li>
         <li class="breadcrumb-item"><a href="#">Livestock Sub Sector</a>
         </li>
-
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Summary of Damages and Losses in the Livestock and Poultry Sub-sector Nationwide</span>
         </li>
-
-
     </ol>
-
-
     <div class="container-fluid">
 
 
@@ -41,7 +36,7 @@
                         <col width="63"/>
                         <col width="63"/>
                     </colgroup>
-                    <tbody>
+
                   <tr height="19" class="trhead1">
                          <td colspan="2" style="padding-left:5px;">
                                 Incident
@@ -68,6 +63,9 @@
                                 <button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>
                             </td>
                     </tr>
+                    <tbody>
+                    <table class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody ng-repeat="(key, value) in dlAgriLivestockSumNat.agri_livestock.Table_6">
                     <tr class="trhead1" height="19">
                         <td rowspan="3" width="113" height="57">
                             Province
@@ -119,19 +117,11 @@
                             Private
                         </td>
                     </tr>
-                     <table ng-repeat="(key, value) in dlAgriLivestockSumNat.agri_Livestock.Table_6"
-                           class="table table-bordered">
-                        <tbody>
-                        <tr  height="20" ng-init="getTotal($index,key);">
 
-                        <td ng-bind="key" class="tdpa" width="253" height="19">
 
-                        </td>
-                                                <tr  height="20" ng-init="getTotal($index,key);">
+                    <tr class="tdpa" height="20" ng-init="getTotal($index,key);">
+                        <td ng-bind="key" width="253" height="19" ></td>
 
-                        <td ng-bind="key" class="tdpa" width="253" height="19">
-
-                        </td>
                         <td width="147" ng-bind="value.DlpNdaPubNational[0].damages">
 
                         </td>
@@ -150,15 +140,17 @@
                         <td width="133" ng-bind="value.DlpLosPvtNational[0].los_year_2">
 
                         </td>
-                        <td width="85" ng-bind="value.DlpNdaPubNational[0].damages + value.DlpLosPubNational[0].los_year_1 + value.DlpLosPvtNational[0].los_year_2">
-
-
+                        <td width="85" ng-bind="value.DlpNdaPubNational[0].damages +
+                        value.DlpLosPubNational[0].los_year_1 +
+                        value.DlpLosPubNational[0].los_year_2">
                         </td>
-                        <td width="85" ng-bind="value.DlpNdaPvtNational[0].damages + value.DlpLosPvtNational[0].los_year_1 + value.DlpLosPvtNational[0].los_year_2">
-
-
+                        <td width="85" ng-bind="value.DlpNdaPvtNational[0].damages +
+                        value.DlpLosPvtNational[0].los_year_1 +
+                        value.DlpLosPvtNational[0].los_year_2">
                         </td>
                         </tr>
+                    </tbody>
+
                         <tr height="19">
                         <td class="boldash" width="253" height="19">
                             GRAND TOTAL
@@ -187,11 +179,8 @@
                         <td width="85" ng-bind="finaltotalprivate">
 
                         </td>
-                    </tr>
 
-                    </tbody>
-                </table>
-                    </tbody>
+                    </tr>
                 </table>
 
 

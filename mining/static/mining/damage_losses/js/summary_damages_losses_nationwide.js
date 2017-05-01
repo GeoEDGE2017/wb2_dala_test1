@@ -42,6 +42,16 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
             $scope.dmLosMinFirmsNation = data;
         })
     }
+
+   $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dmLosMinFirmsNation ? angular.equals({},
+         $scope.dmLosMinFirmsNation.mining.Table_6) : true;
+        return isNull;
+
+   }
+
+
     $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + 
          ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloDmgNational[1] ? (

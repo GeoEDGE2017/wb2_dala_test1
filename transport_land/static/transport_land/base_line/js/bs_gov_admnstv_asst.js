@@ -154,4 +154,11 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         $scope.bsGovAdmnstvAsset = init_data;
     }
 
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsGovAdmnstvAsset = angular.copy(init_data);
+    }
+
 }]);

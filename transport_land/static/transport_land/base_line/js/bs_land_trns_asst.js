@@ -197,4 +197,11 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         $scope.bsLandTrnsAsst = init_data;
     }
 
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsLandTrnsAsst = angular.copy(init_data);
+    }
+
 }]);

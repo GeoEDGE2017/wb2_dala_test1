@@ -3521,6 +3521,11 @@ TABLE_PROPERTY_MAPPER = {
             'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
             'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
         },
+        'Table_4': {
+            'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+        },
         'Table_5': {
             'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
             'DlDmgFirmNational': ['tot_damages', 'incident', 'firm', 'ownership', 'province', 'company_name'],

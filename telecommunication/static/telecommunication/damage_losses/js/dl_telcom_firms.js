@@ -388,4 +388,11 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
             })
         }
     }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlTelcomFirms = angular.copy(init_data);
+    }
 }]);

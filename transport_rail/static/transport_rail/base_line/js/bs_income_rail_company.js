@@ -246,4 +246,11 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
         $scope.is_edit = false;
         $scope.bsIncomeRailCompany = init_data;
     }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsIncomeRailCompany = angular.copy(init_data);
+    }
 });

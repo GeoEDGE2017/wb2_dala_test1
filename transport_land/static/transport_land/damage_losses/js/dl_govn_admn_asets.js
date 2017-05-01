@@ -354,4 +354,11 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
     grantot = grantot + finaltotal1;
     return grantot;
     }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlGovnAdmnAsets = angular.copy(init_data);
+    }
 });

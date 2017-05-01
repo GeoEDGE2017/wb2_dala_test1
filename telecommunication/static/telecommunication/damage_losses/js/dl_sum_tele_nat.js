@@ -24,24 +24,21 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
         $scope.is_edit = true;
         $scope.submitted = true;
 
-            $http({
+        $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':'Table_5',
-            'sector': 'telecommunication',
-            'com_data': {
-                    'incident': $scope.incident,
+                'table_name':'Table_5',
+                'sector': 'telecommunication',
+                'com_data': {
+                        'incident': $scope.incident,
                   },
-                   }),
-            }).success(function(data) {
-
+            }),
+        }).success(function(data) {
             console.log('load ', data);
             $scope.data= data;
             $scope.dlSumTeleNat = data;
-
-            })
-
+        })
     }
 
     $scope.checkIfNull = function() {

@@ -53,7 +53,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
         }
     }
 
- $scope.mnIndusMinFirm = init_data;
+    $scope.mnIndusMinFirm = init_data;
 
 
  $scope.insertFirm = function(table)
@@ -77,6 +77,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.mnIndusMinFirm.mining.Table_1[table].push(new_row);
 
 }
+
 $scope.removeItem = function removeItem(table, index)
 {
 if(table == 'BmaImFn'){
@@ -84,7 +85,7 @@ if(table == 'BmaImFn'){
 }
 }
 
-      $scope.saveBsData = function(form) {
+    $scope.saveBsData = function(form) {
 
       $scope.submitted = true;
 
@@ -129,9 +130,6 @@ $("#modal-container-239454").modal('show');
 
 }
 
-
-
-
 $scope.bsHsDataEdit = function() {
 
     $scope.is_edit = true;
@@ -163,28 +161,26 @@ $scope.cancelEdit = function()
      $scope.mnIndusMinFirm = init_data;
 }
 
-$scope.saveFirm = function(form)
-{if(!$scope.is_edit_model){
-    $http({
-    method: "POST",
-    url: "/add_entity",
-    data: angular.toJson({
-    'model_fields': $scope.new_firm,
-    'model': 'Firm',
-    'is_edit': $scope.is_edit_model,
-    'sector': 'mining'
-     }),
-    }).success(function(data) {
+$scope.saveFirm = function(form) {
+    if(!$scope.is_edit_model){
+        $http({
+        method: "POST",
+        url: "/add_entity",
+        data: angular.toJson({
+        'model_fields': $scope.new_firm,
+        'model': 'Firm',
+        'is_edit': $scope.is_edit_model,
+        'sector': 'mining'
+         }),
+        }).success(function(data) {
 
-    if(data)
-        $scope.firms.push($scope.new_firm);
-        $("#modal-container-469842").modal('hide');
-        $("#modal-container-469840").modal('hide');
-       $scope.is_edit_model = false;
-    })
-
+        if(data)
+            $scope.firms.push($scope.new_firm);
+            $("#modal-container-469842").modal('hide');
+            $("#modal-container-469840").modal('hide');
+           $scope.is_edit_model = false;
+        })
     }
-
 }
 
 $scope.saveEditFirm = function(form)
@@ -226,4 +222,10 @@ $scope.fetchFirms = function()
     })
 }
 
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.mnIndusMinFirm = angular.copy(init_data);
+    }
 })

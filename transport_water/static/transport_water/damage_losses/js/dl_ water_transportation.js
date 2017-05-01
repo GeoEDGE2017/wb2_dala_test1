@@ -584,10 +584,6 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     return grantot;
     }
 
-
-
-
-
   $scope.getTotal = function(model, property) {
 
         var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
@@ -609,9 +605,12 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
     }
 
-
-
-
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlWaterTransportation = angular.copy(init_data);
+    }
 })
 
 

@@ -249,4 +249,10 @@ $scope.cancelEdit = function()
     $scope.bsAstTransWater = init_data;
 }
 
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsAstTransWater = angular.copy(init_data);
+    }
 })

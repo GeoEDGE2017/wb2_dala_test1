@@ -216,7 +216,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.dmLosOfMinFirms = init_data;
 
     $scope.getTotal = function(model, property) {
-
         var array = $scope.dmLosOfMinFirms.mining.Table_3[model];
         var cumulative = null;
         var sums = _.map(array, function(obj) {
@@ -228,9 +227,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         var the_string = model + '_' + property;
         var model = $parse(the_string);
         model.assign($scope, cumulative);
-
-
-
     }
 
     $scope.getColumnTotal = function(model, property) {
@@ -255,9 +251,8 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
             var model = $parse(the_string);
             model.assign($scope, cumulative_total);
 
-        } else {
-
-
+        }
+        else {
             var sums = _.map(array, function(obj) {
                 cumulative += obj.rep_tot_dassets;
                 cumulative_two += obj.repair_pdmg_assets;
@@ -272,9 +267,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
             var model = $parse(the_string);
             model.assign($scope, cumulative_total);
         }
-
-
-
     }
 
 
@@ -532,35 +524,36 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.saveDlData = function(form) {
 
         $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: 'POST',
+                url: '/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dmLosOfMinFirms,
+                    'com_data': {
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'firm_id': $scope.selectedFirm.id
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
 
-        $http({
-            method: 'POST',
-            url: '/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dmLosOfMinFirms,
-                'com_data': {
-                    'district_id': $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'firm_id': $scope.selectedFirm.id
-                },
-                'is_edit': $scope.is_edit
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
+                if (response.data == 'False')
+                    {
+                        $("#modal-container-239454").modal('show');
+                        $scope.is_valid_data = false;
+                    }
+                else
+                    $("#modal-container-239453").modal('show');
 
-            if (response.data == 'False')
-                {
-                    $("#modal-container-239454").modal('show');
-                    $scope.is_valid_data = false;
-                }
-            else
-                $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
 
-        }, function errorCallback(response) {
-
-            console.log(response);
-        });
+                console.log(response);
+            });
+        }
     }
 
     $scope.dlDataEdit = function(form) {
@@ -593,7 +586,12 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
          $scope.dmLosOfMinFirms = init_data;
     }
 
-
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dmLosOfMinFirms = angular.copy(init_data);
+    }
 
 
 })

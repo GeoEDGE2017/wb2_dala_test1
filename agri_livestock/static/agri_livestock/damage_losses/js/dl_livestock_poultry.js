@@ -422,7 +422,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
     $scope.dlLivestockPoultry = angular.copy(init_data);
 
-//Get Districts and related baseline Data
+    //Get Districts and related baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({

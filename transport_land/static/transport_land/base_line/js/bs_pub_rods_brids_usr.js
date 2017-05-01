@@ -217,4 +217,11 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         $scope.bsPubRodsBridsUsr = init_data;
     }
 
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsPubRodsBridsUsr = angular.copy(init_data);
+    }
+
 }]);

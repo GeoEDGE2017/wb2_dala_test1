@@ -31,7 +31,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
         }
     }
 
-    $scope.bsTelcomCmpnys = init_data;
+    $scope.bsTelcomCmpnys = angular.copy(init_data);
 
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
@@ -57,13 +57,16 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     'sector' : 'telecommunication'
                 }),
             }).success(function(data) {
-                $scope.bsInfoFisheries = init_data;
+                console.log(data);
+//                $scope.bsInfoFisheries = init_data;
                 $scope.is_edit = false;
                 if (data == 'False')
                     $scope.is_valid_data = false;
                 else
                     $("#modal-container-239453").modal('show');
 
+            }).error(function(data, status) {
+                console.error('Repos error', status, data);
             })
         }
     }
@@ -112,5 +115,12 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 $scope.companies = data;
             })
         }
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsTelcomCmpnys = angular.copy(init_data);
     }
 });

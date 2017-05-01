@@ -156,7 +156,9 @@ DATABASES = {
         #     'options': '-c search_path=other_government'
         # },
 
-        'NAME': 'dala',
+        # 'NAME': 'dala',
+        'NAME': 'dala_new',
+
         'USER': 'postgres',
     },
 }

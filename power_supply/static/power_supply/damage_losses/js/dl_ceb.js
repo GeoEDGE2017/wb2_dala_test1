@@ -10,6 +10,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.is_valid_data = true;
+    $scope.is_null = false;
 
 //Initialize model
     var init_data = {

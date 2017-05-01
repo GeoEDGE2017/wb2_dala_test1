@@ -46,7 +46,7 @@ app.controller("DlWaterSupplyNatController", function ($scope,$http,$parse, _) {
             })
 
     }
-            $scope.checkIfNull = function()
+$scope.checkIfNull = function()
    {
         var isNull = $scope.dlWaterSupplySumNat ? angular.equals({}, $scope.dlWaterSupplySumNat.water_supply.Table_7) : true;
         return isNull;
@@ -69,7 +69,7 @@ app.controller("DlWaterSupplyNatController", function ($scope,$http,$parse, _) {
         model.assign($scope, totalDamages);
 
 
-//        $scope.grndtotaldpub = $scope.grndtotaldpub + totaldpub ;
+//$scope.grndtotaldpub = $scope.grndtotaldpub + totaldpub ;
 
         var totalLossYear1 = 0;
 

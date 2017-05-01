@@ -97,7 +97,7 @@ $scope.fetchDlData = function(form){
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_2 ?
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_2 : 0 ) : 0) ;
 
-         $scope.totalyear2pvt =($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index] ? (
+         $scope.totalyear2pvt =$scope.totalyear2pvt + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index] ? (
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_2 ?
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_2 : 0 ) : 0);
 

@@ -8,11 +8,10 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.is_null = false;
 
     // declaring total variables
     $scope.total_num_affected = 0;
-
-
     $scope.saveDlHealthSummeryDamagelossProvince = function(form) {
        $scope.submitted = true;
 
@@ -32,9 +31,6 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             }),
             dataType: 'json',
         }).then(function mySucces(response) {
-            //if data sent to server side method successfull
-//$("#modal-container-239453").modal('show');
-//            console.log(response);
             console.log(response);
             if(response.data == 'False')
                 $scope.is_valid_data = false;

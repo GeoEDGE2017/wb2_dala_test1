@@ -118,6 +118,7 @@
                         <td colspan="2" width="108" ng-model="dlcwNumClients.total"
                             ng-bind="dlcwNumClients.total = dlcwNumClients.residential + dlcwNumClients.commercial + dlcwNumClients.industrial + dlcwNumClients.others ">
                         </td>
+
                     </tr>
                     <tr class="trheadc1" height="18">
                         <td rowspan="2" width="108" height="18">
@@ -140,10 +141,10 @@
                         </td>
                         <td colspan="2" width="216">
                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="DlcwNumEmployees.female">
+                                   class="form-control input-md" ng-model="dlcwNumEmployees.female">
                         </td>
-                        <td colspan="2" width="108" ng-model="DlcwNumEmployees.total"
-                            ng-bind="DlcwNumEmployees.total = DlcwNumEmployees.male + DlcwNumEmployees.female ">
+                        <td colspan="2" width="108" ng-model="dlcwNumEmployees.total"
+                            ng-bind="dlcwNumEmployees.total = dlcwNumEmployees.male + dlcwNumEmployees.female ">
                         </td>
                     </tr>
                     <tr class="trheadc1" height="18">
@@ -195,8 +196,8 @@
                             </td>
                             <td colspan="2" ng-model="dlcwDmgWaterIntake.total_dmgs"
                             ng-bind="dlcwDmgWaterIntake.total_dmgs =
-                            dlcwDmgWaterIntake.num_tot_destoyed * bs_data['BiaWaterIntake'][$index].fields.avg_replace_cost +
-                            dlcwDmgWaterIntake.num_part_damaged * bs_data['BiaWaterIntake'][$index].fields.avg_repair_cost  ">
+                            (+dlcwDmgWaterIntake.num_tot_destoyed * bs_data['BiaWaterIntake'][$index].fields.avg_replace_cost)+
+                            (+dlcwDmgWaterIntake.num_part_damaged * bs_data['BiaWaterIntake'][$index].fields.avg_repair_cost)  ">
                             </td>
 
                         </tr>

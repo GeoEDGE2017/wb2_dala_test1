@@ -10,6 +10,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
      $scope.submitted = false;
      $scope.Districts=[];
      $scope.is_valid_data = true;
+     $scope.is_null = false;
 
 //Initialize Data
     var init_data = {
@@ -118,6 +119,17 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
                     $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(data);
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                }
             }, function errorCallback(response) {
 
             });

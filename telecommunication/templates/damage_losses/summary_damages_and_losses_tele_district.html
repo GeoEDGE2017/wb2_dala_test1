@@ -14,7 +14,7 @@
             </span>
         </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_telcom_distr">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
@@ -58,7 +58,7 @@
                             </select>
                         </td>
                         <td class="trhead1" >
-                            <button type="button" class="btn btn-info" ng-click="LoadData(form_dlsum_air_distr)">Load
+                            <button type="button" class="btn btn-info" ng-click="loadData(form_telcom_distr)">Load
                             </button>
                         </td>
                     </tr>
@@ -113,114 +113,58 @@
                             Private
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm 1
+                    <tr height="19" ng-repeat="data in dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict">
+                        <td class="tdpa" height="19" width="293" ng-bind="data.company_name" ng-init="getTotal($index)">
                         </td>
+                        {% verbatim %}
                         <td height="19" width="254">
-                            <!-- - -->
+                            {{ data.ownership == 'Public' ? data.tot_damages : '' }}
                         </td>
                         <td height="19" width="145">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            {{ data.ownership == 'Private' ? data.tot_damages : '' }}
                         </td>
+                        {% endverbatim %}
+
+                        {% verbatim %}
                         <td height="19" width="221">
-                            <!-- - -->
+                            {{ data.ownership == 'Public' ? $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los : '' }}
                         </td>
                         <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            {{ data.ownership == 'Private' ? $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los : '' }}
+                        </td>
+                        {% endverbatim %}
+
+                        {% verbatim %}
+                        <td height="19" width="63">
+                            {{ data.ownership == 'Public' ? $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
                         </td>
                         <td height="19" width="63">
-                            <!-- - -->
+                            {{ data.ownership == 'Public' ? $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
+                        </td>
+                        {% endverbatim %}
+
+                        {% verbatim %}
+                        <td height="19" width="63">
+                            {{ data.ownership == 'Public' ?
+                            data.tot_damages +
+                            $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los +
+                            $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
                         </td>
                         <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
+                            {{ data.ownership == 'Private' ?
+                            data.tot_damages +
+                            $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los +
+                            $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
                         </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
+                        {% endverbatim %}
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm 2
-                        </td>
-                        <td height="19" width="254">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="145">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="221">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm N
-                        </td>
-                        <td height="19" width="254">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="145">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="221">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                    </tr>
-                    <tr height="21">
+                    <tr height="21" >
                         <td class="tdpa" height="21" width="293">
                             TOTAL
                         </td>
-                        <td height="21" width="254">
-                            <!-- - -->
+                        <td height="21" width="254" ng-bind="tot_damages_pu">
                         </td>
-                        <td height="21" width="145">
-                            <!-- - -->
+                        <td height="21" width="145" ng-bind="tot_damages_pv">
                         </td>
                         <td height="21" width="221">
                             <!-- - -->
@@ -234,10 +178,10 @@
                         <td height="21" width="63">
                             <!-- - -->
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" ng-bind="pub_tot">
                             <!-- - -->
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" ng-bind="pvt_tot">
                             <!-- - -->
                         </td>
                     </tr>

@@ -1,3 +1,4 @@
+//Table 2
 var app = angular.module('mnArtisanalFirmApp', []);
 
 app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope, $http) {
@@ -75,7 +76,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 
      $scope.saveBsData = function(form) {
       $scope.submitted = true;
-
+        if(form.$valid) {
 
         $http({
             method: 'POST',
@@ -101,7 +102,7 @@ $("#modal-container-239454").modal('show');
             console.log(response);
         });
 
-
+        }
     }
 
 
@@ -141,6 +142,10 @@ $("#modal-container-239454").modal('show');
      $scope.mnArtisanalFirm = init_data;
 }
 
-
-
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.mnArtisanalFirm = angular.copy(init_data);
+    }
 }])

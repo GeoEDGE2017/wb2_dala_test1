@@ -420,7 +420,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 }
 
 
-  $scope.calTotal=function(arr){
+    $scope.calTotal=function(arr){
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
@@ -437,10 +437,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     return finaltotal;
     }
 
-
-
-
-  $scope.calGrandTotal=function(){
+    $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -476,6 +473,13 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     })
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
     return grantot;
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlRoadBrdgs = angular.copy(init_data);
     }
 
 });

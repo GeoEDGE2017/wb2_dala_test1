@@ -1,3 +1,4 @@
+//Table 4
 var app = angular.module('mnDLArtisanalMinApp', ['underscore']);
 
 app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
@@ -514,5 +515,12 @@ $scope.saveData = function(form) {
     $scope.cancelEdit = function() {
          $scope.is_edit = false;
          $scope.mnDLArtisanalMin = init_data;
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.mnDLArtisanalMin = angular.copy(init_data);
     }
 })

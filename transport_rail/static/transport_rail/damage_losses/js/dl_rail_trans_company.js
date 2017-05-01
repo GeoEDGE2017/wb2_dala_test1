@@ -321,7 +321,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     return grantot;
     }
 
-
     $scope.dlDataEdit = function(form){
 
    $scope.is_edit = true;
@@ -349,10 +348,15 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 
 }
 
-    $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlIncomeRailCompany = init_data;
-}
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlIncomeRailCompany = init_data;
+    }
 
-
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.dlIncomeRailCompany = angular.copy(init_data);
+    }
 });

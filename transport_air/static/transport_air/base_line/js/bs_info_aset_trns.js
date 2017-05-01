@@ -1,3 +1,4 @@
+//Table 1
 var app = angular.module('bsInfoAsetTransApp', [])
 
 app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope, $http) {
@@ -261,8 +262,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     }
 
-    $scope.cancelEdit = function()
-    {
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsInfoAsetTrans = init_data;
     }

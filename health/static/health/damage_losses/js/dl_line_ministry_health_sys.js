@@ -264,7 +264,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     district_general_hospital : null,
                     total : null,
                 }, {
-                    asset : 'Other Equipment (Specify)',
+                    asset : 'Other Equipment',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
                     district_general_hospital : null,

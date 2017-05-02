@@ -151,7 +151,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.bsInfoAsetTrans = init_data;
+    $scope.bsInfoAsetTrans = angular.copy(init_data);
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsInfoAsetTrans.transport_air.Table_1[table]);
@@ -207,7 +207,6 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
@@ -224,18 +223,16 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
                     'sector':'transport_air'
                 }),
             }).success(function(data) {
-
                 $scope.bsInfoAsetTrans = init_data;
                 $scope.is_edit = false;
-
-                if (data == 'False')
-                    {
+                console.log(data);
+                if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
-
+                }
             })
         }
     }
@@ -265,5 +262,12 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsInfoAsetTrans = init_data;
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("init")
+        $scope.is_edit = false;
+        $scope.bsInfoAsetTrans = angular.copy(init_data);
     }
 }]);

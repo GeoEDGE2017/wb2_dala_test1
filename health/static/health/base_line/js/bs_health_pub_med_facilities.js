@@ -69,7 +69,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                     male: null,
                     female: null,
                 }, {
-                    type_pub_mf: 'Others (Specify)',
+                    type_pub_mf: 'Others',
                     number: null,
                     male: null,
                     female: null,

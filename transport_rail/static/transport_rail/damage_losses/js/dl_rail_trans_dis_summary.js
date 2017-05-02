@@ -9,6 +9,7 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.total = null;
+    $scope.isLoded = false;
 
     // declaring total variables
     $scope.total_num_affected = 0;
@@ -42,7 +43,8 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
     $scope.fetchDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
-
+        $scope.isLoded = true;
+        if (form.$valid) {
             $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
@@ -55,13 +57,10 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
                   },
                    }),
             }).success(function(data) {
-
-            console.log('load ', data);
-
-            $scope.dlRailTransSumDis = data;
-
+                console.log('load ', data);
+                $scope.dlRailTransSumDis = data;
             })
-
+        }
     }
 
           $scope.checkIfNull = function()

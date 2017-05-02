@@ -19,7 +19,7 @@
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active" id="step1">
+            <div class="tab-pane active" id="step1" ng-form name="form_dl_rail_transpot">
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="281"/>
@@ -28,8 +28,23 @@
                         <col width="125"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dl_rail_transpot.incident.$error.required">
+                                Please Select Incident
+                            </span>
+                        </td>
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="isLoded && form_dl_rail_transpot.district.$error.required">
+                                Please Select District
+                            </span>
+                        </td>
+                    </tr>
                     <tr height="20">
-
                         <td class="trhead1" width="130">
                             Incident
                         </td>
@@ -59,8 +74,8 @@
                             </select>
                         </td>
                         <td class="trhead1">
-                            <button class="btn btn-info btn-block"
-                                    ng-click="fetchDlData(health_summery_damageloss_province)">Load
+                            <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dl_rail_transpot)">
+                                Load
                             </button>
                         </td>
                     </tr>

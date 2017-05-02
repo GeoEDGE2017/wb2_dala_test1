@@ -306,7 +306,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
         }
     }
 
-    $scope.dlAirTrnspotation = init_data;
+    $scope.dlAirTrnspotation = angular.copy(init_data);
 
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -342,7 +342,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                     $scope.bs_data[key] = JSON.parse(value);
                 });
                 var is_null = false;
-                console.log(data);
+//                console.log(data);
 
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
@@ -353,13 +353,11 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                 if(is_null == true) {
                     $("#modal-container-239455").modal('show');
                     console.log('baseline table or tables are empty');
-                    console.log($scope.bs_data);
                 }
                 else {
+                    console.log($scope.bs_data);
                     generateRefencedData();
                 }
-            }, function errorCallback(response) {
-
             });
         }
     }
@@ -514,7 +512,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
                 data: angular.toJson({
                     'table_data': $scope.dlAirTrnspotation,
                     'com_data': {
-                       'district_id': $scope.district.district__id,
+                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
                     },
                     'is_edit':$scope.is_edit,
@@ -606,12 +604,12 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
     if(value !='Total'){
-    console.log('Test',value);
+
     finaltotal = finaltotal + value.tot_dmg_pub;
 
     }
     })
-    console.log(arr);
+
     return finaltotal;
     }
 
@@ -622,7 +620,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     finaltotal = finaltotal + value.tot_dmg_pvt ;
     }
     })
-    console.log(arr);
+
     return finaltotal;
     }
 
@@ -639,7 +637,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     var array3 = $scope.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies;
     var array4 = $scope.dlAirTrnspotation.transport_air.Table_2.DlAirDmgOthers;
     var array5 = $scope.dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures;
-    console.log(array4);
+
 
     angular.forEach(array1, function(value, key) {
 
@@ -697,7 +695,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log('clear')
         $scope.is_edit = false;
         $scope.dlAirTrnspotation = angular.copy(init_data);
     }

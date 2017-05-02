@@ -74,6 +74,7 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
 
 
     }
+
    $scope.checkIfNull = function()
    {
         var isNull = $scope.dlWaterSupplyPro ? angular.equals({}, $scope.dlWaterSupplyPro.water_supply.Table_6) : true;

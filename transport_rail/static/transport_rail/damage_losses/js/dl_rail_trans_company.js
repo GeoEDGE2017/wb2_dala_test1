@@ -186,7 +186,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
         }
     }
 
-    $scope.dlIncomeRailCompany = init_data;
+    $scope.dlIncomeRailCompany = angular.copy(init_data);
 
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -233,9 +233,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     }
 
     $scope.getCompany = function(){
-
-    $scope.company;
-
+        $scope.company;
     }
 
     $scope.saveDlData = function(form) {
@@ -271,7 +269,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
         }
     }
 
-    $scope.calTotal=function(arr){
+    $scope.calTotal=function(arr) {
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
@@ -283,7 +281,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     return finaltotal;
     }
 
-    $scope.calGrandTotal=function(){
+    $scope.calGrandTotal=function() {
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -321,7 +319,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     return grantot;
     }
 
-    $scope.dlDataEdit = function(form){
+    $scope.dlDataEdit = function(form) {
 
    $scope.is_edit = true;
    $scope.submitted = true;
@@ -355,7 +353,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dlIncomeRailCompany = angular.copy(init_data);
     }

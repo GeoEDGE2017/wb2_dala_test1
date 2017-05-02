@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <!-- Main content -->
-<main class="main" ng-app="dlSumTeleDisApp" ng-controller="dlSumTeleDisController">
+<main class="main" ng-app="dlSumTeleProApp" ng-controller="dlSumTeleProController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin</a>
@@ -31,33 +31,35 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead1" height="19">
-                        <td height="19" width="145">
+                        <td class="trhead1" width="130" colspan="2">
                             Incident
                         </td>
-                        <td colspan="5" height="19" width="694">
+                        <td width="125" colspan="2">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
+
                                 <option value={{incident.id}}>{{incident.disaster_type.names}}
                                     {{incident.reported_date_time}}
                                     {% endfor %}
                             </select>
                         </td>
-                        <td height="19" width="293">
+                        <td class="trhead1" width="281" height="20">
                             Province
                         </td>
-                        <td height="19" width="254">
+                        <td width="170" colspan="3">
                             <select name="province" ng-model="province"
-                                    class="form-control" style="width:100%;font-weight:400;"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
                                     ng-change="changedValue(false)" required>
                                 <option value="" selected="true">Select Province</option>
                                 <option ng-repeat="province in provinces" ng-value="province.district__province_id"
                                         ng-bind="province.district__province__name"></option>
                             </select>
                         </td>
-                        <td class="trhead1" colspan="1">
+                        <td colspan="2">
                             <button class="btn btn-info btn-block"
                                     ng-click="fetchDlData()">Load
                             </button>
@@ -114,9 +116,12 @@
                             Private
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+                <table class="table table-bordered" ng-repeat="(key, value) in dlSumTelePro.telecommunication.Table_4">
+                    <tbody>
                     <tr class="trheadc" height="19">
-                        <td height="19" width="293">
-                            District 1
+                        <td height="19" width="293" ng-bind="key">
                         </td>
                         <td height="19" width="254">
                         </td>
@@ -135,91 +140,41 @@
                         <td height="19" width="63">
                         </td>
                     </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm 1
+                    <tr height="19" ng-repeat="firm in value.DlDmgFirmDistrict">
+                        <td class="tdpa" height="19" width="293" ng-bind="firm.company_name">
                         </td>
+                        {% verbatim %}
                         <td height="19" width="254">
-                            <!-- - -->
+                             {{ firm.ownership == 'Public' ? firm.tot_damages : '' }}
                         </td>
                         <td height="19" width="145">
-                            <!-- - -->
+                             {{ firm.ownership == 'Private' ? firm.tot_damages : '' }}
                         </td>
+                        {% endverbatim %}
+
+                        {% verbatim %}
                         <td height="19" width="221">
-                            <!-- - -->
+                             {{ data.ownership == 'Public' ? value.LosFirmYear1District[$index].year1_los : '' }}
                         </td>
                         <td height="19" width="63">
-                            <!-- - -->
+                             {{ data.ownership == 'Private' ? value.LosFirmYear1District[$index].year1_los : '' }}
+                        </td>
+                        {% endverbatim %}
+
+                        {% verbatim %}
+                        <td height="19" width="63">
+                            {{ data.ownership == 'Public' ? value.LosFirmYear2District[$index].year1_los : '' }}
                         </td>
                         <td height="19" width="63">
-                            <!-- - -->
+                            {{ data.ownership == 'Private' ? value.LosFirmYear2District[$index].year1_los : '' }}
+                        </td>
+                        {% endverbatim %}
+
+                        <td height="19" width="63">
+                             -
                         </td>
                         <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm 2
-                        </td>
-                        <td height="19" width="254">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="145">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="221">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm N
-                        </td>
-                        <td height="19" width="254">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="145">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="221">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
+                             -
                         </td>
                     </tr>
                     <tr height="21">
@@ -251,148 +206,39 @@
                             <!-- - -->
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="293">
-                            District N
-                        </td>
-                        <td height="19" width="254">
-                        </td>
-                        <td height="19" width="145">
-                        </td>
-                        <td height="19" width="221">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm 1
-                        </td>
-                        <td height="19" width="254">
-                        </td>
-                        <td height="19" width="145">
-                        </td>
-                        <td height="19" width="221">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm 2
-                        </td>
-                        <td height="19" width="254">
-                        </td>
-                        <td height="19" width="145">
-                        </td>
-                        <td height="19" width="221">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Firm N
-                        </td>
-                        <td height="19" width="254">
-                        </td>
-                        <td height="19" width="145">
-                        </td>
-                        <td height="19" width="221">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Total
-                        </td>
-                        <td height="19" width="254">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="145">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="221">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="19" width="63">
-                            <!-- - -->
-                        </td>
-                    </tr>
-                    <tr height="21">
-                        <td class="tdpa" height="21" width="293">
-                            GRAND TOTAL
-                        </td>
-                        <td height="21" width="254">
-                            <!-- - -->
-                        </td>
-                        <td height="21" width="145">
-                            <!-- - -->
-                        </td>
-                        <td height="21" width="221">
-                            <!-- - -->
-                        </td>
-                        <td height="21" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="21" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="21" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="21" width="63">
-                            <!-- - -->
-                        </td>
-                        <td height="21" width="63">
-                            <!-- - -->
-                        </td>
-                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <tr height="21">
+                            <td class="tdpa" height="21" width="293">
+                                GRAND TOTAL
+                            </td>
+                            <td height="21" width="254">
+                                <!-- - -->
+                            </td>
+                            <td height="21" width="145">
+                                <!-- - -->
+                            </td>
+                            <td height="21" width="221">
+                                <!-- - -->
+                            </td>
+                            <td height="21" width="63">
+                                <!-- - -->
+                            </td>
+                            <td height="21" width="63">
+                                <!-- - -->
+                            </td>
+                            <td height="21" width="63">
+                                <!-- - -->
+                            </td>
+                            <td height="21" width="63">
+                                <!-- - -->
+                            </td>
+                            <td height="21" width="63">
+                                <!-- - -->
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>

@@ -1,3 +1,4 @@
+//Table 3
 var app = angular.module('bsLandTrnsAsstApp', [])
 
 app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, $http) {
@@ -114,7 +115,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         }
     }
 
-    $scope.bsLandTrnsAsst = init_data;
+    $scope.bsLandTrnsAsst = angular.copy(init_data);
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsLandTrnsAsst.transport_land.Table_2[table]);
@@ -199,7 +200,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = angular.copy(init_data);
     }

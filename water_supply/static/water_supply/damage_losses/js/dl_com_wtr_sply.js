@@ -13,6 +13,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.is_null = false;
 
 
+
 //Initialize Data
     var init_data = {
         'water_supply': {
@@ -122,7 +123,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             }
         }
     }
-
     $scope.dlComWtrSply = angular.copy(init_data);
 
 //Get Districts and related baseline Data
@@ -154,14 +154,16 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 }),
                   dataType: 'json',
             }).then(function successCallback(response) {
-                var data = response.data;
+                 var data = response.data;
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-                console.log(data);
+                var is_null = false;
 
                 angular.forEach($scope.bs_data, function(value, index) {
+                console.log('print',value);
                     if(value==null) {
+
                         is_null = true;
                     }
                 })
@@ -171,11 +173,9 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
                 }
-                else{
-                generateRefencedData();
-                }
             }, function errorCallback(response) {
-
+                console.log('baseline tables data retrieving error');
+                console.log(response);
             });
         }
     }
@@ -403,7 +403,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
 
 //Clear Function
     $scope.clear = function() {
-        console.log('done');
+//        console.log('done');
         $scope.is_edit = false;
         $scope.dlComWtrSply = angular.copy(init_data);
 

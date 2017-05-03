@@ -456,9 +456,9 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
-//                console.log(data);
+                var is_null = false;
 
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
@@ -473,9 +473,11 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 }
                 else{
                 generateRefencedData();
+
                 }
             }, function errorCallback(response) {
-
+                console.log('baseline tables data retrieving error');
+                console.log(response);
             });
         }
     }
@@ -619,7 +621,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
-                    animals : value.fields.animals,
+                    animals : value.fields.livestock,
                     dead_young_male : null,
                     dead_young_female : null,
                     dead_juvenile_male : null,

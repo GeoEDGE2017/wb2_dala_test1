@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from dala.views import fetch_districts
 from users.decorators import permission_required
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 
 # Table 1

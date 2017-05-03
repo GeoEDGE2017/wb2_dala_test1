@@ -37,7 +37,7 @@
             <ul class='nav nav-wizard'>
                 <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Number of Affected Patients</a></li>
                 <li id="li2"><a href='#step2' data-toggle="tab">2 Breakdown by Type of Health Facility</a></li>
-                <!--<li id="li3"><a href='#step3' data-toggle="tab">3 Type of Medical Facility and Assets</a></li>-->
+                <li id="li3"><a href='#step3' data-toggle="tab">3 Breakdown by Other Health Facility</a></li>
 
 
             </ul>
@@ -132,7 +132,7 @@
                             </td>
                         </tr>
                         <tr height="20">
-                            <td width="264" height="20" class="trheadc">
+                            <td width="264" height="20" class="trheadc" >
                             </td>
                             <td colspan="2" width="196" class="trsubc">
                                 Male
@@ -161,86 +161,327 @@
                                            placeholder="" class="form-control input-md">
                                 </td>
                             </tr>
-                            <tr height="20" class="trheadc">
-                                <td width="264" height="20">
-                                    Others
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                            </tr>
-                            <tr height="20"
-                                ng-repeat="dapBefOther in dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther"
-                                ng-if="$index < 3">
-                                <td width="264" ng-bind="dapBefOther.pvt_clinics" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.est_replacement_cost" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.est_repair_cost" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.total_damages" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.est_losses_y1" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.est_losses_y2" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98" ng-model="dapBefOther.total_losses" name="textinput"
-                                    ng-bind="dapBefOther.total_losses=dapBefOther.est_replacement_cost + dapBefOther.est_repair_cost + dapBefOther.total_damages + dapBefOther.est_losses_y1 + dapBefOther.est_losses_y2">
-                                </td>
-                            </tr>
+                           
                             <!--</tbody>-->
                         </table>
                         <br>
-                        <div class="pull-right">
-                            <br>
-                            <button type="button" ng-click="clear()" class="btn btn-info">
-                                Clear
-                            </button>
-
-                            <button type="button" ng-click="dlDataEdit(form_health_damagelost_private)" ng-if="!is_edit"
-                                    class="btn btn-success">
-                                Edit
-                            </button>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                                Edit
-                            </button>
-                            <button type="button" ng-click="saveDlHealthData(form_health_damagelost_private)"
-                                    class="btn btn-success">Submit
-                            </button>
-                        </div>
-                        <!--<a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span-->
-                        <!--class="glyphicon glyphicon-arrow-right"></span> Fill Breakdown by Type of Health Facility-->
-                        <!--Informations</a>-->
+                        
+                        <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill Breakdown by Type of Health Facility
+                       Informations</a>
                     </div>
 
                 </div>
 
                 <div class="tab-pane" id="step2">
-                    <table class="table table-bordered" ng-form name="form_health_damagelost_pvt">
+
+                <table class="table table-bordered">
+    <colgroup width="361">
+    </colgroup>
+    <colgroup width="344">
+    </colgroup>
+    <colgroup width="332">
+    </colgroup>
+    <colgroup width="315">
+    </colgroup>
+    <colgroup width="223">
+    </colgroup>
+    <colgroup width="236">
+    </colgroup>
+    <colgroup width="204">
+    </colgroup>
+    <tbody>
+        <tr class="trheadc1">
+            <td rowspan="2" height="55" align="center" valign="middle">
+                <br/>
+            </td>
+            <td rowspan="2" align="center" valign="middle">
+                Estimated replacement Cost(LKR)
+            </td>
+            <td rowspan="2" align="center" valign="middle">
+                Estimated Repair Cost(LKR)
+            </td>
+            <td rowspan="2" align="center" valign="middle">
+                Total Damages(LKR)
+            </td>
+            <td colspan="2" align="center" valign="middle">
+                Estimated Losses(LKR)
+            </td>
+            <td rowspan="2" align="center" valign="middle">
+                Total Losses (LKR)
+            </td>
+        </tr>
+        <tr class="trsubc">
+            <td align="center" valign="bottom">
+                Year 1
+            </td>
+            <td align="center" valign="bottom">
+                Year 2
+            </td>
+        </tr>
+        <tr class="trheadc1">
+            <td height="35" align="left" >
+                Private Clinic Name
+            </td>
+            <td colspan="3" align="center" valign="middle">
+               
+                
+    <select id="selectbasic" name="selectbasic" class="form-control">
+      <option value="1">Option one</option>
+      <option value="2">Option two</option>
+    </select>
+  
+            </td>
+            <td align="center" valign="middle" class="trsub">
+                <a id="" 
+                                   href="#modal-container-218029" role="button" data-toggle="modal"
+                                   data-id="Add Pre-school"
+                                   class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
+            </td>
+            <td align="center" valign="middle" class="trsub">
+                <a id="edit_preschool"  href="#modal-container-218029"
+                                   role="button" data-toggle="modal"
+                                   data-id="Edit Pre-school"
+                                   class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+            </td>
+            <td align="center" valign="middle" class="trsub">
+                <a id="" 
+                                    
+                                   
+                                   class=" btn btn-sm btn-block btn-info"> Add to View</a>
+
+
+               
+            </td>
+        </tr>
+        <tr class="trheadc">
+            <td height="20" align="left" valign="middle">
+                Private Clinic Name 
+            </td>
+            <td colspan="6" align="center" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="textinput" placeholder="" class="form-control input-md">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Structure
+            </td>
+            <td align="left" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+            <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+               <td align="left" valign="bottom">
+               <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+     
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                
+            </td>
+            <td class="tdpa" align="left" ">
+                <br/>
+            </td>
+            <td  class="tdpa" align="left" ">
+                <br/>
+            </td>
+           
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Supplies and Materials
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Equipments
+            </td>
+            <td align="left" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td  class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Total
+            </td>
+            <td align="left" valign="bottom">
+                <br/>
+            </td>
+            <td align="left" valign="bottom">
+                <br/>
+            </td>
+            <td align="left" valign="bottom">
+                <br/>
+            </td>
+            <td  align="left" valign="bottom">
+                <br/>
+            </td>
+            <td  align="left" valign="bottom">
+                <br/>
+            </td>
+            <td align="left" valign="bottom">
+                <br/>
+            </td>
+        </tr>
+        <tr class="trheadc">
+            <td height="20" align="left" valign="middle">
+                Private Clinic Name
+            </td>
+            <td colspan="6" align="center" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="textinput" placeholder="" class="form-control input-md">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Structure
+            </td>
+            <td align="left" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Supplies and Materials
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Equipments
+            </td>
+            <td align="left" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td align="left" valign="bottom">
+                 <input id="textinput" name="textinput"
+                                       type="number" placeholder="" class="form-control input-md">
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+            <td class="tdpa" align="left" valign="bottom">
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="20" align="left" valign="bottom">
+                Total
+            </td>
+            <td align="left" valign="bottom">
+                <br/>
+            </td>
+            <td align="left" valign="bottom">
+                <br/>
+            </td>
+            <td align="left" valign="bottom">
+                <br/>
+            </td>
+            <td  align="left" valign="bottom">
+                <br/>
+            </td>
+            <td  align="left" valign="bottom">
+                <br/>
+            </td>
+            <td  valign="bottom">
+                <br/>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+                   <!--  <table class="table table-bordered" ng-form name="form_health_damagelost_pvt">
                         <colgroup>
                             <col width="243"/>
                             <col width="63"/>
@@ -379,12 +620,139 @@
                             </td>
                         </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                     <br>
+                      <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill  Breakdown by Other Health Facility
+                       Informations</a>
+                       <br><br>
                 </div>
 
 
                 <div class="tab-pane" id="step3">
+
+
+
+
+  <table class="table table-bordered">
+   <tr class="trheadc1" height="19">
+                            <td rowspan="2" height="88" width="243">
+                            </td>
+                            <td rowspan="2" height="88" width="63">
+                                Estimated Replacement Cost (LKR)
+                            </td>
+                            <td rowspan="2" height="88" width="63">
+                                Estimated Repair Cost (LKR)
+                            </td>
+                            <td rowspan="2" height="88" width="63">
+                                Total Damages (LKR)
+                            </td>
+                            <td colspan="2" height="19" width="126">
+                                Estimated Losses (LKR)
+                            </td>
+                            <td rowspan="2" height="88" width="63">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="69">
+                            <td height="69" width="63">
+                                Year 1
+                            </td>
+                            <td height="69" width="63">
+                                Year 2
+                            </td>
+                        </tr>
+                 <tr height="20" class="trheadc">
+                                <td width="264" height="20">
+                                    Others
+                                </td>
+                                <td width="98">
+                                </td>
+                                <td width="98">
+                                </td>
+                                <td width="98">
+                                </td>
+                                <td width="98">
+                                </td>
+                                <td width="98">
+                                </td>
+                                <td width="98">
+                                </td>
+                            </tr>
+                            <tr height="20"
+                                ng-repeat="dapBefOther in dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther"
+                                ng-if="$index < 3">
+                                <td width="264" ng-bind="dapBefOther.pvt_clinics" height="20" class="tdpa">
+                                </td>
+                                <td width="98">
+                                    <input id="textinput" ng-model="dapBefOther.est_replacement_cost" name="textinput"
+                                           type="number"
+                                           placeholder="" class="form-control input-md">
+                                </td>
+                                <td width="98">
+                                    <input id="textinput" ng-model="dapBefOther.est_repair_cost" name="textinput"
+                                           type="number"
+                                           placeholder="" class="form-control input-md">
+                                </td>
+                                <td width="98">
+                                    <input id="textinput" ng-model="dapBefOther.total_damages" name="textinput"
+                                           type="number"
+                                           placeholder="" class="form-control input-md">
+                                </td>
+                                <td class="tdpa" width="98">
+                                    
+                                </td>
+                                <td class="tdpa" width="98">
+                                   
+                                </td>
+                                <td class="tdpa" width="98" >
+                                </td>
+                            </tr>
+                             <tr height="19">
+            <td class="tdpa" height="19" width="264">
+                Total
+            </td>
+            <td height="19" width="98">
+               
+            </td>
+            <td height="19" width="64">
+                
+            </td>
+            <td height="19" width="64">
+                
+            </td>
+            <td height="19" width="64">
+                
+            </td>
+            <td height="19" width="64">
+            </td>
+            <td height="19" width="64">
+               
+            </td>
+        </tr>
+        <tr height="19">
+            <td class="tdpa" height="19" width="264">
+                TOTAL
+            </td>
+            <td height="19" width="98">
+                
+            </td>
+            <td height="19" width="64">
+                
+            </td>
+            <td height="19" width="64">
+                
+            </td>
+            <td height="19" width="64">
+                
+            </td>
+            <td height="19" width="64">
+               
+            </td>
+            <td height="19" width="64">
+                
+            </td>
+        </tr>
+                            </table>
                     <!--<table class="table table-bordered" style="width:100%;background:#E4E5E6;">-->
                     <!--<colgroup>-->
                     <!--<col width="264"/>-->
@@ -745,7 +1113,27 @@
                     <!--</button>-->
                     <!--</div>-->
                     <!--</div>-->
+                      <div class="pull-right">
+                            <br>
+                            <button type="button" ng-click="clear()" class="btn btn-info">
+                                Clear
+                            </button>
+
+                            <button type="button" ng-click="dlDataEdit(form_health_damagelost_private)" ng-if="!is_edit"
+                                    class="btn btn-success">
+                                Edit
+                            </button>
+                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                                Edit
+                            </button>
+                            <button type="button" ng-click="saveDlHealthData(form_health_damagelost_private)"
+                                    class="btn btn-success">Submit
+                            </button>
+
+                        </div>
+                        <br><br> 
                 </div>
+              
             </div>
 
         </div>

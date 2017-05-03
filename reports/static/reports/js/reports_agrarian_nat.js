@@ -21,6 +21,9 @@ app.controller("reportAgriAgrarianNatController", ['$scope','$http',function ($s
 
     $scope.loadData = function(form){
         $scope.fetchDlData();
+        //modal-container-239456
+//         $("#modal-container-239453").modal('show');
+
     }
 
 
@@ -43,10 +46,18 @@ app.controller("reportAgriAgrarianNatController", ['$scope','$http',function ($s
             console.log('load ', data);
             $scope.dlAgriAgrarianSumNat = data;
 
+          if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
             })
 
     }
 
+    $scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlAgriAgrarianSumNat ? angular.equals({}, $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10) : true;
+        return isNull;
+
+   }
  $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[$index] ? (
                          $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[$index].dmg_los_pub ?

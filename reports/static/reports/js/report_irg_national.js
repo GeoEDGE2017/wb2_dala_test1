@@ -19,6 +19,14 @@ app.controller("reportAgriIrrifationNatController", function ($scope,$http,$pars
         $scope.fetchDlData();
     }
 
+    $scope.checkIfNull = function()
+   {
+        console.log("in")
+        var isNull = $scope.dlagriIrrigationNat ? angular.equals({}, $scope.dlagriIrrigationNat.agri_irrigation.Table_6) : true;
+        return isNull;
+
+   }
+
     $scope.fetchDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -40,9 +48,14 @@ app.controller("reportAgriIrrifationNatController", function ($scope,$http,$pars
             });
            $scope.dlagriIrrigationNat = data  ;
 
+            if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
             })
 
     }
+
+
    $scope.convertToInt = function(val1,val2,val3){
 
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);

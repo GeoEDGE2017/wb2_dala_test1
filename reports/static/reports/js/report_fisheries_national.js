@@ -46,15 +46,20 @@ app.controller("reportAgriFisheriesNatController", function ($scope,$http,$parse
                    }),
             }).success(function(data) {
 
-            console.log('load ', data);
+            console.log('load :', data);
             $scope.data= data;
             $scope.dlAgriFisheriesSumNat = data;
+
+
+          if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
 
             })
 
     }
             $scope.checkIfNull = function()
    {
+        console.log("in")
         var isNull = $scope.dlAgriFisheriesSumNat ? angular.equals({}, $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6) : true;
         return isNull;
 

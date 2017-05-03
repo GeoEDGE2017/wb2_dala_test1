@@ -29,6 +29,9 @@ if(form.$valid){
     $scope.dlNationwideSys = data;
     $scope.isDataAvailable = $scope.checkIfNull();
 
+     if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
 })
 }
 }

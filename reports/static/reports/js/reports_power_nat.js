@@ -46,6 +46,10 @@ app.controller("reportPowerSupplyNatController", function ($scope,$http,$parse, 
             $scope.data= data;
             $scope.dlPowerSupplySumNat = data;
 
+             if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
+
             })
 
     }

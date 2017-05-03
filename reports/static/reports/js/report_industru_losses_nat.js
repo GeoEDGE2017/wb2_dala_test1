@@ -42,8 +42,10 @@ app.controller('report_natController', function($scope, $http, $parse, _) {
             $scope.data_available = ($scope.provinces.length != 0)
 
             if(!$scope.data_available){
-                alert("no data available for your selection");
+//                alert("no data available for your selection");
+             $("#modal-container-239456").modal('show');
             }
+
 
 //            console.log($scope.data);
 //            console.log($scope.provinces);

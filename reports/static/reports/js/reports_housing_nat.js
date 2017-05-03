@@ -43,6 +43,9 @@ app.controller("reportsSummHouNatController", function ($scope,$http,$parse, _) 
             $scope.data= data;
             $scope.dlHousingSumNat = data;
 
+            if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
             })
 
     }

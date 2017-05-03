@@ -18,9 +18,9 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.selectedFirm;
     $scope.new_firm = {id: null, name: null, ownership: null};
     $scope.ownership;
-    $scope.DloDmg_rep_tot_dassets_grnd = null;
-    $scope.DloDmg_repair_pdmg_assets_grnd = null;
-    $scope.DloDmg_tot_damages_grnd = null;
+//    $scope.DloDmg_rep_tot_dassets_grnd = null;
+//    $scope.DloDmg_repair_pdmg_assets_grnd = null;
+//    $scope.DloDmg_tot_damages_grnd = null;
     $scope.is_valid_data = true;
 
     var init_data = {
@@ -529,7 +529,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     }
 
     $scope.saveDlData = function(form) {
-
         $scope.submitted = true;
         if(form.$valid) {
             $http({
@@ -541,12 +540,13 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'firm_id': $scope.selectedFirm.id
+                        'firm_id': 2
                     },
                     'is_edit': $scope.is_edit
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
+               console.log('test',$scope.dmLosOfMinFirms);
 
                 if (response.data == 'False')
                     {
@@ -584,6 +584,8 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
             }).success(function(data) {
                 console.log(data);
                 $scope.dmLosOfMinFirms = data;
+
+
             })
         }
     }

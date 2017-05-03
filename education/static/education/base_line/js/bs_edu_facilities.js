@@ -122,7 +122,7 @@ var init_data = {
         avg_female: null,
         },
         {
-        type_facilities: 'TOTAL',
+        type_facilities: 'TOTAL NUMBER OF STUDENTS ',
         total_number: null,
         avg_male: null,
         avg_female: null,

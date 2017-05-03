@@ -67,6 +67,10 @@ $scope.fetchDlData = function(form){
             });
            $scope.dlAgriLivestockSumNat = data  ;
 
+           if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
+
             })
 
     }

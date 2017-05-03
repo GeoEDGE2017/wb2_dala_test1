@@ -126,6 +126,13 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     provincial_general_hospital : null,
                     district_general_hospital : null,
                     total : null,
+                },
+                {
+                    asset : 'Value of Destroyed Medical Equipment',
+                    teaching_hospital : null,
+                    provincial_general_hospital : null,
+                    district_general_hospital : null,
+                    total : null,
                 }],
                 'DmhNdatFacOassets' : [{
                     asset : 'Computers',

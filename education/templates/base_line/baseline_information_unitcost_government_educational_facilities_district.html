@@ -196,12 +196,12 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                     <input ng-if="bugArcSupply.particulars != 'TOTAL'"
-                                           ng-model="bugArcSupply.total_number"
+                                           ng-model="bugArcSupply.particulars"
                                            type="text" placeholder="" style="width:80%;float:right;"
                                            class="form-control input-md">
-                                    <span ng-bind="bugArcSupply.total_number"
-                                          ng-if="bugArcSupply.particulars == 'TOTAL'">
-                                    </span>
+                                    <!--<span ng-bind="bugArcSupply.total_number"-->
+                                          <!--ng-if="bugArcSupply.particulars == 'TOTAL'">-->
+                                    <!--</span>-->
                                     {% endverbatim %}
                                 </td>
                                 <td width="136">
@@ -262,13 +262,13 @@
                                             class="btn btn-sm btn-danger btn-circle">
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input ng-if="bugArcEquipment.particulars != 'TOTAL'"
-                                           ng-model="bugArcEquipment.total_number"
-                                           type="text" placeholder="" style="width:80%;float:right;"
-                                           class="form-control input-md">
-                                    <span ng-bind="bugArcEquipment.total_number"
-                                          ng-if="bugArcEquipment.particulars == 'TOTAL'">
-                                    </span>
+                                    <input style="width:90%;float:right;"
+                                           ng-model="bugArcEquipment.particulars"
+                                           popover="This field is required"
+                                           popover-toggle="form_pop_lat_census['bugArcEquipment_' + $index].$dirty && !form_pop_lat_census['bugArcEquipment_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                     {% endverbatim %}
                                 </td>
                                 <td width="136">
@@ -498,7 +498,6 @@
                                     </button>
                                 </td>
                             </tr>
-
                             <tr class="trheadc" height="17">
                                 <td colspan="9" width="1368" height="17">
                                     Average Fees/ Revenue (LKR)
@@ -507,7 +506,6 @@
                             <tr ng-repeat="bugAfr in bsUcostGeduFacilities.education.Table_2.BugAfr" height="17">
                                 <td class="tdpa" ng-bind="bugAfr.particulars" ng-model="bugAfr.particulars" width="280"
                                     height="17">
-
                                 </td>
                                 <td width="136">
                                     <input ng-model="bugAfr.ab1_1c" type="number" placeholder=""
@@ -547,7 +545,6 @@
                                     Construction/ Repair Period (in months)
                                 </td>
                             </tr>
-
                             <tr ng-repeat="bugCrp in bsUcostGeduFacilities.education.Table_2.BugCrp" height="17">
                                 <td class="tdpa" ng-bind="bugCrp.particulars" ng-model="bugCrp.particulars" width="280"
                                     height="17">
@@ -589,8 +586,6 @@
                             </tbody>
                         </table>
                     </div>
-
-
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
@@ -604,12 +599,9 @@
                             Submit
                         </button>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>

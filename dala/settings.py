@@ -243,8 +243,6 @@ TABLE_PROPERTY_MAPPER = {
             'DapPvtDistrict': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
             'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
             'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
-
-            #tab 2
             'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
         },
         'Table_4': {

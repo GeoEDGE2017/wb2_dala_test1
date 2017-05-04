@@ -39,6 +39,10 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
             console.log('load ', data);
             $scope.dlWaterTransSumNat = data;
 
+                         if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
+
             })
 
     }

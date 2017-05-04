@@ -48,6 +48,9 @@ app.controller("reportWaterSupplyNatController", function ($scope,$http,$parse, 
             $scope.data= data;
             $scope.dlWaterSupplySumNat = data;
 
+             if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
             })
 
     }

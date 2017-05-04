@@ -41,6 +41,10 @@ $scope.loadData = function(form)
         $scope.dmLosTransAirNation = data;
         $scope.isDataAvailable = $scope.checkIfNull();
 
+                     if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
+
     })
 }
 

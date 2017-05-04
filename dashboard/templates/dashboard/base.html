@@ -749,7 +749,16 @@ input[type=number] {
             Developed by <a href="http://geoedge.lk">GeoEDGE</a>
         </span>
 </footer>
-
+<script>
+$(document).ready(function(){ 
+  $('body').find("input[type=number]").each(function(ev)
+  {
+      if(!$(this).val()) { 
+     $(this).attr("placeholder", "0");
+  }
+  });
+});
+</script>
 <script>
   $(document).ready(function() {
  $('#datepicker').datepicker({

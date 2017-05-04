@@ -14,12 +14,12 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
     $scope.los_year1;
     $scope.los_year2;
     $scope.tot_losses;
-//    $scope.dPubTot = null;
-//    $scope.dPvtTot = null;
-//    $scope.dPubLosyear1 = null;
-//    $scope.dPubLosyear2 = null;
-//    $scope.dPvtLosTot = null;
-//    $scope.dPubLosTot = null;
+    $scope.dPubTot = null;
+    $scope.dPvtTot = null;
+    $scope.dPubLosyear1 = null;
+    $scope.dPubLosyear2 = null;
+    $scope.dPvtLosTot = null;
+    $scope.dPubLosTot = null;
 
 
 
@@ -118,9 +118,6 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
 
 
         }
-
-
-
        if($scope.dPvtTot||$scope.dPvtLosyear1||$scope.dPvtLosyear2) {
         $scope.dPvtLosTot = $scope.dPvtTot + $scope.dPvtLosyear1 + $scope.dPvtLosyear2 ;
         }

@@ -40,18 +40,17 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                     <tr height="19">
-                        <td class="trhead1" width="130" colspan="2">
+                     <td class="trhead1 p5" width="130" colspan="2">
                             Incident
                         </td>
-                        <td width="125" class="trhead1" colspan="2">
+                        <td width="125" colspan="4">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
+                                    class="form-control" ng-change="changedValue(true);fetchProvinces();"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
 
-                                <option value={{incident.id}}>{{incident.disaster_type.names}}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
                                     {{incident.reported_date_time}}
                                     {% endfor %}
                             </select>

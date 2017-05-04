@@ -21,7 +21,7 @@
 
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Health Sector</a>
+        <li class="breadcrumb-item"><a href="#">Education Sector</a>
         </li>
 
         <li class="breadcrumb-item active">
@@ -38,8 +38,8 @@
         <div>
             <ul class='nav nav-wizard'>
                 <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Destroyed Facilities and Assets</a></li>
-                <li id="li2" ><a href='#step2' data-toggle="tab">2 No of Destroyed Assets </a></li>
-                <li id="li3" ><a href='#step3' data-toggle="tab">3 Partially Damaged Facilities and Assets</a></li>
+                <li id="li2" ><a href='#step2' data-toggle="tab">2 Partially Damaged Facilities and Assets </a></li>
+                <li id="li3" ><a href='#step3' data-toggle="tab">3  No of Destroyed Assets</a></li>
                 <li id="li4" ><a href='#step4' data-toggle="tab">4 No of Partially Damaged Assets</a></li>
                 <li id="li5" ><a href='#step5' data-toggle="tab">5 Losses</a></li>
 
@@ -259,14 +259,187 @@
                     </table>
                     <br>
                     <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill No of Destroyed Assets Informations</a>
+                            class="glyphicon glyphicon-arrow-right"></span> 
+                            Fill Partially Damaged Facilities and Assets
+                        Informations
+                            </a>
 
                     <br>
 
 
                 </div>
 
-                <div class="tab-pane" id="step2">
+
+  <div class="tab-pane" id="step2">
+
+                    <table class="table table-bordered">
+
+
+                        <tbody>
+
+                        <tr class="trheadc1" height="17">
+                            <td rowspan="2" width="280" height="68" style="height:22%;">
+                                Particular
+                            </td>
+                            <td colspan="8" width="1088">
+                                Types of Facilities
+                            </td>
+                            <td rowspan="2" width="122">
+                                Total Number
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="51">
+                            <td width="136" height="51">
+                                1AB, 1C
+                            </td>
+                            <td width="136">
+                                Type 2
+                            </td>
+                            <td width="136">
+                                Type 3
+                            </td>
+                            <td width="136">
+                                Pirivena
+                            </td>
+                            <td width="136">
+                                Training Institutes
+                            </td>
+                            <td width="136">
+                                NCOE, Training Colleges
+                            </td>
+                            <td width="136">
+                                TC, CRC, RESC
+                            </td>
+                            <td width="136">
+                                Ministry, Provincial, Zonal, Divisional Offices, NIE
+                            </td>
+                        </tr>
+                        <tr height="17" ng-repeat="dugPdfaNpdf in dlGovnEduFacilities.education.Table_3.DugPdfaNpdf">
+                            <td class="tdpa" width="280" height="17" style="width:25%;" ng-bind="dugPdfaNpdf.particulars">
+                                <!--No of Partially Damaged Facilities-->
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.ab1_1c" type="number"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.type_2" type="number"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.type_3" type="number"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.pirivena"
+                                       type="number"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.training_institutes"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.training_colleges"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.tc_crc_resc"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNpdf.min_pzd_offices"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td width="122" ng-model="dugPdfaNpdf.total"
+                                ng-bind="dugPdfaNpdf.total = dugPdfaNpdf.ab1_1c + dugPdfaNpdf.type_2 + dugPdfaNpdf.type_3 + dugPdfaNpdf.pirivena +
+                                    dugPdfaNpdf.training_institutes + dugPdfaNpdf.training_colleges + dugPdfaNpdf.tc_crc_resc + dugPdfaNpdf.min_pzd_offices">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="17">
+                            <td width="280" height="17">
+                                Number of Students Affected
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="136">
+                            </td>
+                            <td width="122">
+                            </td>
+                        </tr>
+                        <tr height="17" ng-repeat="dugPdfaNsa in dlGovnEduFacilities.education.Table_3.DugPdfaNsa">
+                            <td ng-model="dugPdfaNsa.particulars" ng-bind="dugPdfaNsa.particulars" class="tdpa"
+                                width="280"
+                                height="17">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.ab1_1c" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.type_2" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.type_3" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.pirivena" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.training_institutes" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.training_colleges" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.tc_crc_resc" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="136">
+                                <input ng-model="dugPdfaNsa.min_pzd_offices" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td width="122" ng-model="dugPdfaNsa.total" ng-bind="dugPdfaNsa.total=
+                                    dugPdfaNsa.ab1_1c +
+                                    dugPdfaNsa.type_2 +
+                                    dugPdfaNsa.type_3 +
+                                    dugPdfaNsa.pirivena +
+                                    dugPdfaNsa.training_institutes +
+                                    dugPdfaNsa.training_colleges +
+                                    dugPdfaNsa.tc_crc_resc +
+                                    dugPdfaNsa.min_pzd_offices">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br>
+                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span>  Fill No of Destroyed Assets Informations </a>
+                    <br>
+
+                </div>
+
+
+                <div class="tab-pane" id="step3">
                     <table class="table table-bordered">
 
 
@@ -670,181 +843,14 @@
                     </div>
 
                     <br>
-                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                            class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Facilities and Assets
-                        Informations</a>
-                    <br>
-
-                </div>
-
-                <div class="tab-pane" id="step3">
-
-                    <table class="table table-bordered">
-
-
-                        <tbody>
-
-                        <tr class="trheadc1" height="17">
-                            <td rowspan="2" width="280" height="68" style="height:22%;">
-                                Particular
-                            </td>
-                            <td colspan="8" width="1088">
-                                Types of Facilities
-                            </td>
-                            <td rowspan="2" width="122">
-                                Total Number
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="51">
-                            <td width="136" height="51">
-                                1AB, 1C
-                            </td>
-                            <td width="136">
-                                Type 2
-                            </td>
-                            <td width="136">
-                                Type 3
-                            </td>
-                            <td width="136">
-                                Pirivena
-                            </td>
-                            <td width="136">
-                                Training Institutes
-                            </td>
-                            <td width="136">
-                                NCOE, Training Colleges
-                            </td>
-                            <td width="136">
-                                TC, CRC, RESC
-                            </td>
-                            <td width="136">
-                                Ministry, Provincial, Zonal, Divisional Offices, NIE
-                            </td>
-                        </tr>
-                        <tr height="17" ng-repeat="dugPdfaNpdf in dlGovnEduFacilities.education.Table_3.DugPdfaNpdf">
-                            <td class="tdpa" width="280" height="17" style="width:25%;" ng-bind="dugPdfaNpdf.particulars">
-                                <!--No of Partially Damaged Facilities-->
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.ab1_1c" type="number"
-                                       placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.type_2" type="number"
-                                       placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.type_3" type="number"
-                                       placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.pirivena"
-                                       type="number"
-                                       placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.training_institutes"
-                                       type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.training_colleges"
-                                       type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.tc_crc_resc"
-                                       type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNpdf.min_pzd_offices"
-                                       type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="122" ng-model="dugPdfaNpdf.total"
-                                ng-bind="dugPdfaNpdf.total = dugPdfaNpdf.ab1_1c + dugPdfaNpdf.type_2 + dugPdfaNpdf.type_3 + dugPdfaNpdf.pirivena +
-                                    dugPdfaNpdf.training_institutes + dugPdfaNpdf.training_colleges + dugPdfaNpdf.tc_crc_resc + dugPdfaNpdf.min_pzd_offices">
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="17">
-                            <td width="280" height="17">
-                                Number of Students Affected
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="122">
-                            </td>
-                        </tr>
-                        <tr height="17" ng-repeat="dugPdfaNsa in dlGovnEduFacilities.education.Table_3.DugPdfaNsa">
-                            <td ng-model="dugPdfaNsa.particulars" ng-bind="dugPdfaNsa.particulars" class="tdpa"
-                                width="280"
-                                height="17">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.ab1_1c" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.type_2" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.type_3" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.pirivena" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.training_institutes" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.training_colleges" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.tc_crc_resc" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.min_pzd_offices" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="122" ng-model="dugPdfaNsa.total" ng-bind="dugPdfaNsa.total=
-                                    dugPdfaNsa.ab1_1c +
-                                    dugPdfaNsa.type_2 +
-                                    dugPdfaNsa.type_3 +
-                                    dugPdfaNsa.pirivena +
-                                    dugPdfaNsa.training_institutes +
-                                    dugPdfaNsa.training_colleges +
-                                    dugPdfaNsa.tc_crc_resc +
-                                    dugPdfaNsa.min_pzd_offices">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-
-                    <br>
                     <a href="#step4" id="s3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill No of Partially Damaged Assets
                         Informations</a>
                     <br>
 
                 </div>
+
+              
 
                 <div class="tab-pane" id="step4">
                     <table class="table table-bordered">

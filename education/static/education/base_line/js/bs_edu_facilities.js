@@ -19,8 +19,6 @@ $scope.BefPvt_avg_male = null;
 $scope.BefPvt_avg_female = null;
 
 
-
-
 var init_data = {
     'education':{
         'Table_1':{
@@ -122,7 +120,7 @@ var init_data = {
         avg_female: null,
         },
         {
-        type_facilities: 'TOTAL',
+        type_facilities: 'TOTAL NUMBER OF STUDENTS ',
         total_number: null,
         avg_male: null,
         avg_female: null,
@@ -131,8 +129,7 @@ var init_data = {
         }
     }
 }
-
-    $scope.bsEduFacilities = angular.copy(init_data);
+ $scope.bsEduFacilities = angular.copy(init_data);
 
 
  $scope.getTotal = function(model, property) {
@@ -155,13 +152,14 @@ var init_data = {
         });
 
         var malesum = _.map(arrayschool, function(obj) {
-            male += obj.avg_male;
+            male += obj.avg_male * obj.total_number;
+            console.log('test',obj.total_number);
             return male;
 
         });
 
         var femalesum = _.map(arrayschool, function(obj) {
-            female += obj.avg_female;
+            female += obj.avg_female * obj.total_number;
             return female;
 
         });
@@ -213,8 +211,8 @@ if ( model == 'BefPvt'){
 
         var sumsprivatetot = _.map(arrayPrivate, function(obj) {
             cumalativePrivatetot += obj.total_number;
-            cumalativePrivateMale += obj.avg_male;
-            cumalativePrivatefemale += obj.avg_female;
+            cumalativePrivateMale += obj.avg_male * obj.total_number;
+            cumalativePrivatefemale += obj.avg_female * obj.total_number;
             return cumalativePrivatetot;
         });
 

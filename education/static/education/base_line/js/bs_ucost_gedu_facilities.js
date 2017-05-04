@@ -137,16 +137,6 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     training_colleges: null,
                     tc_crc_resc: null,
                     min_pzd_offices: null,
-                }, {
-                    particulars: 'Other equipment',
-                    ab1_1c: null,
-                    type_2: null,
-                    type_3: null,
-                    pirivena: null,
-                    training_institutes: null,
-                    training_colleges: null,
-                    tc_crc_resc: null,
-                    min_pzd_offices: null,
                 }],
                 'BugArpcStructures':[{
                     particulars: 'Roof',
@@ -262,16 +252,6 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     min_pzd_offices: null,
                 }, {
                     particulars: 'Science Equipment',
-                    ab1_1c: null,
-                    type_2: null,
-                    type_3: null,
-                    pirivena: null,
-                    training_institutes: null,
-                    training_colleges: null,
-                    tc_crc_resc: null,
-                    min_pzd_offices: null,
-                }, {
-                    particulars: 'Other Equipment',
                     ab1_1c: null,
                     type_2: null,
                     type_3: null,

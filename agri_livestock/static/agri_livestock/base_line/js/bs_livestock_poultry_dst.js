@@ -118,6 +118,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
 
 //Save Data
     $scope.saveBsData = function(form) {
+    console.log('done');
        $scope.submitted = true;
         if (form.$valid) {
             $http({
@@ -133,15 +134,15 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
 
              $scope.bsLivestockPoultryDst = init_data;
              $scope.is_edit = false;
-
-             if(data == 'False')
-              {
+                if (data == 'False'){
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-             else
-              $("#modal-container-239453").modal('show');
-        })
+
+                else
+                    $("#modal-container-239453").modal('show');
+
+            })
         }
     }
 

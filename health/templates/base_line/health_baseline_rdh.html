@@ -190,7 +190,7 @@
                                            popover-toggle="form_pop_lat_census['comDisease_' + $index].$dirty && !form_pop_lat_census['comDisease_' + $index].$valid"
                                            popover-placement="top" required
                                            type="text"
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
 
@@ -270,17 +270,29 @@
                                            id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="98">
+                               <td width="98" class="tdpa" ng-if="vitalIndicator.vital_indicators == 'Under-5 Mortality Rate'">
+
+                                    <!--input ng-model="vitalIndicator.children"
+                                           id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" -->
+                                </td>
+                                <td width="98"  ng-if="vitalIndicator.vital_indicators != 'Under-5 Mortality Rate'">
 
                                     <input ng-model="vitalIndicator.children"
                                            id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="98">
+                                <td width="98" class="tdpa" ng-if="vitalIndicator.vital_indicators == 'Under-5 Mortality Rate'">
+
+                                    <!--input ng-model="vitalIndicator.elderly"
+                                           id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" -->
+                                </td>
+                                <td width="98" ng-if="vitalIndicator.vital_indicators != 'Under-5 Mortality Rate'">
 
                                     <input ng-model="vitalIndicator.elderly"
                                            id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md">
+                                           class="form-control input-md" >
                                 </td>
                             </tr>
 

@@ -92,7 +92,7 @@
                                 Total Number
                             </td>
                             <td colspan="2" width="272">
-                                Average Number of Students
+                                Average Number of Students Per Facility
                             </td>
                         </tr>
                         <tr class="trsubc" height="17">
@@ -136,11 +136,13 @@
                                            class="form-control input-md" ng-change="getTotal('BefPubSchool','total_number');">
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="befPubSchool.avg_male" type="number" placeholder="" ng-change="getTotal('BefPubSchool','avg_male');"
+                                    <input ng-model="befPubSchool.avg_male" type="number" placeholder=""
+                                           ng-change="getTotal('BefPubSchool','avg_male','total_number');"
                                            class="form-control input-md">
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="befPubSchool.avg_female" type="number" placeholder="" ng-change="getTotal('BefPubSchool','avg_female');"
+                                    <input ng-model="befPubSchool.avg_female" type="number" placeholder=""
+                                           ng-change="getTotal('BefPubSchool','avg_female','total_number');"
                                            class="form-control input-md">
                                 </td>
                             </tr>
@@ -173,7 +175,7 @@
                             <tr height="17">
                                 {% verbatim %}
                                 <td class="tdpa" width="280" height="17">
-                                    TOTAL
+                                    TOTAL NUMBER OF STUDENTS
                                 </td>
                                 <td colspan="3" width="136" ng-bind="facilitiesTot">
 
@@ -194,7 +196,7 @@
                                 </td>
 
                             </tr>
-                            <tr ng-init="" ng-repeat="befPvt in bsEduFacilities.education.Table_1.BefPvt" ng-if="befPvt.type_facilities != 'TOTAL'" height="17">
+                            <tr ng-init="" ng-repeat="befPvt in bsEduFacilities.education.Table_1.BefPvt" ng-if="befPvt.type_facilities != 'TOTAL NUMBER OF STUDENTS '" height="17">
                                 <td ng-bind="befPvt.type_facilities" ng-model="befPvt.type_facilities" ng-if="$index < 5" class="tdpa">
                                 </td>
                                 <td width="136" ng-if="$index > 4">
@@ -213,17 +215,20 @@
                                 </td>
 
                                 <td colspan="3" width="136">
-                                    <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].total_number" ng-change="getPrivateTot('BefPvt','total_number');"
+                                    <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].total_number"
+                                           ng-change="getPrivateTot('BefPvt','total_number');"
                                            type="number" placeholder=""
                                            class="form-control input-md">
 
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].avg_male" ng-change="getPrivateTot('BefPvt','avg_male');" placeholder=""
+                                    <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].avg_male"
+                                           ng-change="getPrivateTot('BefPvt','avg_male','total_number');" placeholder=""
                                            type="number" class="form-control input-md">
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].avg_female" ng-change="getPrivateTot('BefPvt','avg_female');" placeholder=""
+                                    <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].avg_female"
+                                           ng-change="getPrivateTot('BefPvt','avg_female','total_number');" placeholder=""
                                            type="number" class="form-control input-md">
                                 </td>
                             </tr>
@@ -240,7 +245,7 @@
                                 
                                 
                             </tr>
-                            <tr ng-repeat ="befPvt in bsEduFacilities.education.Table_1.BefPvt " ng-if="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities == 'TOTAL'" height="17">
+                            <tr ng-repeat ="befPvt in bsEduFacilities.education.Table_1.BefPvt " ng-if="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities == 'TOTAL NUMBER OF STUDENTS '" height="17">
                                 <td ng-bind="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities" ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities" class="tdpa"
                                     width="280" height="17">
 

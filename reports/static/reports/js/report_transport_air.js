@@ -48,6 +48,10 @@ $scope.checkIfNull = function()
         $scope.dlAirTransSumNat = data;
         $scope.isDataAvailable = $scope.checkIfNull();
 
+                     if($scope.checkIfNull())
+             $("#modal-container-239456").modal('show');
+
+
         })
 }
 }

@@ -118,6 +118,23 @@ def fetch_entities_plain(request):
         content_type='application/javascript; charset=utf8'
     )
 
+
+@csrf_exempt
+def fetch_pw_gen_firms(request):
+    data = (yaml.safe_load(request.body))
+    model_name = data['model']
+    sector = data['sector']
+
+    sub_app_name = sector + '.base_line'
+    model_class = apps.get_model(sub_app_name, model_name)
+    fetched_data = model_class.objects.all()
+    fetched_data_json = fetched_data.values('assets', 'id', 'ownership', 'description')
+
+    return HttpResponse(
+        json.dumps(list(fetched_data_json)),
+        content_type='application/javascript; charset=utf8'
+    )
+
 # this method returns single columned data
 @csrf_exempt
 def fetch_entities_plain_column(request):

@@ -57,6 +57,8 @@ urlpatterns = [
     # get entities all data
     url(r'^fetch_entities_plain$', views.fetch_entities_plain, name='fetch_entities_plain'),
 
+    url(r'^fetch_pw_gen_firms$', views.fetch_pw_gen_firms, name='fetch_pw_gen_firms'),
+
     url(r'^fetch_entities_plain_column$', views.fetch_entities_plain_column, name='fetch_entities_plain_column'),
 
 

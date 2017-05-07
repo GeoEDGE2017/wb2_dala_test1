@@ -1,6 +1,6 @@
 //Table 7
 //Table 6
-var app = angular.module('reportAgriFisheriesNatApp', ['underscore']);
+var app = angular.module('reportAgriFisheriesNatApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportAgriFisheriesNatController", function ($scope,$http,$parse, _) {
     $scope.district;

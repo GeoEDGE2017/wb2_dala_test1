@@ -1,4 +1,4 @@
-var app = angular.module('reportHealthSummaryDamageNationwideApp', []);
+var app = angular.module('reportHealthSummaryDamageNationwideApp', ['ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportHealthSummaryDamageNationwideController", ['$scope','$http',function ($scope,$http) {
 

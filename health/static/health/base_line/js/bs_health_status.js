@@ -64,6 +64,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
             }
         }
     }
+
     $scope.dataHealthStatus = angular.copy(init_data);
 
 //Save Data
@@ -175,5 +176,20 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     }
 
-
+    $scope.getLatestBsDate = function() {
+        alert($scope.district);
+        $http({
+            method: 'POST',
+            url: '/get_latest_bs_date',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_name': 'Table_3',
+                'sector': 'health',
+                'district': $scope.district,
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            alert('*');
+        })
+    }
 })

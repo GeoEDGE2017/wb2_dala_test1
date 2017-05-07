@@ -1,5 +1,5 @@
 //Table 6
-var app = angular.module('reportsSummHouNatApp', ['underscore']);
+var app = angular.module('reportsSummHouNatApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportsSummHouNatController", function ($scope,$http,$parse, _) {
     $scope.district;

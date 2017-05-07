@@ -320,6 +320,17 @@ def bs_get_data_mock(request):
 
 
 @csrf_exempt
+def get_latest_bs_date(request):
+    todate = timezone.now()
+    data = (yaml.safe_load(request.body))
+    table_name = data['table_name']
+    district = data['district']
+    sector = data['sector']
+    print table_name, district, sector
+    sub_app_name = sector + '.base_line'
+
+
+@csrf_exempt
 def bs_fetch_edit_data(request):
     data = (yaml.safe_load(request.body))
     table_name = data['table_name']

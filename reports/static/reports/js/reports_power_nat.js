@@ -1,5 +1,5 @@
 //Table 6
-var app = angular.module('reportPowerSupplyNatApp', ['underscore']);
+var app = angular.module('reportPowerSupplyNatApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportPowerSupplyNatController", function ($scope,$http,$parse, _) {
     $scope.district;

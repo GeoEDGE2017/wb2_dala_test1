@@ -366,10 +366,13 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                 });
                 console.log(data);
                 angular.forEach($scope.bs_data, function(value, index) {
+
                     if(value==null) {
                         is_null = true;
                     }
                 })
+
+                var is_null= false;
 
                 if(is_null == true) {
                     $("#modal-container-239455").modal('show');
@@ -423,8 +426,8 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
          finaltotal = finaltotal + value[property] ;
          }
         })
-          console.log(finaltotal);
-        return finaltotal;
+
+        return finaltotal.toFixed(2);
         }
 
 //Calculate Total function
@@ -452,8 +455,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
          finaltotal3 = finaltotal3 + value.tot_num_houses ;
      }
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
-    $scope.tot=grantot;
+    grantot = parseFloat(grantot + finaltotal1+ finaltotal2 + finaltotal3);
     return grantot;
     }
 
@@ -530,7 +532,13 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     })
     grandparttot = grandparttot + finaltotal1+ finaltotal2 + finaltotal3;
     $scope.partialtot = grandparttot;
-    return grandparttot;
+    return grandparttot.toFixed(2);;
+
+    }
+
+    function convertString(val1,val2,val3,val4){
+
+           return parseFloat(val1 + val2 + val3 + val3);
 
     }
 
@@ -562,7 +570,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
          finaltotal3 = finaltotal3 + value.damages ;
      }
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
+    grantot = convertString(grantot ,finaltotal1 ,finaltotal2 ,finaltotal3);
     return grantot;
     }
 

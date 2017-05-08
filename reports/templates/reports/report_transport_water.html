@@ -50,8 +50,9 @@
                                     class="form-control" required>
                                 <option value="">-- Select --</option>
                                 {% for incident in incidents %}
-                                <option value="{{ incident.id }}">{{ incident.reported_date_time }}{{
-                                    incident.disaster_type }}
+                                <option value="{{ incident.id }}">
+                                    {{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
                                 </option>
                                 {% endfor %}
                             </select>

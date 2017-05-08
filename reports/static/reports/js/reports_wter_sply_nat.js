@@ -1,6 +1,6 @@
 //Table 7
 //Table 6
-var app = angular.module('reportWaterSupplyNatApp', ['underscore']);
+var app = angular.module('reportWaterSupplyNatApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportWaterSupplyNatController", function ($scope,$http,$parse, _) {
     $scope.district;

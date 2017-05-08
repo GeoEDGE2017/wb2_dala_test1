@@ -1,5 +1,5 @@
 //Table 6
-var app = angular.module('reportSummTouBusiFaciNatApp', ['underscore'])
+var app = angular.module('reportSummTouBusiFaciNatApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint'])
 
 app.controller('reportSummTouBusiFaciNatController', function($scope, $http, $parse, _) {
 

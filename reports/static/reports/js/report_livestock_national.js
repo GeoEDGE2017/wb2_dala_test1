@@ -1,4 +1,4 @@
-var app = angular.module('reportAgriLivestocknNatApp', []);
+var app = angular.module('reportAgriLivestocknNatApp', ['ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportAgriLivestocknNatController", ['$scope','$http',function ($scope,$http) {
     $scope.district;

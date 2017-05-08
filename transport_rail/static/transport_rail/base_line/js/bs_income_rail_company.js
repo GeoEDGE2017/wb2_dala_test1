@@ -7,10 +7,8 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.selectedCompany;
     $scope.bs_data={};
     $scope.is_edit = false;
-
     $scope.submitted = false;
     $scope.is_valid_data = true;
-
     $scope.companies = [];
     $scope.company = null;
     $scope.new_company = {id: null, name: null};

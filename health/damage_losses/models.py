@@ -993,6 +993,7 @@ class DapNapTmf(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
+    private_clinic = models.ForeignKey(PrivateClinic, db_column='private_clinic', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -1057,6 +1058,7 @@ class DapBefPcn(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    private_clinic = models.ForeignKey(PrivateClinic, db_column='private_clinic', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -1078,6 +1080,7 @@ class DapBefOther(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    private_clinic = models.ForeignKey(PrivateClinic, db_column='private_clinic', blank=True, null=True)
 
     class Meta:
         managed = False

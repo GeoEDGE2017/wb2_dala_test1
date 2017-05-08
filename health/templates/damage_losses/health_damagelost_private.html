@@ -12,6 +12,7 @@
 
 
 
+
 </script>
 <!--table 7-->
 <!-- Main content -->
@@ -132,7 +133,7 @@
                             </td>
                         </tr>
                         <tr height="20">
-                            <td width="264" height="20" class="trheadc" >
+                            <td width="264" height="20" class="trheadc">
                             </td>
                             <td colspan="2" width="196" class="trsubc">
                                 Male
@@ -161,337 +162,157 @@
                                            placeholder="" class="form-control input-md">
                                 </td>
                             </tr>
-                           
+
                             <!--</tbody>-->
                         </table>
                         <br>
-                        
-                        <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill Breakdown by Type of Health Facility
-                       Informations</a>
+
+                        <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill
+                            Breakdown by Type of Health Facility
+                            Informations</a>
                     </div>
 
                 </div>
 
                 <div class="tab-pane" id="step2">
 
-                <table class="table table-bordered">
-    <colgroup width="361">
-    </colgroup>
-    <colgroup width="344">
-    </colgroup>
-    <colgroup width="332">
-    </colgroup>
-    <colgroup width="315">
-    </colgroup>
-    <colgroup width="223">
-    </colgroup>
-    <colgroup width="236">
-    </colgroup>
-    <colgroup width="204">
-    </colgroup>
-    <tbody>
-        <tr class="trheadc1">
-            <td rowspan="2" height="55" align="center" valign="middle">
-                <br/>
-            </td>
-            <td rowspan="2" align="center" valign="middle">
-                Estimated replacement Cost(LKR)
-            </td>
-            <td rowspan="2" align="center" valign="middle">
-                Estimated Repair Cost(LKR)
-            </td>
-            <td rowspan="2" align="center" valign="middle">
-                Total Damages(LKR)
-            </td>
-            <td colspan="2" align="center" valign="middle">
-                Estimated Losses(LKR)
-            </td>
-            <td rowspan="2" align="center" valign="middle">
-                Total Losses (LKR)
-            </td>
-        </tr>
-        <tr class="trsubc">
-            <td align="center" valign="bottom">
-                Year 1
-            </td>
-            <td align="center" valign="bottom">
-                Year 2
-            </td>
-        </tr>
-        <tr class="trheadc1">
-            <td height="35" align="left" >
-                Private Clinic Name
-            </td>
-            <td colspan="3" align="center" valign="middle">
-               
-                
-    <select id="selectbasic" name="selectbasic" class="form-control">
-      <option value="1">Option one</option>
-      <option value="2">Option two</option>
-    </select>
-  
-            </td>
-            <td align="center" valign="middle" class="trsub">
-                <a id="" 
+                    <table class="table table-bordered">
+                        <colgroup width="361">
+                        </colgroup>
+                        <colgroup width="344">
+                        </colgroup>
+                        <colgroup width="332">
+                        </colgroup>
+                        <colgroup width="315">
+                        </colgroup>
+                        <colgroup width="223">
+                        </colgroup>
+                        <colgroup width="236">
+                        </colgroup>
+                        <colgroup width="204">
+                        </colgroup>
+                        <tr>
+                        <tr class="trheadc1">
+                            <td rowspan="2" height="55" align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td rowspan="2" align="center" valign="middle">
+                                Estimated replacement Cost(LKR)
+                            </td>
+                            <td rowspan="2" align="center" valign="middle">
+                                Estimated Repair Cost(LKR)
+                            </td>
+                            <td rowspan="2" align="center" valign="middle">
+                                Total Damages(LKR)
+                            </td>
+                            <td colspan="2" align="center" valign="middle">
+                                Estimated Losses(LKR)
+                            </td>
+                            <td rowspan="2" align="center" valign="middle">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc">
+                            <td align="center" valign="bottom">
+                                Year 1
+                            </td>
+                            <td align="center" valign="bottom">
+                                Year 2
+                            </td>
+                        </tr>
+                        <tr class="trheadc1">
+                            <td height="35" align="left">
+                                Private Clinic Name
+                            </td>
+
+                            <td colspan="2" align="center" valign="middle" class="trsub">
+                                <a id=""
                                    href="#modal-container-218029" role="button" data-toggle="modal"
                                    data-id="Add Pre-school"
                                    class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
-            </td>
-            <td align="center" valign="middle" class="trsub">
-                <a id="edit_preschool"  href="#modal-container-218029"
+                            </td>
+                            <td colspan="2" align="center" valign="middle" class="trsub">
+                                <a id="edit_preschool" href="#modal-container-218029"
                                    role="button" data-toggle="modal"
                                    data-id="Edit Pre-school"
                                    class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
-            </td>
-            <td align="center" valign="middle" class="trsub">
-                <a id="" 
-                                    
-                                   
-                                   class=" btn btn-sm btn-block btn-info"> Add to View</a>
+                            </td>
+                            <td colspan="4" align="center" valign="middle" class="trsub">
+                                <button type="button" ng-click="addPrivateClinicObject()" class="btn btn-info">
+                            Add to View
+                        </button>
+                            </td>
+
+                        </tr>
+
+                  <tbody ng-repeat="dapBefPc in dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc">
+                     <tr>
+                                <td height="20" align="left" valign="middle">
+                                    Private Clinic Name
+                                </td>
+
+                         <td colspan="7" align="center" valign="middle">
+                             <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinics.id"
+                                    name="company" id="ccyear" ng-model="dapBefPc.clinic" class="form-control" required>
+                                <option value="" selected>Select Private Clinic</option>
+                            </select>
+                         </td>
+                            </tr>
+                     <td colspan="3" align="center" valign="middle">
+                         <tr ng-repeat="row in dapBefPc">
+                                <td class="tdpa" height="20" align="left" align="bottom" ng-bind="row.pvt_clinics">
+                                </td>
+                                <td align="left" valign="bottom">
+                                    <input id="textinput" name="textinput" ng-model="row.est_replacement_cost"
+                                           type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td align="left" valign="bottom">
+                                    <input id="textinput" name="textinput" ng-model="row.est_repair_cost"
+                                           type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td align="left" valign="bottom">
+                                    <input id="textinput" name="textinput" ng-model="row.total_damages"
+                                           type="number" placeholder="" class="form-control input-md">
+                                </td>
+
+                                <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left" valign="bottom">
+
+                                </td>
+                                <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
+
+                                </td>
+                                <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
+
+                                <br/>
+
+                                </td>
+                             <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
+
+                                </td>
+                                <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
+
+                                <br/>
+                                </td>
+                             <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
+
+                                </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill Breakdown by
+                        Other Health Facility
+                        Informations</a>
+                    <br><br>
+                </div>
 
 
-               
-            </td>
-        </tr>
-        <tr class="trheadc">
-            <td height="20" align="left" valign="middle">
-                Private Clinic Name 
-            </td>
-            <td colspan="6" align="center" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="textinput" placeholder="" class="form-control input-md">
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Structure
-            </td>
-            <td align="left" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-            <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-               <td align="left" valign="bottom">
-               <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-     
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                
-            </td>
-            <td class="tdpa" align="left" ">
-                <br/>
-            </td>
-            <td  class="tdpa" align="left" ">
-                <br/>
-            </td>
-           
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Supplies and Materials
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Equipments
-            </td>
-            <td align="left" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td  class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Total
-            </td>
-            <td align="left" valign="bottom">
-                <br/>
-            </td>
-            <td align="left" valign="bottom">
-                <br/>
-            </td>
-            <td align="left" valign="bottom">
-                <br/>
-            </td>
-            <td  align="left" valign="bottom">
-                <br/>
-            </td>
-            <td  align="left" valign="bottom">
-                <br/>
-            </td>
-            <td align="left" valign="bottom">
-                <br/>
-            </td>
-        </tr>
-        <tr class="trheadc">
-            <td height="20" align="left" valign="middle">
-                Private Clinic Name
-            </td>
-            <td colspan="6" align="center" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="textinput" placeholder="" class="form-control input-md">
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Structure
-            </td>
-            <td align="left" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Supplies and Materials
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Equipments
-            </td>
-            <td align="left" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td align="left" valign="bottom">
-                 <input id="textinput" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-            <td class="tdpa" align="left" valign="bottom">
-                <br/>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="bottom">
-                Total
-            </td>
-            <td align="left" valign="bottom">
-                <br/>
-            </td>
-            <td align="left" valign="bottom">
-                <br/>
-            </td>
-            <td align="left" valign="bottom">
-                <br/>
-            </td>
-            <td  align="left" valign="bottom">
-                <br/>
-            </td>
-            <td  align="left" valign="bottom">
-                <br/>
-            </td>
-            <td  valign="bottom">
-                <br/>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                <div class="tab-pane" id="step3">
 
 
-
-
-                   <!--  <table class="table table-bordered" ng-form name="form_health_damagelost_pvt">
-                        <colgroup>
-                            <col width="243"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                        </colgroup>
-                        <tbody>
+                    <table class="table table-bordered">
                         <tr class="trheadc1" height="19">
                             <td rowspan="2" height="88" width="243">
                             </td>
@@ -519,621 +340,119 @@
                                 Year 2
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td height="19" class="tdpa" width="243">
-                                Private Clinic Name
+                        <tr height="20" class="trheadc">
+                            <td width="264" height="20">
+                                Others
                             </td>
-                            <td colspan="4" height="19" width="378">
-                                <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinic.id"
-                                        name="district" id="ccyear" ng-model="private_clinic"
-                                        class="form-control" required>
-                                    <option value="" selected>Select Private Clinic name</option>
-                                </select>
+                            <td width="98">
                             </td>
-                            <td colspan="" height="19" width="378">
-                                <a id="add_preschool" ng-click="private_clinic=null; is_edit_model=false;"
-                                   href="#modal-container-218029" role="button" data-toggle="modal"
-                                   data-id="Add Pre-school"
-                                   class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
+                            <td width="98">
                             </td>
-                            <td colspan="" height="19" width="378">
-                                <a id="edit_preschool" ng-click=" is_edit_model=true;" href="#modal-container-218029"
-                                   role="button" data-toggle="modal"
-                                   data-id="Edit Pre-school"
-                                   class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+                            <td width="98">
+                            </td>
+                            <td width="98">
+                            </td>
+                            <td width="98">
+                            </td>
+                            <td width="98">
                             </td>
                         </tr>
-
-
-                        <tr height="20" ng-repeat="dapBefPc in dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc"
+                        <tr height="20"
+                            ng-repeat="dapBefOther in dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther"
                             ng-if="$index < 3">
-                            <td width="264" ng-bind="dapBefPc.pvt_clinics" height="20" class="tdpa"></td>
-                            <td width="98">
-                                <input id="textinput" ng-model="dapBefPc.est_replacement_cost" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
+                            <td width="264" ng-bind="dapBefOther.pvt_clinics" height="20" class="tdpa">
                             </td>
                             <td width="98">
-                                <input id="textinput" ng-model="dapBefPc.est_repair_cost" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="98" ng-model="dapBefPc.total_damages"
-                                ng-bind="dapBefPc.total_damages=dapBefPc.est_replacement_cost + dapBefPc.est_repair_cost">
-                            </td>
-                            <td width="98">
-                                <input id="textinput" ng-model="dapBefPc.est_losses_y1" name="textinput" type="number"
+                                <input id="textinput" ng-model="dapBefOther.est_replacement_cost" name="textinput"
+                                       type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td width="98">
-                                <input id="textinput" ng-model="dapBefPc.est_losses_y2" name="textinput" type="number"
+                                <input id="textinput" ng-model="dapBefOther.est_repair_cost" name="textinput"
+                                       type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
-                            <td width="98" ng-model="dapBefPc.total_losses"
-                                ng-bind="dapBefPc.total_losses = dapBefPc.est_losses_y1 + dapBefPc.est_losses_y2">
+                            <td width="98">
+                                <input id="textinput" ng-model="dapBefOther.total_damages" name="textinput"
+                                       type="number"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td class="tdpa" width="98">
+
+                            </td>
+                            <td class="tdpa" width="98">
+
+                            </td>
+                            <td class="tdpa" width="98">
                             </td>
                         </tr>
-                        <tr height="20">
-                            <td width="264"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].pvt_clinics"
-                                height="20" class="tdpa">
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="264">
+                                Total
                             </td>
-                            <td width="98"
-                                ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_replacement_cost"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_replacement_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[0].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[1].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[2].est_replacement_cost">
+                            <td height="19" width="98">
+
                             </td>
-                            <td width="98"
-                                ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_repair_cost"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_repair_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[0].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[1].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[2].est_repair_cost">
+                            <td height="19" width="64">
+
                             </td>
-                            <td width="98"
-                                ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].total_damages"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].total_damages=
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[0].total_damages +
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[1].total_damages +
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[2].total_damages">
+                            <td height="19" width="64">
+
                             </td>
-                            <td width="98"
-                                ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_losses_y1"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_losses_y1=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[0].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[1].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[2].est_losses_y1">
+                            <td height="19" width="64">
+
                             </td>
-                            <td width="98"
-                                ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_losses_y2"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].est_losses_y2=
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[0].est_losses_y2 +
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[1].est_losses_y2 +
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[2].est_losses_y2">
+                            <td height="19" width="64">
                             </td>
-                            <td width="98"
-                                ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].total_losses"
-                                ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[3].total_losses=
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[0].total_losses +
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[1].total_losses +
-                                dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc[2].total_losses ">
+                            <td height="19" width="64">
+
                             </td>
                         </tr>
-                        <tr class="tdpa">
-                            <td colspan="6" height="19" width="801">
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="264">
+                                TOTAL
                             </td>
-                            <td colspan="" height="19" width="378">
-                                <a ng-click="saveDlHealthDamagelostPrivate(form_health_damagelost_pvt, 'DapBefPc')"
-                                   role="button"
-                                   class=" btn btn-sm btn-block btn-primary btn-info">Save</a>
+                            <td height="19" width="98">
+
+                            </td>
+                            <td height="19" width="64">
+
+                            </td>
+                            <td height="19" width="64">
+
+                            </td>
+                            <td height="19" width="64">
+
+                            </td>
+                            <td height="19" width="64">
+
+                            </td>
+                            <td height="19" width="64">
+
                             </td>
                         </tr>
-                        </tbody>
-                    </table> -->
-                    <br>
-                      <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill  Breakdown by Other Health Facility
-                       Informations</a>
-                       <br><br>
+                    </table>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" ng-click="clear()" class="btn btn-info">
+                            Clear
+                        </button>
+
+                        <button type="button" ng-click="dlDataEdit(form_health_damagelost_private)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-click="saveDlHealthData()"
+                                class="btn btn-success">Submit
+                        </button>
+
+                    </div>
+                    <br><br>
                 </div>
 
-
-                <div class="tab-pane" id="step3">
-
-
-
-
-  <table class="table table-bordered">
-   <tr class="trheadc1" height="19">
-                            <td rowspan="2" height="88" width="243">
-                            </td>
-                            <td rowspan="2" height="88" width="63">
-                                Estimated Replacement Cost (LKR)
-                            </td>
-                            <td rowspan="2" height="88" width="63">
-                                Estimated Repair Cost (LKR)
-                            </td>
-                            <td rowspan="2" height="88" width="63">
-                                Total Damages (LKR)
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                Estimated Losses (LKR)
-                            </td>
-                            <td rowspan="2" height="88" width="63">
-                                Total Losses (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="69">
-                            <td height="69" width="63">
-                                Year 1
-                            </td>
-                            <td height="69" width="63">
-                                Year 2
-                            </td>
-                        </tr>
-                 <tr height="20" class="trheadc">
-                                <td width="264" height="20">
-                                    Others
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                            </tr>
-                            <tr height="20"
-                                ng-repeat="dapBefOther in dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther"
-                                ng-if="$index < 3">
-                                <td width="264" ng-bind="dapBefOther.pvt_clinics" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.est_replacement_cost" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.est_repair_cost" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dapBefOther.total_damages" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md">
-                                </td>
-                                <td class="tdpa" width="98">
-                                    
-                                </td>
-                                <td class="tdpa" width="98">
-                                   
-                                </td>
-                                <td class="tdpa" width="98" >
-                                </td>
-                            </tr>
-                             <tr height="19">
-            <td class="tdpa" height="19" width="264">
-                Total
-            </td>
-            <td height="19" width="98">
-               
-            </td>
-            <td height="19" width="64">
-                
-            </td>
-            <td height="19" width="64">
-                
-            </td>
-            <td height="19" width="64">
-                
-            </td>
-            <td height="19" width="64">
-            </td>
-            <td height="19" width="64">
-               
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" height="19" width="264">
-                TOTAL
-            </td>
-            <td height="19" width="98">
-                
-            </td>
-            <td height="19" width="64">
-                
-            </td>
-            <td height="19" width="64">
-                
-            </td>
-            <td height="19" width="64">
-                
-            </td>
-            <td height="19" width="64">
-               
-            </td>
-            <td height="19" width="64">
-                
-            </td>
-        </tr>
-                            </table>
-                    <!--<table class="table table-bordered" style="width:100%;background:#E4E5E6;">-->
-                    <!--<colgroup>-->
-                    <!--<col width="264"/>-->
-                    <!--<col width="98" span="6"/>-->
-                    <!--</colgroup>-->
-                    <!--<tbody>-->
-                    <!--<tr height="28" class="trheadc1">-->
-                    <!--<td rowspan="2" width="264" height="56" style="text-align:left;padding-left:5px;">-->
-                    <!--Type of Medical Facility and Assets-->
-                    <!--</td>-->
-                    <!--<td rowspan="2" width="98">-->
-                    <!--Estimated Replacement Cost (LKR)-->
-                    <!--</td>-->
-                    <!--<td rowspan="2" width="98">-->
-                    <!--Estimated Repair Cost (LKR)-->
-                    <!--</td>-->
-                    <!--<td rowspan="2" width="98">-->
-                    <!--Total Damages (LKR)-->
-                    <!--</td>-->
-                    <!--<td colspan="2" width="196">-->
-                    <!--Estimated Losses (LKR)-->
-                    <!--</td>-->
-                    <!--<td rowspan="2" width="98">-->
-                    <!--Total Losses - (LKR)-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="28" class="trsubc">-->
-                    <!--<td width="98" height="28">-->
-                    <!--Year 1-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--Year 2-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                    <!--</table>-->
-                    <!--<div id="boxscroll1" style="height:400px;overflow:auto;">-->
-                    <!--<table class="table table-bordered">-->
-                    <!--<tbody>-->
-                    <!--<tr height="20" class="trheadc">-->
-                    <!--<td width="264" height="20" style="text-align:left;padding-left:5px;">-->
-                    <!--Private Clinics-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20" class="trheadc">-->
-                    <!--<td width="264" height="20">-->
-                    <!--Private Clinic 1-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20"-->
-                    <!--ng-repeat="dapBefPc1 in dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1"-->
-                    <!--ng-if="$index < 3">-->
-                    <!--<td width="264" ng-bind="dapBefPc1.pvt_clinics" height="20" class="tdpa"></td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPc1.est_replacement_cost" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPc1.est_repair_cost" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPc1.total_damages" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPc1.est_losses_y1" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPc1.est_losses_y2" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPc1.total_losses"-->
-                    <!--ng-value="dapBefPc1.total_losses=dapBefPc1.est_replacement_cost + dapBefPc1.est_repair_cost + dapBefPc1.total_damages + dapBefPc1.est_losses_y1 + dapBefPc1.est_losses_y2"-->
-                    <!--name="textinput" type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20">-->
-                    <!--<td width="264"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].pvt_clinics"-->
-                    <!--height="20" class="tdpa">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_replacement_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_replacement_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[0].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[1].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[2].est_replacement_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_repair_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_repair_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[0].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[1].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[2].est_repair_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].total_damages"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].total_damages=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[0].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[1].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[2].total_damages">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_losses_y1"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_losses_y1=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[0].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[1].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[2].est_losses_y1">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_losses_y2"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_losses_y2=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[0].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[1].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[2].est_losses_y2">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].total_losses"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].total_losses=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[0].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[1].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[2].total_losses">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20" class="trheadc">-->
-                    <!--<td width="264" height="20">-->
-                    <!--Private Clinic N-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20"-->
-                    <!--ng-repeat="dapBefPcn in dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn"-->
-                    <!--ng-if="$index < 3">-->
-                    <!--<td width="264" ng-bind="dapBefPcn.pvt_clinics" height="20" class="tdpa">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPcn.est_replacement_cost" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPcn.est_repair_cost" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPcn.total_damages" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPcn.est_losses_y1" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPcn.est_losses_y2" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefPcn.total_losses" name="textinput"-->
-                    <!--type="number"-->
-                    <!--ng-value="dapBefPcn.total_losses=dapBefPcn.est_replacement_cost + dapBefPcn.est_repair_cost + dapBefPcn.total_damages + dapBefPcn.est_losses_y1 + dapBefPcn.est_losses_y2"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20">-->
-                    <!--<td width="264"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].pvt_clinics"-->
-                    <!--height="20" class="tdpa">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_replacement_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_replacement_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[0].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[1].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[2].est_replacement_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_repair_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_repair_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[0].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[1].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[2].est_repair_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].total_damages"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].total_damages=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[0].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[1].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[2].total_damages">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_losses_y1"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_losses_y1=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[0].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[1].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[2].est_losses_y1">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_losses_y2"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_losses_y2=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[0].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[1].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[2].est_losses_y2">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].total_losses"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].total_losses=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[0].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[1].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[2].total_losses">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20" class="trheadc">-->
-                    <!--<td width="264" height="20">-->
-                    <!--Others-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20"-->
-                    <!--ng-repeat="dapBefOther in dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther"-->
-                    <!--ng-if="$index < 3">-->
-                    <!--<td width="264" ng-bind="dapBefOther.pvt_clinics" height="20" class="tdpa">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefOther.est_replacement_cost" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefOther.est_repair_cost" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefOther.total_damages" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefOther.est_losses_y1" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefOther.est_losses_y2" name="textinput"-->
-                    <!--type="number"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--<td width="98">-->
-                    <!--<input id="textinput" ng-model="dapBefOther.total_losses" name="textinput"-->
-                    <!--type="number"-->
-                    <!--ng-value="dapBefOther.total_losses=dapBefOther.est_replacement_cost + dapBefOther.est_repair_cost + dapBefOther.total_damages + dapBefOther.est_losses_y1 + dapBefOther.est_losses_y2"-->
-                    <!--placeholder="" class="form-control input-md">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20">-->
-                    <!--<td width="264"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].pvt_clinics"-->
-                    <!--height="20" class="tdpa">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_replacement_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_replacement_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[0].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[1].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[2].est_replacement_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_repair_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_repair_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[0].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[1].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[2].est_repair_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].total_damages"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].total_damages=dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[0].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[1].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[2].total_damages">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_losses_y1"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_losses_y1=dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[0].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[1].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[2].est_losses_y1">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_losses_y2"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_losses_y2=dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[0].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[1].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[2].est_losses_y2">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].total_losses"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].total_losses=dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[0].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[1].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[2].total_losses">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr height="20">-->
-                    <!--<td width="264"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].pvt_clinics"-->
-                    <!--height="20" class="tdpa">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_replacement_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_replacement_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_replacement_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_replacement_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_repair_cost"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_repair_cost=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_repair_cost + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_repair_cost">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].total_damages"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].total_damages=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].total_damages + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].total_damages">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_losses_y1"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_losses_y1=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_losses_y1 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_losses_y1">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_losses_y2"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].est_losses_y2=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].est_losses_y2 + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].est_losses_y2">-->
-                    <!--</td>-->
-                    <!--<td width="98"-->
-                    <!--ng-model="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].total_losses"-->
-                    <!--ng-bind="dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[4].total_losses=dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc1[3].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefPcn[3].total_losses + dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther[3].total_losses">-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr></tr>-->
-                    <!--</tbody>-->
-                    <!--</table>-->
-
-
-                    <!--<div class="pull-right">-->
-                    <!--<br>-->
-                    <!--<button type="button" class="btn btn-info">Clear</button>-->
-                    <!--&lt;!&ndash;button type="button" class="btn btn-success" ng-click="SaveData()">Submit</button&ndash;&gt;-->
-                    <!--&lt;!&ndash;new&ndash;&gt;-->
-                    <!--<button type="button" ng-click="dlDataEdit(form_health_damagelost_private)" ng-if="!is_edit"-->
-                    <!--class="btn btn-success">-->
-                    <!--Edit-->
-                    <!--</button>-->
-                    <!--<button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel-->
-                    <!--Edit-->
-                    <!--</button>-->
-                    <!--<button type="button" ng-disabled="form_pop_lat_census.$invalid"-->
-                    <!--ng-click="saveDlHealthData(form_health_damagelost_private)"-->
-                    <!--class="btn btn-success">Submit-->
-                    <!--</button>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                      <div class="pull-right">
-                            <br>
-                            <button type="button" ng-click="clear()" class="btn btn-info">
-                                Clear
-                            </button>
-
-                            <button type="button" ng-click="dlDataEdit(form_health_damagelost_private)" ng-if="!is_edit"
-                                    class="btn btn-success">
-                                Edit
-                            </button>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                                Edit
-                            </button>
-                            <button type="button" ng-click="saveDlHealthData(form_health_damagelost_private)"
-                                    class="btn btn-success">Submit
-                            </button>
-
-                        </div>
-                        <br><br> 
-                </div>
-              
             </div>
 
         </div>

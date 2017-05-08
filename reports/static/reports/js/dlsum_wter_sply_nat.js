@@ -1,6 +1,6 @@
 //Table 7
 //Table 6
-var app = angular.module('dlWaterSupplyNatApp', ['underscore']);
+var app = angular.module('dlWaterSupplyNatApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("DlWaterSupplyNatController", function ($scope,$http,$parse, _) {
     $scope.district;

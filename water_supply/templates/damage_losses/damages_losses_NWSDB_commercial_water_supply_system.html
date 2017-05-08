@@ -344,9 +344,8 @@
                         <td class="tdpa" width="223" height="18" ng-bind="dlcwLosProduction.production_los">
                             Production Losses
                         </td>
-                        <td width="108" >
-                             <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dlcwLosProduction.avg_income">
+                        <td width="108" ng-model="dlcwLosProduction.avg_income" ng-bind="dlcwLosProduction.avg_income = bs_data['BiaWaterUsers'][$index].fields.rate  " >
+
                         </td>
                         <td width="108">
                             <input id="textinput" name="textinput" type="number" placeholder=""
@@ -356,13 +355,14 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlcwLosProduction.est_inc_year_2">
                         </td>
-                        <td width="108" ng-bind="dlcwLosProduction.tot_los_year_1 = dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_1" ng-model="dlcwLosProduction.tot_los_year_1">
+                        <td width="108" ng-bind="dlcwLosProduction.tot_los_year_1 =
+                        (dlcwLosProduction.avg_income *
+                        dlcwLosProduction.est_inc_year_1/100)" ng-model="dlcwLosProduction.tot_los_year_1">
                         </td>
-                        <td width="101" ng-model="dlcwLosProduction.tot_los_year_2" ng-bind="dlcwLosProduction.tot_los_year_2 = dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_2 ">
+                        <td width="101" ng-model="dlcwLosProduction.tot_los_year_2" ng-bind="dlcwLosProduction.tot_los_year_2 =
+                        (dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_2/100)">
                         </td>
                         <td width="101" ng-model="dlcwLosProduction.tot_los" ng-bind="dlcwLosProduction.tot_los =
-                        (dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_1) +
-                        (dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_2) +
                         dlcwLosProduction.tot_los_year_1 +
                         dlcwLosProduction.tot_los_year_2">
                         </td>

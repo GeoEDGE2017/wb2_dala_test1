@@ -166,7 +166,7 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
         })
 
         })
-        return final_total;
+        return final_total/2;
 
     }
 

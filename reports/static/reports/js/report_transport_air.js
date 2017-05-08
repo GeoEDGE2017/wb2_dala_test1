@@ -1,4 +1,4 @@
-var app = angular.module('dlTANatReportApp', []);
+var app = angular.module('dlTANatReportApp', ['ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("DlTANatReportController", ['$scope','$http',function ($scope,$http) {
     $scope.district;

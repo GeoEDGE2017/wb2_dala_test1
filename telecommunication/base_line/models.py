@@ -45,7 +45,6 @@ class Ownership(models.Model):
 
 # Table 1
 class BsTelCompany(models.Model):
-    area_covered = models.CharField(max_length=255, blank=True, null=True)
     fixed_voice = models.NullBooleanField()
     fixed_tv = models.NullBooleanField()
     fixed_data = models.NullBooleanField()
@@ -59,6 +58,7 @@ class BsTelCompany(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

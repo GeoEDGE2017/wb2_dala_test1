@@ -414,7 +414,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
             url: "/bs_fetch_edit_data",
             data: angular.toJson({
                 'table_name': 'Table_2',
-                'sector':'education',
+                'sector': 'education',
                 'com_data': {
                    'district': $scope.district,
                    'bs_date': $scope.baselineDate,

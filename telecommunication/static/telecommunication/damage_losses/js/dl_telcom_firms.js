@@ -228,6 +228,49 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                 $scope.selectedDistrict = "";
             })
         }
+
+        if($scope.incident && $scope.district) {
+            console.log('**');
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BsTelCompany'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_1',
+                    'sector':'telecommunication',
+                }),
+                dataType: 'json',
+
+            }).then(function successCallback(response) {
+                var data = response.data;
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+                });
+                var is_null = false;
+//                console.log(data);
+
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239455").modal('show');
+                    console.log('baseline table or tables are empty');
+                }
+                else {
+                    console.log('**');
+                    console.log($scope.bs_data);
+//                    generateRefencedData();
+                }
+            });
+        }
     }
 
     $scope.calTotal = function(arr) {
@@ -304,13 +347,13 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
             $http({
                 method : 'POST',
                 url : '/dl_save_data',
-               contentType : 'application/json; charset=utf-8',
+                contentType : 'application/json; charset=utf-8',
                 data: angular.toJson({
                     'table_data' : $scope.dlTelcomFirms,
                     'com_data': {
-                       'district_id' : $scope.district.district__id,
-                       'incident_id' : $scope.incident,
-                       'firm_id' : $scope.selectedCompany.id,
+                        'district_id' : $scope.district.district__id,
+                        'incident_id' : $scope.incident,
+                        'firm_id' : $scope.selectedCompany.id,
                     },
                     'is_edit' : $scope.is_edit,
                     'sector' : 'telecommunication'
@@ -319,7 +362,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
             }).then(function successCallback(response) {
                 if(response.data == 'False')
                     $scope.is_valid_data = false;
-               else
+                else
                     $("#modal-container-239453").modal('show');
             }, function errorCallback(response) {
 

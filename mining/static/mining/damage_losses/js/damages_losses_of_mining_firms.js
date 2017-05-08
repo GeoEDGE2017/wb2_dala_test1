@@ -212,7 +212,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         }
     }
 
-    $scope.dmLosOfMinFirms = init_data;
+    $scope.dmLosOfMinFirms = angular.copy(init_data);
 
     $scope.getTotal = function(model, property) {
         var array = $scope.dmLosOfMinFirms.mining.Table_3[model];
@@ -540,7 +540,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'firm_id': 2
+                        'firm_id': $scope.selectedFirm.id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -578,10 +578,12 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        'firm_id': $scope.selectedFirm.id
+                        'firm_id': $scope.selectedFirm.id,
                     },
+                    'is_edit':$scope.is_edit
                }),
             }).success(function(data) {
+                console.log('***');
                 console.log(data);
                 $scope.dmLosOfMinFirms = data;
 
@@ -592,7 +594,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 
     $scope.cancelEdit = function() {
          $scope.is_edit = false;
-         $scope.dmLosOfMinFirms = init_data;
+         $scope.dmLosOfMinFirms = angular.copy(init_data);
     }
 
     //Clear Function

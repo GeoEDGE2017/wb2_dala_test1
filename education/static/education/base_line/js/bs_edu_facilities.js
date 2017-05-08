@@ -2,24 +2,22 @@
 var bsHealthStatusApp = angular.module('bsEduFacilitiesApp', ['ui.bootstrap', 'popoverToggle', 'underscore']);
 
 bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $http, $parse, _) {
+    $scope.bsEduFacilities;
+    $scope.total;
+    $scope.iter_tot;
+    $scope.district;
+    $scope.bs_date;
+    $scope.is_edit = false;
+    $scope.submitted = false;
+    $scope.is_valid_data = true;
+    $scope.facilitiesTot = null;
+    $scope.TotMale = null;
+    $scope.TotFemale = null;
+    $scope.BefPvt_total_number = null;
+    $scope.BefPvt_avg_male = null;
+    $scope.BefPvt_avg_female = null;
 
-$scope.bsEduFacilities;
-$scope.total;
-$scope.iter_tot;
-$scope.district;
-$scope.bs_date;
-$scope.is_edit = false;
-$scope.submitted = false;
-$scope.is_valid_data = true;
-$scope.facilitiesTot = null;
-$scope.TotMale = null;
-$scope.TotFemale = null;
-$scope.BefPvt_total_number = null;
-$scope.BefPvt_avg_male = null;
-$scope.BefPvt_avg_female = null;
-
-
-var init_data = {
+    var init_data = {
     'education':{
         'Table_1':{
         'BefPubSchools':[
@@ -129,10 +127,10 @@ var init_data = {
         }
     }
 }
- $scope.bsEduFacilities = angular.copy(init_data);
 
+    $scope.bsEduFacilities = angular.copy(init_data);
 
- $scope.getTotal = function(model, property) {
+    $scope.getTotal = function(model, property) {
 
         var cumulativeschool = 0;
         var cumulativeoffice = 0;
@@ -153,7 +151,6 @@ var init_data = {
 
         var malesum = _.map(arrayschool, function(obj) {
             male += obj.avg_male * obj.total_number;
-            console.log('test',obj.total_number);
             return male;
 
         });
@@ -199,46 +196,42 @@ var init_data = {
 
     }
 
-$scope.getPrivateTot = function(model,property){
+    $scope.getPrivateTot = function(model,property){
+        if ( model == 'BefPvt') {
+            var cumalativePrivatetot = null;
+            var cumalativePrivateMale = null;
+            var cumalativePrivatefemale = null;
 
-if ( model == 'BefPvt'){
+            var arrayPrivate = $scope.bsEduFacilities.education.Table_1.BefPvt;
 
-         var cumalativePrivatetot = null;
-         var cumalativePrivateMale = null;
-         var cumalativePrivatefemale = null;
-
-          var arrayPrivate = $scope.bsEduFacilities.education.Table_1.BefPvt;
-
-        var sumsprivatetot = _.map(arrayPrivate, function(obj) {
+            var sumsprivatetot = _.map(arrayPrivate, function(obj) {
             cumalativePrivatetot += obj.total_number;
             cumalativePrivateMale += obj.avg_male * obj.total_number;
             cumalativePrivatefemale += obj.avg_female * obj.total_number;
             return cumalativePrivatetot;
-        });
+            });
 
-         var the_string_private_tot ='BefPvt_total_number' ;
-        var modelPrivateTot = $parse(the_string_private_tot);
-        modelPrivateTot.assign($scope, cumalativePrivatetot);
-        console.log(cumalativePrivatetot);
+            var the_string_private_tot ='BefPvt_total_number' ;
+            var modelPrivateTot = $parse(the_string_private_tot);
+            modelPrivateTot.assign($scope, cumalativePrivatetot);
+//            console.log(cumalativePrivatetot);
 
-         var the_string_private_male ='BefPvt_avg_male' ;
-        var modelPrivateMale = $parse(the_string_private_male);
-        modelPrivateMale.assign($scope, cumalativePrivateMale);
-        console.log(cumalativePrivateMale);
+            var the_string_private_male ='BefPvt_avg_male' ;
+            var modelPrivateMale = $parse(the_string_private_male);
+            modelPrivateMale.assign($scope, cumalativePrivateMale);
+//            console.log(cumalativePrivateMale);
 
-        var the_string_private_female ='BefPvt_avg_female' ;
-        var modelPrivateFemale = $parse(the_string_private_female);
-        modelPrivateFemale.assign($scope, cumalativePrivatefemale);
-        console.log(cumalativePrivatefemale);
-
-
-
+            var the_string_private_female ='BefPvt_avg_female' ;
+            var modelPrivateFemale = $parse(the_string_private_female);
+            modelPrivateFemale.assign($scope, cumalativePrivatefemale);
+//            console.log(cumalativePrivatefemale);
         }
-}
+    }
 
     //Edit Data
     $scope.bsEditData = function(form) {
         $scope.submitted = true;
+        $scope.is_edit = true;
         if (form.$valid) {
             $scope.is_edit = true;
             $http({
@@ -253,6 +246,7 @@ if ( model == 'BefPvt'){
                     }
                 }),
             }).success(function(data) {
+            console.log(data);
                 console.log(data);
                 $scope.bsEduFacilities = data;
             })
@@ -262,30 +256,40 @@ if ( model == 'BefPvt'){
     //Save Data
     $scope.bsEduDataSubmit = function(form) {
         $scope.submitted = true;
-        $scope.is_edit = false;
-        if(form.$valid){
+        if(form.$valid) {
             console.log($scope.bsEduFacilities);
             $http({
                 method: "POST",
                 url: "/bs_save_data",
                 data: angular.toJson({
-                'table_data': ($scope.bsEduFacilities),
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.bs_date},
+                    'table_data': $scope.bsEduFacilities,
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    },
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
                 $scope.bsEduFacilities = init_data;
                 $scope.is_edit = false;
+                console.log(data);
+//                if(data == 'False') {
+//                    $("#modal-container-239454").modal('show');
+//                    $scope.is_valid_data = false;
+//                }
+//                else {
+//                    $("#modal-container-239453").modal('show');
+//                }
+//                $scope.bsEduFacilities = init_data;
+//                $scope.is_edit = false;
 
-                if(data == 'False') {
-                    $("#modal-container-239454").modal('show');
-                    $scope.is_valid_data = false;
-                }
-                else {
-                    $("#modal-container-239453").modal('show');
-                }
+//                if(data == 'False') {
+//                    $("#modal-container-239454").modal('show');
+//                    $scope.is_valid_data = false;
+//                }
+//                else {
+//                    $("#modal-container-239453").modal('show');
+//                }
             })
         }
     }
@@ -298,10 +302,9 @@ if ( model == 'BefPvt'){
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsEduFacilities = angular.copy(init_data);
-
     }
 
     $scope.insertAsset = function(table) {
@@ -323,5 +326,4 @@ if ( model == 'BefPvt'){
             $scope.bsEduFacilities.education.Table_1.BefPvt.splice(index, 1);
         }
     }
-
 })

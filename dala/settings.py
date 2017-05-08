@@ -2630,10 +2630,10 @@ TABLE_PROPERTY_MAPPER = {
                 'animals', 'milk_year_1', 'milk_year_2', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2',
                 'los_year_1', 'los_year_2', 'id',
             ],
-            'DlpLosPoultry': [
-                'animals', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'eggs_year_1', 'eggs_year_2',
-                'los_year_1', 'los_year_2', 'id',
-            ],
+            # 'DlpLosPoultry': [
+            #     'animals', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'eggs_year_1', 'eggs_year_2',
+            #     'los_year_1', 'los_year_2', 'id',
+            # ],
             'DlpLosOther': [
                 'others', 'los_year_1', 'los_year_2', 'id',
             ],
@@ -3503,6 +3503,9 @@ TABLE_PROPERTY_MAPPER = {
 
     },
     'telecommunication': {
+        'Table_1': {
+            'BsTelCompany': ['fixed_voice', 'fixed_tv', 'fixed_data', 'mobile_voice', 'mobile_data', 'ownership', 'company', 'company_name', 'id'],
+        },
         'Table_2': {
             'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
             'DmgAstTelStructure': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],

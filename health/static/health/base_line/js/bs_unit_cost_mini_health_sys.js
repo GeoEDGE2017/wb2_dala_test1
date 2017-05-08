@@ -207,6 +207,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
             }
         }
     }
+
     $scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
 
 //Save Data
@@ -228,61 +229,54 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-            console.log(response);
-            if(response.data == 'False')
-                {
+                console.log(response);
+                if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-            else
-                $("#modal-container-239453").modal('show');
-
-        }, function errorCallback(response) {
-
-            console.log(response);
-        });
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            }, function errorCallback(response) {
+                console.log(response);
+            });
         }
     }
 
 //Edit Data
-    $scope.blDataEdit = function(form){
+    $scope.blDataEdit = function(form) {
         $scope.is_edit = true;
-         $scope.submitted = true;
+        $scope.submitted = true;
         if(form.$valid) {
-        $http({
-            method: "POST",
-            url: '/bs_fetch_edit_data',
-            data: angular.toJson({
-                'table_name':  'Table_3',
-                'sector': 'health',
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.baselineDate,
+            $http({
+                method: "POST",
+                url: '/bs_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_3',
+                    'sector': 'health',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
 
-                },
-            }),
-        }).success(function(data) {
-
-            console.log(data);
-
-            $scope.bsUnitCostMiniHealthSys = data;
-        })
-    }
+                    },
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsUnitCostMiniHealthSys = data;
+            })
+        }
     }
 
 //Cancel Edit
-    $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.bsUnitCostMiniHealthSys = init_data;
-}
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.bsUnitCostMiniHealthSys = init_data;
+    }
 
 //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;
         $scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
-
     }
-
-
 }])

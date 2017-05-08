@@ -322,7 +322,14 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         if(isNaN(val1)) return 0;
         if(isNaN(val2)) return 0;
 
-        return val1 * val2;
+        return val1 * val2 * 0.01;
+    }
+
+    $scope.getMulitiplyedYearLoss =function(value, percentage){
+        if(isNaN(value)) return 0;
+        if(isNaN(percentage)) return 0;
+
+        return value * percentage * 0.01;
     }
 
     $scope.getTotalCol = function(subTable, column, total_object){

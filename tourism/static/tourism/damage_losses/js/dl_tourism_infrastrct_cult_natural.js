@@ -213,7 +213,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         var finalValue;
 
-        finalValue = avgincome * reduction;
+        finalValue = avgincome * reduction * 0.01;
 
         subTable[yearName] = finalValue;
 

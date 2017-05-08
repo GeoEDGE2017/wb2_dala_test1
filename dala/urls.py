@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^fetch_entities_all$', views.fetch_entities_all, name='fetch_entities_all'),
 
     url(r'^fetch_company_tele$', views.fetch_company_tele, name='fetch_company_tele'),
+    url(r'^get_latest_bs_date', views.get_latest_bs_date, name='get_latest_bs_date'),
 
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),
@@ -56,6 +57,8 @@ urlpatterns = [
 
     # get entities all data
     url(r'^fetch_entities_plain$', views.fetch_entities_plain, name='fetch_entities_plain'),
+
+    url(r'^fetch_pw_gen_firms$', views.fetch_pw_gen_firms, name='fetch_pw_gen_firms'),
 
     url(r'^fetch_entities_plain_column$', views.fetch_entities_plain_column, name='fetch_entities_plain_column'),
 

@@ -101,14 +101,6 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'val_los_year2':null,
                     'tol_losses':null,
                 },{
-                    'los_type':'Income Losses',
-                    'avg_val_income_year':null,
-                    'val_income_year1':null,
-                    'val_income_year2':null,
-                    'val_los_year1':null,
-                    'val_los_year2':null,
-                    'tol_losses':null,
-                },{
                     'los_type':'Cleaning up of debris',
                     'avg_val_income_year':null,
                     'val_income_year1':null,
@@ -381,7 +373,12 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 
         var finalValue;
 
-        finalValue = avgincome * reduction;
+        finalValue = avgincome * reduction ;
+
+        //To get the precentage
+        finalValue = finalValue * 0.01;
+
+        console.log("finalValue",finalValue);
 
         subTable[0][yearName] = finalValue;
 

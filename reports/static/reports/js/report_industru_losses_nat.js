@@ -1,5 +1,5 @@
 //Table 6
-var app = angular.module('report_natApp', ['underscore'])
+var app = angular.module('report_natApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint'])
 
 app.controller('report_natController', function($scope, $http, $parse, _) {
 

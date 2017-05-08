@@ -1,4 +1,4 @@
-var app = angular.module('dlHsNationalApp', []);
+var app = angular.module('dlHsNationalApp', ['ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("DlHsNationalController", ['$scope','$http',function ($scope,$http) {
 

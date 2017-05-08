@@ -1,4 +1,4 @@
-var app = angular.module('reportRailTransSumNatApp', ['underscore']);
+var app = angular.module('reportRailTransSumNatApp', ['underscore','ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportRailTransSumNatController", function($scope,$http,$parse, _) {
 

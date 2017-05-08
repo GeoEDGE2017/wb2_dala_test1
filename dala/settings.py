@@ -156,7 +156,7 @@ DATABASES = {
         #     'options': '-c search_path=other_government'
         # },
 
-        'NAME': 'new',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }
@@ -243,6 +243,7 @@ TABLE_PROPERTY_MAPPER = {
             'DapPvtDistrict': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
             'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
             'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
+            'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
         },
         'Table_4': {
             'BucOmarStructure': ['particulars', 'base_hospital', 'divisional_hospital',
@@ -561,7 +562,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_losses_y2'],
 
         },
-
     },
     'mining': {
         'Table_1': {'BmaImFn': ['name_min_outputs',

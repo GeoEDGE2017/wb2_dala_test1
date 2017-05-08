@@ -51,7 +51,10 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
     }
 
-     $scope.fetchDlData = function(form){
+
+  $scope.fetchDlData = function(form){
+    console.log($scope.province);
+    console.log($scope.incident);
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -77,6 +80,8 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
 
     }
+
+
 
    $scope.convertToInt = function(val1,val2,val3){
 

@@ -17,16 +17,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     var init_data = {
         'telecommunication': {
             'Table_1': {
-                'BsTelCompany': [{
-                    area_covered : '',
-                    fixed_voice : false,
-                    fixed_tv : false,
-                    fixed_data : false,
-                    mobile_voice : false,
-                    mobile_data : false,
-                    ownership : $scope.ownership,
-                    company : $scope.company,
-                }],
+                'BsTelCompany': [],
             }
         }
     }
@@ -34,13 +25,13 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.bsTelcomCmpnys = angular.copy(init_data);
 
     $scope.saveBsData = function(form) {
+        console.log('in');
         $scope.submitted = true;
         if (form.$valid) {
             var array = $scope.bsTelcomCmpnys.telecommunication.Table_1;
             var details = _.map(array, function(model_array) {
                 _.map(model_array, function(model) {
-                    model.company = $scope.selectedCompany.id;
-                    model.ownership = $scope.selectedCompany.ownership;
+                    model.company = model.company.id;
                 });
             });
             console.log($scope.bsTelcomCmpnys);
@@ -57,6 +48,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     'sector' : 'telecommunication'
                 }),
             }).success(function(data) {
+                console.log('ok');
                 console.log(data);
 //                $scope.bsInfoFisheries = init_data;
                 $scope.is_edit = false;
@@ -66,7 +58,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     $("#modal-container-239453").modal('show');
 
             }).error(function(data, status) {
-                console.error('Repos error', status, data);
+
             })
         }
     }
@@ -115,6 +107,54 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 $scope.companies = data;
             })
         }
+    }
+
+    $scope.addFermForForm = function() {
+        console.log($scope.district);
+//        if($scope.district != null) {
+            var new_row = {
+                fixed_voice : false,
+                fixed_tv : false,
+                fixed_data : false,
+                mobile_voice : false,
+                mobile_data : false,
+                ownership : $scope.ownership,
+                company : $scope.company,
+                company_name : '',
+            }
+            $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany.push(new_row);
+            console.log($scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany);
+//        }
+    }
+
+    //Edit Data
+    $scope.blDataEdit = function() {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+//        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/bs_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_1',
+                    'sector': 'telecommunication',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    },
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsTelcomCmpnys = data;
+
+                angular.forEach($scope.data, function(value, key){
+                console.log('');
+                    $scope.ownership = data.telecommunication.Table_1.BsTelCompany[0].ownership;
+//                    if(value.Password == "thomasTheKing")
+//                        console.log("username is thomas");
+                });
+            })
+//        }
     }
 
     //Clear Function

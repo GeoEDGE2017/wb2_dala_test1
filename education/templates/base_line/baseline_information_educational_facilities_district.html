@@ -13,32 +13,25 @@
 </script>
 <!-- Main content -->
 <main ng-app="bsEduFacilitiesApp" ng-controller="BsEduFacilitiesController" class="main">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Education sector</a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information of Educational Facilities in a District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Baseline Information of Educational Facilities in a District
+            </span>
         </li>
-
-
     </ol>
-
-
     <div class="container-fluid">
-
         <div class="col-sm-12" style="padding:0;">
             <div class="card">
-
                 <div class="card-block">
-
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
-                     </span>
+                    </span>
                     <table ng-form name="form_bs_edu_fac" class="table table-bordered">
                         <colgroup>
                             <col width="280"/>
@@ -113,7 +106,6 @@
                                 <td colspan="8" width="280" height="17">
                                     Public Sector
                                 </td>
-
                             </tr>
                             <tr class="trheadc" height="17">
                                 <td width="280" height="17" style="width:26.7%;">
@@ -246,18 +238,19 @@
                                 
                             </tr>
                             <tr ng-repeat ="befPvt in bsEduFacilities.education.Table_1.BefPvt " ng-if="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities == 'TOTAL NUMBER OF STUDENTS '" height="17">
-                                <td ng-bind="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities" ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities" class="tdpa"
+                                <td ng-bind="bsEduFacilities.education.Table_1.BefPvt.type_facilities"
+                                    ng-model="bsEduFacilities.education.Table_1.BefPvt.type_facilities" class="tdpa"
                                     width="280" height="17">
 
                                 </td>
-                                <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].total_number"
+                                <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt.total_number"
                                             ng-bind="BefPvt_total_number">
 
                                 </td>
-                                <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].avg_male" ng-bind="BefPvt_avg_male" 
-                                           >
+                                <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt.avg_male"
+                                    ng-bind="bsEduFacilities.education.Table_1.BefPvt.avg_male">
                                 </td>
-                                <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].avg_female" ng-bind=" BefPvt_avg_female">
+                                <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt.avg_female" ng-bind="bsEduFacilities.education.Table_1.BefPvt.avg_female = BefPvt_avg_female">
                                 </td>
                             </tr>
 

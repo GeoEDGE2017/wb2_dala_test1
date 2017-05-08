@@ -18,6 +18,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     var init_data = {
         'health': {
             'Table_7': {
+                //tab 1
                 'DapNapTmf' : [{
                     type_med_fac : 'Private Clinics',
                     num_affected_fac : null,
@@ -34,6 +35,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     male : null,
                     female : null,
                 }],
+                //tab 2
+                'DapBefPc': [ ],
+                //tab 3
                 'DapBefOther': [{
                     pvt_clinics : 'Structure',
                     est_replacement_cost : null,
@@ -75,106 +79,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     est_losses_y2 : null,
                     total_losses : null,
                 }],
-                //tab 2
-                'DapBefPc': [{
-                    pvt_clinics : 'Structure',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                }, {
-                    pvt_clinics : 'Supplies and Materials',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                }, {
-                    pvt_clinics : 'Equipment',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                }, {
-                    pvt_clinics : 'Total',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                }],
-//                'DapBefPc1': [{
-//                    pvt_clinics : 'Structure',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }, {
-//                    pvt_clinics : 'Supplies and Materials',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }, {
-//                    pvt_clinics : 'Equipment',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }, {
-//                    pvt_clinics : 'Total',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }],
-//                'DapBefPcn': [{
-//                    pvt_clinics : 'Structure',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }, {
-//                    pvt_clinics : 'Supplies and Materials',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }, {
-//                    pvt_clinics : 'Equipment',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }, {
-//                    pvt_clinics : 'Total',
-//                    est_replacement_cost : null,
-//                    est_repair_cost : null,
-//                    total_damages : null,
-//                    est_losses_y1 : null,
-//                    est_losses_y2 : null,
-//                    total_losses : null,
-//                }],
 
             }
         }
@@ -183,74 +87,33 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
 
 //Save Data
-    $scope.saveDlHealthDamagelostPrivate = function(form, model) {
-        var data = {'health':{'Table_7': {model: []}}};
-        data['health']['Table_7'][model] = $scope.dlHealthDamagelostPrivateSys['health']['Table_7'][model];
+    $scope.saveDlHealthData = function() {
+//        alert('hi');
+        console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
-        if(form.$valid){
-            $http({
-                method : 'POST',
-                url : '/dl_save_data',
-                contentType: 'application/json; charset=utf-8',
-                data: angular.toJson({
-                    'table_data': data,
-                    'com_data':{
-                        'district_id': $scope.district.district__id,
-                        'incident_id': $scope.incident,
-                        'private_clinic_id': $scope.private_clinic.id
 
-                    },
-                    'is_edit': $scope.is_edit
-                }),
-                dataType: 'json',
-            }).then(function mySucces(response) {
-
-                    console.log(response);
-                    if(response.data == 'False')
-                        $scope.is_valid_data = false;
-                    else
-                        $("#modal-container-239453").modal('show');
-                }, function myError(response) {
-                    //if data sent to server side method unsuccessfull
-                    console.log(response);
-            });
-        }
-    }
-
-//Save Data
-    $scope.saveDlHealthData = function(form) {
-        var data = {'health':{'Table_7': {'DapNapTmf': []}}};
-        data = {'health':{'Table_7': {'DapBefOther': []}}};
-        data['health']['Table_7']['DapNapTmf'] = $scope.dlHealthDamagelostPrivateSys['health']['Table_7']['DapNapTmf'];
-        data['health']['Table_7']['DapBefOther'] = $scope.dlHealthDamagelostPrivateSys['health']['Table_7']['DapBefOther'];
-        $scope.submitted = true;
-        if(form.$valid) {
-            console.log($scope.district);
-            $http({
-                method : 'POST',
-                url : '/dl_save_data',
-                contentType: 'application/json; charset=utf-8',
-                data: angular.toJson({
-                    'table_data': data,
-                    'com_data':{
-                        'district_id': $scope.district.district__id,
-                        'incident_id': $scope.incident
-                    },
-                    'is_edit': $scope.is_edit
-                }),
-                dataType: 'json',
-            }).then(function mySucces(response) {
-
-                    console.log(response);
-                    if(response.data == 'False')
-                        $scope.is_valid_data = false;
-                    else
-                        $("#modal-container-239453").modal('show');
-                }, function myError(response) {
-                    //if data sent to server side method unsuccessfull
-                    console.log(response);
-            });
-        }
+        $http({
+            method: 'POST',
+            url: '/dl_save_data_with_array',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dlHealthDamagelostPrivateSys,
+                'com_data': {
+                    'district_id': $scope.district.district__id,
+                    'incident_id' : $scope.incident,
+                    'private_clinic' : $scope.clinic,
+                },
+                'is_edit':$scope.is_edit
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            if(response.data == 'False')
+                $scope.is_valid_data = false;
+            else
+                $("#modal-container-239453").modal('show');
+        }, function errorCallback(response) {
+            console.log(response);
+        });
     }
 
 //Fetch Entities
@@ -361,6 +224,46 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         $scope.is_edit = false;
         $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
 
+    }
+
+    $scope.addPrivateClinicObject = function(){
+            var new_row_one =[ {
+                    pvt_clinics : 'Structure',
+                    est_replacement_cost : null,
+                    est_repair_cost : null,
+                    total_damages : null,
+                    est_losses_y1 : null,
+                    est_losses_y2 : null,
+                    total_losses : null,
+                },{
+                    pvt_clinics : 'Supplies and Materials',
+                    est_replacement_cost : null,
+                    est_repair_cost : null,
+                    total_damages : null,
+                    est_losses_y1 : null,
+                    est_losses_y2 : null,
+                    total_losses : null,
+                },{
+                    pvt_clinics : 'Equipment',
+                    est_replacement_cost : null,
+                    est_repair_cost : null,
+                    total_damages : null,
+                    est_losses_y1 : null,
+                    est_losses_y2 : null,
+                    total_losses : null,
+                },{
+                    pvt_clinics : 'Total',
+                    est_replacement_cost : null,
+                    est_repair_cost : null,
+                    total_damages : null,
+                    est_losses_y1 : null,
+                    est_losses_y2 : null,
+                    total_losses : null,
+                }
+                ]
+            $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.push(new_row_one);
+
+            console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
     }
 
 

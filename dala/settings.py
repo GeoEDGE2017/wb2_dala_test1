@@ -2630,10 +2630,10 @@ TABLE_PROPERTY_MAPPER = {
                 'animals', 'milk_year_1', 'milk_year_2', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2',
                 'los_year_1', 'los_year_2', 'id',
             ],
-            'DlpLosPoultry': [
-                'animals', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'eggs_year_1', 'eggs_year_2',
-                'los_year_1', 'los_year_2', 'id',
-            ],
+            # 'DlpLosPoultry': [
+            #     'animals', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'eggs_year_1', 'eggs_year_2',
+            #     'los_year_1', 'los_year_2', 'id',
+            # ],
             'DlpLosOther': [
                 'others', 'los_year_1', 'los_year_2', 'id',
             ],
@@ -2886,18 +2886,18 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pub',
                 'los_year_2_pvt',
             ],
-            'DlfDmgPubProvince': [
-                'dmg_pub',
-            ],
-            'DlfDmgPvtProvince': [
-                'dmg_pvt',
-            ],
-            'DlfLosProvince': [
-                'los_year_1_pub',
-                'los_year_1_pvt',
-                'los_year_2_pub',
-                'los_year_2_pvt',
-            ],
+            # 'DlfDmgPubProvince': [
+            #     'dmg_pub',
+            # ],
+            # 'DlfDmgPvtProvince': [
+            #     'dmg_pvt',
+            # ],
+            # 'DlfLosProvince': [
+            #     'los_year_1_pub',
+            #     'los_year_1_pvt',
+            #     'los_year_2_pub',
+            #     'los_year_2_pvt',
+            # ],
         },
         'Table_6': {
             'DlfDmgPubNational': [
@@ -3500,9 +3500,11 @@ TABLE_PROPERTY_MAPPER = {
             'TotDmgPvtNational': ['tot_replace_cost', 'ownership'],
             'TotLossesPvtNational': ['los_year1', 'los_year2', 'ownership'],
         },
-
     },
     'telecommunication': {
+        'Table_1': {
+            'BsTelCompany': ['fixed_voice', 'fixed_tv', 'fixed_data', 'mobile_voice', 'mobile_data', 'ownership', 'company', 'company_name', 'id'],
+        },
         'Table_2': {
             'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],
             'DmgAstTelStructure': ['assets', 'dmg_val_replace', 'pdmg_val_repair', 'tot_dmg', 'id'],

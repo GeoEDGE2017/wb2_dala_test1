@@ -66,20 +66,20 @@
                             <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
-                    <tr class="trhead1" height="19">
-                        <td rowspan="2" height="38" width="293">
-                            Areas Covered:
-                        </td>
-                        <td colspan="7" height="19" width="1063">
-                            Describe below the areas covered by the assessment
-                            (Region/Province/RTOM)
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td colspan="7" height="19" width="1063">
-                            <input name="textinput" type="text" placeholder="" ng-model="bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].area_covered" class="form-control input-md">
-                        </td>
-                    </tr>
+                    <!--<tr class="trhead1" height="19">-->
+                        <!--<td rowspan="2" height="38" width="293">-->
+                            <!--Areas Covered:-->
+                        <!--</td>-->
+                        <!--<td colspan="7" height="19" width="1063">-->
+                            <!--Describe below the areas covered by the assessment-->
+                            <!--(Region/Province/RTOM)-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr height="19">-->
+                        <!--<td colspan="7" height="19" width="1063">-->
+                            <!--<input name="textinput" type="text" placeholder="" ng-model="bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].area_covered" class="form-control input-md">-->
+                        <!--</td>-->
+                    <!--</tr>-->
                     <tr height="19">
                         <td class="tdpa" height="19" width="293">
                             Company Name
@@ -94,20 +94,23 @@
                                <!--<small style="color:red;"> Please Select Company </small>-->
                             <!--</span>-->
                         <!--</td>-->
-                         <td class="trsub" colspan="4" height="19" width="400">
-                            <select ng-options="company as company.company_name for company in companies track by company.id"
-                                    name="firm" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>
-                                <option value="" selected>Select Firm</option>
-                            </select>
-                        </td>
+                        <!--<td class="trsub" colspan="4" height="19" width="400">-->
+                            <!--<select ng-options="company as company.company_name for company in companies track by company.id"-->
+                                    <!--name="firm" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>-->
+                                <!--<option value="" selected>Select Firm</option>-->
+                            <!--</select>-->
+                        <!--</td>-->
                         <td colspan="2" height="19" width="126">
                             <a id="add_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
                                data-id="Add "
-                               class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>
+                               class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add New Company</a>
                         </td>
                         <td colspan="2" height="19" width="126">
                             <a id="edit_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
-                               data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+                               data-id="Edit " class="btn btn-sm btn-block btn-primary btn-warning">Edit Company</a>
+                        </td>
+                        <td colspan="2" height="19" width="126">
+                            <button type="button" class="btn btn-info" ng-click="addFermForForm()">Add</button>
                         </td>
                     </tr>
                     <tr height="19">
@@ -131,11 +134,21 @@
                             Mobile
                         </td>
                     </tr>
-                    <tr height="19">
+                    <tr height="19" ng-repeat="bsTelCompany in bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany">
+                        <td height="19" width="293">
+                            <select ng-options="company as company.company_name for company in companies track by company.id"
+                                    name="firm" id="ccyear" ng-model="bsTelCompany.company" class="form-control" style="font-weight:400;" required>
+                                <option value="" selected>Select Firm</option>
+                            </select>
+                        </td>
+                        <td ng-model="bsTelCompany.company_name" ng-bind ="bsTelCompany.company_name = bsTelCompany.company.company_name">
+                        </td>
+                        <td ng-model="bsTelCompany.ownership" ng-bind ="bsTelCompany.ownership = bsTelCompany.company.ownership">
+                        </td>
                         <td height="19" width="293">
                             <div class="checkbox">
                                 <label for="checkboxes-0">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].fixed_voice">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelCompany.fixed_voice">
                                     Voice
                                 </label>
                             </div>
@@ -143,7 +156,7 @@
                         <td height="19" width="254">
                             <div class="checkbox">
                                 <label for="checkboxes-0">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].fixed_tv">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelCompany.fixed_tv">
                                     Tv
                                 </label>
                             </div>
@@ -151,7 +164,7 @@
                         <td height="19" width="145">
                             <div class="checkbox">
                                 <label for="checkboxes-0">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].fixed_data">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelCompany.fixed_data">
                                     Data/Internet
                                 </label>
                             </div>
@@ -159,7 +172,7 @@
                         <td colspan="2" height="19" width="442">
                             <div class="checkbox">
                                 <label for="checkboxes-0">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].mobile_voice">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelCompany.mobile_voice">
                                     Voice
                                 </label>
                             </div>
@@ -167,7 +180,7 @@
                         <td colspan="3" height="19" width="189" style="width:17%;">
                             <div class="checkbox">
                                 <label for="checkboxes-0">
-                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].mobile_data">
+                                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" ng-model="bsTelCompany.mobile_data">
                                     Data/Internet
                                 </label>
                             </div>
@@ -178,7 +191,7 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" class="btn btn-info" ng-click="blDataEdit()">Clear</button>
                     <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_telcom_cmpnys)">Submit</button>
                 </div>
                 <br><br>

@@ -35,7 +35,7 @@
     <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
     <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
     <script src='{% static "dashboard/js/dashboard.js" %}'></script>
-
+    
     <!--agri_livestock-->
     {% if module == 'agri_livestock' %}
     <script src='{% static "agri_livestock/base_line/js/bs_livestock_poultry_dst.js" %}'></script>
@@ -324,8 +324,16 @@ function isNumberKey(evt){
     if (charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
     return true;
+   
 }
     </script>
+
+<!-- <script type="text/javascript">
+$(function() {
+    $(':input[type="number"]').mask('000,000,000,000,000.00', {reverse: true});
+});
+</script> -->
+
     <style>
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -460,15 +468,16 @@ input[type=number] {
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'dashboard:agri_agrarian_main' %}"> Agrarian</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:agri_livestock_main' %}"> Livestock </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'dashboard:agri_fisheries_main' %}"> Fisheries</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'dashboard:agri_irrigation_main' %}"> Irrigation</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_livestock_main' %}"> Livestock </a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'dashboard:agri_summary_main' %}">
                             Summary </a>
@@ -515,9 +524,9 @@ input[type=number] {
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'reports:index_report' %}"><i class="icon-doc" style="font-size:20px;font-weight: bold;color:#fff;"></i> Report </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'charts:index_chart' %}"><i class="icon-pie-chart" style="font-size:20px;font-weight: bold;color:#fff;"></i> Chart</a>
-            </li>
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="{% url 'charts:index_chart' %}"><i class="icon-pie-chart" style="font-size:20px;font-weight: bold;color:#fff;"></i> Chart</a>-->
+            <!--</li>-->
         </ul>
     </nav>
 </div>

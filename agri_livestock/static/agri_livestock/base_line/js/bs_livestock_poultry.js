@@ -251,13 +251,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                     created_user : null,
                     organization_id:$scope.selectedOrganization,
                 },
-                {
-                    other_assets : 'Others',
-                    avg_replace_cost : null,
-                    avg_repair_cost : null,
-                    created_user : null,
-                    organization_id:$scope.selectedOrganization,
-                }],
+                ],
                 //Tab 3
                 'BlpApyLivestock': [{
                     livestock : 'Swine',
@@ -469,6 +463,7 @@ $("#modal-container-239454").modal('show');
 
 //Save Organization
     $scope.saveOrganization = function(form){
+
     console.log($scope.new_organization);
     $scope.new_organization.district_id = $scope.district;
     if($scope.selectedOrganization){
@@ -487,10 +482,12 @@ $("#modal-container-239454").modal('show');
      }),
     }).success(function(data) {
      console.log(data);
-        if(data)
-        $scope.organizations.push($scope.new_organization);
-      $scope.new_organization.id = data;
+        if(data){
+         $scope.organizations.push($scope.new_organization);
+         $scope.new_organization.id = data;
             console.log($scope.new_organization);
+            }
+            $("#modal-container-469842").modal('hide');
 
     })
 

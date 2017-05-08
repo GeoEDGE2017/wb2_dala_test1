@@ -128,37 +128,37 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = init_data;
 
-    $scope.insertAsset = function(table) {
-        console.log($scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[table]);
-        var new_row;
-        if(table == 'DlagdDmgOfficeEquipment') {
-            new_row = {
-                name_dept : '',
-                num_tot_destroyed : null,
-                num_partial_damaged : null,
-                damages : null,
-            }
-        }
-        else if(table == 'DlagdDmgMachinery') {
-            new_row = {
-                name_dept : '',
-                num_tot_destroyed : null,
-                num_partial_damaged : null,
-                damages : null,
-            }
-        }
-
-        $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[table].push(new_row);
-    }
-
-    $scope.removeItem = function removeItem(table, index) {
-        if(table == 'DlagdDmgOfficeEquipment') {
-            $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgOfficeEquipment.splice(index, 1);
-        }
-        else if(table == 'DlagdDmgMachinery') {
-            $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery.splice(index, 1);
-        }
-    }
+//    $scope.insertAsset = function(table) {
+//        console.log($scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[table]);
+//        var new_row;
+//        if(table == 'DlagdDmgOfficeEquipment') {
+//            new_row = {
+//                name_dept : '',
+//                num_tot_destroyed : null,
+//                num_partial_damaged : null,
+//                damages : null,
+//            }
+//        }
+//        else if(table == 'DlagdDmgMachinery') {
+//            new_row = {
+//                name_dept : '',
+//                num_tot_destroyed : null,
+//                num_partial_damaged : null,
+//                damages : null,
+//            }
+//        }
+//
+//        $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[table].push(new_row);
+//    }
+//
+//    $scope.removeItem = function removeItem(table, index) {
+//        if(table == 'DlagdDmgOfficeEquipment') {
+//            $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgOfficeEquipment.splice(index, 1);
+//        }
+//        else if(table == 'DlagdDmgMachinery') {
+//            $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery.splice(index, 1);
+//        }
+//    }
 
     $scope.$watch(
         function() {
@@ -235,12 +235,93 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
                 }
+                else
+                {
+
+                generateRefencedData();
+                }
 
             }, function errorCallback(response) {
 
                 console.log(response);
             });
         }
+    }
+
+    //Get Reference Data from Baseline
+    function generateRefencedData() {
+        data_array = ['BcsStructure', 'BcsOfficeEquipment', 'BcsMachinery'];
+
+        var dl_model1 = null;
+        var dl_model2 = null;
+
+
+        angular.forEach(data_array, function(value, key) {
+            obj_array = $scope.bs_data[value];
+            model_name = value;
+
+            var particular_value_1 = null;
+            var particular_value_2 = null;
+
+
+            if(model_name == 'BcsOfficeEquipment') {
+
+                dl_model1 = 'DlagdDmgOfficeEquipment';
+                particular_value_1 = 'Total';
+                $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1] = [];
+                console.log($scope.dlComWtrSply);
+            }
+            if(model_name == 'BcsMachinery') {
+                dl_model2 = 'DlagdDmgMachinery';
+                particular_value_2 = 'Total';
+               $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2] = [];
+            }
+
+
+            var obj1 = {
+                    name_dept :particular_value_1,
+                    num_tot_destroyed : null,
+                    num_partial_damaged : null,
+                    damages : null,
+            };
+            var obj2 = {
+                    name_dept :particular_value_2,
+                    num_tot_destroyed : null,
+                    num_partial_damaged : null,
+                    damages : null,
+            };
+
+            angular.forEach(obj_array, function(value, key) {
+                var obj1 = {
+                    name_dept :value.fields.asset,
+                    num_tot_destroyed : null,
+                    num_partial_damaged : null,
+                    damages : null,
+                };
+                var obj2 = {
+                     name_dept :value.fields.asset,
+                    num_tot_destroyed : null,
+                    num_partial_damaged : null,
+                    damages : null,
+                };
+
+                if(model_name == 'BcsOfficeEquipment') {
+                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
+                }
+                if(model_name == 'BcsMachinery') {
+                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
+                }
+
+            });
+
+                if(model_name == 'BcsOfficeEquipment') {
+                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
+                }
+                if(model_name == 'BcsMachinery') {
+                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
+                }
+
+        });
     }
 
     $scope.saveDlData = function(form) {
@@ -310,8 +391,10 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         var cumulative = 0;
 
         var sums = _.map(array,function(obj){
+        if(obj.name_dept !='Total'){
             cumulative += obj[property];
             return cumulative;
+            }
         });
 
         var the_string = model+'_'+property;
@@ -321,16 +404,15 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     $scope.getColumnTotal = function(model) {
         var array = $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[model];
-        var cumulative = 0;
-        var cumulative_two = 0;
         var cumulative_total = 0;
-
         var sums = _.map(array, function(obj) {
-            cumulative += obj.num_tot_destroyed;
-            cumulative_two += obj.num_partial_damaged;
-            cumulative_total = cumulative + cumulative_two;
+        if(obj.name_dept !='Total'){
+            cumulative_total = cumulative_total + obj.damages;
+            }
             return cumulative_total;
+
         });
+
 
         var the_string = model+'_damages';
         var model = $parse(the_string);

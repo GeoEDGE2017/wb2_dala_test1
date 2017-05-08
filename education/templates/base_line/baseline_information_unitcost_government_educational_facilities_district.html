@@ -8,38 +8,26 @@
    
     
   });
-  
-
 </script>
 <!-- Main content -->
-
 <main class="main" ng-app="bsUcostGeduFacilitiesApp" ng-controller="BsUcostGeduFacilitiesController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Education Sector</a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline Information of Unit Cost of Government Educational Facilities in a District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 2. Baseline Information of Unit Cost of Government Educational Facilities in a District
+            </span>
         </li>
-
-
     </ol>
-
-
     <div class="container-fluid">
-
         <div class="col-sm-12" style="padding:0;" ng-form name="form_bs_edu_untcost_dst">
             <div class="card">
-
                 <div class="card-block">
-
-
                     <table class="table table-bordered">
-
                         <colgroup>
                             <col width="280"/>
                             <col width="136" span="8"/>
@@ -65,7 +53,6 @@
                         </tr>
                         <tr class="trhead1">
                             <td style="padding-left:5px;"> Name of District</td>
-
                             <td colspan="3" style="">
                                 <select ng-model="district" id="selectbasic" name="district" class="form-control"
                                         style="font-weight:400;" required>
@@ -119,9 +106,7 @@
                         </tr>
                         </tbody>
                     </table>
-
                     <div id="boxscroll1" style="height:400px;overflow:auto;">
-
                         <table class="table table-bordered">
                         <colgroup>
                             <col width="280"/>
@@ -268,7 +253,7 @@
                                            popover-toggle="form_pop_lat_census['bugArcEquipment_' + $index].$dirty && !form_pop_lat_census['bugArcEquipment_' + $index].$valid"
                                            popover-placement="top" required
                                            type="text"
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td width="136">
@@ -381,12 +366,12 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                     <input ng-if="bugArpcSupply.particulars != 'TOTAL'"
-                                           ng-model="bugArpcSupply.total_number"
+                                           ng-model="bugArpcSupply.particulars"
                                            type="text" placeholder="" style="width:80%;float:right;"
                                            class="form-control input-md" >
-                                    <span ng-bind="bugArpcSupply.total_number"
-                                          ng-if="bugArpcSupply.particulars == 'TOTAL'">
-                                    </span>
+                                    <!--<span ng-bind="bugArpcSupply.particulars"-->
+                                          <!--ng-if="bugArpcSupply.particulars == 'TOTAL'">-->
+                                    <!--</span>-->
                                     {% endverbatim %}
                                 </td>
                                 <td width="136">
@@ -448,12 +433,12 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                     <input ng-if="bugArpcEquipment.particulars != 'TOTAL'"
-                                           ng-model="bugArpcEquipment.total_number"
+                                           ng-model="bugArpcEquipment.particulars"
                                            type="text" placeholder="" style="width:80%;float:right;"
                                            class="form-control input-md">
-                                    <span ng-bind="bugArpcEquipment.total_number"
-                                          ng-if="bugArpcEquipment.particulars == 'TOTAL'">
-                                    </span>
+                                    <!--<span ng-bind="bugArpcEquipment.particulars"-->
+                                          <!--ng-if="bugArpcEquipment.particulars == 'TOTAL'">-->
+                                    <!--</span>-->
                                     {% endverbatim %}
                                 </td>
                                 <td width="136">

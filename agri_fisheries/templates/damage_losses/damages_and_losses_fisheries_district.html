@@ -848,7 +848,7 @@
                                CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPvt,'dmg_pvt')">
                                 </td>
                             </tr>
-                            <tr class="trsubc1" height="19">
+                            <tr class="boldash" height="19">
                                 <td colspan="6" rowspan="2" width="634" height="38">
                                     TOTAL OF DAMAGES
                                 </td>
@@ -859,14 +859,14 @@
                                     Private
                                 </td>
                             </tr>
-                            <!--<tr height="19">-->
-                                <!--<td width="63" height="19" ng-bind="calGrandPubTotal()">-->
+                            <tr height="19">
+                                <td width="63" height="19" ng-bind="calGrandPubTotal()">
 
-                                <!--</td>-->
-                                <!--<td width="63" height="19" ng-bind="calGrandPvtTotal()">-->
+                                </td>
+                                <td width="63" height="19" ng-bind="calGrandPvtTotal()">
 
-                                <!--</td>-->
-                            <!--</tr>-->
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -945,19 +945,12 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr height="36"
+                         <tr height="36"
                             ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
-                            ng-if="dlfLosIfisheries.assets != 'Total'">
+                            ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' && dlfLosIfisheries.assets != 'Total'">
                             <td class="tdpa" colspan="2" width="250" height="36" ng-bind="dlfLosIfisheries.assets">
                             </td>
-                            <td class="tdpa" width="111" height="36"
-                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
-                                       dlfLosIfisheries.assets == 'Production losses (Private)'">
-                                <br/>
-                            </td>
-                            <td width="115" height="36"
-                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
-                                       dlfLosIfisheries.assets != 'Production losses (Private)'">
+                            <td width="115" height="36">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pub">
                             </td>
@@ -966,44 +959,75 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pvt">
                             </td>
-
-                            <td class="tdpa" width="63" height="36"
-                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
-                                       dlfLosIfisheries.assets == 'Production losses (Private)'">
-                                <br/>
-                            </td>
-                            <td width="115" height="36"
-                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
-                                       dlfLosIfisheries.assets != 'Production losses (Private)'">
+                            <td width="115" height="36">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pub">
                             </td>
-
                             <td width="63" height="36">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pvt">
                             </td>
 
-                            <td class="tdpa" width="63" height="36"
-                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' ||
-                                       dlfLosIfisheries.assets == 'Production losses (Private)'">
-                                <br/>
-                            </td>
-                            <td width="115" height="36"
-                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' &&
-                                       dlfLosIfisheries.assets != 'Production losses (Private)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_pub">
-                            </td>
-                            <td class="tdpa" width="63" height="36"
-                                ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)'">
-                                <br/>
+                            <td class="trsubc" width="115" height="36">
+
                             </td>
 
-                            <td width="63" height="36"
-                                ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)'">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_pvt">
+                            <td class="trsubc" width="63" height="36">
+
+                            </td>
+                        </tr>
+                        <tr height="36" ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' && dlfLosIfisheries.assets != 'Total'"
+                            ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries">
+
+                            <td class="tdpa"
+                                colspan="2" width="250" height="36" ng-bind="dlfLosIfisheries.assets">
+                            </td>
+                            <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pub">
+                            </td>
+                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_1_pub" ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="
+                            dlfLosIfisheries.los_year_1_pub = (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_1_pub) *
+                            (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
+
+                            </td>
+                            <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pvt">
+                            </td>
+                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_1_pvt"
+                                ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="dlfLosIfisheries.los_year_1_pvt =
+                            (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_1_pvt) *
+                            (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
+
+                            </td>
+                            <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pub">
+                            </td>
+                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_2_pub"
+                                ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="
+                            dlfLosIfisheries.los_year_2_pub = (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_2_pub) *
+                            (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
+
+                            </td>
+                            <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pvt">
+                            </td>
+                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_2_pvt"
+                                ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="
+                            dlfLosIfisheries.los_year_2_pvt = (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_2_pvt) *
+                            (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
+
+                            </td>
+                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_pub"
+                                ng-bind="dlfLosIfisheries.los_pub = dlfLosIfisheries.los_year_1_pub + dlfLosIfisheries.los_year_2_pub ">
+
+                            </td>
+                            <td width="63" height="36" ng-model="dlfLosIfisheries.los_pvt"
+                            ng-bind="dlfLosIfisheries.los_pvt = dlfLosIfisheries.los_year_1_pvt + dlfLosIfisheries.los_year_2_pvt ">
+
                             </td>
                         </tr>
                         <!--Total-->

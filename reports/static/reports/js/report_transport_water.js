@@ -1,4 +1,4 @@
-var app = angular.module('dlSummeryTWNatApp', []);
+var app = angular.module('dlSummeryTWNatApp', ['ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$http) {
     $scope.district;

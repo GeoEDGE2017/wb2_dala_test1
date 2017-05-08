@@ -151,7 +151,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
 
                  $http({
                     method: "POST",
-                    url: "/fetch_entities_plain",
+                    url: "/fetch_pw_gen_firms",
                     data: angular.toJson({
                     'district':  $scope.district.district__id,
                     'model': 'BsPwGenFirm',

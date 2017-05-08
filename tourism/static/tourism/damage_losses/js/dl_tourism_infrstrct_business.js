@@ -373,7 +373,12 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 
         var finalValue;
 
-        finalValue = avgincome * reduction;
+        finalValue = avgincome * reduction ;
+
+        //To get the precentage
+        finalValue = finalValue * 0.01;
+
+        console.log("finalValue",finalValue);
 
         subTable[0][yearName] = finalValue;
 

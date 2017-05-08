@@ -1,4 +1,4 @@
-var app = angular.module('reportAgriIrrifationNatApp', ['underscore']);
+var app = angular.module('reportAgriIrrifationNatApp', ['underscore', 'ui.bootstrap', 'popoverToggle', 'ngPrint']);
 
 app.controller("reportAgriIrrifationNatController", function ($scope,$http,$parse, _) {
     $scope.National;

@@ -151,29 +151,33 @@
 
                             </td>
 
-                            <td width="63" height="19" ng-if="bifProduction.types != 'Inland fisheries'">
+                            <td width="63" height="19" >
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.avg_yield_pub">
                             </td>
-                            <td class="tdpa" width="115" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
-                                <br/>
+                            <!--<td class="tdpa" width="115" height="19" ng-if="bifProduction.types == 'Inland fisheries'">-->
+                                <!--<br/>-->
 
-                            </td>
+                            <!--</td>-->
 
                             <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.avg_yield_pvt">
                             </td>
+                            <td width="63" height="19" class="trsubc"
+                                ng-if="bifProduction.types !='Inland fisheries'">
 
-                            <td width="63" height="19" ng-if="bifProduction.types != 'Inland fisheries'">
+                            </td>
+
+                            <td width="63" height="19" ng-if="bifProduction.types =='Inland fisheries'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.prodc_pub">
                             </td>
-                            <td class="tdpa" width="63" height="19" ng-if="bifProduction.types == 'Inland fisheries'">
-                                <br/>
+                             <td width="63" height="19" class="trsubc" ng-if="bifProduction.types !='Inland fisheries'">
 
                             </td>
-                            <td width="63" height="19">
+
+                            <td width="63" height="19" ng-if="bifProduction.types =='Inland fisheries'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.prodc_pvt">
                             </td>

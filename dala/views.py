@@ -506,6 +506,97 @@ def dl_save_data(request):
     return HttpResponse('success')
 
 
+# testing
+@csrf_exempt
+def dl_save_data_with_array(request):
+    print '*****************'
+    dl_data = (yaml.safe_load(request.body))
+    dl_table_data = dl_data['table_data']
+    com_data = dl_data['com_data']
+    todate = timezone.now()
+    is_edit = dl_data['is_edit']
+    admin_area = None
+
+    filter_fields = {}
+
+    if not is_edit:
+        print "not edit"
+
+        for sector in dl_table_data:
+            print 'sector', sector
+            sub_app_name = sector + '.damage_losses'
+            print "app name ", sub_app_name
+
+            for interface_table in dl_table_data[sector]:
+                print 'interface_table', interface_table
+
+                com_data['table_name'] = interface_table
+
+                filter_fields = com_data
+                print "be fore getting model"
+                sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
+                print "before filtering", com_data
+                record_exist = sub_app_session.objects.filter(**filter_fields)
+                print "record_exist"
+
+                if not record_exist:
+                    print "record does not exist"
+
+                    print 'interface table', ' -->', interface_table, '\n'
+                    for db_table in dl_table_data[sector][interface_table]:
+                        print 'db_table', db_table
+
+                        print 'db table', ' -->', db_table, '\n'
+
+                        for row in dl_table_data[sector][interface_table][db_table]:
+                            print 'row', row
+
+                            model_class = apps.get_model(sub_app_name, db_table)
+                            model_object = model_class()
+
+                            # assigning common properties to model object
+                            model_object.created_date = todate
+                            model_object.lmd = todate
+
+                            for com_property in com_data:
+                                print com_data[com_property]
+                                setattr(model_object, com_property, com_data[com_property])
+
+                            print 'row', ' --> ', row, '\n', ' object '
+
+                            for property in row:
+                                if isinstance(property, dict):
+                                    for item in property:
+                                        print '#####', property[item]
+                                        setattr(model_object, item, row[property[item]])
+                                        model_object.save()
+                                else:
+                                    print '@@@@@ ', row[property]
+                                    setattr(model_object, property, row[property])
+
+                                    print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
+                                    model_object.save()
+                    if 'district_id' in com_data:
+                        district = District.objects.get(pk=com_data['district_id'])
+                        filter_fields['province_id'] = district.province.id
+                        dl_session = sub_app_session(**filter_fields)
+                        dl_session.date = todate
+                        dl_session.save()
+                    else:
+                        dl_session = sub_app_session(**filter_fields)
+                        dl_session.date = todate
+                        dl_session.save()
+
+                    return HttpResponse(True)
+
+                else:
+                    return HttpResponse(False)
+
+    else:
+        dl_save_edit_data(dl_table_data, com_data)
+
+    return HttpResponse('success')
+
 @csrf_exempt
 def dl_get_data(request):
     data = (yaml.safe_load(request.body))

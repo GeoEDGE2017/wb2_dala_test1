@@ -1,904 +1,859 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+<!-- Main content -->
+<main class="main" ng-app="dlSumLivestockPoultryDstApp" ng-controller="dlSumLivestockPoultryDstController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
+        </li>
+        <li class="breadcrumb-item"><a href="#">Livestock Sub Sector</a>
+        </li>
+        <li class="breadcrumb-item active">
+                <span class="label label-success" style="font-size:14px;">
+                    Table 4. Summary of Damages and Losses to Livestock and Poultry in the District
+                </span>
+        </li>
+    </ol>
+    <div class="container-fluid">
+        <div>
+            <ul class='nav nav-wizard'>
+                <li class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
+                <li><a href='#step2' data-toggle="tab">2 Losses</a></li>
+            </ul>
 
-    <!-- Main content -->
-    <main class="main" ng-app="dlSumLivestockPoultryDstApp" ng-controller="dlSumLivestockPoultryDstController">
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active" id="step1">
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="113"/>
+                            <col width="117"/>
+                            <col width="122"/>
+                            <col width="103"/>
+                            <col width="136"/>
+                            <col width="143"/>
+                            <col width="63"/>
+                        </colgroup>
+                        <tbody>
+                        <tr class="trhead1" height="19">
+                            <td width="113" height="19">
+                                Incident
+                            </td>
+                            <td width="117" height="19">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true)"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td colspan="2" width="244" height="19">
+                                District
+                            </td>
+                            <td colspan="3" width="415" height="19">
+                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                        style="font-weight:400;"
+                                        class="form-control" required>
+                                    <option value="" selected>Select district</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td width="113" height="19">
+                                Assets
+                            </td>
+                            <td colspan="4" width="459" height="19">
+                                Damages (LKR)
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                Total
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td width="113" height="19">
+                                Livestock
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                Public
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                Private
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                (LKR)
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Swine
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                -
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                -
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                -
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Sheep
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Goat
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Cattle
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Buffalo
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Total
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <br/>
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Chicken
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Ducks
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Total
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Production Assets
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Structures
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Other Assets
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="34">
+                            <td class="tdpa" width="113" height="34">
+                                TOTAL OF DAMAGES
+                            </td>
+                            <td colspan="2" width="234" height="34">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="206" height="34">
+                                <!-- - -->
+                            </td>
+                            <td colspan="2" width="286" height="34">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Livestock Sub Sector</a>
-            </li>
-           
-			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of Damages and Losses to Livestock and Poultry in the District</span></li>
+                    <br>
+                    <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                            class="glyphicon glyphicon-arrow-right"></span> Losses Informations</a>
+                    <br>
 
-           
-        </ol>
+                </div>
+
+                <div class="tab-pane" id="step2">
+                    <table class="table table-bordered">
 
 
-        <div class="container-fluid">
-		
-		 <div>
-			    <ul class='nav nav-wizard'>
-				    <li class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
-				    <li><a href='#step2' data-toggle="tab">2 Losses</a></li>
-                   
-				  
-				   
-				  </ul>
-				
-					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane active" id="step1">
-						<table class="table table-bordered">
-  <colgroup>
-        <col width="113"/>
-        <col width="117"/>
-        <col width="122"/>
-        <col width="103"/>
-        <col width="136"/>
-        <col width="143"/>
-        <col width="63"/>
-    </colgroup>
-    <tbody>
-        <tr class="trhead1" height="19">
-            <td width="113" height="19">
-                Incident
-            </td>
-            <td width="117" height="19">
-               <select id="selectbasic" name="incident" ng-model="incident"
-                        class="form-control" ng-change="changedValue(true)"
-                        style="width:100%;font-weight:400;" required>
-                    <option value="" selected="true">Select an Incident</option>
-                    {% for incident in incidents %}
-                        <option value={{incident.id}}>{{incident.disaster_type.name}}
-                        {{incident.reported_date_time}}
-                    </option>
-                    {% endfor %}
-                </select>
-            </td>
-            <td colspan="2" width="244" height="19">
-                District
-            </td>
-            <td colspan="3" width="415" height="19">
-               <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
-                        class="form-control" required>
-                    <option value="" selected>Select district</option>
-                </select>
-            </td>
-        </tr>
-        <tr class="trheadc1" height="19">
-            <td width="113" height="19">
-                Assets
-            </td>
-            <td colspan="4" width="459" height="19">
-                Damages (LKR)
-            </td>
-            <td colspan="2" width="286" height="19">
-                Total
-            </td>
-        </tr>
-        <tr class="trheadc1" height="19">
-            <td width="113" height="19">
-                Livestock
-            </td>
-            <td colspan="2" width="234" height="19">
-                Public
-            </td>
-            <td colspan="2" width="206" height="19">
-                Private
-            </td>
-            <td colspan="2" width="286" height="19">
-                (LKR)
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Swine
-            </td>
-            <td colspan="2" width="234" height="19">
-                -
-            </td>
-            <td colspan="2" width="206" height="19">
-                -
-            </td>
-            <td colspan="2" width="286" height="19">
-                -
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Sheep
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Goat
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Cattle
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Buffalo
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Others
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Total
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td width="113" height="19">
-                Poultry
-            </td>
-            <td colspan="2" width="234" height="19">
-                <br/>
-            </td>
-            <td colspan="2" width="206" height="19">
-                <br/>
-            </td>
-            <td colspan="2" width="286" height="19">
-                <br/>
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Chicken
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Ducks
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Others
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Total
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Production Assets
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Structures
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Other Assets
-            </td>
-            <td colspan="2" width="234" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="19">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="19">
-               <!-- - -->
-            </td>
-        </tr>
-        <tr height="34">
-            <td class="tdpa" width="113" height="34">
-                TOTAL OF DAMAGES
-            </td>
-            <td colspan="2" width="234" height="34">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="206" height="34">
-                <!-- - -->
-            </td>
-            <td colspan="2" width="286" height="34">
-                <!-- - -->
-            </td>
-        </tr>
-		</tbody>
-		</table>
-						
-                            <br>
-                            <a href="#step2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Losses Informations</a>
-                       <br>
-                        
-						</div>
-						
-						<div class="tab-pane" id="step2">
-						<table class="table table-bordered">
-						
-						
-
-   
-       
-        <tr class="trheadc1" height="19">
-            <td rowspan="2" width="113" height="38">
-                Types of Losses
-            </td>
-            <td colspan="2" width="234" height="19">
-                Year 1
-            </td>
-            <td colspan="2" width="206" height="19">
-                Year 2
-            </td>
-            <td colspan="2" width="286" height="19">
-                Total (LKR)
-            </td>
-        </tr>
-        <tr class="trheadc1" height="19">
-            <td width="117" height="19">
-                Public
-            </td>
-            <td width="122" height="19">
-                Private
-            </td>
-            <td width="103" height="19">
-                Public
-            </td>
-            <td width="136" height="19">
-                Private
-            </td>
-            <td width="143" height="19">
-                Public
-            </td>
-            <td width="63" height="19">
-                Private
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td width="113" height="19">
-                Production Losses
-            </td>
-            <td width="117" height="19">
-                <br/>
-            </td>
-            <td width="122" height="19">
-                <br/>
-            </td>
-            <td width="103" height="19">
-                <br/>
-            </td>
-            <td width="136" height="19">
-                <br/>
-            </td>
-            <td width="143" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td width="113" height="19">
-                Livestock
-            </td>
-            <td width="117" height="19">
-                <br/>
-            </td>
-            <td width="122" height="19">
-                <br/>
-            </td>
-            <td width="103" height="19">
-                <br/>
-            </td>
-            <td width="136" height="19">
-                <br/>
-            </td>
-            <td width="143" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Swine
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Sheep
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Goat
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Cattle
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Buffalo
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Others
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Total
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr class="trheadc" height="19">
-            <td width="113" height="19">
-                Poultry
-            </td>
-            <td width="117" height="19">
-                <br/>
-            </td>
-            <td width="122" height="19">
-                <br/>
-            </td>
-            <td width="103" height="19">
-                <br/>
-            </td>
-            <td width="136" height="19">
-                <br/>
-            </td>
-            <td width="143" height="19">
-                <br/>
-            </td>
-            <td width="63" height="19">
-                <br/>
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Chicken
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Ducks
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Others
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Total
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                Cleaning of Debris
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="34">
-            <td class="tdpa" width="113" height="34">
-                Higher Operating Costs
-            </td>
-            <td width="117" height="34">
-                <!-- - -->
-            </td>
-            <td width="122" height="34">
-                <!-- - -->
-            </td>
-            <td width="103" height="34">
-                <!-- - -->
-            </td>
-            <td width="136" height="34">
-                <!-- - -->
-            </td>
-            <td width="143" height="34">
-                <!-- - -->
-            </td>
-            <td width="63" height="34">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="34">
-            <td class="tdpa" width="113" height="34">
-                Other Unexpected Expenses
-            </td>
-            <td width="117" height="34">
-                <!-- - -->
-            </td>
-            <td width="122" height="34">
-                <!-- - -->
-            </td>
-            <td width="103" height="34">
-                <!-- - -->
-            </td>
-            <td width="136" height="34">
-                <!-- - -->
-            </td>
-            <td width="143" height="34">
-                <!-- - -->
-            </td>
-            <td width="63" height="34">
-                <!-- - -->
-            </td>
-        </tr>
-        <tr height="19">
-            <td class="tdpa" width="113" height="19">
-                TOTAL OF LOSSES
-            </td>
-            <td width="117" height="19">
-                <!-- - -->
-            </td>
-            <td width="122" height="19">
-                <!-- - -->
-            </td>
-            <td width="103" height="19">
-                <!-- - -->
-            </td>
-            <td width="136" height="19">
-                <!-- - -->
-            </td>
-            <td width="143" height="19">
-                <!-- - -->
-            </td>
-            <td width="63" height="19">
-                <!-- - -->
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-                               
-   
-                            </div>
-                        
-                        
-                                   
-                           
-
-                           
-                        
-                       
-                        
-                      
-                                
-
-                       
-						
-						
-						</div>
-					</div>
-		</div>
-		
-		
-
-       <br>
-<div class="col-md-12">
-			
-			
-			<div class="modal fade" id="modal-container-0001" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			
-			
-			
-			<div class="modal fade" id="modal-container-0002" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
-				<div class="modal-dialog" style="width:50%;">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
-							</button>
-							<h5 class="modal-title" >
-								<span id="bookId"> </span>
-							</h5>
-						</div>
-						<div class="modal-body">
-						<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="textinput">Name</label>  
-  <div class="col-md-10">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-</div>
-<br><br>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Close
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-			
-		</div> 
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="2" width="113" height="38">
+                                Types of Losses
+                            </td>
+                            <td colspan="2" width="234" height="19">
+                                Year 1
+                            </td>
+                            <td colspan="2" width="206" height="19">
+                                Year 2
+                            </td>
+                            <td colspan="2" width="286" height="19">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td width="117" height="19">
+                                Public
+                            </td>
+                            <td width="122" height="19">
+                                Private
+                            </td>
+                            <td width="103" height="19">
+                                Public
+                            </td>
+                            <td width="136" height="19">
+                                Private
+                            </td>
+                            <td width="143" height="19">
+                                Public
+                            </td>
+                            <td width="63" height="19">
+                                Private
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Production Losses
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Livestock
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Swine
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Sheep
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Goat
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Cattle
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Buffalo
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Total
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="113" height="19">
+                                Poultry
+                            </td>
+                            <td width="117" height="19">
+                                <br/>
+                            </td>
+                            <td width="122" height="19">
+                                <br/>
+                            </td>
+                            <td width="103" height="19">
+                                <br/>
+                            </td>
+                            <td width="136" height="19">
+                                <br/>
+                            </td>
+                            <td width="143" height="19">
+                                <br/>
+                            </td>
+                            <td width="63" height="19">
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Chicken
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Ducks
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Others
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Total
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                Cleaning of Debris
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="34">
+                            <td class="tdpa" width="113" height="34">
+                                Higher Operating Costs
+                            </td>
+                            <td width="117" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="34">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="34">
+                            <td class="tdpa" width="113" height="34">
+                                Other Unexpected Expenses
+                            </td>
+                            <td width="117" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="34">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="34">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" width="113" height="19">
+                                TOTAL OF LOSSES
+                            </td>
+                            <td width="117" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="122" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="103" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="136" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="143" height="19">
+                                <!-- - -->
+                            </td>
+                            <td width="63" height="19">
+                                <!-- - -->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <!-- /.conainer-fluid -->
-    </main>
-  
-  
+    </div>
+    <br>
+    <div class="col-md-12">
+        <div class="modal fade" id="modal-container-0001" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-container-0002" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            <span id="bookId"> </span>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
 {% endblock content %}

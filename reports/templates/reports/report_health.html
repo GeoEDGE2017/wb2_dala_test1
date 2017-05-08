@@ -2,7 +2,8 @@
 {% block content %}
 
 <!-- Main content -->
-<main class="main" ng-app="reportHealthSummaryDamageNationwideApp" ng-controller="reportHealthSummaryDamageNationwideController">
+<main class="main" ng-app="reportHealthSummaryDamageNationwideApp"
+      ng-controller="reportHealthSummaryDamageNationwideController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -33,10 +34,14 @@
 
                         <div class="form-group">
                             <label for="cvv">Incident</label>
-                            <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident" class="form-control" required>
+                            <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
+                                    class="form-control" required>
                                 <option value="">-- Select --</option>
                                 {% for incident in incidents %}
-                                <option value="{{ incident.id }}">{{ incident.reported_date_time }}{{ incident.disaster_type }}</option>
+                                <option value="{{ incident.id }}">
+                                    {{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
                                 {% endfor %}
                             </select>
                             <span style="color:red;" ng-show="submitted && report_sum_dl_dis.incident.$error.required">
@@ -45,19 +50,12 @@
                         </div>
 
                     </div>
-
-
-
-
-
-
-
-
                     <div class="col-sm-1">
 
                         <div class="form-group">
 
-                            <button ng-click="loadData(report_sum_dl_dis)" type="button" class="btn btn-sm btn-primary" style="padding:7px;margin-top:28px;"><i
+                            <button ng-click="loadData(report_sum_dl_dis)" type="button" class="btn btn-sm btn-primary"
+                                    style="padding:7px;margin-top:28px;"><i
                                     class="fa fa-search"></i> Search
                             </button>
                         </div>
@@ -114,7 +112,8 @@
                         </tbody>
                     </table>
                     <div style="" id="boxscroll1">
-                        <table ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10" ng-if="!checkIfNull()" class="table table-bordered">
+                        <table ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10"
+                               ng-if="!checkIfNull()" class="table table-bordered">
                             <tbody>
 
 
@@ -159,36 +158,54 @@
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Teaching Hospitals
                                 </td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].teaching_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[1].teaching_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].teaching_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhPafNational[0].teaching_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhPafNational[1].teaching_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[1].teaching_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital+
                                 data.health.Table_10[key].DmhLosNational[1].teaching_hospital"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Provincial General Hospitals
                                 </td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
                                 data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">District General Hospitals
                                 </td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].district_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[1].district_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].district_general_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].district_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhPafNational[0].district_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhPafNational[1].district_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[0].district_general_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[1].district_general_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].district_general_hospital +
                                 data.health.Table_10[key].DmhLosNational[1].district_general_hospital"></td>
                             </tr>
@@ -261,7 +278,7 @@
                             </tr>
                             </tr>
                             <tr height="20">
-                                <td width="202"height="20" class="tdpa">Others
+                                <td width="202" height="20" class="tdpa">Others
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].other"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].other"></td>
@@ -288,9 +305,11 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesMohNational[0].office +
                                 data.health.Table_10[key].DmhDamagesMohNational[0].other"></td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].office + data.health.Table_10[key].DmhLosNational[0].other"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[0].office + data.health.Table_10[key].DmhLosNational[0].other"></td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].office + data.health.Table_10[key].DmhLosNational[1].other"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmhLosNational[1].office + data.health.Table_10[key].DmhLosNational[1].other"></td>
 
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].office + data.health.Table_10[key].DmhLosNational[0].other +
                                 data.health.Table_10[key].DmhLosNational[1].office +
@@ -320,53 +339,79 @@
                                 <td width="202" height="20" class="tdpa">Base Hospital
                                 </td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital"></td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].base_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfDamagesNational[0].base_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].base_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].base_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].base_hospital + data.health.Table_10[key].DmfLosNational[1].base_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].base_hospital + data.health.Table_10[key].DmfLosNational[1].base_hospital"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Divisional Hospital
                                 </td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital"></td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].divisional_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].divisional_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].divisional_hospital + data.health.Table_10[key].DmfLosNational[1].divisional_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].divisional_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[1].divisional_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].divisional_hospital + data.health.Table_10[key].DmfLosNational[1].divisional_hospital"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Rural Hospital
                                 </td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital"></td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].rural_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].rural_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].rural_hospital"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].rural_hospital +data.health.Table_10[key].DmfLosNational[1].rural_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfDamagesNational[0].rural_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].rural_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[1].rural_hospital"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].rural_hospital +data.health.Table_10[key].DmfLosNational[1].rural_hospital"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Central Dispensary
                                 </td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary"></td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].central_dispensary"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].central_dispensary"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].central_dispensary"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].central_dispensary +data.health.Table_10[key].DmfLosNational[1].central_dispensary"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfDamagesNational[0].central_dispensary"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].central_dispensary"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[1].central_dispensary"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].central_dispensary +data.health.Table_10[key].DmfLosNational[1].central_dispensary"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">PMCUs
@@ -379,7 +424,8 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].pmcus"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].pmcus"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].pmcus"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].pmcus + data.health.Table_10[key].DmfLosNational[1].pmcus"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].pmcus + data.health.Table_10[key].DmfLosNational[1].pmcus"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">PHCCs
@@ -392,7 +438,8 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].phccs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].phccs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].phccs"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].phccs +data.health.Table_10[key].DmfLosNational[1].phccs"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].phccs +data.health.Table_10[key].DmfLosNational[1].phccs"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">MCHCs
@@ -405,7 +452,8 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].mchcs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].mchcs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].mchcs + data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
+                                <td width="90"
+                                    ng-bind="data.health.Table_10[key].DmfLosNational[0].mchcs + data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
                             </tr>
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Total
@@ -436,7 +484,6 @@
                                 data.health.Table_10[key].DmfOmfTpaNational[1].pmcus+
                                 data.health.Table_10[key].DmfOmfTpaNational[1].phccs+
                                 data.health.Table_10[key].DmfOmfTpaNational[1].mchcs"></td>
-
 
 
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].base_hospital+
@@ -750,7 +797,8 @@
                                     class="table table-bordered" ng-if="!checkIfNull()">
                                 <tbody>
 
-                                <tr height="20" class="trheadc" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
+                                <tr height="20" class="trheadc"
+                                    ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
                                     <td ng-bind="key" width="202" height="20">
                                     </td>
                                     <td width="90">
@@ -769,10 +817,12 @@
                                     </td>
                                 </tr>
                                 <!--Table 10 :table two:tab1  first row-->
-                                <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
+                                <tr height="20"
+                                    ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
                                     <td width="264" height="20" class="tdpa">Private Clinics
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac">
 
                                     </td>
                                     <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male">
@@ -781,28 +831,34 @@
                                     <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
 
                                     </td>
 
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 + data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 + data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
                                     </td>
 
                                 </tr>
 
                                 <!--Table 10 :table two:tab1  second row-->
-                                <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
+                                <tr height="20"
+                                    ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
                                     <td
                                             width="264" height="20" class="tdpa">Others
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
 
                                     </td>
                                     <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].male">
@@ -812,17 +868,21 @@
                                     <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].female">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
 
                                     </td>
 
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 + data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2" >
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 + data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
 
                                     </td>
 
@@ -830,19 +890,24 @@
                                 </tr>
 
                                 <!--Table 10 :table two:tab2  third row-->
-                                <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
+                                <tr height="20"
+                                    ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
 
                                     <td width="264" height="20" class="boldash">Total
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
 
                                     </td>
 
@@ -867,19 +932,24 @@
                                 </tr>
 
                                 </tbody>
-                                <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
+                                <tr height="20"
+                                    ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
 
                                     <td width="264" height="20" class="boldash">TOTAL
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">
 
                                     </td>
-                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
+                                    <td width="98"
+                                        ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
 
                                     </td>
 
@@ -1049,7 +1119,7 @@
                                 data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
                                 data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 +
                                 data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2" >
+                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
 
                                 </td>
 
@@ -1210,7 +1280,6 @@
                         <!--</tr>-->
                         <!--</tbody>-->
                         <!--</table>-->
-
 
 
                         <!--<table ng-show="dlHsNational" class="table table-bordered" style="width:100%;">-->
@@ -1597,7 +1666,6 @@
                         <!--</tr>-->
 
 
-
                         <!--<tr height="34" class="trheadc">-->
                         <!--<td rowspan="2" width="202" height="54" style="text-align:left;padding-left:5px;">-->
                         <!--Facilities and Assets-->
@@ -1737,7 +1805,6 @@
                         <!--</tr>-->
 
 
-
                         <!--<tr height="20" class="trheadc">-->
                         <!--<td rowspan="2" width="202" height="40" style="text-align:left;padding-left:5px;">-->
                         <!--Ownership-->
@@ -1788,7 +1855,6 @@
                         <!--</tr>-->
                         <!--</tbody>-->
                         <!--</table>-->
-
 
 
                         <br><br>

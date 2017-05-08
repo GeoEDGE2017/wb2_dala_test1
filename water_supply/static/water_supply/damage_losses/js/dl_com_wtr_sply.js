@@ -144,7 +144,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BiaWaterIntake', 'BiaTreatmentPlant', 'BiaWaterDistribution', 'BiaMainOffice'],
+                    'db_tables': ['BiaWaterIntake', 'BiaTreatmentPlant', 'BiaWaterDistribution', 'BiaMainOffice','BiaWaterUsers'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -172,6 +172,10 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                     $("#modal-container-239455").modal('show');
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
+                }
+                else{
+
+                generateRefencedData();
                 }
             }, function errorCallback(response) {
                 console.log('baseline tables data retrieving error');
@@ -286,18 +290,18 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 }
             });
 
-            if(model_name == 'BiaWaterIntake') {
-                $scope.dlComWtrSply.water_supply.Table_3[dl_model1].push(obj1);
-           }
-            if(model_name == 'BiaTreatmentPlant') {
-                $scope.dlComWtrSply.water_supply.Table_3[dl_model2].push(obj2);
-            }
-            if(model_name == 'BiaWaterDistribution') {
-                $scope.dlComWtrSply.water_supply.Table_3[dl_model3].push(obj3);
-            }
-            if(model_name == 'BiaMainOffice') {
-                $scope.dlComWtrSply.water_supply.Table_3[dl_model4].push(obj4);
-            }
+//            if(model_name == 'BiaWaterIntake') {
+//                $scope.dlComWtrSply.water_supply.Table_3[dl_model1].push(obj1);
+//           }
+//            if(model_name == 'BiaTreatmentPlant') {
+//                $scope.dlComWtrSply.water_supply.Table_3[dl_model2].push(obj2);
+//            }
+//            if(model_name == 'BiaWaterDistribution') {
+//                $scope.dlComWtrSply.water_supply.Table_3[dl_model3].push(obj3);
+//            }
+//            if(model_name == 'BiaMainOffice') {
+//                $scope.dlComWtrSply.water_supply.Table_3[dl_model4].push(obj4);
+//            }
         });
     }
 

@@ -77,7 +77,10 @@
                              <select id="ccyear" name="incident" ng-model="incident" class="form-control" required>
                             <option value="">-- Select --</option>
                             {% for incident in incidents %}
-                            <option value="{{ incident.id }}">{{ incident.reported_date_time }}{{ incident.disaster_type }}</option>
+                            <option value="{{ incident.id }}">
+                                {{incident.disaster_type.name}}
+                                {{incident.reported_date_time}}
+                            </option>
                             {% endfor %}
                         </select>
                              <span style="color:red;" ng-show="submitted && report_sum_dl_national.incident.$error.required">

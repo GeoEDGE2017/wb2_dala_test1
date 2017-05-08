@@ -60,7 +60,7 @@
                                 District:
                             </td>
                             <td colspan="2" width="269">
-                                <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <select id="selectbasic" name="district" class="form-control"  ng-model="district" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
                                         <option value={{ district.id }}>{{ district.name }}</option>
@@ -73,6 +73,9 @@
                             <td colspan="2"s width="99">
                                 <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
+                             <button type="button" ng-click="getValue()" class="btn btn-primary">
+                               Get
+                            </button>
                         </tr>
                         <tr class="trheadc1" height="19">
                             <td width="249" height="19">
@@ -111,7 +114,7 @@
                         </tbody>
                         </table>
                         <div id="boxscroll" style="height:400px;overflow:auto;">
-                         <table class="table table-bordered">
+                         <table class="table table-bordered" >
 
                         <tr class="trheadc" height="19">
                             <td width="249" height="19">
@@ -131,21 +134,9 @@
                             </td>
                         </tr>
                             <tr height="19" ng-repeat="bacfSeasonalCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops">
-                                <td class="tdpa" width="249" height="19" ng-bind="bacfSeasonalCrops.seasonal_crops" ng-if="$index < 4">
+                                <td class="tdpa" width="249" height="19" ng-bind="bacfSeasonalCrops.seasonal_crops">
                             </td>
-                            <td width="98" ng-if="$index > 3">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BacfSeasonalCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bacfSeasonalCrops_{{$index}}" ng-model="bacfSeasonalCrops.seasonal_crops"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_info_sero_assets['bacfSeasonalCrops_' + $index].$dirty && !form_bs_info_sero_assets['bacfSeasonalCrops_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
+
                             <td width="148">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bacfSeasonalCrops.avg_value">
@@ -171,26 +162,7 @@
                                        class="form-control input-md" ng-model="bacfSeasonalCrops.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Other Seasonal Crops
-                                <button ng-click="insertAsset('BacfSeasonalCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
+
                         <tr class="trheadc" height="19">
                             <td width="249" height="19">
                                 Plantation Crops
@@ -211,19 +183,7 @@
                         <tr height="19" ng-repeat="bacfPlantnCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfPlantnCrops">
                             <td class="tdpa" width="249" height="19" ng-bind="bacfPlantnCrops.plantn_crops" ng-if="$index < 3">
                             </td>
-                            <td width="98" ng-if="$index > 2">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BacfPlantnCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bacfPlantnCrops_{{$index}}" ng-model="bacfPlantnCrops.plantn_crops"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_info_sero_assets['bacfPlantnCrops_' + $index].$dirty && !form_bs_info_sero_assets['bacfSeasonalCrops_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
+
                             <td width="148">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bacfPlantnCrops.avg_value">
@@ -249,26 +209,7 @@
                                        class="form-control input-md" ng-model="bacfPlantnCrops.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Other Plantation Crops
-                                <button ng-click="insertAsset('BacfPlantnCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
+
                         <tr class="trheadc" height="19">
                             <td width="249" height="19">
                                 Export Crops
@@ -289,19 +230,7 @@
                         <tr height="19" ng-repeat="bacfExportCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfExportCrops">
                             <td class="tdpa" width="249" height="19" ng-bind="bacfExportCrops.export_crops" ng-if="$index < 3">
                             </td>
-                            <td width="98" ng-if="$index > 2">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BacfExportCrops', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bacfExportCrops_{{$index}}" ng-model="bacfExportCrops.export_crops"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_info_sero_assets['bacfExportCrops_' + $index].$dirty && !form_bs_info_sero_assets['bacfExportCrops_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
+
                             <td width="148">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bacfExportCrops.avg_value">
@@ -327,26 +256,7 @@
                                        class="form-control input-md" ng-model="bacfExportCrops.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Others
-                                <button ng-click="insertAsset('BacfExportCrops')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
+
                         <tr class="trheadc" height="19">
                             <td width="249" height="19">
                                 Forestry
@@ -367,19 +277,7 @@
                         <tr height="19" ng-repeat="bacfForestry in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfForestry">
                             <td class="tdpa" width="249" height="19" ng-bind="bacfForestry.forestry" ng-if="$index < 1">
                             </td>
-                            <td width="98" ng-if="$index > 0">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BacfForestry', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bacfForestry_{{$index}}" ng-model="bacfForestry.forestry"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_info_sero_assets['bacfForestry_' + $index].$dirty && !form_bs_info_sero_assets['bacfForestry_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
+
                             <td width="148">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bacfForestry.avg_value">
@@ -405,26 +303,7 @@
                                        class="form-control input-md" ng-model="bacfForestry.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Others
-                                <button ng-click="insertAsset('BacfForestry')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
+
                         <tr class="trheadc" height="19">
                             <td width="249" height="19">
                                 Others Products
@@ -445,19 +324,7 @@
                         <tr height="19" ng-repeat="bacfOther in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfOther">
                             <td class="tdpa" width="249" height="19" ng-bind="bacfOther.other_products" ng-if="$index < 1">
                             </td>
-                            <td width="98" ng-if="$index > 0">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BacfOther', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bacfOther_{{$index}}" ng-model="bacfOther.other_products"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_info_sero_assets['bacfOther_' + $index].$dirty && !form_bs_info_sero_assets['bacfOther_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
+
                             <td width="148">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bacfOther.avg_value">
@@ -483,26 +350,7 @@
                                        class="form-control input-md" ng-model="bacfOther.productn_cost_hstage">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Others
-                                <button ng-click="insertAsset('BacfOther')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
+
                         <tbody>
                     </table>
                    </div>

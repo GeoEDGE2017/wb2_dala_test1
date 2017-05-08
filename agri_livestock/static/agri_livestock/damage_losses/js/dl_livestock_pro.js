@@ -19,6 +19,7 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
     // declaring total variables
     $scope.total_num_affected = 0;
 
+
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
 
@@ -70,6 +71,13 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
 
     }
 
+$scope.checkIfNull = function()
+   {
+        var isNull = $scope.dlAgriLivestockPro ? angular.equals({}, $scope.dlAgriLivestockPro.agri_livestock.Table_5) : true;
+        return isNull;
+
+   }
+
  $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index] ? (
                          $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index].damages ?
@@ -83,9 +91,10 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
                          $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index].los_year_1 ?
                          $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index].los_year_1 : 0 ) : 0) ;
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index] ? (
+         $scope.totalyear1pvt = $scope.totalyear1pvt +
+         ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index] ? (
                          $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index].los_year_1 ?
-                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtbProvince[$index].los_year_1 : 0 ) : 0 );
+                         $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPvtProvince[$index].los_year_1 : 0 ) : 0 );
 
          $scope.totalyear2pub = $scope.totalyear2pub + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index] ? (
                          $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpLosPubProvince[$index].los_year_2 ?

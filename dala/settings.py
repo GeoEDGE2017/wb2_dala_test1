@@ -2886,18 +2886,18 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pub',
                 'los_year_2_pvt',
             ],
-            'DlfDmgPubProvince': [
-                'dmg_pub',
-            ],
-            'DlfDmgPvtProvince': [
-                'dmg_pvt',
-            ],
-            'DlfLosProvince': [
-                'los_year_1_pub',
-                'los_year_1_pvt',
-                'los_year_2_pub',
-                'los_year_2_pvt',
-            ],
+            # 'DlfDmgPubProvince': [
+            #     'dmg_pub',
+            # ],
+            # 'DlfDmgPvtProvince': [
+            #     'dmg_pvt',
+            # ],
+            # 'DlfLosProvince': [
+            #     'los_year_1_pub',
+            #     'los_year_1_pvt',
+            #     'los_year_2_pub',
+            #     'los_year_2_pvt',
+            # ],
         },
         'Table_6': {
             'DlfDmgPubNational': [

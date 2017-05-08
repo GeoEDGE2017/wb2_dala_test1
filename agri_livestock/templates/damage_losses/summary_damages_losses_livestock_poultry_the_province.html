@@ -77,6 +77,10 @@
                             </button>
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+                 <table class="table table-bordered" ng-if="!checkIfNull()">
+                        <tbody>
                     <tr class="trhead1" height="19">
                         <td rowspan="3" width="113" height="57">
                             Districts
@@ -128,15 +132,13 @@
                             Private
                         </td>
                     </tr>
-                   <table ng-repeat="(key, value) in dlAgriLivestockPro.agri_livestock.Table_5"
-                           class="table table-bordered">
-                        <tbody>
-                        <tr  height="20" ng-init="getTotal($index,key);">
+
+                        <tr  ng-repeat="(key, value) in dlAgriLivestockPro.agri_livestock.Table_5" height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 
                         </td>
-                        <td width="147" ng-bind="value.DlpNdaPubProvince[0].damages">
+                        <td width="147" ng-bind="value.DlpNdaPubProvince[0].damages">>
 
                         </td>
                         <td width="151" ng-bind="value.DlpNdaPvtProvince[0].damages">

@@ -540,7 +540,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'firm_id': 2
+                        'firm': $scope.selectedFirm.id,
                     },
                     'is_edit': $scope.is_edit
                 }),

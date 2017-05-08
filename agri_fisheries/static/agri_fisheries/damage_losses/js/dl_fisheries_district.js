@@ -12,6 +12,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.is_null = false;
+    $scope.grantot = null;
 
 //Initialize data
     var init_data = {
@@ -408,6 +409,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
+                 var is_null = false;
 
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
@@ -637,8 +639,6 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     var finaltotal3 = 0;
     var finaltotal4 = 0;
     var finaltotal5 = 0;
-    var finaltotal6 = 0;
-    var finaltotal7 = 0;
     var grantot = 0;
 
     var array1 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment;
@@ -650,74 +650,94 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
 
     console.log('test',$scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment);
 
-//    angular.forEach(array1, function(value, key) {
-//
-//     finaltotal1 = finaltotal1 + value.dmg_pub ;
-//    })
-//    angular.forEach(array2, function(value, key) {
-//
-//     finaltotal2 = finaltotal2 + value.dmg_pub ;
-//    })
-//    angular.forEach(array3, function(value, key) {
-//
-//     finaltotal3 = finaltotal3 + value.dmg_pub ;
-//    })
-//    angular.forEach(array4, function(value, key) {
-//
-//     finaltotal4 = finaltotal4 + value.dmg_pub ;
-//    })
+    angular.forEach(array1, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal1 = finaltotal1 + value.dmg_pub ;
+     }
+    })
+    angular.forEach(array2, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal2 = finaltotal2 + value.dmg_pub ;
+     }
+    })
+    angular.forEach(array3, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal3 = finaltotal3 + value.dmg_pub ;
+     }
+    })
+    angular.forEach(array4, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal4 = finaltotal4 + value.dmg_pub ;
+     }
+    })
 //    angular.forEach(array5, function(value, key) {
-//
-//     finaltotal5 = finaltotal5 + value.total ;
+//    if(value.assets !='Total'){
+//        finaltotal5 = finaltotal5 + value.total ;
+//     }
 //    })
-//
-//    grantot = finaltotal1+ finaltotal3 + finaltotal4 + finaltotal5;
-//    return grantot;
+
+
+   if(finaltotal1 || finaltotal2 || finaltotal3 || finaltotal4 || finaltotal5)
+   {
+    grantot = finaltotal1 +  finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    return grantot;
+
+        }
     }
 
-//    $scope.calGrandPvtTotal=function(){
-//    var finaltotal1 = 0;
-//    var finaltotal2 = 0;
-//    var finaltotal3 = 0;
-//    var finaltotal4 = 0;
-//    var finaltotal5 = 0;
-//    var finaltotal6 = 0;
-//    var finaltotal7 = 0;
-//    var grantot = 0;
-//
-//    var array1 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment;
-//    var array2 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment;
-//    var array3 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery;
-//    var array4 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures;
-//    var array5 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPub;
-//
-//
-//
-//
-//    angular.forEach(array1, function(value, key) {
-//
-//     finaltotal1 = finaltotal1 + value.dmg_pvt ;
-//    })
-//    angular.forEach(array2, function(value, key) {
-//
-//     finaltotal2 = finaltotal2 + value.dmg_pvt ;
-//    })
-//    angular.forEach(array3, function(value, key) {
-//
-//     finaltotal3 = finaltotal3 + value.dmg_pvt ;
-//    })
-//    angular.forEach(array4, function(value, key) {
-//
-//     finaltotal4 = finaltotal4 + value.dmg_pvt ;
-//    })
-//    angular.forEach(array5, function(value, key) {
-//
-//     finaltotal5 = finaltotal5 + value.total ;
-//    })
-//
-//    grantot = finaltotal1+ finaltotal3 + finaltotal4 + finaltotal5;
-//    return grantot;
-//    }
+    $scope.calGrandPvtTotal=function(){
+    var finaltotal1 = 0;
+    var finaltotal2 = 0;
+    var finaltotal3 = 0;
+    var finaltotal4 = 0;
+    var finaltotal5 = 0;
+    var finaltotal6 = 0;
+    var finaltotal7 = 0;
+    var grantot = 0;
+
+    var array1 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment;
+    var array2 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment;
+    var array3 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery;
+    var array4 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures;
+    var array5 = $scope.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPvt
+
+
+
+
+    angular.forEach(array1, function(value, key) {
+
+    if(value.assets !='Total'){
+        finaltotal1 = finaltotal1 + value.dmg_pvt ;
+     }
+    })
+
+    angular.forEach(array2, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal2 = finaltotal2 + value.dmg_pvt ;
+     }
+    })
+
+    angular.forEach(array3, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal3 = finaltotal3 + value.dmg_pvt ;
+     }
+    })
+
+    angular.forEach(array4, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal4 = finaltotal4 + value.dmg_pvt ;
+     }
+    })
+
+    angular.forEach(array5, function(value, key) {
+    if(value.assets !='Total'){
+        finaltotal5 = finaltotal5 + value.total ;
+     }
+    })
+
+    grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    return grantot;
+    }
 
 //Edit Data
     $scope.dlDataEdit = function(){

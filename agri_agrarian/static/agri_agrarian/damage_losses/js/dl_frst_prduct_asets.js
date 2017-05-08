@@ -174,6 +174,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
 //Get Districts and related baseline data
     $scope.changedValue=function getBsData(selectedValue) {
+    console.log('inicdent',$scope.incident);
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -204,10 +205,13 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
             }).then(function successCallback(response) {
                 var data = response.data;
+
                 angular.forEach(data, function(value, key) {
+                console.log('data',value);
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(response);
+                 var is_null = false;
 
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
@@ -242,6 +246,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
+            console.log('get array',obj_array);
             model_name = value;
 
             var particular_value_1 = null;

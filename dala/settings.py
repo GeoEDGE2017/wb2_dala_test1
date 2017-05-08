@@ -3500,7 +3500,6 @@ TABLE_PROPERTY_MAPPER = {
             'TotDmgPvtNational': ['tot_replace_cost', 'ownership'],
             'TotLossesPvtNational': ['los_year1', 'los_year2', 'ownership'],
         },
-
     },
     'telecommunication': {
         'Table_1': {

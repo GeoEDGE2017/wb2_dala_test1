@@ -19,6 +19,11 @@ app.controller("reportAgriIrrifationNatController", function ($scope,$http,$pars
         $scope.fetchDlData();
     }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+    }
+
+
     $scope.checkIfNull = function()
    {
         console.log("in")

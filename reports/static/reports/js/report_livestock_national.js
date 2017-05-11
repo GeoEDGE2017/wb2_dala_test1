@@ -23,6 +23,11 @@ app.controller("reportAgriLivestocknNatController", ['$scope','$http',function (
         $scope.fetchDlData(form);
     }
 
+        $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+    }
+
+
 //    $scope.fetchDlData = function(){
 //        $scope.is_edit = true;
 //        $scope.submitted = true;

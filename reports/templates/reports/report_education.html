@@ -2,15 +2,36 @@
 {% block content %}
 <style>
 @media print
-{    
+{
 
     .no-print, .no-print *
     {
         display: none !important;
     }
     #in {width:100%;}
-   .table th, .table td {color:#000!important;} 
+
+   .table th, .table td {color:#000!important;}
+
+       body * {
+
+        <!--visibility:hidden;-->
+
+    }
+
+    #printSection, #printSection * {
+
+        visibility:hidden;
+
+    }
+
+    .print-memo{
+        display: block;
+    }
+
+
+
 }
+
 .table th, .table td
 {padding-left:5px;}
 
@@ -24,34 +45,13 @@
 
     }
 
+    .print-memo{
+        display: none;
+    }
+
 }
 
-<!--To archive single print chamupathi-->
-<!--@media print {-->
 
-    <!--body * {-->
-
-        <!--&lt;!&ndash;visibility:hidden;&ndash;&gt;-->
-
-    <!--}-->
-
-    <!--#printSection, #printSection * {-->
-
-        <!--visibility:hidden;-->
-
-    <!--}-->
-
-    <!--#printSection {-->
-
-        <!--position:absolute;-->
-
-        <!--left:0;-->
-
-        <!--top:0;-->
-
-    <!--}-->
-
-<!--}-->
 
 
 </style>
@@ -79,6 +79,11 @@
                 <strong>Education Sector Report</strong>
 
             </div>
+
+            <div class="card-header print-memo">
+                <strong ng-bind="print_memo"></strong>
+
+            </div>
             <div class="card-block">
 
 
@@ -86,6 +91,7 @@
                     <div class="col-xs-1">
                         <label for="cvv">Incident</label>
                     </div>
+                    <div ></div>
                     <div class="col-xs-3" id="in">
                         <div class="form-group">
 
@@ -120,10 +126,14 @@
                         </div>
                         <div class="col-xs-1">
                             <div class="form-group">
-                                <button ng-print print-element-id="print_report" class="btn btn-info" style="margin-left:10px;"><i
-                                        class="fa fa-print"></i> Print
+                                <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
+                                        class="fa fa-print" ></i> Print
                                     Report
                                 </button>
+                                 <!--<button ng-click="initprint()"><i-->
+                                        <!--class="fa fa-print" ></i> Print-->
+                                    <!--Report 2-->
+                                <!--</button>-->
                             </div>
                         </div>
                     </div>
@@ -774,6 +784,43 @@
 
 
     </div>
+
+    <!--print data modal-->
+
+        <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Print report
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>Enter a memo: </h4>
+                        <textarea ng-model="print_memo" style="width:100%"></textarea>
+                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" ng-print print-element-id="print_report" type="button"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
 </div>
 
 </main>

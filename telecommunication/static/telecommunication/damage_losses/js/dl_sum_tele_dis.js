@@ -58,6 +58,7 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
 
     $scope.loadData = function(form) {
         $scope.submitted = true;
+        console.log("***");
         if(form.$valid) {
             $scope.tot_damages = null;
             $scope.is_edit = true;

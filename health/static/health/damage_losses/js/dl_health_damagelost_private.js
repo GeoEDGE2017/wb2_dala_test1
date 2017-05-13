@@ -13,6 +13,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.is_null = false;
+    $scope.currentBaselineDate = null;
 
 //initialize model
     var init_data = {
@@ -131,6 +132,29 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }).success(function(data) {
             $scope.privateClinics = data;
             console.log(data);
+
+            $http({
+                //this table does not get any data from baseline tables,
+                //but we pass baseline table 3, for get baseline data only
+                method: 'POST',
+                url: '/get_latest_bs_date',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_3',
+                    'sector': 'health'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var result = response.data;
+                result = result.replace(/^"(.*)"$/, '$1');
+                $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                console.log($scope.currentBaselineDate);
+            });
         })
     }
 
@@ -202,8 +226,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
 //Fetch Districts
-    $scope.changeIncident = function getDistrictData(){
-    if($scope.incident) {
+    $scope.changeIncident = function getDistrictData() {
+        if($scope.incident) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
@@ -214,16 +238,13 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 console.log(data);
             })
         }
-
-
-  }
+    }
 
 //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;
         $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
-
     }
 
     $scope.addPrivateClinicObject = function(){

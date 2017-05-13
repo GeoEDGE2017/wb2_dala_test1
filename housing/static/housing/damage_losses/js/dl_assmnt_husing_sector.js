@@ -13,7 +13,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     var finaltotal = 0;
     $scope.is_null = false;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'housing': {
             'Table_3': {
@@ -323,7 +323,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
     $scope.dlAssmntHusing = angular.copy(init_data);
 
-//Get Districts and Related baseline data
+    //Get Districts and Related baseline data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({

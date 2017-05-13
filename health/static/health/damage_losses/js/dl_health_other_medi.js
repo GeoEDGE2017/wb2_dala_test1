@@ -2,16 +2,16 @@
 var app = angular.module('dsHealthDamagelostOtherMediApp', []);
 
 app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',function ($scope,$http) {
-
- $scope.district;
- $scope.incident;
- $scope.bs_data={};
- $scope.dl_data={};
- $scope.is_edit = false;
- $scope.submitted = false;
- $scope.Districts = [];
- $scope.is_valid_data = true;
- $scope.is_null=false;
+    $scope.district;
+    $scope.incident;
+    $scope.bs_data={};
+    $scope.dl_data={};
+    $scope.is_edit = false;
+    $scope.submitted = false;
+    $scope.Districts = [];
+    $scope.is_valid_data = true;
+    $scope.is_null=false;
+    $scope.currentBaselineDate = null;
 
 //initialize model
     var init_data = {
@@ -637,45 +637,42 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
 
 //Get Baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
-
-        if($scope.incident && selectedValue){
-
-       $http({
-    method: "POST",
-    url: "/fetch_incident_districts",
-    data: angular.toJson({'incident': $scope.incident }),
-    }).success(function(data) {
-        $scope.districts = data;
-        $scope.district = "";
-        console.log(data);
-
-    })
+        if($scope.incident && selectedValue) {
+            $http({
+                method: "POST",
+                url: "/fetch_incident_districts",
+                data: angular.toJson({'incident': $scope.incident }),
+            }).success(function(data) {
+                $scope.districts = data;
+                $scope.district = "";
+                console.log(data);
+            })
         }
 
-        if( $scope.incident && $scope.district){
-
-        $http({
-            method: 'POST',
-            url: '/bs_get_data_mock',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-              'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets','BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
-               'com_data': {
-                    'district': $scope.district.district__id,
-                    'incident': $scope.incident,
+        if( $scope.incident && $scope.district) {
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets','BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
                     },
-               'table_name': 'Table_4',
-               'sector': 'health'
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-            var data = response.data;
-            angular.forEach(data, function(value, key) {
-              $scope.bs_data[key] = JSON.parse(value);
-            });
+                    'table_name': 'Table_4',
+                    'sector': 'health'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                angular.forEach(data, function(value, key) {
+                  $scope.bs_data[key] = JSON.parse(value);
+                });
+                var is_null = false;
 
-            console.log($scope.bs_data);
-             angular.forEach($scope.bs_data, function(value, index) {
+                console.log($scope.bs_data);
+                angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
                         is_null = true;
                     }
@@ -685,13 +682,33 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                     $("#modal-container-239455").modal('show');
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
                 }
-
-        }, function errorCallback(response) {
-
-            console.log(response);
-        });
-    }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets','BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_4',
+                            'sector': 'health'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        result = result.replace(/^"(.*)"$/, '$1');
+                        $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                    });
+                }
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        }
     }
 
 //Edit data

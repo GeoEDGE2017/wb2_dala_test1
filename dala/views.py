@@ -153,6 +153,7 @@ def fetch_entities_plain_column(request):
         content_type='application/javascript; charset=utf8'
     )
 
+
 @csrf_exempt
 def bs_save_data(request):
     bs_data = (yaml.safe_load(request.body))
@@ -280,6 +281,8 @@ def bs_get_data_mock(request):
     sub_app_name = sector + '.base_line'
 
     bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+    print 'incident_date', incident_date
     print bs_session_model
     print '@'
 
@@ -293,7 +296,7 @@ def bs_get_data_mock(request):
         print bd_sessions
         print '**'
         bs_date = bd_sessions['bs_date']
-
+        print 'bs_date', bs_date
         for db_table in db_tables:
             model_class = apps.get_model(sub_app_name, db_table)
             # assuming there could be multiple data sets for bs_date
@@ -323,11 +326,44 @@ def bs_get_data_mock(request):
 def get_latest_bs_date(request):
     todate = timezone.now()
     data = (yaml.safe_load(request.body))
-    table_name = data['table_name']
-    district = data['district']
+    com_data = data['com_data']
+    district = com_data['district']
+    incident_id = com_data['incident']
     sector = data['sector']
-    print table_name, district, sector
+    incident = IncidentReport.objects.get(pk=incident_id)
+    incident_date = incident.reported_date_time
+    table_name = data['table_name']
+    db_tables = data['db_tables']
+    bs_mtable_data = {}
+
     sub_app_name = sector + '.base_line'
+
+    bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+    print 'incident_date', incident_date
+    print bs_session_model
+    print '@'
+
+    try:
+        bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
+                                                     select_params=(incident_date,)). \
+            filter(table_name=table_name, district=district). \
+            values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+
+        print bd_sessions
+        bs_date = bd_sessions['bs_date']
+        print 'bs_date', bs_date
+        return HttpResponse(
+            json.dumps((bs_date)),
+            content_type='application/javascript; charset=utf8'
+        )
+    except Exception as ex:
+        bs_date = None
+
+        return HttpResponse(
+            json.dumps((bs_date)),
+            content_type='application/javascript; charset=utf8'
+        )
 
 
 @csrf_exempt
@@ -566,10 +602,16 @@ def dl_save_data_with_array(request):
 
                             for property in row:
                                 if isinstance(property, dict):
+                                    model_object_item = model_class()
+
+                                    for com_property in com_data:
+                                        print com_data[com_property]
+                                        setattr(model_object_item, com_property, com_data[com_property])
+
                                     for item in property:
+                                        setattr(model_object_item, item, property[item])
+                                        model_object_item.save()
                                         print '#####', property[item]
-                                        setattr(model_object, item, row[property[item]])
-                                        model_object.save()
                                 else:
                                     print '@@@@@ ', row[property]
                                     setattr(model_object, property, row[property])
@@ -596,6 +638,7 @@ def dl_save_data_with_array(request):
         dl_save_edit_data(dl_table_data, com_data)
 
     return HttpResponse('success')
+
 
 @csrf_exempt
 def dl_get_data(request):
@@ -721,6 +764,7 @@ def dl_fetch_edit_data(request):
 #     )
 
 # new method is added by chamupathi mendis to support new enum fields in edit mode
+
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data):
     todate = timezone.now()

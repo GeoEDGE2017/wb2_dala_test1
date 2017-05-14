@@ -58,7 +58,6 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
 
     $scope.loadData = function(form) {
         $scope.submitted = true;
-        console.log("***");
         if(form.$valid) {
             $scope.tot_damages = null;
             $scope.is_edit = true;
@@ -68,7 +67,7 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
                 url: '/dl_fetch_total_data',
                 data: angular.toJson({
                     'table_name':  'Table_3',
-                    'sector':'telecommunication',
+                    'sector': 'telecommunication',
                     'com_data': {
                         'district':  $scope.district.district__id,
                         'incident': $scope.incident,

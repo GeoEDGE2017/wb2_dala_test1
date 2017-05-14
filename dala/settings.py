@@ -153,10 +153,10 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=other_government'
+        #     'options': '-c search_path=transport_water'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'Dala_2017_05_09',
         'USER': 'postgres',
     },
 }

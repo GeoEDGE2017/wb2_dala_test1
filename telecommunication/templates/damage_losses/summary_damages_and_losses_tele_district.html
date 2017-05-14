@@ -139,7 +139,7 @@
                             {{ data.ownership == 'Public' ? $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
                         </td>
                         <td height="19" width="63">
-                            {{ data.ownership == 'Public' ? $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
+                            {{ data.ownership == 'Private' ? $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
                         </td>
                         {% endverbatim %}
 
@@ -148,13 +148,13 @@
                             {{ data.ownership == 'Public' ?
                             data.tot_damages +
                             $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los +
-                            $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
+                            $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : 0 }}
                         </td>
                         <td height="19" width="63">
                             {{ data.ownership == 'Private' ?
                             data.tot_damages +
                             $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los +
-                            $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : '' }}
+                            $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : 0 }}
                         </td>
                         {% endverbatim %}
                     </tr>
@@ -166,23 +166,23 @@
                         </td>
                         <td height="21" width="145" ng-bind="tot_damages_pv">
                         </td>
-                        <td height="21" width="221">
-                            <!-- - -->
+                        <td height="21" width="221" ng-bind="year1_los_pu">
+
                         </td>
-                        <td height="21" width="63">
-                            <!-- - -->
+                        <td height="21" width="63" ng-bind="year1_los_pv">
+
                         </td>
-                        <td height="21" width="63">
-                            <!-- - -->
+                        <td height="21" width="63" ng-bind="year2_los_pu">
+
                         </td>
-                        <td height="21" width="63">
-                            <!-- - -->
+                        <td height="21" width="63" ng-bind="year2_los_pv">
+
                         </td>
                         <td height="21" width="63" ng-bind="pub_tot">
-                            <!-- - -->
+
                         </td>
                         <td height="21" width="63" ng-bind="pvt_tot">
-                            <!-- - -->
+
                         </td>
                     </tr>
                     </tbody>

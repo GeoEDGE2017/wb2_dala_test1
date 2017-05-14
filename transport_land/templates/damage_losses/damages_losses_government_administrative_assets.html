@@ -218,9 +218,9 @@
                                            class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_floors">
                                 </td>
                                 <td height="19" width="148" ng-model="dlGacPdmgStructures.damages" ng-bind="dlGacPdmgStructures.damages =
-                                dlGacPdmgStructures.damaged_roof * bs_data['BiaGacLandPbuilding'][$index].fields.avg_repair_cost_floor_1 +
-                                dlGacPdmgStructures.damaged_walls * bs_data['BiaGacLandPbuilding'][$index].fields.avg_repair_cost_floor_2_3 +
-                                dlGacPdmgStructures.damaged_floors * bs_data['BiaGacLandPbuilding'][$index].fields.avg_repair_cost_floor_more_3">
+                                dlGacPdmgStructures.damaged_roof * bs_data['BiaGacLandPbuilding'][0].fields.avg_repair_cost_floor_1 +
+                                dlGacPdmgStructures.damaged_walls * bs_data['BiaGacLandPbuilding'][1].fields.avg_repair_cost_floor_1 +
+                                dlGacPdmgStructures.damaged_floors * bs_data['BiaGacLandPbuilding'][2].fields.avg_repair_cost_floor_1">
                                 </td>
                             </tr>
                             <!--Total-->
@@ -316,7 +316,7 @@
                             </tr>
                             <tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets != 'Total' && dlGacPdmgMachinery.assets != 'TOTAL DAMAGES'">
                                 <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets">
-                                    Vehicles
+
                                 </td>
                                 <td colspan="2" height="19" width="126">
                                     <input id="textinput" name="textinput" type="number" placeholder=""

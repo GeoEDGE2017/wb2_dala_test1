@@ -267,10 +267,8 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
 //                if(model_name == 'BacfOther') {
 //                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model5].push(obj5);
 //                }
-//
-//
-//
 //            });
+
                 if(model_name == 'BacfSeasonalCrops') {
                     $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops.push(obj1);
                 }
@@ -288,7 +286,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
 //                }
 
         });
-       if(model_name == 'BacfSeasonalCrops') {
+                if(model_name == 'BacfSeasonalCrops') {
                     $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops.push(obj1);
                 }
     }

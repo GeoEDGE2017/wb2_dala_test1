@@ -12,6 +12,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.is_valid_data = true;
     var finaltotal = 0;
     $scope.is_null = false;
+    $scope.grantot = 0;
 
 //Initialize Data
     var init_data = {
@@ -420,42 +421,55 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 //Calculate Total
    $scope.calTotal=function(arr,property){
         var finaltotal = 0;
-
         angular.forEach(arr, function(value, key) {
         if(value.assets !='Total'){
          finaltotal = finaltotal + value[property] ;
          }
         })
 
-        return finaltotal.toFixed(2);
+        return finaltotal;
         }
+
+
+    $scope.threeInputconvertToInt = function(val1,val2,val3){
+
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return sum;
+    }
+
+    $scope.twoInputconvertToInt = function(val1,val2,val3){
+
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return sum;
+    }
+
 
 //Calculate Total function
    $scope.calTotTotal=function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var grantot = 0;
+    var finaltotal1 = null;
+    var finaltotal2 = null;
+    var finaltotal3 = null;
+
     var array1=$scope.dlAssmntHusing.housing.Table_3.DlDesPermanent;
     var array2 =$scope.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent;
     var array3 =$scope.dlAssmntHusing.housing.Table_3.DlDesImprovised;
 
     angular.forEach(array1, function(value, key) {
      if(value.assets !='Total'){
-         finaltotal1 = finaltotal1 + value.tot_num_houses ;
+         finaltotal1 = parseInt(finaltotal1 + value.tot_num_houses) ;
      }
     })
     angular.forEach(array2, function(value, key) {
      if(value.assets !='Total'){
-         finaltotal2 = finaltotal2 + value.tot_num_houses ;
+         finaltotal2 = parseInt(finaltotal2 + value.tot_num_houses) ;
      }
     })
     angular.forEach(array3, function(value, key) {
      if(value.assets !='Total'){
-         finaltotal3 = finaltotal3 + value.tot_num_houses ;
+         finaltotal3 = parseInt(finaltotal3 + value.tot_num_houses) ;
      }
     })
-    grantot = parseFloat(grantot + finaltotal1+ finaltotal2 + finaltotal3);
+    grantot = $scope.grantot + $scope.threeInputconvertToInt(finaltotal1,finaltotal2 , finaltotal3);
     return grantot;
     }
 
@@ -477,7 +491,6 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
-    var grantot = 0;
     var array1=$scope.dlAssmntHusing.housing.Table_3.DlDesPermanent;
     var array2 =$scope.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent;
     var array3 =$scope.dlAssmntHusing.housing.Table_3.DlDesImprovised;
@@ -498,7 +511,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
          finaltotal3 = finaltotal3 + value.damages ;
      }
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
+    grantot = $scope.grantot + $scope.threeInputconvertToInt(finaltotal1,finaltotal2,finaltotal3);
     return grantot;
     }
 
@@ -530,26 +543,22 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
          finaltotal3 = finaltotal3 + value.tot_num_houses ;
      }
     })
-    grandparttot = grandparttot + finaltotal1+ finaltotal2 + finaltotal3;
+    grandparttot = grandparttot + $scope.twoInputconvertToInt(finaltotal1, finaltotal2,finaltotal3);
     $scope.partialtot = grandparttot;
-    return grandparttot.toFixed(2);;
+    return grandparttot;
 
     }
 
-    function convertString(val1,val2,val3,val4){
-
-           return parseFloat(val1 + val2 + val3 + val3);
-
-    }
+$scope.roundOffFunc = function(val1,val2){
+var ans = Math.round(val1 * val2);
+return ans;
+}
 
 //Calculate Grand Partial Total
    $scope.calPartialGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
-
-    var grantot = 0;
-
     var array1=$scope.dlAssmntHusing.housing.Table_3.DlPdesPermanent;
     var array2 =$scope.dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent;
     var array3 =$scope.dlAssmntHusing.housing.Table_3.DlPdesImprovised;
@@ -570,7 +579,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
          finaltotal3 = finaltotal3 + value.damages ;
      }
     })
-    grantot = convertString(grantot ,finaltotal1 ,finaltotal2 ,finaltotal3);
+    grantot = $scope.grantot + $scope.threeInputconvertToInt(finaltotal1 ,finaltotal2 ,finaltotal3);
     return grantot;
     }
 

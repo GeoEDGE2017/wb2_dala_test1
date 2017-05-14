@@ -33,7 +33,7 @@
                             <td class="p5" width="156">
                                 Incident
                             </td>
-                            <td  colspan="2"  width="63">
+                            <td  colspan="4"  width="63">
 
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true);getDistrict();" style="width:100%;font-weight:400;" required>
@@ -46,10 +46,10 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                    <td class="p5" colspan="3"   width="120">
+                    <td class="p5"  width="120">
                                 District
                             </td>
-                            <td class="" colspan="3"  width="491">
+                            <td class=""  colspan="1" width="491">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
@@ -324,7 +324,7 @@
 
                         </td>
                         <td colspan="2" height="19" width="166" ng-bind="data.housing.Table_4.DlDmgImpDistrict[0].tot_damages + data.housing.Table_4.DlLosImpDistrict[1].tot_losses">
-                            <!-- - -->
+
                         </td>
                     </tr>
                     <tr height="19">
@@ -371,22 +371,28 @@
                         <td class="boldash" height="19" width="166">
                             GRAND TOTAL
                         </td>
-                        <td height="19" width="87" ng-bind="
-                        data.housing.Table_4.DlNumDesImpDistrict[0].tot_num_houses +
-                        data.housing.Table_4.DlNumDesSemiPerDistrict[3].tot_num_houses +
-                        data.housing.Table_4.DlNumDesPerDistrict[4].tot_num_houses">
+                        <td height="19" width="87" ng-bind="convertToInt(
+                        data.housing.Table_4.DlNumDesImpDistrict[0].tot_num_houses ,
+                        data.housing.Table_4.DlNumDesSemiPerDistrict[3].tot_num_houses ,
+                        data.housing.Table_4.DlNumDesPerDistrict[4].tot_num_houses)">
 
                         </td>
-                        <td colspan="2" height="19" width="224" ng-bind="
-                        data.housing.Table_4.DlNumPdesImpDistrict[0].tot_num_houses +
-                        data.housing.Table_4.DlNumPdesSemiPerDistrict[3].tot_num_houses +
-                        data.housing.Table_4.DlNumPdesPerDistrict[4].tot_num_houses">
+                        <td colspan="2" height="19" width="224" ng-bind="convertToInt(
+                        data.housing.Table_4.DlNumPdesImpDistrict[0].tot_num_houses ,
+                        data.housing.Table_4.DlNumPdesSemiPerDistrict[3].tot_num_houses ,
+                        data.housing.Table_4.DlNumPdesPerDistrict[4].tot_num_houses)">
 
                         </td>
-                        <td height="19" width="104" ng-bind="data.housing.Table_4.DlDmgImpDistrict[2].tot_damages + data.housing.Table_4.DlDmgSemiPerDistrict[3].tot_damages + data.housing.Table_4.DlDmgPerDistrict[4].tot_damages">
+                        <td height="19" width="104" ng-bind="convertToInt(
+                        data.housing.Table_4.DlDmgImpDistrict[2].tot_damages ,
+                        data.housing.Table_4.DlDmgSemiPerDistrict[3].tot_damages ,
+                        data.housing.Table_4.DlDmgPerDistrict[4].tot_damages)">
 
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_4.DlLosImpDistrict[0].tot_losses + data.housing.Table_4.DlLosSemiPerDistrict[3].tot_losses + data.housing.Table_4.DlLosPerDistrict[4].tot_losses">
+                        <td height="19" width="87" ng-bind="convertToInt(
+                        data.housing.Table_4.DlLosImpDistrict[0].tot_losses ,
+                        data.housing.Table_4.DlLosSemiPerDistrict[3].tot_losses ,
+                        data.housing.Table_4.DlLosPerDistrict[4].tot_losses)">
 
                         </td>
                         <td colspan="2" height="19" width="166"

@@ -42,6 +42,8 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
             console.log('load ', data);
             $scope.dlLandTransSumNat = data;
 
+
+
             })
         }
 

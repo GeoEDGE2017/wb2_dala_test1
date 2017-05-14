@@ -70,11 +70,11 @@
 
                 <div ng-form name="report_sum_dl_nat" class="row">
                     <div class="col-xs-1">
- <label for="cvv">Incident</label>
- </div>
-  <div class="col-xs-3" id="in">
+                        <label for="cvv">Incident</label>
+                    </div>
+                    <div class="col-xs-3" id="in">
                         <div class="form-group">
-                           
+
                             <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
                                     class="form-control" required>
                                 <option value="">-- Select --</option>
@@ -92,266 +92,232 @@
 
                     </div>
 
-<div class="no-print">
-                    <div class="col-xs-2">
+                    <div class="no-print">
+                        <div class="col-xs-2">
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <button ng-click="loadData(report_sum_dl_nat)" type="button"
-                                    class="btn btn-success" style=""><i
-                                    class="fa fa-search"></i> Search
-                            </button>
+                                <button ng-click="loadData(report_sum_dl_nat)" type="button"
+                                        class="btn btn-success" style=""><i
+                                        class="fa fa-search"></i> Search
+                                </button>
 
-                        </div>
+                            </div>
                         </div>
                         <div class="col-xs-1">
-                        <div class="form-group">
-                            <!--<button ng-print print-element-id="print_report" class="btn btn-info" style="margin-left:10px;"><i-->
-                                    <!--class="fa fa-print"></i> Print-->
+                            <div class="form-group">
+                                <!--<button ng-print print-element-id="print_report" class="btn btn-info" style="margin-left:10px;"><i-->
+                                <!--class="fa fa-print"></i> Print-->
                                 <!--Report-->
-                            <!--</button>-->
-                            <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
+                                <!--</button>-->
+                                <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
                                         class="fa fa-print" ></i> Print
                                     Report
                                 </button>
+                            </div>
                         </div>
                     </div>
-</div>
 
                 </div>
                 <span style="color:red;" ng-show="isDataAvailable">
                                        No Data Available
                                  </span>
                 <!--/row-->
-                  <!--national -->
-        <div ng-if="!checkIfNull()" id="print_report" style="">
+                <!--national -->
+                <div ng-if="!checkIfNull()" id="print_report" style="">
 
-            <table class="table table-bordered">
-                    <colgroup>
-                        <col width="166"/>
-                        <col width="87"/>
-                        <col width="112"/>
-                        <col width="87"/>
-                        <col width="104"/>
-                        <col width="87"/>
-                    </colgroup>
-                    <tbody>
-                   <tr class="trhead1">
-                        <td class="trhead1" width="130" colspan="2">
 
-                            Incident
-                        </td>
-                        <td width="125" colspan="3">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
+                    <table class="table table-bordered" ng-if="!checkIfNull()" >
+                        <tbody>
+                        <tr class="trheadc1" height="51">
+                            <td height="51" width="166">
+                                Housing Classification
+                            </td>
+                            <td height="51" width="87">
+                                Number of Totally Destroyed
+                            </td>
+                            <td height="51" width="112">
+                                Number of Partially Damaged
+                            </td>
+                            <td height="51" width="87">
+                                Damages (LKR)
+                            </td>
+                            <td height="51" width="104">
+                                Losses (LKR)
+                            </td>
+                            <td height="51" width="87">
+                                Total Damages and Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6" ng-init="getTotal(key)">
+                            <td height="19" width="166" ng-bind="key">
 
-                                <option value={{incident.id}}>{{incident.disaster_type.names}}
-                                    {{incident.reported_date_time}}
-                                    {% endfor %}
-                            </select>
-                        </td>
-                        <td >
-                            <button class="btn btn-info btn-block"
-                                    ng-click="fetchDlData()">Load
-                            </button>
-                        </td>
-                    </tr>
-                   </tbody>
+                            </td>
+                            <td height="19" width="87">
+                            </td>
+                            <td height="19" width="112">
+                            </td>
+                            <td height="19" width="87">
+                            </td>
+                            <td height="19" width="104">
+                            </td>
+                            <td height="19" width="87">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
+                            <td class="tdpa" height="19" width="166">
+                                Type 1. Permanent
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesPerNational[0].tot_num_houses">
+
+                            </td>
+                            <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesPerNational[0].tot_num_houses">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages">
+
+                            </td>
+                            <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages + data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
+
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
+                            <td class="tdpa" height="19" width="166">
+                                Type 2. Semi-Permanent
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesSemiPerNational[0].tot_num_houses">
+
+                            </td>
+                            <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesSemiPerNational[0].tot_num_houses">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages">
+
+                            </td>
+                            <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages + data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
+
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
+                            <td class="tdpa" height="19" width="166">
+                                Type 3. Improvised
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesImpNational[0].tot_num_houses">
+
+                            </td>
+                            <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesImpNational[0].tot_num_houses">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages">
+
+                            </td>
+                            <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages + data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
+
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
+                            <td class="boldash" height="19" width="166">
+                                TOTAL
+                            </td>
+                            {% verbatim %}
+                            <td width="98" ng-model="noTotDes" ng-bind="noTotDes= {{'noTotDes'+key}}">
+
+                            </td>
+                            {% endverbatim %}
+
+                            {% verbatim %}
+                            <td width="98" ng-model="noPartDes" ng-bind="noPartDes= {{'noPartDes'+key}}">
+
+                            </td>
+                            {% endverbatim %}
+                            {% verbatim %}
+                            <td width="98" ng-model="totdamage" ng-bind="totdamage= {{'totdamage'+key}}">
+
+                            </td>
+                            {% endverbatim %}
+                            {% verbatim %}
+                            <td width="98" ng-model="totalLosses" ng-bind="totalLosses= {{'totalLosses'+key}}">
+
+                            </td>
+                            {% endverbatim %}
+                            <td height="19" width="87" ng-bind="tot">
+
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tr height="19">
+                            <td class="boldash" height="19" width="166">
+                                GRAND TOTAL
+                            </td>
+
+                            <td height="19" width="87" ng-bind="grndtotalNumDes">
+
+                            </td>
+
+                            <td height="19" width="112" ng-bind="grndtotalNumPart">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="grndtotalDamages">
+
+                            </td>
+                            <td height="19" width="104" ng-bind="grndtotalLosses">
+
+                            </td>
+                            <td height="19" width="87" ng-bind="grandTotal">
+
+                        </tr>
+
                     </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
-                    <tbody>
-                    <tr class="trheadc1" height="51">
-                        <td height="51" width="166">
-                            Housing Classification
-                        </td>
-                        <td height="51" width="87">
-                            Number of Totally Destroyed
-                        </td>
-                        <td height="51" width="112">
-                            Number of Partially Damaged
-                        </td>
-                        <td height="51" width="87">
-                            Damages (LKR)
-                        </td>
-                        <td height="51" width="104">
-                            Losses (LKR)
-                        </td>
-                        <td height="51" width="87">
-                            Total Damages and Losses (LKR)
-                        </td>
-                    </tr>
-                     <tr class="trheadc" height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6" ng-init="getTotal(key)">
-                        <td height="19" width="166" ng-bind="key">
-
-                        </td>
-                        <td height="19" width="87">
-                        </td>
-                        <td height="19" width="112">
-                        </td>
-                        <td height="19" width="87">
-                        </td>
-                        <td height="19" width="104">
-                        </td>
-                        <td height="19" width="87">
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
-                        <td class="tdpa" height="19" width="166">
-                            Type 1. Permanent
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesPerNational[0].tot_num_houses">
-
-                        </td>
-                        <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesPerNational[0].tot_num_houses">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages">
-
-                        </td>
-                        <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages + data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
-
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
-                        <td class="tdpa" height="19" width="166">
-                            Type 2. Semi-Permanent
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesSemiPerNational[0].tot_num_houses">
-
-                        </td>
-                        <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesSemiPerNational[0].tot_num_houses">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages">
-
-                        </td>
-                        <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages + data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
-
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
-                        <td class="tdpa" height="19" width="166">
-                            Type 3. Improvised
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesImpNational[0].tot_num_houses">
-
-                        </td>
-                        <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesImpNational[0].tot_num_houses">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages">
-
-                        </td>
-                        <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages + data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
-
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6">
-                        <td class="boldash" height="19" width="166">
-                            TOTAL
-                        </td>
-                        {% verbatim %}
-                        <td width="98" ng-model="noTotDes" ng-bind="noTotDes= {{'noTotDes'+key}}">
-
-                        </td>
-                        {% endverbatim %}
-
-                        {% verbatim %}
-                        <td width="98" ng-model="noPartDes" ng-bind="noPartDes= {{'noPartDes'+key}}">
-
-                        </td>
-                        {% endverbatim %}
-                       {% verbatim %}
-                        <td width="98" ng-model="totdamage" ng-bind="totdamage= {{'totdamage'+key}}">
-
-                        </td>
-                        {% endverbatim %}
-                        {% verbatim %}
-                        <td width="98" ng-model="totalLosses" ng-bind="totalLosses= {{'totalLosses'+key}}">
-
-                        </td>
-                        {% endverbatim %}
-                        <td height="19" width="87" ng-bind="tot">
-
-                        </td>
-                    </tr>
-                     </tbody>
-                    <tr height="19">
-                        <td class="boldash" height="19" width="166">
-                            GRAND TOTAL
-                        </td>
-
-                        <td height="19" width="87" ng-bind="grndtotalNumDes">
-
-                        </td>
-
-                        <td height="19" width="112" ng-bind="grndtotalNumPart">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="grndtotalDamages">
-
-                        </td>
-                        <td height="19" width="104" ng-bind="grndtotalLosses">
-
-                        </td>
-                        <td height="19" width="87" ng-bind="grandTotal">
-
-                    </tr>
-
-                </table>
-        </div>
+                </div>
             </div>
         </div>
 
-      
+
     </div>
     <!--print data modal-->
 
-        <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+    <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
 
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Print report
-                        </h4>
-                    </div>
-                    <div class="modal-body alert-info">
-                        <h4>Enter a memo: </h4>
-                        <textarea ng-model="print_memo" style="width:100%"></textarea>
-                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
-                                class="btn btn-primary">
-                            OK
-                        </button>
-                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Print report
+                    </h4>
                 </div>
+                <div class="modal-body alert-info">
+                    <h4>Enter a memo: </h4>
+                    <textarea ng-model="print_memo" style="width:100%"></textarea>
+                    <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                </div>
+                <div class="modal-footer">
 
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
             </div>
 
         </div>
+
+    </div>
 </div>
 
 </main>

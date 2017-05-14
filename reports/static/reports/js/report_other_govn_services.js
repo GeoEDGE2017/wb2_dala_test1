@@ -14,6 +14,8 @@ $scope.initprint = function() {
 
     }
 
+
+
 $scope.loadData = function(form){
 $scope.submitted = true;
 $scope.isDataAvailable = false;

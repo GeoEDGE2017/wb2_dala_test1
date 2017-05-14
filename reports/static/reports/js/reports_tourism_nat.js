@@ -14,6 +14,13 @@ app.controller('reportSummTouBusiFaciNatController', function($scope, $http, $pa
         $scope.fetchData();
     }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
+
     $scope.fetchData = function(){
 
             if($scope.incident){

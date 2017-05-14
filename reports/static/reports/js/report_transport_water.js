@@ -53,6 +53,12 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
 
    }
 
+   $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
  $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + (
                          $scope.dlWaterTransSumNat.transport_water.Table_5[key].DlWaterDmgPubNational[0].tot_dmg_public ?

@@ -19,6 +19,12 @@ $scope.checkIfNull = function()
 
 }
 
+$scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
 $scope.loadData = function(form)
 {
 

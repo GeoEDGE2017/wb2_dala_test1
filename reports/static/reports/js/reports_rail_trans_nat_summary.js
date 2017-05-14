@@ -16,6 +16,12 @@ app.controller("reportRailTransSumNatController", function($scope,$http,$parse, 
         $scope.loadData(form);
     }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
     $scope.loadData = function(form)
     {
         $scope.isLoded = true;

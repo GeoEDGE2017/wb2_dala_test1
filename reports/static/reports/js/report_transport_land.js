@@ -28,6 +28,12 @@ $scope.checkIfNull = function()
 
 }
 
+$scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
      $scope.fetchDlData = function(form){
         $scope.submitted = true;
         $scope.isDataAvailable = false;

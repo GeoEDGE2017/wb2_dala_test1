@@ -224,6 +224,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
             total_object[total_field] = val_a + val_b;
 
+            console.log("val_a", val_a, val_b);
+
             return total_object[total_field];
     }
 

@@ -1,15 +1,53 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 
+<style>
+    @media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    #in {width:100%;}
+
+   .table th, .table td {color:#000!important;}
+
+       body * {
+        <!--visibility:hidden;-->
+    }
+
+    #printSection, #printSection * {
+        visibility:hidden;
+    }
+
+    .print-memo{
+        display: block;
+    }
+}
+
+.table th, .table td
+{padding-left:5px;}
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+    .print-memo{
+        display: none;
+    }
+}
+
+</style>
+
 <!-- Main content -->
 <main class="main" ng-app="dlNationwideReportApp" ng-controller="dlNationwideReportController">
 
     <!-- Breadcrumb -->
-    <ol class="breadcrumb">
+    <ol class="breadcrumb no-print">
 
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Health Sector</a>
+        <li class="breadcrumb-item"><a href="#">Other Government Service Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Summery</span>
@@ -22,18 +60,27 @@
 
         <div class="card">
             <div class="card-header">
-                <strong>Search</strong>
+                <strong>Other Government Service Sector Report</strong>
 
             </div>
+            <div class="card-header print-memo">
+                <strong ng-bind="print_memo"></strong>
+
+            </div>
+
             <div class="card-block">
 
 
                 <div ng-form name="report_sum_dl_nat" class="row">
-                    <div class="col-sm-3">
-
+                    <div class="col-xs-1">
+                        <label for="cvv">Incident</label>
+                    </div>
+                    <div ></div>
+                    <div class="col-xs-3" id="in">
                         <div class="form-group">
-                            <label for="cvv">Incident</label>
-                            <select id="ccyear" ng-model="incident" name="incident" class="form-control" required>
+
+                            <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
+                                    class="form-control" required>
                                 <option value="">-- Select --</option>
                                 {% for incident in incidents %}
                                 <option value="{{ incident.id }}">
@@ -49,22 +96,30 @@
 
                     </div>
 
+                    <div class="no-print">
+                        <div class="col-xs-2">
 
-                    <div class="col-sm-1">
+                            <div class="form-group">
 
-                        <div class="form-group">
+                                <button ng-click="loadData(report_sum_dl_nat)" type="button"
+                                        class="btn btn-success" style=""><i
+                                        class="fa fa-search"></i> Search
+                                </button>
 
-                            <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-sm btn-primary"
-                                    style="padding:7px;margin-top:28px;"><i
-                                    class="fa fa-search"></i> Search
-                            </button>
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="form-group">
-                        <button ng-print print-element-id="print_report" class="btn btn-info">Print
-                            Report
-                        </button>
+                        <div class="col-xs-1">
+                            <div class="form-group">
+                                <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
+                                        class="fa fa-print" ></i> Print
+                                    Report
+                                </button>
+                                <!--<button ng-click="initprint()"><i-->
+                                <!--class="fa fa-print" ></i> Print-->
+                                <!--Report 2-->
+                                <!--</button>-->
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -89,15 +144,7 @@
                         <col width="118" span="4"/>
                     </colgroup>
                     <tbody>
-                    <tr border="0">
-                        <td colspan="4" style="border:1px solid #fff;">
-                        </td>
 
-
-                        <td style="border:1px solid #fff;">
-                            <button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>
-                        </td>
-                    </tr>
 
                     <tr class="trheadc" height="20">
 
@@ -203,6 +250,42 @@
 
             </div>
 
+
+        </div>
+
+        <!--print data modal-->
+
+        <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Print report
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>Enter a memo: </h4>
+                        <textarea ng-model="print_memo" style="width:100%"></textarea>
+                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 

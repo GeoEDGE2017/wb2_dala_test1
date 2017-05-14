@@ -1985,6 +1985,42 @@
 
             </div>
 
+            <!--print data modal-->
+
+        <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Print report
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>Enter a memo: </h4>
+                        <textarea ng-model="print_memo" style="width:100%"></textarea>
+                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
         </div>
         <!-- /.conainer-fluid -->
 </main>

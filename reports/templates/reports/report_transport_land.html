@@ -2,17 +2,40 @@
 {% block content %}
 <style>
 @media print
-{    
-
+{
     .no-print, .no-print *
     {
         display: none !important;
     }
     #in {width:100%;}
-   .table th, .table td {color:#000!important;} 
+
+   .table th, .table td {color:#000!important;}
+
+       body * {
+        <!--visibility:hidden;-->
+    }
+
+    #printSection, #printSection * {
+        visibility:hidden;
+    }
+
+    .print-memo{
+        display: block;
+    }
 }
+
 .table th, .table td
 {padding-left:5px;}
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+    .print-memo{
+        display: none;
+    }
+}
+
 </style>
 <!-- Main content -->
 <main class="main" ng-app="dlTlNatReportApp" ng-controller="DlTlNatReportController">
@@ -36,21 +59,25 @@
 
     <div class="container-fluid" ng-form name="form_dlsum_trnsair_natl">
 
-<div class="card">
+        <div class="card">
             <div class="card-header">
                 <strong>Transport Land Sub Sector Report</strong>
+
+            </div>
+            <div class="card-header print-memo">
+                <strong ng-bind="print_memo"></strong>
 
             </div>
             <div class="card-block">
 
                 <div ng-form name="report_sum_dl_nat" class="row">
-                 <div class="col-xs-1">
-                    <label for="cvv">Incident</label>
-                 </div>
+                    <div class="col-xs-1">
+                        <label for="cvv">Incident</label>
+                    </div>
                     <div class="col-sm-3" id="in">
 
                         <div class="form-group">
-                            
+
                             <select id="ccyear" ng-model="incident" name="incident"
                                     class="form-control" required>
                                 <option value="">-- Select --</option>
@@ -61,207 +88,209 @@
                                 </option>
                                 {% endfor %}
                             </select>
-                           <span  style="color:red" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
+                            <span  style="color:red" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
                            Please Select Incident
                            </span>
-                                
+
 
                         </div>
 
                     </div>
 
-<div class="no-print">
-                    <div class="col-sm-2">
+                    <div class="no-print">
+                        <div class="col-sm-2">
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <button ng-click="fetchDlData(report_sum_dl_nat)" type="button"
-                                    class="btn btn-success"
-                                    ><i
-                                    class="fa fa-search"></i> Search
-                            </button>
+                                <button ng-click="fetchDlData(report_sum_dl_nat)" type="button"
+                                        class="btn btn-success"
+                                ><i
+                                        class="fa fa-search"></i> Search
+                                </button>
+                            </div>
                         </div>
-                        </div>
-                         <div class="col-sm-1">
-                        <div class="form-group">
-                            <button ng-print print-element-id="print_report" class="btn btn-info"><i
-                                    class="fa fa-print"></i> Print
-                                Report
-                            </button>
-                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <!--<button ng-print print-element-id="print_report" class="btn btn-info"><i-->
+                                <!--class="fa fa-print"></i> Print-->
+                                <!--Report-->
+                                <!--</button>-->
+                                <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
+                                        class="fa fa-print" ></i> Print
+                                    Report
+                                </button>
+                            </div>
 
+                        </div>
                     </div>
-</div>
                 </div>
                 <span style="color:red;" ng-show="isDataAvailable">
                                        No Data Available
                                  </span>
                 <div id="print_report">
-                <table ng-if="!checkIfNull()" class="table table-bordered">
-                    <colgroup>
-                        <col width="156"/>
-                        <col width="63"/>
-                        <col width="120"/>
-                        <col width="99"/>
-                        <col width="145"/>
-                        <col width="148"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                    </colgroup>
-                    <tbody>
-                    <!--tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="isLoded && form_dlsum_trnsair_natl.incident.$error.required">
-                                Please select Incident
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                    </tr-->
+                    <table ng-if="!checkIfNull()" class="table table-bordered">
+                        <colgroup>
+                            <col width="156"/>
+                            <col width="63"/>
+                            <col width="120"/>
+                            <col width="99"/>
+                            <col width="145"/>
+                            <col width="148"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                        </colgroup>
+                        <tbody>
+                        <!--tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="isLoded && form_dlsum_trnsair_natl.incident.$error.required">
+                                    Please select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                        </tr-->
 
-                    <tr class="trheadc" height="19">
-                        <td rowspan="2" height="38" width="156" style="width:18.8%;">
-                            Provinces
-                        </td>
-                        <td colspan="4" height="19" width="345">
-                            Year 1
-                        </td>
-                        <td colspan="2" height="19" width="296">
-                            Year 2
-                        </td>
-                        <td colspan="2" rowspan="2" height="38" width="126">
-                            Total (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td colspan="2" height="19" width="126">
-                            Damages (LKR)
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            Losses (LKR)
-                        </td>
-                        <td colspan="2" height="19" width="296">
-                            Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
-                        <td height="19" width="156" style="width:18.8%">
-                            <br/>
-                        </td>
-                        <td height="19" width="63">
-                            Public
-                        </td>
-                        <td height="19" width="120" style="width:10.7%">
-                            Private
-                        </td>
-                        <td height="19" width="99" style="width:11.8%">
-                            Public
-                        </td>
-                        <td height="19" width="145" style="width:12.2%">
-                            Private
-                        </td>
-                        <td height="19" width="148" style="width:10.7%">
-                            Public
-                        </td>
-                        <td height="19" width="63" style="width:9.8%">
-                            Private
-                        </td>
-                        <td height="19" width="63" style="width:9.6%">
-                            Public
-                        </td>
-                        <td height="19" width="63" style="width:6.5%">
-                            Private
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <table ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"
-                       class="table table-bordered">
+                        <tr class="trheadc" height="19">
+                            <td rowspan="2" height="38" width="156" style="width:18.8%;">
+                                Provinces
+                            </td>
+                            <td colspan="4" height="19" width="345">
+                                Year 1
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                Year 2
+                            </td>
+                            <td colspan="2" rowspan="2" height="38" width="126">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td colspan="2" height="19" width="126">
+                                Damages (LKR)
+                            </td>
+                            <td colspan="2" height="19" width="198">
+                                Losses (LKR)
+                            </td>
+                            <td colspan="2" height="19" width="296">
+                                Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td height="19" width="156" style="width:18.8%">
+                                <br/>
+                            </td>
+                            <td height="19" width="63">
+                                Public
+                            </td>
+                            <td height="19" width="120" style="width:10.7%">
+                                Private
+                            </td>
+                            <td height="19" width="99" style="width:11.8%">
+                                Public
+                            </td>
+                            <td height="19" width="145" style="width:12.2%">
+                                Private
+                            </td>
+                            <td height="19" width="148" style="width:10.7%">
+                                Public
+                            </td>
+                            <td height="19" width="63" style="width:9.8%">
+                                Private
+                            </td>
+                            <td height="19" width="63" style="width:9.6%">
+                                Public
+                            </td>
+                            <td height="19" width="63" style="width:6.5%">
+                                Private
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"
+                           class="table table-bordered">
 
                         <colgroup>
-                        <col width="156"/>
-                        <col width="63"/>
-                        <col width="120"/>
-                        <col width="99"/>
-                        <col width="145"/>
-                        <col width="148"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                    </colgroup>
+                            <col width="156"/>
+                            <col width="63"/>
+                            <col width="120"/>
+                            <col width="99"/>
+                            <col width="145"/>
+                            <col width="148"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                            <col width="63"/>
+                        </colgroup>
 
-                    <tbody>
-                    <tr height="20" ng-init="getTotal($index,key);">
+                        <tbody>
+                        <tr ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"  height="20" ng-init="getTotal($index,key);">
 
-                        <td ng-bind="key" class="tdpa" width="253" height="19" style="width:18.8%;">
+                            <td ng-bind="key" class="tdpa" width="253" height="19">
 
-                        </td>
-                        <td width="147" ng-bind="value.DlGacPubNational[0].damages">
+                            </td>
+                            <td width="147" ng-bind="value.DlGacPubNational[0].damages">
 
-                        </td>
-                        <td width="151" ng-bind="value.DlGacPvtNational[0].tot_damages_pvt">
+                            </td>
+                            <td width="151" ng-bind="value.DlGacPvtNational[0].tot_damages_pvt">
 
-                        </td>
-                        <td width="165" ng-bind="value.DlYearsPubNational[0].year_1">
+                            </td>
+                            <td width="165" ng-bind="value.DlYearsPubNational[0].year_1">
 
-                        </td>
-                        <td width="170" ng-bind="value.DlOtherLosPvtNational[0].year_1_pvt">
+                            </td>
+                            <td width="170" ng-bind="value.DlOtherLosPvtNational[0].year_1_pvt">
 
-                        </td>
-                        <td width="135" ng-bind="value.DlYearsPubNational[0].year_2">
+                            </td>
+                            <td width="135" ng-bind="value.DlYearsPubNational[0].year_2">
 
-                        </td>
-                        <td width="133" ng-bind="value.DlOtherLosPvtNational[0].year_2_pub">
+                            </td>
+                            <td width="133" ng-bind="value.DlOtherLosPvtNational[0].year_2_pub">
 
-                        </td>
-                        <td width="126"
-                            ng-bind="value.DlGacPubNational[0].damges + value.DlYearsPubNational[0].year_1 + value.DlYearsPubNational[0].year_2 ">
+                            </td>
+                            <td width="126" ng-bind="value.DlGacPubNational[0].damages + value.DlYearsPubNational[0].year_1 + value.DlYearsPubNational[0].year_2 ">
 
-                        </td>
-                        <td width="85"
-                            ng-bind="convertToInt(value.DlGacPvtNational[0].tot_damages_pvt,value.DlOtherLosPvtNational[0].year_1_pvt, value.DlOtherLosPvtNational[0].year_2_pub)">
+                            </td>
+                            <td width="85" ng-bind="convertToInt(value.DlGacPvtNational[0].tot_damages_pvt,value.DlOtherLosPvtNational[0].year_1_pvt, value.DlOtherLosPvtNational[0].year_2_pub)">
 
-                        </td>
+                            </td>
 
-                    </tr>
-                    <tr height="19">
-                        <td class="boldash" width="253" height="19">
-                            TOTAL
-                        </td>
-                        <td width="147" ng-bind="totaldpub">
+                        </tr>
+                        <tr height="19">
+                            <td class="boldash" width="253" height="19">
+                                TOTAL
+                            </td>
+                            <td width="147" ng-bind="totaldpub">
 
-                        </td>
-                        <td width="151" ng-bind="totaldpvt">
+                            </td>
+                            <td width="151" ng-bind="totaldpvt"  >
 
-                        </td>
-                        <td width="165" ng-bind="totalyear1pub">
+                            </td>
+                            <td width="165" ng-bind="totalyear1pub"  >
 
-                        </td>
-                        <td width="170" ng-bind="totalyear1pvt">
+                            </td>
+                            <td width="170"  ng-bind="totalyear1pvt"  >
 
-                        </td>
-                        <td width="135" ng-bind="totalyear2pub">
+                            </td>
+                            <td width="135" ng-bind="totalyear2pub"  >
 
-                        </td>
-                        <td width="133" ng-bind="totalyear2pvt">
+                            </td>
+                            <td width="133" ng-bind="totalyear2pvt"  >
 
-                        </td>
-                        <td width="126" ng-bind="finaltotalpublic">
+                            </td>
+                            <td width="126" ng-bind="finaltotalpublic">
 
-                        </td>
-                        <td width="85" ng-bind="finaltotalprivate">
+                            </td>
+                            <td width="85" ng-bind="finaltotalprivate">
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="pull-right">
                     <br>
@@ -317,6 +346,41 @@
 
         </div>
 
+
+    </div>
+    <!--print data modal-->
+
+    <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Print report
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>Enter a memo: </h4>
+                    <textarea ng-model="print_memo" style="width:100%"></textarea>
+                    <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+
+        </div>
 
     </div>
     </div>

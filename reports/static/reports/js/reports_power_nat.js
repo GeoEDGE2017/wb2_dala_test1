@@ -24,6 +24,12 @@ app.controller("reportPowerSupplyNatController", function ($scope,$http,$parse, 
         $scope.fetchDlData();
     }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
 
     $scope.fetchDlData = function(){
 

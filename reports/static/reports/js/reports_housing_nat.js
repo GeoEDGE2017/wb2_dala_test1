@@ -22,6 +22,12 @@ app.controller("reportsSummHouNatController", function ($scope,$http,$parse, _) 
         $scope.fetchDlData();
     }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
     $scope.fetchDlData = function(){
 
         $scope.is_edit = true;

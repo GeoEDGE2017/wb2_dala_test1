@@ -54,37 +54,37 @@
                         </td>
                     </tr>
                     <tr height="19" class="trhead1">
-                         <td colspan="2" style="padding-left:5px;">
-                                Incident
-                            </td>
-                            <td colspan="5" >
+                        <td colspan="2" style="padding-left:5px;">
+                            Incident
+                        </td>
+                        <td colspan="5" >
 
-                                <select id="select" name="incident" ng-model="incident"
-                                        class="form-control"
-                                        style="width:100%;font-weight:400;"
-                                        ng-change="changedValue(incident)" required>
+                            <select id="select" name="incident" ng-model="incident"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(incident)" required>
 
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
 
-                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
-                                        {{incident.reported_date_time}}
-                                    </option>
-                                    {% endfor %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
 
-                                </select>
+                            </select>
 
-                            </td>
-                            <td colspan="2">
-                                <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dlsum_trnsair_natl)">Load</button>
-                            </td>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dlsum_trnsair_natl)">Load</button>
+                        </td>
                     </tr>
 
                     </tbody>
-                    </table>
-              <table class="table table-bordered" ng-if="!checkIfNull()">
-                        <tbody>
-                        <tr class="trheadc1" height="19">
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
+                    <tbody>
+                    <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="156">
                             Provinces
                         </td>
@@ -100,14 +100,14 @@
                     </tr>
                     <tr class="trheadc1>
                         <td colspan="2" height="19" width="126">
-                            Damages (LKR)
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            Losses (LKR)
-                        </td>
-                        <td colspan="2" height="19" width="296">
-                            Losses (LKR)
-                        </td>
+                    Damages (LKR)
+                    </td>
+                    <td colspan="2" height="19" width="198">
+                        Losses (LKR)
+                    </td>
+                    <td colspan="2" height="19" width="296">
+                        Losses (LKR)
+                    </td>
                     </tr>
                     <tr class="trsubc" height="19">
                         <td height="19" width="156" style="width:19%;">
@@ -138,7 +138,7 @@
                             Private
                         </td>
                     </tr>
-                        <tr ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"  height="20" ng-init="getTotal($index,key);">
+                    <tr ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"  height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 
@@ -168,7 +168,7 @@
 
                         </td>
 
-                        </tr>
+                    </tr>
 
 
                     </tbody>
@@ -202,7 +202,7 @@
                         </td>
                 </table>
 
-                    </tr>
+                </tr>
 
                 <div class="pull-right">
                     <br>

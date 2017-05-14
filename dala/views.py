@@ -153,6 +153,7 @@ def fetch_entities_plain_column(request):
         content_type='application/javascript; charset=utf8'
     )
 
+
 @csrf_exempt
 def bs_save_data(request):
     bs_data = (yaml.safe_load(request.body))
@@ -280,7 +281,9 @@ def bs_get_data_mock(request):
     sub_app_name = sector + '.base_line'
 
     bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
-    print bs_session_model
+
+    print 'incident_date', incident_date
+    print 'bs_session_model', bs_session_model
     print '@'
 
     try:
@@ -293,7 +296,7 @@ def bs_get_data_mock(request):
         print bd_sessions
         print '**'
         bs_date = bd_sessions['bs_date']
-
+        print 'bs_date', bs_date
         for db_table in db_tables:
             model_class = apps.get_model(sub_app_name, db_table)
             # assuming there could be multiple data sets for bs_date
@@ -320,14 +323,108 @@ def bs_get_data_mock(request):
 
 
 @csrf_exempt
+def bs_get_data_mock_for_bs(request):
+    todate = timezone.now()
+    data = (yaml.safe_load(request.body))
+    com_data = data['com_data']
+    district = com_data['district']
+    bs_date = com_data['bs_date']
+    sector = data['sector']
+    table_name = data['table_name']
+    db_tables = data['db_tables']
+    bs_mtable_data = {}
+
+    sub_app_name = sector + '.base_line'
+
+    bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+    print 'bs_session_model', bs_session_model
+    print '@'
+
+    try:
+        # bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)).filter(table_name=table_name, district=district). \
+        #     values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+
+        bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district). \
+            values('id', 'bs_date').order_by('id').latest('id')
+
+        # bd_sessions = bs_session_model.objects.all()
+
+
+        # bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district).order_by('id').latest('id')
+
+        print '*'
+        print bd_sessions
+        print '**'
+        bs_date = bd_sessions['bs_date']
+        print 'bs_date', bs_date
+        for db_table in db_tables:
+            print db_table
+            model_class = apps.get_model(sub_app_name, db_table)
+            # assuming there could be multiple data sets for bs_date
+            bs_mtable_data[db_table] = serializers.serialize('json',
+                                                             model_class.objects.filter(bs_date=bs_date,
+                                                                                        district=district).order_by('id'))
+        return HttpResponse(
+            json.dumps((bs_mtable_data)),
+
+            content_type='application/javascript; charset=utf8'
+        )
+    except Exception as ex:
+        print 'error ', ex.message
+        for db_table in db_tables:
+            model_class = apps.get_model(sub_app_name, db_table)
+            # assuming there could be multiple data sets for bs_date
+            bs_mtable_data[db_table] = None
+
+        return HttpResponse(
+            json.dumps((bs_mtable_data)),
+
+            content_type='application/javascript; charset=utf8'
+        )
+
+@csrf_exempt
 def get_latest_bs_date(request):
     todate = timezone.now()
     data = (yaml.safe_load(request.body))
-    table_name = data['table_name']
-    district = data['district']
+    com_data = data['com_data']
+    district = com_data['district']
+    incident_id = com_data['incident']
     sector = data['sector']
-    print table_name, district, sector
+    incident = IncidentReport.objects.get(pk=incident_id)
+    incident_date = incident.reported_date_time
+    table_name = data['table_name']
+    db_tables = data['db_tables']
+    bs_mtable_data = {}
+
     sub_app_name = sector + '.base_line'
+
+    bs_session_model = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+    print 'incident_date', incident_date
+    print bs_session_model
+    print '@'
+
+    try:
+        bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
+                                                     select_params=(incident_date,)). \
+            filter(table_name=table_name, district=district). \
+            values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+
+        print bd_sessions
+        bs_date = bd_sessions['bs_date']
+        print 'bs_date', bs_date
+        return HttpResponse(
+            json.dumps((bs_date)),
+            content_type='application/javascript; charset=utf8'
+        )
+    except Exception as ex:
+        bs_date = None
+
+        return HttpResponse(
+            json.dumps((bs_date)),
+            content_type='application/javascript; charset=utf8'
+        )
 
 
 @csrf_exempt
@@ -506,6 +603,104 @@ def dl_save_data(request):
     return HttpResponse('success')
 
 
+# testing
+@csrf_exempt
+def dl_save_data_with_array(request):
+    print '*****************'
+    dl_data = (yaml.safe_load(request.body))
+    dl_table_data = dl_data['table_data']
+    com_data = dl_data['com_data']
+    todate = timezone.now()
+    is_edit = dl_data['is_edit']
+    admin_area = None
+
+    filter_fields = {}
+
+    if not is_edit:
+        print "not edit"
+
+        for sector in dl_table_data:
+            print 'sector', sector
+            sub_app_name = sector + '.damage_losses'
+            print "app name ", sub_app_name
+
+            for interface_table in dl_table_data[sector]:
+                print 'interface_table', interface_table
+
+                com_data['table_name'] = interface_table
+
+                filter_fields = com_data
+                print "be fore getting model"
+                sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
+                print "before filtering", com_data
+                record_exist = sub_app_session.objects.filter(**filter_fields)
+                print "record_exist"
+
+                if not record_exist:
+                    print "record does not exist"
+
+                    print 'interface table', ' -->', interface_table, '\n'
+                    for db_table in dl_table_data[sector][interface_table]:
+                        print 'db_table', db_table
+
+                        print 'db table', ' -->', db_table, '\n'
+
+                        for row in dl_table_data[sector][interface_table][db_table]:
+                            print 'row', row
+
+                            model_class = apps.get_model(sub_app_name, db_table)
+                            model_object = model_class()
+
+                            # assigning common properties to model object
+                            model_object.created_date = todate
+                            model_object.lmd = todate
+
+                            for com_property in com_data:
+                                print com_data[com_property]
+                                setattr(model_object, com_property, com_data[com_property])
+
+                            print 'row', ' --> ', row, '\n', ' object '
+
+                            for property in row:
+                                if isinstance(property, dict):
+                                    model_object_item = model_class()
+
+                                    for com_property in com_data:
+                                        print com_data[com_property]
+                                        setattr(model_object_item, com_property, com_data[com_property])
+
+                                    for item in property:
+                                        setattr(model_object_item, item, property[item])
+                                        model_object_item.save()
+                                        print '#####', property[item]
+                                else:
+                                    print '@@@@@ ', row[property]
+                                    setattr(model_object, property, row[property])
+
+                                    print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
+                                    model_object.save()
+                    if 'district_id' in com_data:
+                        district = District.objects.get(pk=com_data['district_id'])
+                        filter_fields['province_id'] = district.province.id
+                        dl_session = sub_app_session(**filter_fields)
+                        dl_session.date = todate
+                        dl_session.save()
+                    else:
+                        dl_session = sub_app_session(**filter_fields)
+                        dl_session.date = todate
+                        dl_session.save()
+
+                    return HttpResponse(True)
+
+                else:
+                    return HttpResponse(False)
+
+    else:
+        dl_save_edit_data(dl_table_data, com_data)
+
+    return HttpResponse('success')
+
+
 @csrf_exempt
 def dl_get_data(request):
     data = (yaml.safe_load(request.body))
@@ -630,6 +825,7 @@ def dl_fetch_edit_data(request):
 #     )
 
 # new method is added by chamupathi mendis to support new enum fields in edit mode
+
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data):
     todate = timezone.now()

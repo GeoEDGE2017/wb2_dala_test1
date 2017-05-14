@@ -29,6 +29,10 @@ app.controller("reportAgriFisheriesNatController", function ($scope,$http,$parse
         $scope.fetchDlData();
     }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+    }
+
     $scope.fetchDlData = function(){
 
         $scope.is_edit = true;

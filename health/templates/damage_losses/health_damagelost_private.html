@@ -2,47 +2,32 @@
 {% block content %}
 <script>
   $(document).ready(function() {
-
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-
-
-
   });
-
-
-
-
-
 </script>
 <!--table 7-->
 <!-- Main content -->
 <main class="main" ng-app="dlHealthDamagelostPrivateApp" ng-controller="dlHealthDamagelostPrivateAppController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Health Sector</a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7: Damage and Loss Assessment of Private Health Facilities</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 7: Damage and Loss Assessment of Private Health Facilities
+            </span>
+            <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
-
     </ol>
-
-
     <div class="container-fluid">
-
         <div>
             <ul class='nav nav-wizard'>
                 <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Number of Affected Patients</a></li>
                 <li id="li2"><a href='#step2' data-toggle="tab">2 Breakdown by Type of Health Facility</a></li>
                 <li id="li3"><a href='#step3' data-toggle="tab">3 Breakdown by Other Health Facility</a></li>
-
-
             </ul>
-
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_private">
                             <span style="color:red"

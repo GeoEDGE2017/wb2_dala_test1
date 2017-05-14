@@ -26,6 +26,11 @@ app.controller("reportAgriAgrarianNatController", ['$scope','$http',function ($s
 
     }
 
+        $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+    }
+
+
 
     $scope.fetchDlData = function(){
         $scope.is_edit = true;

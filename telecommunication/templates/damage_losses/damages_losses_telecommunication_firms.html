@@ -66,7 +66,7 @@
                         </td>
                         <td height="19" width="221">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false);fetchCompanies();" required>
+                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false);" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -76,21 +76,26 @@
                             Name of Firm
                         </td>
                          <td class="trsub" colspan="4" height="19" width="400">
-                            <select ng-options="company as company.company_name for company in companies track by company.id"
+                            <!--<select ng-options="company as company.company_name for company in companies track by company.id"-->
+                                    <!--name="firm" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>-->
+                                <!--<option value="" selected>Select Firm</option>-->
+                            <!--</select>-->
+
+                             <select ng-options="com as com.company_name for com in companies track by company"
                                     name="firm" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
                     </tr>
-                    <tr class="trhead1" height="19">
-                        <td height="19" width="293">
-                            Services provided
-                        </td>
-                        <td colspan="3" height="19" width="653">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
+                    <!--<tr class="trhead1" height="19">-->
+                        <!--<td height="19" width="293">-->
+                            <!--Services provided-->
+                        <!--</td>-->
+                        <!--<td colspan="3" height="19" width="653">-->
+                            <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
+                                   <!--class="form-control input-md">-->
+                        <!--</td>-->
+                    <!--</tr>-->
                     <tr class="trhead1" height="19">
                         <td height="19" width="293">
                             Ownership

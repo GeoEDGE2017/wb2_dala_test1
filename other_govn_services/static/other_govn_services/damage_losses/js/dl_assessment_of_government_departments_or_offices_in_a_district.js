@@ -237,8 +237,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 }
                 else
                 {
-
-                generateRefencedData();
+                    generateRefencedData();
                 }
 
             }, function errorCallback(response) {
@@ -255,7 +254,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         var dl_model1 = null;
         var dl_model2 = null;
 
-
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
             model_name = value;
@@ -263,9 +261,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
             var particular_value_1 = null;
             var particular_value_2 = null;
 
-
             if(model_name == 'BcsOfficeEquipment') {
-
                 dl_model1 = 'DlagdDmgOfficeEquipment';
                 particular_value_1 = 'Total';
                 $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1] = [];
@@ -277,32 +273,31 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2] = [];
             }
 
-
             var obj1 = {
-                    name_dept :particular_value_1,
-                    num_tot_destroyed : null,
-                    num_partial_damaged : null,
-                    damages : null,
+                    name_dept: particular_value_1,
+                    num_tot_destroyed: null,
+                    num_partial_damaged: null,
+                    damages: null,
             };
             var obj2 = {
-                    name_dept :particular_value_2,
-                    num_tot_destroyed : null,
-                    num_partial_damaged : null,
-                    damages : null,
+                    name_dept: particular_value_2,
+                    num_tot_destroyed: null,
+                    num_partial_damaged: null,
+                    damages: null,
             };
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
-                    name_dept :value.fields.asset,
-                    num_tot_destroyed : null,
-                    num_partial_damaged : null,
-                    damages : null,
+                    name_dept: value.fields.asset,
+                    num_tot_destroyed: null,
+                    num_partial_damaged: null,
+                    damages: null,
                 };
                 var obj2 = {
-                     name_dept :value.fields.asset,
-                    num_tot_destroyed : null,
-                    num_partial_damaged : null,
-                    damages : null,
+                     name_dept: value.fields.asset,
+                    num_tot_destroyed: null,
+                    num_partial_damaged: null,
+                    damages: null,
                 };
 
                 if(model_name == 'BcsOfficeEquipment') {
@@ -311,16 +306,14 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 if(model_name == 'BcsMachinery') {
                    $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
                 }
-
             });
 
-                if(model_name == 'BcsOfficeEquipment') {
-                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
-                }
-                if(model_name == 'BcsMachinery') {
-                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
-                }
-
+            if(model_name == 'BcsOfficeEquipment') {
+               $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
+            }
+            if(model_name == 'BcsMachinery') {
+               $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
+            }
         });
     }
 

@@ -8,10 +8,10 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.Districts=[];
     $scope.dlDate;
     $scope.bs_data={};
-    $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.is_null = false;
+    $scope.currentBaselineDate = null;
 
     //initialize model
     var init_data = {
@@ -546,6 +546,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log('*', response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
@@ -561,6 +562,33 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     $("#modal-container-239455").modal('show');
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_3',
+                            'sector': 'health'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $scope.currentBaselineDate = base +"Baseline data not found";
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                        }
+                    });
                 }
             }, function errorCallback(response) {
                 console.log('baseline tables data retrieving error');
@@ -568,6 +596,11 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
             });
         }
     }
+
+    $scope.getBaselineDate = function (selectedValue) {
+
+    }
+
 
     //Clear Function
     $scope.clear = function() {

@@ -265,9 +265,19 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     console.log('baseline table or tables are empty');
                 }
                 else {
-                    console.log('**');
+                    console.log('***');
                     console.log($scope.bs_data);
-//                    generateRefencedData();
+                    console.log($scope.bs_data.BsTelCompany.length);
+
+                    var company_array = [];
+
+                    angular.forEach($scope.bs_data.BsTelCompany, function(value, key) {
+
+                        company_array.push($scope.bs_data.BsTelCompany[key].fields);
+                });
+                     $scope.companies = company_array;
+
+
                 }
             });
         }
@@ -275,25 +285,25 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
 
     $scope.calTotal = function(arr) {
         var finaltotal = 0;
-        console.log(arr);
+//        console.log(arr);
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'Total') {
                 finaltotal = finaltotal + value.tot_dmg;
             }
         })
-        console.log(finaltotal);
+//        console.log(finaltotal);
         return finaltotal;
     }
 
     $scope.calTotalInField = function(arr, field_name) {
         var finaltotal = 0;
-        console.log(arr);
+//        console.log(arr);
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'TOTAL') {
                 finaltotal = finaltotal + value[field_name];
             }
         })
-        console.log(finaltotal);
+//        console.log(finaltotal);
         return finaltotal;
     }
 
@@ -399,23 +409,23 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
         $scope.dlTelcomFirms = init_data;
     }
 
-    $scope.fetchCompanies = function() {
-        console.log($scope.district);
-        if($scope.district != null) {
-            $http({
-                method: "POST",
-                url: "/fetch_company_tele",
-                data: angular.toJson({
-                    'district': $scope.district.district__id,
-                    'model': 'CompanyName',
-                    'sector':'telecommunication'
-                }),
-            }).success(function(data) {
-                console.log(data);
-                $scope.companies = data;
-            })
-        }
-    }
+//    $scope.fetchCompanies = function() {
+//        console.log($scope.district);
+//        if($scope.district != null) {
+//            $http({
+//                method: "POST",
+//                url: "/fetch_company_tele",
+//                data: angular.toJson({
+//                    'district': $scope.district.district__id,
+//                    'model': 'CompanyName',
+//                    'sector':'telecommunication'
+//                }),
+//            }).success(function(data) {
+//                console.log('see',data);
+//                $scope.companies = data;
+//            })
+//        }
+//    }
 
     $scope.fetchOwnership = function() {
         if($scope.new_department) {

@@ -13,6 +13,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.is_null = false;
+    $scope.currentBaselineDate = null;
 
 //initialize model
     var init_data = {
@@ -35,6 +36,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     male : null,
                     female : null,
                 }],
+                //tab 2
+                'DapBefPc': [ ],
                 //tab 3
                 'DapBefOther': [{
                     pvt_clinics : 'Structure',
@@ -77,11 +80,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     est_losses_y2 : null,
                     total_losses : null,
                 }],
-                //tab 2
-                'DapBefPc': [
-
-                  ],
-
 
             }
         }
@@ -91,38 +89,33 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
 //Save Data
     $scope.saveDlHealthData = function() {
-//    alert('hi');
-      console.log('done');
+//        alert('hi');
+        console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
 
-            $http({
-                method: 'POST',
-                url: '/dl_save_data',
-               contentType: 'application/json; charset=utf-8',
-                data: angular.toJson({
-                    'table_data': $scope.dlHealthDamagelostPrivateSys,
-                    'com_data': {
-                        'district_id': $scope.district.district__id,
-                        'incident_id' : $scope.incident,
-                        'private_clinic' : $scope.clinic,
-
-                    },
-                    'is_edit':$scope.is_edit
-                }),
-                dataType: 'json',
-            }).then(function successCallback(response) {
-                if(response.data == 'False')
-                    $scope.is_valid_data = false;
-               else
-                    $("#modal-container-239453").modal('show');
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-            }
-
-
-
-
+        $http({
+            method: 'POST',
+            url: '/dl_save_data_with_array',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dlHealthDamagelostPrivateSys,
+                'com_data': {
+                    'district_id': $scope.district.district__id,
+                    'incident_id' : $scope.incident,
+                    'private_clinic' : $scope.clinic,
+                },
+                'is_edit':$scope.is_edit
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            if(response.data == 'False')
+                $scope.is_valid_data = false;
+            else
+                $("#modal-container-239453").modal('show');
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    }
 
 //Fetch Entities
     $scope.fetchPrivateClinics = function() {
@@ -139,6 +132,29 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }).success(function(data) {
             $scope.privateClinics = data;
             console.log(data);
+
+            $http({
+                //this table does not get any data from baseline tables,
+                //but we pass baseline table 3, for get baseline data only
+                method: 'POST',
+                url: '/get_latest_bs_date',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_3',
+                    'sector': 'health'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var result = response.data;
+                result = result.replace(/^"(.*)"$/, '$1');
+                $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                console.log($scope.currentBaselineDate);
+            });
         })
     }
 
@@ -210,8 +226,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
 //Fetch Districts
-    $scope.changeIncident = function getDistrictData(){
-    if($scope.incident) {
+    $scope.changeIncident = function getDistrictData() {
+        if($scope.incident) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
@@ -222,16 +238,13 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 console.log(data);
             })
         }
-
-
-  }
+    }
 
 //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;
         $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
-
     }
 
     $scope.addPrivateClinicObject = function(){

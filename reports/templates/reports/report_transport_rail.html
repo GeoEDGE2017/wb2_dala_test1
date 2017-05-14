@@ -2,17 +2,40 @@
 {% block content %}
 <style>
 @media print
-{    
-
+{
     .no-print, .no-print *
     {
         display: none !important;
     }
     #in {width:100%;}
-   .table th, .table td {color:#000!important;} 
+
+   .table th, .table td {color:#000!important;}
+
+       body * {
+        <!--visibility:hidden;-->
+    }
+
+    #printSection, #printSection * {
+        visibility:hidden;
+    }
+
+    .print-memo{
+        display: block;
+    }
 }
+
 .table th, .table td
 {padding-left:5px;}
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+    .print-memo{
+        display: none;
+    }
+}
+
 </style>
 <!-- Main content -->
 <main class="main" ng-app="reportRailTransSumNatApp" ng-controller="reportRailTransSumNatController">
@@ -35,138 +58,170 @@
 
 
     <div class="container-fluid">
-    <div class="card">
+        <div class="card">
             <div class="card-header">
                 <strong>Transport Rail Sub Sector Report</strong>
 
             </div>
+            <div class="card-header print-memo">
+                <strong ng-bind="print_memo"></strong>
+
+            </div>
             <div class="card-block">
 
-        <div ng-form name="report_sum_dl_nat" class="row">
-         <div class="col-sm-1">
-   <label for="cvv">Incident</label>
-         </div>
-            <div class="col-sm-3" id="in">
+                <div ng-form name="report_sum_dl_nat" class="row">
+                    <div class="col-sm-1">
+                        <label for="cvv">Incident</label>
+                    </div>
+                    <div class="col-sm-3" id="in">
 
-                <div class="form-group">
-                 
-                    <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
-                            class="form-control" required>
-                        <option value="">-- Select --</option>
-                        {% for incident in incidents %}
-                        <option value="{{ incident.id }}">
-                           {{incident.disaster_type.name}}
-                           {{incident.reported_date_time}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <span style="color:red;" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
+                        <div class="form-group">
+
+                            <select ng-change="fetchDistricts()" id="ccyear" ng-model="incident" name="incident"
+                                    class="form-control" required>
+                                <option value="">-- Select --</option>
+                                {% for incident in incidents %}
+                                <option value="{{ incident.id }}">
+                                    {{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <span style="color:red;" ng-show="submitted && report_sum_dl_nat.incident.$error.required">
                                        Please select Incident
                                  </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="no-print">
+                        <div class="col-sm-2">
+
+                            <div class="form-group">
+
+                                <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-success"
+                                        style=""><i
+                                        class="fa fa-search"></i> Search
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <!--<button ng-print print-element-id="print_report" class="btn btn-info"><i-->
+                                <!--class="fa fa-print"></i> Print-->
+                                <!--Report-->
+                                <!--</button>-->
+                                <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
+                                        class="fa fa-print" ></i> Print
+                                    Report
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-
-
-           <div class="no-print">
-                    <div class="col-sm-2">
-
-                <div class="form-group">
-
-                    <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-success"
-                            style=""><i
-                            class="fa fa-search"></i> Search
-                    </button>
-                </div>
-                </div>
-                <div class="col-sm-1">
-                <div class="form-group">
-                    <button ng-print print-element-id="print_report" class="btn btn-info"><i
-                            class="fa fa-print"></i> Print
-                        Report
-                    </button>
-                </div>
-
-            </div>
-</div>
-        </div>
-
-        <span style="color:red;" ng-show="isDataAvailable">
+                <span style="color:red;" ng-show="isDataAvailable">
                                        No Data available
                                  </span>
-        <div id="myTabContent" class="tab-content1">
-            <div class="tab-pane active" id="print_report">
-                <table ng-if="!checkIfNull()" class="table table-bordered">
+                <div id="myTabContent" class="tab-content1">
+                    <div class="tab-pane active" id="print_report">
+                        <table ng-if="!checkIfNull()" class="table table-bordered">
 
-                    <colgroup>
-                        <col width="281"/>
-                        <col width="170"/>
-                        <col width="130"/>
-                        <col width="125"/>
-                    </colgroup>
-                    <tbody>
+                            <colgroup>
+                                <col width="281"/>
+                                <col width="170"/>
+                                <col width="130"/>
+                                <col width="125"/>
+                            </colgroup>
+                            <tbody>
 
-                    <tr height="20">
-                        <td class="trhead" width="281" height="20">
-                            Name of Railroad Company
-                        </td>
-                        <td colspan="3" width="425">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="281" height="20" style="width:29.5%;">
-                            Name of Province
-                        </td>
-                        <td colspan="3" width="425">
-                            Total Damages (LKR)
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <table ng-repeat="(key, value) in dmLosTransAirNation.transport_rail.Table_4"
-                       class="table table-bordered">
-                    <tbody>
-                    <tr height="20" ng-init="getTotal('TotDmgNational','tot_damages', $index,key);">
-                        <td ng-bind="key" class="tdpa" width="275" style="width:29.5%;">
-                        </td>
-                        <td width="400" ng-bind="value.TotDmgNational[0].tot_damages">
-                        </td>
 
-                    </tr>
+                            <tr class="trheadc" height="20">
+                                <td width="281" height="20" style="width:29.5%;">
+                                    Name of Province
+                                </td>
+                                <td colspan="3" width="425">
+                                    Total Damages (LKR)
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table ng-repeat="(key, value) in dmLosTransAirNation.transport_rail.Table_4"
+                               class="table table-bordered">
+                            <tbody>
+                            <tr height="20" ng-init="getTotal('TotDmgNational','tot_damages', $index,key);">
+                                <td ng-bind="key" class="tdpa" width="275" style="width:29.5%;">
+                                </td>
+                                <td width="400" ng-bind="value.TotDmgNational[0].tot_damages">
+                                </td>
 
-                    <tr height="20">
-                        <td class="boldash" width="281" height="20">
-                            TOTAL
-                        </td>
-                        <td width="425" colspan="3">
-                            <span ng-bind="total"></span>
-                        </td>
+                            </tr>
 
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="pull-right">
+                            <tr height="20">
+                                <td class="boldash" width="281" height="20">
+                                    TOTAL
+                                </td>
+                                <td width="425" colspan="3">
+                                    <span ng-bind="total"></span>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="pull-right">
+                            <br>
+
+                        </div>
+
+
+                    </div>
+
+
                     <br>
 
                 </div>
 
 
             </div>
-
-
-            <br>
-
         </div>
 
 
     </div>
-    </div>
+    <!--print data modal-->
 
+    <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Print report
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>Enter a memo: </h4>
+                    <textarea ng-model="print_memo" style="width:100%"></textarea>
+                    <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 

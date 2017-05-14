@@ -959,7 +959,6 @@ TABLE_PROPERTY_MAPPER = {
                 'id']
         },
         'Table_5': {
-
             'DpefBefDistrict': [
                 'ab1_1c',
                 'type_2',
@@ -977,7 +976,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefPrimaryDistrict': [
                 'est_rep_cost',
@@ -3062,13 +3060,10 @@ TABLE_PROPERTY_MAPPER = {
             'DlDmgBusTotNational': ['tot_damages', 'ownership'],
             'DlLosBusTotNational': ['los_year1', 'los_year2', 'ownership'],
         }
-
     },
     'industry_services': {
-
         'Table_1': {
-            'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro',
-                                    'num_small', 'id'],
+            'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro', 'num_small', 'id'],
             'BsFrmNumBusServices': ['service', 'num_male', 'num_female', 'num_medium', 'num_micro', 'num_small', 'id'],
         },
         'Table_2': {
@@ -3080,9 +3075,7 @@ TABLE_PROPERTY_MAPPER = {
             'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
             'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
             'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
-            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
-                               'los_year1', 'los_year2', 'tot_losses', 'id'],
-
+            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
         },
         'Table_4': {
             'DlInfDmgTypBusiness': ['assets', 'repair_val_ast_damaged', 'replace_val_ast_destroyed', 'tot_damages',
@@ -3100,7 +3093,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
         },
-
         'Table_6': {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
@@ -3138,7 +3130,6 @@ TABLE_PROPERTY_MAPPER = {
             'LosTotInfYear1National': ['incident', 'province', 'los_year1'],
             'LosTotInfYear2National': ['incident', 'province', 'los_year2'],
         },
-
     },
     'housing': {
         'Table_1': {
@@ -3387,7 +3378,6 @@ TABLE_PROPERTY_MAPPER = {
                 ],
 
         }
-
     },
     'power_supply': {
         'Table_1': {
@@ -3500,7 +3490,6 @@ TABLE_PROPERTY_MAPPER = {
             'TotDmgPvtNational': ['tot_replace_cost', 'ownership'],
             'TotLossesPvtNational': ['los_year1', 'los_year2', 'ownership'],
         },
-
     },
     'telecommunication': {
         'Table_1': {

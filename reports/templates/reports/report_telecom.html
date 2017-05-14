@@ -2,17 +2,40 @@
 {% block content %}
 <style>
 @media print
-{    
-
+{
     .no-print, .no-print *
     {
         display: none !important;
     }
     #in {width:100%;}
-   .table th, .table td {color:#000!important;} 
+
+   .table th, .table td {color:#000!important;}
+
+       body * {
+        <!--visibility:hidden;-->
+    }
+
+    #printSection, #printSection * {
+        visibility:hidden;
+    }
+
+    .print-memo{
+        display: block;
+    }
 }
+
 .table th, .table td
 {padding-left:5px;}
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+    .print-memo{
+        display: none;
+    }
+}
+
 </style>
 <!-- Main content -->
 <div class="main" ng-app="dlWaterSupplyNatApp" ng-controller="DlWaterSupplyNatController">
@@ -79,10 +102,14 @@
                         </div>
                         <div class="col-xs-1">
                         <div class="form-group">
-                            <button ng-print print-element-id="print_report" class="btn btn-info" style="margin-left:10px;"><i
-                                    class="fa fa-print"></i> Print
-                                Report
-                            </button>
+                            <!--<button ng-print print-element-id="print_report" class="btn btn-info" style="margin-left:10px;"><i-->
+                                    <!--class="fa fa-print"></i> Print-->
+                                <!--Report-->
+                            <!--</button>-->
+                            <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
+                                        class="fa fa-print" ></i> Print
+                                    Report
+                                </button>
                         </div>
                     </div>
 </div>

@@ -17,6 +17,12 @@ app.controller('report_natController', function($scope, $http, $parse, _) {
         $scope.fetchData();
     }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
 
     $scope.fetchData = function(){
 

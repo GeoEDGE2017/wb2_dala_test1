@@ -25,6 +25,14 @@ $scope.isDataAvailable = false;
 
    }
 
+    $scope.initprint = function() {
+       $("#modal-container-print").modal('show');
+       console.log($scope.print_memo);
+
+    }
+
+
+
 $scope.loadData = function(form){
 $scope.submitted = true;
 $scope.isDataAvailable = false;

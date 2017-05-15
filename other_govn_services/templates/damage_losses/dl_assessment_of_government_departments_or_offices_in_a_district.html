@@ -272,13 +272,11 @@
 
                             <td colspan="3" colspan="3" width="324">
                                 <input ng-model="dlagdDmgOfficeEquipment.num_tot_destroyed"
-                                       ng-change="getTotal('DlagdDmgOfficeEquipment','num_tot_destroyed');getColumnTotal('DlagdDmgOfficeEquipment');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="3" colspan="3" width="300">
                                 <input ng-model="dlagdDmgOfficeEquipment.num_partial_damaged"
-                                       ng-change="getTotal('DlagdDmgOfficeEquipment','num_partial_damaged');getColumnTotal('DlagdDmgOfficeEquipment');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -293,19 +291,16 @@
                         <tr height="20" ng-repeat="dlagdDmgOfficeEquipment in dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgOfficeEquipment"
                             ng-if="dlagdDmgOfficeEquipment.name_dept == 'Total'">
                             <td class="boldash"
-                                ng-bind="dlagdDmgOfficeEquipment.name_dept"
                                 height="20" width="241" class="tdpa">
                             </td>
                             <td width="324" class="tdpa" colspan="3"
-                                ng-model="dlagdDmgOfficeEquipment.num_tot_destroyed"
                             ></td>
                             <td width="300" class="tdpa" colspan="3"
-                                ng-model="dlagdDmgOfficeEquipment.num_partial_damaged"
                             ></td>
                             <td width="100" colspan="2"
                                 ng-model="dlagdDmgOfficeEquipment.damages"
                                 ng-bind="dlagdDmgOfficeEquipment.damages =
-                                DlagdDmgOfficeEquipment_damages"></td>
+                                calTotal(dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgOfficeEquipment)"></td>
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="241" height="20">
@@ -330,13 +325,11 @@
 
                             <td colspan="3" colspan="3" width="324">
                                 <input ng-model="dlagdDmgMachinery.num_tot_destroyed"
-                                       ng-change="getTotal('DlagdDmgMachinery','num_tot_destroyed');getColumnTotal('DlagdDmgMachinery');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="3" colspan="3" width="300">
                                 <input ng-model="dlagdDmgMachinery.num_partial_damaged"
-                                       ng-change="getTotal('DlagdDmgMachinery','num_partial_damaged');getColumnTotal('DlagdDmgMachinery');"
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -362,22 +355,18 @@
                             ></td>
                             <td width="100" colspan="2"
                                 ng-model="dlagdDmgMachinery.damages"
-                                ng-bind="dlagdDmgMachinery.damages =
-                                DlagdDmgMachinery_damages"></td>
+                                ng-bind="dlagdDmgMachinery.damages = calTotal($parent.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery)"></td>
                         </tr>
                         <tr height="20">
                             <td class="boldash"
                                 height="20" width="241">TOTAL DAMAGES
                             </td>
                             <td class="tdpa" width="324" colspan="3"
-                                ng-model="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery[4].num_tot_destroyed"
                             ></td>
                             <td class="tdpa" width="300" colspan="3"
-                                ng-model="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery[4].num_partial_damaged"
                             ></td>
                             <td width="100" colspan="2"
-                                ng-model="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery[4].damages"
-                                ng-bind="Total"></td>
+                                ng-bind="calGrandTotal()"></td>
                         </tr>
 
 

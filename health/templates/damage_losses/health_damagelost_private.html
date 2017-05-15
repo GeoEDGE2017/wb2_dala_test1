@@ -244,7 +244,7 @@
                          </td>
                             </tr>
                      <td colspan="3" align="center" valign="middle">
-                         <tr ng-repeat="row in dapBefPc">
+                         <tr ng-repeat="row in dapBefPc" >
                                 <td class="tdpa" height="20" align="left" align="bottom" ng-bind="row.pvt_clinics">
                                 </td>
                                 <td align="left" valign="bottom">
@@ -255,33 +255,53 @@
                                     <input id="textinput" name="textinput" ng-model="row.est_repair_cost"
                                            type="number" placeholder="" class="form-control input-md">
                                 </td>
-                                <td align="left" valign="bottom">
-                                    <input id="textinput" name="textinput" ng-model="row.total_damages"
-                                           type="number" placeholder="" class="form-control input-md">
+                                <td align="left" valign="bottom" ng-model="row.total_damages"
+                                           class="form-control input-md" ng-bind="row.total_damages = row.est_replacement_cost +  row.est_repair_cost">
                                 </td>
 
                                 <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left" valign="bottom">
 
                                 </td>
-                                <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
-
+                               <td align="left" valign="bottom" ng-if="row.pvt_clinics == 'Total'">
+                                    <input id="textinput" name="textinput" ng-model="row.est_losses_y1"
+                                           type="number" placeholder="" class="form-control input-md">
                                 </td>
                                 <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
 
                                 <br/>
 
                                 </td>
-                             <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
-
+                              <td align="left" valign="bottom" ng-if="row.pvt_clinics == 'Total'">
+                                    <input id="textinput" name="textinput" ng-model="row.est_losses_y2"
+                                           type="number" placeholder="" class="form-control input-md">
                                 </td>
                                 <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
 
                                 <br/>
                                 </td>
-                             <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
+                               <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom" ng-model="row.total_losses"
+                                   ng-bind="row.total_losses = row.est_losses_y1 + row.est_losses_y2">
 
                                 </td>
                         </tr>
+                  <!--<tr ng-repeat="row in dapBefPc" ng-if="row.pvt_clinics =='Total'">-->
+                                <!--<td class="tdpa" height="20" align="left" align="bottom" ng-bind="row.pvt_clinics">-->
+                                <!--</td>-->
+                                <!--<td  ng-model="row.est_replacement_cost" ng-bind="row.est_replacement_cost = calTotal('est_replacement_cost')">-->
+                                <!--</td>-->
+                                <!--<td  ng-model="row.est_repair_cost" ng-bind="row.est_repair_cost = calTotal('est_repair_cost')">-->
+                                <!--</td>-->
+                                <!--<td ng-model="row.total_damages" ng-bind="row.total_damages = row.est_replacement_cost +  row.est_repair_cost">-->
+                                <!--</td>-->
+
+                                <!--<td  ng-model="row.est_losses_y1" ng-bind="row.est_losses_y1 = calTotal('est_losses_y1')">-->
+                                <!--</td>-->
+                               <!--<td  ng-model="row.est_losses_y2" ng-bind="row.est_losses_y2 = calTotal('est_losses_y2')">-->
+                                <!--</td>-->
+                               <!--<td  ng-model="row.total_losses" ng-bind="row.total_losses = row.est_losses_y1 + row.est_losses_y2">-->
+                                <!--</td>-->
+                        <!--</tr>-->
+
 
                         </tbody>
                     </table>

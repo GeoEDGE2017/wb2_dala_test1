@@ -89,7 +89,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
 //Save Data
     $scope.saveDlHealthData = function() {
-//        alert('hi');
         console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
 
@@ -286,6 +285,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
             console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
     }
+
+
 
 
 })

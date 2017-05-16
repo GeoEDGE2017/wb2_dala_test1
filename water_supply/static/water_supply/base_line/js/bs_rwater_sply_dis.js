@@ -32,7 +32,8 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
                     num_users : null,
                     avg_replace_cost : null,
                     avg_repair_cost : null,
-                }],
+                }
+                 ],
             }
         }
     }
@@ -109,5 +110,16 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
 
     }
 
+////Calculate Total
+//   $scope.calTotal=function(arr,property){
+//        var finaltotal = 0;
+//        angular.forEach(arr, function(value, key) {
+//        if(value.type_water_supply !='TOTAL'){
+//         finaltotal = finaltotal + value[property] ;
+//         }
+//        })
+//
+//        return finaltotal;
+//        }
 
 })

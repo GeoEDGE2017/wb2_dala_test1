@@ -290,7 +290,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         var cumulative_total = null;
 
         var cumulative_year1 = _.map(array, function(obj) {
-            cumulative_los_year1 += obj.avg_per_year * obj.red_voutput_year1;
+            cumulative_los_year1 += obj.avg_per_year * (obj.red_voutput_year1/100);
             console.log(cumulative_los_year1);
             return cumulative_los_year1;
 
@@ -298,7 +298,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         });
 
         var cumulative_year2 = _.map(array, function(obj) {
-            cumulative_los_year2 += obj.avg_per_year * obj.red_voutput_year2;
+            cumulative_los_year2 += obj.avg_per_year * (obj.red_voutput_year2/100);
             console.log(cumulative_los_year1);
             return cumulative_los_year1;
 
@@ -306,7 +306,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         });
 
         var cumulative_tot = _.map(array, function(obj) {
-            cumulative_total += (obj.avg_per_year * obj.red_voutput_year1) + (obj.avg_per_year * obj.red_voutput_year2);
+            cumulative_total += (obj.avg_per_year * (obj.red_voutput_year1/100)) + (obj.avg_per_year * (obj.red_voutput_year2/100));
             console.log(cumulative_total);
             return cumulative_total;
 

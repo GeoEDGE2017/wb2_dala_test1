@@ -271,7 +271,7 @@
                             </td>
                         </tr>
                         <tr height="18" ng-repeat="dlcwDmgMainOffice in dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice"
-                                ng-if="dlcwDmgMainOffice.assets != 'TOTAL'">
+                                >
                             <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgMainOffice.assets">
                             </td>
                             <td colspan="2" width="216">
@@ -289,15 +289,14 @@
                             dlcwDmgMainOffice.num_part_damaged * bs_data['BiaMainOffice'][$index].fields.avg_repair_cost  ">
                             </td>
                         </tr>
-                        <tr height="18" ng-repeat="dlcwDmgMainOffice in dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice"
-                                ng-if="dlcwDmgMainOffice.assets == 'TOTAL'">
-                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgMainOffice.assets">
+                        <tr height="18">
+                            <td class="boldash" width="223" height="18" >TOTAL
                             </td>
                             <td class="tdpa" colspan="2" width="216">
                             </td>
                             <td class="tdpa" colspan="2" width="216">
                             </td>
-                            <td colspan="2" width="202" ng-mpdel="dlcwDmgMainOffice.total_dmgs" ng-bind="calGrandTotal()">
+                            <td colspan="2" width="202" ng-bind="calGrandTotal()">
                             </td>
                         </tr>
                         </tbody>
@@ -342,9 +341,10 @@
                     </tr>
                     <tr height="18" ng-repeat="dlcwLosProduction in dlComWtrSply.water_supply.Table_3.DlcwLosProduction">
                         <td class="tdpa" width="223" height="18" ng-bind="dlcwLosProduction.production_los">
-                            Production Losses
+
                         </td>
-                        <td width="108" ng-model="dlcwLosProduction.avg_income" ng-bind="dlcwLosProduction.avg_income = bs_data['BiaWaterUsers'][$index].fields.rate  " >
+                        <td width="108" ng-model="dlcwLosProduction.avg_income"
+                            ng-bind="dlcwLosProduction.avg_income = bs_data['BiaWaterUsers'][4].fields.rate  " >
 
                         </td>
                         <td width="108">
@@ -381,7 +381,8 @@
                         <br>
                         </td>
                     </tr>
-                    <tr height="18" ng-repeat="dlcwLosOther in dlComWtrSply.water_supply.Table_3.DlcwLosOther" ng-if="dlcwLosOther.other_los != 'TOTAL'">
+                    <tr height="18" ng-repeat="dlcwLosOther in dlComWtrSply.water_supply.Table_3.DlcwLosOther"
+                        ng-if="dlcwLosOther.other_los != 'TOTAL'">
                         <td class="tdpa" colspan="4" width="547" height="18" ng-bind="dlcwLosOther.other_los">
                         </td>
                         <td width="108">
@@ -401,18 +402,21 @@
                         </td>
                         <td width="108" ng-model="dlcwLosOther.tot_los_year_1"
                         ng-bind="dlcwLosOther.tot_los_year_1 =
+                        $parent.dlComWtrSply.water_supply.Table_3.DlcwLosProduction[0].tot_los_year_1 +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los_year_1 +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los_year_1 +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los_year_1">
                         </td>
                         <td width="101" ng-model="dlcwLosOther.tot_los_year_2"
                              ng-bind="dlcwLosOther.tot_los_year_2 =
+                       $parent.dlComWtrSply.water_supply.Table_3.DlcwLosProduction[0].tot_los_year_2 +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los_year_2 +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los_year_2 +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los_year_2">
                         </td>
                         <td width="101" ng-model="dlcwLosOther.tot_los"
                             ng-bind="dlcwLosOther.tot_los =
+                            $parent.dlComWtrSply.water_supply.Table_3.DlcwLosProduction[0].tot_los +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los +
                         dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los ">

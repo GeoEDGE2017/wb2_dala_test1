@@ -9,14 +9,14 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
     $scope.is_valid_data = true;
     $scope.districts=[];
     $scope.dlSummaryDis = null;
-    $scope.tot_damages_pu = 0;
-    $scope.tot_damages_pv = 0;
-    $scope.year1_los_pu = 0;
-    $scope.year1_los_pv = 0;
-    $scope.year2_los_pu = 0;
-    $scope.year2_los_pv = 0;
-    $scope.pub_tot = 0;
-    $scope.pvt_tot = 0;
+    $scope.tot_damages_pu = null;
+    $scope.tot_damages_pv = null;
+    $scope.year1_los_pu = null;
+    $scope.year1_los_pv = null;
+    $scope.year2_los_pu = null;
+    $scope.year2_los_pv = null;
+    $scope.pub_tot = null;
+    $scope.pvt_tot = null;
 
     $scope.getDistrict = function getDistrict() {
         if($scope.incident) {
@@ -58,7 +58,6 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
 
     $scope.loadData = function(form) {
         $scope.submitted = true;
-        console.log("***");
         if(form.$valid) {
             $scope.tot_damages = null;
             $scope.is_edit = true;
@@ -68,7 +67,7 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
                 url: '/dl_fetch_total_data',
                 data: angular.toJson({
                     'table_name':  'Table_3',
-                    'sector':'telecommunication',
+                    'sector': 'telecommunication',
                     'com_data': {
                         'district':  $scope.district.district__id,
                         'incident': $scope.incident,
@@ -85,26 +84,34 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
         var ownership = $scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].ownership;
 
         if(ownership == 'Public') {
-            $scope.tot_damages_pu = $scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages ?
-                                 $scope.tot_damages_pu + $scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages : 0;
+            $scope.tot_damages_pu = $scope.tot_damages_pu + ($scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index]?
+            ($scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages ?
+            $scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages : 0) :0);
 
-            $scope.year1_los_pu = $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los ?
-                                 $scope.year1_los_pu + $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los : 0;
+            $scope.year1_los_pu = $scope.year1_los_pu + ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index]?
+            ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los ?
+            $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los : 0):0);
 
-            $scope.year2_los_pu = $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year2_los ?
-                                 $scope.year2_los_pu + $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year2_los : 0;
+            $scope.year2_los_pu =  $scope.year2_los_pu + ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear2District[$index]?
+            ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear2District[$index].year2_los ?
+            $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : 0) :0);
         }
         else if(ownership == 'Private') {
-            $scope.tot_damages_pv = $scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages ?
-                                 $scope.tot_damages_pv + $scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages : 0;
+            $scope.tot_damages_pv = $scope.tot_damages_pv +  ($scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index]?
+            ($scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages ?
+             $scope.dlSummaryDis.telecommunication.Table_3.DlDmgFirmDistrict[$index].tot_damages : 0 ):0);
 
-            $scope.year1_los_pv = $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los ?
-                                 $scope.year1_los_pv + $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los : 0;
+            $scope.year1_los_pv = $scope.year1_los_pv + ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index] ?
+            ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los ?
+            $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year1_los : 0) :0);
 
-            $scope.year2_los_pv = $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year2_los ?
-                                 $scope.year2_los_pv + $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear1District[$index].year2_los : 0;
+            $scope.year2_los_pv = $scope.year2_los_pv +
+            ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear2District[$index]?
+            ($scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear2District[$index].year2_los ?
+             $scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : 0 ):0);
 
-            $scope.pvt_tot = $scope.pvt_tot + $scope.tot_damages_pv + $scope.year1_los_pv + $scope.year2_los_pv;
+             console.log('test',$scope.dlSummaryDis.telecommunication.Table_3.LosFirmYear2District[$index].year2_los);
+
         }
 
         $scope.pub_tot = $scope.tot_damages_pu + $scope.year1_los_pu + $scope.year2_los_pu;

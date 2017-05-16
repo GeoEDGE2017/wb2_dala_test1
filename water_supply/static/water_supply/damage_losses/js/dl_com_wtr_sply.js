@@ -11,6 +11,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.Districts=[];
     $scope.is_valid_data = true;
     $scope.is_null = false;
+    $scope.grantot = 0;
 
 
 
@@ -83,11 +84,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                     num_tot_destoyed : null,
                     num_part_damaged : null,
                     total_dmgs : null,
-                }, {
-                    assets : 'TOTAL',
-                    num_tot_destoyed : null,
-                    num_part_damaged : null,
-                    total_dmgs : null,
                 }],
                 //Tab 2
                 'DlcwLosProduction':[{
@@ -157,6 +153,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                  var data = response.data;
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
+                    console.log('refer',$scope.bs_data[key]);
                 });
                 var is_null = false;
 
@@ -234,7 +231,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             var obj2 = {
                 assets : particular_value_2,
                 num_tot_destoyed : null,
-               num_part_damaged : null,
+                num_part_damaged : null,
                 total_dmgs : null,
             };
             var obj3 = {
@@ -333,6 +330,14 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
     }
 
+
+  $scope.convertInt = function(val1,val2,val3,val4){
+
+    var ans = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4);
+    return ans;
+
+  }
+
 //Calculate GrandTotal
     $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
@@ -340,7 +345,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     var finaltotal3 = 0;
     var finaltotal4 = 0;
 
-    var grantot = 0;
 
     var array1 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterIntake;
     var array2 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterTreatment;
@@ -351,22 +355,23 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
 
     angular.forEach(array1, function(value, key) {
 
-     finaltotal1 = finaltotal1 + value.num_tot_destoyed  + value.num_part_damaged  ;
+     finaltotal1 = finaltotal1 + value.total_dmgs ;
     })
     angular.forEach(array2, function(value, key) {
 
-     finaltotal2 = finaltotal2 + value.num_tot_destoyed + value.num_part_damaged ;
+     finaltotal2 = finaltotal2 + value.total_dmgs;
     })
     angular.forEach(array3, function(value, key) {
 
-     finaltotal3 = finaltotal3 + value.num_tot_destoyed + value.num_part_damaged ;
+     finaltotal3 = finaltotal3 + value.total_dmgs ;
     })
     angular.forEach(array4, function(value, key) {
 
-     finaltotal4 = finaltotal4 + value.num_tot_destoyed + value.num_part_damaged ;
+     finaltotal4 = finaltotal4 + value.total_dmgs ;
     })
 
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+    grantot = $scope.grantot + $scope.convertInt(finaltotal1, finaltotal2 , finaltotal3 , finaltotal4);
+    console.log('gettot',grantot);
     return grantot;
     }
 

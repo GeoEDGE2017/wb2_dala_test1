@@ -505,26 +505,32 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     var array5 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies;
 
     angular.forEach(array1, function(value, key) {
-
+     if(value.private_vehicles !='Total'){
      finaltotal1 = finaltotal1 + value.tot_damages_pvt ;
+     }
+
     })
     angular.forEach(array2, function(value, key) {
-
+   if(value.bus_companies !='Total'){
      finaltotal2 = finaltotal2 + value.tot_damages_pvt ;
+     }
     })
     angular.forEach(array3, function(value, key) {
-
+     if(value.taxi_companies !='Total'){
      finaltotal3 = finaltotal3 + value.tot_damages_pvt ;
+     }
     })
     angular.forEach(array4, function(value, key) {
-
+    if(value.truck_companies!='Total'){
      finaltotal4 = finaltotal4 + value.tot_damages_pvt ;
+     }
     })
     angular.forEach(array5, function(value, key) {
-
+    if((value.tuk_companies !='Total') && (value.tuk_companies !='TOTAL DAMAGES')){
      finaltotal5 = finaltotal5 + value.tot_damages_pvt ;
+     }
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
     return grantot;
     }
 
@@ -543,22 +549,27 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 
 
     angular.forEach(array2, function(value, key) {
-
-     finaltotal2 = finaltotal2 + value.tot_damages_pvt ;
+    if(value.bus_companies !='Total'){
+     finaltotal2 = finaltotal2 + value.tot_damages_pub ;
+     }
     })
     angular.forEach(array3, function(value, key) {
-
-     finaltotal3 = finaltotal3 + value.tot_damages_pvt ;
+    if(value.taxi_companies !='Total'){
+     finaltotal3 = finaltotal3 + value.tot_damages_pub ;
+      }
     })
     angular.forEach(array4, function(value, key) {
-
-     finaltotal4 = finaltotal4 + value.tot_damages_pvt ;
+    if(value.truck_companies!='Total'){
+     finaltotal4 = finaltotal4 + value.tot_damages_pub ;
+     }
     })
     angular.forEach(array5, function(value, key) {
-
-     finaltotal5 = finaltotal5 + value.tot_damages_pvt ;
+    if((value.tuk_companies !='Total') && (value.tuk_companies !='TOTAL DAMAGES')){
+     finaltotal5 = finaltotal5 + value.tot_damages_pub ;
+     }
     })
-    grantot = grantot + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    grantot = finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    console.log('test',grantot);
     return grantot;
     }
 
@@ -585,12 +596,14 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 
 
     angular.forEach(array1, function(value, key) {
-
+     if(value.tr_company !='Total'){
      finaltotal1 = finaltotal1 + value.tot_los ;
+     }
     })
     angular.forEach(array2, function(value, key) {
-
+    if((value.tr_company !='Total') && (value.tr_company !='TOTAL LOSSES')) {
      finaltotal2 = finaltotal2 + value.tot_los ;
+     }
     })
 
     grantot = grantot + finaltotal1+ finaltotal2 ;

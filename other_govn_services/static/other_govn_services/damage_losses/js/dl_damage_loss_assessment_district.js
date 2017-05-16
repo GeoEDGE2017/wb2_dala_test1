@@ -77,7 +77,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
 
                 console.log($scope.bs_data);

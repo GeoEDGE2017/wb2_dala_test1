@@ -52,7 +52,7 @@
                         <td width="125" height="19">
                             Incident
                         </td>
-                        <td width="95" height="19">
+                        <td colspan="2" width="95" height="19">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
@@ -64,18 +64,18 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td width="111" height="19">
+                        <td colspan="2" width="111" height="19">
                             District
                         </td>
-                        <td colspan="6" width="482" height="19">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                        <td colspan="3" width="482" height="19">
+                            <select  ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
                                     class="form-control" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
-                        <td  style="background:#EFEFEF;">
-                            <button type="button" class="btn btn-block btn-info" ng-click="loadData(form_dl_sum_agrarian_dstr)">Load
+                        <td style="background:#EFEFEF;" colspan="2">
+                            <button  type="button" class="btn btn-block btn-info" ng-click="loadData(form_dl_sum_agrarian_dstr)">Load
                             </button>
                         </td>
                     </tr>
@@ -105,28 +105,28 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td width="95" height="19">
+                        <td style="width:10%;" width="95" height="19">
                             Public
                         </td>
-                        <td width="111" height="19">
+                        <td style="width:10%;" width="111" height="19">
                             Private
                         </td>
-                        <td width="115" height="19">
+                        <td style="width:10%;" width="115" height="19">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td style="width:10%;" width="63" height="19">
                             Private
                         </td>
-                        <td width="63" height="19">
+                        <td style="width:10%;" width="63" height="19">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td style="width:10%;" width="63" height="19">
                             Private
                         </td>
-                        <td width="63" height="19">
+                        <td style="width:10%;" width="63" height="19">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td style="width:10%;" width="63" height="19">
                             Private
                         </td>
                     </tr>
@@ -134,36 +134,44 @@
                         <td class="tdpa" width="125" height="19">
                             Inland Fisheries
                         </td>
-                        <td width="95" height="19">
-                            <!-- - -->
+                        <td  width="95" height="19" ng-bind="data.agri_fisheries.Table_4.DlfDmgPubDistrict[0].dmg_pub">
+
                         </td>
-                        <td width="111" height="19">
-                            <!-- - -->
+                        <td ng-bind="data.agri_fisheries.Table_4.DlfDmgPvtDistrict[0].dmg_pvt" width="95" height="19">
+
                         </td>
-                        <td width="115" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pub">
+                        <td width="111" height="19"ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pub" >
+
                         </td>
+
                         <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pvt">
                         </td>
                         <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pub">
                         </td>
                         <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[0].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pub">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[0].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pvt">
+
                         </td>
                     </tr>
                     <tr height="19">
                         <td class="tdpa" width="125" height="19">
                             River fisheries
                         </td>
-                        <td width="95" height="19">
-                            <!-- - -->
+                        <td  width="95" height="19" ng-bind="data.agri_fisheries.Table_4.DlfDmgPubDistrict[2].dmg_pub">
+
                         </td>
-                        <td width="111" height="19">
-                            <!-- - -->
+                        <td ng-bind="data.agri_fisheries.Table_4.DlfDmgPvtDistrict[2].dmg_pvt" width="95" height="19">
+
                         </td>
                         <td width="115" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pub">
                         </td>
@@ -173,22 +181,28 @@
                         </td>
                         <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pvt">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[2].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pub">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[2].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pvt">
+
                         </td>
                     </tr>
                     <tr height="19">
                         <td class="tdpa" width="125" height="19">
                             Marine fisheries
                         </td>
-                        <td width="95" height="19">
-                            <!-- - -->
+                        <td  width="95" height="19" ng-bind="data.agri_fisheries.Table_4.DlfDmgPubDistrict[1].dmg_pub">
+
                         </td>
-                        <td width="111" height="19">
-                            <!-- - -->
+                        <td ng-bind="data.agri_fisheries.Table_4.DlfDmgPvtDistrict[1].dmg_pvt" width="95" height="19">
+
                         </td>
                         <td width="115" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pub">
                         </td>
@@ -198,50 +212,92 @@
                         </td>
                         <td width="63" height="19" ng-bind="data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[1].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pub">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[1].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
+
                         </td>
                     </tr>
                     <tr height="19">
-                        <td class="tdpa" width="125" height="19">
+                        <td class="boldash" width="125" height="19">
                             Total
                         </td>
-                        <td width="95" height="19">
-                            <!-- - -->
+                        <td width="95" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[0].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[1].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[2].dmg_pub">
+
                         </td>
-                        <td width="111" height="19">
-                            <!-- - -->
+                        <td width="111" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[0].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[1].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[2].dmg_pvt">
+
                         </td>
-                        <td width="115" height="19">
-                            <!-- - -->
+                        <td width="115" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pub">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pvt">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pub +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pub +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pub">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pvt +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pvt +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[0].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[1].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfDmgPubDistrict[2].dmg_pub +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pub +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pub +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pub +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pub">
+
                         </td>
-                        <td width="63" height="19">
-                            <!-- - -->
+                        <td width="63" height="19" ng-bind="
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[0].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[1].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfDmgPvtDistrict[2].dmg_pvt +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_1_pvt +
+                        data.agri_fisheries.Table_4.DlfLosIfisheriesDistrict[0].los_year_2_pvt +
+                        data.agri_fisheries.Table_4.DlfLosRfisheriesDistrict[0].los_year_2_pvt +
+                        data.agri_fisheries.Table_4.DlfLosMfisheriesDistrict[0].los_year_2_pvt">
+
                         </td>
                     </tr>
                     </tbody>
                 </table>
                
-                <div class="pull-right">
-                    <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success" ng-click="loadData(form_dl_sum_agrarian_dstr)">Submit</button>
-                </div>
+                <!--<div class="pull-right">-->
+                    <!--<br>-->
+                    <!--<button type="button" class="btn btn-info">Clear</button>-->
+                    <!--<button type="button" class="btn btn-success" ng-click="loadData(form_dl_sum_agrarian_dstr)">Submit</button>-->
+                <!--</div>-->
                 <br><br><br>
             </div>
         </div>

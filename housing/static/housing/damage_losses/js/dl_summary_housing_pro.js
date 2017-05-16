@@ -84,7 +84,7 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
 
         var totalNumDes = 0;
 
-        totalNumDes =  totalNumDes + $scope.convertToInt(
+        totalNumDes =      $scope.convertToInt(
                           ($scope.dlSumHousPro.housing.Table_5[key].DlNumDesPerProvince[0] ?
                           ($scope.dlSumHousPro.housing.Table_5[key].DlNumDesPerProvince[0].tot_num_houses ?
                           $scope.dlSumHousPro.housing.Table_5[key].DlNumDesPerProvince[0].tot_num_houses : 0):0) ,
@@ -108,7 +108,7 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
 
         var totalNumPart = 0;
 
-        totalNumPart =  totalNumPart + $scope.convertToInt(
+        totalNumPart =     $scope.convertToInt(
                           ($scope.dlSumHousPro.housing.Table_5[key].DlNumPdesPerProvince[0] ?
                           ($scope.dlSumHousPro.housing.Table_5[key].DlNumPdesPerProvince[0].tot_num_houses ?
                           $scope.dlSumHousPro.housing.Table_5[key].DlNumPdesPerProvince[0].tot_num_houses : 0):0) ,
@@ -132,18 +132,18 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
 
         var totalDamages = 0;
 
-        totalDamages =  totalDamages + $scope.convertToInt(
+        totalDamages =  $scope.convertToInt(
                           ($scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0] ?
                           ($scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0].tot_damages ?
                           $scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0].tot_damages : 0):0) ,
 
-                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0] ?
-                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0].tot_damages ?
-                          $scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0].tot_damages : 0):0) ,
+                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgSemiPerProvince[0] ?
+                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgSemiPerProvince[0].tot_damages ?
+                          $scope.dlSumHousPro.housing.Table_5[key].DlDmgSemiPerProvince[0].tot_damages : 0):0) ,
 
-                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0] ?
-                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0].tot_damages ?
-                          $scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0].tot_damages : 0):0));
+                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgImpProvince[0] ?
+                          ($scope.dlSumHousPro.housing.Table_5[key].DlDmgImpProvince[0].tot_damages ?
+                          $scope.dlSumHousPro.housing.Table_5[key].DlDmgImpProvince[0].tot_damages : 0):0));
 
         var totalDamagesstring = "totdamage"+ key;
 
@@ -157,7 +157,7 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
 
          var totalLosses = 0;
 
-        totalLosses =  totalLosses + $scope.convertToInt(
+        totalLosses =      $scope.convertToInt(
                           ($scope.dlSumHousPro.housing.Table_5[key].DlLosPerProvince[0] ?
                           ($scope.dlSumHousPro.housing.Table_5[key].DlLosPerProvince[0].tot_losses ?
                           $scope.dlSumHousPro.housing.Table_5[key].DlLosPerProvince[0].tot_losses : 0):0) ,

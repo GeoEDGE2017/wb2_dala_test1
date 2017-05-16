@@ -153,10 +153,10 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=other_government'
+        #     'options': '-c search_path=transport_water'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'Dala_2017_05_09',
         'USER': 'postgres',
     },
 }
@@ -959,7 +959,6 @@ TABLE_PROPERTY_MAPPER = {
                 'id']
         },
         'Table_5': {
-
             'DpefBefDistrict': [
                 'ab1_1c',
                 'type_2',
@@ -977,7 +976,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefPrimaryDistrict': [
                 'est_rep_cost',

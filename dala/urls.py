@@ -37,6 +37,7 @@ urlpatterns = [
 
     url(r'^get_latest_bs_date', views.get_latest_bs_date, name='get_latest_bs_date'),
     url(r'^dl_save_data_with_array', views.dl_save_data_with_array, name='dl_save_data_with_array'),
+    url(r'^bs_get_data_mock_for_bs', views.bs_get_data_mock_for_bs, name='bs_get_data_mock_for_bs'),
 
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),

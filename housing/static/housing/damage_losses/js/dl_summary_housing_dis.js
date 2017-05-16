@@ -60,5 +60,13 @@ if($scope.incident && $scope.district){
         return isNull;
 
    }
+
+  $scope.convertToInt = function(val1 ,val2,val3){
+
+    var ans = parseInt(val1) + parseInt(val2) + parseInt(val3);
+    return ans;
+
+  }
+
 })
 

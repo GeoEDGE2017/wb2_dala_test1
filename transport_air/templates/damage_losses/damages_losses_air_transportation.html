@@ -206,10 +206,14 @@
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgAircrafts.tot_dmg_pub" ng-bind="dlAirDmgAircrafts.tot_dmg_pub = $parent.calculatePubAirTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts)">
+                            <td width="63" height="19" ng-model="dlAirDmgAircrafts.tot_dmg_pub"
+                                ng-bind="dlAirDmgAircrafts.tot_dmg_pub =
+                                $parent.calculatePubAirTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts)">
 
                             </td>
-                            <td width="63" height="19" ng-model="dlAirDmgAircrafts.tot_dmg_pvt" ng-bind="dlAirDmgAircrafts.tot_dmg_pvt = $parent.calculatePvtAirTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts)">
+                            <td width="63" height="19" ng-model="dlAirDmgAircrafts.tot_dmg_pvt"
+                                ng-bind="dlAirDmgAircrafts.tot_dmg_pvt =
+                                $parent.calculatePvtAirTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts)">
 
                             </td>
                         </tr>
@@ -786,40 +790,46 @@
                         ng-bind="dlAirLosHoc.year_1_pub =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pub +
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pub" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pub +
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pub" >
 
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosHoc.year_1_pvt"
                         ng-bind="dlAirLosHoc.year_1_pvt =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pvt +
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pvt" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pvt +
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pvt" >
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pub"
                          ng-bind="dlAirLosHoc.year_2_pub =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pub +
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pub" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pub +
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pub" >
 
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pvt"
                         ng-bind="dlAirLosHoc.year_2_pvt =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pvt +
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pvt" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pvt +
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pvt" >
 
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pub"
                         ng-bind="dlAirLosHoc.tot_los_pub =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pub +
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pub" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pub +
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pub" >
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pvt"
                         ng-bind="dlAirLosHoc.tot_los_pvt =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pvt +
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pvt" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pvt +
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pvt" >
 
                         </td>
                     </tr>
@@ -857,36 +867,72 @@
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosOther.year_1_pub"
                         ng-bind="dlAirLosOther.year_1_pub =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_1_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pub" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_1_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pub" >
 
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosOther.year_1_pvt"
                         ng-bind="dlAirLosOther.year_1_pvt =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_1_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pvt" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_1_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pvt" >
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosOther.year_2_pub"
                          ng-bind="dlAirLosOther.year_2_pub =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_2_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pub" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pub" >
 
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosOther.year_2_pvt"
                         ng-bind="dlAirLosOther.year_2_pvt =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_2_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pvt" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pvt" >
 
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosOther.tot_los_pub"
                         ng-bind="dlAirLosOther.tot_los_pub =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].tot_los_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pub" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pub +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pub" >
 
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosOther.tot_los_pvt"
                         ng-bind="dlAirLosOther.tot_los_pvt =
                         dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].tot_los_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pvt" >
+                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pvt +
+                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pvt" >
                         </td>
                     </tr>
                     </tbody>

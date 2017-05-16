@@ -153,7 +153,7 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=other_government'
+        #     'options': '-c search_path=transport_water'
         # },
 
         'NAME': 'dala',

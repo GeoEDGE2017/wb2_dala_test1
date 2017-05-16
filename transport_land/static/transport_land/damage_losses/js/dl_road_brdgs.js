@@ -453,23 +453,29 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 
     angular.forEach(array1, function(value, key) {
 
-     finaltotal1 = finaltotal1 + value.damages ;
+    if(value.road_classification !='Total'){
+    finaltotal1 = finaltotal1 + value.damages ;
+    }
     })
     angular.forEach(array2, function(value, key) {
-
+     if(value.type_bridges !='Total'){
      finaltotal2 = finaltotal2 + value.damages ;
+     }
     })
     angular.forEach(array3, function(value, key) {
-
+     if(value.type_culverts != 'Total'){
      finaltotal3 = finaltotal3 + value.damages ;
+     }
     })
     angular.forEach(array4, function(value, key) {
-
+    if(value.type_retain_walls !='Total'){
      finaltotal4 = finaltotal4 + value.damages ;
+     }
     })
     angular.forEach(array5, function(value, key) {
-
+     if(value.type_drains !='Total'){
      finaltotal5 = finaltotal5 + value.damages ;
+     }
     })
     grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
     return grantot;

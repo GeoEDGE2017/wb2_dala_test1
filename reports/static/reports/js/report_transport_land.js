@@ -52,7 +52,7 @@ app.controller("DlTlNatReportController", ['$scope','$http',function ($scope,$ht
              if($scope.checkIfNull())
              $("#modal-container-239456").modal('show');
 
-           
+
 
             })
         }

@@ -1,40 +1,29 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  var nicesx = $("#boxscroll3").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  var nicesx = $("#boxscroll4").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-   
-    
-  });
-  
-
+$(document).ready(function() {
+    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    var nicesx = $("#boxscroll3").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    var nicesx = $("#boxscroll4").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+});
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlGovnEduFacilitiesApp" ng-controller="DlGovnEduFacilitiesController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Education Sector</a>
         </li>
-
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3. Damage and Loss Assessment of Government Education Facilities in the District
             </span>
+            <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
-
     </ol>
-
-
     <div class="container-fluid">
-
         <div>
             <ul class='nav nav-wizard'>
                 <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Destroyed Facilities and Assets</a></li>
@@ -42,9 +31,7 @@
                 <li id="li3" ><a href='#step3' data-toggle="tab">3  No of Destroyed Assets</a></li>
                 <li id="li4" ><a href='#step4' data-toggle="tab">4 No of Partially Damaged Assets</a></li>
                 <li id="li5" ><a href='#step5' data-toggle="tab">5 Losses</a></li>
-
             </ul>
-
             <div id="myTabContent" class="tab-content" ng-form name="form_govn_edu_facility_dist_dl">
                 <div class="tab-pane active" id="step1">
                     <table class="table table-bordered">
@@ -71,7 +58,6 @@
                             </td>
                         </tr>
                         <tr class="trhead1">
-
                             <td colspan="2" style="padding-left:5px;">
                                 Incident
                             </td>
@@ -79,19 +65,15 @@
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true);"
                                         style="width:100%;font-weight:400;" required>
-
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
-
                                     <option value={{incident.id}}>{{incident.disaster_type.name}}
                                         {{incident.reported_date_time}}
                                     </option>
                                     {% endfor %}
-
                                 </select>
                             </td>
                             <td colspan="2" style="padding-left:5px;"> Name of District</td>
-
                             <td colspan="3" style="">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" style="font-weight:400;" ng-change="changedValue(false)"
@@ -100,7 +82,6 @@
                                 </select>
                             </td>
                         </tr>
-
                         <tr class="trheadc1" height="17">
                             <td width="280" height="17">
                             </td>
@@ -206,7 +187,6 @@
                             <td width="122">
                             </td>
                         </tr>
-
                         <tr height="17" ng-repeat="dugDfNsa in dlGovnEduFacilities.education.Table_3.DugDfNsa">
                             <td ng-model="dugDfNsa.particulars" ng-bind="dugDfNsa.particulars" class="tdpa" width="280"
                                 height="17">
@@ -254,7 +234,6 @@
                                     dugDfNsa.min_pzd_offices ">
                             </td>
                         </tr>
-
                         </tbody>
                     </table>
                     <br>
@@ -263,20 +242,11 @@
                             Fill Partially Damaged Facilities and Assets
                         Informations
                             </a>
-
                     <br>
-
-
                 </div>
-
-
   <div class="tab-pane" id="step2">
-
                     <table class="table table-bordered">
-
-
                         <tbody>
-
                         <tr class="trheadc1" height="17">
                             <td rowspan="2" width="280" height="68" style="height:22%;">
                                 Particular
@@ -429,22 +399,14 @@
                         </tr>
                         </tbody>
                     </table>
-
-
                     <br>
                     <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span>  Fill No of Destroyed Assets Informations </a>
                     <br>
-
                 </div>
-
-
                 <div class="tab-pane" id="step3">
                     <table class="table table-bordered">
-
-
                         <tbody>
-
                         <tr class="trsubc" height="51">
                             <td class="trheadc1" width="360" height="51" style="width:19.5%;">
                                 Assets
@@ -487,7 +449,6 @@
                                     <span style="margin-left:3%;"> Structure (in sqm) </span>
                                 </td>
                             </tr>
-
                             <!--Tab two-->
                             <tr height="17"
                                 ng-repeat="dugNdafStructure in dlGovnEduFacilities.education.Table_3.DugNdafStructure"
@@ -538,7 +499,6 @@
                                     (dugNdafStructure.min_pzd_offices * bs_data['BugArcStructures'][$index].fields.min_pzd_offices)">
                                 </td>
                             </tr>
-
                             <tr height="17"
                                 ng-repeat="dugNdafStructure in dlGovnEduFacilities.education.Table_3.DugNdafStructure"
                                 ng-if=" dugNdafStructure.particulars == 'Value of Destroyed Structures' ">
@@ -605,13 +565,8 @@
                                     ng-bind="dugNdafStructure.total = dlGovnEduFacilities.education.Table_3.DugNdafStructure[0].total +
                                     dlGovnEduFacilities.education.Table_3.DugNdafStructure[1].total +
                                     dlGovnEduFacilities.education.Table_3.DugNdafStructure[2].total">
-
                                 </td>
-
-
                             </tr>
-
-
                             <tr class="trhead" height="17">
                                 <td colspan="10" width="1490" height="17">
                                     <span style="margin-left:3%;"> Supplies and Materials </span>
@@ -626,42 +581,34 @@
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.ab1_1c" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.type_2" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.type_3" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.pirivena" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.training_institutes" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.training_colleges" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.tc_crc_resc" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafSupplies.min_pzd_offices" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="122" ng-model="dugNdafSupplies.total" ng-bind="dugNdafSupplies.total =
@@ -680,7 +627,6 @@
                                 ng-repeat="dugNdafSupplies in dlGovnEduFacilities.education.Table_3.DugNdafSupplies"
                                 ng-if="dugNdafSupplies.particulars == 'Value of Destroyed Supplies and Materials'">
                                 <td class="boldash" width="280" height="17" ng-bind="dugNdafSupplies.particulars">
-
                                 </td>
                                 <td width="136" ng-model="dugNdafSupplies.ab1_1c"
                                     ng-bind="dugNdafSupplies.ab1_1c =calTotal('DugNdafSupplies' ,'ab1_1c')">
@@ -708,15 +654,13 @@
                                      </td>
                                 <td width="136" ng-model="dugNdafSupplies.total"
                                     ng-bind="dugNdafSupplies.total = getTot('DugNdafSupplies')">
-                                     </td>
-
+                                 </td>
                             </tr>
                             <tr class="trhead" height="17">
                                 <td colspan="10" width="1490" height="17">
                                     <span style="margin-left:3%;">  Equipment </span>
                                 </td>
                             </tr>
-
                             <tr height="17"
                                 ng-repeat="dugNdafEquipment in dlGovnEduFacilities.education.Table_3.DugNdafEquipment"
                                 ng-if="dugNdafEquipment.particulars !='Value of Destroyed Equipment'">
@@ -725,42 +669,34 @@
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.ab1_1c" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.type_2" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.type_3" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.pirivena" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.training_institutes" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.training_colleges" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.tc_crc_resc" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNdafEquipment.min_pzd_offices" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="122" ng-model="dugNdafEquipment.total"
@@ -774,12 +710,10 @@
                                 dugNdafEquipment.min_pzd_offices * bs_data.BugArcEquipment[$index].fields.min_pzd_offices">
                                 </td>
                             </tr>
-
                             <tr height="17"
                                 ng-repeat="dugNdafEquipment in dlGovnEduFacilities.education.Table_3.DugNdafEquipment"
                                 ng-if="dugNdafEquipment.particulars == 'Value of Destroyed Equipment'">
                                 <td class="boldash" width="280" height="17" ng-bind="dugNdafEquipment.particulars">
-
                                 </td>
                                 <td width="136" ng-model="dugNdafEquipment.ab1_1c"
                                     ng-bind="dugNdafEquipment.ab1_1c = calTotal('DugNdafEquipment' ,'ab1_1c')">
@@ -792,27 +726,23 @@
                                 </td>
                                 <td width="136" ng-model="dugNdafEquipment.pirivena"
                                     ng-bind="dugNdafEquipment.pirivena = calTotal('DugNdafEquipment' ,'pirivena')">
-                                         </td>
+                                </td>
                                 <td width="136" ng-model="dugNdafEquipment.training_institutes"
                                     ng-bind="dugNdafEquipment.training_institutes = calTotal('DugNdafEquipment' ,'training_institutes')">
-                                            </td>
+                                </td>
                                 <td width="136" ng-model="dugNdafEquipment.training_colleges"
                                     ng-bind="dugNdafEquipment.training_colleges = calTotal('DugNdafEquipment' ,'training_colleges')">
-                                     </td>
+                                </td>
                                 <td width="136" ng-model="dugNdafEquipment.tc_crc_resc"
                                     ng-bind="dugNdafEquipment.tc_crc_resc = calTotal('DugNdafEquipment' ,'tc_crc_resc')">
-                                     </td>
+                                </td>
                                 <td width="136" ng-model="dugNdafEquipment.min_pzd_offices"
                                     ng-bind="dugNdafEquipment.min_pzd_offices = calTotal('DugNdafEquipment' ,'min_pzd_offices')">
-                                     </td>
+                                </td>
                                 <td width="136" ng-model="dugNdafEquipment.total"
                                     ng-bind="dugNdafEquipment.total = getTot('DugNdafEquipment')">
-                                     </td>
-
-
+                                </td>
                             </tr>
-
-
                             <tr height="17">
                                 <td class="boldash" width="280" height="17">
                                     VALUE OF DESTROYED ASSETS
@@ -835,28 +765,19 @@
                                 </td>
                                 <td width="136" ng-model="destot" ng-bind="destot = tabTwogetGrandTotal()">
                                 </td>
-
-
                             </tr>
                             </tbody>
                         </table>
                     </div>
-
                     <br>
                     <a href="#step4" id="s3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill No of Partially Damaged Assets
                         Informations</a>
                     <br>
-
                 </div>
-
-              
-
                 <div class="tab-pane" id="step4">
                     <table class="table table-bordered">
-
                         <tbody>
-
                         <tr class="trsubc" height="51">
                             <td class="trheadc1" width="280" height="51" style="width:19%;" >
                                 Assets
@@ -948,11 +869,7 @@
                                     (dugNpdatStructure.tc_crc_resc * bs_data['BugArpcStructures'][$index].fields.tc_crc_resc) +
                                     (dugNpdatStructure.min_pzd_offices * bs_data['BugArpcStructures'][$index].fields.min_pzd_offices)">
                                 </td>
-                                </td>
-
-
                             </tr>
-
                             <tr height="17"
                                 ng-repeat="dugNpdatStructure in dlGovnEduFacilities.education.Table_3.DugNpdatStructure "
                                 ng-if="dugNpdatStructure.particulars == 'Value of Partially Damaged Structures'">
@@ -1024,7 +941,6 @@
                                 </td>
                                 <td width="136">
                                     <input ng-model="dugNpdatSupplies.ab1_1c" type="number" placeholder=""
-
                                            class="form-control input-md">
                                 </td>
                                 <td width="136">
@@ -1072,7 +988,6 @@
                                 ng-repeat="dugNpdatSupplies in dlGovnEduFacilities.education.Table_3.DugNpdatSupplies"
                                 ng-if="dugNpdatSupplies.particulars == 'Value of Partially Damaged Supplies and Materials'">
                                 <td class="boldash" width="280" height="17" ng-bind="dugNpdatSupplies.particulars">
-
                                 </td>
                                 <td width="136" ng-model="dugNpdatSupplies.ab1_1c"
                                     ng-bind="dugNpdatSupplies.ab1_1c = calTotal('DugNpdatSupplies','ab1_1c')">
@@ -1956,13 +1871,13 @@
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_govn_edu_facility_dist_dl)">Submit</button>
                         <button type="button" ng-click="dlDataEdit(form_govn_edu_facility_dist_dl)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>
+                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_govn_edu_facility_dist_dl)">Submit</button>
                     </div>
                     <br><br><br>
                 </div>

@@ -342,16 +342,8 @@ def bs_get_data_mock_for_bs(request):
     print '@'
 
     try:
-        # bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)).filter(table_name=table_name, district=district). \
-        #     values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
-
         bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district). \
             values('id', 'bs_date').order_by('id').latest('id')
-
-        # bd_sessions = bs_session_model.objects.all()
-
-
-        # bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district).order_by('id').latest('id')
 
         print '*'
         print bd_sessions
@@ -664,6 +656,9 @@ def dl_save_data_with_array(request):
                             for property in row:
                                 if isinstance(property, dict):
                                     model_object_item = model_class()
+
+                                    model_object_item.created_date = todate
+                                    model_object_item.lmd = todate
 
                                     for com_property in com_data:
                                         print com_data[com_property]

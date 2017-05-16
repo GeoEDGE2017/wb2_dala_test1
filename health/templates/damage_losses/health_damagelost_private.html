@@ -30,40 +30,34 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_private">
-                            <span style="color:red"
-                                  ng-show="submitted && form_health_damagelost_private.$error.required">
-                               Please fill all required fields
-                            </span>
+                    <span style="color:red" ng-show="submitted && form_health_damagelost_private.$error.required">
+                       Please fill all required fields
+                    </span>
                     <span style="color:red" ng-show="!is_valid_data">
-                                This request can't be proceed, there is data-set available for this selection.
-                            </span>
+                        This request can't be proceed, there is data-set available for this selection.
+                    </span>
                     <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-  <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.incident.$error.required">
-                                Please select Incident
+                                <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.incident.$error.required">
+                                    Please select Incident
                                 </span>
                             </td>
-
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-  <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.district.$error.required">
-                                Please select District
+                                <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.district.$error.required">
+                                    Please select District
                                 </span>
                             </td>
                         </tr>
-
-
                         <tr class="trhead1">
                             <td style="padding-left:5px;">
                                 Incident
@@ -75,14 +69,11 @@
 
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
-
                                     <option value={{incident.id}}>{{incident.disaster_type.name}}
                                         {{incident.reported_date_time}}
                                     </option>
                                     {% endfor %}/home/sachie/Downloads/health_damagelost_ministry_helth.html
-
                                 </select>
-
                             </td>
                             <td colspan="2" style="padding-left:5px;"> Name of District</td>
                             <td colspan="2" style="">
@@ -90,21 +81,16 @@
                                 <!--style="font-weight:400;" ng-model="district"-->
                                 <!--class="form-control" required>-->
                                 <!--<option value="">Select District</option>-->
-
                                 <!--<option ng-repeat="district in districts" ng-value="district.district__id"-->
                                 <!--ng-bind="district.district__name"></option>-->
-
                                 <!--</select>-->
-
                                 <select style="font-weight:normal;"
                                         ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                         class="form-control" ng-change="fetchPrivateClinics()" required>
                                     <option value="" selected>Select District</option>
                                 </select>
-
                             </td>
-
                         </tr>
                         <tr height="20" class="trheadc1">
                             <td width="264" height="20" style="text-align:left;padding-left:5px;">
@@ -147,20 +133,15 @@
                                            placeholder="" class="form-control input-md">
                                 </td>
                             </tr>
-
                             <!--</tbody>-->
                         </table>
                         <br>
-
                         <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill
                             Breakdown by Type of Health Facility
                             Informations</a>
                     </div>
-
                 </div>
-
                 <div class="tab-pane" id="step2">
-
                     <table class="table table-bordered">
                         <colgroup width="361">
                         </colgroup>
@@ -209,7 +190,6 @@
                             <td height="35" align="left">
                                 Private Clinic Name
                             </td>
-
                             <td colspan="2" align="center" valign="middle" class="trsub">
                                 <a id=""
                                    href="#modal-container-218029" role="button" data-toggle="modal"
@@ -224,79 +204,61 @@
                             </td>
                             <td colspan="4" align="center" valign="middle" class="trsub">
                                 <button type="button" ng-click="addPrivateClinicObject()" class="btn btn-info">
-                            Add to View
-                        </button>
+                                    Add to View
+                                </button>
                             </td>
-
                         </tr>
-
-                  <tbody ng-repeat="dapBefPc in dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc">
-                     <tr>
-                                <td height="20" align="left" valign="middle">
-                                    Private Clinic Name
-                                </td>
-
-                         <td colspan="7" align="center" valign="middle">
-                             <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinics.id"
-                                    name="company" id="ccyear" ng-model="dapBefPc.clinic" class="form-control" required>
-                                <option value="" selected>Select Private Clinic</option>
-                            </select>
-                         </td>
-                            </tr>
-                     <td colspan="3" align="center" valign="middle">
-                         <tr ng-repeat="row in dapBefPc">
-                                <td class="tdpa" height="20" align="left" align="bottom" ng-bind="row.pvt_clinics">
-                                </td>
-                                <td align="left" valign="bottom">
-                                    <input id="textinput" name="textinput" ng-model="row.est_replacement_cost"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td align="left" valign="bottom">
-                                    <input id="textinput" name="textinput" ng-model="row.est_repair_cost"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td align="left" valign="bottom">
-                                    <input id="textinput" name="textinput" ng-model="row.total_damages"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-
-                                <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left" valign="bottom">
-
-                                </td>
-                                <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
-
-                                </td>
-                                <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
-
-                                <br/>
-
-                                </td>
-                             <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
-
-                                </td>
-                                <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
-
-                                <br/>
-                                </td>
-                             <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
-
-                                </td>
+                        <tbody ng-repeat="dapBefPc in dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc">
+                        <tr>
+                            <td height="20" align="left" valign="middle">
+                                Private Clinic Name
+                            </td>
+                             <td colspan="7" align="center" valign="middle">
+                                 <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinics.id"
+                                        name="company" id="ccyear" ng-model="dapBefPc.clinic" class="form-control" required>
+                                    <option value="" selected>Select Private Clinic</option>
+                                </select>
+                             </td>
                         </tr>
-
+                        <tr ng-repeat="row in dapBefPc">
+                            <td class="tdpa" height="20" align="left" align="bottom" ng-bind="row.pvt_clinics">
+                            </td>
+                            <td align="left" valign="bottom">
+                                <input id="textinput" name="textinput" ng-model="row.est_replacement_cost"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td align="left" valign="bottom">
+                                <input id="textinput" name="textinput" ng-model="row.est_repair_cost"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td align="left" valign="bottom">
+                                <input id="textinput" name="textinput" ng-model="row.total_damages"
+                                       type="number" placeholder="" class="form-control input-md">
+                            </td>
+                            <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left" valign="bottom">
+                            </td>
+                            <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
+                            </td>
+                            <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
+                            <br/>
+                            </td>
+                            <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
+                            </td>
+                            <td ng-if="row.pvt_clinics != 'Total'" class="tdpa" align="left">
+                            <br/>
+                            </td>
+                            <td ng-if="row.pvt_clinics == 'Total'" align="left" valign="bottom">
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
-
                     <br>
                     <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"> Fill Breakdown by
                         Other Health Facility
                         Informations</a>
                     <br><br>
                 </div>
-
-
                 <div class="tab-pane" id="step3">
-
-
                     <table class="table table-bordered">
                         <tr class="trheadc1" height="19">
                             <td rowspan="2" height="88" width="243">
@@ -363,10 +325,8 @@
                                        placeholder="" class="form-control input-md">
                             </td>
                             <td class="tdpa" width="98">
-
                             </td>
                             <td class="tdpa" width="98">
-
                             </td>
                             <td class="tdpa" width="98">
                             </td>
@@ -376,21 +336,16 @@
                                 Total
                             </td>
                             <td height="19" width="98">
-
-                            </td>
-                            <td height="19" width="64">
-
-                            </td>
-                            <td height="19" width="64">
-
-                            </td>
-                            <td height="19" width="64">
-
                             </td>
                             <td height="19" width="64">
                             </td>
                             <td height="19" width="64">
-
+                            </td>
+                            <td height="19" width="64">
+                            </td>
+                            <td height="19" width="64">
+                            </td>
+                            <td height="19" width="64">
                             </td>
                         </tr>
                         <tr height="19">
@@ -398,22 +353,16 @@
                                 TOTAL
                             </td>
                             <td height="19" width="98">
-
                             </td>
                             <td height="19" width="64">
-
                             </td>
                             <td height="19" width="64">
-
                             </td>
                             <td height="19" width="64">
-
                             </td>
                             <td height="19" width="64">
-
                             </td>
                             <td height="19" width="64">
-
                             </td>
                         </tr>
                     </table>
@@ -422,7 +371,6 @@
                         <button type="button" ng-click="clear()" class="btn btn-info">
                             Clear
                         </button>
-
                         <button type="button" ng-click="dlDataEdit(form_health_damagelost_private)" ng-if="!is_edit"
                                 class="btn btn-success">
                             Edit
@@ -433,26 +381,18 @@
                         <button type="button" ng-click="saveDlHealthData()"
                                 class="btn btn-success">Submit
                         </button>
-
                     </div>
                     <br><br>
                 </div>
-
             </div>
-
         </div>
         <!-- /.conainer-fluid -->
-
-
         <div class="col-md-12">
-
-
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 ×
                             </button>
@@ -468,13 +408,11 @@
                                     <input id="textinput" ng-model="private_clinic.name" name="textinput" type="text"
                                            placeholder=""
                                            class="form-control input-md">
-
                                 </div>
                             </div>
                         </div>
                         <br><br>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
@@ -483,18 +421,13 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
             <div class="modal fade" id="modal-container-218020" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 ×
                             </button>
@@ -509,13 +442,11 @@
                                 <div class="col-md-10">
                                     <input id="textinput" name="textinput" type="text" placeholder=""
                                            class="form-control input-md">
-
                                 </div>
                             </div>
                         </div>
                         <br><br>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
@@ -524,15 +455,9 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </div>
-
-    </div>
-
 </main>
 {% endblock content %}

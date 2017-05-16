@@ -150,10 +150,15 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                var result = response.data;
-                result = result.replace(/^"(.*)"$/, '$1');
-                $scope.currentBaselineDate = result +" is the Latest Baseline Data";
-                console.log($scope.currentBaselineDate);
+                if(response.data == 'null') {
+                    $scope.currentBaselineDate = "Baseline data not available in Table_3";
+                }
+                else {
+                    var result = response.data;
+                    result = result.replace(/^"(.*)"$/, '$1');
+                    $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                    console.log($scope.currentBaselineDate);
+                }
             });
         })
     }
@@ -161,7 +166,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 //Add Entities
     $scope.addPrivateClinic = function() {
         if($scope.private_clinic) {
-        console.log()
             $scope.private_clinic.district_id = $scope.district.district__id;
             console.log($scope.private_clinic);
             $http({
@@ -248,44 +252,41 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
     $scope.addPrivateClinicObject = function(){
-            var new_row_one =[ {
-                    pvt_clinics : 'Structure',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                },{
-                    pvt_clinics : 'Supplies and Materials',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                },{
-                    pvt_clinics : 'Equipment',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                },{
-                    pvt_clinics : 'Total',
-                    est_replacement_cost : null,
-                    est_repair_cost : null,
-                    total_damages : null,
-                    est_losses_y1 : null,
-                    est_losses_y2 : null,
-                    total_losses : null,
-                }
-                ]
-            $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.push(new_row_one);
+        var new_row_one =[ {
+            pvt_clinics : 'Structure',
+            est_replacement_cost : null,
+            est_repair_cost : null,
+            total_damages : null,
+            est_losses_y1 : null,
+            est_losses_y2 : null,
+            total_losses : null,
+        }, {
+            pvt_clinics : 'Supplies and Materials',
+            est_replacement_cost : null,
+            est_repair_cost : null,
+            total_damages : null,
+            est_losses_y1 : null,
+            est_losses_y2 : null,
+            total_losses : null,
+        }, {
+            pvt_clinics : 'Equipment',
+            est_replacement_cost : null,
+            est_repair_cost : null,
+            total_damages : null,
+            est_losses_y1 : null,
+            est_losses_y2 : null,
+            total_losses : null,
+        }, {
+            pvt_clinics : 'Total',
+            est_replacement_cost : null,
+            est_repair_cost : null,
+            total_damages : null,
+            est_losses_y1 : null,
+            est_losses_y2 : null,
+            total_losses : null,
+        }]
+        $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.push(new_row_one);
 
-            console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+        console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
     }
-
-
 })

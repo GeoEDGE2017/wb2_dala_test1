@@ -792,80 +792,66 @@ TABLE_PROPERTY_MAPPER = {
     },
     'education': {
         'Table_1': {
-          'BefPubSchools': ['type_facilities', 'total_number', 'avg_male', 'avg_female'],
-          'BefPubOffices': ['type_facilities', 'total_number'],
-          'BefPvt': ['type_facilities', 'total_number', 'avg_male', 'avg_female'],
+          'BefPubSchools': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
+          'BefPubOffices': ['type_facilities', 'total_number', 'id'],
+          'BefPvt': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
         },
         'Table_3': {
             'DugDfNdf': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugDfNsa': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNdafStructure': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNdafSupplies': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNdafEquipment': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugPdfaNpdf': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugPdfaNsa': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'total'
-            ],
+                'tc_crc_resc', 'total', 'id'],
             'DugNpdatStructure': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNpdatSupplies': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNpdatEquipment': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosFi': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosCud': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosHoc': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosOue': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
         },
         'Table_4': {
-            'DpefNaf': ['edu_facilities', 'num_edu_facilities', 'male', 'female'],
+            'DpefNaf': ['edu_facilities', 'num_edu_facilities', 'male', 'female', 'id'],
             'DpefBefPreSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefPrmSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefSecSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefUnv': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1',
-                           'est_los_year_2', 'tot_los'],
-            'DpefBefTechInst': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                'est_los_year_1', 'est_los_year_2', 'tot_los']
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefPrmSchool': ['asset', 'primary_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefSecSchool': ['asset', 'secondary_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefUnv': ['asset', 'university', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1',
+                           'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefTechInst': ['asset', 'tech_institute', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                'est_los_year_1', 'est_los_year_2', 'tot_los', 'id']
         },
         'Table_2': {
             'BugArcStructures': [

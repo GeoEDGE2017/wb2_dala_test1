@@ -30,34 +30,24 @@ var init_data = {
     'BsAstWaterEquipment':
                 [{
                     assets :'Navigation equipment',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                 },{
                     assets :'Baggage handling',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                 },{
                     assets :'Security equipment',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                 },
                 {
                     assets :'Vehicles',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                 },
                 {
                     assets :'Office equipment',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                 }],
@@ -80,24 +70,18 @@ var init_data = {
       'BsAstWaterBuildings':
                 [{
                     assets :'1 floor',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost_roof: null,
                     avg_repair_cost_wall: null,
                     avg_repair_cost_floor: null,
                 },{
                     assets :'2-3 floors',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost_roof: null,
                     avg_repair_cost_wall: null,
                     avg_repair_cost_floor: null,
                 },{
                     assets :'More than3 floors',
-                    public: null,
-                    private: null,
                     avg_replace_cost: null,
                     avg_repair_cost_roof: null,
                     avg_repair_cost_wall: null,
@@ -107,16 +91,12 @@ var init_data = {
       'BsAstWaterEmployment':
                 [{
                     assets :'Total Number of Employees of Water Transportation Companies',
-                    public: null,
-                    private: null,
                     male: null,
                     female: null,
                     total: null,
                 },
                 {
                     assets :'Total Number of Other Employees in Water Transport',
-                    public: null,
-                    private: null,
                     male: null,
                     female: null,
                     total: null,

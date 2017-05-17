@@ -458,8 +458,7 @@
                         <td width="170">
                         </td>
                     </tr>
-                    <tr height="19"
-                        ng-repeat="bsAstWaterEmployment in bsAstTransWater.transport_water.Table_1.BsAstWaterEmployment"
+                    <tr height="19" ng-repeat="bsAstWaterEmployment in bsAstTransWater.transport_water.Table_1.BsAstWaterEmployment"
                         ng-if="bsAstWaterEmployment.assets != 'Total Number of Other Employees in Water Transport' && $index==0">
                         <td class="tdpa" rowspan="2" width="253" height="59" ng-bind="bsAstWaterEmployment.assets">
 
@@ -474,18 +473,19 @@
                             Total
                         </td>
                     </tr>
-                    <tr height="40">
+                    <tr height="40" ng-repeat="bsAstWaterEmployment in bsAstTransWater.transport_water.Table_1.BsAstWaterEmployment"
+                        ng-if="bsAstWaterEmployment.assets != 'Total Number of Other Employees in Water Transport' && $index==0">
                         <td width="147" height="40">
-                            <input ng-model="bsAstWaterEmployment[0].male"
+                            <input ng-model="bsAstWaterEmployment[$index].male"
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="151">
-                            <input ng-model="bsAstWaterEmployment[0].female"
+                            <input ng-model="bsAstWaterEmployment[$index].female"
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
-                        <td colspan="2" width="335" ng-model="bsAstWaterEmployment[0].total" ng-bind="bsAstWaterEmployment[0].total =bsAstWaterEmployment[0].male + bsAstWaterEmployment[0].female ">
+                        <td colspan="2" width="335" ng-model="bsAstWaterEmployment[$index].total" ng-bind="bsAstWaterEmployment[$index].total =bsAstWaterEmployment[$index].male + bsAstWaterEmployment[$index].female ">
 
                         </td>
                     </tr>
@@ -505,18 +505,19 @@
                             Total
                         </td>
                     </tr>
-                    <tr height="40">
+                    <tr height="40" ng-repeat="bsAstWaterEmployment in bsAstTransWater.transport_water.Table_1.BsAstWaterEmployment"
+                        ng-if="bsAstWaterEmployment.assets == 'Total Number of Other Employees in Water Transport' && $index==1">
                         <td width="147" height="40">
-                            <input ng-model="bsAstWaterEmployment[1].male"
+                            <input ng-model="bsAstWaterEmployment[$index].male"
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="151">
-                            <input ng-model="bsAstWaterEmployment[1].female"
+                            <input ng-model="bsAstWaterEmployment[$index].female"
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
-                         <td colspan="2" width="335" ng-model="bsAstWaterEmployment[1].total" ng-bind="bsAstWaterEmployment[1].total =bsAstWaterEmployment[1].male + bsAstWaterEmployment[1].female ">
+                         <td colspan="2" width="335" ng-model="bsAstWaterEmployment[$index].total" ng-bind="bsAstWaterEmployment[$index].total =bsAstWaterEmployment[$index].male + bsAstWaterEmployment[$index].female ">
 
                         </td>
                     </tr>

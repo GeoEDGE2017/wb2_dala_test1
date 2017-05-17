@@ -189,7 +189,7 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
             method: "POST",
             url: "/bs_save_data",
             data: angular.toJson({
-            'table_data': ($scope.bsIrgFacilities),
+            'table_data': $scope.bsIrgFacilities,
             'com_data': {'district': $scope.district,
             'bs_date': $scope.bs_date,
             },

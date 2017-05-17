@@ -14,10 +14,8 @@
         <li class="breadcrumb-item"><a href="#">Rail Sub Sector</a>
         </li>
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of Damages and Losses in the Rail Transportation Nationwide / Types of Losses</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of Damages and Losses in the Rail Transportation Nationwide / Types of Losses</span>
         </li>
-
-
     </ol>
 
 
@@ -36,28 +34,28 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead1">
-                    <td  colspan="2" style="padding-left:5px;">
-                        Incident
-                    </td>
-                    <td colspan="5" style="">
+                        <td colspan="2" style="padding-left:5px;">
+                            Incident
+                        </td>
+                        <td colspan="5" style="">
 
-                        <select id="select" name="incident" ng-model="incident"
-                                class="form-control"
-                                style="width:100%;font-weight:400;"
-                                ng-change="changedValue(incident)" required>
+                            <select id="select" name="incident" ng-model="incident"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(incident)" required>
 
-                            <option value="" selected="true">Select an Incident</option>
-                            {% for incident in incidents %}
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
 
-                            <option value={{incident.id}}>{{incident.disaster_type.name}}
-                                {{incident.reported_date_time}}
-                            </option>
-                            {% endfor %}
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                </option>
+                                {% endfor %}
 
-                        </select>
+                            </select>
 
-                    </td>
-</tr>
+                        </td>
+                    </tr>
 
                     <tr class="trheadc1" height="20">
                         <td width="281" height="20">
@@ -79,42 +77,46 @@
 
                         </td>
                         <td width="170">
-                            <input id="textinput" name="textinput" type="number" placeholder="" ng-model="dlTypeLos.year_1" ng-change="getTotal('year_1')"
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   ng-model="dlTypeLos.year_1" ng-change="getTotal('year_1')"
                                    class="form-control input-md">
                         </td>
                         <td width="130">
-                            <input id="textinput" name="textinput" type="number" placeholder="" ng-model="dlTypeLos.year_2" ng-change="getTotal('year_2')"
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   ng-model="dlTypeLos.year_2" ng-change="getTotal('year_2')"
                                    class="form-control input-md">
                         </td>
-                        <td width="125"  ng-model="dlTypeLos.tot_los" ng-bind="dlTypeLos.tot_los = dlTypeLos.year_1 + dlTypeLos.year_2">
+                        <td width="125" ng-model="dlTypeLos.tot_los"
+                            ng-bind="dlTypeLos.tot_los = dlTypeLos.year_1 + dlTypeLos.year_2">
                         </td>
                     </tr>
 
                     <tr height="20" ng-repeat="dlTypeLos in dlTypeLossRail.transport_rail.Table_5.DlTypeLos"
-                      ng-if="dlTypeLos.loss_type == 'TOTAL LOSSES'">
+                        ng-if="dlTypeLos.loss_type == 'TOTAL LOSSES'">
 
-                    <td class="boldash" width="281" height="20" ng-bind="dlTypeLos.loss_type">
+                        <td class="boldash" width="281" height="20" ng-bind="dlTypeLos.loss_type">
 
-                    </td>
+                        </td>
 
-                    <td width="170" ng-model="dlTypeLos.year_1" ng-bind="dlTypeLos.year_1 =
+                        <td width="170" ng-model="dlTypeLos.year_1" ng-bind="dlTypeLos.year_1 =
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[0].year_1 +
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[1].year_1 +
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[2].year_1 +
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[3].year_1">
 
-                    </td>
-                    <td width="170" ng-model="dlTypeLos.year_2" ng-bind="dlTypeLos.year_2 =
+                        </td>
+                        <td width="170" ng-model="dlTypeLos.year_2" ng-bind="dlTypeLos.year_2 =
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[0].year_2 +
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[1].year_2 +
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[2].year_2 +
                     dlTypeLossRail.transport_rail.Table_5.DlTypeLos[3].year_2">
 
-                    </td>
-                    <td width="125" ng-model="dlTypeLos.tot_los" ng-bind="dlTypeLos.tot_los = dlTypeLos.year_1 + dlTypeLos.year_2 ">
+                        </td>
+                        <td width="125" ng-model="dlTypeLos.tot_los"
+                            ng-bind="dlTypeLos.tot_los = dlTypeLos.year_1 + dlTypeLos.year_2 ">
 
 
-                    </td>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

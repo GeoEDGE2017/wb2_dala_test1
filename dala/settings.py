@@ -212,15 +212,15 @@ TABLE_PROPERTY_MAPPER = {
             'tot_dmgloss', 'incident', 'reported_date_time', 'name'],
     },
     'health': {
-        'Table_1': {'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
-                    'BhsComDiseases': ['com_disease', 'male', 'female', 'children', 'elderly', 'id'],
-                    'BhsVi': ['children', 'elderly', 'female', 'male', 'vital_indicators', 'id'],
-                    'BhsOi': ['unit_measure', 'other_indicators', 'id']
-                    },
+        'Table_1': {
+            'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
+            'BhsComDiseases': ['com_disease', 'male', 'female', 'children', 'elderly', 'id'],
+            'BhsVi': ['children', 'elderly', 'female', 'male', 'vital_indicators', 'id'],
+            'BhsOi': ['unit_measure', 'other_indicators', 'id']
+        },
         'Table_2': {
             'BmfPubMf': ['type_pub_mf', 'number', 'male', 'female', 'id'],
             'BmfPvtMf': ['type_pvt_mf', 'number', 'male', 'female', 'id']
-
         },
         'Table_8': {
             'DmhLmhMohDistrict': ['teaching_hospital', 'provincial_general_hospital', 'district_general_hospital',

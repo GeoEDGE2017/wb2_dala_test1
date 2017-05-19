@@ -761,6 +761,80 @@ def dl_fetch_edit_data(request):
     )
 
 
+@csrf_exempt
+def dl_fetch_edit_data_with_array(request):
+    data = (yaml.safe_load(request.body))
+    table_name = data['table_name']
+    sector = data['sector']
+    keys = data['keys']
+    com_data = data['com_data']
+    incident = com_data['incident']
+    tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
+
+    sub_app_name = sector + '.damage_losses'
+    filter_fields = com_data
+
+    dl_mtable_data = {sector: {}}
+    dl_mtable_data[sector][table_name] = {}
+
+    for table in tables:
+        table_fields = tables[table]
+        model_class = apps.get_model(sub_app_name, table)
+        dl_mtable_data[sector][table_name][table] = list(model_class.objects.
+                                                         filter(**filter_fields).
+                                                         values(*table_fields).order_by('id'))
+
+        # print dl_mtable_data
+
+    print ' '
+    print dl_mtable_data[sector][table_name]['DpefBefPreSchool']
+    print ' '
+
+    sub_app_name = sector + '.base_line'
+
+    dl_new_data = {sector: {}}
+    dl_new_data[sector][table_name] = {}
+
+    for tbl in dl_mtable_data[sector][table_name]:
+        print '-----', tbl
+        print '=====', keys
+
+        for key in keys:
+            if tbl == key:
+                # school_model = apps.get_model(sub_app_name, tbl)
+                # bd_sessions = school_model.tbl.objects.order_by('id').values('city').distinct()
+                data_set_ids = []
+
+                print tbl, ' = ', key, ' -> ', keys[key]
+
+                for i in dl_mtable_data[sector][table_name][tbl]:
+                    print '% ', i[keys[key]]
+
+                    if i[keys[key]] not in data_set_ids:
+                        data_set_ids.append(i[keys[key]])
+                print '@', data_set_ids
+
+                array_table_out = []
+                print '---------------'
+                for data_set_id in data_set_ids:
+                    array_table_in = []
+                    for i in dl_mtable_data[sector][table_name][tbl]:
+                        print '# ', i, i[keys[key]]
+
+                        if i[keys[key]] == data_set_id:
+                            array_table_in.append(i)
+                    array_table_out.append(array_table_in)
+                print '=================='
+                print array_table_out
+                dl_new_data[sector][table_name][tbl] = array_table_out
+                break
+
+    return HttpResponse(
+        json.dumps(dl_new_data, cls=DjangoJSONEncoder),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
 # @csrf_exempt
 # def dl_fetch_district_disagtn(request):
 #     data = (yaml.safe_load(request.body))

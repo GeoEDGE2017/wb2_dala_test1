@@ -217,12 +217,6 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
                     division:$scope.division,
                     region:$scope.region,
                 }, {
-                    irrigation_facility : 'Retaining walls',
-                    avg_repair_cost : null,
-                    avg_replacement_cost : null,
-                    division:$scope.division,
-                    region:$scope.region,
-                }, {
                     irrigation_facility : 'Canal linings',
                     avg_repair_cost : null,
                     avg_replacement_cost : null,

@@ -2,15 +2,9 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  
-   
-    
-  });
-  
-
+$(document).ready(function() {
+    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+});
 </script>
 <!-- Main content -->
 <main ng-app="bsEduFacilitiesApp" ng-controller="BsEduFacilitiesController" class="main">
@@ -42,25 +36,22 @@
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td style="background:#fff;border:1px solid #fff;text-align:center;">
-
                             </td>
                             <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.district.$error.required">
                                        Please select district
                                  </span>
                             </td>
-
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.bs_date.$error.required">
+                                <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.baselineDate.$error.required">
                                        Please Select Date
                                  </span>
                             </td>
                         </tr>
                         <tr class="trhead1">
                             <td style="padding-left:5px;"> Name of District</td>
-
                             <td colspan="" style="">
                                 <select ng-model="district" id="selectbasic" name="district" class="form-control"
                                         style="font-weight:400;" required>
@@ -74,9 +65,8 @@
                                 Year/Month
                             </td>
                             <td colspan="2" style="font-weight:normal;">
-                                <input ng-model="bs_date" required name="bs_date" type="text" placeholder="mm/yy"
-                                       id="datepicker"
-                                       class="form-control input-md">
+                                <input name="textinput" type="text" placeholder="mm/yy" id="datepicker"
+                                       ng-model="baselineDate" class="form-control input-md" required>
                             </td>
                         </tr>
                         <tr class="trheadc1" height="17">
@@ -100,7 +90,6 @@
                         </tr>
                         </tbody>
                     </table>
-
                     <div id="boxscroll1" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
@@ -123,7 +112,6 @@
                             <tr ng-repeat="befPubSchool in bsEduFacilities.education.Table_1.BefPubSchools" height="17">
                                 <td ng-bind="befPubSchool.type_facilities" ng-model="befPubSchool.type_facilities"
                                     class="tdpa" width="280" height="17" >
-
                                 </td>
                                 <td colspan="3" width="136">
                                     <input ng-model="befPubSchool.total_number" type="number" placeholder=""
@@ -140,7 +128,6 @@
                                            class="form-control input-md">
                                 </td>
                             </tr>
-
                             <tr class="trheadc" class="trheadc" height="17">
                                 <td width="280" height="17">
                                     Offices
@@ -155,7 +142,6 @@
                             <tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices" ng-if="befPubOffice.type_facilities != 'TOTAL'" height="17">
                                 <td ng-bind="befPubOffice.type_facilities" ng-model="BefPubOffices.type_facilities"
                                     class="tdpa" width="280" height="17">
-
                                 </td>
                                 <td colspan="3" width="136">
                                     <input ng-model="befPubOffice.total_number" type="number" placeholder="" ng-change="getTotal('BefPubOffices','total_number');"
@@ -172,23 +158,17 @@
                                     TOTAL NUMBER OF STUDENTS
                                 </td>
                                 <td colspan="3" width="136" ng-bind="facilitiesTot">
-
                                 </td>
-
                                 <td colspan="3" width="136" ng-bind="TotMale">
-
                                 </td>
                                 <td colspan="3" width="136" ng-bind="TotFemale">
-
                                 </td>
                                 {% endverbatim %}
                             </tr>
-
                             <tr class="trheadc" height="17">
                                 <td colspan="8" width="280" height="17">
                                     Private Sector
                                 </td>
-
                             </tr>
                             <tr ng-init="" ng-repeat="befPvt in bsEduFacilities.education.Table_1.BefPvt" ng-if="befPvt.type_facilities != 'TOTAL NUMBER OF STUDENTS '" height="17">
                                 <td ng-bind="befPvt.type_facilities" ng-model="befPvt.type_facilities" ng-if="$index < 5" class="tdpa">
@@ -207,13 +187,11 @@
                                         class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
-
                                 <td colspan="3" width="136">
                                     <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].total_number"
                                            ng-change="getPrivateTot('BefPvt','total_number');"
                                            type="number" placeholder=""
                                            class="form-control input-md">
-
                                 </td>
                                 <td colspan="3" width="136">
                                     <input ng-model="bsEduFacilities.education.Table_1.BefPvt[$index].avg_male"
@@ -236,18 +214,14 @@
                                 </td>
                                 <td colspan="3" colspan="3" width="136">
                                 </td>
-                                
-                                
                             </tr>
                             <tr ng-repeat ="befPvt in bsEduFacilities.education.Table_1.BefPvt " ng-if="bsEduFacilities.education.Table_1.BefPvt[$index].type_facilities == 'TOTAL NUMBER OF STUDENTS '" height="17">
                                 <td ng-bind="bsEduFacilities.education.Table_1.BefPvt.type_facilities"
                                     ng-model="bsEduFacilities.education.Table_1.BefPvt.type_facilities" class="tdpa"
                                     width="280" height="17">
-
                                 </td>
                                 <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt.total_number"
-                                            ng-bind="BefPvt_total_number">
-
+                                    ng-bind="BefPvt_total_number">
                                 </td>
                                 <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt.avg_male"
                                     ng-bind="bsEduFacilities.education.Table_1.BefPvt.avg_male">
@@ -255,33 +229,25 @@
                                 <td colspan="3" width="136" ng-model="bsEduFacilities.education.Table_1.BefPvt.avg_female" ng-bind="bsEduFacilities.education.Table_1.BefPvt.avg_female = BefPvt_avg_female">
                                 </td>
                             </tr>
-
                             </tbody>
                         </table>
-
-
                     </div>
-
-
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                        <button type="button" ng-click="bsEditData(form_bs_edu_fac)" ng-if="!is_edit"
+                        <button type="button" ng-click="editBsData(form_bs_edu_fac)" ng-if="!is_edit"
                                 class="btn btn-success">Edit
                         </button>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                             Edit
                         </button>
-                        <button type="button" ng-click="bsEduDataSubmit(form_bs_edu_fac)" class="btn btn-success">
+                        <button type="button" ng-click="saveBsData(form_bs_edu_fac)" class="btn btn-success">
                             Submit
                         </button>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>

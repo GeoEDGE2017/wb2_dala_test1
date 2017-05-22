@@ -260,6 +260,8 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                 $scope.district = "";
                 console.log(data);
 
+                
+
             })
         }
     }

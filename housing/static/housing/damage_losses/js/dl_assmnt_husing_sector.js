@@ -474,7 +474,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     }
 
 //Calculate Loss Total
-   $scope.calLosTotTotal=function(arr,property){
+    $scope.calLosTotTotal=function(arr,property){
         var finaltotal = 0;
         console.log('test',arr);
         angular.forEach(arr, function(value, key) {

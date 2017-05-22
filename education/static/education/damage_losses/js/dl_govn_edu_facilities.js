@@ -2,7 +2,6 @@
 var bsHealthStatusApp = angular.module('dlGovnEduFacilitiesApp', ['ui.bootstrap', 'popoverToggle','underscore']);
 
 bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEduFacilitiesController($scope, $http, _) {
-
     $scope.dlGovnEduFacilities;
     $scope.total;
     $scope.iter_tot;
@@ -26,6 +25,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
     $scope.dugNdafEquTot = 0;
     var total=0;
     var tabtwototal = 0;
+    $scope.currentBaselineDate = null;
 
 
     var init_data = {
@@ -672,7 +672,6 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 
         if( $scope.incident && $scope.district){
             $scope.fetchDlData();
-
         }
     }
 
@@ -744,7 +743,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
             data: angular.toJson({
                 'table_name':  'Table_2',
                 'sector': 'education',
-                'db_tables': ['BugArcStructures','BugArcSupplies','BugArcEquipment','BugArpcStructures','BugArpcSupplies','BugArpcEquipment','BugAfr','BugCrp'],
+                'db_tables': ['BugArcStructures', 'BugArcSupplies', 'BugArcEquipment', 'BugArpcStructures', 'BugArpcSupplies', 'BugArpcEquipment', 'BugAfr', 'BugCrp'],
                 'com_data': {
                     'district': $scope.district.district__id,
                     'incident': $scope.incident,
@@ -754,152 +753,159 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
             angular.forEach(data, function(value, key) {
                 $scope.bs_data[key] = JSON.parse(value);
             });
-            generateRefencedData();
-            $scope.calTotal();
+
+            $http({
+                //this table does not get any data from baseline tables,
+                //but we pass baseline table 3, for get baseline data only
+                method: 'POST',
+                url: '/get_latest_bs_date',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BugArcStructures', 'BugArcSupplies', 'BugArcEquipment', 'BugArpcStructures', 'BugArpcSupplies', 'BugArpcEquipment', 'BugAfr', 'BugCrp'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_2',
+                    'sector': 'education'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'null') {
+                    $scope.currentBaselineDate = "Baseline data not available in Table_2";
+                }
+                else {
+                    var result = response.data;
+                    result = result.replace(/^"(.*)"$/, '$1');
+                    $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                    console.log($scope.currentBaselineDate);
+
+                    generateRefencedData();
+                    $scope.calTotal();
+                }
+            });
         })
     }
 
-    function generateRefencedData(){
+    function generateRefencedData() {
         data_array = ['BugArcSupplies', 'BugArcEquipment'];
-
         angular.forEach(data_array, function(value, key) {
-        obj_array = $scope.bs_data[value];
-        model_name = value;
-        var particular_value_1 = null;
-        var particular_value_2 = null;
+            obj_array = $scope.bs_data[value];
+            model_name = value;
+            var particular_value_1 = null;
+            var particular_value_2 = null;
 
-        if(model_name == 'BugArcSupplies')
-        {
-           dl_model1 = 'DugNdafSupplies';
-           dl_model2 = 'DugNpdatSupplies';
-           particular_value_1 = 'Value of Destroyed Supplies and Materials';
-           particular_value_2 = 'Value of Partially Damaged Supplies and Materials';
+            if(model_name == 'BugArcSupplies') {
+               dl_model1 = 'DugNdafSupplies';
+               dl_model2 = 'DugNpdatSupplies';
+               particular_value_1 = 'Value of Destroyed Supplies and Materials';
+               particular_value_2 = 'Value of Partially Damaged Supplies and Materials';
+            }
+            else if(model_name == 'BugArcEquipment') {
+               dl_model1 = 'DugNdafEquipment';
+               dl_model2 = 'DugNpdatEquipment';
+               particular_value_1 = 'Value of Destroyed Equipment';
+               particular_value_2 = 'Value of Partially Damaged Equipment';
+            }
+
+            $scope.dlGovnEduFacilities.education.Table_3[dl_model1] = [];
+            $scope.dlGovnEduFacilities.education.Table_3[dl_model2] = [];
+
+            var obj1 = {
+                particulars: particular_value_1,
+                ab1_1c: null,
+                type_2: null,
+                type_3: null,
+                pirivena: null,
+                training_institutes: null,
+                training_colleges: null,
+                tc_crc_resc: null,
+                min_pzd_offices: null,
+                total: null
+            };
+
+            var obj2 = {
+                particulars: particular_value_2,
+                ab1_1c: null,
+                type_2: null,
+                type_3: null,
+                pirivena: null,
+                training_institutes: null,
+                training_colleges: null,
+                tc_crc_resc: null,
+                min_pzd_offices: null,
+                total: null
+            };
+
+            //    console.log($scope.dlGovnEduFacilities.education.Table_3);
+
+            angular.forEach(obj_array, function(value, key) {
+            var obj1 = {
+                particulars: value.fields.particulars,
+                ab1_1c: null,
+                type_2: null,
+                type_3: null,
+                pirivena: null,
+                training_institutes: null,
+                training_colleges: null,
+                tc_crc_resc: null,
+                min_pzd_offices: null,
+                total: null
+            };
+
+            var obj2 = {
+                particulars: value.fields.particulars,
+                ab1_1c: null,
+                type_2: null,
+                type_3: null,
+                pirivena: null,
+                training_institutes: null,
+                training_colleges: null,
+                tc_crc_resc: null,
+                min_pzd_offices: null,
+                total: null
+            };
+
+            if(model_name == 'BugArcSupplies') {
+               $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
+               $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
+            }
+            else if(model_name == 'BugArcEquipment') {
+               $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
+               $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
+            }
+
+
+            });
+
+            $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
+            $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
+
+        });
+    }
+
+    $scope.calTotal = function(model,property) {
+        var obj_array;
+        total=0;
+
+        if( model == 'DugNdafSupplies') {
+            obj_array = $scope.bs_data.BugArcSupplies;
         }
-        else if(model_name == 'BugArcEquipment')
-        {
-           dl_model1 = 'DugNdafEquipment';
-           dl_model2 = 'DugNpdatEquipment';
-           particular_value_1 = 'Value of Destroyed Equipment';
-           particular_value_2 = 'Value of Partially Damaged Equipment';
+        if( model == 'DugNdafEquipment') {
+            obj_array = $scope.bs_data.BugArcEquipment;
         }
-
-
-        $scope.dlGovnEduFacilities.education.Table_3[dl_model1] = [];
-        $scope.dlGovnEduFacilities.education.Table_3[dl_model2] = [];
-
-        var obj1 = {
-        particulars: particular_value_1,
-        ab1_1c: null,
-        type_2: null,
-        type_3: null,
-        pirivena: null,
-        training_institutes: null,
-        training_colleges: null,
-        tc_crc_resc: null,
-        min_pzd_offices: null,
-        total: null
-        };
-
-        var obj2 = {
-        particulars: particular_value_2,
-        ab1_1c: null,
-        type_2: null,
-        type_3: null,
-        pirivena: null,
-        training_institutes: null,
-        training_colleges: null,
-        tc_crc_resc: null,
-        min_pzd_offices: null,
-        total: null
-        };
-
-        //    console.log($scope.dlGovnEduFacilities.education.Table_3);
+        if(model == 'DugNpdatSupplies'){
+            obj_array = $scope.bs_data.BugArpcSupplies;
+        }
+        if(model == 'DugNpdatEquipment'){
+            obj_array = $scope.bs_data.BugArpcEquipment;
+        }
 
         angular.forEach(obj_array, function(value, key) {
-        var obj1 = {
-                    particulars: value.fields.particulars,
-                    ab1_1c: null,
-                    type_2: null,
-                    type_3: null,
-                    pirivena: null,
-                    training_institutes: null,
-                    training_colleges: null,
-                    tc_crc_resc: null,
-                    min_pzd_offices: null,
-                    total: null
-                  };
-
-         var obj2 = {
-                    particulars: value.fields.particulars,
-                    ab1_1c: null,
-                    type_2: null,
-                    type_3: null,
-                    pirivena: null,
-                    training_institutes: null,
-                    training_colleges: null,
-                    tc_crc_resc: null,
-                    min_pzd_offices: null,
-                    total: null
-                  };
-
-        if(model_name == 'BugArcSupplies')
-        {
-           $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
-           $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
-        }
-        else if(model_name == 'BugArcEquipment')
-        {
-           $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
-           $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
-        }
-
-
-        });
-
-        $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
-        $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
-
-        });
-
-        }
-
-$scope.calTotal = function(model,property)
-{
-    var obj_array;
-    total=0;
-
-     if( model == 'DugNdafSupplies')
-      {
-        obj_array = $scope.bs_data.BugArcSupplies;
-
-      }
-      if( model == 'DugNdafEquipment')
-      {
-       obj_array = $scope.bs_data.BugArcEquipment;
-
-      }
-      if(model == 'DugNpdatSupplies'){
-
-
-     obj_array = $scope.bs_data.BugArpcSupplies;
-
-      }
-      if(model == 'DugNpdatEquipment'){
-
-      obj_array = $scope.bs_data.BugArpcEquipment;
-
-      }
-
-    angular.forEach(obj_array, function(value, key) {
-
-
-    total = total + ($scope.dlGovnEduFacilities.education.Table_3[model][key][property] * value.fields[property]);
-
-    })
-
-    return total;
-
-}
+            total = total + ($scope.dlGovnEduFacilities.education.Table_3[model][key][property] * value.fields[property]);
+        })
+        return total;
+    }
 
 
 $scope.getTotal =function (value){

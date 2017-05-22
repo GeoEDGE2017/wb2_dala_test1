@@ -338,9 +338,7 @@
                                    class="form-control input-md">
                         </td>
 
-                         <td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public"
-                            ng-bind="dlWaterDmgMaterials.tot_dmg_public =
-                                          dlWaterDmgMaterials.num_tdestroyed_public * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost">
+                         <td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'" colspan="2" class="tdpa">
 
                         </td>
                          <td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public"
@@ -350,9 +348,7 @@
 
                         </td>
 
-                        <td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private"
-                            ng-bind="dlWaterDmgMaterials.tot_dmg_private =
-                                          dlWaterDmgMaterials.num_tdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost">
+                        <td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'" colspan="2" class="tdpa">
 
                         </td>
                          <td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private"
@@ -397,91 +393,91 @@
             </div>
             <div class="tab-pane" id="step2">
                 <table class="table table-bordered">
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" width="253" height="38">
-                            Structures
-                        </td>
-                        <td colspan="2" width="298">
-                            Totally Destroyed
-                        </td>
-                        <td colspan="2" width="335">
-                            Partially Damaged
-                        </td>
-                        <td colspan="3" rowspan="2" width="394">
-                            Total Damages (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
-                        <td width="147" height="19">
-                            Number
-                        </td>
-                        <td width="151">
-                            Total Meters
-                        </td>
-                        <td width="165">
-                            Number
-                        </td>
-                        <td width="170">
-                            Total Meters
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures"
-                        ng-if="dlWaterDmgStructures.assets != 'Total'">
-                        <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">
+                    <!--<tr class="trheadc1" height="19">-->
+                        <!--<td rowspan="2" width="253" height="38">-->
+                            <!--Structures-->
+                        <!--</td>-->
+                        <!--<td colspan="2" width="298">-->
+                            <!--Totally Destroyed-->
+                        <!--</td>-->
+                        <!--<td colspan="2" width="335">-->
+                            <!--Partially Damaged-->
+                        <!--</td>-->
+                        <!--<td colspan="3" rowspan="2" width="394">-->
+                            <!--Total Damages (LKR)-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr class="trsubc" height="19">-->
+                        <!--<td width="147" height="19">-->
+                            <!--Number-->
+                        <!--</td>-->
+                        <!--<td width="151">-->
+                            <!--Total Meters-->
+                        <!--</td>-->
+                        <!--<td width="165">-->
+                            <!--Number-->
+                        <!--</td>-->
+                        <!--<td width="170">-->
+                            <!--Total Meters-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr height="19"-->
+                        <!--ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures"-->
+                        <!--ng-if="dlWaterDmgStructures.assets != 'Total'">-->
+                        <!--<td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">-->
 
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_num" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_meters" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_num" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
+                        <!--</td>-->
+                        <!--<td width="147">-->
+                            <!--<input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_num" name="textinput"-->
+                                   <!--type="number" placeholder=""-->
+                                   <!--class="form-control input-md">-->
+                        <!--</td>-->
+                        <!--<td width="151">-->
+                            <!--<input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_meters" name="textinput"-->
+                                   <!--type="number" placeholder=""-->
+                                   <!--class="form-control input-md">-->
+                        <!--</td>-->
+                        <!--<td width="165">-->
+                            <!--<input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_num" name="textinput"-->
+                                   <!--type="number" placeholder=""-->
+                                   <!--class="form-control input-md">-->
+                        <!--</td>-->
 
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_meters" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages"
-                       ng-bind="dlWaterDmgStructures.tot_damages =
-                       $parent.dlWaterDmgStructures.num_tdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_replace_cost +
-                       $parent.dlWaterDmgStructures.num_pdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_repair_cost">
+                        <!--<td width="165">-->
+                            <!--<input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_meters" name="textinput"-->
+                                   <!--type="number" placeholder=""-->
+                                   <!--class="form-control input-md">-->
+                        <!--</td>-->
+                        <!--<td width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages"-->
+                       <!--ng-bind="dlWaterDmgStructures.tot_damages =-->
+                       <!--$parent.dlWaterDmgStructures.num_tdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_replace_cost +-->
+                       <!--$parent.dlWaterDmgStructures.num_pdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_repair_cost">-->
 
-                        </td>
-                    </tr>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures"
-                        ng-if="dlWaterDmgStructures.assets == 'Total'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tr>-->
+                    <!--<tr height="19"-->
+                        <!--ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures"-->
+                        <!--ng-if="dlWaterDmgStructures.assets == 'Total'">-->
+                        <!--<td class="boldash" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">-->
 
-                        </td>
-                        <td width="147" class="tdpa">
+                        <!--</td>-->
+                        <!--<td width="147" class="tdpa">-->
 
-                        </td>
-                        <td width="151" class="tdpa">
+                        <!--</td>-->
+                        <!--<td width="151" class="tdpa">-->
 
-                        </td>
-                        <td width="165" class="tdpa">
+                        <!--</td>-->
+                        <!--<td width="165" class="tdpa">-->
 
-                        </td>
-                        <td width="165" class="tdpa">
+                        <!--</td>-->
+                        <!--<td width="165" class="tdpa">-->
 
-                        </td>
-                        <td width="126" ng-bind="CalStruTot($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures)" colspan="4">
+                        <!--</td>-->
+                        <!--<td width="126" ng-bind="CalStruTot($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures)" colspan="4">-->
 
-                        </td>
-                    </tr>
+                        <!--</td>-->
+                    <!--</tr>-->
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" width="253" height="38">
                             Buildings

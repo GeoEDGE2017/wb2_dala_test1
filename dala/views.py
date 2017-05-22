@@ -342,16 +342,8 @@ def bs_get_data_mock_for_bs(request):
     print '@'
 
     try:
-        # bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)).filter(table_name=table_name, district=district). \
-        #     values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
-
         bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district). \
             values('id', 'bs_date').order_by('id').latest('id')
-
-        # bd_sessions = bs_session_model.objects.all()
-
-
-        # bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district).order_by('id').latest('id')
 
         print '*'
         print bd_sessions
@@ -665,6 +657,9 @@ def dl_save_data_with_array(request):
                                 if isinstance(property, dict):
                                     model_object_item = model_class()
 
+                                    model_object_item.created_date = todate
+                                    model_object_item.lmd = todate
+
                                     for com_property in com_data:
                                         print com_data[com_property]
                                         setattr(model_object_item, com_property, com_data[com_property])
@@ -762,6 +757,80 @@ def dl_fetch_edit_data(request):
 
     return HttpResponse(
         json.dumps(dl_mtable_data, cls=DjangoJSONEncoder),
+        content_type='application/javascript; charset=utf8'
+    )
+
+
+@csrf_exempt
+def dl_fetch_edit_data_with_array(request):
+    data = (yaml.safe_load(request.body))
+    table_name = data['table_name']
+    sector = data['sector']
+    keys = data['keys']
+    com_data = data['com_data']
+    incident = com_data['incident']
+    tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
+
+    sub_app_name = sector + '.damage_losses'
+    filter_fields = com_data
+
+    dl_mtable_data = {sector: {}}
+    dl_mtable_data[sector][table_name] = {}
+
+    for table in tables:
+        table_fields = tables[table]
+        model_class = apps.get_model(sub_app_name, table)
+        dl_mtable_data[sector][table_name][table] = list(model_class.objects.
+                                                         filter(**filter_fields).
+                                                         values(*table_fields).order_by('id'))
+
+        # print dl_mtable_data
+
+    print ' '
+    print dl_mtable_data[sector][table_name]['DpefBefPreSchool']
+    print ' '
+
+    sub_app_name = sector + '.base_line'
+
+    dl_new_data = {sector: {}}
+    dl_new_data[sector][table_name] = {}
+
+    for tbl in dl_mtable_data[sector][table_name]:
+        print '-----', tbl
+        print '=====', keys
+
+        for key in keys:
+            if tbl == key:
+                # school_model = apps.get_model(sub_app_name, tbl)
+                # bd_sessions = school_model.tbl.objects.order_by('id').values('city').distinct()
+                data_set_ids = []
+
+                print tbl, ' = ', key, ' -> ', keys[key]
+
+                for i in dl_mtable_data[sector][table_name][tbl]:
+                    print '% ', i[keys[key]]
+
+                    if i[keys[key]] not in data_set_ids:
+                        data_set_ids.append(i[keys[key]])
+                print '@', data_set_ids
+
+                array_table_out = []
+                print '---------------'
+                for data_set_id in data_set_ids:
+                    array_table_in = []
+                    for i in dl_mtable_data[sector][table_name][tbl]:
+                        print '# ', i, i[keys[key]]
+
+                        if i[keys[key]] == data_set_id:
+                            array_table_in.append(i)
+                    array_table_out.append(array_table_in)
+                print '=================='
+                print array_table_out
+                dl_new_data[sector][table_name][tbl] = array_table_out
+                break
+
+    return HttpResponse(
+        json.dumps(dl_new_data, cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
     )
 

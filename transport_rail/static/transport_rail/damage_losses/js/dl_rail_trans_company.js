@@ -296,26 +296,31 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     var array5 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss;
 
     angular.forEach(array1, function(value, key) {
-
+    if(value.asset !='Total'){
      finaltotal1 = finaltotal1 + value.tot_damages ;
+     }
     })
     angular.forEach(array2, function(value, key) {
-
+    if(value.asset !='Total'){
      finaltotal2 = finaltotal2 + value.tot_damages ;
+     }
     })
     angular.forEach(array3, function(value, key) {
-
+    if(value.asset !='Total'){
      finaltotal3 = finaltotal3 + value.tot_damages ;
+     }
     })
     angular.forEach(array4, function(value, key) {
-
+    if(value.asset !='Total'){
      finaltotal4 = finaltotal4 + value.tot_damages ;
+     }
     })
     angular.forEach(array5, function(value, key) {
-
+    if(value.asset !='Total'){
      finaltotal5 = finaltotal5 + value.tot_damages ;
+     }
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+    grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
     return grantot;
     }
 

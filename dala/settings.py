@@ -209,18 +209,18 @@ STATIC_URL = '/static/'
 TABLE_PROPERTY_MAPPER = {
     'dashboard': {
         'IncidentTotal': [
-                'tot_dmgloss', 'incident', 'reported_date_time', 'name'],
+            'tot_dmgloss', 'incident', 'reported_date_time', 'name'],
     },
     'health': {
-        'Table_1': {'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
-                    'BhsComDiseases': ['com_disease', 'male', 'female', 'children', 'elderly', 'id'],
-                    'BhsVi': ['children', 'elderly', 'female', 'male', 'vital_indicators', 'id'],
-                    'BhsOi': ['unit_measure', 'other_indicators', 'id']
-                    },
+        'Table_1': {
+            'BhsPlc': ['children', 'elderly', 'female', 'male', 'id'],
+            'BhsComDiseases': ['com_disease', 'male', 'female', 'children', 'elderly', 'id'],
+            'BhsVi': ['children', 'elderly', 'female', 'male', 'vital_indicators', 'id'],
+            'BhsOi': ['unit_measure', 'other_indicators', 'id']
+        },
         'Table_2': {
             'BmfPubMf': ['type_pub_mf', 'number', 'male', 'female', 'id'],
             'BmfPvtMf': ['type_pvt_mf', 'number', 'male', 'female', 'id']
-
         },
         'Table_8': {
             'DmhLmhMohDistrict': ['teaching_hospital', 'provincial_general_hospital', 'district_general_hospital',
@@ -792,80 +792,67 @@ TABLE_PROPERTY_MAPPER = {
     },
     'education': {
         'Table_1': {
-          'BefPubSchools': ['type_facilities', 'total_number', 'avg_male', 'avg_female'],
-          'BefPubOffices': ['type_facilities', 'total_number'],
-          'BefPvt': ['type_facilities', 'total_number', 'avg_male', 'avg_female'],
+
+          'BefPubSchools': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
+          'BefPubOffices': ['type_facilities', 'total_number', 'id'],
+          'BefPvt': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
         },
         'Table_3': {
             'DugDfNdf': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugDfNsa': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNdafStructure': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNdafSupplies': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNdafEquipment': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugPdfaNpdf': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugPdfaNsa': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'total'
-            ],
+                'tc_crc_resc', 'total', 'id'],
             'DugNpdatStructure': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNpdatSupplies': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugNpdatEquipment': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosFi': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosCud': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosHoc': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
             'DugLosOue': [
                 'particulars', 'ab1_1c', 'type_2', 'type_3', 'pirivena', 'training_institutes', 'training_colleges',
-                'tc_crc_resc', 'min_pzd_offices', 'total'
-            ],
+                'tc_crc_resc', 'min_pzd_offices', 'total', 'id'],
         },
         'Table_4': {
-            'DpefNaf': ['edu_facilities', 'num_edu_facilities', 'male', 'female'],
+            'DpefNaf': ['edu_facilities', 'num_edu_facilities', 'male', 'female', 'id'],
             'DpefBefPreSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefPrmSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefSecSchool': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                 'est_los_year_1', 'est_los_year_2', 'tot_los'],
-            'DpefBefUnv': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1',
-                           'est_los_year_2', 'tot_los'],
-            'DpefBefTechInst': ['asset', 'pre_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                'est_los_year_1', 'est_los_year_2', 'tot_los']
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefPrmSchool': ['asset', 'primary_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefSecSchool': ['asset', 'secondary_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefUnv': ['asset', 'university', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1',
+                           'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefTechInst': ['asset', 'tech_institute', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                'est_los_year_1', 'est_los_year_2', 'tot_los', 'id']
         },
         'Table_2': {
             'BugArcStructures': [
@@ -1383,8 +1370,6 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
             'BsAstWaterStructures':
                 ['assets',
-                 'public',
-                 'private',
                  'avg_replace_cost',
                  'avg_repair_cost',
                  'id'],
@@ -1404,6 +1389,65 @@ TABLE_PROPERTY_MAPPER = {
                  'male',
                  'female',
                  'id'],
+
+        },
+        'Table_2': {
+            'DlWaterDmgBuildings':
+                ['assets',
+                 'tdestroyed_num',
+                 'tdestroyed_smeters',
+                 'pdamaged_num',
+                 'pdamaged_roof',
+                 'wall',
+                 'floor',
+                 'tot_damages',
+                 'id'],
+            'DlWaterDmgEquipment':
+                ['assets',
+                 'num_tdestroyed_public',
+                 'num_tdestroyed_private',
+                 'num_pdestroyed_public',
+                 'num_pdestroyed_private',
+                 'tot_dmg_private',
+                 'tot_dmg_public',
+                 'id'],
+            'DlWaterDmgMaterials':
+                ['assets',
+                 'num_tdestroyed_public',
+                 'num_tdestroyed_private',
+                 'num_pdestroyed_public',
+                 'num_pdestroyed_private',
+                 'tot_dmg_private',
+                 'tot_dmg_public',
+                 'id'],
+            'DlWaterDmgWcrafts':
+                ['assets',
+                 'num_tdestroyed_public',
+                 'num_tdestroyed_private',
+                 'num_pdestroyed_public',
+                 'num_pdestroyed_private',
+                 'tot_dmg_private',
+                 'tot_dmg_public',
+                 'id'],
+            'DlWaterLosFi':
+                ['year_1_pub',
+                 'year_1_pvt',
+                 'year_2_pub',
+                 'year_2_pvt',
+                 'tot_los_pub',
+                 'tot_los_pvt',
+                 'type_los',
+                 'id'],
+            'DlWaterLosOther':
+                ['year_1_pub',
+                 'year_1_pvt',
+                 'year_2_pub',
+                 'year_2_pvt',
+                 'tot_los_pub',
+                 'tot_los_pvt',
+                 'type_los',
+                 'id'],
+
 
         },
         'Table_3': {
@@ -3063,7 +3107,8 @@ TABLE_PROPERTY_MAPPER = {
     },
     'industry_services': {
         'Table_1': {
-            'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro', 'num_small', 'id'],
+            'BsFrmNumBusIndustry': ['industry', 'num_male', 'num_female', 'num_large', 'num_medium', 'num_micro',
+                                    'num_small', 'id'],
             'BsFrmNumBusServices': ['service', 'num_male', 'num_female', 'num_medium', 'num_micro', 'num_small', 'id'],
         },
         'Table_2': {
@@ -3075,7 +3120,8 @@ TABLE_PROPERTY_MAPPER = {
             'DmgAstMachinery': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
             'DmgAstVehicles': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
             'DmgAstStocks': ['assets', 'replace_val_destroyed', 'repair_val_damaged', 'tot_damaged', 'id', ],
-            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+            'LosTypeLossses': ['assets', 'avg_val_output_year', 'est_val_output_year1', 'est_val_output_year2',
+                               'los_year1', 'los_year2', 'tot_losses', 'id'],
         },
         'Table_4': {
             'DlInfDmgTypBusiness': ['assets', 'repair_val_ast_damaged', 'replace_val_ast_destroyed', 'tot_damages',
@@ -3493,7 +3539,8 @@ TABLE_PROPERTY_MAPPER = {
     },
     'telecommunication': {
         'Table_1': {
-            'BsTelCompany': ['fixed_voice', 'fixed_tv', 'fixed_data', 'mobile_voice', 'mobile_data', 'ownership', 'company', 'company_name', 'id'],
+            'BsTelCompany': ['fixed_voice', 'fixed_tv', 'fixed_data', 'mobile_voice', 'mobile_data', 'ownership',
+                             'company', 'company_name', 'id'],
         },
         'Table_2': {
             'DlNumEmpDistrict': ['num_emp_male', 'mun_emp_female', 'tot_emp', 'num_clients', 'id'],

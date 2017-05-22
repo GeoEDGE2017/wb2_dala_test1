@@ -2,7 +2,6 @@
 var bsHealthStatusApp = angular.module('bsUcostGeduFacilitiesApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcostGeduFacilitiesController($scope, $http) {
-
     $scope.bsUcostGeduFacilities;
     $scope.total;
     $scope.iter_tot;

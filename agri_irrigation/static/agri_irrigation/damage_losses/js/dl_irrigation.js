@@ -320,7 +320,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                     region:$scope.region,
                 }],
                 'DlRiverEmbankmnt': [{
-                    irrigation_assets : 'River Embankmentss',
+                    irrigation_assets : 'River Embankments',
                     partially_damaged : null,
                     totally_destroyed : null,
                     damages : null,
@@ -503,7 +503,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(data);
-
+                var is_null=false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
                         is_null = true;
@@ -807,6 +807,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
     var finaltotal5 = 0;
     var finaltotal5 = 0;
     var finaltotal6 = 0;
+    var finaltotal7 = 0;
 
 
     var grantot = 0;
@@ -817,6 +818,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
     var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlAnicuts;
     var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlOtherStructures;
     var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlBuildings;
+    var array7= $scope.dlIrrigation.agri_irrigation.Table_3.DlRiverEmbankmnt;
 
 
     angular.forEach(array1, function(value, key) {
@@ -840,17 +842,23 @@ if(value.irrigation_assets != 'Total' && value.building != 'Total'){
      }
     })
     angular.forEach(array5, function(value, key) {
-if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+   if(value.irrigation_assets != 'Total' && value.building != 'Total'){
      finaltotal5 = finaltotal5 + value.damages;
      }
     })
      angular.forEach(array6, function(value, key) {
-if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
      finaltotal6 = finaltotal6 + value.damages;
      }
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3  + finaltotal4 + finaltotal5 + finaltotal6 ;
-    console.log(grantot);
+
+    angular.forEach(array7, function(value, key) {
+    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+     finaltotal7 = finaltotal7 + value.damages ;
+     }
+    })
+    grantot = finaltotal1+ finaltotal2 + finaltotal3  + finaltotal4 + finaltotal5 + finaltotal6 + finaltotal7 ;
+    console.log('final',finaltotal5);
     return grantot;
     }
 

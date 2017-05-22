@@ -1,19 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlEduDistrictApp" ng-controller="DlEduDistrictController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Education Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:education_main' %}">Education Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of Damages and Losses in the Education Sector in a District</span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
 
     <div class="container-fluid">
@@ -124,6 +125,7 @@
                         <td width="110" ng-bind="$parent.data.education.Table_5.DpefBefDistrict[2].ab1_1c">
 
                         </td>
+                        <td> </td>
                     </tr>
                     <tr  height="17" ng-repeat="dugDfDistrict in data.education.Table_5.DugDfDistrict">
                         <td class="tdpa" width="307" height="17">Type 2

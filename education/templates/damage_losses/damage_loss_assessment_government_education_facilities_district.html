@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
 
@@ -19,9 +20,9 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Education Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:education_main' %}">Education Sector</a>
         </li>
 
         <li class="breadcrumb-item active">
@@ -29,7 +30,7 @@
                 Table 3. Damage and Loss Assessment of Government Education Facilities in the District
             </span>
         </li>
-
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
 
 
@@ -446,34 +447,34 @@
                         <tbody>
 
                         <tr class="trsubc" height="51">
-                            <td class="trheadc1" width="360" height="51" style="width:19.5%;">
+                            <td class="trheadc1" width="360" height="51" style="width:10%;">
                                 Assets
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 1AB, 1C
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Type 2
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Type 3
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Pirivena
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Training Institutes
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 NCOE, Training Colleges
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 TC, CRC, RESC
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Ministry, Provincial, Zonal, Divisional Offices, NIE
                             </td>
-                            <td width="122">
+                            <td width="122" style="width:10%;">
                                 Total Damages (LKR)
                             </td>
                         </tr>
@@ -493,37 +494,37 @@
                                 ng-repeat="dugNdafStructure in dlGovnEduFacilities.education.Table_3.DugNdafStructure"
                                 ng-if=" $index < 3 && dugNdafStructure.particulars != 'Value of Destroyed Structures' ">
                                 <td ng-model="dugNdafStructure.particulars" ng-bind="dugNdafStructure.particulars"
-                                    class="tdpa" width="280" height="17" >
+                                    class="tdpa" width="280" height="17" style="width:10%;">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.ab1_1c" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.type_2" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.type_3" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.pirivena" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.training_institutes" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.training_colleges" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.tc_crc_resc" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNdafStructure.min_pzd_offices" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
@@ -535,7 +536,7 @@
                                     (dugNdafStructure.training_institutes * bs_data['BugArcStructures'][$index].fields.training_institutes) +
                                     (dugNdafStructure.training_colleges * bs_data['BugArcStructures'][$index].fields.training_colleges) +
                                     (dugNdafStructure.tc_crc_resc * bs_data['BugArcStructures'][$index].fields.tc_crc_resc) +
-                                    (dugNdafStructure.min_pzd_offices * bs_data['BugArcStructures'][$index].fields.min_pzd_offices)">
+                                    (dugNdafStructure.min_pzd_offices * bs_data['BugArcStructures'][$index].fields.min_pzd_offices)" style="width:10%;">
                                 </td>
                             </tr>
 
@@ -858,34 +859,34 @@
                         <tbody>
 
                         <tr class="trsubc" height="51">
-                            <td class="trheadc1" width="280" height="51" style="width:19%;" >
+                            <td class="trheadc1" width="280" height="51" style="width:10%;" >
                                 Assets
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 1AB, 1C
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Type 2
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Type 3
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Pirivena
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Training Institutes
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 NCOE, Training Colleges
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 TC, CRC, RESC
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Ministry, Provincial, Zonal, Divisional Offices, NIE
                             </td>
-                            <td width="122">
+                            <td width="122" style="width:10%;">
                                 Total Damages (LKR)
                             </td>
                         </tr>
@@ -904,37 +905,37 @@
                                 ng-if="$index < 3 && dugNpdatStructure.particulars != 'Value of Partially Damaged Structures'">
                                 <td ng-model="dugNpdatStructure.particulars" ng-bind="dugNpdatStructure.particulars"
                                     class="tdpa" width="280"
-                                    height="17">
+                                    height="17" style="width:10%;">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.ab1_1c" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.type_2" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.type_3" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.pirivena" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.training_institutes" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.training_colleges" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.tc_crc_resc" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="dugNpdatStructure.min_pzd_offices" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
@@ -946,9 +947,9 @@
                                     (dugNpdatStructure.training_institutes * bs_data['BugArpcStructures'][$index].fields.training_institutes) +
                                     (dugNpdatStructure.training_colleges * bs_data['BugArpcStructures'][$index].fields.training_colleges) +
                                     (dugNpdatStructure.tc_crc_resc * bs_data['BugArpcStructures'][$index].fields.tc_crc_resc) +
-                                    (dugNpdatStructure.min_pzd_offices * bs_data['BugArpcStructures'][$index].fields.min_pzd_offices)">
-                                </td>
-                                </td>
+                                    (dugNpdatStructure.min_pzd_offices * bs_data['BugArpcStructures'][$index].fields.min_pzd_offices)" style="width:10%;">
+                                </td >
+                               
 
 
                             </tr>

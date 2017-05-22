@@ -156,7 +156,7 @@ DATABASES = {
         #     'options': '-c search_path=transport_water'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'dala_new',
         'USER': 'postgres',
     },
 }

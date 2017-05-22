@@ -186,8 +186,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
 
 
     //clear the data from table
-        $scope.cancelEdit = function()
-        {
+        $scope.cancelEdit = function(){
             //console.log("init")
             $scope.is_edit = false;
             $scope.bs_ind_ser_info_forml = angular.copy(init_data);
@@ -201,7 +200,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
                     method: "POST",
                     url: "/bs_save_data",
                     data: angular.toJson({
-                        'table_data': ($scope.bs_ind_ser_info_forml),
+                        'table_data': $scope.bs_ind_ser_info_forml,
                         'com_data': {
                             'district': $scope.district,
                             'bs_date': $scope.bs_date,
@@ -211,7 +210,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
                     }),
                 }).success(function(data) {
 
-                    $scope.bs_tourism_facilities = init_data;
+                    $scope.bs_ind_ser_info_forml = init_data;
                     $scope.is_edit = false;
 
                     if (data == 'False')

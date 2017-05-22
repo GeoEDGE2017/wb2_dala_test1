@@ -77,22 +77,22 @@ class DlWaterDmgMaterials(models.Model):
         db_table = 'transport_water\".\"dl_water_dmg_materials'
 
 
-class DlWaterDmgStructures(models.Model):
-    assets = models.CharField(max_length=255, blank=True, null=True)
-    num_tdestroyed_num = models.BigIntegerField(blank=True, null=True)
-    num_tdestroyed_meters = models.FloatField(blank=True, null=True)
-    num_pdestroyed_num = models.BigIntegerField(blank=True, null=True)
-    num_pdestroyed_meters = models.BigIntegerField(blank=True, null=True)
-    tot_damages = models.FloatField(blank=True, null=True)
-    created_user = models.IntegerField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-    lmu = models.IntegerField(blank=True, null=True)
-    lmd = models.DateTimeField(blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'transport_water\".\"dl_water_dmg_structures'
+# class DlWaterDmgStructures(models.Model):
+#     assets = models.CharField(max_length=255, blank=True, null=True)
+#     num_tdestroyed_num = models.BigIntegerField(blank=True, null=True)
+#     num_tdestroyed_meters = models.FloatField(blank=True, null=True)
+#     num_pdestroyed_num = models.BigIntegerField(blank=True, null=True)
+#     num_pdestroyed_meters = models.BigIntegerField(blank=True, null=True)
+#     tot_damages = models.FloatField(blank=True, null=True)
+#     created_user = models.IntegerField(blank=True, null=True)
+#     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+#     lmu = models.IntegerField(blank=True, null=True)
+#     lmd = models.DateTimeField(blank=True, null=True)
+#     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'transport_water\".\"dl_water_dmg_structures'
 
 
 class DlWaterDmgWcrafts(models.Model):

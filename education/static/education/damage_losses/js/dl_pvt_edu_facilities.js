@@ -111,6 +111,10 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 
     $scope.dlPvtEduFacilities = angular.copy(init_data);
 
+    $scope.test = function() {
+        console.log($scope.dlPvtEduFacilities);
+    }
+
 // adding schools
     $scope.addSchool = function() {
         $scope.new_school[$scope.schoolType].district_id = $scope.district.district__id;
@@ -280,6 +284,37 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 data: angular.toJson({
                     'table_name':  'Table_4',
                     'sector':'education',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlPvtEduFacilities = data;
+            })
+        }
+    }
+
+    $scope.editdlDataTest = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data_with_array',
+                data: angular.toJson({
+                    'table_name': 'Table_4',
+                    'sector': 'education',
+                    'keys': {
+                        'DpefBefPreSchool': 'pre_school',
+                        'DpefBefPrmSchool': 'primary_school',
+                        'DpefBefSecSchool': 'secondary_school',
+                        'DpefBefUnv': 'university',
+                        'DpefBefTechInst': 'tech_institute',
+                    },
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,

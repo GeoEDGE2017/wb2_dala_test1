@@ -42,13 +42,13 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb no-print">
-
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+<li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Telecommunication Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'reports:index_report' %}">Reports</a>
         </li>
+      
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Report</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Telecommunication Sector</span>
         </li>
 
     </ol>
@@ -120,7 +120,8 @@
                                  </span>
                 <!--/row-->
                   <!--national -->
-        <div ng-if="!checkIfNull()" id="print_report" style="">
+                 <!--   -->
+        <div  id="print_report" ng-if="!checkIfNull()" style="">
 
               <table class="table table-bordered">
                     <colgroup>
@@ -135,7 +136,7 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead1" height="19">
+                   <!--  <tr class="trhead1" height="19">
                         <td height="19" width="293">
                             Incident
                         </td>
@@ -153,9 +154,10 @@
                         <td colspan="2">
                             <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dl_sum_tele_nat)">Load</button>
                         </td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                     </table>
+                 <!--     -->
                     <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tbody>
                     <tr class="trheadc1" height="19">
@@ -173,42 +175,43 @@
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
-                        <td colspan="2" height="19" width="508">
+                        <td colspan="2" height="19" width="508" style="width:20%;">
                             Damages (LKR)
                         </td>
-                        <td colspan="2" height="19" width="442">
+                        <td colspan="2" height="19" width="442" style="width:20%;">
                             Losses (LKR)
                         </td>
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="2" height="19" width="126" style="width:20%;">
                             Losses (LKR)
                         </td>
                     </tr>
                     <tr class="trsubc" height="21">
-                        <td height="21" width="254">
+                        <td height="21" width="254" style="width:10%;">
                             Public
                         </td>
-                        <td height="21" width="145">
+                        <td height="21" width="145" style="width:10%;">
                             Private
                         </td>
-                        <td height="21" width="221">
+                        <td height="21" width="221" style="width:10%;">
                             Public
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" style="width:10%;">
                             Private
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" style="width:10%;">
                             Public
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" style="width:10%;">
                             Private
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" style="width:10%;">
                             Public
                         </td>
-                        <td height="21" width="63">
+                        <td height="21" width="63" style="width:10%;">
                             Private
                         </td>
                     </tr>
+                   <!--   -->
                     <tr class="trheadc" height="19" ng-repeat="(key, value) in data.telecommunication.Table_5">
                         <td height="19" width="293" ng-bind="key">
                         </td>

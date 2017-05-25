@@ -42,15 +42,14 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb no-print">
+<li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{% url 'reports:index_report' %}">Reports</a>
+     </li>
+      
+        
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Land Sub Sector</a>
-        </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Report</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Transport Land Sector</span>
         </li>
 
 
@@ -156,8 +155,8 @@
                             </td>
                         </tr-->
 
-                        <tr class="trheadc" height="19">
-                            <td rowspan="2" height="38" width="156" style="width:18.8%;">
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="2" height="38" width="156" >
                                 Provinces
                             </td>
                             <td colspan="4" height="19" width="345">
@@ -182,31 +181,31 @@
                             </td>
                         </tr>
                         <tr class="trsubc" height="19">
-                            <td height="19" width="156" style="width:18.8%">
+                            <td height="19" width="156" style="width:10%">
                                 <br/>
                             </td>
-                            <td height="19" width="63">
+                            <td height="19" width="63" style="width:10%">
                                 Public
                             </td>
-                            <td height="19" width="120" style="width:10.7%">
+                            <td height="19" width="120" style="width:10%">
                                 Private
                             </td>
-                            <td height="19" width="99" style="width:11.8%">
+                            <td height="19" width="99" style="width:10%">
                                 Public
                             </td>
-                            <td height="19" width="145" style="width:12.2%">
+                            <td height="19" width="145" style="width:10%">
                                 Private
                             </td>
-                            <td height="19" width="148" style="width:10.7%">
+                            <td height="19" width="148" style="width:10%">
                                 Public
                             </td>
-                            <td height="19" width="63" style="width:9.8%">
+                            <td height="19" width="63" style="width:10%">
                                 Private
                             </td>
-                            <td height="19" width="63" style="width:9.6%">
+                            <td height="19" width="63" style="width:10%">
                                 Public
                             </td>
-                            <td height="19" width="63" style="width:6.5%">
+                            <td height="19" width="63" style="width:10%">
                                 Private
                             </td>
                         </tr>
@@ -230,31 +229,31 @@
                         <tbody>
                         <tr ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"  height="20" ng-init="getTotal($index,key);">
 
-                            <td ng-bind="key" class="tdpa" width="253" height="19">
+                            <td ng-bind="key" class="tdpa" width="253" height="19" style="width:10%">
 
                             </td>
-                            <td width="147" ng-bind="value.DlGacPubNational[0].damages">
+                            <td width="147" ng-bind="value.DlGacPubNational[0].damages" style="width:10%">
 
                             </td>
-                            <td width="151" ng-bind="value.DlGacPvtNational[0].tot_damages_pvt">
+                            <td width="151" ng-bind="value.DlGacPvtNational[0].tot_damages_pvt" style="width:10%">
 
                             </td>
-                            <td width="165" ng-bind="value.DlYearsPubNational[0].year_1">
+                            <td width="165" ng-bind="value.DlYearsPubNational[0].year_1" style="width:10%">
 
                             </td>
-                            <td width="170" ng-bind="value.DlOtherLosPvtNational[0].year_1_pvt">
+                            <td width="170" ng-bind="value.DlOtherLosPvtNational[0].year_1_pvt" style="width:10%">
 
                             </td>
-                            <td width="135" ng-bind="value.DlYearsPubNational[0].year_2">
+                            <td width="135" ng-bind="value.DlYearsPubNational[0].year_2" style="width:10%">
 
                             </td>
-                            <td width="133" ng-bind="value.DlOtherLosPvtNational[0].year_2_pub">
+                            <td width="133" ng-bind="value.DlOtherLosPvtNational[0].year_2_pub" style="width:10%">
 
                             </td>
-                            <td width="126" ng-bind="value.DlGacPubNational[0].damages + value.DlYearsPubNational[0].year_1 + value.DlYearsPubNational[0].year_2 ">
+                            <td width="126" ng-bind="value.DlGacPubNational[0].damages + value.DlYearsPubNational[0].year_1 + value.DlYearsPubNational[0].year_2 " style="width:10%">
 
                             </td>
-                            <td width="85" ng-bind="convertToInt(value.DlGacPvtNational[0].tot_damages_pvt,value.DlOtherLosPvtNational[0].year_1_pvt, value.DlOtherLosPvtNational[0].year_2_pub)">
+                            <td width="85" ng-bind="convertToInt(value.DlGacPvtNational[0].tot_damages_pvt,value.DlOtherLosPvtNational[0].year_1_pvt, value.DlOtherLosPvtNational[0].year_2_pub)" style="width:10%">
 
                             </td>
 

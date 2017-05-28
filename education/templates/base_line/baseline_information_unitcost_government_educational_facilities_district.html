@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
 
@@ -13,15 +14,16 @@
 <main class="main" ng-app="bsUcostGeduFacilitiesApp" ng-controller="BsUcostGeduFacilitiesController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Education Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:education_main' %}">Education Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 2. Baseline Information of Unit Cost of Government Educational Facilities in a District
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
         <div class="col-sm-12" style="padding:0;" ng-form name="form_bs_edu_untcost_dst">
@@ -71,7 +73,7 @@
                             </td>
                         </tr>
                         <tr class="trheadc1" height="17">
-                            <td rowspan="2" width="320" height="65">
+                            <td rowspan="2" width="320" height="65" style="width:20%;">
                                 Particulars
                             </td>
                             <td colspan="8" width="1088">
@@ -79,28 +81,28 @@
                             </td>
                         </tr>
                         <tr class="trsubc" height="48">
-                            <td width="136" height="48">
+                            <td width="136" height="48" style="width:10%;">
                                 1AB, 1C
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Type 2
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Type 3
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Pirivena
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Training Institutes
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 NCOE, Training Colleges
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 TC, CRC, RESC
                             </td>
-                            <td width="136">
+                            <td width="136" style="width:10%;">
                                 Ministry, Provincial, Zonal, Divisional Offices
                             </td>
                         </tr>
@@ -126,38 +128,38 @@
                             <tr ng-repeat="bugArcStructure in bsUcostGeduFacilities.education.Table_2.BugArcStructures"
                                 height="17">
                                 <td ng-bind="bugArcStructure.particulars" ng-model="bugArcStructure.particulars"
-                                    class="tdpa" width="280" height="17">
+                                    class="tdpa" width="280" height="17" style="width:20%;">
 
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.ab1_1c" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.type_2" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.type_3" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.pirivena" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.training_institutes" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.training_colleges" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.tc_crc_resc" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="136">
+                                <td width="136" style="width:10%;">
                                     <input ng-model="bugArcStructure.min_pzd_offices" type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>

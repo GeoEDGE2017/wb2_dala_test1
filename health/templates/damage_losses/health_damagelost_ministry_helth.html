@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
@@ -13,9 +14,9 @@
 <main class="main" ng-app="dlInTheLineMinistryHealthSysApp" ng-controller="dlInTheLineMinistryHealthSysAppController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Health Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:health_main' %}">Health Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -23,6 +24,7 @@
             </span>
             <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
         <div>

@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
 $(document).ready(function() {
     var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
@@ -9,15 +10,16 @@ $(document).ready(function() {
 <main ng-app="bsEduFacilitiesApp" ng-controller="BsEduFacilitiesController" class="main">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Education sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:education_main' %}">Education Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline Information of Educational Facilities in a District
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
         <div class="col-sm-12" style="padding:0;">

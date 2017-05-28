@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
 
@@ -13,15 +14,16 @@
 <main class="main" ng-app="unitCostMiniHealthSysApp" ng-controller="unitCostMiniHealthSysController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Health Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:health_main' %}">Health Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3: Baseline Information of Unit Cost of the Ministry Health System in a District
             </span>
         </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
         <div>
@@ -33,11 +35,32 @@
             </ul>
 
             <div id="myTabContent" class="tab-content" ng-form name="form_health_baseline_unitcost_district">
+             <div style="background:#fff;border:1px solid #fff;margin-left:20px;color:red;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+
+                            </td>
+
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+    <span class="arrow_box1" ng-show="submitted && form_health_baseline_unitcost_district.district.$error.required">
+                                    Please Select District
+                                    </span>
+                            </td>
+                            </tr>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+    <span class="arrow_box1" ng-show="submitted && form_health_baseline_unitcost_district.baselineDate.$error.required">
+    <br>
+                                        Please Select Date
+                                       </span>
+                            </td>
+                        </div>
                 <div class="tab-pane active" id="step1">
-						 <span style="color:red"
+						 <!-- <span style="color:red"
                                ng-show="submitted && form_health_baseline_unitcost_district.$error.required">
                                        Please fill all required fields
-                         </span>
+                         </span> -->
                     <span style="color:red" ng-show="!is_valid_data">
                             This request can't be proceed, there is data-set available for this selection.
                         </span>
@@ -50,25 +73,7 @@
                         <tbody>
 
 
-                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
-
-                            </td>
-
-                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-    <span class="arrow_box" ng-show="submitted && form_health_baseline_unitcost_district.district.$error.required">
-                                    Please Select District
-                                    </span>
-                            </td>
-                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-
-                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-    <span class="arrow_box" ng-show="submitted && form_health_baseline_unitcost_district.baselineDate.$error.required">
-                                        Please Select Date
-                                       </span>
-                            </td>
-                        </tr>
+                       
 
 
                         <tr class="trhead1">

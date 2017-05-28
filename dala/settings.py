@@ -567,7 +567,8 @@ TABLE_PROPERTY_MAPPER = {
         'Table_1': {'BmaImFn': ['name_min_outputs',
                                 'avg_per_year',
                                 'firm_id',
-                                'id'], 'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'], },
+                                'id'],
+                    'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'], },
         'Table_2': {
 
             'BmaAmMin': ['minerals',

@@ -2,13 +2,12 @@
 var app = angular.module('mnDLArtisanalMinApp', ['underscore']);
 
 app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
-
-
     $scope.district;
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.myTotal = 5;
     $scope.is_edit = false;
+    $scope.bs_data={};
 
 
     var init_data = {
@@ -69,13 +68,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                         repair_pdmg_assets: null,
                         tot_damages: null,
                     },
-                    {
-                        assets: "GRAND TOTAL",
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
 
-                    },
 
 
                 ],
@@ -149,20 +142,13 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                 los_year2: null,
                 tot_losses: null,
                 },
-                 {  type_los:"GRAND TOTAL",
-                avg_per_year: null,
-                red_voutput_year1: null,
-                red_voutput_year2: null,
-                los_year1: null,
-                los_year2: null,
-                tot_losses: null,
-                }]
+                ]
 
             }
         }
     }
 
-    $scope.mnDLArtisanalMin = init_data;
+    $scope.mnDLArtisanalMin = angular.copy(init_data);
 
 
     $scope.insertFirm = function(table) {
@@ -225,6 +211,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
         $scope.count = $scope.mnDLArtisanalMin.mining.Table_4[table].length - 1;
         $scope.mnDLArtisanalMin.mining.Table_4[table].splice($scope.count, 0, new_row)
     }
+
     $scope.removeItem = function removeItem(table, index) {
         if (table == 'DlaDmgStructures') {
             $scope.mnDLArtisanalMin.mining.Table_4.DlaDmgStructures.splice(index, 1);
@@ -260,20 +247,125 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                 $scope.district = "";
                 console.log(data);
 
-                
-
             })
         }
     }
 
+    $scope.getbsData=function getbsData(){
+    if($scope.incident && $scope.district){
+              $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                  'db_tables': ['BmaAmMin'],
+                  'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        },
+                   'sector':'mining',
+                   'table_name': 'Table_2'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                angular.forEach(data, function(value, key) {
+                  $scope.bs_data[key] = JSON.parse(value);
+                });
 
-  $scope.getTotal = function(model, property) {
+                console.log($scope.bs_data);
+
+                generateRefencedData();
+
+            }, function errorCallback(response) {
+
+                console.log(response);
+            });
+            }
+
+
+
+}
+
+    function generateRefencedData() {
+        data_array = ['BmaAmMin'];
+
+        var dl_model1 = null;
+        var dl_model2 = null;
+
+
+        angular.forEach(data_array, function(value, key) {
+            obj_array = $scope.bs_data[value];
+            model_name = value;
+
+            var particular_value_1 = null;
+            var particular_value_2 = null;
+
+
+            if(model_name == 'BmaAmMin') {
+                dl_model1 = 'DlaDmgStocks';
+                dl_model2 = 'DlaLosPlos';
+                particular_value_1 = 'Total';
+                particular_value_2 = 'Total';
+
+            }
+            var obj1 = {
+               assets: particular_value_1,
+               rep_tot_dassets: null,
+               repair_pdmg_assets: null,
+               tot_damages: null,
+
+            };
+             var obj2 = {
+               type_los: particular_value_2,
+               avg_per_year: null,
+               red_voutput_year1: null,
+               red_voutput_year2: null,
+               los_year1: null,
+               los_year2: null,
+               tot_losses: null,
+            };
+                $scope.mnDLArtisanalMin.mining.Table_4[dl_model1] = [];
+                $scope.mnDLArtisanalMin.mining.Table_4[dl_model2] = [];
+
+            angular.forEach(obj_array, function(value, key) {
+                var obj1 = {
+                    assets : value.fields.minerals,
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                };
+                var obj2 = {
+                   type_los: value.fields.minerals,
+                   avg_per_year: null,
+                   red_voutput_year1: null,
+                   red_voutput_year2: null,
+                   los_year1: null,
+                   los_year2: null,
+                   tot_losses: null,
+            };
+
+
+                if(model_name == 'BmaAmMin') {
+                   $scope.mnDLArtisanalMin.mining.Table_4[dl_model1].push(obj1);
+                   $scope.mnDLArtisanalMin.mining.Table_4[dl_model2].push(obj2);
+                }
+
+            });
+                   $scope.mnDLArtisanalMin.mining.Table_4[dl_model1].push(obj1);
+                   $scope.mnDLArtisanalMin.mining.Table_4[dl_model2].push(obj2);
+        });
+    }
+
+    $scope.getTotal = function(model, property) {
 
         var array = $scope.mnDLArtisanalMin.mining.Table_4[model];
         var cumulative = null;
         var sums = _.map(array, function(obj) {
+        if(obj.assets!='Total' && obj.type_los !='Total'){
             cumulative += obj[property];
             return cumulative;
+            }
 
         });
         var the_string = model + '_' + property;
@@ -292,15 +384,18 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
         if(angular.equals(model, 'DlaLosOlos')){
 
         var sums = _.map(array, function(obj) {
+          if(obj.assets!='Total' && obj.type_los !='Total'){
             cumulative += obj.los_year1;
             cumulative_two += obj.los_year2;
 
             cumulative_total = cumulative + cumulative_two;
 
             return cumulative_total;
+            }
 
 
         });
+
         var the_string = model + '_total';
         var model = $parse(the_string);
         model.assign($scope, cumulative_total);
@@ -312,15 +407,17 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
 
 
         var sums = _.map(array, function(obj) {
+        if(obj.assets!='Total' && obj.type_los !='Total'){
             cumulative += obj.rep_tot_dassets;
             cumulative_two += obj.repair_pdmg_assets;
 
             cumulative_total = cumulative + cumulative_two;
 
             return cumulative_total;
-
+            }
 
         });
+
         var the_string = model + '_total';
         var model = $parse(the_string);
         model.assign($scope, cumulative_total);
@@ -330,12 +427,10 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
 
     }
 
-
     $scope.getValue = function (model,property){
-
-$scope.DlaLosPlos_total = null;
-$scope.DlaLosPlos_los_year1 = null;
-$scope.DlaLosPlos_los_year2 = null;
+    $scope.DlaLosPlos_total = null;
+    $scope.DlaLosPlos_los_year1 = null;
+    $scope.DlaLosPlos_los_year2 = null;
 
 
         var array = $scope.mnDLArtisanalMin.mining.Table_4[model];
@@ -344,7 +439,7 @@ $scope.DlaLosPlos_los_year2 = null;
         var cumulative_total = null;
 
         var cumulative_year1 = _.map(array, function(obj) {
-            cumulative_los_year1 += obj.avg_per_year * obj.red_voutput_year1;
+            cumulative_los_year1 += obj.avg_per_year * obj.red_voutput_year1/100;
             console.log(cumulative_los_year1);
             return cumulative_los_year1;
 
@@ -352,7 +447,7 @@ $scope.DlaLosPlos_los_year2 = null;
         });
 
         var cumulative_year2 = _.map(array, function(obj) {
-            cumulative_los_year2 += obj.avg_per_year * obj.red_voutput_year2;
+            cumulative_los_year2 += obj.avg_per_year * obj.red_voutput_year2/100;
             console.log(cumulative_los_year1);
             return cumulative_los_year1;
 
@@ -360,7 +455,7 @@ $scope.DlaLosPlos_los_year2 = null;
         });
 
         var cumulative_tot = _.map(array, function(obj) {
-            cumulative_total += (obj.avg_per_year * obj.red_voutput_year1 )+ (obj.avg_per_year * obj.red_voutput_year2) ;
+            cumulative_total += (obj.avg_per_year * obj.red_voutput_year1/100 )+ (obj.avg_per_year * obj.red_voutput_year2/100) ;
             console.log(cumulative_total);
             return cumulative_total;
 
@@ -382,8 +477,7 @@ $scope.DlaLosPlos_los_year2 = null;
 
 }
 
-
-$scope.$watch(
+    $scope.$watch(
         function() {
 
             if (isNaN(
@@ -439,7 +533,7 @@ $scope.$watch(
                 console.log($scope.DlaDmg_rep_tot_dassets_grnd);
 
                 $scope.DlaDmg_repair_pdmg_assets_grnd = $scope.DlaDmgStructures_repair_pdmg_assets + $scope.DlaDmgEquipment_repair_pdmg_assets +
-                    $scope.DlaDmgMachinery_repair_pdmg_assets + $scope.DlaDmgVehicles_repair_pdmg_assets + $scope.DlaDmgStocks_repair_pdmg_assets;
+                    $scope.DlaDmgMachinery_repair_pdmg_assets + $scope.DlaDmgVehicles_repair_pdmg_assets;
 
                 $scope.DlaDmg_tot_damages_grnd = $scope.DlaDmg_rep_tot_dassets_grnd + $scope.DlaDmg_repair_pdmg_assets_grnd;
 
@@ -450,15 +544,11 @@ $scope.$watch(
 
                 $scope.DlaLosOlos_tot_losses_grnd = $scope.DlaLosOlos_los_year1_grnd + $scope.DlaLosOlos_los_year2_grnd;
 
-
             }
-
-
         },
         true);
 
-
-$scope.saveData = function(form) {
+    $scope.saveData = function(form) {
     $scope.submitted = true;
     console.log('hi', $scope.mnDLArtisanalMin);
     if(form.$valid) {

@@ -87,7 +87,7 @@ s{% extends "dashboard/base.html" %}
                         <td colspan="2" style="">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
-                                    class="form-control" ng-change="changedValue(false)" required>
+                                    class="form-control" ng-change="changedValue(false);getbsData();" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -400,23 +400,7 @@ s{% extends "dashboard/base.html" %}
                         <tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks" height="20" ng-if="dlaDmgStocks.assets !='Total' && dlaDmgStocks.assets !='GRAND TOTAL'">
 
                             <!-- Fixed rows -->
-                            <td ng-bind="dlaDmgStocks.assets"
-                                ng-if="$index < 1"
-                                height="20" width="264"
-                                class="tdpa">
-
-                            </td>
-                            <td colspan="" width="98">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('DlaDmgStocks', $index)"
-                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-                                <input style="width:80%;float:right;" ng-model="dlaDmgStocks.assets"
-                                       popover="This field is required" required
-                                       popover-toggle="form_pop_lat_census['dlaDmgStocks' + $index].$dirty && !form_pop_lat_census['dlaDmgStocks' + $index].$valid"
-                                       name="dlaDmgStocks{{$index}}" type="text" placeholder=""
-                                       class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
+                            <td ng-bind="dlaDmgStocks.assets" height="20" width="264" class="tdpa"></td>
 
                             <td colspan="2" width="98">
 
@@ -426,13 +410,15 @@ s{% extends "dashboard/base.html" %}
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td colspan="2" width="98">
+                            <!--<td colspan="2" width="98">-->
 
-                                <input ng-model="dlaDmgStocks.repair_pdmg_assets"
-                                      ng-change="getTotal('DlaDmgStocks','repair_pdmg_assets');getColumnTotal('DlaDmgStocks','repair_pdmg_assets');"
+                                <!--<input ng-model="dlaDmgStocks.repair_pdmg_assets"-->
+                                      <!--ng-change="getTotal('DlaDmgStocks','repair_pdmg_assets');getColumnTotal('DlaDmgStocks','repair_pdmg_assets');"-->
 
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
+                                       <!--id="textinput" name="textinput" type="number" placeholder=""-->
+                                       <!--class="form-control input-md">-->
+                            <!--</td>-->
+                             <td colspan="2" width="98" class="tdpa">
                             </td>
                             <td colspan="2" width="98">
 
@@ -445,16 +431,6 @@ s{% extends "dashboard/base.html" %}
 
                         </tr>
 
-                        <tr height="20">
-                            <td colspan="6" class="tdpa" height="19" width="171" >
-                                Minerals 
-                                <button ng-click="insertFirm('DlaDmgStocks')" class="btn btn-sm btn-info btn-circle"
-                                        id="insert"><span
-                                        class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                        </tr>
-
                           <tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks"
                             ng-if="dlaDmgStocks.assets=='Total'" height="20" >
 
@@ -462,34 +438,31 @@ s{% extends "dashboard/base.html" %}
                             <td ng-bind="dlaDmgStocks.assets"
                                 height="20" width="264"
                                 class="boldash">
-
                             </td>
-
                              <td width="98" colspan="2" ng-model="dlaDmgStocks.rep_tot_dassets "
                             ng-bind="dlaDmgStocks.rep_tot_dassets = DlaDmgStocks_rep_tot_dassets">
-                             <td width="98" colspan="2" ng-model="dlaDmgStocks.repair_pdmg_assets"
-                            ng-bind="dlaDmgStocks.repair_pdmg_assets = DlaDmgStocks_repair_pdmg_assets">
+
+                             <td width="98" colspan="2" class="tdpa">
+
                              <td width="98" colspan="2" ng-moddel="dlaDmgStocks.tot_damages"
                             ng-bind="dlaDmgStocks.tot_damages = DlaDmgStocks_total">
 
 
                         </tr>
-                          <tr ng-repeat="dlaDmgStocks in mnDLArtisanalMin.mining.Table_4.DlaDmgStocks"
-                            ng-if="dlaDmgStocks.assets=='GRAND TOTAL'" height="20" >
+                          <tr height="20" >
 
                             <!-- Fixed rows -->
-                            <td ng-bind="dlaDmgStocks.assets"
-                                height="20" width="264"
-                               class="boldash">
+                            <td height="20" width="264"
+                               class="boldash">GRAND TOTAL
 
                             </td>
 
-                            <td width="98" colspan="2" ng-model="dlaDmgStocks[$index].rep_tot_dassets"
-                                ng-bind="dlaDmgStocks.rep_tot_dassets = DlaDmg_rep_tot_dassets_grnd">
-                            <td width="98" colspan="2" ng-model="dlaDmgStocks.repair_pdmg_assets "
-                                ng-bind="dlaDmgStocks.repair_pdmg_assets = DlaDmg_repair_pdmg_assets_grnd">
-                            <td width="98" colspan="2" ng-model="dlaDmgStocks.tot_damages"
-                                ng-bind="dlaDmgStocks.tot_damages = DlaDmg_tot_damages_grnd">
+                            <td width="98" colspan="2"
+                                ng-bind="DlaDmg_rep_tot_dassets_grnd">
+                            <td width="98" colspan="2"
+                                ng-bind="DlaDmg_repair_pdmg_assets_grnd">
+                            <td width="98" colspan="2"
+                                ng-bind="DlaDmg_tot_damages_grnd">
 
 
                         </tr>
@@ -558,24 +531,10 @@ s{% extends "dashboard/base.html" %}
                     <tr ng-repeat="dlaLosPlos in mnDLArtisanalMin.mining.Table_4.DlaLosPlos" height="20" ng-if="dlaLosPlos.type_los !='Total'">
 
                         <!-- Fixed rows -->
-                        <td ng-bind="dlaLosPlos.type_los" ng-if="$index < 3"
+                        <td ng-bind="dlaLosPlos.type_los"
                             height="20" width="264"
                             class="tdpa">
-
                         </td>
-                        <td colspan="" width="98"
-                            ng-if="$index > 2">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('DlaLosPlos', $index)"
-                                    class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-                            <input style="width:80%;float:right;" ng-model="dlaLosPlos.type_los"
-                                   popover="This field is required" required
-                                   popover-toggle="form_pop_lat_census['dlaLosPlos' + $index].$dirty && !form_pop_lat_census['dlaLosPlos' + $index].$valid"
-                                   name="dlaLosPlos{{$index}}" type="text" placeholder=""
-                                   class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-
                         <td colspan="1" width="98" >
 
                             <input ng-model="dlaLosPlos.avg_per_year" ng-change="getValue('DlaLosPlos','avg_per_year');"
@@ -599,36 +558,27 @@ s{% extends "dashboard/base.html" %}
                             <input ng-model="dlaLosPlos.los_year1"
                                    id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
                                    class="form-control input-md nborder"
-                                   ng-bind="dlaLosPlos.los_year1 = dlaLosPlos.avg_per_year * dlaLosPlos.red_voutput_year1 ">
+                                   ng-bind="dlaLosPlos.los_year1 = dlaLosPlos.avg_per_year *
+                                   dlaLosPlos.red_voutput_year1 /100">
                         </td>
                         <td colspan="1" width="98" >
 
                             <input ng-model="dlaLosPlos.los_year2"
                                    id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
                                    class="form-control input-md nborder"
-                                   ng-bind="dlaLosPlos.los_year2 = dlaLosPlos.avg_per_year * dlaLosPlos.red_voutput_year2 ">
+                                   ng-bind="dlaLosPlos.los_year2 = dlaLosPlos.avg_per_year *
+                                   dlaLosPlos.red_voutput_year2/100 ">
                         </td>
                         <td colspan="1" width="98" >
 
                             <input ng-model="dlaLosPlos.tot_losses"
                                    id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
                                    class="form-control input-md nborder"
-                                   ng-bind="dlaLosPlos.tot_losses = dlaLosPlos.los_year1 + dlaLosPlos.los_year2">
+                                   ng-bind="dlaLosPlos.tot_losses = dlaLosPlos.los_year1 +
+                                   dlaLosPlos.los_year2">
                         </td>
 
                     </tr>
-
-                    <tr height="20">
-                         <td colspan="8" class="tdpa" height="19" width="171">
-                            Others 
-                            <button ng-click="insertFirm('DlaLosPlos')" class="btn btn-sm btn-info btn-circle"
-                                    id="insert"><span
-                                    class="fa fa-plus"></span>
-                            </button>
-                        </td>
-                    </tr>
-
-
 
                      <tr ng-repeat="dlaLosPlos in mnDLArtisanalMin.mining.Table_4.DlaLosPlos"
                             ng-if="dlaLosPlos.type_los=='Total'" height="20">
@@ -701,7 +651,7 @@ s{% extends "dashboard/base.html" %}
 
                         </td>
                         <td colspan="1" width="98"
-                            ng-if="dlaLosOlos.type_los !='Total' && dlaLosOlos.type_los !='GRAND TOTAL'">
+                            ng-if="dlaLosOlos.type_los !='Total'">
 
                             <input ng-model="dlaLosOlos.los_year1" ng-change="getTotal('DlaLosOlos','los_year1');getColumnTotal('DlaLosOlos','los_year1');"
                                    id="textinput" name="textinput" type="number" placeholder=""
@@ -731,17 +681,13 @@ s{% extends "dashboard/base.html" %}
                             <td ng-bind="dlaLosOlos.type_los"
                                 height="20" width="264"
                                 class="boldash">
-
                             </td>
-
-
                             <td width="98" colspan="1"
                                 class="boldash" ></td>
                             <td width="98" colspan="1"
                                 class="boldash" ></td>
                             <td width="98" colspan="1"
                                class="boldash" ></td>
-
                             <td width="98" colspan="1" ng-model="dlaLosOlos.los_year1"
                                 ng-bind="dlaLosOlos.los_year1 = DlaLosOlos_los_year1"></td>
                             <td width="98" colspan="1" ng-model="dlaLosOlos.los_year2"
@@ -752,17 +698,11 @@ s{% extends "dashboard/base.html" %}
 
                         </tr>
 
-                     <tr ng-repeat="dlaLosOlos in mnDLArtisanalMin.mining.Table_4.DlaLosOlos"
-                            ng-if="dlaLosOlos.type_los=='GRAND TOTAL'" height="20">
+                     <tr  height="20">
 
-                            <!-- Fixed rows -->
-                            <td ng-bind="dlaLosOlos.type_los"
-                                height="20" width="264"
-                                class="boldash">
-
+                            <td height="20" width="264"
+                                class="boldash">GRAND TOTAL
                             </td>
-
-
                             <td width="98" colspan="1"
                                 class="boldash" ></td>
                             <td width="98" colspan="1"
@@ -771,11 +711,11 @@ s{% extends "dashboard/base.html" %}
                                class="boldash" ></td>
 
                             <td width="98" colspan="1"
-                                ng-bind="dlaLosOlos[$index].los_year1= DlaLosOlos_los_year1_grnd"></td>
+                                ng-bind="DlaLosOlos_los_year1_grnd"></td>
                             <td width="98" colspan="1"
-                                ng-bind="dlaLosOlos[$index].los_year2 = DlaLosOlos_los_year2_grnd"></td>
+                                ng-bind="DlaLosOlos_los_year2_grnd"></td>
                             <td width="98" colspan="1"
-                                ng-bind="dlaLosOlos[$index].tot_losses = DlaLosOlos_tot_losses_grnd"></td>
+                                ng-bind="DlaLosOlos_tot_losses_grnd"></td>
 
 
                         </tr>

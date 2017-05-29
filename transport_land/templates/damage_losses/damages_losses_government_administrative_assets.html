@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
 
@@ -11,14 +12,14 @@
 <main class="main" ng-app="dlGovnAdmnAsetsApp" ng-controller="dlGovnAdmnAsetsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Land sub Sector</a>
+
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Damages and Losses to Government Agency in Charge of Land Transportation</span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_govn_admn_asets">
         <div>

@@ -1,20 +1,21 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlSumTransWaterDstApp" ng-controller="dlSumTransWaterDstController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
+
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_water_main' %}">Transport Water Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of Damages and Losses to Water Transportation in a District</span>
         </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/1C-Water_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
 
 

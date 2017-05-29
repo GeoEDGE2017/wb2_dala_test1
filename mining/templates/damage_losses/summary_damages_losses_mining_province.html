@@ -1,0 +1,212 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+{% load static %}
+<!-- Main content -->
+<main class="main" ng-app="dlminingProApp" ng-controller="DlminingProController">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
+        </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5: Summary of damages and losses Province </span>
+        </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a></li>
+
+    </ol>
+    <div class="container-fluid">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="step1">
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="171"/>
+                        <col width="119" span="5"/>
+                        <col width="120"/>
+                        <col width="123" span="2"/>
+                    </colgroup>
+                    <tbody>
+                    <tr class="trheadc1" style="text-align:left;margin-left:5px;">
+                        <td class="trhead1 p5" width="281" height="20">
+                            Incident
+                        </td>
+                        <td width="125">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+
+                                <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                    {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead1 p5" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false)" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-info btn-block"
+                                    ng-click="fetchDlData()">Load
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" ng-repeat="(key, value) in dlMiningPro.mining.Table_7"
+                       ng-if="!checkIfNull()">
+                    <tbody>
+                    <tr class="trheadc1" height="20">
+                        <td rowspan="3" width="171" height="60">
+                            Type of Mining Firm by District
+                        </td>
+                        <td colspan="4" width="476">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="239">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="246">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td colspan="2" width="238" height="20">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="238">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="239">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td width="119" height="20">
+                            Public
+                        </td>
+                        <td width="119">
+                            Private
+                        </td>
+                        <td width="119">
+                            Public
+                        </td>
+                        <td width="119">
+                            Private
+                        </td>
+                        <td width="119">
+                            Public
+                        </td>
+                        <td width="120">
+                            Private
+                        </td>
+                        <td width="123">
+                            Public
+                        </td>
+                        <td width="123">
+                            Private
+                        </td>
+                    </tr>
+                    <tr class="trheadc" height="20" ng-init="getTotal($index,key);">
+                        <td ng-bind="key" width="171" height="20">
+
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="120">
+                        </td>
+                        <td width="123">
+                        </td>
+                        <td width="123">
+                        </td>
+                    </tr>
+                    <tr height="20">
+                        <td width="202" height="20" class="tdpa">Industrial mining
+                        </td>
+
+                        <td width="90" ng-bind="value.DloDmgProvince[1].tot_damages"></td>
+                        <td width="90" ng-bind="value.DloDmgProvince[0].tot_damages"></td>
+                        <td width="90" ng-bind="value.DloLosProvince[1].los_year1"></td>
+                        <td width="90" ng-bind="value.DloLosProvince[0].los_year1"></td>
+                        <td width="90" ng-bind="value.DloLosProvince[1].los_year2"></td>
+                        <td width="90" ng-bind="value.DloLosProvince[0].los_year2"></td>
+                        <td width="90"
+                            ng-bind="value.DloDmgProvince[1].tot_damages +value.DloLosProvince[1].los_year1+value.DloLosProvince[1].los_year2 "></td>
+                        <td width="90"
+                            ng-bind="value.DloDmgProvince[0].tot_damages +value.DloLosProvince[0].los_year1+value.DloLosProvince[0].los_year2 "></td>
+
+                    </tr>
+                    <tr height="20">
+                        <td width="202" height="20" class="tdpa">Artisanal mining
+                        </td>
+
+                        <td width="90" ng-bind="value.DlaDmgProvince[0].tot_damages"></td>
+                        <td width="90"></td>
+                        <td width="90" ng-bind="value.DlaLosProvince[0].los_year1"></td>
+                        <td width="90"></td>
+                        <td width="90" ng-bind="value.DlaLosProvince[0].los_year2"></td>
+                        <td width="90"></td>
+                        <td width="90"
+                            ng-bind="value.DlaDmgProvince[0].tot_damages + value.DlaLosProvince[0].los_year1 + value.DlaLosProvince[s0].los_year2"></td>
+                        <td width="90"></td>
+
+                    </tr>
+                    </tbody>
+                    <tr height="20">
+                        <td width="202" height="20" class="tdpa">Total
+                        </td>
+                        <td width="90" ng-bind="totaldpub"></td>
+                        <td width="90" ng-bind="totaldpvt"></td>
+                        <td width="90" ng-bind="totalyear1pub"></td>
+                        <td width="90" ng-bind="totalyear1pvt"></td>
+                        <td width="90" ng-bind="totalyear2pub"></td>
+                        <td width="90" ng-bind="totalyear2pvt"></td>
+                        <td width="90" ng-bind="finaltotalpublic"></td>
+                        <td width="90" ng-bind="finaltotalprivate"></td>
+                    </tr>
+
+
+                </table>
+                <br>
+                <div class="pull-right">
+                    <br>
+
+                </div>
+                <br><br><br>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+</main>
+
+
+{% endblock content %}

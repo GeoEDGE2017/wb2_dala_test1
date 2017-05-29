@@ -2,7 +2,7 @@
 var app = angular.module('bsInfoAcfoAssetsApp', [])
 app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
-    $scope.baselineDate;
+    $scope.bs_date;
     $scope.bs_data={};
     $scope.is_edit = false;
     $scope.submitted = false;
@@ -128,17 +128,40 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                 }, {
                     assets : 'Pesticides',
                     avg_value : null,
+                }],
+                'BacfAvgrePlantnCrops': [{
+                    assets : 'Coconut',
+                    avg_value : null,
+                }, {
+                    assets : 'Tea',
+                    avg_value : null,
+                }, {
+                    assets : 'Rubber',
+                    avg_value : null,
+                }],
+                'BacfAvgreExportCrops': [{
+                    assets : 'Coffee',
+                    avg_value : null,
+                }, {
+                    assets : 'Fruit Trees',
+                    avg_value : null,
+                }, {
+                    assets : 'Cinnamon',
+                    avg_value : null,
+                }],
+                'BacfAvgreForestry': [{
+                    assets : 'Timber',
+                    avg_value : null,
                 }]
             }
         }
     }
 
     $scope.bsInfoAcfoAssets = angular.copy(init_data);
-//related baseline data
+
+    //related baseline data
     $scope.getValue=function getBsData() {
-        console.log('district', $scope.district);
-        console.log('baselineDate', $scope.baselineDate);
-        if($scope.district) {
+        if($scope.district && $scope.bs_date) {
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock_for_bs',
@@ -147,13 +170,14 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     'db_tables': ['BcagSeasonalCrops','BcagPlantnCrops','BcagExportCrops','BcagForestry','BcagOther'],
                     'com_data': {
                         'district': $scope.district,
-//                        'bs_date': $scope.baselineDate,
-                        'bs_date': '01/2017',
+                        'bs_date': $scope.bs_date,
+//                        'bs_date': '01/2017',
                     },
                     'table_name': 'Table_1',
                     'sector':'agri_agrarian',
                 }),
                 dataType: 'json',
+
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
@@ -163,161 +187,55 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                 console.log(response);
                 getData();
             }, function errorCallback(response) {
-
-
             });
         }
     }
 
     //Generate fields Related to baseline Data
-    function getData1() {
-        console.log('***')
-        data_array = ['BcagSeasonalCrops','BcagPlantnCrops','BcagExportCrops','BcagForestry','BcagOther'];
-            var bs_model1 = null;
-            var bs_model2 = null;
-            var bs_model3 = null;
-            var bs_model4 = null;
-            var bs_model5 = null;
-            
-        console.log($scope.bs_data);
-
-        angular.forEach(data_array, function(value, key) {
-
-            obj_array = $scope.bs_data[value];
-            model_name = value;
-
-            console.log('value', value, 'key', key);
-
-            if(model_name == 'BcagSeasonalCrops') {
-                bs_model1 = 'BacfSeasonalCrops';
-                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model1] = [];
-            }
-//            if(model_name == 'BcagPlantnCrops') {
-//               bs_model2 = 'BacfPlantnCrops';
-//               $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model2] = [];
-//            }
-//            if(model_name == 'BcagExportCrops') {
-//               bs_model3 = 'BacfExportCrops';
-//               $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model3] = [];
-//            }
-//            if(model_name == 'BcagForestry') {
-//               bs_model4 = 'BacfForestry';
-//               $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model4] = [];
-//            }
-//            if(model_name == 'BcagOther') {
-//               bs_model5 = 'BacfOther';
-//               $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model5] = [];
-//            }
-
-            angular.forEach(obj_array, function(value, key) {
-                var obj1 = {
-                    seasonal_crops : value.fields.seasonal_crops,
-                    avg_value : null,
-                    productn_pub : null,
-                    productn_pvt : null,
-                    productn_cost_nplanted : null,
-                    productn_cost_mstage : null,
-                    productn_cost_hstage : null,
-                };
-//                var obj2 = {
-//                    plantn_crops : value.fields.plantn_crops,
-//                    areas_cultivated : null,
-//                    avg_val_land : null,
-//                    num_families : null,
-//                    num_male : null,
-//                    num_female : null,
-//                };
-//                var obj3 = {
-//                    export_crops : value.fields.export_crops,
-//                    areas_cultivated : null,
-//                    avg_val_land : null,
-//                    num_families : null,
-//                    num_male : null,
-//                    num_female : null,
-//                };
-//                var obj4 = {
-//                    forestry : value.fields.forestry,
-//                    areas_cultivated : null,
-//                    avg_val_land : null,
-//                    num_families : null,
-//                    num_male : null,
-//                    num_female : null,
-//                };
-//                var obj5 = {
-//                    other_products : value.fields.other_products,
-//                    areas_cultivated : null,
-//                    avg_val_land : null,
-//                    num_families : null,
-//                    num_male : null,
-//                    num_female : null,
-//                };
-                if(model_name == 'BacfSeasonalCrops') {
-                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model1].push(obj1);
-                }
-//                if(model_name == 'BacfPlantnCrops') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model2].push(obj2);
-//                }
-//                if(model_name == 'BacfExportCrops') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model3].push(obj3);
-//                }
-//                if(model_name == 'BacfForestry') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model4].push(obj4);
-//                }
-//                if(model_name == 'BacfOther') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model5].push(obj5);
-//                }
-       });
-
-                if(model_name == 'BacfSeasonalCrops') {
-                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops.push(obj1);
-                }
-//                if(model_name == 'BacfPlantnCrops') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model2].push(obj2);
-//                }
-//                if(model_name == 'BacfExportCrops') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model3].push(obj3);
-//                }
-//                if(model_name == 'BacfForestry') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model4].push(obj4);
-//                }
-//                if(model_name == 'BacfOther') {
-//                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model5].push(obj5);
-//                }
-
-        });
-                if(model_name == 'BacfSeasonalCrops') {
-                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops.push(obj1);
-//        if(model_name == 'BacfSeasonalCrops') {
-//            $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops.push(obj1);
-//        }
-    }
-
-
     function getData() {
         data_array = ['BcagSeasonalCrops','BcagPlantnCrops','BcagExportCrops','BcagForestry','BcagOther'];
 
         var bs_model1 = null;
+        var bs_model2 = null;
+        var bs_model3 = null;
+        var bs_model4 = null;
+        var bs_model5 = null;
+        var bs_model6 = null;
+        var bs_model7 = null;
+        var bs_model8 = null;
+
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
             model_name = value;
 
-            var particular_value_1 = null;
-
             if(model_name == 'BcagSeasonalCrops') {
                 bs_model1 = 'BacfSeasonalCrops';
                 $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model1] = [];
             }
+            if(model_name == 'BcagPlantnCrops') {
+                bs_model2 = 'BacfPlantnCrops';
+                bs_model5 = 'BacfAvgrePlantnCrops';
+                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model2] = [];
+                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model5] = [];
+            }
+            if(model_name == 'BcagExportCrops') {
+                bs_model3 = 'BacfExportCrops';
+                bs_model6 = 'BacfAvgreExportCrops';
+                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model3] = [];
+                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model6] = [];
+            }
+            if(model_name == 'BcagForestry') {
+                bs_model4 = 'BacfForestry';
+                bs_model7 = 'BacfAvgreForestry';
+                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model4] = [];
+                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model7] = [];
+            }
+            if(model_name == 'BcagOther') {
+                bs_model8 = 'BacfOther';
+                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model8] = [];
 
-            var obj1 = {
-                seasonal_crops : particular_value_1,
-                avg_value: null,
-                productn_pub: null,
-                productn_pvt: null,
-                productn_cost_nplanted: null,
-                productn_cost_mstage: null,
-                productn_cost_hstage: null,
-            };
+            }
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
@@ -329,17 +247,82 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     productn_cost_mstage: null,
                     productn_cost_hstage: null,
                 };
-//                console.log(model_name);
-                if(model_name == 'BcagSeasonalCrops') {
-                    console.log('@1');
+                 var obj2 = {
+                    plantn_crops : value.fields.plantn_crops,
+                    avg_value : null,
+                    productn_pub : null,
+                    productn_pvt : null,
+                    productn_cost_nplanted : null,
+                    productn_cost_mstage : null,
+                    productn_cost_hstage : null,
+                };
+                var obj3 = {
+                    export_crops : value.fields.export_crops,
+                    avg_value : null,
+                    productn_pub : null,
+                    productn_pvt : null,
+                    productn_cost_nplanted : null,
+                    productn_cost_mstage : null,
+                    productn_cost_hstage : null,
+                };
+
+                var obj4 = {
+                    forestry : value.fields.forestry,
+                    avg_value : null,
+                    productn_pub : null,
+                    productn_pvt : null,
+                    productn_cost_nplanted : null,
+                    productn_cost_mstage : null,
+                    productn_cost_hstage : null,
+                };
+
+                var obj5 = {
+                    assets : value.fields.plantn_crops,
+                    avg_value : null,
+                };
+                var obj6 = {
+                    assets : value.fields.export_crops,
+                    avg_value : null,
+                };
+                var obj7 = {
+                    assets : value.fields.forestry,
+                    avg_value : null,
+                };
+
+                var obj8 = {
+                    other_products : value.fields.other_products,
+                    avg_value : null,
+                    productn_pub : null,
+                    productn_pvt : null,
+                    productn_cost_nplanted : null,
+                    productn_cost_mstage : null,
+                    productn_cost_hstage : null,
+                };
+                 if(model_name == 'BcagSeasonalCrops') {
                     console.log(model_name);
                     $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model1].push(obj1);
                 }
+                 if(model_name == 'BcagPlantnCrops') {
+                    console.log(model_name);
+                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model2].push(obj2);
+                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model5].push(obj5);
+                }
+                 if(model_name == 'BcagExportCrops') {
+                    console.log(model_name);
+                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model3].push(obj3);
+                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model6].push(obj6);
+                }
+                if(model_name == 'BcagForestry') {
+                    console.log(model_name);
+                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model4].push(obj4);
+                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model7].push(obj7);
+                }
+                if(model_name == 'BcagOther') {
+                    console.log(model_name);
+                    $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[bs_model8].push(obj8);
+                }
             });
 
-//            if(model_name == 'BcagSeasonalCrops') {
-//                $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops.push(obj1);
-//            }
         });
     }
 
@@ -399,7 +382,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
 
     }
 
-
 //Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
@@ -412,6 +394,39 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         $scope.is_edit = false;
         $scope.bsInfoAcfoAssets = angular.copy(init_data);
 
+
+    }
+
+//Add Enumerate fields
+    $scope.insertAsset = function(table) {
+        console.log($scope.bsInfoAcfoAssets.agri_agrarian.Table_2[table]);
+        var new_row;
+        if(table == 'BacfFarmEquipment') {
+            new_row = {
+                assets : '',
+                avg_replace_cost : null,
+                avg_repair_cost : null,
+            }
+        }
+        else if(table == 'BacfStocks') {
+            new_row = {
+                assets : '',
+                avg_replace_cost : null,
+                avg_repair_cost : null,
+            }
+        }
+
+        $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[table].push(new_row);
+    }
+
+//Remove Enumerate fields
+    $scope.removeItem = function removeItem(table, index) {
+        if(table == 'BacfFarmEquipment') {
+            $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfFarmEquipment.splice(index, 1);
+        }
+        else if(table == 'BacfStocks') {
+            $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfStocks.splice(index, 1);
+        }
 
     }
 

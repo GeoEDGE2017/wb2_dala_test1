@@ -1,17 +1,17 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
    <!-- Main content -->
     <main class="main">
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
             
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
+            <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
             <li class="breadcrumb-item active">Mining Sector</li>
 
-           
+           <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
         </ol>
 
 
@@ -98,6 +98,21 @@
                             </div>
                         </div>
 						</a>
+                    </div>
+                    <!--/.col-->
+
+                      <div class="col-sm-6 col-md-4">
+                                        <a href="mining/damage_losses/summary_damage_losses_province" style="text-decoration:none;">
+                        <div class="card card-inverse card-danger text-xs-center">
+                            <div class="card-block">
+                            <h3> Summary Damages & Losses</h3>
+                                <blockquote class="card-blockquote">
+                                    <p> Province</p>
+                                    
+                                </blockquote>
+                            </div>
+                        </div>
+                        </a>
                     </div>
                     <!--/.col-->
 					

@@ -42,13 +42,13 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb no-print">
-
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+<li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Power Supply Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'reports:index_report' %}">Reports</a>
         </li>
+      
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Report</span>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Power Supply Sector</span>
         </li>
 
     </ol>
@@ -124,8 +124,9 @@
                                  </span>
                 <!--/row-->
                 <!--national -->
-                <div ng-if="!checkIfNull()" id="print_report" style="">
-
+              <!--    -->
+                <div  id="print_report" style="" ng-if="!checkIfNull()">
+<!--   -->
                     <table class="table table-bordered" ngif="!checkIfNull()">
                         <tbody>
                         <tr class="trheadc1" height="19">
@@ -148,6 +149,8 @@
                                 Total
                             </td>
                         </tr>
+
+                      <!--    -->
                         <tr height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
                             <td height="19" width="97" ng-bind="data.power_supply.Table_6[key].DlNumAffNational[0].domestic">
 
@@ -161,19 +164,20 @@
                             <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].DlNumAffNational[0].other">
 
                             </td>
-                            <td height="19" width="63" ng-bind="
+                            <td height="19" width="63" colspan="" ng-bind="
                         data.power_supply.Table_6[key].DlNumAffNational[0].domestic +
                         data.power_supply.Table_6[key].DlNumAffNational[0].industrial +
                         data.power_supply.Table_6[key].DlNumAffNational[0].commercial +
                         data.power_supply.Table_6[key].DlNumAffNational[0].other">
 
                             </td>
+                            <td></td>
                         </tr>
                         <tr class="trheadc1" height="19">
                             <td rowspan="2" height="38" width="193">
                                 District
                             </td>
-                            <td colspan="2" rowspan="2" height="38" width="194">
+                            <td colspan="3" rowspan="2" height="38" width="194">
                                 Damages (LKR)
                             </td>
                             <td colspan="2" height="19" width="126">
@@ -191,11 +195,12 @@
                                 Year 2
                             </td>
                         </tr>
+                       <!--   -->
                         <tr class="trheadc" height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
                             <td height="19" width="193" ng-bind="key">
 
                             </td>
-                            <td colspan="2" height="19" width="194">
+                            <td colspan="3" height="19" width="194">
                             </td>
                             <td height="19" width="63">
                             </td>
@@ -204,11 +209,12 @@
                             <td height="19" width="63">
                             </td>
                         </tr>
+                        <!--  -->
                         <tr height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
                             <td class="tdpa" height="19" width="193">
                                 CEB
                             </td>
-                            <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
+                            <td colspan="3" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
 
                             </td>
                             <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
@@ -228,7 +234,7 @@
                             <td class="tdpa" height="19" width="193" >
                                 IPPs
                             </td>
-                            <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
+                            <td colspan="3" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
 
                             </td>
                             <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
@@ -248,7 +254,7 @@
                             <td class="tdpa" height="19" width="193">
                                 SPPs
                             </td>
-                            <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
+                            <td colspan="3" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
 
                             </td>
                             <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
@@ -268,7 +274,7 @@
                             <td class="tdpa" height="19" width="193">
                                 Total
                             </td>
-                            <td colspan="2" height="19" width="194"
+                            <td colspan="3" height="19" width="194"
                                 ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
                             data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
                             data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">

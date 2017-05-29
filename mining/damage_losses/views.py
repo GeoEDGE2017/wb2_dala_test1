@@ -60,6 +60,21 @@ def summary_damage_losses_district(request):
     return render(request, 'damage_losses/summary_damages_losses_mining_district.html', context)
 
 
+@permission_required("province", "Mining")
+def summary_damage_losses_province(request):
+    user = request.user
+    fetch_data = fetch_districts(user)
+    filtered_incidents = fetch_data['incidents']
+
+    context = {
+        'incidents': filtered_incidents,
+        'module': 'mining'
+    }
+
+    return render(request, 'damage_losses/summary_damages_losses_mining_province.html', context)
+
+
+
 @permission_required("national", "Mining")
 def summary_damage_losses_nationwide(request):
     user = request.user

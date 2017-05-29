@@ -153,7 +153,7 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=transport_water'
+        #     'options': '-c search_path=agri_agrarian'
         # },
 
         'NAME': 'dala_new',
@@ -564,10 +564,9 @@ TABLE_PROPERTY_MAPPER = {
         },
     },
     'mining': {
-        'Table_1': {'BmaImFn': ['name_min_outputs',
-                                'avg_per_year',
-                                'firm_id',
-                                'id'], 'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'], },
+        'Table_1': {'BmaImFn': ['name_min_outputs','avg_per_year','firm_id','id'],
+                    'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'],
+                    },
         'Table_2': {
 
             'BmaAmMin': ['minerals',
@@ -691,6 +690,31 @@ TABLE_PROPERTY_MAPPER = {
                 'ownership'
             ],
             'DloLosNational': [
+                'los_year1',
+                'los_year2',
+                'tot_losses',
+                'ownership'
+            ],
+
+        },
+        'Table_7': {
+            'DlaDmgProvince': [
+                'rep_tot_dassets',
+                'repair_pdmg_assets',
+                'tot_damages',
+            ],
+            'DlaLosProvince': [
+                'los_year1',
+                'los_year2',
+                'tot_losses',
+            ],
+            'DloDmgProvince': [
+                'rep_tot_dassets',
+                'repair_pdmg_assets',
+                'tot_damages',
+                'ownership'
+            ],
+            'DloLosProvince': [
                 'los_year1',
                 'los_year2',
                 'tot_losses',
@@ -2247,6 +2271,18 @@ TABLE_PROPERTY_MAPPER = {
                 ['assets',
                  'avg_value',
                  'id'],
+            'BacfAvgrePlantnCrops':
+                ['assets',
+                 'avg_value',
+                 'id'],
+            'BacfAvgreExportCrops':
+                ['assets',
+                 'avg_value',
+                 'id'],
+            'BacfAvgreForestry':
+                ['assets',
+                 'avg_value',
+                 'id'],
 
         },
         'Table_3': {
@@ -2309,6 +2345,34 @@ TABLE_PROPERTY_MAPPER = {
                  'dmg_pvt',
                  'id'],
             'DcpfStocks':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfReForestry':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfReExportCrops':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfRePlantnCrops':
+                ['assets',
+                 'num_dest_pub',
+                 'num_dest_pvt',
+                 'dmg_pub',
+                 'dmg_pvt',
+                 'id'],
+            'DcpfPlantnCrops':
                 ['assets',
                  'num_dest_pub',
                  'num_dest_pvt',

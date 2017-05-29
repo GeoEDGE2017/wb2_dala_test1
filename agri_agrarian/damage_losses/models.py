@@ -785,3 +785,57 @@ class DsorLosYear2National(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_agrarian\".\"dsor_los_year2_national'
+
+
+class DcpfReForestry(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    num_dest_pub = models.BigIntegerField(blank=True, null=True)
+    num_dest_pvt = models.BigIntegerField(blank=True, null=True)
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_re_forestry'
+
+
+class DcpfReExportCrops(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    num_dest_pub = models.BigIntegerField(blank=True, null=True)
+    num_dest_pvt = models.BigIntegerField(blank=True, null=True)
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_re_export_crops'
+
+
+class DcpfRePlantnCrops(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    num_dest_pub = models.BigIntegerField(blank=True, null=True)
+    num_dest_pvt = models.BigIntegerField(blank=True, null=True)
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_re_plantn_crops'

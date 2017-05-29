@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
   
@@ -12,15 +13,17 @@
 <main class="main" ng-app="bsAstsNwsdbDisApp" ng-controller="bsAstsNwsdbDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+      <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Water Supply Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:water_supply_main' %}">Water Supply Sector</a>
         </li>
+       
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline Information on Assets of NWSDB in the District
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_asts_nwsdb_dis">
         <ul class='nav nav-wizard'>

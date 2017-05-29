@@ -1,18 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsRwaterSplyDisApp" ng-controller="bsRwaterSplyDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Water Supply Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:water_supply_main' %}">Water Supply Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 2. Baseline Information on Rural Water Supply in a District
             </span>
         </li>
+          <li style="float:right;"> <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_rwater_sply_dis">
         <div id="myTabContent" class="tab-content">

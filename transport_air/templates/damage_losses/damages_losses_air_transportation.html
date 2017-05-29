@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
 
@@ -10,17 +11,17 @@
 <main class="main" ng-app="dlAirTrnspotationApp" ng-controller="dlAirTrnspotationController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Air Sub Sector</a>
+
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_air_main' %}">Transport Air Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 2. Damages and Losses to Air Transportation
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_air_trnspotation">
         <ul class='nav nav-wizard'>
@@ -101,22 +102,22 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td colspan="2" width="126" height="19" style="width:16%;">
+                        <td colspan="2" width="126" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td width="63" height="19" style="width:8%;">
+                        <td width="63" height="19" style="width:10%;">
                             Private
                         </td>
-                        <td colspan="2" width="126" height="19" style="width:16%;">
+                        <td colspan="2" width="126" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td colspan="2" width="126" height="19" style="width:16.4%;">
+                        <td colspan="2" width="126" height="19" style="width:10%;">
                             Private
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Private
                         </td>
                     </tr>
@@ -138,25 +139,25 @@
                         </colgroup>
                         <tbody>
                         <tr class="trheadc" height="19">
-                            <td width="218" height="19">
+                            <td width="218" height="19" style="width:27.8%;">
                                 Aircrafts
                             </td>
-                            <td colspan="2" width="126" height="19">
+                            <td colspan="2" width="126" height="19" style="width:10%;">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:10%;">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19">
+                            <td colspan="2" width="126" height="19" style="width:10%;">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19">
+                            <td colspan="2" width="126" height="19" style="width:10%;">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:10%;">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:10%;">
                                 <br/>
                             </td>
                         </tr>
@@ -276,36 +277,36 @@
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
-                            <td rowspan="2" width="218" height="38">
+                            <td rowspan="2" width="218" height="38" style="width:20%;">
                                 Materials and supplies
                             </td>
-                            <td colspan="3" width="189" height="19">
+                            <td colspan="3" width="189" height="19" style="width:20%;">
                                 Number of Totally Destroyed
                             </td>
-                            <td colspan="4" width="252" height="19">
+                            <td colspan="4" width="252" height="19" style="width:20%;">
                                 Number of Partially Damaged
                             </td>
-                            <td colspan="2" width="126" height="19">
+                            <td colspan="2" width="126" height="19" style="width:20%;">
                                 Total Damages (LKR)
                             </td>
                         </tr>
                         <tr class="trsubc" height="19">
-                            <td colspan="2" width="126" height="19">
+                            <td colspan="2" width="126" height="19" style="width:10%;">
                                 Public
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:10%;">
                                 Private
                             </td>
-                            <td colspan="2" width="126" height="19">
+                            <td colspan="2" width="126" height="19" style="width:10%;">
                                 Public
                             </td>
-                            <td colspan="2" width="126" height="19">
+                            <td colspan="2" width="126" height="19" style="width:10%;">
                                 Private
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:10%;">
                                 Public
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" style="width:10%;">
                                 Private
                             </td>
                         </tr>
@@ -608,18 +609,18 @@
                         <td width="218" height="19" style="width:30%;">
                             Type of Losses
                         </td>
-                        <td colspan="3" width="189" height="19">
+                        <td colspan="3" width="189" height="19" style="width:20%;">
                             Year 1
                         </td>
-                        <td colspan="4" width="252" height="19">
+                        <td colspan="4" width="252" height="19" style="width:20%;">
                             Year2
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" style="width:20%;">
                             Total Losses (LKR)
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td width="218" height="19">
+                        <td width="218" height="19" style="width:20%;">
                             <br/>
                         </td>
                         <td colspan="2" width="126" height="19">

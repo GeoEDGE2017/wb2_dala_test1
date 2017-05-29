@@ -1,21 +1,21 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
   <main class="main" ng-app="dlNationwideApp" ng-controller="dlNationwideController">
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
             
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Other Government Sector</a>
-            </li>
+           <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
+        </li>
            
 			<li class="breadcrumb-item active">
                 <span class="label label-success" style="font-size:14px;">
                     Table 5. Damage and Loss Assessment for Other Agencies Nationwide </span>
             </li>
-           
+           <li style="float:right;"> <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
         </ol>
 
 

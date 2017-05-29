@@ -1,15 +1,18 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="mnArtisanalFirmApp" ng-controller="MnArtisanalFirmController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+     <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Mining Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">*Table 2: Baseline Information for Artisanal Mining</span>
+        
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2: Baseline Information for Artisanal Mining</span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
 
@@ -95,10 +98,10 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="2" height="19" width="126" style="width:20%;">
                             Male
                         </td>
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="2" height="19" width="126" style="width:20%;">
                             Female
                         </td>
                     </tr>

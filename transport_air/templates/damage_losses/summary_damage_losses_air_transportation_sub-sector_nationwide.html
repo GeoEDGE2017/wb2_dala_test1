@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlSummeryTANatApp" ng-controller="DlSummeryTANatController">
 
@@ -8,17 +8,16 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
+
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_air_main' %}">Transport Air Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Summary of Damage and Losses in the Air Transportation Sub-sector Nationwide</span>
         </li>
 
-
+ <li style="float:right;"> <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
 
 

@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 
 <!-- Main content -->
 <main class="main" ng-app="dlSummeryTAProApp" ng-controller="dlSummeryTAProController">
@@ -8,16 +8,15 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+          <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Air sub Sector</a>
+
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_air_main' %}">Transport Air Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of Damage and Losses in the Air Transportation Sub-sector in a Province</span>
         </li>
-
+<li style="float:right;"> <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
 
@@ -43,7 +42,7 @@
                      <td class="trhead1 p5" width="130" colspan="2">
                             Incident
                         </td>
-                        <td width="125" colspan="4">
+                        <td class="trhead1" width="125" colspan="4">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true);fetchProvinces();"
                                     style="width:100%;font-weight:400;" required>
@@ -80,80 +79,80 @@
        <table class="table table-bordered" ng-if="!checkIfNull()">
                         <tbody>
                         <tr class="trheadc1" height="19">
-                        <td rowspan="3" width="218" height="57">
+                        <td rowspan="3" width="218" height="57" style="width:25%;">
                             Districts
                         </td>
-                        <td colspan="4" width="252" height="19">
+                        <td colspan="4" width="252" height="19" style="width:20%;">
                             Year 1
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" style="width:20%;">
                             Year 2
                         </td>
-                        <td colspan="2" rowspan="2" width="126" height="38">
+                        <td colspan="2" rowspan="2" width="126" height="38" style="width:20%;">
                             Total (LKR)
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" style="width:20%;">
                             Damages (LKR)
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" style="width:20%;">
                             Losses (LKR)
                         </td>
-                        <td colspan="2" width="126" height="19">
+                        <td colspan="2" width="126" height="19" style="width:20%;">
                             Losses (LKR)
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Private
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Private
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Private
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td width="63" height="19">
+                        <td width="63" height="19" style="width:10%;">
                             Private
                         </td>
                     </tr>
                         <tr  ng-repeat="(key, value) in dlAirTransSumPro.transport_air.Table_4" height="20" ng-init="getTotal($index,key)">
 
-                        <td ng-bind="key" class="tdpa" width="253" height="19" style="width:23%;">
+                        <td ng-bind="key" class="tdpa" width="253" height="19" style="">
 
                         </td>
-                        <td width="147" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub" style="width:6.9%;">
+                        <td width="147" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub" >
 
                         </td>
-                        <td width="151" ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt" style="width:6.8%;">
+                        <td width="151" ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt" >
 
                         </td>
-                        <td width="165" ng-bind="value.DlAirLosProvince[0].year_1_pub" style="width:6.5%;">
+                        <td width="165" ng-bind="value.DlAirLosProvince[0].year_1_pub" >
 
                         </td>
-                        <td width="170" ng-bind="value.DlAirLosProvince[0].year_1_pvt" style="width:30%;">
+                        <td width="170" ng-bind="value.DlAirLosProvince[0].year_1_pvt" >
 
                         </td>
-                        <td width="135" ng-bind="value.DlAirLosProvince[0].year_2_pub" style="width:6.9%;">
+                        <td width="135" ng-bind="value.DlAirLosProvince[0].year_2_pub" >
 
                         </td>
-                        <td width="133" ng-bind="value.DlAirLosProvince[0].year_2_pvt" style="width:6.9%;">
+                        <td width="133" ng-bind="value.DlAirLosProvince[0].year_2_pvt" >
 
                         </td>
-                        <td width="126" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub + value.DlAirLosProvince[0].year_1_pub + value.DlAirLosProvince[0].year_2_pub " style="width:6.9%;">
+                        <td width="126" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub + value.DlAirLosProvince[0].year_1_pub + value.DlAirLosProvince[0].year_2_pub " >
 
                         </td>
 

@@ -1,22 +1,21 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlWaterTransApp" ng-controller="DlWaterTransController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Transport Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Water Sub Sector</a>
+
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_water_main' %}">Transport Water Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses to Water Transportation</span>
         </li>
-
+<li style="float:right;"> <a href="{% static 'dashboard/doc/1C-Water_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
 
@@ -109,13 +108,13 @@
                         <td width="253" height="19">
                             Assets
                         </td>
-                        <td colspan="2" width="298">
+                        <td colspan="2" width="298" style="width:20%;">
                             Number of Totally Destroyed
                         </td>
-                        <td colspan="2" width="335">
+                        <td colspan="2" width="335" style="width:20%;">
                             Number of Partially Damaged
                         </td>
-                        <td colspan="3" width="394">
+                        <td colspan="3" width="394" style="width:20%;">
                             Total Damages (LKR)
                         </td>
                     </tr>
@@ -123,22 +122,22 @@
                         <td width="253" height="19">
                             Watercrafts
                         </td>
-                        <td width="">
+                        <td width="" style="width:10%;">
                             Public
                         </td>
-                        <td width="">
+                        <td width="" style="width:10%;">
                             Private
                         </td>
-                        <td width="">
+                        <td width="" style="width:10%;">
                             Public
                         </td>
-                        <td width="">
+                        <td width="" style="width:10%;">
                             Private
                         </td>
-                        <td colspan="2">
+                        <td colspan="2" style="width:10%;">
                             Public
                         </td>
-                        <td width="">
+                        <td width="" style="width:10%;">
                             Private
                         </td>
                     </tr>
@@ -628,33 +627,33 @@
                         <td rowspan="2" width="253" height="38">
                             Type of Losses
                         </td>
-                        <td colspan="2" width="298">
+                        <td colspan="2" width="298" style="width:20%;">
                             Year 1
                         </td>
-                        <td colspan="2" width="335">
+                        <td colspan="2" width="335" style="width:20%;">
                             Year2
                         </td>
-                        <td colspan="3" width="394">
+                        <td colspan="3" width="394" style="width:20%;">
                             Total Losses (LKR)
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td width="147" height="19">
+                        <td width="147" height="19" style="width:10%;">
                             Public
                         </td>
-                        <td width="151">
+                        <td width="151" style="width:10%;">
                             Private
                         </td>
-                        <td width="165">
+                        <td width="165" style="width:10%;">
                             Public
                         </td>
-                        <td width="170">
+                        <td width="170" style="width:10%;">
                             Private
                         </td>
-                        <td colspan="2" width="268">
+                        <td colspan="2" width="268" style="width:10%;">
                             Public
                         </td>
-                        <td width="126">
+                        <td width="126" style="width:10%;">
                             Private
                         </td>
                     </tr>

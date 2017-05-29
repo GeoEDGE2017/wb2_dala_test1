@@ -52,16 +52,16 @@
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                    <span class="arrow_box" ng-show="submitted && form_health_damagelost_lmh.incident.$error.required">
-                                Please Select Incident
-                     </span>
+                                <span class="arrow_box" ng-show="submitted && form_health_damagelost_lmh.incident.$error.required">
+                                    Please Select Incident
+                                </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                    <span class="arrow_box" ng-show="submitted && form_health_damagelost_lmh.district.$error.required">
-                                Please Select District
-                     </span>
+                                <span class="arrow_box" ng-show="submitted && form_health_damagelost_lmh.district.$error.required">
+                                    Please Select District
+                                </span>
                             </td>
                         </tr>
                         <tr class="trhead1">
@@ -213,8 +213,8 @@
                                            placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> -->
                                 </td>
                                 <td width="98" class="tdpa">
-                                    <!-- <input id="textinput" ng-model="dmhDfPaf.other" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> -->
+                                    <input id="textinput" ng-model="dmhDfPaf.other" name="textinput" type="number"
+                                           placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput" ng-model="dmhDfPaf.total" name="textinput" type="number"
@@ -228,20 +228,15 @@
                         <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
                             <span class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Facilities and Assets Informations</a>
                     </div>
-
                 </div>
-
-
-<div class="tab-pane" id="step2">
-
+                <div class="tab-pane" id="step2">
+                    <!--tab 2-->
                     <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-                        <!--tab 3-->
-
                         <tr height="20" class="trheadc1">
                             <td width="264" height="20">
                             </td>
@@ -360,8 +355,8 @@
                                            placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> -->
                                 </td>
                                 <td width="98" class="tdpa">
-                                   <!--  <input id="textinput" ng-model="dmhPdfaPaf.other" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)"> -->
+                                   <input id="textinput" ng-model="dmhPdfaPaf.other" name="textinput" type="number"
+                                           placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98" >
                                     <input id="textinput" ng-model="dmhPdfaPaf.total" name="textinput" type="number"
@@ -376,17 +371,15 @@
                                 class="glyphicon glyphicon-arrow-right"></span> Fill No of Destroyed Assets by Types of Facilities
                             Informations</a>
                     </div>
-
                 </div>
-
                 <div class="tab-pane" id="step3">
+                    <!--Tab 3-->
                     <table class="table table-bordered" style="">
                         <colgroup>
                             <col width="264"/>
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-
                         <tr height="20" class="trheadc1">
                             <td width="264" height="20">
                             </td>
@@ -428,7 +421,6 @@
                                 <col width="264"/>
                                 <col width="98" span="6"/>
                             </colgroup>
-                            <!--tab 2-->
                             <tbody>
                             <!--Structures (in sqm)-->
                             <tr height="20" class="trheadc">
@@ -453,7 +445,6 @@
                                 ng-if="$index < 3">
                                 <td width="264" ng-bind="dmhNdatFacStructure.asset" height="20" class="tdpa">
                                 </td>
-
                                 <td width="98">
                                     <input id="textinput" ng-model="dmhNdatFacStructure.teaching_hospital"
                                            name="textinput" type="number"
@@ -661,7 +652,9 @@
                                 <td width="98">
                                     <input id="textinput" ng-model="dmhNdatFacMequipment.total" name="textinput"
                                            type="number"
-                                           ng-value="dmhNdatFacMequipment.total=(bs_data['BucMarMequipment'][0].fields.teaching_hospital * dmhNdatFacMequipment.teaching_hospital) + (bs_data['BucMarMequipment'][0].fields.provincial_general_hospital * dmhNdatFacMequipment.provincial_general_hospital) + (bs_data['BucMarMequipment'][0].fields.district_general_hospital * dmhNdatFacMequipment.district_general_hospital)"
+                                           ng-value="dmhNdatFacMequipment.total=(bs_data['BucMarMequipment'][0].fields.teaching_hospital * dmhNdatFacMequipment.teaching_hospital) +
+                                           (bs_data['BucMarMequipment'][0].fields.provincial_general_hospital * dmhNdatFacMequipment.provincial_general_hospital) +
+                                           (bs_data['BucMarMequipment'][0].fields.district_general_hospital * dmhNdatFacMequipment.district_general_hospital)"
                                            placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                             </tr>
@@ -860,20 +853,15 @@
                                 class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Facilities and
                             Assets Informations</a>
                     </div>
-
                 </div>
-
-                
-
                 <div class="tab-pane" id="step4">
+                    <!--Tab 4-->
                     <table class="table table-bordered" style="background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-
-
                         <tr height="20" class="trheadc1">
                             <td width="264" height="20">
                             </td>
@@ -907,7 +895,7 @@
                                 Others
                             </td>
                         </tr>
-                        <!--tab 4-->
+
                         </tbody>
                     </table>
                     <div id="boxscroll3" style="height:400px;overflow:auto;">
@@ -918,22 +906,16 @@
                                     Structure (in sqm)
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                             </tr>
                             <tr height="20"
@@ -1305,10 +1287,9 @@
                         <a href="#step5" id="s4" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                                 class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                     </div>
-
                 </div>
-
                 <div class="tab-pane" id="step5">
+                    <!--Tab 5-->
                     <table class="table table-bordered" style="background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
@@ -1349,9 +1330,8 @@
                                 Others
                             </td>
                         </tr>
-                        </tbody> <!--tab 5-->
+                        </tbody>
                     </table>
-
                     <div id="boxscroll4" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
@@ -1784,18 +1764,12 @@
                             </tr>
                             </tbody>
                         </table>
-                        <!--<div class="pull-right">-->
-                        <!--<br>-->
-                        <!--<button type="button" class="btn btn-info">Clear</button>-->
-                        <!--<button type="button" class="btn btn-success" ng-click="saveBucMarStructure()">Submit-->
-                        <!--</button>-->
-                        <!--</div>-->
                         <div class="pull-right">
                             <br>
                             <button type="button" ng-click="clear()" class="btn btn-info">
                                 Clear
                             </button>
-                            <button type="button" ng-click="dlDataEdit(form_health_damagelost_lmh)" ng-if="!is_edit"
+                            <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit"
                                     class="btn btn-success">
                                 Edit
                             </button>
@@ -1803,22 +1777,49 @@
                                 Edit
                             </button>
                             <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                                    ng-click="saveBucMarStructure(form_health_damagelost_lmh)"
+                                    ng-click="dlSaveData(form_health_damagelost_lmh)"
                                     class="btn btn-success">Submit
                             </button>
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
         </div>
-
-
         <br>
-
     </div>
     <!-- /.conainer-fluid -->
+
+    <!-- update the baseline Model -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Save Data
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>'Table 3: Baseline Information of Unit Cost of the Ministry Health System in a District'</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock content %}

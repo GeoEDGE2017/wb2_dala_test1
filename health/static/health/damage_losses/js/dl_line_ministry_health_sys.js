@@ -17,7 +17,8 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     var init_data = {
         'health': {
             'Table_5': {
-                'DmhDfNum' : [{
+                //Tab 1
+                'DmhDfNum': [{
                     num_des_facilities : 'Number of Destroyed Facilities',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -26,7 +27,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     other : null,
                     total : null,
                 }],
-                'DmhDfPaf' : [{
+                'DmhDfPaf': [{
                     num_patients_affected : 'Male',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -44,7 +45,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     total : null,
                 }],
                 //tab 2
-                'DmhNdatFacStructure' : [{
+                'DmhNdatFacStructure': [{
                     asset : '1 Floor Structure',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -77,7 +78,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     other : null,
                     total : null,
                 }],
-                'DmhNdatFacSupplies' : [{
+                'DmhNdatFacSupplies': [{
                     asset : 'Medicines',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -102,7 +103,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     district_general_hospital : null,
                     total : null,
                 }],
-                'DmhNdatFacMequipment' : [{
+                'DmhNdatFacMequipment': [{
                     asset : 'CT Scan',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -126,15 +127,14 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     provincial_general_hospital : null,
                     district_general_hospital : null,
                     total : null,
-                },
-                {
+                }, {
                     asset : 'Value of Destroyed Medical Equipment',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
                     district_general_hospital : null,
                     total : null,
                 }],
-                'DmhNdatFacOassets' : [{
+                'DmhNdatFacOassets': [{
                     asset : 'Computers',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -201,7 +201,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     other : null,
                     total : null,
                 }],
-                'DmhPdfaPaf' : [{
+                'DmhPdfaPaf': [{
                     num_patients_affected : 'Male',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -252,7 +252,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     other : null,
                     total : null,
                 }],
-                'DmhPdfaMequipment' : [{
+                'DmhPdfaMequipment': [{
                     asset : 'CT Scan',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -283,7 +283,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     district_general_hospital : null,
                     total : null,
                 }],
-                'DmhPdfaOassets' : [{
+                'DmhPdfaOassets': [{
                     asset : 'Computers',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -349,7 +349,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     total : null,
                 }],
                 //tab 5
-                'DmhLosFi' : [{
+                'DmhLosFi': [{
                     type_of_losses : 'Disaster Year 1',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -374,7 +374,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     other : null,
                     total : null,
                 }],
-                'DmhLosCud' : [{
+                'DmhLosCud': [{
                     type_of_losses : 'Disaster Year 1',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -399,7 +399,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     other : null,
                     total : null,
                 }],
-                'DmhLosHoc' : [{
+                'DmhLosHoc': [{
                     type_of_losses : 'Disaster Year 1',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -424,7 +424,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     other : null,
                     total : null,
                 }],
-                'DmhLosOue' : [{
+                'DmhLosOue': [{
                     type_of_losses : 'Disaster Year 1',
                     teaching_hospital : null,
                     provincial_general_hospital : null,
@@ -456,7 +456,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.dlMinistryHealthSys = angular.copy(init_data);
 
     //Save Data
-    $scope.saveBucMarStructure = function(form) {
+    $scope.dlSaveData = function(form) {
         $scope.submitted = true;
         if(form.$valid){
             $http({
@@ -486,7 +486,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     }
 
     //Edit Data
-    $scope.dlDataEdit = function(form) {
+    $scope.dlEditData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -550,16 +550,17 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-                var is_null = false;
 
+                console.log('*', $scope.bs_data);
+                var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
-                    if(value==null) {
+                    if(value == null) {
                         is_null = true;
                     }
                 })
 
                 if(is_null == true) {
-                    $("#modal-container-239455").modal('show');
+                    $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
                     $scope.currentBaselineDate = null;
@@ -570,7 +571,6 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                         url: '/get_latest_bs_date',
                         contentType: 'application/json; charset=utf-8',
                         data: angular.toJson({
-                            'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
                             'com_data': {
                                 'district': $scope.district.district__id,
                                 'incident': $scope.incident,
@@ -582,7 +582,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     }).then(function successCallback(response) {
                         var result = response.data;
                         if(result == null) {
-                            $scope.currentBaselineDate = base +"Baseline data not found";
+                            $("#modal-container-239458").modal('show');
                         }
                         else {
                             result = result.replace(/^"(.*)"$/, '$1');
@@ -596,11 +596,6 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
             });
         }
     }
-
-    $scope.getBaselineDate = function (selectedValue) {
-
-    }
-
 
     //Clear Function
     $scope.clear = function() {

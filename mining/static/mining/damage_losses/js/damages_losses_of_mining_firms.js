@@ -14,6 +14,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.sTotDamages;
     $scope.sRepairPdmgAssets;
     $scope.Districts = [];
+    $scope.bs_data={};
     $scope.firm_id;
     $scope.selectedFirm;
     $scope.new_firm = {id: null, name: null, ownership: null};
@@ -111,11 +112,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         rep_tot_dassets: null,
                         repair_pdmg_assets: null,
                         tot_damages: null,
-                    }, {
-                        assets: 'GRAND TOTAL',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
                     }
 
                 ],
@@ -195,14 +191,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         firm_id: null,
 
                     },
-                    {
-                        type_los: 'GRAND TOTAL',
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-                        firm_id: null,
 
-                    }
                 ]
 
 
@@ -219,7 +208,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         var cumulative = null;
 
         var sums = _.map(array, function(obj) {
-            if(obj.assets != 'Total'&&  obj.assets != 'GRAND TOTAL' && obj.type_los !='Total' && obj.type_los !='GRAND TOTAL'){
+            if(obj.assets != 'Total'&& obj.type_los !='Total'){
             cumulative += obj[property];
             return cumulative;
             console.log(cumulative);
@@ -241,7 +230,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         if (angular.equals(model, 'DloLosOlos')) {
 
             var sums = _.map(array, function(obj) {
-            if(obj.assets != 'Total' && obj.type_los !='Total' && obj.type_los !='GRAND TOTAL'){
+            if(obj.assets != 'Total' && obj.type_los !='Total'){
                 cumulative += obj.los_year1;
                 cumulative_two += obj.los_year2;
 
@@ -259,7 +248,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         }
         else {
             var sums = _.map(array, function(obj) {
-              if(obj.assets != 'Total' &&  obj.assets != 'GRAND TOTAL'){
+              if(obj.assets != 'Total' && obj.type_los !='Total'){
                 cumulative += obj.rep_tot_dassets;
                 cumulative_two += obj.repair_pdmg_assets;
 
@@ -485,48 +474,150 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 
 
     $scope.fetchFirms = function(){
-
     $scope.new_firm.district = $scope.district;
+        $http({
+            method: "POST",
+            url: "/fetch_entities",
+            data: angular.toJson({
+            'district':  $scope.district.district__id,
+            'model': 'Firm',
+            'sector':'mining'
+         }),
+        }).success(function(data) {
 
-    $http({
-    method: "POST",
-    url: "/fetch_entities",
-    data: angular.toJson({
-    'district':  $scope.district.district__id,
-    'model': 'Firm',
-    'sector':'mining'
-     }),
-    }).success(function(data) {
-
-    console.log(data);
-    $scope.firms = data;
+        console.log(data);
+        $scope.firms = data;
 
     })
 }
 
 
-    $scope.changedValue = function getDlData(selectDistrict) {
+    $scope.changedValue=function getBsData(selectDistrict) {
         if($scope.incident && selectDistrict) {
-            fetchDistricts();
-        }
-    }
-
-    function fetchDistricts() {
-        if ($scope.incident) {
             $http({
                 method: "POST",
-                url: '/fetch_incident_districts',
-                data: angular.toJson({
-                    'incident': $scope.incident
-                }),
+                url: "/fetch_incident_districts",
+                data: angular.toJson({'incident': $scope.incident }),
             }).success(function(data) {
                 $scope.districts = data;
-                $scope.district = "";
+                $scope.selectedDistrict = "";
                 console.log(data);
-
+                $scope.district = "";
+//                console.log(data);
             })
         }
+
+
     }
+
+    $scope.changedValuefirm=function getBsData(selectedFirm) {
+        if($scope.incident && $scope.district && $scope.selectedFirm) {
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                  'db_tables': ['BmaImFn'],
+                  'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'firm_id': $scope.selectedFirm.id,
+                        },
+                   'sector':'mining',
+                   'table_name': 'Table_1'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                angular.forEach(data, function(value, key) {
+                  $scope.bs_data[key] = JSON.parse(value);
+                });
+
+                console.log($scope.bs_data);
+
+                generateRefencedData();
+
+            }, function errorCallback(response) {
+
+                console.log(response);
+            });
+        }
+        }
+
+
+    //Get Reference Data from Baseline
+    function generateRefencedData() {
+        data_array = ['BmaImFn'];
+
+        var dl_model1 = null;
+        var dl_model2 = null;
+
+
+        angular.forEach(data_array, function(value, key) {
+            obj_array = $scope.bs_data[value];
+            model_name = value;
+
+            var particular_value_1 = null;
+            var particular_value_2 = null;
+
+
+            if(model_name == 'BmaImFn') {
+                dl_model1 = 'DloDmgStocks';
+                dl_model2 = 'DloLosPlos';
+                particular_value_1 = 'Total';
+                particular_value_2 = 'Total';
+
+
+            }
+
+
+            var obj1 = {
+               assets: particular_value_1,
+               rep_tot_dassets: null,
+               repair_pdmg_assets: null,
+               tot_damages: null,
+            };
+             var obj2 = {
+               type_los: particular_value_2,
+               avg_per_year: null,
+               red_voutput_year1: null,
+               red_voutput_year2: null,
+               los_year1: null,
+               los_year2: null,
+               tot_losses: null,
+            };
+                $scope.dmLosOfMinFirms.mining.Table_3[dl_model1] = [];
+                $scope.dmLosOfMinFirms.mining.Table_3[dl_model2] = [];
+
+            angular.forEach(obj_array, function(value, key) {
+                var obj1 = {
+                    assets : value.fields.name_min_outputs,
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                };
+                var obj2 = {
+                   type_los: value.fields.name_min_outputs,
+                   avg_per_year: null,
+                   red_voutput_year1: null,
+                   red_voutput_year2: null,
+                   los_year1: null,
+                   los_year2: null,
+                   tot_losses: null,
+            };
+
+
+                if(model_name == 'BmaImFn') {
+                   $scope.dmLosOfMinFirms.mining.Table_3[dl_model1].push(obj1);
+                   $scope.dmLosOfMinFirms.mining.Table_3[dl_model2].push(obj2);
+                }
+
+            });
+                   $scope.dmLosOfMinFirms.mining.Table_3[dl_model1].push(obj1);
+                   $scope.dmLosOfMinFirms.mining.Table_3[dl_model2].push(obj2);
+        });
+    }
+
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
@@ -540,7 +631,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'firm': $scope.selectedFirm.id,
+
                     },
                     'is_edit': $scope.is_edit
                 }),

@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <script>
   $(document).ready(function() {
 
@@ -21,14 +21,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Other Government Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Damage and Loss Assessment in a Province </span>
         </li>
-
+<li style="float:right;"> <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
 
@@ -95,16 +95,16 @@
                     </tr>
                     <tr class="trheadc1" height="20">
 
-                        <td rowspan="2" colspan="2" width="191">
+                        <td rowspan="2" colspan="2" width="191" style="width:10%;">
                             Asset Ownership
                         </td>
-                        <td rowspan="2" colspan="2" width="118">
+                        <td rowspan="2" colspan="2" width="118" style="width:10%;">
                             Damages (LKR)
                         </td>
-                        <td colspan="2" width="236">
+                        <td colspan="2" width="236" style="width:10%;">
                             Losses (LKR)
                         </td>
-                        <td rowspan="2" colspan="2" width="118">
+                        <td rowspan="2" colspan="2" width="118" style="width:10%;">
                             Total (LKR)
                         </td>
                     </tr>
@@ -121,32 +121,32 @@
 
                         <tr height="20">
 
-                            <td ng-bind="key" class="tdpa" width="191">
+                            <td ng-bind="key" class="tdpa" width="191" style="width:10%;">
                             </td>
-                            <td width="118">
+                            <td width="118"  style="width:10%;">
                                 -
                             </td>
-                            <td width="118">
+                            <td width="118" style="width:5%;">
                                 -
                             </td>
-                            <td width="118">
+                            <td width="118" style="width:5%;">
                                 -
                             </td>
-                            <td width="118">
+                            <td width="118" style="width:10%;">
                                 -
                             </td>
                         </tr>
                         <tr ng-repeat="(key, value) in value" height="20">
 
-                            <td style="width:24%;" ng-bind="key" class="tdpa" width="191">
+                            <td  ng-bind="key" class="tdpa" width="191" >
                             </td>
-                            <td style="width:27.5%;" ng-bind="value.DlagdDmgProvince[0].damages" width="118">
+                            <td  ng-bind="value.DlagdDmgProvince[0].damages" width="118">
                             </td>
-                            <td ng-bind="value.DlagdLossesProvince[0].los_year1" width="118">
+                     <td ng-bind="value.DlagdLossesProvince[0].los_year1" width="118" >
                             </td>
-                            <td ng-bind="value.DlagdLossesProvince[0].los_year2" width="118">
+                     <td ng-bind="value.DlagdLossesProvince[0].los_year2" width="118" >
                             </td>
-				<td style="width:15%;">
+				<td >
 				</td>
                         </tr>
 

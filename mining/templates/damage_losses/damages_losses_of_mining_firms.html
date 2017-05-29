@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
@@ -11,10 +12,13 @@
 <main class="main" ng-app="dmLosOfMinFirmsApp" ng-controller="DmLosOfMinFirmsAppController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a></li>
-        <li class="breadcrumb-item"><a href="#">Mining Sector</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
+        </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3: Damages and Losses of Mining Firms  </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="(form_damagelost_mining_firm)">
         <ul class='nav nav-wizard'>
@@ -140,13 +144,13 @@
                         <td height="37" width="171" style="width:25%;">
                             Assets
                         </td>
-                        <td colspan="2" height="37" width="235">
+                        <td colspan="2" height="37" width="235" style="width:25%;">
                             Replacement Value of Totally Destroyed Assets (LKR)
                         </td>
-                        <td colspan="2" height="37" width="100">
+                        <td colspan="2" height="37" width="100" style="width:25%;">
                             Repair Cost for Partially Damaged Assets (LKR)
                         </td>
-                        <td colspan="2" height="37" width="">
+                        <td colspan="2" height="37" width="" style="width:25%;">
                             Total Damages (LKR)
                         </td>
                     </tr>
@@ -159,11 +163,11 @@
                             <td height="19" width="171" style="width:25%;">
                                 Structures
                             </td>
-                            <td colspan="2" height="19" width="218" style="width:31%;">
+                            <td colspan="2" height="19" width="218" style="width:25%;">
                             </td>
-                            <td colspan="2" height="19" width="126" style="width:17.5%;">
+                            <td colspan="2" height="19" width="126" style="width:25%;">
                             </td>
-                            <td colspan="2" height="19" width="126">
+                            <td colspan="2" height="19" width="126" style="width:25%;">
                             </td>
                         </tr>
                         <tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures"

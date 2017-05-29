@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <script>
   $(document).ready(function() {
     var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
@@ -15,15 +15,15 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+ <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Other Government Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
         </li>
+       
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information for the Costs of Structures and Other Assets in the District </span>
         </li>
-
+ <li style="float:right;"> <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
 
@@ -98,13 +98,13 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="20">
-                        <td width="100" height="20">
+                        <td width="100" height="20" style="width:10%;">
                             Roof
                         </td>
-                        <td width="100">
+                        <td width="100" style="width:10%;">
                             Wall
                         </td>
-                        <td width="100">
+                        <td width="100" style="width:10%;">
                             Flooring
                         </td>
                     </tr>

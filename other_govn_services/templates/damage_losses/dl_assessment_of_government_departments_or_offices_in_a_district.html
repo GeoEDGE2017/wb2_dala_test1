@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <script>
   $(document).ready(function() {
 
@@ -15,14 +15,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Other Government Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2: Damage and Loss Assessment of Government Departments or Offices in a District </span>
         </li>
-
+<li style="float:right;"> <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
 
@@ -69,7 +69,7 @@
                         <td colspan="1" style="padding-right:5px;text-align:right;">
                             Incident
                         </td>
-                        <td colspan="3" style="background:#EFEFEF;">
+                        <td colspan="3" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
@@ -85,7 +85,7 @@
                             </select>
                         </td>
                         <td colspan="2" style="padding-left:5px;"> Name of District</td>
-                        <td colspan="3" style="background:#EFEFEF;">
+                        <td colspan="3" style="">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-change="changedValue(false);fetchDepartments();"
                                     style="font-weight:400;" ng-change="changedValue(false)"
@@ -98,7 +98,7 @@
                         <td class="trheadc1" width="241" height="20" style="width:35%;">
                             Department or Office
                         </td>
-                        <td colspan="5" width="724">
+                        <td colspan="5" class="trheadc1" width="724">
                             <select ng-options="department as department.name for department in departments track by department.id"
                                     id="ccyear" ng-change="fetchOwnership()" ng-model="new_department"
                                     class="form-control"
@@ -385,7 +385,7 @@
                 <table class="table table-bordered">
                     <tbody>
 
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td width="241" height="34">
                             Type of Losses
                         </td>

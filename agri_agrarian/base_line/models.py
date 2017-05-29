@@ -294,3 +294,48 @@ class BsoeMachinery(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_agrarian\".\"bsoe_machinery'
+
+
+class BacfAvgrePlantnCrops(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    avg_value = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    bs_date = models.CharField(max_length=255, blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"bacf_avgre_plantn_crops'
+
+
+class BacfAvgreExportCrops(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    avg_value = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    bs_date = models.CharField(max_length=255, blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"bacf_avgre_export_crops'
+
+
+class BacfAvgreForestry(models.Model):
+    assets = models.CharField(max_length=255, blank=True, null=True)
+    avg_value = models.FloatField(blank=True, null=True)
+    created_user = models.IntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    lmu = models.IntegerField(blank=True, null=True)
+    lmd = models.DateTimeField(blank=True, null=True)
+    bs_date = models.CharField(max_length=255, blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"bacf_avgre_forestry'

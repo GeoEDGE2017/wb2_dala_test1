@@ -586,7 +586,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                         }
                         else {
                             result = result.replace(/^"(.*)"$/, '$1');
-                            $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
                         }
                     });
                 }

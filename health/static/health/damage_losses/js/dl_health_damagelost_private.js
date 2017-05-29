@@ -150,7 +150,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 else {
                     var result = response.data;
                     result = result.replace(/^"(.*)"$/, '$1');
-                    $scope.currentBaselineDate = result +" is the Latest Baseline Data";
+                    $scope.currentBaselineDate = "Latest baseline data as at " + result;
                     console.log($scope.currentBaselineDate);
                 }
             });

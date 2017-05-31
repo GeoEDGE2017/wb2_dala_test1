@@ -386,7 +386,6 @@ def get_latest_bs_date(request):
     incident = IncidentReport.objects.get(pk=incident_id)
     incident_date = incident.reported_date_time
     table_name = data['table_name']
-    db_tables = data['db_tables']
     bs_mtable_data = {}
 
     sub_app_name = sector + '.base_line'

@@ -326,28 +326,7 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tbody ng-repeat="dpefBefPreSchool in dlPvtEduFacilities.education.Table_4.DpefBefPreSchool">
-                        <!--&lt;!&ndash;save&ndash;&gt;-->
-                        <!--<tr height="21" ng-if="!is_edit">-->
-                            <!--<td height="20" align="left" valign="middle">-->
-                                <!--Pre-school Name-->
-                            <!--</td>-->
-                            <!--<td class="trsub" colspan="2" width="136">-->
-                                <!--<select ng-options="school as school.name for school in schools.PreSchools track by school.id"-->
-                                        <!--name="district" id="ccyear"-->
-                                        <!--class="form-control" required>-->
-                                    <!--&lt;!&ndash;ng-model="new_school['PreSchools']"&ndash;&gt;-->
-                                    <!--<option value="" selected>Select pre-school name</option>-->
-                                <!--</select>-->
-                            <!--</td>-->
-                            <!--<td ng-bind="dpefBefPreSchool[0].pre_school">-->
-                                <!--&lt;!&ndash;Pre-school Name&ndash;&gt;-->
-                            <!--</td>-->
-                            <!--<td ng-bind="is_edit">-->
-                                <!--&lt;!&ndash;Pre-school Name&ndash;&gt;-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--edit-->
-                        <tr height="21" ng-if="is_edit">
+                        <tr height="21">
                             <td height="20" align="left" valign="middle">
                                 Pre-school Name
                             </td>
@@ -405,27 +384,14 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                             <td width="136">
                                 <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_1" ng-value="row.est_los_year_1=dpefBefPreSchool[0].est_los_year_1 + dpefBefPreSchool[1].est_los_year_1 + dpefBefPreSchool[2].est_los_year_1"-->
                             </td>
                             <td width="136">
                                 <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_2" ng-value="row.est_los_year_2=dpefBefPreSchool[0].est_los_year_2 + dpefBefPreSchool[1].est_los_year_2 + dpefBefPreSchool[2].est_los_year_2"-->
                             </td>
                             <td width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
-                                <!--ng-bind="row.tot_los"-->
-                                <!--ng-value="row.tot_los=dpefBefPreSchool[0].tot_los + dpefBefPreSchool[1].tot_los + dpefBefPreSchool[2].tot_los"-->
                             </td>
                         </tr>
                         </tbody>
-                        <!--<tr class="tdpa" height="21">-->
-                            <!--<td colspan="6" width="280" height="21">-->
-                            <!--</td>-->
-                            <!--<td width="136">-->
-                                <!--<button type="button" class="btn btn-block btn-success" ng-click="dlDataSubmit()">save-->
-                                <!--</button>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-
                         <!--Primary School Name-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -500,7 +466,6 @@ $(document).on("click", "#add_technical", function () {
                             <td width="136" class="tdpa">
                             </td>
                             <td width="136" class="tdpa">
-                                <!--ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2" -->
                             </td>
                         </tr>
                         <tr height="21" ng-repeat="row in dpefBefPrmSchool" ng-if="row.asset == 'Total'">
@@ -535,14 +500,6 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         </tbody>
-                        <!--<tr class="tdpa" height="21">-->
-                            <!--<td colspan="6" width="280" height="21">-->
-                            <!--</td>-->
-                            <!--<td width="136">-->
-                                <!--<button type="button" class="btn btn-block btn-success">save</button>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-
                         <!--Secondary School-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -651,14 +608,6 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         </tbody>
-                        <!--<tr class="tdpa" height="21">-->
-                            <!--<td colspan="6" width="280" height="21">-->
-                            <!--</td>-->
-                            <!--<td width="136">-->
-                                <!--<button type="button" class="btn btn-block btn-success">save</button>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-
                         <!--University-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -770,14 +719,6 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         </tbody>
-                        <!--<tr class="tdpa" height="21">-->
-                            <!--<td colspan="6" width="280" height="21">-->
-                            <!--</td>-->
-                            <!--<td width="136">-->
-                                <!--<button type="button" class="btn btn-block btn-success">save</button>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-
                         <!--Technical Institutes-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -921,28 +862,6 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tr class="trsub" height="21" ng-repeat="dpefBefOtherSchool in dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool" ng-if="dpefBefOtherSchool.asset != 'Total'">
-                            <!--<td class="trhead" width="280" height="21" ng-bind="dpefBefOtherSchool.asset">-->
-                                <!--Other School Name-->
-                            <!--</td>-->
-                            <!--<td class="trsub" colspan="2" width="136">-->
-                                <!--<select ng-options="school as school.name for school in schools.TechInstitutes track by school.id"-->
-                                        <!--name="district" id="ccyear" ng-model="new_school['TechInstitutes']"-->
-                                        <!--class="form-control" required>-->
-                                    <!--<option value="" selected>Other School Type</option>-->
-                                <!--</select>-->
-                            <!--</td>-->
-                            <!--<td width="136">-->
-                                <!--<a id="add_technical" href="#modal-container-218029"-->
-                                   <!--ng-click="schoolType='TechInstitutes'" role="button" data-toggle="modal"-->
-                                   <!--data-id="Add Other School Type"-->
-                                   <!--class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
-                            <!--</td>-->
-                            <!--<td width="136">-->
-                                <!--<a id="edit_technical" ng-click="is_edit_model=true; schoolType='TechInstitutes'"-->
-                                   <!--href="#modal-container-218029" role="button" data-toggle="modal"-->
-                                   <!--data-id="Edit Technical Institutes"-->
-                                   <!--class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
-                            <!--</td>-->
                             <td ng-bind="dpefBefOtherSchool.asset" class="tdpa"
                                 width="280" height="21">
                             </td>

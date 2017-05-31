@@ -13,6 +13,8 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     var finaltotal = 0;
     $scope.is_null = false;
     $scope.grantot = 0;
+    $scope.is_edit_disable = false;
+    $scope.currentBaselineDate = null;
 
     //Initialize Data
     var init_data = {
@@ -338,6 +340,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         }
 
         if($scope.incident && $scope.district ) {
+//            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

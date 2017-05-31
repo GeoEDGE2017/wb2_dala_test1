@@ -222,7 +222,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 });
                 console.log(data);
 
-
+                 var  is_null = false;
                  angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
                         is_null = true;

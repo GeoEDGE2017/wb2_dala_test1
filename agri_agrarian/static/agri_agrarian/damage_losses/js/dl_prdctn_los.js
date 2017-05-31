@@ -311,6 +311,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(data);
+                var is_null=false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
                         is_null = true;

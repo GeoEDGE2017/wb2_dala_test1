@@ -167,14 +167,6 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                     num_dmg_pvt : null,
                     dmg_pub : null,
                     dmg_pvt : null,
-                }, {
-                    assets : 'GRAND TOTAL',
-                    num_dest_pub : null,
-                    num_dest_pvt : null,
-                    num_dmg_pub : null,
-                    num_dmg_pvt : null,
-                    dmg_pub : null,
-                    dmg_pvt : null,
                 }],
             }
         }
@@ -218,7 +210,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 console.log(data);
-
+                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
                         is_null = true;

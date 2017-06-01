@@ -690,7 +690,7 @@ def dl_save_data_with_array(request):
                     return HttpResponse(False)
 
     else:
-        dl_save_edit_data(dl_table_data, com_data)
+        dl_save_edit_data_with_array(dl_table_data, com_data)
 
     return HttpResponse('success')
 
@@ -783,12 +783,6 @@ def dl_fetch_edit_data_with_array(request):
                                                          filter(**filter_fields).
                                                          values(*table_fields).order_by('id'))
 
-        # print dl_mtable_data
-
-    print ' '
-    print dl_mtable_data[sector][table_name]['DpefBefPreSchool']
-    print ' '
-
     sub_app_name = sector + '.base_line'
 
     dl_new_data = {sector: {}}
@@ -807,7 +801,7 @@ def dl_fetch_edit_data_with_array(request):
                 print tbl, ' = ', key, ' -> ', keys[key]
 
                 for i in dl_mtable_data[sector][table_name][tbl]:
-                    print '% ', i[keys[key]]
+                    # print '% ', i[keys[key]]
 
                     if i[keys[key]] not in data_set_ids:
                         data_set_ids.append(i[keys[key]])
@@ -823,11 +817,13 @@ def dl_fetch_edit_data_with_array(request):
                         if i[keys[key]] == data_set_id:
                             array_table_in.append(i)
                     array_table_out.append(array_table_in)
-                print '=================='
+                print '==============='
                 print array_table_out
                 dl_new_data[sector][table_name][tbl] = array_table_out
                 break
-
+            else:
+                print dl_mtable_data[sector][table_name][tbl]
+                dl_new_data[sector][table_name][tbl] = dl_mtable_data[sector][table_name][tbl]
     return HttpResponse(
         json.dumps(dl_new_data, cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
@@ -897,7 +893,7 @@ def dl_fetch_edit_data_with_array(request):
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data):
     todate = timezone.now()
-    print "Edit d"
+    print "Edit -------------"
     for sector in table_data:
 
         sub_app_name = sector + '.damage_losses'
@@ -909,6 +905,8 @@ def dl_save_edit_data(table_data, com_data):
                 print 'db table', ' -->', db_table, '\n'
 
                 for row in table_data[sector][interface_table][db_table]:
+
+                    print row
 
                     model_class = apps.get_model(sub_app_name, db_table)
 
@@ -936,6 +934,77 @@ def dl_save_edit_data(table_data, com_data):
 
                         print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
 
+
+@csrf_exempt
+def dl_save_edit_data_with_array(table_data, com_data):
+    todate = timezone.now()
+    print "Edit -------------"
+    for sector in table_data:
+
+        sub_app_name = sector + '.damage_losses'
+
+        for interface_table in table_data[sector]:
+            print 'interface table', ' -->', interface_table, '\n'
+            for db_table in table_data[sector][interface_table]:
+
+                print 'db table', ' -->', db_table, '\n'
+
+                for row in table_data[sector][interface_table][db_table]:
+
+                    model_class = apps.get_model(sub_app_name, db_table)
+
+                    print '*** ', row, ' - ', type(row)
+                    if isinstance(row, list):
+                        for row_in in row:
+                            if not has_the_id(row_in):
+                                model_object = model_class()
+                                # assigning common properties to model object
+                                model_object.created_date = todate
+                                model_object.lmd = todate
+
+                                for com_property in com_data:
+                                    print com_data[com_property]
+                                    setattr(model_object, com_property, com_data[com_property])
+
+                                for property in row_in:
+                                    setattr(model_object, property, row[property])
+                                    print 'property ', ' --> ', property, ' db_property ', row_in[property], ' index ', '\n'
+
+                                model_object.save()
+                                print "saved--dl---", model_object.id
+                                print "no id found in dl"
+
+                            else:
+                                print '@@@', row
+                                model_object = model_class.objects.filter(id=row_in['id'])
+                                model_object.update(**row_in)
+
+                                print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+                    else:
+                        if not has_the_id(row):
+                            model_object = model_class()
+                            # assigning common properties to model object
+                            model_object.created_date = todate
+                            model_object.lmd = todate
+
+                            for com_property in com_data:
+                                print com_data[com_property]
+                                setattr(model_object, com_property, com_data[com_property])
+
+                            for property in row:
+                                setattr(model_object, property, row[property])
+
+                                print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
+                            model_object.save()
+                            print "saved--dl---", model_object.id
+                            print "no id found in dl"
+
+                        else:
+                            print '$$$', row
+                            model_object = model_class.objects.filter(id=row['id'])
+                            model_object.update(**row)
+
+                            print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
 
 # Old method
 # @csrf_exempt

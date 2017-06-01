@@ -15,7 +15,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
 
-//initialize model
+    //initialize model
     var init_data = {
         'health': {
             'Table_7': {
@@ -80,8 +80,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
 
-//Save Data
-    $scope.saveDlHealthData = function() {
+    //Save Data
+    $scope.saveDlData = function() {
         console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
 
@@ -111,7 +111,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         });
     }
 
-//Fetch Entities
+    //Fetch Entities
     $scope.fetchPrivateClinics = function() {
         $scope.private_clinic.district_id = $scope.district;
 
@@ -157,7 +157,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
     }
 
-//Add Entities
+    //Add Entities
     $scope.addPrivateClinic = function() {
         if($scope.private_clinic) {
             $scope.private_clinic.district_id = $scope.district.district__id;
@@ -190,7 +190,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
-//Edit Data
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -208,13 +207,14 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     },
                }),
             }).success(function(data) {
-                console.log(data);
                 $scope.dlHealthDamagelostPrivateSys = data;
+                console.log($scope.dlHealthDamagelostPrivateSys);
             })
         }
     }
 
-    $scope.dlEditData = function(form) { //new
+    //Edit Data
+    $scope.editDlData = function(form) { //new
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -226,7 +226,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'table_name': 'Table_7',
                     'sector': 'health',
                     'keys': {
-                        'DapBefPc': 'pre_school',
+                        'DapBefPc': 'private_clinic',
                     },
                     'com_data': {
                         'district': $scope.district.district__id,
@@ -235,19 +235,19 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'is_edit': $scope.is_edit
                }),
             }).success(function(data) {
-                console.log(data);
                 $scope.dlHealthDamagelostPrivateSys = data;
+                console.log($scope.dlHealthDamagelostPrivateSys);
             })
         }
     }
 
-//Cancel Data
+    //Cancel Data
     $scope.cancelEdit = function() {
          $scope.is_edit = false;
          $scope.dlHealthDamagelostPrivateSys = init_data;
     }
 
-//Fetch Districts
+    //Fetch Districts
     $scope.changeIncident = function getDistrictData() {
         if($scope.incident) {
             $http({
@@ -262,7 +262,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;

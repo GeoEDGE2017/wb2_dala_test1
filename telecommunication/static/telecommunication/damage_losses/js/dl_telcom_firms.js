@@ -353,7 +353,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            console.log($scope.selectedCompany.id);
+            console.log($scope.selectedCompany);
             $http({
                 method : 'POST',
                 url : '/dl_save_data',
@@ -363,21 +363,27 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     'com_data': {
                         'district_id' : $scope.district.district__id,
                         'incident_id' : $scope.incident,
-                        'firm_id' : $scope.selectedCompany.id,
+                        'firm' : $scope.selectedCompany.company
                     },
                     'is_edit' : $scope.is_edit,
                     'sector' : 'telecommunication'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
+                if(response.data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });
         }
+    }
+
+    $scope.test = function(form) {
+        console.log($scope.selectedCompany.company);
     }
 
     $scope.editDlData = function(form) {

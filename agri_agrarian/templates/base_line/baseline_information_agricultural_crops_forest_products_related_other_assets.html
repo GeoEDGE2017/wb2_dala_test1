@@ -7,6 +7,7 @@
     
   });
   
+
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsInfoAcfoAssetsApp" ng-controller="bsInfoAcfoAssetsController">
@@ -43,17 +44,19 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                             </td>
-                            <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_bs_info_sero_assets.district.$error.required">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_info_sero_assets.district.$error.required">
                                     Please Select District
                                 </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_bs_info_sero_assets.baselineDate.$error.required">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_info_sero_assets.baselineDate.$error.required">
                                     Please Select Date
                                 </span>
                             </td>
@@ -63,21 +66,23 @@
                                 District:
                             </td>
                             <td colspan="2" width="269">
-                                <select id="selectbasic" name="district" class="form-control"  ng-change="getValue()" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <select id="selectbasic" name="district" class="form-control" ng-change="getValue()"
+                                        ng-model="district" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
-                                        <option value={{ district.id }}>{{ district.name }}</option>
+                                    <option value={{ district.id }}>{{ district.name }}</option>
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td colspan="2" style="padding-left:5px;"s width="346">
+                            <td colspan="2" style="padding-left:5px;" s width="346">
                                 Year/Month:
                             </td>
-                            <td colspan="2"s width="99">
-                                <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="getValue()" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <td colspan="2" s width="99">
+                                <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="getValue()"
+                                       id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
-                             <!--<button type="button" ng-click="getValue()" class="btn btn-primary">-->
-                               <!--Get-->
+                            <!--<button type="button" ng-click="getValue()" class="btn btn-primary">-->
+                            <!--Get-->
                             <!--</button>-->
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -115,248 +120,261 @@
                             </td>
                         </tr>
                         </tbody>
-                        </table>
-                        <div id="boxscroll" style="height:400px;overflow:auto;">
-                         <table class="table table-bordered" >
-
-                        <tr class="trheadc" height="19">
-                            <td width="249" height="19">
-                                Seasonal Crops
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
-                            <tr height="19" ng-repeat="bacfSeasonalCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops">
-                                <td class="tdpa" width="249" height="19" ng-bind="bacfSeasonalCrops.seasonal_crops">
-                            </td>
-
-                            <td width="148">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfSeasonalCrops.avg_value">
-                            </td>
-                            <td width="121">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfSeasonalCrops.productn_pub">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfSeasonalCrops.productn_pvt">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfSeasonalCrops.productn_cost_nplanted">
-                            </td>
-                            <td width="112">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfSeasonalCrops.productn_cost_mstage">
-                            </td>
-                            <td width="99">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfSeasonalCrops.productn_cost_hstage">
-                            </td>
-                        </tr>
-
-                        <tr class="trheadc" height="19">
-                            <td width="249" height="19">
-                                Plantation Crops
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bacfPlantnCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfPlantnCrops">
-                            <td class="tdpa" width="249" height="19" ng-bind="bacfPlantnCrops.plantn_crops">
-                            </td>
-
-                            <td width="148">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfPlantnCrops.avg_value">
-                            </td>
-                            <td width="121">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfPlantnCrops.productn_pub">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfPlantnCrops.productn_pvt">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfPlantnCrops.productn_cost_nplanted">
-                            </td>
-                            <td width="112">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfPlantnCrops.productn_cost_mstage">
-                            </td>
-                            <td width="99">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfPlantnCrops.productn_cost_hstage">
-                            </td>
-                        </tr>
-
-                        <tr class="trheadc" height="19">
-                            <td width="249" height="19">
-                                Export Crops
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bacfExportCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfExportCrops">
-                            <td class="tdpa" width="249" height="19" ng-bind="bacfExportCrops.export_crops" >
-                            </td>
-
-                            <td width="148">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfExportCrops.avg_value">
-                            </td>
-                            <td width="121">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfExportCrops.productn_pub">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfExportCrops.productn_pvt">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfExportCrops.productn_cost_nplanted">
-                            </td>
-                            <td width="112">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfExportCrops.productn_cost_mstage">
-                            </td>
-                            <td width="99">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfExportCrops.productn_cost_hstage">
-                            </td>
-                        </tr>
-
-                        <tr class="trheadc" height="19">
-                            <td width="249" height="19">
-                                Forestry
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bacfForestry in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfForestry">
-                            <td class="tdpa" width="249" height="19" ng-bind="bacfForestry.forestry" >
-                            </td>
-
-                            <td width="148">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfForestry.avg_value">
-                            </td>
-                            <td width="121">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfForestry.productn_pub">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfForestry.productn_pvt">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfForestry.productn_cost_nplanted">
-                            </td>
-                            <td width="112">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfForestry.productn_cost_mstage">
-                            </td>
-                            <td width="99">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfForestry.productn_cost_hstage">
-                            </td>
-                        </tr>
-
-                        <tr class="trheadc" height="19">
-                            <td width="249" height="19">
-                                Others Products
-                            </td>
-                            <td width="148">
-                            </td>
-                            <td width="121">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="117">
-                            </td>
-                            <td width="112">
-                            </td>
-                            <td width="99">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bacfOther in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfOther">
-                            <td class="tdpa" width="249" height="19" ng-bind="bacfOther.other_products">
-                            </td>
-
-                            <td width="148">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfOther.avg_value">
-                            </td>
-                            <td width="121">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfOther.productn_pub">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfOther.productn_pvt">
-                            </td>
-                            <td width="117">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfOther.productn_cost_nplanted">
-                            </td>
-                            <td width="112">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfOther.productn_cost_mstage">
-                            </td>
-                            <td width="99">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bacfOther.productn_cost_hstage">
-                            </td>
-                        </tr>
-
-                        <tbody>
                     </table>
-                   </div>
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                        <table class="table table-bordered">
+
+                            <tr class="trheadc" height="19">
+                                <td width="249" height="19">
+                                    Seasonal Crops
+                                </td>
+                                <td width="148">
+                                </td>
+                                <td width="121">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="112">
+                                </td>
+                                <td width="99">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bacfSeasonalCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfSeasonalCrops">
+                                <td class="tdpa" width="249" height="19" ng-bind="bacfSeasonalCrops.seasonal_crops">
+                                </td>
+
+                                <td width="148">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfSeasonalCrops.avg_value">
+                                </td>
+                                <td width="121">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfSeasonalCrops.productn_pub">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfSeasonalCrops.productn_pvt">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfSeasonalCrops.productn_cost_nplanted">
+                                </td>
+                                <td width="112">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfSeasonalCrops.productn_cost_mstage">
+                                </td>
+                                <td width="99">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfSeasonalCrops.productn_cost_hstage">
+                                </td>
+                            </tr>
+
+                            <tr class="trheadc" height="19">
+                                <td width="249" height="19">
+                                    Plantation Crops
+                                </td>
+                                <td width="148">
+                                </td>
+                                <td width="121">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="112">
+                                </td>
+                                <td width="99">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bacfPlantnCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfPlantnCrops">
+                                <td class="tdpa" width="249" height="19" ng-bind="bacfPlantnCrops.plantn_crops">
+                                </td>
+
+                                <td width="148">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfPlantnCrops.avg_value">
+                                </td>
+                                <td width="121">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfPlantnCrops.productn_pub">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfPlantnCrops.productn_pvt">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfPlantnCrops.productn_cost_nplanted">
+                                </td>
+                                <td width="112">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfPlantnCrops.productn_cost_mstage">
+                                </td>
+                                <td width="99">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfPlantnCrops.productn_cost_hstage">
+                                </td>
+                            </tr>
+
+                            <tr class="trheadc" height="19">
+                                <td width="249" height="19">
+                                    Export Crops
+                                </td>
+                                <td width="148">
+                                </td>
+                                <td width="121">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="112">
+                                </td>
+                                <td width="99">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bacfExportCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfExportCrops">
+                                <td class="tdpa" width="249" height="19" ng-bind="bacfExportCrops.export_crops">
+                                </td>
+
+                                <td width="148">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfExportCrops.avg_value">
+                                </td>
+                                <td width="121">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfExportCrops.productn_pub">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfExportCrops.productn_pvt">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfExportCrops.productn_cost_nplanted">
+                                </td>
+                                <td width="112">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfExportCrops.productn_cost_mstage">
+                                </td>
+                                <td width="99">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bacfExportCrops.productn_cost_hstage">
+                                </td>
+                            </tr>
+
+                            <tr class="trheadc" height="19">
+                                <td width="249" height="19">
+                                    Forestry
+                                </td>
+                                <td width="148">
+                                </td>
+                                <td width="121">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="112">
+                                </td>
+                                <td width="99">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bacfForestry in bsInfoAcfoAssets.agri_agrarian.Table_2.BcafForestry">
+                                <td class="tdpa" width="249" height="19" ng-bind="bacfForestry.forestry">
+                                </td>
+
+                                <td width="148">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfForestry.avg_value">
+                                </td>
+                                <td width="121">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfForestry.productn_pub">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfForestry.productn_pvt">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfForestry.productn_cost_nplanted">
+                                </td>
+                                <td width="112">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfForestry.productn_cost_mstage">
+                                </td>
+                                <td width="99">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfForestry.productn_cost_hstage">
+                                </td>
+                            </tr>
+
+                            <tr class="trheadc" height="19">
+                                <td width="249" height="19">
+                                    Others Products
+                                </td>
+                                <td width="148">
+                                </td>
+                                <td width="121">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="117">
+                                </td>
+                                <td width="112">
+                                </td>
+                                <td width="99">
+                                </td>
+                            </tr>
+                            <tr height="19" ng-repeat="bacfOther in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfOther">
+                                <td class="tdpa" width="249" height="19" ng-bind="bacfOther.other_products">
+                                </td>
+
+                                <td width="148">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfOther.avg_value">
+                                </td>
+                                <td width="121">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfOther.productn_pub">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfOther.productn_pvt">
+                                </td>
+                                <td width="117">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfOther.productn_cost_nplanted">
+                                </td>
+                                <td width="112">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfOther.productn_cost_mstage">
+                                </td>
+                                <td width="99">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bacfOther.productn_cost_hstage">
+                                </td>
+                            </tr>
+
+                            <tbody>
+                        </table>
+                    </div>
                     <br>
                     <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
@@ -388,20 +406,24 @@
                             <td colspan="3">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="bacfFarmEquipment in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfFarmEquipment">
-                            <td class="tdpa" width="249" height="19" ng-bind="bacfFarmEquipment.assets" ng-if="$index < 1">
+                        <tr height="19"
+                            ng-repeat="bacfFarmEquipment in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfFarmEquipment">
+                            <td class="tdpa" width="249" height="19" ng-bind="bacfFarmEquipment.assets"
+                                ng-if="$index < 1">
                             </td>
                             <td width="98" ng-if="$index > 0">
                                 {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BacfFarmEquipment', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                <button id="delete" ng-click="removeItem('BacfFarmEquipment', $index)"
+                                        class="btn btn-sm btn-danger btn-circle">
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:80%;float:right;" name="bacfFarmEquipment_{{$index}}" ng-model="bacfFarmEquipment.assets"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_info_sero_assets['bacfFarmEquipment_' + $index].$dirty && !form_bs_info_sero_assets['bacfFarmEquipment_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
+                                <input style="width:80%;float:right;" name="bacfFarmEquipment_{{$index}}"
+                                       ng-model="bacfFarmEquipment.assets"
+                                       popover="This field is required"
+                                       popover-toggle="form_bs_info_sero_assets['bacfFarmEquipment_' + $index].$dirty && !form_bs_info_sero_assets['bacfFarmEquipment_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
                                 {% endverbatim %}
                             </td>
                             <td colspan="3">
@@ -416,7 +438,8 @@
                         <tr class="tdpa" class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
                                 Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BacfFarmEquipment')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <button ng-click="insertAsset('BacfFarmEquipment')"
+                                        class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
@@ -433,20 +456,22 @@
                                 Average Value Per Unit (LKR/Unit)
                             </td>
                         </tr>
-                        <tr height="19"  ng-repeat="bacfStocks in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfStocks">
+                        <tr height="19" ng-repeat="bacfStocks in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfStocks">
                             <td class="tdpa" width="249" height="19" ng-bind="bacfStocks.assets" ng-if="$index < 3">
                             </td>
                             <td width="98" ng-if="$index > 2">
                                 {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BacfStocks', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                <button id="delete" ng-click="removeItem('BacfStocks', $index)"
+                                        class="btn btn-sm btn-danger btn-circle">
                                     <i class="fa fa-minus"></i>
                                 </button>
-                                <input style="width:80%;float:right;" name="bacfStocks_{{$index}}" ng-model="bacfStocks.assets"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_info_sero_assets['bacfStocks_' + $index].$dirty && !form_bs_info_sero_assets['bacfStocks_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
+                                <input style="width:80%;float:right;" name="bacfStocks_{{$index}}"
+                                       ng-model="bacfStocks.assets"
+                                       popover="This field is required"
+                                       popover-toggle="form_bs_info_sero_assets['bacfStocks_' + $index].$dirty && !form_bs_info_sero_assets['bacfStocks_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
                                 {% endverbatim %}
                             </td>
                             <td colspan="6">
@@ -457,7 +482,8 @@
                         <tr class="tdpa" height="19">
                             <td class="tdpa" width="249" height="19">
                                 Others
-                                <button ng-click="insertAsset('BacfStocks')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <button ng-click="insertAsset('BacfStocks')" class="btn btn-sm btn-info btn-circle"
+                                        id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
@@ -466,152 +492,92 @@
                         </tr>
 
                         <!-- new table -->
-                          <tr class="trheadc">
-            <td height="20" align="justify" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               Average Replanting Cost Per Unit (LKR/Unit)
-            </td>
-        </tr>
-        <tr class="trheadc">
-            <td  height="20" align="left" valign="middle">
-                Plantation Crops
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Coconut
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Tea
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Rubber
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Other plantation crops
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" > 
-            </td>
-        </tr>
-        <tr class="trheadc">
-            <td height="20" align="left" valign="middle">
-               Export Crops
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Coffee
-            <td colspan="6" align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Fruit trees
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Cinnamon
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-         <tr class="tdpa" height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Others
-                                <button class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
+                        <tr class="trheadc">
+                            <td height="20" align="justify" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
                             </td>
-                            <td colspan="6">
+                            <td colspan="6" align="center" valign="middle">
+                                Average Replanting Cost Per Unit (LKR/Unit)
                             </td>
                         </tr>
-        <tr class="trheadc">
-            <td  height="20" align="left" valign="middle">
-               Forestry
-            </td>
-            <td colspan="6" align="center" valign="middle">
-               
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Timber
-            </td>
-            <td colspan="6" align="center" valign="middle">
-            <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr class="tdpa" height="19">
-                            <td class="tdpa" width="249" height="19">
-                                Others
-                                <button class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
+                        <tr class="trheadc">
+                            <td height="20" align="left" valign="middle">
+                                Plantation Crops
                             </td>
-                            <td colspan="6">
+                            <td colspan="6" align="center" valign="middle">
+
                             </td>
                         </tr>
+                        <tr height="19"
+                            ng-repeat="bacfAvgrePlantnCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfAvgrePlantnCrops">
+                            <td class="tdpa" width="249" height="19" ng-bind="bacfAvgrePlantnCrops.assets">
+                            </td>
 
+                            <td width="148" colspan="6">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="bacfAvgrePlantnCrops.avg_value">
+                            </td>
 
+                        </tr>
 
+                        <tr class="trheadc">
+                            <td height="20" align="left" valign="middle">
+                                Export Crops
+                            </td>
+                            <td colspan="6" align="center" valign="middle">
+
+                            </td>
+                        </tr>
+                        <tr height="19"
+                            ng-repeat="bacfAvgreExportCrops in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfAvgreExportCrops">
+                            <td class="tdpa" width="249" height="19" ng-bind="bacfAvgreExportCrops.assets">
+                            </td>
+
+                            <td width="148" colspan="6">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="bacfAvgreExportCrops.avg_value">
+                            </td>
+
+                        </tr>
+                        <tr class="trheadc">
+                            <td height="20" align="left" valign="middle">
+                                Forestry
+                            </td>
+                            <td colspan="6" align="center" valign="middle">
+
+                            </td>
+                        </tr>
+                        <tr height="19"
+                            ng-repeat="bacfAvgreForestry in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfAvgreForestry">
+                            <td class="tdpa" width="249" height="19" ng-bind="bacfAvgreForestry.assets">
+                            </td>
+
+                            <td width="148" colspan="6">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="bacfAvgreForestry.avg_value">
+                            </td>
+
+                        </tr>
                         </tbody>
                     </table>
 
 
-                  
                     <div class="pull-right">
                         <br>
-                     <button type="button"  ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                        Cancel Edit
-                    </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_info_sero_assets)"
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                            Cancel Edit
+                        </button>
+                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                                ng-click="saveBsData(form_bs_info_sero_assets)"
 
-                    class="btn btn-success">Submit
-                    </button>
+                                class="btn btn-success">Submit
+                        </button>
 
                     </div>
                     <br><br><br>

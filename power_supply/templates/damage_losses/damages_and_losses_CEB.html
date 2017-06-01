@@ -4,9 +4,6 @@
   $(document).ready(function() {
 
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-   
-   
-    
   });
   
 </script>
@@ -190,27 +187,36 @@
                                    class="form-control input-md">
                         </td>
                         <td colspan="2" width="218" ng-model="cebDmgAstGeneration.tot_dmg"
-                            ng-bind="cebDmgAstGeneration.tot_dmg = cebDmgAstGeneration.num_dst_ast + cebDmgAstGeneration.tot_replace_cost + cebDmgAstGeneration.num_dmg_ast + cebDmgAstGeneration.to_repair_cost ">
+                            ng-bind="cebDmgAstGeneration.tot_dmg =
+                            cebDmgAstGeneration.tot_replace_cost +
+                            cebDmgAstGeneration.to_repair_cost ">
 
                         </td>
                     </tr>
 
-                      <tr height="19" ng-repeat="cebDmgAstGeneration in dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration" ng-if="cebDmgAstGeneration.assets == 'Total'">
+                      <tr height="19" ng-repeat="cebDmgAstGeneration in dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration"
+                          ng-if="cebDmgAstGeneration.assets == 'Total'">
                         <td class="tdpa" height="19" width="244" ng-bind="cebDmgAstGeneration.assets">
 
                         </td>
                         <td class="tdpa" width="112">
 
                         </td>
-                        <td width="108" ng-model="cebDmgAstGeneration.tot_replace_cost" ng-bind="cebDmgAstGeneration.tot_replace_cost = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration,'tot_replace_cost')">
+                        <td width="108" ng-model="cebDmgAstGeneration.tot_replace_cost"
+                            ng-bind="cebDmgAstGeneration.tot_replace_cost =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration,'tot_replace_cost')">
 
                         </td>
                         <td class="tdpa" width="108">
                         </td>
-                        <td width="103" ng-model="cebDmgAstGeneration.num_dmg_ast" ng-bind="cebDmgAstGeneration.num_dmg_ast = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration,'num_dmg_ast')">
+                        <td width="103" ng-model="cebDmgAstGeneration.to_repair_cost"
+                            ng-bind="cebDmgAstGeneration.to_repair_cost =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration,'to_repair_cost')">
 
                         </td>
-                        <td colspan="2" width="218" ng-model="cebDmgAstGeneration.tot_dmg" ng-bind="cebDmgAstGeneration.tot_dmg = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration,'tot_dmg')">
+                        <td colspan="2" width="218" ng-model="cebDmgAstGeneration.tot_dmg"
+                            ng-bind="cebDmgAstGeneration.tot_dmg =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration,'tot_dmg')">
 
                         </td>
                     </tr>
@@ -250,7 +256,9 @@
                                    class="form-control input-md">
                         </td>
                         <td colspan="2" width="218" ng-model="cebDmgAstTransmision.tot_dmg"
-                            ng-bind="cebDmgAstTransmision.tot_dmg = cebDmgAstTransmision.num_dst_ast + cebDmgAstTransmision.tot_replace_cost + cebDmgAstTransmision.num_dmg_ast + cebDmgAstTransmision.to_repair_cost ">
+                            ng-bind="cebDmgAstTransmision.tot_dmg =
+                            cebDmgAstTransmision.tot_replace_cost +
+                            cebDmgAstTransmision.to_repair_cost ">
 
                         </td>
                     </tr>
@@ -268,10 +276,13 @@
                         </td>
                         <td class="tdpa" width="108">
                         </td>
-                        <td width="103" ng-model="cebDmgAstTransmision.num_dmg_ast" ng-bind="cebDmgAstTransmision.num_dmg_ast = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstTransmision,'num_dmg_ast')">
+                        <td width="103" ng-model="cebDmgAstTransmision.to_repair_cost" ng-bind="cebDmgAstTransmision.to_repair_cost =
+                        CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstTransmision,'to_repair_cost')">
 
                         </td>
-                        <td colspan="2" width="218" ng-model="cebDmgAstTransmision.tot_dmg" ng-bind="cebDmgAstTransmision.tot_dmg = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstTransmision,'tot_dmg')">
+                        <td colspan="2" width="218" ng-model="cebDmgAstTransmision.tot_dmg"
+                            ng-bind="cebDmgAstTransmision.tot_dmg =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstTransmision,'tot_dmg')">
 
                         </td>
                     </tr>
@@ -311,7 +322,9 @@
                                    class="form-control input-md">
                         </td>
                         <td colspan="2" width="218" ng-model="cebDmgAstDistribution.tot_dmg"
-                            ng-bind="cebDmgAstDistribution.tot_dmg = cebDmgAstDistribution.num_dst_ast + cebDmgAstDistribution.tot_replace_cost + cebDmgAstDistribution.num_dmg_ast +cebDmgAstDistribution.to_repair_cost ">
+                            ng-bind="cebDmgAstDistribution.tot_dmg =
+                            cebDmgAstDistribution.tot_replace_cost +
+                            cebDmgAstDistribution.to_repair_cost ">
 
                         </td>
                     </tr>
@@ -327,7 +340,9 @@
                         </td>
                         <td class="tdpa" width="108">
                         </td>
-                        <td width="103" ng-model="cebDmgAstDistribution.num_dmg_ast" ng-bind="cebDmgAstDistribution.num_dmg_ast = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution,'num_dmg_ast')">
+                        <td width="103" ng-model="cebDmgAstDistribution.to_repair_cost"
+                            ng-bind="cebDmgAstDistribution.to_repair_cost =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution,'to_repair_costssss')">
 
                         </td>
                         <td colspan="2" width="218" ng-model="cebDmgAstDistribution.tot_dmg" ng-bind="cebDmgAstDistribution.tot_dmg = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution,'tot_dmg')">
@@ -370,7 +385,10 @@
                             <input id="textinput" name="textinput" ng-model="cebDmgAstStructures.to_repair_cost" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
-                        <td colspan="2" width="218" ng-model="cebDmgAstStructures.tot_dmg" ng-bind="cebDmgAstStructures.tot_dmg = cebDmgAstStructures.num_dst_ast + cebDmgAstStructures.tot_replace_cost + cebDmgAstStructures.num_dmg_ast + cebDmgAstStructures.to_repair_cost  ">
+                        <td colspan="2" width="218" ng-model="cebDmgAstStructures.tot_dmg"
+                            ng-bind="cebDmgAstStructures.tot_dmg =
+                            cebDmgAstStructures.tot_replace_cost +
+                            cebDmgAstStructures.to_repair_cost  ">
 
                         </td>
                     </tr>
@@ -387,10 +405,14 @@
                         </td>
                         <td class="tdpa" width="108">
                         </td>
-                        <td width="103" ng-model="cebDmgAstStructures.num_dmg_ast" ng-bind="cebDmgAstStructures.num_dmg_ast = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures,'num_dmg_ast')">
+                        <td width="103" ng-model="cebDmgAstStructures.to_repair_cost"
+                            ng-bind="cebDmgAstStructures.to_repair_cost =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures,'to_repair_cost')">
 
                         </td>
-                        <td colspan="2" width="218" ng-model="cebDmgAstStructures.tot_dmg" ng-bind="cebDmgAstStructures.tot_dmg = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures,'tot_dmg') ">
+                        <td colspan="2" width="218" ng-model="cebDmgAstStructures.tot_dmg"
+                            ng-bind="cebDmgAstStructures.tot_dmg =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures,'tot_dmg') ">
 
                         </td>
                     </tr>
@@ -432,7 +454,9 @@
                                    class="form-control input-md">
                         </td>
                         <td colspan="2" width="218" ng-model="cebDmgAstOffEquipment.tot_dmg"
-                            ng-bind="cebDmgAstOffEquipment.tot_dmg = cebDmgAstOffEquipment.num_dst_ast + cebDmgAstOffEquipment.tot_replace_cost + cebDmgAstOffEquipment.num_dmg_ast + cebDmgAstOffEquipment.to_repair_cost ">
+                            ng-bind="cebDmgAstOffEquipment.tot_dmg =
+                            cebDmgAstOffEquipment.tot_replace_cost +
+                            cebDmgAstOffEquipment.to_repair_cost ">
 
                         </td>
                     </tr>
@@ -448,14 +472,19 @@
                         </td>
                         <td class="tdpa" width="108">
                         </td>
-                        <td width="103" ng-model="cebDmgAstOffEquipment.num_dmg_ast" ng-bind="cebDmgAstOffEquipment.num_dmg_ast = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment,'num_dmg_ast')">
+                        <td width="103" ng-model="cebDmgAstOffEquipment.to_repair_cost"
+                            ng-bind="cebDmgAstOffEquipment.to_repair_cost =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment,'to_repair_cost')">
 
                         </td>
-                        <td colspan="2" width="218" ng-model="cebDmgAstOffEquipment.tot_dmg" ng-bind="cebDmgAstOffEquipment.tot_dmg = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment,'tot_dmg') ">
+                        <td colspan="2" width="218" ng-model="cebDmgAstOffEquipment.tot_dmg"
+                            ng-bind="cebDmgAstOffEquipment.tot_dmg =
+                            CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment,'tot_dmg') ">
 
                         </td>
                     </tr>
-                   <tr height="19" ng-repeat="cebDmgAstOther in dlPowSupCeb.power_supply.Table_2.CebDmgAstOther" ng-if="cebDmgAstOther.assets != 'GRAND TOTAL'">
+                   <tr height="19" ng-repeat="cebDmgAstOther in dlPowSupCeb.power_supply.Table_2.CebDmgAstOther"
+                       ng-if="cebDmgAstOther.assets != 'GRAND TOTAL'">
 
                         <td class="tdpa" height="19" width="244" ng-bind="cebDmgAstOther.assets">
 
@@ -481,7 +510,8 @@
 
                         </td>
                     </tr>
-                 <tr height="19" ng-repeat="cebDmgAstOther in dlPowSupCeb.power_supply.Table_2.CebDmgAstOther" ng-if="cebDmgAstOther.assets == 'GRAND TOTAL'">
+                 <tr height="19" ng-repeat="cebDmgAstOther in dlPowSupCeb.power_supply.Table_2.CebDmgAstOther"
+                     ng-if="cebDmgAstOther.assets == 'GRAND TOTAL'">
 
                             <td class="tdpa" height="19" width="244" ng-bind="cebDmgAstOther.assets">
 
@@ -503,7 +533,7 @@
                     </tr>
                     </tbody>
                 </table>
-</div>
+            </div>
 
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span

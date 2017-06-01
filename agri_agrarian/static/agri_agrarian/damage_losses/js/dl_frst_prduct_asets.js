@@ -166,6 +166,71 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     dmg_pub : null,
                     dmg_pvt : null,
                 }],
+                'DcpfRePlantnCrops': [{
+                    assets : 'Coconut',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                },{
+                    assets : 'Tea',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                },{
+                    assets : 'Rubber',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                },
+                {
+                    assets : 'Total',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                }],
+                'DcpfReExportCrops': [{
+                    assets : 'Coffee',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                },{
+                    assets : 'Fruit trees',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                },{
+                    assets : 'Cinnamon',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                },
+                {
+                    assets : 'Total',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                }],
+                'DcpfReForestry': [{
+                    assets : 'Timber',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                },{
+                    assets : 'Total',
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                }],
             }
         }
     }
@@ -192,7 +257,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BacfFarmEquipment','BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther', 'BacfStocks'],
+                    'db_tables': ['BacfFarmEquipment','BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther', 'BacfStocks','BacfAvgrePlantnCrops','BacfAvgreExportCrops','BacfAvgreForestry'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -243,6 +308,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
             var dl_model5 = null;
             var dl_model6 = null;
             var dl_model7 = null;
+            var dl_model8 = null;
+            var dl_model9 = null;
+            var dl_model10 = null;
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
@@ -256,6 +324,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
             var particular_value_5 = null;
             var particular_value_6 = null;
             var particular_value_7 = null;
+            var particular_value_8 = null;
+            var particular_value_9 = null;
+            var particular_value_10 = null;
 
             if(model_name == 'BacfFarmEquipment') {
                dl_model1 = 'DcpfFarmEquipment';
@@ -269,18 +340,27 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
             }
             if(model_name == 'BacfPlantnCrops') {
                dl_model3 = 'DcpfPlantnCrops';
+               dl_model8 = 'DcpfRePlantnCrops';
                particular_value_3 = 'Total';
+               particular_value_8 = 'Total'
                $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model3] = [];
+               $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model8] = [];
             }
             if(model_name == 'BacfExportCrops') {
                dl_model4 = 'DcpfExportCrops';
+               dl_model9 = 'DcpfReExportCrops';
                particular_value_4 = 'Total';
+               particular_value_9 = 'Total';
                $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model4] = [];
+               $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model9] = [];
             }
             if(model_name == 'BacfForestry') {
                dl_model5 = 'DcpfForestry';
+               dl_model10 = 'DcpfReForestry';
                particular_value_5 = 'Total';
+               particular_value_10 = 'Total';
                $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model5] = [];
+               $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model10] = [];
             }
             if(model_name == 'BacfOther') {
                dl_model6 = 'DcpfOther';
@@ -344,6 +424,27 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 dmg_pub : null,
                 dmg_pvt : null,
             };
+            var obj8 = {
+                assets : particular_value_8,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
+            };
+            var obj9 = {
+                assets : particular_value_9,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
+            };
+            var obj10 = {
+                assets : particular_value_10,
+                num_dest_pub : null,
+                num_dest_pvt : null,
+                dmg_pub : null,
+                dmg_pvt : null,
+            };
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
@@ -395,6 +496,27 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     assets : value.fields.assets,
                     avg_value : null,
                 };
+                var obj8 = {
+                    assets : value.fields.plantn_crops,
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                };
+                var obj9 = {
+                    assets : value.fields.export_crops,
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                };
+                 var obj10 = {
+                    assets : value.fields.forestry,
+                    num_dest_pub : null,
+                    num_dest_pvt : null,
+                    dmg_pub : null,
+                    dmg_pvt : null,
+                };
 
                 if(model_name == 'BacfFarmEquipment') {
                     $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model1].push(obj1);
@@ -404,12 +526,15 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 }
                 if(model_name == 'BacfPlantnCrops') {
                     $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model3].push(obj3);
+                    $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model8].push(obj8);
                 }
                 if(model_name == 'BacfExportCrops') {
                     $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model4].push(obj4);
+                    $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model9].push(obj9);
                 }
                 if(model_name == 'BacfForestry') {
                     $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model5].push(obj5);
+                    $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model10].push(obj10);
                 }
                 if(model_name == 'BacfOther') {
                     $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model6].push(obj6);
@@ -428,12 +553,15 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
             }
             if(model_name == 'BacfPlantnCrops') {
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model3].push(obj3);
+                $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model8].push(obj8);
             }
             if(model_name == 'BacfExportCrops') {
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model4].push(obj4);
+                $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model9].push(obj9);
             }
             if(model_name == 'BacfForestry') {
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model5].push(obj5);
+                $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model10].push(obj10);
             }
             if(model_name == 'BacfOther') {
                 $scope.dlFrstPrductAsets.agri_agrarian.Table_4[dl_model6].push(obj6);
@@ -517,7 +645,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     var finaltotal = 0;
 //     console.log(arr);
     angular.forEach(arr, function(value, key) {
+
          finaltotal = finaltotal + value.dmg_pub ;
+
     })
 //      console.log(finaltotal);
     return finaltotal;
@@ -528,7 +658,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     var finaltotal = 0;
 //     console.log(arr);
     angular.forEach(arr, function(value, key) {
+
          finaltotal = finaltotal + value.dmg_pvt ;
+
     })
 //      console.log(finaltotal);
     return finaltotal;
@@ -543,6 +675,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     var finaltotal5 = 0;
     var finaltotal6 = 0;
     var finaltotal7 = 0;
+    var finaltotal8 = 0;
+    var finaltotal9 = 0;
+    var finaltotal10 = 0;
     var grantot = 0;
 
     var array1=$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment;
@@ -552,6 +687,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     var array5 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry;
     var array6 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther;
     var array7 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks;
+    var array8 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops;
+    var array9 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops;
+    var array10 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
 
     angular.forEach(array1, function(value, key) {
 
@@ -581,7 +719,19 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
      finaltotal7 = finaltotal7 + value.dmg_pub ;
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7;
+    angular.forEach(array8, function(value, key) {
+
+     finaltotal8 = finaltotal8 + value.dmg_pub ;
+    })
+    angular.forEach(array9, function(value, key) {
+
+     finaltotal9 = finaltotal9 + value.dmg_pub ;
+    })
+    angular.forEach(array10, function(value, key) {
+
+     finaltotal10 = finaltotal10 + value.dmg_pub ;
+    })
+    grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9 + finaltotal10;
     return grantot;
     }
 
@@ -594,6 +744,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     var finaltotal5 = 0;
     var finaltotal6 = 0;
     var finaltotal7 = 0;
+    var finaltotal8 = 0;
+    var finaltotal9 = 0;
+    var finaltotal10 = 0;
     var grantot = 0;
 
     var array1=$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment;
@@ -603,6 +756,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     var array5 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry;
     var array6 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther;
     var array7 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks;
+    var array8 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops;
+    var array9 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops;
+    var array10 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
 
     angular.forEach(array1, function(value, key) {
 
@@ -632,7 +788,19 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
      finaltotal7 = finaltotal7 + value.dmg_pvt ;
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7;
+    angular.forEach(array8, function(value, key) {
+
+     finaltotal8 = finaltotal8 + value.dmg_pvt ;
+    })
+    angular.forEach(array9, function(value, key) {
+
+     finaltotal9 = finaltotal9 + value.dmg_pvt ;
+    })
+    angular.forEach(array10, function(value, key) {
+
+     finaltotal10 = finaltotal10 + value.dmg_pvt ;
+    })
+    grantot = grantot  + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9  + finaltotal10;
     return grantot;
     }
 

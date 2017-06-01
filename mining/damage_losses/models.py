@@ -439,3 +439,53 @@ class DloLosNational(models.Model):
     class Meta:
         managed = False
         db_table = 'mining\".\"dlo_los_national'
+
+
+class DlaDmgProvince(models.Model):
+    rep_tot_dassets = models.IntegerField(blank=True, null=True)
+    repair_pdmg_assets = models.IntegerField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'mining\".\"dla_dmg_province'
+
+
+class DlaLosProvince(models.Model):
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+    tot_losses = models.FloatField(blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'mining\".\"dla_los_province'
+
+
+class DloDmgProvince(models.Model):
+    rep_tot_dassets = models.IntegerField(blank=True, null=True)
+    repair_pdmg_assets = models.IntegerField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'mining\".\"dlo_dmg_province'
+
+
+class DloLosProvince(models.Model):
+    los_year1 = models.FloatField(blank=True, null=True)
+    los_year2 = models.FloatField(blank=True, null=True)
+    tot_losses = models.FloatField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'mining\".\"dlo_los_province'

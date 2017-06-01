@@ -7,6 +7,7 @@
     
   });
   
+
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlFrstPrductAsetsApp" ng-controller="dlFrstPrductAsetsController">
@@ -35,17 +36,19 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_frst_prduct_asets.incident.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_dl_frst_prduct_asets.incident.$error.required">
                                 Please Select Incident
                             </span>
                         </td>
                         <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_frst_prduct_asets.district.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_dl_frst_prduct_asets.district.$error.required">
                                 Please Select District
                             </span>
                         </td>
@@ -56,7 +59,8 @@
                         </td>
                         <td colspan="2" width="269">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
 
@@ -71,7 +75,8 @@
                         </td>
                         <td colspan="3" width="99">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false)" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -111,1042 +116,844 @@
                         </td>
                     </tr>
                     </tbody>
-                    </table>
-
-                    <div id="boxscroll" style="height:400px;overflow:auto;">
-                <table class="table table-bordered">
-                    <tr class="trheadc" height="20">
-                        <td width="249" height="20" style="width:25.5%;">
-                            Farm Equipment
-                        </td>
-                        <td width="148" style="width:10%;">
-                        </td>
-                        <td width="121" style="width:10%;">
-                        </td>
-                        <td width="117" style="width:10%;">
-                        </td>
-                        <td width="117" style="width:10%;">
-                        </td>
-                        <td width="112" style="width:10%;">
-                        </td>
-                        <td width="99" style="width:10%;">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfFarmEquipment in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment" ng-if="dcpfFarmEquipment.assets != 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfFarmEquipment.assets">
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfFarmEquipment.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfFarmEquipment.num_dest_pvt">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfFarmEquipment.num_dmg_pub">
-                        </td>
-                        <td width="117">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfFarmEquipment.num_dmg_pvt">
-                        </td>
-                        <td width="112" ng-model="dcpfFarmEquipment.dmg_pub"
-                             ng-bind="dcpfFarmEquipment.dmg_pub =
-                                          dcpfFarmEquipment.num_dest_pub * bs_data['BacfFarmEquipment'][$index].fields.avg_replace_cost +
-                                          dcpfFarmEquipment.num_dmg_pub * bs_data['BacfFarmEquipment'][$index].fields.avg_repair_cost">
-                        </td>
-
-                        <td width="112" ng-model="dcpfFarmEquipment.dmg_pvt"
-                             ng-bind="dcpfFarmEquipment.dmg_pvt =
-                                          dcpfFarmEquipment.num_dest_pvt * bs_data['BacfFarmEquipment'][$index].fields.avg_replace_cost +
-                                          dcpfFarmEquipment.num_dmg_pvt * bs_data['BacfFarmEquipment'][$index].fields.avg_repair_cost">
-                        </td>
-                    </tr>
-
-                    <tr height="20" ng-repeat="dcpfFarmEquipment in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment" ng-if="dcpfFarmEquipment.assets == 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfFarmEquipment.assets">
-                        </td>
-                        <td class="tdpa" width="148">
-                        </td>
-                        <td class="tdpa" width="121">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment)">
-
-                        </td>
-                        <td width="99" ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment)">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="249" height="20">
-                            Harvested Products
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="249" height="20">
-                            Seasonal Crops
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfSeasonalCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops" ng-if="dcpfSeasonalCrops.assets != 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfSeasonalCrops.assets">
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfSeasonalCrops.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfSeasonalCrops.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-
-                         <td width="112" ng-model="dcpfSeasonalCrops.dmg_pub"
-                             ng-bind="dcpfSeasonalCrops.dmg_pub =
-                                          dcpfSeasonalCrops.num_dest_pub * bs_data['BacfSeasonalCrops'][$index].fields.avg_value">
-                        </td>
-                        <td width="99" ng-model="dcpfSeasonalCrops.dmg_pvt" ng-bind="dcpfSeasonalCrops.dmg_pvt =
-                                          dcpfSeasonalCrops.num_dest_pvt * bs_data['BacfSeasonalCrops'][$index].fields.avg_value">
-                        </td>
-                    </tr>
-
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfSeasonalCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops" ng-if="dcpfSeasonalCrops.assets == 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfSeasonalCrops.assets">
-                        </td>
-                        <td class="tdpa" width="148" ng-bind="dcpfSeasonalCrops.num_dest_pub">
-                        </td>
-                        <td class="tdpa" width="121" ng-bind="dcpfSeasonalCrops.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops)">
-
-                        </td>
-                        <td width="99" ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops)">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td width="249" height="19">
-                            Plantation Crops
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfPlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops" ng-if="dcpfPlantnCrops.assets != 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfPlantnCrops.assets">
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfPlantnCrops.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfPlantnCrops.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-model="dcpfPlantnCrops.dmg_pub"
-                             ng-bind="dcpfPlantnCrops.dmg_pub =
-                                          dcpfPlantnCrops.num_dest_pub * bs_data['BacfPlantnCrops'][$index].fields.avg_value">
-                        </td>
-                        <td width="112" ng-model="dcpfPlantnCrops.dmg_pvt"
-                             ng-bind="dcpfPlantnCrops.dmg_pvt =
-                                          dcpfPlantnCrops.num_dest_pvt * bs_data['BacfPlantnCrops'][$index].fields.avg_value">
-                        </td>
-                    </tr>
-
-                    <tr height="20" ng-repeat="dcpfPlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops" ng-if="dcpfPlantnCrops.assets == 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfPlantnCrops.assets">
-                        </td>
-                        <td class="tdpa" width="148" ng-model="dcpfPlantnCrops.num_dest_pub">
-                        </td>
-                        <td class="tdpa" width="121" ng-model="dcpfPlantnCrops.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops)">
-
-                        </td>
-                        <td width="99" ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops)">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="23">
-                        <td width="249" height="23">
-                            Export Crops
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops" ng-if="dcpfExportCrops.assets != 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfExportCrops.assets">
-                            Coffee
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfExportCrops.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfExportCrops.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-
-                        <td width="112" ng-model="dcpfExportCrops.dmg_pub"
-                             ng-bind="dcpfExportCrops.dmg_pub =
-                                          dcpfExportCrops.num_dest_pub * bs_data['BacfExportCrops'][$index].fields.avg_value">
-                        </td>
-                        <td width="112" ng-model="dcpfExportCrops.dmg_pvt"
-                             ng-bind="dcpfExportCrops.dmg_pvt =
-                                          dcpfExportCrops.num_dest_pvt * bs_data['BacfExportCrops'][$index].fields.avg_value">
-                        </td>
-                    </tr>
-
-                    <tr height="20" ng-repeat="dcpfExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops" ng-if="dcpfExportCrops.assets == 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfExportCrops.assets">
-                        </td>
-                        <td class="tdpa" width="148" ng-bind="dcpfExportCrops.num_dest_pub">
-                        </td>
-                        <td class="tdpa" width="121" ng-bind="dcpfExportCrops.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops)">
-
-                        </td>
-                        <td width="99" ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops)">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="249" height="20">
-                            Forestry
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry" ng-if="dcpfForestry.assets != 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfForestry.assets">
-                            Timber
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfForestry.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfForestry.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-
-                        <td width="112" ng-model="dcpfForestry.dmg_pub"
-                             ng-bind="dcpfForestry.dmg_pub =
-                                          dcpfForestry.num_dest_pub * bs_data['BacfForestry'][$index].fields.avg_value">
-                        </td>
-                        <td width="112" ng-model="dcpfForestry.dmg_pvt"
-                             ng-bind="dcpfForestry.dmg_pvt =
-                                          dcpfForestry.num_dest_pvt * bs_data['BacfForestry'][$index].fields.avg_value">
-                        </td>
-                    </tr>
-
-                    <tr height="20" ng-repeat="dcpfForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry" ng-if="dcpfForestry.assets == 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfForestry.assets">
-                        </td>
-                        <td class="tdpa" width="148" ng-bind="dcpfForestry.num_dest_pub">
-                        </td>
-                        <td class="tdpa" width="121" ng-bind="dcpfForestry.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry)">
-
-                        </td>
-                        <td width="99" ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry)">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="21">
-                        <td width="249" height="21">
-                            Others Products
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfOther in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther" ng-if="dcpfOther.assets != 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfOther.assets">
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfOther.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfOther.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-model="dcpfOther.dmg_pub"
-                             ng-bind="dcpfOther.dmg_pub =
-                                          dcpfOther.num_dest_pub * bs_data['BacfOther'][$index].fields.avg_value">
-                        </td>
-                        <td width="112" ng-model="dcpfOther.dmg_pvt"
-                             ng-bind="dcpfOther.dmg_pvt =
-                             dcpfOther.num_dest_pvt * bs_data['BacfOther'][$index].fields.avg_value">
-                        </td>
-                        <span ng-bind="dcpfOther.num_dest_pvt"></span>
-                    </tr>
-
-                    <tr height="20" ng-repeat="dcpfOther in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther" ng-if="dcpfOther.assets == 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfOther.assets">
-                            Total
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md" ng-bind="dcpfOther.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md" ng-bind="dcpfOther.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther)">
-
-                        </td>
-                        <td width="99" ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther)">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="249" height="20">
-                            Stocks
-                        </td>
-                        <td width="148">
-                        </td>
-                        <td width="121">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="117">
-                        </td>
-                        <td width="112">
-                        </td>
-                        <td width="99">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="dcpfStocks in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks" ng-if="dcpfStocks.assets != 'Total' && dcpfStocks.assets != 'GRAND TOTAL'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfStocks.assets">
-                        </td>
-                        <td width="148">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfStocks.num_dest_pub">
-                        </td>
-                        <td width="121">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="dcpfStocks.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-model="dcpfStocks.dmg_pub"
-                             ng-bind="dcpfStocks.dmg_pub =
-                             dcpfStocks.num_dest_pub * bs_data['BacfStocks'][$index].fields.avg_value">
-                        </td>
-                        <td width="112" ng-model="dcpfStocks.dmg_pvt"
-                             ng-bind="dcpfStocks.dmg_pvt =
-                              dcpfStocks.num_dest_pvt * bs_data['BacfStocks'][$index].fields.avg_value">
-                        </td>
-                    </tr>
-
-                    <!--Total-->
-                    <tr height="20" ng-repeat="dcpfStocks in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks" ng-if="dcpfStocks.assets == 'Total'">
-                        <td class="tdpa" width="249" height="20" ng-bind="dcpfStocks.assets">
-                        </td>
-                        <td class="tdpa" width="148" ng-model="dcpfStocks.num_dest_pub">
-                        </td>
-                        <td class="tdpa" width="121" ng-model="dcpfStocks.num_dest_pvt">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks)">
-
-                        </td>
-                        <td width="99" ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks)">
-
-                        </td>
-                    </tr>
-
-                    <!--new table -->
-
-                     <tr class="trheadc">
-            <td height="20" align="justify" valign="middle">
-                <strong>Replanting</strong>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-        </tr>
-        <tr class="trheadc">
-            <td height="20" align="left" valign="middle">
-                <strong> Plantation Crops</strong>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="justify" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="justify" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Coconut
-            </td>
-            <td align="center" valign="middle">
-              <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" > 
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Tea
-            </td>
-            <td align="center" valign="middle">
-              <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Rubber
-            </td>
-            <td align="center" valign="middle">
-             <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-              <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-              <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Other plantation crops
-            </td>
-            <td align="center" valign="middle">
-              <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Total
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               
-            </td>
-            <td align="center" valign="middle">
-                
-            </td>
-        </tr>
-        <tr class="trheadc">
-            <td  height="20" align="left" valign="middle">
-               Export Crops
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="justify" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="justify" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Coffee
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Fruit trees
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Cinnamon
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr class="tdpa">
-           
-               <td class="tdpa" width="249" height="19">
-                                Others
-                                <button class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-            
-            <td align="center" valign="middle">
-                
-            </td>
-            <td align="center" valign="middle">
-               
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               
-            </td>
-            <td align="center" valign="middle">
-               
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Total
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                
-            </td>
-            <td align="center" valign="middle">
-                
-            </td>
-        </tr>
-        <tr class="trheadc">
-            <td height="20" align="left" valign="middle">
-               Forestry
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="justify" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td align="justify" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-               Timber
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-            <td align="center" valign="middle">
-                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
-            </td>
-        </tr>
-        <tr class="tdpa">
-             <td class="tdpa" width="249" height="19">
-                                Others
-                                <button class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-            <td align="center" valign="middle">
-               
-            </td>
-            <td align="center" valign="middle">
-                
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-                
-            </td>
-            <td align="center" valign="middle">
-               
-            </td>
-        </tr>
-        <tr>
-            <td class="tdpa" height="20" align="left" valign="middle">
-                Total
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <strong>
-                    <br/>
-                </strong>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td class="tdpa" align="center" valign="middle">
-                <br/>
-            </td>
-            <td align="center" valign="middle">
-               
-            </td>
-            <td align="center" valign="middle">
-                
-            </td>
-        </tr>
-
-
-
-
-
-
-
-
-                    <!--GRAND TOTAL-->
-                    <tr height="20" >
-                        <td class="boldash" width="249" height="20">GRAND TOTAL
-                        </td>
-                        <td class="tdpa" width="148">
-                        </td>
-                        <td class="tdpa" width="121">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td class="tdpa" width="117">
-                        </td>
-                        <td width="112" ng-bind="calGrandPubTotal()">
-
-                        </td>
-                        <td width="99" ng-bind="calGrandPvtTotal()">
-
-                        </td>
-                    </tr>
-                    </tbody>
                 </table>
 
+                <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <table class="table table-bordered">
+                        <tr class="trheadc" height="20">
+                            <td width="249" height="20" style="width:25.5%;">
+                                Farm Equipment
+                            </td>
+                            <td width="148" style="width:10%;">
+                            </td>
+                            <td width="121" style="width:10%;">
+                            </td>
+                            <td width="117" style="width:10%;">
+                            </td>
+                            <td width="117" style="width:10%;">
+                            </td>
+                            <td width="112" style="width:10%;">
+                            </td>
+                            <td width="99" style="width:10%;">
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="dcpfFarmEquipment in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment"
+                            ng-if="dcpfFarmEquipment.assets != 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfFarmEquipment.assets">
+                            </td>
+                            <td width="148">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfFarmEquipment.num_dest_pub">
+                            </td>
+                            <td width="121">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfFarmEquipment.num_dest_pvt">
+                            </td>
+                            <td width="117">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfFarmEquipment.num_dmg_pub">
+                            </td>
+                            <td width="117">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfFarmEquipment.num_dmg_pvt">
+                            </td>
+                            <td width="112" ng-model="dcpfFarmEquipment.dmg_pub"
+                                ng-bind="dcpfFarmEquipment.dmg_pub =
+                                          dcpfFarmEquipment.num_dest_pub * bs_data['BacfFarmEquipment'][$index].fields.avg_replace_cost +
+                                          dcpfFarmEquipment.num_dmg_pub * bs_data['BacfFarmEquipment'][$index].fields.avg_repair_cost">
+                            </td>
 
-                <br>
-                <div class="pull-right">
-                    <br>
-                    <button type="button" ng-click="clear()"  class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit(form_dl_rail_trans_cmpny)" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
-                    </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_frst_prduct_asets)"
-                    class="btn btn-success">Submit
-                    </button>
+                            <td width="112" ng-model="dcpfFarmEquipment.dmg_pvt"
+                                ng-bind="dcpfFarmEquipment.dmg_pvt =
+                                          dcpfFarmEquipment.num_dest_pvt * bs_data['BacfFarmEquipment'][$index].fields.avg_replace_cost +
+                                          dcpfFarmEquipment.num_dmg_pvt * bs_data['BacfFarmEquipment'][$index].fields.avg_repair_cost">
+                            </td>
+                        </tr>
 
-                </div>
-            </div>
+                        <tr height="20"
+                            ng-repeat="dcpfFarmEquipment in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment"
+                            ng-if="dcpfFarmEquipment.assets == 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfFarmEquipment.assets">
+                            </td>
+                            <td class="tdpa" width="148">
+                            </td>
+                            <td class="tdpa" width="121">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112"
+                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment)">
 
+                            </td>
+                            <td width="99"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment)">
 
-        </div>
-    </div>
-
-
-    <div class="col-md-12">
-
-
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-             aria-hidden="true">
-            <div class="modal-dialog" style="width:50%;">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h5 class="modal-title">
-                            <span id="bookId"> </span>
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="249" height="20">
+                                Harvested Products
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="112">
+                            </td>
+                            <td width="99">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="249" height="20">
+                                Seasonal Crops
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="112">
+                            </td>
+                            <td width="99">
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="dcpfSeasonalCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops"
+                            ng-if="dcpfSeasonalCrops.assets != 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfSeasonalCrops.assets">
+                            </td>
+                            <td width="148">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
+                                       class="form-control input-md" ng-model="dcpfSeasonalCrops.num_dest_pub">
+                            </td>
+                            <td width="121">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfSeasonalCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
 
+                            <td width="112" ng-model="dcpfSeasonalCrops.dmg_pub"
+                                ng-bind="dcpfSeasonalCrops.dmg_pub =
+                                          dcpfSeasonalCrops.num_dest_pub * bs_data['BacfSeasonalCrops'][$index].fields.avg_value">
+                            </td>
+                            <td width="99" ng-model="dcpfSeasonalCrops.dmg_pvt" ng-bind="dcpfSeasonalCrops.dmg_pvt =
+                                          dcpfSeasonalCrops.num_dest_pvt * bs_data['BacfSeasonalCrops'][$index].fields.avg_value">
+                            </td>
+                        </tr>
+
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="dcpfSeasonalCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops"
+                            ng-if="dcpfSeasonalCrops.assets == 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfSeasonalCrops.assets">
+                            </td>
+                            <td class="tdpa" width="148" ng-bind="dcpfSeasonalCrops.num_dest_pub">
+                            </td>
+                            <td class="tdpa" width="121" ng-bind="dcpfSeasonalCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112"
+                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops)">
+
+                            </td>
+                            <td width="99"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops)">
+
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td width="249" height="19">
+                                Plantation Crops
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="112">
+                            </td>
+                            <td width="99">
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="dcpfPlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops"
+                            ng-if="dcpfPlantnCrops.assets != 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfPlantnCrops.assets">
+                            </td>
+                            <td width="148">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfPlantnCrops.num_dest_pub">
+                            </td>
+                            <td width="121">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfPlantnCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112" ng-model="dcpfPlantnCrops.dmg_pub"
+                                ng-bind="dcpfPlantnCrops.dmg_pub =
+                                          dcpfPlantnCrops.num_dest_pub * bs_data['BacfPlantnCrops'][$index].fields.avg_value">
+                            </td>
+                            <td width="112" ng-model="dcpfPlantnCrops.dmg_pvt"
+                                ng-bind="dcpfPlantnCrops.dmg_pvt =
+                                          dcpfPlantnCrops.num_dest_pvt * bs_data['BacfPlantnCrops'][$index].fields.avg_value">
+                            </td>
+                        </tr>
+
+                        <tr height="20"
+                            ng-repeat="dcpfPlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops"
+                            ng-if="dcpfPlantnCrops.assets == 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfPlantnCrops.assets">
+                            </td>
+                            <td class="tdpa" width="148" ng-model="dcpfPlantnCrops.num_dest_pub">
+                            </td>
+                            <td class="tdpa" width="121" ng-model="dcpfPlantnCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112"
+                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops)">
+
+                            </td>
+                            <td width="99"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops)">
+
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="23">
+                            <td width="249" height="23">
+                                Export Crops
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="112">
+                            </td>
+                            <td width="99">
+                            </td>
+                        </tr>
+                        <tr height="20"
+                            ng-repeat="dcpfExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops"
+                            ng-if="dcpfExportCrops.assets != 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfExportCrops.assets">
+                                Coffee
+                            </td>
+                            <td width="148">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfExportCrops.num_dest_pub">
+                            </td>
+                            <td width="121">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfExportCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+
+                            <td width="112" ng-model="dcpfExportCrops.dmg_pub"
+                                ng-bind="dcpfExportCrops.dmg_pub =
+                                          dcpfExportCrops.num_dest_pub * bs_data['BacfExportCrops'][$index].fields.avg_value">
+                            </td>
+                            <td width="112" ng-model="dcpfExportCrops.dmg_pvt"
+                                ng-bind="dcpfExportCrops.dmg_pvt =
+                                          dcpfExportCrops.num_dest_pvt * bs_data['BacfExportCrops'][$index].fields.avg_value">
+                            </td>
+                        </tr>
+
+                        <tr height="20"
+                            ng-repeat="dcpfExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops"
+                            ng-if="dcpfExportCrops.assets == 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfExportCrops.assets">
+                            </td>
+                            <td class="tdpa" width="148" ng-bind="dcpfExportCrops.num_dest_pub">
+                            </td>
+                            <td class="tdpa" width="121" ng-bind="dcpfExportCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112"
+                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops)">
+
+                            </td>
+                            <td width="99"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops)">
+
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="249" height="20">
+                                Forestry
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="112">
+                            </td>
+                            <td width="99">
+                            </td>
+                        </tr>
+                        <tr height="20" ng-repeat="dcpfForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry"
+                            ng-if="dcpfForestry.assets != 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfForestry.assets">
+                            </td>
+                            <td width="148">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfForestry.num_dest_pub">
+                            </td>
+                            <td width="121">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfForestry.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+
+                            <td width="112" ng-model="dcpfForestry.dmg_pub"
+                                ng-bind="dcpfForestry.dmg_pub =
+                                          dcpfForestry.num_dest_pub * bs_data['BacfForestry'][$index].fields.avg_value">
+                            </td>
+                            <td width="112" ng-model="dcpfForestry.dmg_pvt"
+                                ng-bind="dcpfForestry.dmg_pvt =
+                                          dcpfForestry.num_dest_pvt * bs_data['BacfForestry'][$index].fields.avg_value">
+                            </td>
+                        </tr>
+
+                        <tr height="20" ng-repeat="dcpfForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry"
+                            ng-if="dcpfForestry.assets == 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfForestry.assets">
+                            </td>
+                            <td class="tdpa" width="148" ng-bind="dcpfForestry.num_dest_pub">
+                            </td>
+                            <td class="tdpa" width="121" ng-bind="dcpfForestry.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112"
+                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry)">
+
+                            </td>
+                            <td width="99"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry)">
+
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="21">
+                            <td width="249" height="21">
+                                Others Products
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="112">
+                            </td>
+                            <td width="99">
+                            </td>
+                        </tr>
+                        <tr height="20" ng-repeat="dcpfOther in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther"
+                            ng-if="dcpfOther.assets != 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfOther.assets">
+                            </td>
+                            <td width="148">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfOther.num_dest_pub">
+                            </td>
+                            <td width="121">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfOther.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112" ng-model="dcpfOther.dmg_pub"
+                                ng-bind="dcpfOther.dmg_pub =
+                                          dcpfOther.num_dest_pub * bs_data['BacfOther'][$index].fields.avg_value">
+                            </td>
+                            <td width="112" ng-model="dcpfOther.dmg_pvt"
+                                ng-bind="dcpfOther.dmg_pvt =
+                             dcpfOther.num_dest_pvt * bs_data['BacfOther'][$index].fields.avg_value">
+                            </td>
+                            <span ng-bind="dcpfOther.num_dest_pvt"></span>
+                        </tr>
+
+                        <tr height="20" ng-repeat="dcpfOther in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther"
+                            ng-if="dcpfOther.assets == 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfOther.assets">
+                                Total
+                            </td>
+                            <td class="tdpa" width="148">
+
+                            </td>
+                            <td class="tdpa" width="121">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112"
+                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther)">
+
+                            </td>
+                            <td width="99"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther)">
+
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="249" height="20">
+                                Stocks
+                            </td>
+                            <td width="148">
+                            </td>
+                            <td width="121">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="117">
+                            </td>
+                            <td width="112">
+                            </td>
+                            <td width="99">
+                            </td>
+                        </tr>
+                        <tr height="20" ng-repeat="dcpfStocks in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks"
+                            ng-if="dcpfStocks.assets != 'Total' && dcpfStocks.assets != 'GRAND TOTAL'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfStocks.assets">
+                            </td>
+                            <td width="148">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfStocks.num_dest_pub">
+                            </td>
+                            <td width="121">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfStocks.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112" ng-model="dcpfStocks.dmg_pub"
+                                ng-bind="dcpfStocks.dmg_pub =
+                             dcpfStocks.num_dest_pub * bs_data['BacfStocks'][$index].fields.avg_value">
+                            </td>
+                            <td width="112" ng-model="dcpfStocks.dmg_pvt"
+                                ng-bind="dcpfStocks.dmg_pvt =
+                              dcpfStocks.num_dest_pvt * bs_data['BacfStocks'][$index].fields.avg_value">
+                            </td>
+                        </tr>
+
+                        <!--Total-->
+                        <tr height="20" ng-repeat="dcpfStocks in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks"
+                            ng-if="dcpfStocks.assets == 'Total'">
+                            <td class="tdpa" width="249" height="20" ng-bind="dcpfStocks.assets">
+                            </td>
+                            <td class="tdpa" width="148" ng-model="dcpfStocks.num_dest_pub">
+                            </td>
+                            <td class="tdpa" width="121" ng-model="dcpfStocks.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112"
+                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks)">
+
+                            </td>
+                            <td width="99"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks)">
+
+                            </td>
+                        </tr>
+
+                        <!--new table -->
+
+                        <tr class="trheadc">
+                            <td height="20" align="justify" valign="middle">
+                                <strong>Replanting</strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr class="trheadc">
+                            <td height="20" align="left" valign="middle">
+                                <strong> Plantation Crops</strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="justify" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="justify" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr height="19"
+                            ng-repeat="dcpfRePlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops" ng-if="dcpfRePlantnCrops.assets !='Total'">
+                            <td class="tdpa" width="249" height="19" ng-bind="dcpfRePlantnCrops.assets">
+
+                            <td align="center" valign="middle">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfRePlantnCrops.num_dest_pub">
+                            </td>
+                            <td align="center" valign="middle">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfRePlantnCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td class="tdpa" align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="center" valign="middle" ng-model="dcpfRePlantnCrops.dmg_pub"
+                                ng-bind="dcpfRePlantnCrops.dmg_pub = dcpfRePlantnCrops.num_dest_pub * bs_data['BacfAvgrePlantnCrops'][$index].fields.avg_value">
+                            </td>
+                            <td align="center" valign="middle" ng-model="dcpfRePlantnCrops.dmg_pvt"
+                                ng-bind="dcpfRePlantnCrops.dmg_pvt = dcpfRePlantnCrops.num_dest_pvt * bs_data['BacfAvgrePlantnCrops'][$index].fields.avg_value">
+
+                            </td>
+                        </tr>
+                        <tr height="19"
+                            ng-repeat="dcpfRePlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops"
+                            ng-if="dcpfRePlantnCrops.assets =='Total'">
+                            <td class="tdpa" width="249" height="19" ng-bind="dcpfRePlantnCrops.assets">
+
+                            <td class="tdpa" width="249" height="19">
+                            <td class="tdpa" width="249" height="19">
+                            <td class="tdpa" width="249" height="19">
+                            <td class="tdpa" width="249" height="19">
+                            <td  width="249" height="19" ng-model="dcpfRePlantnCrops.dmg_pub"
+                            ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops)">
+                            </td>
+                            <td align="center" valign="middle" ng-model="dcpfRePlantnCrops.dmg_pvt"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops)">
+                            </td>
+                        </tr>
+                        <tr class="trheadc">
+                            <td height="20" align="left" valign="middle">
+                                Export Crops
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="justify" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="justify" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr height="19"
+                            ng-repeat="dcpfReExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops"
+                             ng-if="dcpfReExportCrops.assets !='Total'">
+                            <td class="tdpa" width="249" height="19" ng-bind="dcpfReExportCrops.assets">
+
+                            <td align="center" valign="middle">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfReExportCrops.num_dest_pub">
+                            </td>
+                            <td align="center" valign="middle">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfReExportCrops.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td class="tdpa" align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="center" valign="middle" ng-model="dcpfReExportCrops.dmg_pub"
+                                ng-bind="dcpfReExportCrops.dmg_pub = dcpfReExportCrops.num_dest_pub * bs_data['BacfAvgreExportCrops'][$index].fields.avg_value">
+                            </td>
+                            <td align="center" valign="middle" ng-model="dcpfReExportCrops.dmg_pvt"
+                                ng-bind="dcpfReExportCrops.dmg_pvt = dcpfReExportCrops.num_dest_pvt * bs_data['BacfAvgreExportCrops'][$index].fields.avg_value">
+                            </td>
+                        </tr>
+                         <tr height="19"
+                            ng-repeat="dcpfReExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops"
+                             ng-if="dcpfReExportCrops.assets =='Total'">
+                            <td class="tdpa" width="249" height="19" ng-bind="dcpfReExportCrops.assets">
+                            <td class="tdpa" width="249" height="19"></td>
+                           <td class="tdpa" width="249" height="19"></td>
+                            <td class="tdpa" width="249" height="19"></td>
+                            <td class="tdpa" width="249" height="19"></td>
+                            <td  width="249" height="19" ng-model="dcpfReExportCrops.dmg_pub"
+                            ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops)">
+                            </td>
+                            <td align="center" valign="middle" ng-model="dcpfReExportCrops.dmg_pvt"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops)">
+                            </td>
+                        </tr>
+                        <tr class="trheadc">
+                            <td height="20" align="left" valign="middle">
+                                Forestry
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td align="justify" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                            <td align="justify" valign="middle">
+                                <strong>
+                                    <br/>
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr height="19"
+                            ng-repeat="dcpfReForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry"
+                        ng-if="dcpfReForestry.assets!='Total'">
+                            <td class="tdpa" width="249" height="19" ng-bind="dcpfReForestry.assets">
+
+                            <td align="center" valign="middle">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfReForestry.num_dest_pub">
+                            </td>
+                            <td align="center" valign="middle">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dcpfReForestry.num_dest_pvt">
+                            </td>
+                            <td class="tdpa" align="center" valign="middle">
+                                <br/>
+                            </td>
+                            <td class="tdpa" align="center" valign="middle">
+                                <br/>
+                            </td>
+
+                            <td align="center" valign="middle" ng-model="dcpfReForestry.dmg_pub"
+                                ng-bind="dcpfReForestry.dmg_pub = dcpfReForestry.num_dest_pub * bs_data['BacfAvgreForestry'][$index].fields.avg_value">
+                            </td>
+                             <td align="center" valign="middle" ng-model="dcpfReForestry.dmg_pvt"
+                                ng-bind="dcpfReForestry.dmg_pvt = dcpfReForestry.num_dest_pvt * bs_data['BacfAvgreForestry'][$index].fields.avg_value">
+                            </td>
+                        </tr>
+                        <tr height="19"
+                            ng-repeat="dcpfReForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry"
+                        ng-if="dcpfReForestry.assets=='Total'">
+                            <td class="tdpa" width="249" height="19" ng-bind="dcpfReForestry.assets">
+
+                            <td class="tdpa" width="249" height="19"></td>
+                            <td class="tdpa" width="249" height="19"></td>
+                            <td class="tdpa" width="249" height="19"></td>
+                            <td class="tdpa" width="249" height="19"></td>
+
+                            <td width="249" height="19" ng-model="dcpfReForestry.dmg_pub"
+                            ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry)">
+                            </td>
+                            <td align="center" valign="middle" ng-model="dcpfReForestry.dmg_pvt"
+                                ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry)">
+                            </td>
+                        </tr>
+                    <!--GRAND TOTAL-->
+                        <tr height="20">
+                            <td class="boldash" width="249" height="20">GRAND TOTAL
+                            </td>
+                            <td class="tdpa" width="148">
+                            </td>
+                            <td class="tdpa" width="121">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td class="tdpa" width="117">
+                            </td>
+                            <td width="112" ng-bind="calGrandPubTotal()">
+
+                            </td>
+                            <td width="99" ng-bind="calGrandPvtTotal()">
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="dlDataEdit(form_dl_rail_trans_cmpny)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                                ng-click="saveDlData(form_dl_frst_prduct_asets)"
+                                class="btn btn-success">Submit
+                        </button>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+
+
+            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+                 aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title">
+                                <span id="bookId"> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput">Name</label>
+                                <div class="col-md-10">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br><br>
-                    <div class="modal-footer">
+                        <br><br>
+                        <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
-                        </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
 
+
         </div>
-
-
-    </div>
     </div>
 
     </div>

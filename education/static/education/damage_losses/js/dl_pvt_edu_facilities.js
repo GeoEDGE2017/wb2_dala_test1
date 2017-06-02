@@ -290,8 +290,8 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
-                console.log(data);
                 $scope.dlPvtEduFacilities = data;
+                console.log($scope.dlPvtEduFacilities);
             })
         }
     }

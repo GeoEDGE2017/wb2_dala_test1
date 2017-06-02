@@ -156,7 +156,7 @@ DATABASES = {
         #     'options': '-c search_path=agri_agrarian'
         # },
 
-        'NAME': 'dala_new',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }
@@ -333,11 +333,11 @@ TABLE_PROPERTY_MAPPER = {
                           'district_general_hospital', 'office', 'other', 'total', 'id'],
         },
         'Table_7': {
-            'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
+            'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female', 'id'],
             'DapBefOther': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1',
-                            'est_losses_y2', 'total_losses'],
+                            'est_losses_y2', 'total_losses', 'id'],
             'DapBefPc': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1',
-                         'est_losses_y2', 'total_losses'],
+                         'est_losses_y2', 'total_losses', 'private_clinic', 'id'],
         },
         'Table_6': {
             'DmfDfaNum': ['num_des_facilities',
@@ -2627,7 +2627,6 @@ TABLE_PROPERTY_MAPPER = {
                  'dmg_los_pvt',
                  ]
         }
-
     },
     'agri_livestock': {
         'Table_2': {
@@ -3082,7 +3081,6 @@ TABLE_PROPERTY_MAPPER = {
                            'tot_damages', 'id', ],
             'DlRuralLos': ['type_water_supply', 'cleaning_debris', 'high_ocost', 'other_unexpected_exps', 'tot_los',
                            'id', ],
-
         },
         'Table_5': {
             'DlRuralDmg': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
@@ -3116,7 +3114,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlcwTotLosNational': ['tot_los_year1', 'tot_los_year2'],
             'DlRuralTotDmgNational': ['type_water_supply', 'tot_damages'],
             'DlRuralTotLosNational': ['tot_los'],
-
         }
     },
     'tourism': {
@@ -3149,12 +3146,10 @@ TABLE_PROPERTY_MAPPER = {
         #
         # },
         'Table_4': {
-
             'DlDmgBusDistrict': ['tot_damages', 'assets', 'ownership', 'business'],
             'DlLosBusDistrict': ['los_year1', 'los_year2', 'los_type', 'ownership', 'business'],
             'DlDmgInfDistrict': ['sum', 'ownership', 'inf_type'],
             'DlLosInfDistrict': ['tot_year1', 'tot_year2', 'ownership', 'inf_type']
-
         },
         'Table_5': {
             'DlLosInfTotDistrict': ['tot_year1', 'tot_year2', 'ownership'],

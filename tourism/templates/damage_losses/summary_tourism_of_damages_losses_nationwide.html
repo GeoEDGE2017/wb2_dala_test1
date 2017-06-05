@@ -1,15 +1,19 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlSummTouBusiFaciNatApp" ng-controller="dlSummTouBusiFaciNatController" >
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Tourism Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:tourism_main' %}">Tourism Sector</a>
         </li>
+
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Summary of damages and losses nationwide</span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">

@@ -2,21 +2,21 @@
 {% load static %}
 {% block content %}
 <script>
-  $(document).ready(function() {
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-   var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-   var nicesx = $("#boxscroll3").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  });
-
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+        var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+        var nicesx = $("#boxscroll3").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dsHealthDamagelostOtherMediApp" ng-controller="DsHealthDamagelostOtherMediController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:health_main' %}">Health Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -24,19 +24,31 @@
             </span>
             <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Health.pdf' %}"
+               target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Destroyed Facilities</a>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Destroyed Facilities</a>
                 </li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Partially Damaged Facilities </a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 No of Destroyed Assets</a></li>
-                <li id="li4"><a href='#step4' data-toggle="tab">4 No of Partially Damaged Assets</a></li>
-                <li id="li5"><a href='#step5' data-toggle="tab">5 Losses</a></li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Partially Damaged Facilities</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 No of Destroyed Assets</a>
+                </li>
+                <li id="li4">
+                    <a href='#step4' data-toggle="tab">4 No of Partially Damaged Assets</a>
+                </li>
+                <li id="li5">
+                    <a href='#step5' data-toggle="tab">5 Losses</a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_damagelost_other_medi">
                 <div class="tab-pane active" id="step1">
@@ -135,6 +147,7 @@
                         </tr>
                         </tbody>
                     </table>
+                    <!--tab 1-->
                     <div style="height:auto;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
@@ -361,9 +374,11 @@
                             </tbody>
                         </table>
                         <br>
-                        <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                                class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Facilities and
-                            Assets</a>
+                        <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                            <span
+                                class="glyphicon glyphicon-arrow-right"></span>
+                            Fill Partially Damaged Facilities and Assets
+                        </a>
                     </div>
                 </div>
                 <div class="tab-pane" id="step2">
@@ -412,6 +427,7 @@
                         </tr>
                         </tbody>
                     </table>
+                    <!--tab 2-->
                     <div style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <!--Table 6:Tab three :Table one row one-->
@@ -637,9 +653,10 @@
                             </tbody>
                         </table>
                         <br>
-                        <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                                class="glyphicon glyphicon-arrow-right"></span> Fill No of Destroyed Assets
-                            Informations</a>
+                        <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                            Fill No of Destroyed Assets Informations
+                        </a>
                     </div>
                 </div>
                 <div class="tab-pane" id="step3">
@@ -687,6 +704,7 @@
                         </tr>
                         </tbody>
                     </table>
+                    <!--tab 3-->
                     <div id="boxscroll1" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
@@ -695,28 +713,20 @@
                                     Structures (in sqm)
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                                 <td width="98">
-
                                 </td>
                             </tr>
                             <!--Table 6:Tab two :Table one row one-->
@@ -726,55 +736,45 @@
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].base_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].base_hospital"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].divisional_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
-                                </td>
-
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].rural_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].divisional_hospital"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].central_dispensary"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-
-                                    <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].pmcus"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
-
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].rural_hospital"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].phccs"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].central_dispensary"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].mchcs"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].pmcus"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                </td>
+                                <td width="98">
+                                    <input id="textinput"
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].phccs"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                </td>
+                                <td width="98">
+                                    <input id="textinput"
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].mchcs"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].total"
@@ -948,57 +948,42 @@
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].central_dispensary"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].central_dispensary=
-  (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].central_dispensary * bs_data['BucOmarStructure'][0].fields.central_dispensary) +
-    (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].central_dispensary * bs_data['BucOmarStructure'][1].fields.central_dispensary) +
-      (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].central_dispensary * bs_data['BucOmarStructure'][2].fields.central_dispensary)
-
-">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].central_dispensary * bs_data['BucOmarStructure'][0].fields.central_dispensary) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].central_dispensary * bs_data['BucOmarStructure'][1].fields.central_dispensary) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].central_dispensary * bs_data['BucOmarStructure'][2].fields.central_dispensary)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].pmcus"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].pmcus=
-  (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].pmcus * bs_data['BucOmarStructure'][0].fields.pri_med_cunits) +
-    (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].pmcus * bs_data['BucOmarStructure'][1].fields.pri_med_cunits) +
-      (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].pmcus * bs_data['BucOmarStructure'][2].fields.pri_med_cunits)
-
-">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].pmcus * bs_data['BucOmarStructure'][0].fields.pri_med_cunits) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].pmcus * bs_data['BucOmarStructure'][1].fields.pri_med_cunits) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].pmcus * bs_data['BucOmarStructure'][2].fields.pri_med_cunits)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].phccs"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].phccs=
-  (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].phccs * bs_data['BucOmarStructure'][0].fields.pri_health_ccenters) +
-    (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].phccs * bs_data['BucOmarStructure'][1].fields.pri_health_ccenters) +
-      (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].phccs * bs_data['BucOmarStructure'][2].fields.pri_health_ccenters)
-
-">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].phccs * bs_data['BucOmarStructure'][0].fields.pri_health_ccenters) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].phccs * bs_data['BucOmarStructure'][1].fields.pri_health_ccenters) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].phccs * bs_data['BucOmarStructure'][2].fields.pri_health_ccenters)">
                                 </td>
 
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].mchcs"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].mchcs=
-  (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].mchcs * bs_data['BucOmarStructure'][0].fields.mat_child_health_clinics) +
-    (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].mchcs * bs_data['BucOmarStructure'][1].fields.mat_child_health_clinics) +
-      (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].mchcs * bs_data['BucOmarStructure'][2].fields.mat_child_health_clinics)
-
-">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].mchcs * bs_data['BucOmarStructure'][0].fields.mat_child_health_clinics) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].mchcs * bs_data['BucOmarStructure'][1].fields.mat_child_health_clinics) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].mchcs * bs_data['BucOmarStructure'][2].fields.mat_child_health_clinics)">
                                 </td>
 
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].total"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].total=
-dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].total+
-dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].total+
-dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].total">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].total+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[1].total+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].total">
                                 </td>
-
                             </tr>
-
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
                                     Set of Supplies
@@ -1159,10 +1144,9 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].to
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[2].base_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[2].base_hospital"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -1239,14 +1223,14 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].to
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[3].rural_hospital"
-                                    ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].rural_hospital=
+                                    ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[3].rural_hospital=
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[0].rural_hospital * bs_data['BucOmarSupplies'][0].fields.rural_hospital) +
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[1].rural_hospital * bs_data['BucOmarSupplies'][1].fields.rural_hospital) +
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[2].rural_hospital * bs_data['BucOmarSupplies'][2].fields.rural_hospital)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[3].central_dispensary"
-                                    ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].central_dispensary=
+                                    ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[3].central_dispensary=
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[0].central_dispensary * bs_data['BucOmarSupplies'][0].fields.central_dispensary) +
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[1].central_dispensary * bs_data['BucOmarSupplies'][1].fields.central_dispensary) +
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[2].central_dispensary * bs_data['BucOmarSupplies'][2].fields.central_dispensary)">
@@ -1267,7 +1251,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[2].to
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[3].mchcs"
-                                    ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].mchcs=
+                                    ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[3].mchcs=
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[0].mchcs * bs_data['BucOmarSupplies'][0].fields.mat_child_health_clinics) +
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[1].mchcs * bs_data['BucOmarSupplies'][1].fields.mat_child_health_clinics) +
                                         (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[2].mchcs * bs_data['BucOmarSupplies'][2].fields.mat_child_health_clinics)">
@@ -2158,6 +2142,21 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[4].tota
                                 </td>
                             </tr>
                             <!--Table 6:Tab two :Table two row seven-->
+                            <tr>
+                                <td>***</td>
+                                <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[3].central_dispensary">
+                                </td>
+                                <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[3].central_dispensary">
+                                </td>
+                                <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaMequipment[4].central_dispensary">
+                                </td>
+                                <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[5].central_dispensary">
+                                </td>
+                                <td ng-bind="">
+                                </td>
+                                <td ng-bind="">
+                                </td>
+                            </tr>
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].asset"
                                     width="264" height="20" class="boldash">
@@ -2230,9 +2229,11 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[4].tota
                             </tbody>
                         </table>
                         <br>
-                        <a href="#step4" id="s3" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                                class="glyphicon glyphicon-arrow-right"></span> Fill No of Partially Damaged Assets
-                            Informations</a>
+                        <a href="#step4" id="s3" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                            <span
+                                class="glyphicon glyphicon-arrow-right"></span>
+                            Fill No of Partially Damaged Assets Informations
+                        </a>
                     </div>
                 </div>
                 <div class="tab-pane" id="step4">
@@ -2280,6 +2281,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[4].tota
                         </tr>
                         </tbody>
                     </table>
+                    <!--tab 4-->
                     <div id="boxscroll2" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
@@ -2570,9 +2572,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[0].t
 dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[1].total+
 dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].total">
                                 </td>
-
                             </tr>
-
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
                                     Medical Equipment -4th
@@ -2594,32 +2594,24 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 <td width="98">
                                 </td>
                             </tr>
-
                             <!--Table 6:Tab four :Table two row one-->
-
                             <tr height="20">
-
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].asset"
                                     width="264" height="20" class="tdpa">
-
                                 </td>
                                 <td width="98">
-
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].base_hospital"
                                            name="textinput" type="number"
                                            placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
-
                                 </td>
                                 <td width="98">
-
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].divisional_hospital"
                                            name="textinput" type="number"
                                            placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
-
                                 </td>
 
                                 <td width="98">
@@ -2685,9 +2677,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
 
                             </tr>
-
                             <!--Table 6:Tab four :Table two row two-->
-
                             <tr height="20">
 
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].asset"
@@ -2907,35 +2897,35 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].base_hospital"
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].base_hospital=
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].base_hospital * bs_data['BucOmarcMequipment'][0].fields.base_hospital) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].base_hospital * bs_data['BucOmarcMequipment'][1].fields.base_hospital) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].base_hospital * bs_data['BucOmarcMequipment'][2].fields.base_hospital)+
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].base_hospital * bs_data['BucOmarcMequipment'][3].fields.base_hospital)">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].base_hospital * bs_data['BucOmarcMequipment'][0].fields.base_hospital) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].base_hospital * bs_data['BucOmarcMequipment'][1].fields.base_hospital) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].base_hospital * bs_data['BucOmarcMequipment'][2].fields.base_hospital)+
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].base_hospital * bs_data['BucOmarcMequipment'][3].fields.base_hospital)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].divisional_hospital"
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].divisional_hospital=
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].divisional_hospital * bs_data['BucOmarcMequipment'][0].fields.divisional_hospital) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].divisional_hospital * bs_data['BucOmarcMequipment'][1].fields.divisional_hospital) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].divisional_hospital * bs_data['BucOmarcMequipment'][2].fields.divisional_hospital)+
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].divisional_hospital * bs_data['BucOmarcMequipment'][3].fields.divisional_hospital)">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].divisional_hospital * bs_data['BucOmarcMequipment'][0].fields.divisional_hospital) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].divisional_hospital * bs_data['BucOmarcMequipment'][1].fields.divisional_hospital) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].divisional_hospital * bs_data['BucOmarcMequipment'][2].fields.divisional_hospital)+
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].divisional_hospital * bs_data['BucOmarcMequipment'][3].fields.divisional_hospital)">
                                 </td>
 
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].rural_hospital"
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].rural_hospital=
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].rural_hospital * bs_data['BucOmarcMequipment'][0].fields.divisional_hospital) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].rural_hospital * bs_data['BucOmarcMequipment'][1].fields.divisional_hospital) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].rural_hospital * bs_data['BucOmarcMequipment'][2].fields.divisional_hospital)+
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].rural_hospital * bs_data['BucOmarcMequipment'][3].fields.divisional_hospital)">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].rural_hospital * bs_data['BucOmarcMequipment'][0].fields.divisional_hospital) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].rural_hospital * bs_data['BucOmarcMequipment'][1].fields.divisional_hospital) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].rural_hospital * bs_data['BucOmarcMequipment'][2].fields.divisional_hospital)+
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].rural_hospital * bs_data['BucOmarcMequipment'][3].fields.divisional_hospital)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].central_dispensary"
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].central_dispensary=
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].central_dispensary * bs_data['BucOmarcMequipment'][0].fields.central_dispensary) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].central_dispensary * bs_data['BucOmarcMequipment'][1].fields.central_dispensary) +
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].central_dispensary * bs_data['BucOmarcMequipment'][2].fields.central_dispensary)+
-(dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].central_dispensary * bs_data['BucOmarcMequipment'][3].fields.central_dispensary)">
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[0].central_dispensary * bs_data['BucOmarcMequipment'][0].fields.central_dispensary) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[1].central_dispensary * bs_data['BucOmarcMequipment'][1].fields.central_dispensary) +
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].central_dispensary * bs_data['BucOmarcMequipment'][2].fields.central_dispensary)+
+                                        (dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].central_dispensary * bs_data['BucOmarcMequipment'][3].fields.central_dispensary)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[4].pmcus"
@@ -3199,14 +3189,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
 
                             </tr>
-
                             <!--Table 6:Tab four :Table three row four-->
-
                             <tr height="20">
-
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[3].asset"
                                     width="264" height="20" class="tdpa">
-
                                 </td>
                                 <td width="98">
 
@@ -3290,11 +3276,8 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
 
                             </tr>
-
                             <!--Table 6:Tab four :Table three row four-->
-
                             <tr height="20">
-
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].asset"
                                     width="264" height="20" class="tdpa">
 
@@ -3381,11 +3364,8 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
 
                             </tr>
-
                             <!--Table 6:Tab four :Table thfree row six-->
-
                             <tr height="20">
-
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[5].asset"
                                     width="264" height="20" class="boldash">
 
@@ -3488,15 +3468,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 </td>
 
                             </tr>
-
-
                             <!--Table 6:Tab four :Table thfree row six-->
-
                             <tr height="20">
-
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].asset"
                                     width="264" height="20" class="boldash">
-
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].base_hospital"
@@ -3565,95 +3540,71 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 </td>
 
                             </tr>
-
                             <!--Table 6:Tab four :Table thfree row seven-->
-
                             <tr height="20">
-
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].asset"
                                     width="264" height="20" class="boldash">
-
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].base_hospital"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].base_hospital=
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].base_hospital+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].base_hospital
-                 ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].base_hospital+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].base_hospital">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].divisional_hospital"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].divisional_hospital=
-                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].divisional_hospital+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].divisional_hospital
-                                    ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].divisional_hospital+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].divisional_hospital">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].rural_hospital"
 
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].rural_hospital=
-                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].rural_hospital+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].rural_hospital
-                                   ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].rural_hospital+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].rural_hospital">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].central_dispensary"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].central_dispensary=
-                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].central_dispensary+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].central_dispensary
-                                   ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].central_dispensary+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].central_dispensary">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].pmcus"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].pmcus=
-                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].pmcus+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].pmcus
-                                  ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].pmcus+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].pmcus">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].phccs"
 
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].phccs=
-                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].phccs+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].phccs
-                                   ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].phccs+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].phccs">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].mchcs"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].mchcs=
-                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].mchcs+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].mchcs
-                                   ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].mchcs+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].mchcs">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].total"
-
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[7].total=
-                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].total+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].total
-
-                                    ">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[6].total+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[6].total">
                                 </td>
-
                             </tr>
-
-
                             </tbody>
                         </table>
-
-
                         <br>
-                        <a href="#step5" id="s4" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                                class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
-
+                        <a href="#step5" id="s4" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                            Fill Losses Informations
+                        </a>
                     </div>
                 </div>
-
                 <div class="tab-pane" id="step5">
                     <table class="table table-bordered" style="width:100%;">
                         <colgroup>
@@ -3661,7 +3612,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                             <col width="98" span="8"/>
                         </colgroup>
                         <tbody>
-
                         <tr height="20" class="trheadc1">
                             <td rowspan="2" width="284" height="54"
                                 style="text-align:left;padding-left:5px;width:25.2%;">
@@ -3699,9 +3649,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                         </tr>
                         </tbody>
                     </table>
-
+                    <!--tab 5-->
                     <div id="boxscroll3" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
+                            <!--Foregone income-->                            <!--Table 6:Tab five :Table one row three-->
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
                                     Foregone income
@@ -3723,59 +3674,44 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 <td width="98">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row one-->
-
                             <tr height="20">
-
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[0].type_of_losses"
                                     width="264" height="20" class="tdpa">
-
                                 </td>
                                 <td width="98">
-
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[0].base_hospital"
                                            name="textinput" type="number"
                                            placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
-
                                 </td>
                                 <td width="98">
-
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[0].divisional_hospital"
                                            name="textinput" type="number"
                                            placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
-
                                 </td>
-
                                 <td width="98">
-
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[0].rural_hospital"
                                            name="textinput" type="number"
                                            placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
-
                                 </td>
                                 <td width="98">
-
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[0].central_dispensary"
                                            name="textinput" type="number"
                                            placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
-
                                 </td>
                                 <td width="98">
-
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[0].pmcus"
                                            name="textinput" type="number"
                                            placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
-
                                 </td>
                                 <td width="98">
 
@@ -3813,8 +3749,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 </td>
 
                             </tr>
-                            <!--Table 6:Tab five :Table one row two-->
-
                             <tr height="20">
 
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[1].type_of_losses"
@@ -3903,9 +3837,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 </td>
 
                             </tr>
-
-                            <!--Table 6:Tab five :Table one row three-->
-
                             <tr height="20">
 
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosFi[2].type_of_losses"
@@ -3978,7 +3909,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 </td>
 
                             </tr>
-
+                            <!--Cleaning Up of Debris-->
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
                                     Cleaning Up of Debris
@@ -4000,9 +3931,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 <td width="98">
                                 </td>
                             </tr>
-
-                            <!--Table 6:Tab five :Table two row one-->
-
                             <tr height="20">
 
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[0].type_of_losses"
@@ -4084,7 +4012,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[0].mchcs">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row two-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].type_of_losses"
                                     width="264" height="20" class="tdpa">
@@ -4150,7 +4077,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].mchcs">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row three-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[2].type_of_losses"
                                     width="264" height="20" class="boldash">
@@ -4204,6 +4130,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].total">
                                 </td>
                             </tr>
+                            <!--Higher Operating Costs-->
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
                                     Higher Operating Costs
@@ -4225,7 +4152,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 <td width="98">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table three row one-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].type_of_losses"
                                     width="264" height="20" class="tdpa">
@@ -4233,50 +4159,43 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].base_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
+                                           name="textinput" type="number" placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].divisional_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
+                                           name="textinput" type="number" placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].rural_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
+                                           name="textinput" type="number" placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].central_dispensary"
-                                           name="textinput" type="number"
-                                           placeholder=""
+                                           name="textinput" type="number" placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].pmcus"
-                                           name="textinput" type="number"
-                                           placeholder=""
+                                           name="textinput" type="number" placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].phccs"
-                                           name="textinput" type="number"
-                                           placeholder=""
+                                           name="textinput" type="number" placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].mchcs"
-                                           name="textinput" type="number"
-                                           placeholder=""
+                                           name="textinput" type="number" placeholder=""
                                            class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
@@ -4287,11 +4206,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].rural_hospital+
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].central_dispensary+
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].pmcus+
-                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].phccs+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].phccs+
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[0].mchcs">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row two-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[1].type_of_losses"
                                     width="264" height="20" class="tdpa">
@@ -4353,11 +4271,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[1].rural_hospital+
                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[1].central_dispensary+
                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[1].pmcus+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].phccs+
+                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[1].phccs+
                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[1].mchcs">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row three-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[2].type_of_losses"
                                     width="264" height="20" class="boldash">
@@ -4411,6 +4328,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosHoc[1].total">
                                 </td>
                             </tr>
+                            <!--Other Unexpected Expenses-->
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
                                     Other Unexpected Expenses
@@ -4432,73 +4350,64 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 <td width="98">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table four row one-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].type_of_losses"
                                     width="264" height="20" class="tdpa">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].base_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].base_hospital"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].divisional_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].divisional_hospital"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].rural_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].rural_hospital"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].central_dispensary"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].central_dispensary"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].pmcus"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].pmcus"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].phccs"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].phccs"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].mchcs"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].mchcs"
+                                        name="textinput" type="number" placeholder=""
+                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].total"
                                     ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].total=
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].base_hospital+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].divisional_hospital+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].rural_hospital+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].central_dispensary+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].pmcus+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].phccs+
-                                    dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].mchcs">
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].base_hospital+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].divisional_hospital+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].rural_hospital+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].central_dispensary+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].pmcus+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].phccs+
+                                        dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].mchcs">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row two-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[1].type_of_losses"
                                     width="264" height="20" class="tdpa">
@@ -4506,16 +4415,12 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[1].base_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[1].divisional_hospital"
-                                           name="textinput" type="number"
-                                           placeholder=""
-                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -4565,7 +4470,6 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                         dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[1].mchcs">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row three-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[2].type_of_losses"
                                     width="264" height="20" class="boldash">
@@ -4619,7 +4523,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                     dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[1].total">
                                 </td>
                             </tr>
-                            <!--Table 6:Tab five :Table one row three-->
+                            <!--TOTAL VALUE OF LOSSES-->
                             <tr height="20">
                                 <td ng-bind="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[3].type_of_losses"
                                     width="264" height="20" class="boldash">
@@ -4696,13 +4600,12 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                             <button type="button" ng-click="clear()" class="btn btn-info">
                                 Clear
                             </button>
-
                             <button type="button" ng-click="dlDataEdit(form_damagelost_other_medi)" ng-if="!is_edit"
                                     class="btn btn-success">
                                 Edit
                             </button>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                                Edit
+                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                                Cancel Edit
                             </button>
                             <button type="button" ng-click="saveDlData(form_damagelost_other_medi)"
                                     class="btn btn-success">Submit
@@ -4713,6 +4616,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
             </div>
             <br>
         </div>
+    </div>
         <!-- /.conainer-fluid -->
 </main>
 {% endblock content %}

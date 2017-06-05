@@ -1,18 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlTouismInfrstrctCultNaturalApp" ng-Controller="dlTouismInfrstrctCultNaturalController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Tourism Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:tourism_main' %}">Tourism Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3. Damages and losses to tourism infrastructure (cultural sites and natural formations)
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_tou_infra">
         <div id="myTabContent" class="tab-content">
@@ -45,7 +47,7 @@
                             </span>
                         </td>
                     </tr>
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td width="85" >
                             Incident
                         </td>
@@ -76,7 +78,7 @@
 
                     </tr>
 
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="263">
                             Type of Tourism Infrastructure
                         </td>
@@ -105,7 +107,7 @@
                         <!--</td>-->
                     </tr>
 
-                    <tr class="trhead" height="34">
+                    <tr class="trhead1" height="34">
                         <td height="34" width="263">
                             Name of Tourism Infrastructure
                         </td>
@@ -141,7 +143,7 @@
 
                     </tr>
 
-                    <tr class="trhead" height="19">
+                    <tr class="trhead1" height="19">
                         <td height="19" width="263">
                             Ownership
                         </td>
@@ -164,12 +166,12 @@
                                <!--data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
                         <!--</td>-->
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="7" height="19" width="894">
                             Damages
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td height="19" width="263">
                             Assets
                         </td>
@@ -249,12 +251,12 @@
                             -
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19">
+                    <tr class="trheadc1" height="19">
                         <td colspan="7" height="19" width="894">
                             Losses
                         </td>
                     </tr>
-                    <tr class="trheadc" height="34">
+                    <tr class="trheadc1" height="34">
                         <td height="34" width="263">
                             Types of Losses
                         </td>
@@ -283,10 +285,10 @@
                         <td width="114">
                             Year 2
                         </td>
-                        <td width="118">
+                        <td width="118" style="width: 10%;">
                             Year 1
                         </td>
-                        <td width="85">
+                        <td width="85" style="width: 10%;">
                             Year 2
                         </td>
                         <td width="85">
@@ -387,6 +389,7 @@
 
                     <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_tou_infra)">Submit</button>
                 </div>
+                <br>
                 <br>
                 <br>
             </div>

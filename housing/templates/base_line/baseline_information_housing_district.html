@@ -1,18 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsHousingDisApp" ng-controller="BsHousingDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Housing Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline Information of Housing in a District
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_housing_dis">
         <div id="myTabContent" class="tab-content">
@@ -69,13 +71,13 @@
                         <td rowspan="2" height="54" width="166">
                             Housing Classification
                         </td>
-                        <td rowspan="2" height="54" width="87">
+                        <td rowspan="2" height="54" width="87" style="width:12%;">
                             Total Number of Houses
                         </td>
-                        <td rowspan="2" height="54" width="112">
+                        <td rowspan="2" height="54" width="112" style="width:12%;">
                             Number of Houses for Rent
                         </td>
-                        <td rowspan="2" height="54" width="87">
+                        <td rowspan="2" height="54" width="87" style="width:12%;">
                             Average Rent per Month
                         </td>
                         <td colspan="2" height="35" width="208">
@@ -86,16 +88,16 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td height="19" width="104">
+                        <td height="19" width="104" style="width:10%;">
                             Female
                         </td>
-                        <td height="19" width="87">
+                        <td height="19" width="87" style="width:10%;">
                             Male
                         </td>
-                        <td height="19" width="83">
+                        <td height="19" width="83" style="width:10%;">
                             Construction
                         </td>
-                        <td height="19" width="93">
+                        <td height="19" width="93" style="width:10%;">
                             Repair
                         </td>
                     </tr>

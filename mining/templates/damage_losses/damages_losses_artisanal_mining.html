@@ -1,4 +1,4 @@
-s{% extends "dashboard/base.html" %}
+{% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
 <script>
@@ -25,6 +25,7 @@ s{% extends "dashboard/base.html" %}
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4: Damages and Losses in Artisanal Mining  </span>
         </li>
+        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
 <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
@@ -752,5 +753,37 @@ s{% extends "dashboard/base.html" %}
 
     </div>
     <!-- /.conainer-fluid -->
+    <!-- update the baseline Model -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Save Data
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>'Table 2: Baseline Information for Artisanal Mining</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock content %}

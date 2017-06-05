@@ -6,7 +6,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
-
+    $scope.is_edit_disable = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
@@ -116,6 +116,17 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     }
 
     $scope.bsLandTrnsAsst = angular.copy(init_data);
+    //Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
+
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsLandTrnsAsst.transport_land.Table_2[table]);

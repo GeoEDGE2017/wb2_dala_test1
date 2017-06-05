@@ -11,6 +11,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.ownership;
     $scope.firms = [];
     $scope.is_edit_model = false;
+    $scope.is_edit_disable = false;
 
     var init_data = {
     'mining':{
@@ -54,7 +55,16 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     }
 
     $scope.mnIndusMinFirm = init_data;
-
+//Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.baselineDate && $scope.selectedFirm){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
  $scope.insertFirm = function(table)
 {

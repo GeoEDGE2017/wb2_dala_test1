@@ -10,6 +10,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.selectedCompany;
+    $scope.currentBaselineDate = null;
 
     var init_data = {
         'telecommunication': {

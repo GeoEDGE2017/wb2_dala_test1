@@ -3,31 +3,20 @@
 {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlTypeLossRailApp" ng-controller="DlTypeLossRailController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-       
         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
         <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_rail_main' %}">Transport Rail Sector</a>
         </li>
-
-
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of Damages and Losses in the Rail Transportation Nationwide / Types of Losses</span>
         </li>
         <li style="float:right;"> <a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
-
-
     <div class="container-fluid">
-
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="281"/>
                         <col width="170"/>
@@ -40,7 +29,6 @@
                             Incident
                         </td>
                         <td colspan="5" style="">
-
                             <select id="select" name="incident" ng-model="incident"
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
@@ -48,17 +36,13 @@
 
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>{{incident.disaster_type.name}}
                                     {{incident.reported_date_time}}
                                 </option>
                                 {% endfor %}
-
                             </select>
-
                         </td>
                     </tr>
-
                     <tr class="trheadc1" height="20">
                         <td width="281" height="20">
                             Type of Losses

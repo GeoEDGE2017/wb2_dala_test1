@@ -1,8 +1,6 @@
 var app = angular.module('dlRailTransSumNatApp', ['underscore']);
 
 app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
-
-
     $scope.district;
     $scope.is_edit = false;
     $scope.incident;
@@ -15,45 +13,45 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
     $scope.loadData = function(form)
     {
         $scope.isLoded = true;
-
         $scope.is_edit = true;
         $scope.submitted = true;
         console.log($scope.incident);
+//            $http({
+//            method: "POST",
+//            url: '/dl_fetch_district_disagtn',
+//            data: angular.toJson({
+//            'table_name':'Table_4',
+//            'sector': 'transport_rail',
+//            'com_data': {
+//                    'incident': $scope.incident,
+//                  },
+//                   }),
+//            }).success(function(data) {
+//            $scope.dmLosTransAirNation = data;
+//            })
+
             $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':'Table_4',
+            'table_name':'Table_5',
             'sector': 'transport_rail',
             'com_data': {
                     'incident': $scope.incident,
                   },
                    }),
             }).success(function(data) {
-
-            console.log('load ', data);
-            $scope.dmLosTransAirNation = data;
-
+            console.log('loading ', data);
+            $scope.dmLosTransAirnew = data;
             })
-
-
-
-
-
     }
-
-
-
-             $scope.checkIfNull = function()
-   {
+   $scope.checkIfNull = function(){
         var isNull = $scope.dmLosTransAirNation ? angular.equals({}, $scope.dmLosTransAirNation.transport_rail.Table_4) : true;
         return isNull;
-
    }
 
-     $scope.getTotal = function(model, property,$index,key) {
-
-
+     $scope.getTotal = function(model, property,$index,key)
+     {
          $scope.total =  $scope.total + (
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[0].tot_damages ?
                          $scope.dmLosTransAirNation.transport_rail.Table_4[key].TotDmgNational[0].tot_damages : 0 ) ;

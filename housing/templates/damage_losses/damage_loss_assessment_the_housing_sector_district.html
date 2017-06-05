@@ -12,6 +12,7 @@
             <span class="label label-success" style="font-size:14px;">
                 Table 3. Damage and Loss Assessment of the Housing Sector in a District
             </span>
+             <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_assmnt_husing_sector">
@@ -57,7 +58,7 @@
                             </td>
                             <td class="trhead1" colspan="2"  width="63">
                                 <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                        class="form-control" ng-change="changedValue(true);changeDis();" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
 
@@ -72,7 +73,8 @@
                             </td>
                             <td class="trhead1" colspan="3"  width="343">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control"
+                                        ng-change="changedValue(false);changeDis();" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
@@ -963,9 +965,16 @@
                     <br>
                     <br>
                       <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit"  ng-disabled="incident && district " class="btn btn-success">
-                        Edit
-                    </button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
@@ -1012,5 +1021,37 @@
         </div>
     </div>
     <!-- /.conainer-fluid -->
+    <!-- update the baseline Model -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Save Data
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>'Table 1. Baseline Information of Housing in a District'</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock content %}

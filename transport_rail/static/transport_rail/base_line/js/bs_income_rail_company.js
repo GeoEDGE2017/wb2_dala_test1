@@ -12,6 +12,7 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.companies = [];
     $scope.company = null;
     $scope.new_company = {id: null, name: null};
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'transport_rail': {
@@ -139,6 +140,18 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
     }
 
     $scope.bsIncomeRailCompany = angular.copy(init_data);
+
+    //Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.baselineDate){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
+
 
     $scope.saveBsData = function(form) {
 

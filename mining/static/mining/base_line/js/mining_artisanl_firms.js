@@ -9,6 +9,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
     $scope.is_edit = false;
     $scope.selectedFirm;
     $scope.ownership;
+    $scope.is_edit_disable = false;
 
     var init_data = {
     'mining':{
@@ -46,6 +47,20 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
     }
 
  $scope.mnArtisanalFirm = init_data;
+
+ //Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.baselineDate){
+
+            $scope.is_edit_disable = true;
+        }
+        else{
+        
+            $scope.is_edit_disable = false;
+        }
+    }
+
 
  $scope.insertFirm = function(table)
 {

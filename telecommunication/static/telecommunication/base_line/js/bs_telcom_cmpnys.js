@@ -13,6 +13,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.is_edit_model = false;
     $scope.ownership;
     $scope.company;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'telecommunication': {
@@ -23,6 +24,17 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     }
 
     $scope.bsTelcomCmpnys = angular.copy(init_data);
+
+     //Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
     $scope.saveBsData = function(form) {
         console.log('in');

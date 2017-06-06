@@ -893,6 +893,8 @@ def dl_fetch_edit_data_with_array(request):
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data):
     todate = timezone.now()
+    print "\n"
+    print "\n"
     print "Edit -------------"
     for sector in table_data:
 
@@ -906,7 +908,7 @@ def dl_save_edit_data(table_data, com_data):
 
                 for row in table_data[sector][interface_table][db_table]:
 
-                    print row
+                    print 'row', row
 
                     model_class = apps.get_model(sub_app_name, db_table)
 
@@ -1005,6 +1007,35 @@ def dl_save_edit_data_with_array(table_data, com_data):
                             model_object.update(**row)
 
                             print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+
+
+@csrf_exempt
+def dl_delete_data(table_data, com_data):
+    todate = timezone.now()
+    print "\n"
+    print "Edit -------------"
+    for sector in table_data:
+
+        sub_app_name = sector + '.damage_losses'
+
+        for interface_table in table_data[sector]:
+            print 'interface table', ' -->', interface_table, '\n'
+            for db_table in table_data[sector][interface_table]:
+
+                print 'db table', ' -->', db_table, '\n'
+
+                for row in table_data[sector][interface_table][db_table]:
+
+                    print 'row', row
+
+                    model_class = apps.get_model(sub_app_name, db_table)
+
+                    if has_the_id(row):
+                        model_object = model_class.objects.filter(id=row['id'])
+                        # model_object.update(**row)
+                        model_object.filter(**row).delete()
+                        print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+
 
 # Old method
 # @csrf_exempt

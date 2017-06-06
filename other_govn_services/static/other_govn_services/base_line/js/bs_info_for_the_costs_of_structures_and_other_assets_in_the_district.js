@@ -1,5 +1,5 @@
 //Table 1
-var app= angular.module('bsInfoforCostsOfAssetsOnTheDistrictApp', [])
+var app = angular.module('bsInfoforCostsOfAssetsOnTheDistrictApp', [])
 
 app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
@@ -58,10 +58,19 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         }
     }
 
+    $scope.dele_data = {
+        'other_govn_services': {
+            'Table_1': {
+                'BcsStructure': [],
+                'BcsOfficeEquipment' : [],
+                'BcsMachinery': []
+            }
+        }
+    }
+
     $scope.bsCostsOfAssetsOnTheDistrict = angular.copy(init_data);
 
-    $scope.insertAsset = function(table)
-    {
+    $scope.insertAsset = function(table) {
         console.log($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1[table]);
         var new_row;
         if(table == 'BcsOfficeEquipment') {
@@ -84,14 +93,17 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1[table].push(new_row);
     }
 
-    $scope.removeItem = function removeItem(table, index)
-    {
-        if(table == 'BcsOfficeEquipment')
-        {
+    $scope.removeItem = function removeItem(table, index) {
+        if(table == 'BcsOfficeEquipment') {
+            if($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment[index].id > 0) {
+                $scope.dele_data.other_govn_services.Table_1.BcsOfficeEquipment.push($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment[index]);
+            }
             $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment.splice(index, 1);
         }
-        else if(table == 'BcsMachinery')
-        {
+        else if(table == 'BcsMachinery') {
+            if($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery[index].id > 0) {
+                $scope.dele_data.other_govn_services.Table_1.BcsOfficeEquipment.push($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery[index]);
+            }
             $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery.splice(index, 1);
         }
     }
@@ -129,8 +141,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         }
     }
 
-    $scope.bsHsDataEdit = function(form)
-    {
+    $scope.bsHsDataEdit = function(form) {
         $scope.submitted = true;
 
         $scope.is_edit = true;
@@ -151,8 +162,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 
     }
 
-    $scope.cancelEdit = function()
-    {
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsCostsOfAssetsOnTheDistrict = init_data;
     }
@@ -163,5 +173,9 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         $scope.is_edit = false;
         $scope.bsCostsOfAssetsOnTheDistrict = angular.copy(init_data);
 
+    }
+
+    $scope.deleteing = function() {
+        console.log('$$$', $scope.dele_data);
     }
 }])

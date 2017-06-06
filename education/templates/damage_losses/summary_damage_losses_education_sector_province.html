@@ -60,7 +60,7 @@
                         </td>
                         <td colspan="2" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
+                                    class="form-control" ng-change="changedValue(true);LoadData();"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -73,7 +73,7 @@
                         </td>
                         <td style="padding-left:5px;"> Province</td>
                         <td colspan="2" style="">
-                            <select name="province" ng-model="province"
+                            <select name="province" ng-change="LoadData();" ng-model="province"
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
                                     required>
@@ -83,7 +83,7 @@
                             </select>
                         </td>
                         <td colspan="">
-                            <button class="btn btn-block btn-info" ng-click="LoadData()">Load</button>
+                            <!--<button class="btn btn-block btn-info" ng-click="LoadData()">Load</button>-->
                         </td>
                     </tr>
 

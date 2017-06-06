@@ -31,6 +31,7 @@ app.controller("dlAssessmenProvinceController", function ($scope,$http, _) {
     }
 
 $scope.fetchDlData = function(){
+    if($scope.incident && $scope.province){
     $http({
     method: "POST",
     url: '/other_govn_services/damage_losses/dl_fetch_disagtn_data',
@@ -47,6 +48,7 @@ $scope.fetchDlData = function(){
     $scope.dlAssessmenProvinceSys = data;
 
 })
+}
 }
 
 })

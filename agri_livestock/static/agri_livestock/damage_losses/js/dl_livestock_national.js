@@ -44,6 +44,7 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
 //    }
 
 $scope.fetchDlData = function(form){
+        if($scope.incident){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -65,6 +66,7 @@ $scope.fetchDlData = function(form){
            $scope.dlAgriLivestockSumNat = data  ;
 
             })
+            }
 
     }
 

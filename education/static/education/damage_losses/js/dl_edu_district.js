@@ -32,7 +32,7 @@ $scope.submitted = false;
     }
 
    $scope.LoadData = function(){
-
+   if($scope.incident && $scope.district){
    $scope.tot_damages = null;
    $scope.is_edit = true;
    $scope.submitted = true;
@@ -55,6 +55,7 @@ $scope.submitted = false;
 
 
     })
+    }
 
 
 }

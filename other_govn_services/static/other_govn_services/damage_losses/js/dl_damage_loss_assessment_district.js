@@ -147,7 +147,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
     }
 
     $scope.fetchDlData = function(){
-
+    if($scope.incident && $scope.district){
     $http({
     method: "POST",
     url: '/other_govn_services/damage_losses/dl_fetch_district_disagtn',
@@ -156,7 +156,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
     'sector': 'other_govn_services',
     'com_data': {
             'incident': $scope.incident,
-            'district': $scope.district.district__id
+            'district': $scope.district.district__id,
           },
            }),
     }).success(function(data) {
@@ -164,6 +164,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
        console.log('load ', data);
 
     })
+    }
 
 }
 

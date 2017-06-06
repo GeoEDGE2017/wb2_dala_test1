@@ -33,6 +33,7 @@ $scope.data={};
     }
 
    $scope.LoadData = function(){
+   if($scope.incident && $scope.province ){
     $scope.is_edit = true;
    $scope.submitted = true;
 
@@ -53,6 +54,7 @@ $scope.data={};
             $scope.data=data;
 
             })
+            }
 
 
 }

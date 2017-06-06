@@ -59,7 +59,7 @@
                                 District
                             </td>
                             <td colspan="4" height="19" style="font-weight:normal;" width="427">
-                                <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
                                         <option value={{ district.id }}>{{ district.name }}</option>
@@ -70,7 +70,7 @@
                                 Year/Month
                             </td>
                             <td colspan="3" height="19" style="font-weight:normal;" width="427">
-                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker"
+                                <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker"
                                        ng-model="bs_date" class="form-control input-md" required>
                             </td>
                         </tr>
@@ -408,9 +408,16 @@
                     <div class="pull-right">
                         <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>

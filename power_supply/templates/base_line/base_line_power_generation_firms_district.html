@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 
 <!-- Main content -->
 <main class="main" ng-app="bsPowGenFrimDisApp" ng-controller="BsPowGenFrimDisController">
@@ -8,13 +8,15 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Power Supply Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:power_supply_main' %}">Power Supply Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Power Generation Firms in a District</span>
         </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+    </ol>
     </ol>
 
 
@@ -38,7 +40,7 @@
                     <tr class="trhead1" height="19">
                          <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="2" style="">
-                            <select ng-model="district" id="selectbasic" name="district" class="form-control"
+                            <select ng-model="district" id="selectbasic" ng-change="changeDis()" name="district" class="form-control"
                                     style="font-weight:400;" required>
                                 <option value="">Select District</option>
                                 {% for district in districts %}
@@ -50,7 +52,7 @@
                             Year/Month
                         </td>
                         <td colspan="2" style="font-weight:normal;">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date"
+                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
                     </tr>
@@ -207,9 +209,16 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="bsHsDataEdit()"
-                            ng-if="!is_edit" class="btn btn-success">Edit
-                    </button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>

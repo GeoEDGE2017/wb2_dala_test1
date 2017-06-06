@@ -1,20 +1,21 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsindustryServicesInfoFormalApp" ng-controller="bsindustryServicesInfoFormalController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Industry & Services Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:industry_services_main' %}">Industry & Services Sector</a>
         </li>
+       
 
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on the Formal IS Sector in a District</span></li>
-
+ <li style="float:right;"> <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
 
@@ -86,7 +87,7 @@
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
-                        <td rowspan="2" height="38" width="186">
+                        <td rowspan="2" height="38" width="186" style="width:15%;">
                             Industry
                         </td>
                         <td rowspan="2" height="38" width="121" style="width:10%;">
@@ -101,7 +102,7 @@
                         <td rowspan="2" height="38" width="63" style="width:10%;">
                             Large
                         </td>
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="2" height="19" width="126" style="width:20%;">
                             Total Number of People Employed
                         </td>
                     </tr>

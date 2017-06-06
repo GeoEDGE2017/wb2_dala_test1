@@ -1,17 +1,17 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsNoofPeplEngdFisheriesApp" ng-controller="bsNoofPeplEngdFisheriesController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Fisheries Sub Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_fisheries_main' %}">Agri Fisheries Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on the Number of People Engaged in Fisheries </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_noof_pepl_engd_fisheries">
         <div id="myTabContent" class="tab-content">
@@ -63,16 +63,16 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td  height="19">
+                        <td  height="19" style="width:30%;">
                             Fisheries
                         </td>
-                        <td  height="19">
+                        <td  height="19" style="width:20%;">
                             Families
                         </td>
-                        <td  height="19">
+                        <td  height="19" style="width:20%;">
                             Male
                         </td>
-                        <td  height="19">
+                        <td  height="19" style="width:20%;">
                             Female
                         </td>
                     </tr>

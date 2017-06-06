@@ -1,18 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlTelcomFirmsApp" ng-controller="dlTelcomFirmsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Telecommunication Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 2.Damages and Losses of Telecommunication Firms
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_telcom_firms">
         <ul class='nav nav-wizard'>
@@ -105,16 +107,16 @@
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
-                        <td rowspan="2" height="38" width="293">
+                        <td rowspan="2" height="38" width="293" style="width:15%;">
                             Number of employees
                         </td>
-                        <td height="19" width="254">
+                        <td height="19" width="254" style="width:10%;">
                             Male
                         </td>
-                        <td height="19" width="145">
+                        <td height="19" width="145" style="width:10%;">
                             Female
                         </td>
-                        <td height="19" width="221">
+                        <td height="19" width="221" style="width:10%;">
                             Total
                         </td>
                     </tr>
@@ -510,16 +512,16 @@
                     </colgroup>
                     <tbody>
                     <tr class="trheadc1" height="19">
-                        <td height="19" width="293">
+                        <td height="19" width="293" style="width:15%;">
                             Types of Losses
                         </td>
-                        <td height="19" width="254">
+                        <td height="19" width="254" style="width:10%;">
                             Year 1
                         </td>
-                        <td height="19" width="145">
+                        <td height="19" width="145" style="width:10%;">
                             Year 2
                         </td>
-                        <td height="19" width="221">
+                        <td height="19" width="221" style="width:10%;">
                             Total (LKR)
                         </td>
                     </tr>

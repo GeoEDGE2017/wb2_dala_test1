@@ -308,11 +308,9 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
             }).success(function(data) {
                 console.log("edit", data);
                 // handling response from server if data are not available in this
-                if((data.tourism.Table_3.DlInfLosses.length == 0) ||
-                    (data.tourism.Table_3.DmgInfAssets.length == 0)
-                     ){
-                    $scope.is_edit = false;
-                        // do nothing or display msg that data are not available
+                if((data.tourism.Table_3.DlInfLosses.length == 0) ||(data.tourism.Table_3.DmgInfAssets.length == 0))
+                   {
+                        $scope.is_edit = false;
                     }
                 else{
                         $scope.dl_tourism_infrs = data;
@@ -320,7 +318,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
             })
         }
             else{
-                alert("enter Incident, District, Infrastructure, ownership");
+                console.log("enter Incident, District, Infrastructure, ownership");
                     console.log($scope.district);
                     console.log($scope.incident);
                     console.log($scope.selectedFirm);
@@ -336,7 +334,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         $scope.saveInfrastructure = function(form) {
         if(!$scope.district && !$scope.selectedType){
-            alert("please select an Incident, Inf Type and a District" );
+            console.log("please select an Incident, Inf Type and a District" );
             return;
         }
         if(form.$valid) {
@@ -397,7 +395,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
             })
         }
         else{
-            alert("Select an Infrastructure to edit")
+            console.log("Select an Infrastructure to edit")
         }
     }
 

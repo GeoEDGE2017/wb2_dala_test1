@@ -7,6 +7,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.is_edit_disable = false;
 
 
 //Initialize data
@@ -158,6 +159,18 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     }
 
     $scope.bsInfoAcfoAssets = angular.copy(init_data);
+
+    //Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
+
 
     //related baseline data
     $scope.getValue=function getBsData() {

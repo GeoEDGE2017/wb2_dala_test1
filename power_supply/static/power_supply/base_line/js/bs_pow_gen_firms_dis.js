@@ -7,6 +7,7 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
     $scope.is_edit = false;
     $scope.selectedFirm;
     $scope.ownership;
+    $scope.is_edit_disable = false;
 
 //Initialize model
     var init_data = {
@@ -18,6 +19,17 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
     }
 
  $scope.bsPowGenFrimDis = angular.copy(init_data);
+
+//Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
 //Insert Firm
  $scope.insertFirm = function(table){

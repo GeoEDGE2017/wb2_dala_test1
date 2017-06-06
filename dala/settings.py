@@ -156,8 +156,7 @@ DATABASES = {
         #     'options': '-c search_path=agri_agrarian'
         # },
 
-
-        'NAME': 'Dala_2017_05_09',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }

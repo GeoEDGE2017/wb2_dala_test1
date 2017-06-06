@@ -1,21 +1,21 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlindustryServicesFormalSecApp" ng-controller="dlindustryServicesFormalSecController">
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Industry & Services Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:industry_services_main' %}">Industry & Services Sector</a>
         </li>
 
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;"> Table 3.Damages and Losses of a Firm in the Formal Sector</span></li>
 
-
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
 
 

@@ -1,18 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlAssmntHusingApp" ng-controller="dlAssmntHusingController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Housing Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3. Damage and Loss Assessment of the Housing Sector in a District
             </span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_assmnt_husing_sector">
         <ul class='nav nav-wizard'>
@@ -83,27 +85,27 @@
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
-                        <td rowspan="2" height="53" width="166">
+                        <td rowspan="2" height="53" width="166" style="width:15%;">
                             Housing Classification
                         </td>
-                        <td colspan="2" height="19" width="174">
+                        <td colspan="2" height="19" width="174" style="width:30%;">
                             Destroyed Houses
                         </td>
-                        <td colspan="3" rowspan="2" height="53" width="278" style="width:25%;">
+                        <td colspan="3" rowspan="2" height="53" width="278" style="width:15%;">
                             Total Square Meters Destroyed (sqm)
                         </td>
-                        <td rowspan="2" height="53" width="83">
+                        <td rowspan="2" height="53" width="83" style="width:15%;">
                             Per cent of House Contents Value Affected (%)
                         </td>
-                        <td rowspan="2" height="53" width="93">
+                        <td rowspan="2" height="53" width="93" style="width:15%;">
                             Damages (LKR)
                         </td>
                     </tr>
                     <tr class="trsubc" height="34">
-                        <td height="34" width="87">
+                        <td height="34" width="87" style="width:15%;">
                             Total Number
                         </td>
-                        <td height="34" width="112">
+                        <td height="34" width="112" style="width:15%;">
                             Per cent of total for rent
                         </td>
                     </tr>

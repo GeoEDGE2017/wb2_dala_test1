@@ -1,19 +1,19 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-
+{% load static %}
     <!-- Main content -->
     <main class="main"  ng-app="dlSumPowsupDisApp" ng-controller="dlSumPowsupDisController">
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
             
-            <li class="breadcrumb-item"><a href="#">Admin</a>
-            </li>
-			 <li class="breadcrumb-item"><a href="#">Power Supply Sector</a>
-            </li>
+              <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:power_supply_main' %}">Power Supply Sector</a>
+        </li>
            
 			<li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses in the district</span></li>
-
+ <li style="float:right;"> <a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
            
         </ol>
 
@@ -69,7 +69,7 @@
             <td rowspan="2" height="38" width="244">
                 Number of Customers Affected
             </td>
-            <td width="112">
+            <td width="112" style="width:10%;">
                 Domestic
             </td>
             <td width="108">

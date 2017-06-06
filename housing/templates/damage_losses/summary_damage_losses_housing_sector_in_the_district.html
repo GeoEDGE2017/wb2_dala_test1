@@ -1,18 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlHousingDisApp" ng-controller="DlHousingDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Housing Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 4.  Summary of Damage and Losses in the Housing Sector in the District
             </span>
         </li>
+          <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
@@ -63,22 +65,22 @@
                     <tbody>
 
                     <tr class="trheadc1" height="51">
-                        <td height="51" width="166">
+                        <td height="51" width="166" style="width:20%;">
                             Housing Classification
                         </td>
-                        <td height="51" width="87">
+                        <td height="51" width="87" style="width:10%;">
                             Number Totally Destroyed
                         </td>
-                        <td colspan="2" height="51" width="224">
+                        <td colspan="2" height="51" width="224" style="width:10%;">
                             Number of Partially Damaged
                         </td>
-                        <td height="51" width="104">
+                        <td height="51" width="104" style="width:10%;">
                             Damages (LKR)
                         </td>
-                        <td height="51" width="87">
+                        <td height="51" width="87" style="width:10%;">
                             Losses (LKR)
                         </td>
-                        <td colspan="2" height="51" width="166">
+                        <td colspan="2" height="51" width="166" style="width:10%;">
                             Total (LKR)
                         </td>
                     </tr>

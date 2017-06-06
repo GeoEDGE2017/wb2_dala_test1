@@ -1,17 +1,17 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsLivestockPoultryDstApp" ng-controller="bsLivestockPoultryDstController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+          <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Livestock Sub Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_livestock_main' %}">Agri Livestock  Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on the Number of People Engaged in Livestock and Poultry in a District</span>
         </li>
+          <li style="float:right;"> <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_livestock_poultry_dst">
         <div id="myTabContent" class="tab-content">

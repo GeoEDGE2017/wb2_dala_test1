@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
+{% load static %}
 <script>
   $(document).ready(function() {
   
@@ -12,14 +13,13 @@
 <main class="main" ng-app="dlIrrigationApp" ng-controller="dlIrrigationController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
-        </li>
-        <li class="breadcrumb-item"><a href="#">Irrigation Sub Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation  Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and Losses</span>
         </li>
+         <li style="float:right;"> <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_irrigation">
         <div>
@@ -42,14 +42,14 @@
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_irrigation.incident.$error.required">
                                     Please Select Incident
                                 </span>
                             </td>
                             <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
-                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_dl_irrigation.district.$error.required">
                                     Please Select District
                                 </span>
@@ -59,7 +59,7 @@
                             <td width="258" height="19">
                                 Incident
                             </td>
-                            <td colspan="3" width="118">
+                            <td colspan="4" width="118">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
@@ -75,7 +75,7 @@
                             <td width="85">
                                 District
                             </td>
-                            <td width="85" colspan="3">
+                            <td width="85" colspan="2">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
@@ -588,7 +588,7 @@
                     </table>
                     <br>
                     <div class="pull-right">
-                        <br>
+                      
 
                     <button type="button"  ng-click="clear()" class="btn btn-info">Clear</button>
                     <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
@@ -601,6 +601,7 @@
                     class="btn btn-success">Submit
                     </button>
                     </div>
+                     <br> <br>  <br>
                 </div>
             </div>
         </div>

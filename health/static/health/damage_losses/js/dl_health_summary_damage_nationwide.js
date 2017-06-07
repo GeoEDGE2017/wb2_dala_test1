@@ -45,6 +45,7 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
 }
 
 $scope.fetchDlData = function(form){
+    if($scope.incident){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -65,6 +66,7 @@ $scope.fetchDlData = function(form){
             $scope.dlhealthsummarydamagenationwide = data;
 
             })
+            }
 
     }
 

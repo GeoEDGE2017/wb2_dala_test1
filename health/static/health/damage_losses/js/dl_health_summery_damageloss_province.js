@@ -88,60 +88,53 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     $scope.provinces = [];
 
     function fetchProvinces() {
-          $http({
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-
-            })
-
+                'incident': $scope.incident
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = "";
+        })
     }
 
     $scope.fetchDlData = function() {
-    console.log($scope.province);
-    console.log($scope.incident);
-        $scope.is_edit = true;
-        $scope.submitted = true;
+        if($scope.incident && $scope.province) {
+            console.log($scope.province);
+            console.log($scope.incident);
+            $scope.is_edit = true;
+            $scope.submitted = true;
 
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_8',
-            'sector': 'health',
-            'com_data': {
-                    'province': $scope.province,
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':'Table_8',
+                    'sector': 'health',
+                    'com_data': {
+                        'province': $scope.province,
+                        'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
-
-            console.log('load ', data);
-
-            $scope.data = data;
-            $scope.dlhealthsummarydamageprovince = data;
-
+                console.log('load ', data);
+                $scope.data = data;
+                $scope.dlhealthsummarydamageprovince = data;
             })
-
-
+        }
     }
 
     $scope.checkIfNull = function() {
         var isNull = $scope.dlhealthsummarydamageprovince ? angular.equals({},
         $scope.dlhealthsummarydamageprovince.health.Table_8) : true;
         return isNull;
-
     }
 
     $scope.sumFunc3 = function(val1=0, val2=0, val3=0) {
         console.log('test', parseInt(val1));
         $scope.value = parseInt(val1) + parseInt(val2) + parseInt(val3);
-
         return $scope.value;
     }
  }])

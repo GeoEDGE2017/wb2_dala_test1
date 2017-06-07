@@ -30,6 +30,7 @@ bsHealthStatusApp.controller('dlSumTrnsAirDistController', function DlEduDistric
     }
 
     $scope.LoadData = function(form) {
+    if($scope.incident && $scope.district){
         $scope.isLoded = true;
         if(form.$valid) {
             $scope.tot_damages = null;
@@ -51,6 +52,7 @@ bsHealthStatusApp.controller('dlSumTrnsAirDistController', function DlEduDistric
                 $scope.data=data;
                 console.log(data);
             })
+        }
         }
     }
 })

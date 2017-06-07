@@ -58,16 +58,16 @@
                             <select name="province" ng-model="province"
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(false)" required>
+                                    ng-change="changedValue(false);fetchProvinces();" required>
                                 <option value="" selected="true">Select Province</option>
                                 <option ng-repeat="province in provinces" ng-value="province.district__province_id"
                                         ng-bind="province.district__province__name"></option>
                             </select>
                         </td>
                         <td >
-                            <button class="btn btn-info btn-block"
-                                    ng-click="fetchDlData()">Load
-                            </button>
+                            <!--<button class="btn btn-info btn-block"-->
+                                    <!--ng-click="fetchDlData()">Load-->
+                            <!--</button>-->
                         </td>
                     </tr>
                       </tbody>

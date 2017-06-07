@@ -27,6 +27,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
     }
 
     $scope.LoadData = function(form) {
+      if($scope.incident && $scope.district){
         $scope.isLoded = true;
         if(form.$valid) {
             $scope.tot_damages = null;
@@ -48,6 +49,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
                 $scope.data=data;
                 console.log(data);
             })
+            }
         }
     }
 })

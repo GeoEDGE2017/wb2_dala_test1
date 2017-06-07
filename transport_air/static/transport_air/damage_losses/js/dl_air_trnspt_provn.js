@@ -46,6 +46,7 @@ app.controller("dlSummeryTAProController", ['$scope','$http',function ($scope,$h
     }
 
     $scope.fetchDlData = function(form){
+    if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -67,6 +68,7 @@ app.controller("dlSummeryTAProController", ['$scope','$http',function ($scope,$h
             $scope.dlAirTransSumPro = data;
 
             })
+            }
 
     }
            $scope.checkIfNull = function()

@@ -12,6 +12,7 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
 
     $scope.loadData = function(form)
     {
+        if($scope.incident){
         $scope.isLoded = true;
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -44,6 +45,7 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
             console.log('loading ', data);
             $scope.dmLosTransAirnew = data;
             })
+            }
     }
    $scope.checkIfNull = function(){
         var isNull = $scope.dmLosTransAirNation ? angular.equals({}, $scope.dmLosTransAirNation.transport_rail.Table_4) : true;

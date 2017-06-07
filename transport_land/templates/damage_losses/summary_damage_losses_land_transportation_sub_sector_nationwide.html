@@ -62,7 +62,7 @@
                             <select id="select" name="incident" ng-model="incident"
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(incident)" required>
+                                    ng-change="changedValue(incident);fetchDlData(form_dlsum_trnsair_natl);" required>
 
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -76,7 +76,7 @@
 
                         </td>
                         <td colspan="2">
-                            <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dlsum_trnsair_natl)">Load</button>
+                            <!--<button class="btn btn-info btn-block" ng-click="fetchDlData(form_dlsum_trnsair_natl)">Load</button>-->
                         </td>
                     </tr>
 
@@ -98,7 +98,7 @@
                             Total (LKR)
                         </td>
                     </tr>
-                    <tr class="trheadc1>
+                    <tr class="trheadc1">
                         <td colspan="2" height="19" width="126">
                     Damages (LKR)
                     </td>

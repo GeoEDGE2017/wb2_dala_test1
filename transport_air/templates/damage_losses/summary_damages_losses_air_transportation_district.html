@@ -51,7 +51,7 @@
                         </td>
                         <td colspan="0" width="567" height="19">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
+                                    class="form-control" ng-change="changedValue(true);LoadData(form_dlsum_air_distr);"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -66,14 +66,14 @@
                         </td>
                         <td colspan="2">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
+                                    name="district" id="ccyear" ng-model="district" ng-change="LoadData(form_dlsum_air_distr);" ng-value="district.district__id" style="font-weight:400;"
                                     class="form-control" required>
                                 <option value="" selected>Select district</option>
                             </select>
                         </td>
                         <td class="trhead1">
-                            <button type="button" class="btn btn-info" ng-click="LoadData(form_dlsum_air_distr)">Load
-                            </button>
+                            <!--<button type="button" class="btn btn-info" ng-click="LoadData(form_dlsum_air_distr)">Load-->
+                            <!--</button>-->
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">

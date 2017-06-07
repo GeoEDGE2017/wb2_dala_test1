@@ -45,7 +45,8 @@ app.controller("DlSummeryTLProController", ['$scope','$http',function ($scope,$h
 
     }
 
-    $scope.fetchDlData = function(form){
+    $scope.fetchDlData = function(){
+    if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -67,6 +68,7 @@ app.controller("DlSummeryTLProController", ['$scope','$http',function ($scope,$h
             $scope.dlLandTransSumPro = data;
 
             })
+            }
 
     }
 

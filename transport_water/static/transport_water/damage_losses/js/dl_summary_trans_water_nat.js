@@ -21,6 +21,7 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
 
 
     $scope.fetchDlData = function(){
+    if($scope.incident){
         $scope.is_edit = true;
         $scope.submitted = true;
         console.log($scope.incident);
@@ -40,6 +41,7 @@ app.controller("DlSummeryTWNatController", ['$scope','$http',function ($scope,$h
             $scope.dlWaterTransSumNat = data;
 
             })
+            }
 
     }
             $scope.checkIfNull = function()

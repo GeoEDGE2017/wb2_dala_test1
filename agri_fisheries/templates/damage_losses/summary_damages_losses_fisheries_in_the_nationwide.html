@@ -46,7 +46,7 @@
                         </td>
                         <td width="125" colspan="7">
                             <select  id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
+                                    class="form-control" ng-change="changedValue(true);fetchDlData();"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -57,9 +57,9 @@
                             </select>
                         </td>
                         <td >
-                            <button class="btn btn-info btn-block"
-                                    ng-click="fetchDlData()">Load
-                            </button>
+                            <!--<button class="btn btn-info btn-block"-->
+                                    <!--ng-click="fetchDlData()">Load-->
+                            <!--</button>-->
                         </td>
                     </tr>
                      </tbody>

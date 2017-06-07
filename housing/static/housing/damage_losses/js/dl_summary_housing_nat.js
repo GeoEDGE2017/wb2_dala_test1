@@ -20,6 +20,7 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
 
 
     $scope.fetchDlData = function(){
+       if($scope.incident){
 
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -41,6 +42,7 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
             $scope.dlHousingSumNat = data;
 
             })
+            }
 
     }
             $scope.checkIfNull = function()

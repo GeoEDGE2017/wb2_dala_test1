@@ -46,9 +46,9 @@ app.controller("DlSummeryAgProController", ['$scope','$http',function ($scope,$h
     }
 
     $scope.fetchDlData = function(form){
+    if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
-
             $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
@@ -67,6 +67,7 @@ app.controller("DlSummeryAgProController", ['$scope','$http',function ($scope,$h
             $scope.dlAgriAgrarianPro = data;
 
             })
+            }
 
     }
 

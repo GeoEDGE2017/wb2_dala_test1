@@ -43,7 +43,7 @@
                                 <select id="select" name="incident" ng-model="incident"
                                         class="form-control"
                                         style="width:100%;font-weight:400;"
-                                        ng-change="changedValue(incident)" required>
+                                        ng-change="changedValue(incident);loadData();" required>
 
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
@@ -57,7 +57,7 @@
 
                             </td>
                             <td colspan="1">
-                                <button class="btn btn-info btn-block" ng-click="loadData()">Load</button>
+                                <!--<button class="btn btn-info btn-block" ng-click="loadData()">Load</button>-->
                             </td>
                     </tr>
 

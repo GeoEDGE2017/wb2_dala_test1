@@ -21,8 +21,6 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
     $scope.dPvtLosTot = null;
     $scope.dPubLosTot = null;
 
-
-
     $scope.changedValue = function getDlData() {
 
         if ($scope.incident) {
@@ -44,7 +42,7 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
     }
 
     $scope.LoadData = function(){
-
+   if($scope.incident && $scope.district){
    $scope.tot_damages = null;
    $scope.is_edit = true;
    $scope.submitted = true;
@@ -75,6 +73,7 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
 
 
     })
+    }
 
 
 }

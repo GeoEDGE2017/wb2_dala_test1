@@ -6,6 +6,7 @@ app.controller("dlNationwideController", function ($scope,$http, _) {
 $scope.dlNationwideSys = null;
 
 $scope.fetchDlData = function(){
+    if($scope.incident){
     $http({
     method: "POST",
     url: '/other_govn_services/damage_losses/dl_fetch_disagtn_data',
@@ -21,6 +22,7 @@ $scope.fetchDlData = function(){
     console.log('load ', data);
     $scope.dlNationwideSys = data;
 })
+}
 }
 })
 

@@ -22,6 +22,7 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
 
 
      $scope.fetchDlData = function(form){
+     if($scope.incident){
         $scope.isLoded = true;
         if(form.$valid) {
         $scope.is_edit = true;
@@ -45,6 +46,7 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
 
 
             })
+            }
         }
 
     }

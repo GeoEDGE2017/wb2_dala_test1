@@ -47,6 +47,7 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
     }
 
     $scope.fetchDlData = function(form){
+       if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -68,6 +69,7 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
             $scope.dlAgriLivestockPro = data;
 
             })
+            }
 
     }
 

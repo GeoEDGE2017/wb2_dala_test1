@@ -33,6 +33,7 @@ $scope.getDistrict = function getDistrict(){
 }
 
     $scope.loadData = function(form) {
+    if($scope.incident && $scope.district){
         $scope.submitted = true;
         if(form.$valid) {
             $scope.tot_damages = null;
@@ -53,6 +54,7 @@ $scope.getDistrict = function getDistrict(){
                 console.log(data);
                 $scope.dlSummaryDis = data;
             })
+        }
         }
     }
 

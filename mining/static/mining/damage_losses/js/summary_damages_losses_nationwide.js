@@ -18,12 +18,8 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
 
-
-
-
-
-
     $scope.loadData = function(){
+    if($scope.incident){
         $scope.is_edit = true;
         $scope.submitted = true;
         $http({
@@ -41,6 +37,7 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
 
             $scope.dmLosMinFirmsNation = data;
         })
+        }
     }
 
    $scope.checkIfNull = function()

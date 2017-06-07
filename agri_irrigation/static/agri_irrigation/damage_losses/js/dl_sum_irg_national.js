@@ -17,6 +17,7 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
 
 
     $scope.fetchDlData = function(form){
+     if($scope.incident){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -38,6 +39,7 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
            $scope.dlagriIrrigationNat = data  ;
 
             })
+            }
 
     }
    $scope.convertToInt = function(val1,val2,val3){

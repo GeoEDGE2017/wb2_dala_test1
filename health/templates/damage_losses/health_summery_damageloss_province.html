@@ -190,7 +190,7 @@
                                 <td width="90" ng-bind="data.health.Table_8[key].DmhLosDistrict[0].teaching_hospital+
                                 data.health.Table_8[key].DmhLosDistrict[1].teaching_hospital"></td>
                             </tr>
-                             <tr height="20">
+                            <tr height="20">
                                 <td width="202" height="20" class="tdpa">Provincial General Hospitals
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_8[key].DmhLmhMohDistrict[0].provincial_general_hospital"></td>
@@ -217,9 +217,9 @@
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Total
                                 </td>
-                                <td width="90" ng-bind="data.health.Table_8[key].DmhLmhMohDistrict[0].teaching_hospital +
-                                data.health.Table_8[key].DmhLmhMohDistrict[0].provincial_general_hospital +
-                                data.health.Table_8[key].DmhLmhMohDistrict[0].district_general_hospital "></td>
+                                <td width="90" ng-bind="sumFunc3('data.health.Table_8[key].DmhLmhMohDistrict[0].teaching_hospital',
+                                data.health.Table_8[key].DmhLmhMohDistrict[0].provincial_general_hospital,
+                                data.health.Table_8[key].DmhLmhMohDistrict[0].district_general_hospital)"></td>
 
                                 <td width="90" ng-bind="data.health.Table_8[key].DmhPafDistrict[0].teaching_hospital +
                                 data.health.Table_8[key].DmhPafDistrict[0].provincial_general_hospital +
@@ -245,9 +245,7 @@
                                 data.health.Table_8[key].DmhLosDistrict[1].teaching_hospital + data.health.Table_8[key].DmhLosDistrict[0].provincial_general_hospital +
                                 data.health.Table_8[key].DmhLosDistrict[1].provincial_general_hospital + data.health.Table_8[key].DmhLosDistrict[0].district_general_hospital +
                                 data.health.Table_8[key].DmhLosDistrict[1].district_general_hospital "></td>
-
                             </tr>
-
                             <tr height="20" class="trheadc">
                                 <td width="202" height="20">
                                     MOH
@@ -267,9 +265,7 @@
                                 <td width="90">
                                 </td>
                             </tr>
-
-                            <tr height="20"
-                                >
+                            <tr height="20">
                                 <td width="202" height="20" class="tdpa">Offices
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_8[key].DmhLmhMohDistrict[0].office"></td>
@@ -297,7 +293,6 @@
                             <tr height="20">
                                 <td width="202" height="20" class="tdpa">Total
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_8[key].DmhLmhMohDistrict[0].office +
                                 data.health.Table_8[key].DmhLmhMohDistrict[0].other"></td>
 

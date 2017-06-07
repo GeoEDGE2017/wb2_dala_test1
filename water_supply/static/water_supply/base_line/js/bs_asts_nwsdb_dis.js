@@ -214,10 +214,11 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
 
         var cumulative = null;
         var sums = _.map(array, function(obj) {
-          if(obj.type_wusers != 'Total' &&  obj.type_wusers != 'Average Income Per Year (LKR/Year)')
+          if(obj.type_wusers != 'Total' &&  obj.type_wusers != 'Average Income Per Year (LKR/Year)'){
             cumulative += obj[property];
             console.log(cumulative);
             return cumulative;
+            }
 
         });
 

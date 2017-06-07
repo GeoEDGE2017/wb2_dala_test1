@@ -12,6 +12,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     // declaring total variables
     $scope.total_num_affected = 0;
+
     $scope.saveDlHealthSummeryDamagelossProvince = function(form) {
        $scope.submitted = true;
 
@@ -83,10 +84,10 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 //            });
 //        }
     }
+
     $scope.provinces = [];
 
-    function fetchProvinces()
-    {
+    function fetchProvinces() {
           $http({
             method: "POST",
             url: '/fetch_incident_provinces',
@@ -101,7 +102,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     }
 
-    $scope.fetchDlData = function(){
+    $scope.fetchDlData = function() {
     console.log($scope.province);
     console.log($scope.incident);
         $scope.is_edit = true;
@@ -130,11 +131,17 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     }
 
-    $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlhealthsummarydamageprovince ? angular.equals({},
         $scope.dlhealthsummarydamageprovince.health.Table_8) : true;
         return isNull;
 
-   }
+    }
+
+    $scope.sumFunc3 = function(val1=0, val2=0, val3=0) {
+        console.log('test', parseInt(val1));
+        $scope.value = parseInt(val1) + parseInt(val2) + parseInt(val3);
+
+        return $scope.value;
+    }
  }])

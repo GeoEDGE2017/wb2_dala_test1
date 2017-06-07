@@ -30,6 +30,7 @@ app.controller('dlSumAgrarianDstrController', ['$scope', '$http', function($scop
     }
 
     $scope.loadData = function(form) {
+    if($scope.incident && $scope.district){
         $scope.isLoded = true;
         if(form.$valid) {
             $scope.tot_damages = null;
@@ -50,7 +51,8 @@ app.controller('dlSumAgrarianDstrController', ['$scope', '$http', function($scop
             }).success(function(data) {
                 $scope.data=data;
                 console.log(data);
-            })
+               })
+            }
         }
     }
 }]);

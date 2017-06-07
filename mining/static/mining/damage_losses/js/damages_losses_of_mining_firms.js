@@ -19,9 +19,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.selectedFirm;
     $scope.new_firm = {id: null, name: null, ownership: null};
     $scope.ownership;
-//    $scope.DloDmg_rep_tot_dassets_grnd = null;
-//    $scope.DloDmg_repair_pdmg_assets_grnd = null;
-//    $scope.DloDmg_tot_damages_grnd = null;
+    $scope.currentBaselineDate = null;
     $scope.is_valid_data = true;
 
     var init_data = {
@@ -528,14 +526,54 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                var data = response.data;
+                  var data = response.data;
+                console.log('*', response);
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                console.log($scope.bs_data);
+                console.log('*', $scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
 
-                generateRefencedData();
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    generateRefencedData();
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_1',
+                            'sector': 'mining'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
+
+
 
             }, function errorCallback(response) {
 

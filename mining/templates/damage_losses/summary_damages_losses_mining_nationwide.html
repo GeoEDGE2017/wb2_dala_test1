@@ -7,14 +7,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item"><a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6: Summary of Damages and Losses Nationwide </span>
         </li>
- <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
 
     </ol>
 
@@ -38,7 +38,7 @@
                         <td style="padding-left:5px;"> Incident</td>
                         <td colspan="7" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue()"
+                                    class="form-control" ng-change="changedValue();loadData();"
                                     style="width:100%;font-weight:400;" required>
 
                                 <option value="" selected="true">Select an Incident</option>
@@ -53,19 +53,19 @@
                         </td>
 
                         <td colspan="2" style="">
-                            <button type="button" class="btn btn-block btn-info" ng-click="loadData()">Load
-                            </button>
+                            <!--<button type="button" class="btn btn-block btn-info" ng-click="loadData()">Load-->
+                            <!--</button>-->
                         </td>
                     </tr>
                     </tbody>
-                    </table>
+                </table>
                 <table  class="table table-bordered" ng-repeat="(key, value) in dmLosMinFirmsNation.mining.Table_6" ng-if="!checkIfNull()">
                     <tbody >
                     <tr class="trheadc1" height="20">
                         <td rowspan="3" width="171" height="60">
                             Type of Mining Firm by Province
                         </td>
-                        
+
                         <td colspan="4" width="476">
                             Year 1
                         </td>
@@ -155,7 +155,7 @@
                         <td width="202" height="20" class="tdpa">Artisanal mining
                         </td>
 
-                         <td width="90" ng-bind="value.DlaDmgNational[0].tot_damages"></td>
+                        <td width="90" ng-bind="value.DlaDmgNational[0].tot_damages"></td>
                         <td width="90" ></td>
                         <td width="90" ng-bind="value.DlaLosNational[0].los_year1"></td>
                         <td width="90" ></td>
@@ -165,11 +165,11 @@
                         <td width="90" ></td>
 
                     </tr>
-                 </tbody>
+                    </tbody>
                     <tr height="20">
                         <td width="202" height="20" class="tdpa">Total
                         </td>
-                         <td width="90" ng-bind="totaldpub"></td>
+                        <td width="90" ng-bind="totaldpub"></td>
                         <td width="90" ng-bind="totaldpvt"></td>
                         <td width="90" ng-bind="totalyear1pub"></td>
                         <td width="90" ng-bind="totalyear1pvt"></td>

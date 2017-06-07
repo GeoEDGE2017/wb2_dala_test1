@@ -102,6 +102,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     }
 
     $scope.fetchDlData = function(){
+    if($scope.incident && $scope.province){
     console.log($scope.province);
     console.log($scope.incident);
         $scope.is_edit = true;
@@ -126,6 +127,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             $scope.dlhealthsummarydamageprovince = data;
 
             })
+            }
 
 
     }

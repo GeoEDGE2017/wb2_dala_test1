@@ -8,6 +8,8 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.is_edit_disable = false;
+    $scope.bs_date;
 
 //Initialize Data
     var init_data = {
@@ -107,6 +109,17 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     }
 
     $scope.bsNopoplAgrbActv = angular.copy(init_data);
+
+    //Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
 //Add Enumerate fields
     $scope.insertAsset = function(table) {

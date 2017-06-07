@@ -44,6 +44,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
     }
 
     $scope.fetchDlData = function(form){
+        if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
             $http({
@@ -64,6 +65,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
             $scope.dlAgriIrrifationPro = data;
 
             })
+            }
     }
 
    $scope.convertToInt = function(val1,val2,val3){

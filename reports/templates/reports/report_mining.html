@@ -2,7 +2,7 @@
 {% block content %}
 
 <style>
-    @media print
+@media print
 {
     .no-print, .no-print *
     {
@@ -36,7 +36,6 @@
         display: none;
     }
 }
-
 </style>
 
 <!-- Main content -->
@@ -60,7 +59,11 @@
 
         <div class="card">
             <div class="card-header">
-                <strong>Search</strong>
+                <strong>Mining Sector report</strong>
+
+            </div>
+            <div class="card-header print-memo">
+                <strong ng-bind="print_memo"></strong>
 
             </div>
             <div class="card-block">
@@ -91,31 +94,31 @@
 
                     </div>
 
+                    <div class="no-print">
+                        <div class="col-sm-2">
 
-                    <div class="col-sm-2">
+                            <div class="form-group">
 
-                        <div class="form-group">
-
-                            <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-md btn-primary"
-                                    ><i
-                                    class="fa fa-search"></i> Search
-                            </button>
-                        </div>
-                       
-
-                    </div>
-                     <div class="col-sm-2">
-                         <div class="form-group">
-                            <!--<button ng-print print-element-id="print_report" class="btn btn-info">Print-->
-                                <!--Report-->
-                            <!--</button>-->
-                            <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
-                                        class="fa fa-print" ></i> Print
-                                    Report
+                                <button ng-click="loadData(report_sum_dl_nat)" type="button" class="btn btn-md btn-primary"
+                                        ><i
+                                        class="fa fa-search"></i> Search
                                 </button>
-                        </div>
-                     </div>
+                            </div>
 
+
+                        </div>
+                         <div class="col-sm-2">
+                             <div class="form-group">
+                                <!--<button ng-print print-element-id="print_report" class="btn btn-info">Print-->
+                                    <!--Report-->
+                                <!--</button>-->
+                                <button ng-click="initprint()"  class="btn btn-info" style="margin-left:10px;"><i
+                                            class="fa fa-print" ></i> Print
+                                        Report
+                                    </button>
+                            </div>
+                         </div>
+                    </div>
                 </div>
                 <span style="color:red;" ng-show="isDataAvailable">
                                        No Data available
@@ -127,7 +130,131 @@
 
             <div id="myTabContent" ng-if="!checkIfNull()" class="tab-content">
                 <div id="print_report"  class="tab-pane active">
-                    <table class="table table-bordered">
+
+                                    <table  class="table table-bordered" ng-repeat="(key, value) in dmLosMinFirmsNation.mining.Table_6" ng-if="!checkIfNull()">
+                    <tbody >
+                    <tr class="trheadc1" height="20">
+                        <td rowspan="3" width="171" height="60">
+                            Type of Mining Firm by Province
+                        </td>
+
+                        <td colspan="4" width="476">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="239">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="246">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td colspan="2" width="238" height="20">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="238">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="239">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trsubc" height="20">
+                        <td width="119" height="20">
+                            Public
+                        </td>
+                        <td width="119">
+                            Private
+                        </td>
+                        <td width="119">
+                            Public
+                        </td>
+                        <td width="119">
+                            Private
+                        </td>
+                        <td width="119">
+                            Public
+                        </td>
+                        <td width="120">
+                            Private
+                        </td>
+                        <td width="123">
+                            Public
+                        </td>
+                        <td width="123">
+                            Private
+                        </td>
+                    </tr>
+
+
+                    <tr class="trheadc" height="20" ng-init="getTotal($index,key);">
+                        <td ng-bind="key" width="171" height="20">
+
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="119">
+                        </td>
+                        <td width="120">
+                        </td>
+                        <td width="123">
+                        </td>
+                        <td width="123">
+                        </td>
+                    </tr>
+
+                    <tr  height="20">
+                        <td width="202" height="20" class="tdpa">Industrial mining
+                        </td>
+
+                        <td width="90" ng-bind="value.DloDmgNational[1].tot_damages"></td>
+                        <td width="90" ng-bind="value.DloDmgNational[0].tot_damages"></td>
+                        <td width="90" ng-bind="value.DloLosNational[1].los_year1"></td>
+                        <td width="90" ng-bind="value.DloLosNational[0].los_year1"></td>
+                        <td width="90" ng-bind="value.DloLosNational[1].los_year2"></td>
+                        <td width="90" ng-bind="value.DloLosNational[0].los_year2"></td>
+                        <td width="90" ng-bind="value.DloDmgNational[1].tot_damages +value.DloLosNational[1].los_year1+value.DloLosNational[1].los_year2 "></td>
+                        <td width="90" ng-bind="value.DloDmgNational[0].tot_damages +value.DloLosNational[0].los_year1+value.DloLosNational[0].los_year2 "></td>
+
+                    </tr>
+                    <tr height="20">
+                        <td width="202" height="20" class="tdpa">Artisanal mining
+                        </td>
+
+                        <td width="90" ng-bind="value.DlaDmgNational[0].tot_damages"></td>
+                        <td width="90" ></td>
+                        <td width="90" ng-bind="value.DlaLosNational[0].los_year1"></td>
+                        <td width="90" ></td>
+                        <td width="90" ng-bind="value.DlaLosNational[0].los_year2"></td>
+                        <td width="90" ></td>
+                        <td width="90" ng-bind="value.DlaDmgNational[0].tot_damages + value.DlaLosNational[0].los_year1 + value.DlaLosNational[0].los_year2"></td>
+                        <td width="90" ></td>
+
+                    </tr>
+                    </tbody>
+                    <tr height="20">
+                        <td width="202" height="20" class="tdpa">Total
+                        </td>
+                        <td width="90" ng-bind="totaldpub"></td>
+                        <td width="90" ng-bind="totaldpvt"></td>
+                        <td width="90" ng-bind="totalyear1pub"></td>
+                        <td width="90" ng-bind="totalyear1pvt"></td>
+                        <td width="90" ng-bind="totalyear2pub"></td>
+                        <td width="90" ng-bind="totalyear2pvt"></td>
+                        <td width="90" ng-bind="finaltotalpublic"></td>
+                        <td width="90" ng-bind="finaltotalprivate"></td>
+                    </tr>
+
+
+                </table>
+
+                    <!--<table class="table table-bordered">
 
                         <colgroup>
                             <col width="171"/>
@@ -191,7 +318,7 @@
                         </tr>
                         </tbody>
                     </table>
-                   <!--  -->
+                   &lt;!&ndash;  &ndash;&gt;
                         <table ng-repeat="(key, value) in dmLosMinFirmsNation.mining.Table_6" 
                                class="table table-bordered">
                             <tbody>
@@ -216,7 +343,7 @@
                                 <td width="123">
                                 </td>
                             </tr>
-<!--  -->
+&lt;!&ndash;  &ndash;&gt;
                             <tr height="20" ng-repeat="dldTmfIfProvince in value.DldTmfIfProvince"
                                 
                             >
@@ -250,7 +377,7 @@
 
                             </tbody>
                         </table>
-
+-->
 
                         <br><br>
 
@@ -258,6 +385,41 @@
                 </div>
             </div>
 
+
+        </div>
+        <!--print data modal-->
+
+        <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Print report
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>Enter a memo: </h4>
+                        <textarea ng-model="print_memo" style="width:100%"></textarea>
+                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 

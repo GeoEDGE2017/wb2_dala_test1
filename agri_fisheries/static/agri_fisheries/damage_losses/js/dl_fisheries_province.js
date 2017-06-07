@@ -53,6 +53,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
 
   $scope.fetchDlData = function(form){
+    if($scope.incident && $scope.province){
     console.log($scope.province);
     console.log($scope.incident);
         $scope.is_edit = true;
@@ -77,6 +78,8 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
             $scope.dlAgriFisheriesPro = data;
 
             })
+
+            }
 
 
     }

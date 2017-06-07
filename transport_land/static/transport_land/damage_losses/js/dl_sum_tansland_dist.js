@@ -35,8 +35,9 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
     }
 
     $scope.loadData = function(form) {
+    if($scope.district && $scope.incident){
         $scope.isLoded = true;
-        if(form.$valid) {
+
             $scope.tot_damages = null;
             $scope.is_edit = true;
 
@@ -55,6 +56,7 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
             }).success(function(data) {
                 $scope.data=data;
             })
+
         }
     }
 });

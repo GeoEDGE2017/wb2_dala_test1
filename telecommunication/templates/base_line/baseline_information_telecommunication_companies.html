@@ -55,7 +55,7 @@
                             District
                         </td>
                         <td height="19" width="254">
-                            <select id="selectbasic" ng-change="fetchCompanies()" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                            <select id="selectbasic" ng-change="fetchCompanies();changeDis();" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
                                     <option value={{ district.id }}>{{ district.name }}</option>
@@ -66,7 +66,7 @@
                             Year/Month
                         </td>
                         <td colspan="4" height="19" width="252">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                     </tr>
                     <!--<tr class="trhead1" height="19">-->

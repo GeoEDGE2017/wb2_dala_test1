@@ -22,7 +22,7 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
 
 
     $scope.fetchDlData = function(){
-
+        if($scope.incident){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -43,6 +43,7 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             $scope.dlPowerSupplySumNat = data;
 
             })
+            }
 
     }
             $scope.checkIfNull = function()

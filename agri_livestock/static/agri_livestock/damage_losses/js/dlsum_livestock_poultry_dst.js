@@ -29,6 +29,7 @@ app.controller('dlSumLivestockPoultryDstController', ['$scope', '$http', functio
     }
 
     $scope.loadData = function(form) {
+    if($scope.incident && $scope.district){
         $scope.isLoded = true;
         if(form.$valid) {
             $scope.tot_damages = null;
@@ -50,6 +51,7 @@ app.controller('dlSumLivestockPoultryDstController', ['$scope', '$http', functio
                 $scope.data=data;
                 console.log(data);
             })
+            }
         }
     }
 }]);

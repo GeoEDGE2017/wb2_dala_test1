@@ -47,8 +47,7 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
     }
 
     $scope.fetchDlData = function(form){
-    console.log($scope.province);
-    console.log($scope.incident);
+    if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -71,6 +70,7 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
             $scope.dlWaterSupplyPro = data;
 
             })
+            }
 
 
     }

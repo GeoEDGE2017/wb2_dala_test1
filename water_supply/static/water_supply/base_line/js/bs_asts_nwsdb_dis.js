@@ -11,6 +11,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.BiaWaterUsers_daily_demand = null;
     $scope.BiaWaterUsers_annual_demand = null;
     $scope.BiaWaterUsers_rate = null;
+    $scope.is_edit_disable = false;
 
 //initialize model
     var init_data = {
@@ -100,6 +101,17 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     }
 
     $scope.bsAstsNwsdbDis = angular.copy(init_data);
+
+//Disable Edit Button
+    $scope.changeDis = function changeDis()
+    {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
 //Add Enumerate Fileds
     $scope.insertAssets = function(table) {

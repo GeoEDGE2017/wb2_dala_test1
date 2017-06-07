@@ -47,6 +47,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     }
 
     $scope.fetchDlData = function(form){
+    if($scope.province && $scope.incident){
     console.log($scope.province);
     console.log($scope.incident);
         $scope.is_edit = true;

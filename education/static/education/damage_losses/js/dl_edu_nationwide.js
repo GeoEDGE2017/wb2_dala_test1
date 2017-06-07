@@ -20,7 +20,7 @@ $scope.incident;
     }
 
    $scope.LoadData = function(){
-
+    if($scope.incident){
     $scope.is_edit = true;
     $scope.submitted = true;
 
@@ -40,6 +40,7 @@ $scope.incident;
             $scope.data = data;
 
             })
+            }
 
 
 }

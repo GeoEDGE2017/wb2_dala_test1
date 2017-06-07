@@ -41,6 +41,7 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
     }
 
     $scope.fetchDlData = function(form){
+    if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
         $scope.isLoded = true;
@@ -60,6 +61,7 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
                 console.log('load ', data);
                 $scope.dlRailTransSumDis = data;
             })
+            }
         }
     }
 

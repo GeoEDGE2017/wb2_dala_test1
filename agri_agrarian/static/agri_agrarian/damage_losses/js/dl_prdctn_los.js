@@ -11,6 +11,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.is_valid_data = true;
     var finaltotal = 0;
     $scope.is_null = false;
+    $scope.currentBaselineDate = null;
 
 //Initialize data
     var init_data = {
@@ -307,24 +308,50 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log('*', response);
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
-                console.log(data);
-                var is_null=false;
+
+                console.log('*', $scope.bs_data);
+                var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
-                    if(value==null) {
+                    if(value == null) {
                         is_null = true;
                     }
                 })
 
                 if(is_null == true) {
-                    $("#modal-container-239455").modal('show');
+                    $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
                 }
-                else{
-                generateRefencedData();}
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_2',
+                            'sector': 'agri_agrarian'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
             }, function errorCallback(response) {
 
             });

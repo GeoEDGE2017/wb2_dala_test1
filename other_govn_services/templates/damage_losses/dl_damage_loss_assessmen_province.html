@@ -68,7 +68,7 @@
                         </td>
                         <td colspan="2" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
+                                    class="form-control" ng-change="changedValue(true);fetchDlData();"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -82,13 +82,13 @@
                         <td style="padding-left:5px;"> Province</td>
                         <td colspan="2" style="">
                              <select ng-options="province as province.district__province__name for province in provinces track by province.district__province_id"
-                                        name="province" id="ccyear" ng-model="province" style="font-weight:400;" class="form-control" required>
+                                        name="province" id="ccyear" ng-model="province" style="font-weight:400;" ng-change="fetchDlData();" class="form-control" required>
                                     <option value="" selected>Select Province</option>
                                 </select>
 
                         </td>
                         <td>
-                            <button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>
+                            <!--<button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>-->
                         </td>
                     </tr>
 

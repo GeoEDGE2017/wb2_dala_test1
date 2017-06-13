@@ -1,3 +1,4 @@
+//Table 9
 var app = angular.module('dlHealthSummeryDamageLossProvinceApp', []);
 
 app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$http',function ($scope,$http) {
@@ -132,9 +133,121 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
         return isNull;
     }
 
-    $scope.sumFunc3 = function(val1=0, val2=0, val3=0) {
-        console.log('test', parseInt(val1));
-        $scope.value = parseInt(val1) + parseInt(val2) + parseInt(val3);
-        return $scope.value;
+    $scope.sumFunc2 = function(val1, val2) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+
+        var total = parseInt(val1) + parseInt(val2);
+        return total;
+    }
+
+    $scope.sumFunc3 = function(val1, val2, val3) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+        if(val3 == null) {
+            val3=0;
+        }
+
+        var total = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return total;
+    }
+
+    $scope.sumFunc5 = function(val1, val2, val3, val4, val5) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+        if(val3 == null) {
+            val3=0;
+        }
+        if(val4 == null) {
+            val4=0;
+        }
+        if(val5 == null) {
+            val5=0;
+        }
+
+        var total = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5);
+        return total;
+    }
+
+    $scope.sumFunc7 = function(val1, val2, val3, val4, val5, val6, val7) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+        if(val3 == null) {
+            val3=0;
+        }
+        if(val4 == null) {
+            val4=0;
+        }
+        if(val5 == null) {
+            val5=0;
+        }
+        if(val6 == null) {
+            val6=0;
+        }
+        if(val7 == null) {
+            val7=0;
+        }
+
+        var total = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) + parseInt(val6) + parseInt(val7);
+        return total;
+    }
+
+    $scope.sumFunc12 = function(val1, val2, val3, val4, val5, val6, val7, val8, val9, val10, val11, val12) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+        if(val3 == null) {
+            val3=0;
+        }
+        if(val4 == null) {
+            val4=0;
+        }
+        if(val5 == null) {
+            val5=0;
+        }
+        if(val6 == null) {
+            val6=0;
+        }
+        if(val7 == null) {
+            val7=0;
+        }
+        if(val8 == null) {
+            val8=0;
+        }
+        if(val9 == null) {
+            val9=0;
+        }
+        if(val10 == null) {
+            val10=0;
+        }
+        if(val11 == null) {
+            val11=0;
+        }
+        if(val12 == null) {
+            val12=0;
+        }
+
+        var total = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) +
+            parseInt(val6) + parseInt(val7) + parseInt(val8) + parseInt(val9) + parseInt(val10) + parseInt(val11) + parseInt(val12);
+        return total;
     }
  }])

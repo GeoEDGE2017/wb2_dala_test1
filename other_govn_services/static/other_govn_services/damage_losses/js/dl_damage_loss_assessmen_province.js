@@ -12,20 +12,17 @@ app.controller("dlAssessmenProvinceController", function ($scope,$http, _) {
 
     $scope.dlAssessmenProvinceSys = null;
 
- $scope.changedValue = function getDlData() {
-
+    $scope.changedValue = function getDlData() {
         if ($scope.incident) {
-
            $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
+                'incident': $scope.incident
+               }),
             }).success(function(data) {
                 $scope.provinces = data;
                 $scope.province = "";
-
             })
         }
     }

@@ -623,14 +623,15 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
+                if(response.data == 'False') {
+                    $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
-
+                }
             }, function errorCallback(response) {
-
-            console.log(response);
+                console.log(response);
             });
         }
     }

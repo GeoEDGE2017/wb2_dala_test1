@@ -1,0 +1,43 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<main class="main" ng-app="housingChartApp" ng-controller="HousingChartController">
+    <div>
+        <table>
+            <tr>
+                <td class="" width="130" colspan="2">
+                    Incident
+                </td>
+                <td width="125" colspan="" style="width:300px;">
+                    <select id="selectbasic" name="incident" ng-model="incident"
+                            class="form-control" ng-change="changedValue(true);fetchDlData();"
+                            style="width:100%;font-weight:400;" required>
+                        <option value="" selected="true">Select an Incident</option>
+                        {% for incident in incidents %}
+
+                        <option value={{incident.id}}>{{incident.disaster_type.name}}
+                            {{incident.reported_date_time}}
+                            {% endfor %}
+                    </select>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br><br>
+    <span ng-if="!checkIfNull()">Total Damages and Total Losses </span>
+    <div style="width:600px;height:350px;">
+        <canvas id="bar" class="chart chart-bar"
+                chart-data="tableDamageLosses" chart-labels="provincenames" chart-series="damageLossesSeries">
+        </canvas>
+    </div>
+    <br><br>
+    <span ng-if="!checkIfNull()">Number of Totally Damaged and Partially Damaged</span>
+    <div style="width:600px;height:350px;">
+        <canvas id="pie" class="chart chart-pie"
+                chart-data="totalDamagePartialDamage" chart-labels="totalDamagePartialDamageSeries" chart-options="options">
+        </canvas>
+    </div>
+</main>
+{% endblock content %}

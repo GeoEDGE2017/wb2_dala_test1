@@ -102,6 +102,7 @@ INSTALLED_APPS = [
     'power_supply',
     'power_supply.base_line',
     'power_supply.damage_losses',
+    'new_charts',
 
 ]
 
@@ -156,7 +157,7 @@ DATABASES = {
         #     'options': '-c search_path=agri_agrarian'
         # },
 
-        'NAME': 'dala',
+        'NAME': 'Dala_2017_05_09',
         'USER': 'postgres',
     },
 }

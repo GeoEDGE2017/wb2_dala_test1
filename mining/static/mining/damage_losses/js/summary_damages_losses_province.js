@@ -139,5 +139,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
 
 
     }
+    }
+
     
 })

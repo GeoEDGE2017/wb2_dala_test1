@@ -23,3 +23,14 @@ def housing_charts(request):
         'module': 'new_charts'
     }
     return render(request, 'new_charts/housing_chart.html', context)
+
+
+def water_charts(request):
+    districts = District.objects.all()
+    incidents = IncidentReport.objects.all()
+    context = {
+        'districts': districts,
+        'incidents': incidents,
+        'module': 'new_charts'
+    }
+    return render(request, 'new_charts/water_chart.html', context)

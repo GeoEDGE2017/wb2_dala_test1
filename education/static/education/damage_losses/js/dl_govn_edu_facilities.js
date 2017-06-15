@@ -694,8 +694,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                 dataType: 'json',
             }).then(function mySucces(response) {
                 console.log(response);
-                if(response.data == 'False')
-                   {
+                if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }

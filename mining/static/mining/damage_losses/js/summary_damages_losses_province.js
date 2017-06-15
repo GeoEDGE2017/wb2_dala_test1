@@ -30,8 +30,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     }
     $scope.provinces = [];
 
-    function fetchProvinces()
-    {
+    function fetchProvinces() {
           $http({
             method: "POST",
             url: '/fetch_incident_provinces',
@@ -46,41 +45,35 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
 
     }
 
-    $scope.fetchDlData = function(form){
-    if($scope.province && $scope.incident){
-    console.log($scope.province);
-    console.log($scope.incident);
-        $scope.is_edit = true;
-        $scope.submitted = true;
+    $scope.fetchDlData = function(form) {
+        if($scope.province && $scope.incident) {
+            console.log($scope.province);
+            console.log($scope.incident);
+            $scope.is_edit = true;
+            $scope.submitted = true;
 
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':  'Table_7',
-            'sector': 'mining',
-            'com_data': {
-                    'province': $scope.province,
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':  'Table_7',
+                    'sector': 'mining',
+                    'com_data': {
+                        'province': $scope.province,
+                        'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
-
-            console.log('load ', data);
-
-            $scope.data = data;
-            $scope.dlMiningPro = data;
-
+                console.log('load ', data);
+                $scope.data = data;
+                $scope.dlMiningPro = data;
             })
-
-
+        }
     }
 
-   $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlMiningPro ? angular.equals({}, $scope.dlMiningPro.mining.Table_7) : true;
         return isNull;
-
    }
    
     $scope.getTotal = function($index,key) {
@@ -131,13 +124,5 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
          $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
 
          $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
-
-
-
-
-
-
-
     }
-    
 })

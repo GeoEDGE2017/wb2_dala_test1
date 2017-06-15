@@ -122,6 +122,8 @@ class BefPubSchools(models.Model):
 class BefPubOffices(models.Model):
     type_facilities = models.CharField(max_length=255, blank=True, null=True)
     total_number = models.IntegerField(blank=True, null=True)
+    avg_male = models.IntegerField(blank=True, null=True)
+    avg_female = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='ed_befpuboffices_district', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)

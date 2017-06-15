@@ -135,6 +135,7 @@ def fetch_pw_gen_firms(request):
         content_type='application/javascript; charset=utf8'
     )
 
+
 # this method returns single columned data
 @csrf_exempt
 def fetch_entities_plain_column(request):
@@ -375,6 +376,8 @@ def bs_get_data_mock_for_bs(request):
             content_type='application/javascript; charset=utf8'
         )
 
+
+# dileepa
 @csrf_exempt
 def get_latest_bs_date(request):
     todate = timezone.now()
@@ -416,6 +419,50 @@ def get_latest_bs_date(request):
             json.dumps((bs_date)),
             content_type='application/javascript; charset=utf8'
         )
+
+
+# dileepa
+@csrf_exempt
+def is_enum_used_in_dl(request):
+    data = (yaml.safe_load(request.body))
+    com_data = data['com_data']
+    district = com_data['district']
+    bs_date = com_data['bs_date']
+
+    sector = data['sector']
+
+    bs_data = data['bs_data']
+    bs_table = bs_data['bs_table']
+    bs_coloum_key = bs_data['bs_coloum_key']
+    bs_coloum_value = bs_data['bs_coloum_value']
+
+    dl_data = data['dl_data']
+    # dl_table = dl_data['dl_table']
+    # dl_coloum_key = dl_data['dl_coloum_key']
+
+    # print sector, bs_table, dl_tables, dbcoloum_key, coloum_value, district
+    print '@'
+    for dl_table in dl_data:
+        table = dl_table['dl_table']
+        coloum = dl_table['dl_coloum_key']
+
+        print table, coloum, bs_coloum_value
+
+        dl_session_model = apps.get_model(sector + '.damage_losses', table)
+        dl_sessions = dl_session_model.objects.all().filter(**{coloum: bs_coloum_value}).filter(district=district)
+
+        print dl_sessions
+
+        for item in dl_sessions:
+            print 'id'
+            print getattr(item, 'id')
+
+        if len(dl_sessions) > 0:
+            print True
+            return HttpResponse(True)
+        else:
+            print False
+            return HttpResponse(False)
 
 
 @csrf_exempt
@@ -577,6 +624,7 @@ def dl_save_data(request):
                         filter_fields['province_id'] = district.province.id
                         dl_session = sub_app_session(**filter_fields)
                         dl_session.date = todate
+                        dl_session.data_type = 'damage_losses'
                         dl_session.save()
                     else:
                         dl_session = sub_app_session(**filter_fields)
@@ -594,7 +642,7 @@ def dl_save_data(request):
     return HttpResponse('success')
 
 
-# testing
+# dileepa
 @csrf_exempt
 def dl_save_data_with_array(request):
     print '*****************'
@@ -760,6 +808,7 @@ def dl_fetch_edit_data(request):
     )
 
 
+# dileepa
 @csrf_exempt
 def dl_fetch_edit_data_with_array(request):
     data = (yaml.safe_load(request.body))
@@ -937,6 +986,7 @@ def dl_save_edit_data(table_data, com_data):
                         print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
 
 
+# dileepa
 @csrf_exempt
 def dl_save_edit_data_with_array(table_data, com_data):
     todate = timezone.now()
@@ -1009,6 +1059,7 @@ def dl_save_edit_data_with_array(table_data, com_data):
                             print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
 
 
+# dileepa
 @csrf_exempt
 def dl_delete_data(table_data, com_data):
     todate = timezone.now()

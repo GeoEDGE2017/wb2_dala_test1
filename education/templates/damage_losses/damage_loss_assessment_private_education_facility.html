@@ -332,7 +332,7 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                             <td class="trsub" colspan="2" width="136">
                                 <select ng-options="school as school.name for school in schools.PreSchools track by school.id"
-                                        name="district" id="ccyear" ng-model="dpefBefPreSchool[0].pre_school"
+                                        name="district" id="ccyear" ng-model="dpefBefPreSchool[0].pre_school.id"
                                         class="form-control" required>
                                     <option value="" selected>Select pre-school name</option>
                                 </select>
@@ -359,7 +359,8 @@ $(document).on("click", "#add_technical", function () {
                             <td width="136" ng-bind="row.tot_damages"
                                 ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost">
                             </td>
-                            <td width="136" class="tdpa">
+                            <td width="136" class="tdpa" ng-model="row.pre_school= ">
+
                             </td>
                             <td width="136" class="tdpa">
                             </td>

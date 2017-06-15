@@ -24,7 +24,11 @@ SECRET_KEY = 'z(-pb7d!3-efta70vsay=by7=*ng#=9vayn@dc)9b8ddcg%54&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+ADMINS = (
+    ('Dileepa', 'dileepa.ozi@mail.com'),
+)
 
 # Application definition
 
@@ -102,6 +106,7 @@ INSTALLED_APPS = [
     'power_supply',
     'power_supply.base_line',
     'power_supply.damage_losses',
+    'new_charts',
 
 ]
 
@@ -156,7 +161,8 @@ DATABASES = {
         #     'options': '-c search_path=agri_agrarian'
         # },
 
-        'NAME': 'dala',
+
+        'NAME': 'Dala_2017_05_09',
         'USER': 'postgres',
     },
 }

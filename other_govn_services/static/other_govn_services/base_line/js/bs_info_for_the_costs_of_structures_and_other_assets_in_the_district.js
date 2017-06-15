@@ -1,6 +1,6 @@
 //Table 1
 var app = angular.module('bsInfoforCostsOfAssetsOnTheDistrictApp', [])
-
+var del_statuss = false;
 app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
@@ -9,6 +9,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
     $scope.is_edit_disable = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+//    $scope.del_status = false;
 
     var init_data = {
         'other_govn_services': {
@@ -61,7 +62,6 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
     $scope.dele_data = {
         'other_govn_services': {
             'Table_1': {
-                'BcsStructure': [],
                 'BcsOfficeEquipment' : [],
                 'BcsMachinery': []
             }
@@ -107,15 +107,111 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         if(table == 'BcsOfficeEquipment') {
             if($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment[index].id > 0) {
                 $scope.dele_data.other_govn_services.Table_1.BcsOfficeEquipment.push($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment[index]);
+
+                $scope.bs_data = {
+                    bs_table: table,
+                    bs_coloum_key: 'asset',
+                    bs_coloum_value: $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment[index].asset,
+                };
+
+                $scope.dl_data = [];
+
+                $scope.dl_data.push({
+                    dl_table: 'DlagdDmgOfficeEquipment',
+                    dl_coloum_key: 'name_dept',
+                });
+
+                var del_status = $scope.enum_delete_validation($scope.bs_data, $scope.dl_data);
+
+                console.log('BcsOfficeEquipment', del_status);
+
+                if(!del_status) {
+                    console.log('BcsOfficeEquipment delete ok');
+                    $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment.splice(index, 1);
+                }
             }
-            $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment.splice(index, 1);
+            else {
+                $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment.splice(index, 1);
+            }
         }
         else if(table == 'BcsMachinery') {
             if($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery[index].id > 0) {
                 $scope.dele_data.other_govn_services.Table_1.BcsOfficeEquipment.push($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery[index]);
+
+                $scope.bs_data = {
+                    bs_table: table,
+                    bs_coloum_key: 'asset',
+                    bs_coloum_value: $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery[index].asset,
+                };
+
+                $scope.dl_data = [];
+
+                $scope.dl_data.push({
+                    dl_table: 'DlagdDmgMachinery',
+                    dl_coloum_key: 'name_dept',
+                });
+
+                $scope.del_status = $scope.enum_delete_validation($scope.bs_data, $scope.dl_data);
+
+//                while (!del_statuss) {
+//                    console.log(del_statuss);
+//                };
+
+//                del_status.then({
+//                     console.log('del_status 1', del_status);
+//                });
+
+                console.log('del_status', del_statuss);
+
+                if(!del_status) {
+                    console.log('BcsMachinery delete ok');
+                    $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery.splice(index, 1);
+                }
+                console.log('BcsMachinery ', del_statuss);
             }
-            $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery.splice(index, 1);
+            else {
+                $scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery.splice(index, 1);
+            }
         }
+    }
+
+    $scope.enum_delete_validation = function(bs_data, dl_data) {
+        console.log('enum_delete_validation');
+        $http({
+            method : 'POST',
+            url : '/is_enum_used_in_dl',
+            contentType : 'application/json; charset=utf-8',
+            data : angular.toJson({
+                'sector': 'other_govn_services',
+                'bs_data': bs_data,
+                'dl_data': dl_data,
+                'com_data' : {
+                    'district' : $scope.district,
+                    'bs_date' : $scope.baselineDate,
+                },
+            }),
+            dataType: 'json',
+        }).then(function success(response) {
+            console.log('*** ', response);
+            if(response.data == 'False') {
+//                $("#modal-container-239457").modal('show');
+                console.log('return ', response.data);
+                console.log('enum_delete_validation 1');
+                del_statuss =true;
+                return false;
+            }
+            else {
+                $("#modal-container-239457").modal('show');
+                console.log('return ', response.data);
+                console.log('enum_delete_validation 2');
+                del_statuss = true;
+                return true;
+            }
+        });
+//        function errorCallback(response) {
+//            console.log(response);
+//            return false;
+//        });
     }
 
     $scope.save = function(form) {
@@ -153,23 +249,22 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 
     $scope.bsHsDataEdit = function(form) {
         $scope.submitted = true;
-
         $scope.is_edit = true;
         $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_1',
-              'sector': 'other_govn_services',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.baselineDate} }),
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                'table_name': 'Table_1',
+                'sector': 'other_govn_services',
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.baselineDate
+                }
+            }),
         }).success(function(data) {
-
             console.log(data);
             $scope.bsCostsOfAssetsOnTheDistrict = data;
         })
-
-
     }
 
     $scope.cancelEdit = function() {
@@ -182,10 +277,43 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         console.log("init")
         $scope.is_edit = false;
         $scope.bsCostsOfAssetsOnTheDistrict = angular.copy(init_data);
-
     }
 
     $scope.deleteing = function() {
         console.log('$$$', $scope.dele_data);
+    }
+
+
+    $scope.save = function(sector) {
+		var del_status = $scope.is_exsis(sector);
+
+        console.log(del_status); // is_exsis return value
+
+		if(!del_status) {
+            // save
+        }
+	}
+
+
+	$scope.is_exsis = function(sector) {
+        $http({
+            method : 'POST',
+            url : '/is_data_exsis',
+            contentType : 'application/json; charset=utf-8',
+            data : angular.toJson({
+                'sector': 'services'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+
+            console.log(response.data); //http respond
+
+            if(response.data == 'False') {
+         		return false;
+            }
+            else {
+                return true;
+            }
+        })
     }
 }])

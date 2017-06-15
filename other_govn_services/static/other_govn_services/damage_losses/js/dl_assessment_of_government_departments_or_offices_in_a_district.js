@@ -129,9 +129,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = init_data;
 
-
     $scope.changedValue=function getBsData(selectedValue) {
-
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -160,7 +158,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                generateRefencedData();
+
                 var data = response.data;
                 console.log('*', response);
                 angular.forEach(data, function(value, key) {
@@ -182,6 +180,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                     $scope.currentBaselineDate = null;
                 }
                 else {
+                    generateRefencedData();
                     $http({
                         method: 'POST',
                         url: '/get_latest_bs_date',
@@ -197,7 +196,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                         dataType: 'json',
                     }).then(function successCallback(response) {
                         var result = response.data;
-                        if(result == 'null') {
+                        if(result == null) {
                             $("#modal-container-239458").modal('show');
                         }
                         else {
@@ -206,11 +205,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                         }
                     });
                 }
-
-
-
             }, function errorCallback(response) {
-
                 console.log(response);
             });
         }
@@ -239,20 +234,20 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
             if(model_name == 'BcsMachinery') {
                 dl_model2 = 'DlagdDmgMachinery';
                 particular_value_2 = 'Total';
-               $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2] = [];
+                $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2] = [];
             }
 
             var obj1 = {
-                    name_dept: particular_value_1,
-                    num_tot_destroyed: null,
-                    num_partial_damaged: null,
-                    damages: null,
+                name_dept: particular_value_1,
+                num_tot_destroyed: null,
+                num_partial_damaged: null,
+                damages: null,
             };
             var obj2 = {
-                    name_dept: particular_value_2,
-                    num_tot_destroyed: null,
-                    num_partial_damaged: null,
-                    damages: null,
+                name_dept: particular_value_2,
+                num_tot_destroyed: null,
+                num_partial_damaged: null,
+                damages: null,
             };
 
             angular.forEach(obj_array, function(value, key) {
@@ -270,52 +265,51 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 };
 
                 if(model_name == 'BcsOfficeEquipment') {
-                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
+                    $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
                 }
                 if(model_name == 'BcsMachinery') {
-                   $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
+                    $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
                 }
             });
 
             if(model_name == 'BcsOfficeEquipment') {
-               $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
+                $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model1].push(obj1);
             }
             if(model_name == 'BcsMachinery') {
-               $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
+                $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2[dl_model2].push(obj2);
             }
         });
     }
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
-       if(form.$valid){
-        $http({
-            method: 'POST',
-            url:'/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys,
-                'com_data': {
-                    'district_id': $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'department_id': $scope.new_department.id
-                },
-                'is_edit' : $scope.is_edit
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-            if(response.data == 'False')
-                $scope.is_valid_data = false;
-            else
-                $("#modal-container-239453").modal('show');
-            console.log(response);
+        if(form.$valid) {
+            $http({
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys,
+                    'com_data': {
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'department_id': $scope.new_department.id
+                    },
+                    'is_edit' : $scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+                console.log(response);
 
-        }, function errorCallback(response) {
- $("#modal-container-239454").modal('show');
-            console.log(response);
-        });
+            }, function errorCallback(response) {
+                $("#modal-container-239454").modal('show');
+                console.log(response);
+            });
         }
-
     }
 
     $scope.dlDataEdit = function(form) {
@@ -350,15 +344,14 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
    //Calculate Public Total
     $scope.calTotal=function(arr){
-    var finaltotal = 0;
-    angular.forEach(arr, function(value, key) {
-    if(value.name_dept != 'Total'){
-         finaltotal = finaltotal + value.damages ;
-         }
-    })
-    return finaltotal;
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.name_dept != 'Total'){
+                finaltotal = finaltotal + value.damages ;
+            }
+        })
+        return finaltotal;
     }
-
 
     $scope.fetchDepartments = function() {
         if($scope.district) {

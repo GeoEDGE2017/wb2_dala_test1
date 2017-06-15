@@ -103,11 +103,8 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 
 //Save Data
     $scope.saveBsData = function(form) {
-
         $scope.submitted = true;
-
         if (form.$valid) {
-
             $http({
                 method: 'POST',
                 url: '/bs_save_data',
@@ -124,15 +121,16 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
             }).then(function successCallback(response) {
 //                $scope.bsDataMedicalFacilities = init_data;
 //                $scope.is_edit = false;
-                if (response.data == 'False')
-                   {
+                if (response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
+                }
           }, function errorCallback(data) {
-
+                $("#modal-container-239454").modal('show');
+                $scope.is_valid_data = false;
                 console.log(data);
             });
         }

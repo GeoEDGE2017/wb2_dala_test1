@@ -323,6 +323,7 @@ def bs_get_data_mock(request):
         )
 
 
+# dileepa
 @csrf_exempt
 def bs_get_data_mock_for_bs(request):
     todate = timezone.now()

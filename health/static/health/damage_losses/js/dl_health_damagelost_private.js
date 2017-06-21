@@ -145,7 +145,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'null') {
-                    $scope.currentBaselineDate = "Baseline data not available in Table_3";
+                    $scope.currentBaselineDate = "Baseline data not available in  Table 3: Baseline Information of Unit Cost of the Ministry Health System in a District";
                 }
                 else {
                     var result = response.data;
@@ -269,43 +269,45 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
     }
 
-    $scope.addPrivateClinicObject = function() {
-        var new_row_one =[ {
-            pvt_clinics : 'Structure',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }, {
-            pvt_clinics : 'Supplies and Materials',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }, {
-            pvt_clinics : 'Equipment',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }, {
-            pvt_clinics : 'Total',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }]
-        $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.push(new_row_one);
+    $scope.addPrivateClinicObject = function(form) {
+        if(form.$valid) {
+            var new_row_one =[ {
+                pvt_clinics : 'Structure',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }, {
+                pvt_clinics : 'Supplies and Materials',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }, {
+                pvt_clinics : 'Equipment',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }, {
+                pvt_clinics : 'Total',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }]
+            $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.unshift(new_row_one);
 
-        console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+            console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+        }
     }
 
     $scope.Test = function() {

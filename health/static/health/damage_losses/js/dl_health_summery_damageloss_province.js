@@ -15,33 +15,33 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     $scope.total_num_affected = 0;
 
     $scope.saveDlHealthSummeryDamagelossProvince = function(form) {
-       $scope.submitted = true;
+        $scope.submitted = true;
 
-       if(form.$valid){
-        console.log($scope.data);
-        $http({
-            method: 'POST',
-            url: '/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlhealthsummarydamageprovince,
-                'com_data': {
-                    'province': $scope.province,
-                    'incident_id': $scope.incident,
-                },
-                'is_edit': false
-            }),
-            dataType: 'json',
-        }).then(function mySucces(response) {
-            console.log(response);
-            if(response.data == 'False')
-                $scope.is_valid_data = false;
-            else
-                $("#modal-container-239453").modal('show');
-            }, function myError(response) {
-                //if data sent to server side method unsuccessfull
+        if(form.$valid) {
+            console.log($scope.data);
+            $http({
+                method: 'POST',
+                url: '/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlhealthsummarydamageprovince,
+                    'com_data': {
+                        'province': $scope.province,
+                        'incident_id': $scope.incident,
+                    },
+                    'is_edit': false
+                }),
+                dataType: 'json',
+            }).then(function mySucces(response) {
                 console.log(response);
-        });
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+                }, function myError(response) {
+                    //if data sent to server side method unsuccessfull
+                    console.log(response);
+            });
         }
     }
 
@@ -49,7 +49,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     $scope.changedValue = function getDlData(selectProvinces) {
 
         if($scope.incident && selectProvinces) {
-          fetchProvinces();
+            fetchProvinces();
         }
 //        if($scope.province && $scope.incident) {
 //            console.log($scope.district);

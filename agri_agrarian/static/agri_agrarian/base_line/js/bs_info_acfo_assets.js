@@ -198,14 +198,14 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     console.log('*** ', $scope.bs_data[key]);
                 });
                 console.log(response);
-                getData();
+                generateRefencedData();
             }, function errorCallback(response) {
             });
         }
     }
 
     //Generate fields Related to baseline Data
-    function getData() {
+    function generateRefencedData() {
         data_array = ['BcagSeasonalCrops','BcagPlantnCrops','BcagExportCrops','BcagForestry','BcagOther'];
 
         var bs_model1 = null;

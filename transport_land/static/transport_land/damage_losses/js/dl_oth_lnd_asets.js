@@ -346,15 +346,56 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                     },
                     'table_name': 'Table_2',
                     'sector':'transport_land',
-                        }),
-                  dataType: 'json',
-
+                }),
+                dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log(response);
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
-                generateRefencedData();
+
+                console.log($scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    generateRefencedData();
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BsGtlAstPvehicles','BsGtlAstBcompanies','BsGtlAstTrcompanies','BsGtlAstTucompanies','BsGtlAstTcompanies'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_2',
+                            'sector':'transport_land',
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
             }, function errorCallback(response) {
 
             });
@@ -405,88 +446,76 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
         $scope.submitted = true;
         if(form.$valid) {
             $http({
-            method: 'POST',
-            url:'/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlOthLndAsets,
-                'com_data': {
-                    'district_id':  $scope.district.district__id,
-                    'incident_id': $scope.incident,
-
-                },
-                'is_edit' : $scope.is_edit,
-
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-
-                 if(response.data == 'False')
-             $scope.is_valid_data = false;
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlOthLndAsets,
+                    'com_data': {
+                        'district_id':  $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                    },
+                    'is_edit' : $scope.is_edit,
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
                 else
-             $("#modal-container-239453").modal('show');
-
-        }, function errorCallback(response) {
-
-            console.log(response);
-        });
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
+                console.log(response);
+            });
         }
     }
 
-    $scope.dlDataEdit = function(form){
-
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_5',
-    'sector':'transport_land',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlOthLndAsets = data;
-    })
-
-}
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+                'table_name':  'Table_5',
+                'sector':'transport_land',
+                'com_data': {
+                    'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                },
+                'is_edit':$scope.is_edit
+            }),
+        }).success(function(data) {
+            console.log(data);
+            $scope.dlOthLndAsets = data;
+        })
+    }
 
     $scope.cancelEdit = function(){
-       $scope.is_edit = false;
+        $scope.is_edit = false;
         $scope.dlOthLndAsets = init_data;
-
-}
+    }
 
     $scope.calPvtTotal=function(arr){
     var finaltotal = 0;
-     console.log(arr);
+//     console.log(arr);
     angular.forEach(arr, function(value, key) {
      if((value.private_vehicles != 'Total') && (value.bus_companies != 'Total' ) && (value.taxi_companies != 'Total' ) && (value.truck_companies != 'Total' ) && (value.tuk_companies != 'Total')){
      finaltotal = finaltotal + value.tot_damages_pvt ;
      }
     })
-      console.log(finaltotal);
+//      console.log(finaltotal);
     return finaltotal;
     }
 
     $scope.calPubTotal=function(arr){
     var finaltotal = 0;
-     console.log(arr);
+//     console.log(arr);
     angular.forEach(arr, function(value, key) {
      if((value.bus_companies != 'Total') && (value.taxi_companies != 'Total' ) && (value.truck_companies != 'Total') && (value.tuk_companies != 'Total' )){
      finaltotal = finaltotal + value.tot_damages_pub ;
      }
     })
-      console.log(finaltotal);
+//      console.log(finaltotal);
     return finaltotal;
     }
 
@@ -569,19 +598,19 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
      }
     })
     grantot = finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
-    console.log('test',grantot);
+//    console.log('test',grantot);
     return grantot;
     }
 
     $scope.calTotal=function(arr){
     var finaltotal = 0;
-     console.log(arr);
+//     console.log(arr);
     angular.forEach(arr, function(value, key) {
     if(value.tr_company !='Total'){
      finaltotal = finaltotal + value.tot_los ;
      }
     })
-      console.log(finaltotal);
+//      console.log(finaltotal);
     return finaltotal;
     }
 
@@ -612,9 +641,8 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dlOthLndAsets = angular.copy(init_data);
     }
-
 });

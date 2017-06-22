@@ -318,6 +318,10 @@ $scope.fetchDlData = function(form){
             parseInt(val12) + parseInt(val13) + parseInt(val14);
         return total;
     }
+
+    $scope.test = function() {
+        console.log($scope.dlhealthsummarydamagenationwide.health.Table_10);
+    }
 }])
 
 

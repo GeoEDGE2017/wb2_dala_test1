@@ -280,58 +280,101 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
     // get relevant base-line data for calculations
     $scope.changedValue=function getBsData(selectedValue) {
-
         if($scope.incident && selectedValue){
-
-           $http({
-               method: "POST",
-               url: "/fetch_incident_districts",
-               data: angular.toJson({'incident': $scope.incident }),
-        }).success(function(data) {
-            $scope.districts = data;
-            $scope.district = "";
-
-
-    })
+            $http({
+                method: "POST",
+                url: "/fetch_incident_districts",
+                data: angular.toJson({'incident': $scope.incident }),
+            }).success(function(data) {
+                $scope.districts = data;
+                $scope.district = "";
+            })
         }
-
-        if($scope.incident && $scope.district ){
-
+        if($scope.incident && $scope.district) {
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterBuildings'],
-                  'com_data': {
+                    'db_tables': ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterBuildings'],
+                    'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        },
+                    },
                    'sector':'transport_water',
                    'table_name': 'Table_1'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
+//                var data = response.data;
+//                angular.forEach(data, function(value, key) {
+//                    $scope.bs_data[key] = JSON.parse(value);
+//                });
+//                console.log($scope.bs_data);
+//                generateRefencedData();
+
                 var data = response.data;
+                console.log(response);
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                generateRefencedData();
+                console.log('bs_data', $scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    console.log('value ', value);
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
 
+                console.log('is_null', is_null);
 
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    generateRefencedData();
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BsAstWaterWcrafts', 'BsAstWaterEquipment', 'BsAstWaterMaterials', 'BsAstWaterBuildings'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                           'sector':'transport_water',
+                           'table_name': 'Table_1'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
             }, function errorCallback(response) {
-
 
             });
         }
-
     }
 
   function generateRefencedData(){
+    alert('#');
   data_array = ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterStructures'];
   var dl_model1 = null;
   var dl_model2 = null;
+  var dl_model3 = null;
   angular.forEach(data_array, function(value, key) {
     obj_array = $scope.bs_data[value];
     model_name = value;
@@ -351,16 +394,16 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     {
        dl_model1 = 'DlWaterDmgEquipment';
        particular_value_1 = 'Total';
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2] = [];
 
     }
-     if(model_name == 'BsAstWaterMaterials')
-    {
-       dl_model1 = 'DlWaterDmgMaterials';
-       particular_value_1 = 'Total';
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
-
-    }
+//     if(model_name == 'BsAstWaterMaterials')
+//    {
+//       dl_model1 = 'DlWaterDmgMaterials';
+//       particular_value_1 = 'Total';
+//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
+//
+//    }
 //     if(model_name == 'BsAstWaterStructures')
 //    {
 //       dl_model2 = 'DlWaterDmgStructures';
@@ -412,12 +455,12 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     }
     if(model_name == 'BsAstWaterEquipment')
     {
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
     }
-    if(model_name == 'BsAstWaterMaterials')
-    {
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
-    }
+//    if(model_name == 'BsAstWaterMaterials')
+//    {
+//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+//    }
 //    if(model_name == 'BsAstWaterStructures')
 //    {
 //       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
@@ -426,18 +469,16 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
     });
 
-    if(model_name == 'BsAstWaterWcrafts')
-    {
+    if(model_name == 'BsAstWaterWcrafts') {
        $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
     }
-    if(model_name == 'BsAstWaterEquipment')
-    {
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+    if(model_name == 'BsAstWaterEquipment') {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
     }
-    if(model_name == 'BsAstWaterMaterials')
-    {
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
-    }
+//    if(model_name == 'BsAstWaterMaterials')
+//    {
+//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+//    }
 //    if(model_name == 'BsAstWaterStructures')
 //    {
 //       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
@@ -605,15 +646,15 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
     }
 
-  //Clear Function
-  $scope.clear = function() {
-        console.log("init")
+    //Clear Function
+    $scope.clear = function() {
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dlWaterTransportation = angular.copy(init_data);
     }
 
     //Edit Data
-  $scope.dlDataEdit = function(){
+  $scope.dlDataEdit = function() {
 
     $scope.is_edit = true;
     $scope.submitted = true;
@@ -644,9 +685,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
        $scope.dlComWtrSply = init_data;
-
     }
-
 })
 
 

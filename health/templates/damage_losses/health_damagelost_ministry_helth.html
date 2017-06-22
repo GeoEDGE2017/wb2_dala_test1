@@ -2,21 +2,23 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-   var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-   var nicesx = $("#boxscroll3").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-   var nicesx = $("#boxscroll4").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  });
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+        var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+        var nicesx = $("#boxscroll3").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+        var nicesx = $("#boxscroll4").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!--table 5-->
 <!-- Main content -->
 <main class="main" ng-app="dlInTheLineMinistryHealthSysApp" ng-controller="dlInTheLineMinistryHealthSysAppController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:health_main' %}">Health Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -31,12 +33,21 @@
     <div class="container-fluid">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Destroyed Facilities</a>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Destroyed Facilities</a>
                 </li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Partially Damaged Facilities</a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 No of Destroyed Assets by Types of Facilities </a></li>
-                <li id="li4"><a href='#step4' data-toggle="tab">4 No of Partially Damaged Assets</a></li>
-                <li id="li5"><a href='#step5' data-toggle="tab">5 Losses</a></li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Partially Damaged Facilities</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 No of Destroyed Assets by Types of Facilities</a>
+                </li>
+                <li id="li4">
+                    <a href='#step4' data-toggle="tab">4 No of Partially Damaged Assets</a>
+                </li>
+                <li id="li5">
+                    <a href='#step5' data-toggle="tab">5 Losses</a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_lmh">
@@ -1858,7 +1869,7 @@
     </div>
     <!-- /.conainer-fluid -->
 
-    <!-- update the baseline Model -->
+    <!-- please update the baseline tables -->
     <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1867,7 +1878,7 @@
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        Save Data
+                        Warning
                     </h4>
                 </div>
                 <div class="modal-body alert-info">

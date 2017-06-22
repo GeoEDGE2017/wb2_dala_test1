@@ -3,38 +3,32 @@
 {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlWaterTransApp" ng-controller="DlWaterTransController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_water_main' %}">Transport Water Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_water_main' %}">Transport Water Sector</a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses to Water Transportation</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 2. Damages and Losses to Water Transportation
+            </span>
         </li>
-<li style="float:right;"> <a href="{% static 'dashboard/doc/1C-Water_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
-
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1C-Water_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
-
         <ul class='nav nav-wizard'>
             <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
             <li id="li2" class=""><a href='#step2' data-toggle="tab">2 - Structures/Buildings</a></li>
             <li id="li3"><a href='#step3' data-toggle="tab">3 - Losses</a></li>
-
         </ul>
-
         <div id="myTabContent" class="tab-content" ng-form name="form_dl_water_transportation">
             <div class="tab-pane active" id="step1">
-
-
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="253"/>
                         <col width="147"/>
@@ -63,16 +57,13 @@
                         </td>
                     </tr>
                     <tr class="trhead1">
-
                         <td style="padding-right:5px;">
                             Incident
                         </td>
                         <td colspan="2" style="">
-
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
-
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
 
@@ -80,23 +71,16 @@
                                     {{incident.reported_date_time}}
                                 </option>
                                 {% endfor %}
-
                             </select>
-
                         </td>
                         <td colspan="3" style="padding-left:5px;"> Name of District</td>
-
                         <td colspan="3" style="">
-
                             <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                     class="form-control" ng-change="changedValue(false)" required>
 
                                 <option value="" selected>Select District</option>
-
-
                             </select>
-
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
@@ -145,7 +129,6 @@
                         ng-repeat="dlWaterDmgWcrafts in dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts"
                         ng-if="dlWaterDmgWcrafts.assets != 'Total'">
                         <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgWcrafts.assets">
-
                         </td>
                         <td width="147">
                             <input id="textinput" ng-model="dlWaterDmgWcrafts.num_tdestroyed_public" ng-change="getTotal('DlWaterDmgWcrafts','num_tdestroyed_public')"  name="textinput"
@@ -251,42 +234,32 @@
                             ng-bind="dlWaterDmgEquipment.tot_dmg_public =
                                           dlWaterDmgEquipment.num_tdestroyed_public * bs_data['BsAstWaterEquipment'][$index].fields.avg_replace_cost +
                                           dlWaterDmgEquipment.num_pdestroyed_public * bs_data['BsAstWaterEquipment'][$index].fields.avg_repair_cost">
-
                         </td>
 
                         <td width="85" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_private"
                             ng-bind="dlWaterDmgEquipment.tot_dmg_private =
                                           dlWaterDmgEquipment.num_tdestroyed_private * bs_data['BsAstWaterEquipment'][$index].fields.avg_replace_cost +
                                           dlWaterDmgEquipment.num_pdestroyed_private * bs_data['BsAstWaterEquipment'][$index].fields.avg_repair_cost">
-
                         </td>
                     </tr>
                     <tr height="19"
                         ng-repeat="dlWaterDmgEquipment in dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment"
                         ng-if="dlWaterDmgEquipment.assets == 'Total'">
                         <td class="boldash" width="253" height="19" ng-bind="dlWaterDmgEquipment.assets">
-
                         </td>
                         <td width="147" class="tdpa" >
                         </td>
                         <td width="151" class="tdpa" >
-
                         </td>
                         <td width="165" class="tdpa">
-
                         </td>
                         <td width="170" class="tdpa">
-
                         </td>
                         <td colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment)" width="268">
-
                         </td>
                          <td colspan="2" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment)" width="268">
-
                         </td>
                     </tr>
-
-
                     <tr class="trheadc" height="19">
                         <td width="253" height="19">
                             Materials and Supplies
@@ -308,7 +281,6 @@
                         ng-repeat="dlWaterDmgMaterials in dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials"
                         ng-if="dlWaterDmgMaterials.assets != 'Total'">
                         <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgMaterials.assets">
-
                         </td>
                         <td width="147">
                             <input id="textinput" ng-model="dlWaterDmgMaterials.num_tdestroyed_public" name="textinput"
@@ -321,7 +293,6 @@
                                    class="form-control input-md">
                         </td>
                         <td width="165" class="tdpa" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'">
-
                         </td>
                         <td width="165" ng-if="dlWaterDmgMaterials.assets != 'Fuel (Liters)'">
                             <input id="textinput" ng-model="dlWaterDmgMaterials.num_pdestroyed_public" name="textinput"
@@ -336,25 +307,19 @@
                                    type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
-
-                         <td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'" colspan="2" class="tdpa">
-
+                        <td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'" colspan="2" class="tdpa">
                         </td>
-                         <td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public"
+                        <td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public"
                             ng-bind="dlWaterDmgMaterials.tot_dmg_public =
                                           dlWaterDmgMaterials.num_tdestroyed_public * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost +
                                           dlWaterDmgMaterials.num_pdestroyed_public * bs_data['BsAstWaterMaterials'][$index].fields.avg_repair_cost">
-
                         </td>
-
                         <td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (Liters)'" colspan="2" class="tdpa">
-
                         </td>
-                         <td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private"
+                        <td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (Liters)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private"
                             ng-bind="dlWaterDmgMaterials.tot_dmg_private =
                                           dlWaterDmgMaterials.num_tdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost +
                                           dlWaterDmgMaterials.num_pdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_repair_cost">
-
                         </td>
                     </tr>
                     <tr height="19"
@@ -857,18 +822,42 @@
                     <button type="button" class="btn btn-success">Submit</button>
                 </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
+    <!-- update the baseline Model -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Warning
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>Table 1. Assets in the Water Transportation Sub-sector</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 

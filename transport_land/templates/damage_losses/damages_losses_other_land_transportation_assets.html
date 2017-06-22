@@ -11,15 +11,21 @@
 <main class="main" ng-app="dlOthLndAsetsApp" ng-controller="dlOthLndAsetsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Damages and Losses to Other Land Transportation Assets</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 5. Damages and Losses to Other Land Transportation Assets
+            </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_oth_lnd_asets">
         <div>
@@ -29,7 +35,6 @@
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_dl_oth_lnd_asets">
                 <div class="tab-pane active" id="step1">
-
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="156"/>
@@ -62,7 +67,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr >
+                        <tr>
                             <td class="trhead1" width="156">
                                 Incident
                             </td>
@@ -90,7 +95,6 @@
                                 </select>
                             </td>
                         </tr>
-
                         <tr class="trheadc1" height="19">
                             <td colspan="2" height="19" width="312" style="width:27%;">
                                 Type of Land Transportation Vehicles
@@ -266,18 +270,14 @@
                                           ng-model="dlOtherDmgsBcompanies.num_part_dest_pvt">
                                 </td>
                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsBcompanies.tot_damages_pub'
-                                ng-bind="dlOtherDmgsBcompanies.tot_damages_pub =
-                                dlOtherDmgsBcompanies.num_tot_dest_pub * bs_data['BsGtlAstBcompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsBcompanies.num_part_dest_pub * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost
-
-                                 ">
+                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pub =
+                                    dlOtherDmgsBcompanies.num_tot_dest_pub * bs_data['BsGtlAstBcompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsBcompanies.num_part_dest_pub * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost">
                                 </td>
                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsBcompanies.tot_damages_pvt'
-                                ng-bind="dlOtherDmgsBcompanies.tot_damages_pvt =
-                                dlOtherDmgsBcompanies.num_tot_dest_pvt * bs_data['BsGtlAstBcompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsBcompanies.num_part_dest_pvt * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost
-
-                                 ">
+                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pvt =
+                                    dlOtherDmgsBcompanies.num_tot_dest_pvt * bs_data['BsGtlAstBcompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsBcompanies.num_part_dest_pvt * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost">
                                 </td>
                             </tr>
                             <tr height="19"
@@ -357,18 +357,14 @@
                                 </td>
 
                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pub'
-                                ng-bind="dlOtherDmgsTcompanies.tot_damages_pub=
-                                dlOtherDmgsTcompanies.num_tot_dest_pub * bs_data['BsGtlAstTcompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsTcompanies.num_part_dest_pub * bs_data['BsGtlAstTcompanies'][$index].fields.avg_repair_cost
-
-                                 ">
+                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pub=
+                                    dlOtherDmgsTcompanies.num_tot_dest_pub * bs_data['BsGtlAstTcompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsTcompanies.num_part_dest_pub * bs_data['BsGtlAstTcompanies'][$index].fields.avg_repair_cost ">
                                 </td>
                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pvt'
-                                ng-bind="dlOtherDmgsTcompanies.tot_damages_pvt =
-                                dlOtherDmgsTcompanies.num_tot_dest_pvt * bs_data['BsGtlAstTcompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsTcompanies.num_part_dest_pvt * bs_data['BsGtlAstTcompanies'][$index].fields.avg_repair_cost
-
-                                 ">
+                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pvt =
+                                    dlOtherDmgsTcompanies.num_tot_dest_pvt * bs_data['BsGtlAstTcompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsTcompanies.num_part_dest_pvt * bs_data['BsGtlAstTcompanies'][$index].fields.avg_repair_cost">
                             </tr>
                             <tr height="19"
                                 ng-repeat="dlOtherDmgsTcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies"
@@ -447,16 +443,15 @@
                                 </td>
 
                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pub'
-                                ng-bind="dlOtherDmgsTrcompanies. tot_damages_pub =
-                                dlOtherDmgsTrcompanies.num_tot_dest_pub * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsTrcompanies.num_part_dest_pub * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost">
+                                    ng-bind="dlOtherDmgsTrcompanies. tot_damages_pub =
+                                    dlOtherDmgsTrcompanies.num_tot_dest_pub * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsTrcompanies.num_part_dest_pub * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost">
                                 </td>
                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pvt'
-                                ng-bind="dlOtherDmgsTrcompanies.tot_damages_pvt =
-                                dlOtherDmgsTrcompanies.num_tot_dest_pvt * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsTrcompanies.num_part_dest_pvt * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost
-
-                                 ">
+                                    ng-bind="dlOtherDmgsTrcompanies.tot_damages_pvt =
+                                    dlOtherDmgsTrcompanies.num_tot_dest_pvt * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsTrcompanies.num_part_dest_pvt * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost">
+                                </td>
                             </tr>
                             <!--Totla-->
                             <tr height="19"
@@ -534,19 +529,18 @@
                                            class="form-control input-md"
                                            ng-model="dlOtherDmgsTucompanies.num_part_dest_pvt">
                                 </td>
-
-                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pub'
-                                ng-bind="dlOtherDmgsTucompanies.tot_damages_pub=
-                                dlOtherDmgsTucompanies.num_tot_dest_pub * bs_data['BsGtlAstTucompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsTucompanies.num_part_dest_pub * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost">
+                                <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pub'
+                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pub=
+                                    dlOtherDmgsTucompanies.num_tot_dest_pub * bs_data['BsGtlAstTucompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsTucompanies.num_part_dest_pub * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost">
                                 </td>
                                 <td colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pvt'
-                                ng-bind="dlOtherDmgsTucompanies.tot_damages_pvt =
-                                dlOtherDmgsTucompanies.num_tot_dest_pvt * bs_data['BsGtlAstTucompanies'][$index].fields.avg_replace_cost +
-                                dlOtherDmgsTucompanies.num_part_dest_pvt * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost ">
+                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pvt =
+                                    dlOtherDmgsTucompanies.num_tot_dest_pvt * bs_data['BsGtlAstTucompanies'][$index].fields.avg_replace_cost +
+                                    dlOtherDmgsTucompanies.num_part_dest_pvt * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost ">
+                                </td>
                             </tr>
                             <!--Total-->
-
                             <tr height="19"
                                 ng-repeat="dlOtherDmgsTucompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies"
                                 ng-if="dlOtherDmgsTucompanies.tuk_companies == 'Total'">
@@ -589,10 +583,8 @@
                                     <br/>
                                 </td>
                                 <td colspan="2" height="19" width="126" ng-bind="calGrandPubTotal()">
-
                                 </td>
-                               <td colspan="2" height="19" width="126" ng-bind="calGrandPvtTotal()">
-
+                                <td colspan="2" height="19" width="126" ng-bind="calGrandPvtTotal()">
                                 </td>
                             </tr>
                             </tbody>
@@ -603,8 +595,6 @@
                             class="glyphicon glyphicon-arrow-right"></span> Fill Other Losses Informations</a>
                     <br>
                 </div>
-
-
                 <div class="tab-pane fade" id="step2">
                     <table class="table table-bordered">
                         <tr class="trheadc1" height="19">
@@ -744,71 +734,59 @@
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPub.fi_year_1"
                                 ng-bind="dlOtherLosPub.fi_year_1=
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_1
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_1">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPub.fi_year_2" ng-bind="dlOtherLosPub.fi_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_2
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_2">
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_1"
                                 ng-bind="dlOtherLosPub.cl_debris_year_1 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_1
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_1">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_2"
                                 ng-bind="dlOtherLosPub.cl_debris_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_2
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_2">
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPub.hoc_year_1"
                                 ng-bind="dlOtherLosPub.hoc_year_1 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_1
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_1">
                             </td>
 
                             <td height="19" width="63" ng-model="dlOtherLosPub.hoc_year_2"
                                 ng-bind="dlOtherLosPub.hoc_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_2
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_2">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPub.oue_year_1"
                                 ng-bind="dlOtherLosPub.oue_year_1 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_1
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_1">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPub.oue_year_2"
                                 ng-bind="dlOtherLosPub.oue_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_2
-                            ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_2">
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPub.tot_los" ng-bind="dlOtherLosPub.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPub)">
                             </td>
@@ -883,14 +861,14 @@
                                        class="form-control input-md" ng-model="dlOtherLosPvt.oue_year_2">
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPvt.tot_los" ng-bind="dlOtherLosPvt.tot_los =
-                            dlOtherLosPvt.fi_year_1+
-                            dlOtherLosPvt.fi_year_2+
-                            dlOtherLosPvt.cl_debris_year_1+
-                            dlOtherLosPvt.cl_debris_year_2+
-                            dlOtherLosPvt.hoc_year_1+
-                            dlOtherLosPvt.hoc_year_2+
-                            dlOtherLosPvt.oue_year_1+
-                            dlOtherLosPvt.oue_year_2">
+                                dlOtherLosPvt.fi_year_1+
+                                dlOtherLosPvt.fi_year_2+
+                                dlOtherLosPvt.cl_debris_year_1+
+                                dlOtherLosPvt.cl_debris_year_2+
+                                dlOtherLosPvt.hoc_year_1+
+                                dlOtherLosPvt.hoc_year_2+
+                                dlOtherLosPvt.oue_year_1+
+                                dlOtherLosPvt.oue_year_2">
                             </td>
                         </tr>
                         <!--Total-->
@@ -900,72 +878,67 @@
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPvt.fi_year_1"
                                 ng-bind="dlOtherLosPvt.fi_year_1 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].fi_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_1 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].fi_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_1 ">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPvt.fi_year_2"
                                 ng-bind="dlOtherLosPvt.fi_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].fi_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_2 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].fi_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_2 ">
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_1"
                                 ng-bind="dlOtherLosPvt.cl_debris_year_1 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].cl_debris_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_1 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].cl_debris_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_1 ">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_2"
                                 ng-bind="dlOtherLosPvt.cl_debris_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].cl_debris_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_2 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].cl_debris_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_2 ">
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_1"
                                 ng-bind="dlOtherLosPvt.hoc_year_1 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].hoc_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_1 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].hoc_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_1 ">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_2"
                                 ng-bind="dlOtherLosPvt.hoc_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].hoc_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_2 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].hoc_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_2 ">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPvt.oue_year_1"
                                 ng-bind="dlOtherLosPvt.oue_year_1 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].oue_year_1 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_1 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].oue_year_1 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_1 ">
                             </td>
-
                             <td height="19" width="63" ng-model="dlOtherLosPvt.oue_year_2"
                                 ng-bind="dlOtherLosPvt.oue_year_2 =
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].oue_year_2 +
-                            dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_2 ">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].oue_year_2 +
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_2 ">
                             </td>
                             <td height="19" width="63" ng-model="dlOtherLosPvt.tot_los" ng-bind="dlOtherLosPvt.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt)">
                             </td>
@@ -1006,7 +979,6 @@
                     </table>
                     <br>
                     <div class="pull-right">
-                       
                         <button type="button" class="btn btn-info">Clear</button>
                         <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
                             Edit
@@ -1020,21 +992,14 @@
                     </div>
                     <br><br>
                 </div>
-
-
             </div>
         </div>
-
-
         <div class="col-md-12">
-
-
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 ×
                             </button>
@@ -1049,13 +1014,11 @@
                                 <div class="col-md-10">
                                     <input id="textinput" name="textinput" type="text" placeholder=""
                                            class="form-control input-md">
-
                                 </div>
                             </div>
                         </div>
                         <br><br>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
@@ -1064,19 +1027,42 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
         </div>
     </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
+    <!-- update the baseline Model -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Warning
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>Table 2. Land Transportation Assets</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-
-
 {% endblock content %}

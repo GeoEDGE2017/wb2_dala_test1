@@ -141,8 +141,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 
     $scope.dlGovnAdmnAsets = init_data;
 
-    $scope.changedValue=function getBsData(selectedValue) {
-
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -172,12 +171,53 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log(response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                generateRefencedData();
-                console.log($scope.dlGovnAdmnAsets);
+                console.log($scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    generateRefencedData();
+                    console.log($scope.dlGovnAdmnAsets);
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BiaGacLandOequipment','BiaGacLandStructure','BiaGacLandPbuilding','BiaGacLandMachinery'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_3',
+                            'sector':'transport_land'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
             }, function errorCallback(response) {
                 console.log(response);
             });
@@ -293,9 +333,9 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 }
 
     $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlGovnAdmnAsets = init_data;
-}
+        $scope.is_edit = false;
+        $scope.dlGovnAdmnAsets = init_data;
+    }
 
         $scope.calTotal=function(arr){
         var finaltotal = 0;
@@ -357,7 +397,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dlGovnAdmnAsets = angular.copy(init_data);
     }

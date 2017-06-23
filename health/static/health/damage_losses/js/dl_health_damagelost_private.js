@@ -145,7 +145,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'null') {
-                    $scope.currentBaselineDate = "Baseline data not available in Table_3";
+                    $scope.currentBaselineDate = "Baseline data not available in  Table 3: Baseline Information of Unit Cost of the Ministry Health System in a District";
                 }
                 else {
                     var result = response.data;
@@ -260,6 +260,73 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 console.log(data);
             })
         }
+
+        if($scope.incident && $scope.district ) {
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BucMarStructure', 'BucMarSupplies', 'BucMarMequipment', 'BucMarOassets', 'BucMarcStructures', 'BucMarcCrpm', 'BucMarcMequipment', 'BucMarcOassets'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_3',
+                    'sector': 'health'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                console.log('*', response);
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+                });
+
+                console.log('*', $scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
+
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_3',
+                            'sector': 'health'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
+            }, function errorCallback(response) {
+                console.log('baseline tables data retrieving error');
+                console.log(response);
+            });
+        }
     }
 
     //Clear Function
@@ -269,43 +336,45 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
     }
 
-    $scope.addPrivateClinicObject = function() {
-        var new_row_one =[ {
-            pvt_clinics : 'Structure',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }, {
-            pvt_clinics : 'Supplies and Materials',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }, {
-            pvt_clinics : 'Equipment',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }, {
-            pvt_clinics : 'Total',
-            est_replacement_cost : null,
-            est_repair_cost : null,
-            total_damages : null,
-            est_losses_y1 : null,
-            est_losses_y2 : null,
-            total_losses : null,
-        }]
-        $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.push(new_row_one);
+    $scope.addPrivateClinicObject = function(form) {
+        if(form.$valid) {
+            var new_row_one =[ {
+                pvt_clinics : 'Structure',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }, {
+                pvt_clinics : 'Supplies and Materials',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }, {
+                pvt_clinics : 'Equipment',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }, {
+                pvt_clinics : 'Total',
+                est_replacement_cost : null,
+                est_repair_cost : null,
+                total_damages : null,
+                est_losses_y1 : null,
+                est_losses_y2 : null,
+                total_losses : null,
+            }]
+            $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.unshift(new_row_one);
 
-        console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+            console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+        }
     }
 
     $scope.Test = function() {

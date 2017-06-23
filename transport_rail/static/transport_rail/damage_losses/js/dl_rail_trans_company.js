@@ -202,7 +202,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
         }
 
         if($scope.incident && $scope.district ){
-
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -219,12 +218,51 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log(response);
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
 
                 console.log($scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
 
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BsMovingAst','BsEquipMachineryAst','BsMatSuppliesAst','BsStructuresAst','BsBuildingAst'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'sector':'transport_rail',
+                            'table_name': 'Table_1'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
             }, function errorCallback(response) {
 
                 console.log(response);
@@ -239,45 +277,44 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.saveDlData = function(form) {
         console.log($scope.company);
         $scope.submitted = true;
-        if(form.$valid){
-        if($scope.company){
+        if(form.$valid) {
+            if($scope.company) {
+                $http({
+                    method: 'POST',
+                    url: '/dl_save_data',
+                   contentType: 'application/json; charset=utf-8',
+                    data: angular.toJson({
+                        'table_data': $scope.dlIncomeRailCompany,
+                        'com_data': {
+                           'district_id': $scope.district.district__id,
+                            'incident_id' : $scope.incident,
+                            'company_id' : $scope.company.id,
 
-            $http({
-                method: 'POST',
-                url: '/dl_save_data',
-               contentType: 'application/json; charset=utf-8',
-                data: angular.toJson({
-                    'table_data': $scope.dlIncomeRailCompany,
-                    'com_data': {
-                       'district_id': $scope.district.district__id,
-                        'incident_id' : $scope.incident,
-                        'company_id' : $scope.company.id,
-
-                    },
-                    'is_edit':$scope.is_edit
-                }),
-                dataType: 'json',
-            }).then(function successCallback(response) {
-                if(response.data == 'False')
-                    $scope.is_valid_data = false;
-               else
-                    $("#modal-container-239453").modal('show');
-            }, function errorCallback(response) {
-                console.log(response);
-            });
+                        },
+                        'is_edit':$scope.is_edit
+                    }),
+                    dataType: 'json',
+                }).then(function successCallback(response) {
+                    if(response.data == 'False')
+                        $scope.is_valid_data = false;
+                    else
+                        $("#modal-container-239453").modal('show');
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
             }
         }
     }
 
     $scope.calTotal=function(arr) {
     var finaltotal = 0;
-     console.log(arr);
+//     console.log(arr);
     angular.forEach(arr, function(value, key) {
      if(value.asset != 'Total'){
      finaltotal = finaltotal + value.tot_damages ;
      }
     })
-      console.log(finaltotal);
+//      console.log(finaltotal);
     return finaltotal;
     }
 

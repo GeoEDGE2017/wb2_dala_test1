@@ -6,6 +6,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.selectedFirm;
+    $scope.editedFirmName;
     $scope.new_firm = {id: null, name: null, ownership: null, district_id: null};
     $scope.ownership;
     $scope.firms = [];
@@ -50,7 +51,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
         if($scope.district && $scope.baselineDate && $scope.selectedFirm){
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -171,16 +172,26 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     }
 
     $scope.saveEditFirm = function(form) {
-        $http({
-            method: "POST",
-            url: "/base_line/edit_firm",
-            data: angular.toJson({
-                'firm_name':  $scope.selectedFirm,
-                'firm_id' :$scope.selectedFirm.id,
-            }),
-        }).success(function(data) {
-            console.log(data);
-        })
+        console.log($scope.editedFirmName);
+        if(!angular.isUndefined($scope.editedFirmName) || $scope.editedFirmName === null) {
+            console.log('2');
+            $http({
+                method: "POST",
+                url: "/edit_firm",
+                data: angular.toJson({
+                    'firm_name': $scope.editedFirmName,
+                    'firm_id' : $scope.selectedFirm.id,
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.editedFirmName = null;
+                $scope.fetchFirms();
+                $("#modal-container-469840").modal('hide');
+            })
+        }
+        else {
+            alert('@@@');
+        }
     }
 
     $scope.fetchFirms = function() {

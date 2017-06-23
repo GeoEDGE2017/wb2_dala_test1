@@ -2,7 +2,6 @@
 var app = angular.module('dlAirTrnspotationApp', [])
 
 app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
@@ -308,7 +307,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
 
     $scope.dlAirTrnspotation = angular.copy(init_data);
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -338,25 +337,52 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
 
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log(response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-                var is_null = false;
-//                console.log(data);
 
+                console.log($scope.bs_data);
+                var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
-                    if(value==null) {
+                    console.log('value ', value);
+                    if(value == null) {
                         is_null = true;
                     }
                 })
 
                 if(is_null == true) {
-                    $("#modal-container-239455").modal('show');
+                    $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
                 }
                 else {
-                    console.log($scope.bs_data);
                     generateRefencedData();
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures', 'BsAstAirEmployment', 'BsAstAirOthers'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_1',
+                            'sector':'transport_air',
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
                 }
             });
         }

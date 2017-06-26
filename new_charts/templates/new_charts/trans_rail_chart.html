@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<main class="main" ng-app="housingChartApp" ng-controller="HousingChartController">
+<main class="main" ng-app="transRailChartApp" ng-controller="TransRailChartController">
 
     <div class="container-fluid">
         <br>
@@ -76,14 +76,29 @@
                     </div>
                 </div>
             </div>
+            <!--<div class="col-md-6">-->
+                <!--<div class="card" ng-if="!checkIfNull()">-->
+                    <!--<div class="card-header">-->
+                        <!--Total Public & Private Damages-->
+                    <!--</div>-->
+                    <!--<div class="card-block">-->
+                        <!--<canvas id="pie1" class="chart chart-pie"-->
+                                <!--chart-data="totalDamagePrivatePublic" chart-labels="totalDamagePrivatePublicSeries"-->
+                                <!--chart-options="options">-->
+                        <!--</canvas>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+            <!--</div>-->
             <div class="col-md-6">
                 <div class="card" ng-if="!checkIfNull()">
                     <div class="card-header">
-                        Number of Totally Damaged and Partially Damaged
+                        Total Losses
                     </div>
                     <div class="card-block">
                         <canvas id="pie" class="chart chart-pie"
-                                chart-data="totalDamagePartialDamage" chart-labels="totalDamagePartialDamageSeries"
+                                chart-data="totalLosses" chart-labels="totalLossesSeries"
                                 chart-options="options">
                         </canvas>
                     </div>

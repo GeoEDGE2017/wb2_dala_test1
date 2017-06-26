@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<main class="main" ng-app="housingChartApp" ng-controller="HousingChartController">
+<main class="main" ng-app="tourismChartApp" ng-controller="TourismChartController">
 
     <div class="container-fluid">
         <br>
@@ -20,7 +20,7 @@
                             <label class="col-xs-4" for="cvv">Incident</label>
                             <div class="col-sm-8">
                                 <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                        class="form-control" ng-change="changedValue(true);fetchData();"
                                         style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
@@ -49,16 +49,7 @@
                         </div>
 
                     </div>
-
-
-                </div>
-
-
-            </div>
-        </div>
-
-
-        <div class="row">
+                     <div class="row">
             <div class="col-md-6">
                 <div class="card" ng-if="!checkIfNull()">
                     <div class="card-header">
@@ -76,23 +67,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card" ng-if="!checkIfNull()">
-                    <div class="card-header">
-                        Number of Totally Damaged and Partially Damaged
-                    </div>
-                    <div class="card-block">
-                        <canvas id="pie" class="chart chart-pie"
-                                chart-data="totalDamagePartialDamage" chart-labels="totalDamagePartialDamageSeries"
-                                chart-options="options">
-                        </canvas>
-                    </div>
+
+
+
+        </div>
+
+
+
                 </div>
 
 
             </div>
-
-
         </div>
 
 

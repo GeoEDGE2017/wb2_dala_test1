@@ -115,6 +115,7 @@ class DlTypeLos(models.Model):
     tot_los = models.FloatField(blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.TimeField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     created_date = models.TimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     company_id = models.ForeignKey(Company, db_column='company_id', blank=True, null=True)

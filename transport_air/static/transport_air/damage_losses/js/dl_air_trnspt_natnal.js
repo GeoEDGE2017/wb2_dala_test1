@@ -89,8 +89,6 @@ app.controller("DlSummeryTANatController", ['$scope','$http',function ($scope,$h
         $scope.finaltotalprivate  = $scope.totaldpvt+ $scope.totalyear1pvt + $scope.totalyear2pvt;
 
 
-
-
     }
 
 

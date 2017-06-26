@@ -9,6 +9,9 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
     $scope.Districts=[];
     $scope.dmLosTransAirNation = null;
     $scope.total = 0;
+    $scope.finaltotalTotal = 0;
+    $scope.finaltotalYear1 =0;
+    $scope.finaltotalYear2 =0;
 
     $scope.loadData = function(form)
     {
@@ -17,36 +20,42 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
         $scope.is_edit = true;
         $scope.submitted = true;
         console.log($scope.incident);
-//            $http({
-//            method: "POST",
-//            url: '/dl_fetch_district_disagtn',
-//            data: angular.toJson({
-//            'table_name':'Table_4',
-//            'sector': 'transport_rail',
-//            'com_data': {
-//                    'incident': $scope.incident,
-//                  },
-//                   }),
-//            }).success(function(data) {
-//            $scope.dmLosTransAirNation = data;
-//            })
-
             $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',
             data: angular.toJson({
-            'table_name':'Table_5',
+            'table_name':'Table_4',
             'sector': 'transport_rail',
             'com_data': {
                     'incident': $scope.incident,
                   },
                    }),
             }).success(function(data) {
-            console.log('loading ', data);
-            $scope.dmLosTransAirnew = data;
+            $scope.dmLosTransAirNation = data;
+            console.log('table 4',data);
             })
+
+            $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+            'table_name':  'Table_5',
+            'sector':'transport_rail',
+            'com_data': {
+
+                    'incident': $scope.incident,
+                  },
+                   'is_edit':$scope.is_edit
+                   }),
+            }).success(function(data) {
+
+            $scope.dlTypeLossRail = data;
+             console.log('table 5',data);
+            })
+
             }
     }
+
    $scope.checkIfNull = function(){
         var isNull = $scope.dmLosTransAirNation ? angular.equals({}, $scope.dmLosTransAirNation.transport_rail.Table_4) : true;
         return isNull;

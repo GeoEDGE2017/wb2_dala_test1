@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<main class="main" ng-app="housingChartApp" ng-controller="HousingChartController">
+<main class="main" ng-app="transSummaryChartApp" ng-controller="TransSummaryChartController">
 
     <div class="container-fluid">
         <br>
@@ -59,38 +59,38 @@
 
 
         <div class="row">
-            <div class="col-md-6">
-                <div class="card" ng-if="!checkIfNull()">
-                    <div class="card-header">
+            <!--<div class="col-md-6">-->
+                <!--<div class="card" ng-if="!checkIfNull()">-->
+                    <!--<div class="card-header">-->
 
-                        Total Damages and Total Losses
+                        <!--Total Damages and Total Losses-->
 
-                    </div>
-                    <div class="card-block">
-                        <div class="chart-wrapper">
-                            <canvas id="bar" class="chart chart-bar"
-                                    chart-data="tableDamageLosses" chart-labels="provincenames"
-                                    chart-series="damageLossesSeries">
-                            </canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card" ng-if="!checkIfNull()">
-                    <div class="card-header">
-                        Number of Totally Damaged and Partially Damaged
-                    </div>
-                    <div class="card-block">
-                        <canvas id="pie" class="chart chart-pie"
-                                chart-data="totalDamagePartialDamage" chart-labels="totalDamagePartialDamageSeries"
-                                chart-options="options">
-                        </canvas>
-                    </div>
-                </div>
+                    <!--</div>-->
+                    <!--<div class="card-block">-->
+                        <!--<div class="chart-wrapper">-->
+                            <!--<canvas id="bar" class="chart chart-bar"-->
+                                    <!--chart-data="tableDamageLosses" chart-labels="provincenames"-->
+                                    <!--chart-series="damageLossesSeries">-->
+                            <!--</canvas>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-6">-->
+                <!--<div class="card" ng-if="!checkIfNull()">-->
+                    <!--<div class="card-header">-->
+                        <!--Number of Totally Damaged and Partially Damaged-->
+                    <!--</div>-->
+                    <!--<div class="card-block">-->
+                        <!--<canvas id="pie" class="chart chart-pie"-->
+                                <!--chart-data="totalDamagePartialDamage" chart-labels="totalDamagePartialDamageSeries"-->
+                                <!--chart-options="options">-->
+                        <!--</canvas>-->
+                    <!--</div>-->
+                <!--</div>-->
 
 
-            </div>
+            <!--</div>-->
 
 
         </div>

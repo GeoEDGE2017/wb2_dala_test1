@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<main class="main" ng-app="housingChartApp" ng-controller="HousingChartController">
+<main class="main" ng-app="industryServicesChartApp" ng-controller="IndustryServicesController">
 
     <div class="container-fluid">
         <br>
@@ -79,11 +79,26 @@
             <div class="col-md-6">
                 <div class="card" ng-if="!checkIfNull()">
                     <div class="card-header">
-                        Number of Totally Damaged and Partially Damaged
+                        Number of Formal and Informal Damages
                     </div>
                     <div class="card-block">
                         <canvas id="pie" class="chart chart-pie"
-                                chart-data="totalDamagePartialDamage" chart-labels="totalDamagePartialDamageSeries"
+                                chart-data="totalDamage" chart-labels="totalDamageSeries"
+                                chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+                        Number of Formal and Informal Losses
+                    </div>
+                    <div class="card-block">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="totalLosses" chart-labels="totalLossesSeries"
                                 chart-options="options">
                         </canvas>
                     </div>

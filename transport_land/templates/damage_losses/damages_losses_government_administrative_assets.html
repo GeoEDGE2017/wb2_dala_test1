@@ -12,21 +12,33 @@
 <main class="main" ng-app="dlGovnAdmnAsetsApp" ng-controller="dlGovnAdmnAsetsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Damages and Losses to Government Agency in Charge of Land Transportation</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 6. Damages and Losses to Government Agency in Charge of Land Transportation
+            </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_govn_admn_asets">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Partially Damaged </a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 Losses </a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Damages</a></li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Partially Damaged</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 Losses</a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
@@ -159,7 +171,7 @@
                     <table class="table table-bordered">
                         <tbody>
                         <tr height="19">
-             <td class="trheadc1" colspan="6" height="19" width="739" >
+                <td class="trheadc1" colspan="6" height="19" width="739" >
                                 Partially Damaged
                             </td>
                         </tr>
@@ -449,5 +461,37 @@
     </div>
     </div>
     <!-- /.conainer-fluid -->
+    <!-- update the baseline Model -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Warning
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>Table 3. Government Administrative Assets</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock content %}

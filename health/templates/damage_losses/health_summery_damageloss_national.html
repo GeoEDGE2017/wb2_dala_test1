@@ -3,45 +3,50 @@
 {% load static %}
 <script>
   $(document).ready(function() {
-
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-
   });
 </script>
-
 <!-- Main content -->
 <main class="main" ng-app="dlHealthSummaryDamageNationwideApp"
       ng-controller="DlHealthSummaryDamageNationwideController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:health_main' %}">Health Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 10: Summary of Damage and Losses in the Health Sector Nationwide
             </span>
         </li>
-          <li style="float:right;"> <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Public Sector</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Private Sector</a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 Total Damages and Losses</a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Public Sector</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Private Sector</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 Total Damages and Losses</a>
+                </li>
             </ul>
-
             <div id="myTabContent" class="tab-content">
-                <div class="tab-pane active" id="step1" ng-form
-                     name="form_health_summary_damageloss_nationals">
- <span style="color:red" ng-show="submitted && form_health_summary_damageloss_nationals.$error.required">
-                                       Please fill all required fields
-                     </span>
+                <div class="tab-pane active" id="step1" ng-form name="form_health_summary_damageloss_nationals">
+                    <span style="color:red" ng-show="submitted && form_health_summary_damageloss_nationals.$error.required">
+                        Please fill all required fields
+                    </span>
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
-                     </span>
+                    </span>
                     <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
                         <colgroup>
                             <col width="202"/>
@@ -50,7 +55,6 @@
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-
                             </td>
                             <td colspan="6" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box"
@@ -58,10 +62,8 @@
                                 Please select Incident
                                 </span>
                             </td>
-
                         </tr>
                         <tr class="trhead1">
-
                             <td colspan="2" style="padding-left:5px;">
                                 Incident
                             </td>
@@ -70,27 +72,22 @@
                                         class="form-control"
                                         style="width:100%;font-weight:400;"
                                         ng-change="changedValue(incident);fetchDlData(form_health_summary_damageloss_nationals);" required>
-
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>{{incident.disaster_type.name}}
                                         {{incident.reported_date_time}}
                                     </option>
                                     {% endfor %}
-
                                 </select>
-
                             </td>
                             <td>
-                                <!--<button class="btn btn-info btn-block"-->
-                                        <!--ng-click="fetchDlData(form_health_summary_damageloss_nationals)">Load-->
-                                <!--</button>-->
+                                <button class="btn btn-info btn-block" ng-click="test()">
+                                    Load
+                                </button>
                             </td>
-
                         </tr>
                         </tbody>
                     </table>
-
                     <table class="table table-bordered" ng-if="!checkIfNull()">
                         <tbody>
                         <tr height="34" class="trheadc1">
@@ -132,8 +129,6 @@
                     <div style="height:400px;overflow:auto;" id="boxscroll1">
                         <table ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10" ng-if="!checkIfNull()" class="table table-bordered">
                             <tbody>
-
-
                             <tr height="20" class="trhead">
                                 <td ng-bind="key" width="202" height="20" style="width:20%;">
                                 </td>
@@ -171,9 +166,9 @@
                                 <td width="90">
                                 </td>
                             </tr>
-                            <!--Table 10 :table four:tab1  first row-->
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Teaching Hospitals
+                                <td width="202" height="20" class="tdpa">
+                                    Teaching Hospitals
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].teaching_hospital"></td>
@@ -185,7 +180,8 @@
                                 data.health.Table_10[key].DmhLosNational[1].teaching_hospital"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Provincial General Hospitals
+                                <td width="202" height="20" class="tdpa">
+                                    Provincial General Hospitals
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital"></td>
@@ -197,7 +193,8 @@
                                 data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">District General Hospitals
+                                <td width="202" height="20" class="tdpa">
+                                    District General Hospitals
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].district_general_hospital"></td>
@@ -209,39 +206,42 @@
                                 data.health.Table_10[key].DmhLosNational[1].district_general_hospital"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Total
+                                <td width="202" height="20" class="tdpa">
+                                    Total
                                 </td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital "></td>
+                                <td width="90" ng-bind="sumFunc3(data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc3(data.health.Table_10[key].DmhPafNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].district_general_hospital)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc3(data.health.Table_10[key].DmhPafNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].district_general_hospital)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc3(data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital)"></td>
 
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhPafNational[0].district_general_hospital "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhPafNational[1].district_general_hospital "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].teaching_hospital + data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital + data.health.Table_10[key].DmhLosNational[0].district_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital "></td>
-
+                                <td width="90" ng-bind="sumFunc3(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc3(data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital)">
+                                </td>
+                                <td width="90"
+                                    ng-bind="sumFunc6(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                        data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                        data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                        data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                        data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                        data.health.Table_10[key].DmhLosNational[1].district_general_hospital)">
+                                </td>
                             </tr>
-
                             <tr height="20" class="trheadc">
                                 <td width="202" height="20">
                                     MOH
@@ -261,10 +261,9 @@
                                 <td width="90">
                                 </td>
                             </tr>
-
-                            <tr height="20"
-                            >
-                                <td width="202" height="20" class="tdpa">Offices
+                            <tr height="20">
+                                <td width="202" height="20" class="tdpa">
+                                    Offices
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].office"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].office"></td>
@@ -275,9 +274,9 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].office +
                                 data.health.Table_10[key].DmhLosNational[1].office"></td>
                             </tr>
-                            </tr>
                             <tr height="20">
-                                <td width="202"height="20" class="tdpa">Others
+                                <td width="202"height="20" class="tdpa">
+                                    Others
                                 </td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].other"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].other"></td>
@@ -289,30 +288,33 @@
                                 data.health.Table_10[key].DmhLosNational[1].other"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Total
+                                <td width="202" height="20" class="tdpa">
+                                    Total
                                 </td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].office +
-                                data.health.Table_10[key].DmhLmhMohNational[0].other"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].office +
-                                 data.health.Table_10[key].DmhPafNational[0].other "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[1].office +
-                                 data.health.Table_10[key].DmhPafNational[1].other "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesMohNational[0].office +
-                                data.health.Table_10[key].DmhDamagesMohNational[0].other"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].office + data.health.Table_10[key].DmhLosNational[0].other"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].office + data.health.Table_10[key].DmhLosNational[1].other"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].office + data.health.Table_10[key].DmhLosNational[0].other +
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other "></td>
+                                <td width="90" ng-bind="sumFunc2(data.health.Table_10[key].DmhLmhMohNational[0].office,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].other)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc2(data.health.Table_10[key].DmhPafNational[0].office,
+                                    data.health.Table_10[key].DmhPafNational[0].other)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc2(data.health.Table_10[key].DmhPafNational[1].office,
+                                    data.health.Table_10[key].DmhPafNational[1].other)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc2(data.health.Table_10[key].DmhDamagesMohNational[0].office,
+                                    data.health.Table_10[key].DmhDamagesMohNational[0].other)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc2(data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc2(data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc4(data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other)">
+                                </td>
                             </tr>
-
                             <tr height="20" class="trheadc">
                                 <td width="202" height="20">
                                     Other Medical Facilities
@@ -333,11 +335,10 @@
                                 </td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Base Hospital
+                                <td width="202" height="20" class="tdpa">
+                                    Base Hospital
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital"></td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].base_hospital"></td>
@@ -346,11 +347,10 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].base_hospital + data.health.Table_10[key].DmfLosNational[1].base_hospital"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Divisional Hospital
+                                <td width="202" height="20" class="tdpa">
+                                    Divisional Hospital
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital"></td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital"></td>
@@ -359,11 +359,10 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].divisional_hospital + data.health.Table_10[key].DmfLosNational[1].divisional_hospital"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Rural Hospital
+                                <td width="202" height="20" class="tdpa">
+                                    Rural Hospital
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital"></td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].rural_hospital"></td>
@@ -372,11 +371,10 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].rural_hospital +data.health.Table_10[key].DmfLosNational[1].rural_hospital"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Central Dispensary
+                                <td width="202" height="20" class="tdpa">
+                                    Central Dispensary
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary"></td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].central_dispensary"></td>
@@ -385,11 +383,10 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].central_dispensary +data.health.Table_10[key].DmfLosNational[1].central_dispensary"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">PMCUs
+                                <td width="202" height="20" class="tdpa">
+                                    PMCUs
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].pmcus"></td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].pmcus"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].pmcus"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].pmcus"></td>
@@ -398,11 +395,10 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].pmcus + data.health.Table_10[key].DmfLosNational[1].pmcus"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">PHCCs
+                                <td width="202" height="20" class="tdpa">
+                                    PHCCs
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].phccs"></td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].phccs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].phccs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].phccs"></td>
@@ -411,11 +407,10 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].phccs +data.health.Table_10[key].DmfLosNational[1].phccs"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">MCHCs
+                                <td width="202" height="20" class="tdpa">
+                                    MCHCs
                                 </td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].mchcs"></td>
-
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].mchcs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].mchcs"></td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].mchcs"></td>
@@ -424,315 +419,304 @@
                                 <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].mchcs + data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">Total
+                                <td width="202" height="20" class="tdpa">
+                                    Total
                                 </td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital +
-                                data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].pmcus+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].phccs+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].mchcs
-                                "></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].pmcus+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].phccs+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].mchcs"></td>
-
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].pmcus+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].phccs+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].mchcs"></td>
-
-
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfDamagesNational[0].base_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfDamagesNational[0].pmcus+
-                                data.health.Table_10[key].DmfDamagesNational[0].phccs+
-                                data.health.Table_10[key].DmfDamagesNational[0].mchcs"></td>
-
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
-
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs +
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
-
+                                <td width="90" ng-bind="sumFunc7(data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].pmcus,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].phccs,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc7(data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].pmcus,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].phccs,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc7(data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].pmcus,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].phccs,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc7(data.health.Table_10[key].DmfDamagesNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfDamagesNational[0].pmcus,
+                                    data.health.Table_10[key].DmfDamagesNational[0].phccs,
+                                    data.health.Table_10[key].DmfDamagesNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc7(data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc7(data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc14(data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs)">
+                                </td>
                             </tr>
                             <tr height="20">
-                                <td width="202" height="20" class="tdpa">ToTAL
+                                <td width="202" height="20" class="tdpa">
+                                    TOTAL
                                 </td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].office +
-                                data.health.Table_10[key].DmhLmhMohNational[0].other+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital +
-                                data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].pmcus+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].phccs+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhPafNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhPafNational[0].office +
-                                data.health.Table_10[key].DmhPafNational[0].other+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].pmcus+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].phccs+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhPafNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhPafNational[1].office +
-                                data.health.Table_10[key].DmhPafNational[1].other+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].pmcus+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].phccs+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].mchcs
-                                "></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhDamagesMohNational[0].office +
-                                data.health.Table_10[key].DmhDamagesMohNational[0].other+
-                                data.health.Table_10[key].DmfDamagesNational[0].base_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfDamagesNational[0].pmcus+
-                                data.health.Table_10[key].DmfDamagesNational[0].phccs+
-                                data.health.Table_10[key].DmfDamagesNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other +
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs +
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].office,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].other,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].pmcus,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].phccs,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhPafNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].office,
+                                    data.health.Table_10[key].DmhPafNational[0].other,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].pmcus,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].phccs,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhPafNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].office,
+                                    data.health.Table_10[key].DmhPafNational[1].other,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].pmcus,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].phccs,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhDamagesMohNational[0].office,
+                                    data.health.Table_10[key].DmhDamagesMohNational[0].other,
+                                    data.health.Table_10[key].DmfDamagesNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfDamagesNational[0].pmcus,
+                                    data.health.Table_10[key].DmfDamagesNational[0].phccs,
+                                    data.health.Table_10[key].DmfDamagesNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc10(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other) +
+                                    sumFunc14(data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs)">
+                                </td>
                             </tr>
-
                             </tbody>
-
                             <tr height="20">
-                                <td class="boldash" width="202" height="20" class="tdpa">GRAND TOTAL
+                                <td class="boldash" width="202" height="20" class="tdpa">
+                                    GRAND TOTAL
                                 </td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].office +
-                                data.health.Table_10[key].DmhLmhMohNational[0].other+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital +
-                                data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].pmcus+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].phccs+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhPafNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhPafNational[0].office +
-                                data.health.Table_10[key].DmhPafNational[0].other+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].pmcus+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].phccs+
-                                data.health.Table_10[key].DmfOmfTpaNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhPafNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhPafNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhPafNational[1].office +
-                                data.health.Table_10[key].DmhPafNational[1].other+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].pmcus+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].phccs+
-                                data.health.Table_10[key].DmfOmfTpaNational[1].mchcs
-                                "></td>
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhDamagesMohNational[0].office +
-                                data.health.Table_10[key].DmhDamagesMohNational[0].other+
-                                data.health.Table_10[key].DmfDamagesNational[0].base_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfDamagesNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfDamagesNational[0].pmcus+
-                                data.health.Table_10[key].DmfDamagesNational[0].phccs+
-                                data.health.Table_10[key].DmfDamagesNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs"></td>
-
-                                <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
-
+                                <td width="90" ng-bind="sumFunc5(data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].office,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].pmcus,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].phccs,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc5(data.health.Table_10[key].DmhPafNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[0].office,
+                                    data.health.Table_10[key].DmhPafNational[0].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfOmfTpaNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].pmcus,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].phccs,
+                                    data.health.Table_10[key].DmfOmfTpaNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc5(data.health.Table_10[key].DmhPafNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhPafNational[1].office,
+                                    data.health.Table_10[key].DmhPafNational[1].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfOmfTpaNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].pmcus,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].phccs,
+                                    data.health.Table_10[key].DmfOmfTpaNational[1].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc3(data.health.Table_10[key].DmhDamagesNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhDamagesNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhDamagesNational[0].district_general_hospital) +
+                                    sumFunc2(data.health.Table_10[key].DmhDamagesMohNational[0].office,
+                                    data.health.Table_10[key].DmhDamagesMohNational[0].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfDamagesNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfDamagesNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfDamagesNational[0].pmcus,
+                                    data.health.Table_10[key].DmfDamagesNational[0].phccs,
+                                    data.health.Table_10[key].DmfDamagesNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs)">
+                                </td>
                                 <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other +
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs +
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
-                            </tr>
+                                    data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital +
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
+                                    data.health.Table_10[key].DmhLosNational[0].office +
+                                    data.health.Table_10[key].DmhLosNational[0].other +
+                                    data.health.Table_10[key].DmhLosNational[1].office +
+                                    data.health.Table_10[key].DmhLosNational[1].other+
+                                    data.health.Table_10[key].DmfLosNational[0].base_hospital+
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital+
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary+
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus+
+                                    data.health.Table_10[key].DmfLosNational[0].phccs+
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs +
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital+
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital+
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary+
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus+
+                                    data.health.Table_10[key].DmfLosNational[1].phccs+
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs">
+                                </td>
                             </tr>
                         </table>
                         <br>
-                        <a href='#step2' id="s1" data-toggle="tab" class="btn btn-sm btn-info pull-right"> Fill Private
-                            Sector
-                            Informations</a>
+                        <a href='#step2' id="s1" data-toggle="tab" class="btn btn-sm btn-info pull-right">
+                            Fill Private Sector Informations
+                        </a>
                     </div>
-
                 </div>
-
                 <div class="tab-pane" id="step2">
-
                     <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
                         <colgroup>
                             <col width="224"/>
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-
                         <tr height="34" class="trheadc1">
                             <td rowspan="2" width="243" height="54" style="text-align:left;padding-left:5px;">
                                 Facilities and Assets
@@ -770,172 +754,148 @@
                         </tbody>
                     </table>
                     <div style="height:400px;overflow:auto;">
-                        <table
-                                class="table table-bordered" ng-if="!checkIfNull()">
-                            <tbody>
-
-                            <tr height="20" class="trheadc" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-                                <td ng-bind="key" width="202" height="20">
-                                </td>
-                                <td width="90">
-                                </td>
-                                <td width="90">
-                                </td>
-                                <td width="90">
-                                </td>
-                                <td width="90">
-                                </td>
-                                <td width="90">
-                                </td>
-                                <td width="90">
-                                </td>
-                                <td width="90">
-                                </td>
-                            </tr>
-                            <!--Table 10 :table two:tab1  first row-->
-                            <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-                                <td width="264" height="20" class="tdpa">Private Clinics
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 + data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
-                                </td>
-
-                            </tr>
-
-                            <!--Table 10 :table two:tab1  second row-->
-                            <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-                                <td
-                                        width="264" height="20" class="tdpa">Others
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].male">
-
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].female">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 + data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2" >
-
-                                </td>
-
-
-                            </tr>
-
-                            <!--Table 10 :table two:tab2  third row-->
-                            <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-
-                                <td width="264" height="20" class="boldash">Total
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 ">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-
-                                </td>
-
-
-                            </tr>
-
+                        <table class="table table-bordered" ng-if="!checkIfNull()">
+                            <tbody ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
+                                <tr height="20" class="trheadc">
+                                    <td ng-bind="key" width="202" height="20">
+                                    </td>
+                                    <td width="90">
+                                    </td>
+                                    <td width="90">
+                                    </td>
+                                    <td width="90">
+                                    </td>
+                                    <td width="90">
+                                    </td>
+                                    <td width="90">
+                                    </td>
+                                    <td width="90">
+                                    </td>
+                                    <td width="90">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td width="264" height="20" class="tdpa">
+                                        Private Clinics
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 + data.health.Table_10[key].DapBefPcNational[0].est_losses_y2">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td width="264" height="20" class="tdpa">
+                                        Others
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].male">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[2].female">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 + data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2" >
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td width="264" height="20" class="boldash">
+                                        Total
+                                    </td>
+                                    <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapPvtNational[1].num_affected_fac,
+                                        data.health.Table_10[key].DapPvtNational[2].num_affected_fac)">
+                                    </td>
+                                    <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapPvtNational[1].male,
+                                        data.health.Table_10[key].DapPvtNational[2].male)">
+                                    </td>
+                                    <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapPvtNational[1].female,
+                                        data.health.Table_10[key].DapPvtNational[2].female)">
+                                    </td>
+                                    <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost,
+                                        data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost)">
+                                    </td>
+                                    <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_losses_y1,
+                                        data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1)">
+                                    </td>
+                                    <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_losses_y2,
+                                        data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2)">
+                                    </td>
+                                    <td width="98" ng-bind="sumFunc5(data.health.Table_10[key].DapBefPcNational[0].est_losses_y1,
+                                        data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1,
+                                        data.health.Table_10[key].DapBefPcNational[0].est_losses_y2,
+                                        data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2, 0)">
+                                    </td>
+                                </tr>
+                                <tr height="20">
+                                    <td width="264" height="20" class="boldash">
+                                        TOTAL
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 ">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
+                                    </td>
+                                    <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 +
+                                    data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
+                                    </td>
+                                </tr>
                             </tbody>
-                            <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-
-                                <td width="264" height="20" class="boldash">TOTAL
+                            <tr height="20">
+                                <td width="264" height="20" class="boldash">
+                                    TOTAL
                                 </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">
-
-                                </td>
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 ">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-
-                                </td>
-
-                                <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-
-                                </td>
-
-
+                                <!--<td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac + data.health.Table_10[key].DapPvtNational[2].num_affected_fac">-->
+                                <!--</td>-->
+                                <!--<td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].male + data.health.Table_10[key].DapPvtNational[2].male">-->
+                                <!--</td>-->
+                                <!--<td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].female + data.health.Table_10[key].DapPvtNational[2].female">-->
+                                <!--</td>-->
+                                <!--<td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost + data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost">-->
+                                <!--</td>-->
+                                <!--<td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +-->
+                                <!--data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 ">-->
+                                <!--</td>-->
+                                <!--<td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +-->
+                                <!--data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">-->
+                                <!--</td>-->
+                                <!--<td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +-->
+                                <!--data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 +-->
+                                <!--data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +-->
+                                <!--data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">-->
+                                <!--</td>-->
                             </tr>
-
                         </table>
                         <br>
-                        <a href='#step3' id="s2" data-toggle="tab" class="btn btn-sm btn-info pull-right"> Fill Total
-                            Damages
-                            and Losses Informations</a>
-
+                        <a href='#step3' id="s2" data-toggle="tab" class="btn btn-sm btn-info pull-right">
+                            Fill Total Damages and Losses Informations
+                        </a>
                     </div>
                 </div>
-
                 <div class="tab-pane" id="step3">
                     <table class="table table-bordered" ng-if="!checkIfNull()">
                         <colgroup>
@@ -943,7 +903,6 @@
                             <col width="90" span="7"/>
                         </colgroup>
                         <tbody>
-
                         <tr height="20" class="trheadc1">
                             <td rowspan="2" width="202" height="40" style="text-align:left;padding-left:5px;">
                                 Ownership
@@ -967,249 +926,218 @@
                             </td>
                         </tr>
                         <!--Table 10 :table one:tab3  first row-->
-                        <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-                            <td width="264" height="20" class="tdpa">Public Sector
-                            </td>
-
-                            <td width="98" colspan="2" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].office +
-                                data.health.Table_10[key].DmhLmhMohNational[0].other+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital +
-                                data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].pmcus+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].phccs+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].mchcs"></td>
-
-
-                            </td>
-                            <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs"></td>
-
-                            <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs"></td>
-
-                            <td width="98" colspan="2" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].office +
-                                data.health.Table_10[key].DmhLmhMohNational[0].other+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital +
-                                data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].pmcus+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].phccs+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].mchcs +
-                                data.health.Table_10[key].DmhLosNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs +
-                                data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs">
-
-                            </td>
-
-
-                        </tr>
-                        <!--Table 10 :table one:tab3  second row-->
-                        <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-
-                            <td
-                                    width="264" height="20" class="tdpa">Private Sector
-
-                            </td>
-
-                            <td width="98" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac +
-                            data.health.Table_10[key].DapPvtNational[2].num_affected_fac">
-
-                            </td>
-                            <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 ">
-
-                            </td>
-
-                            <td width="98" ng-bind="data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-
-                            </td>
-                            <td width="98" colspan="2" ng-bind="data.health.Table_10[key].DapPvtNational[1].num_affected_fac +
-                                data.health.Table_10[key].DapPvtNational[2].num_affected_fac +
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2" >
-
-                            </td>
-
-
-                        </tr>
-
-                        <!--Table 10 :table one:tab3  third row-->
-                        <tr height="20" ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
-
-                            <td
-                                    width="264" height="20" class="boldash">Total
-
-                            </td>
-
-                            <td width="98" colspan="2" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].office +
-                                data.health.Table_10[key].DmhLmhMohNational[0].other+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital +
-                                data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].pmcus+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].phccs+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].mchcs +
-                                data.health.Table_10[key].DapPvtNational[1].num_affected_fac +
-                                data.health.Table_10[key].DapPvtNational[2].num_affected_fac"></td>
-
-
-                            </td>
-                            <td width="90" ng-bind="data.health.Table_10[key].DmhLosNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs+
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1"></td>
-
-                            <td width="98" colspan="2" ng-bind="data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs +
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-
-                            </td>
-                            <td colspan="2" width="98" ng-bind="data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLmhMohNational[0].office +
-                                data.health.Table_10[key].DmhLmhMohNational[0].other+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital +
-                                data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].pmcus+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].phccs+
-                                data.health.Table_10[key].DmfTotAffectedNational[0].mchcs +
-                                data.health.Table_10[key].DmhLosNational[0].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[0].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[0].office +
-                                data.health.Table_10[key].DmhLosNational[0].other+
-                                data.health.Table_10[key].DmfLosNational[0].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[0].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[0].pmcus+
-                                data.health.Table_10[key].DmfLosNational[0].phccs+
-                                data.health.Table_10[key].DmfLosNational[0].mchcs +
-                                data.health.Table_10[key].DmhLosNational[1].teaching_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital +
-                                data.health.Table_10[key].DmhLosNational[1].district_general_hospital+
-                                data.health.Table_10[key].DmhLosNational[1].office +
-                                data.health.Table_10[key].DmhLosNational[1].other+
-                                data.health.Table_10[key].DmfLosNational[1].base_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].divisional_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].rural_hospital+
-                                data.health.Table_10[key].DmfLosNational[1].central_dispensary+
-                                data.health.Table_10[key].DmfLosNational[1].pmcus+
-                                data.health.Table_10[key].DmfLosNational[1].phccs+
-                                data.health.Table_10[key].DmfLosNational[1].mchcs+
-                                data.health.Table_10[key].DapPvtNational[1].num_affected_fac +
-                                data.health.Table_10[key].DapPvtNational[2].num_affected_fac +
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1 +
-                                data.health.Table_10[key].DapBefPcNational[0].est_losses_y2 +
-                                data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2">
-                            </td>
-
-
-                        </tr>
+                        <tbody ng-repeat="(key, value) in dlhealthsummarydamagenationwide.health.Table_10">
+                            <tr width="264" height="20" class="tdpa">
+                                <td ng-bind="key" width="202" height="20" style="width:20%;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="264" height="20" class="tdpa">
+                                    Public Sector
+                                </td>
+                                <td width="98" colspan="2" ng-bind="sumFunc5(data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].office,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].pmcus,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].phccs,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs)">
+                                </td>
+                                <td width="98" colspan="2" ng-bind="sumFunc5(data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].office,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].pmcus,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].phccs,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].mchcs) +
+                                    sumFunc12(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs) +
+                                    sumFunc12(data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="264" height="20" class="tdpa">
+                                    Private Sector
+                                </td>
+                                <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapPvtNational[1].num_affected_fac,
+                                    data.health.Table_10[key].DapPvtNational[2].num_affected_fac)">
+                                </td>
+                                <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_losses_y1,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1)">
+                                </td>
+                                <td width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_losses_y2,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2)">
+                                </td>
+                                <td width="98" colspan="2" ng-bind="sumFunc6(data.health.Table_10[key].DapPvtNational[1].num_affected_fac,
+                                    data.health.Table_10[key].DapPvtNational[2].num_affected_fac,
+                                    data.health.Table_10[key].DapBefPcNational[0].est_losses_y1,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1,
+                                    data.health.Table_10[key].DapBefPcNational[0].est_losses_y2,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="264" height="20" class="boldash">
+                                    Total
+                                </td>
+                                <td width="98" colspan="2" ng-bind="sumFunc5(data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].office,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].pmcus,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].phccs,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].mchcs) +
+                                    sumFunc2(data.health.Table_10[key].DapPvtNational[1].num_affected_fac,
+                                    data.health.Table_10[key].DapPvtNational[2].num_affected_fac)">
+                                </td>
+                                <td width="90" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs) +
+                                    sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_losses_y1,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1)">
+                                </td>
+                                <td width="98" colspan="2" ng-bind="sumFunc12(data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs) +
+                                    sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_losses_y2,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2)">
+                                </td>
+                                <td colspan="2" width="98" ng-bind="sumFunc5(data.health.Table_10[key].DmhLmhMohNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].office,
+                                    data.health.Table_10[key].DmhLmhMohNational[0].other) +
+                                    sumFunc7(data.health.Table_10[key].DmfTotAffectedNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].pmcus,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].phccs,
+                                    data.health.Table_10[key].DmfTotAffectedNational[0].mchcs) +
+                                    sumFunc12(data.health.Table_10[key].DmhLosNational[0].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[0].office,
+                                    data.health.Table_10[key].DmhLosNational[0].other,
+                                    data.health.Table_10[key].DmfLosNational[0].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[0].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[0].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[0].phccs,
+                                    data.health.Table_10[key].DmfLosNational[0].mchcs) +
+                                    sumFunc12(data.health.Table_10[key].DmhLosNational[1].teaching_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].provincial_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].district_general_hospital,
+                                    data.health.Table_10[key].DmhLosNational[1].office,
+                                    data.health.Table_10[key].DmhLosNational[1].other,
+                                    data.health.Table_10[key].DmfLosNational[1].base_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].divisional_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].rural_hospital,
+                                    data.health.Table_10[key].DmfLosNational[1].central_dispensary,
+                                    data.health.Table_10[key].DmfLosNational[1].pmcus,
+                                    data.health.Table_10[key].DmfLosNational[1].phccs,
+                                    data.health.Table_10[key].DmfLosNational[1].mchcs) +
+                                    sumFunc6(data.health.Table_10[key].DapPvtNational[1].num_affected_fac,
+                                    data.health.Table_10[key].DapPvtNational[2].num_affected_fac,
+                                    data.health.Table_10[key].DapBefPcNational[0].est_losses_y1,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1,
+                                    data.health.Table_10[key].DapBefPcNational[0].est_losses_y2,
+                                    data.health.Table_10[key].DapBefOtherNational[0].est_losses_y2)">
+                                </td>
+                            </tr>
+                        </tbody>
                         </tbody>
                     </table>
-
                     <div style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
-
-                            </tbody>
                         </table>
                         <div class="pull-right">
-
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-
-    </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>

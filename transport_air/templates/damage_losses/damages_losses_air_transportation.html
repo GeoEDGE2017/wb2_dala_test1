@@ -13,7 +13,6 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
         <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_air_main' %}">Transport Air Sector</a>
         </li>
         <li class="breadcrumb-item active">
@@ -21,12 +20,19 @@
                 Table 2. Damages and Losses to Air Transportation
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_air_trnspotation">
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 - Damages</a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 - Losses</a>
+            </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -69,7 +75,6 @@
                                 class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>{{incident.disaster_type.name}}
                                     {{incident.reported_date_time}}
                                 </option>
@@ -86,7 +91,6 @@
                             </select>
                         </td>
                     </tr>
-
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" width="218" height="38" style="width:27.8%;">
                             Assets
@@ -191,7 +195,6 @@
                                 dlAirDmgAircrafts.part_damaged_pvt * bs_data['BsAstAirAircrafts'][$index].fields.avg_repair_cost">
                             </td>
                         </tr>
-
                         <tr height="19" ng-repeat="dlAirDmgAircrafts in dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts" ng-if="dlAirDmgAircrafts.assets == 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgAircrafts.assets">
                             </td>
@@ -210,12 +213,10 @@
                             <td width="63" height="19" ng-model="dlAirDmgAircrafts.tot_dmg_pub"
                                 ng-bind="dlAirDmgAircrafts.tot_dmg_pub =
                                 $parent.calculatePubAirTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts)">
-
                             </td>
                             <td width="63" height="19" ng-model="dlAirDmgAircrafts.tot_dmg_pvt"
                                 ng-bind="dlAirDmgAircrafts.tot_dmg_pvt =
                                 $parent.calculatePvtAirTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts)">
-
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -313,7 +314,6 @@
                         <!--Materials and supplies-->
                         <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets != 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
-
                             </td>
                             <td colspan="2" width="126" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -346,7 +346,6 @@
                                 dlAirDmgSupplies.tot_destroyed_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost +
                                 dlAirDmgSupplies.part_damaged_pub  * bs_data['BsAstAirSupplies'][$index].fields.avg_repair_cost">
                             </td>
-
                             <td width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt" ng-if="dlAirDmgSupplies.assets =='Fuel (per Liter)'"
                                 ng-bind="dlAirDmgSupplies.tot_dmg_pvt =
                                 dlAirDmgSupplies.tot_destroyed_pvt  * bs_data['BsAstAirSupplies'][$index].fields.avg_replace_cost">
@@ -360,7 +359,6 @@
                         <!--Materials and supplies Total-->
                         <tr height="19" ng-repeat="dlAirDmgSupplies in dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies" ng-if="dlAirDmgSupplies.assets == 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgSupplies.assets">
-
                             </td>
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
@@ -413,7 +411,6 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlAirDmgOthers.part_damaged">
                             </td>
-
                             <td width="63" height="19" ng-model="dlAirDmgOthers.tot_dmg_pub"
                                 ng-bind="dlAirDmgOthers.tot_dmg_pub =
                                 dlAirDmgOthers.tot_destroyed * bs_data['BsAstAirOthers'][$index].fields.avg_replace_cost +
@@ -516,8 +513,7 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlAirDmgGstructures.pdmg_floor">
                             </td>
-
-                             <td width="63" height="19" ng-model="dlAirDmgGstructures.tot_pub"
+                            <td width="63" height="19" ng-model="dlAirDmgGstructures.tot_pub"
                                 ng-bind="dlAirDmgGstructures.tot_pub=
                                 dlAirDmgGstructures.tdest_floor_1 * bs_data['BsAstAirStructures'][$index].fields.repc_1_floor +
                                 dlAirDmgGstructures.tdest_floor_2_3 * bs_data['BsAstAirStructures'][$index].fields.repc_2_3_floor +
@@ -595,8 +591,6 @@
                         </tbody>
                     </table>
                 </div>
-
-
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
@@ -685,16 +679,15 @@
                                    class="form-control input-md" ng-model="dlAirLosFi.year_2_pvt">
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosFi.tot_los_pub"
-                        ng-bind="dlAirLosFi.tot_los_pub = dlAirLosFi.year_1_pub + dlAirLosFi.year_2_pub">
-
+                            ng-bind="dlAirLosFi.tot_los_pub = dlAirLosFi.year_1_pub + dlAirLosFi.year_2_pub">
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosFi.tot_los_pvt"
-                        ng-bind="dlAirLosFi.tot_los_pvt = dlAirLosFi.year_1_pvt + dlAirLosFi.year_2_pvt">
-
+                            ng-bind="dlAirLosFi.tot_los_pvt = dlAirLosFi.year_1_pvt + dlAirLosFi.year_2_pvt">
                         </td>
                     </tr>
                     <!--Total-->
-                    <tr height="19" ng-repeat="dlAirLosFi in dlAirTrnspotation.transport_air.Table_2.DlAirLosFi" ng-if="dlAirLosFi.type_los == 'Total'">
+                    <tr height="19" ng-repeat="dlAirLosFi in dlAirTrnspotation.transport_air.Table_2.DlAirLosFi"
+                        ng-if="dlAirLosFi.type_los == 'Total'">
                         <td class="tdpa" width="218" height="19" ng-bind="dlAirLosFi.type_los">
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosFi.year_1_pub"
@@ -707,32 +700,26 @@
                              ng-bind="dlAirLosFi.year_1_pvt =
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_1_pvt +
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pvt">
-
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosFi.year_2_pub"
                             ng-bind="dlAirLosFi.year_1_pvt =
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pub +
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pub">
-
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosFi.year_2_pvt"
                             ng-bind="dlAirLosFi.year_1_pvt =
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pvt +
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pvt">
-
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosFi.tot_los_pub"
                             ng-bind="dlAirLosFi.tot_los_pub =
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pub +
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pub">
-
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosFi.tot_los_pvt"
                             ng-bind="dlAirLosFi.tot_los_pvt =
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pvt +
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pvt">
-
-
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -788,50 +775,46 @@
                         <td class="tdpa" width="218" height="19" ng-bind="dlAirLosHoc.type_los">
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_1_pub"
-                        ng-bind="dlAirLosHoc.year_1_pub =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pub" >
-
+                            ng-bind="dlAirLosHoc.year_1_pub =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pub" >
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosHoc.year_1_pvt"
-                        ng-bind="dlAirLosHoc.year_1_pvt =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pvt" >
+                            ng-bind="dlAirLosHoc.year_1_pvt =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pvt" >
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pub"
-                         ng-bind="dlAirLosHoc.year_2_pub =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pub" >
-
+                            ng-bind="dlAirLosHoc.year_2_pub =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pub" >
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosHoc.year_2_pvt"
-                        ng-bind="dlAirLosHoc.year_2_pvt =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pvt" >
-
+                            ng-bind="dlAirLosHoc.year_2_pvt =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pvt" >
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pub"
-                        ng-bind="dlAirLosHoc.tot_los_pub =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pub" >
+                            ng-bind="dlAirLosHoc.tot_los_pub =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pub" >
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosHoc.tot_los_pvt"
-                        ng-bind="dlAirLosHoc.tot_los_pvt =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pvt" >
-
+                            ng-bind="dlAirLosHoc.tot_los_pvt =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pvt">
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="dlAirLosOther in dlAirTrnspotation.transport_air.Table_2.DlAirLosOther" ng-if="dlAirLosOther.assets != 'TOTAL LOSSES'">
@@ -856,7 +839,6 @@
                          <td width="63" height="19" ng-model="dlAirLosOther.tot_los_pub"
                            ng-bind="dlAirLosOther.tot_los_pub = dlAirLosOther.year_1_pub + dlAirLosOther.year_2_pub">
                         </td>
-
                          <td width="63" height="19" ng-model="dlAirLosOther.tot_los_pvt"
                            ng-bind="dlAirLosOther.tot_los_pvt = dlAirLosOther.year_1_pvt + dlAirLosOther.year_2_pvt">
                         </td>
@@ -866,74 +848,70 @@
                         <td class="tdpa" width="218" height="19" ng-bind="dlAirLosOther.assets">
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosOther.year_1_pub"
-                        ng-bind="dlAirLosOther.year_1_pub =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_1_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_1_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pub" >
-
+                            ng-bind="dlAirLosOther.year_1_pub =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_1_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_1_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pub" >
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosOther.year_1_pvt"
-                        ng-bind="dlAirLosOther.year_1_pvt =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_1_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_1_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pvt" >
+                            ng-bind="dlAirLosOther.year_1_pvt =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_1_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_1_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_1_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_1_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_1_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_1_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_1_pvt" >
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosOther.year_2_pub"
-                         ng-bind="dlAirLosOther.year_2_pub =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_2_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pub" >
-
+                            ng-bind="dlAirLosOther.year_2_pub =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_2_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pub" >
                         </td>
                         <td colspan="2" width="126" height="19" ng-model="dlAirLosOther.year_2_pvt"
-                        ng-bind="dlAirLosOther.year_2_pvt =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_2_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pvt" >
-
+                            ng-bind="dlAirLosOther.year_2_pvt =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].year_2_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].year_2_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].year_2_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].year_2_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].year_2_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].year_2_pvt">
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosOther.tot_los_pub"
-                        ng-bind="dlAirLosOther.tot_los_pub =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].tot_los_pub +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pub +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pub" >
-
+                            ng-bind="dlAirLosOther.tot_los_pub =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].tot_los_pub +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pub +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pub" >
                         </td>
                         <td width="63" height="19" ng-model="dlAirLosOther.tot_los_pvt"
-                        ng-bind="dlAirLosOther.tot_los_pvt =
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].tot_los_pvt +
-                        dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pvt +
-                        $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pvt" >
+                            ng-bind="dlAirLosOther.tot_los_pvt =
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[0].tot_los_pvt +
+                            dlAirTrnspotation.transport_air.Table_2.DlAirLosOther[1].tot_los_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].tot_los_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].tot_los_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[0].tot_los_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[1].tot_los_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[2].tot_los_pvt +
+                            $parent.dlAirTrnspotation.transport_air.Table_2.DlAirLosHoc[3].tot_los_pvt" >
                         </td>
                     </tr>
                     </tbody>
@@ -941,24 +919,23 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <button type="button" class="btn btn-info" ng-click="clear()">
+                        Clear
+                    </button>
                     <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
                         Edit
                     </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_air_trnspotation)"
-                    class="btn btn-success">Submit
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                            ng-click="saveDlData(form_dl_air_trnspotation)" class="btn btn-success">
+                        Submit
                     </button>
                 </div>
                 <br><br><br>
             </div>
         </div>
-    </div>
-    </div>
-
-
     </div>
     <!-- add model -->
     <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
@@ -966,7 +943,6 @@
         <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
@@ -981,13 +957,11 @@
                         <div class="col-md-10">
                             <input id="textinput" name="textinput" type="text" placeholder=""
                                    class="form-control input-md">
-
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -996,9 +970,7 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- edit model -->
     <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
@@ -1027,7 +999,6 @@
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -1036,11 +1007,40 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
+    <!-- update the baseline Model -->
+    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Warning
+                    </h4>
+                </div>
+                <div class="modal-body alert-info">
+                    <h4>
+                        <span class="icon-close"></span>
+                        Please update the baseline <br>
+                        <b>Table 1. Baseline Information on the Assets in the Air Transportation Sub-sector</b><br>
+                        information before you calculate the damage and loss !
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                        Close
+                    </button>
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                            class="btn btn-primary">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-
 {% endblock content %}

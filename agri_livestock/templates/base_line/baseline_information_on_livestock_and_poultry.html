@@ -13,20 +13,33 @@
 <main class="main" ng-app="bsLivestockPoultryApp" ng-controller="bsLivestockPoultryController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_livestock_main' %}">Agri Livestock  Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_livestock_main' %}">Agri Livestock  Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline Information on Livestock and Poultry</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 2. Baseline Information on Livestock and Poultry
+            </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_livestock_poultry">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Animals</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Production Assets</a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 Average Value of Production per Year (LKR/Year)</a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Animals</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Production Assets</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 Average Value of Production per Year (LKR/Year)</a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
@@ -70,7 +83,7 @@
                                 District
                             </td>
                             <td width="117" height="19" colspan="4"  >
-                                <select id="selectbasic" name="district" class="form-control" ng-change="fetchOrganization()" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <select id="selectbasic" name="district" class="form-control" ng-change="fetchOrganization();getBsData()" ng-model="district" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
                                         <option value={{ district.id }}>{{ district.name }}</option>
@@ -81,7 +94,7 @@
                                 Year/Month
                             </td>
                             <td colspan="5" width="793" height="19">
-                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                                <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="getBsData()" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
                         </tr>
                         <tr class="trheadc1" height="34">
@@ -195,20 +208,7 @@
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="blpAnmLivestock in bsLivestockPoultry.agri_livestock.Table_2.BlpAnmLivestock">
-                            <td class="tdpa" width="113" height="19" ng-bind="blpAnmLivestock.livestock" ng-if="$index < 5">
-                            </td>
-                            <td width="98" ng-if="$index > 4">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BlpAnmLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:65%;float:right;" name="blpAnmLivestock_{{$index}}" ng-model="blpAnmLivestock.livestock"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_livestock_poultry_dst['blpAnmLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAnmLivestock_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
+                            <td class="tdpa" width="113" height="19" ng-bind="blpAnmLivestock.livestock">
                             </td>
                             <td width="117" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -259,50 +259,6 @@
                                        class="form-control input-md" ng-model="blpAnmLivestock.avg_val_mature_female">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="34">
-                            <td width="113" height="34">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BlpAnmLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="117" height="34">
-                                <br/>
-                            </td>
-                            <td width="122" height="34">
-                                <br/>
-                            </td>
-                            <td width="103" height="34">
-                                <br/>
-                            </td>
-                            <td width="136" height="34">
-                                <br/>
-                            </td>
-                            <td width="143" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                        </tr>
                         <tr class="trheadc" height="19">
                             <td width="113" height="19">
                                 Poultry
@@ -345,21 +301,8 @@
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="blpAnmPoultry in bsLivestockPoultry.agri_livestock.Table_2.BlpAnmPoultry">
-                            <td class="tdpa" width="113" height="19" ng-bind="blpAnmPoultry.poultry" ng-if="$index < 2">
+                            <td class="tdpa" width="113" height="19" ng-bind="blpAnmPoultry.poultry">
                                 Chicken
-                            </td>
-                            <td width="98" ng-if="$index > 1">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BlpAnmPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:65%;float:right;" name="blpAnmPoultry_{{$index}}" ng-model="blpAnmPoultry.poultry"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_livestock_poultry_dst['blpAnmPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAnmPoultry_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
                             </td>
                             <td width="117" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -408,50 +351,6 @@
                             <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="blpAnmPoultry.avg_val_mature_female">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="42">
-                            <td width="113" height="42">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BlpAnmPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="117" height="42">
-                                <br/>
-                            </td>
-                            <td width="122" height="42">
-                                <br/>
-                            </td>
-                            <td width="103" height="42">
-                                <br/>
-                            </td>
-                            <td width="136" height="42">
-                                <br/>
-                            </td>
-                            <td width="143" height="42">
-                                <br/>
-                            </td>
-                            <td width="63" height="42">
-                                <br/>
-                            </td>
-                            <td width="63" height="42">
-                                <br/>
-                            </td>
-                            <td width="63" height="42">
-                                <br/>
-                            </td>
-                            <td width="63" height="42">
-                                <br/>
-                            </td>
-                            <td width="63" height="42">
-                                <br/>
-                            </td>
-                            <td width="63" height="42">
-                                <br/>
-                            </td>
-                            <td width="63" height="42">
-                                <br/>
                             </td>
                         </tr>
                         </tbody>
@@ -509,11 +408,8 @@
                             </td>
                         </tr>
                         </table>
-
                         <div id="boxscroll" style="height:400px;overflow:auto;">
-
-
- <table class="table table-bordered">
+                        <table class="table table-bordered">
                         <tr class="trheadc" height="19">
                             <td  width="113" height="19" style="width:20%;">
                                 Livestock
@@ -544,20 +440,7 @@
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="blpAstLivestock in bsLivestockPoultry.agri_livestock.Table_2.BlpAstLivestock">
-                            <td class="tdpa" width="113" height="19" ng-bind="blpAstLivestock.livestock" ng-if="$index < 5">
-                            </td>
-                            <td width="98" ng-if="$index > 4">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BlpAstLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:65%;float:right;" name="blpAstLivestock_{{$index}}" ng-model="blpAstLivestock.livestock"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_livestock_poultry_dst['blpAstLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAstLivestock_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
+                            <td class="tdpa" width="113" height="19" ng-bind="blpAstLivestock.livestock">
                             </td>
                             <td width="117" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -592,38 +475,6 @@
                                        class="form-control input-md" ng-model="blpAstLivestock.avg_repairc_others">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="34">
-                            <td width="113" height="34">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BlpAstLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="117" height="34">
-                                <br/>
-                            </td>
-                            <td width="122" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="206" height="34">
-                                <br/>
-                            </td>
-                            <td width="143" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="126" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="126" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="126" height="34">
-                                <br/>
-                            </td>
-                        </tr>
                         <tr class="trheadc" height="19">
                             <td width="113" height="19">
                                 Poultry
@@ -654,20 +505,7 @@
                             </td>
                         </tr>
                         <tr height="21" ng-repeat="blpAstPoultry in bsLivestockPoultry.agri_livestock.Table_2.BlpAstPoultry">
-                            <td class="tdpa" width="113" height="21" ng-bind="blpAstPoultry.poultry" ng-if="$index < 2">
-                            </td>
-                            <td width="98" ng-if="$index > 1">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BlpAstPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:65%;float:right;" name="blpAstPoultry_{{$index}}" ng-model="blpAstPoultry.poultry"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_livestock_poultry_dst['blpAstPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpAstPoultry_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
+                            <td class="tdpa" width="113" height="21" ng-bind="blpAstPoultry.poultry">
                             </td>
                             <td width="117" height="21">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -702,38 +540,6 @@
                                        class="form-control input-md" ng-model="blpAstPoultry.avg_repairc_others">
                             </td>
                         </tr>
-                        <tr class="tdpa" height="34">
-                            <td width="113" height="34">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BlpAstPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="117" height="34">
-                                <br/>
-                            </td>
-                            <td width="122" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="206" height="34">
-                                <br/>
-                            </td>
-                            <td width="143" height="34">
-                                <br/>
-                            </td>
-                            <td width="63" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="126" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="126" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="126" height="34">
-                                <br/>
-                            </td>
-                        </tr>
                         <tr class="trheadc1" height="19">
                             <td colspan="3" rowspan="2" width="343" height="38">
                                 Structures/Buildings
@@ -758,7 +564,6 @@
                         </tr>
                         <tr height="19" ng-repeat="blpAstStructures in bsLivestockPoultry.agri_livestock.Table_2.BlpAstStructures">
                             <td class="tdpa" colspan="3" width="343" height="19" ng-bind="blpAstStructures.structures">
-
                             </td>
                             <td colspan="4" width="485" height="19">
                                 <input id="textinput" name="textinput" ng-model="blpAstStructures.avg_replace_cost" type="number" placeholder=""
@@ -777,7 +582,6 @@
                                        class="form-control input-md">
                             </td>
                         </tr>
-
                         <tr class="trheadc1" height="19">
                             <td colspan="3" width="343" height="19">
                                 Other Assets
@@ -791,7 +595,6 @@
                         </tr>
                         <tr height="24" ng-repeat="blpAstOther in bsLivestockPoultry.agri_livestock.Table_2.BlpAstOther" ng-if="blpAstOther.other_assets!='Others'">
                             <td class="tdpa" colspan="3" width="343" height="24" ng-bind="blpAstOther.other_assets" ng-if="$index < 4 ">
-
                             </td>
                             <td width="98" ng-if="$index >3">
                                 {% verbatim %}
@@ -876,20 +679,7 @@
                             </td>
                         </tr>
                         <tr height="19" ng-repeat="blpApyLivestock in bsLivestockPoultry.agri_livestock.Table_2.BlpApyLivestock">
-                            <td class="tdpa" width="113" height="19" ng-bind="blpApyLivestock.livestock" ng-if="$index < 5">
-                            </td>
-                            <td width="98" ng-if="$index > 4">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BlpApyLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:65%;float:right;" name="blpApyLivestock_{{$index}}" ng-model="blpApyLivestock.livestock"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_livestock_poultry_dst['blpApyLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpApyLivestock_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
+                            <td class="tdpa" width="113" height="19" ng-bind="blpApyLivestock.livestock">
                             </td>
                             <td colspan="3" width="356" height="19" ng-if="blpApyLivestock.livestock != 'Swine' && blpApyLivestock.livestock != 'Sheep'">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
@@ -907,26 +697,6 @@
                             <td colspan="3" width="189" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="blpApyLivestock.others">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="34">
-                            <td width="113" height="34">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BlpApyLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td colspan="3" width="356" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="3" width="415" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="3" width="189" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="3" width="189" height="34">
-                                <br/>
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -947,21 +717,8 @@
                             </td>
                         </tr>
                         <tr height="21" ng-repeat="blpApyPoultry in bsLivestockPoultry.agri_livestock.Table_2.BlpApyPoultry">
-                            <td class="tdpa" width="113" height="21" ng-bind="blpApyPoultry.poultry" ng-if="$index < 2">
+                            <td class="tdpa" width="113" height="21" ng-bind="blpApyPoultry.poultry">
                                 Chicken
-                            </td>
-                            <td width="98" ng-if="$index > 1">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BlpApyPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:65%;float:right;" name="blpApyPoultry_{{$index}}" ng-model="blpApyPoultry.poultry"
-                                    popover="This field is required"
-                                    popover-toggle="form_bs_livestock_poultry_dst['blpApyPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['blpApyPoultry_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
                             </td>
                             <td colspan="3" class="tdpa" width="356" height="21">
                             </td>
@@ -978,58 +735,32 @@
                                        class="form-control input-md" ng-model="blpApyPoultry.others">
                             </td>
                         </tr>
-
-                        <tr class="tdpa" height="34">
-                            <td width="113" height="34">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BlpApyPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td colspan="3" width="356" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="3" width="415" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="3" width="189" height="34">
-                                <br/>
-                            </td>
-                            <td colspan="3" width="189" height="34">
-                                <br/>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                     <br>
                     <div class="pull-right">
-
-
-
-                    <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="bsHsDataEdit(form_bs_livestock_poultry)"
-                            ng-if="!is_edit" class="btn btn-success">Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
-                    </button>
-                    <button type="button" ng-click="saveBsData(form_bs_livestock_poultry)"
-                            class="btn btn-success">Submit
-                    </button>
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="bsHsDataEdit(form_bs_livestock_poultry)"
+                                ng-if="!is_edit" class="btn btn-success">Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-click="saveBsData(form_bs_livestock_poultry)"
+                                class="btn btn-success">Submit
+                        </button>
                     </div>
-                     <br> <br>
+                    <br><br>
                 </div>
             </div>
         </div>
     </div>
     <br>
     <div class="col-md-12">
-                <div class="modal fade" id="modal-container-469842" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
+        <div class="modal fade" id="modal-container-469842" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -1045,7 +776,6 @@
                                 <input id="textinput" name="textinput" ng-model="new_organization.name" type="text"
                                        placeholder=""
                                        class="form-control input-md">
-
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -1055,31 +785,22 @@
                                 <select id="selectbasic" name="ownership" ng-model='new_organization.ownership'
                                         class="form-control"
                                         style="font-weight:400;" required>
-
                                     <option value="" selected="true">Select Ownership</option>
-
                                     <option value="Public">Public</option>
                                     <option value="Private">Private</option>
-
                                 </select>
-
                             </div>
                         </div>
                         <br>
-
                     </div>
                     <div class="modal-footer">
-
                         <button id="button1id" name="button1id" class="btn btn-warning">Cancel</button>
                         <button id="button2id" ng-click="saveOrganization()" name="button2id" class="btn btn-success">Save
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
         <div class="modal fade" id="modal-container-0002" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
@@ -1110,12 +831,9 @@
                                         style="font-weight:400;" required>
 
                                     <option value="" selected="true">Select Ownership</option>
-
                                     <option value="Public">Public</option>
                                     <option value="Private">Private</option>
-
                                 </select>
-
                             </div>
                         </div>
                     </div>

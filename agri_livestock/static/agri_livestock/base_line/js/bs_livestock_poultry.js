@@ -494,62 +494,204 @@ $("#modal-container-239454").modal('show');
 }
 
 //Fetch Organizations
-    $scope.fetchOrganization = function(){
+    $scope.fetchOrganization = function() {
+        $scope.new_organization.district_id = $scope.district;
 
-    $scope.new_organization.district_id = $scope.district;
-
-    $http({
-    method: "POST",
-    url: "/fetch_entities",
-    data: angular.toJson({
-    'district':  $scope.district,
-    'model': 'Organization',
-    'sector':'agri_livestock'
-     }),
-    }).success(function(data) {
-
-    console.log(data);
-    $scope.organizations = data;
-
-    })
-}
-
-//Edit Data
-    $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
         $http({
         method: "POST",
-        url: "/bs_fetch_edit_data",
+        url: "/fetch_entities",
         data: angular.toJson({
-              'table_name': 'Table_2',
-              'sector': 'agri_livestock',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date } }),
+        'district':  $scope.district,
+        'model': 'Organization',
+        'sector':'agri_livestock'
+         }),
         }).success(function(data) {
 
         console.log(data);
-        $scope.bsLivestockPoultry = data;
+        $scope.organizations = data;
+
         })
-
-
     }
 
-//Cancel Edit
+    $scope.getBsData = function() {
+        if($scope.district && $scope.bs_date) {
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock_for_bs',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BelLivestock','BelPoultry'],
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    },
+                    'table_name': 'Table_1',
+                    'sector':'agri_livestock',
+                }),
+                dataType: 'json',
+
+            }).then(function successCallback(response) {
+                var data = response.data;
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+//                    console.log('*** ', $scope.bs_data[key]);
+                });
+                console.log($scope.bs_data);
+                generateRefencedData();
+            }, function errorCallback(response) {
+            });
+        }
+    }
+
+    function generateRefencedData() {
+        data_array = ['BelLivestock', 'BelPoultry'];
+
+        var bs_model1 = null;
+        var bs_model2 = null;
+        var bs_model3 = null;
+        var bs_model4 = null;
+        var bs_model5 = null;
+        var bs_model6 = null;
+
+        angular.forEach(data_array, function(value, key) {
+            obj_array = $scope.bs_data[value];
+            model_name = value;
+
+            if(model_name == 'BelLivestock') {
+                bs_model1 = 'BlpAnmLivestock';
+                bs_model3 = 'BlpAstLivestock';
+                bs_model5 = 'BlpApyLivestock';
+                $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model1] = [];
+                $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model3] = [];
+                $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model5] = [];
+            }
+            if(model_name == 'BelPoultry') {
+                bs_model2 = 'BlpAnmPoultry';
+                bs_model4 = 'BlpAstPoultry';
+                bs_model6 = 'BlpApyPoultry';
+                $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model2] = [];
+                $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model4] = [];
+                $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model6] = [];
+            }
+
+            angular.forEach(obj_array, function(value, key) {
+                var obj1 = {
+                    livestock : value.fields.livestock,
+                    young_male : null,
+                    young_female : null,
+                    juvenile_male : null,
+                    juvenile_female : null,
+                    mature_male : null,
+                    mature_female : null,
+                    avg_val_young_male : null,
+                    avg_val_young_female : null,
+                    avg_val_juvenile_female : null,
+                    avg_val_juvenile_male : null,
+                    avg_val_mature_male : null,
+                    avg_val_mature_female : null,
+                    organization_id : null,
+                };
+                var obj2 = {
+                    poultry : value.fields.poultry,
+                    young_male : null,
+                    young_female : null,
+                    juvenile_male : null,
+                    juvenile_female : null,
+                    mature_male : null,
+                    mature_female : null,
+                    avg_val_young_male : null,
+                    avg_val_young_female : null,
+                    avg_val_juvenile_female : null,
+                    avg_val_juvenile_male : null,
+                    avg_val_mature_male : null,
+                    avg_val_mature_female : null,
+                };
+
+                var obj3 = {
+                    livestock : value.fields.livestock,
+                    avg_replacec_anm_shed : null,
+                    avg_replacec_feeds : null,
+                    avg_replacec_medicines : null,
+                    avg_replacec_tools : null,
+                    avg_replacec_others : null,
+                    avg_repairc_anm_shed : null,
+                    avg_repairc_tools : null,
+                    avg_repairc_others : null,
+                };
+                var obj4 = {
+                    poultry : value.fields.poultry,
+                    avg_replacec_anm_shed : null,
+                    avg_replacec_feeds : null,
+                    avg_replacec_medicines : null,
+                    avg_replacec_tools : null,
+                    avg_replacec_others : null,
+                    avg_repairc_anm_shed : null,
+                    avg_repairc_tools : null,
+                    avg_repairc_others : null,
+                };
+
+                var obj5 = {
+                    livestock : value.fields.livestock,
+                    milk : null,
+                    meat : null,
+                    eggs : null,
+                    others : null,
+                };
+                var obj6 = {
+                    poultry : value.fields.poultry,
+                    meat : null,
+                    eggs : null,
+                    others : null,
+                };
+
+                if(model_name == 'BelLivestock') {
+                    console.log(model_name);
+                    $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model1].push(obj1);
+                    $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model3].push(obj3);
+                    $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model5].push(obj5);
+                }
+                if(model_name == 'BelPoultry') {
+                    console.log(model_name);
+                    $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model2].push(obj2);
+                    $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model4].push(obj4);
+                    $scope.bsLivestockPoultry.agri_livestock.Table_2[bs_model6].push(obj6);
+                }
+            });
+        });
+    }
+
+    //Edit Data
+    $scope.bsHsDataEdit = function(form) {
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                'table_name': 'Table_2',
+                'sector': 'agri_livestock',
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date
+                }
+            }),
+        }).success(function(data) {
+            console.log(data);
+            $scope.bsLivestockPoultry = data;
+        })
+    }
+
+    //Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsLivestockPoultry = init_data;
     }
 
-
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsLivestockPoultry = angular.copy(init_data);
-
-
     }
 
 }]);

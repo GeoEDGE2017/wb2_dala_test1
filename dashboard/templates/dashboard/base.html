@@ -22,7 +22,6 @@
     <link href="{% static 'dashboard/css/datepicker.css' %}" rel="stylesheet">
 
     <script src='{% static "dashboard/js/jquery.min.js" %}'></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src='{% static "dashboard/js/jquery.nicescroll.min.js" %}'></script>
     <script src='{% static "dashboard/js/bootstrap.min.js" %}'></script>
     <script src='{% static "dashboard/js/angular/angular.js" %}'></script>
@@ -163,7 +162,6 @@
     <script src='{% static "health/base_line/js/bs_unit_cost_mini_health_sys.js" %}'></script>
     <script src='{% static "health/damage_losses/js/dl_line_ministry_health_sys.js" %}'></script>
     <script src='{% static "health/damage_losses/js/dl_health_damagelost_private.js" %}'></script>
-    <script src='{% static "health/damage_losses/js/chart_test.js" %}'></script>
 
     <!--other_govn_services-->
     {% elif module == 'other_govn_services' %}
@@ -383,6 +381,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield;
+    text-align:right;
 }
 </style>
 </head>
@@ -390,7 +389,7 @@ input[type=number] {
 <header class="navbar">
     <div class="container-fluid">
         <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">☰</button>
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="{% url 'dashboard:index' %}"></a>
         <ul class="nav navbar-nav hidden-md-down">
             <li class="nav-item">
                 <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
@@ -399,7 +398,7 @@ input[type=number] {
         <ul class="nav navbar-nav float-xs-right hidden-md-down">
             <li class="nav-item">
                 <!-- Split button -->
-                <div class="btn-group">
+               <!--  <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-danger">English</button>
                     <button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -411,12 +410,12 @@ input[type=number] {
                         <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">සිංහල </a></li>
                         <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">தமிழ்</a></li>
                     </ul>
-                </div>
+                </div> -->
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
                    aria-haspopup="true" aria-expanded="false">
-                    <img src="{% static 'dashboard/img/default-user-image.png' %}" class="img-avatar" alt="">
+                   <!--  <img src="{% static 'dashboard/img/default-user-image.png' %}" class="img-avatar" alt=""> -->
                     <span class="hidden-md-down">admin</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -459,19 +458,19 @@ input[type=number] {
                 <a class="nav-link nav-dropdown-toggle" href="#"><img src="{% static 'dashboard/img/picture1m.png' %}"> Transportation</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_air_main' %}"> Air</a>
+                        <a class="nav-link" href="{% url 'dashboard:transport_air_main' %}"><img src="{% static 'dashboard/img/air.png' %}"> Air</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_land_main' %}"> Land</a>
+                        <a class="nav-link" href="{% url 'dashboard:transport_land_main' %}"><img src="{% static 'dashboard/img/bus.png' %}"> Land</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_rail_main' %}"> Rail</a>
+                        <a class="nav-link" href="{% url 'dashboard:transport_rail_main' %}"><img src="{% static 'dashboard/img/train.png' %}"> Rail</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_water_main' %}"> Water </a>
+                        <a class="nav-link" href="{% url 'dashboard:transport_water_main' %}"><img src="{% static 'dashboard/img/boats.png' %}"> Water </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_summary_main' %}">
+                        <a class="nav-link" href="{% url 'dashboard:transport_summary_main' %}"><img src="{% static 'dashboard/img/summary.png' %}">
                             Summary </a>
                     </li>
                     <li class="nav-item">
@@ -482,19 +481,19 @@ input[type=number] {
                 <a class="nav-link nav-dropdown-toggle" href="#"><img src="{% static 'dashboard/img/picture3m.png' %}"> Agriculture</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_agrarian_main' %}"> Agrarian</a>
+                        <a class="nav-link" href="{% url 'dashboard:agri_agrarian_main' %}"><img src="{% static 'dashboard/img/agrarian.png' %}"> Agrarian</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_livestock_main' %}"> Livestock </a>
+                        <a class="nav-link" href="{% url 'dashboard:agri_livestock_main' %}"><img src="{% static 'dashboard/img/cow.png' %}"> Livestock </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_fisheries_main' %}"> Fisheries</a>
+                        <a class="nav-link" href="{% url 'dashboard:agri_fisheries_main' %}"><img src="{% static 'dashboard/img/fish.png' %}"> Fisheries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_irrigation_main' %}"> Irrigation</a>
+                        <a class="nav-link" href="{% url 'dashboard:agri_irrigation_main' %}"><img src="{% static 'dashboard/img/lake.png' %}"> Irrigation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_summary_main' %}">
+                        <a class="nav-link" href="{% url 'dashboard:agri_summary_main' %}"><img src="{% static 'dashboard/img/summary.png' %}">
                             Summary </a>
                     </li>
                     <li class="nav-item">
@@ -524,6 +523,9 @@ input[type=number] {
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'reports:index_report' %}"><i class="icon-doc" style="font-size:20px;font-weight: bold;color:#fff;"></i> Report </a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'new_charts:index_charts' %}"><i class="icon-doc" style="font-size:20px;font-weight: bold;color:#fff;"></i> Charts </a>
             </li>
             <!--<li class="nav-item">-->
                 <!--<a class="nav-link" href="{% url 'charts:index_chart' %}"><i class="icon-pie-chart" style="font-size:20px;font-weight: bold;color:#fff;"></i> Chart</a>-->
@@ -579,9 +581,9 @@ input[type=number] {
                         <h4><span class="icon-info"> </span> Information already exists  ! </h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
-                        </button>
+                        </button> -->
                         <button id="ok" onclick="javascript:window.location.reload()" type="button"
                                 class="btn btn-primary">
                             OK
@@ -601,16 +603,16 @@ input[type=number] {
                             ×
                         </button>
                         <h4 class="modal-title" id="myModalLabel">
-                            Save Data
+                            Warning!
                         </h4>
                     </div>
-                    <div class="modal-body alert-info">
+                    <div class="modal-body alert-warning">
                         <h4><span class="icon-close"> </span> Please update the baseline information before you calculate the damage and loss ! </h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
-                        </button>
+                        </button> -->
                         <button id="ok" onclick="javascript:window.location.reload()" type="button"
                                 class="btn btn-primary">
                             OK
@@ -630,16 +632,16 @@ input[type=number] {
                             ×
                         </button>
                         <h4 class="modal-title" id="myModalLabel">
-                            Edit Data
+                            Warning!
                         </h4>
                     </div>
-                    <div class="modal-body alert-info">
+                    <div class="modal-body alert-warning">
                         <h4><span class="icon-close"> </span> No Related data found! </h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
-                        </button>
+                        </button> -->
                         <button id="ok" onclick="javascript:window.location.reload()" type="button"
                                 class="btn btn-primary">
                             OK
@@ -660,10 +662,10 @@ input[type=number] {
                             ×
                         </button>
                         <h4 class="modal-title" id="myModalLabel">
-                            Edit Data
+                            Warning!
                         </h4>
                     </div>
-                    <div class="modal-body alert-info">
+                    <div class="modal-body alert-warning">
                         <h4>
                             <span class="icon-close"></span>
                             Unable to delete enumirator, damage and lost data found acordin to this enumirator!

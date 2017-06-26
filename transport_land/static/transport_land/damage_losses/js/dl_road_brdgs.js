@@ -187,7 +187,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 
     $scope.dlRoadBrdgs = init_data;
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -200,30 +200,71 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
             })
         }
 
-        if($scope.incident && $scope.district ){
+        if($scope.incident && $scope.district ) {
+            alert('#')
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains','BsRbuRclassificattion'],
-                  'com_data': {
+                    'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains','BsRbuRclassificattion'],
+                    'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        },
-                   'table_name': 'Table_1',
-                   'sector':'transport_land'
+                    },
+                    'table_name': 'Table_1',
+                    'sector':'transport_land'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log(response);
                 angular.forEach(data, function(value, key) {
-                  $scope.bs_data[key] = JSON.parse(value);
+                    $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                generateRefencedData();
-                 $scope.calTotal();
+                console.log($scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
 
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    generateRefencedData();
+                    $scope.calTotal();
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains','BsRbuRclassificattion'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_1',
+                            'sector':'transport_land'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
             }, function errorCallback(response) {
             });
         }
@@ -390,37 +431,33 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlDataEdit = function(form){
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
+        $http({
+        method: "POST",
+        url: '/dl_fetch_edit_data',
+        data: angular.toJson({
+        'table_name':  'Table_4',
+        'sector':'transport_land',
+        'com_data': {
+               'district':  $scope.district.district__id,
+                'incident': $scope.incident,
+              },
+               'is_edit':$scope.is_edit
+               }),
+        }).success(function(data) {
+            $scope.dlRoadBrdgs = data;
+        })
+    }
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_4',
-    'sector':'transport_land',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlRoadBrdgs = init_data;
+    }
 
-    $scope.dlRoadBrdgs = data;
-    })
-
-}
-
-    $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlRoadBrdgs = init_data;
-}
-
-
-    $scope.calTotal=function(arr){
+    $scope.calTotal = function(arr) {
     var finaltotal = 0;
      console.log(arr);
     angular.forEach(arr, function(value, key) {
@@ -437,7 +474,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     return finaltotal;
     }
 
-    $scope.calGrandTotal=function(){
+    $scope.calGrandTotal = function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -487,6 +524,5 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         $scope.is_edit = false;
         $scope.dlRoadBrdgs = angular.copy(init_data);
     }
-
 });
 

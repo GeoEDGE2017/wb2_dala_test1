@@ -11,6 +11,7 @@ from settings.models import District, Province
 from django.core import serializers
 from django.conf import settings
 from django.http import HttpResponse
+from mining.base_line.models import Firm
 
 
 def fetch_districts(user):
@@ -323,6 +324,7 @@ def bs_get_data_mock(request):
         )
 
 
+# dileepa
 @csrf_exempt
 def bs_get_data_mock_for_bs(request):
     todate = timezone.now()
@@ -463,6 +465,19 @@ def is_enum_used_in_dl(request):
         else:
             print False
             return HttpResponse(False)
+
+
+@csrf_exempt
+def edit_firm(request):
+    firm_data = (yaml.safe_load(request.body))
+    firm_id = firm_data['firm_id']
+    firm_name = firm_data['firm_name']
+
+    print 'firm_id', firm_id, ' - firm_name', firm_name
+
+    Firm.objects.filter(pk=firm_id).update(name=firm_name)
+
+    return HttpResponse("Success")
 
 
 @csrf_exempt

@@ -216,7 +216,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         model.assign($scope, cumulative);
     }
 
-    $scope.getColumnTotal = function(model, property) {
+    $scope.getColumnTotal = function(model) {
         var array = $scope.dmLosOfMinFirms.mining.Table_3[model];
         var cumulative = null;
         var cumulative_two = null;
@@ -650,6 +650,8 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 console.log('***');
                 console.log(data);
                 $scope.dmLosOfMinFirms = data;
+//                $scope.getColumnTotal('DloDmgVehicles');
+//                $scope.getTotal('DloDmgVehicles','rep_tot_dassets');
             })
         }
     }

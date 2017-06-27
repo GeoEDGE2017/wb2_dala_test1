@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<main class="main" ng-app="transSummaryChartApp" ng-controller="TransSummaryChartController">
+<main class="main" ng-app="healthChartApp" ng-controller="HealthChartController">
 
     <div class="container-fluid">
         <br>
@@ -63,7 +63,7 @@
                 <div class="card" ng-if="!checkIfNull()">
                     <div class="card-header">
 
-                        Total Damages and Total Losses
+                        Public Total Damages and Total Losses
 
                     </div>
                     <div class="card-block">
@@ -76,21 +76,50 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="col-md-6">-->
-                <!--<div class="card" ng-if="!checkIfNull()">-->
-                    <!--<div class="card-header">-->
-                        <!--Number of Totally Damaged and Partially Damaged-->
-                    <!--</div>-->
-                    <!--<div class="card-block">-->
-                        <!--<canvas id="pie" class="chart chart-pie"-->
-                                <!--chart-data="totalDamagePartialDamage" chart-labels="totalDamagePartialDamageSeries"-->
-                                <!--chart-options="options">-->
-                        <!--</canvas>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
 
+                        Private Total Damages and Total Losses
 
-            <!--</div>-->
+                    </div>
+                    <div class="card-block">
+                        <div class="chart-wrapper">
+                            <canvas id="bar" class="chart chart-bar"
+                                    chart-data="PrivatetableDamageLosses" chart-labels="provincenames"
+                                    chart-series="privateDamageLossesSeries">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+                        Public Total Number of Male and Female Patients Affected
+                    </div>
+                    <div class="card-block">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="totalPatientsAffected" chart-labels="totalPatientsAffectedSeries"
+                                chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+                        Private Total Number of Male and Female Patients Affected
+                    </div>
+                    <div class="card-block">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="totalPatientsAffectedPrivate" chart-labels="totalPatientsAffectedPrivateSeries"
+                                chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
 
 
         </div>

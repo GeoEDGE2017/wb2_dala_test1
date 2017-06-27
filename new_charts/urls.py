@@ -19,4 +19,6 @@ urlpatterns = [
     url(r'^mining_charts', views.mining_charts, name='mining_charts'),
     url(r'^industry_services_charts', views.industry_services_charts, name='industry_services_charts'),
     url(r'^power_supply_charts', views.power_supply_charts, name='power_supply_charts'),
+    url(r'^health_charts', views.health_charts, name='health_charts'),
+    url(r'^agri_irrigation_charts', views.agri_irrigation_charts, name='agri_irrigation_charts'),
 ]

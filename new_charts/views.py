@@ -164,3 +164,25 @@ def power_supply_charts(request):
         'module': 'new_charts'
     }
     return render(request, 'new_charts/power_supply_chart.html', context)
+
+
+def health_charts(request):
+    districts = District.objects.all()
+    incidents = IncidentReport.objects.all()
+    context = {
+        'districts': districts,
+        'incidents': incidents,
+        'module': 'new_charts'
+    }
+    return render(request, 'new_charts/health_chart.html', context)
+
+
+def agri_irrigation_charts(request):
+    districts = District.objects.all()
+    incidents = IncidentReport.objects.all()
+    context = {
+        'districts': districts,
+        'incidents': incidents,
+        'module': 'new_charts'
+    }
+    return render(request, 'new_charts/agri_irrigation_chart.html', context)

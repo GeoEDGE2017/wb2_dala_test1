@@ -352,10 +352,8 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     }
 
     $scope.saveDlData = function(form) {
-        console.log('***-');
         $scope.submitted = true;
         if(form.$valid) {
-            console.log('***--');
             console.log($scope.selectedCompany);
             $http({
                 method : 'POST',

@@ -116,7 +116,7 @@ app.controller('HousingChartController',function($scope,$http,$parse, _) {
 
 
     }
-            $scope.checkIfNull = function()
+   $scope.checkIfNull = function()
    {
         var isNull = $scope.dlHousingSumNat ? angular.equals({}, $scope.dlHousingSumNat.housing.Table_6) : true;
         return isNull;

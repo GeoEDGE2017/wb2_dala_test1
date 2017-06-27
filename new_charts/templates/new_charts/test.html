@@ -1,38 +1,9 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <main class="main" ng-app="newChartApp" ng-controller="NewChartController">
-    <div>
-        <table>
-            <tr>
-                <td class="" width="130" colspan="2">
-                    Incident
-                </td>
-                <td width="125" colspan="" style="width:300px;">
-                    <select id="selectbasic" name="incident" ng-model="incident"
-                            class="form-control" ng-change="changedValue(true);fetchDlData();"
-                            style="width:100%;font-weight:400;" required>
-                        <option value="" selected="true">Select an Incident</option>
-                        {% for incident in incidents %}
-
-                        <option value={{incident.id}}>{{incident.disaster_type.name}}
-                            {{incident.reported_date_time}}
-                            {% endfor %}
-                    </select>
-                </td>
-                <td>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div style="width:600px;height:350px;">
-        <canvas id="bar" class="chart chart-bar"
-                chart-data="table" chart-labels="labels" chart-series="series">
-        </canvas>
-    </div>
-    <div style="width:600px;height:350px;">
-        <canvas id="pie" class="chart chart-pie"
-                chart-data="data1" chart-labels="label" chart-options="options">
-        </canvas>
-    </div>
+    <div class="col-md-6">
+    <canvas id="bar" class="chart chart-bar"
+  chart-data="data" chart-labels="labels"  chart-series="series">
+</canvas></div>
 </main>
 {% endblock content %}

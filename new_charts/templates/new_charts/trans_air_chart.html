@@ -1,0 +1,118 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<main class="main" ng-app="transAirChartApp" ng-controller="TransAirChartController">
+
+    <div class="container-fluid">
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <strong>Search</strong>
+
+            </div>
+            <div class="card-block">
+
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            <label class="col-xs-4" for="cvv">Incident</label>
+                            <div class="col-sm-8">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                        {% endfor %}
+                                </select>
+                            </div>
+                            <span style="color:red"
+                                  ng-show="submitted && chart_sum_dl_province.incident.$error.required">
+                                       Please select Incident
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <div class="form-group">
+
+                            <button type="button"
+                                    class="btn btn-md btn-primary"
+                                    style=""><i
+                                    class="fa fa-print"></i> Print
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+
+                        Total Damages and Total Losses
+
+                    </div>
+                    <div class="card-block">
+                        <div class="chart-wrapper">
+                            <canvas id="bar" class="chart chart-bar"
+                                    chart-data="tableDamageLosses" chart-labels="provincenames"
+                                    chart-series="damageLossesSeries">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+                        Total Public & Private Damages
+                    </div>
+                    <div class="card-block">
+                        <canvas id="pie1" class="chart chart-pie"
+                                chart-data="totalDamagePrivatePublic" chart-labels="totalDamagePrivatePublicSeries"
+                                chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+                        Total Public & Private Losses
+                    </div>
+                    <div class="card-block">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="totalLossesPrivatePublic" chart-labels="totalLossesPrivatePublicSeries"
+                                chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+{% endblock content %}

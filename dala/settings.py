@@ -161,7 +161,6 @@ DATABASES = {
         #     'options': '-c search_path=telecommunication'
         # },
 
-
         'NAME': 'dala',
         'USER': 'postgres',
     },

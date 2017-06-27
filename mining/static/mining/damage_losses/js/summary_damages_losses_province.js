@@ -22,12 +22,11 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
-
         if($scope.incident && selectProvinces) {
           fetchProvinces();
         }
-
     }
+
     $scope.provinces = [];
 
     function fetchProvinces() {
@@ -74,7 +73,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     $scope.checkIfNull = function() {
         var isNull = $scope.dlMiningPro ? angular.equals({}, $scope.dlMiningPro.mining.Table_7) : true;
         return isNull;
-   }
+    }
    
     $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + 

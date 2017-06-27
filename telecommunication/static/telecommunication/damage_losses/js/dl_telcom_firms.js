@@ -352,8 +352,10 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     }
 
     $scope.saveDlData = function(form) {
+        console.log('***-');
         $scope.submitted = true;
         if(form.$valid) {
+            console.log('***--');
             console.log($scope.selectedCompany);
             $http({
                 method : 'POST',
@@ -364,7 +366,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     'com_data': {
                         'district_id' : $scope.district.district__id,
                         'incident_id' : $scope.incident,
-                        'firm' : $scope.selectedCompany.company
+                        'company_id' : $scope.selectedCompany.company
                     },
                     'is_edit' : $scope.is_edit,
                     'sector' : 'telecommunication'

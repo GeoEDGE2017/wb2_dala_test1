@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^dl_fetch_edit_data_with_array', views.dl_fetch_edit_data_with_array, name='dl_fetch_edit_data_with_array'),
     url(r'^dl_delete_data', views.dl_delete_data, name='dl_delete_data'),
     url(r'^is_enum_used_in_dl', views.is_enum_used_in_dl, name='is_enum_used_in_dl'),
+    url(r'^bs_save_data_with_firm', views.bs_save_data_with_firm, name='bs_save_data_with_firm'),
 
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),

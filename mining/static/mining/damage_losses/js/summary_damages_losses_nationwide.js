@@ -1,4 +1,4 @@
-
+//Table 7
 var app = angular.module('dmLosOfMinFirmsNatApp', ['underscore']);
 
 app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) {
@@ -18,36 +18,32 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
 
-    $scope.loadData = function(){
-    if($scope.incident){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-                'table_name':'Table_6',
-                'sector':'mining',
-                'com_data': {
-                    'incident': $scope.incident,
-                },
-                'is_edit':$scope.is_edit
-            }),
-        }).success(function(data) {
-
-            $scope.dmLosMinFirmsNation = data;
-        })
+    $scope.loadData = function() {
+        if($scope.incident){
+            $scope.is_edit = true;
+            $scope.submitted = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':'Table_6',
+                    'sector':'mining',
+                    'com_data': {
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.dmLosMinFirmsNation = data;
+            })
         }
     }
 
-   $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dmLosMinFirmsNation ? angular.equals({},
-         $scope.dmLosMinFirmsNation.mining.Table_6) : true;
+            $scope.dmLosMinFirmsNation.mining.Table_6) : true;
         return isNull;
-
-   }
-
+    }
 
     $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + 
@@ -97,12 +93,5 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
          $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
 
          $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
-
-
-
-
-
-
-
     }
 })

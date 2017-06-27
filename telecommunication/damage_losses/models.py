@@ -12,7 +12,7 @@ class DlSessionKeys(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='tel_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='tel_dl_district', blank=True, null=True)
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -21,7 +21,7 @@ class DlSessionKeys(models.Model):
 
 # Table 2
 class DlNumEmpDistrict(models.Model):
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company_id', blank=True, null=True)
     num_emp_male = models.BigIntegerField(blank=True, null=True)
     mun_emp_female = models.BigIntegerField(blank=True, null=True)
     tot_emp = models.BigIntegerField(blank=True, null=True)
@@ -42,7 +42,7 @@ class DmgAstTelStructure(models.Model):
     dmg_val_replace = models.FloatField(blank=True, null=True)
     pdmg_val_repair = models.FloatField(blank=True, null=True)
     tot_dmg = models.FloatField(blank=True, null=True)
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company_id', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -60,7 +60,7 @@ class DmgAstTelEquipment(models.Model):
     dmg_val_replace = models.FloatField(blank=True, null=True)
     pdmg_val_repair = models.FloatField(blank=True, null=True)
     tot_dmg = models.FloatField(blank=True, null=True)
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company_id', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -78,7 +78,7 @@ class DmgAstTelMachinery(models.Model):
     dmg_val_replace = models.FloatField(blank=True, null=True)
     pdmg_val_repair = models.FloatField(blank=True, null=True)
     tot_dmg = models.FloatField(blank=True, null=True)
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company_id', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -96,7 +96,7 @@ class DmgAstTelVehicles(models.Model):
     dmg_val_replace = models.FloatField(blank=True, null=True)
     pdmg_val_repair = models.FloatField(blank=True, null=True)
     tot_dmg = models.FloatField(blank=True, null=True)
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company_id', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -114,7 +114,7 @@ class DmgAstTelOthers(models.Model):
     dmg_val_replace = models.FloatField(blank=True, null=True)
     pdmg_val_repair = models.FloatField(blank=True, null=True)
     tot_dmg = models.FloatField(blank=True, null=True)
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company_id', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)
@@ -132,7 +132,7 @@ class DlLosses(models.Model):
     year1_los = models.FloatField(blank=True, null=True)
     year2_los = models.FloatField(blank=True, null=True)
     tot_losses = models.FloatField(blank=True, null=True)
-    firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
+    company = models.ForeignKey(CompanyName, db_column='company_id', blank=True, null=True)
     created_user = models.IntegerField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     lmu = models.IntegerField(blank=True, null=True)

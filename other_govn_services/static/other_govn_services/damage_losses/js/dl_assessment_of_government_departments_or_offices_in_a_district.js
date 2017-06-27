@@ -19,7 +19,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.currentBaselineDate = null;
     $scope.new_department = {id: null, name: null, ownership_id: null, district_id: null};
 
-
     var init_data = {
         'other_govn_services': {
             'Table_2': {
@@ -129,7 +128,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = init_data;
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -299,10 +298,14 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
+                console.log('test', response.data);
+                if(response.data == 'False') {
+                    $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
                 console.log(response);
 
             }, function errorCallback(response) {
@@ -315,8 +318,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
-        if(form.$valid){
+        if(form.$valid) {
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
@@ -376,7 +378,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         }
     }
 
-    $scope.saveDepartment = function(form){
+    $scope.saveDepartment = function(form) {
    delete $scope.new_department['ownership']
    $scope.new_department.district_id = $scope.district.district__id;
 

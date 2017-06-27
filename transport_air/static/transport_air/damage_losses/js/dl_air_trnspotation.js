@@ -548,7 +548,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
             }).then(function successCallback(response) {
                 if(response.data == 'False')
                     $scope.is_valid_data = false;
-               else
+                else
                     $("#modal-container-239453").modal('show');
             }, function errorCallback(response) {
 

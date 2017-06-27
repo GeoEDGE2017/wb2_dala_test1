@@ -3,29 +3,27 @@
 {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dmLosOfMinFirmsNatApp" ng-controller="DmLosOfMinFirmsNatController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6: Summary of Damages and Losses Nationwide </span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 7: Summary of Damages and Losses Nationwide
+            </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
-
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="171"/>
                         <col width="119" span="5"/>
@@ -34,16 +32,13 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead1">
-
                         <td style="padding-left:5px;"> Incident</td>
                         <td colspan="7" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue();loadData();"
                                     style="width:100%;font-weight:400;" required>
-
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>{{incident.disaster_type.name}}
                                     {{incident.reported_date_time}}
                                 </option>
@@ -51,7 +46,6 @@
 
                             </select>
                         </td>
-
                         <td colspan="2" style="">
                             <!--<button type="button" class="btn btn-block btn-info" ng-click="loadData()">Load-->
                             <!--</button>-->
@@ -65,7 +59,6 @@
                         <td rowspan="3" width="171" height="60">
                             Type of Mining Firm by Province
                         </td>
-
                         <td colspan="4" width="476">
                             Year 1
                         </td>
@@ -113,11 +106,8 @@
                             Private
                         </td>
                     </tr>
-
-
                     <tr class="trheadc" height="20" ng-init="getTotal($index,key);">
                         <td ng-bind="key" width="171" height="20">
-
                         </td>
                         <td width="119">
                         </td>
@@ -136,11 +126,9 @@
                         <td width="123">
                         </td>
                     </tr>
-
                     <tr  height="20">
                         <td width="202" height="20" class="tdpa">Industrial mining
                         </td>
-
                         <td width="90" ng-bind="value.DloDmgNational[1].tot_damages"></td>
                         <td width="90" ng-bind="value.DloDmgNational[0].tot_damages"></td>
                         <td width="90" ng-bind="value.DloLosNational[1].los_year1"></td>
@@ -149,12 +137,10 @@
                         <td width="90" ng-bind="value.DloLosNational[0].los_year2"></td>
                         <td width="90" ng-bind="value.DloDmgNational[1].tot_damages +value.DloLosNational[1].los_year1+value.DloLosNational[1].los_year2 "></td>
                         <td width="90" ng-bind="value.DloDmgNational[0].tot_damages +value.DloLosNational[0].los_year1+value.DloLosNational[0].los_year2 "></td>
-
                     </tr>
                     <tr height="20">
                         <td width="202" height="20" class="tdpa">Artisanal mining
                         </td>
-
                         <td width="90" ng-bind="value.DlaDmgNational[0].tot_damages"></td>
                         <td width="90" ></td>
                         <td width="90" ng-bind="value.DlaLosNational[0].los_year1"></td>
@@ -163,7 +149,6 @@
                         <td width="90" ></td>
                         <td width="90" ng-bind="value.DlaDmgNational[0].tot_damages + value.DlaLosNational[0].los_year1 + value.DlaLosNational[0].los_year2"></td>
                         <td width="90" ></td>
-
                     </tr>
                     </tbody>
                     <tr height="20">
@@ -178,26 +163,14 @@
                         <td width="90" ng-bind="finaltotalpublic"></td>
                         <td width="90" ng-bind="finaltotalprivate"></td>
                     </tr>
-
-
                 </table>
-
                 <br>
                 <div class="pull-right">
                     <br>
-
                 </div>
                 <br><br><br>
             </div>
-
         </div>
-
-
-    </div>
-    </div>
-
-    </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>

@@ -132,25 +132,21 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     los_year1: null,
                     los_year2: null,
                     tot_losses: null,
-                    firm_id: null,
                 }, {
                     type_los: 'Higher operating costs',
                     los_year1: null,
                     los_year2: null,
                     tot_losses: null,
-                    firm_id: null,
                 }, {
                     type_los: 'Other unexpected expenses',
                     los_year1: null,
                     los_year2: null,
                     tot_losses: null,
-                    firm_id: null,
                 }, {
                     type_los: 'Total',
                     los_year1: null,
                     los_year2: null,
                     tot_losses: null,
-                    firm_id: null,
                 }]
             }
         }
@@ -165,7 +161,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         var sums = _.map(array, function(obj) {
             if(obj.assets != 'Total'&& obj.type_los !='Total'){
                 cumulative += obj[property];
-                console.log(cumulative);
+//                console.log(cumulative);
                 return cumulative;
             }
         });
@@ -221,19 +217,19 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 
         var cumulative_year1 = _.map(array, function(obj) {
             cumulative_los_year1 += obj.avg_per_year * (obj.red_voutput_year1/100);
-            console.log(cumulative_los_year1);
+//            console.log(cumulative_los_year1);
             return cumulative_los_year1;
         });
 
         var cumulative_year2 = _.map(array, function(obj) {
             cumulative_los_year2 += obj.avg_per_year * (obj.red_voutput_year2/100);
-            console.log(cumulative_los_year1);
+//            console.log(cumulative_los_year1);
             return cumulative_los_year1;
         });
 
         var cumulative_tot = _.map(array, function(obj) {
             cumulative_total += (obj.avg_per_year * (obj.red_voutput_year1/100)) + (obj.avg_per_year * (obj.red_voutput_year2/100));
-            console.log(cumulative_total);
+//            console.log(cumulative_total);
             return cumulative_total;
         });
 
@@ -291,7 +287,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         else {
             $scope.DloDmg_rep_tot_dassets_grnd = $scope.DloDmgStructures_rep_tot_dassets + $scope.DloDmgEquipment_rep_tot_dassets +
                     $scope.DloDmgMachinery_rep_tot_dassets + $scope.DloDmgVehicles_rep_tot_dassets + $scope.DloDmgStocks_rep_tot_dassets;
-            console.log($scope.DloDmg_rep_tot_dassets_grnd);
+//            console.log($scope.DloDmg_rep_tot_dassets_grnd);
 
             $scope.DloDmg_repair_pdmg_assets_grnd = $scope.DloDmgStructures_repair_pdmg_assets + $scope.DloDmgEquipment_repair_pdmg_assets +
                     $scope.DloDmgMachinery_repair_pdmg_assets + $scope.DloDmgVehicles_repair_pdmg_assets + $scope.DloDmgStocks_repair_pdmg_assets;
@@ -435,12 +431,12 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-                console.log(response);
+//                console.log(response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                console.log($scope.bs_data);
+                console.log('bs data', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -625,5 +621,12 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         console.log("init")
         $scope.is_edit = false;
         $scope.dmLosOfMinFirms = angular.copy(init_data);
+    }
+
+    $scope.test = function(form) {
+//        console.log($scope.selectedCompany.company);
+//        console.log($scope.selectedCompany.id);
+
+        console.log($scope.dmLosOfMinFirms);
     }
 })

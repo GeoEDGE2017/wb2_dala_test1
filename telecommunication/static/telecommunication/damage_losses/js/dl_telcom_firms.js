@@ -5,7 +5,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.selectedDistrict;
     $scope.incident;
     $scope.dlDate;
-    $scope.bs_data={};
+    $scope.bs_data = {};
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
@@ -273,12 +273,11 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     var company_array = [];
 
                     angular.forEach($scope.bs_data.BsTelCompany, function(value, key) {
-
                         company_array.push($scope.bs_data.BsTelCompany[key].fields);
-                });
-                     $scope.companies = company_array;
+                    });
+                    $scope.companies = company_array;
 
-
+                    console.log($scope.companies);
                 }
             });
         }
@@ -384,7 +383,8 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     }
 
     $scope.test = function(form) {
-        console.log($scope.selectedCompany.company);
+       console.log($scope.selectedCompany.company);
+//        console.log($scope.selectedCompany.id);
     }
 
     $scope.editDlData = function(form) {
@@ -399,8 +399,8 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     'sector':'telecommunication',
                     'com_data': {
                         'district_id':  $scope.district.district__id,
-                        'incident': "9",
-                        'firm_id' : $scope.selectedCompany.id,
+                        'incident': $scope.incident,
+                        'company_id' : $scope.selectedCompany.company
                     },
                     'is_edit':$scope.is_edit
                 }),

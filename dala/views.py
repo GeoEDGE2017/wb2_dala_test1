@@ -374,28 +374,66 @@ def bs_get_data_mock(request):
     print '@'
 
     try:
-        bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
-                                                  select_params=(incident_date,)). \
-            filter(table_name=table_name, district=district). \
-            values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+        print "S------------"
+        print "com_data[]", com_data
 
-        print '*'
-        print bd_sessions
-        print '**'
-        bs_date = bd_sessions['bs_date']
-        print 'bs_date', bs_date
-        for db_table in db_tables:
-            model_class = apps.get_model(sub_app_name, db_table)
-            # assuming there could be multiple data sets for bs_date
-            bs_mtable_data[db_table] = serializers.serialize('json',
-                                                             model_class.objects.filter(bs_date=bs_date,
-                                                                                        district=district).order_by(
-                                                                 'id'))
-        return HttpResponse(
-            json.dumps((bs_mtable_data)),
+        thrid_filter_enable = False
+        thrid_filter_key = None
+        thrid_filter_value = None
 
-            content_type='application/javascript; charset=utf8'
-        )
+        for com in com_data:
+            if(com == 'firm_id'):
+                print "------|------"
+                thrid_filter_key = com
+                thrid_filter_value = com_data['firm_id']
+                thrid_filter_enable = True
+            elif(com == 'company_id'):
+                thrid_filter_key = com
+                thrid_filter_value = com_data['company_id']
+                thrid_filter_enable = True
+        print "------------E"
+
+        bd_sessions = None
+
+        if thrid_filter_enable:
+            bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)). \
+                filter(table_name=table_name, district=district, **{thrid_filter_key: thrid_filter_value}). \
+                values('difference', 'id', 'bs_date', thrid_filter_key).order_by('difference').latest('difference')
+
+            print '*'
+            print bd_sessions
+            print '**'
+            bs_date = bd_sessions['bs_date']
+            print 'bs_date', bs_date
+            for db_table in db_tables:
+                model_class = apps.get_model(sub_app_name, db_table)
+                # assuming there could be multiple data sets for bs_date
+                bs_mtable_data[db_table] = serializers.serialize('json',
+                                         model_class.objects.filter(bs_date=bs_date, district=district, **{thrid_filter_key: thrid_filter_value}).order_by('id'))
+
+            return HttpResponse(json.dumps((bs_mtable_data)), content_type='application/javascript; charset=utf8')
+
+        else:
+            print "------+------"
+            bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)). \
+                filter(table_name=table_name, district=district). \
+                values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+
+            print '*'
+            print bd_sessions
+            print '**'
+            bs_date = bd_sessions['bs_date']
+            print 'bs_date', bs_date
+            for db_table in db_tables:
+                model_class = apps.get_model(sub_app_name, db_table)
+                # assuming there could be multiple data sets for bs_date
+                bs_mtable_data[db_table] = serializers.serialize('json',
+                                                                 model_class.objects.filter(bs_date=bs_date, district=district).order_by('id'))
+            return HttpResponse(
+                json.dumps((bs_mtable_data)),
+
+                content_type='application/javascript; charset=utf8'
+            )
     except Exception as ex:
         for db_table in db_tables:
             model_class = apps.get_model(sub_app_name, db_table)
@@ -689,7 +727,7 @@ def dl_save_data(request):
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
                 print "before filtering", com_data
                 record_exist = sub_app_session.objects.filter(**filter_fields)
-                print "record_exist"
+                print "record_exist", record_exist
 
                 if not record_exist:
                     print "record does not exist"

@@ -577,99 +577,29 @@ TABLE_PROPERTY_MAPPER = {
             'BmaAmMinNum': ['male', 'female', 'id'],
         },
         'Table_3': {
-            'DloNumEmps': [
-                'male', 'female', 'firm_id', 'id'],
-            'DloDmgStructures': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgEquipment': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgMachinery': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgVehicles': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgStocks': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloLosPlos': [
-                'type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2',
+            'DloNumEmps': ['male', 'female', 'firm_id', 'id'],
+            'DloDmgStructures': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgEquipment': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgMachinery': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgVehicles': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgStocks': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2',
                 'tot_losses', 'firm_id', 'id'],
-            'DloLosOlos': [
-                'type_los', 'los_year1', 'los_year2', 'tot_losses', 'firm_id', 'id']
+            'DloLosOlos': ['type_los', 'los_year1', 'los_year2', 'tot_losses', 'firm_id', 'id']
         },
         'Table_4': {
-            'DlaDmgStructures': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaDmgEquipment': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaDmgMachinery': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaDmgStocks': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaLosPlos': [
-                'type_los',
-                'avg_per_year',
-                'red_voutput_year1',
-                'red_voutput_year2',
-                'los_year1',
-                'los_year2',
-                'tot_losses',
-                'id'
-            ],
-            'DlaLosOlos': [
-                'type_los',
-                'avg_per_year',
-                'red_voutput_year1',
-                'red_voutput_year2',
-                'los_year1',
-                'los_year2',
-                'tot_losses',
-                'id'
-            ]
+            'DlaDmgStructures': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaDmgEquipment': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaDmgMachinery': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaDmgStocks': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+            'DlaLosOlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2', 'tot_losses', 'id']
         },
         'Table_5': {
-            'DloDmgDistrict': [
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'firm__name',
-                'ownership'
-            ],
-            'DlaDmgDistrict': [
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages'
-            ],
-            'DlaLosDistrict': [
-                'los_year1',
-                'los_year2',
-                'tot_losses'
-            ],
-            'DloLosDistrict': [
-                'los_year1',
-                'los_year2',
-                'tot_losses',
-                'firm__name',
-                'ownership'
-            ],
+            'DloDmgDistrict': ['rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm__name', 'ownership'],
+            'DlaDmgDistrict': ['rep_tot_dassets','repair_pdmg_assets','tot_damages'],
+            'DlaLosDistrict': ['los_year1','los_year2','tot_losses'],
+            'DloLosDistrict': ['los_year1','los_year2','tot_losses','firm__name','ownership'],
         },
         'Table_6': {
             'DlaDmgNational': [
@@ -690,7 +620,6 @@ TABLE_PROPERTY_MAPPER = {
                 'tot_losses',
                 'ownership'
             ],
-
         },
         'Table_7': {
             'DlaDmgProvince': [
@@ -805,7 +734,6 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_cost_flooring',
                 'id'
             ],
-
         }
     },
     'education': {

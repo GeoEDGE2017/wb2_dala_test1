@@ -383,11 +383,12 @@ def bs_get_data_mock(request):
 
         for com in com_data:
             if(com == 'firm_id'):
-                print "------|------"
+                print "------ firm_id"
                 thrid_filter_key = com
                 thrid_filter_value = com_data['firm_id']
                 thrid_filter_enable = True
             elif(com == 'company_id'):
+                print "------ company_id"
                 thrid_filter_key = com
                 thrid_filter_value = com_data['company_id']
                 thrid_filter_enable = True
@@ -429,6 +430,8 @@ def bs_get_data_mock(request):
                 # assuming there could be multiple data sets for bs_date
                 bs_mtable_data[db_table] = serializers.serialize('json',
                                                                  model_class.objects.filter(bs_date=bs_date, district=district).order_by('id'))
+
+            print 'bs_mtable_data ', bs_mtable_data
             return HttpResponse(
                 json.dumps((bs_mtable_data)),
 
@@ -471,9 +474,7 @@ def bs_get_data_mock_for_bs(request):
         bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district). \
             values('id', 'bs_date').order_by('id').latest('id')
 
-        print '*'
         print bd_sessions
-        print '**'
         bs_date = bd_sessions['bs_date']
         print 'bs_date', bs_date
         for db_table in db_tables:
@@ -483,9 +484,9 @@ def bs_get_data_mock_for_bs(request):
             bs_mtable_data[db_table] = serializers.serialize('json',
                                                              model_class.objects.filter(bs_date=bs_date,
                                                                                         district=district).order_by('id'))
+        print 'bs_mtable_data ', bs_mtable_data
         return HttpResponse(
             json.dumps((bs_mtable_data)),
-
             content_type='application/javascript; charset=utf8'
         )
     except Exception as ex:
@@ -620,14 +621,18 @@ def bs_fetch_edit_data(request):
 
     for table in tables:
         table_fields = tables[table]
+        print 'table_fields', table_fields
 
         model_class = apps.get_model(sub_app_name, table)
         bs_mtable_data[sector][table_name][table] = list(model_class.objects.
                                                          filter(bs_date=bs_date, district=district).
                                                          values(*table_fields).order_by('id'))
 
+    print 'print bs_mtable_data', bs_mtable_data
     return HttpResponse(
-        json.dumps(bs_mtable_data),
+        # json.dumps(bs_mtable_data),
+        # content_type='application/javascript; charset=utf8'
+        json.dumps(bs_mtable_data, cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
     )
 

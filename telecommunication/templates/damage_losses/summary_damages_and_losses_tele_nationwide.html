@@ -5,16 +5,20 @@
 <main class="main" ng-app="dlSumTeleNatApp" ng-controller="dlSumTeleNatController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 5.  Summary of Damages and Losses in a Nationwide
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_sum_tele_nat">
         <div id="myTabContent" class="tab-content">
@@ -38,7 +42,7 @@
                         </td>
                         <td height="19" colspan="8" width="254">
                             <select id="select" name="incident" ng-model="incident"
-                                    class="form-control" style="width:100%;font-weight:400;" ng-change="changedValue(incident);fetchProvinces();" required>
+                                    class="form-control" style="width:100%;font-weight:400;" ng-change="changedValue(incident);fetchProvinces();fetchDlData(form_dl_sum_tele_nat)" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
                                 <option value={{incident.id}}>{{incident.disaster_type.name}}
@@ -46,9 +50,6 @@
                                 </option>
                                 {% endfor %}
                             </select>
-                        </td>
-                        <td colspan="2">
-                            <button class="btn btn-info btn-block" ng-click="fetchDlData(form_dl_sum_tele_nat)">Load</button>
                         </td>
                     </tr>
                     </tbody>
@@ -337,7 +338,6 @@
                     </tr>
                     </tbody>
                     </table>
-
                 </table>
                 <br>
             </div>

@@ -219,3 +219,25 @@ def telecommunication_charts(request):
         'module': 'new_charts'
     }
     return render(request, 'new_charts/telecommunication_chart.html', context)
+
+
+def agri_fisheries_charts(request):
+    districts = District.objects.all()
+    incidents = IncidentReport.objects.all()
+    context = {
+        'districts': districts,
+        'incidents': incidents,
+        'module': 'new_charts'
+    }
+    return render(request, 'new_charts/agri_fisheries_chart.html', context)
+
+
+def agri_livestock_charts(request):
+    districts = District.objects.all()
+    incidents = IncidentReport.objects.all()
+    context = {
+        'districts': districts,
+        'incidents': incidents,
+        'module': 'new_charts'
+    }
+    return render(request, 'new_charts/agri_livestock_chart.html', context)

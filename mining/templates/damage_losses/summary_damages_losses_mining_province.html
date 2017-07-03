@@ -5,18 +5,20 @@
 <main class="main" ng-app="dlminingProApp" ng-controller="DlminingProController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5: Summary of damages and losses Province </span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 6: Summary of damages and losses Province
+            </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
-
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
@@ -122,7 +124,6 @@
                     </tr>
                     <tr class="trheadc" height="20" ng-init="getTotal($index,key);">
                         <td ng-bind="key" width="171" height="20">
-
                         </td>
                         <td width="119">
                         </td>
@@ -144,7 +145,6 @@
                     <tr height="20">
                         <td width="202" height="20" class="tdpa">Industrial mining
                         </td>
-
                         <td width="90" ng-bind="value.DloDmgProvince[1].tot_damages"></td>
                         <td width="90" ng-bind="value.DloDmgProvince[0].tot_damages"></td>
                         <td width="90" ng-bind="value.DloLosProvince[1].los_year1"></td>
@@ -155,12 +155,10 @@
                             ng-bind="value.DloDmgProvince[1].tot_damages +value.DloLosProvince[1].los_year1+value.DloLosProvince[1].los_year2 "></td>
                         <td width="90"
                             ng-bind="value.DloDmgProvince[0].tot_damages +value.DloLosProvince[0].los_year1+value.DloLosProvince[0].los_year2 "></td>
-
                     </tr>
                     <tr height="20">
                         <td width="202" height="20" class="tdpa">Artisanal mining
                         </td>
-
                         <td width="90" ng-bind="value.DlaDmgProvince[0].tot_damages"></td>
                         <td width="90"></td>
                         <td width="90" ng-bind="value.DlaLosProvince[0].los_year1"></td>
@@ -170,7 +168,6 @@
                         <td width="90"
                             ng-bind="value.DlaDmgProvince[0].tot_damages + value.DlaLosProvince[0].los_year1 + value.DlaLosProvince[s0].los_year2"></td>
                         <td width="90"></td>
-
                     </tr>
                     </tbody>
                     <tr height="20">
@@ -185,28 +182,15 @@
                         <td width="90" ng-bind="finaltotalpublic"></td>
                         <td width="90" ng-bind="finaltotalprivate"></td>
                     </tr>
-
-
                 </table>
                 <br>
                 <div class="pull-right">
                     <br>
-
                 </div>
                 <br><br><br>
             </div>
-
         </div>
-
-
-    </div>
-    </div>
-
-    </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

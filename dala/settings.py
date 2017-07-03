@@ -158,11 +158,10 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=agri_agrarian'
+        #     'options': '-c search_path=telecommunication'
         # },
 
-
-        'NAME': 'Dala_2017_05_09',
+        'NAME': 'dala',
         'USER': 'postgres',
     },
 }
@@ -570,117 +569,37 @@ TABLE_PROPERTY_MAPPER = {
         },
     },
     'mining': {
-        'Table_1': {'BmaImFn': ['name_min_outputs','avg_per_year','firm_id','id'],
+        'Table_1': {'BmaImFn': ['name_min_outputs', 'avg_per_year', 'firm_id', 'id'],
                     'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'],
-                    },
+        },
         'Table_2': {
-
-            'BmaAmMin': ['minerals',
-                         'avg_per_year', 'id'],
-            'BmaAmMinNum': ['male',
-                            'female',
-                            'id'],
-
+            'BmaAmMin': ['minerals','avg_per_year', 'id'],
+            'BmaAmMinNum': ['male', 'female', 'id'],
         },
         'Table_3': {
-            'DloNumEmps': [
-                'male', 'female', 'firm_id', 'id'],
-            'DloDmgStructures': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgEquipment': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgMachinery': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgVehicles': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloDmgStocks': [
-                'assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloLosPlos': [
-                'type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2',
+            'DloNumEmps': ['male', 'female', 'firm_id', 'id'],
+            'DloDmgStructures': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgEquipment': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgMachinery': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgVehicles': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloDmgStocks': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
+            'DloLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2',
                 'tot_losses', 'firm_id', 'id'],
-            'DloLosOlos': [
-                'type_los', 'los_year1', 'los_year2', 'tot_losses', 'firm_id', 'id']
+            'DloLosOlos': ['type_los', 'los_year1', 'los_year2', 'tot_losses', 'firm_id', 'id']
         },
         'Table_4': {
-            'DlaDmgStructures': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaDmgEquipment': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaDmgMachinery': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaDmgStocks': [
-                'assets',
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'id'
-            ],
-            'DlaLosPlos': [
-                'type_los',
-                'avg_per_year',
-                'red_voutput_year1',
-                'red_voutput_year2',
-                'los_year1',
-                'los_year2',
-                'tot_losses',
-                'id'
-            ],
-            'DlaLosOlos': [
-                'type_los',
-                'avg_per_year',
-                'red_voutput_year1',
-                'red_voutput_year2',
-                'los_year1',
-                'los_year2',
-                'tot_losses',
-                'id'
-            ]
+            'DlaDmgStructures': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaDmgEquipment': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaDmgMachinery': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaDmgStocks': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
+            'DlaLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
+            'DlaLosOlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2', 'tot_losses', 'id']
         },
         'Table_5': {
-
-            'DloDmgDistrict': [
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages',
-                'firm__name',
-                'ownership'
-
-            ],
-            'DlaDmgDistrict': [
-                'rep_tot_dassets',
-                'repair_pdmg_assets',
-                'tot_damages'
-            ],
-
-            'DlaLosDistrict': [
-                'los_year1',
-                'los_year2',
-                'tot_losses'
-            ],
-            'DloLosDistrict': [
-                'los_year1',
-                'los_year2',
-                'tot_losses',
-                'firm__name',
-                'ownership'
-
-            ],
-
+            'DloDmgDistrict': ['rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm__name', 'ownership'],
+            'DlaDmgDistrict': ['rep_tot_dassets','repair_pdmg_assets','tot_damages'],
+            'DlaLosDistrict': ['los_year1','los_year2','tot_losses'],
+            'DloLosDistrict': ['los_year1','los_year2','tot_losses','firm__name','ownership'],
         },
         'Table_6': {
             'DlaDmgNational': [
@@ -701,7 +620,6 @@ TABLE_PROPERTY_MAPPER = {
                 'tot_losses',
                 'ownership'
             ],
-
         },
         'Table_7': {
             'DlaDmgProvince': [
@@ -726,7 +644,6 @@ TABLE_PROPERTY_MAPPER = {
                 'tot_losses',
                 'ownership'
             ],
-
         }
     },
     'other_govn_services': {
@@ -817,15 +734,13 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_cost_flooring',
                 'id'
             ],
-
         }
     },
     'education': {
         'Table_1': {
-
-          'BefPubSchools': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
-          'BefPubOffices': ['type_facilities', 'total_number', 'id'],
-          'BefPvt': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
+            'BefPubSchools': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
+            'BefPubOffices': ['type_facilities', 'total_number', 'id'],
+            'BefPvt': ['type_facilities', 'total_number', 'avg_male', 'avg_female', 'id'],
         },
         'Table_3': {
             'DugDfNdf': [
@@ -1072,7 +987,6 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_6': {
-
             'DpefBefDistrict': [
                 'ab1_1c',
                 'type_2',
@@ -1082,7 +996,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
             'DpefBefPreDistrict': [
                 'est_rep_cost',
@@ -1091,7 +1004,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefPrimaryDistrict': [
                 'est_rep_cost',
@@ -1108,7 +1020,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefTechDistrict': [
                 'est_rep_cost',
@@ -1135,7 +1046,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
             'DugNsaDistrict': [
                 'ab1_1c',
@@ -1145,7 +1055,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_institutes',
                 'training_colleges',
                 'tc_crc_resc',
-
             ],
             'DpefNaf': [
                 'edu_facilities',
@@ -1163,12 +1072,9 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
-
         },
         'Table_7': {
-
             'DpefBefOtherNational': [
                 'est_rep_cost',
                 'est_repair_cost',
@@ -1176,7 +1082,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefPreNational': [
                 'est_rep_cost',
@@ -1185,9 +1090,7 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
-
             'DpefBefPrimaryNational': [
                 'est_rep_cost',
                 'est_repair_cost',
@@ -1195,7 +1098,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefSecondaryNational': [
                 'est_rep_cost',
@@ -1204,7 +1106,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefTechNational': [
                 'est_rep_cost',
@@ -1213,7 +1114,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefUnvNational': [
                 'est_rep_cost',
@@ -1222,13 +1122,11 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefNafNational': [
                 'num_edu_facilities',
                 'male',
                 'female',
-
             ],
             'DpefBefNational': [
                 'ab1_1c',
@@ -1239,7 +1137,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
             'DugDfNational': [
                 'ab1_1c',
@@ -1250,7 +1147,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
             'DugNdafNational': [
                 'ab1_1c',
@@ -1261,7 +1157,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
             'DugNsaNational': [
                 'ab1_1c',
@@ -1271,10 +1166,8 @@ TABLE_PROPERTY_MAPPER = {
                 'training_institutes',
                 'training_colleges',
                 'tc_crc_resc',
-
             ],
         },
-
     },
     'transport_rail': {
         'Table_1': {

@@ -234,6 +234,91 @@ def bs_save_data(request):
     return HttpResponse('success')
 
 
+# dileepa
+@csrf_exempt
+def bs_save_data_with_firm(request):
+    print "bs_save_data_with_firm"
+    bs_data = (yaml.safe_load(request.body))
+    bs_table_hs_data = bs_data['table_data']
+    com_data = bs_data['com_data']
+    district = com_data['district']
+    bs_date = com_data['bs_date']
+    firm = int(com_data['firm_id'])
+    todate = timezone.now()
+    is_edit = bs_data['is_edit']
+
+    print 'in adding', is_edit
+    print bs_table_hs_data
+    print 'firm', firm
+
+    if not is_edit:
+        print 'in'
+        for sector in bs_table_hs_data:
+
+            sub_app_name = sector + '.base_line'
+
+            print 'sub_app_name :', sub_app_name
+
+            for interface_table in bs_table_hs_data[sector]:
+                print 'interface table', ' -->', interface_table, '\n'
+
+                sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
+
+                print 'got model'
+                record_exist = sub_app_session.objects.filter(bs_date=com_data['bs_date'],
+                                                            table_name=interface_table,
+                                                            district=district, firm_id=firm)
+
+                print 'record_exist', record_exist
+
+                if not record_exist:
+                    print '--> in'
+                    for db_table in bs_table_hs_data[sector][interface_table]:
+
+                        print 'db table', ' -->', db_table, '\n'
+
+                        for row in bs_table_hs_data[sector][interface_table][db_table]:
+
+                            model_class = apps.get_model(sub_app_name, db_table)
+                            model_object = model_class()
+
+                            # assigning common properties to model object
+                            model_object.created_date = todate
+                            model_object.lmd = todate
+                            model_object.district_id = district
+                            model_object.bs_date = bs_date
+
+                            print 'row', ' --> ', row, '\n', ' object '
+
+                            for property in row:
+                                setattr(model_object, property, row[property])
+
+                                print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
+                                model_object.save()
+
+                                # get bs full date
+                    split_date = bs_date.split('/')
+                    bs_month = split_date[0]
+                    bs_year = split_date[1]
+                    bs_full_date = datetime.date(int(bs_year), int(bs_month), 1)
+
+                    bd_session = sub_app_session(bs_date=com_data['bs_date'], table_name=interface_table,
+                                               date=todate, district_id=district, data_type='base_line',
+                                               full_bs_date=bs_full_date, firm_id=firm)
+                    bd_session.save()
+
+
+
+                else:
+                    print '--> out'
+                    return HttpResponse(False)
+
+    else:
+        bs_save_edit_data(bs_table_hs_data, com_data)
+
+    return HttpResponse('success')
+
+
 @csrf_exempt
 def bs_get_data(request):
     todate = timezone.now()
@@ -289,28 +374,69 @@ def bs_get_data_mock(request):
     print '@'
 
     try:
-        bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
-                                                  select_params=(incident_date,)). \
-            filter(table_name=table_name, district=district). \
-            values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+        print "S------------"
+        print "com_data[]", com_data
 
-        print '*'
-        print bd_sessions
-        print '**'
-        bs_date = bd_sessions['bs_date']
-        print 'bs_date', bs_date
-        for db_table in db_tables:
-            model_class = apps.get_model(sub_app_name, db_table)
-            # assuming there could be multiple data sets for bs_date
-            bs_mtable_data[db_table] = serializers.serialize('json',
-                                                             model_class.objects.filter(bs_date=bs_date,
-                                                                                        district=district).order_by(
-                                                                 'id'))
-        return HttpResponse(
-            json.dumps((bs_mtable_data)),
+        thrid_filter_enable = False
+        thrid_filter_key = None
+        thrid_filter_value = None
 
-            content_type='application/javascript; charset=utf8'
-        )
+        for com in com_data:
+            if(com == 'firm_id'):
+                print "------ firm_id"
+                thrid_filter_key = com
+                thrid_filter_value = com_data['firm_id']
+                thrid_filter_enable = True
+            elif(com == 'company_id'):
+                print "------ company_id"
+                thrid_filter_key = com
+                thrid_filter_value = com_data['company_id']
+                thrid_filter_enable = True
+        print "------------E"
+
+        bd_sessions = None
+
+        if thrid_filter_enable:
+            bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)). \
+                filter(table_name=table_name, district=district, **{thrid_filter_key: thrid_filter_value}). \
+                values('difference', 'id', 'bs_date', thrid_filter_key).order_by('difference').latest('difference')
+
+            print '*'
+            print bd_sessions
+            print '**'
+            bs_date = bd_sessions['bs_date']
+            print 'bs_date', bs_date
+            for db_table in db_tables:
+                model_class = apps.get_model(sub_app_name, db_table)
+                # assuming there could be multiple data sets for bs_date
+                bs_mtable_data[db_table] = serializers.serialize('json',
+                                         model_class.objects.filter(bs_date=bs_date, district=district, **{thrid_filter_key: thrid_filter_value}).order_by('id'))
+
+            return HttpResponse(json.dumps((bs_mtable_data)), content_type='application/javascript; charset=utf8')
+
+        else:
+            print "------+------"
+            bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)). \
+                filter(table_name=table_name, district=district). \
+                values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+
+            print '*'
+            print bd_sessions
+            print '**'
+            bs_date = bd_sessions['bs_date']
+            print 'bs_date', bs_date
+            for db_table in db_tables:
+                model_class = apps.get_model(sub_app_name, db_table)
+                # assuming there could be multiple data sets for bs_date
+                bs_mtable_data[db_table] = serializers.serialize('json',
+                                                                 model_class.objects.filter(bs_date=bs_date, district=district).order_by('id'))
+
+            print 'bs_mtable_data ', bs_mtable_data
+            return HttpResponse(
+                json.dumps((bs_mtable_data)),
+
+                content_type='application/javascript; charset=utf8'
+            )
     except Exception as ex:
         for db_table in db_tables:
             model_class = apps.get_model(sub_app_name, db_table)
@@ -348,9 +474,7 @@ def bs_get_data_mock_for_bs(request):
         bd_sessions = bs_session_model.objects.extra(where=["bs_date LIKE %s "], params=[bs_date]).filter(table_name=table_name, district=district). \
             values('id', 'bs_date').order_by('id').latest('id')
 
-        print '*'
         print bd_sessions
-        print '**'
         bs_date = bd_sessions['bs_date']
         print 'bs_date', bs_date
         for db_table in db_tables:
@@ -360,9 +484,9 @@ def bs_get_data_mock_for_bs(request):
             bs_mtable_data[db_table] = serializers.serialize('json',
                                                              model_class.objects.filter(bs_date=bs_date,
                                                                                         district=district).order_by('id'))
+        print 'bs_mtable_data ', bs_mtable_data
         return HttpResponse(
             json.dumps((bs_mtable_data)),
-
             content_type='application/javascript; charset=utf8'
         )
     except Exception as ex:
@@ -497,14 +621,18 @@ def bs_fetch_edit_data(request):
 
     for table in tables:
         table_fields = tables[table]
+        print 'table_fields', table_fields
 
         model_class = apps.get_model(sub_app_name, table)
         bs_mtable_data[sector][table_name][table] = list(model_class.objects.
                                                          filter(bs_date=bs_date, district=district).
                                                          values(*table_fields).order_by('id'))
 
+    print 'print bs_mtable_data', bs_mtable_data
     return HttpResponse(
-        json.dumps(bs_mtable_data),
+        # json.dumps(bs_mtable_data),
+        # content_type='application/javascript; charset=utf8'
+        json.dumps(bs_mtable_data, cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
     )
 
@@ -604,7 +732,7 @@ def dl_save_data(request):
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
                 print "before filtering", com_data
                 record_exist = sub_app_session.objects.filter(**filter_fields)
-                print "record_exist"
+                print "record_exist", record_exist
 
                 if not record_exist:
                     print "record does not exist"
@@ -1079,7 +1207,7 @@ def dl_save_edit_data_with_array(table_data, com_data):
 def dl_delete_data(table_data, com_data):
     todate = timezone.now()
     print "\n"
-    print "Edit -------------"
+    print "Delete -------------"
     for sector in table_data:
 
         sub_app_name = sector + '.damage_losses'

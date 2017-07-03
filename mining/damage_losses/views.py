@@ -74,7 +74,6 @@ def summary_damage_losses_province(request):
     return render(request, 'damage_losses/summary_damages_losses_mining_province.html', context)
 
 
-
 @permission_required("national", "Mining")
 def summary_damage_losses_nationwide(request):
     user = request.user

@@ -26,173 +26,128 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 'DloNumEmps': [{
                     male: null,
                     female: null,
-
-
-
                 }],
                 'DloDmgStructures': [{
-                        assets: 'Tunnels',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
+                    assets: 'Tunnels',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }, {
+                    assets: 'Office buildings',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
 
-                    },
-                    {
-                        assets: 'Office buildings',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
+                }, {
+                    assets: 'Total',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
 
-                    },
-                    {
-                        assets: 'Total',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-
-                    },
-                ],
+                }],
                 'DloDmgEquipment': [{
-                        assets: 'Loaders',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    },
-                    {
-                        assets: 'Computers',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    },
-                    {
-                        assets: 'Total',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    }
-                ],
+                    assets: 'Loaders',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }, {
+                    assets: 'Computers',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }, {
+                    assets: 'Total',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }],
                 'DloDmgMachinery': [{
-                        assets: 'Generators',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    },
-                    {
-                        assets: 'Total',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    }
-                ],
+                    assets: 'Generators',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }, {
+                    assets: 'Total',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }],
                 'DloDmgVehicles': [{
-                        assets: 'Trucks',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    },
-                    {
-                        assets: 'Cars',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    }, {
-                        assets: 'Total',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    }
-
-                ],
+                    assets: 'Trucks',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }, {
+                    assets: 'Cars',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }, {
+                    assets: 'Total',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }],
                 'DloDmgStocks': [{
-                        assets: 'Total',
-                        rep_tot_dassets: null,
-                        repair_pdmg_assets: null,
-                        tot_damages: null,
-                    }
-
-                ],
+                    assets: 'Total',
+                    rep_tot_dassets: null,
+                    repair_pdmg_assets: null,
+                    tot_damages: null,
+                }],
                 'DloLosPlos': [{
-                        type_los: 'Nickel',
-                        avg_per_year: null,
-                        red_voutput_year1: null,
-                        red_voutput_year2: null,
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-                    },
-                    {
-                        type_los: 'Copper',
-                        avg_per_year: null,
-                        red_voutput_year1: null,
-                        red_voutput_year2: null,
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-
-                    },
-
-                    {
-                        type_los: 'Gold',
-                        avg_per_year: null,
-                        red_voutput_year1: null,
-                        red_voutput_year2: null,
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-
-                    },
-
-                    {
-                        type_los: 'Total',
-                        avg_per_year: null,
-                        red_voutput_year1: null,
-                        red_voutput_year2: null,
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-                    }
-
-
-                ],
+                    type_los: 'Nickel',
+                    avg_per_year: null,
+                    red_voutput_year1: null,
+                    red_voutput_year2: null,
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }, {
+                    type_los: 'Copper',
+                    avg_per_year: null,
+                    red_voutput_year1: null,
+                    red_voutput_year2: null,
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }, {
+                    type_los: 'Gold',
+                    avg_per_year: null,
+                    red_voutput_year1: null,
+                    red_voutput_year2: null,
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }, {
+                    type_los: 'Total',
+                    avg_per_year: null,
+                    red_voutput_year1: null,
+                    red_voutput_year2: null,
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }],
                 'DloLosOlos': [{
-                        type_los: 'Cleaning up of debris',
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-                        firm_id: null,
-
-                    },
-                    {
-                        type_los: 'Higher operating costs',
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-                        firm_id: null,
-
-
-                    }, {
-                        type_los: 'Other unexpected expenses',
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-                        firm_id: null,
-
-
-                    },
-                    {
-                        type_los: 'Total',
-                        los_year1: null,
-                        los_year2: null,
-                        tot_losses: null,
-                        firm_id: null,
-
-                    },
-
-                ]
-
-
-
-
+                    type_los: 'Cleaning up of debris',
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }, {
+                    type_los: 'Higher operating costs',
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }, {
+                    type_los: 'Other unexpected expenses',
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }, {
+                    type_los: 'Total',
+                    los_year1: null,
+                    los_year2: null,
+                    tot_losses: null,
+                }]
             }
         }
     }
@@ -206,7 +161,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         var sums = _.map(array, function(obj) {
             if(obj.assets != 'Total'&& obj.type_los !='Total'){
                 cumulative += obj[property];
-                console.log(cumulative);
+//                console.log(cumulative);
                 return cumulative;
             }
         });
@@ -262,19 +217,19 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 
         var cumulative_year1 = _.map(array, function(obj) {
             cumulative_los_year1 += obj.avg_per_year * (obj.red_voutput_year1/100);
-            console.log(cumulative_los_year1);
+//            console.log(cumulative_los_year1);
             return cumulative_los_year1;
         });
 
         var cumulative_year2 = _.map(array, function(obj) {
             cumulative_los_year2 += obj.avg_per_year * (obj.red_voutput_year2/100);
-            console.log(cumulative_los_year1);
+//            console.log(cumulative_los_year1);
             return cumulative_los_year1;
         });
 
         var cumulative_tot = _.map(array, function(obj) {
             cumulative_total += (obj.avg_per_year * (obj.red_voutput_year1/100)) + (obj.avg_per_year * (obj.red_voutput_year2/100));
-            console.log(cumulative_total);
+//            console.log(cumulative_total);
             return cumulative_total;
         });
 
@@ -292,66 +247,60 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     }
 
     //get Grand Total using watch
-    $scope.$watch(
-        function() {
-            if (isNaN(
-                    $scope.DloDmgStructures_rep_tot_dassets ||
-                    $scope.DloDmgEquipment_rep_tot_dassets ||
-                    $scope.DloDmgMachinery_rep_tot_dassets ||
-                    $scope.DloDmgVehicles_rep_tot_dassets ||
-                    $scope.DloDmgStocks_rep_tot_dassets ||
+    $scope.$watch(function() {
+        if (isNaN($scope.DloDmgStructures_rep_tot_dassets ||
+            $scope.DloDmgEquipment_rep_tot_dassets ||
+            $scope.DloDmgMachinery_rep_tot_dassets ||
+            $scope.DloDmgVehicles_rep_tot_dassets ||
+            $scope.DloDmgStocks_rep_tot_dassets ||
 
-                    $scope.DloDmgStructures_repair_pdmg_assets ||
-                    $scope.DloDmgEquipment_repair_pdmg_assets ||
-                    $scope.DloDmgMachinery_repair_pdmg_assets ||
-                    $scope.DloDmgVehicles_repair_pdmg_assets ||
-                    $scope.DloDmgStocks_repair_pdmg_assets ||
+            $scope.DloDmgStructures_repair_pdmg_assets ||
+            $scope.DloDmgEquipment_repair_pdmg_assets ||
+            $scope.DloDmgMachinery_repair_pdmg_assets ||
+            $scope.DloDmgVehicles_repair_pdmg_assets ||
+            $scope.DloDmgStocks_repair_pdmg_assets ||
 
-                    $scope.DloLosPlos_los_year1 ||
-                    $scope.DloLosPlos_los_year2 ||
+            $scope.DloLosPlos_los_year1 ||
+            $scope.DloLosPlos_los_year2 ||
 
-                    $scope.DloLosOlos_los_year1 ||
-                    $scope.DloLosOlos_los_year2
-                )) {
+            $scope.DloLosOlos_los_year1 ||
+            $scope.DloLosOlos_los_year2
+        )) {
+            $scope.DloDmgStructures_rep_tot_dassets = null;
+            $scope.DloDmgEquipment_rep_tot_dassets = null;
+            $scope.DloDmgMachinery_rep_tot_dassets = null;
+            $scope.DloDmgVehicles_rep_tot_dassets = null;
+            $scope.DloDmgStocks_rep_tot_dassets = null;
 
-                $scope.DloDmgStructures_rep_tot_dassets = null;
-                $scope.DloDmgEquipment_rep_tot_dassets = null;
-                $scope.DloDmgMachinery_rep_tot_dassets = null;
-                $scope.DloDmgVehicles_rep_tot_dassets = null;
-                $scope.DloDmgStocks_rep_tot_dassets = null;
+            $scope.DloDmgStructures_repair_pdmg_assets = null;
+            $scope.DloDmgEquipment_repair_pdmg_assets = null;
+            $scope.DloDmgMachinery_repair_pdmg_assets = null;
+            $scope.DloDmgVehicles_repair_pdmg_assets = null;
+            $scope.DloDmgStocks_repair_pdmg_assets = null;
 
-                $scope.DloDmgStructures_repair_pdmg_assets = null;
-                $scope.DloDmgEquipment_repair_pdmg_assets = null;
-                $scope.DloDmgMachinery_repair_pdmg_assets = null;
-                $scope.DloDmgVehicles_repair_pdmg_assets = null;
-                $scope.DloDmgStocks_repair_pdmg_assets = null;
+            $scope.DloLosOlos_los_year1 = null;
+            $scope.DloLosOlos_los_year2 = null;
 
-                $scope.DloLosOlos_los_year1 = null;
-                $scope.DloLosOlos_los_year2 = null;
-
-                $scope.DloLosPlos_los_year1 = null;
-                $scope.DloLosPlos_los_year2 = null;
-
-
-            }
-            else {
-                $scope.DloDmg_rep_tot_dassets_grnd = $scope.DloDmgStructures_rep_tot_dassets + $scope.DloDmgEquipment_rep_tot_dassets +
+            $scope.DloLosPlos_los_year1 = null;
+            $scope.DloLosPlos_los_year2 = null;
+        }
+        else {
+            $scope.DloDmg_rep_tot_dassets_grnd = $scope.DloDmgStructures_rep_tot_dassets + $scope.DloDmgEquipment_rep_tot_dassets +
                     $scope.DloDmgMachinery_rep_tot_dassets + $scope.DloDmgVehicles_rep_tot_dassets + $scope.DloDmgStocks_rep_tot_dassets;
-                console.log($scope.DloDmg_rep_tot_dassets_grnd);
+//            console.log($scope.DloDmg_rep_tot_dassets_grnd);
 
-                $scope.DloDmg_repair_pdmg_assets_grnd = $scope.DloDmgStructures_repair_pdmg_assets + $scope.DloDmgEquipment_repair_pdmg_assets +
+            $scope.DloDmg_repair_pdmg_assets_grnd = $scope.DloDmgStructures_repair_pdmg_assets + $scope.DloDmgEquipment_repair_pdmg_assets +
                     $scope.DloDmgMachinery_repair_pdmg_assets + $scope.DloDmgVehicles_repair_pdmg_assets + $scope.DloDmgStocks_repair_pdmg_assets;
 
-                $scope.DloDmg_tot_damages_grnd = $scope.DloDmg_rep_tot_dassets_grnd + $scope.DloDmg_repair_pdmg_assets_grnd;
+            $scope.DloDmg_tot_damages_grnd = $scope.DloDmg_rep_tot_dassets_grnd + $scope.DloDmg_repair_pdmg_assets_grnd;
 
-                $scope.DloLosOlos_los_year1_grnd = $scope.DloLosOlos_los_year1 + $scope.DloLosPlos_los_year1;
+            $scope.DloLosOlos_los_year1_grnd = $scope.DloLosOlos_los_year1 + $scope.DloLosPlos_los_year1;
 
-                $scope.DloLosOlos_los_year2_grnd = $scope.DloLosOlos_los_year2 + $scope.DloLosPlos_los_year2;
+            $scope.DloLosOlos_los_year2_grnd = $scope.DloLosOlos_los_year2 + $scope.DloLosPlos_los_year2;
 
-                $scope.DloLosOlos_tot_losses_grnd = $scope.DloLosOlos_los_year1_grnd + $scope.DloLosOlos_los_year2_grnd;
-            }
-        },
-    true);
+            $scope.DloLosOlos_tot_losses_grnd = $scope.DloLosOlos_los_year1_grnd + $scope.DloLosOlos_los_year2_grnd;
+        }
+    }, true);
 
     $scope.insertFirm = function(table) {
         console.log($scope.dmLosOfMinFirms.mining.Table_3[table]);
@@ -413,15 +362,20 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.removeItem = function removeItem(table, index) {
         if (table == 'DloDmgStructures') {
             $scope.dmLosOfMinFirms.mining.Table_3.DloDmgStructures.splice(index, 1);
-        } else if (table == 'DloDmgEquipment') {
+        }
+        else if (table == 'DloDmgEquipment') {
             $scope.dmLosOfMinFirms.mining.Table_3.DloDmgEquipment.splice(index, 1);
-        } else if (table == 'DloDmgMachinery') {
+        }
+        else if (table == 'DloDmgMachinery') {
             $scope.dmLosOfMinFirms.mining.Table_3.DloDmgMachinery.splice(index, 1);
-        } else if (table == 'DloDmgVehicles') {
+        }
+        else if (table == 'DloDmgVehicles') {
             $scope.dmLosOfMinFirms.mining.Table_3.DloDmgVehicles.splice(index, 1);
-        } else if (table == 'DloDmgStocks') {
+        }
+        else if (table == 'DloDmgStocks') {
             $scope.dmLosOfMinFirms.mining.Table_3.DloDmgStocks.splice(index, 1);
-        } else if (table == 'DloLosPlos') {
+        }
+        else if (table == 'DloLosPlos') {
             $scope.dmLosOfMinFirms.mining.Table_3.DloLosPlos.splice(index, 1);
         }
     }
@@ -477,12 +431,12 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-                console.log(response);
+//                console.log(response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                console.log($scope.bs_data);
+                console.log('bs data', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -610,12 +564,13 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'firm_id': $scope.selectedFirm.id
                     },
                     'is_edit': $scope.is_edit
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-               console.log('test',$scope.dmLosOfMinFirms);
+                console.log('test', $scope.dmLosOfMinFirms);
                 if (response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
@@ -663,8 +618,15 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dmLosOfMinFirms = angular.copy(init_data);
+    }
+
+    $scope.test = function(form) {
+//        console.log($scope.selectedCompany.company);
+//        console.log($scope.selectedCompany.id);
+
+        console.log($scope.dmLosOfMinFirms);
     }
 })

@@ -319,9 +319,9 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlOthLndAsets = init_data;
+    $scope.dlOthLndAsets = angular.copy(init_data);
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -452,7 +452,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                 data: angular.toJson({
                     'table_data': $scope.dlOthLndAsets,
                     'com_data': {
-                        'district_id':  $scope.district.district__id,
+                        'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
                     },
                     'is_edit' : $scope.is_edit,

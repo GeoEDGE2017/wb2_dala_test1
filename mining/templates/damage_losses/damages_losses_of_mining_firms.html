@@ -5,26 +5,35 @@
   $(document).ready(function() {
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
   });
-  
-
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dmLosOfMinFirmsApp" ng-controller="DmLosOfMinFirmsAppController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3: Damages and Losses of Mining Firms  </span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 3: Damages and Losses of Mining Firms
+            </span>
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="(form_damagelost_mining_firm)">
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 - Damages</a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 - Losses</a>
+            </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -56,7 +65,6 @@
                         </td>
                     </tr>
                     <tr class="trhead1">
-
                         <td style="padding-left:5px;"> Incident</td>
                         <td colspan="2" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
@@ -70,7 +78,6 @@
                                 {% endfor %}
                             </select>
                         </td>
-
                         <td colspan="2" style="padding-left:5px;">
                             Name of District
                         </td>
@@ -82,7 +89,6 @@
                             </select>
                         </td>
                     </tr>
-
                     <tr class="trhead1" height="19">
                         <td height="19" width="171">
                             Name of Firm
@@ -93,12 +99,9 @@
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
-
-
-                            <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.firm.$error.required">
-                                Please Select Firm
-                            </span>
-
+                        <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.firm.$error.required">
+                            Please Select Firm
+                        </span>
                     </tr>
                     <tr class="trhead1" height="19">
                         <td height="19" width="171">
@@ -120,26 +123,20 @@
                         </td>
                     </tr>
                     <tr height="19">
-
                         <td width="98" colspan="3">
-
                             <input id="textinput"
                                    ng-model="dmLosOfMinFirms.mining.Table_3.DloNumEmps[0].male"
                                    name="textinput" type="number"
                                    placeholder=""
                                    class="form-control input-md">
-
                         </td>
                         <td width="98" colspan="3">
-
                             <input id="textinput"
                                    ng-model="dmLosOfMinFirms.mining.Table_3.DloNumEmps[0].female"
                                    name="textinput" type="number"
                                    placeholder=""
                                    class="form-control input-md">
-
                         </td>
-
                     </tr>
                     <tr class="trhead1" height="37">
                         <td height="37" width="171" style="width:25%;">
@@ -188,7 +185,6 @@
                                        class="form-control input-md">
                                 {% endverbatim %}
                             </td>
-
                             <td colspan="2" width="98">
                                 <input
                                 ng-change="getTotal('DloDmgStructures','rep_tot_dassets');
@@ -197,7 +193,6 @@
                                 id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" >
                             </td>
-
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgStructures.repair_pdmg_assets"
                                        ng-change="getTotal('DloDmgStructures','repair_pdmg_assets');
@@ -205,15 +200,12 @@
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgStructures.tot_damages"
                                        id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
                                        class="form-control input-md nborder"
                                        ng-bind="dloDmgStructures.tot_damages=dloDmgStructures.rep_tot_dassets + dloDmgStructures.repair_pdmg_assets">
                             </td>
-
-
                         </tr>
                         <tr height="20" >
                             <td colspan="6" class="tdpa" height="20" width="174">
@@ -224,7 +216,6 @@
                                 </button>
                             </td>
                         </tr>
-
                         <tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures" ng-if="dloDmgStructures.assets=='Total' "height="20" >
                             <td  ng-bind="dloDmgStructures.assets"
                                 height="20" width="264"
@@ -276,16 +267,13 @@
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgEquipment.tot_damages"
                                        id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
                                        class="form-control input-md nborder"
                                        ng-bind="dloDmgEquipment.tot_damages=dloDmgEquipment.rep_tot_dassets+ dloDmgEquipment.repair_pdmg_assets">
                             </td>
-
                         </tr>
-
                         <tr height="20">
                             <td colspan="6" class="tdpa" height="19" width="171">
                                 Others
@@ -295,7 +283,6 @@
                                 </button>
                             </td>
                         </tr>
-
                         <tr ng-repeat="dloDmgEquipment in dmLosOfMinFirms.mining.Table_3.DloDmgEquipment"
                             ng-if="dloDmgEquipment.assets=='Total'" height="20" >
                             <td ng-bind="dloDmgEquipment.assets"
@@ -324,7 +311,6 @@
                             height="20" ng-if="dloDmgMachinery.assets !='Total'">
                             <td ng-bind="dloDmgMachinery.assets" height="20" width="174"
                                 class="tdpa" ng-if="$index < 1">
-
                             </td>
                             <td colspan="" width="98"
                                 ng-if="$index > 0">
@@ -341,14 +327,12 @@
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgMachinery.rep_tot_dassets"
                                        ng-change="getTotal('DloDmgMachinery','rep_tot_dassets',$index);getColumnTotal('DloDmgMachinery');"
-
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgMachinery.repair_pdmg_assets"
                                        ng-change="getTotal('DloDmgMachinery','repair_pdmg_assets',$index);getColumnTotal('DloDmgMachinery');"
-
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
@@ -357,7 +341,6 @@
                                        id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
                                        class="form-control input-md nborder"
                                        ng-bind="dloDmgMachinery.tot_damages = dloDmgMachinery.rep_tot_dassets+ dloDmgMachinery.repair_pdmg_assets">
-
                             </td>
                         </tr>
                         <tr height="20">
@@ -376,7 +359,6 @@
                                 height="20" width="264"
                                 class="boldash">
                             </td>
-
                             <td width="98" colspan="2" ng-model="dloDmgMachinery.rep_tot_dassets"
                                 ng-bind=" dloDmgMachinery.rep_tot_dassets =  DloDmgMachinery_rep_tot_dassets">
                             <td width="98" colspan="2" ng-model="dloDmgMachinery.repair_pdmg_assets"
@@ -429,10 +411,8 @@
                                        id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
                                        class="form-control input-md nborder"
                                        ng-bind="dloDmgVehicles.tot_damages=dloDmgVehicles.rep_tot_dassets+ dloDmgVehicles.repair_pdmg_assets">
-
                             </td>
                         </tr>
-
                         <tr height="20">
                             <td colspan="6" class="tdpa" height="19" width="171">
                                 Others
@@ -713,24 +693,22 @@
                         <td width="98" colspan="1"
                             ng-bind="DloLosOlos_tot_losses_grnd"></td>
                     </tr>
-
                     </tbody>
-
                 </table>
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-
+                    <button type="button" class="btn btn-info" ng-click="test()">Clear</button>
                     <button type="button" ng-click="dlDataEdit(form_damagelost_mining_firm)" ng-if="!is_edit"
                             class="btn btn-success">
                         Edit
                     </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
                     </button>
                     <button type="button" ng-click="saveDlData(form_damagelost_mining_firm)"
-                            class="btn btn-success">Submit
+                            class="btn btn-success">
+                        Submit
                     </button>
                 </div>
                 <br><br><br>

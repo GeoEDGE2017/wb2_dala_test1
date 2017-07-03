@@ -232,8 +232,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                 dataType: 'json',
             }).then(function successCallback(response) {
                 console.log(response);
-                if(response.data == 'False')
-                    {
+                if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
@@ -284,15 +283,15 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
     }
 
 
-    $scope.save = function(sector) {
-		var del_status = $scope.is_exsis(sector);
-
-        console.log(del_status); // is_exsis return value
-
-		if(!del_status) {
-            // save
-        }
-	}
+//    $scope.save = function(sector) {
+//		var del_status = $scope.is_exsis(sector);
+//
+//        console.log(del_status); // is_exsis return value
+//
+//		if(!del_status) {
+//            // save
+//        }
+//	}
 
 
 	$scope.is_exsis = function(sector) {

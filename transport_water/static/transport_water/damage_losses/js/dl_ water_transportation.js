@@ -1,208 +1,194 @@
+//Table 2
 var app = angular.module('dlWaterTransApp', ['underscore']);
 
-app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
-
- $scope.district;
- $scope.incident;
- $scope.bs_data=[];
- $scope.dl_data={};
- $scope.is_edit = false;
- $scope.submitted = false;
- $scope.Districts=[];
- $scope.is_valid_data = true;
- $scope.DlWaterDmgWcrafts_num_tdestroyed_public = null;
- $scope.DlWaterDmgWcrafts_num_tdestroyed_private = null;
- $scope.DlWaterDmgWcrafts_num_pdestroyed_public = null;
- $scope.DlWaterDmgWcrafts_num_pdestroyed_private = null;
+app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
+    $scope.district;
+    $scope.incident;
+    $scope.bs_data=[];
+    $scope.dl_data={};
+    $scope.is_edit = false;
+    $scope.submitted = false;
+    $scope.Districts=[];
+    $scope.is_valid_data = true;
+    $scope.DlWaterDmgWcrafts_num_tdestroyed_public = null;
+    $scope.DlWaterDmgWcrafts_num_tdestroyed_private = null;
+    $scope.DlWaterDmgWcrafts_num_pdestroyed_public = null;
+    $scope.DlWaterDmgWcrafts_num_pdestroyed_private = null;
 
 
     var init_data = {
-    'transport_water':{
-        'Table_2': {
-            'DlWaterDmgWcrafts': [ {
-                assets: 'Ships',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Ferries',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Total',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            }],
-            'DlWaterDmgEquipment': [ {
-                assets: 'Navigation equipment',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Baggage handling',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Security equipment',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Vehicles',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Office equipment',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Total',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            }],
-             'DlWaterDmgMaterials': [ {
-                assets: 'Fuel (Liters)',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            {
-                assets: 'Total',
-                num_tdestroyed_public: null,
-                num_tdestroyed_private: null,
-                num_pdestroyed_public: null,
-                num_pdestroyed_private: null,
-                tot_dmg_private: null,
-                tot_dmg_public: null,
-            },
-            ],
-//            'DlWaterDmgStructures': [ {
-//                assets: 'Ports',
-//                num_tdestroyed_num: null,
-//                num_tdestroyed_meters: null,
-//                num_pdestroyed_num: null,
-//                num_pdestroyed_meters: null,
-//                tot_damages: null,
-//            },
-//            {
-//                assets: 'Total',
-//                num_tdestroyed_num: null,
-//                num_tdestroyed_meters: null,
-//                num_pdestroyed_num: null,
-//                num_pdestroyed_meters: null,
-//                tot_damages: null,
-//            },],
-            'DlWaterDmgBuildings': [{
-                assets:'1 floor',
-                tdestroyed_num: null,
-                tdestroyed_smeters: null,
-                pdamaged_num: null,
-                pdamaged_roof: null,
-                wall: null,
-                floor: null,
-                tot_damages: null,
-            },
-            {
-                assets:'2-3 floors',
-                tdestroyed_num: null,
-                tdestroyed_smeters: null,
-                pdamaged_num: null,
-                pdamaged_roof: null,
-                wall: null,
-                floor: null,
-                tot_damages: null,
-            },
-            {
-                assets:'More than 3 floors',
-                tdestroyed_num: null,
-                tdestroyed_smeters: null,
-                pdamaged_num: null,
-                pdamaged_roof: null,
-                wall: null,
-                floor: null,
-                tot_damages: null,
-            },
-            {
-                assets:'Total',
-                tdestroyed_num: null,
-                tdestroyed_smeters: null,
-                pdamaged_num: null,
-                pdamaged_roof: null,
-                wall: null,
-                floor: null,
-                tot_damages: null,
-            },],
-            'DlWaterLosFi': [{
-                type_los:'Income of companies',
-                year_1_pub: null,
-                year_1_pvt: null,
-                year_2_pub: null,
-                year_2_pvt: null,
-                tot_los_pub: null,
-                tot_los_pvt: null,
-            },
-            {
-                type_los:'Income of ports',
-                year_1_pub: null,
-                year_1_pvt: null,
-                year_2_pub: null,
-                year_2_pvt: null,
-                tot_los_pub: null,
-                tot_los_pvt: null,
-            },
-            {
-                type_los:'Total',
-                year_1_pub: null,
-                year_1_pvt: null,
-                year_2_pub: null,
-                year_2_pvt: null,
-                tot_los_pub: null,
-                tot_los_pvt: null,
-            }],
-            'DlWaterLosOther': [{
+        'transport_water': {
+            'Table_2': {
+                'DlWaterDmgWcrafts': [ {
+                    assets: 'Ships',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Ferries',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Total',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }],
+                'DlWaterDmgEquipment': [ {
+                    assets: 'Navigation equipment',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Baggage handling',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Security equipment',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Vehicles',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Office equipment',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Total',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }],
+                'DlWaterDmgMaterials': [ {
+                    assets: 'Fuel (Liters)',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }, {
+                    assets: 'Total',
+                    num_tdestroyed_public: null,
+                    num_tdestroyed_private: null,
+                    num_pdestroyed_public: null,
+                    num_pdestroyed_private: null,
+                    tot_dmg_private: null,
+                    tot_dmg_public: null,
+                }],
+    //            'DlWaterDmgStructures': [ {
+    //                assets: 'Ports',
+    //                num_tdestroyed_num: null,
+    //                num_tdestroyed_meters: null,
+    //                num_pdestroyed_num: null,
+    //                num_pdestroyed_meters: null,
+    //                tot_damages: null,
+    //            },
+    //            {
+    //                assets: 'Total',
+    //                num_tdestroyed_num: null,
+    //                num_tdestroyed_meters: null,
+    //                num_pdestroyed_num: null,
+    //                num_pdestroyed_meters: null,
+    //                tot_damages: null,
+    //            },],
+                'DlWaterDmgBuildings': [{
+                    assets:'1 floor',
+                    tdestroyed_num: null,
+                    tdestroyed_smeters: null,
+                    pdamaged_num: null,
+                    pdamaged_roof: null,
+                    wall: null,
+                    floor: null,
+                    tot_damages: null,
+                }, {
+                    assets:'2-3 floors',
+                    tdestroyed_num: null,
+                    tdestroyed_smeters: null,
+                    pdamaged_num: null,
+                    pdamaged_roof: null,
+                    wall: null,
+                    floor: null,
+                    tot_damages: null,
+                }, {
+                    assets:'More than 3 floors',
+                    tdestroyed_num: null,
+                    tdestroyed_smeters: null,
+                    pdamaged_num: null,
+                    pdamaged_roof: null,
+                    wall: null,
+                    floor: null,
+                    tot_damages: null,
+                }, {
+                    assets:'Total',
+                    tdestroyed_num: null,
+                    tdestroyed_smeters: null,
+                    pdamaged_num: null,
+                    pdamaged_roof: null,
+                    wall: null,
+                    floor: null,
+                    tot_damages: null,
+                }],
+                'DlWaterLosFi': [{
+                    type_los:'Income of companies',
+                    year_1_pub: null,
+                    year_1_pvt: null,
+                    year_2_pub: null,
+                    year_2_pvt: null,
+                    tot_los_pub: null,
+                    tot_los_pvt: null,
+                }, {
+                    type_los:'Income of ports',
+                    year_1_pub: null,
+                    year_1_pvt: null,
+                    year_2_pub: null,
+                    year_2_pvt: null,
+                    tot_los_pub: null,
+                    tot_los_pvt: null,
+                }, {
+                    type_los:'Total',
+                    year_1_pub: null,
+                    year_1_pvt: null,
+                    year_2_pub: null,
+                    year_2_pvt: null,
+                    tot_los_pub: null,
+                    tot_los_pvt: null,
+                }],
+                'DlWaterLosOther': [{
                 type_los:'Cleaning up of debris',
                 year_1_pub: null,
                 year_1_pvt: null,
@@ -210,8 +196,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                 year_2_pvt: null,
                 tot_los_pub: null,
                 tot_los_pvt: null,
-            },
-            {
+            }, {
                 type_los:'Higher operating costs',
                 year_1_pub: null,
                 year_1_pvt: null,
@@ -219,8 +204,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                 year_2_pvt: null,
                 tot_los_pub: null,
                 tot_los_pvt: null,
-            },
-            {
+            }, {
                 type_los:'Other unexpected expenses',
                 year_1_pub: null,
                 year_1_pvt: null,
@@ -228,8 +212,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                 year_2_pvt: null,
                 tot_los_pub: null,
                 tot_los_pvt: null,
-            },
-            {
+            }, {
                 type_los:'TOTAL LOSSES',
                 year_1_pub: null,
                 year_1_pvt: null,
@@ -238,17 +221,14 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                 tot_los_pub: null,
                 tot_los_pvt: null,
             }]
-
             }
-
         }
     }
 
     $scope.dlWaterTransportation = angular.copy(init_data);
+
     $scope.saveDlData = function() {
-
-    $scope.submitted = true;
-
+        $scope.submitted = true;
         $http({
             method: 'POST',
             url:'/dl_save_data',
@@ -258,28 +238,22 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                 'com_data': {
                     'district_id':  $scope.district.district__id,
                     'incident_id': $scope.incident,
-
                 },
                 'is_edit' : $scope.is_edit,
-
             }),
             dataType: 'json',
         }).then(function successCallback(response) {
-
-                 if(response.data == 'False')
-             $scope.is_valid_data = false;
-                else
-             $("#modal-container-239453").modal('show');
-
+            if(response.data == 'False')
+                $scope.is_valid_data = false;
+            else
+                $("#modal-container-239453").modal('show');
         }, function errorCallback(response) {
 
-
         });
-
     }
 
     // get relevant base-line data for calculations
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue){
             $http({
                 method: "POST",
@@ -296,23 +270,16 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterBuildings'],
+                    'db_tables': ['BsAstWaterWcrafts', 'BsAstWaterEquipment', 'BsAstWaterMaterials', 'BsAstWaterBuildings'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
-                   'sector':'transport_water',
+                   'sector': 'transport_water',
                    'table_name': 'Table_1'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-//                var data = response.data;
-//                angular.forEach(data, function(value, key) {
-//                    $scope.bs_data[key] = JSON.parse(value);
-//                });
-//                console.log($scope.bs_data);
-//                generateRefencedData();
-
                 var data = response.data;
                 console.log(response);
                 angular.forEach(data, function(value, key) {
@@ -321,12 +288,12 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
 
                 console.log('bs_data', $scope.bs_data);
                 var is_null = false;
-                angular.forEach($scope.bs_data, function(value, index) {
-                    console.log('value ', value);
+                angular.forEach($scope.bs_data, function(value, key) {
+                    alert('hi');
                     if(value == null) {
                         is_null = true;
                     }
-                })
+                });
 
                 console.log('is_null', is_null);
 
@@ -337,7 +304,7 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
                     $scope.currentBaselineDate = null;
                 }
                 else {
-                    generateRefencedData();
+//                    generateRefencedData();
                     $http({
                         method: 'POST',
                         url: '/get_latest_bs_date',
@@ -686,6 +653,6 @@ app.controller("DlWaterTransController", function ($scope,$http,$parse, _) {
        $scope.is_edit = false;
        $scope.dlComWtrSply = init_data;
     }
-})
+});
 
 

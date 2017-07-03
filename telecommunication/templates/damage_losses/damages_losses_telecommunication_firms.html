@@ -5,21 +5,29 @@
 <main class="main" ng-app="dlTelcomFirmsApp" ng-controller="dlTelcomFirmsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 2.Damages and Losses of Telecommunication Firms
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_telcom_firms">
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages </a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 Damages </a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 Losses </a>
+            </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -56,7 +64,6 @@
                                 class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>{{incident.disaster_type.name}}
                                     {{incident.reported_date_time}}
                                 </option>
@@ -77,27 +84,13 @@
                         <td height="19" width="293">
                             Name of Firm
                         </td>
-                         <td class="trsub" colspan="4" height="19" width="400">
-                            <!--<select ng-options="company as company.company_name for company in companies track by company.id"-->
-                                    <!--name="firm" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>-->
-                                <!--<option value="" selected>Select Firm</option>-->
-                            <!--</select>-->
-
-                             <select ng-options="com as com.company_name for com in companies track by company"
-                                    name="firm" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>
+                        <td class="trsub" colspan="4" height="19" width="400">
+                            <select ng-options="company as company.company_name for company in companies track by company.company"
+                                    name="company" value="company" id="ccyear" ng-model="selectedCompany" class="form-control" style="font-weight:400;" required>
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
                     </tr>
-                    <!--<tr class="trhead1" height="19">-->
-                        <!--<td height="19" width="293">-->
-                            <!--Services provided-->
-                        <!--</td>-->
-                        <!--<td colspan="3" height="19" width="653">-->
-                            <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                   <!--class="form-control input-md">-->
-                        <!--</td>-->
-                    <!--</tr>-->
                     <tr class="trhead1" height="19">
                         <td height="19" width="293">
                             Ownership
@@ -211,7 +204,6 @@
                         <td height="19" width="145">
                         </td>
                         <td height="19" width="221">
-                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="dmgAstTelStructure in dlTelcomFirms.telecommunication.Table_2.DmgAstTelStructure" ng-if="dmgAstTelStructure.assets == 'Total'">
@@ -379,7 +371,6 @@
                         <td height="19" width="145">
                         </td>
                         <td height="19" width="221">
-                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="dmgAstTelMachinery in dlTelcomFirms.telecommunication.Table_2.DmgAstTelMachinery"
@@ -390,8 +381,8 @@
                         </td>
                         <td class="tdpa" height="19" width="145">
                         </td>
-                        <td height="19" width="221" ng-model="dmgAstTelMachinery.tot_dmg" ng-bind="dmgAstTelMachinery.tot_dmg = calTotal($parent.dlTelcomFirms.telecommunication.Table_2.DmgAstTelMachinery)">
-                            <!-- - -->
+                        <td height="19" width="221" ng-model="dmgAstTelMachinery.tot_dmg"
+                            ng-bind="dmgAstTelMachinery.tot_dmg = calTotal($parent.dlTelcomFirms.telecommunication.Table_2.DmgAstTelMachinery)">
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -416,7 +407,8 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dmgAstTelVehicles.pdmg_val_repair">
                         </td>
-                        <td height="19" width="221" ng-model="dmgAstTelVehicles.tot_dmg" ng-bind="dmgAstTelVehicles.tot_dmg = dmgAstTelVehicles.dmg_val_replace + dmgAstTelVehicles.pdmg_val_repair">
+                        <td height="19" width="221" ng-model="dmgAstTelVehicles.tot_dmg"
+                            ng-bind="dmgAstTelVehicles.tot_dmg = dmgAstTelVehicles.dmg_val_replace + dmgAstTelVehicles.pdmg_val_repair">
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -430,7 +422,8 @@
                         <td height="19" width="221">
                         </td>
                     </tr>
-                    <tr class="tdpa" height="19" ng-repeat="dmgAstTelOthers in dlTelcomFirms.telecommunication.Table_2.DmgAstTelOthers" ng-if="dmgAstTelOthers.assets != 'Total'">
+                    <tr class="tdpa" height="19" ng-repeat="dmgAstTelOthers in dlTelcomFirms.telecommunication.Table_2.DmgAstTelOthers"
+                        ng-if="dmgAstTelOthers.assets != 'Total'">
                         <td width="98">
                             {% verbatim %}
                             <button id="delete" ng-click="removeItem('DmgAstTelOthers', $index)" class="btn btn-sm btn-danger btn-circle">
@@ -480,7 +473,6 @@
                         </td>
                         <td height="19" width="221" ng-model="dmgAstTelOthers.tot_dmg"
                             ng-bind="dmgAstTelOthers.tot_dmg = calTotal($parent.dlTelcomFirms.telecommunication.Table_2.DmgAstTelOthers)">
-                            <!-- - -->
                         </td>
                     </tr>
                     <tr height="19">
@@ -492,7 +484,6 @@
                         <td class="tdpa" height="19" width="145">
                         </td>
                         <td height="19" width="221" ng-bind="calGrandTotal()">
-                            <!-- - -->
                         </td>
                     </tr>
                     </tbody>
@@ -544,10 +535,10 @@
                         <td class="tdpa" height="21" width="293" ng-bind="dlLosses.assets">
                         </td>
                         <td height="21" width="254" ng-model="dlLosses.year1_los"
-                            ng-bind="dlLosses.tot_losses = calTotalInField($parent.dlTelcomFirms.telecommunication.Table_2.DlLosses, 'year1_los')">
+                            ng-bind="dlLosses.year1_los = calTotalInField($parent.dlTelcomFirms.telecommunication.Table_2.DlLosses, 'year1_los')">
                         </td>
                         <td height="21" width="145" ng-model="dlLosses.year2_los"
-                            ng-bind="dlLosses.tot_losses = calTotalInField($parent.dlTelcomFirms.telecommunication.Table_2.DlLosses, 'year2_los')">
+                            ng-bind="dlLosses.year2_los = calTotalInField($parent.dlTelcomFirms.telecommunication.Table_2.DlLosses, 'year2_los')">
                         </td>
                         <td height="21" width="221" ng-model="dlLosses.tot_losses"
                             ng-bind="dlLosses.tot_losses = calTotalInField($parent.dlTelcomFirms.telecommunication.Table_2.DlLosses, 'tot_losses')">
@@ -558,7 +549,7 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" ng-click="test()" class="btn btn-info">
+                    <button type="button" ng-click="clear()" class="btn btn-info">
                         Clear
                     </button>
                     <button type="button" ng-click="editDlData(form_dl_telcom_firms)" ng-if="!is_edit" class="btn btn-success">

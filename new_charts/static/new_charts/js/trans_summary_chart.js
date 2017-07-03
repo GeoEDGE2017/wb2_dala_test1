@@ -147,11 +147,69 @@ app.controller('TransSummaryChartController',function($scope,$http,$parse, _) {
                  $scope.summaryTotal = $scope.grndfinaltotalpublic + $scope.grndfinaltotalprivate;
 
 
+
+                 var landDamage = ($scope.dlTransSumNat.transport_land.Table_9[value].DlGacPubNational[0] ? ($scope.dlTransSumNat.transport_land.Table_9[value].DlGacPubNational[0].damages ?
+                                 $scope.dlTransSumNat.transport_land.Table_9[value].DlGacPubNational[0].damages : 0):0) + ($scope.dlTransSumNat.transport_land.Table_9[value].DlGacPvtNational[0]?($scope.dlTransSumNat.transport_land.Table_9[value].DlGacPvtNational[0].tot_damages_pvt ?
+                                 $scope.dlTransSumNat.transport_land.Table_9[value].DlGacPvtNational[0].tot_damages_pvt : 0 ) : 0)
+
+
+                 var airDamage = ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirDmgPubNational[0] ? ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirDmgPubNational[0].tot_destroyed_pub ?
+                                 $scope.dlTransSumNat.transport_air.Table_5[value].DlAirDmgPubNational[0].tot_destroyed_pub : 0) : 0) +
+                                  ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirDmgPvtNational[0] ? ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirDmgPvtNational[0].tot_destroyed_pvt ?
+                                 $scope.dlTransSumNat.transport_air.Table_5[value].DlAirDmgPvtNational[0].tot_destroyed_pvt : 0) : 0)
+
+
+                 var waterDamage =($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterDmgPubNational[0] ? ($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterDmgPubNational[0].tot_dmg_public ?
+                                 $scope.dlTransSumNat.transport_water.Table_5[value].DlWaterDmgPubNational[0].tot_dmg_public : 0) : 0) +
+                                 ($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0] ?($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_1_pub ?
+                                 $scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_1_pub : 0 ) : 0);
+
+
+                 var railDamage = ($scope.dlTransSumNat.transport_rail.Table_4[value].TotDmgNational[0] ? ($scope.dlTransSumNat.transport_rail.Table_4[value].TotDmgNational[0].tot_damages ?
+                                 $scope.dlTransSumNat.transport_rail.Table_4[value].TotDmgNational[0].tot_damages : 0) : 0);
+
+
+
+                 var landLosses = ($scope.dlTransSumNat.transport_land.Table_9[value].DlYearsPubNational[0]?($scope.dlTransSumNat.transport_land.Table_9[value].DlYearsPubNational[0].year_1 ?
+                                 $scope.dlTransSumNat.transport_land.Table_9[value].DlYearsPubNational[0].year_1 : 0):0) +
+                                 ($scope.dlTransSumNat.transport_land.Table_9[value].DlOtherLosPvtNational[0] ? ($scope.dlTransSumNat.transport_land.Table_9[value].DlOtherLosPvtNational[0].year_1_pvt ?
+                                 $scope.dlTransSumNat.transport_land.Table_9[value].DlOtherLosPvtNational[0].year_1_pvt : 0) :0) +
+                                 ($scope.dlTransSumNat.transport_land.Table_9[value].DlYearsPubNational[0]?($scope.dlTransSumNat.transport_land.Table_9[value].DlYearsPubNational[0].year_2 ?
+                                 $scope.dlTransSumNat.transport_land.Table_9[value].DlYearsPubNational[0].year_2 : 0 ) :0) +
+                                 ($scope.dlTransSumNat.transport_land.Table_9[value].DlOtherLosPvtNational[0] ?($scope.dlTransSumNat.transport_land.Table_9[value].DlOtherLosPvtNational[0].year_2_pub ?
+                                 $scope.dlTransSumNat.transport_land.Table_9[value].DlOtherLosPvtNational[0].year_2_pub : 0 ) : 0)
+
+
+                 var airLosses = ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0]?($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_1_pub ?
+                                 $scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_1_pub : 0) : 0) +
+                                 ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0] ? ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_1_pvt ?
+                                 $scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_1_pvt : 0): 0 ) +
+                                 ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0]?($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_2_pub ?
+                                 $scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_2_pub : 0) :0) +
+                                 ($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0] ?($scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_2_pvt ?
+                                 $scope.dlTransSumNat.transport_air.Table_5[value].DlAirLosNational[0].year_2_pvt : 0) : 0 )
+
+
+                 var waterLosses =($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0] ?($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_1_pub ?
+                                 $scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_1_pub : 0 ) : 0) +
+                                 ($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0] ? ($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_1_pvt ?
+                                 $scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_1_pvt : 0 ) : 0) +
+                                 ($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0]?($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_2_pub ?
+                                 $scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_2_pub : 0):0) +
+                                 ($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0] ? ($scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_2_pvt ?
+                                 $scope.dlTransSumNat.transport_water.Table_5[value].DlWaterLosNational[0].year_2_pvt : 0) : 0)
+
+                //console.log(landLosses,airLosses,waterLosses);
+
                 $scope.tableDamageLosses[0][key]=$scope.summaryDamages;
                 $scope.tableDamageLosses[1][key]=$scope.summaryLossYear1 + $scope.summaryLossYear2;
-//                $scope.totalDamagePartialDamage = [totalNumDes, totalNumPart];
+                $scope.totalDamageSummary = [landDamage,airDamage,waterDamage,railDamage];
+                $scope.totalLossesSummary = [landLosses,airLosses,waterLosses];
             })
 
+             $scope.damageLossesSeries = ['Total Damages', 'Total Losses'];
+             $scope.totalDamageSummarySeries = ['Land', 'Air','Water','Rail'];
+             $scope.totalLossesSummarySeries = ['Land', 'Air','Water'];
 
 
         })

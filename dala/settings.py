@@ -2697,7 +2697,7 @@ TABLE_PROPERTY_MAPPER = {
                 'other_assets',
                 'avg_replace_cost',
                 'avg_repair_cost',
-                'created_user',
+
             ],
             'BlpApyLivestock': [
                 'livestock',

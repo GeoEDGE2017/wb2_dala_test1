@@ -51,7 +51,7 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
                 }),
             }).success(function(data) {
                 $scope.data=data;
-                $scope.dlWaterSupplyDis = data;
+//                $scope.dlWaterSupplyDis = data;
             })
         }
     }
@@ -59,6 +59,17 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
     $scope.loadData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
+            $scope.dlSummaryDis = null;
+
+            $scope.tot_damages_pu = null;
+            $scope.tot_damages_pv = null;
+            $scope.year1_los_pu = null;
+            $scope.year1_los_pv = null;
+            $scope.year2_los_pu = null;
+            $scope.year2_los_pv = null;
+            $scope.pub_tot = null;
+            $scope.pvt_tot = null
+
             $scope.tot_damages = null;
             $scope.is_edit = true;
             $scope.submitted = true;

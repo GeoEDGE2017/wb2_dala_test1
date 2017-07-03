@@ -5,16 +5,20 @@
 <main class="main" ng-app="dlSumTeleDisApp" ng-controller="dlSumTeleDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3.  Summary of Damages and Losses in a District
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_telcom_distr">
         <div id="myTabContent" class="tab-content">
@@ -41,11 +45,10 @@
                                 class="form-control" ng-change="changedValue(true);getDistrict();" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
+                                    {{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                    <!--{{incident.incident_name}}-->
                                 </option>
                                 {% endfor %}
                             </select>
@@ -54,7 +57,8 @@
                             District:
                         </td>
                         <td colspan="4">
-                            <select ng-change="changedValue();loadData(form_telcom_distr)" ng-options="district as district.district__name for district in districts track by district.district__id"
+                            <select ng-change="changedValue();loadData(form_telcom_distr)"
+                                    ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                     style="font-weight:400;"
                                     class="form-control" required>
@@ -167,22 +171,16 @@
                         <td height="21" width="145" ng-bind="tot_damages_pv">
                         </td>
                         <td height="21" width="221" ng-bind="year1_los_pu">
-
                         </td>
                         <td height="21" width="63" ng-bind="year1_los_pv">
-
                         </td>
                         <td height="21" width="63" ng-bind="year2_los_pu">
-
                         </td>
                         <td height="21" width="63" ng-bind="year2_los_pv">
-
                         </td>
                         <td height="21" width="63" ng-bind="pub_tot">
-
                         </td>
                         <td height="21" width="63" ng-bind="pvt_tot">
-
                         </td>
                     </tr>
                     </tbody>
@@ -216,7 +214,6 @@
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>

@@ -31,6 +31,7 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
     $scope.provinces = [];
 
     function fetchProvinces() {
+        $scope.dlSumTelePro = null;
         $http({
             method: "POST",
             url: '/fetch_incident_provinces',
@@ -66,7 +67,7 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
 //        })
 //    }
 
-    $scope.fetchDlData = function(form){
+    $scope.fetchDlData = function(form) {
         console.log($scope.province);
         console.log($scope.incident);
         $scope.is_edit = true;
@@ -90,13 +91,12 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
         })
     }
 
-   $scope.checkIfNull = function() {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlWaterSupplyPro ? angular.equals({}, $scope.dlWaterSupplyPro.water_supply.Table_6) : true;
         return isNull;
-   }
+    }
 
- $scope.getTotal = function(key) {
-
+    $scope.getTotal = function(key) {
         $scope.finaltotalprivate = 0;
 
         var totalDamages = 0;

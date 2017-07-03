@@ -357,7 +357,8 @@ def bs_get_data_mock(request):
     incident_id = com_data['incident']
     sector = data['sector']
     incident = IncidentReport.objects.get(pk=incident_id)
-    incident_date = incident.incident_name
+    incident_date = incident.reported_date_time
+    # incident_date = incident.incident_name
     table_name = data['table_name']
     db_tables = data['db_tables']
     bs_mtable_data = {}
@@ -1331,6 +1332,7 @@ def dl_fetch_district_disagtn(request):
                 province_id = dl_session.province.id
                 category_name = dl_session.province.name
             filter_fields = {'incident': incident, 'province': province_id}
+            print '% - ', filter_fields
 
         print dl_session.district.province
 

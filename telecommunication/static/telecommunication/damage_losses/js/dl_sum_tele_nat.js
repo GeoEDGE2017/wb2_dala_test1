@@ -121,17 +121,17 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
     }
 
     $scope.getPublicTotal = function(pro, dbtbl) {
-        var pub_tot = 0;
-        console.log(pro);
-        if($scope.dlSumTeleNat != null) {
-            console.log('# ', $scope.dlSumTeleNat.telecommunication.Table_5[pro]);
-            angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[pro], function(value, index, key) {
-                console.log('pro value', value, index, key);
-                if(value==pro) {
-
-                }
-            })
-        }
+//        var pub_tot = 0;
+//        console.log(pro);
+//        if($scope.dlSumTeleNat != null) {
+//            console.log('# ', $scope.dlSumTeleNat.telecommunication.Table_5[pro]);
+//            angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[pro], function(value, index, key) {
+//                console.log('pro value', value, index, key);
+//                if(value==pro) {
+//
+//                }
+//            })
+//        }
 
         return pub_tot;
     }

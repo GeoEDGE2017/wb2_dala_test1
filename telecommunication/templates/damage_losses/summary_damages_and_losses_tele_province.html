@@ -47,9 +47,9 @@
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
                                 <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
+                                    {{incident.disaster_type.name}}
+                                    {{incident.reported_date_time}}
+                                    <!--{{incident.incident_name}}-->
                                     {% endfor %}
                             </select>
                         </td>
@@ -61,10 +61,28 @@
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
                                     ng-change="changedValue(false);fetchDlData()" required>
-                                <option value="" selected="true">Select Province</option>
+                                <option value="" selected="true" selected>Select Province</option>
                                 <option ng-repeat="province in provinces" ng-value="province.district__province_id"
                                         ng-bind="province.district__province__name"></option>
                             </select>
+
+                            <!--<select ng-change="changedValue(false);fetchDlData()"-->
+                                    <!--ng-options="province as province.district__province__name for province in provinces track by province.district__province_id"-->
+                                    <!--name="province" id="ccyear" ng-model="province" ng-value="province.district__province_id"-->
+                                    <!--style="width:100%;font-weight:400;"-->
+                                    <!--class="form-control" required>-->
+                                <!--<option value="" selected>Select Province</option>-->
+                                <!--&lt;!&ndash;<option ng-repeat="province in provinces" ng-value="province.district__province_id"&ndash;&gt;-->
+                                        <!--&lt;!&ndash;ng-bind="province.district__province__name"></option>&ndash;&gt;-->
+                            <!--</select>-->
+
+                            <!--<select ng-change="changedValue();loadData(form_telcom_distr)"-->
+                                    <!--ng-options="district as district.district__name for district in districts track by district.district__id"-->
+                                    <!--name="district" id="ccyear" ng-model="district" ng-value="district.district__id"-->
+                                    <!--style="font-weight:400;"-->
+                                    <!--class="form-control" required>-->
+                                <!--<option value="" selected>Select District</option>-->
+                            <!--</select>-->
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">
@@ -120,8 +138,8 @@
                     </tr>
                     </tbody>
                     </table>
-                <table class="table table-bordered" ng-repeat="(key, value) in dlSumTelePro.telecommunication.Table_4" >
-                    <tbody>
+                <table class="table table-bordered">
+                    <tbody ng-repeat="(key, value) in dlSumTelePro.telecommunication.Table_4">
                     <tr class="trheadc" height="19">
                         <td height="19" width="293" ng-bind="key" style="width:20%;">
                         </td>
@@ -210,37 +228,36 @@
                             <!-- - -->
                         </td>
                     </tr>
-                   
-                        <tr height="21">
-                            <td class="tdpa" height="21" width="293">
-                                GRAND TOTAL
-                            </td>
-                            <td height="21" width="254">
-                                <!-- - -->
-                            </td>
-                            <td height="21" width="145">
-                                <!-- - -->
-                            </td>
-                            <td height="21" width="221">
-                                <!-- - -->
-                            </td>
-                            <td height="21" width="63">
-                                <!-- - -->
-                            </td>
-                            <td height="21" width="63">
-                                <!-- - -->
-                            </td>
-                            <td height="21" width="63">
-                                <!-- - -->
-                            </td>
-                            <td height="21" width="63">
-                                <!-- - -->
-                            </td>
-                            <td height="21" width="63">
-                                <!-- - -->
-                            </td>
-                        </tr>
                     </tbody>
+                    <tr height="21">
+                    <td class="tdpa" height="21" width="293">
+                        GRAND TOTAL
+                    </td>
+                    <td height="21" width="254">
+                        <!-- - -->
+                    </td>
+                    <td height="21" width="145">
+                        <!-- - -->
+                    </td>
+                    <td height="21" width="221">
+                        <!-- - -->
+                    </td>
+                    <td height="21" width="63">
+                        <!-- - -->
+                    </td>
+                    <td height="21" width="63">
+                        <!-- - -->
+                    </td>
+                    <td height="21" width="63">
+                        <!-- - -->
+                    </td>
+                    <td height="21" width="63">
+                        <!-- - -->
+                    </td>
+                    <td height="21" width="63">
+                        <!-- - -->
+                    </td>
+                </tr>
                 </table>
                 <br>
             </div>

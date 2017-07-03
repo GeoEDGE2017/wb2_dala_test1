@@ -160,6 +160,24 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
         return total;
     }
 
+    $scope.sumFunc4 = function(val1, val2, val3, val4) {
+        if(val1 == null) {
+            val1=0;
+        }
+        if(val2 == null) {
+            val2=0;
+        }
+        if(val3 == null) {
+            val3=0;
+        }
+        if(val4 == null) {
+            val4=0;
+        }
+
+        var total = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4);
+        return total;
+    }
+
     $scope.sumFunc5 = function(val1, val2, val3, val4, val5) {
         if(val1 == null) {
             val1=0;

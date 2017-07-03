@@ -1,0 +1,145 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<main class="main" ng-app="agriLivestockChartApp" ng-controller="AgriLivestockChartController">
+
+    <div class="container-fluid">
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <strong>Search</strong>
+
+            </div>
+            <div class="card-block">
+
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            <label class="col-xs-4" for="cvv">Incident</label>
+                            <div class="col-sm-8">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+
+                                    <option value={{incident.id}}>{{incident.disaster_type.name}}
+                                        {{incident.reported_date_time}}
+                                        {% endfor %}
+                                </select>
+                            </div>
+                            <span style="color:red"
+                                  ng-show="submitted && chart_sum_dl_province.incident.$error.required">
+                                       Please select Incident
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <div class="form-group">
+ <a id="modal-508661" href="#modal-container-508661"  data-toggle="modal" class="btn btn-md btn-primary"><i class="fa fa-print"></i> Print
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+
+                        Total Public & Private Damages
+
+                    </div>
+                    <div class="card-block">
+                        <div class="chart-wrapper">
+                            <canvas id="bar" class="chart chart-bar"
+                                    chart-data="totalDamagePrivatePublic" chart-labels="provincenames"
+                                    chart-series="totalDamagePrivatePublicSeries">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+                        Total number of Damages
+                    </div>
+                    <div class="card-block">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="totalDamagePrivatePublic" chart-labels="totalDamagePrivatePublicSeries"
+                                chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+
+
+            </div>
+             <div class="col-md-6">
+                <div class="card" ng-if="!checkIfNull()">
+                    <div class="card-header">
+                        Total number of Losses
+                    </div>
+                    <div class="card-block">
+                        <canvas id="pie" class="chart chart-pie"
+                                chart-data="totalLossesPrivatePublic" chart-labels="totalLossesPrivatePublicSeries"
+                                chart-options="options">
+                        </canvas>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+<div class="modal fade" id="modal-container-508661" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Print Chart
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>Enter a memo: </h4>
+                        <textarea ng-model="print_memo" style="width:100%"></textarea>
+                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>
+{% endblock content %}

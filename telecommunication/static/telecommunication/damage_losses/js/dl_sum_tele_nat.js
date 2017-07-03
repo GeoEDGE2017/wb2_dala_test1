@@ -35,7 +35,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
                   },
             }),
         }).success(function(data) {
-            console.log('load ', data);
+//            console.log('load ', data);
             $scope.data= data;
             $scope.dlSumTeleNat = data;
         })
@@ -118,5 +118,21 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
         $scope.grandLossYear1 = totalLossYear1 + ruralLosstot;
         $scope.grandLossYear2 = totalLossYear2;
         $scope.grandTot = totalDamages + ruraltotalDamage + totalLossYear1 + ruralLosstot + totalLossYear2;
+    }
+
+    $scope.getPublicTotal = function(pro, dbtbl) {
+        var pub_tot = 0;
+        console.log(pro);
+        if($scope.dlSumTeleNat != null) {
+            console.log('# ', $scope.dlSumTeleNat.telecommunication.Table_5[pro]);
+            angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[pro], function(value, index, key) {
+                console.log('pro value', value, index, key);
+                if(value==pro) {
+
+                }
+            })
+        }
+
+        return pub_tot;
     }
  })

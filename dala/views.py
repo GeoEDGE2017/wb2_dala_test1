@@ -306,9 +306,6 @@ def bs_save_data_with_firm(request):
                                                date=todate, district_id=district, data_type='base_line',
                                                full_bs_date=bs_full_date, firm_id=firm)
                     bd_session.save()
-
-
-
                 else:
                     print '--> out'
                     return HttpResponse(False)
@@ -360,7 +357,7 @@ def bs_get_data_mock(request):
     incident_id = com_data['incident']
     sector = data['sector']
     incident = IncidentReport.objects.get(pk=incident_id)
-    incident_date = incident.reported_date_time
+    incident_date = incident.incident_name
     table_name = data['table_name']
     db_tables = data['db_tables']
     bs_mtable_data = {}

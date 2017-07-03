@@ -14,25 +14,32 @@
       ng-controller="dlHealthSummeryDamageLossProvinceAppController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:health_main' %}">Health Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 9: Summary of Damage and Losses in the Health Sector Province
             </span>
         </li>
-          <li style="float:right;"> <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Public Sector</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Private Sector</a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 Total Damages and Losses</a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Public Sector</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Private Sector</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 Total Damages and Losses</a>
+                </li>
             </ul>
-
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1" ng-form
                     name="form_health_summary_damageloss_nationals">
@@ -48,7 +55,6 @@
                             <col width="90" span="7"/>
                         </colgroup>
                         <tbody>
-
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
 
@@ -60,41 +66,43 @@
                                 </span>
                             </td>
                         </tr>
-                       <tr class="trhead1">
-                        <td class="trhead1 p5" width="130" colspan="2">
-                            Incident
-                        </td>
-                        <td width="125">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);fetchProvinces();fetchDlData();"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
+                        <tr class="trhead1">
+                            <td class="trhead1 p5" width="130" colspan="2">
+                                Incident
+                            </td>
+                            <td width="125">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true);fetchProvinces();fetchDlData();"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
 
-                                <option value={{incident.id}}>{{incident.disaster_type.name}}
-                                    {{incident.reported_date_time}}
-                                    {% endfor %}
-                            </select>
-                        </td>
-                        <td class="trhead1 p5" width="281" height="20">
-                            Province
-                        </td>
-                        <td width="170" >
-                            <select name="province" ng-model="province"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(false);fetchDlData();" required>
-                                <option value="" selected="true">Select Province</option>
-                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
-                                        ng-bind="province.district__province__name"></option>
-                            </select>
-                        </td>
-                        <td >
-                            <!--<button class="btn btn-info btn-block"-->
-                                    <!--ng-click="fetchDlData()">Load-->
-                            <!--</button>-->
-                        </td>
-                    </tr>
+                                    <option value={{incident.id}}>
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
+                                        {% endfor %}
+                                </select>
+                            </td>
+                            <td class="trhead1 p5" width="281" height="20">
+                                Province
+                            </td>
+                            <td width="170" >
+                                <select name="province" ng-model="province"
+                                        class="form-control"
+                                        style="width:100%;font-weight:400;"
+                                        ng-change="changedValue(false);fetchDlData();" required>
+                                    <option value="" selected="true">Select Province</option>
+                                    <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                            ng-bind="province.district__province__name"></option>
+                                </select>
+                            </td>
+                            <td >
+                                <!--<button class="btn btn-info btn-block"-->
+                                        <!--ng-click="fetchDlData()">Load-->
+                                <!--</button>-->
+                            </td>
+                        </tr>
                         </tbody>
                         </table>
                         <table class="table table-bordered" ng-if="!checkIfNull()">

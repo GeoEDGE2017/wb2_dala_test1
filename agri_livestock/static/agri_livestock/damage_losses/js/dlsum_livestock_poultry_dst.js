@@ -54,4 +54,7 @@ app.controller('dlSumLivestockPoultryDstController', ['$scope', '$http', functio
             }
         }
     }
+
+
+
 }]);

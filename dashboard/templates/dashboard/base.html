@@ -231,6 +231,11 @@
     <script src="{% static 'new_charts/js/power_supply_chart.js' %}"></script>
     <script src="{% static 'new_charts/js/health_chart.js' %}"></script>
     <script src="{% static 'new_charts/js/agri_irrigation_chart.js' %}"></script>
+    <script src="{% static 'new_charts/js/education_chart.js' %}"></script>
+    <script src="{% static 'new_charts/js/other_gov_service_chart.js' %}"></script>
+    <script src="{% static 'new_charts/js/telecommunication_chart.js' %}"></script>
+    <script src="{% static 'new_charts/js/agri_fisheries_chart.js' %}"></script>
+    <script src="{% static 'new_charts/js/agri_livestock_chart.js' %}"></script>
 
 
     <!-- mining -->
@@ -383,9 +388,32 @@ input[type=number]::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield;
-    text-align:right;
+   /* text-align:right; */
+}
+.clickable{
+    cursor: pointer;   
+}
+
+.panel-heading span {
+    margin-top: -20px;
+    font-size: 15px;
 }
 </style>
+<script>
+$(document).on('click', '.panel-heading span.clickable', function(e){
+    var $this = $(this);
+    if(!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+    }
+})
+</script>
+
 </head>
 <body class="navbar-fixed sidebar-nav fixed-nav">
 <header class="navbar">

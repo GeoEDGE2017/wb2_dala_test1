@@ -5,17 +5,22 @@
 <main class="main" ng-app="bsTelcomCmpnysApp" ng-controller="bsTelcomCmpnysController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
         </li>
-        
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 1.  Baseline Information on Telecommunication Companies
             </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                data-toggle="tooltip" title="Veiw Document" >
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_telcom_cmpnys">
         <div id="myTabContent" class="tab-content">
@@ -104,24 +109,13 @@
                             <!--</select>-->
                         <!--</td>-->
                         <td colspan="2" height="19" width="126">
-                            <a id="add_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
+                            <button id="add_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
                                data-id="Add "
-                               class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add New Company</a>
+                               class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add New Company</button>
                         </td>
                         <td colspan="2" height="19" width="126">
                             <a id="edit_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
                                data-id="Edit " class="btn  btn-block btn-primary btn-warning">Edit Company</a>
-                        </td>
-                        <td colspan="3" height="19" width="126">
-                            <button type="button" class="btn btn-info btn-block" ng-click="addFermForForm()">Add</button>
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="293">
-                            Ownership
-                        </td>
-                        <td colspan="7" height="19" width="1063">
-                            <span ng-bind="selectedCompany.ownership"></span>
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -140,13 +134,13 @@
                     <tr height="19" ng-repeat="bsTelCompany in bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany">
                         <td height="19" width="293">
                             <select ng-options="company as company.company_name for company in companies track by company.id"
-                                    name="firm" id="ccyear" ng-model="bsTelCompany.company" class="form-control" style="font-weight:400;" required>
+                                    name="firm" ng-value="company.id" id="ccyear" ng-model="bsTelCompany.company" class="form-control" style="font-weight:400;" required>
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
-                        <td ng-model="bsTelCompany.company_name" ng-bind ="bsTelCompany.company_name = bsTelCompany.company.company_name">
+                        <td ng-model="company_name" ng-bind="bsTelCompany.company_name = bsTelCompany.company.company_name">
                         </td>
-                        <td ng-model="bsTelCompany.ownership" ng-bind ="bsTelCompany.ownership = bsTelCompany.company.ownership">
+                        <td ng-model="bsTelCompany.ownership" ng-bind="bsTelCompany.ownership = bsTelCompany.company.ownership">
                         </td>
                         <td height="19" width="293">
                             <div class="checkbox">
@@ -189,18 +183,44 @@
                             </div>
                         </td>
                         <td>
-                            <!--ng-click="removeItem('BsRbuTbridges', $index)"-->
-                            <button id="delete" class="btn btn-sm btn-danger btn-circle">
+                            <button id="delete" class="btn btn-sm btn-danger btn-circle" ng-click="removeFermForForm('BsTelCompany', $index)">
                                 <i class="fa fa-minus"></i>
                             </button>
                         </td>
+                    </tr>
+                    <tr class="trsubc" height="19">
+                        <td height="19" width="293" align="left">
+                            New Company &nbsp;&nbsp;
+                            <button ng-click="addFermForForm()" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td height="19" width="293">
+                        </td>
+                        <td height="19" width="254">
+                        </td>
+                        <td height="19" width="145">
+                        </td>
+                        <td colspan="2" height="19" width="442">
+                        </td>
+                        <td colspan="3" height="19" width="189" style="width:17%;">
+                        </td>
+                        <!--<td class="tdpa" height="19" width="293">-->
+                            <!---->
+                        <!--</td>-->
                     </tr>
                     </tbody>
                 </table>
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="blDataEdit()">Clear</button>
+                    <!--<button type="button" class="btn btn-info" ng-click="display()">Test</button>-->
+                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <button type="button" class="btn btn-info" ng-click="editBsData(form_bs_telcom_cmpnys)">Edit</button>
                     <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_telcom_cmpnys)">Submit</button>
                 </div>
                 <br><br>

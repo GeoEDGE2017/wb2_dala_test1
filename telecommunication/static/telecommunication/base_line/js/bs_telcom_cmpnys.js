@@ -26,8 +26,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.bsTelcomCmpnys = angular.copy(init_data);
 
      //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -64,10 +63,12 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 console.log(data);
 //                $scope.bsInfoFisheries = init_data;
                 $scope.is_edit = false;
-                if (data == 'False')
+                if (data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
 
             }).error(function(data, status) {
 
@@ -76,7 +77,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     }
 
     $scope.saveCompany = function() {
-        if($scope.district != null) {
+        if($scope.district != null && $scope.bs_date != null) {
             if(!$scope.is_edit_model) {
                 $scope.new_company = {company_name: $scope.company, ownership: $scope.ownership};
                 $http({
@@ -95,6 +96,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                         $("#modal-container-218029").modal('hide');
     //                    $("#modal-container-469840").modal('hide');
                         $scope.is_edit_model = false;
+                        window.location.reload();
                 })
             }
         }
@@ -122,8 +124,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     }
 
     $scope.addFermForForm = function() {
-        console.log($scope.district);
-//        if($scope.district != null) {
+        if($scope.district != null) {
             var new_row = {
                 fixed_voice : false,
                 fixed_tv : false,
@@ -136,14 +137,21 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
             }
             $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany.push(new_row);
             console.log($scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany);
-//        }
+        }
+    }
+
+    $scope.removeFermForForm = function(table, index) {
+        console.log(table, index);
+        if(table == 'BsTelCompany') {
+            $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany.splice(index, 1);
+        }
     }
 
     //Edit Data
-    $scope.blDataEdit = function() {
+    $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-//        if(form.$valid) {
+        if(form.$valid) {
             $http({
                 method: "POST",
                 url: '/bs_fetch_edit_data',
@@ -158,21 +166,29 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
             }).success(function(data) {
                 console.log(data);
                 $scope.bsTelcomCmpnys = data;
+                alert('hi');
+                alert('company '+$scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company);
+                $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company_name.value=26;
 
-                angular.forEach($scope.data, function(value, key){
-                console.log('');
-                    $scope.ownership = data.telecommunication.Table_1.BsTelCompany[0].ownership;
-//                    if(value.Password == "thomasTheKing")
-//                        console.log("username is thomas");
-                });
+//                angular.forEach($scope.data, function(value, key) {
+//                    console.log('');
+//                    $scope.ownership = data.telecommunication.Table_1.BsTelCompany[0].ownership;
+//
+////                    if(value.Password == "thomasTheKing")
+////                        console.log("username is thomas");
+//                });
             })
-//        }
+        }
     }
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsTelcomCmpnys = angular.copy(init_data);
+    }
+
+    $scope.display = function() {
+        console.log($scope.bsTelcomCmpnys);
     }
 });

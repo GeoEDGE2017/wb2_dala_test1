@@ -267,8 +267,8 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                 }
                 else {
                     console.log('***');
-                    console.log($scope.bs_data);
-                    console.log($scope.bs_data.BsTelCompany.length);
+                    console.log('bs_data', $scope.bs_data);
+                    console.log('len ', $scope.bs_data.BsTelCompany.length);
 
                     var company_array = [];
 

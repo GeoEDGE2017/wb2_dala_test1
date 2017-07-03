@@ -21,4 +21,7 @@ urlpatterns = [
     url(r'^power_supply_charts', views.power_supply_charts, name='power_supply_charts'),
     url(r'^health_charts', views.health_charts, name='health_charts'),
     url(r'^agri_irrigation_charts', views.agri_irrigation_charts, name='agri_irrigation_charts'),
+    url(r'^education_charts', views.education_charts, name='education_charts'),
+    url(r'^other_gov_service_charts', views.other_gov_service_charts, name='other_gov_service_charts'),
+    url(r'^telecommunication_charts', views.telecommunication_charts, name='telecommunication_charts'),
 ]

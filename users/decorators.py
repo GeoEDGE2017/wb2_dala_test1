@@ -32,7 +32,9 @@ def permission_required(perm, sector):
                     print perm_level[0]['order']
                     perm_level_order = perm_level[0]['order']
 
-                    if user_level_order <= perm_level_order and user_sector.name == sector:
+                    # if user_level_order <= perm_level_order and user_sector.name == sector:
+                    if user_level_order <= perm_level_order and user_sector.name.lower() == sector.lower().replace(
+                                "_", " "):
                         print 'yes'
                         return True
                     else:

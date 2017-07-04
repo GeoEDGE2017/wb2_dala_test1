@@ -7,7 +7,6 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
 
   });
-
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlFisheriesDistrictApp" ng-controller="dlFisheriesDistrictController">
@@ -20,7 +19,9 @@
             <a href="{% url 'dashboard:agri_fisheries_main' %}">Agri Fisheries Sector</a>
         </li>
         <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">Table 3. Damages and Losses in Fisheries in a District</span>
+            <span class="label label-success" style="font-size:14px;">
+                Table 3. Damages and Losses in Fisheries in a District
+            </span>
         </li>
         <li style="float:right;">
              <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
@@ -79,9 +80,9 @@
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
-                                        {{incident.disaster_type.name}}
-                                        {{incident.reported_date_time}}
-                                        <!--{{incident.incident_name}}-->
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
                                 </select>

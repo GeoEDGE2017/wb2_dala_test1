@@ -133,6 +133,6 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
 //            })
 //        }
 
-        return pub_tot;
+//        return pub_tot;
     }
  })

@@ -5,19 +5,30 @@
 <main class="main" ng-app="dlSumAgrarianDstrApp" ng-controller="dlSumAgrarianDstrController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_agrarian_main' %}">Agri Agrarian Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_agrarian_main' %}">Agri Agrarian Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 8. Summary of Damages and Losses to Agrarian Sub-sector in the District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 8. Summary of Damages and Losses to Agrarian Sub-sector in the District
+            </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Assets</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Type of Crops </a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Assets</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Type of Crops </a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_dlsum_agri_distr">
                 <div class="tab-pane active" id="step1">
@@ -59,9 +70,9 @@
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                         <option value={{incident.id}}>
-                                            {{incident.disaster_type.name}}
-                                            {{incident.reported_date_time}}
-                                            <!--{{incident.incident_name}}-->
+                                            <!--{{incident.disaster_type.name}}-->
+                                            <!--{{incident.reported_date_time}}-->
+                                            {{incident.incident_name}}
                                         </option>
                                     {% endfor %}
                                 </select>

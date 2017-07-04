@@ -3,7 +3,7 @@ from incidents.models import IncidentReport, District,Province
 from users.decorators import permission_required
 
 
-@permission_required("district", 'transport_land')
+@permission_required("district", 'transport_water')
 def dl_water_transport(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()

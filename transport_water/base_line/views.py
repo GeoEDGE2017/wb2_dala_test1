@@ -7,7 +7,7 @@ from django.core import serializers
 from users.decorators import permission_required
 
 
-@permission_required("district", 'transport_land')
+@permission_required("district", 'transport_water')
 def bs_ast_transport_water(request):
     districts = District.objects.all()
 

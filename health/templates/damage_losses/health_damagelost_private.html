@@ -24,16 +24,24 @@
             </span>
             <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank"
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank"
                                     style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
+                                    data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Number of Affected Patients</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Breakdown by Type of Health Facility</a></li>
-                <li id="li3"><a href='#step3' data-toggle="tab">3 Breakdown by Other Health Facility</a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Number of Affected Patients</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Breakdown by Type of Health Facility</a>
+                </li>
+                <li id="li3">
+                    <a href='#step3' data-toggle="tab">3 Breakdown by Other Health Facility</a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_private">
@@ -79,9 +87,9 @@
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
-                                        {{incident.disaster_type.name}}
-                                        {{incident.reported_date_time}}
-                                        <!--{{incident.incident_name}}-->
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
                                     </option>
                                     {% endfor %}/home/sachie/Downloads/health_damagelost_ministry_helth.html
                                 </select>

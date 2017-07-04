@@ -2,19 +2,15 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-  
-    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-    
-  });
-  
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlFrstPrductAsetsApp" ng-controller="dlFrstPrductAsetsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-       <li class="breadcrumb-item">
+        <li class="breadcrumb-item">
            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
@@ -74,11 +70,10 @@
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
-                                    {{incident.disaster_type.name}}
-                                    {{incident.reported_date_time}}
-                                    <!--{{incident.incident_name}}-->
+                                    <!--{{incident.disaster_type.name}}-->
+                                    <!--{{incident.reported_date_time}}-->
+                                    {{incident.incident_name}}
                                 </option>
                                 {% endfor %}
                             </select>

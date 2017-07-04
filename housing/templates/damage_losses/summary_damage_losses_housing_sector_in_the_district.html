@@ -5,7 +5,7 @@
 <main class="main" ng-app="dlHousingDisApp" ng-controller="DlHousingDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item"><a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
         </li>
@@ -14,7 +14,7 @@
                 Table 4.  Summary of Damage and Losses in the Housing Sector in the District
             </span>
         </li>
-          <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
@@ -36,20 +36,19 @@
                                 Incident
                             </td>
                             <td  colspan="4"  width="63">
-
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true);getDistrict();" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
-                                        {{incident.disaster_type.name}}
-                                        {{incident.reported_date_time}}
-                                        <!--{{incident.incident_name}}-->
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
                                 </select>
                             </td>
-                    <td class="p5"  width="120">
+                            <td class="p5"  width="120">
                                 District
                             </td>
                             <td class=""  colspan="1" width="491">

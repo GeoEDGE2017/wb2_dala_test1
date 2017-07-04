@@ -125,48 +125,37 @@
                     </div-->
 
                     <div class="col-sm-3">
-
                         <div class="form-group">
                             <label for="cvv">Incident</label>
                              <select id="ccyear" name="incident" ng-model="incident" class="form-control" required>
                             <option value="">-- Select --</option>
                             {% for incident in incidents %}
                             <option value="{{ incident.id }}">
-                                {{incident.disaster_type.name}}
-                                {{incident.reported_date_time}}
-                                <!--{{incident.incident_name}}-->
+                                <!--{{incident.disaster_type.name}}-->
+                                <!--{{incident.reported_date_time}}-->
+                                {{incident.incident_name}}
                             </option>
                             {% endfor %}
                         </select>
-                             <span style="color:red;" ng-show="submitted && report_sum_dl_national.incident.$error.required">
-                                       Please select Incident
-                                 </span>
+                            <span style="color:red;" ng-show="submitted && report_sum_dl_national.incident.$error.required">
+                                Please select Incident
+                            </span>
                         </div>
-
                     </div>
-
-
                     <div class="col-sm-1">
-
                         <div class="form-group">
-
                             <button ng-click="filterData(report_sum_dl_national)"  type="button" class="btn btn-sm btn-primary" style="padding:7px;margin-top:28px;"><i
                                     class="fa fa-search"></i> Search
                             </button>
                         </div>
-
                     </div>
-
                 </div>
                 <!--/row-->
             </div>
         </div>
         <div>
-
-
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-
                     <table ng-show="dlHsNational" class="table table-bordered" style="width:100%;">
                         <colgroup>
                             <col width="202"/>

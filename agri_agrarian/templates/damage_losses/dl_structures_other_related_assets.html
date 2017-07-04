@@ -5,21 +5,26 @@
 <main class="main" ng-app="dlStrutsOthAsetsApp" ng-controller="dlStrutsOthAsetsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_agrarian_main' %}">Agri Agrarian Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 5. Damages to Structures and Other Related Assets</span>
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_struts_oth_asets">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Totally Destroyed</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Partially Damaged </a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Totally Destroyed</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Partially Damaged </a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
@@ -59,11 +64,10 @@
                                     class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
-
                                     <option value={{incident.id}}>
-                                        {{incident.disaster_type.name}}
-                                        {{incident.reported_date_time}}
-                                        <!--{{incident.incident_name}}-->
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                        {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
                                 </select>

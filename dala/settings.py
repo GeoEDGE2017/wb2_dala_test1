@@ -158,10 +158,10 @@ DATABASES = {
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=telecommunication'
+        #     'options': '-c search_path=public'
         # },
 
-        'NAME': 'dala_06_30',
+        'NAME': 'dala_07_04_new',
         'USER': 'postgres',
     },
 }

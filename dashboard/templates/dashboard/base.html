@@ -22,6 +22,7 @@
     <link href="{% static 'dashboard/css/datepicker.css' %}" rel="stylesheet">
 
     <script src='{% static "dashboard/js/jquery.min.js" %}'></script>
+   
     <script src='{% static "dashboard/js/jquery.nicescroll.min.js" %}'></script>
     <script src='{% static "dashboard/js/bootstrap.min.js" %}'></script>
     <script src='{% static "dashboard/js/angular/angular.js" %}'></script>
@@ -35,6 +36,7 @@
     <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
     <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
     <script src='{% static "dashboard/js/dashboard.js" %}'></script>
+
 
     <!--agri_livestock-->
     {% if module == 'agri_livestock' %}
@@ -303,7 +305,7 @@
     <script src='{% static "dashboard/js/dashboard.js" %}'></script>
 
     {% endif %}
-
+  
     <script>
     $(function(){
 
@@ -398,7 +400,27 @@ input[type=number] {
     margin-top: -20px;
     font-size: 15px;
 }
+td[comma-value]{
+    position:relative;
+}
+td[comma-value]:before{
+    content: attr(comma-value);
+    position:absolute;
+    left:0;
+}
+td[comma-value] input{
+    color:#fff;
+}
 </style>
+<script>
+$(document).ready(function(){
+$.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+    })
+}
+});
+</script>
 <script>
 $(document).on('click', '.panel-heading span.clickable', function(e){
     var $this = $(this);
@@ -413,7 +435,28 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
     }
 })
 </script>
+<!-- <script>
+window.onload = function(){
+myNumber.value = commify(myNumber.value)
+myNumber.addEventListener("change", function(){
+  commify(event.target.value)
+})
 
+
+function commify(value){
+  var chars = value.split("").reverse()
+  var withCommas = []
+  for(var i = 1; i <= chars.length; i++ ){
+    withCommas.push(chars[i-1])
+    if(i%3==0 && i != chars.length ){  
+      withCommas.push(",")
+    }
+  }
+  var val = withCommas.reverse().join("")
+  myNumber.parentNode.setAttribute("comma-value",val)
+}
+}
+</script> -->
 </head>
 <body class="navbar-fixed sidebar-nav fixed-nav">
 <header class="navbar">

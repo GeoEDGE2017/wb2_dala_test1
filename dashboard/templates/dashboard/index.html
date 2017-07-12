@@ -2,6 +2,20 @@
 {% block content %}
 {% load static %}
     <!-- Main content -->
+ <script>
+ window.onload = function(){
+$('.number').text(function () { 
+    var str = $(this).html() + ''; 
+    x = str.split('.'); 
+    x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : ''; 
+    var rgx = /(\d+)(\d{3})/; 
+    while (rgx.test(x1)) { 
+        x1 = x1.replace(rgx, '$1' + ',' + '$2'); 
+    } 
+    $(this).html(x1 + x2); 
+});
+}
+                            </script>
     <main class="main" ng-app="dashboardApp" ng-controller="DashboardController">
 
         <!-- Breadcrumb -->
@@ -31,8 +45,8 @@
                                
                                 <h4 class="mb-0" ng-bind="total_all_damages"> </h4>
                                 <p>Total Damages Value as at </p>
-                                
-								<p ng-bind="thisYear"></p>
+                                 <td class="number">10000000.50</td>
+								
                             </div>
                             <div class="chart-wrapper px-1" style="height:0px;">
                                 <canvas id="card-chart1" class="chart" height="50"></canvas>

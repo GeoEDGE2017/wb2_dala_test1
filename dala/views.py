@@ -13,6 +13,23 @@ from django.conf import settings
 from django.http import HttpResponse
 from mining.base_line.models import Firm
 from users.models import UserDistrict
+import smtplib
+
+
+@csrf_exempt
+def send_email(request):
+    fromaddr = 'sachh93@gmail.com'
+    toaddrs  = 'amithmirihella@gmail.com'
+    msg = 'Hi Amitha Aiyeeee'
+    # Credentials (if needed)
+    username = 'sachh93@gmail.com'
+    password = 'sachiesep2317'
+    # The actual mail send
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(fromaddr, toaddrs, msg)
+    server.quit()
 
 
 def fetch_districts(user):

@@ -64,4 +64,7 @@ urlpatterns = [
     #tourism
     url(r'^tourism_summary$', views.tourism_summary, name='tourism_summary'),
 
+    #all
+    url(r'^report_summary$', views.report_summary, name='report_summary'),
+
 ]

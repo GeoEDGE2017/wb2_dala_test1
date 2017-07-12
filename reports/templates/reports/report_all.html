@@ -1,0 +1,414 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<style>
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    #in {width:100%;}
+
+   .table th, .table td {color:#000!important;}
+
+       body * {
+        <!--visibility:hidden;-->
+    }
+
+    #printSection, #printSection * {
+        visibility:hidden;
+    }
+
+    .print-memo{
+        display: block;
+    }
+}
+
+.table th, .table td
+{padding-left:5px;}
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+    .print-memo{
+        display: none;
+    }
+}
+
+</style>
+<!-- Main content -->
+<div class="main" ng-app="reportWaterSupplyNatApp" ng-controller="reportWaterSupplyNatController">
+
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb no-print">
+<li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{% url 'reports:index_report' %}">Reports</a>
+     </li>
+
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Reoport Summary</span>
+        </li>
+
+    </ol>
+
+
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-header">
+                <strong>Report Summary</strong>
+
+            </div>
+            <div class="card-header print-memo">
+                <strong ng-bind="print_memo"></strong>
+
+            </div>
+            <div class="card-block">
+
+
+                
+                <span style="color:red;" ng-show="isDataAvailable">
+                                       No Data Available
+                                 </span>
+                <!--/row-->
+                  <!--national -->
+        <div  style="">
+            <table cellspacing="0" border="0" class="table table-bordered">
+    <colgroup width="260">
+    </colgroup>
+    <colgroup width="255">
+    </colgroup>
+    <colgroup width="253">
+    </colgroup>
+    <colgroup width="254">
+    </colgroup>
+    <tbody>
+        <tr class="trheadc1" height="60">
+            <td height="20"  >
+               Sector Name
+            </td>
+            <td >
+                Damages (LKR)
+            </td>
+            <td >
+               Losses (LKR)
+            </td>
+            <td a>
+               Total of Damages &amp; Losses
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30">
+                Health
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Education
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Mining
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Other Government Services
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Water Supply
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Transport-Air
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Transport-Land
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Transport-Water
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Transport-Rail
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Power Supply
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Housing
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Agriculture – Agrarian
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Agriculture – Fisheries
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30">
+                Agriculture – Livestock
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Agriculture – Irrigation
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Tourism
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Industry and Services
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Telecommunications
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tdpa" height="30" >
+                Grand Total
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+            <td >
+                <br/>
+            </td>
+        </tr>
+    </tbody>
+</table>
+           
+        </div>
+            </div>
+        </div>
+
+      
+    </div>
+    <!--print data modal-->
+
+        <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Print report
+                        </h4>
+                    </div>
+                    <div class="modal-body alert-info">
+                        <h4>Enter a memo: </h4>
+                        <textarea ng-model="print_memo" style="width:100%"></textarea>
+                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
+                                class="btn btn-primary">
+                            OK
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+</div>
+
+</main>
+{% endblock content %}

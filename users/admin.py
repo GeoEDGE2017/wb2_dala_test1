@@ -7,6 +7,7 @@ from django import forms
 from django.utils import timezone
 from .models import MyUser
 from settings.models import UserRole
+from .models import UserDistrict
 
 
 '''class UserCreationForm(UserCreationForm):
@@ -147,6 +148,12 @@ class ChoiceInline(admin.StackedInline):
     model = UserRole
 
 
+class EffectedDistrctsInline(admin.StackedInline):
+
+    model = UserDistrict
+    extra = 1
+
+
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
@@ -155,7 +162,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_superuser', 'is_active')
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'sector', 'designation', 'province', 'user_role', 'district')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'sector', 'designation', 'user_role')}),
         ('Permissions', {'fields': ('is_superuser', 'is_active', 'is_staff', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
@@ -163,12 +170,18 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'password1', 'password2', 'first_name', 'province', 'district')}
+            'fields': ('username', 'password1', 'password2', 'first_name')}
         ),
     )
+    inlines = [EffectedDistrctsInline]
+
     search_fields = ('username',)
     ordering = ('username',)
     filter_horizontal = ('user_permissions',)
 
 # Now register the new UserAdmin...
 admin.site.register(MyUser, UserAdmin)
+
+
+
+

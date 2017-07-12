@@ -1,9 +1,9 @@
 from django.db import models
 
 
-
 class Province(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
+    id = models.BigIntegerField(primary_key=True)
 
     class Meta:
         managed = False
@@ -76,6 +76,7 @@ class UserRole(models.Model):
 
     def __str__(self):
         return self.role_name
+
 
 
 

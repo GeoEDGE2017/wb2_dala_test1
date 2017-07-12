@@ -12,6 +12,24 @@ from django.core import serializers
 from django.conf import settings
 from django.http import HttpResponse
 from mining.base_line.models import Firm
+from users.models import UserDistrict
+import smtplib
+
+
+@csrf_exempt
+def send_email(request):
+    fromaddr = 'sachh93@gmail.com'
+    toaddrs  = 'amithmirihella@gmail.com'
+    msg = 'Hi Amitha Aiyeeee'
+    # Credentials (if needed)
+    username = 'sachh93@gmail.com'
+    password = 'sachiesep2317'
+    # The actual mail send
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(fromaddr, toaddrs, msg)
+    server.quit()
 
 
 def fetch_districts(user):
@@ -23,9 +41,12 @@ def fetch_districts(user):
         role = user.user_role.code_name
 
         if role == 'district':
-            district_id = user.district_id
-            districts = District.objects.filter(id=district_id)
-            incidents = IncidentReport.objects.filter(effectedarea__district=district_id)
+            user_districts = UserDistrict.objects.filter(user_id=user.id)
+            districts = []
+            for user_district in user_districts:
+                districts.extend(District.objects.filter(id=user_district.district_id))
+            incidents = IncidentReport.objects.filter(effectedarea__district=user_district.district_id)
+
         elif role == 'provincial':
             province = user.province
             districts = province.district_set.all()
@@ -38,9 +59,21 @@ def fetch_districts(user):
 def fetch_incident_districts(request):
     dl_data = (yaml.safe_load(request.body))
     incident_id = dl_data['incident']
+    get_user = dl_data['user']
+    print "user", get_user
+    user_districts = UserDistrict.objects.filter(user_id=get_user)
+    districts = []
+    for user_district in user_districts:
+        districts.extend(District.objects.filter(id=user_district.district_id))
     incident = IncidentReport.objects.get(pk=incident_id)
-    affected_district = incident.effectedarea_set.values('district__id', 'district__name').distinct().order_by('district__name')
-
+    get_affected_district = incident.effectedarea_set.values('district__id', 'district__name').distinct().order_by('district__name')
+    affected_district = []
+    for affected_dis in get_affected_district:
+        for district in districts:
+            if affected_dis['district__id'] == district.id:
+                print "yes", type(affected_dis)
+                affected_district.append(affected_dis)
+                print "dileepa", affected_district
     return HttpResponse(
         json.dumps(list(affected_district)),
         content_type='application/javascript; charset=utf8'

@@ -10,7 +10,8 @@ from .import views
 # v1_api.register(BmfPubMfResource())
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    #url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('dashboard.urls', namespace='dashboard')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
     # url(r'^api/', include(v1_api.urls)),
@@ -20,6 +21,7 @@ urlpatterns = [
     url(r'^reports/', include('reports.urls', namespace='reports')),
     url(r'^charts/', include('charts.urls', namespace='charts')),
     url(r'^new_charts/', include('new_charts.urls', namespace='new_charts')),
+    url(r'^chaining/', include('smart_selects.urls')),
 
 
     # report builder

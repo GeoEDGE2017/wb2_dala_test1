@@ -2,7 +2,7 @@ from django.db import models
 from settings.models import District, Province, Sector, UserDesignation, UserRole
 from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin, Group, User, Permission
-
+from smart_selects.db_fields import ChainedForeignKey
 
 '''class DalaUserManager(BaseUserManager):
     def create_user(self, username, password=None):
@@ -159,3 +159,15 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name_plural = "Users"
         db_table = 'public\".\"users_myuser'
+
+
+class UserDistrict(models.Model):
+    user = models.ForeignKey(MyUser)
+    province = models.ForeignKey(Province, blank=True, null=True)
+    district = models.ForeignKey(District, blank=True, null=True)
+    # district = ChainedForeignKey(District, chained_field="province", chained_model_field="id")
+
+    class Meta:
+        managed = False
+        db_table = 'user_district'
+

@@ -662,7 +662,9 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                'incident': $scope.incident,
+                'user': 48}),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";

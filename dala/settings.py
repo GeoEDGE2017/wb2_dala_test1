@@ -107,6 +107,7 @@ INSTALLED_APPS = [
     'power_supply.base_line',
     'power_supply.damage_losses',
     'new_charts',
+    'smart_selects',
 
 ]
 
@@ -122,6 +123,8 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'dala.urls'
+JQUERY_URL = True
+
 
 TEMPLATES = [
     {
@@ -161,7 +164,7 @@ DATABASES = {
         #     'options': '-c search_path=public'
         # },
 
-        'NAME': 'dala_07_04_new',
+        'NAME': 'dala_2017_07_10',
         'USER': 'postgres',
     },
 }

@@ -199,6 +199,14 @@ def tourism_summary(request):
     }
     return render(request, 'reports/report_tourism.html', context)
 
+def report_summary(request):
+    incidents = IncidentReport.objects.all()
+    context = {
+        'incidents': incidents,
+        'module': 'reports'
+    }
+    return render(request, 'reports/report_all.html', context)
+
 
 @csrf_exempt
 def dl_fetch_report_data(request):

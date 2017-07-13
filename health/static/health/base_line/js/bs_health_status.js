@@ -2,7 +2,6 @@
 var bsHealthStatusApp = angular.module('bsHealthStatusApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatusController($scope, $http) {
-
     $scope.district;
     $scope.number1;
     $scope.number2;
@@ -12,7 +11,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
     $scope.submitted = false;
     $scope.is_valid_data = true;
 
-//initialize model
+    //initialize model
     var init_data = {
         'health': {
             'Table_1': {
@@ -67,10 +66,9 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     $scope.dataHealthStatus = angular.copy(init_data);
 
-//Save Data
+    //Save Data
     $scope.hSDataSubmit = function(form) {
         $scope.submitted = true;
-
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -84,20 +82,17 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
-
                 $scope.dataHealthStatus = init_data;
                 $scope.is_edit = false;
-
                 if (data == 'False')
                     $scope.is_valid_data = false;
                 else
                     $("#modal-container-239453").modal('show');
             })
         }
-
     }
 
-//Add Enumerate Fileds
+    //Add Enumerate Fileds
     $scope.insertDisease = function(table) {
         var new_row;
         if (table == 'BhsOi') {
@@ -127,7 +122,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     }
 
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -144,7 +139,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     }
                 }),
             }).success(function(data) {
-
                 console.log(data);
                 $scope.dataHealthStatus = data;
             })
@@ -152,13 +146,13 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dataHealthStatus = init_data;
     }
 
-//Remove Enumerate Fileds
+    //Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
         if (table == 'BhsComDiseases')
             $scope.dataHealthStatus.health.Table_1.BhsComDiseases.splice(index, 1);
@@ -168,7 +162,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
             $scope.dataHealthStatus.health.Table_1.BhsOi.splice(index, 1);
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;
@@ -189,7 +183,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
             }),
             dataType: 'json',
         }).then(function successCallback(response) {
-            alert('*');
+
         })
     }
 })

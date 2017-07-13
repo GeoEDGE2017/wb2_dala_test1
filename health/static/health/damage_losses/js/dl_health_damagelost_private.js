@@ -84,7 +84,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.saveDlData = function() {
         console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
-
         $http({
             method: 'POST',
             url: '/dl_save_data_with_array',
@@ -214,7 +213,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
     //Edit Data
-    $scope.editDlData = function(form) { //new
+    $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
 

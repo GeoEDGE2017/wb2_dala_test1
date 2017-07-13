@@ -7,6 +7,7 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
  $scope.is_edit = false;
  $scope.submitted = false;
  $scope.is_valid_data = true;
+ $scope.user_id;
 
   // edit relevant damage_losses data
     $scope.dlDataEdit = function(form){

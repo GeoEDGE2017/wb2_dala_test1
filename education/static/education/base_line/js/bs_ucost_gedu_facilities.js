@@ -10,6 +10,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.baselineDate;
+    $scope.user_id;
 
     var init_data = {
         'education':{

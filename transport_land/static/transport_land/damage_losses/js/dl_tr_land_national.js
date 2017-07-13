@@ -19,6 +19,7 @@ app.controller("DlSummeryTLNatController", ['$scope','$http',function ($scope,$h
     // declaring total variables
     $scope.total_num_affected = 0;
     $scope.isLoded = false;
+    $scope.user_id;
 
 
      $scope.fetchDlData = function(form){

@@ -3,25 +3,22 @@
 
 <!-- Main content -->
 <main class="main" ng-app="dlSumAgriDstrApp" ng-controller="dlSumAgriDstrController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
         <li class="breadcrumb-item"><a href="#">Admin</a>
         </li>
         <li class="breadcrumb-item"><a href="#">Agriculture Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Summary of damages and losses in the agriculture sector in a district</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Summary of damages and losses in the agriculture sector in a district
+            </span>
         </li>
     </ol>
-
     <div class="container-fluid" ng-form name="form_dl_sum_agri">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
-
                     <colgroup>
                         <col width="213"/>
                         <col width="107"/>
@@ -81,6 +78,7 @@
                         <td>
                             <button type="submit" class="btn btn-success" ng-click="loadData(form_dl_sum_agri)">Load</button>
                         </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trhead" height="17">
                         <td rowspan="3" height="51" width="213">
@@ -141,22 +139,16 @@
                             Agrarian
                         </td>
                         <td height="17" width="107" ng-bind="data.agri_agrarian.Table_9.DsorDmgLosProvince[0].dmg_los_pub">
-                            <!-- -->
                         </td>
                         <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorDmgLosProvince[0].dmg_los_pvt">
-                            <!-- - -->
                         </td>
                         <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear1Province[0].dmg_los_pub">
-                            <!-- - -->
                         </td>
                         <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear1Province[0].dmg_los_pvt">
-                            <!-- - -->
                         </td>
                         <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear2Province[0].dmg_los_pub">
-                            <!-- - -->
                         </td>
                         <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear2Province[0].dmg_los_pvt">
-                            <!-- - -->
                         </td>
                         <td height="17" width="63">
                             <!-- - -->
@@ -309,25 +301,16 @@
                     </tr>
                     </tbody>
                 </table>
-
                 <br>
-
             </div>
-
-
         </div>
     </div>
-
-
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -342,13 +325,11 @@
                             <div class="col-md-10">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
-
                             </div>
                         </div>
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -357,17 +338,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
 

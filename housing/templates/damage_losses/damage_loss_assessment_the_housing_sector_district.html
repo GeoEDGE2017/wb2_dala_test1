@@ -5,17 +5,19 @@
 <main class="main" ng-app="dlAssmntHusingApp" ng-controller="dlAssmntHusingController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3. Damage and Loss Assessment of the Housing Sector in a District
             </span>
-             <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+            <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_assmnt_husing_sector">
         <ul class='nav nav-wizard'>
@@ -37,7 +39,6 @@
                         <col width="93"/>
                     </colgroup>
                     <tbody>
-
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
@@ -54,35 +55,36 @@
                             </span>
                         </td>
                     </tr>
-                     <tr >
-                            <td class="trhead1 p5"  width="156">
-                                Incident
-                            </td>
-                            <td class="trhead1" colspan="2"  width="63">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true);changeDis();" style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
+                    <tr>
+                        <td class="trhead1 p5"  width="156">
+                            Incident
+                        </td>
+                        <td class="trhead1" colspan="2"  width="63">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true);changeDis();" style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
 
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td class="trhead1" class="p5" colspan="2"  width="120">
-                                District
-                            </td>
-                            <td class="trhead1" colspan="3"  width="343">
-                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control"
-                                        ng-change="changedValue(false);changeDis();" required>
-                                    <option value="" selected>Select District</option>
-                                </select>
-                            </td>
-                        </tr>
+                                <option value={{incident.id}}>
+                                    <!--{{incident.disaster_type.name}}-->
+                                    <!--{{incident.reported_date_time}}-->
+                                    {{incident.incident_name}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead1" class="p5" colspan="2"  width="120">
+                            District
+                        </td>
+                        <td class="trhead1" colspan="3"  width="343">
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control"
+                                    ng-change="changedValue(false);changeDis();" required>
+                                <option value="" selected>Select District</option>
+                            </select>
+                        </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                    </tr>
                     <tr class="trheadc1" height="19">
                         <td colspan="8" height="19" width="892">
                             Totally Destroyed Houses

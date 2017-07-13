@@ -2,7 +2,6 @@
 var app = angular.module('dlFrstPrductAsetsApp', [])
 
 app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
@@ -13,6 +12,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
 //Initialize Data
     var init_data = {
@@ -240,7 +240,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
 //Get Districts and related baseline data
     $scope.changedValue=function getBsData(selectedValue) {
-    console.log('inicdent',$scope.incident);
+        console.log('inicdent',$scope.incident);
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -599,10 +599,8 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
 //Save Data
     $scope.saveDlData = function(form) {
-
         $scope.submitted = true;
         if(form.$valid){
-
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
@@ -612,6 +610,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                     'com_data': {
                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit':$scope.is_edit
                 }),

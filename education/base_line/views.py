@@ -8,8 +8,10 @@ def bs_edu_facilities(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'module': 'education'
     }
@@ -21,7 +23,10 @@ def bs_ucost_gedu_facilities(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
+    filtered_user = fetch_data['user']
+
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'module': 'education'
     }

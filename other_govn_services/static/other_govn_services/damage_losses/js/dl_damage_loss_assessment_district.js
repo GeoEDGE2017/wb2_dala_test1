@@ -11,6 +11,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
     $scope.Districts=[];
 
     $scope.dlAssessmentDistrictSys = null;
+    $scope.user_id;
 
     $scope.insertAsset = function(table) {
         console.log($scope.dlAssessmentDistrictSys.other_govn_services.Table_2[table]);

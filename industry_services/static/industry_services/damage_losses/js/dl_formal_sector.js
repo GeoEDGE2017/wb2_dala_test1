@@ -47,6 +47,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     $scope.dataForm;
 
     $scope.firms = [];
+    $scope.user_id;
 
     var init_data = {
         'industry_services': {

@@ -12,6 +12,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.BiaWaterUsers_annual_demand = null;
     $scope.BiaWaterUsers_rate = null;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
 //initialize model
     var init_data = {

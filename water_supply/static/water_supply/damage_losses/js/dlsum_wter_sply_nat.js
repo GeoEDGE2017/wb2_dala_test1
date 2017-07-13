@@ -20,7 +20,7 @@ app.controller("DlWaterSupplyNatController", function ($scope,$http,$parse, _) {
     $scope.finaltotalprivate = null;
     // declaring total variables
     $scope.total_num_affected = 0;
-
+    $scope.user_id;
 
     $scope.fetchDlData = function(){
     if($scope.incident){

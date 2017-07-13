@@ -10,6 +10,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
+    $scope.user_id;
 
     var init_data = {
         'transport_air': {

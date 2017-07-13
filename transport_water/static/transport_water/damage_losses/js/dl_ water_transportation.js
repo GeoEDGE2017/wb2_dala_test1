@@ -14,7 +14,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     $scope.DlWaterDmgWcrafts_num_tdestroyed_private = null;
     $scope.DlWaterDmgWcrafts_num_pdestroyed_public = null;
     $scope.DlWaterDmgWcrafts_num_pdestroyed_private = null;
-
+    $scope.user_id;
 
     var init_data = {
         'transport_water': {

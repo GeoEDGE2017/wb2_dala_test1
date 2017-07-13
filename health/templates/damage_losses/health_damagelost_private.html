@@ -97,25 +97,14 @@
                             </td>
                             <td colspan="2" style="padding-left:5px;"> Name of District</td>
                             <td colspan="2" style="">
-                                <!--<select ng-change="fetchPrivateClinics()" name="district" id="ccyear"-->
-                                <!--style="font-weight:400;" ng-model="district"-->
-                                <!--class="form-control" required>-->
-                                <!--<option value="">Select District</option>-->
-
-                                <!--<option ng-repeat="district in districts" ng-value="district.district__id"-->
-                                <!--ng-bind="district.district__name"></option>-->
-
-                                <!--</select>-->
-
                                 <select style="font-weight:normal;"
                                         ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                         class="form-control" ng-change="fetchPrivateClinics()" required>
                                     <option value="" selected>Select District</option>
                                 </select>
-
                             </td>
-
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr height="20" class="trheadc1">
                             <td width="264" height="20" style="text-align:left;padding-left:5px;">

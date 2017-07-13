@@ -12,24 +12,20 @@
             <a href="{% url 'dashboard:agri_fisheries_main' %}">Agri Fisheries Sector</a>
         </li>
         <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">Table 6. Summary of Damages and Losses in the Fisheries Sub-sector Nationwide</span>
+            <span class="label label-success" style="font-size:14px;">
+                Table 6. Summary of Damages and Losses in the Fisheries Sub-sector Nationwide
+            </span>
         </li>
         <li style="float:right;">
             <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}"
-                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
+               target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+               class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
-
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
-
                     <colgroup>
                         <col width="125"/>
                         <col width="95"/>
@@ -42,7 +38,6 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-
                     <tr class="trhead1">
                         <td class="trhead1 p5" width="130">
                             Incident
@@ -61,6 +56,7 @@
                                 {% endfor %}
                             </select>
                         </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </tbody>
                 </table>

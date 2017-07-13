@@ -17,6 +17,7 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
     $scope.year2_los_pv = null;
     $scope.pub_tot = null;
     $scope.pvt_tot = null;
+    $scope.user_id;
 
     $scope.getDistrict = function getDistrict() {
         if($scope.incident) {

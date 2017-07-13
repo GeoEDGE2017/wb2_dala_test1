@@ -15,6 +15,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.is_edit = false;
     $scope.inf_types = [];
     $scope.infrastructures = [];
+    $scope.user_id;
 
     var init_data = {
         'tourism': {

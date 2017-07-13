@@ -8,6 +8,7 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
     $scope.selectedFirm;
     $scope.ownership;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
 //Initialize model
     var init_data = {

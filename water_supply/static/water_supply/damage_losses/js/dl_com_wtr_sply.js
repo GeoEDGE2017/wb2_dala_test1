@@ -12,7 +12,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.grantot = 0;
-
+    $scope.user_id;
 
 
 //Initialize Data

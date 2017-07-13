@@ -2,8 +2,8 @@
 var app = angular.module('dlAssessmentOfGovnDeptOrOfcInADistrictApp', ['underscore']);
 
 app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($scope,$http,$parse, _, $filter) {
-
     $scope.district;
+    $scope.user;
     $scope.incident;
     $scope.bs_data={};
     $scope.dl_data={};
@@ -18,6 +18,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.ownership = null;
     $scope.currentBaselineDate = null;
     $scope.new_department = {id: null, name: null, ownership_id: null, district_id: null};
+    $scope.user_id;
 
     var init_data = {
         'other_govn_services': {
@@ -345,7 +346,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     }
 
    //Calculate Public Total
-    $scope.calTotal=function(arr){
+    $scope.calTotal = function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.name_dept != 'Total'){
@@ -451,7 +452,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     }
 
 
-    $scope.calGrandTotal=function(){
+    $scope.calGrandTotal = function() {
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -480,6 +481,11 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     grantot = finaltotal1+ finaltotal2 + finaltotal3 ;
     return grantot;
     }
+
+    $scope.test = function() {
+        console.log($scope.user);
+    }
+
 })
 
 

@@ -26,6 +26,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
     var total=0;
     var tabtwototal = 0;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
 
     var init_data = {
@@ -690,6 +691,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -915,22 +917,20 @@ $scope.dugNdafTot = $scope.dugNdafTot + value.total;
 
 }
 
-$scope.getGrandTot = function (property){
+    $scope.getGrandTot = function (property) {
+        var strucLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure.length;
+        var suppLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies.length;
+        var equLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
 
-var strucLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure.length;
-var suppLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies.length;
-var equLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
-
-var ab1_1c= $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure[strucLength -1][property] +
-            $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies[suppLength -1][property] +
-            $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equLength -1][property]
-
-
-return ab1_1c;
+        var ab1_1c= $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure[strucLength -1][property] +
+                    $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies[suppLength -1][property] +
+                    $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equLength -1][property]
 
 
-}
-$scope.getGrandTotDamage = function (property){
+        return ab1_1c;
+    }
+
+$scope.getGrandTotDamage = function (property) {
 
 var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
 var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
@@ -941,8 +941,6 @@ var ab1_1c_dm= $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[st
             $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1][property]
 
 return ab1_1c_dm;
-
-
 }
 
 

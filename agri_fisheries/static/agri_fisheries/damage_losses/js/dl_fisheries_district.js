@@ -13,6 +13,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.grantot = null;
+    $scope.user_id;
 
 //Initialize data
     var init_data = {

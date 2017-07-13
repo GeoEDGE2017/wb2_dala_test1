@@ -14,6 +14,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
     $scope.grndLoss = null;
     $scope.grndfinaltotal = null;
     $scope.finalgrandtot = null;
+    $scope.user_id;
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
 

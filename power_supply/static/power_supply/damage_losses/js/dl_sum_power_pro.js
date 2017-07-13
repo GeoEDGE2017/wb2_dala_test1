@@ -18,6 +18,7 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
     $scope.total_num_affected = 0;
+    $scope.user_id;
 
     $scope.changedValue = function getDlData(selectProvinces) {
         if($scope.incident && selectProvinces) {

@@ -9,6 +9,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.isLoded = false;
+    $scope.user_id;
 
     $scope.changedValue = function getDlData() {
         if ($scope.incident) {

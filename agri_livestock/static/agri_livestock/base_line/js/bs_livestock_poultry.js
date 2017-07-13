@@ -11,6 +11,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.organizations = [];
+    $scope.user_id;
 
 //Initialize data
     var init_data = {

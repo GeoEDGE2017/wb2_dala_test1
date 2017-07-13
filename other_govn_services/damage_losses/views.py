@@ -20,9 +20,11 @@ def dl_assessment_of_govn_dep_or_ofc_in_a_district(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     filtered_incidents = fetch_data['incidents']
+    filtered_user = fetch_data['user']
     ownership = Ownership.objects.all()
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': filtered_incidents,
         'ownerships': ownership,

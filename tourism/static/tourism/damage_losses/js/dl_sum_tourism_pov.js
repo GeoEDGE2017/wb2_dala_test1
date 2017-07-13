@@ -11,6 +11,7 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
     $scope.table;
     $scope.districtTotals = [];
     $scope.data_available;
+    $scope.user_id;
 
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {

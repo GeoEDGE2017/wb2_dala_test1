@@ -7,19 +7,26 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     
   });
-  
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsInfoFisheriesApp" ng-controller="bsInfoFisheriesController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_fisheries_main' %}">Agri Fisheries Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:agri_fisheries_main' %}">Agri Fisheries Sector</a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline Information on Fisheries</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 2. Baseline Information on Fisheries
+            </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}"
+                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid">
         <div>
@@ -41,17 +48,19 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                             </td>
-                            <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_info_fisheries.district.$error.required">
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_info_fisheries.district.$error.required">
                                     Please Select District
                                 </span>
                             </td>
                             <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_info_fisheries.baselineDate.$error.required">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_info_fisheries.baselineDate.$error.required">
                                     Please Select Date
                                 </span>
                             </td>
@@ -61,10 +70,11 @@
                                 District:
                             </td>
                             <td width="95" height="19">
-                                <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <select id="selectbasic" name="district" class="form-control" ng-model="district"
+                                        style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
-                                        <option value={{ district.id }}>{{ district.name }}</option>
+                                    <option value={{ district.id }}>{{ district.name }}</option>
                                     {% endfor %}
                                 </select>
                             </td>
@@ -72,8 +82,10 @@
                                 Year/Month:
                             </td>
                             <td colspan="4" width="356" height="19">
-                                <input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                                <input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy"
+                                       id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr class="trheadc1" class="trheadc" height="19">
                             <td colspan="7" width="697" height="19">
@@ -128,7 +140,8 @@
                                 Private
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="bifProduction in bsInfoFisheries.agri_fisheries.Table_2.BifProduction">
+                        <tr height="19"
+                            ng-repeat="bifProduction in bsInfoFisheries.agri_fisheries.Table_2.BifProduction">
                             <td class="tdpa" width="125" height="19" ng-bind="bifProduction.types">
                                 Inland Fisheries
                             </td>
@@ -151,12 +164,12 @@
 
                             </td>
 
-                            <td width="63" height="19" >
+                            <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.avg_yield_pub">
                             </td>
                             <!--<td class="tdpa" width="115" height="19" ng-if="bifProduction.types == 'Inland fisheries'">-->
-                                <!--<br/>-->
+                            <!--<br/>-->
 
                             <!--</td>-->
 
@@ -173,7 +186,7 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bifProduction.prodc_pub">
                             </td>
-                             <td width="63" height="19" class="trsubc" ng-if="bifProduction.types !='Inland fisheries'">
+                            <td width="63" height="19" class="trsubc" ng-if="bifProduction.types !='Inland fisheries'">
 
                             </td>
 
@@ -231,470 +244,506 @@
                             </td>
                         </tr>
                         </tbody>
+                    </table>
+
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
+
+
+                        <table class="table table-bordered">
+                            <tr class="trheadc" height="19">
+                                <td width="125" height="19" style="width:19.7%;">
+                                    Fishing Equipment
+                                </td>
+                                <td width="95" height="19">
+                                    <br/>
+                                </td>
+                                <td width="111" height="19" style="width:16.3%;">
+                                    <br/>
+                                </td>
+                                <td width="115" height="19" style="width:18.5%;">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19" style="width:10.2%;">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19" style="width:12.4%;">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19" style="width:9.4%;">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="19"
+                                ng-repeat="bifAstFequipment in bsInfoFisheries.agri_fisheries.Table_2.BifAstFequipment">
+                                <td width="125" height="19" ng-bind="bifAstFequipment.assets"
+                                    ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 5">
+                                </td>
+                                <td width="98" ng-if="$index > 4">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BifAstFequipment', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input style="width:80%;float:right;" name="bifAstFequipment_{{$index}}"
+                                           ng-model="bifAstFequipment.assets"
+                                           popover="This field is required"
+                                           popover-toggle="form_info_fisheries['bifAstFequipment_' + $index].$dirty && !form_info_fisheries['bifAstFequipment_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
+                                    {% endverbatim %}
+                                </td>
+                                <td width="95" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstFequipment.if_avg_replace_cost">
+                                </td>
+                                <td width="111" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstFequipment.if_avg_repair_cost">
+                                </td>
+                                <td width="115" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstFequipment.rf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstFequipment.rf_avg_repair_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstFequipment.mf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstFequipment.mf_avg_repair_cost">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="19">
+                                <td width="125" height="19">
+                                    Others &nbsp;&nbsp;
+                                    <button ng-click="insertAsset('BifAstFequipment')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                                <td width="95" height="19">
+                                    <br/>
+                                </td>
+                                <td width="111" height="19">
+                                    <br/>
+                                </td>
+                                <td width="115" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td width="125" height="19">
+                                    Office equipment
+                                </td>
+                                <td width="95" height="19">
+                                    <br/>
+                                </td>
+                                <td width="111" height="19">
+                                    <br/>
+                                </td>
+                                <td width="115" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bifAstOequipment in bsInfoFisheries.agri_fisheries.Table_2.BifAstOequipment">
+                                <td class="tdpa" width="125" height="19" ng-bind="bifAstOequipment.assets"
+                                    ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 3">
+                                </td>
+                                <td width="98" ng-if="$index > 2">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BifAstOequipment', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input style="width:80%;float:right;" name="bifAstOequipment_{{$index}}"
+                                           ng-model="bifAstOequipment.assets"
+                                           popover="This field is required"
+                                           popover-toggle="form_info_fisheries['bifAstOequipment_' + $index].$dirty && !form_info_fisheries['bifAstOequipment_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
+                                    {% endverbatim %}
+                                </td>
+                                <td width="95" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstOequipment.if_avg_replace_cost">
+                                </td>
+                                <td width="111" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstOequipment.if_avg_repair_cost">
+                                </td>
+                                <td width="115" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstOequipment.rf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstOequipment.rf_avg_repair_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstOequipment.mf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstOequipment.mf_avg_repair_cost">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="19">
+                                <td width="125" height="19">
+                                    Others &nbsp;&nbsp;
+                                    <button ng-click="insertAsset('BifAstOequipment')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                                <td width="95" height="19">
+                                    <br/>
+                                </td>
+                                <td width="111" height="19">
+                                    <br/>
+                                </td>
+                                <td width="115" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td width="125" height="19">
+                                    Machinery
+                                </td>
+                                <td width="95" height="19">
+                                    <br/>
+                                </td>
+                                <td width="111" height="19">
+                                    <br/>
+                                </td>
+                                <td width="115" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bifAstMachinery in bsInfoFisheries.agri_fisheries.Table_2.BifAstMachinery">
+                                <td class="tdpa" width="125" height="19" ng-bind="bifAstMachinery.assets"
+                                    ng-if="$index < 1">
+                                </td>
+                                <td width="98" ng-if="$index > 0">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BifAstMachinery', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input style="width:80%;float:right;" name="bifAstMachinery_{{$index}}"
+                                           ng-model="bifAstMachinery.assets"
+                                           popover="This field is required"
+                                           popover-toggle="form_info_fisheries['bifAstMachinery_' + $index].$dirty && !form_info_fisheries['bifAstMachinery_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
+                                    {% endverbatim %}
+                                </td>
+                                <td width="95" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstMachinery.if_avg_replace_cost">
+                                </td>
+                                <td width="111" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstMachinery.if_avg_repair_cost">
+                                </td>
+                                <td width="115" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstMachinery.rf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstMachinery.rf_avg_repair_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstMachinery.mf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstMachinery.mf_avg_repair_cost">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="32">
+                                <td width="125" height="32">
+                                    Others &nbsp;&nbsp;
+                                    <button ng-click="insertAsset('BifAstMachinery')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                                <td width="95" height="32">
+                                    <br/>
+                                </td>
+                                <td width="111" height="32">
+                                    <br/>
+                                </td>
+                                <td width="115" height="32">
+                                    <br/>
+                                </td>
+                                <td width="63" height="32">
+                                    <br/>
+                                </td>
+                                <td width="63" height="32">
+                                    <br/>
+                                </td>
+                                <td width="63" height="32">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td width="125" height="19">
+                                    Structures
+                                </td>
+                                <td width="95" height="19">
+                                    <br/>
+                                </td>
+                                <td width="111" height="19">
+                                    <br/>
+                                </td>
+                                <td width="115" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bifAstStructures in bsInfoFisheries.agri_fisheries.Table_2.BifAstStructures">
+                                <td class="tdpa" width="125" height="19" ng-bind="bifAstStructures.assets"
+                                    ng-if="$index < 2">
+                                </td>
+                                <td width="98" ng-if="$index > 1">
+                                    {% verbatim %}
+                                    <button id="delete" ng-click="removeItem('BifAstStructures', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <input style="width:80%;float:right;" name="bifAstStructures_{{$index}}"
+                                           ng-model="bifAstStructures.assets"
+                                           popover="This field is required"
+                                           popover-toggle="form_info_fisheries['bifAstStructures_' + $index].$dirty && !form_info_fisheries['bifAstStructures_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
+                                    {% endverbatim %}
+                                </td>
+                                <td width="95" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstStructures.if_avg_replace_cost">
+                                </td>
+                                <td width="111" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstStructures.if_avg_repair_cost">
+                                </td>
+                                <td width="115" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstStructures.rf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstStructures.rf_avg_repair_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="bifAstStructures.mf_avg_replace_cost">
+                                </td>
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="bifAstStructures.mf_avg_repair_cost">
+                                </td>
+                            </tr>
+                            <tr class="tdpa" height="19">
+                                <td width="125" height="19">
+                                    Others &nbsp;&nbsp;
+                                    <button ng-click="insertAsset('BifAstStructures')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
+                                        <span class="fa fa-plus"></span>
+                                    </button>
+                                </td>
+                                <td width="95" height="19">
+                                    <br/>
+                                </td>
+                                <td width="111" height="19">
+                                    <br/>
+                                </td>
+                                <td width="115" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                                <td width="63" height="19">
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr class="trheadc1" height="19">
+                                <td rowspan="2" width="125" height="38">
+                                    Buildings
+                                </td>
+                                <td colspan="3" rowspan="2" width="301" height="38">
+                                    Average Replacement Cost (LKR/sqm)
+                                </td>
+                                <td colspan="3" width="189" height="19">
+                                    Average Repair Cost (LKR/sqm)
+                                </td>
+                            </tr>
+                            <tr class="trsubc" height="19">
+                                <td width="63" height="19">
+                                    Roof
+                                </td>
+                                <td width="63" height="19">
+                                    Wall
+                                </td>
+                                <td width="63" height="19">
+                                    Floor
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="bifAstBuildings in bsInfoFisheries.agri_fisheries.Table_2.BifAstBuildings">
+                                <td class="tdpa" width="125" height="19" ng-bind="bifAstBuildings.assets">
+
+                                </td>
+                                <td colspan="3" width="301" height="19">
+                                    <input ng-model="bifAstBuildings.avg_replace_cost" id="textinput" name="textinput"
+                                           type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="63" height="19">
+                                    <input ng-model="bifAstBuildings.avg_repair_cost_roof" id="textinput"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="63" height="19">
+                                    <input ng-model="bifAstBuildings.avg_repair_cost_wall" id="textinput"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="63" height="19">
+                                    <input ng-model="bifAstBuildings.avg_repair_cost_floor" id="textinput"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                            </tr>
+                            </tbody>
                         </table>
 
-                        <div id="boxscroll" style="height:400px;overflow:auto;">
+                        <div class="pull-right">
+                            <br>
+                            <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                            <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                                Edit
+                            </button>
+                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                                Cancel Edit
+                            </button>
 
-
- <table class="table table-bordered">
-                        <tr class="trheadc" height="19">
-                            <td width="125" height="19" style="width:19.7%;">
-                                Fishing Equipment
-                            </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td width="111" height="19" style="width:16.3%;">
-                                <br/>
-                            </td>
-                            <td width="115" height="19" style="width:18.5%;">
-                                <br/>
-                            </td>
-                            <td width="63" height="19" style="width:10.2%;">
-                                <br/>
-                            </td>
-                            <td width="63" height="19" style="width:12.4%;">
-                                <br/>
-                            </td>
-                            <td width="63" height="19" style="width:9.4%;">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19" ng-repeat="bifAstFequipment in bsInfoFisheries.agri_fisheries.Table_2.BifAstFequipment">
-                            <td width="125" height="19" ng-bind="bifAstFequipment.assets" ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 5">
-                            </td>
-                            <td width="98" ng-if="$index > 4">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BifAstFequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bifAstFequipment_{{$index}}" ng-model="bifAstFequipment.assets"
-                                    popover="This field is required"
-                                    popover-toggle="form_info_fisheries['bifAstFequipment_' + $index].$dirty && !form_info_fisheries['bifAstFequipment_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td width="95" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstFequipment.if_avg_replace_cost">
-                            </td>
-                            <td width="111" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstFequipment.if_avg_repair_cost">
-                            </td>
-                            <td width="115" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstFequipment.rf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstFequipment.rf_avg_repair_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstFequipment.mf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstFequipment.mf_avg_repair_cost">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="125" height="19">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BifAstFequipment')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="125" height="19">
-                                Office equipment
-                            </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bifAstOequipment in bsInfoFisheries.agri_fisheries.Table_2.BifAstOequipment">
-                            <td class="tdpa" width="125" height="19" ng-bind="bifAstOequipment.assets" ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 3">
-                            </td>
-                            <td width="98" ng-if="$index > 2">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BifAstOequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bifAstOequipment_{{$index}}" ng-model="bifAstOequipment.assets"
-                                    popover="This field is required"
-                                    popover-toggle="form_info_fisheries['bifAstOequipment_' + $index].$dirty && !form_info_fisheries['bifAstOequipment_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td width="95" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstOequipment.if_avg_replace_cost">
-                            </td>
-                            <td width="111" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstOequipment.if_avg_repair_cost">
-                            </td>
-                            <td width="115" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstOequipment.rf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstOequipment.rf_avg_repair_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstOequipment.mf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstOequipment.mf_avg_repair_cost">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="125" height="19">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BifAstOequipment')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="125" height="19">
-                                Machinery
-                            </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bifAstMachinery in bsInfoFisheries.agri_fisheries.Table_2.BifAstMachinery">
-                            <td class="tdpa" width="125" height="19" ng-bind="bifAstMachinery.assets" ng-if="$index < 1">
-                            </td>
-                            <td width="98" ng-if="$index > 0">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BifAstMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bifAstMachinery_{{$index}}" ng-model="bifAstMachinery.assets"
-                                    popover="This field is required"
-                                    popover-toggle="form_info_fisheries['bifAstMachinery_' + $index].$dirty && !form_info_fisheries['bifAstMachinery_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td width="95" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstMachinery.if_avg_replace_cost">
-                            </td>
-                            <td width="111" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstMachinery.if_avg_repair_cost">
-                            </td>
-                            <td width="115" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstMachinery.rf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstMachinery.rf_avg_repair_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstMachinery.mf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstMachinery.mf_avg_repair_cost">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="32">
-                            <td width="125" height="32">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BifAstMachinery')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="95" height="32">
-                                <br/>
-                            </td>
-                            <td width="111" height="32">
-                                <br/>
-                            </td>
-                            <td width="115" height="32">
-                                <br/>
-                            </td>
-                            <td width="63" height="32">
-                                <br/>
-                            </td>
-                            <td width="63" height="32">
-                                <br/>
-                            </td>
-                            <td width="63" height="32">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="125" height="19">
-                                Structures
-                            </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bifAstStructures in bsInfoFisheries.agri_fisheries.Table_2.BifAstStructures">
-                            <td class="tdpa" width="125" height="19" ng-bind="bifAstStructures.assets" ng-if="$index < 2">
-                            </td>
-                            <td width="98" ng-if="$index > 1">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BifAstStructures', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:80%;float:right;" name="bifAstStructures_{{$index}}" ng-model="bifAstStructures.assets"
-                                    popover="This field is required"
-                                    popover-toggle="form_info_fisheries['bifAstStructures_' + $index].$dirty && !form_info_fisheries['bifAstStructures_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td width="95" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstStructures.if_avg_replace_cost">
-                            </td>
-                            <td width="111" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstStructures.if_avg_repair_cost">
-                            </td>
-                            <td width="115" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstStructures.rf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstStructures.rf_avg_repair_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstStructures.mf_avg_replace_cost">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="bifAstStructures.mf_avg_repair_cost">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="125" height="19">
-                                Others &nbsp;&nbsp;
-                                <button ng-click="insertAsset('BifAstStructures')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td width="95" height="19">
-                                <br/>
-                            </td>
-                            <td width="111" height="19">
-                                <br/>
-                            </td>
-                            <td width="115" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                            <td width="63" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td rowspan="2" width="125" height="38">
-                                Buildings
-                            </td>
-                            <td colspan="3" rowspan="2" width="301" height="38">
-                                Average Replacement Cost (LKR/sqm)
-                            </td>
-                            <td colspan="3" width="189" height="19">
-                                Average Repair Cost (LKR/sqm)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="19">
-                            <td width="63" height="19">
-                                Roof
-                            </td>
-                            <td width="63" height="19">
-                                Wall
-                            </td>
-                            <td width="63" height="19">
-                                Floor
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bifAstBuildings in bsInfoFisheries.agri_fisheries.Table_2.BifAstBuildings">
-                            <td class="tdpa" width="125" height="19" ng-bind="bifAstBuildings.assets">
-
-                            </td>
-                            <td colspan="3" width="301" height="19" >
-                                <input ng-model="bifAstBuildings.avg_replace_cost" id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19" >
-                                <input ng-model="bifAstBuildings.avg_repair_cost_roof" id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19" >
-                                <input ng-model="bifAstBuildings.avg_repair_cost_wall" id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="63" height="19" >
-                                <input ng-model="bifAstBuildings.avg_repair_cost_floor" id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    
-                    <div class="pull-right">
-                        <br>
-                    <button type="button"  ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                        Cancel Edit
-                    </button>
-
-                        <button type="button" class="btn btn-success" ng-click="saveBsData(form_info_fisheries)">Submit</button>
+                            <button type="button" class="btn btn-success" ng-click="saveBsData(form_info_fisheries)">
+                                Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-                 aria-hidden="true">
-                <div class="modal-dialog" style="width:50%;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                ×
-                            </button>
-                            <h5 class="modal-title">
-                                <span id="bookId"> </span>
-                            </h5>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="textinput">Name</label>
-                                <div class="col-md-10">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
+            <div class="col-md-12">
+                <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+                     aria-hidden="true">
+                    <div class="modal-dialog" style="width:50%;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h5 class="modal-title">
+                                    <span id="bookId"> </span>
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="textinput">Name</label>
+                                    <div class="col-md-10">
+                                        <input id="textinput" name="textinput" type="text" placeholder=""
+                                               class="form-control input-md">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br><br>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary">
-                                Save changes
-                            </button>
+                            <br><br>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" class="btn btn-primary">
+                                    Save changes
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- /.conainer-fluid -->
 </main>

@@ -23,7 +23,7 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
     $scope.grndlosPrivateyear2 = null;
     $scope.finalGrandTotPublic = null;
     $scope.finalGrandTotPrivate = null;
-
+    $scope.user_id;
 
     $scope.fetchDlData = function(){
         if($scope.incident){

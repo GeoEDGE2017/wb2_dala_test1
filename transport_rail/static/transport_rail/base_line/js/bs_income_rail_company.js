@@ -13,6 +13,7 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.company = null;
     $scope.new_company = {id: null, name: null};
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
     var init_data = {
         'transport_rail': {

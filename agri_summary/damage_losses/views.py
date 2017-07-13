@@ -11,8 +11,10 @@ def dl_sum_agriculture_dis(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_summary'
@@ -28,8 +30,10 @@ def dl_sum_agriculture_pro(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_summary'
@@ -45,8 +49,10 @@ def dl_sum_agriculture_nat(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_summary'

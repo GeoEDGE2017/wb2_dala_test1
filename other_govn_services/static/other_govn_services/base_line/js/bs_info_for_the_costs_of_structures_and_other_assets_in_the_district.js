@@ -10,6 +10,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
     $scope.submitted = false;
     $scope.is_valid_data = true;
 //    $scope.del_status = false;
+    $scope.user_id;
 
     var init_data = {
         'other_govn_services': {
@@ -153,13 +154,10 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 
                 $scope.del_status = $scope.enum_delete_validation($scope.bs_data, $scope.dl_data);
 
-//                while (!del_statuss) {
-//                    console.log(del_statuss);
-//                };
-
-//                del_status.then({
-//                     console.log('del_status 1', del_status);
-//                });
+                $scope.del_status.then(function(data) {
+                    console.log('done');
+                    console.log($scope.del_status);
+                });
 
                 console.log('del_status', del_statuss);
 

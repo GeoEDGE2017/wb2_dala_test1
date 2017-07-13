@@ -12,6 +12,7 @@ $scope.is_edit = false;
 $scope.submitted = false;
 $scope.data={};
 $scope.incident;
+    $scope.user_id;
 
 
     $scope.changedValue = function getDlData() {

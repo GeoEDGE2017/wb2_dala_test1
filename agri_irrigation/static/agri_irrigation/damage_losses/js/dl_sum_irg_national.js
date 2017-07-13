@@ -14,7 +14,7 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
     $scope.grndLoss = null;
     $scope.grndfinaltotal = null;
     $scope.finalgrandtot = null;
-
+    $scope.user_id;
 
     $scope.fetchDlData = function(form){
      if($scope.incident){

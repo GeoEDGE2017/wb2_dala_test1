@@ -12,8 +12,10 @@ def dl_frst_prduct_asets(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_agrarian'
@@ -29,8 +31,10 @@ def dl_struts_oth_asets(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_agrarian'
@@ -46,8 +50,10 @@ def dl_invsmnt_los(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_agrarian'
@@ -63,8 +69,10 @@ def dl_prdctn_los(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_agrarian'
@@ -80,8 +88,10 @@ def dl_sum_agrarian_dstr(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_agrarian'
@@ -96,8 +106,10 @@ def dl_sum_agrarian_prov(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_agrarian'
@@ -112,8 +124,10 @@ def dl_sum_agrarian_nat(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_agrarian'

@@ -2,16 +2,16 @@ var app = angular.module('dlHousingDisApp', []);
 
 app.controller("DlHousingDisController",function($scope, $http) {
 
- $scope.district;
- $scope.incident;
- $scope.dl_data={};
- $scope.is_edit=false;
- $scope.submitted = false;
- $scope.is_valid_data = true;
- $scope.districts=[];
+    $scope.district;
+    $scope.incident;
+    $scope.dl_data={};
+    $scope.is_edit=false;
+    $scope.submitted = false;
+    $scope.is_valid_data = true;
+    $scope.districts=[];
+    $scope.user_id;
 
-
-   $scope.getDistrict = function getDistrict(){
+    $scope.getDistrict = function getDistrict(){
      if($scope.incident){
 
 

@@ -8,7 +8,7 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.is_edit_disable = false;
-
+    $scope.user_id;
 
 //Initialize Data
     var init_data = {

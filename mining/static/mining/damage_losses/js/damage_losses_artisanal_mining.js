@@ -9,6 +9,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
     $scope.is_edit = false;
     $scope.bs_data={};
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
     var init_data = {
         'mining': {

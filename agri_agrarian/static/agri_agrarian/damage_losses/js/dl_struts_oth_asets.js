@@ -13,6 +13,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
 //Initailize data
     var init_data = {

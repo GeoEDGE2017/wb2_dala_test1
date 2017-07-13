@@ -15,6 +15,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.grantot = 0;
     $scope.is_edit_disable = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
     //Initialize Data
     var init_data = {

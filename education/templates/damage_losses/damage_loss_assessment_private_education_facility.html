@@ -56,32 +56,28 @@ $(document).on("click", "#add_technical", function () {
 </script>
 
 <script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  
-   
-    
-  });
-  
-
-
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlPvtEduFacilitiesApp" ng-controller="DlPvtEduFacilitiesController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:education_main' %}">Education Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:education_main' %}">Education Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 4. Damage and Loss Assessment of a Private Education Facility
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
@@ -134,14 +130,6 @@ $(document).on("click", "#add_technical", function () {
                                 </option>
                                 {% endfor %}
                             </select>
-
-                            <!--select ng-change="fetchSchools()" ng-model="district" name="district" class="form-control"
-                                       style="font-weight:400;" required>
-                                   <option value="">-- Select --</option>
-                                   {% for district in districts %}
-                                   <option value="{{ district.id }}">{{ district.name }}</option>
-                                   {% endfor %}
-                               </select-->
                         </td>
                         <td colspan="2" style="padding-left:5px;">
                             Name of District
@@ -155,6 +143,7 @@ $(document).on("click", "#add_technical", function () {
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trheadc1" height="21">
                         <td rowspan="2" width="280" height="42">

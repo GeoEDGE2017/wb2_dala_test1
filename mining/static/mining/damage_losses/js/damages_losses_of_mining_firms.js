@@ -19,6 +19,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.ownership;
     $scope.currentBaselineDate = null;
     $scope.is_valid_data = true;
+    $scope.user_id;
 
     var init_data = {
         'mining': {

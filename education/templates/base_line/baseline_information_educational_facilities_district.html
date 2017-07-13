@@ -10,7 +10,7 @@ $(document).ready(function() {
 <main ng-app="bsEduFacilitiesApp" ng-controller="BsEduFacilitiesController" class="main">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-       <li class="breadcrumb-item">
+        <li class="breadcrumb-item">
            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
@@ -21,7 +21,9 @@ $(document).ready(function() {
                 Table 1. Baseline Information of Educational Facilities in a District
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div class="col-sm-12" style="padding:0;">
@@ -41,15 +43,15 @@ $(document).ready(function() {
                             </td>
                             <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.district.$error.required">
-                                       Please select district
-                                 </span>
+                                    Please select district
+                                </span>
                             </td>
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                                 <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.baselineDate.$error.required">
-                                       Please Select Date
-                                 </span>
+                                    Please Select Date
+                                </span>
                             </td>
                         </tr>
                         <tr class="trhead1">
@@ -64,12 +66,13 @@ $(document).ready(function() {
                                 </select>
                             </td>
                             <td colspan="" style="padding-left:5px;">
-                                Year/Month
+                                Year/Month {{user.id}}
                             </td>
                             <td colspan="2" style="font-weight:normal;">
                                 <input name="textinput" type="text" placeholder="mm/yy" id="datepicker"
                                        ng-model="baselineDate" class="form-control input-md" required>
                             </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr class="trheadc1" height="17">
                             <td rowspan="2" width="280" height="34" style="width:26.7%;">
@@ -113,7 +116,7 @@ $(document).ready(function() {
                             </tr>
                             <tr ng-repeat="befPubSchool in bsEduFacilities.education.Table_1.BefPubSchools" height="17">
                                 <td ng-bind="befPubSchool.type_facilities" ng-model="befPubSchool.type_facilities"
-                                    class="tdpa" width="280" height="17" >
+                                    class="tdpa" width="280" height="17">
                                 </td>
                                 <td colspan="3" width="136">
                                     <input ng-model="befPubSchool.total_number" type="number" placeholder=""

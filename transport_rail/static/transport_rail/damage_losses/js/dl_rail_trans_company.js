@@ -13,6 +13,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.is_valid_data = true;
     $scope.DlBuildingAstLoss_no_of_tot_destroyed = null;
     $scope.DlBuildingAstLoss_no_of_partially_damaged = null;
+    $scope.user_id;
 
     var init_data = {
         'transport_rail' : {

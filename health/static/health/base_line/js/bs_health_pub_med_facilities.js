@@ -8,6 +8,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.user_id;
 
 //initialize model
     var init_data = {

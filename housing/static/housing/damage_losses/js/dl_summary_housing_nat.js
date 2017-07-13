@@ -17,7 +17,7 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
     $scope.grndtotalLosses = 0;
     $scope.grandTotal = 0;
     $scope.total_num_affected = 0;
-
+    $scope.user_id;
 
     $scope.fetchDlData = function(){
        if($scope.incident){

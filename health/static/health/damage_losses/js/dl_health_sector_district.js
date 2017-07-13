@@ -10,6 +10,8 @@ app.controller("DlHealthSectorDistrictController", ['$scope','$http',function ($
      $scope.submitted = false;
      $scope.is_valid_data = true;
      $scope.districts=[];
+     $scope.user_id;
+
      $scope.lmh_hospitals = [
         {property: 'teaching_hospital', name: 'Teaching Hospitals'},
         {property: 'provincial_general_hospital', name: 'Provincial General Hospitals'},

@@ -10,6 +10,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
 
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.user_id;
 
     var init_data = {
         'industry_services': {

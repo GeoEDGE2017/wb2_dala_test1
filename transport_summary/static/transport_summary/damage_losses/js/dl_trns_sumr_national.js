@@ -29,6 +29,7 @@ app.controller("DlSummeryTSNatController", function ($scope,$http,$parse, _) {
     $scope.summaryLossYear1 = 0;
     $scope.summaryLossYear2 = 0;
     $scope.summaryTotal = 0;
+    $scope.user_id;
 
     $scope.fetchDlData = function(form){
         $scope.is_edit = true;

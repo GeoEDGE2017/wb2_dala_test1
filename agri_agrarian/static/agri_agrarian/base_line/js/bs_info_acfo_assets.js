@@ -8,6 +8,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
 
 //Initialize data
@@ -161,8 +162,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.bsInfoAcfoAssets = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -343,7 +343,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
-
              $http({
                 method: "POST",
                 url: "/bs_save_data",
@@ -352,6 +351,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'agri_agrarian'

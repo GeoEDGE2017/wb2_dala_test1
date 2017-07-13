@@ -32,8 +32,10 @@ def dl_fisheries_dst(request):
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
     fishing_types = FishingTypes.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'fishing_types': fishing_types,
@@ -50,8 +52,10 @@ def dl_sum_fisheries_dst(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_fisheries',
@@ -67,8 +71,10 @@ def dl_sum_fisheries_pro(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_fisheries',
@@ -84,8 +90,10 @@ def dl_sum_fisheries_nat(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_fisheries',

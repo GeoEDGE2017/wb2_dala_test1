@@ -19,7 +19,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
     $scope.grndlosPrivateyear2 = null;
     $scope.finalGrandTotPublic = null;
     $scope.finalGrandTotPrivate = null;
-
+    $scope.user_id;
 
 
     // get relevant damage_losses data for calculations

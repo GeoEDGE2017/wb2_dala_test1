@@ -35,8 +35,10 @@ def dl_pvt_edu_facilities(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     filtered_incidents = fetch_data['incidents']
+    user = request.user
 
     context = {
+        'user': user,
         'districts': filtered_districts,
         'incidents': filtered_incidents,
         'module': 'education'

@@ -12,6 +12,7 @@ $scope.bs_date;
 $scope.is_edit = false;
 $scope.submitted = false;
 $scope.data={};
+    $scope.user_id;
 
 
     $scope.changedValue = function getDlData() {

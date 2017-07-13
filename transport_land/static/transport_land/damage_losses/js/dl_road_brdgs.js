@@ -14,6 +14,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.DlRbdLosses_year_2 = null;
     $scope.DlRbdLosses_year_1 = null;
     $scope.tot = null;
+    $scope.user_id;
 
     var init_data = {
         'transport_land' : {

@@ -22,7 +22,7 @@
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active" id="step1">
+            <tbody class="tab-pane active" id="step1">
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="249"/>
@@ -33,31 +33,25 @@
                         <col width="99"/>
                         <col width="85" span="2"/>
                     </colgroup>
-                    <tbody>
-                     <tr height="19" class="trhead1">
-                         <td colspan="2" style="padding-left:5px;">
-                                Incident:
-                            </td>
-                            <td colspan="5" style="background:#EFEFEF;">
-
-                                <select id="select" name="incident" ng-model="incident"
-                                        class="form-control"
-                                        style="width:100%;font-weight:400;"
+                    <tr height="19" class="trhead1">
+                        <td colspan="2" style="padding-left:5px;">
+                            Incident:
+                        </td>
+                        <td colspan="5" style="background:#EFEFEF;">
+                            <select id="select" name="incident" ng-model="incident"
+                                        class="form-control" style="width:100%;font-weight:400;"
                                         ng-change="changedValue(incident);fetchDlData();" required>
-
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
-                                    <option value={{incident.id}}>
+                                        <option value={{incident.id}}>
                                         <!--{{incident.disaster_type.name}}-->
                                         <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
+                                            {{incident.incident_name}}
+                                        </option>
                                     {% endfor %}
-                                </select>
-                            </td>
-                            <td colspan="2">
-                                <!--<button class="btn btn-info btn-block" ng-click="fetchDlData()">Load</button>-->
-                            </td>
+                            </select>
+                        </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <tr class="trheadc1" height="20">
                         <td rowspan="3" width="249" height="60" style="width:19.5%;">
@@ -84,7 +78,7 @@
                             Losses (LKR)
                         </td>
                     </tr>
-                     <tr class="trheadc1" height="20">
+                    <tr class="trheadc1" height="20">
                         <td width="148" height="20">
                             Public
                         </td>
@@ -110,7 +104,6 @@
                             Private
                         </td>
                     </tr>
-
                 <br>
                 <div class="pull-right">
                     <br>
@@ -118,85 +111,58 @@
                            class="table table-bordered">
                         <tbody>
                         <tr  height="20" ng-init="getTotal($index,key);">
-
                         <td ng-bind="key" class="tdpa" width="253" height="19">
-
                         </td>
                         <td width="147" ng-bind="value.DsorDmgLosNational[0].dmg_los_pub">
-
                         </td>
                         <td width="151" ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt">
-
                         </td>
                         <td width="165" ng-bind="value.DsorLosYear1National[0].dmg_los_pub">
-
                         </td>
                         <td width="170" ng-bind="value.DsorLosYear1National[0].dmg_los_pvt">
-
                         </td>
                         <td width="135" ng-bind="value.DsorLosYear2National[0].dmg_los_pub">
-
                         </td>
                         <td width="133" ng-bind="value.DsorLosYear2National[0].dmg_los_pvt">
-
                         </td>
                         <td width="126" ng-bind="value.DsorDmgLosNational[0].dmg_los_pub + value.DsorLosYear1National[0].dmg_los_pub + value.DsorLosYear2National[0].dmg_los_pub ">
-
                         </td>
                         <td width="85" ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt + value.DsorLosYear1National[0].dmg_los_pvt + value.DsorLosYear2National[0].dmg_los_pvt ">
-
                         </td>
-
                         </tr>
                         <tr height="19">
                         <td class="boldash" width="253" height="19">
                             GRAND TOTAL
                         </td>
                         <td width="147" ng-bind="totaldpub">
-
                         </td>
                         <td width="151" ng-bind="totaldpvt"  >
-
                         </td>
                         <td width="165" ng-bind="totalyear1pub"  >
-
                         </td>
                         <td width="170"  ng-bind="totalyear1pvt"  >
-
                         </td>
                         <td width="135" ng-bind="totalyear2pub"  >
-
                         </td>
                         <td width="133" ng-bind="totalyear2pvt"  >
-
                         </td>
                         <td width="126" ng-bind="finaltotalpublic">
-
                         </td>
                         <td width="85" ng-bind="finaltotalprivate">
-
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
                 </div>
-            </div>
-
-
+            </table>
         </div>
     </div>
-
-
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -211,13 +177,11 @@
                             <div class="col-md-10">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
-
                             </div>
                         </div>
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -226,19 +190,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

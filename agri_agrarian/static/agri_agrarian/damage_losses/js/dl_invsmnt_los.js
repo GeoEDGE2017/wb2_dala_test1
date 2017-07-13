@@ -11,6 +11,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
 //Initialize Data
     var init_data = {
@@ -270,7 +271,6 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 
 //Generate Fields according to basline Data
     function generateRefencedData() {
-
         data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry'];
             var dl_model1 = null;
             var dl_model2 = null;
@@ -427,6 +427,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     'com_data': {
                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit':$scope.is_edit
                 }),

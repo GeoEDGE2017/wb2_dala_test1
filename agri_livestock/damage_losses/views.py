@@ -12,8 +12,10 @@ def dl_livestock_poultry(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_livestock'
@@ -29,6 +31,7 @@ def dlsum_livestock_poultry_dst(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
         'districts': filtered_districts,
@@ -44,8 +47,10 @@ def dl_livestock_pro(request):
     user = request.user
     fetch_data = fetch_districts(user)
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'incidents': incidents,
         'module': 'agri_livestock'
     }
@@ -58,8 +63,10 @@ def dl_livestock_nat(request):
     user = request.user
     fetch_data = fetch_districts(user)
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'incidents': incidents,
         'module': 'agri_livestock'
     }

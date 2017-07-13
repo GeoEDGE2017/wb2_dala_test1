@@ -13,6 +13,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.organizations = [];
     $scope.selectedOrganization;
     $scope.is_null = false;
+    $scope.user_id;
 
 //Initialize Data
     var init_data = {

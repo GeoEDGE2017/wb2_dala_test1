@@ -34,7 +34,10 @@ def bs_health_status(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     filtered_incidents = fetch_data['incidents']
+    filtered_user = fetch_data['user']
+
     context = {
+        'user': user,
         'districts': filtered_districts,
         'incidents': filtered_incidents,
         'module': 'health'
@@ -42,9 +45,14 @@ def bs_health_status(request):
     return render(request, 'base_line/health_baseline_rdh.html', context)
 
 
+@permission_required("district", 'Health')
 def bs_health_information_health_status(request):
+    user = request.user
     districts = District.objects.all()
+    fetch_data = fetch_districts(user)
+    filtered_user = fetch_data['user']
     context = {
+        'user': filtered_user,
         'districts': districts,
         'module': 'health'
     }
@@ -56,13 +64,16 @@ def bs_health_information_health_status(request):
 def bs_health_medical_facilities(request):
     fetch_data = fetch_districts(request.user)
     districts = fetch_data['districts']
+    filtered_user = fetch_data['user']
     context = {
+        'user': filtered_user,
         'districts': districts,
         'module': 'health'
     }
     return render(request, 'base_line/health_baseline_district.html', context)
 
 
+@permission_required("district", 'Health')
 def bs_health_info_unit_cost_ministry_health(request):
     districts = District.objects.all()
     context = {

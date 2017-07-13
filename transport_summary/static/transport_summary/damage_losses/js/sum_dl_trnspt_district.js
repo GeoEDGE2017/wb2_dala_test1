@@ -18,6 +18,7 @@ app.controller('dlSumTrnsptDstControllerController', function($scope, $http) {
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.data;
+    $scope.user_id;
 
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {

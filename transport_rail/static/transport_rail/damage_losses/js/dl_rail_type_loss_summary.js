@@ -12,7 +12,7 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
     $scope.is_valid_data = true;
     $scope.DlTypeLos_year_1 = 0;
     $scope.DlTypeLos_year_2 = 0;
-
+    $scope.user_id;
 
     var init_data = {
         'transport_rail' : {

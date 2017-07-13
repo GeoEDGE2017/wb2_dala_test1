@@ -17,6 +17,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     $scope.businessTypes = [];
     $scope.is_edit = false;
     $scope.new_firm = {id: null, name: null, ownership: null,};
+    $scope.user_id;
 
     var init_data = {
         'tourism': {

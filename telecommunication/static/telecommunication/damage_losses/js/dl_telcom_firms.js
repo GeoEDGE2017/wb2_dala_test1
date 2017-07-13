@@ -11,6 +11,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.is_valid_data = true;
     $scope.selectedCompany;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
     var init_data = {
         'telecommunication': {

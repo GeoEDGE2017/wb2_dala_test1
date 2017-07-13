@@ -12,6 +12,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     $scope.is_valid_data = true;
     $scope.is_null=false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
 //initialize model
     var init_data = {

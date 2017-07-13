@@ -9,7 +9,7 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
 
     $scope.submitted = false;
     $scope.is_valid_data = true;
-
+    $scope.user_id;
 
 //
 

@@ -21,7 +21,7 @@ app.controller('dlSummIndSerPovController', ['$scope', '$http', function($scope,
     $scope.table;
     $scope.districtsTotals = [];
     $scope.data_available;
-
+    $scope.user_id;
 
         $scope.changedValue =function (selectedValue) {
             if($scope.incident && selectedValue) {

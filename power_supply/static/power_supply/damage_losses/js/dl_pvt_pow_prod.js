@@ -12,6 +12,8 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.pvtPwProducers;
     $scope.lossTotals = [];
     $scope.is_null = false;
+    $scope.user_id;
+
     $scope.newPvtPwProducer = {
         'name':null,
     }

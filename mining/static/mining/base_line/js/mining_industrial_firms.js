@@ -12,6 +12,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.firms = [];
     $scope.is_edit_model = false;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
     var init_data = {
         'mining': {

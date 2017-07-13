@@ -8,6 +8,7 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
 //initialize model
     var init_data = {

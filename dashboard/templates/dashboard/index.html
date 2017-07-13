@@ -15,7 +15,7 @@ $('.number').text(function () {
     $(this).html(x1 + x2); 
 });
 }
-                            </script>
+</script>
     <main class="main" ng-app="dashboardApp" ng-controller="DashboardController">
 
         <!-- Breadcrumb -->
@@ -42,11 +42,16 @@ $('.number').text(function () {
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-primary" style="background:#0c4663;border:#0c4663;height:120px;">
                             <div class="card-block pb-0">
+                               <table>
+                                <tbody>
+                                <span > LKR </span>
+                                <td ng-bind="getTotalAllDamagesValue()" class="number"  style="color:#fff;">
+                        
+                                </td>
+                                </tbody>
+								</table>
+                                <p>Total Damages Value as at  <span ng-bind="thisYear"></span></p>
                                
-                                <h4 class="mb-0" ng-bind="total_all_damages"> </h4>
-                                <p>Total Damages Value as at </p>
-                                 <td class="number">10000000.50</td>
-								
                             </div>
                             <div class="chart-wrapper px-1" style="height:0px;">
                                 <canvas id="card-chart1" class="chart" height="50"></canvas>
@@ -58,8 +63,12 @@ $('.number').text(function () {
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-info" style="background:#1374a2;border:#1374a2;height:120px;">
                             <div class="card-block pb-0">
-                               
-                                <h4 class="mb-0" ng-bind="month_losses"> </h4>
+                               <table>
+                                <tbody>
+                                <span > LKR </span>
+                                <td class="number"  style="color:#fff;" ng-bind="getLossesInThisMonth()"> </td>
+                                </tbody>
+                                </table>
                                 <p>Losses in this month</p>
                             </div>
                             <div class="chart-wrapper px-1" style="height:0px;">
@@ -72,7 +81,12 @@ $('.number').text(function () {
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-warning" style="background:#1a9bda;border:#1a9bda;height:120px;">
                             <div class="card-block pb-0">
-                                <h4 class="mb-0" ng-bind="lastIncidentDamge "></h4>
+                             <table>
+                                <tbody>
+                                <span > LKR </span>
+                                <td class="number"  style="color:#fff;" ng-bind="getLastIncidentDamge() "></td>
+                                </tbody>
+                                </table>
                                <p class="mb-0" ng-bind=" 'Damage and Losses of Last Reported Incident ' + lastIncident"></p>
 
                             </div>
@@ -86,10 +100,14 @@ $('.number').text(function () {
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-danger" style="background:#606c7f;border:#606c7f;height:120px;">
                             <div class="card-block pb-0">
-                                
-                                <h4 class="mb-0" ng-bind="total_damages"></h4>
-                                <p>Damages and Losses in</p>
-								<p ng-bind="thisYear"></p>
+                                 <table>
+                                <tbody>
+                                <span > LKR </span>
+                                <td class="number"  style="color:#fff;" ng-bind="getTotalDamages()"></td>
+                                </tbody>
+                                </table>
+                                <p>Damages and Losses in <span ng-bind="getLastIncdent()"></span></p>
+								
                             </div>
                             <div class="chart-wrapper px-1" style="height:0px;">
                                 <canvas id="card-chart4" class="chart" height="70"></canvas>
@@ -108,7 +126,7 @@ $('.number').text(function () {
 
                
 
-                <div class="card">
+                <div class="card" style="background: #fff;">
                     <div class="card-block">
                         <div class="row">
                             <div class="col-xs-12">

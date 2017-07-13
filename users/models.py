@@ -2,7 +2,7 @@ from django.db import models
 from settings.models import District, Province, Sector, UserDesignation, UserRole
 from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin, Group, User, Permission
-from smart_selects.db_fields import ChainedForeignKey
+
 
 '''class DalaUserManager(BaseUserManager):
     def create_user(self, username, password=None):
@@ -127,7 +127,7 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
-    # is_superuser = models.BooleanField()
+    #is_superuser = models.BooleanField()
     username = models.CharField(unique=True, max_length=30)
     first_name = models.CharField(max_length=30, null=True)
     last_name = models.CharField(max_length=30, null=True)

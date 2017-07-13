@@ -199,12 +199,12 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
                     if (data == 'False')
                         $scope.is_valid_data = false;
                     else
-                        $("#modal-container-239453").modal('show');
+                        $("#modal-container-239454").modal('show');
 
                 })
             }
             else{
-                alert("select incident and district");
+                 $("#modal-container-239453").modal('show');
             }
         }
 

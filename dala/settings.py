@@ -107,7 +107,7 @@ INSTALLED_APPS = [
     'power_supply.base_line',
     'power_supply.damage_losses',
     'new_charts',
-    'smart_selects',
+   
 
 ]
 
@@ -164,7 +164,7 @@ DATABASES = {
         #     'options': '-c search_path=public'
         # },
 
-        'NAME': 'dala_2017_07_10',
+        'NAME': 'dala_2017_07_12',
         'USER': 'postgres',
     },
 }

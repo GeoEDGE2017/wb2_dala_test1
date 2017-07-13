@@ -18,18 +18,31 @@ import smtplib
 
 @csrf_exempt
 def send_email(request):
+    dl_data = (yaml.safe_load(request.body))
+    username = dl_data['username']
+    name = dl_data['name']
+    cno = dl_data['cno']
+    print(name);
+    print(cno);
+
     fromaddr = 'sachh93@gmail.com'
-    toaddrs  = 'amithmirihella@gmail.com'
-    msg = 'Hi Amitha Aiyeeee'
+    toaddrs = 'geoedgeapps@gmail.com'
+    msg = 'The user of the account which has' + " " + str(username)+  " " + ' as the username has forgotten the password.Please contact.Name is' + " " + str(name) + ' and contact number is' + " " + str(cno)
     # Credentials (if needed)
+    print("msg",msg)
     username = 'sachh93@gmail.com'
     password = 'sachiesep2317'
+
     # The actual mail send
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)
     server.sendmail(fromaddr, toaddrs, msg)
     server.quit()
+    return HttpResponse(
+      json.dumps(True),
+        content_type='application/javascript; charset=utf8'
+    )
 
 
 def fetch_districts(user):

@@ -107,8 +107,6 @@ INSTALLED_APPS = [
     'power_supply.base_line',
     'power_supply.damage_losses',
     'new_charts',
-    'smart_selects',
-
 ]
 
 MIDDLEWARE_CLASSES = [

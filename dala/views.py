@@ -38,6 +38,7 @@ def fetch_districts(user):
     user = user
     print 'user', user
     if user.is_superuser:
+        incidents = IncidentReport.objects.filter(active=True)
         return {'districts': districts, 'incidents': incidents, 'user': user}
     else:
         role = user.user_role.code_name
@@ -47,12 +48,12 @@ def fetch_districts(user):
             districts = []
             for user_district in user_districts:
                 districts.extend(District.objects.filter(id=user_district.district_id))
-            incidents = IncidentReport.objects.filter(effectedarea__district=user_district.district_id)
+            incidents = IncidentReport.objects.filter(effectedarea__district=user_district.district_id, active=True)
 
         elif role == 'provincial':
             province = user.province
             districts = province.district_set.all()
-            incidents = IncidentReport.objects.filter(effectedarea__district__province=province).distinct()
+            incidents = IncidentReport.objects.filter(effectedarea__district__province=province, active=True).distinct()
         incidents = IncidentReport.objects.all()
         return {'districts': districts, 'incidents': incidents, 'user': user}
 
@@ -292,6 +293,13 @@ def bs_save_data_with_firm(request):
     todate = timezone.now()
     is_edit = bs_data['is_edit']
 
+    current_user = None
+    try:
+        current_user = com_data['user_id']
+        print 'Current User', current_user
+    except Exception as e:
+        print 'Current User Error'
+
     print 'in adding', is_edit
     print bs_table_hs_data
     print 'firm', firm
@@ -332,6 +340,10 @@ def bs_save_data_with_firm(request):
                             model_object.lmd = todate
                             model_object.district_id = district
                             model_object.bs_date = bs_date
+
+                            if current_user != None:
+                                model_object.created_user = current_user
+                                model_object.lmu = current_user
 
                             print 'row', ' --> ', row, '\n', ' object '
 
@@ -704,6 +716,8 @@ def bs_fetch_edit_data(request):
 #                     print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
 
 # new method added by chamupathi mendis to work with enum field edit
+
+
 @csrf_exempt
 def bs_save_edit_data(table_data, com_data):
     district = com_data['district']
@@ -755,8 +769,8 @@ def bs_save_edit_data(table_data, com_data):
                         model_object = model_class()
                         model_object = model_class.objects.filter(bs_date=bs_date, district=district, id=row['id'])
                         # if current_user != None:
-                        model_object["lmu"] = current_user
-                        print model_object["lmu"]
+                        # model_object["lmu"] = current_user
+                        # print model_object["lmu"]
                             # model_object[0].lmu = current_user
                             # model_object[0].lmd = todate
                             # for property in row:
@@ -1334,8 +1348,8 @@ def has_the_id(row):
 
     return False
 
-# edit data baseline mining
 
+# edit data baseline mining
 @csrf_exempt
 def bs_mining_fetch_edit_data(request):
     data = (yaml.safe_load(request.body))
@@ -1345,6 +1359,14 @@ def bs_mining_fetch_edit_data(request):
     bs_date = com_data['bs_date']
     district = com_data['district']
     firm = com_data['firm']
+
+    current_user = None
+    try:
+        current_user = com_data['user_id']
+        print 'Current User', current_user
+    except Exception as e:
+        print 'Current User Error'
+
     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
 
     bs_mtable_data = {sector: {}}

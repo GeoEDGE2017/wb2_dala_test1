@@ -158,7 +158,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-
                 var data = response.data;
                 console.log('*', response);
                 angular.forEach(data, function(value, key) {
@@ -293,7 +292,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'department_id': $scope.new_department.id
+                        'department_id': $scope.new_department.id,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit
                 }),
@@ -380,43 +380,40 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     }
 
     $scope.saveDepartment = function(form) {
-   delete $scope.new_department['ownership']
-   $scope.new_department.district_id = $scope.district.district__id;
+        delete $scope.new_department['ownership']
+        $scope.new_department.district_id = $scope.district.district__id;
 
-   if(!$scope.is_edit_model)
-        $scope.new_department.id = null;
+        if(!$scope.is_edit_model) {
+            $scope.new_department.id = null;
+        }
 
-    $http({
-    method: "POST",
-    url: "/add_entity",
-    data: angular.toJson({
-    'model': 'Department',
-    'model_fields': $scope.new_department,
-    'is_edit': $scope.is_edit_model,
-    'sector': 'other_govn_services'
-     }),
-    }).success(function(data) {
-      console.log(data);
+        $http({
+            method: "POST",
+            url: "/add_entity",
+            data: angular.toJson({
+                'model': 'Department',
+                'model_fields': $scope.new_department,
+                'is_edit': $scope.is_edit_model,
+                'sector': 'other_govn_services'
+            }),
+        }).success(function(data) {
+            console.log(data);
+            if(!$scope.is_edit_model){
+                if(data){
+                    $scope.departments.push($scope.new_department);
+                }
+                $scope.new_department.id = data;
+            }
+            else {
+                var department = $filter('filter')($scope.departments, {id: data})[0];
+                department.name = $scope.new_department.name;
+            }
 
-
-       if(!$scope.is_edit_model){
-       if(data)
-        $scope.departments.push($scope.new_department);
-
-        $scope.new_department.id = data;
-       }
-       else{
-        var department = $filter('filter')($scope.departments, {id: data})[0];
-        department.name = $scope.new_department.name;
-       }
-
-       $("#modal-container-218029").modal('hide');
-       $("#modal-container-218020").modal('hide');
-       $scope.is_edit_model = false;
-
-    })
-
-}
+            $("#modal-container-218029").modal('hide');
+            $("#modal-container-218020").modal('hide');
+            $scope.is_edit_model = false;
+        })
+    }
 
     $scope.fetchOwnership = function() {
         if($scope.new_department) {
@@ -451,41 +448,40 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         })
     }
 
-
     $scope.calGrandTotal = function() {
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var grantot = 0;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var grantot = 0;
 
-    var array1=$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure;
-    var array2 =$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgOfficeEquipment;
-    var array3 =$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery;
+        var array1=$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure;
+        var array2 =$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgOfficeEquipment;
+        var array3 =$scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery;
 
-    angular.forEach(array1, function(value, key) {
-    if(value.name_dept !='Total'){
-     finaltotal1 = finaltotal1 + value.damages ;
-     }
-    })
-    angular.forEach(array2, function(value, key) {
-    if(value.name_dept !='Total'){
-     finaltotal2 = finaltotal2 + value.damages ;
-     }
-    })
-    angular.forEach(array3, function(value, key) {
-     if(value.name_dept !='Total' && value.name_dept!='TOTAL DAMAGES' ) {
-     finaltotal3 = finaltotal3 + value.damages ;
-     }
-    })
+        angular.forEach(array1, function(value, key) {
+            if(value.name_dept !='Total'){
+                finaltotal1 = finaltotal1 + value.damages ;
+            }
+        })
 
-    grantot = finaltotal1+ finaltotal2 + finaltotal3 ;
-    return grantot;
+        angular.forEach(array2, function(value, key) {
+            if(value.name_dept !='Total'){
+                finaltotal2 = finaltotal2 + value.damages ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.name_dept !='Total' && value.name_dept!='TOTAL DAMAGES' ) {
+                finaltotal3 = finaltotal3 + value.damages ;
+            }
+        })
+
+        grantot = finaltotal1+ finaltotal2 + finaltotal3 ;
+        return grantot;
     }
 
     $scope.test = function() {
         console.log($scope.user);
     }
-
 })
 
 

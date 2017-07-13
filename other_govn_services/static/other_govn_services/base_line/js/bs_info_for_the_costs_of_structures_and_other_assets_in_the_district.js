@@ -224,6 +224,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                     'com_data' : {
                         'district' : $scope.district,
                         'bs_date' : $scope.baselineDate,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit
                 }),
@@ -255,7 +256,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                 'sector': 'other_govn_services',
                 'com_data': {
                     'district': $scope.district,
-                    'bs_date': $scope.baselineDate
+                    'bs_date': $scope.baselineDate,
                 }
             }),
         }).success(function(data) {

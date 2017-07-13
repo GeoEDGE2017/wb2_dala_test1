@@ -129,6 +129,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
             'table_data': $scope.bsLivestockPoultryDst,
             'com_data': {'district': $scope.district,
             'bs_date': $scope.bs_date,
+            'user_id' : $scope.user_id,
             },
             'is_edit': $scope.is_edit }),
             }).success(function(data) {

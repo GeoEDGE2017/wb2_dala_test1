@@ -81,7 +81,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
-
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -108,6 +108,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
                 'com_data': {
                     'district': $scope.district,
                     'bs_date': $scope.baselineDate,
+                    'user_id': $scope.user_id,
                 }
             }),
         }).success(function(data) {

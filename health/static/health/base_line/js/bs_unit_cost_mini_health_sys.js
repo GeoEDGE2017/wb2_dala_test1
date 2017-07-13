@@ -2,7 +2,6 @@
 var app= angular.module('unitCostMiniHealthSysApp', [])
 
 app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};
@@ -225,6 +224,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
                     'com_data':{
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -244,7 +244,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.blDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -253,12 +253,12 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
                 method: "POST",
                 url: '/bs_fetch_edit_data',
                 data: angular.toJson({
-                    'table_name':  'Table_3',
+                    'table_name': 'Table_3',
                     'sector': 'health',
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
-
+                        'user_id': $scope.user_id,
                     },
                 }),
             }).success(function(data) {
@@ -268,15 +268,15 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
         }
     }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsUnitCostMiniHealthSys = init_data;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
     }

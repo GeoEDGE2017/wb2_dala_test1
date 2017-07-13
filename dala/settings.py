@@ -164,7 +164,7 @@ DATABASES = {
         #     'options': '-c search_path=public'
         # },
 
-        'NAME': 'dala_07_04_new',
+        'NAME': 'dala_07_13',
         'USER': 'postgres',
     },
 }

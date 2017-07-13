@@ -469,6 +469,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -501,6 +502,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                 }),
             }).success(function(data) {

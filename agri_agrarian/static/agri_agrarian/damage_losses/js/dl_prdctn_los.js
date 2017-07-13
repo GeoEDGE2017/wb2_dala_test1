@@ -279,7 +279,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.dlPrdctnLos = angular.copy(init_data);
 
 //Get Districts and Related basline Data
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -535,8 +535,9 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                 data: angular.toJson({
                     'table_data': $scope.dlPrdctnLos,
                     'com_data': {
-                       'district_id': $scope.district.district__id,
-                        'incident_id' : $scope.incident,
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit':$scope.is_edit
                 }),
@@ -584,6 +585,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     'com_data': {
            'district':  $scope.district.district__id,
             'incident': $scope.incident,
+            'user_id' : $scope.user_id,
           },
            'is_edit':$scope.is_edit
            }),

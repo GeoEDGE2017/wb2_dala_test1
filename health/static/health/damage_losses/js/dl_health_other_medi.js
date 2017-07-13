@@ -613,6 +613,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                     'com_data': {
                         'district_id':  $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit
                 }),
@@ -732,6 +733,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
         'com_data': {
                'district':  $scope.district.district__id,
                 'incident': $scope.incident,
+                'user_id': $scope.user_id,
               },
                'is_edit':$scope.is_edit
                }),
@@ -749,19 +751,16 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
 
 //Cancel Data
     $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
-}
+        $scope.is_edit = false;
+        $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
+    }
 
 //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;
         $scope.dlDataHealthDamagelostOtherMedicalFacilities = angular.copy(init_data);
-
     }
-
-
 }])
 
 

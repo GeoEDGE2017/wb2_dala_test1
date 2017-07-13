@@ -177,7 +177,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     $scope.dlStrutsOthAsets = angular.copy(init_data);
 
 //Get Districts and related baseline data
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -336,6 +336,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                     'com_data': {
                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit':$scope.is_edit
                 }),

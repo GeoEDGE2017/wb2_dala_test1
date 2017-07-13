@@ -48,6 +48,7 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'agri_fisheries'
@@ -71,7 +72,7 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
 
 //Edit Data
     $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
+        $scope.submitted = true;
 
        $scope.is_edit = true;
         $http({
@@ -81,7 +82,9 @@ app.controller('bsNoofPeplEngdFisheriesController', ['$scope', '$http', function
               'table_name': 'Table_1',
               'sector': 'agri_fisheries',
               'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date } }),
+              'bs_date': $scope.bs_date,
+               'user_id' : $scope.user_id,
+               } }),
         }).success(function(data) {
 
         console.log(data);

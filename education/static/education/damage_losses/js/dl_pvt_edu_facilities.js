@@ -19,6 +19,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     $scope.new_school = {id: null, name: null, district_id: null};
     $scope.schoolData = null;
     $scope.is_edit_model = false;
+    $scope.user_id;
 
     $scope.new_school = {
                      'PreSchools': {id: null, name: null, district_id: null},

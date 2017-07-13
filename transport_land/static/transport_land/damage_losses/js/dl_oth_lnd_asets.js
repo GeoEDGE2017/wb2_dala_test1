@@ -14,6 +14,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.DlOtherLosPub_fi_year_1= null;
+    $scope.user_id;
 
     var init_data = {
         'transport_land' : {

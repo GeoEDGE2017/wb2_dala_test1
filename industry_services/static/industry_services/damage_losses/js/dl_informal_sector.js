@@ -14,6 +14,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
     $scope.selectedType;
     $scope.businessTypes = [];
     $scope.is_edit = false;
+    $scope.user_id;
 
     var init_data = {
         'industry_services': {

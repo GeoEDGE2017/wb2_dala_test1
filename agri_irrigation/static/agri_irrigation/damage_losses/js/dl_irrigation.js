@@ -12,6 +12,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
 //Initialize Data
     var init_data = {

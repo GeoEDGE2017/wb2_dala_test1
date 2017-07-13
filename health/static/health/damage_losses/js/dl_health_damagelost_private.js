@@ -14,6 +14,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
     //initialize model
     var init_data = {
@@ -84,7 +85,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.saveDlData = function() {
         console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
-
         $http({
             method: 'POST',
             url: '/dl_save_data_with_array',
@@ -214,7 +214,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
     //Edit Data
-    $scope.editDlData = function(form) { //new
+    $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
 

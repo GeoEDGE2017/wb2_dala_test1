@@ -10,6 +10,7 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
     $scope.is_valid_data = true;
     $scope.total = null;
     $scope.isLoded = false;
+    $scope.user_id;
 
     // declaring total variables
     $scope.total_num_affected = 0;

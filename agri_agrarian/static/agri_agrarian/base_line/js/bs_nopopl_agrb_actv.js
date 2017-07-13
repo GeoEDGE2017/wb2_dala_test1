@@ -10,6 +10,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.is_valid_data = true;
     $scope.is_edit_disable = false;
     $scope.bs_date;
+    $scope.user_id;
 
 //Initialize Data
     var init_data = {
@@ -211,6 +212,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'agri_agrarian'

@@ -9,7 +9,7 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
     $scope.table;
     $scope.provinceTotals = [];
     $scope.data_available;
-
+    $scope.user_id;
 
     $scope.fetchData = function(){
 

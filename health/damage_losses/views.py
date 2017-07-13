@@ -1,6 +1,5 @@
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render
-
 from health.damage_losses.models import DlSessionKeys
 from settings.models import District, Province
 from incidents.models import IncidentReport
@@ -18,8 +17,10 @@ def dl_health_damagelost_other_medical_facilities(request):
     fetch_data = fetch_districts(request.user)
     districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    user = request.user
 
     context = {
+        'user': user,
         'districts': districts,
         'incidents': incidents,
         'module': 'health'

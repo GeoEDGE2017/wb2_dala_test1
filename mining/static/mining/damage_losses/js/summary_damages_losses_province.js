@@ -19,6 +19,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     $scope.finaltotalprivate = null;
     // declaring total variables
     $scope.total_num_affected = 0;
+    $scope.user_id;
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {

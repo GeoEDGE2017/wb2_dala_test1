@@ -2,6 +2,7 @@ var app = angular.module('dlNationwideApp', ['underscore']);
 
 app.controller("dlNationwideController", function ($scope,$http, _) {
     $scope.incident;
+    $scope.user_id;
 
 $scope.dlNationwideSys = null;
 

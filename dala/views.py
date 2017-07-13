@@ -18,25 +18,40 @@ import smtplib
 
 @csrf_exempt
 def send_email(request):
+    dl_data = (yaml.safe_load(request.body))
+    username = dl_data['username']
+    name = dl_data['name']
+    cno = dl_data['cno']
+    print(name);
+    print(cno);
+
     fromaddr = 'sachh93@gmail.com'
-    toaddrs  = 'amithmirihella@gmail.com'
-    msg = 'Hi Amitha Aiyeeee'
+    toaddrs = 'geoedgeapps@gmail.com'
+    msg = 'The user of the account which has' + " " + str(username)+  " " + ' as the username has forgotten the password.Please contact.Name is' + " " + str(name) + ' and contact number is' + " " + str(cno)
     # Credentials (if needed)
+    print("msg",msg)
     username = 'sachh93@gmail.com'
     password = 'sachiesep2317'
+
     # The actual mail send
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(username,password)
     server.sendmail(fromaddr, toaddrs, msg)
     server.quit()
+    return HttpResponse(
+      json.dumps(True),
+        content_type='application/javascript; charset=utf8'
+    )
 
 
 def fetch_districts(user):
     districts = District.objects.all().order_by('name')
     incidents = IncidentReport.objects.all()
+    user = user
+    print 'user', user
     if user.is_superuser:
-        return {'districts': districts, 'incidents': incidents}
+        return {'districts': districts, 'incidents': incidents, 'user': user}
     else:
         role = user.user_role.code_name
 
@@ -52,13 +67,14 @@ def fetch_districts(user):
             districts = province.district_set.all()
             incidents = IncidentReport.objects.filter(effectedarea__district__province=province).distinct()
         incidents = IncidentReport.objects.all()
-        return {'districts': districts, 'incidents': incidents}
+        return {'districts': districts, 'incidents': incidents, 'user': user}
 
 
 @csrf_exempt
 def fetch_incident_districts(request):
     dl_data = (yaml.safe_load(request.body))
     incident_id = dl_data['incident']
+    # user = request.user
     get_user = dl_data['user']
     print "user", get_user
     user_districts = UserDistrict.objects.filter(user_id=get_user)
@@ -198,14 +214,19 @@ def bs_save_data(request):
     bs_date = com_data['bs_date']
     todate = timezone.now()
     is_edit = bs_data['is_edit']
+    current_user = None
+    try:
+        current_user = com_data['user_id']
+        print 'Current User', current_user
+    except Exception as e:
+        print 'Current User Error'
 
-    print 'in adding' , is_edit
+    print 'in adding', is_edit
     print bs_table_hs_data
 
     if not is_edit:
         print 'in'
         for sector in bs_table_hs_data:
-
             sub_app_name = sector + '.base_line'
 
             print 'sub_app_name :', sub_app_name
@@ -233,9 +254,13 @@ def bs_save_data(request):
 
                             # assigning common properties to model object
                             model_object.created_date = todate
+                            if current_user != None:
+                                model_object.created_user = current_user
+                                model_object.lmu = current_user
                             model_object.lmd = todate
                             model_object.district_id = district
                             model_object.bs_date = bs_date
+                            # model_object.lmu = get_user_id_from_username('housing_user')
 
                             print 'row', ' --> ', row, '\n', ' object '
 
@@ -698,6 +723,12 @@ def bs_save_edit_data(table_data, com_data):
     bs_date = com_data['bs_date']
     todate = timezone.now()
 
+    try:
+        current_user = com_data['user_id']
+        print 'Edit Current User', current_user
+    except Exception as e:
+        print 'Current User Error'
+
     for sector in table_data:
 
         sub_app_name = sector + '.base_line'
@@ -717,19 +748,32 @@ def bs_save_edit_data(table_data, com_data):
 
                         for property in row:
                             # assigning common properties to model object
-                            model_object.created_date = todate
-                            model_object.lmd = todate
-                            model_object.district_id = district
-                            model_object.bs_date = bs_date
                             setattr(model_object, property, row[property])
 
                             print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
+                        if current_user != None:
+                            print '*-**-*-*--'
+                            model_object.created_user = current_user
+                            model_object.lmu = current_user
+
+                        model_object.created_date = todate
+                        model_object.lmd = todate
+                        model_object.district_id = district
+                        model_object.bs_date = bs_date
                         model_object.save()
                         print "saved-----", model_object.id
 
                     else:
                         model_class = apps.get_model(sub_app_name, db_table)
+                        model_object = model_class()
                         model_object = model_class.objects.filter(bs_date=bs_date, district=district, id=row['id'])
+                        # if current_user != None:
+                        model_object["lmu"] = current_user
+                        print model_object["lmu"]
+                            # model_object[0].lmu = current_user
+                            # model_object[0].lmd = todate
+                            # for property in row:
+                            #     print '$', property
                         model_object.update(**row)
 
                         print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
@@ -745,6 +789,12 @@ def dl_save_data(request):
     admin_area = None
 
     filter_fields = {}
+    current_user = None
+    try:
+        current_user = com_data['user_id']
+        print 'Current User', current_user
+    except Exception as e:
+        print 'Current User Error'
 
     if not is_edit:
         print "not edit"
@@ -778,7 +828,9 @@ def dl_save_data(request):
                             model_class = apps.get_model(sub_app_name, db_table)
                             model_object = model_class()
 
-                            # assigning common properties to model object
+                            if current_user != None:
+                                model_object.created_user = current_user
+                                model_object.lmu = current_user
                             model_object.created_date = todate
                             model_object.lmd = todate
 
@@ -1140,6 +1192,7 @@ def dl_save_edit_data(table_data, com_data):
                         # assigning common properties to model object
                         model_object.created_date = todate
                         model_object.lmd = todate
+                        model_object.lmu = "*"
 
                         for com_property in com_data:
                             print com_data[com_property]
@@ -1710,3 +1763,12 @@ def dl_fetch_summary_dis_disagtn(request):
         json.dumps(dl_data, cls=DjangoJSONEncoder),
         content_type='application/javascript; charset=utf8'
     )
+
+
+@csrf_exempt
+def get_user_id_from_username(username):
+    # from django.db import models
+    # Public.UsersMyuser
+    model_class = apps.get_model('public', 'UsersMyuser')
+    result = model_class.objects.filter(username=username).filter(id)
+    print '*******', username, result

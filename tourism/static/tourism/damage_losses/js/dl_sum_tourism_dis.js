@@ -23,7 +23,7 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
     $scope.table;
     $scope.businessTypes;
     $scope.inf_type;
-
+    $scope.user_id;
 
 
     $scope.changedValue=function getBsData(selectedValue) {

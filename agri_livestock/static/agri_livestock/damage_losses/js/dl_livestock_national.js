@@ -18,6 +18,7 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
     $scope.finaltotalprivate = null;
     // declaring total variables
     $scope.total_num_affected = 0;
+    $scope.user_id;
 
 
 //    $scope.fetchDlData = function(){

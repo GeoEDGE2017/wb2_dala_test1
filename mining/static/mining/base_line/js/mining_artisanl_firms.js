@@ -2,14 +2,13 @@
 var app = angular.module('mnArtisanalFirmApp', []);
 
 app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope, $http) {
-
-
     $scope.district;
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.selectedFirm;
     $scope.ownership;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
     var init_data = {
         'mining':{

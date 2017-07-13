@@ -9,8 +9,10 @@ def bs_irg_facilities(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'module': 'agri_irrigation'
     }
@@ -23,8 +25,10 @@ def bs_rparpl_cos_assts(request):
     user = request.user
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'module': 'agri_irrigation'
     }

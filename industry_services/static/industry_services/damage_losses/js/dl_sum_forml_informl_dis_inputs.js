@@ -13,6 +13,7 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
     $scope.data;
     $scope.industry_names;
     $scope.service_names;
+    $scope.user_id;
 
     var init_data = {
         'industry_services': {

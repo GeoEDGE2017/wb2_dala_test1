@@ -7,6 +7,7 @@
         var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
         var nicesx = $("#boxscroll3").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     });
+
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dsHealthDamagelostOtherMediApp" ng-controller="DsHealthDamagelostOtherMediController">
@@ -85,6 +86,7 @@
                         <tr class="trhead1">
                             <td style="padding-left:5px;">
                                 Incident:
+                                {{user}}
                             </td>
                             <td colspan="3" style="">
                                 <select id="selectbasic" name="incident" ng-model="incident"
@@ -109,6 +111,7 @@
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr height="20" class="trheadc1">
                             <td width="287" height="20">
@@ -377,9 +380,8 @@
                         </table>
                         <br>
                         <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
-                            <span
-                                class="glyphicon glyphicon-arrow-right"></span>
-                            Fill Partially Damaged Facilities and Assets
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                                 Fill Partially Damaged Facilities and Assets
                         </a>
                     </div>
                 </div>
@@ -738,45 +740,45 @@
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].base_hospital"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].base_hospital"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].divisional_hospital"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].divisional_hospital"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].rural_hospital"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].rural_hospital"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].central_dispensary"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].central_dispensary"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].pmcus"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].pmcus"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].phccs"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].phccs"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].mchcs"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].mchcs"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaStructure[0].total"
@@ -1146,9 +1148,9 @@
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[2].base_hospital"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaSupplies[2].base_hospital"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -2233,7 +2235,7 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[4].tota
                         <br>
                         <a href="#step4" id="s3" class="btn btn-sm btn-info pull-right" data-toggle="tab">
                             <span
-                                class="glyphicon glyphicon-arrow-right"></span>
+                                    class="glyphicon glyphicon-arrow-right"></span>
                             Fill No of Partially Damaged Assets Informations
                         </a>
                     </div>
@@ -2324,7 +2326,8 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfDaOassets[4].tota
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[0].divisional_hospital"
                                            name="textinput" type="number"
-                                           placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           placeholder="" class="form-control input-md"
+                                           onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -2766,38 +2769,38 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].base_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].base_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].divisional_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].divisional_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].rural_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].rural_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].central_dispensary"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].central_dispensary"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].pmcus"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].pmcus"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -2808,10 +2811,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].mchcs"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].mchcs"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[2].total"
@@ -2832,31 +2835,31 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].base_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].base_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].divisional_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].divisional_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].rural_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].rural_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].central_dispensary"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].central_dispensary"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -2874,10 +2877,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].mchcs"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].mchcs"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaMequipment[3].total"
@@ -3125,45 +3128,45 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaStructure[2].t
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                       ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].base_hospital"
-                                       name="textinput" type="number"
-                                       placeholder=""
-                                       class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].base_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].divisional_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].divisional_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].rural_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].rural_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].central_dispensary"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].central_dispensary"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].pmcus"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].pmcus"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                       ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].phccs"
-                                       name="textinput" type="number"
-                                       placeholder=""
-                                       class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[2].phccs"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
 
@@ -3654,7 +3657,8 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                     <!--tab 5-->
                     <div id="boxscroll3" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
-                            <!--Foregone income-->                            <!--Table 6:Tab five :Table one row three-->
+                            <!--Foregone income-->
+                            <!--Table 6:Tab five :Table one row three-->
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
                                     Foregone income
@@ -3997,10 +4001,10 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
 
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[0].mchcs"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[0].mchcs"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[0].total"
@@ -4020,17 +4024,17 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].base_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].base_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].divisional_hospital"
-                                        name="textinput" type="number"
-                                        placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosCud[1].divisional_hospital"
+                                           name="textinput" type="number"
+                                           placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -4358,45 +4362,45 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].base_hospital"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].base_hospital"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].divisional_hospital"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].divisional_hospital"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].rural_hospital"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].rural_hospital"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].central_dispensary"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].central_dispensary"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].pmcus"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].pmcus"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].phccs"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].phccs"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
-                                        ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].mchcs"
-                                        name="textinput" type="number" placeholder=""
-                                        class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].mchcs"
+                                           name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98"
                                     ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[0].total"
@@ -4417,12 +4421,14 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[1].base_hospital"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           name="textinput" type="number" placeholder="" class="form-control input-md"
+                                           onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfLosOue[1].divisional_hospital"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md" onkeypress="return isNumberKey(event)">
+                                           name="textinput" type="number" placeholder="" class="form-control input-md"
+                                           onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
                                     <input id="textinput"
@@ -4626,7 +4632,8 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="javascript:window.location.reload()">
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
@@ -4637,12 +4644,14 @@ dlDataHealthDamagelostOtherMedicalFacilities.health.Table_6.DmfPdaOassets[4].tot
                     <h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
-                        <b>'Table 4: Baseline Information of Unit Cost of Other Medical Facilities in a District'</b><br>
+                        <b>'Table 4: Baseline Information of Unit Cost of Other Medical Facilities in a
+                            District'</b><br>
                         information before you calculate the damage and loss !
                     </h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="javascript:window.location.reload()">
                         Close
                     </button>
                     <button id="ok" onclick="javascript:window.location.reload()" type="button"

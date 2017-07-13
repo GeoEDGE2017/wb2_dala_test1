@@ -2,7 +2,6 @@
 var app = angular.module('dlSumFisheriesInTheDisApp', [])
 
 app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function($scope, $http) {
-
     $scope.dlEduDistrict;
     $scope.total;
     $scope.iter_tot;
@@ -11,7 +10,7 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.isLoded = false;
-
+    $scope.user_id;
 
     $scope.changedValue = function getDlData() {
         if ($scope.incident) {

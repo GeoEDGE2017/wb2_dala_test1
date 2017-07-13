@@ -11,8 +11,10 @@ def dl_irrigation(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_irrigation'
@@ -28,8 +30,10 @@ def dl_sum_irg_district(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_irrigation'
@@ -44,8 +48,10 @@ def dl_sum_irg_province(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_irrigation'
@@ -60,8 +66,10 @@ def dl_sum_irg_national(request):
     fetch_data = fetch_districts(user)
     filtered_districts = fetch_data['districts']
     incidents = IncidentReport.objects.all()
+    filtered_user = fetch_data['user']
 
     context = {
+        'user': filtered_user,
         'districts': filtered_districts,
         'incidents': incidents,
         'module': 'agri_irrigation'

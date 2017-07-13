@@ -9,8 +9,8 @@ app.controller("dlAssessmenProvinceController", function ($scope,$http, _) {
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.province;
-
     $scope.dlAssessmenProvinceSys = null;
+    $scope.user_id;
 
     $scope.changedValue = function getDlData() {
         if ($scope.incident) {

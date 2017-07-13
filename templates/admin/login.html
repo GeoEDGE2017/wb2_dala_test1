@@ -1,18 +1,17 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static %}
-{% load static %}
+
+
 {% block extrastyle %}{{ block.super }}
-<link rel="stylesheet" type="text/css" href='{% static "admin/css/login.css" %}' />
+<link rel="stylesheet" type="text/css" href='{% static "admin/css/login.css" %}'/>
 <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/font-awesome.min.css" %}'>
 <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/simple-line-icons.css" %}'>
 <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/style.css" %}'>
-<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style>
 .login #container {width:0;border:none;background:transparent;}
+
 
 </style>
 <!--script>
@@ -32,7 +31,6 @@ $(document).ready(function(){
 
 {% block breadcrumbs %}{% endblock %}
 
-
 {% block content %}
 
 <script type="text/javascript">
@@ -42,10 +40,9 @@ $(document).ready(function(){
     window.location = "http://127.0.0.1:8000";
     }
     });
-
 </script>
+<main class="main" ng-app="loginapp" ng-controller="LoginController">
 <div id="content-main" style="position: relative;top:-50px;height:500px;overflow: hidden;">
-
     <div class="container d-table">
         <div class="d-100vh-va-middle">
             <div class="row">
@@ -55,7 +52,6 @@ $(document).ready(function(){
                             <div class="card-block">
                                 <h1>Login</h1>
                                 <p class="text-muted">Sign In to your account</p>
-
                                 {% if form.errors and not form.non_field_errors %}
                                 <p class="errornote">
                                     {% if form.errors.items|length == 1 %}{% trans "Please correct the error below."
@@ -70,8 +66,6 @@ $(document).ready(function(){
                                 </p>
                                 {% endfor %}
                                 {% endif %}
-
-
                                 <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
                                     <div class="form-row">
                                         {{ form.username.errors }}
@@ -93,10 +87,9 @@ $(document).ready(function(){
                                         <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}"/>
                                     </div>
                                 </form>
-                                 <a id="modal-316091" href="#modal-container-316091" role="button"  data-toggle="modal" style="float:right;margin-top:10px;">Forget Password</a>
-                               
+                                <a id="modal-316091" href="#modal-container-316091" role="button" data-toggle="modal"
+                                   style="float:right;margin-top:10px;">Forget Password</a>
                             </div>
-
                         </div>
                         <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%">
                             <div class="card-block text-xs-center">
@@ -106,78 +99,73 @@ $(document).ready(function(){
                                     <br><br>
                                     <p style="font-size:20px;"><strong>Sri Lanka Post Disaster Damage and Loss Reporting
                                         System</strong></p>
-
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="modal-container-316091" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true" >
+                        <div class="modal-dialog" style="width:30%;">
+                           <div class="modal-content">
+        <div class="modal-header">
 
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+                Forget Password
+            </h4>
+        </div>
+        <div class="modal-body">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">User Name</label>
+                <div class="col-md-8">
+                    <input id="textinput" name="textinput" type="text" placeholder=""
+                           class="form-control input-md" ng-model="username">
 
-    <div class="modal fade" id="modal-container-316091" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" style="width:30%;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                             
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                ×
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                Forget Password
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                           <!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">User Name</label>  
-  <div class="col-md-8">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-<div class="clearfix"></div>
-<div class="form-group" style="margin-top: 5px;">
-  <label class="col-md-4 control-label" for="textinput">Your Name</label>  
-  <div class="col-md-8">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-<div class="clearfix"></div>
-<!-- Text input-->
-<div class="form-group" style="margin-top: 5px;">
-  <label class="col-md-4 control-label" for="textinput">Contact No</label>  
-  <div class="col-md-8">
-  <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-    
-  </div>
-</div>
-<br>
-                        </div>
-                        <div class="modal-footer">
-                             
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                Close
-                            </button> 
-                            <button type="button" class="btn btn-primary">
-                                Request
-                            </button>
-                        </div>
-                    </div>
-                    
                 </div>
-                
             </div>
+            <div class="clearfix"></div>
+            <div class="form-group" style="margin-top: 5px;">
+                <label class="col-md-4 control-label" for="textinput">Your Name</label>
+                <div class="col-md-8">
+                    <input id="textinput" name="textinput" ng-model="name" type="text" placeholder=""
+                           class="form-control input-md">
 
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- Text input-->
+            <div ng-form="form" class="form-group" style="margin-top: 5px;">
+                <label class="col-md-4 control-label" for="textinput">Contact No</label>
+                <div class="col-md-8">
+                     <input type="text" name="cno" ng-model="cno" ng-pattern="/^(?:\d{10}|\w+@\w+\.\w{2,3})$/" >
+                     <span ng-if="form.cno.$error.pattern">Enter correct email or phone number!</span>
 
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="modal-footer">
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                Close
+            </button>
+            <button type="button" ng-click="sendMail()" class="btn btn-primary">
+                Request
+            </button>
+        </div>
+    </div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <script type="text/javascript">
-document.getElementById('id_username').focus()
-
+        document.getElementById('id_username').focus()
     </script>
 </div>
+    </main>
+
 {% endblock %}

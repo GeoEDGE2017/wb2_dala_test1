@@ -10,13 +10,13 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.is_null = false;
+    $scope.user_id;
 
     // declaring total variables
     $scope.total_num_affected = 0;
 
     $scope.saveDlHealthSummeryDamagelossProvince = function(form) {
         $scope.submitted = true;
-
         if(form.$valid) {
             console.log($scope.data);
             $http({

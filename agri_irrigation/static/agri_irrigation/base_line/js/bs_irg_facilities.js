@@ -11,6 +11,7 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
 //Initialize Data
     var init_data = {

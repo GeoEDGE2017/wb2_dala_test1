@@ -1,9 +1,9 @@
 //Table 1
 var bsHealthStatusApp = angular.module('bsEduFacilitiesApp', ['ui.bootstrap', 'popoverToggle', 'underscore']);
-
 bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $http, $parse, _) {
     $scope.bsEduFacilities;
     $scope.total;
+    $scope.user_id;
     $scope.iter_tot;
     $scope.district;
     $scope.bs_date;
@@ -17,6 +17,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
     $scope.BefPvt_total_number = null;
     $scope.BefPvt_avg_male = null;
     $scope.BefPvt_avg_female = null;
+    $scope.user_id;
 
     var init_data = {
         'education': {
@@ -288,8 +289,9 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
                     'com_data' : {
                         'district' : $scope.district,
                         'bs_date' : $scope.baselineDate,
+                        'user_id' : $scope.user_id,
                     },
-                    'is_edit' : $scope.is_edit
+                    'is_edit' : $scope.is_edit,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {

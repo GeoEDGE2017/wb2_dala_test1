@@ -12,6 +12,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     var finaltotal = 0;
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
 //Initialize data
     var init_data = {

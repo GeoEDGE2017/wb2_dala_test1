@@ -10,7 +10,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
     $scope.provinceTotals = [];
     $scope.data_available;
     $scope.isDataAvailable = false;
-
+    $scope.user_id;
 
     $scope.fetchData = function(){
 

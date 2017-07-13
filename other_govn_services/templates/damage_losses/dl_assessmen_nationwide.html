@@ -2,30 +2,27 @@
 {% block content %}
 {% load static %}
 <main class="main" ng-app="dlNationwideApp" ng-controller="dlNationwideController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
         </li>
-
         <li class="breadcrumb-item active">
                 <span class="label label-success" style="font-size:14px;">
                     Table 5. Damage and Loss Assessment for Other Agencies Nationwide </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank"
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank"
                                     style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
+                                    data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="107"/>
@@ -34,13 +31,11 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead1">
-
-                        <td style="padding-left:5px;"> Incident</td>
+                        <td style="padding-left:5px;"> Incident {{user1}}</td>
                         <td colspan="3" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue();fetchDlData();"
                                     style="width:100%;font-weight:400;" required>
-
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
                                 <option value={{incident.id}}>
@@ -51,16 +46,9 @@
                                 {% endfor %}
                             </select>
                         </td>
-
-                        <td style="">
-                            <!--<button type="button" class="btn btn-block btn-info" ng-click="fetchDlData()">Load-->
-                            <!--</button>-->
-                        </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-
-
                     <tr class="trheadc1" height="20">
-
                         <td rowspan="2" width="191">
                             Asset Ownership
                         </td>
@@ -82,13 +70,10 @@
                             Year 2
                         </td>
                     </tr>
-
                     <table ng-repeat="(key, value) in dlNationwideSys.other_govn_services.Table_5"
                            class="table table-bordered">
                         <tbody>
-
                         <tr height="20">
-
                             <td style="width:26%;" ng-bind="key" class="tdpa" width="191">
                             </td>
                             <td style="width:25.8%;" width="118">
@@ -105,7 +90,6 @@
                             </td>
                         </tr>
                         <tr ng-repeat="(key, value) in value" height="20">
-
                             <td ng-bind="key" class="tdpa" width="191">
                             </td>
                             <td ng-bind="value.DlagdDmgNational[0].damages" width="118">
@@ -117,7 +101,6 @@
                             <td>
                             </td>
                         </tr>
-
                         <tr height="20">
                             <td class="tdpa" width="191" height="20">
                                 Total
@@ -135,7 +118,6 @@
                                 -
                             </td>
                         </tr>
-
                         <tr height="20">
                             <td class="tdpa" colspan="0" width="298" height="20">
                                 TOTAL
@@ -155,20 +137,11 @@
                         </tr>
                         </tbody>
                     </table>
-
-
                     <br>
-
+                    </tbody>
+                </table>
             </div>
-
         </div>
-
-
-    </div>
-    </div>
-
-    </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>

@@ -162,7 +162,6 @@ def industry_services_main(request):
 def telecom_main(request):
     return render(request, 'dashboard/telecom_main.html')
 
-
 @csrf_exempt
 def fetch_dashboard_data(request):
     dl_data = (yaml.safe_load(request.body))

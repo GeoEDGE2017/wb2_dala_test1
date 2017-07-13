@@ -15,6 +15,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.grantot = 0;
     $scope.is_edit_disable = false;
     $scope.currentBaselineDate = null;
+    $scope.user_id;
 
     //Initialize Data
     var init_data = {
@@ -335,7 +336,8 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                 data: angular.toJson({
                     'incident': $scope.incident,
                     'user':48,
-                     }),
+                     }),               
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -420,7 +422,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
         if(form.$valid) {
             $scope.submitted = true;
@@ -451,18 +453,16 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         }
     }
 
-//Calculate Total
-   $scope.calTotal=function(arr,property){
+    //Calculate Total
+    $scope.calTotal=function(arr,property){
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
         if(value.assets !='Total'){
          finaltotal = finaltotal + value[property] ;
          }
-        })
-
-        return finaltotal;
-        }
-
+    })
+    return finaltotal;
+   }
 
     $scope.threeInputconvertToInt = function(val1,val2,val3){
 
@@ -476,8 +476,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         return sum;
     }
 
-
-//Calculate Total function
+    //Calculate Total function
    $scope.calTotTotal=function(){
     var finaltotal1 = null;
     var finaltotal2 = null;
@@ -488,38 +487,36 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     var array3 =$scope.dlAssmntHusing.housing.Table_3.DlDesImprovised;
 
     angular.forEach(array1, function(value, key) {
-     if(value.assets !='Total'){
-         finaltotal1 = parseInt(finaltotal1 + value.tot_num_houses) ;
-     }
+         if(value.assets !='Total'){
+             finaltotal1 = parseInt(finaltotal1 + value.tot_num_houses) ;
+         }
     })
     angular.forEach(array2, function(value, key) {
-     if(value.assets !='Total'){
-         finaltotal2 = parseInt(finaltotal2 + value.tot_num_houses) ;
-     }
+         if(value.assets !='Total'){
+             finaltotal2 = parseInt(finaltotal2 + value.tot_num_houses) ;
+         }
     })
     angular.forEach(array3, function(value, key) {
-     if(value.assets !='Total'){
-         finaltotal3 = parseInt(finaltotal3 + value.tot_num_houses) ;
-     }
+         if(value.assets !='Total'){
+             finaltotal3 = parseInt(finaltotal3 + value.tot_num_houses) ;
+         }
     })
     grantot = $scope.grantot + $scope.threeInputconvertToInt(finaltotal1,finaltotal2 , finaltotal3);
     return grantot;
     }
 
-//Calculate Loss Total
+    //Calculate Loss Total
     $scope.calLosTotTotal=function(arr,property){
         var finaltotal = 0;
         console.log('test',arr);
         angular.forEach(arr, function(value, key) {
-
-         finaltotal = finaltotal + value[property] ;
-
+            finaltotal = finaltotal + value[property] ;
         })
           console.log('test',finaltotal);
         return finaltotal;
-        }
+     }
 
-//Calculate Grand Total
+    //Calculate Grand Total
    $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -532,7 +529,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     angular.forEach(array1, function(value, key) {
      if(value.assets =='Total'){
          finaltotal1 = finaltotal1 + value.damages ;
-     }
+       }
     })
     angular.forEach(array2, function(value, key) {
      if(value.assets =='Total'){
@@ -548,7 +545,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     return grantot;
     }
 
-//Calculate Partial Total
+    //Calculate Partial Total
    $scope.calPartialTotTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -582,12 +579,12 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
     }
 
-$scope.roundOffFunc = function(val1,val2){
-var ans = Math.round(val1 * val2);
-return ans;
-}
+    $scope.roundOffFunc = function(val1,val2){
+        var ans = Math.round(val1 * val2);
+        return ans;
+    }
 
-//Calculate Grand Partial Total
+    //Calculate Grand Partial Total
    $scope.calPartialGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
@@ -616,7 +613,7 @@ return ans;
     return grantot;
     }
 
-//Edit Data
+    //Edit Data
    $scope.dlDataEdit = function(form){
     $scope.is_edit = true;
     $scope.submitted = true;
@@ -633,26 +630,23 @@ return ans;
                'is_edit':$scope.is_edit
                }),
         }).success(function(data) {
-
         console.log(data);
         $scope.dlAssmntHusing = data;
         })
 
-}
+    }
 
-//Cancel Edit
+    //Cancel Edit
    $scope.cancelEdit = function(){
        $scope.is_edit = false;
         $scope.dlAssmntHusing = init_data;
-}
+     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.dlAssmntHusing = angular.copy(init_data);
-
-
     }
 
 

@@ -19,6 +19,7 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
     $scope.submitted = false;
     $scope.Districts=[];
     $scope.data;
+    $scope.user_id;
 
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {

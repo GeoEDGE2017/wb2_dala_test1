@@ -12,6 +12,7 @@ app.controller("dlRailTransSumNatController", function($scope,$http,$parse, _) {
     $scope.finaltotalTotal = 0;
     $scope.finaltotalYear1 =0;
     $scope.finaltotalYear2 =0;
+    $scope.user_id;
 
     $scope.loadData = function(form)
     {

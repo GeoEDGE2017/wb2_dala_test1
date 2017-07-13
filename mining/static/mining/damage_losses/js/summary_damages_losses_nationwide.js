@@ -17,6 +17,7 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
     $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
+    $scope.user_id;
 
     $scope.loadData = function() {
         if($scope.incident){

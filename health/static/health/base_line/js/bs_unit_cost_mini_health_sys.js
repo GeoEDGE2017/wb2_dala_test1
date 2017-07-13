@@ -9,8 +9,9 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.user_id;
 
-//initialize model
+    //initialize model
     var init_data = {
         'health': {
             'Table_3': {
@@ -210,7 +211,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
 
     $scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
 
-//Save Data
+    //Save Data
     $scope.saveBucMarStructure = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -243,7 +244,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.blDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -257,7 +258,6 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
-
                     },
                 }),
             }).success(function(data) {
@@ -267,13 +267,13 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
         }
     }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsUnitCostMiniHealthSys = init_data;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;

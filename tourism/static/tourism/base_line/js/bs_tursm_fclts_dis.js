@@ -10,6 +10,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
     $scope.is_edit_disable = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.user_id;
 
         var init_data = {
         'tourism': {

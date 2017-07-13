@@ -29,6 +29,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
 
     $scope.data2;
     $scope.data3;
+    $scope.user_id;
 
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {

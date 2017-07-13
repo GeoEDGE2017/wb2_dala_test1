@@ -2,12 +2,12 @@
 var app = angular.module('bsOtherMedFaciUnitCostApp', []);
 
 app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.baselineDate;
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
+    $scope.user_id;
 
     //initialize model
     var init_data = {
@@ -288,11 +288,10 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
 
     $scope.bsDataOtherMedicalFacilities = angular.copy(init_data);
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
-
             $http({
                 method: 'POST',
                 url: '/bs_save_data',
@@ -302,15 +301,11 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
-
                     },
                     'is_edit': $scope.is_edit
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-//                $scope.bsDataOtherMedicalFacilities = init_data;
-//                $scope.is_edit = false;
-
                 if (response.data == 'False'){
                      $("#modal-container-239454").modal('show');
                         $scope.is_valid_data = false;
@@ -328,14 +323,11 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(form) {
-
         $scope.is_edit = true;
         $scope.submitted = true;
-
         if (form.$valid) {
-
             $http({
                 method: "POST",
                 url: "/bs_fetch_edit_data",
@@ -348,28 +340,23 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                     }
                 }),
             }).success(function(data) {
-
                 console.log(data);
                 $scope.bsDataOtherMedicalFacilities = data;
             })
         }
-
-
     }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsDataOtherMedicalFacilities = init_data;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;
         $scope.bsDataOtherMedicalFacilities = angular.copy(init_data);
-
     }
-
 
 }])

@@ -36,7 +36,7 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead1" height="17">
-                         <td class="trhead1" width="130" colspan="">
+                        <td class="trhead1" width="130" colspan="">
                             Incident
                         </td>
                         <td width="125" colspan="3">
@@ -49,10 +49,11 @@
                                     <!--{{incident.disaster_type.name}}-->
                                     <!--{{incident.reported_date_time}}-->
                                     {{incident.incident_name}}
-                                    {% endfor %}
+                                </option>
+                                {% endfor %}
                             </select>
                         </td>
-                         <td class="trhead1" width="130" colspan="">
+                        <td class="trhead1" width="130" colspan="">
                             Province
                         </td>
                         <td width="170" colspan="2">
@@ -70,7 +71,8 @@
                                     ng-click="fetchDlData()">Load
                             </button>
                         </td>
-                     </tbody>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                    </tbody>
                     </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
                         <tbody ng-repeat="(key1, value1) in dlAgriSumPro.agri_agrarian.Table_9">
@@ -370,25 +372,16 @@
                     </tr>
                     </tbody>
                 </table>
-
                 <br>
-
             </div>
-
-
         </div>
     </div>
-
-
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -403,13 +396,11 @@
                             <div class="col-md-10">
                                 <input id="textinput" name="textinput" type="text" placeholder=""
                                        class="form-control input-md">
-
                             </div>
                         </div>
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -418,19 +409,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
-    </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

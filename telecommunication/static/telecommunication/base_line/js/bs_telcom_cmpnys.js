@@ -2,6 +2,7 @@
 var app = angular.module('bsTelcomCmpnysApp', [])
 app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.district;
+    $scope.user_id;
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
@@ -14,6 +15,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.ownership;
     $scope.company;
     $scope.is_edit_disable = false;
+    $scope.user_id;
 
     var init_data = {
         'telecommunication': {
@@ -27,10 +29,10 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
 
      //Disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.bs_date){
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -54,9 +56,10 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     'com_data': {
                         'district' : $scope.district,
                         'bs_date' : $scope.bs_date,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit,
-                    'sector' : 'telecommunication'
+                    'sector' : 'telecommunication',
                 }),
             }).success(function(data) {
                 console.log('ok');
@@ -69,10 +72,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 else {
                     $("#modal-container-239453").modal('show');
                 }
-
-            }).error(function(data, status) {
-
-            })
+            }).error(function(data, status) {})
         }
     }
 

@@ -20,6 +20,7 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
     $scope.dPubLosyear2 = null;
     $scope.dPvtLosTot = null;
     $scope.dPubLosTot = null;
+    $scope.user_id;
 
     $scope.changedValue = function getDlData() {
 

@@ -10,7 +10,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     $scope.is_valid_data = true;
     $scope.user_id;
 
-//initialize model
+    //initialize model
     var init_data = {
         'health': {
             'Table_3': {
@@ -210,7 +210,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
 
     $scope.bsUnitCostMiniHealthSys = angular.copy(init_data);
 
-//Save Data
+    //Save Data
     $scope.saveBucMarStructure = function(form) {
         $scope.submitted = true;
         if(form.$valid) {

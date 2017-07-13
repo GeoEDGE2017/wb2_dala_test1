@@ -10,7 +10,7 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'housing' : {
             'Table_2' : {
@@ -86,9 +86,8 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
 
     $scope.bsCostsHusngUnits = angular.copy(init_data);
 
-//Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    //Disable Edit Button
+    $scope.changeDis = function changeDis(){
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -97,7 +96,7 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -127,10 +126,9 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(form){
         $scope.submitted = true;
-
            $scope.is_edit = true;
             $http({
             method: "POST",
@@ -145,25 +143,19 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
             console.log(data);
             $scope.bsCostsHusngUnits = data;
             })
-
-
     }
 
-//Cancel Edit
-    $scope.cancelEdit = function()
-    {
+    //Cancel Edit
+    $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsCostsHusngUnits = init_data;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsCostsHusngUnits = angular.copy(init_data);
-
-
     }
-
 
 }])

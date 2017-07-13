@@ -43,4 +43,74 @@ $scope.haveData = false;
         })
     }
 
+    $scope.getTotalAllDamagesValue = function() {
+        onload();
+        var val = '';
+        val = $scope.total_all_damages.toString();
+        
+        console.log(typeof(val));
+        return val;
+    }
+
+    $scope.getLossesInThisMonth = function() {
+        onload();
+        var val = '';
+        val = $scope.month_losses.toString();
+        
+        console.log(typeof(val));
+        return val;
+    }
+
+
+    $scope.getLastIncidentDamge = function() {
+        onload();
+        var val = '';
+        val = $scope.lastIncidentDamge.toString();
+        
+        console.log(typeof(val));
+        return val;
+    }
+
+    $scope.getTotalDamages = function() {
+        onload();
+        var val = '';
+        val = $scope.total_damages.toString();
+        
+        console.log(typeof(val));
+        return val;
+    }
+
+    
+
+
+    
+
+    
+
+    $scope.getLastIncdent = function() {
+        onload();
+        var val = '';
+        val = $scope.lastIncident.toString();
+        
+        console.log(typeof(val));
+        return val;
+    }
+
+    
+
+    
+
+     window.onload = function(){
+        $('.number').text(function () { 
+            var str = $(this).html() + ''; 
+            x = str.split('.'); 
+            x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : ''; 
+            var rgx = /(\d+)(\d{3})/; 
+            while (rgx.test(x1)) { 
+                x1 = x1.replace(rgx, '$1' + ',' + '$2'); 
+            } 
+            $(this).html(x1 + x2); 
+        });
+    }
+
 })

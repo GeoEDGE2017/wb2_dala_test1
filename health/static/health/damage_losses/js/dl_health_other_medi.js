@@ -14,7 +14,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     $scope.currentBaselineDate = null;
     $scope.user_id;
 
-//initialize model
+    //initialize model
     var init_data = {
         'health':{
             'Table_6': {
@@ -667,14 +667,12 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                   $scope.bs_data[key] = JSON.parse(value);
                 });
                 var is_null = false;
-
                 console.log($scope.bs_data);
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
                         is_null = true;
                     }
                 })
-
                 if(is_null == true) {
                     $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
@@ -697,10 +695,6 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                         }),
                         dataType: 'json',
                     }).then(function successCallback(response) {
-//                        var result = response.data;
-//                        result = result.replace(/^"(.*)"$/, '$1');
-//                        $scope.currentBaselineDate = result +" is the Latest Baseline Data";
-
                         var result = response.data;
                         if(result == null) {
                             alert('fsdfsd');
@@ -718,44 +712,38 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
         }
     }
 
-//Edit data
-    $scope.dlDataEdit = function(form){
-       $scope.is_edit = true;
-       $scope.submitted = true;
-        if(form.$valid){
-
-        $http({
-        method: "POST",
-        url: '/dl_fetch_edit_data',
-        data: angular.toJson({
-        'table_name':  'Table_6',
-        'sector':'health',
-        'com_data': {
-               'district':  $scope.district.district__id,
-                'incident': $scope.incident,
-                'user_id': $scope.user_id,
-              },
-               'is_edit':$scope.is_edit
+    //Edit data
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                'table_name':  'Table_6',
+                'sector':'health',
+                'com_data': {
+                   'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                    'user_id': $scope.user_id,
+                },
+                   'is_edit':$scope.is_edit
                }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlDataHealthDamagelostOtherMedicalFacilities = data;
-    })
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlDataHealthDamagelostOtherMedicalFacilities = data;
+            })
+        }
     }
 
-
-}
-
-//Cancel Data
+    //Cancel Data
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;

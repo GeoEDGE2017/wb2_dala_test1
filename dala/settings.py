@@ -107,8 +107,6 @@ INSTALLED_APPS = [
     'power_supply.base_line',
     'power_supply.damage_losses',
     'new_charts',
-    'smart_selects',
-
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -163,7 +161,6 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=public'
         # },
-
         'NAME': 'dala_07_13',
         'USER': 'postgres',
     },

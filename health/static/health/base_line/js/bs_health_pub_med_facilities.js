@@ -99,6 +99,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
             }
         }
     }
+
     $scope.bsDataMedicalFacilities = angular.copy(init_data);
 
     //Save Data
@@ -120,8 +121,6 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-//                $scope.bsDataMedicalFacilities = init_data;
-//                $scope.is_edit = false;
                 if (response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
@@ -135,7 +134,6 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                 console.log(data);
             });
         }
-
     }
 
     //Edit Data

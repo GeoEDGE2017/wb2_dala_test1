@@ -12,7 +12,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
     $scope.is_valid_data = true;
     $scope.user_id;
 
-//initialize model
+    //initialize model
     var init_data = {
         'health': {
             'Table_1': {
@@ -67,7 +67,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     $scope.dataHealthStatus = angular.copy(init_data);
 
-//Save Data
+    //Save Data
     $scope.hSDataSubmit = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -145,7 +145,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     }
                 }),
             }).success(function(data) {
-
                 console.log(data);
                 $scope.dataHealthStatus = data;
             })
@@ -192,7 +191,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
             }),
             dataType: 'json',
         }).then(function successCallback(response) {
-            alert('*');
+
         })
     }
 })

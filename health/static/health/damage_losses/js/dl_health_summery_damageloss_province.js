@@ -17,7 +17,6 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     $scope.saveDlHealthSummeryDamagelossProvince = function(form) {
         $scope.submitted = true;
-
         if(form.$valid) {
             console.log($scope.data);
             $http({

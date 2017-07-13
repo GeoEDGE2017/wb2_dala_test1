@@ -2,7 +2,6 @@
 var app = angular.module('bsOtherMedFaciUnitCostApp', []);
 
 app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.baselineDate;
     $scope.is_edit = false;
@@ -289,7 +288,7 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
 
     $scope.bsDataOtherMedicalFacilities = angular.copy(init_data);
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -323,7 +322,7 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;

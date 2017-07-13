@@ -385,8 +385,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
               'table_name': 'Table_2',
               'sector': 'agri_agrarian',
               'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date,
-              'user_id' : $scope.user_id} }),
+              'bs_date': $scope.bs_date} }),
         }).success(function(data) {
 
         console.log(data);

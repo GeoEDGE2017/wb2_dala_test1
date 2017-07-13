@@ -155,8 +155,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
     $scope.bsInfoAsetTrans = angular.copy(init_data);
 
        //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -221,7 +220,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
     }
 
     $scope.saveBsData = function(form) {
-       $scope.submitted = true;
+        $scope.submitted = true;
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -231,6 +230,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'transport_air'
@@ -250,26 +250,23 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.bsHsDataEdit = function(form)
-    {
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_1',
-              'sector': 'transport_air',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date} }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsInfoAsetTrans = data;
-        })
-
-
+    $scope.editBsData = function(form) {
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        if (form.$valid) {
+            $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                  'table_name': 'Table_1',
+                  'sector': 'transport_air',
+                  'com_data': {'district': $scope.district,
+                  'bs_date': $scope.bs_date} }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsInfoAsetTrans = data;
+            })
+        }
     }
 
     $scope.cancelEdit = function() {

@@ -2,7 +2,6 @@
 var bsHealthStatusApp = angular.module('dlSumTrnsAirDistApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('dlSumTrnsAirDistController', function DlEduDistrictController($scope, $http) {
-
     $scope.dlEduDistrict;
     $scope.total;
     $scope.iter_tot;

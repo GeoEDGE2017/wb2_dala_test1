@@ -2,7 +2,6 @@
 var bsHealthStatusApp = angular.module('dlPvtEduFacilitiesApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFacilitiesController($scope, $http, $filter) {
-
     $scope.dlPvtEduFacilities;
     $scope.total;
     $scope.iter_tot;
@@ -21,12 +20,11 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     $scope.is_edit_model = false;
     $scope.user_id;
 
-    $scope.new_school = {
-                     'PreSchools': {id: null, name: null, district_id: null},
-                     'PrimarySchools': {id: null, name: null, district_id: null},
-                     'SecondarySchools': {id: null, name: null, district_id: null},
-                     'Universities': {id: null, name: null, district_id: null},
-                     'TechInstitutes': {id: null, name: null, district_id: null}};
+    $scope.new_school = {'PreSchools': {id: null, name: null, district_id: null},
+                         'PrimarySchools': {id: null, name: null, district_id: null},
+                         'SecondarySchools': {id: null, name: null, district_id: null},
+                         'Universities': {id: null, name: null, district_id: null},
+                         'TechInstitutes': {id: null, name: null, district_id: null}};
 
     var init_data = {
         'education': {
@@ -116,7 +114,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
         console.log($scope.dlPvtEduFacilities);
     }
 
-// adding schools
+    // adding schools
     $scope.addSchool = function() {
         $scope.new_school[$scope.schoolType].district_id = $scope.district.district__id;
         console.log($scope.new_school[$scope.schoolType]);

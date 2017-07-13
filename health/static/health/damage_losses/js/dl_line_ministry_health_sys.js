@@ -524,7 +524,10 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': 4
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";

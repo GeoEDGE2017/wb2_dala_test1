@@ -67,7 +67,7 @@ def fetch_districts(user):
             province = user.province
             districts = province.district_set.all()
             incidents = IncidentReport.objects.filter(effectedarea__district__province=province, active=True).distinct()
-        incidents = IncidentReport.objects.all()
+        # incidents = IncidentReport.objects.all()
         return {'districts': districts, 'incidents': incidents, 'user': user}
 
 
@@ -75,7 +75,6 @@ def fetch_districts(user):
 def fetch_incident_districts(request):
     dl_data = (yaml.safe_load(request.body))
     incident_id = dl_data['incident']
-    # user = request.user
     get_user = dl_data['user']
     print "user", get_user
     user_districts = UserDistrict.objects.filter(user_id=get_user)

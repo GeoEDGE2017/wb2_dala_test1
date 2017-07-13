@@ -660,12 +660,14 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
+            console.log($scope.user_id);
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident,
-                'user': 48}),
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";

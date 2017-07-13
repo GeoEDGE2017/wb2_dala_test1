@@ -187,61 +187,57 @@ else if(table == 'BsAstWaterStructures'){
 }
 
 
-$scope.saveBsData = function()
-{
-$scope.submitted = true;
+    $scope.saveBsData = function() {
+        $scope.submitted = true;
+        $http({
+            method: "POST",
+            url: "/bs_save_data",
+            data: angular.toJson({
+                'table_data': ($scope.bsAstTransWater),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                },
+                'is_edit': $scope.is_edit
+            }),
+        }).success(function(data) {
+            $scope.bsAstTransWater = init_data;
+            $scope.is_edit = false;
+            if(data == 'False') {
+                $("#modal-container-239454").modal('show');
+                $scope.is_valid_data = false;
+            }
+            else {
+                $("#modal-container-239453").modal('show');
+            }
+        })
+    }
 
- $http({
-    method: "POST",
-    url: "/bs_save_data",
-    data: angular.toJson({
-    'table_data': ($scope.bsAstTransWater),
-    'com_data': {'district': $scope.district,
-    'bs_date': $scope.bs_date,
-    },
-    'is_edit': $scope.is_edit }),
-    }).success(function(data) {
+    $scope.bsHsDataEdit = function() {
+        $scope.submitted = true;
+        $scope.is_edit = true;
 
-     $scope.bsAstTransWater = init_data;
-     $scope.is_edit = false;
-
-     if(data == 'False')
-     {
-                    $("#modal-container-239454").modal('show');
-                    $scope.is_valid_data = false;
+        $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                'table_name': 'Table_1',
+                'sector': 'transport_water',
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date
                 }
-     else
-      $("#modal-container-239453").modal('show');
+            }),
+        }).success(function(data) {
+            console.log(data);
+            $scope.bsAstTransWater = data;
+        })
+    }
 
- })
-
-
-}
-
-$scope.bsHsDataEdit = function()
-{
-$scope.submitted = true;
-
-   $scope.is_edit = true;
-    $http({
-    method: "POST",
-    url: "/bs_fetch_edit_data",
-    data: angular.toJson({'table_name': 'Table_1', 'sector': 'transport_water', 'com_data': {'district': $scope.district,
-          'bs_date': $scope.bs_date} }),
-    }).success(function(data) {
-
-    console.log(data);
-    $scope.bsAstTransWater = data;
-    })
-
-
-}
-
-$scope.cancelEdit = function()
-{
-    $scope.is_edit = false;
-    $scope.bsAstTransWater = init_data;
-}
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.bsAstTransWater = init_data;
+    }
 
     //Clear Function
     $scope.clear = function() {

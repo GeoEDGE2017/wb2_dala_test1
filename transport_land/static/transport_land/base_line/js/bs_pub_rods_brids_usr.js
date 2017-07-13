@@ -182,6 +182,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'transport_land'

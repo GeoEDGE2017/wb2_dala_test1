@@ -183,6 +183,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
                 data: angular.toJson({
                     'firm_name': $scope.editedFirmName,
                     'firm_id' : $scope.selectedFirm.id,
+                    'ownership': $scope.ownership,
                     'user_id': $scope.user_id,
                 }),
             }).success(function(data) {
@@ -215,7 +216,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.mnIndusMinFirm = angular.copy(init_data);
     }

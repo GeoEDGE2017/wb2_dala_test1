@@ -168,7 +168,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsDataMedicalFacilities = angular.copy(init_data);
     }

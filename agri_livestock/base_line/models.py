@@ -6,7 +6,7 @@ from incidents.models import IncidentReport
 class Organization(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', related_name='arg_ls_orgs_district', blank=True, null=True)
 
     class Meta:
         managed = False

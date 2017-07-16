@@ -12,6 +12,7 @@ from django.core import serializers
 from django.conf import settings
 from django.http import HttpResponse
 from mining.base_line.models import Firm
+from agri_livestock.base_line.models import Organization
 from users.models import UserDistrict
 import smtplib
 
@@ -663,10 +664,27 @@ def edit_firm(request):
     firm_data = (yaml.safe_load(request.body))
     firm_id = firm_data['firm_id']
     firm_name = firm_data['firm_name']
+    ownership = firm_data['ownership']
 
     print 'firm_id', firm_id, ' - firm_name', firm_name
 
-    Firm.objects.filter(pk=firm_id).update(name=firm_name)
+    Firm.objects.filter(pk=firm_id).update(name=firm_name, ownership=ownership)
+
+    return HttpResponse("Success")
+
+
+@csrf_exempt
+def edit_organization(request):
+    firm_data = (yaml.safe_load(request.body))
+    print '******'
+    print firm_data
+    firm_id = firm_data['firm_id']
+    firm_name = firm_data['firm_name']
+    ownership = firm_data['ownership']
+
+    print 'firm_id', firm_id, ' - firm_name', firm_name, 'ownership - ', ownership
+
+    Organization.objects.filter(pk=firm_id).update(name=firm_name, ownership=ownership)
 
     return HttpResponse("Success")
 

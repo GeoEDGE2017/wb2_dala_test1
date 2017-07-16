@@ -374,10 +374,9 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     }
 
 //Edit data
-    $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
+    $scope.editBsData = function(form){
+        $scope.submitted = true;
+        $scope.is_edit = true;
         $http({
         method: "POST",
         url: "/bs_fetch_edit_data",

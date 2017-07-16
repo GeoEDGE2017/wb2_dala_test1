@@ -23,44 +23,38 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     elderly: null,
                 }],
                 'BhsComDiseases': [{
-                        com_disease: 'Diarrhea',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    },
-                    {
-                        com_disease: 'Dengue',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    }
-                ],
+                    com_disease: 'Diarrhea',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }, {
+                    com_disease: 'Dengue',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }],
                 'BhsVi': [{
-                        vital_indicators: 'Under-5 Mortality Rate',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    },
-                    {
-                        vital_indicators: 'Mortality Rate',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    }
-                ],
+                    vital_indicators: 'Under-5 Mortality Rate',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }, {
+                    vital_indicators: 'Mortality Rate',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }],
                 'BhsOi': [{
-                        other_indicators: 'Crude Birth Rate',
-                        unit_measure: null
-                    },
-                    {
-                        other_indicators: 'Maternal Mortality Rate',
-                        unit_measure: null
-                    }
-                ]
+                    other_indicators: 'Crude Birth Rate',
+                    unit_measure: null
+                }, {
+                    other_indicators: 'Maternal Mortality Rate',
+                    unit_measure: null
+                }]
             }
         }
     }
@@ -149,7 +143,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 $scope.dataHealthStatus = data;
             })
         }
-
     }
 
     //Cancel Edit

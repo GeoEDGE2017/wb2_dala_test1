@@ -309,7 +309,7 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
             }).then(function successCallback(response) {
 //                $scope.bsDataOtherMedicalFacilities = init_data;
 //                $scope.is_edit = false;
-                if (response.data == 'False'){
+                if (response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }

@@ -17,51 +17,47 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
-
         if($scope.incident && selectProvinces) {
-          fetchProvinces();
+            fetchProvinces();
         }
-
     }
+
     $scope.provinces = [];
 
-    function fetchProvinces()
-    {
-          $http({
+    function fetchProvinces() {
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-
-            })
-
+                'incident': $scope.incident
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = "";
+        })
     }
 
-    $scope.fetchDlData = function(form){
-    if($scope.incident && $scope.province){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        $scope.isLoded = true;
-        if (form.$valid) {
-            $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':  'Table_3',
-            'sector': 'transport_rail',
-            'com_data': {
-                    'province': $scope.province,
-                    'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-                console.log('load ', data);
-                $scope.dlRailTransSumDis = data;
-            })
+    $scope.fetchDlData = function(form) {
+        if($scope.incident && $scope.province) {
+            $scope.is_edit = true;
+            $scope.submitted = true;
+            $scope.isLoded = true;
+            if (form.$valid) {
+                $http({
+                    method: "POST",
+                    url: '/dl_fetch_district_disagtn',
+                    data: angular.toJson({
+                    'table_name':  'Table_3',
+                        'sector': 'transport_rail',
+                        'com_data': {
+                            'province': $scope.province,
+                            'incident': $scope.incident,
+                        },
+                    }),
+                }).success(function(data) {
+                    console.log('load ', data);
+                    $scope.dlRailTransSumDis = data;
+                })
             }
         }
     }

@@ -273,10 +273,11 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 
     function generateRefencedData() {
         data_array = ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains'];
-            var dl_model1 = null;
-            var dl_model2 = null;
-            var dl_model3 = null;
-            var dl_model4 = null;
+
+        var dl_model1 = null;
+        var dl_model2 = null;
+        var dl_model3 = null;
+        var dl_model4 = null;
 
         angular.forEach(data_array, function(value, key) {
             var obj_array = $scope.bs_data[value];
@@ -287,30 +288,26 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
             var particular_value_3 = null;
             var particular_value_4 = null;
 
-
             if(model_name == 'BsRbuTbridges') {
-               dl_model1 = 'DlRbdTbridges';
-               particular_value_1 = 'Total';
-               $scope.dlRoadBrdgs.transport_land.Table_4[dl_model1] = [];
+                dl_model1 = 'DlRbdTbridges';
+                particular_value_1 = 'Total';
+                $scope.dlRoadBrdgs.transport_land.Table_4[dl_model1] = [];
             }
             if(model_name == 'BsRbuTculverts') {
-               dl_model2 = 'DlRbdTculverts';
-               particular_value_2 = 'Total';
-               $scope.dlRoadBrdgs.transport_land.Table_4[dl_model2] = [];
-
+                dl_model2 = 'DlRbdTculverts';
+                particular_value_2 = 'Total';
+                $scope.dlRoadBrdgs.transport_land.Table_4[dl_model2] = [];
             }
             if(model_name == 'BsRbuTrwalls') {
-               dl_model3 = 'DlRbdTrwalls';
-               particular_value_3 = 'Total';
-               $scope.dlRoadBrdgs.transport_land.Table_4[dl_model3] = [];
+                dl_model3 = 'DlRbdTrwalls';
+                particular_value_3 = 'Total';
+                $scope.dlRoadBrdgs.transport_land.Table_4[dl_model3] = [];
             }
             if(model_name == 'BsRbuTdrains') {
-               dl_model4 = 'DlRbdTdrains';
-               particular_value_4 = 'Total';
-               $scope.dlRoadBrdgs.transport_land.Table_4[dl_model4] = [];
+                dl_model4 = 'DlRbdTdrains';
+                particular_value_4 = 'Total';
+                $scope.dlRoadBrdgs.transport_land.Table_4[dl_model4] = [];
             }
-
-
 
             var obj1 = {
                 type_bridges :particular_value_1 ,
@@ -367,18 +364,17 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     damages : null,
                 };
 
-
                 if(model_name == 'BsRbuTbridges') {
-                   $scope.dlRoadBrdgs.transport_land.Table_4[dl_model1].push(obj1);
+                    $scope.dlRoadBrdgs.transport_land.Table_4[dl_model1].push(obj1);
                 }
                 if(model_name == 'BsRbuTculverts') {
-                   $scope.dlRoadBrdgs.transport_land.Table_4[dl_model2].push(obj2);
+                    $scope.dlRoadBrdgs.transport_land.Table_4[dl_model2].push(obj2);
                 }
                 if(model_name == 'BsRbuTrwalls') {
-                   $scope.dlRoadBrdgs.transport_land.Table_4[dl_model3].push(obj3);
+                    $scope.dlRoadBrdgs.transport_land.Table_4[dl_model3].push(obj3);
                 }
                 if(model_name == 'BsRbuTdrains') {
-                   $scope.dlRoadBrdgs.transport_land.Table_4[dl_model4].push(obj4);
+                    $scope.dlRoadBrdgs.transport_land.Table_4[dl_model4].push(obj4);
                 }
             });
 
@@ -386,22 +382,15 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 $scope.dlRoadBrdgs.transport_land.Table_4[dl_model1].push(obj1);
             }
             if(model_name == 'BsRbuTculverts') {
-
                 $scope.dlRoadBrdgs.transport_land.Table_4[dl_model2].push(obj2);
             }
             if(model_name == 'BsRbuTrwalls') {
-
-               $scope.dlRoadBrdgs.transport_land.Table_4[dl_model3].push(obj3);
+                $scope.dlRoadBrdgs.transport_land.Table_4[dl_model3].push(obj3);
             }
             if(model_name == 'BsRbuTdrains') {
-
-              $scope.dlRoadBrdgs.transport_land.Table_4[dl_model4].push(obj4);
-
+                $scope.dlRoadBrdgs.transport_land.Table_4[dl_model4].push(obj4);
             }
-
         });
-
-
     }
 
     $scope.saveDlData = function(form) {
@@ -435,22 +424,23 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
-        $http({
-        method: "POST",
-        url: '/dl_fetch_edit_data',
-        data: angular.toJson({
-        'table_name':  'Table_4',
-        'sector':'transport_land',
-        'com_data': {
-               'district':  $scope.district.district__id,
-                'incident': $scope.incident,
-              },
-               'is_edit':$scope.is_edit
-               }),
-        }).success(function(data) {
-            $scope.dlRoadBrdgs = data;
-        })
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_4',
+                    'sector':'transport_land',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                   'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.dlRoadBrdgs = data;
+            })
+        }
     }
 
     $scope.cancelEdit = function() {
@@ -459,69 +449,69 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     }
 
     $scope.calTotal = function(arr) {
-    var finaltotal = 0;
-     console.log(arr);
-    angular.forEach(arr, function(value, key) {
-    if((value.type_bridges != 'Total') &&
-       (value.type_culverts != 'Total') &&
-       (value.type_retain_walls != 'Total') &&
-       (value.type_drains !='Total') &&
-       (value.type_drains !='TOTAL DAMAGES') ){
-      console.log(value);
-      finaltotal = finaltotal + value.damages ;
-      }
-    })
-      console.log(finaltotal);
-    return finaltotal;
+        var finaltotal = 0;
+        console.log(arr);
+        angular.forEach(arr, function(value, key) {
+            if((value.type_bridges != 'Total') && (value.type_culverts != 'Total') && (value.type_retain_walls != 'Total') &&
+                    (value.type_drains !='Total') && (value.type_drains !='TOTAL DAMAGES')) {
+                console.log(value);
+                finaltotal = finaltotal + value.damages ;
+            }
+        })
+        console.log(finaltotal);
+        return finaltotal;
     }
 
-    $scope.calGrandTotal = function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-    var finaltotal5 = 0;
-    var grantot = 0;
+    $scope.calGrandTotal = function() {
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+        var grantot = 0;
 
-    var array1=$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification;
-    var array2 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges;
-    var array3 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts;
-    var array4 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTrwalls;
-    var array5 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTdrains;
+        var array1=$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification;
+        var array2 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges;
+        var array3 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts;
+        var array4 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTrwalls;
+        var array5 =$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdTdrains;
 
-    angular.forEach(array1, function(value, key) {
+        angular.forEach(array1, function(value, key) {
+            if(value.road_classification != 'Total') {
+                finaltotal1 = finaltotal1 + value.damages ;
+            }
+        })
 
-    if(value.road_classification !='Total'){
-    finaltotal1 = finaltotal1 + value.damages ;
-    }
-    })
-    angular.forEach(array2, function(value, key) {
-     if(value.type_bridges !='Total'){
-     finaltotal2 = finaltotal2 + value.damages ;
-     }
-    })
-    angular.forEach(array3, function(value, key) {
-     if(value.type_culverts != 'Total'){
-     finaltotal3 = finaltotal3 + value.damages ;
-     }
-    })
-    angular.forEach(array4, function(value, key) {
-    if(value.type_retain_walls !='Total'){
-     finaltotal4 = finaltotal4 + value.damages ;
-     }
-    })
-    angular.forEach(array5, function(value, key) {
-     if(value.type_drains !='Total'){
-     finaltotal5 = finaltotal5 + value.damages ;
-     }
-    })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
-    return grantot;
+        angular.forEach(array2, function(value, key) {
+            if(value.type_bridges != 'Total') {
+                finaltotal2 = finaltotal2 + value.damages ;
+            }
+        })
+
+        angular.forEach(array3, function(value, key) {
+            if(value.type_culverts != 'Total') {
+                finaltotal3 = finaltotal3 + value.damages ;
+            }
+        })
+
+        angular.forEach(array4, function(value, key) {
+            if(value.type_retain_walls != 'Total') {
+                finaltotal4 = finaltotal4 + value.damages ;
+            }
+        })
+
+        angular.forEach(array5, function(value, key) {
+            if(value.type_drains != 'Total') {
+                finaltotal5 = finaltotal5 + value.damages ;
+            }
+        })
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+        return grantot;
     }
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dlRoadBrdgs = angular.copy(init_data);
     }

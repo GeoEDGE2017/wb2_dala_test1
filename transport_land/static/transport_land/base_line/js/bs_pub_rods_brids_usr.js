@@ -108,8 +108,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
     $scope.bsPubRodsBridsUsr = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -172,7 +171,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
     }
 
     $scope.saveBsData = function(form) {
-       $scope.submitted = true;
+        $scope.submitted = true;
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -188,46 +187,44 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     'sector':'transport_land'
                 }),
             }).success(function(data) {
-
                 $scope.bsPubRodsBridsUsr = init_data;
                 $scope.is_edit = false;
 
-                if (data == 'False')
-                    {
+                if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
-
+                }
             })
         }
     }
 
-      $scope.bsHsDataEdit = function(form)
-    {
-    $scope.submitted = true;
+    $scope.editBsData = function(form) {
+        $scope.submitted = true;
+        $scope.is_edit = true;
 
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_1',
-              'sector': 'transport_land',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date} }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsPubRodsBridsUsr = data;
-        })
-
-
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'transport_land',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsPubRodsBridsUsr = data;
+            })
+        }
     }
 
-    $scope.cancelEdit = function()
-    {
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsPubRodsBridsUsr = init_data;
     }
@@ -238,5 +235,4 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         $scope.is_edit = false;
         $scope.bsPubRodsBridsUsr = angular.copy(init_data);
     }
-
 }]);

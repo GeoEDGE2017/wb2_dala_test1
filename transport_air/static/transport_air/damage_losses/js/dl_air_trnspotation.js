@@ -534,23 +534,25 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
-               contentType: 'application/json; charset=utf-8',
+                contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
                     'table_data': $scope.dlAirTrnspotation,
                     'com_data': {
                         'district_id': $scope.district.district__id,
-                        'incident_id' : $scope.incident,
-                        'user_id' : $scope.user_id,
+                        'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit':$scope.is_edit,
                     'sector':'transport_air'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
+                if(response.data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });
@@ -560,22 +562,23 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
-        $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-                'table_name':  'Table_2',
-                'sector':'transport_air',
-                'com_data': {
-                    'district': $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
-                'is_edit':$scope.is_edit
-            }),
-        }).success(function(data) {
-            $scope.dlAirTrnspotation = data;
-        })
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_2',
+                    'sector':'transport_air',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.dlAirTrnspotation = data;
+            })
+        }
     }
 
     $scope.cancelEdit = function() {

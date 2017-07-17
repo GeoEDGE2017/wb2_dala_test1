@@ -147,7 +147,10 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -306,94 +309,86 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlDataEdit = function(form){
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
+        $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+                'table_name':  'Table_6',
+                'sector':'transport_land',
+                'com_data': {
+                    'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                },
+                'is_edit':$scope.is_edit
+            }),
+        }).success(function(data) {
+            console.log(data);
+            $scope.dlGovnAdmnAsets = data;
+        })
+    }
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_6',
-    'sector':'transport_land',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlGovnAdmnAsets = data;
-    })
-
-}
-
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlGovnAdmnAsets = init_data;
     }
 
-        $scope.calTotal=function(arr){
+    $scope.calTotal = function(arr) {
         var finaltotal = 0;
-         console.log(arr);
+        console.log(arr);
         angular.forEach(arr, function(value, key) {
-        if(value.assets !='Total'){
-         finaltotal = finaltotal + value.damages ;
-         }
+            if(value.assets !='Total') {
+                finaltotal = finaltotal + value.damages ;
+            }
         })
-          console.log(finaltotal);
+        console.log(finaltotal);
         return finaltotal;
-        }
-
-    $scope.calGrandTotal=function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-
-    var grantot = 0;
-
-    var array1=$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures;
-    var array2 =$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment;
-    var array3 =$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery;
-
-
-    angular.forEach(array1, function(value, key) {
-
-     finaltotal1 = finaltotal1 + value.damages ;
-    })
-    angular.forEach(array2, function(value, key) {
-
-     finaltotal2 = finaltotal2 + value.damages ;
-    })
-    angular.forEach(array3, function(value, key) {
-
-     finaltotal3 = finaltotal3 + value.damages ;
-    })
-
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
-    return grantot;
     }
 
-    $scope.calGrandTypeLossTotal=function(){
-    var finaltotal1 = 0;
-    var grantot = 0;
+    $scope.calGrandTotal = function() {
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
 
-    var array1=$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType;
+        var grantot = 0;
 
+        var array1=$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures;
+        var array2 =$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment;
+        var array3 =$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery;
 
-    angular.forEach(array1, function(value, key) {
-     if(value.assets !='TOTAL LOSSES'){
-     finaltotal1 = finaltotal1 + value.total ;
-     }
-    })
+        angular.forEach(array1, function(value, key) {
+            finaltotal1 = finaltotal1 + value.damages ;
+        })
 
-    grantot = grantot + finaltotal1;
-    return grantot;
+        angular.forEach(array2, function(value, key) {
+            finaltotal2 = finaltotal2 + value.damages ;
+        })
+
+        angular.forEach(array3, function(value, key) {
+            finaltotal3 = finaltotal3 + value.damages ;
+        })
+
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3;
+        return grantot;
+    }
+
+    $scope.calGrandTypeLossTotal=function() {
+        var finaltotal1 = 0;
+        var grantot = 0;
+
+        var array1=$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType;
+
+        angular.forEach(array1, function(value, key) {
+            if(value.assets !='TOTAL LOSSES'){
+                finaltotal1 = finaltotal1 + value.total ;
+            }
+        })
+
+        grantot = grantot + finaltotal1;
+        return grantot;
     }
 
     //Clear Function

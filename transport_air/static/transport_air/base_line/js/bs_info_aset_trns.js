@@ -164,7 +164,6 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-
     $scope.insertAsset = function(table) {
         console.log($scope.bsInfoAsetTrans.transport_air.Table_1[table]);
         var new_row;
@@ -221,7 +220,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
-        if (form.$valid) {
+        if(form.$valid) {
             $http({
                 method: "POST",
                 url: "/bs_save_data",
@@ -276,7 +275,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsInfoAsetTrans = angular.copy(init_data);
     }

@@ -5,23 +5,30 @@
 <main class="main" ng-app="bsPubRodsBridsUsrApp" ng-controller="bsPubRodsBridsUsrController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline of Public Roads, Bridges and Users
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Road Classification</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Other Assets </a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">1 Road Classification</a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">2 Other Assets </a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_pub_rod_brg_use">
                 <div class="tab-pane active" id="step1">
@@ -410,7 +417,7 @@
                         <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData(form_pub_rod_brg_use)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                     </span>

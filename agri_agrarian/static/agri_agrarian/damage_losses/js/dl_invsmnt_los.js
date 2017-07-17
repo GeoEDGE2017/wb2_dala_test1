@@ -585,7 +585,5 @@ if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.expor
         console.log('done');
         $scope.is_edit = false;
         $scope.dlInvsmntLos = angular.copy(init_data);
-
-
     }
 }]);

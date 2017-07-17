@@ -46,26 +46,6 @@ app.controller("DlHousingDisController",function($scope, $http) {
 
 }
 
-   $scope.changedValue=function getBsData() {
-if($scope.incident && $scope.district){
-    $scope.submitted = true;
-    $scope.tot_damages = null;
-    $scope.is_edit = true;
-    $scope.submitted = true;
-    $http({
-    method: "POST",
-    url: '/dl_fetch_total_data',
-    data: angular.toJson({
-        'table_name':'Table_4',
-        'sector':'housing',
-        'com_data': {
-        'district':  $scope.district.district__id,
-        'incident': $scope.incident,
-        },
-    }),
-    }).success(function(data) {
-
-
     $scope.changedValue=function getBsData() {
         if($scope.incident && $scope.district){
         $scope.submitted = true;

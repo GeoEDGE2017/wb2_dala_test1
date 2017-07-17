@@ -25,7 +25,7 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class B',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -35,7 +35,7 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class C',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -45,7 +45,7 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class D',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -55,7 +55,7 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class E',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -72,7 +72,7 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_replace_multi_lanes: null,
                     avg_repair_2_lanes: null,
                     avg_repair_multi_lanes: null,
-                },{
+                }, {
                     type_bridges: 'Wooden bridges',
                     avg_replace_2_lanes: null,
                     avg_replace_multi_lanes: null,
@@ -93,11 +93,11 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     type_drains: 'Concrete',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
-                },{
+                }, {
                     type_drains: 'Bricks',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
-                },{
+                }, {
                     type_drains: 'Earth',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
@@ -109,8 +109,8 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
     $scope.bsPubRodsBridsUsr = angular.copy(init_data);
 
     //disable Edit Button
-    $scope.changeDis = function changeDis(){
-        if($scope.district && $scope.bs_date){
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
         else{
@@ -174,7 +174,7 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
 
     //save data
     $scope.saveBsData = function(form) {
-       $scope.submitted = true;
+        $scope.submitted = true;
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -192,11 +192,12 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
             }).success(function(data) {
                 $scope.bsPubRodsBridsUsr = init_data;
                 $scope.is_edit = false;
-                if (data == 'False'){
+
+                if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else{
+                else {
                     $("#modal-container-239453").modal('show');
                 }
             })
@@ -204,28 +205,30 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
     }
 
     // edit data
-    $scope.bsHsDataEdit = function(form){
+    $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_1',
-              'sector': 'transport_land',
-              'com_data': {
-                  'district': $scope.district,
-                  'user_id': $scope.user_id
-                  'bs_date': $scope.bs_date
-                  } }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.bsPubRodsBridsUsr = data;
-        })
+
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'transport_land',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsPubRodsBridsUsr = data;
+            })
+        }
     }
 
-    //cancel edit
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsPubRodsBridsUsr = init_data;
     }
@@ -236,5 +239,4 @@ app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         $scope.is_edit = false;
         $scope.bsPubRodsBridsUsr = angular.copy(init_data);
     }
-
 }]);

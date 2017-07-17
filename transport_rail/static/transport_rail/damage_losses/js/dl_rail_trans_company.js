@@ -1,3 +1,4 @@
+//Table 2
 var app = angular.module('dlIncomeRailCompanyApp', ['underscore'])
 
 app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, _) {
@@ -23,21 +24,17 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Engine',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Others',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
-                },
-                {
+                }, {
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
@@ -54,90 +51,73 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Vehicles',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Computers',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Furniture',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Others',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
-                },
-                {
+                }, {
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }],
                 'DlMatSuppliesAstLoss' : [{
                     asset : 'Fuel (Liters)',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Others',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
-                },
-                {
+                }, {
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }],
                 'DlStructuresAstLoss' : [{
                     asset : 'Tracks',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Tunnels',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
-
                 }, {
                     asset : 'Bridges',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }, {
                     asset : 'Culverts',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
-                },{
+                }, {
                     asset : 'Total',
                     no_of_tot_destroyed : null,
                     no_of_partially_damaged : null,
                     tot_damages : null,
-
                 }],
                 'DlBuildingAstLoss': [{
                     asset: '1 floor',
@@ -148,7 +128,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
-
                 }, {
                     asset: '2-3 floors',
                     no_of_tot_destroyed : null,
@@ -158,7 +137,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
-
                 }, {
                     asset: 'More than 3 floors',
                     no_of_tot_destroyed : null,
@@ -168,9 +146,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
-
-                },
-                {
+                }, {
                     asset: 'Total',
                     no_of_tot_destroyed : null,
                     no_of_tot_destroyed_sqr_meters : null,
@@ -179,24 +155,22 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     no_of_partially_damaged_wall : null,
                     no_of_partially_damaged_floor : null,
                     tot_damages : null,
-
-
-                },
-                ],
+                }],
             }
         }
     }
 
     $scope.dlIncomeRailCompany = angular.copy(init_data);
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident,
-                 'user': $scope.user_id}),
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -210,11 +184,11 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                  'db_tables': ['BsMovingAst','BsEquipMachineryAst','BsMatSuppliesAst','BsStructuresAst','BsBuildingAst'],
-                  'com_data': {
+                    'db_tables': ['BsMovingAst','BsEquipMachineryAst','BsMatSuppliesAst','BsStructuresAst','BsBuildingAst'],
+                    'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        },
+                    },
                    'sector':'transport_rail',
                    'table_name': 'Table_1'
                 }),
@@ -293,7 +267,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                             'incident_id' : $scope.incident,
                             'company_id' : $scope.company.id,
                             'user_id': $scope.user_id
-
                         },
                         'is_edit':$scope.is_edit
                     }),
@@ -311,87 +284,80 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     }
 
     $scope.calTotal=function(arr) {
-    var finaltotal = 0;
-//     console.log(arr);
-    angular.forEach(arr, function(value, key) {
-     if(value.asset != 'Total'){
-     finaltotal = finaltotal + value.tot_damages ;
-     }
-    })
-//      console.log(finaltotal);
-    return finaltotal;
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.asset != 'Total') {
+                finaltotal = finaltotal + value.tot_damages ;
+            }
+        })
+        return finaltotal;
     }
 
-    $scope.calGrandTotal=function() {
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-    var finaltotal5 = 0;
-    var grantot = 0;
+    $scope.calGrandTotal = function() {
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+        var grantot = 0;
 
-    var array1=$scope.dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss;
-    var array2 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlEquipMachineryAstLoss;
-    var array3 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss;
-    var array4 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss;
-    var array5 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss;
+        var array1=$scope.dlIncomeRailCompany.transport_rail.Table_2.DlMovingAstLoss;
+        var array2 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlEquipMachineryAstLoss;
+        var array3 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlMatSuppliesAstLoss;
+        var array4 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlStructuresAstLoss;
+        var array5 =$scope.dlIncomeRailCompany.transport_rail.Table_2.DlBuildingAstLoss;
 
-    angular.forEach(array1, function(value, key) {
-    if(value.asset !='Total'){
-     finaltotal1 = finaltotal1 + value.tot_damages ;
-     }
-    })
-    angular.forEach(array2, function(value, key) {
-    if(value.asset !='Total'){
-     finaltotal2 = finaltotal2 + value.tot_damages ;
-     }
-    })
-    angular.forEach(array3, function(value, key) {
-    if(value.asset !='Total'){
-     finaltotal3 = finaltotal3 + value.tot_damages ;
-     }
-    })
-    angular.forEach(array4, function(value, key) {
-    if(value.asset !='Total'){
-     finaltotal4 = finaltotal4 + value.tot_damages ;
-     }
-    })
-    angular.forEach(array5, function(value, key) {
-    if(value.asset !='Total'){
-     finaltotal5 = finaltotal5 + value.tot_damages ;
-     }
-    })
-    grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
-    return grantot;
+        angular.forEach(array1, function(value, key) {
+            if(value.asset !='Total'){
+                finaltotal1 = finaltotal1 + value.tot_damages ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.asset !='Total'){
+                finaltotal2 = finaltotal2 + value.tot_damages ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.asset !='Total'){
+                finaltotal3 = finaltotal3 + value.tot_damages ;
+            }
+        })
+        angular.forEach(array4, function(value, key) {
+            if(value.asset !='Total'){
+                finaltotal4 = finaltotal4 + value.tot_damages ;
+            }
+        })
+        angular.forEach(array5, function(value, key) {
+            if(value.asset !='Total'){
+                finaltotal5 = finaltotal5 + value.tot_damages ;
+            }
+        })
+        grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
+        return grantot;
     }
 
-    $scope.dlDataEdit = function(form) {
-
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_2',
-    'sector':'transport_rail',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-            'user_id': $scope.user_id
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlIncomeRailCompany = data;
-    })
-
-}
+    $scope.editDlData = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_2',
+                    'sector':'transport_rail',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlIncomeRailCompany = data;
+            })
+        }
+    }
 
     $scope.cancelEdit = function() {
         $scope.is_edit = false;

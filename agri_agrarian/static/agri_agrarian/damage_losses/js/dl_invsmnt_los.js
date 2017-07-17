@@ -194,7 +194,10 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -585,7 +588,5 @@ if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.expor
         console.log('done');
         $scope.is_edit = false;
         $scope.dlInvsmntLos = angular.copy(init_data);
-
-
     }
 }]);

@@ -59,40 +59,38 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
         console.log($scope.totaldpub);
 
 
-         $scope.totaldpvt = $scope.totaldpvt +
-         ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloDmgNational[0] ? (
+        $scope.totaldpvt = $scope.totaldpvt + ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloDmgNational[0] ? (
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloDmgNational[0].tot_damages ?
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloDmgNational[0].tot_damages : 0 ) : 0);
 
-         $scope.totalyear1pub = $scope.totalyear1pub +
-         ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1] ? (
-                         $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1].los_year1 ?
-                         $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1].los_year1 : 0 ) : 0) +
-         ($scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0] ? (
-                         $scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0].los_year1 ?
-                         $scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0].los_year1 : 0 ) : 0);
+        $scope.totalyear1pub = $scope.totalyear1pub + ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1] ?
+            ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1].los_year1 ?
+            $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1].los_year1 : 0 ) : 0) +
+            ($scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0] ?
+            ($scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0].los_year1 ?
+            $scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0].los_year1 : 0 ) : 0);
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt +
-         ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0] ? (
+        $scope.totalyear1pvt = $scope.totalyear1pvt +
+        ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0] ? (
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0].los_year1 ?
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0].los_year1 : 0 ) : 0 );
 
-         $scope.totalyear2pub = $scope.totalyear2pub +
-         ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1] ? (
+        $scope.totalyear2pub = $scope.totalyear2pub +
+        ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1] ? (
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1].los_year2 ?
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[1].los_year2 : 0 ) : 0) +
-         ($scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0] ? (
+        ($scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0] ? (
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0].los_year2 ?
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DlaLosNational[0].los_year2 : 0 ) : 0);
 
-         $scope.totalyear2pvt =$scope.totalyear2pvt +
-         ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0] ? (
+        $scope.totalyear2pvt =$scope.totalyear2pvt +
+        ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0] ? (
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0].los_year2 ?
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloLosNational[0].los_year2 : 0 ) : 0);
 
 
-         $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
+        $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
 
-         $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
+        $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
     }
 })

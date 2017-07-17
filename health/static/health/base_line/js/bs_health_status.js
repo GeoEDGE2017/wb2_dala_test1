@@ -62,7 +62,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
     $scope.dataHealthStatus = angular.copy(init_data);
 
     //Save Data
-    $scope.hSDataSubmit = function(form) {
+    $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
             $http({
@@ -122,7 +122,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
     }
 
     //Edit Data
-    $scope.bsHsDataEdit = function(form) {
+    $scope.editBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
             $scope.is_edit = true;
@@ -135,7 +135,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
-                        'user_id': $scope.user_id,
                     }
                 }),
             }).success(function(data) {
@@ -166,7 +165,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dataHealthStatus = angular.copy(init_data);
     }

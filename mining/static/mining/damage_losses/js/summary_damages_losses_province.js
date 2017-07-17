@@ -31,18 +31,16 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     $scope.provinces = [];
 
     function fetchProvinces() {
-          $http({
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
                     'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-
-            })
-
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = "";
+        })
     }
 
     $scope.fetchDlData = function(form) {
@@ -77,8 +75,8 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     }
    
     $scope.getTotal = function($index,key) {
-         $scope.totaldpub = $scope.totaldpub + 
-         ($scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[1] ? (
+        $scope.totaldpub = $scope.totaldpub +
+        ($scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[1] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[1].tot_damages ?
                          $scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[1].tot_damages : 0 ): 0) +
         ($scope.dlMiningPro.mining.Table_7[key].DlaDmgProvince[0] ? (
@@ -89,40 +87,40 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
         console.log($scope.totaldpub);
 
 
-         $scope.totaldpvt = $scope.totaldpvt +
-         ($scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[0] ? (
+        $scope.totaldpvt = $scope.totaldpvt +
+        ($scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[0] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[0].tot_damages ?
                          $scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[0].tot_damages : 0 ) : 0);
 
-         $scope.totalyear1pub = $scope.totalyear1pub +
-         ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1] ? (
+        $scope.totalyear1pub = $scope.totalyear1pub +
+        ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year1 ?
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year1 : 0 ) : 0) +
-         ($scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0] ? (
+        ($scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0].los_year1 ?
                          $scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0].los_year1 : 0 ) : 0);
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt +
-         ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0] ? (
+        $scope.totalyear1pvt = $scope.totalyear1pvt +
+        ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year1 ?
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year1 : 0 ) : 0 );
 
-         $scope.totalyear2pub = $scope.totalyear2pub +
-         ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1] ? (
+        $scope.totalyear2pub = $scope.totalyear2pub +
+        ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year2 ?
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year2 : 0 ) : 0) +
-         ($scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0] ? (
+        ($scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0].los_year2 ?
                          $scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0].los_year2 : 0 ) : 0);
 
-         $scope.totalyear2pvt =$scope.totalyear2pvt +
-         ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0] ? (
+        $scope.totalyear2pvt =$scope.totalyear2pvt +
+        ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year2 ?
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year2 : 0 ) : 0);
 
 
-         $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
+        $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
 
-         $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
+        $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
     }
 })

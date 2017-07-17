@@ -155,7 +155,7 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     //save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
-        if (form.$valid) {
+        if(form.$valid) {
             $http({
                 method: "POST",
                 url: "/bs_save_data",
@@ -184,26 +184,26 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     }
 
     //edit data
-    $scope.bsHsDataEdit = function(form) {
+    $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
-
-        $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                'table_name': 'Table_2',
-                'sector': 'transport_land',
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.bs_date,
-                    'user_id': $scope.user_id
-                }
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.bsLandTrnsAsst = data;
-        })
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'transport_land',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsLandTrnsAsst = data;
+            })
+        }
     }
 
     //cancel edit

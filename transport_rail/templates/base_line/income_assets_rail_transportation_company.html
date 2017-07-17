@@ -11,38 +11,35 @@
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsIncomeRailCompanyApp" ng-controller="bsIncomeRailCompanyController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_rail_main' %}">Transport Rail Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_rail_main' %}">Transport Rail Sector</a>
         </li>
-
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Income and Assets in the Rail Transportation Company</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Income and Assets in the Rail Transportation Company
+            </span>
         </li>
-
-<li style="float:right;"> <a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
-
-
     <div ng-init="fetchCompanies()" class="container-fluid">
-
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Average Annual Income of Rail Company</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Buildings</a></li>
-
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 - Average Annual Income of Rail Company</a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 - Buildings</a>
+            </li>
         </ul>
-
         <div id="myTabContent" class="tab-content" ng-form name="form_income_rail_trns_company">
             <div class="tab-pane active" id="step1">
-
-
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="281"/>
                         <col width="170"/>
@@ -106,7 +103,6 @@
                                <small style="color:red;"> Please Select Company </small>
                             </span>
                         </td>
-                       
                         <td width="">
                             <a id="" href="#modal-container-218029" role="button" data-toggle="modal"
                                class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add</a>
@@ -177,10 +173,8 @@
                                 Moving Assets
                             </td>
                             <td colspan="2">
-
                             </td>
                             <td colspan="3" style="width:27.5%;">
-
                             </td>
                         </tr>
                         <tr height="20"
@@ -246,9 +240,7 @@
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
                             <td colspan="3" class="tdpa" ng-if="bsMatSuppliesAst.asset =='Fuel (per Liter)'">
-
                             </td>
-
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="281" height="20">
@@ -273,21 +265,17 @@
                                 <input ng-model="bsStructuresAst.avg_repair_cost" id="textinput" name="textinput"
                                        type="number" placeholder="" class="form-control input-md">
                             </td>
-
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Buildings Informations</a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
-
                 <table class="table table-bordered">
-
                     <tr class="trheadc1" height="20">
                         <td rowspan="2" width="281" height="40">
                             Buildings
@@ -333,13 +321,13 @@
                     </tr>
                     </tbody>
                 </table>
-
-
                 <br>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <button type="button" class="btn btn-info" ng-click="clear()">
+                        Clear
+                    </button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit(form_income_rail_trns_company)" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData(form_income_rail_trns_company)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                     </span>

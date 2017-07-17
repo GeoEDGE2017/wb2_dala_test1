@@ -23,26 +23,23 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
     $scope.user_id;
 
     $scope.changedValue = function getDlData() {
-
         if ($scope.incident) {
-
-
             $http({
                 method: "POST",
                 url: '/fetch_incident_districts',
                 data: angular.toJson({
-                    'incident': $scope.incident
+                    'incident': $scope.incident,
+                    'user':$scope.user_id,
                 }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.district = "";
                 console.log(data);
-
             })
         }
     }
 
-    $scope.LoadData = function(){
+    $scope.LoadData = function() {
    if($scope.incident && $scope.district){
    $scope.tot_damages = null;
    $scope.is_edit = true;

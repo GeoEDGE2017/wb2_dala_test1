@@ -24,7 +24,10 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id,
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.district = "";

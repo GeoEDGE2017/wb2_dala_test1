@@ -128,7 +128,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                 else {
                     $("#modal-container-239453").modal('show');
                 }
-          }, function errorCallback(data) {
+            }, function errorCallback(data) {
                 $("#modal-container-239454").modal('show');
                 $scope.is_valid_data = false;
                 console.log(data);

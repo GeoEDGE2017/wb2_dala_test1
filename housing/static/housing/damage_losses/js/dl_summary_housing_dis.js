@@ -9,49 +9,31 @@ app.controller("DlHousingDisController",function($scope, $http) {
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.districts=[];
-    $scope.getDistrict = function getDistrict(){
-         if($scope.incident){
+    $scope.user_id;
+
+    $scope.getDistrict = function getDistrict() {
+        if($scope.incident) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.district = "";
                 console.log(data);
-
             })
-         }
-    }
-    $scope.user_id;
-
-    $scope.getDistrict = function getDistrict(){
-     if($scope.incident){
-
-
-    $http({
-    method: "POST",
-    url: "/fetch_incident_districts",
-    data: angular.toJson({
-    'incident': $scope.incident ,
-    'user': $scope.user_id,
-    }),
-    }).success(function(data) {
-        $scope.districts = data;
-        $scope.district = "";
-        console.log(data);
-
-    })
         }
-
-}
+    }
 
     $scope.changedValue=function getBsData() {
         if($scope.incident && $scope.district){
-        $scope.submitted = true;
-        $scope.tot_damages = null;
-        $scope.is_edit = true;
-        $scope.submitted = true;
+            $scope.submitted = true;
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+            $scope.submitted = true;
             $http({
                 method: "POST",
                 url: '/dl_fetch_total_data',
@@ -59,28 +41,25 @@ app.controller("DlHousingDisController",function($scope, $http) {
                     'table_name':'Table_4',
                     'sector':'housing',
                     'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
                     },
                 }),
             }).success(function(data) {
                 $scope.data=data;
                 $scope.dlHousingDis = data;
             })
-            }
+        }
     }
 
     $scope.checkIfNull = function(){
         var isNull = $scope.dlHousingDis ? angular.equals({}, $scope.dlHousingDis.housing.Table_4) : true;
         return isNull;
-
     }
 
     $scope.convertToInt = function(val1 ,val2,val3){
-    var ans = parseInt(val1) + parseInt(val2) + parseInt(val3);
-    return ans;
-
+        var ans = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return ans;
     }
-
 })
 

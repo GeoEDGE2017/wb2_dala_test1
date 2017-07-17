@@ -223,7 +223,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
     //save Bs Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
-        if (form.$valid) {
+        if(form.$valid) {
             $http({
                 method: "POST",
                 url: "/bs_save_data",
@@ -284,7 +284,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     //clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsInfoAsetTrans = angular.copy(init_data);
     }

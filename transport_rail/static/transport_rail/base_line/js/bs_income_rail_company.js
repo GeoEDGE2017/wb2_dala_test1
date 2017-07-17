@@ -35,14 +35,12 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },
-                {
+                }, {
                     asset: 'Engine',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },
-                {
+                }, {
                     asset: 'Others',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
@@ -53,28 +51,28 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Track machinery',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
 
-                },{
+                }, {
                     asset: 'Vehicles',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Computers',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Furniture',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Others',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
@@ -85,7 +83,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Others',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
@@ -96,17 +94,17 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Tunnels',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Bridges',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
                     company_id:$scope.selectedCompany,
-                },{
+                }, {
                     asset: 'Culverts',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
@@ -120,7 +118,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                     avg_repair_cost_floor: null,
                     company_id:$scope.selectedCompany,
 
-                },{
+                }, {
                     asset: '2-3 floors',
                     avg_replace_cost: null,
                     avg_repair_cost_roof: null,
@@ -128,7 +126,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                     avg_repair_cost_floor: null,
                     company_id:$scope.selectedCompany,
 
-                },{
+                }, {
                     asset: 'More than 3 floors',
                     avg_replace_cost: null,
                     avg_repair_cost_roof: null,
@@ -144,11 +142,11 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.bsIncomeRailCompany = angular.copy(init_data);
 
     //disable Edit Button
-    $scope.changeDis = function changeDis(){
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.baselineDate){
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -210,7 +208,6 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 
                 $scope.new_company.id = data;
                 if(data) {
-
                     $scope.companies.push($scope.new_company);
                     console.log($scope.new_company);
                 }
@@ -230,32 +227,29 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
         })
     }
 
-    $scope.bsHsDataEdit = function(form)
-    {
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_1',
-              'sector': 'transport_rail',
-              'com_data': {
-              'district': $scope.district,
-              'user_id': $scope.user_id,
-              'bs_date': $scope.baselineDate} }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsIncomeRailCompany = data;
-        })
-
-
+    $scope.editBsData = function(form) {
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'transport_rail',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsIncomeRailCompany = data;
+            })
+        }
     }
 
-    $scope.cancelEdit = function()
-    {
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsIncomeRailCompany = init_data;
     }

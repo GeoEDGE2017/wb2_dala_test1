@@ -526,7 +526,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
                     'incident': $scope.incident,
-                    'user': 4
+                    'user': $scope.user_id
                 }),
             }).success(function(data) {
                 $scope.districts = data;

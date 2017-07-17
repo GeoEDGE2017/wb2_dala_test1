@@ -541,23 +541,25 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
-               contentType: 'application/json; charset=utf-8',
+                contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
                     'table_data': $scope.dlAirTrnspotation,
                     'com_data': {
                         'district_id': $scope.district.district__id,
-                        'incident_id' : $scope.incident,
-                        'user_id': $scope.user_id
+                        'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit':$scope.is_edit,
                     'sector':'transport_air'
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
+                if(response.data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });

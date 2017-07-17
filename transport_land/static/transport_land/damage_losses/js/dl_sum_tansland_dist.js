@@ -23,20 +23,19 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident,
-                'user': $scope.user_id}),
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-
             })
         }
     }
 
     $scope.loadData = function(form) {
-    if($scope.district && $scope.incident){
-        $scope.isLoded = true;
-
+        if($scope.district && $scope.incident) {
+            $scope.isLoded = true;
             $scope.tot_damages = null;
             $scope.is_edit = true;
 
@@ -55,7 +54,6 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
             }).success(function(data) {
                 $scope.data=data;
             })
-
         }
     }
 });

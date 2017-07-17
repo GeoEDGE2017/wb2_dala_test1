@@ -14,7 +14,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.currentBaselineDate = null;
     $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'agri_agrarian': {
             'Table_4': {
@@ -238,14 +238,17 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
     $scope.dlFrstPrductAsets = angular.copy(init_data);
 
-//Get Districts and related baseline data
+    //Get Districts and related baseline data
     $scope.changedValue = function getBsData(selectedValue) {
         console.log('inicdent',$scope.incident);
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";

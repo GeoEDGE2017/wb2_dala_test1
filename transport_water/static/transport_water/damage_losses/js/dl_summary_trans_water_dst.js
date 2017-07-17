@@ -20,7 +20,7 @@ bsHealthStatusApp.controller('dlSumTransWaterDstController', function DlEduDistr
                 url: '/fetch_incident_districts',
                 data: angular.toJson({
                     'incident': $scope.incident,
-                    'user': $scope.user_id
+                    'user': $scope.user_id,
                 }),
             }).success(function(data) {
                 $scope.districts = data;

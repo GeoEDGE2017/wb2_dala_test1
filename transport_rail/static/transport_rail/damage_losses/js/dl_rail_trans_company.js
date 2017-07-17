@@ -168,8 +168,9 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident,
-                 'user': $scope.user_id}),
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";

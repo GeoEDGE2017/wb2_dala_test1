@@ -18,7 +18,8 @@ app.controller('dlSumIrrigationDstrController', ['$scope', '$http', function($sc
                 method: "POST",
                 url: '/fetch_incident_districts',
                 data: angular.toJson({
-                    'incident': $scope.incident
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
                 }),
             }).success(function(data) {
                 $scope.districts = data;

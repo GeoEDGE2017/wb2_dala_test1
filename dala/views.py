@@ -842,7 +842,7 @@ def dl_save_data(request):
                 filter_fields = com_data
                 print "be fore getting model"
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
-                print "before filtering", com_data
+                filter_fields.pop('user_id', None)
                 record_exist = sub_app_session.objects.filter(**filter_fields)
                 print "record_exist", record_exist
 
@@ -912,6 +912,13 @@ def dl_save_data_with_array(request):
 
     filter_fields = {}
 
+    current_user = None
+    try:
+        current_user = com_data['user_id']
+        print 'Current User', current_user
+    except Exception as e:
+        print 'Current User Error'
+
     if not is_edit:
         print "not edit"
 
@@ -947,7 +954,9 @@ def dl_save_data_with_array(request):
                             model_class = apps.get_model(sub_app_name, db_table)
                             model_object = model_class()
 
-                            # assigning common properties to model object
+                            if current_user != None:
+                                model_object.created_user = current_user
+                                model_object.lmu = current_user
                             model_object.created_date = todate
                             model_object.lmd = todate
 

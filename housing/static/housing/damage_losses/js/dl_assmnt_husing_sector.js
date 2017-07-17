@@ -328,15 +328,14 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.dlAssmntHusing = angular.copy(init_data);
 
     //Get Districts and Related baseline data
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident,
-                'user': $scope.user_id,
-                     }),
+                    'incident': $scope.incident,
+                    'user': $scope.user_id,
                 }),
             }).success(function(data) {
                 $scope.districts = data;
@@ -415,7 +414,6 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                         }
                     });
                 }
-
             }, function errorCallback(response) {
 
             });
@@ -435,19 +433,19 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'user': $scope.user_id,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
-                    {
+                if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-               else
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });
@@ -478,7 +476,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     }
 
     //Calculate Total function
-   $scope.calTotTotal=function(){
+    $scope.calTotTotal=function(){
     var finaltotal1 = null;
     var finaltotal2 = null;
     var finaltotal3 = null;
@@ -518,7 +516,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
      }
 
     //Calculate Grand Total
-   $scope.calGrandTotal=function(){
+    $scope.calGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -547,7 +545,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     }
 
     //Calculate Partial Total
-   $scope.calPartialTotTotal=function(){
+    $scope.calPartialTotTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -586,7 +584,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     }
 
     //Calculate Grand Partial Total
-   $scope.calPartialGrandTotal=function(){
+    $scope.calPartialGrandTotal=function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -615,7 +613,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     }
 
     //Edit Data
-   $scope.dlDataEdit = function(form){
+    $scope.dlDataEdit = function(form){
     $scope.is_edit = true;
     $scope.submitted = true;
         $http({
@@ -639,7 +637,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     }
 
     //Cancel Edit
-   $scope.cancelEdit = function(){
+    $scope.cancelEdit = function(){
        $scope.is_edit = false;
         $scope.dlAssmntHusing = init_data;
      }
@@ -650,6 +648,4 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         $scope.is_edit = false;
         $scope.dlAssmntHusing = angular.copy(init_data);
     }
-
-
 }]);

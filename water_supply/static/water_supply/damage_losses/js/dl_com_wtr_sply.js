@@ -128,8 +128,9 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident,
-                'user':$scope.user_id,}),
+                    'incident': $scope.incident,
+                    'user': $scope.user_id,
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";

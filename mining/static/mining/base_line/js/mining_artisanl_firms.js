@@ -96,25 +96,28 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.bsHsDataEdit = function(form) {
+    $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-        $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                'table_name': 'Table_2',
-                'sector':'mining',
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.baselineDate,
-                    'user_id': $scope.user_id,
-                }
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.mnArtisanalFirm = data;
-        })
+        
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector':'mining',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.mnArtisanalFirm = data;
+            })
+        }
     }
 
     $scope.cancelEdit = function() {

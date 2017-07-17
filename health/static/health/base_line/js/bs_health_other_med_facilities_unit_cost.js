@@ -353,7 +353,7 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsDataOtherMedicalFacilities = angular.copy(init_data);
     }

@@ -633,7 +633,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     }
 
 //Get Baseline Data
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",

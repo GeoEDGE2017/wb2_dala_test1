@@ -1,7 +1,7 @@
 //Table 1
 var app= angular.module('bsIncomeRailCompanyApp', ['underscore'])
 
-app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, _) {
+app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, _) {
     $scope.district;
     $scope.baselineDate;
     $scope.selectedCompany;
@@ -15,6 +15,7 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.is_edit_disable = false;
     $scope.user_id;
 
+    //initialize models
     var init_data = {
         'transport_rail': {
             'Table_1': {
@@ -142,9 +143,8 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
 
     $scope.bsIncomeRailCompany = angular.copy(init_data);
 
-    //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    //disable Edit Button
+    $scope.changeDis = function changeDis(){
         if($scope.district && $scope.baselineDate){
             $scope.is_edit_disable = true;
         }
@@ -153,9 +153,8 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
         }
     }
 
-
+    //save data
     $scope.saveBsData = function(form) {
-
         $scope.submitted = true;
         if(form.$valid) {
             var array = $scope.bsIncomeRailCompany.transport_rail.Table_1;
@@ -164,7 +163,6 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
                     model.company_id = parseInt($scope.selectedCompany.id);
                 });
             });
-
             $http({
                 method : 'POST',
                 url : '/bs_save_data',
@@ -174,27 +172,27 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
                     'com_data' : {
                         'district' : $scope.district,
                         'bs_date' : $scope.baselineDate,
+                        'user_id': $scope.user_id
                     },
                     'is_edit' : $scope.is_edit
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                console.log(response);
-                if(response.data == 'False')
-                    {
-                    $("#modal-container-239454").modal('show');
-                    $scope.is_valid_data = false;
-                }
-                else
-                    $("#modal-container-239453").modal('show');
-
-                }, function errorCallback(response) {
-
-                console.log(response);
+                    console.log(response);
+                    if(response.data == 'False'){
+                        $("#modal-container-239454").modal('show');
+                        $scope.is_valid_data = false;
+                    }
+                    else{
+                        $("#modal-container-239453").modal('show');
+                    }
+                },function errorCallback(response) {
+                    console.log(response);
             });
         }
     }
 
+    //save company
     $scope.saveCompany = function(form) {
         if(form.$valid) {
             $http({
@@ -243,7 +241,9 @@ app.controller('bsIncomeRailCompanyController', function($scope, $http, $parse, 
         data: angular.toJson({
               'table_name': 'Table_1',
               'sector': 'transport_rail',
-              'com_data': {'district': $scope.district,
+              'com_data': {
+              'district': $scope.district,
+              'user_id': $scope.user_id,
               'bs_date': $scope.baselineDate} }),
         }).success(function(data) {
 

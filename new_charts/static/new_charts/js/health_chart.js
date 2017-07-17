@@ -299,8 +299,8 @@ app.controller('HealthChartController',function($scope,$http,$parse, _) {
 
 
     }
-   $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlhealthsummarydamagenationwide ? angular.equals({}, $scope.dlhealthsummarydamagenationwide.health.Table_10) : true;
         return isNull;
 
@@ -347,5 +347,8 @@ app.controller('HealthChartController',function($scope,$http,$parse, _) {
         return sum;
     }
 
+    $scope.printDiv = function() {
+        window.print();
+    }
 
  });

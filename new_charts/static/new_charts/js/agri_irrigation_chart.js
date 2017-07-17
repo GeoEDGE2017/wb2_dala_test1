@@ -169,17 +169,21 @@ app.controller('AgriIrrigationChartController',function($scope,$http,$parse, _) 
 
 
         }
-           $scope.checkIfNull = function()
-           {
+
+    $scope.checkIfNull = function(){
                 var isNull = $scope.dlagriIrrigationNat ? angular.equals({}, $scope.dlagriIrrigationNat.agri_irrigation.Table_6) : true;
                 return isNull;
 
            }
 
-            $scope.convertToInt = function(val1,val2,val3){
+    $scope.convertToInt = function(val1,val2,val3){
 
-                var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
-                return sum;
-            }
+        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+        return sum;
+    }
+
+    $scope.printDiv = function() {
+        window.print();
+    }
 
  });

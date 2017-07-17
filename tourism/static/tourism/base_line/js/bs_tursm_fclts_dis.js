@@ -163,6 +163,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                         'com_data': {
                             'district': $scope.district,
                             'bs_date': $scope.bs_date,
+                            'user_id': $scope.user_id,
                         },
                         'is_edit': $scope.is_edit,
                         'sector':'tourism', //check this line
@@ -210,6 +211,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id,
 
                     }
                 }),

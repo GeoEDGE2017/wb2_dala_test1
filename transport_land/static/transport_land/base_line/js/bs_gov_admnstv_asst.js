@@ -1,7 +1,7 @@
 //Table 3
 var app = angular.module('bsGovAdmnstvAssetApp', [])
 
-app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scope, $http) {
+app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data = {};
@@ -11,6 +11,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.is_valid_data = true;
     $scope.user_id;
 
+    //initialize models
     var init_data = {
         'transport_land': {
             'Table_3': {
@@ -69,8 +70,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.bsGovAdmnstvAsset = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis(){
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -79,7 +79,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
-
+    //add enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsGovAdmnstvAsset.transport_land.Table_3[table]);
         var new_row;
@@ -99,6 +99,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         $scope.bsGovAdmnstvAsset.transport_land.Table_3[table].push(new_row);
     }
 
+    //remove enumerate fileds
     $scope.removeItem = function removeItem(table, index) {
         if (table == 'BiaGacLandOequipment') {
             $scope.bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment.splice(index, 1);
@@ -107,6 +108,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
+    //save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -118,52 +120,49 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'transport_land'
                 }),
             }).success(function(data) {
-
                 $scope.bsGovAdmnstvAsset = init_data;
                 $scope.is_edit = false;
-
-                if (data == 'False')
-                   {
+                if (data == 'False'){
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-
                 else
                     $("#modal-container-239453").modal('show');
-
             })
         }
     }
 
-    $scope.bsHsDataEdit = function(form)
-    {
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
+    //edit data
+    $scope.bsHsDataEdit = function(form){
+        $scope.submitted = true;
+        $scope.is_edit = true;
         $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_3',
-              'sector': 'transport_land',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date} }),
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                'table_name': 'Table_3',
+                'sector': 'transport_land',
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                }
+            }),
         }).success(function(data) {
-
-        console.log(data);
-        $scope.bsGovAdmnstvAsset = data;
+            console.log(data);
+            $scope.bsGovAdmnstvAsset = data;
         })
-
-
     }
 
-    $scope.cancelEdit = function()
-    {
+
+    //cancel edit
+    $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsGovAdmnstvAsset = init_data;
     }

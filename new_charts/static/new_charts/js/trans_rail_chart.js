@@ -19,7 +19,6 @@ app.controller('TransRailChartController',function($scope,$http,$parse, _) {
     $scope.total_num_affected = 0;
     $scope.tableDamageLosses = [[],[]];
 
-
     $scope.fetchDlData = function(){
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -81,8 +80,8 @@ app.controller('TransRailChartController',function($scope,$http,$parse, _) {
              $scope.totalLossesSeries = ['Foregone income of Rail Company', 'Cleaning up of debris','Higher Operating costs','Other unexpected expenses'];
 
     }
-   $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlTypeLossRail ? angular.equals({}, $scope.dlTypeLossRail.transport_rail.Table_5) : true;
         return isNull;
 
@@ -93,6 +92,11 @@ app.controller('TransRailChartController',function($scope,$http,$parse, _) {
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
+
+    $scope.printDiv = function() {
+        window.print();
+    }
+
 
 
 

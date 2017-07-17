@@ -334,7 +334,8 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident
+                'incident': $scope.incident,
+                'user': $scope.user_id,
                 }),
             }).success(function(data) {
                 $scope.districts = data;
@@ -433,6 +434,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'user': $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit,
                 }),
@@ -624,6 +626,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         'com_data': {
                 'district_id':  $scope.district.district__id,
                 'incident': $scope.incident,
+                'user_id': $scope.user_id,
               },
                'is_edit':$scope.is_edit
                }),

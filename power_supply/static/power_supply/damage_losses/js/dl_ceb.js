@@ -309,7 +309,9 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                'incident': $scope.incident,
+                 'user': $scope.user_id}),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -330,6 +332,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit,
                 }),

@@ -129,6 +129,7 @@ bsHealthStatusApp.controller('BsHousingDisController', function ($scope, $http) 
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -158,7 +159,8 @@ bsHealthStatusApp.controller('BsHousingDisController', function ($scope, $http) 
                   'table_name': 'Table_1',
                   'sector': 'housing',
                   'com_data': {'district': $scope.district,
-                  'bs_date': $scope.bs_date} }),
+                  'bs_date': $scope.bs_date,
+                  'user_id': $scope.user_id} }),
             }).success(function(data) {
             console.log(data);
             $scope.bsHousingDis = data;

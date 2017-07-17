@@ -104,8 +104,8 @@ app.controller('AgriLivestockChartController',function($scope,$http,$parse, _) {
 
 
     }
-   $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlAgriLivestockSumNat ? angular.equals({},
         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6) : true;
         return isNull;
@@ -116,6 +116,10 @@ app.controller('AgriLivestockChartController',function($scope,$http,$parse, _) {
 
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
+    }
+
+    $scope.printDiv = function() {
+        window.print();
     }
 
  });

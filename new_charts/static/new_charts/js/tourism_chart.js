@@ -17,7 +17,8 @@ app.controller('TourismChartController',function($scope,$http,$parse, _) {
     $scope.grandTotal = 0;
     $scope.total_num_affected = 0;
     $scope.tableDamageLosses = [[],[]];
- $scope.fetchData = function(){
+
+    $scope.fetchData = function(){
 
             if($scope.incident){
             $http({
@@ -74,7 +75,8 @@ app.controller('TourismChartController',function($scope,$http,$parse, _) {
             })
         }
     }
-    {
+$scope.checkIfNull = function()
+{
         var isNull = $scope.dlTourismSumNat ? angular.equals({}, $scope.dlTourismSumNat.tourism.Table_6) : true;
         return isNull;
 
@@ -85,5 +87,10 @@ app.controller('TourismChartController',function($scope,$http,$parse, _) {
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
+
+     $scope.printDiv = function() {
+        window.print();
+    }
+
 
  });

@@ -96,8 +96,8 @@ app.controller('PowerChartController',function($scope,$http,$parse, _) {
 
 
     }
-   $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlPowerSumNat ? angular.equals({}, $scope.dlPowerSumNat.power_supply.Table_6) : true;
         return isNull;
 
@@ -107,6 +107,10 @@ app.controller('PowerChartController',function($scope,$http,$parse, _) {
 
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
+    }
+
+    $scope.printDiv = function() {
+        window.print();
     }
 
  });

@@ -251,7 +251,9 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                'incident': $scope.incident,
+                'user':$scope.user_id}),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -364,6 +366,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
+                    'user_id':$scope.user_id,
 //                    'firm_id':$scope.selectedFirm.id,
 //                    'ownership':$scope.ownership,
 //                    'tou_business':$scope.selectedType.business,

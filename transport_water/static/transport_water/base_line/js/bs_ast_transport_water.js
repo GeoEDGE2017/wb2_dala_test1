@@ -198,6 +198,7 @@ $scope.submitted = true;
     'table_data': ($scope.bsAstTransWater),
     'com_data': {'district': $scope.district,
     'bs_date': $scope.bs_date,
+    'user_id': $scope.user_id
     },
     'is_edit': $scope.is_edit }),
     }).success(function(data) {
@@ -227,7 +228,8 @@ $scope.submitted = true;
     method: "POST",
     url: "/bs_fetch_edit_data",
     data: angular.toJson({'table_name': 'Table_1', 'sector': 'transport_water', 'com_data': {'district': $scope.district,
-          'bs_date': $scope.bs_date} }),
+          'bs_date': $scope.bs_date,
+          'user_id': $scope.user_id} }),
     }).success(function(data) {
 
     console.log(data);

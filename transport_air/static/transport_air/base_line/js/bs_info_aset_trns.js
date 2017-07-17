@@ -1,7 +1,7 @@
 //Table 1
 var app = angular.module('bsInfoAsetTransApp', [])
 
-app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope, $http) {
+app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};
@@ -11,6 +11,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
     $scope.is_valid_data = true;
     $scope.user_id;
 
+    //initialize model
     var init_data = {
         'transport_air': {
             'Table_1': {
@@ -154,9 +155,8 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     $scope.bsInfoAsetTrans = angular.copy(init_data);
 
-       //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    //disable Edit Button
+    $scope.changeDis = function changeDis(){
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -165,7 +165,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-
+    //Add Enumerate Filed
     $scope.insertAsset = function(table) {
         console.log($scope.bsInfoAsetTrans.transport_air.Table_1[table]);
         var new_row;
@@ -204,6 +204,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         $scope.bsInfoAsetTrans.transport_air.Table_1[table].push(new_row);
     }
 
+    //remove Enumerate Filed
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsAstAirAircrafts') {
             $scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirAircrafts.splice(index, 1);
@@ -215,11 +216,11 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
             $scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirSupplies.splice(index, 1);
         }
         else if(table == 'BsAstAirStructures') {
-//            alert('BsAstAirStructures');
             $scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirStructures.splice(index, 1);
         }
     }
 
+    //save Bs Data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
@@ -231,6 +232,7 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'transport_air'
@@ -250,34 +252,37 @@ app.controller('bsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.bsHsDataEdit = function(form)
-    {
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_1',
-              'sector': 'transport_air',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date} }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsInfoAsetTrans = data;
-        })
-
-
+    //edit Bs Data
+    $scope.bsHsDataEdit = function(form){
+        $scope.submitted = true;
+        $scope.is_edit = true;
+         if (form.$valid) {
+            $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                  'table_name': 'Table_1',
+                  'sector': 'transport_air',
+                  'com_data': {
+                      'district': $scope.district,
+                      'bs_date': $scope.bs_date,
+                      'user_id': $scope.user_id
+                      }
+                  }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsInfoAsetTrans = data;
+            })
+        }
     }
 
+    //cancel Bs Data
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsInfoAsetTrans = init_data;
     }
 
-    //Clear Function
+    //clear Function
     $scope.clear = function() {
         console.log("init")
         $scope.is_edit = false;

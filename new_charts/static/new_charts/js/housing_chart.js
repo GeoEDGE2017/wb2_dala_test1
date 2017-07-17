@@ -17,6 +17,7 @@ app.controller('HousingChartController',function($scope,$http,$parse, _) {
     $scope.grandTotal = 0;
     $scope.total_num_affected = 0;
     $scope.tableDamageLosses = [[],[]];
+    $scope.show = false;
 
 
     $scope.fetchDlData = function(){
@@ -116,8 +117,8 @@ app.controller('HousingChartController',function($scope,$http,$parse, _) {
 
 
     }
-   $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlHousingSumNat ? angular.equals({}, $scope.dlHousingSumNat.housing.Table_6) : true;
         return isNull;
 
@@ -127,6 +128,10 @@ app.controller('HousingChartController',function($scope,$http,$parse, _) {
 
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
+    }
+
+    $scope.printDiv = function() {
+        window.print();
     }
 
  });

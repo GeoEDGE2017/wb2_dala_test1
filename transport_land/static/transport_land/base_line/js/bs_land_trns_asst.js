@@ -120,15 +120,14 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     $scope.bsLandTrnsAsst = angular.copy(init_data);
 
     //disable Edit Button
-    $scope.changeDis = function changeDis(){
-        if($scope.district && $scope.bs_date){
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
         else{
             $scope.is_edit_disable = false;
         }
     }
-
 
     //add enumerate fields
     $scope.insertAsset = function(table) {
@@ -173,33 +172,34 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
             }).success(function(data) {
                 $scope.bsLandTrnsAsst = init_data;
                 $scope.is_edit = false;
-                if (data == 'False')
-                    {
+                if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             })
         }
     }
 
     //edit data
-    $scope.bsHsDataEdit = function(form){
+    $scope.bsHsDataEdit = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
+
         $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-        'table_name': 'Table_2',
-        'sector': 'transport_land',
-        'com_data': {
-            'district': $scope.district,
-            'bs_date': $scope.bs_date,
-            'user_id': $scope.user_id
-            }
-        }),
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                'table_name': 'Table_2',
+                'sector': 'transport_land',
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                }
+            }),
         }).success(function(data) {
             console.log(data);
             $scope.bsLandTrnsAsst = data;
@@ -207,7 +207,7 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     }
 
     //cancel edit
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = init_data;
     }
@@ -218,5 +218,4 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = angular.copy(init_data);
     }
-
 }]);

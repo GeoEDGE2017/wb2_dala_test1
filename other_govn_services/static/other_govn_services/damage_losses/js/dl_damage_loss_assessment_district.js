@@ -1,7 +1,6 @@
 var app = angular.module('dlAssessmentDistrictApp', ['underscore']);
 
 app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
-
     $scope.district;
     $scope.incident;
     $scope.bs_data={};
@@ -9,7 +8,6 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.Districts=[];
-
     $scope.dlAssessmentDistrictSys = null;
     $scope.user_id;
 
@@ -147,34 +145,29 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
          $scope.dlAssessmentDistrictSys = init_data;
     }
 
-    $scope.fetchDlData = function(){
-    if($scope.incident && $scope.district){
-    $http({
-    method: "POST",
-    url: '/other_govn_services/damage_losses/dl_fetch_district_disagtn',
-    data: angular.toJson({
-    'table_name':  'Table_3',
-    'sector': 'other_govn_services',
-    'com_data': {
-            'incident': $scope.incident,
-            'district': $scope.district.district__id,
-          },
-           }),
-    }).success(function(data) {
-       $scope.districtData = data;
-       console.log('load ', data);
-
-    })
+    $scope.fetchDlData = function() {
+        if($scope.incident && $scope.district){
+            $http({
+                method: "POST",
+                url: '/other_govn_services/damage_losses/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':  'Table_3',
+                    'sector': 'other_govn_services',
+                    'com_data': {
+                        'incident': $scope.incident,
+                        'district': $scope.district.district__id,
+                    },
+                }),
+            }).success(function(data) {
+               $scope.districtData = data;
+               console.log('load ', data);
+            })
+        }
     }
 
-}
-
     $scope.getTotal = function(key) {
-
         $scope.finaltotalprivate = 0;
-
         var totalDamages = 0;
-
         totalDamages =  totalDamages + ($scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0] ?
                           ($scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0].damages ?
                          $scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0].damages : 0):0);
@@ -183,10 +176,7 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
 
         var model = $parse(totaldpubstring);
         model.assign($scope, totalDamages);
-
-}
-
-
+    }
 })
 
 

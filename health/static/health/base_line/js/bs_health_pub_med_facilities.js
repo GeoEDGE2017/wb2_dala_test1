@@ -114,7 +114,8 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                     'table_data': $scope.bsDataMedicalFacilities,
                     'com_data': {
                         'district': $scope.district,
-                        'bs_date': $scope.baselineDate
+                        'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -149,10 +150,10 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
                     }
                 }),
             }).success(function(data) {
-
                 console.log(data);
                 $scope.bsDataMedicalFacilities = data;
             })
@@ -167,10 +168,8 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsDataMedicalFacilities = angular.copy(init_data);
     }
-
-
 }])

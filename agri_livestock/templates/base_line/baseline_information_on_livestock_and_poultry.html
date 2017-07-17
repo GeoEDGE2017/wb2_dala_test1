@@ -2,12 +2,9 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-
-    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-
-  });
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsLivestockPoultryApp" ng-controller="bsLivestockPoultryController">
@@ -103,19 +100,21 @@
                                 Name Of the Organization
                             </td>
                             <td colspan="4">
-                            <select ng-options="organization as organization.name for organization in organizations track by organization.id"
-                                    name="selectedOrganization" id="ccyear" ng-model="selectedOrganization" class="form-control" required>
-                                <option value="" selected>Select Organization</option>
-                            </select>
-                        </td>
+                                <select ng-options="organization as organization.name for organization in organizations track by organization.id"
+                                        name="selectedOrganization" id="ccyear" ng-model="selectedOrganization" class="form-control" required>
+                                    <option value="" selected>Select Organization</option>
+                                </select>
+                            </td>
                             <td width="136" height="34" >
                                 <a ng-click="is_edit = false ; new_organization.id = null;new_organization.name = null;new_organization.ownership = null;"
                                    href="#modal-container-469842" role="button" data-toggle="modal"
                                    class="open-modal-container-469842 btn btn-sm btn-block btn-primary btn-info">Add</a>
                             </td>
                             <td width="143" height="34" >
-                                <a  ng-click="is_edit = true" href="#modal-container-469843" role="button" data-toggle="modal"
-                                   class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
+                                <!--<a  ng-click="is_edit = true" href="#modal-container-469843" role="button" data-toggle="modal"-->
+                                   <!--class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
+                                <a id="modal-469840" href="#modal-container-0002" role="button" data-toggle="modal"
+                                    class="btn btn-sm btn-warning">Edit*</a>
                             </td>
                             <td colspan="7" width="441" height="34">
                                 <br/>
@@ -123,13 +122,11 @@
                         </tr>
                         <tr>
                             <td class="trhead1">
-                            Ownership
-                        </td>
-
-                        <td colspan="15">
-                            <span ng-bind="selectedOrganization.ownership"></span>
-
-                        </td>
+                                Ownership
+                            </td>
+                            <td colspan="15">
+                                <span ng-bind="selectedOrganization.ownership"></span>
+                            </td>
                         </tr>
                         <tr class="trheadc1" height="19">
                             <td colspan="13" width="1225" height="19">
@@ -359,7 +356,7 @@
                     <br>
                     <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Production Assets Informations</a>
-                            <br>
+                    <br>
                 </div>
                 <div class="tab-pane" id="step2">
                     <table class="table table-bordered">
@@ -628,10 +625,9 @@
                             </td>
 
                         </tr>
-
                         </tbody>
                     </table>
-</div>
+                    </div>
                     <br>
                     <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab">
                         <span class="glyphicon glyphicon-arrow-right"></span> Fill Average Value of Production per Year Informations
@@ -802,49 +798,94 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modal-container-0002" role="dialog" style="width:50%;margin:0 auto;"
+        <!--<div class="modal fade" id="modal-container-0002" role="dialog" style="width:50%;margin:0 auto;"-->
+             <!--aria-hidden="true">-->
+            <!--<div class="modal-dialog" style="width:50%;">-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="modal-header">-->
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+                            <!--×-->
+                        <!--</button>-->
+                        <!--<h5 class="modal-title">-->
+                            <!--<span id="bookId"> </span>-->
+                        <!--</h5>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body">-->
+                        <!--&lt;!&ndash; Text input&ndash;&gt;-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-md-2 control-label" for="textinput">Name</label>-->
+                            <!--<div class="col-md-10">-->
+                                <!--<input id="textinput" name="textinput" placeholder="" ng-model="selectedOrganization.name" type="text"-->
+                                       <!--class="form-control input-md">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                         <!--<div class="clearfix"></div>-->
+                        <!--<div class="form-group" style="margin-top:5px;">-->
+                            <!--<label class="col-md-4 control-label" for="textinput">Ownership</label>-->
+                            <!--<div class="col-md-5">-->
+                                <!--<select id="selectbasic" name="ownership" ng-model='selectedOrganization.ownership'-->
+                                        <!--class="form-control"-->
+                                        <!--style="font-weight:400;" required>-->
+
+                                    <!--<option value="" selected="true">Select Ownership</option>-->
+                                    <!--<option value="Public">Public</option>-->
+                                    <!--<option value="Private">Private</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<br><br>-->
+                    <!--<div class="modal-footer">-->
+                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">-->
+                            <!--Close-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-primary" ng-click="saveOrganization()" >-->
+                            <!--Save changes-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!-- edit model -->
+        <div class="modal fade" id="modal-container-0002" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
-            <div class="modal-dialog" style="width:50%;">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
-                        <h5 class="modal-title">
-                            <span id="bookId"> </span>
-                        </h5>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Edit Organization
+                        </h4>
                     </div>
                     <div class="modal-body">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
-                                <input id="textinput" name="textinput" placeholder="" ng-model="selectedOrganization.name" type="text"
-                                       class="form-control input-md">
+                            <label class="col-md-4 control-label" for="textinput">Firm Name</label>
+                            <div class="col-md-5">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md" ng-model="editedOrganizationName">
                             </div>
                         </div>
-                         <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                         <div class="form-group" style="margin-top:5px;">
                             <label class="col-md-4 control-label" for="textinput">Ownership</label>
                             <div class="col-md-5">
-                                <select id="selectbasic" name="ownership" ng-model='selectedOrganization.ownership'
-                                        class="form-control"
+                                <select id="selectbasic" name="ownership" ng-model='ownership' class="form-control"
                                         style="font-weight:400;" required>
-
                                     <option value="" selected="true">Select Ownership</option>
                                     <option value="Public">Public</option>
                                     <option value="Private">Private</option>
                                 </select>
                             </div>
                         </div>
+                        <br>
                     </div>
-                    <br><br>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary" ng-click="saveOrganization()" >
-                            Save changes
+                        <button id="button2id" ng-click="saveEditOrganization()" name="button2id" class="btn btn-success">
+                            Save
                         </button>
                     </div>
                 </div>

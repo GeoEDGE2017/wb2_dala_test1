@@ -17,7 +17,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.currentBaselineDate = null;
     $scope.user_id;
 
-    //Initialize Data
+    //initialize Data
     var init_data = {
         'housing': {
             'Table_3': {
@@ -336,6 +336,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                 data: angular.toJson({
                 'incident': $scope.incident,
                 'user': $scope.user_id,
+                     }),
                 }),
             }).success(function(data) {
                 $scope.districts = data;

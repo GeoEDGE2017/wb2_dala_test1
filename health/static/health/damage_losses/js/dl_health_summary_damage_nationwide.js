@@ -2,33 +2,33 @@
 var app = angular.module('dlHealthSummaryDamageNationwideApp', []);
 
 app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',function ($scope,$http) {
- $scope.incident;
- $scope.dl_data={};
- $scope.is_edit = false;
- $scope.submitted = false;
- $scope.is_valid_data = true;
- $scope.user_id;
+    $scope.incident;
+    $scope.dl_data={};
+    $scope.is_edit = false;
+    $scope.submitted = false;
+    $scope.is_valid_data = true;
+    $scope.user_id;
 
-  // edit relevant damage_losses data
-    $scope.dlDataEdit = function(form){
-    $scope.is_edit = true;
-    $scope.submitted = true;
-    if(form.$valid){
-        $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-            'table_name':  'Table_10',
-            'sector' : 'health',
-            'com_data': {
-               'incident': $scope.incident,
-            },
-             'is_edit':$scope.is_edit
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.dlhealthsummarydamagenationwide = data;
-           })
+    // edit relevant damage_losses data
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid){
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_10',
+                    'sector' : 'health',
+                    'com_data': {
+                       'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlhealthsummarydamagenationwide = data;
+            })
         }
     }
 

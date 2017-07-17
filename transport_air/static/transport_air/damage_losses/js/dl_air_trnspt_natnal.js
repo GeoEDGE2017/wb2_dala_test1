@@ -20,37 +20,34 @@ app.controller("DlSummeryTANatController", ['$scope','$http',function ($scope,$h
     $scope.total_num_affected = 0;
     $scope.user_id;
 
-    //fetch data
-    $scope.fetchDlData = function(){
-        if($scope.incident){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        console.log($scope.incident);
-        $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_5',
-            'sector': 'transport_air',
-            'com_data': {
-                'incident': $scope.incident,
-            },
-            }),
-        }).success(function(data) {
-            console.log('load ', data);
-            $scope.dlAirTransSumNat = data;
+    $scope.fetchDlData = function() {
+        if($scope.incident) {
+            $scope.is_edit = true;
+            $scope.submitted = true;
+            console.log($scope.incident);
+            $http({
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':'Table_5',
+                    'sector': 'transport_air',
+                    'com_data': {
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                console.log('load ', data);
+                $scope.dlAirTransSumNat = data;
             })
         }
-
     }
 
-    //check null
-    $scope.checkIfNull = function(){
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlAirTransSumNat ? angular.equals({}, $scope.dlAirTransSumNat.transport_air.Table_5) : true;
         return isNull;
-   }
+    }
 
-    //get total
+    //get total function
     $scope.getTotal = function($index,key) {
         $scope.finaltotalprivate = 0;
 
@@ -83,5 +80,4 @@ app.controller("DlSummeryTANatController", ['$scope','$http',function ($scope,$h
         $scope.finaltotalprivate  = $scope.totaldpvt+ $scope.totalyear1pvt + $scope.totalyear2pvt;
 
     }
-
  }])

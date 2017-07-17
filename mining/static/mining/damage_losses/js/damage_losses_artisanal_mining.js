@@ -252,7 +252,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
         }
     }
 
-    $scope.getbsData=function getbsData(){
+    $scope.getbsData = function getbsData(){
     if($scope.incident && $scope.district){
               $http({
                 method: 'POST',
@@ -602,6 +602,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
+                    'user_id': $scope.user_id,
                 },
                 'is_edit': $scope.is_edit
             }),

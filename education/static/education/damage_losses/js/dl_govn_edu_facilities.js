@@ -658,14 +658,16 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
         }
     }
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
+            console.log($scope.user_id);
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
-                'incident': $scope.incident,
-                'user': 48}),
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -724,6 +726,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit':$scope.is_edit
                }),

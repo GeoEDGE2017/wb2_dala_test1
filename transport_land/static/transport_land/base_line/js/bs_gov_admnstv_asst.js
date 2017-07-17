@@ -70,11 +70,11 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.bsGovAdmnstvAsset = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis(){
-        if($scope.district && $scope.bs_date){
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -128,41 +128,42 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
             }).success(function(data) {
                 $scope.bsGovAdmnstvAsset = init_data;
                 $scope.is_edit = false;
-                if (data == 'False'){
+                if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             })
         }
     }
 
-    //edit data
-    $scope.bsHsDataEdit = function(form){
+    // edit data
+    $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
-        $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                'table_name': 'Table_3',
-                'sector': 'transport_land',
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.bs_date,
-                    'user_id': $scope.user_id
-                }
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.bsGovAdmnstvAsset = data;
-        })
+        if (form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'transport_land',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsGovAdmnstvAsset = data;
+            })
+        }
     }
 
-
     //cancel edit
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsGovAdmnstvAsset = init_data;
     }
@@ -173,5 +174,4 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         $scope.is_edit = false;
         $scope.bsGovAdmnstvAsset = angular.copy(init_data);
     }
-
 }]);

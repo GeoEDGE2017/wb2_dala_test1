@@ -126,129 +126,6 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
 
     $scope.bsEduFacilities = angular.copy(init_data);
 
-//    $scope.getTotal = function(model, property) {
-//
-//        var cumulativeschool = 0;
-//        var cumulativeoffice = 0;
-//        var cumulativeTot = null;
-//        var male = 0;
-//        var female = 0;
-//
-//        if(model == 'BefPubSchools') {
-//            var arrayschool = $scope.bsEduFacilities.education.Table_1.BefPubSchools;
-//            var sums = _.map(arrayschool, function(obj) {
-//                cumulativeschool += obj.total_number;
-//                return cumulativeschool;
-//            });
-//
-//            var malesum = _.map(arrayschool, function(obj) {
-//                male += obj.avg_male * obj.total_number;
-//                console.log('male',male);
-//                return male;
-//            });
-//
-//            var femalesum = _.map(arrayschool, function(obj) {
-//                female += obj.avg_female * obj.total_number;
-//                return female;
-//            });
-//
-//            var the_stringmale = 'TotMale';
-//            var modelmale = $parse(the_stringmale);
-//            modelmale.assign($scope, male);
-//
-//            var the_stringfemale = 'TotFemale';
-//            var modelfemale = $parse(the_stringfemale);
-//            modelfemale.assign($scope, female);
-//        }
-//        if(model == 'BefPubOffices') {
-//            var arrayoffice = $scope.bsEduFacilities.education.Table_1.BefPubOffices;
-//            var sumsoffce = _.map(arrayoffice, function(obj) {
-//                cumulativeoffice += obj.total_number;
-//                return cumulativeoffice;
-//            });
-//        }
-//
-//        cumulativeTot = cumulativeschool + cumulativeoffice ;
-//        console.log('test',cumulativeschool);
-//
-//        var the_string = 'facilitiesTot';
-//        var model = $parse(the_string);
-//        model.assign($scope, cumulativeTot);
-//    }
-//
-//    $scope.getPrivateTot = function(model,property) {
-//        if (model == 'BefPvt') {
-//            var cumalativePrivatetot = null;
-//            var cumalativePrivateMale = null;
-//            var cumalativePrivatefemale = null;
-//
-//            var arrayPrivate = $scope.bsEduFacilities.education.Table_1.BefPvt;
-//
-//            var sumsprivatetot = _.map(arrayPrivate, function(obj) {
-//                cumalativePrivatetot += obj.total_number;
-//                cumalativePrivateMale += obj.avg_male * obj.total_number;
-//                cumalativePrivatefemale += obj.avg_female * obj.total_number;
-//                return cumalativePrivatetot;
-//            });
-//
-//            var the_string_private_tot ='BefPvt_total_number' ;
-//            var modelPrivateTot = $parse(the_string_private_tot);
-//            modelPrivateTot.assign($scope, cumalativePrivatetot);
-////            console.log(cumalativePrivatetot);
-//
-//            var the_string_private_male ='BefPvt_avg_male' ;
-//            var modelPrivateMale = $parse(the_string_private_male);
-//            modelPrivateMale.assign($scope, cumalativePrivateMale);
-////            console.log(cumalativePrivateMale);
-//
-//            var the_string_private_female ='BefPvt_avg_female' ;
-//            var modelPrivateFemale = $parse(the_string_private_female);
-//            modelPrivateFemale.assign($scope, cumalativePrivatefemale);
-////            console.log(cumalativePrivatefemale);
-//        }
-//    }
-//
-//    $scope.pvtTotalNumber = function() {
-//        var total_number = 0;
-//        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPvt, function(value, key) {
-//            console.log(value, key);
-//            total_number = total_number + value;
-//        })
-//        return total_number;
-//    }
-//
-//    $scope.totTest = function(model, property) {
-//        if (model == 'BefPvt') {
-//            if(property == 'total_number') {
-//                var total_number = 0;
-//                angular.forEach($scope.bsEduFacilities.education.Table_1.BefPvt, function(value, key) {
-//                    console.log(value, key);
-//                    if(value == property) {
-//                        alert(value, '-> : ' ,key);
-//                        total_number = total_number + value;
-//                    }
-//                })
-//
-//                bsEduFacilities.education.Table_1.BefPvt[5].total_number = total_number;
-//            }
-//            else if(property == 'avg_male') {
-//                var avg_male = 0;
-//                angular.forEach($scope.bsEduFacilities.education.Table_1.BefPvt, function(value, key) {
-//                    console.log(value, key);
-//                    if(value == property) {
-//                        alert(value, '-> : ' ,key);
-//                        avg_male = avg_male + value;
-//                    }
-//                })
-//
-//                bsEduFacilities.education.Table_1.BefPvt[5].avg_male = avg_male;
-//            }
-//            else if(property == 'avg_female') {
-//                var cumalativePrivatefemale = bsEduFacilities.education.Table_1.BefPvt[5].avg_female;
-//            }
-//        }
-//    }
-
     //Edit Data
     $scope.editBsData = function(form) {
         $scope.submitted = true;
@@ -264,6 +141,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
                     }
                 }),
             }).success(function(data) {

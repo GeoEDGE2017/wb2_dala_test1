@@ -613,6 +613,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                     'com_data': {
                         'district_id':  $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit
                 }),
@@ -712,33 +713,34 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     }
 
     //Edit data
-    $scope.dlDataEdit = function(form){
-       $scope.is_edit = true;
-       $scope.submitted = true;
-        if(form.$valid){
-        $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-            'table_name':  'Table_6',
-            'sector':'health',
-            'com_data': {
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                'table_name':  'Table_6',
+                'sector':'health',
+                'com_data': {
                    'district':  $scope.district.district__id,
-                   'incident': $scope.incident,
-                  },
+                    'incident': $scope.incident,
+                    'user_id': $scope.user_id,
+                },
                    'is_edit':$scope.is_edit
-              }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.dlDataHealthDamagelostOtherMedicalFacilities = data;
+               }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlDataHealthDamagelostOtherMedicalFacilities = data;
             })
         }
     }
 
     //Cancel Data
     $scope.cancelEdit = function(){
-         $scope.is_edit = false;
-         $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
+        $scope.is_edit = false;
+        $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
     }
 
     //Clear Function
@@ -746,7 +748,6 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
         console.log("init")
         $scope.is_edit = false;
         $scope.dlDataHealthDamagelostOtherMedicalFacilities = angular.copy(init_data);
-
     }
 }])
 

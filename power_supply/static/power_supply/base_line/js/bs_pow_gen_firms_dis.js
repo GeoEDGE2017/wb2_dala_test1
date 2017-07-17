@@ -12,18 +12,17 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
 
 //Initialize model
     var init_data = {
-    'power_supply':{
-        'Table_1': {
-             'BsPwGenFirm':[],
-        }
+        'power_supply':{
+            'Table_1': {
+                 'BsPwGenFirm':[],
+            }
         }
     }
 
  $scope.bsPowGenFrimDis = angular.copy(init_data);
 
 //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }

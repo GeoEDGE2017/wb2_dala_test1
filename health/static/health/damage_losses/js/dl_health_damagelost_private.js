@@ -95,6 +95,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'private_clinic': $scope.clinic,
+                    'user_id': $scope.user_id,
                 },
                 'is_edit':$scope.is_edit
             }),
@@ -204,8 +205,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
-               }),
+                }),
             }).success(function(data) {
                 $scope.dlHealthDamagelostPrivateSys = data;
                 console.log($scope.dlHealthDamagelostPrivateSys);
@@ -231,6 +233,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                }),

@@ -380,6 +380,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
             'table_data': ($scope.bsRparplCosAssts),
             'com_data': {'district': $scope.district,
             'bs_date': $scope.bs_date,
+            'user_id' : $scope.user_id,
             },
             'is_edit': $scope.is_edit }),
             }).success(function(data) {

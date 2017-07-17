@@ -301,23 +301,22 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if (response.data == 'False'){
-                     $("#modal-container-239454").modal('show');
-                        $scope.is_valid_data = false;
-                    }
-                else
-                {
+//                $scope.bsDataOtherMedicalFacilities = init_data;
+//                $scope.is_edit = false;
+                if (response.data == 'False') {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
+                else {
                     $("#modal-container-239453").modal('show');
                 }
-
-
             }, function errorCallback(data) {
-
                 console.log(data);
             });
         }
@@ -358,5 +357,4 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
         $scope.is_edit = false;
         $scope.bsDataOtherMedicalFacilities = angular.copy(init_data);
     }
-
 }])

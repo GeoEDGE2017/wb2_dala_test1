@@ -82,7 +82,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
-            alert("222");
             var array = $scope.mnIndusMinFirm.mining.Table_1;
             var details = _.map(array, function(model_array) {
                 _.map(model_array, function(model) {
@@ -102,6 +101,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
                         'district': $scope.district,
                         'bs_date': $scope.baselineDate,
                         'firm_id': $scope.selectedFirm.id,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -183,6 +183,8 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
                 data: angular.toJson({
                     'firm_name': $scope.editedFirmName,
                     'firm_id' : $scope.selectedFirm.id,
+                    'ownership': $scope.ownership,
+                    'user_id': $scope.user_id,
                 }),
             }).success(function(data) {
                 console.log(data);
@@ -214,7 +216,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.mnIndusMinFirm = angular.copy(init_data);
     }

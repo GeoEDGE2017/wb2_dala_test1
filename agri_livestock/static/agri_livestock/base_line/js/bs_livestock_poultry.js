@@ -7,13 +7,14 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.bs_data={};
     $scope.is_edit = false;
     $scope.selectedOrganization;
+    $scope.editedOrganizationName;
     $scope.new_organization = {id: null, name: null, ownership: null, district_id: null};
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.organizations = [];
     $scope.user_id;
 
-//Initialize data
+    //Initialize data
     var init_data = {
         'agri_livestock': {
             'Table_2': {
@@ -309,7 +310,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
 
     $scope.bsLivestockPoultry = angular.copy(init_data);
 
-//Add Enumerate Fileds
+    //Add Enumerate Fileds
     $scope.insertAsset = function(table) {
         console.log($scope.bsLivestockPoultry.agri_livestock.Table_2[table]);
         var new_row;
@@ -402,7 +403,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         $scope.bsLivestockPoultry.agri_livestock.Table_2[table].push(new_row);
     }
 
-//Remove Enumerate Fileds
+    //Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BlpAnmLivestock') {
             $scope.bsLivestockPoultry.agri_livestock.Table_2.BlpAnmLivestock.splice(index, 1);
@@ -427,15 +428,15 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         }
     }
 
-//Save data
+    //Save data
     $scope.saveBsData = function() {
-      $scope.submitted = true;
-      var array = $scope.bsLivestockPoultry.agri_livestock.Table_2;
-      var details = _.map(array, function(model_array) {
-      _.map(model_array, function(model) {
-          model.organization_id = $scope.selectedOrganization.id;
-      });
-      })
+        $scope.submitted = true;
+        var array = $scope.bsLivestockPoultry.agri_livestock.Table_2;
+        var details = _.map(array, function(model_array) {
+            _.map(model_array, function(model) {
+                model.organization_id = $scope.selectedOrganization.id;
+            });
+        })
 
              $http({
             method: 'POST',
@@ -446,7 +447,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                 'com_data': {
                     'district': $scope.district,
                     'bs_date': $scope.bs_date,
-
+                    'user_id': $scope.user_id,
                 },
                 'is_edit': $scope.is_edit
             }),
@@ -462,7 +463,7 @@ $("#modal-container-239454").modal('show');
         });
 }
 
-//Save Organization
+    //Save Organization
     $scope.saveOrganization = function(form){
 
     console.log($scope.new_organization);
@@ -494,7 +495,32 @@ $("#modal-container-239454").modal('show');
 
 }
 
-//Fetch Organizations
+    $scope.saveEditOrganization = function(form) {
+        console.log($scope.editedOrganizationName);
+        if(!angular.isUndefined($scope.editedOrganizationName) || $scope.editedOrganizationName === null) {
+            console.log('2');
+            $http({
+                method: "POST",
+                url: "/edit_organization",
+                data: angular.toJson({
+                    'firm_name': $scope.editedOrganizationName,
+                    'firm_id' : $scope.selectedOrganization.id,
+                    'ownership': $scope.ownership,
+                    'user_id': $scope.user_id,
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.editedOrganizationName = null;
+                $scope.fetchOrganization();
+                $("#modal-container-0002").modal('hide');
+            })
+        }
+        else {
+            alert('@@@');
+        }
+    }
+
+    //Fetch Organizations
     $scope.fetchOrganization = function() {
         $scope.new_organization.district_id = $scope.district;
 
@@ -683,7 +709,7 @@ $("#modal-container-239454").modal('show');
     }
 
     //Cancel Edit
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsLivestockPoultry = init_data;
     }
@@ -694,5 +720,4 @@ $("#modal-container-239454").modal('show');
         $scope.is_edit = false;
         $scope.bsLivestockPoultry = angular.copy(init_data);
     }
-
 }]);

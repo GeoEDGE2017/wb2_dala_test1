@@ -5,19 +5,21 @@
 <main class="main" ng-app="bsGovAdmnstvAssetApp" ng-controller="BsGovAdmnstvAssetController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3. Government Administrative Assets
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
-
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content" ng-form name="form_bs_gov_admin_aset">
             <div class="tab-pane active" id="step1">
@@ -234,7 +236,7 @@
                 <div class="pull-right">
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData()" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -247,10 +249,9 @@
                         Cancel Edit
                     </button>
                     <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_gov_admin_aset)"
-
-                    class="btn btn-success">Submit
+                        class="btn btn-success">
+                        Submit
                     </button>
-
                 </div>
                 <br><br>
             </div>
@@ -293,9 +294,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>

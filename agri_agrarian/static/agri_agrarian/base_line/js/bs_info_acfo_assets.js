@@ -361,23 +361,21 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                 $scope.bsInfoAcfoAssets = init_data;
                 $scope.is_edit = false;
 
-                if (data == 'False'){
+                if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-
-                else
+                else {
                     $("#modal-container-239453").modal('show');
-
+                }
             })
         }
     }
 
 //Edit data
-    $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
+    $scope.editBsData = function(form){
+        $scope.submitted = true;
+        $scope.is_edit = true;
         $http({
         method: "POST",
         url: "/bs_fetch_edit_data",
@@ -385,7 +383,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
               'table_name': 'Table_2',
               'sector': 'agri_agrarian',
               'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date } }),
+              'bs_date': $scope.bs_date} }),
         }).success(function(data) {
 
         console.log(data);

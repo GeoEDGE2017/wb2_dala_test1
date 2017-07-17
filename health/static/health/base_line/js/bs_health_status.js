@@ -23,44 +23,38 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     elderly: null,
                 }],
                 'BhsComDiseases': [{
-                        com_disease: 'Diarrhea',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    },
-                    {
-                        com_disease: 'Dengue',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    }
-                ],
+                    com_disease: 'Diarrhea',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }, {
+                    com_disease: 'Dengue',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }],
                 'BhsVi': [{
-                        vital_indicators: 'Under-5 Mortality Rate',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    },
-                    {
-                        vital_indicators: 'Mortality Rate',
-                        male: null,
-                        female: null,
-                        children: null,
-                        elderly: null,
-                    }
-                ],
+                    vital_indicators: 'Under-5 Mortality Rate',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }, {
+                    vital_indicators: 'Mortality Rate',
+                    male: null,
+                    female: null,
+                    children: null,
+                    elderly: null,
+                }],
                 'BhsOi': [{
-                        other_indicators: 'Crude Birth Rate',
-                        unit_measure: null
-                    },
-                    {
-                        other_indicators: 'Maternal Mortality Rate',
-                        unit_measure: null
-                    }
-                ]
+                    other_indicators: 'Crude Birth Rate',
+                    unit_measure: null
+                }, {
+                    other_indicators: 'Maternal Mortality Rate',
+                    unit_measure: null
+                }]
             }
         }
     }
@@ -79,16 +73,19 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
                 $scope.dataHealthStatus = init_data;
                 $scope.is_edit = false;
-                if (data == 'False')
+                if (data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             })
         }
     }
@@ -101,7 +98,8 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 other_indicators: '',
                 unit_measure: null
             }
-        } else if (table == 'BhsComDiseases') {
+        }
+        else if (table == 'BhsComDiseases') {
             new_row = {
                 com_disease: '',
                 male: null,
@@ -109,7 +107,8 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 children: null,
                 elderly: null,
             }
-        } else if (table == 'BhsVi') {
+        }
+        else if (table == 'BhsVi') {
             new_row = {
                 vital_indicators: '',
                 male: null,
@@ -120,7 +119,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
         }
 
         $scope.dataHealthStatus.health.Table_1[table].push(new_row);
-
     }
 
     //Edit Data
@@ -136,7 +134,8 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                     'sector': 'health',
                     'com_data': {
                         'district': $scope.district,
-                        'bs_date': $scope.bs_date
+                        'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id,
                     }
                 }),
             }).success(function(data) {
@@ -144,7 +143,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 $scope.dataHealthStatus = data;
             })
         }
-
     }
 
     //Cancel Edit
@@ -155,12 +153,15 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     //Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
-        if (table == 'BhsComDiseases')
+        if (table == 'BhsComDiseases') {
             $scope.dataHealthStatus.health.Table_1.BhsComDiseases.splice(index, 1);
-        else if (table == 'BhsVi')
+        }
+        else if (table == 'BhsVi') {
             $scope.dataHealthStatus.health.Table_1.BhsVi.splice(index, 1);
-        else if (table == 'BhsOi')
+        }
+        else if (table == 'BhsOi') {
             $scope.dataHealthStatus.health.Table_1.BhsOi.splice(index, 1);
+        }
     }
 
     //Clear Function
@@ -168,7 +169,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
         console.log("init")
         $scope.is_edit = false;
         $scope.dataHealthStatus = angular.copy(init_data);
-
     }
 
     $scope.getLatestBsDate = function() {

@@ -87,11 +87,11 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
     $scope.bsCostsHusngUnits = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis(){
-        if($scope.district && $scope.bs_date){
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -116,19 +116,19 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
                 $scope.bsCostsHusngUnits = init_data;
                 $scope.is_edit = false;
 
-                if(data == 'False')
-                    {
+                if(data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             })
         }
     }
 
     //Edit Data
-    $scope.bsHsDataEdit = function(form){
+    $scope.editBsData = function(form){
         $scope.submitted = true;
            $scope.is_edit = true;
             $http({

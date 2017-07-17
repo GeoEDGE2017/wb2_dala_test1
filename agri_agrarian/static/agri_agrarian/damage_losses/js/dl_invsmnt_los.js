@@ -189,7 +189,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.dlInvsmntLos = angular.copy(init_data);
 
 //Get Districts and Related Baseline Data
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -211,6 +211,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'user_id' : $scope.user_id,
                     },
                     'table_name': 'Table_2',
                     'sector':'agri_agrarian',

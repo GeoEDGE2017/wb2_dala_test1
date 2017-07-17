@@ -247,6 +247,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'agri_fisheries'
@@ -281,7 +282,9 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
               'table_name': 'Table_2',
               'sector': 'agri_fisheries',
               'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date } }),
+              'bs_date': $scope.bs_date,
+               'user_id' : $scope.user_id,
+               } }),
         }).success(function(data) {
 
         console.log(data);

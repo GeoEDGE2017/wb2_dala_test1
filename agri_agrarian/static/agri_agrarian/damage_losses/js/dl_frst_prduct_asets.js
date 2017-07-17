@@ -239,7 +239,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.dlFrstPrductAsets = angular.copy(init_data);
 
 //Get Districts and related baseline data
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         console.log('inicdent',$scope.incident);
         if($scope.incident && selectedValue) {
             $http({

@@ -37,7 +37,6 @@
     <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
     <script src='{% static "dashboard/js/dashboard.js" %}'></script>
 
-
     <!--agri_livestock-->
     {% if module == 'agri_livestock' %}
     <script src='{% static "agri_livestock/base_line/js/bs_livestock_poultry_dst.js" %}'></script>
@@ -411,6 +410,7 @@ td[comma-value]:before{
 td[comma-value] input{
     color:#fff;
 }
+.card-inverse {height:130px;}
 </style>
 <script>
 $(document).ready(function(){
@@ -495,7 +495,10 @@ function commify(value){
                     <div class="dropdown-header text-xs-center">
                         <strong>Account</strong>
                     </div>
-                    <a class="dropdown-item" href="{% url 'admin:index' %}"><i class="fa fa-user"></i> Admin Panel</a>
+                    <a class="dropdown-item" href="{% url 'admin:index' %}">
+                        <i class="fa fa-user"></i>
+                        Admin Panel
+                    </a>
                     <a class="dropdown-item" href="{% url 'admin:logout' %}"><i class="fa fa-lock"></i> Logout</a>
                 </div>
             </li>

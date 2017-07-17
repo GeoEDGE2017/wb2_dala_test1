@@ -470,7 +470,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
     $scope.dlIrrigation = angular.copy(init_data);
 
 //Get Districts and get Baseline Data
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -789,7 +789,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 'com_data': {
                     'district_id':  $scope.district.district__id,
                     'incident_id': $scope.incident,
-
+                    'user_id': $scope.user_id,
                 },
                 'is_edit' : $scope.is_edit,
 

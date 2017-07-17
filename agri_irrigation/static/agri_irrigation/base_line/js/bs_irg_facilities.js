@@ -185,43 +185,41 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
-    var array = $scope.bsIrgFacilities.agri_irrigation.Table_1;
-      var details = _.map(array, function(model_array) {
-      _.map(model_array, function(model) {
-          model.division = $scope.division;
-          model.region = $scope.region;
-
-
-      });
-      });
+        var array = $scope.bsIrgFacilities.agri_irrigation.Table_1;
+        var details = _.map(array, function(model_array) {
+            _.map(model_array, function(model) {
+                model.division = $scope.division;
+                model.region = $scope.region;
+            });
+        });
         $scope.submitted = true;
         if (form.$valid) {
             $http({
-            method: "POST",
-            url: "/bs_save_data",
-            data: angular.toJson({
-            'table_data': $scope.bsIrgFacilities,
-            'com_data': {'district': $scope.district,
-            'bs_date': $scope.bs_date,
-            },
-            'is_edit': $scope.is_edit }),
+                method: "POST",
+                url: "/bs_save_data",
+                data: angular.toJson({
+                    'table_data': $scope.bsIrgFacilities,
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
             }).success(function(data) {
-
-             $scope.bsIrgFacilities = init_data;
-             $scope.is_edit = false;
-
-             if(data == 'False')
-              {
+                $scope.bsIrgFacilities = init_data;
+                $scope.is_edit = false;
+                if(data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-             else
-              $("#modal-container-239453").modal('show');
-        })
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            })
         }
-
     }
 
 //Edit Data

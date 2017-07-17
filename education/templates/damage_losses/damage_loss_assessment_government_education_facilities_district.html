@@ -81,8 +81,9 @@ $(document).ready(function() {
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
                                         {{incident.incident_name}}
-
                                     </option>
                                     {% endfor %}
                                 </select>
@@ -1880,8 +1881,6 @@ $(document).ready(function() {
                         </tr>
                         </tbody>
                     </table>
-
-
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info">Clear</button>
@@ -1897,10 +1896,7 @@ $(document).ready(function() {
                 </div>
             </div>
         </div>
-
-
         <br>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>

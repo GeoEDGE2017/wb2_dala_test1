@@ -2,7 +2,6 @@
 var bsHealthStatusApp = angular.module('dlPvtEduFacilitiesApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFacilitiesController($scope, $http, $filter) {
-
     $scope.dlPvtEduFacilities;
     $scope.total;
     $scope.iter_tot;
@@ -21,12 +20,11 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     $scope.is_edit_model = false;
     $scope.user_id;
 
-    $scope.new_school = {
-                     'PreSchools': {id: null, name: null, district_id: null},
-                     'PrimarySchools': {id: null, name: null, district_id: null},
-                     'SecondarySchools': {id: null, name: null, district_id: null},
-                     'Universities': {id: null, name: null, district_id: null},
-                     'TechInstitutes': {id: null, name: null, district_id: null}};
+    $scope.new_school = {'PreSchools': {id: null, name: null, district_id: null},
+                         'PrimarySchools': {id: null, name: null, district_id: null},
+                         'SecondarySchools': {id: null, name: null, district_id: null},
+                         'Universities': {id: null, name: null, district_id: null},
+                         'TechInstitutes': {id: null, name: null, district_id: null}};
 
     var init_data = {
         'education': {
@@ -116,7 +114,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
         console.log($scope.dlPvtEduFacilities);
     }
 
-// adding schools
+    // adding schools
     $scope.addSchool = function() {
         $scope.new_school[$scope.schoolType].district_id = $scope.district.district__id;
         console.log($scope.new_school[$scope.schoolType]);
@@ -174,6 +172,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
+                    'user_id': $scope.user_id,
                 },
                 'is_edit': $scope.is_edit
             }),
@@ -197,7 +196,8 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 'sector': 'education',
                 'com_data': {
                     'incident': $scope.incident,
-                    'district': $scope.district.district__id
+                    'district': $scope.district.district__id,
+                    'user_id': $scope.user_id,
                 },
             }),
         }).success(function(data) {
@@ -254,6 +254,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -287,6 +288,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -318,6 +320,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),

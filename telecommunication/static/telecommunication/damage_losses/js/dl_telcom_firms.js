@@ -364,7 +364,8 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     'com_data': {
                         'district_id' : $scope.district.district__id,
                         'incident_id' : $scope.incident,
-                        'company_id' : $scope.selectedCompany.company
+                        'company_id' : $scope.selectedCompany.company,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit,
                     'sector' : 'telecommunication'

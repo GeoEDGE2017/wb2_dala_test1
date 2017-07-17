@@ -156,7 +156,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
     $scope.bsInfoAsetTrans = angular.copy(init_data);
 
     //disable Edit Button
-    $scope.changeDis = function changeDis(){
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -222,7 +222,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     //save Bs Data
     $scope.saveBsData = function(form) {
-       $scope.submitted = true;
+        $scope.submitted = true;
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -252,23 +252,23 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
         }
     }
 
+
     //edit Bs Data
-    $scope.bsHsDataEdit = function(form){
+    $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
-         if (form.$valid) {
+        if (form.$valid) {
             $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                  'table_name': 'Table_1',
-                  'sector': 'transport_air',
-                  'com_data': {
-                      'district': $scope.district,
-                      'bs_date': $scope.bs_date,
-                      'user_id': $scope.user_id
-                      }
-                  }),
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'transport_air',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    }
+                }),
             }).success(function(data) {
                 console.log(data);
                 $scope.bsInfoAsetTrans = data;

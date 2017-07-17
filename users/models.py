@@ -127,7 +127,7 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
-    # is_superuser = models.BooleanField()
+    #is_superuser = models.BooleanField()
     username = models.CharField(unique=True, max_length=30)
     first_name = models.CharField(max_length=30, null=True)
     last_name = models.CharField(max_length=30, null=True)

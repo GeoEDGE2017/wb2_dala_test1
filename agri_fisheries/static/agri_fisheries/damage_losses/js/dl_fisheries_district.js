@@ -373,8 +373,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     $scope.dlFisheriesDistrict = angular.copy(init_data);
 
 //Get Districts and baseline related data
-    $scope.changedValue=function getBsData(selectedValue) {
-
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -604,6 +603,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident': $scope.incident.id,
+                        'user_id' : $scope.user_id,
                     },
                     'is_edit' : $scope.is_edit,
                 }),
@@ -755,6 +755,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     'com_data': {
            'district':  $scope.district.district__id,
             'incident': $scope.incident,
+            'user_id' : $scope.user_id,
           },
            'is_edit':$scope.is_edit
            }),

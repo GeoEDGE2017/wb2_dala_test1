@@ -1,7 +1,7 @@
 //Table 2
 var app = angular.module('bsLandTrnsAsstApp', [])
 
-app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, $http) {
+app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};
@@ -11,6 +11,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     $scope.is_valid_data = true;
     $scope.user_id;
 
+    //initialize data
     var init_data = {
         'transport_land': {
             'Table_2': {
@@ -118,7 +119,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
 
     $scope.bsLandTrnsAsst = angular.copy(init_data);
 
-    //Disable Edit Button
+    //disable Edit Button
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
@@ -128,6 +129,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         }
     }
 
+    //add enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsLandTrnsAsst.transport_land.Table_2[table]);
         var new_row;
@@ -143,12 +145,14 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         $scope.bsLandTrnsAsst.transport_land.Table_2[table].push(new_row);
     }
 
+    //remove enumerate fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsGtlAstPvehicles') {
             $scope.bsLandTrnsAsst.transport_land.Table_2.BsGtlAstPvehicles.splice(index, 1);
         }
     }
 
+    //save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -160,7 +164,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
-                        'user_id' : $scope.user_id,
+                        'user_id': $scope.user_id
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'bsLandTrnsAsst'
@@ -179,6 +183,7 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         }
     }
 
+    //edit data
     $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
@@ -201,12 +206,13 @@ app.controller('bsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         }
     }
 
+    //cancel edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = init_data;
     }
 
-    //Clear Function
+    //clear Function
     $scope.clear = function() {
         console.log("clear")
         $scope.is_edit = false;

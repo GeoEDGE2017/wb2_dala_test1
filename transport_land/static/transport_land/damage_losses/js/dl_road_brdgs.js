@@ -30,7 +30,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     part_dest_gravel : null,
                     part_dest_earth : null,
                     damages : null,
-                },{
+                }, {
                     road_classification : 'Class B',
                     tot_dest_concrete : null,
                     tot_dest_asphalt : null,
@@ -41,7 +41,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     part_dest_gravel : null,
                     part_dest_earth : null,
                     damages : null,
-                },{
+                }, {
                     road_classification : 'Class C',
                     tot_dest_concrete : null,
                     tot_dest_asphalt : null,
@@ -52,7 +52,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     part_dest_gravel : null,
                     part_dest_earth : null,
                     damages : null,
-                },{
+                }, {
                     road_classification : 'Class D',
                     tot_dest_concrete : null,
                     tot_dest_asphalt : null,
@@ -63,7 +63,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     part_dest_gravel : null,
                     part_dest_earth : null,
                     damages : null,
-                },{
+                }, {
                     road_classification : 'Class E',
                     tot_dest_concrete : null,
                     tot_dest_asphalt : null,
@@ -74,7 +74,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     part_dest_gravel : null,
                     part_dest_earth : null,
                     damages : null,
-                },{
+                }, {
                     road_classification : 'Total',
                     tot_dest_concrete : null,
                     tot_dest_asphalt : null,
@@ -93,7 +93,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     part_dest_2_lanes : null,
                     part_dest_multi_lanes : null,
                     damages : null,
-                },{
+                }, {
                     type_bridges : 'Wooden bridges',
                     tot_dest_2_lanes : null,
                     tot_dest_multi_lanes : null,
@@ -135,17 +135,17 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     tot_destroyed : null,
                     part_destroyed : null,
                     damages : null,
-                },{
+                }, {
                     type_drains : 'Bricks',
                     tot_destroyed : null,
                     part_destroyed : null,
                     damages : null,
-                },{
+                }, {
                     type_drains : 'Earth',
                     tot_destroyed : null,
                     part_destroyed : null,
                     damages : null,
-                },{
+                }, {
                     type_drains : 'Total',
                     tot_destroyed : null,
                     part_destroyed : null,
@@ -157,31 +157,31 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     year_2 : null,
                     part_destroyed : null,
                     losses : null,
-                 },{
+                }, {
                     loss_type : 'Cleaning up of debris',
                     year_1 : null,
                     year_2 : null,
                     part_destroyed : null,
                     losses : null,
-                 },{
+                }, {
                     loss_type : 'Higher operating costs',
                     year_1 : null,
                     year_2 : null,
                     part_destroyed : null,
                     losses : null,
-                 },{
+                }, {
                     loss_type : 'Other unexpected expenses',
                     year_1 : null,
                     year_2 : null,
                     part_destroyed : null,
                     losses : null,
-                 },{
+                }, {
                     loss_type : 'TOTAL LOSSES',
                     year_1 : null,
                     year_2 : null,
                     part_destroyed : null,
                     losses : null,
-                 }]
+                }]
             }
         }
     }
@@ -193,11 +193,13 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-
             })
         }
 
@@ -405,6 +407,8 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     'com_data': {
                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
+                        'user_id': $scope.user_id
+
                     },
                     'is_edit':$scope.is_edit,
                     'sector':'transport_land'
@@ -424,6 +428,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+
         if(form.$valid) {
             $http({
                 method: "POST",

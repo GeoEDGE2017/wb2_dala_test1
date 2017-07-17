@@ -1,18 +1,17 @@
-
+//Table 1
 var bsAstTransWaterApp = angular.module('bsAstTransWaterApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWaterController($scope, $http) {
+    $scope.district;
+    $scope.baselineDate;
+    $scope.bs_date;
+    $scope.is_edit = false;
+    $scope.submitted = false;
+    $scope.is_valid_data = true;
+    $scope.is_edit_disable = false;
+    $scope.user_id;
 
-$scope.district;
-$scope.baselineDate;
-$scope.bs_date;
-$scope.is_edit = false;
-$scope.submitted = false;
-$scope.is_valid_data = true;
-$scope.is_edit_disable = false;
-$scope.user_id;
-
-var init_data = {
+    var init_data = {
 'transport_water':{
 'Table_1':{
     'BsAstWaterWcrafts':
@@ -108,12 +107,10 @@ var init_data = {
 }
 }
 
-$scope.bsAstTransWater = init_data;
+    $scope.bsAstTransWater = init_data;
 
-
-//Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    //Disable Edit Button
+    $scope.changeDis = function changeDis(){
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -122,9 +119,7 @@ $scope.bsAstTransWater = init_data;
         }
     }
 
-
-$scope.insertAssets = function(table)
-{
+    $scope.insertAssets = function(table) {
     console.log($scope.bsAstTransWater.transport_water.Table_1.BsAstWaterStructures);
     var new_row;
     if(table == 'BsAstWaterWcrafts'){
@@ -169,23 +164,20 @@ $scope.insertAssets = function(table)
 
 }
 
-$scope.removeItem = function removeItem(table, index)
-{
-if(table == 'BsAstWaterWcrafts'){
-    $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterWcrafts.splice(index,1);
+    $scope.removeItem = function removeItem(table, index) {
+        if(table == 'BsAstWaterWcrafts'){
+            $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterWcrafts.splice(index,1);
+        }
+        else if(table == 'BsAstWaterEquipment'){
+            $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterEquipment.splice(index,1);
+        }
+        else if(table == 'BsAstWaterMaterials'){
+            $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterMaterials.splice(index,1);
+        }
+        else if(table == 'BsAstWaterStructures'){
+            $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterStructures.splice(index,1);
+        }
     }
-else if(table == 'BsAstWaterEquipment'){
-    $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterEquipment.splice(index,1);
-    }
-else if(table == 'BsAstWaterMaterials'){
-    $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterMaterials.splice(index,1);
-    }
-else if(table == 'BsAstWaterStructures'){
-    $scope.bsAstTransWater.transport_water.Table_1.BsAstWaterStructures.splice(index,1);
-    }
-
-}
-
 
     $scope.saveBsData = function() {
         $scope.submitted = true;
@@ -197,6 +189,7 @@ else if(table == 'BsAstWaterStructures'){
                 'com_data': {
                     'district': $scope.district,
                     'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
                 },
                 'is_edit': $scope.is_edit
             }),

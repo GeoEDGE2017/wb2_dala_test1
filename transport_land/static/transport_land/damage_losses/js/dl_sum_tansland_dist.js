@@ -6,15 +6,11 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
     $scope.selectedDistrict;
     $scope.incident;
     $scope.isLoded = false;
-
     $scope.dlDate;
     $scope.bs_data={};
-
     $scope.baselineDate;
-
     $scope.is_edit = false;
     $scope.is_valid_data = true;
-
     $scope.dl_data={};
     $scope.submitted = false;
     $scope.Districts=[];
@@ -26,19 +22,20 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-
             })
         }
     }
 
     $scope.loadData = function(form) {
-    if($scope.district && $scope.incident){
-        $scope.isLoded = true;
-
+        if($scope.district && $scope.incident) {
+            $scope.isLoded = true;
             $scope.tot_damages = null;
             $scope.is_edit = true;
 
@@ -57,7 +54,6 @@ app.controller('dlSumTransLandDistController', function($scope, $http, $parse, _
             }).success(function(data) {
                 $scope.data=data;
             })
-
         }
     }
 });

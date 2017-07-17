@@ -14,7 +14,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
     $scope.currentBaselineDate = null;
     $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'agri_irrigation': {
             'Table_3': {

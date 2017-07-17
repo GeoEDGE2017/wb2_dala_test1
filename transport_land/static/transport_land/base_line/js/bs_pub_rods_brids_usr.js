@@ -1,7 +1,7 @@
 //Table 1
 var app = angular.module('bsPubRodsBridsUsrApp', [])
 
-app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scope, $http) {
+app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};
@@ -11,6 +11,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
     $scope.is_valid_data = true;
     $scope.user_id;
 
+    //initialize models
     var init_data = {
         'transport_land': {
             'Table_1': {
@@ -24,7 +25,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class B',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -34,7 +35,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class C',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -44,7 +45,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class D',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -54,7 +55,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_asphalt: null,
                     avg_repair_gravel: null,
                     avg_repair_earth: null,
-                },{
+                }, {
                     road_classification: 'Class E',
                     avg_replace_concrete: null,
                     avg_replace_asphalt: null,
@@ -71,7 +72,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_replace_multi_lanes: null,
                     avg_repair_2_lanes: null,
                     avg_repair_multi_lanes: null,
-                },{
+                }, {
                     type_bridges: 'Wooden bridges',
                     avg_replace_2_lanes: null,
                     avg_replace_multi_lanes: null,
@@ -92,11 +93,11 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     type_drains: 'Concrete',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
-                },{
+                }, {
                     type_drains: 'Bricks',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
-                },{
+                }, {
                     type_drains: 'Earth',
                     avg_replace_cost: null,
                     avg_repair_cost: null,
@@ -107,9 +108,9 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
 
     $scope.bsPubRodsBridsUsr = angular.copy(init_data);
 
-    //Disable Edit Button
+    //disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.bs_date){
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
         else{
@@ -117,7 +118,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         }
     }
 
-
+    //add enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsPubRodsBridsUsr.transport_land.Table_1[table]);
         var new_row;
@@ -155,6 +156,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         $scope.bsPubRodsBridsUsr.transport_land.Table_1[table].push(new_row);
     }
 
+    //remove enumerate
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsRbuTbridges') {
             $scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTbridges.splice(index, 1);
@@ -170,6 +172,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         }
     }
 
+    //save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -181,7 +184,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
-                        'user_id' : $scope.user_id,
+                        'user_id': $scope.user_id
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'transport_land'
@@ -201,6 +204,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         }
     }
 
+    // edit data
     $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
@@ -229,7 +233,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         $scope.bsPubRodsBridsUsr = init_data;
     }
 
-    //Clear Function
+    //clear Function
     $scope.clear = function() {
         console.log("clear")
         $scope.is_edit = false;

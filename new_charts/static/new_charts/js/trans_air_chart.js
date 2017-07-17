@@ -88,8 +88,7 @@ app.controller('TransAirChartController',function($scope,$http,$parse, _) {
             }
 
 
-            $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlAirTransSumNat ? angular.equals({}, $scope.dlAirTransSumNat.transport_air.Table_5) : true;
         return isNull;
 
@@ -100,6 +99,11 @@ app.controller('TransAirChartController',function($scope,$http,$parse, _) {
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
+
+     $scope.printDiv = function() {
+        window.print();
+    }
+
 
 
  });

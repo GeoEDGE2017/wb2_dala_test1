@@ -183,7 +183,10 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                'incident': $scope.incident,
+                'user': $scope.user_id
+                 }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -520,6 +523,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'frm_firm_id':$scope.selectedFirm.id,
+                    'user_id':$scope.user_id,
                     'ownership':$scope.selectedFirm.ownership,
 //                    'tou_business':$scope.selectedType.business,
 
@@ -558,6 +562,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
                     'frm_firm_id':$scope.selectedFirm.id,
+                    'user_id':$scope.user_id,
                     'ownership':$scope.selectedFirm.ownership,
 //                    'tou_business':$scope.selectedType.business,
                 },

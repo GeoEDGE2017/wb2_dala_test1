@@ -1,5 +1,5 @@
-var app = angular.module('housingChartApp', ['chart.js','underscore']);
-app.controller('HousingChartController',function($scope,$http,$parse, _) {
+var app = angular.module('otherGovChartApp', ['chart.js','underscore']);
+app.controller('OtherGovChartController',function($scope,$http,$parse, _) {
 
     $scope.district;
     $scope.incident;
@@ -116,8 +116,8 @@ app.controller('HousingChartController',function($scope,$http,$parse, _) {
 
 
     }
-   $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlHousingSumNat ? angular.equals({}, $scope.dlHousingSumNat.housing.Table_6) : true;
         return isNull;
 
@@ -127,6 +127,10 @@ app.controller('HousingChartController',function($scope,$http,$parse, _) {
 
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
+    }
+
+    $scope.printDiv = function() {
+        window.print();
     }
 
  });

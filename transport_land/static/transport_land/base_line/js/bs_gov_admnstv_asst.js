@@ -1,7 +1,7 @@
 //Table 3
 var app = angular.module('bsGovAdmnstvAssetApp', [])
 
-app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scope, $http) {
+app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data = {};
@@ -11,6 +11,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.is_valid_data = true;
     $scope.user_id;
 
+    //initialize models
     var init_data = {
         'transport_land': {
             'Table_3': {
@@ -78,6 +79,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
+    //add enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsGovAdmnstvAsset.transport_land.Table_3[table]);
         var new_row;
@@ -97,6 +99,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         $scope.bsGovAdmnstvAsset.transport_land.Table_3[table].push(new_row);
     }
 
+    //remove enumerate fileds
     $scope.removeItem = function removeItem(table, index) {
         if (table == 'BiaGacLandOequipment') {
             $scope.bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment.splice(index, 1);
@@ -105,6 +108,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
+    //save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -116,7 +120,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
-                        'user_id' : $scope.user_id,
+                        'user_id': $scope.user_id
                     },
                     'is_edit': $scope.is_edit,
                     'sector':'transport_land'
@@ -135,6 +139,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
+    // edit data
     $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
@@ -157,6 +162,7 @@ app.controller('bsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
+    //cancel edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsGovAdmnstvAsset = init_data;

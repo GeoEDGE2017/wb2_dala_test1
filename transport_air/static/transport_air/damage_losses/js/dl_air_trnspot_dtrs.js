@@ -1,7 +1,7 @@
 //Table_3
 var bsHealthStatusApp = angular.module('dlSumTrnsAirDistApp', ['ui.bootstrap', 'popoverToggle']);
 
-bsHealthStatusApp.controller('dlSumTrnsAirDistController', function DlEduDistrictController($scope, $http) {
+bsHealthStatusApp.controller('DlSumTrnsAirDistController', function DlEduDistrictController($scope, $http) {
     $scope.dlEduDistrict;
     $scope.total;
     $scope.iter_tot;
@@ -12,13 +12,15 @@ bsHealthStatusApp.controller('dlSumTrnsAirDistController', function DlEduDistric
     $scope.isLoded = false;
     $scope.user_id;
 
+    //fetch district
     $scope.changedValue = function getDlData() {
         if ($scope.incident) {
             $http({
                 method: "POST",
                 url: '/fetch_incident_districts',
                 data: angular.toJson({
-                    'incident': $scope.incident
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
                 }),
             }).success(function(data) {
                 $scope.districts = data;
@@ -28,6 +30,7 @@ bsHealthStatusApp.controller('dlSumTrnsAirDistController', function DlEduDistric
         }
     }
 
+    //load data
     $scope.LoadData = function(form) {
         if($scope.incident && $scope.district){
             $scope.isLoded = true;

@@ -98,6 +98,10 @@ app.controller('TransWaterChartController',function($scope,$http,$parse, _) {
         return sum;
     }
 
+     $scope.printDiv = function() {
+        window.print();
+    }
+
 
 
  });

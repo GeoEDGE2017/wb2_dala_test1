@@ -192,8 +192,8 @@
 
                         <!--Livestock Total-->
                         <tr height="19" ng-repeat="dlpNdaLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock" ng-if="dlpNdaLivestock.animals == 'Total'">
-                            <td class="tdpa" width="113" height="19">
-                                Total
+                            <td class="tdpa" width="113" height="19"ng-bind="dlpNdaLivestock.animals">
+
                             </td>
                             <td class="tdpa" width="117" height="19">
                                 <br/>
@@ -213,7 +213,7 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td colspan="4" width="252" height="19" ng-bind="dlpNdaLivestock.damages">
+                            <td colspan="4" width="252" height="19" ng-model="dlpNdaLivestock.damages" ng-bind="CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock)">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -335,12 +335,12 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td colspan="4" width="252" height="19" ng-bind="dlpNdaPoultry.damages">
+                            <td colspan="4" width="252" height="19" ng-model="dlpNdaPoultry.damages" ng-bind="dlpNdaPoultry.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry)">
                             </td>
                         </tr>
                         <!--Poultry TOTAL-->
-                        <tr height="19" ng-repeat="dlpNdaPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry" ng-if="dlpNdaPoultry.animals == 'TOTAL'">
-                            <td class="tdpa" width="113" height="19" ng-bind="dlpNdaPoultry.animals">
+                        <tr height="19" >
+                            <td class="tdpa" width="113" height="19" >TOTAL
                             </td>
                             <td class="tdpa" width="117" height="19">
                                 <br/>
@@ -360,8 +360,8 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td colspan="4" width="252" height="19" ng-bind="dlpNdaPoultry.damages">
-                                -
+                            <td colspan="4" width="252" height="19" ng-bind="calTotaltabOne()">
+
                             </td>
                         </tr>
 
@@ -571,8 +571,8 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-bind="dlpNdaPoultry.damages">
-                                -
+                            <td colspan="2" width="126" height="19" ng-model="dlpNdaPoultry.damages" ng-bind="dlpNdaPoultry.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock)">
+
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -714,10 +714,10 @@
                             </td>
                             <td class="tdpa" width="63" height="43">
                             </td>
-                            <td colspan="2" width="126" height="43" ng-bind="dlpPafPoultry.damages">
+                            <td colspan="2" width="126" height="43" ng-model="dlpPafPoultry.damages" ng-bind="dlpPafPoultry.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry)">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlpPafPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry" ng-if="dlpPafPoultry.animals == 'TOTAL'">
+                        <tr height="19" >
                             <td class="tdpa" width="113" height="19">
                                 TOTAL
                             </td>
@@ -745,7 +745,7 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-bind="dlpPafPoultry.damages">
+                            <td colspan="2" width="126" height="19" ng-bind="calTotalProduction()">
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -825,25 +825,25 @@
                         <tr height="19" ng-repeat="dlpStructStructures in dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures" ng-if="dlpStructStructures.structures == 'Total'">
                             <td class="tdpa" colspan="3" width="343" height="19" ng-bind="dlpStructStructures.structures">
                             </td>
-                            <td width="103" height="19">
+                            <td width="103" height="19" class="tdpa">
                                 <br/>
                             </td>
-                            <td width="136" height="19">
+                            <td width="136" height="19" class="tdpa">
                                 <br/>
                             </td>
-                            <td width="143" height="19">
+                            <td width="143" height="19" class="tdpa">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" class="tdpa">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" class="tdpa">
                                 <br/>
                             </td>
-                            <td width="63" height="19">
+                            <td width="63" height="19" class="tdpa">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-bind="dlpStructStructures.damages">
+                            <td colspan="2" width="126" height="19" ng-model="dlpStructStructures.damages" ng-bind="dlpStructStructures.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures)">
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -902,10 +902,10 @@
                             <td class="tdpa" colspan="3" width="189" height="19">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-bind="dlpStructOther.damages">
+                            <td colspan="2" width="126" height="19" ng-model="dlpStructOther.damages" ng-bind="dlpStructOther.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther)">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlpStructOther in dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther" ng-if="dlpStructOther.other_assets == 'TOTAL OF DAMAGES'">
+                        <tr height="19" >
                             <td class="tdpa" colspan="3" width="343" height="19">
                                 TOTAL OF DAMAGES
                             </td>
@@ -915,7 +915,7 @@
                             <td class="tdpa" colspan="3" width="189" height="19">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-bind="dlpStructOther.damages">
+                            <td colspan="2" width="126" height="19" ng-bind="">
                             </td>
                         </tr>
                         </tbody>

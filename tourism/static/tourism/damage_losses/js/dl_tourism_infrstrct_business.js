@@ -194,7 +194,9 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                'incident': $scope.incident,
+                'user': $scope.user_id}),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -418,10 +420,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'incident_id': $scope.incident,
                     'firm_id':$scope.selectedFirm.id,
                     'ownership':$scope.selectedFirm.ownership,
+                    'user_id': $scope.user_id,
                     'tou_business':$scope.selectedType.business,
-
-
-
                 },
                 'is_edit': $scope.is_edit
             }),
@@ -449,11 +449,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         $scope.dataEdit = function() {
 
         if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
-
-
-                    $scope.is_edit = true;
+        $scope.is_edit = true;
         $scope.submitted = true;
-
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
@@ -464,6 +461,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                         'firm_id':$scope.selectedFirm.id,
+                        'user_id': $scope.user_id,
                         'ownership':$scope.selectedFirm.ownership,
                         'tou_business':$scope.selectedType.business
 

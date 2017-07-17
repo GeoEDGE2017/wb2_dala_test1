@@ -1,7 +1,7 @@
 //Table 2
 var app = angular.module('dlAirTrnspotationApp', [])
 
-app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scope, $http) {
+app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.selectedDistrict;
     $scope.incident;
@@ -12,6 +12,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.is_valid_data = true;
     $scope.user_id;
 
+    //initialize model
     var init_data = {
         'transport_air': {
             'Table_2': {
@@ -308,12 +309,16 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
 
     $scope.dlAirTrnspotation = angular.copy(init_data);
 
+    //fetch incident districts
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
-                data: angular.toJson({'incident': $scope.incident }),
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user': $scope.user_id
+                }),
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
@@ -389,6 +394,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
         }
     }
 
+    //get reference data
     function generateRefencedData() {
         data_array = ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures'];
             var dl_model1 = null;
@@ -528,6 +534,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
         });
     }
 
+    //save data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -559,6 +566,7 @@ app.controller('dlAirTrnspotationController', ['$scope', '$http', function($scop
         }
     }
 
+    //edit data
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;

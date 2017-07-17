@@ -1,3 +1,4 @@
+//Table 5
 var app = angular.module('dlSummeryTANatApp', []);
 
 app.controller("DlSummeryTANatController", ['$scope','$http',function ($scope,$http) {
@@ -16,7 +17,6 @@ app.controller("DlSummeryTANatController", ['$scope','$http',function ($scope,$h
     $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.user_id;
 
@@ -47,36 +47,37 @@ app.controller("DlSummeryTANatController", ['$scope','$http',function ($scope,$h
         return isNull;
     }
 
+    //get total function
     $scope.getTotal = function($index,key) {
         $scope.finaltotalprivate = 0;
 
         $scope.totaldpub = $scope.totaldpub + (
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPubNational[0].tot_destroyed_pub ?
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPubNational[0].tot_destroyed_pub : 0 );
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPubNational[0].tot_destroyed_pub ?
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPubNational[0].tot_destroyed_pub : 0 );
 
         $scope.totaldpvt = $scope.totaldpvt +(
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPvtNational[0].tot_destroyed_pvt ?
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPvtNational[0].tot_destroyed_pvt : 0  );
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPvtNational[0].tot_destroyed_pvt ?
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirDmgPvtNational[0].tot_destroyed_pvt : 0  );
 
         $scope.totalyear1pub = $scope.totalyear1pub +(
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pub ?
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pub : 0  );
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pub ?
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pub : 0  );
 
         $scope.totalyear1pvt = $scope.totalyear1pvt +(
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pvt ?
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pvt : 0  );
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pvt ?
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_1_pvt : 0  );
 
         $scope.totalyear2pub = $scope.totalyear2pub +(
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pub ?
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pub : 0  );
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pub ?
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pub : 0  );
 
         $scope.totalyear2pvt = $scope.totalyear2pvt +(
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pvt ?
-                         $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pvt : 0  );
-
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pvt ?
+            $scope.dlAirTransSumNat.transport_air.Table_5[key].DlAirLosNational[0].year_2_pvt : 0  );
 
         $scope.finaltotalpublic = $scope.totaldpub + $scope.totalyear1pub + $scope.totalyear2pub;
 
         $scope.finaltotalprivate  = $scope.totaldpvt+ $scope.totalyear1pvt + $scope.totalyear2pvt;
+
     }
  }])

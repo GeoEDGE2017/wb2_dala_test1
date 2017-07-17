@@ -109,8 +109,8 @@ app.controller('IndustryServicesController',function($scope,$http,$parse, _) {
 
     }
     }
-            $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlIndustryServices ? angular.equals({}, $scope.dlIndustryServices.industry_services.Table_9) : true;
         return isNull;
 
@@ -121,10 +121,15 @@ app.controller('IndustryServicesController',function($scope,$http,$parse, _) {
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4);
         return sum;
     }
+
     $scope.convertToIntTWo = function(val1,val2){
 
         var sum = parseInt(val1) + parseInt(val2);
         return sum;
+    }
+
+    $scope.printDiv = function() {
+        window.print();
     }
 
 

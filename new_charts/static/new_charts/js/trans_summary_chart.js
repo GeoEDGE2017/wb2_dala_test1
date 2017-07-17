@@ -231,4 +231,9 @@ app.controller('TransSummaryChartController',function($scope,$http,$parse, _) {
         return sum;
     }
 
+     $scope.printDiv = function() {
+        window.print();
+    }
+
+
  });

@@ -600,10 +600,10 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
 
     $scope.dlDataHealthDamagelostOtherMedicalFacilities = angular.copy(init_data);
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
-        if(form.$valid){
+        if(form.$valid) {
             $http({
                 method: 'POST',
                 url:'/dl_save_data',
@@ -632,7 +632,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
         }
     }
 
-//Get Baseline Data
+    //Get Baseline Data
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -724,14 +724,14 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                 method: "POST",
                 url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                'table_name':  'Table_6',
-                'sector':'health',
-                'com_data': {
-                   'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
+                    'table_name':  'Table_6',
+                    'sector':'health',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
                    'is_edit':$scope.is_edit
-               }),
+                }),
             }).success(function(data) {
                 console.log(data);
                 $scope.dlDataHealthDamagelostOtherMedicalFacilities = data;
@@ -740,7 +740,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     }
 
     //Cancel Data
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlDataHealthDamagelostOtherMedicalFacilities = init_data;
     }

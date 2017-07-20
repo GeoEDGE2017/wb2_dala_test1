@@ -1,33 +1,33 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
-
 <!-- Main content -->
 <main class="main" ng-app="bsPowGenFrimDisApp" ng-controller="BsPowGenFrimDisController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:power_supply_main' %}">Power Supply Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:power_supply_main' %}">
+                Power Supply Sector
+            </a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Power Generation Firms in a District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Power Generation Firms in a District
+            </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
-    </ol>
-
-
     <div class="container-fluid">
-
-
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active" id="step1">
-
+            <div class="tab-pane active" id="step1" ng-form name="form_power_firm_dis">
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="244"/>
                         <col width="112"/>
@@ -37,10 +37,27 @@
                         <col width="111" span="2"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_power_firm_dis.district.$error.required">
+                                Please select District
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_power_firm_dis.baselineDate.$error.required">
+                                Please select Date
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead1" height="19">
-                         <td style="padding-left:5px;"> Name of District</td>
+                        <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="2" style="">
-                            <select ng-model="district" id="selectbasic" ng-change="changeDis()" name="district" class="form-control"
+                            <select ng-model="district" id="selectbasic" ng-change="changeDis()" name="district"
+                                    class="form-control"
                                     style="font-weight:400;" required>
                                 <option value="">Select District</option>
                                 {% for district in districts %}
@@ -52,12 +69,12 @@
                             Year/Month
                         </td>
                         <td colspan="2" style="font-weight:normal;">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date"
+                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
+                                   id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" height="62" width="244">
                             Power generation plants by ownership
@@ -94,50 +111,51 @@
                         <td width="103">
                             Others
                         </td>
-
                     </tr>
-
                     <tr class="" height="19">
                         <td class="tdpa" height="19" width="244" ng-model="bsPwGenFirm.ownership">
                             CEB
-
                         </td>
                         <td width="112">
-                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.assets" placeholder="" class="form-control input-md">
-                         </td>
+                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.assets"
+                                   placeholder="" class="form-control input-md">
+                        </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.description" placeholder=""
+                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.description"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_hydro"  placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_hydro"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="103">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_coal"  placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_coal"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="107">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_diesel" placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_diesel"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="111">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_other" placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_other"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="111">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.tot_capacity" placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.tot_capacity"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="111">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.avg_income"  placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.avg_income"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
-
-
                     </tr>
-
-
                     <tr class="tdpa" height="19">
                         <td class="tdpa" height="19" width="244">
                             Power generation plants &nbsp;&nbsp;
@@ -147,21 +165,17 @@
                             </button>
                         </td>
                         <td colspan="8" width="112">
-
                         </td>
-
                     </tr>
-
                     <tr height="19" ng-repeat="bsPwGenFirm in bsPowGenFrimDis.power_supply.Table_1.BsPwGenFirm">
-
                         <td width="98">
                             {% verbatim %}
                             <button id="delete" ng-click="removeItem('BsPwGenFirm', $index)"
                                     class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-                            <select id="selectbasic"  ng-model="bsPwGenFirm.ownership" class="form-control"
+                            <select id="selectbasic" ng-model="bsPwGenFirm.ownership" class="form-control"
                                     popover="This field is required" required
-                                   popover-toggle="form_pop_lat_census['bsPwGenFirm_' + $index].$dirty && !form_pop_lat_census['bsPwGenFirm_' + $index].$valid"
-                                   name="bsPwGenFirm_{{$index}}" type="text" placeholder=""
+                                    popover-toggle="form_pop_lat_census['bsPwGenFirm_' + $index].$dirty && !form_pop_lat_census['bsPwGenFirm_' + $index].$valid"
+                                    name="bsPwGenFirm_{{$index}}" type="text" placeholder=""
                                     style="width:80%;float:right;font-weight:400;">
                                 <option selected>Select ownership</option>
                                 <option value="CEB">CEB</option>
@@ -171,47 +185,54 @@
                             {% endverbatim %}
                         </td>
                         <td width="112">
-                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.assets" placeholder="" class="form-control input-md">
-                         </td>
+                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.assets"
+                                   placeholder="" class="form-control input-md">
+                        </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.description" placeholder=""
+                            <input id="textinput" name="textinput" type="text" ng-model="bsPwGenFirm.description"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_hydro"  placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_hydro"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="103">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_coal"  placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_coal"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="107">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_diesel" placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_diesel"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="111">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_other" placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.num_other"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="111">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.tot_capacity" placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.tot_capacity"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td width="111">
-                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.avg_income"  placeholder=""
+                            <input id="textinput" name="textinput" type="number" ng-model="bsPwGenFirm.avg_income"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
-
-
                 <div class="pull-right">
                     <br>
-                    <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="clear()" class="btn btn-info">
+                        Clear
+                    </button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData(form_power_firm_dis)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -220,25 +241,18 @@
                             Edit
                         </button>
                     </span>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
                     </button>
-                    <button type="button" ng-click="saveBsData()"
-                            class="btn btn-success">Submit
+                    <button type="button" ng-click="saveBsData(form_power_firm_dis)" class="btn btn-success">
+                        Submit
                     </button>
                 </div>
-
                 <br>
-
                 <br>
             </div>
-
         </div>
-
     </div>
-    </div>
-
-
     <!-- /.conainer-fluid -->
 </main>
 

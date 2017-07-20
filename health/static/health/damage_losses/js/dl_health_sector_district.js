@@ -3,17 +3,16 @@ var app = angular.module('dlHealthSectorDistrictApp', []);
 
 app.controller("DlHealthSectorDistrictController", ['$scope','$http',function ($scope,$http) {
 
-     $scope.district;
-     $scope.incident;
-     $scope.dl_data={};
-     $scope.is_edit=false;
-     $scope.submitted = false;
-     $scope.is_valid_data = true;
-     $scope.districts=[];
-     $scope.user_id;
+    $scope.district;
+    $scope.incident;
+    $scope.dl_data={};
+    $scope.is_edit=false;
+    $scope.submitted = false;
+    $scope.is_valid_data = true;
+    $scope.districts=[];
+    $scope.user_id;
 
-     $scope.lmh_hospitals = [
-        {property: 'teaching_hospital', name: 'Teaching Hospitals'},
+    $scope.lmh_hospitals = [{property: 'teaching_hospital', name: 'Teaching Hospitals'},
         {property: 'provincial_general_hospital', name: 'Provincial General Hospitals'},
         {property: 'district_general_hospital', name: 'District General Hospitals'}];
 

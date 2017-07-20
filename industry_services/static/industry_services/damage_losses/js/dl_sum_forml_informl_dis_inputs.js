@@ -1,7 +1,3 @@
-
-
-//dl_sum_forml_informl_dis_inputs
-
 //Table 5
 var app = angular.module('dlSummFormlInformlDisInputApp', [])
 
@@ -10,7 +6,7 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
     $scope.districts;
     $scope.incident;
     $scope.district;
-    $scope.data;
+    $scope.dlSummFormlInformlDis;
     $scope.industry_names;
     $scope.service_names;
     $scope.user_id;
@@ -18,131 +14,216 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
     var init_data = {
         'industry_services': {
             'Table_5': {
-                    'DlNumAffBusIndustry': [
-                        {
-                            'assets': 'Total',
-                            'num_bus_public':null,
-                            'num_bus_private':null,
-                        },
-                    ],
-                    'DlNumAffBusServices': [
-                        {
-                            'assets': 'Total',
-                            'num_bus_public':null,
-                            'num_bus_private':null,
+                'DlNumAffBusIndustry': [{
+                    'assets': 'Total',
+                    'num_bus_public': null,
+                    'num_bus_private': null,
+                    'year1_damages_pub': null,
+                    'year1_damages_pvt': null,
+                    'year1_losses_pub': null,
+                    'year1_losses_pvt': null,
+                    'year2_losses_pub': null,
+                    'year2_losses_pvt': null,
+                    'pub_total': null,
+                    'pvt_total': null,
+                }],
+                'DlNumAffBusServices': [{
+                    'assets': 'Total',
+                    'num_bus_public': null,
+                    'num_bus_private': null,
+                    'year1_damages_pub': null,
+                    'year1_damages_pvt': null,
+                    'year1_losses_pub': null,
+                    'year1_losses_pvt': null,
+                    'year2_losses_pub': null,
+                    'year2_losses_pvt': null,
+                    'pub_total': null,
+                    'pvt_total': null,
+                }],
+            }
+        }
+    }
 
-                        },
-                    ],
-                    }
-                }
+    $scope.dlSummFormlInformlDis = angular.copy(init_data);
+
+    $scope.getIndustryNames = function() {
+        $http({
+            method: "POST",
+            url: "/fetch_entities_plain_column", //single column data load
+            data: angular.toJson({
+                'model': 'BsFrmBusIndustry', //BsFrmBusIndustry
+                'sector':'industry_services', //industry_services
+                'col': 'industry',
+            }),
+        }).success(function(data) {
+            $scope.industry_names = data;
+            $scope.makeIndInitData();
+            console.log("data", init_data);
+            $scope.clear();
+        })
+    }
+
+    $scope.getServiceNames = function() {
+        $http({
+            method: "POST",
+            url: "/fetch_entities_plain_column", //single column data load
+            data: angular.toJson({
+                'model': 'BsFrmBusServices', //BsFrmBusIndustry
+                'sector':'industry_services', //industry_services
+                'col': 'service',
+            }),
+        }).success(function(data) {
+            $scope.service_names = data;
+            $scope.makeSerInitData();
+            console.log("data", init_data);
+            $scope.clear();
+        })
+    }
+
+    $scope.makeIndInitData = function() {
+        angular.forEach($scope.industry_names, function(value, key) {
+            var ind_obj = {
+                'assets': value.industry,
+                'num_bus_public':null,
+                'num_bus_private':null,
             }
 
-     $scope.data = angular.copy(init_data);
-
-    $scope.getIndustryNames = function(){
-        $http({
-            method: "POST",
-            url: "/fetch_entities_plain_column", //single column data load
-            data: angular.toJson({
-            'model': 'BsFrmBusIndustry', //BsFrmBusIndustry
-            'sector':'industry_services', //industry_services
-            'col': 'industry',
-             }),
-            }).success(function(data) {
-                $scope.industry_names = data;
-                $scope.makeIndInitData();
-                console.log("data", init_data);
-                $scope.clear();
-            })
-
-
+            init_data.industry_services.Table_5.DlNumAffBusIndustry.push(ind_obj);
+        })
     }
 
-    $scope.getServiceNames = function(){
-        $http({
-            method: "POST",
-            url: "/fetch_entities_plain_column", //single column data load
-            data: angular.toJson({
-            'model': 'BsFrmBusServices', //BsFrmBusIndustry
-            'sector':'industry_services', //industry_services
-            'col': 'service',
-             }),
-            }).success(function(data) {
-                $scope.service_names = data;
-                $scope.makeSerInitData();
-                console.log("data", init_data);
-                $scope.clear();
-            })
+    $scope.makeSerInitData = function() {
+        angular.forEach($scope.service_names, function(value, key) {
+            var ser_obj = {
+                'assets': value.service,
+                'num_bus_public':null,
+                'num_bus_private':null,
+            }
 
+            init_data.industry_services.Table_5.DlNumAffBusServices.push(ser_obj);
+        })
     }
 
-    $scope.makeIndInitData = function(){
-        angular.forEach($scope.industry_names, function(value, key) {
-                       var ind_obj = {
-                            'assets': value.industry,
-                            'num_bus_public':null,
-                            'num_bus_private':null,
-                       }
-                       init_data.industry_services.Table_5.DlNumAffBusIndustry.push(ind_obj);
-
-                })
-
-
+    $scope.clear = function() {
+        $scope.is_edit = false;
+        $scope.dlSummFormlInformlDis = angular.copy(init_data);
     }
 
-    $scope.makeSerInitData = function(){
+//    $scope.changedValue = function getBsData(selectedValue) {
+//        if($scope.incident && selectedValue) {
+//            $http({
+//                method: "POST",
+//                url: "/fetch_incident_districts",
+//                data: angular.toJson({
+//                    'incident': $scope.incident,
+//                    'user':$scope.user_id,
+//                }),
+//            }).success(function(data) {
+//                $scope.districts = data;
+//                $scope.selectedDistrict = "";
+//                ////console.log($scope.districts);
+//            })
+//        }
+//
+//        if($scope.incident && $scope.district ) {
+//            //when district change
+//        }
+//    }
 
-         angular.forEach($scope.service_names, function(value, key) {
-                       var ser_obj = {
-                            'assets': value.service,
-                            'num_bus_public':null,
-                            'num_bus_private':null,
-                       }
-                       init_data.industry_services.Table_5.DlNumAffBusServices.push(ser_obj);
-
-                })
-
-    }
-
-    $scope.clear = function()
-        {
-
-            $scope.is_edit = false;
-            $scope.data = angular.copy(init_data);
-
-        }
-
-    $scope.changedValue=function getBsData(selectedValue) {
+    //Get Baseline Data
+    $scope.changedValue = function getBsData(selectedValue) {
+        console.log('***');
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
                 data: angular.toJson({
                     'incident': $scope.incident,
-                    'user':$scope.user_id,
+                    'user': $scope.user_id
                 }),
             }).success(function(data) {
                 $scope.districts = data;
-                $scope.selectedDistrict = "";
-                ////console.log($scope.districts);
+                $scope.district = "";
+                console.log(data);
             })
         }
 
-        if($scope.incident && $scope.district ) {
-            //when district change
+        if($scope.incident && $scope.district) {
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets','BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_3',
+                    'sector': 'industry_services'
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+                });
+                var is_null = false;
+                console.log($scope.bs_data);
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value==null) {
+                        is_null = true;
+                    }
+                })
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets','BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_3',
+                            'sector': 'industry_services'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            alert('fsdfsd');
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
+            }, function errorCallback(response) {
+                console.log(response);
+            });
         }
     }
 
     $scope.clear = function()
         {
             $scope.is_edit = false;
-            $scope.data = angular.copy(init_data);
+            $scope.dlSummFormlInformlDis = angular.copy(init_data);
         }
 
 
     $scope.getTotalCol = function(subTable, column, total_object){
 
-        var table = $scope.data.industry_services.Table_5;
+        var table = $scope.dlSummFormlInformlDis.industry_services.Table_5;
         var final_total = 0;
 
         total_object[column] = 0;
@@ -156,7 +237,7 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
 
     $scope.getGrandTotalCol = function(column){
 
-        var table = $scope.data.industry_services.Table_5;
+        var table = $scope.dlSummFormlInformlDis.industry_services.Table_5;
         var final_total = 0;
 
         angular.forEach(table, function(subTable, key) {
@@ -185,7 +266,7 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
             url: '/dl_save_data',
             contentType: 'application/json; charset=utf-8',
             data: angular.toJson({
-                'table_data': $scope.data,
+                'table_data': $scope.dlSummFormlInformlDis,
                 'com_data': {
                     'district_id': $scope.district.district__id,
                     'incident_id': $scope.incident,
@@ -242,7 +323,7 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
                         // do nothing or display msg that data are not available
                     }
                 else{
-                        $scope.data = data;
+                        $scope.dlSummFormlInformlDis = data;
                     }
             })
 

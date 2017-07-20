@@ -153,6 +153,14 @@ class DlNumAffBusIndustry(models.Model):
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    year1_damages_pub = models.FloatField(blank=True, null=True)
+    year1_damages_pvt = models.FloatField(blank=True, null=True)
+    year1_losses_pub = models.FloatField(blank=True, null=True)
+    year1_losses_pvt = models.FloatField(blank=True, null=True)
+    year2_losses_pub = models.FloatField(blank=True, null=True)
+    year2_losses_pvt = models.FloatField(blank=True, null=True)
+    pub_total = models.FloatField(blank=True, null=True)
+    pvt_total = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -169,6 +177,14 @@ class DlNumAffBusServices(models.Model):
     lmu = models.IntegerField(blank=True, null=True)
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    year1_damages_pub = models.FloatField(blank=True, null=True)
+    year1_damages_pvt = models.FloatField(blank=True, null=True)
+    year1_losses_pub = models.FloatField(blank=True, null=True)
+    year1_losses_pvt = models.FloatField(blank=True, null=True)
+    year2_losses_pub = models.FloatField(blank=True, null=True)
+    year2_losses_pvt = models.FloatField(blank=True, null=True)
+    pub_total = models.FloatField(blank=True, null=True)
+    pvt_total = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False

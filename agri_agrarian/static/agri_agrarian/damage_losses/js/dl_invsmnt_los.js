@@ -13,7 +13,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.currentBaselineDate = null;
     $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'agri_agrarian': {
             'Table_6': {
@@ -188,7 +188,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 
     $scope.dlInvsmntLos = angular.copy(init_data);
 
-//Get Districts and Related Baseline Data
+    //Get Districts and Related Baseline Data
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({

@@ -10,7 +10,7 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-//Initialize model
+    //Initialize model
     var init_data = {
         'power_supply':{
             'Table_1': {
@@ -19,9 +19,9 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
         }
     }
 
- $scope.bsPowGenFrimDis = angular.copy(init_data);
+    $scope.bsPowGenFrimDis = angular.copy(init_data);
 
-//Disable Edit Button
+    //Disable Edit Button
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
@@ -31,101 +31,96 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
         }
     }
 
-//Insert Firm
- $scope.insertFirm = function(table){
-    var new_row;
-    if(table == 'BsPwGenFirm'){
-        new_row = {
-            ownership:'',
-            assets:'',
-            description:'',
-            num_hydro:null,
-            num_coal:null,
-            num_diesel:null,
-            num_other:null,
-            tot_capacity:null,
-            avg_income:null,
-       }
-    }
-    $scope.bsPowGenFrimDis.power_supply.Table_1[table].push(new_row);
+    //Insert Firm
+    $scope.insertFirm = function(table) {
+        var new_row;
+        if(table == 'BsPwGenFirm') {
+            new_row = {
+                ownership:'',
+                assets:'',
+                description:'',
+                num_hydro:null,
+                num_coal:null,
+                num_diesel:null,
+                num_other:null,
+                tot_capacity:null,
+                avg_income:null,
+            }
+        }
 
+        $scope.bsPowGenFrimDis.power_supply.Table_1[table].push(new_row);
     }
 
-//Remove Enumerate Filed
-    $scope.removeItem = function removeItem(table, index)
-    {
+    //Remove Enumerate Filed
+    $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsPwGenFirm'){
             $scope.bsPowGenFrimDis.power_supply.Table_1.BsPwGenFirm.splice(index,1);
         }
     }
 
-//Save Data
-     $scope.saveBsData = function(form) {
-      $scope.submitted = true;
-      console.log($scope.district);
-        $http({
-            method: 'POST',
-            url: '/bs_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.bsPowGenFrimDis,
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.bs_date,
-                    'user_id': $scope.user_id,
+    //Save Data
+    $scope.saveBsData = function(form) {
+        $scope.submitted = true;
+        if(form.$valid) {
+            console.log($scope.district);
+            $http({
+                method: 'POST',
+                url: '/bs_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.bsPowGenFrimDis,
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id,
 
-                },
-                'is_edit': $scope.is_edit
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-	$("#modal-container-239453").modal('show');
-            console.log(response);
-
-
-        }, function errorCallback(response) {
-
-            console.log(response);
-        });
-
-
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+	            $("#modal-container-239453").modal('show');
+                console.log(response);
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        }
     }
 
-//Edit Data
-    $scope.bsHsDataEdit = function(form){
-       $scope.is_edit = true;
-       $scope.submitted = true;
-        $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-            'table_name': 'Table_1',
-            'sector':'power_supply',
-            'com_data': {
-                   'district': $scope.district,
-                   'bs_date': $scope.bs_date,
-                  } }),
-        }).success(function(data) {
-        console.log(data);
-        $scope.bsPowGenFrimDis = data;
-        })
-}
+    //Edit Data
+    $scope.editBsData = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
 
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector':'power_supply',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsPowGenFrimDis = data;
+            })
+        }
+    }
 
-//Cancel Edit Data
-    $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.bsPowGenFrimDis = init_data;
-}
+    //Cancel Edit Data
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.bsPowGenFrimDis = init_data;
+    }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
-        console.log('done');
+        console.log('clear');
         $scope.is_edit = false;
         $scope.bsPowGenFrimDis = angular.copy(init_data);
-
-
     }
-
-
 })

@@ -15,7 +15,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     $scope.grantot = null;
     $scope.user_id;
 
-//Initialize data
+    //Initialize data
     var init_data = {
         'agri_fisheries' : {
             'Table_3': {
@@ -372,7 +372,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
 
     $scope.dlFisheriesDistrict = angular.copy(init_data);
 
-//Get Districts and baseline related data
+    //Get Districts and baseline related data
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -435,7 +435,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         }
     }
 
-//Get Fishing Types
+    //Get Fishing Types
     $scope.getFishingTypes = function(form) {
         $http({
             method: "POST",
@@ -450,7 +450,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         })
     }
 
-//Generate fields from baseline Data
+    //Generate fields from baseline Data
     function generateRefencedData() {
         data_array = ['BifAstFequipment','BifAstOequipment','BifAstMachinery','BifAstStructures','BifProduction'];
 
@@ -592,7 +592,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         });
     }
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -622,22 +622,20 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         }
     }
 
-//Calculate total
-    $scope.CalTot=function(arr,property){
-    var finaltotal = 0;
+    //Calculate total
+    $scope.CalTot = function(arr,property) {
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.assets != 'Total'){
+                finaltotal = finaltotal + value[property] ;
+            }
+        })
 
-    angular.forEach(arr, function(value, key) {
-    if(value.assets != 'Total'){
-
-     finaltotal = finaltotal + value[property] ;
-
-     }
-    })
-     return finaltotal;
+        return finaltotal;
     }
 
-//Calculate Grand Total
-    $scope.calGrandPubTotal=function(){
+    //Calculate Grand Total
+    $scope.calGrandPubTotal = function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -689,7 +687,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         }
     }
 
-    $scope.calGrandPvtTotal=function(){
+    $scope.calGrandPvtTotal = function(){
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -743,7 +741,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     return grantot;
     }
 
-//Edit Data
+    //Edit Data
     $scope.dlDataEdit = function(){
 
     $scope.is_edit = true;
@@ -772,19 +770,16 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
 
 }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function(){
-       $scope.is_edit = false;
+        $scope.is_edit = false;
         $scope.dlFisheriesDistrict = init_data;
+    }
 
-}
-
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.dlFisheriesDistrict = angular.copy(init_data);
-
-
     }
 });

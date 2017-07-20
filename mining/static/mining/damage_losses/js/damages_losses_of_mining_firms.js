@@ -632,7 +632,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.test = function(form) {
 //        console.log($scope.selectedCompany.company);
 //        console.log($scope.selectedCompany.id);
-
         console.log($scope.dmLosOfMinFirms);
     }
 })

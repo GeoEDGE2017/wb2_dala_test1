@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
-<main class="main">
+<main class="main" ng-app="dlSummFormlInformlDisInputApp" ng-controller="dlSummFormlInformlDisInputController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -24,7 +24,7 @@
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active" id="step1">
+            <div class="tab-pane active" id="step1" ng-form name="form_dl_fml_and_ifml">
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="212"/>
@@ -40,25 +40,50 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
+                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_fml_and_ifml.incident.$error.required">
+                                Please Select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_fml_and_ifml.district.$error.required">
+                                Please Select District
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead1" height="19">
                         <td height="19" width="212">
                             Incident
                         </td>
                         <td height="19" width="108">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select id="select" name="incident" ng-model="incident"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(true)" required>
+
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>
+                                    <!--{{incident.disaster_type.name}}-->
+                                    <!--{{incident.reported_date_time}}-->
+                                    {{incident.incident_name}}
+                                </option>
+                                {% endfor %}
                             </select>
                         </td>
                         <td colspan="2" height="19" width="220">
                             District
                         </td>
                         <td colspan="7" height="19" width="675">
-                            <select id="selectbasic" name="selectbasic" class="form-control"
-                                    style="width:100%;font-weight:400;">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
+                                    class="form-control" ng-change="changedValue(false);getbsData();" required>
+                                <option value="" selected>Select District</option>
                             </select>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -891,12 +916,24 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
+                    <button type="button" ng-click="clear()" class="btn btn-info">
+                        Clear
+                    </button>
+                    <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit"
+                            class="btn btn-success">
+                        Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                            ng-click="dlSaveData(form_health_damagelost_lmh)"
+                            class="btn btn-success">Submit
+                    </button>
                 </div>
                 <br><br>
             </div>
-            {% endblock content %}
+
         </div>
     </div>
 </main>

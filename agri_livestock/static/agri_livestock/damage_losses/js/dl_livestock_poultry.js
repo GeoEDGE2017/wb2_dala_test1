@@ -876,4 +876,36 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         return grantot;
     }
 
+       $scope.calTotalStructures=function(){
+
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+        var finaltotal6 = 0;
+        var grantot = 0;
+
+        var array1 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock;
+        var array2 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry;
+        var array3 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry;
+        var array4 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock;
+        var array5 =
+        var array6 =
+
+        angular.forEach(array1, function(value, key) {
+            if(value.animals != 'Total'){
+                finaltotal1 = finaltotal1 + value.damages ;
+             }
+        })
+//        angular.forEach(array2, function(value, key) {
+//             if(value.animals != 'Total' ){
+//                finaltotal2 = finaltotal2 + value.damages ;
+//             }
+//        })
+//        grantot = grantot + finaltotal1+ finaltotal2;
+//        console.log(grantot);
+//        return grantot;
+    }
+
 }]);

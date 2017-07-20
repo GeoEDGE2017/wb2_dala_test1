@@ -28,7 +28,7 @@ app.controller("DlHousingDisController",function($scope, $http) {
         }
     }
 
-    $scope.changedValue = function getBsData() {
+    $scope.changedValue=function getBsData() {
         if($scope.incident && $scope.district){
             $scope.submitted = true;
             $scope.tot_damages = null;

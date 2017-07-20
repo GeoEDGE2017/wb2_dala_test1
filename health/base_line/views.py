@@ -73,10 +73,14 @@ def bs_health_medical_facilities(request):
     return render(request, 'base_line/health_baseline_district.html', context)
 
 
+# Table 3
 @permission_required("district", 'Health')
 def bs_health_info_unit_cost_ministry_health(request):
-    districts = District.objects.all()
+    fetch_data = fetch_districts(request.user)
+    districts = fetch_data['districts']
+    filtered_user = fetch_data['user']
     context = {
+        'user': filtered_user,
         'districts': districts,
         'module': 'health'
     }
@@ -88,16 +92,17 @@ def bs_health_info_unit_cost_ministry_health(request):
 def bs_health_other_medical_facilities_unit_cost(request):
     fetch_data = fetch_districts(request.user)
     districts = fetch_data['districts']
+    filtered_user = fetch_data['user']
     context = {
+        'user': filtered_user,
         'districts': districts,
         'module': 'health'
     }
     return render(request, 'base_line/health_baseline_unitcost_othermedi_district.html', context)
 
 
-# dileepa
-def medical_facilities(request):
-    return render(request, 'base_line/health_baseline_district.html')
+# def medical_facilities(request):
+#     return render(request, 'base_line/health_baseline_district.html')
 
 
 

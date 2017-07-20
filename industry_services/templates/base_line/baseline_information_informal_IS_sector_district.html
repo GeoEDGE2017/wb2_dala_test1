@@ -3,31 +3,31 @@
 {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsindustryServicesInfoInformalApp" ng-controller="bsindustryServicesInfoInformalController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:industry_services_main' %}">Industry & Services Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:industry_services_main' %}">
+                Industry & Services Sector
+            </a>
         </li>
-
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Baseline Information on the Informal IS Sector in a District</span></li>
-
-<li style="float:right;"> <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 2. Baseline Information on the Informal IS Sector in a District
+            </span>
+        </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
-
-
     <div class="container-fluid" ng-form name="form_bs_industry_services_info_informal_sector">
-
-
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered" >
-
                     <colgroup>
                         <col width="212"/>
                         <col width="108"/>
@@ -39,17 +39,14 @@
                         <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
                         <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_bs_industry_services_info_informal_sector.district.$error.required">
+                            <span class="arrow_box" ng-show="submitted && form_bs_industry_services_info_informal_sector.district.$error.required">
                                 Please Select District
                             </span>
-                            <!--district == undefined-->
                         </td>
                         <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_bs_industry_services_info_informal_sector.baselineDate.$error.required">
+                            <span class="arrow_box" ng-show="submitted && form_bs_industry_services_info_informal_sector.baselineDate.$error.required">
                                 Please Select Date
                             </span>
                         </td>
@@ -97,7 +94,6 @@
                     <!--bs_ind_ser_info_informl-->
                     <tr height="19" ng-repeat="bsNumBusSector in
                     bs_ind_ser_info_informl.industry_services.Table_2.BsNumBusSector">
-
                         <td class="tdpa" height="19" width="212" ng-bind="bsNumBusSector.components" ng-if="$index < 3">
                             Trading
                         </td>
@@ -109,9 +105,7 @@
                             <input style="width:80%;float:right;" name="bsNumBusSector_{{$index}}" ng-model="bsNumBusSector.components"
                                    popover="This field is required"
                                    popover-toggle="form_pop_lat_census['bsNumBusSector_' + $index].$dirty && !form_pop_lat_census['bsNumBusSector_' + $index].$valid"
-                                   popover-placement="top" required
-                                   type="text"
-                                   class="form-control input-md">
+                                   popover-placement="top" required type="text" class="form-control input-md">
                             {% endverbatim %}
                         </td>
                         <td height="19" width="108">
@@ -127,12 +121,10 @@
                                     placeholder="" class="form-control input-md">
                         </td>
                     </tr>
-
                     <tr class="tdpa" height="19">
                         <td class="tdpa" height="19" width="212">
                             Others (Enumerate)&nbsp;&nbsp; <button ng-click="insertRow('BsNumBusSector')"
                                     class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
-
                         </td>
                         <td height="19" width="108">
                         </td>
@@ -148,47 +140,37 @@
                         <td height="21" width="108" ng-bind="getGrandTotalCol('num_businesses')">
                         </td>
                         <td height="21" width="110" ng-bind="getGrandTotalCol('avg_num_emp_male')">
-
                         </td>
                         <td height="21" width="100" ng-bind="getGrandTotalCol('avg_num_emp_female')">
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="cancelEdit()">Clear</button>
-                    <button type="button" ng-click="dataEdit()"
-                            ng-if="!is_edit" class="btn btn-success">Edit
+                    <button type="button" class="btn btn-info" ng-click="cancelEdit()">
+                        Clear
                     </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                    <button type="button" ng-click="editBsData(form_bs_industry_services_info_informal_sector)" ng-if="!is_edit" class="btn btn-success">
                         Edit
                     </button>
-                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_industry_services_info_informal_sector)">Submit</button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_industry_services_info_informal_sector)">
+                        Submit
+                    </button>
                 </div>
                 <br><br><br>
             </div>
-
-
         </div>
     </div>
-
-
-
-
-
-
     <div class="col-md-12">
-
-
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
@@ -202,13 +184,11 @@
                             <label class="col-md-2 control-label" for="textinput">Name</label>
                             <div class="col-md-10">
                                 <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-
                             </div>
                         </div>
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -217,18 +197,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
-    </div>           </div>
-
     </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

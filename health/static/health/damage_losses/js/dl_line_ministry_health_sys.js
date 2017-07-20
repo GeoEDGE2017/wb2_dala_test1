@@ -469,17 +469,20 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'user_id': $scope.user_id,
+//                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
                 dataType: 'json',
             }).then(function mySucces(response) {
                 console.log(response);
-                if(response.data == 'False')
+                if(response.data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             }, function myError(response) {
                 //if data sent to server side method unsuccessfull
                 console.log(response);
@@ -502,12 +505,11 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        'user_id': $scope.user_id,
                     },
                 }),
             }).success(function(data) {
                 $scope.dlMinistryHealthSys = data;
-                console.log($scope.dlMinistryHealthSys.Table_5.DmhNdatFacStructure);
+                console.log($scope.dlMinistryHealthSys.health.Table_5.DmhNdatFacStructure);
             })
         }
     }

@@ -161,7 +161,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=public'
         # },
-        'NAME': 'dala_07_13',
+        'NAME': 'dala_ix',
         'USER': 'postgres',
     },
 }

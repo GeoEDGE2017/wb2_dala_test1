@@ -94,6 +94,7 @@ class BsAstWaterEmployment(models.Model):
     male = models.BigIntegerField(blank=True, null=True)
     female = models.BigIntegerField(blank=True, null=True)
     total = models.BigIntegerField(blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

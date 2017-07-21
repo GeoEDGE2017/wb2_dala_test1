@@ -107,6 +107,12 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 }
 }
 
+//    $scope.test = function test(){
+//    console.log($scope.bsAstTransWater);
+//
+//    }
+
+
     $scope.bsAstTransWater = init_data;
 
     //Disable Edit Button

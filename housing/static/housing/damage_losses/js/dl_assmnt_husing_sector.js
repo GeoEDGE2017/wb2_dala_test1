@@ -625,7 +625,6 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         'com_data': {
                 'district_id':  $scope.district.district__id,
                 'incident': $scope.incident,
-                'user_id': $scope.user_id,
               },
                'is_edit':$scope.is_edit
                }),

@@ -486,7 +486,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                 'com_data': {
                     'district':  $scope.district.district__id,
                     'incident': $scope.incident,
-                    'user_id': $scope.user_id
                 },
                 'is_edit':$scope.is_edit
             }),

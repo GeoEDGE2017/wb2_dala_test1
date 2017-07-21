@@ -204,7 +204,6 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         }
 
         if($scope.incident && $scope.district ) {
-            alert('#')
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

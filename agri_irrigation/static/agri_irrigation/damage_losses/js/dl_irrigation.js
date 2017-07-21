@@ -469,7 +469,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
 
     $scope.dlIrrigation = angular.copy(init_data);
 
-//Get Districts and get Baseline Data
+    //Get Districts and get Baseline Data
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -556,7 +556,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
         }
     }
 
-//Get related Baseline Data
+    //Get related Baseline Data
     function generateRefencedData() {
         data_array = ['BsIfMajor', 'BsIfMedium', 'BsIfMinor', 'BsIfAnicuts', 'BsRciaMajorTanks', 'BsRciaMediumTanks', 'BsRciaMinorTanks', 'BsRciaAnicuts', 'BsRciaOtherStructures', 'BsRciRiverEmbankmnt'];
 
@@ -772,9 +772,9 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
 
     }
 
-//Save data
+    //Save data
     $scope.saveDlData = function(form) {
- var array = $scope.dlIrrigation.agri_irrigation.Table_3;
+        var array = $scope.dlIrrigation.agri_irrigation.Table_3;
       var details = _.map(array, function(model_array) {
       _.map(model_array, function(model) {
           model.division = $scope.division;
@@ -812,8 +812,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
         }
     }
 
-//Get Calculate data
-    $scope.CalTot=function(arr){
+    //Get Calculate data
+    $scope.CalTot=function(arr) {
     var finaltotal = 0;
 
     angular.forEach(arr, function(value, key) {
@@ -824,14 +824,14 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
      return finaltotal;
     }
 
-//Convert To Int Function
-     $scope.convertToInt = function(val1,val2,val3,val4,val5,val6){
+    //Convert To Int Function
+    $scope.convertToInt = function(val1,val2,val3,val4,val5,val6){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5)+ parseInt(val6);
         return sum;
     }
 
-//Calculate Grand Total
-    $scope.calGrandTotal=function(){
+    //Calculate Grand Total
+    $scope.calGrandTotal=function() {
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -894,8 +894,8 @@ if(value.irrigation_assets != 'Total' && value.building != 'Total'){
     return grantot;
     }
 
-//Calculate Operating Loss
-    $scope.calTotalOperatingLos=function(){
+    //Calculate Operating Loss
+    $scope.calTotalOperatingLos=function() {
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -952,8 +952,8 @@ if(value.irrigation_assets != 'TOTAL LOSSES'){
     return grantot;
     }
 
-//Calculate Total Other
-    $scope.calTotalOther=function(){
+    //Calculate Total Other
+    $scope.calTotalOther=function() {
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -1004,7 +1004,7 @@ if(value.irrigation_assets != 'TOTAL LOSSES'){
     return grantot;
     }
 
-    $scope.calTotalLosses=function(){
+    $scope.calTotalLosses=function() {
     var finaltotal1 = 0;
     var finaltotal2 = 0;
     var finaltotal3 = 0;
@@ -1058,8 +1058,8 @@ if(value.irrigation_assets != 'TOTAL LOSSES'){
     return grantot;
     }
 
-//Edit Data
-    $scope.dlDataEdit = function(){
+    //Edit Data
+    $scope.dlDataEdit = function() {
 
    $scope.is_edit = true;
    $scope.submitted = true;
@@ -1084,18 +1084,16 @@ if(value.irrigation_assets != 'TOTAL LOSSES'){
 
 }
 
-//Cancel Data
+    //Cancel Data
     $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlIrrigation = init_data;
-}
+        $scope.is_edit = false;
+        $scope.dlIrrigation = init_data;
+    }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.dlIrrigation = angular.copy(init_data);
-
-
     }
 }]);

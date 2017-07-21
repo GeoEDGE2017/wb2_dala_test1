@@ -6,23 +6,31 @@
 
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
   });
-
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlAssessmentDistrictApp"
       ng-controller="dlAssessmentDistrictController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:othergov_main' %}">Other Government Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:othergov_main' %}">
+                Other Government Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damage and Loss Assessment in a District </span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 3. Damage and Loss Assessment in a District
+            </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -40,10 +48,8 @@
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true);fetchDlData();"
                                     style="width:100%;font-weight:400;" required>
-
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
                                     <!--{{incident.disaster_type.name}}-->
                                     <!--{{incident.reported_date_time}}-->
@@ -109,24 +115,24 @@
                         </td>
                         <td ng-bind="value.DlagdLossesDistrict[0].los_year2" width="108">
                         </td>
-                        <td width="108" style="width:9%;" ng-bind="value.DlagdDmgDistrict[0].damages + value.DlagdLossesDistrict[0].los_year1 + value.DlagdLossesDistrict[0].los_year2">
+                        <td width="108" style="width:9%;"
+                            ng-bind="value.DlagdDmgDistrict[0].damages + value.DlagdLossesDistrict[0].los_year1 + value.DlagdLossesDistrict[0].los_year2">
                         </td>
                     </tr>
-                    <tr >
-                        <td class="tdpa"  width="80"> Total</td>
-                        <td  width="108">
+                    <tr>
+                        <td class="tdpa" width="80"> Total</td>
+                        <td width="108">
                         </td>
-                        <td  width="108">
+                        <td width="108">
                         </td>
-                        <td  width="108">
+                        <td width="108">
                         </td>
                         <td width="108" style="width:9%;">
                         </td>
                     </tr>
-
                     </tbody>
-                    <tr >
-                        <td class="tdpa"  width="80">Grand Total</td>
+                    <tr>
+                        <td class="tdpa" width="80">Grand Total</td>
                         <td width="108">
                         </td>
                         <td width="108">
@@ -137,24 +143,13 @@
                         </td>
                     </tr>
                 </table>
-
-
                 <br>
                 <div class="pull-right">
                     <br>
-
                 </div>
                 <br><br><br>
             </div>
-
         </div>
-
-
-    </div>
-    </div>
-
-    </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>
@@ -172,6 +167,7 @@ button.onclick = function() {
 });
 }
 */
+
 
 
 
@@ -202,6 +198,7 @@ button.onclick = function() {
 
 
 
+
 </script>
 <script>
 /*var button = document.getElementById('insert2');
@@ -215,6 +212,7 @@ button.onclick = function() {
  $(this).parent().parent().remove();
 });
 }*/
+
 
 
 

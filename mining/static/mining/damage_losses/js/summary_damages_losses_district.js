@@ -1,8 +1,6 @@
 var app = angular.module('dmLosOfMinFirmsDisApp', ['underscore']);
 
 app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) {
-
-
     $scope.district;
     $scope.is_edit = false;
     $scope.incident;

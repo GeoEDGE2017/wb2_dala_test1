@@ -13,6 +13,7 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+
         if(form.$valid){
             $http({
                 method: "POST",
@@ -32,28 +33,28 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
         }
     }
 
-    $scope.fetchDlData = function(form){
-        if($scope.incident){
+    $scope.fetchDlData = function(form) {
+        if($scope.incident) {
             $scope.is_edit = true;
             $scope.submitted = true;
-                $http({
-                    method: "POST",
-                    url: '/dl_fetch_district_disagtn',
-                    data: angular.toJson({
-                    'table_name':  'Table_10',
-                    'sector': 'health',
-                    'com_data': {
-                        'incident': $scope.incident,
-                      },
-                   }),
-                }).success(function(data) {
-                    console.log('load ', data);
-                    $scope.data= data;
-                    $scope.dlhealthsummarydamagenationwide = data;
-                    })
-                }
-        }
 
+            $http({
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                'table_name':  'Table_10',
+                'sector': 'health',
+                'com_data': {
+                    'incident': $scope.incident,
+                  },
+               }),
+            }).success(function(data) {
+                console.log('load ', data);
+                $scope.data= data;
+                $scope.dlhealthsummarydamagenationwide = data;
+            })
+        }
+    }
 
     $scope.checkIfNull = function() {
         var isNull = $scope.dlhealthsummarydamagenationwide ? angular.equals({},

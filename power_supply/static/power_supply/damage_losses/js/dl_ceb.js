@@ -12,7 +12,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.is_valid_data = true;
     $scope.is_null = false;
 
-//Initialize model
+    //Initialize model
     var init_data = {
         'power_supply': {
             'Table_2': {
@@ -34,46 +34,42 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Tunnels',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Turbines',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Generators',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Control systems',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Others',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                 {
+                }, {
                     assets : 'Total',
                     num_dst_ast:null,
                     tot_replace_cost:null,
@@ -88,22 +84,21 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Grid substations',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Control centers',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dst_ast:null,
                     tot_replace_cost:null,
@@ -118,36 +113,35 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'LV Lines (Km)',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Primary sub stations',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Distribution sub stations',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Control centers',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dst_ast:null,
                     tot_replace_cost:null,
@@ -162,29 +156,28 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Storage buildings',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Access roads (Km)',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Others',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dst_ast:null,
                     tot_replace_cost:null,
@@ -199,22 +192,21 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Air conditioners',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Others',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Total',
                     num_dst_ast:null,
                     tot_replace_cost:null,
@@ -222,29 +214,28 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     to_repair_cost:null,
                     tot_dmg:null,
                 }],
-                  'CebDmgAstOther': [{
+                'CebDmgAstOther': [{
                     assets : 'Equipment/machinery',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'Tools',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },
-                {
+                }, {
                     assets : 'Others',
                     num_dst_ast:null,
                     tot_replace_cost:null,
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                },{
+                }, {
                     assets : 'GRAND TOTAL',
                     num_dst_ast:null,
                     tot_replace_cost:null,
@@ -252,7 +243,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     to_repair_cost:null,
                     tot_dmg: null,
                 }],
-                  'CebLosAstIncome': [{
+                'CebLosAstIncome': [{
                     assets : 'Income Losses',
                     avg_income : null,
                     reduction_y1 : null,
@@ -269,8 +260,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     losses_y1 : null,
                     losses_y2 : null,
                     tot_losses : null,
-                },
-                {
+                }, {
                     assets : 'Higher operating costs',
                     avg_income : null,
                     reduction_y1 : null,
@@ -278,8 +268,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     losses_y1 : null,
                     losses_y2 : null,
                     tot_losses : null,
-                },
-                {
+                }, {
                     assets : 'Other unexpected expenses',
                     avg_income : null,
                     reduction_y1 : null,
@@ -287,8 +276,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     losses_y1 : null,
                     losses_y2 : null,
                     tot_losses : null,
-                },
-                 {
+                }, {
                     assets : 'TOTAL',
                     avg_income : null,
                     reduction_y1 : null,
@@ -303,8 +291,8 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
 
     $scope.dlPowSupCeb = angular.copy(init_data);
 
-//Get Districts and related basline Data
-    $scope.changedValue=function getBsData(selectedValue) {
+    //Get Districts and related basline Data
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -320,10 +308,10 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
-
-            $scope.submitted = true;
+        $scope.submitted = true;
+        if(form.$valid) {
             $http({
                 method: 'POST',
                 url:'/dl_save_data',
@@ -339,52 +327,50 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
+                if(response.data == 'False') {
                     $scope.is_valid_data = false;
-                else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });
-
+        }
     }
 
+    //Edit Data
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_2',
+                    'sector':'power_supply',
+                    'com_data': {
+                           'district':  $scope.district.district__id,
+                            'incident': $scope.incident,
+                    },
+                   'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlPowSupCeb = data;
+            })
+        }
+    }
 
-//Edit Data
-    $scope.dlDataEdit = function(form){
-
-    $scope.is_edit = true;
-    $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_2',
-    'sector':'power_supply',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-    $scope.dlPowSupCeb = data;
-    })
-
-}
-
-//Cancel Edit
-    $scope.cancelEdit = function(){
-       $scope.is_edit = false;
+    //Cancel Edit
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
         $scope.dlPowSupCeb = init_data;
+    }
 
-}
-
-//Calculate Total
-    $scope.CalTotal=function(arr,property){
+    //Calculate Total
+    $scope.CalTotal = function(arr,property) {
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
      if(value.assets !='Total' && value.assets !='GRAND TOTAL' ){
@@ -394,8 +380,8 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     return finaltotal;
     }
 
-//Calculate Year1 Total
-    $scope.CalLosYear1Total=function(){
+    //Calculate Year1 Total
+    $scope.CalLosYear1Total = function() {
     var finalIncometotal = 0;
     var finaltotal = 0;
     var grandTot = 0;
@@ -416,8 +402,8 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     return grandTot;
     }
 
-//Calculate Year2 Total
-    $scope.CalLosYear2Total=function(){
+    //Calculate Year2 Total
+    $scope.CalLosYear2Total = function() {
     var finalIncometotal = 0;
     var finaltotal = 0;
     var grandTot = 0;
@@ -439,8 +425,8 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     return grandTot;
     }
 
-//Calculate Loss Total
-    $scope.CalLosTotal=function(){
+    //Calculate Loss Total
+    $scope.CalLosTotal = function() {
     var finalIncometotal = 0;
     var finaltotal = 0;
     var grandTot = 0;
@@ -458,15 +444,10 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     return grandTot;
     }
 
-
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
-        console.log('done');
+        console.log('clear');
         $scope.is_edit = false;
         $scope.dlPowSupCeb = angular.copy(init_data);
-
-
     }
-
-
 });

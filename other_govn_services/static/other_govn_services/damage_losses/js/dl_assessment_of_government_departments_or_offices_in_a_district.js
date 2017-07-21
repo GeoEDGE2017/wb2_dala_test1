@@ -485,6 +485,13 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.test = function() {
         console.log($scope.user);
     }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("clear")
+        $scope.is_edit = false;
+        $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = angular.copy(init_data);
+    }
 })
 
 

@@ -1,41 +1,40 @@
-
 {% extends "dashboard/base.html" %}
-
-
 {% block content %}
 {% load static %}
-
 <!-- Main content -->
 <main class="main" ng-app="dlPowSupPrivateApp" ng-controller="DlPowSupCebAppController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-          <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:power_supply_main' %}">Power Supply Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:power_supply_main' %}">
+                Power Supply Sector
+            </a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and losses of private power producers</span></li>
-
- <li style="float:right;"> <a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">T
+                able 3. Damages and losses of private power producers
+            </span>
+        </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/2-Power Supply-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
-
-
-    <div class="container-fluid" ng-form name="form_dl_pow_supp_pri">
-
+    <div class="container-fluid">
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
-
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 - Damages</a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 - Losses</a>
+            </li>
         </ul>
-
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active" id="step1">
-
-
-                <table class="table table-bordered" >
-
+            <div class="tab-pane active" id="step1" ng-form name="form_dl_pow_supp_pri">
+                <table class="table table-bordered">
                     <colgroup>
                         <col width="244"/>
                         <col width="112"/>
@@ -45,21 +44,18 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_dl_tou_buss.district.$error.required">
-                                Please Select District
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_pow_supp_pri.incident.$error.required">
+                                Please Select Incident
                             </span>
-                            <!--district == undefined-->
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_dl_tou_buss.baselineDate.$error.required">
-                                Please Select Date
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_dl_pow_supp_pri.district.$error.required">
+                                Please Select District
                             </span>
                         </td>
                     </tr>
@@ -67,8 +63,8 @@
                         <td width="103">
                             Incident
                         </td>
-                        <td width="107" colspan="3" >
-                            <select id="selectbasic"  name="incident" ng-model="incident"
+                        <td width="107" colspan="3">
+                            <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
@@ -101,14 +97,15 @@
                         <td colspan="5" width="328">
                             <select ng-options="pvtPwProducerType as pvtPwProducerType.name for pvtPwProducerType in
                             pvtPwProducerTypes | filter:{ name : '!CEB' }"
-                                    name="district" id="ccyear" ng-model="pvtPwProducerType" ng-value="pvtPwProducerType"
-                                    class="form-control"  required>
+                                    name="district" id="ccyear" ng-model="pvtPwProducerType"
+                                    ng-value="pvtPwProducerType"
+                                    class="form-control" required>
                                 <option value="" selected>Select Power Producer Type</option>
                             </select>
                         </td>
                     </tr>
                     <!--pvtPwProducers-->
-                    <tr  height="34">
+                    <tr height="34">
                         <td class="trhead1" height="34" width="244">
                             Name of IPP or SPP
                         </td>
@@ -116,7 +113,7 @@
                             <select ng-options="pvtPwProducer as pvtPwProducer.assets for pvtPwProducer in
                             pvtPwProducers | filter:{ ownership : pvtPwProducerType.name } "
                                     name="district" id="ccyear" ng-model="selectedProducer" ng-value="pvtPwProducer"
-                                    class="form-control"  required>
+                                    class="form-control" required>
                                 <option value="" selected>Select Power Producer</option>
                             </select>
                         </td>
@@ -125,25 +122,24 @@
                         <td rowspan="2" height="38" width="244">
                             Number of Employees
                         </td>
-                        <td colspan="2" width="220" >
+                        <td colspan="2" width="220">
                             Male
                         </td>
                         <td colspan="3" width="318">
                             Female
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="row in
-                data.power_supply.Table_3.PvtNumEmp" ng-if="row.assets != 'Total'">
+                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtNumEmp" ng-if="row.assets != 'Total'">
                         <td colspan="2" height="19">
-                            <input id="textinput" name="textinput" type="number" ng-model="row.num_male" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="number" ng-model="row.num_male" placeholder=""
+                                   class="form-control input-md">
                         </td>
                         <td colspan="3">
-                            <input id="textinput" name="textinput" type="text" ng-model="row.num_female" placeholder="" class="form-control input-md">
+                            <input id="textinput" name="textinput" type="text" ng-model="row.num_female" placeholder=""
+                                   class="form-control input-md">
                         </td>
                         <td colspan="0" ng-bind="row.tot_emp = row.num_male + row.num_female" ng-if="false">
                         </td>
-
-
                     </tr>
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" height="70" width="244">
@@ -170,8 +166,7 @@
                             Total Damages (LKR)
                         </td>
                     </tr>
-                    <tr height="19"  ng-repeat="row in
-                data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets != 'Total'">
+                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets != 'Total'">
                         <td class="tdpa" height="19" width="244" ng-bind="row.assets">
                             Power generation equipment
                         </td>
@@ -181,7 +176,8 @@
                         </td>
                         <td width="108" style="width:15%;">
                             <input id="textinput" name="textinput"
-                                   ng-model="row.tot_replace_cost" type="number" placeholder="" class="form-control input-md">
+                                   ng-model="row.tot_replace_cost" type="number" placeholder=""
+                                   class="form-control input-md">
                         </td>
                         <td width="108" style="width:15%;">
                             <input id="textinput" name="textinput" type="number"
@@ -191,42 +187,34 @@
                             <input id="textinput" name="textinput" type="number"
                                    ng-model="row.tot_repair_cost" placeholder="" class="form-control input-md">
                         </td>
-                        <td width="107" ng-bind="row.tot_damaged_cost = getSum2(row.tot_replace_cost , row.tot_repair_cost)" style="width:15%;">
-                            -
+                        <td width="107"
+                            ng-bind="row.tot_damaged_cost = getSum2(row.tot_replace_cost , row.tot_repair_cost)" style="width:15%;">
                         </td>
                     </tr>
-
-                    <tr height="19" ng-repeat="row in
-                data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets == 'Total'">
-                        <td class="tdpa" height="19" width="244" >
+                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgAst" ng-if="row.assets == 'Total'">
+                        <td class="tdpa" height="19" width="244">
                             Total
                         </td>
-                        <td class="tdpa" width="112" >
+                        <td class="tdpa" width="112">
                         </td>
-                        <td width="108" ng-bind = "row.tot_replace_cost = getTotalCol('PvtDmgAst','tot_replace_cost', row)">
-                            -
+                        <td width="108" ng-bind="row.tot_replace_cost = getTotalCol('PvtDmgAst','tot_replace_cost', row)">
                         </td>
-                        <td class="tdpa" width="108" >
+                        <td class="tdpa" width="108">
                         </td>
-                        <td width="103" ng-bind = "row.tot_repair_cost = getTotalCol('PvtDmgAst','tot_repair_cost', row)">
-                            -
+                        <td width="103" ng-bind="row.tot_repair_cost = getTotalCol('PvtDmgAst','tot_repair_cost', row)">
                         </td>
-                        <td width="107" ng-bind = "row.tot_damaged_cost = getTotalCol('PvtDmgAst','tot_damaged_cost', row)">
-                            -
+                        <td width="107" ng-bind="row.tot_damaged_cost = getTotalCol('PvtDmgAst','tot_damaged_cost', row)">
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-
                 <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
-
-                <table class="table table-bordered" >
-
+                <table class="table table-bordered">
                     <colgroup>
                         <col width="244"/>
                         <col width="112"/>
@@ -249,8 +237,7 @@
                             Total Losses (LKR)
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="row in
-                data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type != 'Total'">
+                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type != 'Total'">
                         <td class="tdpa" height="19" width="244" ng-bind="row.losses_type">
                             Income Losses
                         </td>
@@ -263,72 +250,64 @@
                                    placeholder="" class="form-control input-md">
                         </td>
                         <td width="107" ng-bind="lossTotals[$index].tot = getSum2(row.los_year1, row.los_year2)">
-                            -
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="row in
-                data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type == 'Total'">
+                    <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type == 'Total'">
                         <td class="tdpa" height="19" width="244">
                             Total
                         </td>
-                        <td colspan="2" width="220" ng-bind="row.los_year1 = getTotalCol('PvtDmgLosses','los_year1',row)">
-                            -
+                        <td colspan="2" width="220"
+                            ng-bind="row.los_year1 = getTotalCol('PvtDmgLosses','los_year1',row)">
                         </td>
-                        <td colspan="2" width="211" ng-bind="row.los_year2 = getTotalCol('PvtDmgLosses','los_year2',row)">
-                            -
+                        <td colspan="2" width="211"
+                            ng-bind="row.los_year2 = getTotalCol('PvtDmgLosses','los_year2',row)">
                         </td>
-                        <td width="107" ng-bind="lossTotals[0].tot + lossTotals[1].tot + lossTotals[2].tot + lossTotals[3].tot">
-                            -
+                        <td width="107"
+                            ng-bind="lossTotals[0].tot + lossTotals[1].tot + lossTotals[2].tot + lossTotals[3].tot">
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <button type="button" ng-click="dataEdit(form_dl_pow_supp_pri)"
-                            ng-if="!is_edit" class="btn btn-success">Edit
+                    <button type="button" class="btn btn-info" ng-click="clear()">
+                        Clear
                     </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                    <button type="button" ng-click="dataEdit(form_dl_pow_supp_pri)" ng-if="!is_edit" class="btn btn-success">
                         Edit
                     </button>
-                    <button type="button" ng-click="saveDlData(form_dl_pow_supp_pri)" class="btn btn-success">Submit</button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="button" ng-click="saveDlData(form_dl_pow_supp_pri)" class="btn btn-success">
+                        Submit
+                    </button>
                 </div>
                 <br><br><br>
             </div>
         </div>
-
-
-
-
     </div>
-    </div>
-
     <div class="col-md-12">
-
-
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
-
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
-                        <h5 class="modal-title" >
+                        <h5 class="modal-title">
                             <span id="bookId"> </span>
                         </h5>
                     </div>
                     <div class="modal-body">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput" >Name</label>
+                            <label class="col-md-2 control-label" for="textinput">Name</label>
                             <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" ng-model="newPvtPwProducer.name" placeholder="" class="form-control input-md">
-
+                                <input id="textinput" name="textinput" type="text" ng-model="newPvtPwProducer.name"
+                                       placeholder="" class="form-control input-md">
                             </div>
                         </div>
                     </div>
@@ -343,18 +322,9 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
-    </div>           </div>
-
     </div>
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

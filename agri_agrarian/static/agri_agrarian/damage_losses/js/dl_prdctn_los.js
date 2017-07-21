@@ -14,7 +14,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.currentBaselineDate = null;
     $scope.user_id;
 
-//Initialize data
+    //Initialize data
     var init_data = {
         'agri_agrarian': {
             'Table_7': {
@@ -278,7 +278,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
 
     $scope.dlPrdctnLos = angular.copy(init_data);
 
-//Get Districts and Related basline Data
+    //Get Districts and Related basline Data
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({

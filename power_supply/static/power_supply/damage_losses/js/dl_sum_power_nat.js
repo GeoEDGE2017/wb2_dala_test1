@@ -21,39 +21,31 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
     $scope.total_num_affected = 0;
     $scope.user_id;
 
-    $scope.fetchDlData = function(){
+    $scope.fetchDlData = function() {
         if($scope.incident){
-        $scope.is_edit = true;
-        $scope.submitted = true;
+            $scope.is_edit = true;
+            $scope.submitted = true;
 
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_6',
-            'sector': 'power_supply',
-            'com_data': {
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':'Table_6',
+                    'sector': 'power_supply',
+                    'com_data': {
+                        'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
-
-            console.log('load ', data);
-            $scope.data= data;
-            $scope.dlPowerSupplySumNat = data;
-
+                console.log('load ', data);
+                $scope.data= data;
+                $scope.dlPowerSupplySumNat = data;
             })
-            }
-
+        }
     }
-            $scope.checkIfNull = function()
-   {
+
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlPowerSupplySumNat ? angular.equals({}, $scope.dlPowerSupplySumNat.power_supply.Table_6) : true;
         return isNull;
-
-   }
-
-
-
-
+    }
  })

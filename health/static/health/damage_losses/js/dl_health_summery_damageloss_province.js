@@ -47,7 +47,6 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
-
         if($scope.incident && selectProvinces) {
             fetchProvinces();
         }
@@ -130,6 +129,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     $scope.checkIfNull = function() {
         var isNull = $scope.dlhealthsummarydamageprovince ? angular.equals({},
         $scope.dlhealthsummarydamageprovince.health.Table_8) : true;
+
         return isNull;
     }
 

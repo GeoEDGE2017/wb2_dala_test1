@@ -25,57 +25,50 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
           fetchProvinces();
         }
     }
+
     $scope.provinces = [];
 
-    function fetchProvinces()
-    {
-          $http({
+    function fetchProvinces() {
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
                     'incident': $scope.incident
                    }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-            })
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = "";
+        })
     }
-    $scope.fetchDlData = function(form){
-    if($scope.incident && $scope.province){
-        $scope.is_edit = true;
-        $scope.submitted = true;
+
+    $scope.fetchDlData = function(form) {
+        if($scope.incident && $scope.province) {
+            $scope.is_edit = true;
+            $scope.submitted = true;
 
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':  'Table_5',
-            'sector': 'power_supply',
-            'com_data': {
-                    'province': $scope.province,
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':  'Table_5',
+                    'sector': 'power_supply',
+                    'com_data': {
+                        'province': $scope.province,
+                        'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
-
-            console.log('load ', data);
-
-            $scope.data = data;
-            $scope.dlPowerSupplyPro = data;
-
+                console.log('load ', data);
+                $scope.data = data;
+                $scope.dlPowerSupplyPro = data;
             })
-            }
-
-
+        }
     }
 
-
-   $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlPowerSupplyPro ? angular.equals({}, $scope.dlPowerSupplyPro.power_supply.Table_5) : true;
         return isNull;
-
-   }
+    }
 
 // $scope.getTotal = function(key) {
 //
@@ -163,6 +156,4 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
 //
 //
 //}
-
-
  })

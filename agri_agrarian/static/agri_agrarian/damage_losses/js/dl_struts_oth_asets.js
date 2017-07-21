@@ -15,7 +15,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     $scope.currentBaselineDate = null;
     $scope.user_id;
 
-//Initailize data
+    //Initailize data
     var init_data = {
         'agri_agrarian': {
             'Table_5': {
@@ -205,10 +205,8 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                     },
                     'table_name': 'Table_3',
                     'sector':'agri_agrarian',
-                        }),
-                  dataType: 'json',
-
-
+                }),
+                dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
                 console.log('*', response);

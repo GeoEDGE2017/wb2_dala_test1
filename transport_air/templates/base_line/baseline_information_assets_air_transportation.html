@@ -2,25 +2,32 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
-  });
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
-
 <!-- Main content -->
 <main class="main" ng-app="bsInfoAsetTransApp" ng-controller="BsInfoAsetTransController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-     <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_air_main' %}">Transport Air Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_air_main' %}">
+                Transport Air Sector
+            </a>
         </li>
-      
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on the Assets in the Air Transportation Sub-sector</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Baseline Information on the Assets in the Air Transportation Sub-sector
+            </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_info_aset_trns">
         <ul class='nav nav-wizard'>
@@ -457,8 +464,6 @@
                     </tr>
                     </tbody>
                 </table>
-
-
                 <br>
                 <div class="pull-right">
                     <br>

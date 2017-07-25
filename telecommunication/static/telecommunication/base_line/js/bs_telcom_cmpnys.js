@@ -16,6 +16,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.company;
     $scope.is_edit_disable = false;
     $scope.user_id;
+    $scope.editTelCompany;
 
     var init_data = {
         'telecommunication': {
@@ -64,10 +65,10 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
             }).success(function(data) {
                 console.log('ok');
                 console.log(data);
-//                $scope.bsInfoFisheries = init_data;
                 $scope.is_edit = false;
                 if (data == 'False') {
                     $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
                 }
                 else {
                     $("#modal-container-239453").modal('show');
@@ -77,6 +78,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     }
 
     $scope.saveCompany = function() {
+        console.log($scope.editTelCompany);
         if($scope.district != null && $scope.bs_date != null) {
             if(!$scope.is_edit_model) {
                 $scope.new_company = {company_name: $scope.company, ownership: $scope.ownership};
@@ -99,6 +101,33 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                         window.location.reload();
                 })
             }
+        }
+        else {
+            console.log('District is not selected');
+        }
+    }
+
+    $scope.editCompany = function() {
+        console.log($scope.editTelCompany);
+        if($scope.district != null && $scope.bs_date != null) {
+            $http({
+                method: "POST",
+                url: "/add_entity_with_district",
+                data: angular.toJson({
+                    'model_fields': $scope.editTelCompany,
+                    'model': 'CompanyName',
+                    'is_edit': true,
+                    'sector': 'telecommunication',
+                    'district_id': $scope.district,
+                }),
+            }).success(function(data) {
+                if(data) {
+                    $scope.companies.push($scope.new_company);
+                    $("#modal-container-218029").modal('hide');
+//                    $("#modal-container-469840").modal('hide');
+                    window.location.reload();
+                }
+            })
         }
         else {
             console.log('District is not selected');

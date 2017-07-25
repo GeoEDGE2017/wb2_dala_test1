@@ -699,3 +699,37 @@ class DlInfNumBusDistrict(models.Model):
         db_table = 'industry_services\".\"dl_inf_num_bus_district'
 
 
+# Table 5_2
+class DmgFrmYear1Tot(models.Model):
+    tot_damages = models.FloatField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dmg_frm_year1_tot'
+
+
+class LosFrmYear1Tot(models.Model):
+    tot_los_year1 = models.FloatField(blank=True, null=True)
+    tot_los_year2 = models.FloatField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_frm_year1_tot'
+
+
+class LosFrmYear2Tot(models.Model):
+    tot_los_year1 = models.FloatField(blank=True, null=True)
+    tot_los_year2 = models.FloatField(blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"los_frm_year2_tot'

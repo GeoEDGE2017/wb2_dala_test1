@@ -92,7 +92,7 @@
                                         <!--{{incident.reported_date_time}}-->
                                         {{incident.incident_name}}
                                     </option>
-                                    {% endfor %}/home/sachie/Downloads/health_damagelost_ministry_helth.html
+                                    {% endfor %}
                                 </select>
                             </td>
                             <td colspan="2" style="padding-left:5px;"> Name of District</td>
@@ -100,7 +100,7 @@
                                 <select style="font-weight:normal;"
                                         ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                        class="form-control" ng-change="fetchPrivateClinics()" required>
+                                        class="form-control" ng-change="fetchPrivateClinics();" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
@@ -211,7 +211,7 @@
                                    class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add</a>
                             </td>
                             <td colspan="" align="center" valign="middle" class="trsub">
-                                <a id="edit_preschool" href="#modal-container-218029"
+                                <a id="edit_preschool" href="#modal-container-218020"
                                    role="button" data-toggle="modal"
                                    data-id="Edit Pre-school"
                                    class="btn  btn-block btn-primary btn-warning">Edit</a>
@@ -229,7 +229,7 @@
                                 Private Clinic Name
                             </td>
                             <td colspan="7" align="center" valign="middle">
-                                <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinics.id"
+                                <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinic.id"
                                         name="company" id="ccyear" ng-model="dapBefPc.clinic" class="form-control"
                                         required>
                                     <option value="" selected>Select Private Clinic</option>
@@ -416,7 +416,7 @@
                     </table>
                     <div class="pull-right">
                         <br>
-                        <button type="button" ng-click="Test()" class="btn btn-info">
+                        <button type="button" ng-click="tt2()" class="btn btn-info">
                             Clear
                         </button>
                         <button type="button" ng-click="editDlData(form_health_damagelost_private)" ng-if="!is_edit"
@@ -435,8 +435,8 @@
                 </div>
             </div>
         </div>
-        <!-- /.conainer-fluid -->
         <div class="col-md-12">
+            <!-- save -->
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
@@ -466,14 +466,14 @@
                                 Close
                             </button>
                             <button ng-click="addPrivateClinic()" type="button" class="btn btn-primary">
-                                Save changes
+                                Save
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modal-container-218020" role="dialog" style="width:50%;margin:0 auto;"
-                 aria-hidden="true">
+            <!--edit-->
+            <div class="modal fade" id="modal-container-218020" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -487,9 +487,21 @@
                         <div class="modal-body">
                             <!-- Text input-->
                             <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput">Select Private Clinic</label>
+                                <div class="col-md-10">
+                                    <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinic.id"
+                                            name="district" id="ccyear" ng-model="selectedCliniEdit" ng-change="tt();" class="form-control" required>
+                                        <option value="" selected>Select Private Clinic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Text input-->
+                            <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Name</label>
                                 <div class="col-md-10">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                    <input id="textinput" name="textinput" ng-model="selectedCliniEdit.name" type="text" placeholder=""
                                            class="form-control input-md">
                                 </div>
                             </div>
@@ -499,7 +511,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" ng-click="editPrivateClinic()" class="btn btn-primary">
                                 Save changes
                             </button>
                         </div>
@@ -507,7 +519,6 @@
                 </div>
             </div>
         </div>
-
         <!-- please update the baseline tables -->
         <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">

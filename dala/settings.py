@@ -152,14 +152,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'OPTIONS': {
         #     'options': '-c search_path=power_supply'
-        #                'health,public,other_government,education,mining,'
-        #                'transport_rail,transport_water,transport_land,transport_air,'
-        #                'agri_agrarian,agri_irrigation,agri_livestock,water_supply,'
-        #                'housing, telecommunication'
+        #                'health, public, other_government, education,mining,'
+        #                'transport_rail, transport_water, transport_land,transport_air,'
+        #                'agri_agrarian, agri_irrigation, agri_livestock, water_supply,'
+        #                'housing, telecommunication', 'industry_services'
         # },
 
         # 'OPTIONS': {
-        #     'options': '-c search_path=public'
+        #     'options': '-c search_path=industry_services'
         # },
 
         'NAME': 'dala_ix',
@@ -198,7 +198,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Colombo'
 
 USE_I18N = True
 
@@ -3098,6 +3098,11 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
         },
+        # 'Table_5_2': {
+        #     'DmgFrmYear1Tot': ['tot_damages', 'ownership', 'incident', 'district'],
+        #     'LosFrmYear1Tot': ['tot_los_year1', 'tot_los_year2', 'ownership', 'incident', 'district'],
+        #     'LosFrmYear2Tot': ['tot_los_year1', 'tot_los_year2', 'ownership', 'incident', 'district'],
+        # },
         'Table_6': {
             'DlNumAffBusIndustry': ['assets', 'num_bus_public', 'num_bus_private', 'id'],
             'DlNumAffBusServices': ['assets', 'num_bus_public', 'num_bus_private', 'id'],

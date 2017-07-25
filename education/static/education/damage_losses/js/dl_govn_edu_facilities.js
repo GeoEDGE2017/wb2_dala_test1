@@ -27,7 +27,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
     var tabtwototal = 0;
     $scope.currentBaselineDate = null;
     $scope.user_id;
-
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'education':{
@@ -676,6 +676,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
         }
 
         if( $scope.incident && $scope.district){
+            $scope.is_edit_disable = true;
             $scope.fetchDlData();
         }
     }
@@ -704,10 +705,12 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
-                }, function myError(response) {
-                    console.log(response);
+                }
+            },
+            function myError(response) {
+                console.log(response);
             });
         }
     }
@@ -881,7 +884,6 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
             }
 
-
             });
 
             $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
@@ -913,85 +915,73 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
         return total;
     }
 
-
-$scope.getTotal =function (value){
-
-$scope.dugNdafTot = $scope.dugNdafTot + value.total;
-
-}
+    $scope.getTotal =function (value) {
+        $scope.dugNdafTot = $scope.dugNdafTot + value.total;
+    }
 
     $scope.getGrandTot = function (property) {
         var strucLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure.length;
         var suppLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies.length;
         var equLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
 
-        var ab1_1c= $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure[strucLength -1][property] +
+        var ab1_1c = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure[strucLength -1][property] +
                     $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies[suppLength -1][property] +
                     $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equLength -1][property]
-
 
         return ab1_1c;
     }
 
-$scope.getGrandTotDamage = function (property) {
+    $scope.getGrandTotDamage = function (property) {
+        var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
+        var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
+        var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment.length;
 
-var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
-var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
-var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment.length;
+        var ab1_1c_dm = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength -1][property] +
+                    $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies[suppDmLength -1][property] +
+                    $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1][property]
 
-var ab1_1c_dm= $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength -1][property] +
-            $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies[suppDmLength -1][property] +
-            $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1][property]
+        return ab1_1c_dm;
+    }
 
-return ab1_1c_dm;
-}
+    $scope.getTot = function(model) {
+        var len = $scope.dlGovnEduFacilities.education.Table_3[model].length;
+        var tot = $scope.dlGovnEduFacilities.education.Table_3[model][len -1].ab1_1c +
+        $scope.dlGovnEduFacilities.education.Table_3[model][len -1].type_2 +
+        $scope.dlGovnEduFacilities.education.Table_3[model][len -1].type_3 +
+        $scope.dlGovnEduFacilities.education.Table_3[model][len -1].pirivena+
+        $scope.dlGovnEduFacilities.education.Table_3[model][len -1].training_institutes+
+        $scope.dlGovnEduFacilities.education.Table_3[model][len -1].training_colleges+
+        $scope.dlGovnEduFacilities.education.Table_3[model][len -1].tc_crc_resc +
+        $scope.dlGovnEduFacilities.education.Table_3[model][len -1].min_pzd_offices;
+        return tot;
+    }
 
+    $scope.tabTwogetGrandTotal = function() {
+        tabtwototal = 0;
+        var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure.length;
+        var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies.length;
+        var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
 
-$scope.getTot = function(model){
+        var tabtwototal= $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure[strucDmLength -1].total +
+                $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies[suppDmLength -1].total +
+                $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total;
 
-var len = $scope.dlGovnEduFacilities.education.Table_3[model].length;
-var tot = $scope.dlGovnEduFacilities.education.Table_3[model][len -1].ab1_1c +
- $scope.dlGovnEduFacilities.education.Table_3[model][len -1].type_2 +
- $scope.dlGovnEduFacilities.education.Table_3[model][len -1].type_3 +
- $scope.dlGovnEduFacilities.education.Table_3[model][len -1].pirivena+
- $scope.dlGovnEduFacilities.education.Table_3[model][len -1].training_institutes+
- $scope.dlGovnEduFacilities.education.Table_3[model][len -1].training_colleges+
- $scope.dlGovnEduFacilities.education.Table_3[model][len -1].tc_crc_resc +
- $scope.dlGovnEduFacilities.education.Table_3[model][len -1].min_pzd_offices
+        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total);
+        return tabtwototal;
+    }
 
-;
-return tot;
-}
+    $scope.tabFourgetGrandTotal = function() {
+        tabfourtotal = 0;
+        var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
+        var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
+        var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
 
-$scope.tabTwogetGrandTotal = function(){
- tabtwototal = 0;
-
-
-var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure.length;
-var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies.length;
-var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
-
-var tabtwototal= $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure[strucDmLength -1].total +
-            $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies[suppDmLength -1].total +
-            $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total
-console.log($scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total);
-return tabtwototal;
-}
-
-$scope.tabFourgetGrandTotal = function(){
- tabfourtotal = 0;
-
-
-var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
-var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
-var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
-
-var tabfourtotal= $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength -1].total +
+        var tabfourtotal= $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength -1].total +
             $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies[suppDmLength -1].total +
             $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total
-console.log($scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total);
-return tabfourtotal;
-}
+        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total);
 
+        return tabfourtotal;
+    }
 })
 

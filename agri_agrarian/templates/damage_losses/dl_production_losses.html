@@ -7,6 +7,7 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     
   });
+
 </script>
 <style>
     .right {text-align:right;}
@@ -28,10 +29,12 @@
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
-    <div class="container-fluid"  ng-form name="form_dl_prdctn_los">
+    <div class="container-fluid" ng-form name="form_dl_prdctn_los">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
                 <table class="table table-bordered">
@@ -46,14 +49,14 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td   style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_prdctn_los.incident.$error.required">
                                 Please select Incident
                             </span>
                         </td>
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="5" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_dl_prdctn_los.district.$error.required">
@@ -67,7 +70,8 @@
                         </td>
                         <td colspan="4" width="567" height="19">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                    class="form-control" ng-change="changedValue(true)"
+                                    style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
                                 <option value={{incident.id}}>
@@ -83,7 +87,8 @@
                         </td>
                         <td colspan="5">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="changedValue(false)" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -165,9 +170,9 @@
                         </td>
                     </tr>
                     </tbody>
-                    </table>
+                </table>
 
-                    <div id="boxscroll" style="height:400px;overflow:auto;">
+                <div id="boxscroll" style="height:400px;overflow:auto;">
                     <table class="table table-bordered">
                     <tr class="trheadc" height="19">
                         <td width="249" height="19" style="width:18.5%;">
@@ -217,20 +222,20 @@
                         <td width="112" ng-model="pldySeasonalCrops.prod_year_1_pub"
                             ng-bind="pldySeasonalCrops.prod_year_1_pub =
                             pldySeasonalCrops.redctn_year_1_pub/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pub">
-                        </td>
+                            </td>
 
-                        <td width="99" ng-model="pldySeasonalCrops.prod_year_1_pvt"
-                            ng-bind="pldySeasonalCrops.prod_year_1_pvt =
+                            <td width="99" ng-model="pldySeasonalCrops.prod_year_1_pvt"
+                                ng-bind="pldySeasonalCrops.prod_year_1_pvt =
                         pldySeasonalCrops.redctn_year_1_pvt/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pub"
-                        ng-bind="pldySeasonalCrops.prod_year_2_pub =
+                            </td>
+                            <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pub"
+                                ng-bind="pldySeasonalCrops.prod_year_2_pub =
                         pldySeasonalCrops.redctn_year_2_pub/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pub">
-                        </td>
+                            </td>
 
-                        <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pvt"
-                            ng-bind="pldySeasonalCrops.prod_year_2_pvt =
+                            <td width="85" ng-model="pldySeasonalCrops.prod_year_2_pvt"
+                                ng-bind="pldySeasonalCrops.prod_year_2_pvt =
                         pldySeasonalCrops.redctn_year_2_pvt/100 * bs_data['BacfSeasonalCrops'][$index].fields.productn_pvt">
                         </td>
                         <td class="right" width="85" ng-model="pldySeasonalCrops.tot_prod_pub"
@@ -327,19 +332,19 @@
                             ng-bind="pldyPlantnCrops.prod_year_1_pub =
                         pldyPlantnCrops.redctn_year_1_pub/100 * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="99" ng-model="pldyPlantnCrops.prod_year_1_pvt"
-                            ng-bind="pldyPlantnCrops.prod_year_1_pvt =
+                            </td>
+                            <td width="99" ng-model="pldyPlantnCrops.prod_year_1_pvt"
+                                ng-bind="pldyPlantnCrops.prod_year_1_pvt =
                         pldyPlantnCrops.redctn_year_1_pvt/100 * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="85" ng-model="pldyPlantnCrops.prod_year_2_pub"
-                        ng-bind="pldyPlantnCrops.prod_year_2_pub =
+                            </td>
+                            <td width="85" ng-model="pldyPlantnCrops.prod_year_2_pub"
+                                ng-bind="pldyPlantnCrops.prod_year_2_pub =
                         pldyPlantnCrops.redctn_year_2_pub/100 * bs_data['BacfPlantnCrops'][$index].fields.productn_pub">
-                        </td>
+                            </td>
 
-                        <td width="85" ng-model="pldyPlantnCrops.prod_year_2_pvt"
-                            ng-bind="pldyPlantnCrops.prod_year_2_pvt =
+                            <td width="85" ng-model="pldyPlantnCrops.prod_year_2_pvt"
+                                ng-bind="pldyPlantnCrops.prod_year_2_pvt =
                         pldyPlantnCrops.redctn_year_2_pvt/100 * bs_data['BacfPlantnCrops'][$index].fields.productn_pvt">
                         </td>
                         <td class="right" width="85" ng-model="pldyPlantnCrops.tot_prod_pub"
@@ -430,19 +435,19 @@
                             ng-bind="pldyExportCrops.prod_year_1_pub =
                         pldyExportCrops.redctn_year_1_pub/100 * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="99" ng-model="pldyExportCrops.prod_year_1_pvt"
-                            ng-bind="pldyExportCrops.prod_year_1_pvt =
+                            </td>
+                            <td width="99" ng-model="pldyExportCrops.prod_year_1_pvt"
+                                ng-bind="pldyExportCrops.prod_year_1_pvt =
                         pldyExportCrops.redctn_year_1_pvt/100 * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="85" ng-model="pldyExportCrops.prod_year_2_pub"
-                        ng-bind="pldyExportCrops.prod_year_2_pub =
+                            </td>
+                            <td width="85" ng-model="pldyExportCrops.prod_year_2_pub"
+                                ng-bind="pldyExportCrops.prod_year_2_pub =
                         pldyExportCrops.redctn_year_2_pub/100 * bs_data['BacfExportCrops'][$index].fields.productn_pub">
-                        </td>
+                            </td>
 
-                        <td width="85" ng-model="pldyExportCrops.prod_year_2_pvt"
-                            ng-bind="pldyExportCrops.prod_year_2_pvt =
+                            <td width="85" ng-model="pldyExportCrops.prod_year_2_pvt"
+                                ng-bind="pldyExportCrops.prod_year_2_pvt =
                         pldyExportCrops.redctn_year_2_pvt/100 * bs_data['BacfExportCrops'][$index].fields.productn_pvt">
                         </td>
                         <td class="right" width="85" ng-model="pldyExportCrops.tot_prod_pub"
@@ -531,19 +536,19 @@
                             ng-bind="pldyForestry.prod_year_1_pub =
                         pldyForestry.redctn_year_1_pub/100 * bs_data['BacfForestry'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="99" ng-model="pldyForestry.prod_year_1_pvt"
-                            ng-bind="pldyForestry.prod_year_1_pvt =
+                            </td>
+                            <td width="99" ng-model="pldyForestry.prod_year_1_pvt"
+                                ng-bind="pldyForestry.prod_year_1_pvt =
                         pldyForestry.redctn_year_1_pvt/100 * bs_data['BacfForestry'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="85" ng-model="pldyForestry.prod_year_2_pub"
-                        ng-bind="pldyForestry.prod_year_2_pub =
+                            </td>
+                            <td width="85" ng-model="pldyForestry.prod_year_2_pub"
+                                ng-bind="pldyForestry.prod_year_2_pub =
                         pldyForestry.redctn_year_2_pub/100 * bs_data['BacfForestry'][$index].fields.productn_pub">
-                        </td>
+                            </td>
 
-                        <td width="85" ng-model="pldyForestry.prod_year_2_pvt"
-                            ng-bind="pldyForestry.prod_year_2_pvt =
+                            <td width="85" ng-model="pldyForestry.prod_year_2_pvt"
+                                ng-bind="pldyForestry.prod_year_2_pvt =
                         pldyForestry.redctn_year_2_pvt/100 * bs_data['BacfForestry'][$index].fields.productn_pvt">
                         </td>
                         <td class="right" width="85" ng-model="pldyForestry.tot_prod_pub"
@@ -630,19 +635,19 @@
                             ng-bind="pldyOther.prod_year_1_pub =
                         pldyOther.redctn_year_1_pub/100 * bs_data['BacfOther'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="99" ng-model="pldyOther.prod_year_1_pvt"
-                            ng-bind="pldyOther.prod_year_1_pvt =
+                            </td>
+                            <td width="99" ng-model="pldyOther.prod_year_1_pvt"
+                                ng-bind="pldyOther.prod_year_1_pvt =
                         pldyOther.redctn_year_1_pvt/100 * bs_data['BacfOther'][$index].fields.productn_pvt">
 
-                        </td>
-                        <td width="85" ng-model="pldyOther.prod_year_2_pub"
-                        ng-bind="pldyOther.prod_year_2_pub =
+                            </td>
+                            <td width="85" ng-model="pldyOther.prod_year_2_pub"
+                                ng-bind="pldyOther.prod_year_2_pub =
                         pldyOther.redctn_year_2_pub/100 * bs_data['BacfOther'][$index].fields.productn_pub">
-                        </td>
+                            </td>
 
-                        <td width="85" ng-model="pldyOther.prod_year_2_pvt"
-                            ng-bind="pldyOther.prod_year_2_pvt =
+                            <td width="85" ng-model="pldyOther.prod_year_2_pvt"
+                                ng-bind="pldyOther.prod_year_2_pvt =
                         pldyOther.redctn_year_2_pvt/100 * bs_data['BacfOther'][$index].fields.productn_pvt">
                         </td>
                         <td class="right" width="85" ng-model="pldyOther.tot_prod_pub"
@@ -811,77 +816,72 @@
                             dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[0].tot_pvt +
                             dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[1].tot_pvt +
                             dlPrdctnLos.agri_agrarian.Table_7.PldyOtherLos[2].tot_pvt">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-               
-                <div class="pull-right">
-                    <br>
-                     <button type="button" ng-click="clear()"  class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
-                    </button>
-                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_prdctn_los)">Submit</button>
+                    <div class="pull-right">
+                        <br>
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_dl_prdctn_los)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                        <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_prdctn_los)">Submit
+                        </button>
+                    </div>
                 </div>
             </div>
-
-
         </div>
-    </div>
 
-
-    <div class="col-md-12">
-
-
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-             aria-hidden="true">
-            <div class="modal-dialog" style="width:50%;">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h5 class="modal-title">
-                            <span id="bookId"> </span>
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-
+        <div class="col-md-12">
+            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+                 aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h5 class="modal-title">
+                                <span id="bookId"> </span>
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="textinput">Name</label>
+                                <div class="col-md-10">
+                                    <input id="textinput" name="textinput" type="text" placeholder=""
+                                           class="form-control input-md">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br><br>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
-                        </button>
+                        <br><br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-    </div>
-
     </div>
 
     <!-- /.conainer-fluid -->
@@ -890,7 +890,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="javascript:window.location.reload()">
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
@@ -901,12 +902,14 @@
                     <h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
-                        <b>'Table 2. Baseline Information on Agricultural Crops, Forest Products and Related Other Assets'</b><br>
+                        <b>'Table 2. Baseline Information on Agricultural Crops, Forest Products and Related Other
+                            Assets'</b><br>
                         information before you calculate the damage and loss !
                     </h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="javascript:window.location.reload()">
                         Close
                     </button>
                     <button id="ok" onclick="javascript:window.location.reload()" type="button"

@@ -88,9 +88,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
                     model.firm_id = $scope.selectedFirm.id;
                 });
             });
-
             console.log($scope.mnIndusMinFirm);
-
             $http({
                 method: 'POST',
                 url: '/bs_save_data_with_firm',
@@ -194,7 +192,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
             })
         }
         else {
-            alert('@@@');
+            console.log('@@@');
         }
     }
 

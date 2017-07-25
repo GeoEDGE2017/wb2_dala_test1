@@ -5,6 +5,7 @@
     $(document).ready(function() {
         var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     });
+
 </script>
 <style>
     .right {text-align:right;}
@@ -14,7 +15,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-           <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
             <a href="{% url 'dashboard:agri_agrarian_main' %}">
@@ -27,10 +28,12 @@
             </span>
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-         <li style="float:right;">
-             <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" >
-             </a>
-         </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_frst_prduct_asets">
         <div id="myTabContent" class="tab-content">
@@ -686,21 +689,22 @@
                             </td>
                         </tr>
                         <tr height="19"
-                            ng-repeat="dcpfRePlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops" ng-if="dcpfRePlantnCrops.assets !='Total'">
+                            ng-repeat="dcpfRePlantnCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops"
+                            ng-if="dcpfRePlantnCrops.assets !='Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dcpfRePlantnCrops.assets">
 
-                            <td  valign="middle">
+                            <td valign="middle">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dcpfRePlantnCrops.num_dest_pub">
                             </td>
-                            <td  valign="middle">
+                            <td valign="middle">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dcpfRePlantnCrops.num_dest_pvt">
                             </td>
-                            <td class="tdpa"  valign="middle">
+                            <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
-                            <td class="tdpa"  valign="middle">
+                            <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
                             <td class="right"   valign="middle" ng-model="dcpfRePlantnCrops.dmg_pub"
@@ -731,7 +735,7 @@
                             <td height="20" align="left" valign="middle">
                                 Export Crops
                             </td>
-                            <td  valign="middle">
+                            <td valign="middle">
                                 <strong>
                                     <br/>
                                 </strong>
@@ -760,21 +764,21 @@
                         </tr>
                         <tr height="19"
                             ng-repeat="dcpfReExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops"
-                             ng-if="dcpfReExportCrops.assets !='Total'">
+                            ng-if="dcpfReExportCrops.assets !='Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dcpfReExportCrops.assets">
 
-                            <td  valign="middle">
+                            <td valign="middle">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dcpfReExportCrops.num_dest_pub">
                             </td>
-                            <td  valign="middle">
+                            <td valign="middle">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dcpfReExportCrops.num_dest_pvt">
                             </td>
-                            <td class="tdpa"  valign="middle">
+                            <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
-                            <td class="tdpa"  valign="middle">
+                            <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
                             <td class="right"   valign="middle" ng-model="dcpfReExportCrops.dmg_pub"
@@ -784,12 +788,11 @@
                                 ng-bind="dcpfReExportCrops.dmg_pvt = dcpfReExportCrops.num_dest_pvt * bs_data['BacfAvgreExportCrops'][$index].fields.avg_value">
                             </td>
                         </tr>
-                         <tr height="19"
+                        <tr height="19"
                             ng-repeat="dcpfReExportCrops in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops"
-                             ng-if="dcpfReExportCrops.assets =='Total'">
+                            ng-if="dcpfReExportCrops.assets =='Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dcpfReExportCrops.assets">
                             <td class="tdpa" width="249" height="19"></td>
-                           <td class="tdpa" width="249" height="19"></td>
                             <td class="tdpa" width="249" height="19"></td>
                             <td class="tdpa" width="249" height="19"></td>
                             <td class="right"   width="249" height="19" ng-model="dcpfReExportCrops.dmg_pub"
@@ -832,21 +835,21 @@
                         </tr>
                         <tr height="19"
                             ng-repeat="dcpfReForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry"
-                        ng-if="dcpfReForestry.assets!='Total'">
+                            ng-if="dcpfReForestry.assets!='Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dcpfReForestry.assets">
 
-                            <td  valign="middle">
+                            <td valign="middle">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dcpfReForestry.num_dest_pub">
                             </td>
-                            <td  valign="middle">
+                            <td valign="middle">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dcpfReForestry.num_dest_pvt">
                             </td>
-                            <td class="tdpa"  valign="middle">
+                            <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
-                            <td class="tdpa"  valign="middle">
+                            <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
 
@@ -859,7 +862,7 @@
                         </tr>
                         <tr height="19"
                             ng-repeat="dcpfReForestry in dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry"
-                        ng-if="dcpfReForestry.assets=='Total'">
+                            ng-if="dcpfReForestry.assets=='Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dcpfReForestry.assets">
 
                             <td class="tdpa" width="249" height="19"></td>
@@ -897,10 +900,17 @@
                     <div class="pull-right">
                         <br>
                         <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <span ng-if="is_edit_disable">
                         <button type="button" ng-click="dlDataEdit(form_dl_rail_trans_cmpny)" ng-if="!is_edit"
                                 class="btn btn-success">
                             Edit
                         </button>
+                    </span>
+                        <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                             Edit
                         </button>
@@ -957,7 +967,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="javascript:window.location.reload()">
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
@@ -968,12 +979,14 @@
                     <h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
-                        <b>'Table 2. Baseline Information on Agricultural Crops, Forest Products and Related Other Assets'</b><br>
+                        <b>'Table 2. Baseline Information on Agricultural Crops, Forest Products and Related Other
+                            Assets'</b><br>
                         information before you calculate the damage and loss !
                     </h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="javascript:window.location.reload()">
                         Close
                     </button>
                     <button id="ok" onclick="javascript:window.location.reload()" type="button"

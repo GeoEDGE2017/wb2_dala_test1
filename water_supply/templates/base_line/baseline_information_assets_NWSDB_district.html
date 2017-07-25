@@ -2,28 +2,30 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-  
-    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-    
-  });
-  
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsAstsNwsdbDisApp" ng-controller="bsAstsNwsdbDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:water_supply_main' %}">Water Supply Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:water_supply_main' %}">
+                Water Supply Sector
+            </a>
         </li>
-       
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline Information on Assets of NWSDB in the District
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_asts_nwsdb_dis">
         <ul class='nav nav-wizard'>
@@ -59,7 +61,8 @@
                     <tr class="trhead1">
                         <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="1" style="">
-                            <select ng-model="district" id="selectbasic" name="district" ng-change="changeDis()" class="form-control"
+                            <select ng-model="district" id="selectbasic" name="district" ng-change="changeDis()"
+                                    class="form-control"
                                     style="font-weight:400;" required>
                                 <option value="">Select District</option>
                                 {% for district in districts %}
@@ -71,7 +74,8 @@
                             Year/Month
                         </td>
                         <td colspan="1" style="font-weight:normal;">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date"
+                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
+                                   id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -126,7 +130,7 @@
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
-                            ng-if="biaWaterUsers.type_wusers != 'Average Income Per Year (LKR/Year)' && biaWaterUsers.type_wusers != 'Total'">
+                        ng-if="biaWaterUsers.type_wusers != 'Average Income Per Year (LKR/Year)' && biaWaterUsers.type_wusers != 'Total'">
                         <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers" ng-if="$index < 3">
                         </td>
                         <td width="98" ng-if="$index > 2">
@@ -149,11 +153,13 @@
                                    class="form-control input-md" ng-model="biaWaterUsers.num_clients">
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('BiaWaterUsers','daily_demand')"
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   ng-change="getTotal('BiaWaterUsers','daily_demand')"
                                    class="form-control input-md" ng-model="biaWaterUsers.daily_demand">
                         </td>
                         <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('BiaWaterUsers','annual_demand')"
+                            <input id="textinput" name="textinput" type="number" placeholder=""
+                                   ng-change="getTotal('BiaWaterUsers','annual_demand')"
                                    class="form-control input-md" ng-model="biaWaterUsers.annual_demand">
                         </td>
                         <td width="108">
@@ -176,7 +182,7 @@
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
-                            ng-if="biaWaterUsers.type_wusers == 'Total'">
+                        ng-if="biaWaterUsers.type_wusers == 'Total'">
                         <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
                         </td>
                         <td width="108" ng-model="biaWaterUsers.num_clients" ng-bind="BiaWaterUsers_num_clients">
@@ -189,7 +195,7 @@
                         </td>
                     </tr>
                     <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
-                            ng-if="biaWaterUsers.type_wusers == 'Average Income Per Year (LKR/Year)'">
+                        ng-if="biaWaterUsers.type_wusers == 'Average Income Per Year (LKR/Year)'">
                         <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
                         </td>
                         <td colspan="4" width="432" ng-model="biaWaterUsers.rate"
@@ -200,7 +206,7 @@
                 </table>
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                    class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
+                        class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
@@ -229,8 +235,10 @@
                             <td colspan="2" width="216">
                             </td>
                         </tr>
-                        <tr height="18" ng-repeat="biaWaterIntake in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterIntake">
-                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterIntake.components" ng-if="$index < 2">
+                        <tr height="18"
+                            ng-repeat="biaWaterIntake in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterIntake">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterIntake.components"
+                                ng-if="$index < 2">
                             </td>
                             <td width="98" ng-if="$index > 1">
                                 {% verbatim %}
@@ -258,7 +266,8 @@
                         <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
-                                <button ng-click="insertAssets('BiaWaterIntake')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <button ng-click="insertAssets('BiaWaterIntake')" class="btn btn-sm btn-info btn-circle"
+                                        id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
@@ -274,8 +283,10 @@
                             <td colspan="2" width="216">
                             </td>
                         </tr>
-                        <tr height="18" ng-repeat="biaTreatmentPlant in bsAstsNwsdbDis.water_supply.Table_1.BiaTreatmentPlant">
-                            <td class="tdpa" width="223" height="18" ng-bind="biaTreatmentPlant.components" ng-if="$index < 2">
+                        <tr height="18"
+                            ng-repeat="biaTreatmentPlant in bsAstsNwsdbDis.water_supply.Table_1.BiaTreatmentPlant">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaTreatmentPlant.components"
+                                ng-if="$index < 2">
                             </td>
                             <td width="98" ng-if="$index > 1">
                                 {% verbatim %}
@@ -303,13 +314,14 @@
                         <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
-                                <button ng-click="insertAssets('BiaTreatmentPlant')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <button ng-click="insertAssets('BiaTreatmentPlant')"
+                                        class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
                             <td colspan="4" width="216">
                             </td>
-                           
+
                         </tr>
                         <tr class="trheadc" height="18">
                             <td width="223" height="18">
@@ -320,8 +332,10 @@
                             <td colspan="2" width="216">
                             </td>
                         </tr>
-                        <tr height="18" ng-repeat="biaWaterDistribution in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterDistribution">
-                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterDistribution.components" ng-if="$index < 2">
+                        <tr height="18"
+                            ng-repeat="biaWaterDistribution in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterDistribution">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterDistribution.components"
+                                ng-if="$index < 2">
                             </td>
                             <td width="98" ng-if="$index > 1">
                                 {% verbatim %}
@@ -349,7 +363,8 @@
                         <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
-                                <button ng-click="insertAssets('BiaWaterDistribution')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <button ng-click="insertAssets('BiaWaterDistribution')"
+                                        class="btn btn-sm btn-info btn-circle" id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
@@ -366,7 +381,8 @@
                             </td>
                         </tr>
                         <tr height="18" ng-repeat="biaMainOffice in bsAstsNwsdbDis.water_supply.Table_1.BiaMainOffice">
-                            <td class="tdpa" width="223" height="18" ng-bind="biaMainOffice.components" ng-if="$index < 4">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaMainOffice.components"
+                                ng-if="$index < 4">
                             </td>
                             <td width="98" ng-if="$index > 3">
                                 {% verbatim %}
@@ -394,13 +410,14 @@
                         <tr class="tdpa" height="18">
                             <td class="tdpa" width="223" height="18">
                                 Others
-                                <button ng-click="insertAssets('BiaMainOffice')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                <button ng-click="insertAssets('BiaMainOffice')" class="btn btn-sm btn-info btn-circle"
+                                        id="insert">
                                     <span class="fa fa-plus"></span>
                                 </button>
                             </td>
                             <td colspan="4" width="216">
                             </td>
-                           
+
                         </tr>
                         </tbody>
                     </table>
@@ -408,8 +425,9 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" ng-click="clear()"  class="btn btn-info">
-                        Clear</button>
+                    <button type="button" ng-click="clear()" class="btn btn-info">
+                        Clear
+                    </button>
                     <span ng-if="is_edit_disable">
                         <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
                             Edit
@@ -423,9 +441,10 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_asts_nwsdb_dis)"
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                            ng-click="saveBsData(form_bs_asts_nwsdb_dis)"
 
-                    class="btn btn-success">Submit
+                            class="btn btn-success">Submit
                     </button>
 
                 </div>

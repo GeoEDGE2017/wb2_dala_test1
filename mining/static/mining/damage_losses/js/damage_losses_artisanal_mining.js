@@ -10,6 +10,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
     $scope.bs_data={};
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'mining': {
@@ -213,6 +214,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
 
     $scope.getbsData = function getbsData() {
         if($scope.incident && $scope.district) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -241,7 +243,6 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                         is_null = true;
                     }
                 })
-
                 if(is_null == true) {
                     $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
@@ -351,14 +352,12 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
     $scope.getTotal = function(model, property) {
         var array = $scope.mnDLArtisanalMin.mining.Table_4[model];
         var cumulative = null;
-
         var sums = _.map(array, function(obj) {
             if(obj.assets!='Total' && obj.type_los !='Total'){
                 cumulative += obj[property];
                 return cumulative;
             }
         });
-
         var the_string = model + '_' + property;
         var model = $parse(the_string);
         model.assign($scope, cumulative);
@@ -369,19 +368,15 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
         var cumulative = null;
         var cumulative_two = null;
         var cumulative_total = null;
-
         if(angular.equals(model, 'DlaLosOlos')){
-
             var sums = _.map(array, function(obj) {
                 if(obj.assets!='Total' && obj.type_los !='Total') {
                     cumulative += obj.los_year1;
                     cumulative_two += obj.los_year2;
                     cumulative_total = cumulative + cumulative_two;
-
                     return cumulative_total;
                 }
             });
-
             var the_string = model + '_total';
             var model = $parse(the_string);
             model.assign($scope, cumulative_total);
@@ -392,11 +387,9 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                     cumulative += obj.rep_tot_dassets;
                     cumulative_two += obj.repair_pdmg_assets;
                     cumulative_total = cumulative + cumulative_two;
-
                     return cumulative_total;
                 }
             });
-
             var the_string = model + '_total';
             var model = $parse(the_string);
             model.assign($scope, cumulative_total);
@@ -407,31 +400,25 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
         $scope.DlaLosPlos_total = null;
         $scope.DlaLosPlos_los_year1 = null;
         $scope.DlaLosPlos_los_year2 = null;
-
         var array = $scope.mnDLArtisanalMin.mining.Table_4[model];
         var cumulative_los_year1 = null;
         var cumulative_los_year2 = null;
         var cumulative_total = null;
-
         var cumulative_year1 = _.map(array, function(obj) {
             cumulative_los_year1 += obj.avg_per_year * obj.red_voutput_year1/100;
             console.log(cumulative_los_year1);
             return cumulative_los_year1;
         });
-
         var cumulative_year2 = _.map(array, function(obj) {
             cumulative_los_year2 += obj.avg_per_year * obj.red_voutput_year2/100;
             console.log(cumulative_los_year1);
             return cumulative_los_year1;
         });
-
         var cumulative_tot = _.map(array, function(obj) {
             cumulative_total += (obj.avg_per_year * obj.red_voutput_year1/100 )+ (obj.avg_per_year * obj.red_voutput_year2/100) ;
             console.log(cumulative_total);
             return cumulative_total;
         });
-
-
         var the_string_year_1 = model + '_los_year1';
         var year_1 = $parse(the_string_year_1);
         year_1.assign($scope, cumulative_los_year1);
@@ -447,39 +434,32 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
 
     $scope.$watch(function() {
         if (isNaN($scope.DlaDmgStructures_rep_tot_dassets ||
-                    $scope.DlaDmgEquipment_rep_tot_dassets ||
-                    $scope.DlaDmgMachinery_rep_tot_dassets ||
-                    $scope.DlaDmgVehicles_rep_tot_dassets ||
-                    $scope.DlaDmgStocks_rep_tot_dassets ||
-
-                    $scope.DlaDmgStructures_repair_pdmg_assets ||
-                    $scope.DlaDmgEquipment_repair_pdmg_assets ||
-                    $scope.DlaDmgMachinery_repair_pdmg_assets ||
-                    $scope.DlaDmgVehicles_repair_pdmg_assets ||
-                    $scope.DlaDmgStocks_repair_pdmg_assets||
-
-                    $scope.DlaLosPlos_los_year1||
-                    $scope.DlaLosPlos_los_year2||
-
-                    $scope.DlaLosOlos_los_year1||
-                    $scope.DlaLosOlos_los_year2
-                )) {
+            $scope.DlaDmgEquipment_rep_tot_dassets ||
+            $scope.DlaDmgMachinery_rep_tot_dassets ||
+            $scope.DlaDmgVehicles_rep_tot_dassets ||
+            $scope.DlaDmgStocks_rep_tot_dassets ||
+            $scope.DlaDmgStructures_repair_pdmg_assets ||
+            $scope.DlaDmgEquipment_repair_pdmg_assets ||
+            $scope.DlaDmgMachinery_repair_pdmg_assets ||
+            $scope.DlaDmgVehicles_repair_pdmg_assets ||
+            $scope.DlaDmgStocks_repair_pdmg_assets||
+            $scope.DlaLosPlos_los_year1||
+            $scope.DlaLosPlos_los_year2||
+            $scope.DlaLosOlos_los_year1||
+            $scope.DlaLosOlos_los_year2)) {
 
                 $scope.DlaDmgStructures_rep_tot_dassets = null;
                 $scope.DlaDmgEquipment_rep_tot_dassets = null;
                 $scope.DlaDmgMachinery_rep_tot_dassets = null;
                 $scope.DlaDmgVehicles_rep_tot_dassets = null;
                 $scope.DlaDmgStocks_rep_tot_dassets = null;
-
                 $scope.DlaDmgStructures_repair_pdmg_assets = null;
                 $scope.DlaDmgEquipment_repair_pdmg_assets = null;
                 $scope.DlaDmgMachinery_repair_pdmg_assets = null;
                 $scope.DlaDmgVehicles_repair_pdmg_assets = null;
                 $scope.DlaDmgStocks_repair_pdmg_assets = null;
-
                 $scope.DlaLosOlos_los_year1 = null;
                 $scope.DlaLosOlos_los_year2 = null;
-
                 $scope.DlaLosPlos_los_year1 = null;
                 $scope.DlaLosPlos_los_year2 = null;
             }
@@ -530,7 +510,6 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                 else
                     $("#modal-container-239453").modal('show');
                 }, function myError(response) {
-                    //if data sent to server side method unsuccessfull
                     console.log(response);
             });
         }
@@ -539,7 +518,6 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -560,8 +538,8 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
     }
 
     $scope.cancelEdit = function() {
-         $scope.is_edit = false;
-         $scope.mnDLArtisanalMin = init_data;
+        $scope.is_edit = false;
+        $scope.mnDLArtisanalMin = init_data;
     }
 
     //Clear Function
@@ -569,5 +547,6 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
         console.log("clear")
         $scope.is_edit = false;
         $scope.mnDLArtisanalMin = angular.copy(init_data);
+        $route.reload();
     }
 })

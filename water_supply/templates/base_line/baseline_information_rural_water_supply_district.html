@@ -5,16 +5,24 @@
 <main class="main" ng-app="bsRwaterSplyDisApp" ng-controller="bsRwaterSplyDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:water_supply_main' %}">Water Supply Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:water_supply_main' %}">
+                Water Supply Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 2. Baseline Information on Rural Water Supply in a District
             </span>
         </li>
-          <li style="float:right;"> <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank"
+                style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_rwater_sply_dis">
         <div id="myTabContent" class="tab-content">
@@ -46,7 +54,8 @@
                     <tr class="trhead1">
                         <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="1" style="">
-                            <select ng-model="district" id="selectbasic" ng-change="changeDis()" name="district" class="form-control"
+                            <select ng-model="district" id="selectbasic" ng-change="changeDis()" name="district"
+                                    class="form-control"
                                     style="font-weight:400;" required>
                                 <option value="">Select District</option>
                                 {% for district in districts %}
@@ -58,7 +67,8 @@
                             Year/Month
                         </td>
                         <td colspan="" style="font-weight:normal;">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date"
+                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
+                                   id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -77,8 +87,7 @@
                             Average Repair Cost (LKR)
                         </td>
                     </tr>
-                    <tr height="20" ng-repeat="bimRuralWater in bsRwaterSplyDis.water_supply.Table_2.BimRuralWater"
-                       >
+                    <tr height="20" ng-repeat="bimRuralWater in bsRwaterSplyDis.water_supply.Table_2.BimRuralWater">
                         <td class="tdpa" width="240" height="20" ng-bind="bimRuralWater.type_water_supply">
                         </td>
                         <td width="125">
@@ -94,15 +103,15 @@
                                    class="form-control input-md" ng-model="bimRuralWater.avg_repair_cost">
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
                 <div class="pull-right">
                     <br>
-                    <button type="button" ng-click="clear()"  class="btn btn-info">
-                        Clear</button>
+                    <button type="button" ng-click="clear()" class="btn btn-info">
+                        Clear
+                    </button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="bsHsDataEdit(form_bs_rwater_sply_dis)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -114,7 +123,9 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>
-                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_rwater_sply_dis)">Submit</button>
+                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_rwater_sply_dis)">
+                        Submit
+                    </button>
                 </div>
                 <br>
                 <br>
@@ -173,5 +184,6 @@ $(document).on("click", "#add_technical", function () {
 
 
 });
+
 </script>
 {% endblock content %}

@@ -13,7 +13,7 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'agri_irrigation': {
             'Table_1': {
@@ -106,6 +106,7 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
     }
 
     $scope.bsIrgFacilities = angular.copy(init_data);
+
     //Disable Edit Button
     $scope.changeDis = function changeDis()
     {
@@ -118,7 +119,7 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
     }
 
 
-//Add Enumerate Fileds
+    //Add Enumerate Fileds
     $scope.insertAsset = function(table) {
         console.log($scope.bsIrgFacilities.agri_irrigation.Table_1[table]);
         var new_row;
@@ -169,7 +170,7 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
         $scope.bsIrgFacilities.agri_irrigation.Table_1[table].push(new_row);
     }
 
-//Remove Enumerate Fields
+    //Remove Enumerate Fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsIfMajor') {
             $scope.bsIrgFacilities.agri_irrigation.Table_1.BsIfMajor.splice(index, 1);
@@ -222,43 +223,38 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(){
-$scope.submitted = true;
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                'table_name': 'Table_1', 'sector': 'agri_irrigation',
+                'com_data': {
+                      'district': $scope.district,
+                      'bs_date': $scope.bs_date,
+                      'division': $scope.division,
+                      'region':$scope.region,
+                 }
+            }),
+        }).success(function(data) {
+            console.log(data);
+            $scope.bsIrgFacilities = data;
+        })
+    }
 
-   $scope.is_edit = true;
-    $http({
-    method: "POST",
-    url: "/bs_fetch_edit_data",
-    data: angular.toJson({'table_name': 'Table_1', 'sector': 'agri_irrigation',
-    'com_data': {
-          'district': $scope.district,
-          'bs_date': $scope.bs_date,
-          'division': $scope.division,
-          'region':$scope.region,
-          } }),
-    }).success(function(data) {
+    //Cancel Edit Data
+    $scope.cancelEdit = function(){
+        $scope.is_edit = false;
+        $scope.bsIrgFacilities = init_data;
+    }
 
-    console.log(data);
-    $scope.bsIrgFacilities = data;
-
-
-    })
-}
-
-//Cancel Edit Data
-$scope.cancelEdit = function(){
-    $scope.is_edit = false;
-    $scope.bsIrgFacilities = init_data;
-
-}
-
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsIrgFacilities = angular.copy(init_data);
-
-
     }
 });

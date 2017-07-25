@@ -11,7 +11,7 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-//Initialize Data
+    //initialize Data
     var init_data = {
         'agri_agrarian': {
             'Table_3': {
@@ -73,8 +73,7 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
         }
     }
 
-
-//Add Enumerate fields
+    //Add Enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsInfoSeroAssets.agri_agrarian.Table_3[table]);
         var new_row;
@@ -104,7 +103,7 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
         $scope.bsInfoSeroAssets.agri_agrarian.Table_3[table].push(new_row);
     }
 
-//Remove Enumerate fields
+    //Remove Enumerate fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsoeStructure') {
             $scope.bsInfoSeroAssets.agri_agrarian.Table_3.BsoeStructure.splice(index, 1);
@@ -117,7 +116,7 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
@@ -135,7 +134,6 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
                     'sector':'agri_agrarian'
                 }),
             }).success(function(data) {
-
                 $scope.bsInfoSeroAssets = init_data;
                 $scope.is_edit = false;
 
@@ -146,29 +144,31 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
                 }
                 else
                     $("#modal-container-239453").modal('show');
-
             })
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        if (form.$valid) {
+            $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                  'table_name': 'Table_3',
+                  'sector': 'agri_agrarian',
+                  'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date
+                  } }),
+            }).success(function(data) {
 
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_3',
-              'sector': 'agri_agrarian',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date } }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsInfoSeroAssets = data;
-        })
+            console.log(data);
+            $scope.bsInfoSeroAssets = data;
+            })
+        }
 
 
     }
@@ -184,7 +184,5 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
         console.log('done');
         $scope.is_edit = false;
         $scope.bsInfoSeroAssets = angular.copy(init_data);
-
-
     }
 }]);

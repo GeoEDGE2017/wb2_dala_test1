@@ -2,10 +2,9 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  });
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlAssessmentDistrictApp"
@@ -27,8 +26,7 @@
         </li>
         <li style="float:right;">
             <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a>
+                style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -46,7 +44,7 @@
                         </td>
                         <td colspan="2" height="19" style="font-weight:normal;" width="427">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                    class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -63,9 +61,8 @@
                         </td>
                         <td colspan="1" height="19" style="font-weight:normal;" width="427">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-change="fetchDepartments()"
-                                    style="font-weight:400;" ng-change="changedValue(false);fetchDlData();"
-                                    class="form-control" required>
+                                    name="district" id="ccyear" ng-model="district"
+                                    style="font-weight:400;" ng-change="fetchDlData();" class="form-control" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -169,15 +166,6 @@ button.onclick = function() {
 }
 */
 
-
-
-
-
-
-
-
-
-
 </script>
 <script>
 /*var button = document.getElementById('insert4');
@@ -193,13 +181,6 @@ button.onclick = function() {
 });
 }*/
 
-
-
-
-
-
-
-
 </script>
 <script>
 /*var button = document.getElementById('insert2');
@@ -213,13 +194,6 @@ button.onclick = function() {
  $(this).parent().parent().remove();
 });
 }*/
-
-
-
-
-
-
-
 
 </script>
 {% endblock content %}

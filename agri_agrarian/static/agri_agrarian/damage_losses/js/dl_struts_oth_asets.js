@@ -14,6 +14,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //Initailize data
     var init_data = {
@@ -176,7 +177,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
 
     $scope.dlStrutsOthAsets = angular.copy(init_data);
 
-//Get Districts and related baseline data
+    //Get Districts and related baseline data
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -193,6 +194,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -213,7 +215,6 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-
                 console.log('*', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
@@ -254,13 +255,11 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                     });
                 }
             }, function errorCallback(response) {
-
             });
         }
     }
 
-
-//Generate fields Related to baseline Data
+    //Generate fields Related to baseline Data
     function generateRefencedData() {
         data_array = ['BsoeOequipment', 'BsoeMachinery'];
             var dl_model1 = null;
@@ -314,7 +313,6 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                    $scope.dlStrutsOthAsets.agri_agrarian.Table_5[dl_model2].push(obj2);
                 }
             });
-
             if(model_name == 'BsoeOequipment') {
                 $scope.dlStrutsOthAsets.agri_agrarian.Table_5[dl_model1].push(obj1);
             }
@@ -324,7 +322,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
         });
     }
 
-//Save data
+    //Save data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -357,154 +355,143 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.dlDataEdit = function(form){
+       $scope.is_edit = true;
+       $scope.submitted = true;
+        if(form.$valid){
+            $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+            'table_name':  'Table_5',
+            'sector':'agri_agrarian',
+            'com_data': {
+                   'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                  },
+                   'is_edit':$scope.is_edit
+                   }),
+            }).success(function(data) {
+            console.log(data);
+            $scope.dlStrutsOthAsets = data;
+            })
+        }
+    }
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_5',
-    'sector':'agri_agrarian',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlStrutsOthAsets = data;
-    })
-
-}
-
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlStrutsOthAsets = init_data;
-}
+         $scope.is_edit = false;
+         $scope.dlStrutsOthAsets = init_data;
+    }
 
-//Calculate Public Total
+    //Calculate Public Total
     $scope.calPubTotal=function(arr){
-    var finaltotal = 0;
-     console.log(arr);
-    angular.forEach(arr, function(value, key) {
-    if(value.assets !='Total'){
-     finaltotal = finaltotal + value.dmg_pub ;
-     }
-    })
-      console.log(finaltotal);
-    return finaltotal;
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal = finaltotal + value.dmg_pub ;
+             }
+        })
+        return finaltotal;
     }
 
-//Calculate Private Total
+    //Calculate Private Total
     $scope.calPvtTotal=function(arr){
-    var finaltotal = 0;
-     console.log(arr);
-    angular.forEach(arr, function(value, key) {
- if(value.assets !='Total'){
-     finaltotal = finaltotal + value.dmg_pvt ;
-     }
-    })
-      console.log(finaltotal);
-    return finaltotal;
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+             if(value.assets !='Total'){
+                 finaltotal = finaltotal + value.dmg_pvt ;
+             }
+        })
+        return finaltotal;
     }
 
-//Calculate Damage Total
+    //Calculate Damage Total
     $scope.calDamgTotal=function(arr){
-    var finaltotal = 0;
-     console.log(arr);
-    angular.forEach(arr, function(value, key) {
-    if(value.assets!='Total'){
-     finaltotal = finaltotal + value.damages ;
-     }
-    })
-      console.log(finaltotal);
-    return finaltotal;
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.assets!='Total'){
+                finaltotal = finaltotal + value.damages ;
+             }
+        })
+        return finaltotal;
     }
 
-//Calculate Grand Public Total
+    //Calculate Grand Public Total
     $scope.calGrandPubTotal=function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-
-    var grantot = 0;
-
-    var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
-    var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructures;
-    var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
-    var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var grantot = 0;
+        var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
+        var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructures;
+        var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
+        var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
 
 
-    angular.forEach(array1, function(value, key) {
+        angular.forEach(array1, function(value, key) {
 
-     finaltotal1 = finaltotal1 + value.dmg_pub ;
-    })
-    angular.forEach(array2, function(value, key) {
+         finaltotal1 = finaltotal1 + value.dmg_pub ;
 
-     finaltotal2 = finaltotal2 + value.damages;
-    })
-    angular.forEach(array3, function(value, key) {
+        })
+        angular.forEach(array2, function(value, key) {
 
-     finaltotal3 = finaltotal3 + value.dmg_pub ;
-    })
-    angular.forEach(array4, function(value, key) {
+         finaltotal2 = finaltotal2 + value.damages;
 
-     finaltotal4 = finaltotal4 + value.dmg_pub ;
-    })
+        })
+        angular.forEach(array3, function(value, key) {
 
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
-    return grantot;
+         finaltotal3 = finaltotal3 + value.dmg_pub ;
+
+        })
+        angular.forEach(array4, function(value, key) {
+
+         finaltotal4 = finaltotal4 + value.dmg_pub ;
+
+        })
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+        return grantot;
     }
 
-//Calculate Grand Private Total
+    //Calculate Grand Private Total
     $scope.calGrandPvtTotal=function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var grantot = 0;
+        var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
+        var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures;
+        var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
+        var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
 
-    var grantot = 0;
+        angular.forEach(array1, function(value, key) {
+             finaltotal1 = finaltotal1 + value.dmg_pvt ;
 
-    var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
-    var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures;
-    var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
-    var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
+        })
+        angular.forEach(array2, function(value, key) {
+            finaltotal2 = finaltotal2 + value.damages;
 
+        })
+        angular.forEach(array3, function(value, key) {
+             finaltotal3 = finaltotal3 + value.dmg_pvt ;
 
-    angular.forEach(array1, function(value, key) {
-         finaltotal1 = finaltotal1 + value.dmg_pvt ;
-    })
-    angular.forEach(array2, function(value, key) {
-        finaltotal2 = finaltotal2 + value.damages;
-    })
-    angular.forEach(array3, function(value, key) {
-         finaltotal3 = finaltotal3 + value.dmg_pvt ;
-    })
-    angular.forEach(array4, function(value, key) {
-         finaltotal4 = finaltotal4 + value.dmg_pvt ;
-    })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
-    return grantot;
+        })
+        angular.forEach(array4, function(value, key) {
+             finaltotal4 = finaltotal4 + value.dmg_pvt ;
+
+        })
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+        return grantot;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.dlStrutsOthAsets = angular.copy(init_data);
-
-
     }
-
 
 }]);

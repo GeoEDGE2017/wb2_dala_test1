@@ -52,9 +52,9 @@
                         <tr class="trhead1">
                             <td style="padding-left:5px;"> Name of District</td>
                             <td colspan="3" style="">
-                                <select ng-model="district" id="selectbasic" name="district" class="form-control"
+                                <select ng-model="district" id="selectbasic" ng-change="changeDis();" name="district" class="form-control"
                                         style="font-weight:400;" required>
-                                    <option value="">-- Select --</option>
+                                    <option value="">Please select district</option>
                                     {% for district in districts %}
                                     <option value="{{ district.id }}">{{ district.name }}</option>
                                     {% endfor %}
@@ -64,7 +64,7 @@
                                 Year/Month
                             </td>
                             <td colspan="3" style="">
-                                <input name="textinput" type="text" placeholder="mm/yy" id="datepicker"
+                                <input name="textinput" type="text" ng-change="changeDis();"  placeholder="mm/yy" id="datepicker"
                                        ng-model="baselineDate" class="form-control input-md" required>
                             </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -573,9 +573,16 @@
                     <div class="pull-right">
                         <br>
                         <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                        <button type="button" ng-click="bsHsDataEdit(form_bs_edu_untcost_dst)" ng-if="!is_edit"
-                                class="btn btn-success">Edit
+                         <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="bsHsDataEdit(form_bs_edu_untcost_dst)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
                         </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                             Edit
                         </button>

@@ -55,16 +55,17 @@
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_ogs_ofc_district_firm.incident.$error.required">
+                            <span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.incident.$error.required">
                                 Please Select Incident
                             </span>
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.department.$error.required">
+                                Please Select Department
+                            </span>
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_ogs_ofc_district_firm.district.$error.required">
+                            <span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.district.$error.required">
                                 Please Select District
                             </span>
                         </td>
@@ -106,20 +107,21 @@
                         <td colspan="5" class="trheadc1" width="724">
                             <select ng-options="department as department.name for department in departments track by department.id"
                                     id="ccyear" ng-change="fetchOwnership()" ng-model="new_department"
-                                    class="form-control"
-                                    required>
+                                    class="form-control" required>
                                 <option value="" selected>Select Department</option>
                             </select>
                         </td>
                         <td width="136">
-                            <a id="add_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
-                               data-id="Add Pre-school"
-                               class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add</a>
+                            <button id="add_preschool" role="button" data-toggle="modal"
+                                    data-id="Add Pre-school" class="open-modal-container-218029 btn  btn-block btn-primary btn-info"
+                                    ng-click="openAddDepartment(form_ogs_ofc_district_firm)">
+                                Add
+                            </button>
                         </td>
                         <td width="136">
-                            <a id="edit_preschool" ng-click="is_edit_model=true" href="#modal-container-218020"
-                               role="button" data-toggle="modal"
-                               data-id="Edit Pre-school" class="btn  btn-block btn-primary btn-warning">Edit</a>
+                            <button id="edit_preschool" role="button" data-toggle="modal"
+                                    ng-click="openEditDepartment(form_ogs_ofc_district_firm)"
+                               data-id="Edit Pre-school" class="btn  btn-block btn-primary btn-warning">Edit</button>
                         </td>
                     </tr>
                     <tr height="20">
@@ -430,14 +432,20 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="test()">Clear</button>
+                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>
-                    <button type="button" ng-click="dlDataEdit(form_ogs_ofc_district_firm)" ng-if="!is_edit"
-                            class="btn btn-success">
-                        Edit
-                    </button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_ogs_ofc_district_firm)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" class="btn btn-success" ng-click="saveDlData(form_ogs_ofc_district_firm)">
                         Submit
                     </button>
@@ -450,7 +458,7 @@
     <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
          aria-hidden="true">
         <div class="modal-dialog" style="width:50%;">
-            <div class="modal-content">
+            <div class="modal-content" ng-form name="form_ogs_add_firm">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
@@ -464,21 +472,25 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="textinput">Name</label>
                         <div class="col-md-9">
-                            <input ng-model="new_department.name" type="text" placeholder=""
-                                   class="form-control input-md">
+                            <input ng-model="new_department.name" type="text" placeholder="" class="form-control input-md" required>
+                            <span style="color:red;" ng-show="submitted && form_ogs_add_firm.new_department.name.$error.required">
+                                Please enter department name
+                            </span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group" style="margin-top:5px;">
                         <label class="col-md-3 control-label" for="textinput">Ownership</label>
                         <div class="col-md-9">
-                            <select id="ccyear" ng-model="new_department.ownership_id" class="form-control" required>
+                            <select id="ccyear" ng-model="new_department.ownership_id" ng-change="validateSaveAndEdit()" class="form-control" required>
                                 <option value="" selected>Select Ownership</option>
                                 {% for ownership in ownerships %}
-                                <option value="{{ ownership.id }}">{{ ownership.ownership_name }}</option>
+                                    <option value="{{ ownership.id }}">{{ ownership.ownership_name }}</option>
                                 {% endfor %}
-
                             </select>
+                            <span style="color:red;" ng-show="submitted && form_ogs_add_firm.new_department.ownership_id.$error.required">
+                                Please select Department or Office
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -487,8 +499,8 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
-                    <button ng-click="saveDepartment()" type="button" class="btn btn-primary">
-                        Save changes
+                    <button ng-click="saveDepartment(form_ogs_add_firm)" type="button" class="btn btn-primary">
+                        Save
                     </button>
                 </div>
             </div>
@@ -497,7 +509,7 @@
     <!--- Edit -->
     <div class="modal fade" id="modal-container-218020" role="dialog" style="width:50%;margin:0 auto;"
          aria-hidden="true">
-        <div class="modal-dialog" style="width:50%;">
+        <div class="modal-dialog" style="width:50%;" ng-form name="form_ogs_edit_firm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -513,15 +525,18 @@
                         <label class="col-md-3 control-label" for="textinput">Name</label>
                         <div class="col-md-9">
                             <input id="textinput" ng-model="new_department.name" name="textinput" type="text"
-                                   placeholder=""
-                                   class="form-control input-md">
+                                   placeholder="" class="form-control input-md">
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button ng-click="saveDepartment()" type="button" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button ng-click="editDepartment(form_ogs_edit_firm)" type="button" class="btn btn-success">
+                        Save Edit
+                    </button>
                 </div>
             </div>
         </div>
@@ -550,8 +565,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
                         Close
                     </button>
-                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                            class="btn btn-primary">
+                    <button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary">
                         OK
                     </button>
                 </div>

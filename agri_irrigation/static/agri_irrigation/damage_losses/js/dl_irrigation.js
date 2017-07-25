@@ -775,53 +775,49 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
     //Save data
     $scope.saveDlData = function(form) {
         var array = $scope.dlIrrigation.agri_irrigation.Table_3;
-      var details = _.map(array, function(model_array) {
-      _.map(model_array, function(model) {
-          model.division = $scope.division;
-          model.region = $scope.region;
-      });
-      });
+        var details = _.map(array, function(model_array) {
+            _.map(model_array, function(model) {
+                model.division = $scope.division;
+                model.region = $scope.region;
+            });
+        });
         $scope.submitted = true;
         if(form.$valid) {
-              $http({
-            method: 'POST',
-            url:'/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlIrrigation,
-                'com_data': {
-                    'district_id':  $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'user_id': $scope.user_id,
-                },
-                'is_edit' : $scope.is_edit,
-
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-
-                 if(response.data == 'False')
-             $scope.is_valid_data = false;
-                else
-             $("#modal-container-239453").modal('show');
-
-        }, function errorCallback(response) {
-
-
-        });
+            $http({
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlIrrigation,
+                    'com_data': {
+                        'district_id':  $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'user_id': $scope.user_id,
+                    },
+                    'is_edit' : $scope.is_edit,
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False'){
+                    $scope.is_valid_data = false;
+                }
+                else{
+                $("#modal-container-239453").modal('show');
+                }
+            }, function errorCallback(response) {
+            });
         }
     }
 
     //Get Calculate data
     $scope.CalTot=function(arr) {
-    var finaltotal = 0;
-
-    angular.forEach(arr, function(value, key) {
-    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal = finaltotal + value.damages ;
-     }
-    })
-     return finaltotal;
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal = finaltotal + value.damages ;
+             }
+        })
+        return finaltotal;
     }
 
     //Convert To Int Function
@@ -832,257 +828,244 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
 
     //Calculate Grand Total
     $scope.calGrandTotal=function() {
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-    var finaltotal5 = 0;
-    var finaltotal5 = 0;
-    var finaltotal6 = 0;
-    var finaltotal7 = 0;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+        var finaltotal5 = 0;
+        var finaltotal6 = 0;
+        var finaltotal7 = 0;
 
 
-    var grantot = 0;
+        var grantot = 0;
 
-    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks;
-    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMediumTanks;
-    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks;
-    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlAnicuts;
-    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlOtherStructures;
-    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlBuildings;
-    var array7= $scope.dlIrrigation.agri_irrigation.Table_3.DlRiverEmbankmnt;
+        var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks;
+        var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMediumTanks;
+        var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks;
+        var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlAnicuts;
+        var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlOtherStructures;
+        var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlBuildings;
+        var array7= $scope.dlIrrigation.agri_irrigation.Table_3.DlRiverEmbankmnt;
 
 
-    angular.forEach(array1, function(value, key) {
-     if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal1 = finaltotal1 + value.damages ;
-     }
-    })
-    angular.forEach(array2, function(value, key) {
-    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal2 = finaltotal2 + value.damages ;
-     }
-    })
-    angular.forEach(array3, function(value, key) {
-if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal3 = finaltotal3 + value.damages ;
-     }
-    })
-    angular.forEach(array4, function(value, key) {
-    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal4 = finaltotal4 + value.damages ;
-     }
-    })
-    angular.forEach(array5, function(value, key) {
-   if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal5 = finaltotal5 + value.damages;
-     }
-    })
-     angular.forEach(array6, function(value, key) {
-    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal6 = finaltotal6 + value.damages;
-     }
-    })
+        angular.forEach(array1, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal1 = finaltotal1 + value.damages ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal2 = finaltotal2 + value.damages ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal3 = finaltotal3 + value.damages ;
+            }
+        })
+        angular.forEach(array4, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal4 = finaltotal4 + value.damages ;
+            }
+        })
+        angular.forEach(array5, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal5 = finaltotal5 + value.damages;
+            }
+        })
+        angular.forEach(array6, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal6 = finaltotal6 + value.damages;
+            }
+        })
 
-    angular.forEach(array7, function(value, key) {
-    if(value.irrigation_assets != 'Total' && value.building != 'Total'){
-     finaltotal7 = finaltotal7 + value.damages ;
-     }
-    })
-    grantot = finaltotal1+ finaltotal2 + finaltotal3  + finaltotal4 + finaltotal5 + finaltotal6 + finaltotal7 ;
-    console.log('final',finaltotal5);
-    return grantot;
-    }
+        angular.forEach(array7, function(value, key) {
+            if(value.irrigation_assets != 'Total' && value.building != 'Total'){
+                finaltotal7 = finaltotal7 + value.damages ;
+            }
+        })
+        grantot = finaltotal1+ finaltotal2 + finaltotal3  + finaltotal4 + finaltotal5 + finaltotal6 + finaltotal7 ;
+        console.log('final',finaltotal5);
+        return grantot;
+        }
 
     //Calculate Operating Loss
     $scope.calTotalOperatingLos=function() {
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-    var finaltotal5 = 0;
-    var finaltotal6 = 0;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+        var finaltotal6 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
+        var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
+        var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
+        var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingTanks;
+        var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
+        var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
 
-
-
-    var grantot = 0;
-
-    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
-    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
-    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
-    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingTanks;
-    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
-    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
-
-
-
-    angular.forEach(array1, function(value, key) {
-if(value.irrigation_assets != 'TOTAL LOSSES'){
-     finaltotal1 = finaltotal1 + value.high_operation_cost ;
-     }
-    })
-    angular.forEach(array2, function(value, key) {
-if(value.irrigation_assets != 'TOTAL LOSSES'){
-     finaltotal2 = finaltotal2 + value.high_operation_cost ;
-     }
-    })
-    angular.forEach(array3, function(value, key) {
-if(value.irrigation_assets != 'TOTAL LOSSES'){
-     finaltotal3 = finaltotal3 + value.high_operation_cost ;
-     }
-    })
-    angular.forEach(array4, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-     finaltotal4 = finaltotal4 + value.high_operation_cost ;
-     }
-    })
-    angular.forEach(array5, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-     finaltotal5 = finaltotal5 + value.high_operation_cost ;
-     }
-    })
-    angular.forEach(array6, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-     finaltotal6 = finaltotal6 + value.high_operation_cost ;
-     }
-    })
-
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4+ finaltotal5+finaltotal6;
-    console.log(grantot);
-    return grantot;
-    }
+        angular.forEach(array1, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal1 = finaltotal1 + value.high_operation_cost ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal2 = finaltotal2 + value.high_operation_cost ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal3 = finaltotal3 + value.high_operation_cost ;
+            }
+        })
+        angular.forEach(array4, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal4 = finaltotal4 + value.high_operation_cost ;
+            }
+        })
+        angular.forEach(array5, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal5 = finaltotal5 + value.high_operation_cost ;
+            }
+        })
+            angular.forEach(array6, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal6 = finaltotal6 + value.high_operation_cost ;
+            }
+        })
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4+ finaltotal5+finaltotal6;
+        console.log(grantot);
+        return grantot;
+        }
 
     //Calculate Total Other
     $scope.calTotalOther=function() {
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-    var finaltotal5 = 0;
-    var finaltotal6 = 0;
-    var grantot = 0;
-    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
-    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
-    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
-    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingsTanks;
-    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
-    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+        var finaltotal6 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
+        var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
+        var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
+        var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingsTanks;
+        var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
+        var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
 
-    angular.forEach(array1, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal1 = finaltotal1 + value.other_unexpected_expenses ;
-     }
-    })
-    angular.forEach(array2, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-            finaltotal2 = finaltotal2 + value.other_unexpected_expenses ;
-         }
+        angular.forEach(array1, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal1 = finaltotal1 + value.other_unexpected_expenses ;
+            }
         })
-    angular.forEach(array3, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-         finaltotal3 = finaltotal3 + value.other_unexpected_expenses ;
-         }
+        angular.forEach(array2, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal2 = finaltotal2 + value.other_unexpected_expenses ;
+            }
         })
-    angular.forEach(array4, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal4 = finaltotal4 + value.other_unexpected_expenses ;
-     }
-    })
-    angular.forEach(array5, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal5 = finaltotal5 + value.other_unexpected_expenses ;
-     }
-    })
-    angular.forEach(array6, function(value, key) {
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal6 = finaltotal6 + value.other_unexpected_expenses ;
-     }
-    })
+        angular.forEach(array3, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal3 = finaltotal3 + value.other_unexpected_expenses ;
+            }
+        })
+            angular.forEach(array4, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal4 = finaltotal4 + value.other_unexpected_expenses ;
+            }
+        })
+        angular.forEach(array5, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal5 = finaltotal5 + value.other_unexpected_expenses ;
+            }
+        })
+        angular.forEach(array6, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal6 = finaltotal6 + value.other_unexpected_expenses ;
+            }
+        })
 
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6;
-    console.log(grantot);
-    return grantot;
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6;
+        console.log(grantot);
+        return grantot;
     }
 
     $scope.calTotalLosses=function() {
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-    var finaltotal5 = 0;
-    var finaltotal6 = 0;
-    var grantot = 0;
-    var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
-    var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
-    var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
-    var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingsTanks;
-    var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
-    var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+        var finaltotal6 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks;
+        var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks;
+        var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks;
+        var array4 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosBuildingsTanks;
+        var array5 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts;
+        var array6 = $scope.dlIrrigation.agri_irrigation.Table_3.DlLosOther;
 
-
-
-    angular.forEach(array1, function(value, key) {
-
-    if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal1 = finaltotal1 + value.total_los ;
-     }
-    })
-    angular.forEach(array2, function(value, key) {
-     if(value.irrigation_assets != 'TOTAL LOSSES' ){
-        finaltotal2 = finaltotal2 + value.total_los ;
-     }
-    })
-    angular.forEach(array3, function(value, key) {
-     if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal3 = finaltotal3 + value.total_los ;
-     }
-    })
-    angular.forEach(array4, function(value, key) {
-     if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal4 = finaltotal4 + value.total_los ;
-     }
-    })
-     angular.forEach(array5, function(value, key) {
-      if(value.irrigation_assets != 'TOTAL LOSSES' ){
-        finaltotal5 = finaltotal5 + value.total_los ;
-     }
-    })
-     angular.forEach(array6, function(value, key) {
-      if(value.irrigation_assets != 'TOTAL LOSSES'){
-        finaltotal6 = finaltotal6 + value.total_los ;
-     }
-    })
-
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
-    console.log(grantot);
-    return grantot;
-    }
+        angular.forEach(array1, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal1 = finaltotal1 + value.total_los ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES' ){
+                finaltotal2 = finaltotal2 + value.total_los ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal3 = finaltotal3 + value.total_los ;
+            }
+        })
+        angular.forEach(array4, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal4 = finaltotal4 + value.total_los ;
+            }
+        })
+        angular.forEach(array5, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES' ){
+                finaltotal5 = finaltotal5 + value.total_los ;
+            }
+        })
+        angular.forEach(array6, function(value, key) {
+            if(value.irrigation_assets != 'TOTAL LOSSES'){
+                finaltotal6 = finaltotal6 + value.total_los ;
+            }
+        })
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
+        console.log(grantot);
+        return grantot;
+        }
 
     //Edit Data
-    $scope.dlDataEdit = function() {
-
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_3',
-    'sector':'agri_irrigation',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-    $scope.dlIrrigation = data;
-    })
-
-}
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_3',
+                    'sector':'agri_irrigation',
+                    'com_data': {
+                    'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlIrrigation = data;
+            })
+        }
+    }
 
     //Cancel Data
     $scope.cancelEdit = function(){

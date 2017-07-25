@@ -773,13 +773,20 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_dl_water_transportation)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData()"
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_water_transportation)"
                     class="btn btn-success">Submit
                     </button>
                 </div>

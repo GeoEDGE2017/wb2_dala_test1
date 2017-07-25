@@ -1,7 +1,7 @@
+//Table 5
 var app = angular.module('dlWaterSupplyApp', []);
 
 app.controller("DlWaterSupplyController", ['$scope','$http',function ($scope,$http) {
-
     $scope.district;
     $scope.incident;
     $scope.dl_data={};
@@ -11,61 +11,50 @@ app.controller("DlWaterSupplyController", ['$scope','$http',function ($scope,$ht
     $scope.districts=[];
     $scope.user_id;
 
-
-$scope.getDistrict = function getDistrict(){
-     if($scope.incident){
-
-
-    $http({
-    method: "POST",
-    url: "/fetch_incident_districts",
-    data: angular.toJson({
-    'incident': $scope.incident,
-    'user':$scope.user_id,}),
-    }).success(function(data) {
-        $scope.districts = data;
-        $scope.district = "";
-        console.log(data);
-
-    })
-        }
-
-}
-
-$scope.changedValue=function getBsData() {
-if($scope.incident && $scope.district){
-    $scope.submitted = true;
-    $scope.tot_damages = null;
-    $scope.is_edit = true;
-    $scope.submitted = true;
-    $http({
-    method: "POST",
-    url: '/dl_fetch_total_data',
-    data: angular.toJson({
-        'table_name':'Table_5',
-        'sector':'water_supply',
-        'com_data': {
-        'district':  $scope.district.district__id,
-        'incident': $scope.incident,
-        },
-    }),
-    }).success(function(data) {
-
-    $scope.data=data;
-    $scope.dlWaterSupplyDis = data;
-    })
+    $scope.getDistrict = function getDistrict() {
+        if($scope.incident) {
+            $http({
+                method: "POST",
+                url: "/fetch_incident_districts",
+                data: angular.toJson({
+                    'incident': $scope.incident,
+                    'user':$scope.user_id,
+                }),
+            }).success(function(data) {
+                $scope.districts = data;
+                $scope.district = "";
+                console.log(data);
+            })
         }
     }
 
-     $scope.checkIfNull = function()
-   {
+    $scope.changedValue = function getBsData() {
+        if($scope.incident && $scope.district) {
+            $scope.submitted = true;
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+            $scope.submitted = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_total_data',
+                data: angular.toJson({
+                    'table_name':'Table_5',
+                    'sector':'water_supply',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                $scope.data=data;
+                $scope.dlWaterSupplyDis = data;
+            })
+        }
+    }
+
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlWaterSupplyDis ? angular.equals({}, $scope.dlWaterSupplyDis.water_supply.Table_5) : true;
         return isNull;
-
-   }
-
-
-
-
+    }
 }])
 

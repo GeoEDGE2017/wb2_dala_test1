@@ -12,6 +12,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //Initialize Data
     var init_data = {
@@ -205,6 +206,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -222,58 +224,58 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
 
             }).then(function successCallback(response) {
-                var data = response.data;
-                console.log('*', response);
-                angular.forEach(data, function(value, key) {
-                    $scope.bs_data[key] = JSON.parse(value);
-                });
-
-                console.log('*', $scope.bs_data);
-                var is_null = false;
-                angular.forEach($scope.bs_data, function(value, index) {
-                    if(value == null) {
-                        is_null = true;
-                    }
-                })
-
-                if(is_null == true) {
-                    $("#modal-container-239458").modal('show');
-                    console.log('baseline table or tables are empty');
-                    console.log($scope.bs_data);
-                    $scope.currentBaselineDate = null;
-                }
-                else {
-                    $http({
-                        method: 'POST',
-                        url: '/get_latest_bs_date',
-                        contentType: 'application/json; charset=utf-8',
-                        data: angular.toJson({
-                            'com_data': {
-                                'district': $scope.district.district__id,
-                                'incident': $scope.incident,
-                            },
-                            'table_name': 'Table_2',
-                            'sector': 'agri_agrarian'
-                        }),
-                        dataType: 'json',
-                    }).then(function successCallback(response) {
-                        var result = response.data;
-                        if(result == null) {
-                            $("#modal-container-239458").modal('show');
-                        }
-                        else {
-                            result = result.replace(/^"(.*)"$/, '$1');
-                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
-                        }
+                    var data = response.data;
+                    console.log('*', response);
+                    angular.forEach(data, function(value, key) {
+                        $scope.bs_data[key] = JSON.parse(value);
                     });
-                }
-            }, function errorCallback(response) {
+
+                    console.log('*', $scope.bs_data);
+                    var is_null = false;
+                    angular.forEach($scope.bs_data, function(value, index) {
+                        if(value == null) {
+                            is_null = true;
+                        }
+                    })
+
+                    if(is_null == true) {
+                        $("#modal-container-239458").modal('show');
+                        console.log('baseline table or tables are empty');
+                        console.log($scope.bs_data);
+                        $scope.currentBaselineDate = null;
+                    }
+                    else {
+                        $http({
+                            method: 'POST',
+                            url: '/get_latest_bs_date',
+                            contentType: 'application/json; charset=utf-8',
+                            data: angular.toJson({
+                                'com_data': {
+                                    'district': $scope.district.district__id,
+                                    'incident': $scope.incident,
+                                },
+                                'table_name': 'Table_2',
+                                'sector': 'agri_agrarian'
+                            }),
+                            dataType: 'json',
+                        }).then(function successCallback(response) {
+                            var result = response.data;
+                            if(result == null) {
+                                $("#modal-container-239458").modal('show');
+                            }
+                            else {
+                                result = result.replace(/^"(.*)"$/, '$1');
+                                $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                            }
+                        });
+                    }
+                }, function errorCallback(response) {
 
             });
         }
     }
 
-//Generate Fields according to basline Data
+    //Generate Fields according to basline Data
     function generateRefencedData() {
         data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry'];
             var dl_model1 = null;
@@ -418,7 +420,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         });
     }
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -451,141 +453,138 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         }
     }
 
-//Edit data
+    //Edit data
     $scope.dlDataEdit = function(form){
 
    $scope.is_edit = true;
    $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_6',
-    'sector':'agri_agrarian',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlInvsmntLos = data;
-    })
-
+    if(form.$valid){
+        $http({
+        method: "POST",
+        url: '/dl_fetch_edit_data',
+        data: angular.toJson({
+        'table_name':  'Table_6',
+        'sector':'agri_agrarian',
+        'com_data': {
+               'district':  $scope.district.district__id,
+                'incident': $scope.incident,
+              },
+               'is_edit':$scope.is_edit
+               }),
+        }).success(function(data) {
+            console.log(data);
+            $scope.dlInvsmntLos = data;
+        })
+    }
 }
 
-//Cancel Data
+    //Cancel Data
     $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlInvsmntLos = init_data;
 }
 
-//Calculate Public Total
+    //Calculate Public Total
     $scope.calPubTotal=function(arr){
-    var finaltotal = 0;
-     console.log(arr);
-    angular.forEach(arr, function(value, key) {
-    if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
-     finaltotal = finaltotal + value.invest_los_pub ;
-     }
-    })
-      console.log(finaltotal);
-    return finaltotal;
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
+                finaltotal = finaltotal + value.invest_los_pub ;
+             }
+        })
+        return finaltotal;
     }
 
-//Calculate Private Total
+    //Calculate Private Total
     $scope.calPvtTotal=function(arr){
-    var finaltotal = 0;
-     console.log(arr);
-    angular.forEach(arr, function(value, key) {
-if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
-     finaltotal = finaltotal + value.invest_los_pvt ;
-     }
-    })
-      console.log(finaltotal);
-    return finaltotal;
+        var finaltotal = 0;
+         console.log(arr);
+        angular.forEach(arr, function(value, key) {
+            if(value.seasonal_crops !='Total' && value.plantn_crops !='Total' && value.export_crops !='Total' && value.forestry !='Total'){
+                finaltotal = finaltotal + value.invest_los_pvt ;
+            }
+        })
+        return finaltotal;
     }
 
-//Calculate Grand Public Total
+    //Calculate Grand Public Total
     $scope.calGrandPubTotal=function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var grantot = 0;
 
-    var grantot = 0;
+        var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+        var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+        var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
+        var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
 
-    var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
-    var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
-    var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
-    var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
+        angular.forEach(array1, function(value, key) {
 
+         finaltotal1 = finaltotal1 + value.invest_los_pub ;
 
-    angular.forEach(array1, function(value, key) {
+        })
+        angular.forEach(array2, function(value, key) {
 
-     finaltotal1 = finaltotal1 + value.invest_los_pub ;
-    })
-    angular.forEach(array2, function(value, key) {
+         finaltotal2 = finaltotal2 + value.invest_los_pub ;
 
-     finaltotal2 = finaltotal2 + value.invest_los_pub ;
-    })
-    angular.forEach(array3, function(value, key) {
+        })
+        angular.forEach(array3, function(value, key) {
 
-     finaltotal3 = finaltotal3 + value.invest_los_pub ;
-    })
-    angular.forEach(array4, function(value, key) {
+         finaltotal3 = finaltotal3 + value.invest_los_pub ;
 
-     finaltotal4 = finaltotal4 + value.invest_los_pub ;
-    })
+        })
+        angular.forEach(array4, function(value, key) {
 
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
-    return grantot;
+         finaltotal4 = finaltotal4 + value.invest_los_pub ;
+
+        })
+
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+        return grantot;
     }
 
-//Calculate Gardn Private Total
+    //Calculate Gardn Private Total
     $scope.calGrandPvtTotal=function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-
-    var grantot = 0;
-
-    var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
-    var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
-    var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
-    var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var grantot = 0;
+        var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+        var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+        var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
+        var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
 
 
-    angular.forEach(array1, function(value, key) {
+        angular.forEach(array1, function(value, key) {
 
-     finaltotal1 = finaltotal1 + value.invest_los_pvt ;
-    })
-    angular.forEach(array2, function(value, key) {
+         finaltotal1 = finaltotal1 + value.invest_los_pvt ;
 
-     finaltotal2 = finaltotal2 + value.invest_los_pvt ;
-    })
-    angular.forEach(array3, function(value, key) {
+        })
+        angular.forEach(array2, function(value, key) {
 
-     finaltotal3 = finaltotal3 + value.invest_los_pvt ;
-    })
-    angular.forEach(array4, function(value, key) {
+         finaltotal2 = finaltotal2 + value.invest_los_pvt ;
 
-     finaltotal4 = finaltotal4 + value.invest_los_pvt ;
-    })
+        })
+        angular.forEach(array3, function(value, key) {
 
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
-    return grantot;
+         finaltotal3 = finaltotal3 + value.invest_los_pvt ;
+
+        })
+        angular.forEach(array4, function(value, key) {
+
+         finaltotal4 = finaltotal4 + value.invest_los_pvt ;
+
+        })
+
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+        return grantot;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
-        console.log('done');
         $scope.is_edit = false;
         $scope.dlInvsmntLos = angular.copy(init_data);
     }

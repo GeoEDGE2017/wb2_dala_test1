@@ -42,7 +42,7 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
 
     $scope.checkIfNull = function() {
         var isNull = $scope.dmLosMinFirmsNation ? angular.equals({},
-            $scope.dmLosMinFirmsNation.mining.Table_6) : true;
+        $scope.dmLosMinFirmsNation.mining.Table_6) : true;
         return isNull;
     }
 
@@ -55,9 +55,7 @@ app.controller("DmLosOfMinFirmsNatController", function($scope,$http,$parse, _) 
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DlaDmgNational[0].tot_damages ?
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DlaDmgNational[0].tot_damages : 0 ): 0);
 
-
         console.log($scope.totaldpub);
-
 
         $scope.totaldpvt = $scope.totaldpvt + ($scope.dmLosMinFirmsNation.mining.Table_6[key].DloDmgNational[0] ? (
                          $scope.dmLosMinFirmsNation.mining.Table_6[key].DloDmgNational[0].tot_damages ?

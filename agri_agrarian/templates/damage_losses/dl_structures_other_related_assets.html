@@ -21,7 +21,9 @@
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_struts_oth_asets">
@@ -48,17 +50,19 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_dl_struts_oth_asets.incident.$error.required">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_dl_struts_oth_asets.incident.$error.required">
                                     Please select Incident
                                 </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_dl_struts_oth_asets.district.$error.required">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_dl_struts_oth_asets.district.$error.required">
                                     Please select District
                                 </span>
                             </td>
@@ -69,7 +73,8 @@
                             </td>
                             <td colspan="4" width="503">
                                 <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                        class="form-control" ng-change="changedValue(true)"
+                                        style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
@@ -85,7 +90,8 @@
                             </td>
                             <td width="85" colspan="2">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                        class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
@@ -133,7 +139,9 @@
                                 Private
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dsorDestStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures" ng-if="dsorDestStructures.assets != 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDestStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures"
+                            ng-if="dsorDestStructures.assets != 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDestStructures.assets">
                             </td>
                             <td width="148">
@@ -152,7 +160,6 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDestStructures.tot_dest_pvt">
                             </td>
-
                             <td class="right" width="85" ng-model="dsorDestStructures.dmg_pub"
                              ng-bind="dsorDestStructures.dmg_pub =
                                           dsorDestStructures.tot_dest_pub *
@@ -162,9 +169,11 @@
                              ng-bind="dsorDestStructures.dmg_pvt =
                                           dsorDestStructures.tot_dest_pvt *
                                           bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
-                        </td>
+                            </td>
                         </tr>
-                        <tr height="19" ng-repeat="dsorDestStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures" ng-if="dsorDestStructures.assets == 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDestStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures"
+                            ng-if="dsorDestStructures.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDestStructures.assets">
                                 Total
                             </td>
@@ -244,7 +253,9 @@
                             <td colspan="2">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dsorDmgPubStructure in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure" ng-if="dsorDmgPubStructure.assets != 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDmgPubStructure in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure"
+                            ng-if="dsorDmgPubStructure.assets != 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPubStructure.assets">
                             </td>
                             <td colspan="2">
@@ -268,9 +279,11 @@
                                      dsorDmgPubStructure.tot_dmg_roof * bs_data['BsoeStructure'][$index].fields.avg_repair_roof +
                                      dsorDmgPubStructure.tot_dmg_walls * bs_data['BsoeStructure'][$index].fields.avg_repair_wall +
                                      dsorDmgPubStructure.tot_dmg_floors * bs_data['BsoeStructure'][$index].fields.avg_repair_flooring ">
-                        </td>
+                            </td>
                         </tr>
-                        <tr height="19" ng-repeat="dsorDmgPubStructure in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure" ng-if="dsorDmgPubStructure.assets == 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDmgPubStructure in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure"
+                            ng-if="dsorDmgPubStructure.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPubStructure.assets">
                             </td>
                             <td class="tdpa" colspan="2">
@@ -315,7 +328,9 @@
                             <td colspan="2">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dsorDmgPvtStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures" ng-if="dsorDmgPvtStructures.assets != 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDmgPvtStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures"
+                            ng-if="dsorDmgPvtStructures.assets != 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtStructures.assets">
                             </td>
                             <td colspan="2">
@@ -339,9 +354,11 @@
                                      dsorDmgPvtStructures.tot_dmg_roof * bs_data['BsoeStructure'][$index].fields.avg_repair_roof +
                                      dsorDmgPvtStructures.tot_dmg_walls * bs_data['BsoeStructure'][$index].fields.avg_repair_wall +
                                      dsorDmgPvtStructures.tot_dmg_floors * bs_data['BsoeStructure'][$index].fields.avg_repair_flooring ">
-                        </td>
+                            </td>
                         </tr>
-                        <tr height="19" ng-repeat="dsorDmgPvtStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures" ng-if="dsorDmgPvtStructures.assets == 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDmgPvtStructures in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures"
+                            ng-if="dsorDmgPvtStructures.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtStructures.assets">
                             </td>
                             <td class="tdpa" colspan="2" ng-bind="dsorDmgPvtStructures.num_part_dmg">
@@ -353,7 +370,6 @@
                             <td class="tdpa" width="99" ng-bind="dsorDmgPvtStructures.tot_dmg_floors">
                             </td>
                             <td class="right" colspan="2" width="170" ng-model="dsorDmgPvtStructures.damages" ng-bind="dsorDmgPvtStructures.damages = calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures)">
-
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -393,7 +409,9 @@
                                 Private
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dsorDmgPvtOequipment in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment" ng-if="dsorDmgPvtOequipment.assets != 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDmgPvtOequipment in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment"
+                            ng-if="dsorDmgPvtOequipment.assets != 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtOequipment.assets">
                                 Computers
                             </td>
@@ -413,7 +431,6 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPvtOequipment.num_dmg_pvt">
                             </td>
-
                             <td class="right" width="85"  ng-model="dsorDmgPvtOequipment.dmg_pub"
                              ng-bind="dsorDmgPvtOequipment.dmg_pub =
                                      dsorDmgPvtOequipment.num_dest_pub * bs_data['BsoeOequipment'][$index].fields.avg_replace_cost +
@@ -423,11 +440,13 @@
                              ng-bind="dsorDmgPvtOequipment.dmg_pvt =
                                      dsorDmgPvtOequipment.num_dest_pvt * bs_data['BsoeOequipment'][$index].fields.avg_replace_cost +
                                      dsorDmgPvtOequipment.num_dmg_pvt * bs_data['BsoeOequipment'][$index].fields.avg_repair_cost">
-                        </td>
+                            </td>
                         </tr>
 
                         <!--Total-->
-                        <tr height="19" ng-repeat="dsorDmgPvtOequipment in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment" ng-if="dsorDmgPvtOequipment.assets == 'Total'">
+                        <tr height="19"
+                            ng-repeat="dsorDmgPvtOequipment in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment"
+                            ng-if="dsorDmgPvtOequipment.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtOequipment.assets">
                             </td>
                             <td class="tdpa" width="148">
@@ -463,7 +482,8 @@
                             </td>
                         </tr>
                         <!--Machinery-->
-                        <tr height="19" ng-repeat="dsorDmgPvtMachinery in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery"
+                        <tr height="19"
+                            ng-repeat="dsorDmgPvtMachinery in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery"
                             ng-if="dsorDmgPvtMachinery.assets != 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtMachinery.assets">
                             </td>
@@ -493,11 +513,12 @@
                              ng-bind="dsorDmgPvtMachinery.dmg_pvt =
                                      dsorDmgPvtMachinery.num_dest_pvt * bs_data['BsoeMachinery'][$index].fields.avg_replace_cost +
                                      dsorDmgPvtMachinery.num_dmg_pvt * bs_data['BsoeMachinery'][$index].fields.avg_repair_cost">
-                        </td>
+                            </td>
                         </tr>
 
                         <!--Total-->
-                        <tr height="19" ng-repeat="dsorDmgPvtMachinery in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery"
+                        <tr height="19"
+                            ng-repeat="dsorDmgPvtMachinery in dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery"
                             ng-if="dsorDmgPvtMachinery.assets == 'Total'">
                             <td class="tdpa" width="249" height="19" ng-bind="dsorDmgPvtMachinery.assets">
                             </td>
@@ -517,7 +538,7 @@
                             </td>
                         </tr>
                         <!--GRAND TOTAL-->
-                        <tr height="19" >
+                        <tr height="19">
                             <td class="boldash" colspan="7" width="963" height="19">
                                 GRAND TOTAL
                             </td>
@@ -534,34 +555,38 @@
 
                     <br>
                     <div class="pull-right">
-                        <button type="button" ng-click="clear()"  class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit(form_dl_struts_oth_asets)" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
-                    </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_struts_oth_asets)"
-                    class="btn btn-success">Submit
-                    </button>
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_dl_struts_oth_asets)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                        <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                                ng-click="saveDlData(form_dl_struts_oth_asets)"
+                                class="btn btn-success">Submit
+                        </button>
                     </div>
                     <br><br>
                 </div>
-
-
             </div>
         </div>
 
 
         <div class="col-md-12">
-
-
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 ×
                             </button>
@@ -576,13 +601,11 @@
                                 <div class="col-md-10">
                                     <input id="textinput" name="textinput" type="text" placeholder=""
                                            class="form-control input-md">
-
                                 </div>
                             </div>
                         </div>
                         <br><br>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
@@ -591,24 +614,19 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
         </div>
     </div>
-
     </div>
-
     <!-- /.conainer-fluid -->
     <!-- update the baseline Model -->
     <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="javascript:window.location.reload()">
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
@@ -619,12 +637,14 @@
                     <h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
-                        <b>'Table 3. Baseline Information on Structures, Office Equipment and Related Other Assets'</b><br>
+                        <b>'Table 3. Baseline Information on Structures, Office Equipment and Related Other
+                            Assets'</b><br>
                         information before you calculate the damage and loss !
                     </h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="javascript:window.location.reload()">
                         Close
                     </button>
                     <button id="ok" onclick="javascript:window.location.reload()" type="button"

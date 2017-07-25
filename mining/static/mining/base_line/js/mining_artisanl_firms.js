@@ -99,7 +99,6 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-        
         if(form.$valid) {
             $http({
                 method: "POST",

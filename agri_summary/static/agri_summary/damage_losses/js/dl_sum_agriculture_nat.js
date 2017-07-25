@@ -17,7 +17,6 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
     $scope.totalyear2vt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.grndtotaldpub = 0;
     $scope.grndtotaldpvt = 0;
@@ -38,48 +37,34 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
     $scope.fetchDlData = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
-            $http({
+        $http({
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':  ['Table_10','Table_6',],
-            'sector': ['agri_agrarian','agri_livestock'],
-            'com_data': {
-
+                'table_name':  ['Table_10','Table_6',],
+                'sector': ['agri_agrarian','agri_livestock'],
+                'com_data': {
                     'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-
-
-
+                },
+            }),
+        }).success(function(data) {
             $scope.dlAgriSumNat = data;
-
-            })
+        })
     }
 
-           $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlAgriSumNat ?
-         ((angular.equals({}, $scope.dlAgriSumNat.agri_agrarian.Table_10) ) ||
-         (angular.equals({}, $scope.dlAgriSumNat.agri_livestock.Table_6))
-//         ||(angular.equals({}, $scope.dlAgriSumNat.agri_fisheries.Table_6))
-         ) : true
-         return isNull;
-//         ||
-//         (angular.equals({}, $scope.dlAgriSumNat.transport_rail.Table_3))) : true ;
-
-
-   }
+        ((angular.equals({}, $scope.dlAgriSumNat.agri_agrarian.Table_10) ) ||
+        (angular.equals({}, $scope.dlAgriSumNat.agri_livestock.Table_6))) : true
+        return isNull;
+    }
 
    $scope.convertToInt = function(val1,val2){
-
         var sum = parseInt(val1) + parseInt(val2);
         return sum;
     }
 
    $scope.convertTotal = function(val1,val2,val3,val4){
-
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
@@ -88,20 +73,13 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
 
         $scope.finaltotalprivate = 0;
 
-
-
         var totaldpub =  ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0] ?
                          ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0].dmg_los_pub ?
                          $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0].dmg_los_pub : 0):0) +
                          ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[0] ?
                          ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[0].damages ?
                          $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[0].damages : 0) : 0)
-//                         ($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterDmgPubNational[0] ?
-//                         ($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterDmgPubNational[0].tot_dmg_public ?
-//                         $scope.dlTransSumPro.transport_water.Table_4[key].DlWaterDmgPubNational[0].tot_dmg_public : 0) : 0) +
-//                         ($scope.dlTransSumPro.transport_rail.Table_3[key].TotDmgNational[0] ?
-//                         ($scope.dlTransSumPro.transport_rail.Table_3[key].TotDmgNational[0].tot_damages ?
-//                         $scope.dlTransSumPro.transport_rail.Table_3[key].TotDmgNational[0].tot_damages : 0) : 0);
+
 
         var totaldpubstring = "totaldpub_"+ key;
 
@@ -212,13 +190,6 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
          model.assign($scope, finaltotalprivate);
          $scope.grndfinaltotalprivate = $scope.grndfinaltotalprivate + finaltotalprivate ;
          $scope.summaryTotal = $scope.grndfinaltotalpublic + $scope.grndfinaltotalprivate;
-
-
-
     }
-
-
-
-
 
  })

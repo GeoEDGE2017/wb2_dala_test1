@@ -11,6 +11,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //initialize model
     var init_data = {
@@ -61,6 +62,16 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
 
     $scope.dataHealthStatus = angular.copy(init_data);
 
+     //disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
+
     //Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
@@ -82,6 +93,7 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 $scope.is_edit = false;
                 if (data == 'False') {
                     $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
                 }
                 else {
                     $("#modal-container-239453").modal('show');
@@ -139,7 +151,25 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.dataHealthStatus = data;
+//                $scope.dataHealthStatus = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_1, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dataHealthStatus = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }
@@ -171,7 +201,6 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
     }
 
     $scope.getLatestBsDate = function() {
-        alert($scope.district);
         $http({
             method: 'POST',
             url: '/get_latest_bs_date',

@@ -914,7 +914,7 @@ def dl_save_data_with_array(request):
 
     current_user = None
     try:
-        current_user = com_data['user_id']
+        current_user = dl_data['user_id']
         print 'Current User', current_user
     except Exception as e:
         print 'Current User Error'
@@ -1661,13 +1661,12 @@ def add_entity_with_district(request):
         print model_object
 
     # update has to be done in the future for district
-
-    # else:
-    #     print 'update'
-    #     object_id = model_fields['id']
-    #     modified_model = model_class.objects.filter(pk=object_id)
-    #     modified_model.update(**model_fields)
-    #     return HttpResponse(object_id)
+    else:
+        print 'update'
+        object_id = model_fields['id']
+        modified_model = model_class.objects.filter(pk=object_id)
+        modified_model.update(**model_fields)
+        return HttpResponse(object_id)
 
     if model_object.id is not None:
         return HttpResponse(model_object.id)

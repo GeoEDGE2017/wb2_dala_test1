@@ -31,27 +31,27 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
 
     $scope.loadData = function(form) {
         if($scope.incident && $scope.district){
-        $scope.isLoded = true;
-        if(form.$valid) {
-            $scope.tot_damages = null;
-            $scope.is_edit = true;
-            $scope.submitted = true;
-            $http({
-                method: "POST",
-                url: '/dl_fetch_total_data',
-                data: angular.toJson({
-                    'table_name': 'Table_4',
-                    'sector':'agri_fisheries',
-                    'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-                    },
-                    'is_edit':$scope.is_edit
-               }),
-            }).success(function(data) {
-                $scope.data=data;
-                console.log(data);
-            })
+            $scope.isLoded = true;
+            if(form.$valid) {
+                $scope.tot_damages = null;
+                $scope.is_edit = true;
+                $scope.submitted = true;
+                $http({
+                    method: "POST",
+                    url: '/dl_fetch_total_data',
+                    data: angular.toJson({
+                        'table_name': 'Table_4',
+                        'sector':'agri_fisheries',
+                        'com_data': {
+                            'district': $scope.district.district__id,
+                            'incident': $scope.incident,
+                        },
+                        'is_edit':$scope.is_edit
+                   }),
+                }).success(function(data) {
+                    $scope.data=data;
+                    console.log(data);
+                })
             }
         }
     }

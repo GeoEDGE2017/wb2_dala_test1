@@ -6,6 +6,10 @@
         var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     });
 </script>
+
+<style>
+    .right {text-align:right;}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlAssessmentOfGovnDeptOrOfcInADistrictApp" ng-controller="dlAssessmentOfGovnDeptOrOfcInADistrictController">
     <!-- Breadcrumb -->
@@ -205,7 +209,7 @@
                                        name="textinput" type="number"
                                        placeholder="" class="form-control input-md">
                             </td>
-                            <td width="98" style="width:11.1%;"
+                            <td class="right" width="98" style="width:11.1%;"
                                 ng-model="dlagdDmgStructure.damages"
                                 ng-bind="dlagdDmgStructure.damages =
                                 (dlagdDmgStructure.td_total_squarem * bs_data['BcsStructure'][$index].fields.avg_rep_cost)+
@@ -222,16 +226,16 @@
                                 <input id="textinput"
                                        ng-model="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[3].td_num_structures"
                                        name="textinput" type="number"
-                                       placeholder="" class="form-control input-md"
+                                       placeholder="" class="form-control input-md right"
                                        ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[3].td_num_structures=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[0].td_num_structures + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[1].td_num_structures + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[2].td_num_structures">
                             </td>
                             <td width="124" class="tdpa">
                             </td>
-                            <td width="100">
+                            <td  width="100">
                                 <input id="textinput"
                                        ng-model="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[3].pd_num_structures"
                                        name="textinput" type="number"
-                                       placeholder="" class="form-control input-md"
+                                       placeholder="" class="form-control input-md right"
                                        ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[3].pd_num_structures=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[0].pd_num_structures + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[1].pd_num_structures + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[2].pd_num_structures">
                             </td>
                             <td width="100" class="tdpa">
@@ -240,11 +244,11 @@
                             </td>
                             <td width="100" class="tdpa">
                             </td>
-                            <td width="100">
-                                <input id="textinput"
+                            <td   width="100">
+                                <input  id="textinput"
                                        ng-model="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[3].damages"
                                        name="textinput" type="number"
-                                       placeholder="" class="form-control input-md"
+                                       placeholder="" class="form-control input-md right"
                                        ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[3].damages=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[0].damages + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[1].damages + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgStructure[2].damages">
                             </td>
                         </tr>
@@ -278,7 +282,7 @@
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td colspan="3" width="100" ng-bind="dlagdDmgOfficeEquipment.damages"
+                            <td class="right" colspan="3" width="100" ng-bind="dlagdDmgOfficeEquipment.damages"
                                 ng-value="dlagdDmgOfficeEquipment.damages =
                                 (dlagdDmgOfficeEquipment.num_tot_destroyed * bs_data['BcsOfficeEquipment'][$index].fields.avg_rep_cost) +
                                 (dlagdDmgOfficeEquipment.num_partial_damaged * bs_data['BcsOfficeEquipment'][$index].fields.avg_repair_cost)">
@@ -294,7 +298,7 @@
                             </td>
                             <td width="300" class="tdpa" colspan="3">
                             </td>
-                            <td width="100" colspan="2"
+                            <td class="right" width="100" colspan="2"
                                 ng-model="dlagdDmgOfficeEquipment.damages"
                                 ng-bind="dlagdDmgOfficeEquipment.damages =
                                 calTotal(dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgOfficeEquipment)"></td>
@@ -329,7 +333,7 @@
                                        id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="100" ng-bind="dlagdDmgMachinery.damages"
+                            <td class="right" width="100" ng-bind="dlagdDmgMachinery.damages"
                                 ng-value="dlagdDmgMachinery.damages =
                                 (dlagdDmgMachinery.num_tot_destroyed * bs_data['BcsMachinery'][$index].fields.avg_rep_cost)+
                                 (dlagdDmgMachinery.num_partial_damaged * bs_data['BcsMachinery'][$index].fields.avg_repair_cost)">
@@ -348,7 +352,7 @@
                             <td class="tdpa" width="300" colspan="3"
                                 ng-model="dlagdDmgMachinery.num_partial_damaged">
                             </td>
-                            <td width="100" colspan="2"
+                            <td class="right" width="100" colspan="2"
                                 ng-model="dlagdDmgMachinery.damages"
                                 ng-bind="dlagdDmgMachinery.damages = calTotal($parent.dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdDmgMachinery)"></td>
                         </tr>
@@ -360,7 +364,7 @@
                             </td>
                             <td class="tdpa" width="300" colspan="3">
                             </td>
-                            <td width="100" colspan="2" ng-bind="calGrandTotal()">
+                            <td class="right" width="100" colspan="2" ng-bind="calGrandTotal()">
                             </td>
                         </tr>
                         </tbody>
@@ -401,22 +405,22 @@
                             <input id="textinput" ng-model="dlagdLosses.los_year2" name="textinput" type="number"
                                    placeholder="" class="form-control input-md">
                         </td>
-                        <td ng-bind="dlagdLosses.total_losses"
+                        <td class="right" ng-bind="dlagdLosses.total_losses"
                             ng-value="dlagdLosses.total_losses=dlagdLosses.los_year1 + dlagdLosses.los_year2">
                         </td>
                     </tr>
                     <tr height="20">
                         <td ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].name_dept"
                             width="241" height="20" class="tdpa"></td>
-                        <td colspan="3" width="324"
+                        <td class="right"  colspan="3" width="324"
                             ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year1"
                             ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year1=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].los_year1 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].los_year1 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].los_year1 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].los_year1">
                         </td>
-                        <td colspan="3" width="300"
+                        <td class="right"  colspan="3" width="300"
                             ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year2"
                             ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year2=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].los_year2 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].los_year2 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].los_year2 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].los_year2">
                         </td>
-                        <td ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].total_losses"
+                        <td class="right" ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].total_losses"
                             name="textinput" type="number"
                             ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].total_losses=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].total_losses + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].total_losses + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].total_losses + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].total_losses">
                         </td>

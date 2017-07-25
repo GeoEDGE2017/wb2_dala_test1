@@ -2,6 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<style>
+    .right {text-align:right;}
+</style>
 <main class="main" ng-app="dlLivestockPoultryApp" ng-controller="dlLivestockPoultryController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -247,27 +250,27 @@
 
                             </td>
                             <td width="117" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpNdaPoultry.dead_young_male">
                             </td>
                             <td width="122" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpNdaPoultry.dead_young_female">
                             </td>
                             <td width="103" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpNdaPoultry.dead_juvenile_male">
                             </td>
                             <td width="136" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpNdaPoultry.dead_juvenile_female">
                             </td>
                             <td width="143" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_female">
                             </td>
                             <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_male">
                             </td>
 
@@ -360,7 +363,7 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td colspan="4" width="252" height="19" ng-bind="calTotaltabOne()">
+                            <td class="right" colspan="4" width="252" height="19" ng-bind="calTotaltabOne()">
 
                             </td>
                         </tr>
@@ -714,7 +717,7 @@
                             </td>
                             <td class="tdpa" width="63" height="43">
                             </td>
-                            <td colspan="2" width="126" height="43" ng-model="dlpPafPoultry.damages" ng-bind="dlpPafPoultry.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry)">
+                            <td class="right" colspan="2" width="126" height="43" ng-model="dlpPafPoultry.damages" ng-bind="dlpPafPoultry.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry)">
                             </td>
                         </tr>
                         <tr height="19" >
@@ -745,7 +748,7 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-bind="calTotalProduction()">
+                            <td class="right" colspan="2" width="126" height="19" ng-bind="calTotalProduction()">
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -902,20 +905,20 @@
                             <td class="tdpa" colspan="3" width="189" height="19">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-model="dlpStructOther.damages" ng-bind="dlpStructOther.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther)">
+                            <td class="right" colspan="2" width="126" height="19" ng-model="dlpStructOther.damages" ng-bind="dlpStructOther.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther)">
                             </td>
                         </tr>
                         <tr height="19" >
                             <td class="tdpa" colspan="3" width="343" height="19">
                                 TOTAL OF DAMAGES
                             </td>
-                            <td class="tdpa" colspan="3" width="342" height="19">
+                            <td  class="tdpa" colspan="3" width="342" height="19">
                                 <br/>
                             </td>
                             <td class="tdpa" colspan="3" width="189" height="19">
                                 <br/>
                             </td>
-                            <td colspan="2" width="126" height="19" ng-bind="">
+                            <td class="right" colspan="2" width="126" height="19" ng-bind="">
                             </td>
                         </tr>
                         </tbody>

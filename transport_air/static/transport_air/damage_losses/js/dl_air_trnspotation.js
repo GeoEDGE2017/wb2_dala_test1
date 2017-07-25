@@ -9,6 +9,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.bs_data={};
     $scope.baselineDate;
     $scope.is_edit = false;
+    $scope.is_edit_disable = false;
     $scope.is_valid_data = true;
     $scope.user_id;
 
@@ -326,6 +327,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
         }
 
         if($scope.incident && $scope.district) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

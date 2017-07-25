@@ -308,7 +308,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
                     $scope.currentBaselineDate = null;
                 }
                 else {
-//                    generateRefencedData();
+                   generateRefencedData();
                     $http({
                         method: 'POST',
                         url: '/get_latest_bs_date',
@@ -341,7 +341,6 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     }
 
   function generateRefencedData(){
-    alert('#');
   data_array = ['BsAstWaterWcrafts','BsAstWaterEquipment','BsAstWaterMaterials','BsAstWaterStructures'];
   var dl_model1 = null;
   var dl_model2 = null;
@@ -428,14 +427,14 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     {
        $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
     }
-//    if(model_name == 'BsAstWaterMaterials')
-//    {
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
-//    }
-//    if(model_name == 'BsAstWaterStructures')
-//    {
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
-//    }
+    if(model_name == 'BsAstWaterMaterials')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+    }
+    if(model_name == 'BsAstWaterStructures')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
+    }
 
 
     });
@@ -446,14 +445,14 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     if(model_name == 'BsAstWaterEquipment') {
        $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
     }
-//    if(model_name == 'BsAstWaterMaterials')
-//    {
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
-//    }
-//    if(model_name == 'BsAstWaterStructures')
-//    {
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
-//    }
+    if(model_name == 'BsAstWaterMaterials')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
+    }
+    if(model_name == 'BsAstWaterStructures')
+    {
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
+    }
 
   });
 

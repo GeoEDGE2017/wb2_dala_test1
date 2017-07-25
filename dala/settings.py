@@ -161,8 +161,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=industry_services'
         # },
-
-        'NAME': 'dala_ix',
+        'NAME': 'final_dala_2017',
         'USER': 'postgres',
     },
 }
@@ -1280,15 +1279,11 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
             'BsAstWaterEquipment':
                 ['assets',
-                 'public',
-                 'private',
                  'avg_replace_cost',
                  'avg_repair_cost',
                  'id'],
             'BsAstWaterMaterials':
                 ['assets',
-                 'public',
-                 'private',
                  'avg_replace_cost',
                  'avg_repair_cost',
                  'id'],
@@ -1299,8 +1294,6 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
             'BsAstWaterBuildings':
                 ['assets',
-                 'public',
-                 'private',
                  'avg_replace_cost',
                  'avg_repair_cost_roof',
                  'avg_repair_cost_wall',
@@ -1308,10 +1301,9 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
             'BsAstWaterEmployment':
                 ['assets',
-                 'public',
-                 'private',
                  'male',
                  'female',
+                 'total',
                  'id'],
 
         },

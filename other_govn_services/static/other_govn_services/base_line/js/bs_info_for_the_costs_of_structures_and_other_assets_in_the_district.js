@@ -73,10 +73,10 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 
     //Disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.baselineDate){
+        if($scope.district && $scope.baselineDate) {
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -212,7 +212,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 //        });
     }
 
-    $scope.save = function(form) {
+    $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
             $http({
@@ -245,24 +245,48 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         }
     }
 
-    $scope.bsHsDataEdit = function(form) {
+    $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
-        $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                'table_name': 'Table_1',
-                'sector': 'other_govn_services',
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.baselineDate,
+
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'other_govn_services',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data.other_govn_services.Table_1);
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.other_govn_services.Table_1, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsCostsOfAssetsOnTheDistrict = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
                 }
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.bsCostsOfAssetsOnTheDistrict = data;
-        })
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
     }
 
     $scope.cancelEdit = function() {
@@ -281,18 +305,6 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         console.log('$$$', $scope.dele_data);
     }
 
-
-//    $scope.save = function(sector) {
-//		var del_status = $scope.is_exsis(sector);
-//
-//        console.log(del_status); // is_exsis return value
-//
-//		if(!del_status) {
-//            // save
-//        }
-//	}
-
-
 	$scope.is_exsis = function(sector) {
         $http({
             method : 'POST',
@@ -303,9 +315,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
             }),
             dataType: 'json',
         }).then(function successCallback(response) {
-
             console.log(response.data); //http respond
-
             if(response.data == 'False') {
          		return false;
             }

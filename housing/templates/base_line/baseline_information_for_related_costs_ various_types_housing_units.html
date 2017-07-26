@@ -5,7 +5,7 @@
 <main class="main" ng-app="bsCostsHusngUnitsApp" ng-controller="bsCostsHusngUnitsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item"><a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
         </li>
@@ -15,7 +15,9 @@
             </span>
         </li>
 
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_housing_dis">
         <div id="myTabContent" class="tab-content">
@@ -31,19 +33,20 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted && form_bs_housing_dis.district.$error.required">
                                 Please Select District
                             </span>
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_bs_housing_dis.baselineDate.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_bs_housing_dis.baselineDate.$error.required">
                                 Please Select Date
                             </span>
                         </td>
@@ -53,19 +56,21 @@
                             District
                         </td>
                         <td colspan="2" width="477" height="19">
-                            <select id="selectbasic" name="district" class="form-control" ng-model="district" ng-change="changeDis()"
+                            <select id="selectbasic" name="district" class="form-control" ng-model="district"
+                                    ng-change="changeDis()"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
-                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                <option value={{ district.id }}>{{ district.name }}</option>
                                 {% endfor %}
                             </select>
                         </td>
-                        <td colspan="2" class="p5" >
+                        <td colspan="2" class="p5">
                             Year/Month:
                         </td>
                         <td colspan="2">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date"
+                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
+                                   id="datepicker" ng-model="bs_date"
                                    class="form-control input-md" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -115,7 +120,8 @@
                             <br/>
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="bhClfPermanentCost in bsCostsHusngUnits.housing.Table_2.BhClfPermanentCost">
+                    <tr height="19"
+                        ng-repeat="bhClfPermanentCost in bsCostsHusngUnits.housing.Table_2.BhClfPermanentCost">
                         <td class="tdpa" width="166" height="19" ng-bind="bhClfPermanentCost.components">
                         </td>
                         <td width="87" height="19">
@@ -159,7 +165,8 @@
                             <br/>
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="bhClfSmiPermanentCost in bsCostsHusngUnits.housing.Table_2.BhClfSmiPermanentCost">
+                    <tr height="19"
+                        ng-repeat="bhClfSmiPermanentCost in bsCostsHusngUnits.housing.Table_2.BhClfSmiPermanentCost">
                         <td class="tdpa" width="166" height="19" ng-bind="bhClfSmiPermanentCost.components">
                         </td>
                         <td width="87" height="19">
@@ -203,7 +210,8 @@
                             <br/>
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="bhClfImprovisedCost in bsCostsHusngUnits.housing.Table_2.BhClfImprovisedCost">
+                    <tr height="19"
+                        ng-repeat="bhClfImprovisedCost in bsCostsHusngUnits.housing.Table_2.BhClfImprovisedCost">
                         <td class="tdpa" width="166" height="19" ng-bind="bhClfImprovisedCost.components">
                         </td>
                         <td width="87" height="19">
@@ -233,7 +241,8 @@
                 <div class="pull-right">
                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editBsData(form_bs_housing_dis)" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData(form_bs_housing_dis)" ng-if="!is_edit"
+                                class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -245,7 +254,8 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>
-                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_housing_dis)">Submit</button>
+                    <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_housing_dis)">Submit
+                    </button>
                 </div>
                 <br><br>
             </div>

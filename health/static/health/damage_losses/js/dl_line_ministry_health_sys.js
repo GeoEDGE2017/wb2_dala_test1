@@ -13,6 +13,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //initialize model
     var init_data = {
@@ -538,6 +539,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

@@ -10,7 +10,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
     $scope.is_valid_data = true;
     $scope.user_id;
 
-//Initialize Data
+    //initialize Data
     var init_data = {
         'agri_fisheries': {
             'Table_2': {
@@ -156,7 +156,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
 
     $scope.bsInfoFisheries = angular.copy(init_data);
 
-//Add Enumerate fields
+    //Add Enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsInfoFisheries.agri_fisheries.Table_2[table]);
         var new_row;
@@ -216,7 +216,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         $scope.bsInfoFisheries.agri_fisheries.Table_2[table].push(new_row);
     }
 
-//Remove Enumerate fields
+    //Remove Enumerate fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BifAstFequipment') {
             $scope.bsInfoFisheries.agri_fisheries.Table_2.BifAstFequipment.splice(index, 1);
@@ -235,7 +235,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         }
     }
 
-//Save data
+    //Save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -253,60 +253,55 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
                     'sector':'agri_fisheries'
                 }),
             }).success(function(data) {
-
                 $scope.bsInfoFisheries = init_data;
                 $scope.is_edit = false;
-
                 if (data == 'False')
                    {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else{
                     $("#modal-container-239453").modal('show');
-
+                }
             })
         }
     }
 
-
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_2',
-              'sector': 'agri_fisheries',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date,
-               'user_id' : $scope.user_id,
-               } }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsInfoFisheries = data;
-        })
-
-
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        if (form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'agri_fisheries',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsInfoFisheries = data;
+            })
+        }
     }
 
-//Cancel Edit
+    //Cancel Edit
      $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsInfoFisheries = init_data;
-    }
+     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsInfoFisheries = angular.copy(init_data);
-
-
     }
 
 });

@@ -419,10 +419,17 @@
                         <button type="button" ng-click="Test()" class="btn btn-info">
                             Clear
                         </button>
-                        <button type="button" ng-click="editDlData(form_health_damagelost_private)" ng-if="!is_edit"
-                                class="btn btn-success">
+
+                         <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="editDlData(form_health_damagelost_private)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>

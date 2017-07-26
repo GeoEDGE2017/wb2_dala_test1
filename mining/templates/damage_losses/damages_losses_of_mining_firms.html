@@ -5,6 +5,7 @@
   $(document).ready(function() {
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
   });
+
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dmLosOfMinFirmsApp" ng-controller="DmLosOfMinFirmsAppController">
@@ -23,7 +24,9 @@
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="(form_damagelost_mining_firm)">
@@ -49,17 +52,19 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.incident.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_damagelost_mining_firm.incident.$error.required">
                                 Please Select Incident
                             </span>
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.district.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_damagelost_mining_firm.district.$error.required">
                                 Please Select District
                             </span>
                         </td>
@@ -85,8 +90,9 @@
                         </td>
                         <td colspan="3" style="">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
-                                    class="form-control" ng-change="changedValue(false);fetchFirms();"required>
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    style="font-weight:400;"
+                                    class="form-control" ng-change="changedValue(false);fetchFirms();" required>
                                 <option value="" selected>Select District</option>
                             </select>
                         </td>
@@ -96,9 +102,10 @@
                         <td height="19" width="171">
                             Name of Firm
                         </td>
-                        <td  colspan="6" height="19" width="400">
+                        <td colspan="6" height="19" width="400">
                             <select ng-options="firm as firm.name for firm in firms track by firm.id"
-                                    name="firm" id="ccyear" ng-change="changedValuefirm(true);" ng-model="selectedFirm" class="form-control" style="font-weight:400;" required>
+                                    name="firm" id="ccyear" ng-change="changedValuefirm(true);" ng-model="selectedFirm"
+                                    class="form-control" style="font-weight:400;" required>
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
@@ -190,11 +197,11 @@
                             </td>
                             <td colspan="2" width="98">
                                 <input
-                                ng-change="getTotal('DloDmgStructures','rep_tot_dassets');
+                                        ng-change="getTotal('DloDmgStructures','rep_tot_dassets');
                                 getColumnTotal('DloDmgStructures');"
-                                 ng-model="dloDmgStructures.rep_tot_dassets"
-                                id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" >
+                                        ng-model="dloDmgStructures.rep_tot_dassets"
+                                        id="textinput" name="textinput" type="number" placeholder=""
+                                        class="form-control input-md">
                             </td>
                             <td colspan="2" width="98">
                                 <input ng-model="dloDmgStructures.repair_pdmg_assets"
@@ -210,7 +217,7 @@
                                        ng-bind="dloDmgStructures.tot_damages=dloDmgStructures.rep_tot_dassets + dloDmgStructures.repair_pdmg_assets">
                             </td>
                         </tr>
-                        <tr height="20" >
+                        <tr height="20">
                             <td colspan="6" class="tdpa" height="20" width="174">
                                 Others
                                 <button ng-click="insertFirm('DloDmgStructures')" class="btn btn-sm btn-info btn-circle"
@@ -219,8 +226,9 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures" ng-if="dloDmgStructures.assets=='Total' "height="20" >
-                            <td  ng-bind="dloDmgStructures.assets"
+                        <tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures"
+                            ng-if="dloDmgStructures.assets=='Total' " height="20">
+                            <td ng-bind="dloDmgStructures.assets"
                                 height="20" width="264"
                                 class="boldash"></td>
                             <td width="98" colspan="2" ng-model="dloDmgStructures.rep_tot_dassets"
@@ -287,7 +295,7 @@
                             </td>
                         </tr>
                         <tr ng-repeat="dloDmgEquipment in dmLosOfMinFirms.mining.Table_3.DloDmgEquipment"
-                            ng-if="dloDmgEquipment.assets=='Total'" height="20" >
+                            ng-if="dloDmgEquipment.assets=='Total'" height="20">
                             <td ng-bind="dloDmgEquipment.assets"
                                 height="20" width="264"
                                 class="boldash">
@@ -356,7 +364,7 @@
                             </td>
                         </tr>
                         <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery"
-                            ng-if="dloDmgMachinery.assets=='Total'" height="20" >
+                            ng-if="dloDmgMachinery.assets=='Total'" height="20">
                             <!-- Fixed rows -->
                             <td ng-bind="dloDmgMachinery.assets"
                                 height="20" width="264"
@@ -426,7 +434,7 @@
                             </td>
                         </tr>
                         <tr ng-repeat="dloDmgVehicles in dmLosOfMinFirms.mining.Table_3.DloDmgVehicles"
-                            ng-if="dloDmgVehicles.assets=='Total'" height="20" >
+                            ng-if="dloDmgVehicles.assets=='Total'" height="20">
                             <td ng-bind="dloDmgVehicles.assets"
                                 height="20" width="264"
                                 class="boldash">
@@ -435,7 +443,7 @@
                                 ng-bind="dloDmgVehicles.rep_tot_dassets = DloDmgVehicles_rep_tot_dassets">
                             <td width="98" colspan="2" ng-model="dloDmgVehicles.repair_pdmg_assets"
                                 ng-bind="dloDmgVehicles.repair_pdmg_assets = DloDmgVehicles_repair_pdmg_assets">
-                            <td width="98" colspan="2"ng-model="dloDmgVehicles.tot_damages"
+                            <td width="98" colspan="2" ng-model="dloDmgVehicles.tot_damages"
                                 ng-bind="dloDmgVehicles.tot_damages = DloDmgVehicles_total">
                         </tr>
                         <tr class="trheadc" height="19">
@@ -477,7 +485,7 @@
                         </tr>
 
                         <tr ng-repeat="dloDmgStocks in dmLosOfMinFirms.mining.Table_3.DloDmgStocks"
-                            ng-if="dloDmgStocks.assets=='Total'" height="20" >
+                            ng-if="dloDmgStocks.assets=='Total'" height="20">
                             <td ng-bind="dloDmgStocks.assets"
                                 height="20" width="264"
                                 class="boldash">
@@ -489,11 +497,11 @@
                                 ng-bind="dloDmgStocks.tot_damages = DloDmgStocks_total">
                         </tr>
 
-                        <tr height="20" >
+                        <tr height="20">
                             <!-- Fixed rows -->
                             <td
-                                height="20" width="264"
-                                class="boldash">GRAND TOTAL
+                                    height="20" width="264"
+                                    class="boldash">GRAND TOTAL
                             </td>
                             <td width="98" colspan="2"
                                 ng-bind="DloDmg_rep_tot_dassets_grnd">
@@ -572,12 +580,14 @@
                                    class="form-control input-md">
                         </td>
                         <td colspan="1" width="98">
-                            <input ng-model="dloLosPlos.red_voutput_year1" ng-change="getValue('DloLosPlos','red_voutput_year1');"
+                            <input ng-model="dloLosPlos.red_voutput_year1"
+                                   ng-change="getValue('DloLosPlos','red_voutput_year1');"
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td colspan="1" width="98">
-                            <input ng-model="dloLosPlos.red_voutput_year2" ng-change="getValue('DloLosPlos','red_voutput_year2');"
+                            <input ng-model="dloLosPlos.red_voutput_year2"
+                                   ng-change="getValue('DloLosPlos','red_voutput_year2');"
                                    id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
@@ -602,12 +612,12 @@
                     </tr>
 
                     <tr ng-repeat="dloLosPlos in dmLosOfMinFirms.mining.Table_3.DloLosPlos"
-                        ng-if="dloLosPlos.type_los=='Total'" height="20" >
+                        ng-if="dloLosPlos.type_los=='Total'" height="20">
                         <td ng-bind="dloLosPlos.type_los"
                             height="20" width="264"
                             class="boldash">
                         </td>
-                        <td width="98" colspan="2" class="boldash" >
+                        <td width="98" colspan="2" class="boldash">
                         <td width="98" colspan="1" class="boldash">
                         <td width="98" colspan="1" class="boldash">
                         <td width="98" colspan="1" ng-model="dloLosPlos.los_year1"
@@ -666,7 +676,7 @@
                         </td>
                     </tr>
                     <tr ng-repeat="dloLosOlos in dmLosOfMinFirms.mining.Table_3.DloLosOlos"
-                        ng-if="dloLosOlos.type_los=='Total'" height="20" >
+                        ng-if="dloLosOlos.type_los=='Total'" height="20">
                         <td ng-bind="dloLosOlos.type_los"
                             height="20" width="264"
                             class="boldash">
@@ -681,7 +691,7 @@
                         <td width="98" colspan="1" ng-model="dloLosOlos.tot_losses"
                             ng-bind="dloLosOlos.tot_losses = DloLosOlos_total"></td>
                     </tr>
-                    <tr height="20" >
+                    <tr height="20">
                         <!-- Fixed rows -->
                         <td height="20" width="264"
                             class="boldash">GRAND TOTAL
@@ -701,11 +711,18 @@
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="test()">Clear</button>
-                    <button type="button" ng-click="dlDataEdit(form_damagelost_mining_firm)" ng-if="!is_edit"
-                            class="btn btn-success">
-                        Edit
-                    </button>
+                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_damagelost_mining_firm)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>
@@ -727,7 +744,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="javascript:window.location.reload()">
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
@@ -743,7 +761,8 @@
                     </h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="javascript:window.location.reload()">
                         Close
                     </button>
                     <button id="ok" onclick="javascript:window.location.reload()" type="button"

@@ -14,6 +14,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.selectedOrganization;
     $scope.is_null = false;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //initialize Data
     var init_data = {
@@ -472,6 +473,11 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 console.log(response);
             });
         }
+
+        if($scope.incident && $scope.district && $scope.selectedOrganization ) {
+            $scope.is_edit_disable = true;
+        }
+
     }
 
     //get fields from baseline data
@@ -744,10 +750,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                         'district_id':  $scope.district.district__id,
                         'incident_id': $scope.incident,
                         'user_id':$scope.user_id
-
                     },
                     'is_edit' : $scope.is_edit,
-
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -781,30 +785,28 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     }
 
     //edit Data
-    $scope.dlDataEdit = function(){
-
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_3',
-    'sector':'agri_livestock',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-//    console.log(data);
-    $scope.dlLivestockPoultry = data;
-    })
-
-}
+    $scope.dlDataEdit = function(form){
+       $scope.is_edit = true;
+       $scope.submitted = true;
+        if(form.$valid){
+            console.log("hi");
+            $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+            'table_name':  'Table_3',
+            'sector':'agri_livestock',
+            'com_data': {
+                   'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                  },
+                   'is_edit':$scope.is_edit
+                   }),
+            }).success(function(data) {
+                $scope.dlLivestockPoultry = data;
+            })
+        }
+    }
 
     //cancel Data
     $scope.cancelEdit = function(){
@@ -842,11 +844,13 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 finaltotal1 = finaltotal1 + value.damages ;
              }
         })
+
         angular.forEach(array2, function(value, key) {
              if(value.animals != 'Total' ){
                 finaltotal2 = finaltotal2 + value.damages ;
              }
         })
+
         grantot = grantot + finaltotal1+ finaltotal2;
         console.log(grantot);
         return grantot;
@@ -890,8 +894,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         var array2 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry;
         var array3 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry;
         var array4 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock;
-        var array5 =
-        var array6 =
+//        var array5 =
+//        var array6 =
 
         angular.forEach(array1, function(value, key) {
             if(value.animals != 'Total'){

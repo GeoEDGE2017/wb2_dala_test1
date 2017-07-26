@@ -5,10 +5,6 @@
   $(document).ready(function() {
    var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
   });
-  
-
-
-
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsHealthStatusApp" ng-controller="BsHealthStatusController">
@@ -73,7 +69,7 @@
                         <tr class="trhead1 p5">
                             <td class=""> Name of District or RDH</td>
                             <td colspan="2">
-                                <select ng-model="district" id="selectbasic" name="district" ng-change="getLatestBsDate" class="form-control"
+                                <select ng-model="district" id="selectbasic" name="district" ng-change="getLatestBsDate;changeDis();" class="form-control"
                                         style="font-weight:400;" required>
                                     <option value="">Select the District or RDH</option>
                                     {% for district in districts %}
@@ -85,7 +81,7 @@
                                 Year/Month
                             </td>
                             <td colspan="2">
-                                <input ng-model="bs_date" required name="bs_date" type="text" placeholder="mm/yyyy"
+                                <input ng-model="bs_date" required name="bs_date"  ng-change="changeDis();" type="text" placeholder="mm/yyyy"
                                        id="datepicker"
                                        class="form-control input-md">
                             </td>
@@ -338,12 +334,16 @@
                         <button type="button" ng-click="clear()" class="btn btn-info">
                             Clear
                         </button>
+                        <span ng-if="is_edit_disable">
                         <button type="button" ng-click="editBsData(form_pop_lat_census)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                            Cancel Edit
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
                         </button>
+                    </span>
                         <button type="button" ng-click="saveBsData(form_pop_lat_census)" class="btn btn-success">
                             Submit
                         </button>

@@ -9,8 +9,9 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
-//Initialize Data
+    //initialize Data
     var init_data = {
         'agri_livestock': {
             'Table_1': {
@@ -78,7 +79,17 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
 
     $scope.bsLivestockPoultryDst = angular.copy(init_data);
 
-//Add Enumerate Fields
+     //Disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
+
+    //add Enumerate Fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsLivestockPoultryDst.agri_livestock.Table_1[table]);
         var new_row;
@@ -107,7 +118,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         $scope.bsLivestockPoultryDst.agri_livestock.Table_1[table].push(new_row);
     }
 
-//Remove Fields
+    //remove Fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BelLivestock') {
             $scope.bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock.splice(index, 1);
@@ -117,7 +128,7 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
         console.log('done');
         $scope.submitted = true;
@@ -140,7 +151,6 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-
                 else
                     $("#modal-container-239453").modal('show');
 
@@ -148,25 +158,27 @@ app.controller('bsLivestockPoultryDstController', ['$scope', '$http', function($
         }
     }
 
-//Edit Data
-    $scope.bsHsDataEdit = function(){
+    //Edit Data
+    $scope.bsHsDataEdit = function(form){
         $scope.submitted = true;
         $scope.is_edit = true;
-        $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                'table_name': 'Table_1',
-                'sector': 'agri_livestock',
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.bs_date,
-                }
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.bsLivestockPoultryDst = data;
-        })
+        if (form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_1',
+                    'sector': 'agri_livestock',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsLivestockPoultryDst = data;
+            })
+        }
     }
 
     //Cancel Edit

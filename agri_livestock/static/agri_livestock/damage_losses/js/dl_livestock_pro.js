@@ -16,13 +16,11 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
     $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.user_id;
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
-
         if($scope.incident && selectProvinces) {
           fetchProvinces();
         }
@@ -30,57 +28,49 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
     }
     $scope.provinces = [];
 
-    function fetchProvinces()
-    {
-          $http({
+    function fetchProvinces(){
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-
-            })
-
+                'incident': $scope.incident
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = "";
+        })
     }
 
     $scope.fetchDlData = function(form){
        if($scope.incident && $scope.province){
         $scope.is_edit = true;
         $scope.submitted = true;
-
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':  'Table_5',
-            'sector': 'agri_livestock',
-            'com_data': {
-                    'province': $scope.province,
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                'table_name':  'Table_5',
+                'sector': 'agri_livestock',
+                'com_data': {
+                        'province': $scope.province,
+                        'incident': $scope.incident,
+                      },
+                }),
             }).success(function(data) {
-
-            console.log('load ', data);
-
-            $scope.dlAgriLivestockPro = data;
-
+                console.log('load ', data);
+                $scope.dlAgriLivestockPro = data;
             })
-            }
+        }
 
     }
 
-$scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlAgriLivestockPro ? angular.equals({}, $scope.dlAgriLivestockPro.agri_livestock.Table_5) : true;
         return isNull;
+    }
 
-   }
+    $scope.getTotal = function($index,key) {
 
- $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index] ? (
                          $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index].damages ?
                          $scope.dlAgriLivestockPro.agri_livestock.Table_5[key].DlpNdaPubProvince[$index].damages : 0 ): 0) ;
@@ -112,14 +102,6 @@ $scope.checkIfNull = function()
          $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
 
-
-
-
-
-
     }
-
-
-
 
  }])

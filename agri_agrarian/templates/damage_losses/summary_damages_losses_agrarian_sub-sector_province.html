@@ -17,7 +17,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -34,65 +36,67 @@
                         <col width="85" span="2"/>
                     </colgroup>
                     <tbody>
-                        <tr class="trhead1" height="20">
-                            <td class="trhead1" width="130" colspan="2">
-                                Incident:
-                            </td>
-                            <td width="125" colspan="2">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true);fetchDlData(health_summery_damageloss_province);"
-                                        style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td class="trhead1" width="281" height="20">
-                                Province:
-                            </td>
-                            <td width="170" colspan="2">
-                                <select name="province" ng-model="province"
-                                        class="form-control"
-                                        style="width:100%;font-weight:400;"
-                                        ng-change="changedValue(false);fetchDlData(health_summery_damageloss_province);" required>
-                                    <option value="" selected="true">Select Province</option>
-                                    <option ng-repeat="province in provinces" ng-value="province.district__province_id"
-                                            ng-bind="province.district__province__name"></option>
-                                </select>
-                            </td>
-                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                        </tr>
-                        <tr class="trheadc1" height="20">
-                            <td rowspan="3" width="249" height="60" style="width:19.5%;">
-                                Districts
-                            </td>
-                            <td colspan="4" width="503">
-                                Year 1
-                            </td>
-                            <td colspan="2" width="211">
-                                Year 2
-                            </td>
-                            <td colspan="2" rowspan="2" width="170">
-                                Total (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="20">
-                            <td colspan="2" width="269" height="20">
-                                Damages (LKR)
-                            </td>
-                            <td colspan="2" width="234">
-                                Losses (LKR)
-                            </td>
-                            <td colspan="2" width="211">
-                                Losses (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="20">
+                    <tr class="trhead1" height="20">
+                        <td class="trhead1" width="130" colspan="2">
+                            Incident:
+                        </td>
+                        <td width="125" colspan="2">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control"
+                                    ng-change="changedValue(true);fetchDlData(health_summery_damageloss_province);"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
+                                <option value={{incident.id}}>
+                                    <!--{{incident.disaster_type.name}}-->
+                                    <!--{{incident.reported_date_time}}-->
+                                    {{incident.incident_name}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead1" width="281" height="20">
+                            Province:
+                        </td>
+                        <td width="170" colspan="2">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false);fetchDlData(health_summery_damageloss_province);"
+                                    required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                    </tr>
+                    <tr class="trheadc1" height="20">
+                        <td rowspan="3" width="249" height="60" style="width:19.5%;">
+                            Districts
+                        </td>
+                        <td colspan="4" width="503">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="211">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="170">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc1" height="20">
+                        <td colspan="2" width="269" height="20">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="234">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="211">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc1" height="20">
                         <td width="148" height="20">
                             Public
                         </td>
@@ -122,29 +126,32 @@
                     <br>
                     <div class="pull-right">
                         <br>
-                        <table ng-repeat="(key, value) in dlAgriAgrarianPro.agri_agrarian.Table_9" class="table table-bordered">
+                        <table ng-repeat="(key, value) in dlAgriAgrarianPro.agri_agrarian.Table_9"
+                               class="table table-bordered">
                             <tbody>
-                                <tr height="20" ng-init="getTotal($index,key);">
-                                    <td ng-bind="key" class="tdpa" width="253" height="19">
-                                    </td>
-                                    <td width="147" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub">
-                                    </td>
-                                    <td width="151" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt">
-                                    </td>
-                                    <td width="165" ng-bind="value.DsorLosYear1Province[0].dmg_los_pub">
-                                    </td>
-                                    <td width="170" ng-bind="value.DsorLosYear1Province[0].dmg_los_pvt">
-                                    </td>
-                                    <td width="135" ng-bind="value.DsorLosYear2Province[0].dmg_los_pub">
-                                    </td>
-                                    <td width="133" ng-bind="value.DsorLosYear2Province[0].dmg_los_pvt">
-                                    </td>
-                                    <td width="126" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub + value.DsorLosYear1Province[0].dmg_los_pub + value.DsorLosYear2Province[0].dmg_los_pub ">
-                                    </td>
-                                    <td width="85" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt + value.DsorLosYear1Province[0].dmg_los_pvt + value.DsorLosYear2Province[0].dmg_los_pvt ">
-                                    </td>
-                                </tr>
-                                <tr height="19">
+                            <tr height="20" ng-init="getTotal($index,key);">
+                                <td ng-bind="key" class="tdpa" width="253" height="19">
+                                </td>
+                                <td width="147" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub">
+                                </td>
+                                <td width="151" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt">
+                                </td>
+                                <td width="165" ng-bind="value.DsorLosYear1Province[0].dmg_los_pub">
+                                </td>
+                                <td width="170" ng-bind="value.DsorLosYear1Province[0].dmg_los_pvt">
+                                </td>
+                                <td width="135" ng-bind="value.DsorLosYear2Province[0].dmg_los_pub">
+                                </td>
+                                <td width="133" ng-bind="value.DsorLosYear2Province[0].dmg_los_pvt">
+                                </td>
+                                <td width="126"
+                                    ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub + value.DsorLosYear1Province[0].dmg_los_pub + value.DsorLosYear2Province[0].dmg_los_pub ">
+                                </td>
+                                <td width="85"
+                                    ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt + value.DsorLosYear1Province[0].dmg_los_pvt + value.DsorLosYear2Province[0].dmg_los_pvt ">
+                                </td>
+                            </tr>
+                            <tr height="19">
                                 <td class="boldash" width="253" height="19">
                                     GRAND TOTAL
                                 </td>
@@ -154,7 +161,7 @@
                                 </td>
                                 <td width="165" ng-bind="totalyear1pub">
                                 </td>
-                                <td width="170"  ng-bind="totalyear1pvt">
+                                <td width="170" ng-bind="totalyear1pvt">
                                 </td>
                                 <td width="135" ng-bind="totalyear2pub">
                                 </td>
@@ -173,7 +180,8 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">

@@ -13,6 +13,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //Initialize Data
     var init_data = {
@@ -256,6 +257,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         }
 
         if($scope.incident && $scope.district) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -271,12 +273,12 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
+                generateRefencedData();
                 var data = response.data;
                 console.log('*', response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-
                 console.log('*', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
@@ -284,7 +286,6 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                         is_null = true;
                     }
                 })
-
                 if(is_null == true) {
                     $("#modal-container-239458").modal('show');
                     console.log('baseline table or tables are empty');
@@ -615,76 +616,63 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False') {
-                    $("#modal-container-239454").modal('show');
-                    $scope.is_valid_data = false;
-                }
-                else {
-                    $("#modal-container-239453").modal('show');
-                }
-            }, function errorCallback(response) {
-//                console.log(response);
+                    if(response.data == 'False') {
+                        $("#modal-container-239454").modal('show');
+                        $scope.is_valid_data = false;
+                    }
+                    else {
+                        $("#modal-container-239453").modal('show');
+                    }
+                }, function errorCallback(response) {
             });
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.dlDataEdit = function(form){
+       $scope.is_edit = true;
+       $scope.submitted = true;
+        if(form.$valid){
+            $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+            'table_name':  'Table_4',
+            'sector':'agri_agrarian',
+            'com_data': {
+                   'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                  },
+                   'is_edit':$scope.is_edit
+                   }),
+            }).success(function(data) {
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_4',
-    'sector':'agri_agrarian',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-//    console.log(data);
-
-
-    $scope.dlFrstPrductAsets = data;
-    })
-
+            $scope.dlFrstPrductAsets = data;
+            })
+        }
 }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlFrstPrductAsets = init_data;
     }
 
-//Calculate Public Total
+    //Calculate Public Total
     $scope.calPubTotal=function(arr) {
     var finaltotal = 0;
-//     console.log(arr);
     angular.forEach(arr, function(value, key) {
-
          finaltotal = finaltotal + value.dmg_pub ;
-
     })
-//      console.log(finaltotal);
     return finaltotal;
     }
 
     //Calculate Private Total
     $scope.calPvtTotal = function(arr) {
         var finaltotal = 0;
-//        console.log(arr);
         angular.forEach(arr, function(value, key) {
-
              finaltotal = finaltotal + value.dmg_pvt ;
-
         })
-//        console.log(finaltotal);
         return finaltotal;
     }
 
@@ -725,35 +713,35 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
             finaltotal3 = finaltotal3 + value.dmg_pub ;
         })
 
-    angular.forEach(array4, function(value, key) {
-     finaltotal4 = finaltotal4 + value.dmg_pub ;
-    })
-    angular.forEach(array5, function(value, key) {
+        angular.forEach(array4, function(value, key) {
+         finaltotal4 = finaltotal4 + value.dmg_pub ;
+        })
+        angular.forEach(array5, function(value, key) {
 
-     finaltotal5 = finaltotal5 + value.dmg_pub ;
-    })
-    angular.forEach(array6, function(value, key) {
+         finaltotal5 = finaltotal5 + value.dmg_pub ;
+        })
+        angular.forEach(array6, function(value, key) {
 
-     finaltotal6 = finaltotal6 + value.dmg_pub ;
-    })
-    angular.forEach(array7, function(value, key) {
+         finaltotal6 = finaltotal6 + value.dmg_pub ;
+        })
+        angular.forEach(array7, function(value, key) {
 
-     finaltotal7 = finaltotal7 + value.dmg_pub ;
-    })
-    angular.forEach(array8, function(value, key) {
+         finaltotal7 = finaltotal7 + value.dmg_pub ;
+        })
+        angular.forEach(array8, function(value, key) {
 
-     finaltotal8 = finaltotal8 + value.dmg_pub ;
-    })
-    angular.forEach(array9, function(value, key) {
+         finaltotal8 = finaltotal8 + value.dmg_pub ;
+        })
+        angular.forEach(array9, function(value, key) {
 
-     finaltotal9 = finaltotal9 + value.dmg_pub ;
-    })
-    angular.forEach(array10, function(value, key) {
+         finaltotal9 = finaltotal9 + value.dmg_pub ;
+        })
+        angular.forEach(array10, function(value, key) {
 
-     finaltotal10 = finaltotal10 + value.dmg_pub ;
-    })
-    grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9 + finaltotal10;
-    return grantot;
+         finaltotal10 = finaltotal10 + value.dmg_pub ;
+        })
+        grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9 + finaltotal10;
+        return grantot;
     }
 
 //Calculate Grand Private Total
@@ -781,50 +769,49 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         var array9 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops;
         var array10 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
 
-    angular.forEach(array1, function(value, key) {
+        angular.forEach(array1, function(value, key) {
 
-     finaltotal1 = finaltotal1 + value.dmg_pvt ;
-    })
-    angular.forEach(array2, function(value, key) {
+         finaltotal1 = finaltotal1 + value.dmg_pvt ;
+        })
+        angular.forEach(array2, function(value, key) {
 
-     finaltotal2 = finaltotal2 + value.dmg_pvt ;
-    })
-    angular.forEach(array3, function(value, key) {
+         finaltotal2 = finaltotal2 + value.dmg_pvt ;
+        })
+        angular.forEach(array3, function(value, key) {
 
-     finaltotal3 = finaltotal3 + value.dmg_pvt ;
-    })
-    angular.forEach(array4, function(value, key) {
+         finaltotal3 = finaltotal3 + value.dmg_pvt ;
+        })
+        angular.forEach(array4, function(value, key) {
 
-     finaltotal4 = finaltotal4 + value.dmg_pvt ;
-    })
-    angular.forEach(array5, function(value, key) {
+         finaltotal4 = finaltotal4 + value.dmg_pvt ;
+        })
+        angular.forEach(array5, function(value, key) {
 
-     finaltotal5 = finaltotal5 + value.dmg_pvt ;
-    })
-    angular.forEach(array6, function(value, key) {
+         finaltotal5 = finaltotal5 + value.dmg_pvt ;
+        })
+        angular.forEach(array6, function(value, key) {
 
-     finaltotal6 = finaltotal6 + value.dmg_pvt ;
-    })
-    angular.forEach(array7, function(value, key) {
+         finaltotal6 = finaltotal6 + value.dmg_pvt ;
+        })
+        angular.forEach(array7, function(value, key) {
 
-     finaltotal7 = finaltotal7 + value.dmg_pvt ;
-    })
-    angular.forEach(array8, function(value, key) {
+         finaltotal7 = finaltotal7 + value.dmg_pvt ;
+        })
+        angular.forEach(array8, function(value, key) {
 
-     finaltotal8 = finaltotal8 + value.dmg_pvt ;
-    })
-    angular.forEach(array9, function(value, key) {
+         finaltotal8 = finaltotal8 + value.dmg_pvt ;
+        })
+        angular.forEach(array9, function(value, key) {
 
-     finaltotal9 = finaltotal9 + value.dmg_pvt ;
-    })
-    angular.forEach(array10, function(value, key) {
+         finaltotal9 = finaltotal9 + value.dmg_pvt ;
+        })
+        angular.forEach(array10, function(value, key) {
 
-     finaltotal10 = finaltotal10 + value.dmg_pvt ;
-    })
-    grantot = grantot  + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9  + finaltotal10;
-    return grantot;
+         finaltotal10 = finaltotal10 + value.dmg_pvt ;
+        })
+        grantot = grantot  + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9  + finaltotal10;
+        return grantot;
     }
-
 
     //Clear Function
     $scope.clear = function() {

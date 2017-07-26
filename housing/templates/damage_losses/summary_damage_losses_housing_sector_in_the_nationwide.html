@@ -5,7 +5,7 @@
 <main class="main" ng-app="dlSummHouNatApp" ng-controller="DlSummHouNatController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item"><a href="{% url 'dashboard:housing_main' %}">Housing Sector</a>
         </li>
@@ -14,7 +14,9 @@
                 Table 6.  Summary of Damage and Losses in the Housing Sector in the Nationwide
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/5-Housing-24Jan17.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
@@ -29,7 +31,7 @@
                         <col width="87"/>
                     </colgroup>
                     <tbody>
-                   <tr class="trhead1">
+                    <tr class="trhead1">
                         <td class="trhead1" width="130" colspan="2">
 
                             Incident
@@ -50,8 +52,8 @@
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-                   </tbody>
-                    </table>
+                    </tbody>
+                </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tbody>
                     <tr class="trheadc1" height="51">
@@ -74,7 +76,8 @@
                             Total Damages and Losses (LKR)
                         </td>
                     </tr>
-                     <tr class="trheadc" height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6" ng-init="getTotal(key)">
+                    <tr class="trheadc" height="19" ng-repeat="(key, value) in dlHousingSumNat.housing.Table_6"
+                        ng-init="getTotal(key)">
                         <td height="19" width="166" ng-bind="key">
 
                         </td>
@@ -93,10 +96,12 @@
                         <td class="tdpa" height="19" width="166">
                             Type 1. Permanent
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesPerNational[0].tot_num_houses">
+                        <td height="19" width="87"
+                            ng-bind="data.housing.Table_6[key].DlNumDesPerNational[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesPerNational[0].tot_num_houses">
+                        <td height="19" width="112"
+                            ng-bind="data.housing.Table_6[key].DlNumPdesPerNational[0].tot_num_houses">
 
                         </td>
                         <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages">
@@ -105,7 +110,8 @@
                         <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
 
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages + data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
+                        <td height="19" width="87"
+                            ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages + data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
 
                         </td>
                     </tr>
@@ -113,19 +119,24 @@
                         <td class="tdpa" height="19" width="166">
                             Type 2. Semi-Permanent
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesSemiPerNational[0].tot_num_houses">
+                        <td height="19" width="87"
+                            ng-bind="data.housing.Table_6[key].DlNumDesSemiPerNational[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesSemiPerNational[0].tot_num_houses">
+                        <td height="19" width="112"
+                            ng-bind="data.housing.Table_6[key].DlNumPdesSemiPerNational[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages">
+                        <td height="19" width="87"
+                            ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages">
 
                         </td>
-                        <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
+                        <td height="19" width="104"
+                            ng-bind="data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
 
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages + data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
+                        <td height="19" width="87"
+                            ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages + data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
 
                         </td>
                     </tr>
@@ -133,10 +144,12 @@
                         <td class="tdpa" height="19" width="166">
                             Type 3. Improvised
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlNumDesImpNational[0].tot_num_houses">
+                        <td height="19" width="87"
+                            ng-bind="data.housing.Table_6[key].DlNumDesImpNational[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="112" ng-bind="data.housing.Table_6[key].DlNumPdesImpNational[0].tot_num_houses">
+                        <td height="19" width="112"
+                            ng-bind="data.housing.Table_6[key].DlNumPdesImpNational[0].tot_num_houses">
 
                         </td>
                         <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages">
@@ -145,7 +158,8 @@
                         <td height="19" width="104" ng-bind="data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
 
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages + data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
+                        <td height="19" width="87"
+                            ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages + data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
 
                         </td>
                     </tr>
@@ -164,7 +178,7 @@
 
                         </td>
                         {% endverbatim %}
-                       {% verbatim %}
+                        {% verbatim %}
                         <td width="98" ng-model="totdamage" ng-bind="totdamage= {{'totdamage'+key}}">
 
                         </td>
@@ -178,7 +192,7 @@
 
                         </td>
                     </tr>
-                     </tbody>
+                    </tbody>
                     <tr height="19">
                         <td class="boldash" height="19" width="166">
                             GRAND TOTAL

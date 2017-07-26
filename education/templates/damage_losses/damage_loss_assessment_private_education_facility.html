@@ -137,7 +137,7 @@ $(document).on("click", "#add_technical", function () {
                             <select ng-change="fetchSchools()"
                                     ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" style="font-weight:400;" ng-model="district"
-                                    ng-change="changedValue(false)"
+                                     ng-change="changedValue(false)"
                                     class="form-control" required>
                                 <option value="" selected>Select District</option>
                             </select>
@@ -943,10 +943,17 @@ $(document).on("click", "#add_technical", function () {
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="test()">Clear</button>
-                    <button type="button" ng-click="editdlDataTest(form_pvt_edu_facility_dl)" ng-if="!is_edit"
-                            class="btn btn-success">
-                        Edit
-                    </button>
+
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="editdlDataTest(form_pvt_edu_facility_dl)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>

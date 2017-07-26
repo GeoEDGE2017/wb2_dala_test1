@@ -34,7 +34,6 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-                //console.log($scope.districts);
             })
         }
 
@@ -44,44 +43,36 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
     }
 
     $scope.loadData = function() {
-
         if($scope.incident && $scope.district && $scope.district.district__id) {
             $scope.isLoded = true;
-
-        $scope.tot_damages = null;
-        $scope.is_edit = true;
-
-        $http({
-            method: "POST",
-            url: '/dl_fetch_summary_dis_disagtn',
-            data: angular.toJson({
-                'table_name':  ['Table_4'],
-                'sector': ['tourism'],
-                'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
-            }),
-        }).success(function(data) {
-            $scope.data=data.tourism.Table_4;
-            $scope.makeTable();
-            console.log($scope.data);
-        })
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_summary_dis_disagtn',
+                data: angular.toJson({
+                    'table_name':  ['Table_4'],
+                    'sector': ['tourism'],
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                }),
+             }).success(function(data) {
+                $scope.data=data.tourism.Table_4;
+                $scope.makeTable();
+                console.log($scope.data);
+             })
         }
-
-
     }
 
     $scope.makeTable = function(){
         if($scope.data != null){
-
             $scope.table = {};
             $scope.table.business = {};
             $scope.table.infrastructures = {};
-
             //business damage
             angular.forEach($scope.data.DlDmgBusDistrict, function(value, key) {
-
                 if(!$scope.table.business[value.business]){
                     $scope.table.business[value.business] = {'name':value.business}
                     $scope.table.business[value.business].year1Damage = {};
@@ -89,9 +80,7 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
                     $scope.table.business[value.business].year2Loss = {};
                 }
                 $scope.table.business[value.business].year1Damage[value.ownership] = value.tot_damages;
-
             })
-
             //business losses
             angular.forEach($scope.data.DlLosBusDistrict, function(value, key) {
 
@@ -132,47 +121,36 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
                 $scope.table.infrastructures[value.inf_type].year2Loss[value.ownership] = value.tot_year2;
 
             })
-
         }
         else{
             console.log("data null")
         }
     }
 
-    $scope.fetchBusinessTypes = function()
-    {
-
+    $scope.fetchBusinessTypes = function(){
         $http({
-        method: "POST",
-        url: "/fetch_business_types",
-        data: angular.toJson({
-        'model': 'TouBusiness',
-        'sector':'tourism'
-         }),
+            method: "POST",
+            url: "/fetch_business_types",
+            data: angular.toJson({
+                'model': 'TouBusiness',
+                'sector':'tourism'
+             }),
         }).success(function(data) {
-
         $scope.businessTypes = data;
-
-
         })
     }
 
-    $scope.fetchInfTypes = function()
-    {
-
+    $scope.fetchInfTypes = function(){
         $http({
-        method: "POST",
-        url: "/fetch_entities_plain",
-
-        data: angular.toJson({
-        'model': 'InfType',
-        'sector':'tourism',
-         }),
+            method: "POST",
+            url: "/fetch_entities_plain",
+            data: angular.toJson({
+                'model': 'InfType',
+                'sector':'tourism',
+             }),
         }).success(function(data) {
-
-        console.log(data);
-        $scope.inf_types = data;
-//        console.log($scope.inf_types);
+            console.log(data);
+            $scope.inf_types = data;
         })
     }
 
@@ -180,23 +158,19 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
     $scope.fetchInfTypes();
 
     $scope.getAggrigatedTotal = function(mainCol,sub_col,type){
-
         if($scope.table && $scope.table[type]){
             var final_val = 0;
             angular.forEach($scope.table[type], function(value, key) {
-
                 if(value[mainCol]){
                     if(!isNaN(value[mainCol][sub_col]))
                         final_val += value[mainCol][sub_col];
                 }
-
             })
             return final_val;
         }
         else{
             return 0;
         }
-
     }
 
     $scope.getSum3 = function(val1, val2, val3){
@@ -204,25 +178,19 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
         if(!isNaN(val3)) final_val += val3;
-
         return final_val;
     }
 
     $scope.getPrivateColBusinessTotal = function(){
-
         var final_val = 0;
-
         angular.forEach($scope.businessTypes, function(value, key) {
             final_val += value.totalPri;
         })
-
         return final_val;
     }
 
     $scope.getPublicColBusinessTotal = function(){
-
         var final_val = 0;
-
         angular.forEach($scope.businessTypes, function(value, key) {
             final_val += value.totalPub;
         })
@@ -231,20 +199,15 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
     }
 
     $scope.getPrivateColInfrastructuresTotal = function(){
-
         var final_val = 0;
-
         angular.forEach($scope.inf_types, function(value, key) {
             final_val += value.totalPri;
         })
-
         return final_val;
     }
 
     $scope.getPublicColInfrastructuresTotal = function(){
-
         var final_val = 0;
-
         angular.forEach($scope.inf_types, function(value, key) {
             final_val += value.totalPub;
         })

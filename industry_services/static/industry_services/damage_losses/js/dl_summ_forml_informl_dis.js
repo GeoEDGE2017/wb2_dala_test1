@@ -1,6 +1,3 @@
-
-
-//Table N
 var app = angular.module('dlSummFormlInformldisApp', [])
 
 app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($scope, $http) {
@@ -16,17 +13,13 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
     $scope.businessTypes;
     $scope.summaryTotal = {};
     $scope.summaryTotalInf = {};
-
     $scope.businessData = [];
-
     $scope.indSubSec;
     $scope.serSubSec;
     $scope.industryTotals = [];
     $scope.industryTotal = {};
-
     $scope.serviceTotals = [];
     $scope.serviceTotal = {};
-
     $scope.data2;
     $scope.data3;
     $scope.user_id;
@@ -43,10 +36,8 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-                ////console.log($scope.districts);
             })
         }
-
         if($scope.incident && $scope.district ) {
              $scope.loadData();
              $scope.loadData2();
@@ -54,97 +45,74 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
         }
     }
 
-
     $scope.loadData = function() {
-
         if($scope.incident && $scope.district && $scope.district.district__id) {
-            $scope.isLoded = true;
-
-        $scope.tot_damages = null;
-        $scope.is_edit = true;
-
-        $http({
-            method: "POST",
-            url: '/dl_fetch_summary_dis_disagtn',
-            data: angular.toJson({
-                'table_name':  ['Table_6'],
-                'sector': ['industry_services'],
-                'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
-            }),
-        }).success(function(data) {
-            $scope.data=data.industry_services.Table_6;
-            //check conditions before making table
-            $scope.makeTable();
-            console.log($scope.data);
-        })
+                $scope.isLoded = true;
+                $scope.tot_damages = null;
+                $scope.is_edit = true;
+                $http({
+                    method: "POST",
+                    url: '/dl_fetch_summary_dis_disagtn',
+                    data: angular.toJson({
+                        'table_name':  ['Table_6'],
+                        'sector': ['industry_services'],
+                        'com_data': {
+                            'district':  $scope.district.district__id,
+                            'incident': $scope.incident,
+                        },
+                    }),
+                }).success(function(data) {
+                $scope.data=data.industry_services.Table_6;
+                $scope.makeTable();
+                console.log($scope.data);
+            })
         }
-
-
     }
 
     $scope.loadData2 = function() {
-
         if($scope.incident && $scope.district && $scope.district.district__id) {
             $scope.isLoded = true;
-
-        $scope.tot_damages = null;
-        $scope.is_edit = true;
-
-        $http({
-            method: "POST",
-            url: '/dl_fetch_summary_dis_disagtn',
-            data: angular.toJson({
-                'table_name':  ['Table_6_2'],
-                'sector': ['industry_services'],
-                'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
-            }),
-        }).success(function(data) {
-            $scope.data2=data.industry_services.Table_6_2;
-//            $scope.businessTypes = Object.keys($scope.data.);
-            //check conditions before making table
-            $scope.makeTable2();
-//            console.log($scope.data);
-        })
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_summary_dis_disagtn',
+                data: angular.toJson({
+                    'table_name':  ['Table_6_2'],
+                    'sector': ['industry_services'],
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                $scope.data2=data.industry_services.Table_6_2;
+                $scope.makeTable2();
+            })
         }
-
-
     }
 
     $scope.loadData3 = function() {
-
         if($scope.incident && $scope.district && $scope.district.district__id) {
             $scope.isLoded = true;
-
-        $scope.tot_damages = null;
-        $scope.is_edit = true;
-
-        $http({
-            method: "POST",
-            url: '/dl_fetch_summary_dis_disagtn',
-            data: angular.toJson({
-                'table_name':  ['Table_6_3'],
-                'sector': ['industry_services'],
-                'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
-            }),
-        }).success(function(data) {
-            $scope.data3=data.industry_services.Table_6_3;
-//            $scope.businessTypes = Object.keys($scope.data.);
-            //check conditions before making table
-            $scope.makeTable3();
-//            console.log($scope.data);
-        })
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_summary_dis_disagtn',
+                    data: angular.toJson({
+                    'table_name':  ['Table_6_3'],
+                    'sector': ['industry_services'],
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                $scope.data3=data.industry_services.Table_6_3;
+                $scope.makeTable3();
+            })
         }
-
-
     }
 
 

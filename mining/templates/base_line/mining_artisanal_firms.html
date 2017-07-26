@@ -17,7 +17,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -26,17 +28,19 @@
                 <table class="table table-bordered">
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0" >
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_artisanal_mining.district.$error.required">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_artisanal_mining.district.$error.required">
                                 Please Select District
                             </span>
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_artisanal_mining.baselineDate.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_artisanal_mining.baselineDate.$error.required">
                                 Please Select Date
                             </span>
                         </td>
@@ -44,7 +48,8 @@
                     <tr class="trhead1">
                         <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="1" style="">
-                            <select id="selectbasic" name="district" ng-change="changeDis()" ng-model='district' class="form-control"
+                            <select id="selectbasic" name="district" ng-change="changeDis()" ng-model='district'
+                                    class="form-control"
                                     style="font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
@@ -57,27 +62,28 @@
                             Year/Month
                         </td>
                         <td colspan="3" style="font-weight:normal;">
-                            <input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis()" ng-model="baselineDate"
+                            <input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis()"
+                                   ng-model="baselineDate"
                                    class="form-control input-md" name="baselineDate" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <!--<tr>-->
-                        <!--<td class="trhead">-->
-                            <!--Firm Name-->
-                        <!--</td>-->
-                        <!--<td colspan="4">-->
+                    <!--<td class="trhead">-->
+                    <!--Firm Name-->
+                    <!--</td>-->
+                    <!--<td colspan="4">-->
 
-                            <!--<input ng-model="firmName"-->
-                                   <!--id="textinput" name="textinput" type="text" placeholder=""-->
-                                   <!--class="form-control input-md">-->
-                        <!--</td>-->
-                            <!--<td class="trsubc">-->
-                            <!--<a id="modal-469842" href="#modal-container-469842" role="button" data-toggle="modal"-->
-                               <!--class="btn btn-sm btn-info"><span class="fa fa-plus"></span></a>-->
-                            <!--<a id="modal-469840" href="#modal-container-469840" role="button" data-toggle="modal"-->
-                               <!--class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span></a>-->
-                        <!--</td>-->
+                    <!--<input ng-model="firmName"-->
+                    <!--id="textinput" name="textinput" type="text" placeholder=""-->
+                    <!--class="form-control input-md">-->
+                    <!--</td>-->
+                    <!--<td class="trsubc">-->
+                    <!--<a id="modal-469842" href="#modal-container-469842" role="button" data-toggle="modal"-->
+                    <!--class="btn btn-sm btn-info"><span class="fa fa-plus"></span></a>-->
+                    <!--<a id="modal-469840" href="#modal-container-469840" role="button" data-toggle="modal"-->
+                    <!--class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span></a>-->
+                    <!--</td>-->
                     <!--</tr>-->
                     <tr class="trheadc1" height="19">
                         <td rowspan="3" height="57" width="171">
@@ -100,7 +106,8 @@
                     </tr>
                     <tr height="19" ng-repeat="bmaAmMinNum in mnArtisanalFirm.mining.Table_2.BmaAmMinNum">
                         <td colspan="2" height="19" width="126">
-                            <input ng-model="bmaAmMinNum.male" id="textinput" name="textinput" type="number" placeholder=""
+                            <input ng-model="bmaAmMinNum.male" id="textinput" name="textinput" type="number"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                         <td colspan="2" height="19" width="126">
@@ -116,7 +123,8 @@
                         </td>
                         <td width="98" ng-if="$index > 2">
                             {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BmaAmMin', $index)" class="btn btn-sm btn-danger btn-circle">
+                            <button id="delete" ng-click="removeItem('BmaAmMin', $index)"
+                                    class="btn btn-sm btn-danger btn-circle">
                                 <i class="fa fa-minus"></i>
                             </button>
                             <input style="width:80%;float:right;" ng-model="bmaAmMin.minerals"
@@ -138,7 +146,7 @@
                     </tr>
                     <tr height="19">
                         <td colspan="6" class="tdpa" height="19" width="171">
-                            Others 
+                            Others
                             <button ng-click="insertFirm('BmaAmMin')" class="btn btn-sm btn-info btn-circle"
                                     id="insert"><span
                                     class="fa fa-plus"></span>
@@ -150,8 +158,9 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editBsData(form_artisanal_mining)" ng-if="!is_edit" class="btn btn-success">
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="editBsData(form_artisanal_mining)" ng-if="!is_edit"
+                                class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -170,95 +179,96 @@
                 <br><br>
             </div>
             <!--<div class="tab-pane fade" id="step2">-->
-                <!--<br>-->
-                <!--<div class="pull-right">-->
-                    <!--<br>-->
-                    <!--<button type="button" class="btn btn-info" ng-click="clear()">Clear</button>-->
-                    <!--<button type="button" ng-click="bsHsDataEdit(form_industrial_mining_firms_artisanal_mining)"-->
-                            <!--ng-if="!is_edit" class="btn btn-success">Edit-->
-                    <!--</button>-->
-                    <!--<button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel-->
-                        <!--Edit-->
-                    <!--</button>-->
-                    <!--<button type="button" ng-click="saveBsData(form_industrial_mining_firms_artisanal_mining)"-->
-                            <!--class="btn btn-success">Submit-->
-                    <!--</button>-->
-                <!--</div>-->
-                <!--<br><br><br>-->
+            <!--<br>-->
+            <!--<div class="pull-right">-->
+            <!--<br>-->
+            <!--<button type="button" class="btn btn-info" ng-click="clear()">Clear</button>-->
+            <!--<button type="button" ng-click="bsHsDataEdit(form_industrial_mining_firms_artisanal_mining)"-->
+            <!--ng-if="!is_edit" class="btn btn-success">Edit-->
+            <!--</button>-->
+            <!--<button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel-->
+            <!--Edit-->
+            <!--</button>-->
+            <!--<button type="button" ng-click="saveBsData(form_industrial_mining_firms_artisanal_mining)"-->
+            <!--class="btn btn-success">Submit-->
+            <!--</button>-->
+            <!--</div>-->
+            <!--<br><br><br>-->
             <!--</div>-->
         </div>
     </div>
-     <!-- add model -->
-        <div class="modal fade" id="modal-container-469842" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Add Firm
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Firm Name</label>
-                            <div class="col-md-5">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </div>
+    <!-- add model -->
+    <div class="modal fade" id="modal-container-469842" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Add Firm
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Firm Name</label>
+                        <div class="col-md-5">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
                         </div>
-                        <br>
                     </div>
-                    <div class="modal-footer">
-                        <button id="button1id" name="button1id" class="btn btn-warning">Cancel</button>
-                        <button id="button2id" name="button2id" class="btn btn-success">Save</button>
-                    </div>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button id="button1id" name="button1id" class="btn btn-warning">Cancel</button>
+                    <button id="button2id" name="button2id" class="btn btn-success">Save</button>
                 </div>
             </div>
         </div>
-        <!-- edit model -->
-        <div class="modal fade" id="modal-container-469840" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Edit Firm
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Firm Name</label>
-                            <div class="col-md-5">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </div>
+    </div>
+    <!-- edit model -->
+    <div class="modal fade" id="modal-container-469840" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Edit Firm
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Firm Name</label>
+                        <div class="col-md-5">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
                         </div>
-                        <br>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info">Clear</button>
-                        <button type="button" ng-click="bsHsDataEdit(form_artisanal_mining)" class="btn btn-warning">
-                            Cancel Edit
-                        </button>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                            Cancel Edit
-                        </button>
-                        <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_artisanal_mining)"
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info">Clear</button>
+                    <button type="button" ng-click="bsHsDataEdit(form_artisanal_mining)" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                            ng-click="saveBsData(form_artisanal_mining)"
                             class="btn btn-success">
-                            Submit
-                        </button>
-                    </div>
+                        Submit
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
     <!-- /.conainer-fluid -->
 </main>
 {% endblock content %}

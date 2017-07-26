@@ -15,6 +15,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.DlBuildingAstLoss_no_of_tot_destroyed = null;
     $scope.DlBuildingAstLoss_no_of_partially_damaged = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'transport_rail' : {
@@ -179,6 +180,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
         }
 
         if($scope.incident && $scope.district ){
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

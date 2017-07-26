@@ -16,37 +16,32 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
     $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.user_id;
 
 
     $scope.fetchDlData = function(){
-    if($scope.incident){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        console.log($scope.incident);
+        if($scope.incident){
+            $scope.is_edit = true;
+            $scope.submitted = true;
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_10',
-            'sector': 'agri_agrarian',
-            'com_data': {
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':'Table_10',
+                    'sector': 'agri_agrarian',
+                    'com_data': {
+                            'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
-
-            console.log('load ', data);
-            $scope.dlAgriAgrarianSumNat = data;
-
+                console.log('load ', data);
+                $scope.dlAgriAgrarianSumNat = data;
             })
-            }
-
+        }
     }
 
- $scope.getTotal = function($index,key) {
+     $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[$index] ? (
                          $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[$index].dmg_los_pub ?
                          $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[$index].dmg_los_pub : 0 ): 0) ;
@@ -76,14 +71,6 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
 
          $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
-
-
-
-
-
-
-    }
-
-
+        }
 
  }])

@@ -2,11 +2,9 @@
 var app = angular.module('bsindustryServicesInfoFormalApp', [])
 
 app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.bs_date;
     $scope.is_edit = false;
-
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
@@ -177,7 +175,6 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
 
     //clear the data from table
     $scope.cancelEdit = function(){
-        //console.log("init")
         $scope.is_edit = false;
         $scope.bs_ind_ser_info_forml = angular.copy(init_data);
     }
@@ -228,9 +225,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
             }).success(function(data) {
                 console.log("data" , data);
                 // handling response from server if data are not available in this
-                if((data.industry_services.Table_1.BsFrmNumBusIndustry.length == 0) ||
-                    (data.industry_services.Table_1.BsFrmNumBusServices.length == 0)
-                     ){
+                if((data.industry_services.Table_1.BsFrmNumBusIndustry.length == 0) ||(data.industry_services.Table_1.BsFrmNumBusServices.length == 0)){
                     $scope.is_edit = false;
                         // do nothing or display msg that data are not available
                 }

@@ -15,6 +15,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     $scope.DlWaterDmgWcrafts_num_pdestroyed_public = null;
     $scope.DlWaterDmgWcrafts_num_pdestroyed_private = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'transport_water': {
@@ -229,28 +230,30 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
 
     $scope.saveDlData = function() {
         $scope.submitted = true;
-        $http({
-            method: 'POST',
-            url:'/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlWaterTransportation,
-                'com_data': {
-                    'district_id':  $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'user_id': $scope.user_id
-                },
-                'is_edit' : $scope.is_edit,
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-            if(response.data == 'False')
-                $scope.is_valid_data = false;
-            else
-                $("#modal-container-239453").modal('show');
-        }, function errorCallback(response) {
+        if(form.$valid) {
+            $http({
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlWaterTransportation,
+                    'com_data': {
+                        'district_id':  $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'user_id': $scope.user_id
+                    },
+                    'is_edit' : $scope.is_edit,
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
 
-        });
+            });
+        }
     }
 
     // get relevant base-line data for calculations
@@ -269,6 +272,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
             })
         }
         if($scope.incident && $scope.district) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -628,34 +632,42 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
 
     $scope.is_edit = true;
     $scope.submitted = true;
+    if(form.$valid) {
+        $http({
+        method: "POST",
+        url: '/dl_fetch_edit_data',
+        data: angular.toJson({
+        'table_name':  'Table_2',
+        'sector':'transport_water',
+        'com_data': {
+               'district':  $scope.district.district__id,
+                'incident': $scope.incident,
+                'user_id': $scope.user_id
+              },
+               'is_edit':$scope.is_edit
+               }),
+        }).success(function(data) {
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_2',
-    'sector':'transport_water',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-            'user_id': $scope.user_id
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
+        console.log(data);
 
 
-    $scope.dlWaterTransportation = data;
-    })
+        $scope.dlWaterTransportation = data;
+        })
+    }
 
 }
 
    //Cancel Edit
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
-       $scope.dlComWtrSply = init_data;
+       $scope.dlWaterTransportation = angular.copy(init_data);
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("clear")
+        $scope.is_edit = false;
+          $scope.dlWaterTransportation = angular.copy(init_data);
     }
 });
 

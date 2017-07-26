@@ -20,6 +20,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
     $scope.currentBaselineDate = null;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'mining': {
@@ -162,7 +163,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         var sums = _.map(array, function(obj) {
             if(obj.assets != 'Total'&& obj.type_los !='Total'){
                 cumulative += obj[property];
-//                console.log(cumulative);
                 return cumulative;
             }
         });
@@ -288,7 +288,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         else {
             $scope.DloDmg_rep_tot_dassets_grnd = $scope.DloDmgStructures_rep_tot_dassets + $scope.DloDmgEquipment_rep_tot_dassets +
                     $scope.DloDmgMachinery_rep_tot_dassets + $scope.DloDmgVehicles_rep_tot_dassets + $scope.DloDmgStocks_rep_tot_dassets;
-//            console.log($scope.DloDmg_rep_tot_dassets_grnd);
 
             $scope.DloDmg_repair_pdmg_assets_grnd = $scope.DloDmgStructures_repair_pdmg_assets + $scope.DloDmgEquipment_repair_pdmg_assets +
                     $scope.DloDmgMachinery_repair_pdmg_assets + $scope.DloDmgVehicles_repair_pdmg_assets + $scope.DloDmgStocks_repair_pdmg_assets;
@@ -399,6 +398,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 
     $scope.changedValue = function getBsData(selectDistrict) {
         if($scope.incident && selectDistrict) {
+            $scope.is_edit_disable = true;
             $http({
                 method: "POST",
                 url: "/fetch_incident_districts",
@@ -411,7 +411,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 $scope.selectedDistrict = "";
                 console.log(data);
                 $scope.district = "";
-//                console.log(data);
             })
         }
     }
@@ -435,7 +434,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-//                console.log(response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
@@ -611,8 +609,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                 console.log('***');
                 console.log(data);
                 $scope.dmLosOfMinFirms = data;
-//                $scope.getColumnTotal('DloDmgVehicles');
-//                $scope.getTotal('DloDmgVehicles','rep_tot_dassets');
             })
         }
     }
@@ -627,11 +623,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         console.log("clear")
         $scope.is_edit = false;
         $scope.dmLosOfMinFirms = angular.copy(init_data);
+
     }
 
-    $scope.test = function(form) {
-//        console.log($scope.selectedCompany.company);
-//        console.log($scope.selectedCompany.id);
-        console.log($scope.dmLosOfMinFirms);
-    }
 })

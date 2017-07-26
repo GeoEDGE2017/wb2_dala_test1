@@ -8,6 +8,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //initialize model
     var init_data = {
@@ -101,6 +102,16 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
     }
 
     $scope.bsDataMedicalFacilities = angular.copy(init_data);
+
+     //disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.baselineDate){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
     //Save Data
     $scope.saveBsData = function(form) {

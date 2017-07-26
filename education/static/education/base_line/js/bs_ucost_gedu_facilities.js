@@ -11,6 +11,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     $scope.submitted = false;
     $scope.baselineDate;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'education':{
@@ -298,6 +299,16 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     }
 
     $scope.bsUcostGeduFacilities = angular.copy(init_data);
+
+     //disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.baselineDate){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsUcostGeduFacilities.education.Table_2[table]);

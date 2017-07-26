@@ -14,7 +14,9 @@
                 Table 3. Damages and losses to tourism infrastructure (cultural sites and natural formations)
             </span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_tou_infra">
         <div id="myTabContent" class="tab-content">
@@ -29,9 +31,9 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="submitted
                             && form_dl_tou_infra.district.$error.required">
                                 Please Select District
@@ -48,7 +50,7 @@
                         </td>
                     </tr>
                     <tr class="trhead1" height="19">
-                        <td width="85" >
+                        <td width="85">
                             Incident
                         </td>
                         <td width="85" colspan="3">
@@ -94,18 +96,17 @@
                                 <option value="" selected="true">Select Infrastructure Type</option>
 
 
-
                             </select>
 
                         </td>
                         <!--<td width="85">-->
-                            <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
-                               <!--data-id="Add"-->
-                               <!--class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
+                        <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
+                        <!--data-id="Add"-->
+                        <!--class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
                         <!--</td>-->
                         <!--<td width="85">-->
-                            <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
-                               <!--data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
+                        <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
+                        <!--data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
                         <!--</td>-->
                     </tr>
 
@@ -123,7 +124,6 @@
                                 <option value="" selected="true">Select Infrastructure</option>
 
 
-
                             </select>
                         </td>
                         <td width="85">
@@ -136,11 +136,10 @@
                                data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>
                         </td>
                         <!--<td width="85">-->
-                            <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
-                               <!--data-id="Add"-->
-                               <!--class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
+                        <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
+                        <!--data-id="Add"-->
+                        <!--class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
                         <!--</td>-->
-
 
 
                     </tr>
@@ -151,7 +150,8 @@
                         </td>
                         <td colspan="6" width="461">
                             <select id="selectbasic" name="selectbasic"
-                                    ng-model="selectedInfrastructure.ownership" disabled="true" class="form-control" style="width:100%;font-weight:400;">
+                                    ng-model="selectedInfrastructure.ownership" disabled="true" class="form-control"
+                                    style="width:100%;font-weight:400;">
                                 <option value="" selected="true">Select Ownership</option>
                                 <option value="Public">Public</option>
                                 <option value="Private">Private</option>
@@ -159,13 +159,13 @@
                             </select>
                         </td>
                         <!--<td width="85">-->
-                            <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
-                               <!--data-id="Add"-->
-                               <!--class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
+                        <!--<a id="add_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
+                        <!--data-id="Add"-->
+                        <!--class="open-modal-container-218029 btn btn-sm btn-block btn-primary btn-info">Add</a>-->
                         <!--</td>-->
                         <!--<td width="85">-->
-                            <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
-                               <!--data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
+                        <!--<a id="edit_primary" href="#modal-container-218029" role="button" data-toggle="modal"-->
+                        <!--data-id="Edit" class="btn btn-sm btn-block btn-primary btn-warning">Edit</a>-->
                         <!--</td>-->
                     </tr>
                     <tr class="trheadc1" height="19">
@@ -196,10 +196,12 @@
                         </td>
                         <td width="98" ng-if="$index > 1">
                             {% verbatim %}
-                            <button id="delete" ng-click="removeItem('DmgInfAssets', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <button id="delete" ng-click="removeItem('DmgInfAssets', $index)"
+                                    class="btn btn-sm btn-danger btn-circle">
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:80%;float:right;" name="DmgBusAstStructures_{{$index}}" ng-model="DmgInfAsset.assets"
+                            <input style="width:80%;float:right;" name="DmgBusAstStructures_{{$index}}"
+                                   ng-model="DmgInfAsset.assets"
                                    popover="This field is required"
                                    popover-toggle="form_pop_lat_census['DmgInfAssets_' + $index].$dirty &&
                             !form_pop_lat_census['DmgInfAssets_' + $index].$valid"
@@ -228,7 +230,8 @@
                         <td class="tdpa" height="19" width="263">
                             Others &nbsp;&nbsp;
                             <button ng-click="insertAsset('DmgInfAssets')"
-                                    class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+                                    class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span>
+                            </button>
                         </td>
                         <td colspan="2">
                         </td>
@@ -243,13 +246,16 @@
                         <td class="tdpa" height="19" width="263">
                             TOTAL
                         </td>
-                        <td colspan="2" width="229" ng-bind="dmgInfAssets.val_dst = getTotalCol('DmgInfAssets','val_dst', dmgInfAssets)">
+                        <td colspan="2" width="229"
+                            ng-bind="dmgInfAssets.val_dst = getTotalCol('DmgInfAssets','val_dst', dmgInfAssets)">
                             -
                         </td>
-                        <td colspan="2" width="232" ng-bind="dmgInfAssets.val_pdmg = getTotalCol('DmgInfAssets','val_pdmg', dmgInfAssets)">
+                        <td colspan="2" width="232"
+                            ng-bind="dmgInfAssets.val_pdmg = getTotalCol('DmgInfAssets','val_pdmg', dmgInfAssets)">
                             -
                         </td>
-                        <td colspan="2" width="170" ng-bind="dmgInfAssets.tot_dmg = getTotalCol('DmgInfAssets','tot_dmg', dmgInfAssets)">
+                        <td colspan="2" width="170"
+                            ng-bind="dmgInfAssets.tot_dmg = getTotalCol('DmgInfAssets','tot_dmg', dmgInfAssets)">
                             -
                         </td>
                     </tr>
@@ -329,7 +335,8 @@
                             -
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="DlInfLosse in dl_tourism_infrs.tourism.Table_3.DlInfLosses"  ng-if="($index > 0) && (DlInfLosse.los_type != 'Total')" >
+                    <tr height="19" ng-repeat="DlInfLosse in dl_tourism_infrs.tourism.Table_3.DlInfLosses"
+                        ng-if="($index > 0) && (DlInfLosse.los_type != 'Total')">
                         <td class="tdpa" height="19" width="263" ng-bind="DlInfLosse.los_type">
 
                         </td>
@@ -366,13 +373,16 @@
                         </td>
                         <td class="tdpa" width="114">
                         </td>
-                        <td align="right" width="118" ng-bind="dlInfLosses.val_los_year1 = getTotalCol('DlInfLosses','val_los_year1', dlInfLosses)">
+                        <td align="right" width="118"
+                            ng-bind="dlInfLosses.val_los_year1 = getTotalCol('DlInfLosses','val_los_year1', dlInfLosses)">
                             -
                         </td>
-                        <td align="right" width="85" ng-bind="dlInfLosses.val_los_year2 = getTotalCol('DlInfLosses','val_los_year2', dlInfLosses)">
+                        <td align="right" width="85"
+                            ng-bind="dlInfLosses.val_los_year2 = getTotalCol('DlInfLosses','val_los_year2', dlInfLosses)">
                             -
                         </td>
-                        <td align="right" width="85" ng-bind="dlInfLosses.tol_losses = getTotalCol('DlInfLosses','tol_losses', dlInfLosses)">
+                        <td align="right" width="85"
+                            ng-bind="dlInfLosses.tol_losses = getTotalCol('DlInfLosses','tol_losses', dlInfLosses)">
                             -
                         </td>
                     </tr>
@@ -382,14 +392,15 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <button type="button" ng-click="dataEdit()"
+                    <button type="button" ng-click="dataEdit(form_dl_tou_infra)"
                             ng-if="!is_edit" class="btn btn-success">Edit
                     </button>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
 
-                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_tou_infra)">Submit</button>
+                    <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_tou_infra)">Submit
+                    </button>
                 </div>
                 <br>
                 <br>
@@ -402,12 +413,12 @@
              aria-hidden="true">
             <div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_infra_add">
                 <div class="modal-content">
-                                        <div class="modal-header">
+                    <div class="modal-header">
 
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
-                        <h5 class="modal-title" >
+                        <h5 class="modal-title">
                             <span id="bookId"> Add New Infrastructure</span>
                         </h5>
                     </div>
@@ -446,7 +457,8 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary" ng-click="saveInfrastructure(form_tourism_infra_add)">
+                        <button type="button" class="btn btn-primary"
+                                ng-click="saveInfrastructure(form_tourism_infra_add)">
                             Save Infrastructure
                         </button>
                     </div>
@@ -455,7 +467,8 @@
         </div>
 
         <!--Edit-->
-        <div class="modal fade" id="modal-container-218030" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+        <div class="modal fade" id="modal-container-218030" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
             <div class="modal-dialog" style="width:50%;" ng-form name="form_tourism_inf_edit">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -463,7 +476,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
-                        <h5 class="modal-title" >
+                        <h5 class="modal-title">
                             <span id="bookId"> Edit Infrastructure </span>
                         </h5>
                     </div>
@@ -481,7 +494,8 @@
                         <div class="form-group" style="margin-top:5px;">
                             <label class="col-md-4 control-label" for="textinput">Ownership</label>
                             <div class="col-md-5">
-                                <select id="selectbasic" name="ownership" ng-model='selectedInfrastructure.ownership' class="form-control"
+                                <select id="selectbasic" name="ownership" ng-model='selectedInfrastructure.ownership'
+                                        class="form-control"
                                         style="font-weight:400;" required="true">
 
                                     <option value="" selected="true">Select Ownership</option>

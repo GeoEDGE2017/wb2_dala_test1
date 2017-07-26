@@ -13,6 +13,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     //Initialize data
     var init_data = {
@@ -295,6 +296,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -362,7 +364,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         }
     }
 
-//Generate Fileds from related basline Data
+    //Generate Fileds from related basline Data
     function generateRefencedData() {
         data_array = ['BacfSeasonalCrops', 'BacfPlantnCrops', 'BacfExportCrops', 'BacfForestry', 'BacfOther',];
         var dl_model1 = null;
@@ -527,7 +529,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
         });
     }
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -551,71 +553,65 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-               else
+               else{
                     $("#modal-container-239453").modal('show');
+               }
             }, function errorCallback(response) {
                 console.log(response);
             });
         }
     }
 
-//Calculate Total
+    //Calculate Total
     $scope.CalTot=function(arr,property){
     var finaltotal = 0;
 
     angular.forEach(arr, function(value, key) {
-    if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' && value.forestry !='Total' && value.other_products!='Total'){
-    console.log('Test',value[property]);
-     finaltotal = finaltotal + value[property] ;
-
-     }
+        if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' && value.forestry !='Total' && value.other_products!='Total'){
+            console.log('Test',value[property]);
+             finaltotal = finaltotal + value[property] ;
+         }
     })
-     return finaltotal;
+        return finaltotal;
     }
 
-//Edit Data
-   $scope.dlDataEdit = function(){
+    //Edit Data
+   $scope.dlDataEdit = function(form){
+       $scope.is_edit = true;
+       $scope.submitted = true;
+        if(form.$valid){
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_7',
+                    'sector':'agri_agrarian',
+                    'com_data': {
+                       'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'user_id' : $scope.user_id,
+                    },
+                     'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+            console.log(data);
+            $scope.dlPrdctnLos = data;
+            })
+        }
+    }
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_7',
-    'sector':'agri_agrarian',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-            'user_id' : $scope.user_id,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-
-    $scope.dlPrdctnLos = data;
-    })
-
-}
-
-//Cancel Edit
+    //Cancel Edit
    $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlPrdctnLos = init_data;
-}
+    }
 
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.dlPrdctnLos = angular.copy(init_data);
-
-
     }
 
 }]);

@@ -87,7 +87,6 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
                 'num_bus_public':null,
                 'num_bus_private':null,
             }
-
             init_data.industry_services.Table_5.DlNumAffBusIndustry.push(ind_obj);
         })
     }
@@ -99,7 +98,6 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
                 'num_bus_public':null,
                 'num_bus_private':null,
             }
-
             init_data.industry_services.Table_5.DlNumAffBusServices.push(ser_obj);
         })
     }
@@ -109,26 +107,6 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
         $scope.dlSummFormlInformlDis = angular.copy(init_data);
     }
 
-//    $scope.changedValue = function getBsData(selectedValue) {
-//        if($scope.incident && selectedValue) {
-//            $http({
-//                method: "POST",
-//                url: "/fetch_incident_districts",
-//                data: angular.toJson({
-//                    'incident': $scope.incident,
-//                    'user':$scope.user_id,
-//                }),
-//            }).success(function(data) {
-//                $scope.districts = data;
-//                $scope.selectedDistrict = "";
-//                ////console.log($scope.districts);
-//            })
-//        }
-//
-//        if($scope.incident && $scope.district ) {
-//            //when district change
-//        }
-//    }
 
     //Get Baseline Data
     $scope.changedValue = function getBsData(selectedValue) {
@@ -147,7 +125,6 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
                 console.log(data);
             })
         }
-
         if($scope.incident && $scope.district) {
             $http({
                 method: 'POST',
@@ -214,80 +191,65 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
         }
     }
 
-    $scope.clear = function()
-        {
+    $scope.clear = function(){
             $scope.is_edit = false;
             $scope.dlSummFormlInformlDis = angular.copy(init_data);
-        }
+    }
 
 
     $scope.getTotalCol = function(subTable, column, total_object){
-
         var table = $scope.dlSummFormlInformlDis.industry_services.Table_5;
         var final_total = 0;
-
         total_object[column] = 0;
-
         angular.forEach(table[subTable], function(value, key) {
             final_total += value[column] ;
         })
-
         return final_total;
     }
 
     $scope.getGrandTotalCol = function(column){
-
         var table = $scope.dlSummFormlInformlDis.industry_services.Table_5;
         var final_total = 0;
-
         angular.forEach(table, function(subTable, key) {
-
             angular.forEach(subTable, function(value, key) {
                 if(value){
                     if(value[column]){
                         final_total += value[column];
                     }
                 }
-        })
-
+            })
         })
         return final_total/2;
 
     }
 
     $scope.saveDlData = function(form) {
-
         console.log($scope.data);
-
         $scope.submitted = true;
             if (form.$valid) {
                 $http({
-            method: 'POST',
-            url: '/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlSummFormlInformlDis,
-                'com_data': {
-                    'district_id': $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'user_id':$scope.user_id,
-
-                },
-                'is_edit': $scope.is_edit
-            }),
-            dataType: 'json',
-        }).success(function(data) {
-
+                    method: 'POST',
+                    url: '/dl_save_data',
+                    contentType: 'application/json; charset=utf-8',
+                    data: angular.toJson({
+                        'table_data': $scope.dlSummFormlInformlDis,
+                        'com_data': {
+                            'district_id': $scope.district.district__id,
+                            'incident_id': $scope.incident,
+                            'user_id':$scope.user_id,
+                        },
+                        'is_edit': $scope.is_edit
+                    }),
+                     dataType: 'json',
+                }).success(function(data) {
                     console.log(data);
                     $scope.clear();
-
                     $scope.is_edit = false;
-
                     if (data == 'False')
                         $scope.is_valid_data = false;
-                    else
+                    else{
                         $("#modal-container-239454").modal('show');
-
+                    }
                 })
             }
             else{
@@ -295,49 +257,38 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
             }
         }
 
-        $scope.dataEdit = function() {
-
+    $scope.dataEdit = function() {
         if($scope.district && $scope.incident ){
-                    $scope.is_edit = true;
-        $scope.submitted = true;
-
+            $scope.is_edit = true;
+            $scope.submitted = true;
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                    'table_name': 'Table_5',
-                    'sector': 'industry_services',
-                    'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-
-                    }
-                }),
+                'table_name': 'Table_5',
+                'sector': 'industry_services',
+                'com_data': {
+                    'district': $scope.district.district__id,
+                    'incident': $scope.incident,
+                }
+            }),
             }).success(function(data) {
                 console.log("edit", data);
-                // handling response from server if data are not available in this
-                if((data.industry_services.Table_5.DlNumAffBusIndustry.length == 0) ||
-                    (data.industry_services.Table_5.DlNumAffBusServices.length == 0)
-                     ){
+                if((data.industry_services.Table_5.DlNumAffBusIndustry.length == 0) ||(data.industry_services.Table_5.DlNumAffBusServices.length == 0)){
                     $scope.is_edit = false;
-                        // do nothing or display msg that data are not available
-                    }
+                }
                 else{
-                        $scope.dlSummFormlInformlDis = data;
-                    }
+                    $scope.dlSummFormlInformlDis = data;
+                }
             })
-
         }
         else{
-            alert("enter Incident, District")
+            console.log("enter Incident, District")
         }
 
-        }
-
+    }
 
     $scope.getIndustryNames();
     $scope.getServiceNames();
-
-
 
 }])

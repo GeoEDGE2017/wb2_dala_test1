@@ -19,6 +19,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.currentBaselineDate = null;
     $scope.new_department = {id: null, name: null, ownership_id: null, district_id: null};
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'other_govn_services': {
@@ -127,7 +128,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         }
     }
 
-    $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = init_data;
+    $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = angular.copy(init_data);
 
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -146,6 +147,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -488,7 +490,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     //Clear Function
     $scope.clear = function() {
-        console.log("clear")
+        alert("clear")
         $scope.is_edit = false;
         $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = angular.copy(init_data);
     }

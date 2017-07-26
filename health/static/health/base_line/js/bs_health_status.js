@@ -140,7 +140,25 @@ bsHealthStatusApp.controller('BsHealthStatusController', function BsHealthStatus
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.dataHealthStatus = data;
+//                $scope.dataHealthStatus = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_1, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dataHealthStatus = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

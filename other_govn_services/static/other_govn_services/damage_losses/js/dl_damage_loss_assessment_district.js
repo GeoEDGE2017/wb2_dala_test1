@@ -89,63 +89,6 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
         }
     }
 
-//    $scope.saveDlData = function(form) {
-//        $scope.submitted = true;
-//        if(form.$valid){
-//        $http({
-//            method: 'POST',
-//            url:'/damage_losses/dl_save_data',
-//            contentType: 'application/json; charset=utf-8',
-//            data: angular.toJson({
-//                'table_data': $scope.dlAssessmentDistrictSys,
-//                'com_data': {
-//                    'district_id': $scope.district,
-//                    'incident_id': $scope.incident,
-//
-//                },
-//                'is_edit' : $scope.is_edit
-//            }),
-//            dataType: 'json',
-//        }).then(function successCallback(response) {
-//            $("#modal-container-239453").modal('show');
-//            console.log(response);
-//
-//        }, function errorCallback(response) {
-//
-//            console.log(response);
-//        });
-//        }
-//
-//    }
-
-//    $scope.dlDataEdit = function(form) {
-//        $scope.is_edit = true;
-//        $scope.submitted = true;
-//
-//        if(form.$valid){
-//            $http({
-//                method: "POST",
-//                url: '/health/damage_losses/dl_fetch_edit_data',
-//                data: angular.toJson({
-//                    'table_name':  'Table_6',
-//                    'com_data': {
-//                        'district': $scope.district,
-//                        'incident': $scope.incident,
-//                    },
-//                   'is_edit':$scope.is_edit
-//                }),
-//            }).success(function(data) {
-//                console.log(data);
-//                $scope.dlAssessmentDistrictSys = data;
-//            })
-//        }
-//    }
-
-//    $scope.cancelEdit = function() {
-//        $scope.is_edit = false;
-//        $scope.dlAssessmentDistrictSys = init_data;
-//    }
-
     $scope.fetchDlData = function() {
         console.log('fetchDlData');
         if($scope.incident && $scope.district){

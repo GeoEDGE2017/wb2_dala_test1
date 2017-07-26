@@ -97,9 +97,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
                         'private_clinic': $scope.clinic,
-                        'user_id': $scope.user_id,
                     },
-                    'is_edit':$scope.is_edit
+                    'is_edit':$scope.is_edit,
+                    'user_id': $scope.user_id
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {

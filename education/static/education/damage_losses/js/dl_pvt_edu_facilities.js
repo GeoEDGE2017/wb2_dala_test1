@@ -257,9 +257,11 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'user_id': $scope.user_id,
+
                     },
-                    'is_edit': $scope.is_edit
+                    'is_edit': $scope.is_edit,
+                    'user_id': $scope.user_id,
+
                 }),
                 dataType: 'json',
             }).then(function mySucces(response) {
@@ -291,7 +293,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-//                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),

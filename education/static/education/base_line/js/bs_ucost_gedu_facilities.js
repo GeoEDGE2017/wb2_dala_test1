@@ -435,10 +435,9 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsUcostGeduFacilities = angular.copy(init_data);
-
     }
 })
 

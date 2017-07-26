@@ -155,7 +155,25 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsDataMedicalFacilities = data;
+//                console.log(data.health.Table_2);
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_4, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsDataMedicalFacilities = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

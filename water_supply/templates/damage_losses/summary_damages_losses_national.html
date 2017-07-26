@@ -5,9 +5,15 @@
 <main class="main" ng-app="dlWaterSupplyNatApp" ng-controller="DlWaterSupplyNatController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:water_supply_main' %}">Water Supply Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:water_supply_main' %}">
+                Water Supply Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -35,7 +41,6 @@
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
                                     <!--{{incident.disaster_type.name}}-->
                                     <!--{{incident.reported_date_time}}-->
@@ -47,8 +52,8 @@
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </tbody>
-                    </table>
-                    <table class="table table-bordered" ng-if="!checkIfNull()">
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tbody>
                     <tr class="trhead1" height="20">
                         <td rowspan="2" width="298" height="40">
@@ -300,7 +305,6 @@
                 </table>
                 <div class="pull-right">
                     <br>
-
                 </div>
                 <br>
                 <br>

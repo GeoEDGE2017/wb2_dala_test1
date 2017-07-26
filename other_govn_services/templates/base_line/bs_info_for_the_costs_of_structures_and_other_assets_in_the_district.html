@@ -22,9 +22,8 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a>
+            <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -254,7 +253,8 @@
                     <br>
                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData(form_other_services_bs_assets_district)" ng-if="!is_edit"
+                                class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -266,8 +266,7 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                            ng-click="save(form_other_services_bs_assets_district)"
+                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_other_services_bs_assets_district)"
                             class="btn btn-success">Submit
                     </button>
                 </div>
@@ -323,8 +322,6 @@ button.onclick = function() {
  $(this).parent().parent().remove();
 });
 }*/
-
-
 
 </script>
 {% endblock content %}

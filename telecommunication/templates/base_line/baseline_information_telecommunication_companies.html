@@ -86,7 +86,7 @@
                                class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add New Company</button>
                         </td>
                         <td colspan="2" height="19" width="126">
-                            <a id="edit_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
+                            <a id="edit_preschool" href="#modal-container-218020" role="button" data-toggle="modal"
                                data-id="Edit " class="btn  btn-block btn-primary btn-warning">Edit Company</a>
                         </td>
                         <td colspan="4"></td>
@@ -201,8 +201,8 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-             aria-hidden="true">
+        <!--Save-->
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -240,6 +240,60 @@
                             Close
                         </button>
                         <button type="button" class="btn btn-primary" ng-click="saveCompany()">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Edit-->
+        <div class="modal fade" id="modal-container-218020" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+            <div class="modal-dialog" style="width:50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h5 class="modal-title">
+                            Edit Company
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Select Company</label>
+                            <div class="col-md-10">
+                                <select ng-options="company as company.company_name for company in companies track by company.id"
+                                    name="firm" ng-value="company.id" id="ccyear" ng-model="editTelCompany" class="form-control" style="font-weight:400;" required>
+                                    <option value="" selected>Select Firm</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Edit Name</label>
+                            <div class="col-md-10">
+                                <input id="textinput" name="textinput" ng-model="editTelCompany.company_name" type="text" placeholder=""
+                                       class="form-control input-md">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group" style="margin-top:5px;">
+                            <label class="col-md-2 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-10">
+                                <select id="selectbasic" name="ownership" ng-model='editTelCompany.ownership' class="form-control" style="font-weight:400;" required>
+                                    <option value="" selected="true">Select Ownership</option>
+                                    <option value="Public">Public</option>
+                                    <option value="Private">Private</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-click="editCompany()">
                             Save
                         </button>
                     </div>

@@ -16,6 +16,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.selectedCliniEdit = null;
+
 
     //initialize model
     var init_data = {
@@ -97,9 +99,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
                         'private_clinic': $scope.clinic,
-                        'user_id': $scope.user_id,
                     },
-                    'is_edit':$scope.is_edit
+                    'is_edit':$scope.is_edit,
+                    'user_id': $scope.user_id
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -128,8 +130,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 'sector': 'health'
             }),
         }).success(function(data) {
+
             $scope.privateClinics = data;
-            console.log(data);
+            console.log('#', data);
 
             $http({
                 //this table does not get any data from baseline tables,
@@ -179,8 +182,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 $("#modal-container-218029").modal('hide');
                 $scope.private_clinic.id = data;
 
-                if(!$scope.is_edit_model){
-                    if(data){
+                if(!$scope.is_edit_model) {
+                    if(data) {
                         $scope.privateClinics.push($scope.private_clinic);
                         console.log($scope.privateClinics);
                     }
@@ -190,6 +193,31 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     private_clinic.name = $scope.private_clinic.name;
                 }
                 $scope.is_edit_model = false;
+            })
+        }
+    }
+
+    //Edit Entities
+    $scope.editPrivateClinic = function() {
+        console.log("*");
+        if($scope.selectedCliniEdit) {
+            $scope.selectedCliniEdit.district_id = $scope.district.district__id;
+            console.log($scope.selectedCliniEdit);
+            $http({
+                method: "POST",
+                url: "/add_entity",
+                data: angular.toJson({
+                    'model_fields': $scope.selectedCliniEdit,
+                    'model': 'PrivateClinic',
+                    'is_edit': true,
+                    'sector': 'health'
+                }),
+            }).success(function(data) {
+                $("#modal-container-218029").modal('hide');
+                $scope.selectedCliniEdit.id = data;
+                var selectedCliniEdit = $filter('filter')($scope.privateClinics, {id: data})[0];
+                selectedCliniEdit.name = $scope.selectedCliniEdit.name;
+                location.reload();
             })
         }
     }
@@ -452,5 +480,15 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 }
             })
         })
+    }
+
+    $scope.tt = function() {
+        console.log($scope.private_clinic);
+        console.log($scope.selectedCliniEdit);
+    }
+
+    $scope.tt2 = function() {
+        console.log($scope.private_clinic);
+        console.log($scope.selectedCliniEdit);
     }
 })

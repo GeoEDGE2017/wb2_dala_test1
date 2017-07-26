@@ -7,15 +7,19 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:industry_services_main' %}">Industry & Services Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:industry_services_main' %}">Industry & Services
+            Sector</a>
         </li>
 
 
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7.  Summary of Damages and Losses in a Province</span></li>
+        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 7.  Summary of Damages and Losses in a Province</span>
+        </li>
 
-<li style="float:right;"> <a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/Industry_and_Services.pdf' %}" target="_blank"
+                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                                    data-toggle="tooltip" title="Veiw Document"></a></li>
 
     </ol>
 
@@ -23,11 +27,10 @@
     <div class="container-fluid">
 
 
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
 
-                <table class="table table-bordered" >
+                <table class="table table-bordered">
 
 
                     <colgroup>
@@ -43,7 +46,7 @@
                     </colgroup>
                     <tbody>
                     <tr class="trhead1" height="19">
-                        
+
                         <td colspan="2" height="19" width="220">
                             Incident
                         </td>
@@ -138,22 +141,28 @@
                         <td class="tdpa" height="19" width="212">
                             Formal Sector
                         </td>
-                        <td height="19" width="108" ng-bind="districtsTotals[$index].y1DamPubBus = getConvertedVal(table.formal[district].year1Damage.Public)">
+                        <td height="19" width="108"
+                            ng-bind="districtsTotals[$index].y1DamPubBus = getConvertedVal(table.formal[district].year1Damage.Public)">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1DamPriBus = getConvertedVal(table.formal[districts].year1Damage.Private)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1DamPriBus = getConvertedVal(table.formal[districts].year1Damage.Private)">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1LossPubBus = getConvertedVal(table.formal[districts].year1Loss.Public)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1LossPubBus = getConvertedVal(table.formal[districts].year1Loss.Public)">
                             -
                         </td>
-                        <td width="118" ng-bind="districtsTotals[$index].y1LossPriBus = getConvertedVal(table.formal[districts].year1Loss.Private)">
+                        <td width="118"
+                            ng-bind="districtsTotals[$index].y1LossPriBus = getConvertedVal(table.formal[districts].year1Loss.Private)">
                             -
                         </td>
-                        <td width="85" ng-bind="districtsTotals[$index].y2LossPubBus = getConvertedVal(table.formal[districts].year2Loss.Public)">
+                        <td width="85"
+                            ng-bind="districtsTotals[$index].y2LossPubBus = getConvertedVal(table.formal[districts].year2Loss.Public)">
                             -
                         </td>
-                        <td width="85" ng-bind="districtsTotals[$index].y2LossPriBus = getConvertedVal(table.formal[districts].year2Loss.Private)">
+                        <td width="85"
+                            ng-bind="districtsTotals[$index].y2LossPriBus = getConvertedVal(table.formal[districts].year2Loss.Private)">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].PubTotBus = getSum3(table.formal[districts].year1Damage.Public,
@@ -173,26 +182,28 @@
                         <td class="tdpa" height="19" width="212">
                             Informal Sector
                         </td>
-                        <td width="115" >
+                        <td width="115">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1DamPriInf = getConvertedVal(table.informal[districts].year1Damage.Private)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1DamPriInf = getConvertedVal(table.informal[districts].year1Damage.Private)">
                             -
                         </td>
-                        <td width="114" >
+                        <td width="114">
                             -
                         </td>
-                        <td width="118" ng-bind="districtsTotals[$index].y1LossPriInf = getConvertedVal(table.informal[districts].year1Loss.Private)">
+                        <td width="118"
+                            ng-bind="districtsTotals[$index].y1LossPriInf = getConvertedVal(table.informal[districts].year1Loss.Private)">
                             -
                         </td>
-                        <td width="85" >
+                        <td width="85">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].y2LossPriInf =
                         getConvertedVal(table.informal[districts].year2Loss.Private)">
                             -
                         </td>
-                        <td width="85" >
+                        <td width="85">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].PriTotInf= getSum3(table.informal[districts].year1Damage.Private,
@@ -241,7 +252,7 @@
                     </tr>
 
                     <!--dist 1-->
-                                        <tr class="trsubc" height="19" ng-repeat="district in districts" ng-if="$index == 1">
+                    <tr class="trsubc" height="19" ng-repeat="district in districts" ng-if="$index == 1">
                         <td height="19" width="212" ng-bind="district">
                             District 1
                         </td>
@@ -274,22 +285,28 @@
                         <td class="tdpa" height="19" width="212">
                             Formal Sector
                         </td>
-                        <td height="19" width="108" ng-bind="districtsTotals[$index].y1DamPubBus = getConvertedVal(table.formal[district].year1Damage.Public)">
+                        <td height="19" width="108"
+                            ng-bind="districtsTotals[$index].y1DamPubBus = getConvertedVal(table.formal[district].year1Damage.Public)">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1DamPriBus = getConvertedVal(table.formal[districts].year1Damage.Private)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1DamPriBus = getConvertedVal(table.formal[districts].year1Damage.Private)">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1LossPubBus = getConvertedVal(table.formal[districts].year1Loss.Public)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1LossPubBus = getConvertedVal(table.formal[districts].year1Loss.Public)">
                             -
                         </td>
-                        <td width="118" ng-bind="districtsTotals[$index].y1LossPriBus = getConvertedVal(table.formal[districts].year1Loss.Private)">
+                        <td width="118"
+                            ng-bind="districtsTotals[$index].y1LossPriBus = getConvertedVal(table.formal[districts].year1Loss.Private)">
                             -
                         </td>
-                        <td width="85" ng-bind="districtsTotals[$index].y2LossPubBus = getConvertedVal(table.formal[districts].year2Loss.Public)">
+                        <td width="85"
+                            ng-bind="districtsTotals[$index].y2LossPubBus = getConvertedVal(table.formal[districts].year2Loss.Public)">
                             -
                         </td>
-                        <td width="85" ng-bind="districtsTotals[$index].y2LossPriBus = getConvertedVal(table.formal[districts].year2Loss.Private)">
+                        <td width="85"
+                            ng-bind="districtsTotals[$index].y2LossPriBus = getConvertedVal(table.formal[districts].year2Loss.Private)">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].PubTotBus = getSum3(table.formal[districts].year1Damage.Public,
@@ -309,26 +326,28 @@
                         <td class="tdpa" height="19" width="212">
                             Informal Sector
                         </td>
-                        <td width="115" >
+                        <td width="115">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1DamPriInf = getConvertedVal(table.informal[districts].year1Damage.Private)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1DamPriInf = getConvertedVal(table.informal[districts].year1Damage.Private)">
                             -
                         </td>
-                        <td width="114" >
+                        <td width="114">
                             -
                         </td>
-                        <td width="118" ng-bind="districtsTotals[$index].y1LossPriInf = getConvertedVal(table.informal[districts].year1Loss.Private)">
+                        <td width="118"
+                            ng-bind="districtsTotals[$index].y1LossPriInf = getConvertedVal(table.informal[districts].year1Loss.Private)">
                             -
                         </td>
-                        <td width="85" >
+                        <td width="85">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].y2LossPriInf =
                         getConvertedVal(table.informal[districts].year2Loss.Private)">
                             -
                         </td>
-                        <td width="85" >
+                        <td width="85">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].PriTotInf= getSum3(table.informal[districts].year1Damage.Private,
@@ -377,7 +396,7 @@
                     </tr>
 
                     <!--dist 2-->
-                                        <tr class="trsubc" height="19" ng-repeat="district in districts" ng-if="$index == 2">
+                    <tr class="trsubc" height="19" ng-repeat="district in districts" ng-if="$index == 2">
                         <td height="19" width="212" ng-bind="district">
                             District 1
                         </td>
@@ -410,22 +429,28 @@
                         <td class="tdpa" height="19" width="212">
                             Formal Sector
                         </td>
-                        <td height="19" width="108" ng-bind="districtsTotals[$index].y1DamPubBus = getConvertedVal(table.formal[district].year1Damage.Public)">
+                        <td height="19" width="108"
+                            ng-bind="districtsTotals[$index].y1DamPubBus = getConvertedVal(table.formal[district].year1Damage.Public)">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1DamPriBus = getConvertedVal(table.formal[districts].year1Damage.Private)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1DamPriBus = getConvertedVal(table.formal[districts].year1Damage.Private)">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1LossPubBus = getConvertedVal(table.formal[districts].year1Loss.Public)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1LossPubBus = getConvertedVal(table.formal[districts].year1Loss.Public)">
                             -
                         </td>
-                        <td width="118" ng-bind="districtsTotals[$index].y1LossPriBus = getConvertedVal(table.formal[districts].year1Loss.Private)">
+                        <td width="118"
+                            ng-bind="districtsTotals[$index].y1LossPriBus = getConvertedVal(table.formal[districts].year1Loss.Private)">
                             -
                         </td>
-                        <td width="85" ng-bind="districtsTotals[$index].y2LossPubBus = getConvertedVal(table.formal[districts].year2Loss.Public)">
+                        <td width="85"
+                            ng-bind="districtsTotals[$index].y2LossPubBus = getConvertedVal(table.formal[districts].year2Loss.Public)">
                             -
                         </td>
-                        <td width="85" ng-bind="districtsTotals[$index].y2LossPriBus = getConvertedVal(table.formal[districts].year2Loss.Private)">
+                        <td width="85"
+                            ng-bind="districtsTotals[$index].y2LossPriBus = getConvertedVal(table.formal[districts].year2Loss.Private)">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].PubTotBus = getSum3(table.formal[districts].year1Damage.Public,
@@ -445,26 +470,28 @@
                         <td class="tdpa" height="19" width="212">
                             Informal Sector
                         </td>
-                        <td width="115" >
+                        <td width="115">
                             -
                         </td>
-                        <td width="114" ng-bind="districtsTotals[$index].y1DamPriInf = getConvertedVal(table.informal[districts].year1Damage.Private)">
+                        <td width="114"
+                            ng-bind="districtsTotals[$index].y1DamPriInf = getConvertedVal(table.informal[districts].year1Damage.Private)">
                             -
                         </td>
-                        <td width="114" >
+                        <td width="114">
                             -
                         </td>
-                        <td width="118" ng-bind="districtsTotals[$index].y1LossPriInf = getConvertedVal(table.informal[districts].year1Loss.Private)">
+                        <td width="118"
+                            ng-bind="districtsTotals[$index].y1LossPriInf = getConvertedVal(table.informal[districts].year1Loss.Private)">
                             -
                         </td>
-                        <td width="85" >
+                        <td width="85">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].y2LossPriInf =
                         getConvertedVal(table.informal[districts].year2Loss.Private)">
                             -
                         </td>
-                        <td width="85" >
+                        <td width="85">
                             -
                         </td>
                         <td width="85" ng-bind="districtsTotals[$index].PriTotInf= getSum3(table.informal[districts].year1Damage.Private,
@@ -512,7 +539,7 @@
                         </td>
                     </tr>
 
-                        <!---->
+                    <!---->
 
                     <tr height="21">
                         <td class="tdpa" height="21" width="212">
@@ -555,14 +582,11 @@
     </div>
 
 
-
-
-
-
     <div class="col-md-12">
 
 
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -570,7 +594,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             ×
                         </button>
-                        <h5 class="modal-title" >
+                        <h5 class="modal-title">
                             <span id="bookId"> </span>
                         </h5>
                     </div>
@@ -579,7 +603,8 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="textinput">Name</label>
                             <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
+                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                       class="form-control input-md">
 
                             </div>
                         </div>
@@ -601,7 +626,8 @@
         </div>
 
 
-    </div>           </div>
+    </div>
+    </div>
 
     </div>
 

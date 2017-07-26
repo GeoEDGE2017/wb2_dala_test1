@@ -14,7 +14,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-//initialize model
+    //initialize model
     var init_data = {
         'water_supply' : {
             'Table_1' : {
@@ -103,9 +103,8 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
 
     $scope.bsAstsNwsdbDis = angular.copy(init_data);
 
-//Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    //Disable Edit Button
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -114,7 +113,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         }
     }
 
-//Add Enumerate Fileds
+    //Add Enumerate Fileds
     $scope.insertAssets = function(table) {
         var new_row;
         if(table == 'BiaWaterUsers') {
@@ -158,7 +157,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         $scope.bsAstsNwsdbDis.water_supply.Table_1[table].push(new_row);
     }
 
-//Remove Enumerate Fileds
+    //Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BiaWaterUsers') {
             $scope.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers.splice(index, 1);
@@ -177,7 +176,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if (form.$valid) {
@@ -209,7 +208,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         }
     }
 
-//Calculate Total
+    //Calculate Total
     $scope.getTotal = function(model, property) {
         console.log(model);
         var array = $scope.bsAstsNwsdbDis.water_supply.Table_1[model];
@@ -232,11 +231,11 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
 
     }
 
-//Edit Data
-    $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
+    //Edit Data
+    $scope.bsHsDataEdit = function(form) {
+        $scope.submitted = true;
 
-       $scope.is_edit = true;
+        $scope.is_edit = true;
         $http({
         method: "POST",
         url: "/bs_fetch_edit_data",
@@ -246,47 +245,35 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
               'com_data': {'district': $scope.district,
               'bs_date': $scope.bs_date} }),
         }).success(function(data) {
-
-        console.log(data);
-        $scope.bsAstsNwsdbDis = data;
+            console.log(data);
+            $scope.bsAstsNwsdbDis = data;
         })
-
-
     }
 
-//Cancel Edit
-    $scope.cancelEdit = function(){
+    //Cancel Edit
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = init_data;
     }
 
-//Calculate Grand Total
-    $scope.calGrandTotal=function(){
-    var finaltotal = 0;
+    //Calculate Grand Total
+    $scope.calGrandTotal=function() {
+        var finaltotal = 0;
+        var grantot = 0;
+        var array1 = $scope.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers;
 
-    var grantot = 0;
+        angular.forEach(array1, function(value, key) {
+            finaltotal = finaltotal + (value.annual_demand  * value.rate);
+        })
 
-    var array1 = $scope.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers;
-
-
-
-    angular.forEach(array1, function(value, key) {
-
-     finaltotal = finaltotal + (value.annual_demand  * value.rate );
-
-    })
-    grantot = finaltotal;
-    return grantot;
+        grantot = finaltotal;
+        return grantot;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsAstsNwsdbDis = angular.copy(init_data);
-
-
     }
-
-
 })

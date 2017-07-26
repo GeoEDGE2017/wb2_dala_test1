@@ -287,7 +287,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
-        if(form.$valid) {
+        console.log($scope.new_department);
+        if(form.$valid && (($scope.new_department.name != null) || ($scope.new_department.ownership_id))) {
             $http({
                 method: 'POST',
                 url:'/dl_save_data',
@@ -340,7 +341,28 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.other_govn_services.Table_2, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }
@@ -385,39 +407,101 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     }
 
     $scope.saveDepartment = function(form) {
-        delete $scope.new_department['ownership']
-        $scope.new_department.district_id = $scope.district.district__id;
+        $scope.submitted = true;
+        if(form.$valid) {
+            delete $scope.new_department['ownership']
+            $scope.new_department.district_id = $scope.district.district__id;
 
-        if(!$scope.is_edit_model) {
-            $scope.new_department.id = null;
-        }
+            if(!$scope.is_edit_model) {
+                $scope.new_department.id = null;
+            }
 
-        $http({
-            method: "POST",
-            url: "/add_entity",
-            data: angular.toJson({
-                'model': 'Department',
-                'model_fields': $scope.new_department,
-                'is_edit': $scope.is_edit_model,
-                'sector': 'other_govn_services'
-            }),
-        }).success(function(data) {
-            console.log(data);
-            if(!$scope.is_edit_model){
-                if(data){
-                    $scope.departments.push($scope.new_department);
+            $http({
+                method: "POST",
+                url: "/add_entity",
+                data: angular.toJson({
+                    'model': 'Department',
+                    'model_fields': $scope.new_department,
+                    'is_edit': $scope.is_edit_model,
+                    'sector': 'other_govn_services'
+                }),
+            }).success(function(data) {
+                console.log(data);
+                if(!$scope.is_edit_model) {
+                    if(data) {
+                        $scope.departments.push($scope.new_department);
+                    }
+                    $scope.new_department.id = data;
                 }
-                $scope.new_department.id = data;
-            }
-            else {
-                var department = $filter('filter')($scope.departments, {id: data})[0];
-                department.name = $scope.new_department.name;
+                else {
+                    var department = $filter('filter')($scope.departments, {id: data})[0];
+                    department.name = $scope.new_department.name;
+                }
+
+                $("#modal-container-218029").modal('hide');
+                $("#modal-container-218020").modal('hide');
+                $scope.is_edit_model = false;
+            })
+        }
+        else {
+            console.log('***');
+        }
+    }
+
+    $scope.editDepartment = function(form) {
+        if(form.$valid) {
+            delete $scope.new_department['ownership']
+            $scope.new_department.district_id = $scope.district.district__id;
+
+            $scope.is_edit_model = true;
+
+            if(!$scope.is_edit_model) {
+                $scope.new_department.id = null;
             }
 
-            $("#modal-container-218029").modal('hide');
-            $("#modal-container-218020").modal('hide');
-            $scope.is_edit_model = false;
-        })
+            $http({
+                method: "POST",
+                url: "/add_entity",
+                data: angular.toJson({
+                    'model': 'Department',
+                    'model_fields': $scope.new_department,
+                    'is_edit': $scope.is_edit_model,
+                    'sector': 'other_govn_services'
+                }),
+            }).success(function(data) {
+                console.log(data);
+                if(!$scope.is_edit_model){
+                    if(data){
+                        $scope.departments.push($scope.new_department);
+                    }
+                    $scope.new_department.id = data;
+                }
+                else {
+                    var department = $filter('filter')($scope.departments, {id: data})[0];
+                    department.name = $scope.new_department.name;
+                }
+
+                $("#modal-container-218029").modal('hide');
+                $("#modal-container-218020").modal('hide');
+                $scope.is_edit_model = false;
+            })
+        }
+    }
+
+    $scope.openAddDepartment = function(form) {
+        $scope.submitted = true;
+        console.log('in');
+        if(form.$valid) {
+            $("#modal-container-218029").modal('show');
+        }
+    }
+
+    $scope.openEditDepartment = function(form) {
+        $scope.submitted = true;
+        is_edit_model=true;
+        if(form.$valid) {
+            $("#modal-container-218020").modal('show');
+        }
     }
 
     $scope.fetchOwnership = function() {

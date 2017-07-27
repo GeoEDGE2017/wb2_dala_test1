@@ -3,80 +3,82 @@
 {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlEduProvinceApp" ng-controller="DlEduProvinceController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:education_main' %}">Education Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:education_main' %}">
+                Education Sector
+            </a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 6. Summary of Damages and Losses in the Education Sector in a Province</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 6. Summary of Damages and Losses in the Education Sector in a Province
+            </span>
         </li>
-
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+        </li>
     </ol>
-
-
     <div class="container-fluid">
-
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Public Sector</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Private Sector</a></li>
-            <li id="li3"><a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a></li>
-
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 - Public Sector</a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 - Private Sector</a>
+            </li>
+            <li id="li3">
+                <a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a>
+            </li>
         </ul>
-
         <div id="myTabContent" class="tab-content" ng-form name="form_damagelost_edu_province">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
-
                     <colgroup>
                         <col width="296"/>
                         <col width="91" span="7"/>
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_damagelost_edu_province.incident.$error.required">
-                                    Please select Incident
-                                </span>
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_damagelost_edu_province.district.$error.required">
-                                    Please select Province
-                                </span>
-                            </td>
-                        </tr>
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_damagelost_edu_province.incident.$error.required">
+                                Please select Incident
+                            </span>
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                        </td>
+                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box" ng-show="submitted && form_damagelost_edu_province.district.$error.required">
+                                Please select Province
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="trhead1" height="17">
                         <td colspan="2" style="padding-left:5px;">
                             Incident
                         </td>
                         <td colspan="2" style="">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);LoadData();"
+                                    class="form-control" ng-change="changedValue(true);loadData();"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
                                     <!--{{incident.disaster_type.name}}-->
                                     <!--{{incident.reported_date_time}}-->
                                     {{incident.incident_name}}
-                                    </option>
-                                    {% endfor %}
+                                </option>
+                                {% endfor %}
                             </select>
-
                         </td>
                         <td style="padding-left:5px;"> Province</td>
                         <td colspan="2" style="">
-                            <select name="province" ng-change="LoadData();" ng-model="province"
+                            <select name="province" ng-change="loadData();" ng-model="province"
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
                                     required>
@@ -87,7 +89,6 @@
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-
                     <tr class="trheadc1" height="34">
                         <td rowspan="2" width="296" style="width:28.5%;" height="51">
                             Facilities and Assets
@@ -129,7 +130,6 @@
                         <tbody>
                         <tr height="20" class="trheadc">
                             <td ng-bind="key" width="202" height="20">
-
                             </td>
                             <td width="90">
                             </td>
@@ -151,25 +151,18 @@
                                 1AB, 1C
                             </td>
                             <td width="110" ng-bind="value['DugDfDistrict'][0].ab1_1c">
-
                             </td>
                             <td width="110" ng-bind="value['DugNsaDistrict'][0].ab1_1c">
-
                             </td>
                             <td width="110" ng-bind="value['DugNsaDistrict'][1].ab1_1c">
-
                             </td>
                             <td width="110" ng-bind="value['DugNdafDistrict'][0].ab1_1c">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][0].ab1_1c">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][1].ab1_1c">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][2].ab1_1c">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -178,22 +171,16 @@
                             <td width="110" ng-bind="value['DugDfDistrict'][0].type_2">
                             </td>
                             <td width="110" ng-bind="value['DugNsaDistrict'][0].type_2">
-
                             </td>
                             <td width="110" ng-bind="value['DugNsaDistrict'][1].type_2">
-
                             </td>
                             <td width="110" ng-bind="value['DugNdafDistrict'][0].type_2">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][0].type_2">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][1].type_2">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][2].type_2">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -202,22 +189,17 @@
                             <td width="110" ng-bind="value['DugDfDistrict'][0].type_3">
                             </td>
                             <td width="110" ng-bind="value['DugNsaDistrict'][0].type_3">
-
                             </td>
                             <td width="110" ng-bind="value['DugNsaDistrict'][1].type_3">
-
                             </td>
                             </td>
                             <td width="110" ng-bind="value['DugNdafDistrict'][0].type_3">
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][0].type_3">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][1].type_3">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][2].type_3">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -230,16 +212,12 @@
                             <td width="110" ng-bind="value['DugNsaDistrict'][1].pirivena">
                             </td>
                             <td width="110" ng-bind="value['DugNdafDistrict'][0].pirivena">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][0].pirivena">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][1].pirivena">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][2].pirivena">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -247,54 +225,35 @@
                             </td>
                             <td width="110" ng-bind="value['DugDfDistrict'][0].training_institutes">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DugNsaDistrict'][0].training_institutes">
+                            <td width="110" ng-bind="value['DugNsaDistrict'][0].training_institutes">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DugNsaDistrict'][1].training_institutes">
+                            <td width="110" ng-bind="value['DugNsaDistrict'][1].training_institutes">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DugNdafDistrict'][0].training_institutes">
+                            <td width="110" ng-bind="value['DugNdafDistrict'][0].training_institutes">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DpefBefDistrict'][0].training_institutes">
-
+                            <td width="110" ng-bind="value['DpefBefDistrict'][0].training_institutes">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DpefBefDistrict'][1].training_institutes">
-
+                            <td width="110" ng-bind="value['DpefBefDistrict'][1].training_institutes">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DpefBefDistrict'][2].training_institutes">
-
+                            <td width="110" ng-bind="value['DpefBefDistrict'][2].training_institutes">
                             </td>
                         </tr>
                         <tr height="17">
                             <td class="tdpa" width="307" height="17">NCOE, Training Colleges
                             </td>
                             <td width="110" ng-bind="value['DugDfDistrict'][0].training_colleges">
-
                             </td>
-                            <td width="110"
-                                ng-bind="value['DugNsaDistrict'][0].training_colleges">
+                            <td width="110" ng-bind="value['DugNsaDistrict'][0].training_colleges">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DugNsaDistrict'][1].training_colleges">
+                            <td width="110" ng-bind="value['DugNsaDistrict'][1].training_colleges">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DugNdafDistrict'][0].training_colleges">
+                            <td width="110" ng-bind="value['DugNdafDistrict'][0].training_colleges">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DpefBefDistrict'][0].training_colleges">
-
+                            <td width="110" ng-bind="value['DpefBefDistrict'][0].training_colleges">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DpefBefDistrict'][1].training_colleges">
-
+                            <td width="110" ng-bind="value['DpefBefDistrict'][1].training_colleges">
                             </td>
-                            <td width="110"
-                                ng-bind="value['DpefBefDistrict'][2].training_colleges">
-
+                            <td width="110" ng-bind="value['DpefBefDistrict'][2].training_colleges">
                             </td>
                         </tr>
                         <tr height="17">
@@ -309,13 +268,10 @@
                             <td width="110" ng-bind="value['DugNdafDistrict'][0].tc_crc_resc">
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][0].tc_crc_resc">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][1].tc_crc_resc">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][2].tc_crc_resc">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -325,25 +281,20 @@
                             <td width="110" ng-bind="value['DugDfDistrict'][0].min_pzd_offices">
                             </td>
                             <td class="tdpa" width="110">
-
                             </td>
                             <td class="tdpa" width="110">
-
                             </td>
                             <td width="110" ng-bind="value['DugNdafDistrict'][0].min_pzd_offices">
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][0].min_pzd_offices">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][1].min_pzd_offices">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefDistrict'][2].min_pzd_offices">
-
                             </td>
                         </tr>
                         <tr height="17">
-                            <td class="tdpa" width="307" height="17"> Total 
+                            <td class="tdpa" width="307" height="17"> Total
                             </td>
                             <td width="110">
                                 <span ng-bind="$parent.sumFunc8(value['DugDfDistrict'][0].ab1_1c, value['DugDfDistrict'][0].type_2, value['DugDfDistrict'][0].type_3, value['DugDfDistrict'][0].pirivena, value['DugDfDistrict'][0].training_institutes, value['DugDfDistrict'][0].training_colleges, value['DugDfDistrict'][0].tc_crc_resc, value['DugDfDistrict'][0].min_pzd_offices)"></span>
@@ -369,11 +320,7 @@
                         </tr>
                         </tbody>
                     </table>
-
-
                 </div>
-
-
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Private Sector Informations</a>
@@ -382,8 +329,6 @@
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
                     <tbody>
-
-
                     <tr class="trheadc1" height="34">
                         <td rowspan="2" width="296" style="width:28.5%" height="51">
                             Facilities and Assets
@@ -422,7 +367,6 @@
                         <tbody>
                         <tr height="20" class="trheadc">
                             <td ng-bind="key" width="202" height="20">
-
                             <td width="91">
                             </td>
                             <td width="91">
@@ -443,25 +387,18 @@
                                 Pre-schools
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][0].num_edu_facilities">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][0].male">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][0].female">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefPreDistrict'][0].tot_damages">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefPreDistrict'][0].est_los_year_1">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefPreDistrict'][0].est_los_year_2">
-
                             </td>
                             <td width="110">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -469,25 +406,18 @@
                                 Primary Schools
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][1].num_edu_facilities">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][1].male">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][1].female">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefPrimaryDistrict'][0].tot_damages">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefPrimaryDistrict'][0].est_los_year_1">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefPrimaryDistrict'][0].est_los_year_2">
-
                             </td>
                             <td width="110">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -495,25 +425,18 @@
                                 Secondary Schools
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][2].num_edu_facilities">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][2].male">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][2].female">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefSecondaryDistrict'][0].tot_damages">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefSecondaryDistrict'][0].est_los_year_1">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefSecondaryDistrict'][0].est_los_year_2">
-
                             </td>
                             <td width="110">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -521,25 +444,18 @@
                                 Universities
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][3].num_edu_facilities">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][3].male">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][3].female">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefUnvDistrict'][0].tot_damages">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefUnvDistrict'][0].est_los_year_1">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefUnvDistrict'][0].est_los_year_2">
-
                             </td>
                             <td width="110">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -547,25 +463,18 @@
                                 Technical Institutes
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][4].num_edu_facilities">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][4].male">
-
                             </td>
                             <td width="110" ng-bind="value['DpefNaf'][4].female">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefTechDistrict'][0].tot_damages">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefTechDistrict'][0].est_los_year_1">
-
                             </td>
                             <td width="110" ng-bind="value['DpefBefTechDistrict'][0].est_los_year_2">
-
                             </td>
                             <td width="110">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -573,25 +482,18 @@
                                 Others
                             </td>
                             <td width="110">
-
                             </td>
                             <td width="110">
-
                             </td>
                             <td width="110">
-
                             </td>
                             <td width="110">
-
                             </td>
                             <td width="110">
-
                             </td>
                             <td width="110">
-
                             </td>
                             <td width="110">
-
                             </td>
                         </tr>
                         <tr height="17">
@@ -617,25 +519,20 @@
                                 <span ng-bind="$parent.sumFunc5(value['DpefBefPreDistrict'][0].est_los_year_2, value['DpefBefPrimaryDistrict'][0].est_los_year_2, value['DpefBefSecondaryDistrict'][0].est_los_year_2, value['DpefBefTechDistrict'][0].est_los_year_2, value['DpefBefTechDistrict'][0].est_los_year_2)"></span>
                             </td>
                             <td width="110">
-
                             </td>
                         </tr>
-
                         </tbody>
                     </table>
-<br>
+                    <br>
                     <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Total Damages and Losses</a>
                     <br>
-
+                    </tbody>
+                </table>
             </div>
-
             <div class="tab-pane fade" id="step3">
-
                 <table class="table table-bordered">
                     <tbody>
-
-
                     <tr class="trheadc1" height="17">
                         <td rowspan="2" width="296" height="34">
                             Ownership
@@ -658,43 +555,33 @@
                             Year 2
                         </td>
                     </tr>
-                     <tr  height="17">
+                    <tr height="17">
                         <td class="tdpa" width="307" height="17">
                             Public Sector
                         </td>
                         <td width="110" colspan="2">
-
                         </td>
                         <td width="110" colspan="2">
-
                         </td>
                         <td width="110" colspan="2">
-
                         </td>
                         <td width="110">
-
                         </td>
-
                     </tr>
-                    <tr  height="17">
+                    <tr height="17">
                         <td class="tdpa" width="307" height="17">
                             Private Sector
                         </td>
                         <td width="110" colspan="2">
-
                         </td>
                         <td width="110" colspan="2">
-
                         </td>
                         <td width="110" colspan="2">
-
                         </td>
                         <td width="110">
-
                         </td>
-
                     </tr>
-                    <tr  height="17">
+                    <tr height="17">
                         <td class="tdpa" width="307" height="17">
                             Total
                         </td>

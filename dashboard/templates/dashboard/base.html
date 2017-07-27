@@ -1,379 +1,384 @@
 {% load static %}
 <!--DOCTYPE html-->
 <html lang="en" style="overflow-x:hidden;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="keyword" content="">
 
-<head>
+        <title>DALA - Admin</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="">
+        <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/font-awesome.min.css" %}'>
+        <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/simple-line-icons.css" %}'>
+        <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/style.css" %}'>
+        <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/bootstrap-nav-wizard.css" %}'>
+        <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/datepicker.css" %}'>
+        <link href="{% static 'dashboard/css/datepicker.css' %}" rel="stylesheet">
 
+        <script src='{% static "dashboard/js/jquery.min.js" %}'></script>
 
-    <title>DALA - Admin</title>
+        <script src='{% static "dashboard/js/jquery.nicescroll.min.js" %}'></script>
+        <script src='{% static "dashboard/js/bootstrap.min.js" %}'></script>
+        <script src='{% static "dashboard/js/angular/angular.js" %}'></script>
+        <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
+        <script src="{% static 'dashboard/js/ng-print.js' %}"></script>
+        <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
+        <script src='{% static "dashboard/js/underscore-min.js" %}'></script>
+        <script src='{% static "dashboard/js/angular-underscore.min.js" %}'></script>
+        <script src='{% static "dashboard/js/angular-underscore-module.js" %}'></script>
+        <script src="{% static 'dashboard/js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
+        <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
+        <script src='{% static "dashboard/js/dashboard.js" %}'></script>
 
-    <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/font-awesome.min.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/simple-line-icons.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/style.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/bootstrap-nav-wizard.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "dashboard/css/datepicker.css" %}'>
-    <link href="{% static 'dashboard/css/datepicker.css' %}" rel="stylesheet">
+        <!--agri_livestock-->
+        {% if module == 'agri_livestock' %}
+        <script src='{% static "agri_livestock/base_line/js/bs_livestock_poultry_dst.js" %}'></script>
+        <script src='{% static "agri_livestock/base_line/js/bs_livestock_poultry.js" %}'></script>
+        <script src='{% static "agri_livestock/damage_losses/js/dl_livestock_poultry.js" %}'></script>
+        <script src='{% static "agri_livestock/damage_losses/js/dlsum_livestock_poultry_dst.js" %}'></script>
+        <script src='{% static "agri_livestock/damage_losses/js/dl_livestock_pro.js" %}'></script>
+        <script src='{% static "agri_livestock/damage_losses/js/dl_livestock_national.js" %}'></script>
 
-    <script src='{% static "dashboard/js/jquery.min.js" %}'></script>
-   
-    <script src='{% static "dashboard/js/jquery.nicescroll.min.js" %}'></script>
-    <script src='{% static "dashboard/js/bootstrap.min.js" %}'></script>
-    <script src='{% static "dashboard/js/angular/angular.js" %}'></script>
-    <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
-    <script src="{% static 'dashboard/js/ng-print.js' %}"></script>
-    <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
-    <script src='{% static "dashboard/js/underscore-min.js" %}'></script>
-    <script src='{% static "dashboard/js/angular-underscore.min.js" %}'></script>
-    <script src='{% static "dashboard/js/angular-underscore-module.js" %}'></script>
-    <script src="{% static 'dashboard/js/bootstrap-datepicker.js' %}"></script>
-    <script src="{% static 'dashboard/js/popover-toggle.js' %}"></script>
-    <script src="{% static 'dashboard/js/ui-bootstrap-tpls-0.12.0.min.js' %}"></script>
-    <script src='{% static "dashboard/js/dashboard.js" %}'></script>
+        <!--agri_fisheries-->
+        {% elif module == 'agri_fisheries' %}
+        <script src='{% static "agri_fisheries/base_line/js/bs_noof_pepl_engd_fisheries.js" %}'></script>
+        <script src='{% static "agri_fisheries/base_line/js/bs_info_fisheries.js" %}'></script>
+        <script src='{% static "agri_fisheries/damage_losses/js/dl_fisheries_district.js" %}'></script>
+        <script src='{% static "agri_fisheries/damage_losses/js/dlsum_fisheries_in_the_dis.js" %}'></script>
+        <script src='{% static "agri_fisheries/damage_losses/js/dl_fisheries_province.js" %}'></script>
+        <script src='{% static "agri_fisheries/damage_losses/js/dl_fisheries_national.js" %}'></script>
 
-    <!--agri_livestock-->
-    {% if module == 'agri_livestock' %}
-    <script src='{% static "agri_livestock/base_line/js/bs_livestock_poultry_dst.js" %}'></script>
-    <script src='{% static "agri_livestock/base_line/js/bs_livestock_poultry.js" %}'></script>
-    <script src='{% static "agri_livestock/damage_losses/js/dl_livestock_poultry.js" %}'></script>
-    <script src='{% static "agri_livestock/damage_losses/js/dlsum_livestock_poultry_dst.js" %}'></script>
-    <script src='{% static "agri_livestock/damage_losses/js/dl_livestock_pro.js" %}'></script>
-    <script src='{% static "agri_livestock/damage_losses/js/dl_livestock_national.js" %}'></script>
+        <!--agri_irrigation-->
+        {% elif module == 'agri_irrigation' %}
+        <script src='{% static "agri_irrigation/base_line/js/bs_irg_facilities.js" %}'></script>
+        <script src='{% static "agri_irrigation/base_line/js/bs_rparpl_cos_assts.js" %}'></script>
+        <script src='{% static "agri_irrigation/damage_losses/js/dl_irrigation.js" %}'></script>
+        <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_district.js" %}'></script>
+        <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_province.js" %}'></script>
+        <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_national.js" %}'></script>
 
-    <!--agri_fisheries-->
-    {% elif module == 'agri_fisheries' %}
-    <script src='{% static "agri_fisheries/base_line/js/bs_noof_pepl_engd_fisheries.js" %}'></script>
-    <script src='{% static "agri_fisheries/base_line/js/bs_info_fisheries.js" %}'></script>
-    <script src='{% static "agri_fisheries/damage_losses/js/dl_fisheries_district.js" %}'></script>
-    <script src='{% static "agri_fisheries/damage_losses/js/dlsum_fisheries_in_the_dis.js" %}'></script>
-    <script src='{% static "agri_fisheries/damage_losses/js/dl_fisheries_province.js" %}'></script>
-    <script src='{% static "agri_fisheries/damage_losses/js/dl_fisheries_national.js" %}'></script>
+        <!--transport_summary-->
+        {% elif module == 'transport_summary' %}
+        <script src='{% static "transport_summary/damage_losses/js/sum_dl_trnspt_district.js" %}'></script>
+        <script src='{% static "transport_summary/damage_losses/js/dl_trns_sumr_provn.js" %}'></script>
+        <script src='{% static "transport_summary/damage_losses/js/dl_trns_sumr_national.js" %}'></script>
 
-    <!--agri_irrigation-->
-    {% elif module == 'agri_irrigation' %}
-    <script src='{% static "agri_irrigation/base_line/js/bs_irg_facilities.js" %}'></script>
-    <script src='{% static "agri_irrigation/base_line/js/bs_rparpl_cos_assts.js" %}'></script>
-    <script src='{% static "agri_irrigation/damage_losses/js/dl_irrigation.js" %}'></script>
-    <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_district.js" %}'></script>
-    <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_province.js" %}'></script>
-    <script src='{% static "agri_irrigation/damage_losses/js/dl_sum_irg_national.js" %}'></script>
+        <!--agri_agrarian-->
+        {% elif module == 'agri_agrarian' %}
+        <script src='{% static "agri_agrarian/base_line/js/bs_nopopl_agrb_actv.js" %}'></script>
+        <script src='{% static "agri_agrarian/base_line/js/bs_info_acfo_assets.js" %}'></script>
+        <script src='{% static "agri_agrarian/base_line/js/bs_info_sero_assets.js" %}'></script>
+        <script src='{% static "agri_agrarian/damage_losses/js/dl_frst_prduct_asets.js" %}'></script>
+        <script src='{% static "agri_agrarian/damage_losses/js/dl_struts_oth_asets.js" %}'></script>
+        <script src='{% static "agri_agrarian/damage_losses/js/dl_invsmnt_los.js" %}'></script>
+        <script src='{% static "agri_agrarian/damage_losses/js/dl_prdctn_los.js" %}'></script>
+        <script src='{% static "agri_agrarian/damage_losses/js/dl_sum_agrarian_dstr.js" %}'></script>
+        <script src='{% static "agri_agrarian/damage_losses/js/dl_sum_agrarian_prov.js" %}'></script>
+        <script src='{% static "agri_agrarian/damage_losses/js/dl_sum_agrarian_nat.js" %}'></script>
 
-    <!--transport_summary-->
-    {% elif module == 'transport_summary' %}
-    <script src='{% static "transport_summary/damage_losses/js/sum_dl_trnspt_district.js" %}'></script>
-    <script src='{% static "transport_summary/damage_losses/js/dl_trns_sumr_provn.js" %}'></script>
-    <script src='{% static "transport_summary/damage_losses/js/dl_trns_sumr_national.js" %}'></script>
+        <!--agri_summary-->
+        {% elif module == 'agri_summary' %}
+        <script src='{% static "agri_summary/damage_losses/js/dl_sum_agriculture_dis.js" %}'></script>
+        <script src='{% static "agri_summary/damage_losses/js/dl_sum_agriculture_pro.js" %}'></script>
+        <script src='{% static "agri_summary/damage_losses/js/dl_sum_agriculture_nat.js" %}'></script>
 
-    <!--agri_agrarian-->
-    {% elif module == 'agri_agrarian' %}
-    <script src='{% static "agri_agrarian/base_line/js/bs_nopopl_agrb_actv.js" %}'></script>
-    <script src='{% static "agri_agrarian/base_line/js/bs_info_acfo_assets.js" %}'></script>
-    <script src='{% static "agri_agrarian/base_line/js/bs_info_sero_assets.js" %}'></script>
-    <script src='{% static "agri_agrarian/damage_losses/js/dl_frst_prduct_asets.js" %}'></script>
-    <script src='{% static "agri_agrarian/damage_losses/js/dl_struts_oth_asets.js" %}'></script>
-    <script src='{% static "agri_agrarian/damage_losses/js/dl_invsmnt_los.js" %}'></script>
-    <script src='{% static "agri_agrarian/damage_losses/js/dl_prdctn_los.js" %}'></script>
-    <script src='{% static "agri_agrarian/damage_losses/js/dl_sum_agrarian_dstr.js" %}'></script>
-    <script src='{% static "agri_agrarian/damage_losses/js/dl_sum_agrarian_prov.js" %}'></script>
-    <script src='{% static "agri_agrarian/damage_losses/js/dl_sum_agrarian_nat.js" %}'></script>
+        <!--transport_air-->
+        {% elif module == 'transport_air' %}
+        <script src='{% static "transport_air/damage_losses/js/dl_air_trnspt_natnal.js" %}'></script>
+        <script src='{% static "transport_air/damage_losses/js/dl_air_trnspt_provn.js" %}'></script>
+        <script src='{% static "transport_air/damage_losses/js/dl_air_trnspotation.js" %}'></script>
+        <script src='{% static "transport_air/damage_losses/js/dl_air_trnspot_dtrs.js" %}'></script>
+        <script src='{% static "transport_air/base_line/js/bs_info_aset_trns.js" %}'></script>
 
-    <!--agri_summary-->
-    {% elif module == 'agri_summary' %}
-    <script src='{% static "agri_summary/damage_losses/js/dl_sum_agriculture_dis.js" %}'></script>
-    <script src='{% static "agri_summary/damage_losses/js/dl_sum_agriculture_pro.js" %}'></script>
-    <script src='{% static "agri_summary/damage_losses/js/dl_sum_agriculture_nat.js" %}'></script>
+        <!--water_supply-->
+        {% elif module == 'water_supply' %}
+        <script src='{% static "water_supply/base_line/js/bs_asts_nwsdb_dis.js" %}'></script>
+        <script src='{% static "water_supply/base_line/js/bs_rwater_sply_dis.js" %}'></script>
+        <script src='{% static "water_supply/damage_losses/js/dl_com_wtr_sply.js" %}'></script>
+        <script src='{% static "water_supply/damage_losses/js/dl_rul_wtr_sply.js" %}'></script>
+        <script src='{% static "water_supply/damage_losses/js/dlsum_wter_sply_dis.js" %}'></script>
+        <script src='{% static "water_supply/damage_losses/js/dlsum_wter_sply_nat.js" %}'></script>
+        <script src='{% static "water_supply/damage_losses/js/dlsum_wter_sply_pro.js" %}'></script>
 
-    <!--transport_air-->
-    {% elif module == 'transport_air' %}
-    <script src='{% static "transport_air/damage_losses/js/dl_air_trnspt_natnal.js" %}'></script>
-    <script src='{% static "transport_air/damage_losses/js/dl_air_trnspt_provn.js" %}'></script>
-    <script src='{% static "transport_air/damage_losses/js/dl_air_trnspotation.js" %}'></script>
-    <script src='{% static "transport_air/damage_losses/js/dl_air_trnspot_dtrs.js" %}'></script>
-    <script src='{% static "transport_air/base_line/js/bs_info_aset_trns.js" %}'></script>
-
-    <!--water_supply-->
-    {% elif module == 'water_supply' %}
-    <script src='{% static "water_supply/base_line/js/bs_asts_nwsdb_dis.js" %}'></script>
-    <script src='{% static "water_supply/base_line/js/bs_rwater_sply_dis.js" %}'></script>
-    <script src='{% static "water_supply/damage_losses/js/dl_com_wtr_sply.js" %}'></script>
-    <script src='{% static "water_supply/damage_losses/js/dl_rul_wtr_sply.js" %}'></script>
-    <script src='{% static "water_supply/damage_losses/js/dlsum_wter_sply_dis.js" %}'></script>
-    <script src='{% static "water_supply/damage_losses/js/dlsum_wter_sply_nat.js" %}'></script>
-    <script src='{% static "water_supply/damage_losses/js/dlsum_wter_sply_pro.js" %}'></script>
-
-    <!--housing-->
-    {% elif module == 'housing' %}
-    <script src='{% static "housing/base_line/js/bs_housing_dis.js" %}'></script>
-    <script src='{% static "housing/base_line/js/bs_costs_husng_units.js" %}'></script>
-    <script src='{% static "housing/damage_losses/js/dl_assmnt_husing_sector.js" %}'></script>
-    <script src='{% static "housing/damage_losses/js/dl_summary_housing_dis.js" %}'></script>
-    <script src='{% static "housing/damage_losses/js/dl_summary_housing_pro.js" %}'></script>
-    <script src='{% static "housing/damage_losses/js/dl_summary_housing_nat.js" %}'></script>
+        <!--housing-->
+        {% elif module == 'housing' %}
+        <script src='{% static "housing/base_line/js/bs_housing_dis.js" %}'></script>
+        <script src='{% static "housing/base_line/js/bs_costs_husng_units.js" %}'></script>
+        <script src='{% static "housing/damage_losses/js/dl_assmnt_husing_sector.js" %}'></script>
+        <script src='{% static "housing/damage_losses/js/dl_summary_housing_dis.js" %}'></script>
+        <script src='{% static "housing/damage_losses/js/dl_summary_housing_pro.js" %}'></script>
+        <script src='{% static "housing/damage_losses/js/dl_summary_housing_nat.js" %}'></script>
 
 
-    <!-- Education -->
-    {% elif module == 'education' %}
-    <script src='{% static "education/base_line/js/bs_edu_facilities.js" %}'></script>
-    <script src='{% static "education/base_line/js/bs_ucost_gedu_facilities.js" %}'></script>
-    <script src='{% static "education/base_line/js/bs_ucost_gedu_facilities.js" %}'></script>
-    <script src='{% static "education/base_line/js/bs_edu_facilities.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_govn_edu_facilities.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_pvt_edu_facilities.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_edu_district.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_edu_province.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_edu_nationwide.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_govn_edu_facilities.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_pvt_edu_facilities.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_edu_district.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_edu_province.js" %}'></script>
-    <script src='{% static "education/damage_losses/js/dl_edu_nationwide.js" %}'></script>
+        <!-- Education -->
+        {% elif module == 'education' %}
+        <script src='{% static "education/base_line/js/bs_edu_facilities.js" %}'></script>
+        <script src='{% static "education/base_line/js/bs_ucost_gedu_facilities.js" %}'></script>
+        <script src='{% static "education/base_line/js/bs_ucost_gedu_facilities.js" %}'></script>
+        <script src='{% static "education/base_line/js/bs_edu_facilities.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_govn_edu_facilities.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_pvt_edu_facilities.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_edu_district.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_edu_province.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_edu_nationwide.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_govn_edu_facilities.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_pvt_edu_facilities.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_edu_district.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_edu_province.js" %}'></script>
+        <script src='{% static "education/damage_losses/js/dl_edu_nationwide.js" %}'></script>
 
-    <!-- transport_water -->
-    {% elif module == 'transport_water' %}
-    <script src='{% static "transport_water/base_line/js/bs_ast_transport_water.js" %}'></script>
-    <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_nat.js" %}'></script>
-    <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_pro.js" %}'></script>
-    <script src='{% static "transport_water/damage_losses/js/dl_ water_transportation.js" %}'></script>
-    <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_dst.js" %}'></script>
+        <!-- transport_water -->
+        {% elif module == 'transport_water' %}
+        <script src='{% static "transport_water/base_line/js/bs_ast_transport_water.js" %}'></script>
+        <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_nat.js" %}'></script>
+        <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_pro.js" %}'></script>
+        <script src='{% static "transport_water/damage_losses/js/dl_ water_transportation.js" %}'></script>
+        <script src='{% static "transport_water/damage_losses/js/dl_summary_trans_water_dst.js" %}'></script>
 
-    <!--telecommunication-->
-    {% elif module == 'telecommunication' %}
-    <script src='{% static "telecommunication/base_line/js/bs_telcom_cmpnys.js" %}'></script>
-    <script src="{% static 'telecommunication/damage_losses/js/dl_sum_tele_nat.js' %}"></script>
-    <script src="{% static 'telecommunication/damage_losses/js/dl_telcom_firms.js' %}"></script>
-    <script src="{% static 'telecommunication/damage_losses/js/dl_sum_tele_dis.js' %}"></script>
-    <script src="{% static 'telecommunication/damage_losses/js/dl_sum_tele_pro.js' %}"></script>
+        <!--telecommunication-->
+        {% elif module == 'telecommunication' %}
+        <script src='{% static "telecommunication/base_line/js/bs_telcom_cmpnys.js" %}'></script>
+        <script src="{% static 'telecommunication/damage_losses/js/dl_sum_tele_nat.js' %}"></script>
+        <script src="{% static 'telecommunication/damage_losses/js/dl_telcom_firms.js' %}"></script>
+        <script src="{% static 'telecommunication/damage_losses/js/dl_sum_tele_dis.js' %}"></script>
+        <script src="{% static 'telecommunication/damage_losses/js/dl_sum_tele_pro.js' %}"></script>
 
-    <!--health-->
-    {% elif module == 'health' %}
-    <script src="{% static 'health/base_line/js/pub_med_facilities.js' %}"></script>
-    <script src="{% static 'health/base_line/js/bs_health_status.js' %}"></script>
-    <script src="{% static 'health/base_line/js/bs_health_pub_med_facilities.js' %}"></script>
-    <script src="{% static 'health/base_line/js/bs_health_other_med_facilities_unit_cost.js' %}"></script>
-    <script src="{% static 'health/damage_losses/js/dl_health_other_medi.js' %}"></script>
-    <script src="{% static 'health/damage_losses/js/dl_health_sector_district.js' %}"></script>
-    <script src="{% static 'health/damage_losses/js/dl_health_summary_damage_nationwide.js' %}"></script>
-    <script src="{% static 'health/damage_losses/js/dl_health_summery_damageloss_province.js' %}"></script>
-    <script src='{% static "health/base_line/js/bs_unit_cost_mini_health_sys.js" %}'></script>
-    <script src='{% static "health/damage_losses/js/dl_line_ministry_health_sys.js" %}'></script>
-    <script src='{% static "health/damage_losses/js/dl_health_damagelost_private.js" %}'></script>
+        <!--health-->
+        {% elif module == 'health' %}
+        <script src="{% static 'health/base_line/js/pub_med_facilities.js' %}"></script>
+        <script src="{% static 'health/base_line/js/bs_health_status.js' %}"></script>
+        <script src="{% static 'health/base_line/js/bs_health_pub_med_facilities.js' %}"></script>
+        <script src="{% static 'health/base_line/js/bs_health_other_med_facilities_unit_cost.js' %}"></script>
+        <script src="{% static 'health/damage_losses/js/dl_health_other_medi.js' %}"></script>
+        <script src="{% static 'health/damage_losses/js/dl_health_sector_district.js' %}"></script>
+        <script src="{% static 'health/damage_losses/js/dl_health_summary_damage_nationwide.js' %}"></script>
+        <script src="{% static 'health/damage_losses/js/dl_health_summery_damageloss_province.js' %}"></script>
+        <script src='{% static "health/base_line/js/bs_unit_cost_mini_health_sys.js" %}'></script>
+        <script src='{% static "health/damage_losses/js/dl_line_ministry_health_sys.js" %}'></script>
+        <script src='{% static "health/damage_losses/js/dl_health_damagelost_private.js" %}'></script>
 
-    <!--other_govn_services-->
-    {% elif module == 'other_govn_services' %}
-    <script src="{% static 'other_govn_services/base_line/js/bs_info_for_the_costs_of_structures_and_other_assets_in_the_district.js' %}"></script>
-    <script src="{% static 'other_govn_services/damage_losses/js/dl_assessment_of_government_departments_or_offices_in_a_district.js' %}"></script>
-    <script src="{% static 'other_govn_services/damage_losses/js/dl_damage_loss_assessment_district.js' %}"></script>
-    <script src="{% static 'other_govn_services/damage_losses/js/dl_damage_loss_assessmen_province.js' %}"></script>
-    <script src="{% static 'other_govn_services/damage_losses/js/dl_assessmen_nationwide.js' %}"></script>
+        <!--other_govn_services-->
+        {% elif module == 'other_govn_services' %}
+        <script src="{% static 'other_govn_services/base_line/js/bs_info_for_the_costs_of_structures_and_other_assets_in_the_district.js' %}"></script>
+        <script src="{% static 'other_govn_services/damage_losses/js/dl_assessment_of_government_departments_or_offices_in_a_district.js' %}"></script>
+        <script src="{% static 'other_govn_services/damage_losses/js/dl_damage_loss_assessment_district.js' %}"></script>
+        <script src="{% static 'other_govn_services/damage_losses/js/dl_damage_loss_assessmen_province.js' %}"></script>
+        <script src="{% static 'other_govn_services/damage_losses/js/dl_assessmen_nationwide.js' %}"></script>
 
-    <!-- Reports -->
-    {% elif module == 'reports' %}
-    <script src='{% static "reports/js/dl_hs_district_report.js" %}'></script>
-    <script src='{% static "reports/js/dl_hs_province_report.js" %}'></script>
+        <!-- Reports -->
+        {% elif module == 'reports' %}
+        <script src='{% static "reports/js/dl_hs_district_report.js" %}'></script>
+        <script src='{% static "reports/js/dl_hs_province_report.js" %}'></script>
 
-    <!--new js copied and edited for the health sector following one is the old one-->
-    <!--<script src='{% static "reports/js/dl_hs_national_report.js" %}'></script>-->
+        <!--new js copied and edited for the health sector following one is the old one-->
+        <!--<script src='{% static "reports/js/dl_hs_national_report.js" %}'></script>-->
 
-    <!--copied and edited new js for health sector-->
-    <!--reports_health_summary_damage_nationwide.js-->
-    <script src='{% static "reports/js/reports_health_summary_damage_nationwide.js" %}'></script>
+        <!--copied and edited new js for health sector-->
+        <!--reports_health_summary_damage_nationwide.js-->
+        <script src='{% static "reports/js/reports_health_summary_damage_nationwide.js" %}'></script>
 
-    <script src='{% static "reports/js/report_education.js" %}'></script>
-    <script src='{% static "reports/js/report_mining.js" %}'></script>
-    <script src='{% static "reports/js/report_other_govn_services.js" %}'></script>
-    <script src='{% static "reports/js/report_transport_land.js" %}'></script>
-    <script src='{% static "reports/js/report_transport_rail.js" %}'></script>
-    <script src='{% static "reports/js/report_transport_water.js" %}'></script>
-    <script src='{% static "reports/js/report_transport_air.js" %}'></script>
-    <script src='{% static "reports/js/dlsum_wter_sply_nat.js" %}'></script>
-    <script src='{% static "reports/js/report_industru_losses_nat.js" %}'></script>
-    <script src='{% static "reports/js/reports_agrarian_nat.js" %}'></script>
-    <script src='{% static "reports/js/reports_housing_nat.js" %}'></script>
-    <script src='{% static "reports/js/reports_power_nat.js" %}'></script>
-    <script src='{% static "reports/js/reports_tourism_nat.js" %}'></script>
-    <script src='{% static "reports/js/report_irg_national.js" %}'></script>
-    <script src='{% static "reports/js/reports_rail_trans_nat_summary.js" %}'></script>
-    <script src='{% static "reports/js/reports_wter_sply_nat.js" %}'></script>
-    <script src='{% static "reports/js/report_fisheries_national.js" %}'></script>
-    <script src='{% static "reports/js/report_livestock_national.js" %}'></script>
+        <script src='{% static "reports/js/report_education.js" %}'></script>
+        <script src='{% static "reports/js/report_mining.js" %}'></script>
+        <script src='{% static "reports/js/report_other_govn_services.js" %}'></script>
+        <script src='{% static "reports/js/report_transport_land.js" %}'></script>
+        <script src='{% static "reports/js/report_transport_rail.js" %}'></script>
+        <script src='{% static "reports/js/report_transport_water.js" %}'></script>
+        <script src='{% static "reports/js/report_transport_air.js" %}'></script>
+        <script src='{% static "reports/js/dlsum_wter_sply_nat.js" %}'></script>
+        <script src='{% static "reports/js/report_industru_losses_nat.js" %}'></script>
+        <script src='{% static "reports/js/reports_agrarian_nat.js" %}'></script>
+        <script src='{% static "reports/js/reports_housing_nat.js" %}'></script>
+        <script src='{% static "reports/js/reports_power_nat.js" %}'></script>
+        <script src='{% static "reports/js/reports_tourism_nat.js" %}'></script>
+        <script src='{% static "reports/js/report_irg_national.js" %}'></script>
+        <script src='{% static "reports/js/reports_rail_trans_nat_summary.js" %}'></script>
+        <script src='{% static "reports/js/reports_wter_sply_nat.js" %}'></script>
+        <script src='{% static "reports/js/report_fisheries_national.js" %}'></script>
+        <script src='{% static "reports/js/report_livestock_national.js" %}'></script>
 
-    <!-- Charts -->
-    {% elif module == 'reports' %}
-    <script src="{% static 'charts/js/d3.min.js ' %}"></script>
-    <script src="{% static 'charts/js/nv.d3.min.js' %}"></script>
-    <script src="{% static 'charts/js/angular-nvd3/dist/angular-nvd3.js' %}"></script>
-    <script src="{% static 'charts/js/chart_table8.js' %}"></script>
-    <script src="{% static 'charts/js/chart_table9.js' %}"></script>
-    <script src="{% static 'charts/js/chart_table10.js' %}"></script>
+        <!-- Charts -->
+        {% elif module == 'reports' %}
+        <script src="{% static 'charts/js/d3.min.js ' %}"></script>
+        <script src="{% static 'charts/js/nv.d3.min.js' %}"></script>
+        <script src="{% static 'charts/js/angular-nvd3/dist/angular-nvd3.js' %}"></script>
+        <script src="{% static 'charts/js/chart_table8.js' %}"></script>
+        <script src="{% static 'charts/js/chart_table9.js' %}"></script>
+        <script src="{% static 'charts/js/chart_table10.js' %}"></script>
 
-    <!-- new Charts -->
-    {% elif module == 'new_charts' %}
-    <script src="{% static 'new_charts/js/node_modules/chart.js/dist/Chart.min.js' %}"></script>
-    <script src="{% static 'new_charts/js/node_modules/angular-chart.js/dist/angular-chart.min.js' %}"></script>
-    <script src="{% static 'new_charts/js/new_charts.js' %}"></script>
-    <script src="{% static 'new_charts/js/housing_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/water_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/tourism_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/trans_air_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/trans_land_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/trans_water_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/trans_rail_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/trans_summary_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/agri_agrarian_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/mining_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/industry_services_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/tourism_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/power_supply_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/health_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/agri_irrigation_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/education_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/other_gov_service_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/telecommunication_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/agri_fisheries_chart.js' %}"></script>
-    <script src="{% static 'new_charts/js/agri_livestock_chart.js' %}"></script>
-
-
-    <!-- mining -->
-    {% elif module == 'mining' %}
-    <script src='{% static "mining/base_line/js/mining_artisanl_firms.js" %}'></script>
-    <script src='{% static "mining/base_line/js/mining_industrial_firms.js" %}'></script>
-    <script src='{% static "mining/damage_losses/js/damage_losses_artisanal_mining.js" %}'></script>
-    <script src='{% static "mining/damage_losses/js/damages_losses_of_mining_firms.js" %}'></script>
-    <script src='{% static "mining/damage_losses/js/summary_damages_losses_district.js" %}'></script>
-    <script src='{% static "mining/damage_losses/js/summary_damages_losses_province.js" %}'></script>
-    <script src='{% static "mining/damage_losses/js/summary_damages_losses_nationwide.js" %}'></script>
-
-    <!--transportat_land-->
-    {% elif module == 'transport_land' %}
-    <script src='{% static "transport_land/damage_losses/js/dl_tr_land_provine.js" %}'></script>
-    <script src='{% static "transport_land/damage_losses/js/dl_tr_land_national.js" %}'></script>
-    <script src='{% static "transport_land/damage_losses/js/dl_govn_admn_asets.js" %}'></script>
-    <script src='{% static "transport_land/damage_losses/js/dl_oth_lnd_asets.js" %}'></script>
-    <script src='{% static "transport_land/base_line/js/bs_pub_rods_brids_usr.js" %}'></script>
-    <script src='{% static "transport_land/base_line/js/bs_land_trns_asst.js" %}'></script>
-    <script src='{% static "transport_land/base_line/js/bs_gov_admnstv_asst.js" %}'></script>
-    <script src='{% static "transport_land/damage_losses/js/dl_road_brdgs.js" %}'></script>
-    <script src='{% static "transport_land/damage_losses/js/dl_sum_tansland_dist.js" %}'></script>
-
-    <!--transport_rail-->
-    {% elif module == 'transport_rail' %}
-    <script src='{% static "transport_rail/damage_losses/js/dl_rail_type_loss_summary.js" %}'></script>
-    <script src='{% static "transport_rail/damage_losses/js/dl_rail_trans_nat_summary.js" %}'></script>
-    <script src='{% static "transport_rail/damage_losses/js/dl_rail_trans_dis_summary.js" %}'></script>
-    <script src='{% static "transport_rail/base_line/js/bs_income_rail_company.js" %}'></script>
-    <script src='{% static "transport_rail/damage_losses/js/dl_rail_trans_company.js" %}'></script>
-
-     <!--tourism -->
-    {% elif module == 'tourism' %}
-    <script src='{% static "tourism/base_line/js/bs_tursm_fclts_dis.js" %}'></script>
-    <script src='{% static "tourism/damage_losses/js/dl_tourism_infrstrct_business.js" %}'></script>
-    <script src='{% static "tourism/damage_losses/js/dl_tourism_infrastrct_cult_natural.js" %}'></script>
-    <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_dis.js" %}'></script>
-    <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_pov.js" %}'></script>
-    <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_nat.js" %}'></script>
-
-    <!--industry_services-->
-    {% elif module == 'industry_services' %}
-    <script src='{% static "industry_services/base_line/js/bs_info_forml_dis.js" %}'></script>
-    <script src='{% static "industry_services/base_line/js/bs_info_informl_dis.js" %}'></script>
-    <script src='{% static "industry_services/damage_losses/js/dl_formal_sector.js" %}'></script>
-    <script src='{% static "industry_services/damage_losses/js/dl_informal_sector.js" %}'></script>
-    <script src='{% static "industry_services/damage_losses/js/dl_summ_forml_informl_dis.js" %}'></script>
-    <script src='{% static "industry_services/damage_losses/js/dl_sum_forml_informl_dis_inputs.js" %}'></script>
-    <script src='{% static "industry_services/damage_losses/js/summary_ind_ser_of_damages_losses_province.js" %}'></script>
-    <script src='{% static "industry_services/damage_losses/js/dl_sum_nat.js" %}'></script>
+        <!-- new Charts -->
+        {% elif module == 'new_charts' %}
+        <script src="{% static 'new_charts/js/node_modules/chart.js/dist/Chart.min.js' %}"></script>
+        <script src="{% static 'new_charts/js/node_modules/angular-chart.js/dist/angular-chart.min.js' %}"></script>
+        <script src="{% static 'new_charts/js/new_charts.js' %}"></script>
+        <script src="{% static 'new_charts/js/housing_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/water_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/tourism_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/trans_air_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/trans_land_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/trans_water_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/trans_rail_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/trans_summary_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/agri_agrarian_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/mining_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/industry_services_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/tourism_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/power_supply_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/health_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/agri_irrigation_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/education_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/other_gov_service_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/telecommunication_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/agri_fisheries_chart.js' %}"></script>
+        <script src="{% static 'new_charts/js/agri_livestock_chart.js' %}"></script>
 
 
-    <!--power_supply -->
-    {% elif module == 'power_supply' %}
-    <script src='{% static "power_supply/damage_losses/js/dl_ceb.js" %}'></script>
-    <script src='{% static "power_supply/base_line/js/bs_pow_gen_firms_dis.js" %}'></script>
-    <script src='{% static "power_supply/damage_losses/js/dl_pvt_pow_prod.js" %}'></script>
-    <script src='{% static "power_supply/damage_losses/js/dl_sum_powsup_dis.js" %}'></script>
-    <script src='{% static "power_supply/damage_losses/js/dl_sum_power_pro.js" %}'></script>
-    <script src='{% static "power_supply/damage_losses/js/dl_sum_power_nat.js" %}'></script>
-    
+        <!-- mining -->
+        {% elif module == 'mining' %}
+        <script src='{% static "mining/base_line/js/mining_artisanl_firms.js" %}'></script>
+        <script src='{% static "mining/base_line/js/mining_industrial_firms.js" %}'></script>
+        <script src='{% static "mining/damage_losses/js/damage_losses_artisanal_mining.js" %}'></script>
+        <script src='{% static "mining/damage_losses/js/damages_losses_of_mining_firms.js" %}'></script>
+        <script src='{% static "mining/damage_losses/js/summary_damages_losses_district.js" %}'></script>
+        <script src='{% static "mining/damage_losses/js/summary_damages_losses_province.js" %}'></script>
+        <script src='{% static "mining/damage_losses/js/summary_damages_losses_nationwide.js" %}'></script>
 
-    {% elif module == 'dashboard' %}
-    <script src='{% static "dashboard/js/dashboard.js" %}'></script>
+        <!--transportat_land-->
+        {% elif module == 'transport_land' %}
+        <script src='{% static "transport_land/damage_losses/js/dl_tr_land_provine.js" %}'></script>
+        <script src='{% static "transport_land/damage_losses/js/dl_tr_land_national.js" %}'></script>
+        <script src='{% static "transport_land/damage_losses/js/dl_govn_admn_asets.js" %}'></script>
+        <script src='{% static "transport_land/damage_losses/js/dl_oth_lnd_asets.js" %}'></script>
+        <script src='{% static "transport_land/base_line/js/bs_pub_rods_brids_usr.js" %}'></script>
+        <script src='{% static "transport_land/base_line/js/bs_land_trns_asst.js" %}'></script>
+        <script src='{% static "transport_land/base_line/js/bs_gov_admnstv_asst.js" %}'></script>
+        <script src='{% static "transport_land/damage_losses/js/dl_road_brdgs.js" %}'></script>
+        <script src='{% static "transport_land/damage_losses/js/dl_sum_tansland_dist.js" %}'></script>
 
-    {% endif %}
-  
-    <script>
-    $(function(){
+        <!--transport_rail-->
+        {% elif module == 'transport_rail' %}
+        <script src='{% static "transport_rail/damage_losses/js/dl_rail_type_loss_summary.js" %}'></script>
+        <script src='{% static "transport_rail/damage_losses/js/dl_rail_trans_nat_summary.js" %}'></script>
+        <script src='{% static "transport_rail/damage_losses/js/dl_rail_trans_dis_summary.js" %}'></script>
+        <script src='{% static "transport_rail/base_line/js/bs_income_rail_company.js" %}'></script>
+        <script src='{% static "transport_rail/damage_losses/js/dl_rail_trans_company.js" %}'></script>
 
-    $(".dropdown-menu li a").click(function(){
+        <!--tourism -->
+        {% elif module == 'tourism' %}
+        <script src='{% static "tourism/base_line/js/bs_tursm_fclts_dis.js" %}'></script>
+        <script src='{% static "tourism/damage_losses/js/dl_tourism_infrstrct_business.js" %}'></script>
+        <script src='{% static "tourism/damage_losses/js/dl_tourism_infrastrct_cult_natural.js" %}'></script>
+        <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_dis.js" %}'></script>
+        <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_pov.js" %}'></script>
+        <script src='{% static "tourism/damage_losses/js/dl_sum_tourism_nat.js" %}'></script>
 
-      $(".btn:first-child").text($(this).text());
-      $(".btn:first-child").val($(this).text());
+        <!--industry_services-->
+        {% elif module == 'industry_services' %}
+        <script src='{% static "industry_services/base_line/js/bs_info_forml_dis.js" %}'></script>
+        <script src='{% static "industry_services/base_line/js/bs_info_informl_dis.js" %}'></script>
+        <script src='{% static "industry_services/damage_losses/js/dl_formal_sector.js" %}'></script>
+        <script src='{% static "industry_services/damage_losses/js/dl_informal_sector.js" %}'></script>
+        <script src='{% static "industry_services/damage_losses/js/dl_summ_forml_informl_dis.js" %}'></script>
+        <script src='{% static "industry_services/damage_losses/js/dl_sum_forml_informl_dis_inputs.js" %}'></script>
+        <script src='{% static "industry_services/damage_losses/js/summary_ind_ser_of_damages_losses_province.js" %}'></script>
+        <script src='{% static "industry_services/damage_losses/js/dl_sum_nat.js" %}'></script>
 
-   });
+
+        <!--power_supply -->
+        {% elif module == 'power_supply' %}
+        <script src='{% static "power_supply/damage_losses/js/dl_ceb.js" %}'></script>
+        <script src='{% static "power_supply/base_line/js/bs_pow_gen_firms_dis.js" %}'></script>
+        <script src='{% static "power_supply/damage_losses/js/dl_pvt_pow_prod.js" %}'></script>
+        <script src='{% static "power_supply/damage_losses/js/dl_sum_powsup_dis.js" %}'></script>
+        <script src='{% static "power_supply/damage_losses/js/dl_sum_power_pro.js" %}'></script>
+        <script src='{% static "power_supply/damage_losses/js/dl_sum_power_nat.js" %}'></script>
+
+
+        {% elif module == 'dashboard' %}
+        <script src='{% static "dashboard/js/dashboard.js" %}'></script>
+
+        {% endif %}
+
+        <script>
+        $(function(){
+
+        $(".dropdown-menu li a").click(function(){
+
+          $(".btn:first-child").text($(this).text());
+          $(".btn:first-child").val($(this).text());
+
+       });
 
 
 
 
-});
-
-    </script>
+    });
 
 
+        </script>
 
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-   // $('.form-control').number( true, 2 );
-});
-</script>
 
-    <script>
-$( document ).ready(function() {
-$('#s1').on('click', function(){
-    $('#li1').removeClass('active');
-    $('#li2').addClass('active');
-});
-$('#s2').on('click', function(){
-    $('#li2').removeClass('active');
-    $('#li3').addClass('active');
-});
-$('#s3').on('click', function(){
-    $('#li3').removeClass('active');
-    $('#li4').addClass('active');
-});
-$('#s4').on('click', function(){
-    $('#li4').removeClass('active');
-    $('#li5').addClass('active');
-});
+        <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+       // $('.form-control').number( true, 2 );
+    });
 
-$(".input-md").keypress(function(event) {
-    if ( event.which == 45 ) {
-      event.preventDefault();
-      return false;
-    return true;
-     }
-});
-});
+        </script>
 
-function isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-    return true;
-   
-}
-    </script>
+        <script>
+    $( document ).ready(function() {
+    $('#s1').on('click', function(){
+        $('#li1').removeClass('active');
+        $('#li2').addClass('active');
+    });
+    $('#s2').on('click', function(){
+        $('#li2').removeClass('active');
+        $('#li3').addClass('active');
+    });
+    $('#s3').on('click', function(){
+        $('#li3').removeClass('active');
+        $('#li4').addClass('active');
+    });
+    $('#s4').on('click', function(){
+        $('#li4').removeClass('active');
+        $('#li5').addClass('active');
+    });
 
-<!-- <script type="text/javascript">
-$(function() {
-    $(':input[type="number"]').mask('000,000,000,000,000.00', {reverse: true});
-});
-</script> -->
+    $(".input-md").keypress(function(event) {
+        if ( event.which == 45 ) {
+          event.preventDefault();
+          return false;
+        return true;
+         }
+    });
+    });
 
+    function isNumberKey(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+
+    }
+
+        </script>
+
+        <!-- <script type="text/javascript">
+        $(function() {
+            $(':input[type="number"]').mask('000,000,000,000,000.00', {reverse: true});
+        });
+        </script> -->
+
+        <style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    </style>
     <style>
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -433,407 +438,464 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
         $this.parents('.panel').find('.panel-body').slideDown();
         $this.removeClass('panel-collapsed');
         $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+
     }
-})
-</script>
-<!-- <script>
-window.onload = function(){
-myNumber.value = commify(myNumber.value)
-myNumber.addEventListener("change", function(){
-  commify(event.target.value)
-})
-
-
-function commify(value){
-  var chars = value.split("").reverse()
-  var withCommas = []
-  for(var i = 1; i <= chars.length; i++ ){
-    withCommas.push(chars[i-1])
-    if(i%3==0 && i != chars.length ){  
-      withCommas.push(",")
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
-  }
-  var val = withCommas.reverse().join("")
-  myNumber.parentNode.setAttribute("comma-value",val)
-}
-}
-</script> -->
-</head>
-<body class="navbar-fixed sidebar-nav fixed-nav">
-<header class="navbar">
-    <div class="container-fluid">
-        <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">☰</button>
-        <a class="navbar-brand" href="{% url 'dashboard:index' %}"></a>
-        <ul class="nav navbar-nav hidden-md-down">
-            <li class="nav-item">
-                <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav float-xs-right hidden-md-down">
-            <li class="nav-item">
-                <!-- Split button -->
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-default">English</button>
-                    <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        <span class="caret">&nbsp;</span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">English</a></li>
-                        <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">සිංහල </a></li>
-                        <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">தமிழ்</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item dropdown" style="margin-left:10px!important;">
-                <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="true" aria-expanded="false">
-                   <!--  <img src="{% static 'dashboard/img/default-user-image.png' %}" class="img-avatar" alt=""> -->
-                    <span class="hidden-md-down"> {{user}} </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header text-xs-center">
-                        <strong>Account</strong>
-                    </div>
-                    <a class="dropdown-item" href="{% url 'admin:index' %}">
-                        <i class="fa fa-user"></i>
-                        Admin Panel
-                    </a>
-                    <a class="dropdown-item" href="{% url 'admin:logout' %}"><i class="fa fa-lock"></i> Logout</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                &nbsp;
-            </li>
-        </ul>
-    </div>
-</header>
-<div class="sidebar">
-    <nav class="sidebar-nav">
-       <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:index' %}"><i class="icon-speedometer" style="font-size:20px;font-weight: bold;color:#fff;"></i> Dashboard </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:health_main' %}"><img src="{% static 'dashboard/img/healthm.png' %}"></i> Health
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:education_main' %}"><img src="{% static 'dashboard/img/edum.png' %}">
-                    Education </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:mining_main' %}"><img src="{% static 'dashboard/img/mimningm.png' %}"> Mining
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:othergov_main' %}"><img src="{% static 'dashboard/img/otherm.png' %}" style="width:18px;"> Other
-                    Gov. Services </a>
-            </li>
-            <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><img src="{% static 'dashboard/img/picture1m.png' %}"> Transportation</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_air_main' %}"><img src="{% static 'dashboard/img/air.png' %}"> Air</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_land_main' %}"><img src="{% static 'dashboard/img/bus.png' %}"> Land</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_rail_main' %}"><img src="{% static 'dashboard/img/train.png' %}"> Rail</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_water_main' %}"><img src="{% static 'dashboard/img/boats.png' %}"> Water </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:transport_summary_main' %}"><img src="{% static 'dashboard/img/summary.png' %}">
-                            Summary </a>
-                    </li>
-                    <li class="nav-item">
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><img src="{% static 'dashboard/img/picture3m.png' %}"> Agriculture</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_agrarian_main' %}"><img src="{% static 'dashboard/img/agrarian.png' %}"> Agrarian</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_livestock_main' %}"><img src="{% static 'dashboard/img/cow.png' %}"> Livestock </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_fisheries_main' %}"><img src="{% static 'dashboard/img/fish.png' %}"> Fisheries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_irrigation_main' %}"><img src="{% static 'dashboard/img/lake.png' %}"> Irrigation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dashboard:agri_summary_main' %}"><img src="{% static 'dashboard/img/summary.png' %}">
-                            Summary </a>
-                    </li>
-                    <li class="nav-item">
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:water_supply_main' %}"><img src="{% static 'dashboard/img/waterm.png' %}"> Water Supply </a>
-            </li>
-            <!--li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Transportation </a>
-            </li-->
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:power_supply_main' %}"><img src="{% static 'dashboard/img/picture2m.png' %}"> Power Supply </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:housing_main' %}"><img src="{% static 'dashboard/img/picture4m.png' %}"> Housing </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:tourism_main' %}"><img src="{% static 'dashboard/img/tourismm.png' %}"> Tourism </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:industry_services_main' %}"><img src="{% static 'dashboard/img/industirym.png' %}"> Industry and Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:telecom_main' %}"><img src="{% static 'dashboard/img/telem.png' %}"> Telecommunications</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'reports:index_report' %}"><i class="icon-doc" style="font-size:20px;font-weight: bold;color:#fff;"></i> Report </a>
-            </li>
-             <li class="nav-item">
-                <a class="nav-link" href="{% url 'new_charts:index_charts' %}"><i class="icon-chart" style="font-size:20px;font-weight: bold;color:#fff;"></i> Charts </a>
-            </li>
-            <!--<li class="nav-item">-->
-                <!--<a class="nav-link" href="{% url 'charts:index_chart' %}"><i class="icon-pie-chart" style="font-size:20px;font-weight: bold;color:#fff;"></i> Chart</a>-->
-            <!--</li>-->
-        </ul>
-    </nav>
-</div>
-{% block content %}
-{% endblock content %}
 
-<footer class="footer" style="background:#fff;height:60px;padding:5px;">
-    <div class="col-md-12">
-        <!-- Save Success Model -->
-        <div class="modal fade" id="modal-container-239453" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Save Data
-                        </h4>
-                    </div>
-                    <div class="modal-body alert-success">
-                        <h4><span class="icon-check"> </span> Data Saved Successfully! </h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                                class="btn btn-primary">
-                            OK
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    input[type=number] {
+        -moz-appearance:textfield;
+       /* text-align:right; */
+    }
+    .clickable{
+        cursor: pointer;
+    }
 
-        <!-- Information already exists Model -->
-        <div class="modal fade" id="modal-container-239454" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Save Data
-                        </h4>
-                    </div>
-                    <div class="modal-body alert-info">
-                        <h4><span class="icon-info"> </span> Information already exists  ! </h4>
-                    </div>
-                    <div class="modal-footer">
-                       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button> -->
-                        <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                                class="btn btn-primary">
-                            OK
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    .panel-heading span {
+        margin-top: -20px;
+        font-size: 15px;
+    }
+    td[comma-value]{
+        position:relative;
+    }
+    td[comma-value]:before{
+        content: attr(comma-value);
+        position:absolute;
+        left:0;
+    }
+    td[comma-value] input{
+        color:#fff;
+    }
+    .card-inverse {height:130px;}
 
-        <!-- Update the baseline Model -->
-        <div class="modal fade" id="modal-container-239455" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Warning!
-                        </h4>
-                    </div>
-                    <div class="modal-body alert-warning">
-                        <h4><span class="icon-close"> </span> Please update the baseline information before you calculate the damage and loss ! </h4>
-                    </div>
-                    <div class="modal-footer">
-                       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button> -->
-                        <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                                class="btn btn-primary">
-                            OK
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- No related Data Model -->
-        <div class="modal fade" id="modal-container-239456" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Warning!
-                        </h4>
-                    </div>
-                    <div class="modal-body alert-warning">
-                        <h4><span class="icon-close"> </span> No Related data found! </h4>
-                    </div>
-                    <div class="modal-footer">
-                       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button> -->
-                        <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                                class="btn btn-primary">
-                            OK
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Delete confoamation -->
-        <div class="modal fade" id="modal-container-239457" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Warning!
-                        </h4>
-                    </div>
-                    <div class="modal-body alert-warning">
-                        <h4>
-                            <span class="icon-close"></span>
-                            Unable to delete enumirator, damage and lost data found acordin to this enumirator!
-                        </h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="ok" onclick="javascript:window.location.reload()" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">
-                            OK
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-<div class="text-center mb-80">
-                   
-                    <div class="col-md-2">
-
-                        <img src="{% static 'dashboard/img/01-500x500.jpg' %}" style="height:40px;">
-                        <img src="{% static 'dashboard/img/DMC.gif' %}" style="height:40px;">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="{% static 'dashboard/img/World-Bank.png' %}" style="height:50px;">
-
-                    </div>
-
-                    <div class="col-md-2">
-                        <img src="{% static 'dashboard/img/ADPC Logo.jpg' %}" style="height:40px;margin-top:5px;">
-
-                    </div>
-
-                    <div class="col-md-2">
-                      
-                        <img src="{% static 'dashboard/img/Geo_Logo copy.png' %}" style="height:30px;margin-top:10px;">
-
-                    </div>
-                     <div class="col-md-4">
-
-    <span class="text-left">
-           
-    </span>
-    <span class="float-xs-right">
-            Developed by <a href="http://geoedge.lk">GeoEDGE</a>
-    </span>
-                     </div>
-
-        </div>
-
-
-
-
-
-<br>
-
-</footer>
-
-   
-<script>
-$(document).ready(function(){ 
-  $('body').find("input[type=number]").each(function(ev)
-  {
-      if(!$(this).val()) { 
-     $(this).attr("placeholder", "0");
-  }
-  });
-  
-});
-</script>
-<script>
-  $(document).ready(function() {
- $('#datepicker').datepicker({
-    autoclose: true,
-    minViewMode: 1,
-    format: 'mm/yyyy'
-}).on('changeDate', function(selected){
-        startDate = new Date(selected.date.valueOf());
-        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
-        $('.to').datepicker('setStartDate', startDate);
+        </style>
+        <script>
+    $(document).ready(function(){
+    $.fn.digits = function(){
+        return this.each(function(){
+            $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
+        })
+    }
     });
-  });
+
+        </script>
+        <script>
+    $(document).on('click', '.panel-heading span.clickable', function(e){
+        var $this = $(this);
+        if(!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
+        }
+    })
+
+        </script>
+        <!-- <script>
+        window.onload = function(){
+        myNumber.value = commify(myNumber.value)
+        myNumber.addEventListener("change", function(){
+          commify(event.target.value)
+        })
 
 
-</script>
-<script>
-</script>
-<script src='{% static "dashboard/js/app.js" %}'></script>
+        function commify(value){
+          var chars = value.split("").reverse()
+          var withCommas = []
+          for(var i = 1; i <= chars.length; i++ ){
+            withCommas.push(chars[i-1])
+            if(i%3==0 && i != chars.length ){
+              withCommas.push(",")
+            }
+          }
+          var val = withCommas.reverse().join("")
+          myNumber.parentNode.setAttribute("comma-value",val)
+        }
+        }
+        </script> -->
+    </head>
+    <body class="navbar-fixed sidebar-nav fixed-nav">
+        <header class="navbar">
+            <div class="container-fluid">
+                <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">☰</button>
+                <a class="navbar-brand" href="{% url 'dashboard:index' %}"></a>
+                <ul class="nav navbar-nav hidden-md-down">
+                    <li class="nav-item">
+                        <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav float-xs-right hidden-md-down">
+                    <li class="nav-item">
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-default">English</button>
+                            <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <span class="caret">&nbsp;</span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">English</a></li>
+                                <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">සිංහල </a></li>
+                                <li><a class="dropdown-item" style="padding:3px 1.5rem;" href="#">தமிழ்</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-left:10px!important;">
+                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <!--  <img src="{% static 'dashboard/img/default-user-image.png' %}" class="img-avatar" alt=""> -->
+                            <span class="hidden-md-down"> {{user}} </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-header text-xs-center">
+                                <strong>Account</strong>
+                            </div>
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">
+                                <i class="fa fa-user"></i>
+                                Admin Panel
+                            </a>
+                            <a class="dropdown-item" href="{% url 'admin:logout' %}"><i class="fa fa-lock"></i> Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        &nbsp;
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:index' %}"><i class="icon-speedometer"
+                                                                                  style="font-size:20px;font-weight: bold;color:#fff;"></i>
+                            Dashboard </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:health_main' %}"><img
+                                src="{% static 'dashboard/img/healthm.png' %}"></i> Health
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:education_main' %}"><img
+                                src="{% static 'dashboard/img/edum.png' %}">
+                            Education </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:mining_main' %}"><img
+                                src="{% static 'dashboard/img/mimningm.png' %}"> Mining
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:othergov_main' %}"><img
+                                src="{% static 'dashboard/img/otherm.png' %}" style="width:18px;"> Other
+                            Gov. Services </a>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><img src="{% static 'dashboard/img/picture1m.png' %}">
+                            Transportation</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:transport_air_main' %}"><img
+                                        src="{% static 'dashboard/img/air.png' %}"> Air</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:transport_land_main' %}"><img
+                                        src="{% static 'dashboard/img/bus.png' %}"> Land</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:transport_rail_main' %}"><img
+                                        src="{% static 'dashboard/img/train.png' %}"> Rail</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:transport_water_main' %}"><img
+                                        src="{% static 'dashboard/img/boats.png' %}"> Water </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:transport_summary_main' %}"><img
+                                        src="{% static 'dashboard/img/summary.png' %}">
+                                    Summary </a>
+                            </li>
+                            <li class="nav-item">
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><img src="{% static 'dashboard/img/picture3m.png' %}">
+                            Agriculture</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:agri_agrarian_main' %}"><img
+                                        src="{% static 'dashboard/img/agrarian.png' %}"> Agrarian</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:agri_livestock_main' %}"><img
+                                        src="{% static 'dashboard/img/cow.png' %}"> Livestock </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:agri_fisheries_main' %}"><img
+                                        src="{% static 'dashboard/img/fish.png' %}"> Fisheries</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:agri_irrigation_main' %}"><img
+                                        src="{% static 'dashboard/img/lake.png' %}"> Irrigation</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard:agri_summary_main' %}"><img
+                                        src="{% static 'dashboard/img/summary.png' %}">
+                                    Summary </a>
+                            </li>
+                            <li class="nav-item">
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:water_supply_main' %}"><img
+                                src="{% static 'dashboard/img/waterm.png' %}"> Water Supply </a>
+                    </li>
+                    <!--li class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-speedometer"></i> Transportation </a>
+                    </li-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:power_supply_main' %}"><img
+                                src="{% static 'dashboard/img/picture2m.png' %}"> Power Supply </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:housing_main' %}"><img
+                                src="{% static 'dashboard/img/picture4m.png' %}"> Housing </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:tourism_main' %}"><img
+                                src="{% static 'dashboard/img/tourismm.png' %}"> Tourism </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:industry_services_main' %}"><img
+                                src="{% static 'dashboard/img/industirym.png' %}"> Industry and Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard:telecom_main' %}"><img
+                                src="{% static 'dashboard/img/telem.png' %}"> Telecommunications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reports:index_report' %}"><i class="icon-doc"
+                                                                                       style="font-size:20px;font-weight: bold;color:#fff;"></i>
+                            Report </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'new_charts:index_charts' %}"><i class="icon-chart"
+                                                                                          style="font-size:20px;font-weight: bold;color:#fff;"></i>
+                            Charts </a>
+                    </li>
+                    <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" href="{% url 'charts:index_chart' %}"><i class="icon-pie-chart" style="font-size:20px;font-weight: bold;color:#fff;"></i> Chart</a>-->
+                    <!--</li>-->
+                </ul>
+            </nav>
+        </div>
+    {% block content %}
+    {% endblock content %}
 
+        <footer class="footer" style="background:#fff;height:60px;padding:5px;">
+            <div class="col-md-12">
+                <!-- Save Success Model -->
+                <div class="modal fade" id="modal-container-239453" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Save Data
+                                </h4>
+                            </div>
+                            <div class="modal-body alert-success">
+                                <h4><span class="icon-check"> </span> Data Saved Successfully! </h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                                        class="btn btn-primary">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-</body>
+                <!-- Information already exists Model -->
+                <div class="modal fade" id="modal-container-239454" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Save Data
+                                </h4>
+                            </div>
+                            <div class="modal-body alert-info">
+                                <h4><span class="icon-info"> </span> Information already exists ! </h4>
+                            </div>
+                            <div class="modal-footer">
+                                <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
+                                     Close
+                                 </button> -->
+                                <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                                        class="btn btn-primary">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Update the baseline Model -->
+                <div class="modal fade" id="modal-container-239455" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Warning!
+                                </h4>
+                            </div>
+                            <div class="modal-body alert-warning">
+                                <h4><span class="icon-close"> </span> Please update the baseline information before you
+                                    calculate the damage and loss ! </h4>
+                            </div>
+                            <div class="modal-footer">
+                                <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
+                                     Close
+                                 </button> -->
+                                <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                                        class="btn btn-primary">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No related Data Model -->
+                <div class="modal fade" id="modal-container-239456" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Warning!
+                                </h4>
+                            </div>
+                            <div class="modal-body alert-warning">
+                                <h4><span class="icon-close"> </span> No Related data found! </h4>
+                            </div>
+                            <div class="modal-footer">
+                                <!--  <button type="button" class="btn btn-default" data-dismiss="modal">
+                                     Close
+                                 </button> -->
+                                <button id="ok" onclick="javascript:window.location.reload()" type="button"
+                                        class="btn btn-primary">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delete confoamation -->
+                <div class="modal fade" id="modal-container-239457" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    ×
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Warning!
+                                </h4>
+                            </div>
+                            <div class="modal-body alert-warning">
+                                <h4>
+                                    <span class="icon-close"></span>
+                                    Unable to delete enumirator, damage and lost data found acordin to this enumirator!
+                                </h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="ok" onclick="javascript:window.location.reload()" class="btn btn-primary"
+                                        data-dismiss="modal" aria-hidden="true">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mb-80">
+                <div class="col-md-2">
+                    <img src="{% static 'dashboard/img/01-500x500.jpg' %}" style="height:40px;">
+                    <img src="{% static 'dashboard/img/DMC.gif' %}" style="height:40px;">
+                </div>
+                <div class="col-md-2">
+                    <img src="{% static 'dashboard/img/World-Bank.png' %}" style="height:50px;">
+                </div>
+                <div class="col-md-2">
+                    <img src="{% static 'dashboard/img/ADPC Logo.jpg' %}" style="height:40px;margin-top:5px;">
+                </div>
+                <div class="col-md-2">
+                    <img src="{% static 'dashboard/img/Geo_Logo copy.png' %}" style="height:30px;margin-top:10px;">
+                </div>
+                <div class="col-md-4">
+                    <span class="text-left"></span>
+                    <span class="float-xs-right">
+                        Developed by <a href="http://geoedge.lk">GeoEDGE</a>
+                    </span>
+                </div>
+            </div>
+            <br>
+        </footer>
+    <script>
+    $(document).ready(function(){
+      $('body').find("input[type=number]").each(function(ev)
+      {
+          if(!$(this).val()) {
+         $(this).attr("placeholder", "0");
+      }
+      });
+
+    });
+    </script>
+    <script>
+      $(document).ready(function() {
+     $('#datepicker').datepicker({
+        autoclose: true,
+        minViewMode: 1,
+        format: 'mm/yyyy'
+    }).on('changeDate', function(selected){
+            startDate = new Date(selected.date.valueOf());
+            startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+            $('.to').datepicker('setStartDate', startDate);
+        });
+      });
+    </script>
+    <script>
+    </script>
+    <script src='{% static "dashboard/js/app.js" %}'></script>
+    </body>
 </html>

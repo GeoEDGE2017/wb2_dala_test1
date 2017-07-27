@@ -8,6 +8,7 @@
     
   });
   
+
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsRparplCosAsstsApp" ng-controller="bsRparplCosAsstsController">
@@ -15,11 +16,13 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation  Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Repair and Replacement Costs of Irrigation Assets</span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
+                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_rparpl_cos_assts">
         <div>
@@ -39,17 +42,19 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                             </td>
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.district.$error.required">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_rparpl_cos_assts.district.$error.required">
                                     Please Select District
                                 </span>
                             </td>
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_bs_rparpl_cos_assts.baselineDate.$error.required">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_rparpl_cos_assts.baselineDate.$error.required">
                                     Please Select Date
                                 </span>
                             </td>
@@ -59,19 +64,22 @@
                                 District
                             </td>
                             <td width="118">
-                                <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
+                                <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()"
+                                        ng-model="district" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
-                                        <option value={{ district.id }}>{{ district.name }}</option>
+                                    <option value={{ district.id }}>{{ district.name }}</option>
                                     {% endfor %}
                                 </select>
                             </td>
-                           
+
                             <td width="128" colspan="2" style="padding-left:5px;">
                                 Year/Month
                             </td>
                             <td width="183">
-                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-change="changeDis()"  ng-model="bs_date" class="form-control input-md" required>
+                                <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker"
+                                       ng-change="changeDis()" ng-model="bs_date" class="form-control input-md"
+                                       required>
                             </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
@@ -81,12 +89,14 @@
                             </td>
                             <td width="118" colspan="3">
                                 <input type="text" class="form-control" name="division" ng-model="division" required>
-                                 <span class="arrow_box1" style="color:red;" ng-show="submitted && form_bs_rparpl_cos_assts.division.$error.required" ng-model="division">
+                                <span class="arrow_box1" style="color:red;"
+                                      ng-show="submitted && form_bs_rparpl_cos_assts.division.$error.required"
+                                      ng-model="division">
                                     Please Select division
                                 </span>
                             </td>
-                            <td  width="427">
-                               
+                            <td width="427">
+
                             </td>
                         </tr>
                         <tr class="trhead1" height="19">
@@ -95,12 +105,14 @@
                             </td>
                             <td width="118" colspan="3">
                                 <input type="text" class="form-control" name="region" ng-model="region" required>
-                                 <span class="arrow_box1" style="color:red;"s ng-show="submitted && form_bs_rparpl_cos_assts.region.$error.required" ng-model="region">
+                                <span class="arrow_box1" style="color:red;" s
+                                      ng-show="submitted && form_bs_rparpl_cos_assts.region.$error.required"
+                                      ng-model="region">
                                     Please Select region
                                 </span>
                             </td>
-                            <td  width="427">
-                                
+                            <td width="427">
+
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -109,48 +121,52 @@
                             </td>
                         </tr>
                         <tr class="trheadc1" height="34">
-                                <td width="258" height="34">
-                                    Type
-                                </td>
-                                <td colspan="3" width="362">
-                                    Average Repair Cost (LKR/m)
-                                </td>
-                                <td width="183">
-                                    Average Replacement Cost (LKR/m)
-                                </td>
-                            </tr>
-                            </tbody>
-                            </table>
-                          <div id="boxscroll" style="height:400px;overflow:auto;">
+                            <td width="258" height="34">
+                                Type
+                            </td>
+                            <td colspan="3" width="362">
+                                Average Repair Cost (LKR/m)
+                            </td>
+                            <td width="183">
+                                Average Replacement Cost (LKR/m)
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
-                  
+
                             <tbody>
                             <tr class="trheadc" height="34">
                                 <td width="258" height="34" style="width:24.5%;">
                                     Major Tanks
                                 </td>
                                 <td colspan="3" width="362" style="width:35%;">
-                                    
+
                                 </td>
                                 <td width="183">
-                                    
+
                                 </td>
                             </tr>
-                            <tr height="19" ng-repeat="bsRciaMajorTanks in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMajorTanks">
-                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaMajorTanks.irrigation_facility" ng-if="$index < 6">
+                            <tr height="19"
+                                ng-repeat="bsRciaMajorTanks in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMajorTanks">
+                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaMajorTanks.irrigation_facility"
+                                    ng-if="$index < 6">
                                     Tank 1
                                 </td>
                                 <td width="98" ng-if="$index > 5">
                                     {% verbatim %}
-                                    <button id="delete" ng-click="removeItem('BsRciaMajorTanks', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <button id="delete" ng-click="removeItem('BsRciaMajorTanks', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:80%;float:right;" name="bsRciaMajorTanks_{{$index}}" ng-model="bsRciaMajorTanks.irrigation_facility"
-                                        popover="This field is required"
-                                        popover-toggle="form_bs_irg_facilities['bsRciaMajorTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMajorTanks_' + $index].$valid"
-                                        popover-placement="top" required
-                                        type="text"
-                                        class="form-control input-md">
+                                    <input style="width:80%;float:right;" name="bsRciaMajorTanks_{{$index}}"
+                                           ng-model="bsRciaMajorTanks.irrigation_facility"
+                                           popover="This field is required"
+                                           popover-toggle="form_bs_irg_facilities['bsRciaMajorTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMajorTanks_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3">
@@ -159,13 +175,15 @@
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bsRciaMajorTanks.avg_replacement_cost">
+                                           class="form-control input-md"
+                                           ng-model="bsRciaMajorTanks.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
                                 <td class="tdpa" width="258" height="19">
                                     Others
-                                    <button ng-click="insertAsset('BsRciaMajorTanks')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <button ng-click="insertAsset('BsRciaMajorTanks')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
                                         <span class="fa fa-plus"></span>
                                     </button>
                                 </td>
@@ -183,20 +201,24 @@
                                 <td width="183">
                                 </td>
                             </tr>
-                            <tr height="19" ng-repeat="bsRciaMediumTanks in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMediumTanks">
-                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaMediumTanks.irrigation_facility" ng-if="$index < 6">
+                            <tr height="19"
+                                ng-repeat="bsRciaMediumTanks in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMediumTanks">
+                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaMediumTanks.irrigation_facility"
+                                    ng-if="$index < 6">
                                 </td>
                                 <td width="98" ng-if="$index > 5">
                                     {% verbatim %}
-                                    <button id="delete" ng-click="removeItem('BsRciaMediumTanks', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <button id="delete" ng-click="removeItem('BsRciaMediumTanks', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:80%;float:right;" name="bsRciaMediumTanks_{{$index}}" ng-model="bsRciaMediumTanks.irrigation_facility"
-                                        popover="This field is required"
-                                        popover-toggle="form_bs_irg_facilities['bsRciaMediumTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMediumTanks_' + $index].$valid"
-                                        popover-placement="top" required
-                                        type="text"
-                                        class="form-control input-md">
+                                    <input style="width:80%;float:right;" name="bsRciaMediumTanks_{{$index}}"
+                                           ng-model="bsRciaMediumTanks.irrigation_facility"
+                                           popover="This field is required"
+                                           popover-toggle="form_bs_irg_facilities['bsRciaMediumTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMediumTanks_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3">
@@ -205,13 +227,15 @@
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bsRciaMediumTanks.avg_replacement_cost">
+                                           class="form-control input-md"
+                                           ng-model="bsRciaMediumTanks.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
                                 <td class="tdpa" width="258" height="19">
                                     Others
-                                    <button ng-click="insertAsset('BsRciaMediumTanks')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <button ng-click="insertAsset('BsRciaMediumTanks')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
                                         <span class="fa fa-plus"></span>
                                     </button>
                                 </td>
@@ -229,20 +253,24 @@
                                 <td width="183">
                                 </td>
                             </tr>
-                            <tr height="19" ng-repeat="bsRciaMinorTanks in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMinorTanks">
-                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaMinorTanks.irrigation_facility" ng-if="$index < 6">
+                            <tr height="19"
+                                ng-repeat="bsRciaMinorTanks in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMinorTanks">
+                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaMinorTanks.irrigation_facility"
+                                    ng-if="$index < 6">
                                 </td>
                                 <td width="98" ng-if="$index > 5">
                                     {% verbatim %}
-                                    <button id="delete" ng-click="removeItem('BsRciaMinorTanks', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <button id="delete" ng-click="removeItem('BsRciaMinorTanks', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:80%;float:right;" name="bsRciaMediumTanks_{{$index}}" ng-model="bsRciaMinorTanks.irrigation_facility"
-                                        popover="This field is required"
-                                        popover-toggle="form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$valid"
-                                        popover-placement="top" required
-                                        type="text"
-                                        class="form-control input-md">
+                                    <input style="width:80%;float:right;" name="bsRciaMediumTanks_{{$index}}"
+                                           ng-model="bsRciaMinorTanks.irrigation_facility"
+                                           popover="This field is required"
+                                           popover-toggle="form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$dirty && !form_bs_irg_facilities['bsRciaMinorTanks_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3">
@@ -251,13 +279,15 @@
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bsRciaMinorTanks.avg_replacement_cost">
+                                           class="form-control input-md"
+                                           ng-model="bsRciaMinorTanks.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
                                 <td class="tdpa" width="258" height="19">
                                     Others
-                                    <button ng-click="insertAsset('BsRciaMinorTanks')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <button ng-click="insertAsset('BsRciaMinorTanks')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
                                         <span class="fa fa-plus"></span>
                                     </button>
                                 </td>
@@ -279,20 +309,24 @@
                                 <td width="183">
                                 </td>
                             </tr>
-                            <tr height="19" ng-repeat="bsRciaAnicuts in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaAnicuts">
-                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaAnicuts.irrigation_facility" ng-if="$index < 6">
+                            <tr height="19"
+                                ng-repeat="bsRciaAnicuts in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaAnicuts">
+                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaAnicuts.irrigation_facility"
+                                    ng-if="$index < 6">
                                 </td>
                                 <td width="98" ng-if="$index > 5">
                                     {% verbatim %}
-                                    <button id="delete" ng-click="removeItem('BsRciaAnicuts', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <button id="delete" ng-click="removeItem('BsRciaAnicuts', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:90%;float:right;" name="bsRciaAnicuts_{{$index}}" ng-model="bsRciaAnicuts.irrigation_facility"
-                                        popover="This field is required"
-                                        popover-toggle="form_bs_irg_facilities['bsRciaAnicuts_' + $index].$dirty && !form_bs_irg_facilities['bsRciaAnicuts_' + $index].$valid"
-                                        popover-placement="top" required
-                                        type="text"
-                                        class="form-control input-md">
+                                    <input style="width:90%;float:right;" name="bsRciaAnicuts_{{$index}}"
+                                           ng-model="bsRciaAnicuts.irrigation_facility"
+                                           popover="This field is required"
+                                           popover-toggle="form_bs_irg_facilities['bsRciaAnicuts_' + $index].$dirty && !form_bs_irg_facilities['bsRciaAnicuts_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3">
@@ -307,7 +341,8 @@
                             <tr height="19">
                                 <td class="tdpa" width="258" height="19">
                                     Others
-                                    <button ng-click="insertAsset('BsRciaAnicuts')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <button ng-click="insertAsset('BsRciaAnicuts')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
                                         <span class="fa fa-plus"></span>
                                     </button>
                                 </td>
@@ -325,35 +360,42 @@
                                 <td width="183">
                                 </td>
                             </tr>
-                            <tr height="19" ng-repeat="bsRciaOtherStructures in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaOtherStructures">
-                                <td class="tdpa" width="258" height="19" ng-bind="bsRciaOtherStructures.irrigation_facility" ng-if="$index < 14">
+                            <tr height="19"
+                                ng-repeat="bsRciaOtherStructures in bsRparplCosAssts.agri_irrigation.Table_2.BsRciaOtherStructures">
+                                <td class="tdpa" width="258" height="19"
+                                    ng-bind="bsRciaOtherStructures.irrigation_facility" ng-if="$index < 14">
                                 </td>
                                 <td width="98" ng-if="$index > 13">
                                     {% verbatim %}
-                                    <button id="delete" ng-click="removeItem('BsRciaOtherStructures', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <button id="delete" ng-click="removeItem('BsRciaOtherStructures', $index)"
+                                            class="btn btn-sm btn-danger btn-circle">
                                         <i class="fa fa-minus"></i>
                                     </button>
-                                    <input style="width:80%;float:right;" name="bsRciaOtherStructures_{{$index}}" ng-model="bsRciaOtherStructures.irrigation_facility"
-                                        popover="This field is required"
-                                        popover-toggle="form_bs_irg_facilities['bsRciaOtherStructures_' + $index].$dirty && !form_bs_irg_facilities['bsRciaOtherStructures_' + $index].$valid"
-                                        popover-placement="top" required
-                                        type="text"
-                                        class="form-control input-md">
+                                    <input style="width:80%;float:right;" name="bsRciaOtherStructures_{{$index}}"
+                                           ng-model="bsRciaOtherStructures.irrigation_facility"
+                                           popover="This field is required"
+                                           popover-toggle="form_bs_irg_facilities['bsRciaOtherStructures_' + $index].$dirty && !form_bs_irg_facilities['bsRciaOtherStructures_' + $index].$valid"
+                                           popover-placement="top" required
+                                           type="text"
+                                           class="form-control input-md">
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bsRciaOtherStructures.avg_repair_cost">
+                                           class="form-control input-md"
+                                           ng-model="bsRciaOtherStructures.avg_repair_cost">
                                 </td>
                                 <td width="183">
                                     <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bsRciaOtherStructures.avg_replacement_cost">
+                                           class="form-control input-md"
+                                           ng-model="bsRciaOtherStructures.avg_replacement_cost">
                                 </td>
                             </tr>
                             <tr height="19">
                                 <td class="tdpa" width="258" height="19">
                                     Others
-                                    <button ng-click="insertAsset('BsRciaOtherStructures')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <button ng-click="insertAsset('BsRciaOtherStructures')"
+                                            class="btn btn-sm btn-info btn-circle" id="insert">
                                         <span class="fa fa-plus"></span>
                                     </button>
                                 </td>
@@ -362,16 +404,21 @@
                                 <td width="183">
                                 </td>
                             </tr>
-                            <tr height="19" ng-repeat="bsRciRiverEmbankmnt in bsRparplCosAssts.agri_irrigation.Table_2.BsRciRiverEmbankmnt" ng-if="bsRciRiverEmbankmnt.irrigation_facility == 'River Embankments'">
-                                <td class="tdpa" width="258" height="19" ng-model="bsRciRiverEmbankmnt.irrigation_facility">
+                            <tr height="19"
+                                ng-repeat="bsRciRiverEmbankmnt in bsRparplCosAssts.agri_irrigation.Table_2.BsRciRiverEmbankmnt"
+                                ng-if="bsRciRiverEmbankmnt.irrigation_facility == 'River Embankments'">
+                                <td class="tdpa" width="258" height="19"
+                                    ng-model="bsRciRiverEmbankmnt.irrigation_facility">
                                     River Embankments
                                 </td>
                                 <td colspan="3">
-                                    <input id="textinput" name="textinput" type="number" placeholder="" ng-model="bsRciRiverEmbankmnt.avg_repair_cost"
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           ng-model="bsRciRiverEmbankmnt.avg_repair_cost"
                                            class="form-control input-md">
                                 </td>
                                 <td width="183">
-                                    <input id="textinput" name="textinput" type="number" placeholder="" ng-model="bsRciRiverEmbankmnt.avg_replacement_cost"
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           ng-model="bsRciRiverEmbankmnt.avg_replacement_cost"
                                            class="form-control input-md">
                                 </td>
                             </tr>
@@ -414,7 +461,8 @@
                                 (LKR/sqm)
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="bsRciBuildings in bsRparplCosAssts.agri_irrigation.Table_2.BsRciBuildings">
+                        <tr height="19"
+                            ng-repeat="bsRciBuildings in bsRparplCosAssts.agri_irrigation.Table_2.BsRciBuildings">
                             <td class="tdpa" width="258" height="19" ng-bind="bsRciBuildings.irrigation_facility">
                             </td>
                             <td width="118">
@@ -436,24 +484,26 @@
                         </tr>
                         </tbody>
                     </table>
-                    
+
                     <div class="pull-right">
                         <br>
-                            <button type="button"  ng-click="clear()" class="btn btn-info">Clear</button>
-                            <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="bsHsDataEdit(form_bs_rparpl_cos_assts)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
                     </span>
-                    <span ng-if="!is_edit_disable">
+                        <span ng-if="!is_edit_disable">
                         <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit
-                            </button>
-                            <button type="button" ng-click="saveBsData(form_bs_rparpl_cos_assts)" class="btn btn-success">Submit
-                            </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-click="saveBsData(form_bs_rparpl_cos_assts)" class="btn btn-success">
+                            Submit
+                        </button>
                     </div>
                     <br><br>
                 </div>

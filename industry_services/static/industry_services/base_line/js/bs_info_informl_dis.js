@@ -49,9 +49,6 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     }
 
     $scope.removeItem = function removeItem(table, index) {
-        // Following conditions can be checked in a single if
-        // separated for readability
-
         if(table == 'BsNumBusSector') {
             $scope.bs_ind_ser_info_informl.industry_services.Table_2.BsNumBusSector.splice(index, 1);
         }
@@ -73,7 +70,6 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     }
 
     $scope.cancelEdit = function() {
-        //console.log("init")
         $scope.is_edit = false;
         $scope.bs_ind_ser_info_informl = angular.copy(init_data);
     }
@@ -97,7 +93,6 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
             }).success(function(data) {
                 $scope.bs_tourism_facilities = init_data;
                 $scope.is_edit = false;
-
                 if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
@@ -113,7 +108,6 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -124,15 +118,12 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
-
                     }
                 }),
             }).success(function(data) {
                 console.log("data" , data);
-                // handling response from server if data are not available in this
                 if((data.industry_services.Table_2.BsNumBusSector.length == 0)) {
                     $scope.is_edit = false;
-                    // do nothing or display msg that data are not available
                 }
                 else {
                     $scope.bs_ind_ser_info_informl = data;

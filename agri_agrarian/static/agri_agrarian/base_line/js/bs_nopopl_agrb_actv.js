@@ -12,7 +12,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.bs_date;
     $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'agri_agrarian': {
             'Table_1': {
@@ -112,8 +112,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.bsNopoplAgrbActv = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis(){
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -122,7 +121,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         }
     }
 
-//Add Enumerate fields
+    //Add Enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsNopoplAgrbActv.agri_agrarian.Table_1[table]);
         var new_row;
@@ -180,7 +179,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         $scope.bsNopoplAgrbActv.agri_agrarian.Table_1[table].push(new_row);
     }
 
-//Remove Enumerate fields
+    //Remove Enumerate fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BcagSeasonalCrops') {
             $scope.bsNopoplAgrbActv.agri_agrarian.Table_1.BcagSeasonalCrops.splice(index, 1);
@@ -199,11 +198,10 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         }
     }
 
-//Save data
+    //Save data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
-        console.log($scope.bsNopoplAgrbActv);
              $http({
                 method: "POST",
                 url: "/bs_save_data",
@@ -218,10 +216,8 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
                     'sector':'agri_agrarian'
                 }),
             }).success(function(data) {
-
                 $scope.bsNopoplAgrbActv = init_data;
                 $scope.is_edit = false;
-
                 if (data == 'False')
                     {
                     $("#modal-container-239454").modal('show');
@@ -229,46 +225,41 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
                 }
                 else
                     $("#modal-container-239453").modal('show');
-
             })
         }
     }
 
-//Edit Data
+    //Edit Data
     $scope.bsHsDataEdit = function(form){
-    $scope.submitted = true;
-
-       $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_1',
-              'sector': 'agri_agrarian',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date} }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsNopoplAgrbActv = data;
-        })
-
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        if (form.$valid) {
+            $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                  'table_name': 'Table_1',
+                  'sector': 'agri_agrarian',
+                  'com_data': {'district': $scope.district,
+                  'bs_date': $scope.bs_date} }),
+            }).success(function(data) {
+            console.log(data);
+            $scope.bsNopoplAgrbActv = data;
+            })
+        }
 
     }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsNopoplAgrbActv = init_data;
     }
 
-
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsNopoplAgrbActv = angular.copy(init_data);
-
-
     }
 }]);

@@ -16,7 +16,6 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
     $scope.totalyear2vt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.grndtotaldpub = 0;
     $scope.grndtotaldpvt = 0;
@@ -34,78 +33,58 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
-
         if($scope.incident && selectProvinces) {
-
          fetchProvinces();
         }
-
     }
     $scope.provinces = [];
 
-    function fetchProvinces()
-    {
-
-          $http({
+    function fetchProvinces(){
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-                console.log(data);
-
+                'incident': $scope.incident
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = "";
+            console.log(data);
             })
-
     }
 
     $scope.fetchDlData = function(form){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-            $http({
+    $scope.is_edit = true;
+    $scope.submitted = true;
+        $http({
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':  ['Table_9','Table_5',],
-            'sector': ['agri_agrarian','agri_livestock'],
-            'com_data': {
+                'table_name':  ['Table_9','Table_5',],
+                'sector': ['agri_agrarian','agri_livestock'],
+                'com_data': {
                     'province': $scope.province,
                     'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-
-
-
+                },
+            }),
+         }).success(function(data) {
             $scope.dlAgriSumPro = data;
-
-            })
+        })
     }
 
-           $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlAgriSumPro ?
-         ((angular.equals({}, $scope.dlAgriSumPro.agri_agrarian.Table_9) ) ||
-         (angular.equals({}, $scope.dlAgriSumPro.agri_livestock.Table_5))
-//         ||(angular.equals({}, $scope.dlAgriSumPro.agri_fisheries.Table_5))
-         ) : true
-         return isNull;
-//         ||
-//         (angular.equals({}, $scope.dlAgriSumPro.transport_rail.Table_3))) : true ;
-
-
-   }
+        ((angular.equals({}, $scope.dlAgriSumPro.agri_agrarian.Table_9) ) ||
+        (angular.equals({}, $scope.dlAgriSumPro.agri_livestock.Table_5))) : true
+        return isNull;
+    }
 
    $scope.convertToInt = function(val1,val2){
-
         var sum = parseInt(val1) + parseInt(val2);
         return sum;
     }
 
    $scope.convertTotal = function(val1,val2,val3,val4){
-
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
@@ -114,20 +93,12 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
 
         $scope.finaltotalprivate = 0;
 
-
-
         var totaldpub =  ($scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[0] ?
                          ($scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[0].dmg_los_pub ?
                          $scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[0].dmg_los_pub : 0):0) +
                          ($scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpNdaPubProvince[0] ?
                          ($scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpNdaPubProvince[0].damages ?
                          $scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpNdaPubProvince[0].damages : 0) : 0)
-//                         ($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterDmgPubProvince[0] ?
-//                         ($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterDmgPubProvince[0].tot_dmg_public ?
-//                         $scope.dlTransSumPro.transport_water.Table_4[key].DlWaterDmgPubProvince[0].tot_dmg_public : 0) : 0) +
-//                         ($scope.dlTransSumPro.transport_rail.Table_3[key].TotDmgProvince[0] ?
-//                         ($scope.dlTransSumPro.transport_rail.Table_3[key].TotDmgProvince[0].tot_damages ?
-//                         $scope.dlTransSumPro.transport_rail.Table_3[key].TotDmgProvince[0].tot_damages : 0) : 0);
 
         var totaldpubstring = "totaldpub_"+ key;
 
@@ -154,7 +125,6 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
         $scope.grndtotaldpvt = $scope.grndtotaldpvt + totaldpvt ;
         $scope.summaryDamages = $scope.grndtotaldpub + $scope.grndtotaldpvt;
 
-
          var totalyear1pub =
                          ($scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorLosYear1Province[0]?
                          ($scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorLosYear1Province[0].dmg_los_pub ?
@@ -163,15 +133,11 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
                          ($scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpLosPubProvince[0].los_year_1 ?
                          $scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpLosPubProvince[0].los_year_1 : 0) : 0);
 
-
         var totalyear1pubstring = "totalyear1pub_"+ key;
 
         var model = $parse(totalyear1pubstring);
         model.assign($scope, totalyear1pub);
         $scope.grndtotalyear1pub = $scope.grndtotalyear1pub + totalyear1pub ;
-
-
-
 
          var totalyear1pvt =
                          ($scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorLosYear1Province[0] ?
@@ -188,16 +154,13 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
         $scope.grndtotalyear1pvt = $scope.grndtotalyear1pvt + totalyear1pvt ;
         $scope.summaryLossYear1 = $scope.grndtotalyear1pub + $scope.grndtotalyear1pvt;
 
-
-
          var totalyear2pub =
                          ($scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorLosYear2Province[0]?
                          ($scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorLosYear2Province[0].dmg_los_pub ?
                          $scope.dlAgriSumPro.agri_agrarian.Table_9[key].DsorLosYear2Province[0].dmg_los_pub : 0 ) :0)+
                          ($scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpLosPubProvince[0]?
                          ($scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpLosPubProvince[0].los_year_2 ?
-                         $scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpLosPubProvince[0].los_year_2 : 0) :0)
-                         ;
+                         $scope.dlAgriSumPro.agri_livestock.Table_5[key].DlpLosPubProvince[0].los_year_2 : 0) :0);
 
          var totalyear2pubstring = "totalyear2pub_"+ key;
 
@@ -220,7 +183,6 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
          $scope.grndtotalyear2pvt = $scope.grndtotalyear2pvt + totalyear2pvt ;
          $scope.summaryLossYear2 = $scope.grndtotalyear2pub + $scope.grndtotalyear2pvt;
 
-
          var finaltotalpublic = totaldpub + totalyear1pub + totalyear2pub;
 
          var finaltotalpublicstring = "finaltotalpublic_"+ key;
@@ -239,12 +201,6 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
          $scope.grndfinaltotalprivate = $scope.grndfinaltotalprivate + finaltotalprivate ;
          $scope.summaryTotal = $scope.grndfinaltotalpublic + $scope.grndfinaltotalprivate;
 
-
-
     }
-
-
-
-
 
  })

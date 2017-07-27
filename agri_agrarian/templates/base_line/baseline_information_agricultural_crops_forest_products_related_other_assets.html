@@ -7,6 +7,7 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     
   });
+
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsInfoAcfoAssetsApp" ng-controller="bsInfoAcfoAssetsController">
@@ -24,7 +25,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -72,7 +75,8 @@
                                 District:
                             </td>
                             <td colspan="2" width="269">
-                                <select id="selectbasic" name="district" class="form-control" ng-change="getValue();changeDis()"
+                                <select id="selectbasic" name="district" class="form-control"
+                                        ng-change="getValue();changeDis()"
                                         ng-model="district" style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select a District</option>
                                     {% for district in districts %}
@@ -84,7 +88,8 @@
                                 Year/Month:
                             </td>
                             <td colspan="2" s width="99">
-                                <input name="baselineDate" type="search" placeholder="mm/yy" ng-change="getValue();changeDis();"
+                                <input name="baselineDate" type="search" placeholder="mm/yy"
+                                       ng-change="getValue();changeDis();"
                                        id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                             </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -178,7 +183,6 @@
                                            ng-model="bacfSeasonalCrops.productn_cost_hstage">
                                 </td>
                             </tr>
-
                             <tr class="trheadc" height="19">
                                 <td width="249" height="19">
                                     Plantation Crops
@@ -229,7 +233,6 @@
                                            ng-model="bacfPlantnCrops.productn_cost_hstage">
                                 </td>
                             </tr>
-
                             <tr class="trheadc" height="19">
                                 <td width="249" height="19">
                                     Export Crops
@@ -280,7 +283,6 @@
                                            ng-model="bacfExportCrops.productn_cost_hstage">
                                 </td>
                             </tr>
-
                             <tr class="trheadc" height="19">
                                 <td width="249" height="19">
                                     Forestry
@@ -299,7 +301,7 @@
                                 </td>
                             </tr>
                             <tr height="19"
-                                ng-repeat="bacfForestry in bsInfoAcfoAssets.agri_agrarian.Table_2.BcafForestry">
+                                ng-repeat="bacfForestry in bsInfoAcfoAssets.agri_agrarian.Table_2.BacfForestry">
                                 <td class="tdpa" width="249" height="19" ng-bind="bacfForestry.forestry">
                                 </td>
 
@@ -362,17 +364,17 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="bacfOther.productn_pvt">
                                 </td>
-                                <td width="117">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bacfOther.productn_cost_nplanted">
+                                <td width="117" class="tdpa">
+                                    <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
+                                    <!--class="form-control input-md" ng-model="bacfOther.productn_cost_nplanted">-->
                                 </td>
-                                <td width="112">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bacfOther.productn_cost_mstage">
+                                <td width="112" class="tdpa">
+                                    <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
+                                    <!--class="form-control input-md" ng-model="bacfOther.productn_cost_mstage">-->
                                 </td>
-                                <td width="99">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="bacfOther.productn_cost_hstage">
+                                <td width="99" class="tdpa">
+                                    <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
+                                    <!--class="form-control input-md" ng-model="bacfOther.productn_cost_hstage">-->
                                 </td>
                             </tr>
 
@@ -384,8 +386,6 @@
                             class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
                     <br>
                 </div>
-
-
                 <div class="tab-pane fade" id="step2">
 
                     <table class="table table-bordered">
@@ -525,7 +525,6 @@
                             </td>
 
                         </tr>
-
                         <tr class="trheadc">
                             <td height="20" align="left" valign="middle">
                                 Export Crops
@@ -543,7 +542,6 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bacfAvgreExportCrops.avg_value">
                             </td>
-
                         </tr>
                         <tr class="trheadc">
                             <td height="20" align="left" valign="middle">
@@ -562,21 +560,20 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="bacfAvgreForestry.avg_value">
                             </td>
-
                         </tr>
                         </tbody>
                     </table>
-
 
                     <div class="pull-right">
                         <br>
                         <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
                         <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editBsData()" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData(form_bs_info_sero_assets)" ng-if="!is_edit"
+                                class="btn btn-success">
                             Edit
                         </button>
                     </span>
-                    <span ng-if="!is_edit_disable">
+                        <span ng-if="!is_edit_disable">
                         <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
@@ -589,25 +586,19 @@
 
                                 class="btn btn-success">Submit
                         </button>
-
                     </div>
                     <br><br><br>
                 </div>
-
-
             </div>
         </div>
 
 
         <div class="col-md-12">
-
-
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">
                 <div class="modal-dialog" style="width:50%;">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 ×
                             </button>
@@ -622,13 +613,11 @@
                                 <div class="col-md-10">
                                     <input id="textinput" name="textinput" type="text" placeholder=""
                                            class="form-control input-md">
-
                                 </div>
                             </div>
                         </div>
                         <br><br>
                         <div class="modal-footer">
-
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 Close
                             </button>
@@ -637,19 +626,10 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
-
         </div>
     </div>
-
     </div>
-
-    <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

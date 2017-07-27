@@ -15,7 +15,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.user_id;
 
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'water_supply': {
             'Table_3': {
@@ -121,7 +121,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     }
     $scope.dlComWtrSply = angular.copy(init_data);
 
-//Get Districts and related baseline Data
+    //Get Districts and related baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -207,7 +207,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
     }
 
-//Get Reference Data from Baseline
+    //Get Reference Data from Baseline
     function generateRefencedData() {
         data_array = ['BiaWaterIntake', 'BiaTreatmentPlant', 'BiaWaterDistribution', 'BiaMainOffice'];
 
@@ -266,12 +266,12 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 num_part_damaged : null,
                 total_dmgs : null,
             };
-           var obj4 = {
+            var obj4 = {
                 assets : particular_value_4,
                 num_tot_destoyed : null,
                 num_part_damaged : null,
                 total_dmgs : null,
-           };
+            };
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
@@ -328,7 +328,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         });
     }
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
         if(form.$valid) {
             $scope.submitted = true;
@@ -357,94 +357,80 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
     }
 
-
-  $scope.convertInt = function(val1,val2,val3,val4){
-
-    var ans = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4);
-    return ans;
-
-  }
-
-//Calculate GrandTotal
-    $scope.calGrandTotal=function(){
-    var finaltotal1 = 0;
-    var finaltotal2 = 0;
-    var finaltotal3 = 0;
-    var finaltotal4 = 0;
-
-
-    var array1 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterIntake;
-    var array2 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterTreatment;
-    var array3 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterDisribution;
-    var array4 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice;
-
-    console.log(array4);
-
-    angular.forEach(array1, function(value, key) {
-
-     finaltotal1 = finaltotal1 + value.total_dmgs ;
-    })
-    angular.forEach(array2, function(value, key) {
-
-     finaltotal2 = finaltotal2 + value.total_dmgs;
-    })
-    angular.forEach(array3, function(value, key) {
-
-     finaltotal3 = finaltotal3 + value.total_dmgs ;
-    })
-    angular.forEach(array4, function(value, key) {
-
-     finaltotal4 = finaltotal4 + value.total_dmgs ;
-    })
-
-    grantot = $scope.grantot + $scope.convertInt(finaltotal1, finaltotal2 , finaltotal3 , finaltotal4);
-    console.log('gettot',grantot);
-    return grantot;
+    $scope.convertInt = function(val1,val2,val3,val4){
+        var ans = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4);
+        return ans;
     }
 
-//Edit Data
-    $scope.dlDataEdit = function(form){
+    //Calculate GrandTotal
+    $scope.calGrandTotal=function() {
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
 
-    $scope.is_edit = true;
-    $scope.submitted = true;
+        var array1 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterIntake;
+        var array2 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterTreatment;
+        var array3 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgWaterDisribution;
+        var array4 = $scope.dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice;
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_3',
-    'sector':'water_supply',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
+        console.log(array4);
 
-    console.log(data);
+        angular.forEach(array1, function(value, key) {
+            finaltotal1 = finaltotal1 + value.total_dmgs ;
+        })
 
+        angular.forEach(array2, function(value, key) {
+            finaltotal2 = finaltotal2 + value.total_dmgs;
+        })
 
-    $scope.dlComWtrSply = data;
-    })
+        angular.forEach(array3, function(value, key) {
+            finaltotal3 = finaltotal3 + value.total_dmgs ;
+        })
 
-}
+        angular.forEach(array4, function(value, key) {
+            finaltotal4 = finaltotal4 + value.total_dmgs ;
+        })
 
-//Cancel Edit
-    $scope.cancelEdit = function(){
-       $scope.is_edit = false;
-       $scope.dlComWtrSply = init_data;
-
+        grantot = $scope.grantot + $scope.convertInt(finaltotal1, finaltotal2 , finaltotal3 , finaltotal4);
+        console.log('gettot',grantot);
+        return grantot;
     }
 
-//Clear Function
+    //Edit Data
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_3',
+                    'sector':'water_supply',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlComWtrSply = data;
+            })
+        }
+    }
+
+    //Cancel Edit
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlComWtrSply = init_data;
+    }
+
+    //Clear Function
     $scope.clear = function() {
-//        console.log('done');
+        console.log('clear');
         $scope.is_edit = false;
         $scope.dlComWtrSply = angular.copy(init_data);
-
     }
-
-
-
 }]);

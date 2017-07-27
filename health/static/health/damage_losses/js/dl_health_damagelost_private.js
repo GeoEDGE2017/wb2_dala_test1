@@ -15,7 +15,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.is_null = false;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
     $scope.selectedCliniEdit = null;
+
 
     //initialize model
     var init_data = {
@@ -97,9 +99,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
                         'private_clinic': $scope.clinic,
-                        'user_id': $scope.user_id,
                     },
-                    'is_edit':$scope.is_edit
+                    'is_edit':$scope.is_edit,
+                    'user_id': $scope.user_id
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
@@ -297,6 +299,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
 
         if($scope.incident && $scope.district) {
+            $scope.is_edit_disable = false;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

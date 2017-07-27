@@ -153,17 +153,20 @@ bsHealthStatusApp.controller('BsHousingDisController', function ($scope, $http) 
         $scope.submitted = true;
            $scope.is_edit = true;
             $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                  'table_name': 'Table_1',
-                  'sector': 'housing',
-                  'com_data': {'district': $scope.district,
-                  'bs_date': $scope.bs_date,
-                  'user_id': $scope.user_id} }),
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                      'table_name': 'Table_1',
+                      'sector': 'housing',
+                      'com_data': {
+                      'district': $scope.district,
+                      'bs_date': $scope.bs_date,
+                      'user_id': $scope.user_id
+                      }
+                }),
             }).success(function(data) {
-            console.log(data);
-            $scope.bsHousingDis = data;
+                console.log(data);
+                $scope.bsHousingDis = data;
             })
     }
 

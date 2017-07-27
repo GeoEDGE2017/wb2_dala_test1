@@ -447,9 +447,17 @@
                         <button type="button" ng-click="clear()" class="btn btn-info">
                             Clear
                         </button>
+
+                        <span ng-if="is_edit_disable">
                         <button type="button" ng-click="editDlData(form_dl_govn_admn_asets)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>

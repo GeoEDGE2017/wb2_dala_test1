@@ -28,12 +28,12 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                     <tr class="trhead1">
+                    <tr class="trhead1">
                         <td class="trhead1 p5" width="130" colspan="2">
                             Incident
                         </td>
                         <td width="125" colspan="6">
-                            <select  id="selectbasic" name="incident" ng-model="incident"
+                            <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
@@ -46,16 +46,16 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td >
+                        <td>
                             <button class="btn btn-info btn-block" ng-click="fetchDlData()">
                                 Load
                             </button>
                         </td>
-                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-                     </tbody>
-                    </table>
-                    <table class="table table-bordered" ng-if="!checkIfNull()">
+                    </tbody>
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tr class="trheadc" height="19">
                         <td rowspan="3" height="53" width="213">
                             Province
@@ -110,7 +110,7 @@
                             Private
                         </td>
                     </tr>
-                        <tbody ng-repeat="(key1, value1) in dlAgriSumNat.agri_agrarian.Table_10">
+                    <tbody ng-repeat="(key1, value1) in dlAgriSumNat.agri_agrarian.Table_10">
                     <tr class="trheadc" height="19">
                         <td rowspan="3" height="53" width="213">
                             Districts
@@ -165,7 +165,7 @@
                             Private
                         </td>
                     </tr>
-                    <tr class="trheadc" height="17" ng-init="getTotal(key1)" >
+                    <tr class="trheadc" height="17" ng-init="getTotal(key1)">
                         <td height="17" width="213" ng-bind="key1">
 
                         </td>
@@ -212,7 +212,8 @@
                         value1.DsorLosYear1National[0].dmg_los_pub + value1.DsorLosYear2National[1].dmg_los_pub ">
 
                         </td>
-                        <td height="17" width="63" ng-bind="value1.DsorDmgLosNational[0].dmg_los_pvt +value1.DsorLosYear1National[0].dmg_los_pvt + value1.DsorLosYear2National[0].dmg_los_pvt ">
+                        <td height="17" width="63"
+                            ng-bind="value1.DsorDmgLosNational[0].dmg_los_pvt +value1.DsorLosYear1National[0].dmg_los_pvt + value1.DsorLosYear2National[0].dmg_los_pvt ">
                         </td>
                     </tr>
                     <tr height="17">
@@ -220,28 +221,36 @@
                             Livestock
                         </td>
 
-                        <td height="17" width="107" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPubNational[0].damages">
+                        <td height="17" width="107"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPubNational[0].damages">
 
                         </td>
-                        <td height="17" width="63" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPvtNational[0].damages">
+                        <td height="17" width="63"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPvtNational[0].damages">
 
                         </td>
-                        <td height="17" width="63" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_1">
+                        <td height="17" width="63"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_1">
 
                         </td>
-                        <td height="17" width="63" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_1">
+                        <td height="17" width="63"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_1">
 
                         </td>
-                        <td height="17" width="63" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_2">
+                        <td height="17" width="63"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_2">
 
                         </td>
-                        <td height="17" width="63" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_2">
+                        <td height="17" width="63"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_2">
 
                         </td>
-                        <td height="17" width="63" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPubNational[0].damages +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_2">
+                        <td height="17" width="63"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPubNational[0].damages +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPubNational[0].los_year_2">
 
                         </td>
-                        <td height="17" width="63" ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPvtNational[0].damages +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_2">
+                        <td height="17" width="63"
+                            ng-bind="dlAgriSumNat.agri_livestock.Table_5[key1].DlpNdaPvtNational[0].damages +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_1 +dlAgriSumNat.agri_livestock.Table_5[key1].DlpLosPvtNational[0].los_year_2">
 
                         </td>
                     </tr>
@@ -306,32 +315,38 @@
                         <td width="63" height="17" ng-model="totaldpub" ng-bind="totaldpub = {{'totaldpub_'+key1}}">
                         </td>
                         {% endverbatim %}
-                         {% verbatim %}
+                        {% verbatim %}
                         <td width="63" height="17" ng-model="totaldpvt" ng-bind="totaldpvt = {{'totaldpvt_'+key1}}">
                         </td>
                         {% endverbatim %}
-                         {% verbatim %}
-                        <td width="63" height="17" ng-model="totalyear1pub" ng-bind="totalyear1pub = {{'totalyear1pub_'+key1}}">
+                        {% verbatim %}
+                        <td width="63" height="17" ng-model="totalyear1pub"
+                            ng-bind="totalyear1pub = {{'totalyear1pub_'+key1}}">
                         </td>
                         {% endverbatim %}
                         {% verbatim %}
-                        <td width="63" height="17" ng-model="totalyear1pvt" ng-bind="totalyear1pvt = {{'totalyear1pvt_'+key1}}">
+                        <td width="63" height="17" ng-model="totalyear1pvt"
+                            ng-bind="totalyear1pvt = {{'totalyear1pvt_'+key1}}">
                         </td>
                         {% endverbatim %}
                         {% verbatim %}
-                        <td width="63" height="17" ng-model="totalyear2pub" ng-bind="totalyear2pub= {{'totalyear2pub_'+key1}}">
+                        <td width="63" height="17" ng-model="totalyear2pub"
+                            ng-bind="totalyear2pub= {{'totalyear2pub_'+key1}}">
                         </td>
                         {% endverbatim %}
                         {% verbatim %}
-                        <td width="63" height="17" ng-model="totalyear2pvt" ng-bind="totalyear2pvt= {{'totalyear2pvt_'+key1}}">
+                        <td width="63" height="17" ng-model="totalyear2pvt"
+                            ng-bind="totalyear2pvt= {{'totalyear2pvt_'+key1}}">
                         </td>
                         {% endverbatim %}
                         {% verbatim %}
-                        <td width="63" height="17" ng-model="finaltotalpublic" ng-bind="finaltotalpublic= {{'finaltotalpublic_'+key1}}">
+                        <td width="63" height="17" ng-model="finaltotalpublic"
+                            ng-bind="finaltotalpublic= {{'finaltotalpublic_'+key1}}">
                         </td>
                         {% endverbatim %}
                         {% verbatim %}
-                        <td width="63" height="17" ng-model="finaltotalprivate" ng-bind="finaltotalprivate= {{'finaltotalprivate_'+key1}}">
+                        <td width="63" height="17" ng-model="finaltotalprivate"
+                            ng-bind="finaltotalprivate= {{'finaltotalprivate_'+key1}}">
                         </td>
                         {% endverbatim %}
                     </tr>

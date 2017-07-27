@@ -19,6 +19,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     $scope.schoolData = null;
     $scope.is_edit_model = false;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     $scope.new_school = {'PreSchools': {id: null, name: null, district_id: null},
                          'PrimarySchools': {id: null, name: null, district_id: null},
@@ -228,6 +229,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     }
 
     $scope.changedValue = function getBsData(selectedValue) {
+     alert('hi');
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -241,6 +243,10 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 $scope.selectedDistrict = "";
                 console.log(data);
             })
+        }
+        if( $scope.incident && $scope.district){
+            $scope.is_edit_disable = true;
+
         }
     }
 
@@ -257,9 +263,11 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'user_id': $scope.user_id,
+
                     },
-                    'is_edit': $scope.is_edit
+                    'is_edit': $scope.is_edit,
+                    'user_id': $scope.user_id,
+
                 }),
                 dataType: 'json',
             }).then(function mySucces(response) {
@@ -291,7 +299,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-//                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),

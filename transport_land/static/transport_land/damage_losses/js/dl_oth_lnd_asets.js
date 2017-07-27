@@ -15,6 +15,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.is_valid_data = true;
     $scope.DlOtherLosPub_fi_year_1= null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'transport_land' : {
@@ -338,6 +339,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -477,6 +479,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+         if(form.$valid) {
         $http({
             method: "POST",
             url: '/dl_fetch_edit_data',
@@ -493,6 +496,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
             console.log(data);
             $scope.dlOthLndAsets = data;
         })
+        }
     }
 
     $scope.cancelEdit = function(){

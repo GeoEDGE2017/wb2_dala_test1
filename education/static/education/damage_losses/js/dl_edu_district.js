@@ -1,4 +1,4 @@
-
+//Table 5
 var bsHealthStatusApp = angular.module('dlEduDistrictApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('DlEduDistrictController', function DlEduDistrictController($scope, $http) {

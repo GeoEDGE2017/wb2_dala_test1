@@ -145,37 +145,37 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
     $scope.saveDlData = function(form) {
         console.log($scope.data);
         $scope.submitted = true;
-            if (form.$valid) {
-                $http({
-                    method: 'POST',
-                    url: '/dl_save_data',
-                    contentType: 'application/json; charset=utf-8',
-                    data: angular.toJson({
-                        'table_data': $scope.data,
-                        'com_data': {
-                            'district_id': $scope.district.district__id,
-                            'incident_id': $scope.incident,
-                        },
-                        'is_edit': $scope.is_edit
-                    }),
-                    dataType: 'json',
-                }).success(function(data) {
-                    console.log(data);
-                    $scope.clear();
-                    $scope.is_edit = false;
-                    if (data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
-                })
-            }
-            else {
-                alert("select incident and district");
-            }
+        if (form.$valid) {
+            $http({
+                method: 'POST',
+                url: '/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.data,
+                    'com_data': {
+                        'district_id': $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+                dataType: 'json',
+            }).success(function(data) {
+                console.log(data);
+                $scope.clear();
+                $scope.is_edit = false;
+                if (data == 'False') {
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            })
         }
+        else {
+            alert("select incident and district");
+        }
+    }
 
     $scope.dataEdit = function() {
         if($scope.district && $scope.incident ) {
@@ -191,7 +191,6 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-
                     }
                 }),
             }).success(function(data) {
@@ -200,7 +199,6 @@ app.controller('dlSummFormlInformlDisInputController', ['$scope', '$http', funct
                 if((data.industry_services.Table_5.DlNumAffBusIndustry.length == 0) ||
                     (data.industry_services.Table_5.DlNumAffBusServices.length == 0)) {
                     $scope.is_edit = false;
-                        // do nothing or display msg that data are not available
                 }
                 else {
                     $scope.data = data;

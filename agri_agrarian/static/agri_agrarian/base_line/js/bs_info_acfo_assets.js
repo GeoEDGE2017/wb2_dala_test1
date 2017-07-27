@@ -10,8 +10,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-
-//Initialize data
+    //initialize data
     var init_data = {
         'agri_agrarian': {
             'Table_2': {
@@ -171,7 +170,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         }
     }
 
-
     //related baseline data
     $scope.getValue=function getBsData() {
         if($scope.district && $scope.bs_date) {
@@ -184,13 +182,11 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
-//                        'bs_date': '01/2017',
                     },
                     'table_name': 'Table_1',
                     'sector':'agri_agrarian',
                 }),
                 dataType: 'json',
-
             }).then(function successCallback(response) {
                 var data = response.data;
                 angular.forEach(data, function(value, key) {
@@ -207,7 +203,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     //Generate fields Related to baseline Data
     function generateRefencedData() {
         data_array = ['BcagSeasonalCrops','BcagPlantnCrops','BcagExportCrops','BcagForestry','BcagOther'];
-
         var bs_model1 = null;
         var bs_model2 = null;
         var bs_model3 = null;
@@ -216,7 +211,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         var bs_model6 = null;
         var bs_model7 = null;
         var bs_model8 = null;
-
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
@@ -339,7 +333,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         });
     }
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
         if (form.$valid) {
@@ -372,43 +366,43 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         }
     }
 
-//Edit data
+    //edit data
     $scope.editBsData = function(form){
         $scope.submitted = true;
         $scope.is_edit = true;
-        $http({
-        method: "POST",
-        url: "/bs_fetch_edit_data",
-        data: angular.toJson({
-              'table_name': 'Table_2',
-              'sector': 'agri_agrarian',
-              'com_data': {'district': $scope.district,
-              'bs_date': $scope.bs_date} }),
-        }).success(function(data) {
-
-        console.log(data);
-        $scope.bsInfoAcfoAssets = data;
-        })
-
-
+        if (form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                      'table_name': 'Table_2',
+                      'sector': 'agri_agrarian',
+                      'com_data':
+                      {
+                          'district': $scope.district,
+                          'bs_date': $scope.bs_date
+                       }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsInfoAcfoAssets = data;
+            })
+        }
     }
 
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsInfoAcfoAssets = init_data;
     }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
-
         $scope.is_edit = false;
         $scope.bsInfoAcfoAssets = angular.copy(init_data);
-
-
     }
 
-//Add Enumerate fields
+    //Add Enumerate fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsInfoAcfoAssets.agri_agrarian.Table_2[table]);
         var new_row;
@@ -426,11 +420,10 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                 avg_repair_cost : null,
             }
         }
-
         $scope.bsInfoAcfoAssets.agri_agrarian.Table_2[table].push(new_row);
     }
 
-//Remove Enumerate fields
+    //remove Enumerate fields
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BacfFarmEquipment') {
             $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfFarmEquipment.splice(index, 1);
@@ -438,7 +431,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         else if(table == 'BacfStocks') {
             $scope.bsInfoAcfoAssets.agri_agrarian.Table_2.BacfStocks.splice(index, 1);
         }
-
     }
 
 }]);

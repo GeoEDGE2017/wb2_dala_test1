@@ -14,7 +14,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
      $scope.currentBaselineDate = null;
      $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'water_supply': {
             'Table_4': {
@@ -88,7 +88,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
 
     $scope.dlRuralWtrSply = angular.copy(init_data);
 
-//Get Districts and related baseline Data
+    //Get Districts and related baseline Data
     $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
@@ -165,16 +165,13 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
                         }
                     });
                 }
-
-
-
             }, function errorCallback(response) {
 
             });
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
@@ -204,47 +201,39 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
         }
     }
 
-     $scope.dlDataEdit = function(form){
-
-    $scope.is_edit = true;
-    $scope.submitted = true;
-
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_4',
-    'sector':'water_supply',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
-
-    $scope.dlRuralWtrSply = data;
-    })
-
-}
-
-//Cancel Edit
-    $scope.cancelEdit = function(){
-       $scope.is_edit = false;
-        $scope.dlRuralWtrSply = init_data;
-
-}
-
-//Clear Function
-    $scope.clear = function() {
-        console.log('done');
-        $scope.is_edit = false;
-        $scope.dlRuralWtrSply = angular.copy(init_data);
-
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_4',
+                    'sector':'water_supply',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                   'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlRuralWtrSply = data;
+            })
+        }
     }
 
+    //Cancel Edit
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlRuralWtrSply = init_data;
+    }
 
-
+    //Clear Function
+    $scope.clear = function() {
+        console.log('clear');
+        $scope.is_edit = false;
+        $scope.dlRuralWtrSply = angular.copy(init_data);
+    }
 }]);

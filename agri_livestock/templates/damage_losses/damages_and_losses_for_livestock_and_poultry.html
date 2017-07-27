@@ -90,18 +90,18 @@
                         </td>
                         <td class="trsub" colspan="5" height="19" width="400">
                             <select ng-options="organization as organization.name for organization in organizations track by organization.id"
-                                    name="firm" id="ccyear" ng-model="selectedOrganization" class="form-control" style="font-weight:400;" required>
+                                    name="firm" id="ccyear" ng-change="changedValue();" ng-model="selectedOrganization" class="form-control" style="font-weight:400;" required>
                                 <option value="" selected>Select Organization</option>
                             </select>
                         </td>
 
 
                     </tr>
-                    <tr class="trhead1" height="19">
+                    <tr  height="19">
                         <td class="trhead1" height="19" width="171">
                             Ownership
                         </td>
-                        <td colspan="15">
+                        <td colspan="15" >
                             <span ng-bind="selectedOrganization.ownership"></span>
 
                         </td>
@@ -1200,9 +1200,16 @@
                     <div class="pull-right">
                         <br>
                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit(form_bs_livestock_poultry)"
-                            ng-if="!is_edit" class="btn btn-success">Edit
-                    </button>
+                        <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_dl_livestock_poultry)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>

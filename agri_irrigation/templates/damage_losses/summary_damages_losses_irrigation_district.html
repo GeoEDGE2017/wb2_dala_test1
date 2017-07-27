@@ -8,14 +8,16 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation  Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
         </li>
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of damages and losses to irrigation in the District</span>
         </li>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
+                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_dlsum_irri_distr">
 
@@ -71,7 +73,8 @@
                         </td>
                         <td width="118">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-change="loadData(form_dlsum_irri_distr);" ng-model="district" ng-value="district.district__id"
+                                    name="district" id="ccyear" ng-change="loadData(form_dlsum_irri_distr);"
+                                    ng-model="district" ng-value="district.district__id"
                                     style="font-weight:400;"
                                     class="form-control" required>
                                 <option value="" selected>Select district</option>
@@ -139,7 +142,8 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
                         </td>
-                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages + data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
+                        <td width="128"
+                            ng-bind="data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages + data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
 
                         </td>
                     </tr>
@@ -187,7 +191,7 @@
                             TOTAL
                         </td>
                         <td width="118"
-                        ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                            ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +
@@ -196,8 +200,8 @@
                         data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages">
 
                         </td>
-                       <td width="116"
-                        ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
+                        <td width="116"
+                            ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
                         data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los +
                         data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los +
                         data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los +
@@ -207,7 +211,7 @@
 
 
                         <td width="128"
-                        ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                            ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages +

@@ -914,7 +914,7 @@ def dl_save_data_with_array(request):
 
     current_user = None
     try:
-        current_user = com_data['user_id']
+        current_user = dl_data['user_id']
         print 'Current User', current_user
     except Exception as e:
         print 'Current User Error'

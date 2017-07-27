@@ -13,7 +13,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-//Initialize Data
+    //Initialize Data
     var init_data = {
         'agri_irrigation': {
             'Table_2': {
@@ -288,8 +288,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
     $scope.bsRparplCosAssts = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    $scope.changeDis = function changeDis(){
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -299,7 +298,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
     }
 
 
-//Add Enumerate Fields
+    //Add Enumerate Fields
     $scope.insertAsset = function(table) {
         console.log($scope.bsRparplCosAssts.agri_irrigation.Table_2[table]);
         var new_row;
@@ -341,7 +340,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
         $scope.bsRparplCosAssts.agri_irrigation.Table_2[table].push(new_row);
     }
 
-//Remove Enumerate Fileds
+    //Remove Enumerate Fileds
     $scope.removeItem = function removeItem(table, index) {
         if(table == 'BsRciaMajorTanks') {
             $scope.bsRparplCosAssts.agri_irrigation.Table_2.BsRciaMajorTanks.splice(index, 1);
@@ -360,81 +359,77 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
         }
     }
 
-//Save Data
+    //Save Data
     $scope.saveBsData = function(form) {
         var array = $scope.bsRparplCosAssts.agri_irrigation.Table_2;
-      var details = _.map(array, function(model_array) {
-      _.map(model_array, function(model) {
-          model.division = $scope.division;
-          model.region = $scope.region;
-
-
-      });
-      });
+        var details = _.map(array, function(model_array) {
+            _.map(model_array, function(model) {
+                model.division = $scope.division;
+                model.region = $scope.region;
+            });
+        });
         $scope.submitted = true;
         if (form.$valid) {
             $http({
-            method: "POST",
-            url: "/bs_save_data",
-            data: angular.toJson({
-            'table_data': ($scope.bsRparplCosAssts),
-            'com_data': {'district': $scope.district,
-            'bs_date': $scope.bs_date,
-            'user_id' : $scope.user_id,
-            },
-            'is_edit': $scope.is_edit }),
+                method: "POST",
+                url: "/bs_save_data",
+                data: angular.toJson({
+                    'table_data': ($scope.bsRparplCosAssts),
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
             }).success(function(data) {
-
-             $scope.bsRparplCosAssts = init_data;
-             $scope.is_edit = false;
-
-             if(data == 'False')
-              {
-                    $("#modal-container-239454").modal('show');
+                $scope.bsRparplCosAssts = init_data;
+                $scope.is_edit = false;
+                if(data == 'False') {
+                $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-             else
-              $("#modal-container-239453").modal('show');
-        })
+                else {
+                    $("#modal-container-239453").modal('show');
+                 }
+            })
         }
 
-        }
+    }
 
-//Edit data
+    //Edit data
     $scope.bsHsDataEdit = function(){
-    $scope.submitted = true;
+        $scope.submitted = true;
+        $scope.is_edit = true;
+        if (form.$valid) {
+            $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                'table_name': 'Table_2', 'sector': 'agri_irrigation',
+                'com_data': {
+                      'district': $scope.district,
+                      'bs_date': $scope.bs_date,
+                      'division': $scope.division,
+                      'region':$scope.region,
+                      } }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsRparplCosAssts = data;
+            })
+        }
+    }
 
-   $scope.is_edit = true;
-    $http({
-    method: "POST",
-    url: "/bs_fetch_edit_data",
-    data: angular.toJson({'table_name': 'Table_2', 'sector': 'agri_irrigation',
-    'com_data': {
-          'district': $scope.district,
-          'bs_date': $scope.bs_date,
-          'division': $scope.division,
-          'region':$scope.region,
-          } }),
-    }).success(function(data) {
-
-    console.log(data);
-    $scope.bsRparplCosAssts = data;
-    })
-}
-
-//Cancel Edit
+    //Cancel Edit
     $scope.cancelEdit = function(){
     $scope.is_edit = false;
     $scope.bsRparplCosAssts = init_data;
 }
 
-//Clear Function
+    //Clear Function
     $scope.clear = function() {
         console.log('done');
         $scope.is_edit = false;
-        $scope.bsRparplCosAssts = angular.copy(init_data);
-
-
     }
 
 });

@@ -11,6 +11,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'transport_land' : {
@@ -137,7 +138,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlGovnAdmnAsets = init_data;
+    $scope.dlGovnAdmnAsets = angular.copy(init_data);
 
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -156,6 +157,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

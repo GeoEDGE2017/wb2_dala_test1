@@ -7,6 +7,9 @@
     });
 
 </script>
+<style>
+    .right {text-align:right;}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlFrstPrductAsetsApp" ng-controller="dlFrstPrductAsetsController">
     <!-- Breadcrumb -->
@@ -170,13 +173,13 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dcpfFarmEquipment.num_dmg_pvt">
                             </td>
-                            <td width="112" ng-model="dcpfFarmEquipment.dmg_pub"
+                            <td class="right" width="112" ng-model="dcpfFarmEquipment.dmg_pub"
                                 ng-bind="dcpfFarmEquipment.dmg_pub =
                                           dcpfFarmEquipment.num_dest_pub * bs_data['BacfFarmEquipment'][$index].fields.avg_replace_cost +
                                           dcpfFarmEquipment.num_dmg_pub * bs_data['BacfFarmEquipment'][$index].fields.avg_repair_cost">
                             </td>
 
-                            <td width="112" ng-model="dcpfFarmEquipment.dmg_pvt"
+                            <td class="right" width="112" ng-model="dcpfFarmEquipment.dmg_pvt"
                                 ng-bind="dcpfFarmEquipment.dmg_pvt =
                                           dcpfFarmEquipment.num_dest_pvt * bs_data['BacfFarmEquipment'][$index].fields.avg_replace_cost +
                                           dcpfFarmEquipment.num_dmg_pvt * bs_data['BacfFarmEquipment'][$index].fields.avg_repair_cost">
@@ -196,11 +199,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112"
+                            <td class="right" width="112"
                                 ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment)">
 
                             </td>
-                            <td width="99"
+                            <td class="right" width="99"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfFarmEquipment)">
 
                             </td>
@@ -257,11 +260,11 @@
                             <td class="tdpa" width="117">
                             </td>
 
-                            <td width="112" ng-model="dcpfSeasonalCrops.dmg_pub"
+                            <td class="right" width="112" ng-model="dcpfSeasonalCrops.dmg_pub"
                                 ng-bind="dcpfSeasonalCrops.dmg_pub =
                                           dcpfSeasonalCrops.num_dest_pub * bs_data['BacfSeasonalCrops'][$index].fields.avg_value">
                             </td>
-                            <td width="99" ng-model="dcpfSeasonalCrops.dmg_pvt" ng-bind="dcpfSeasonalCrops.dmg_pvt =
+                            <td class="right" width="99" ng-model="dcpfSeasonalCrops.dmg_pvt" ng-bind="dcpfSeasonalCrops.dmg_pvt =
                                           dcpfSeasonalCrops.num_dest_pvt * bs_data['BacfSeasonalCrops'][$index].fields.avg_value">
                             </td>
                         </tr>
@@ -280,11 +283,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112"
+                            <td class="right" width="112"
                                 ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops)">
 
                             </td>
-                            <td width="99"
+                            <td class="right" width="99"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfSeasonalCrops)">
 
                             </td>
@@ -323,11 +326,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112" ng-model="dcpfPlantnCrops.dmg_pub"
+                            <td class="right" width="112" ng-model="dcpfPlantnCrops.dmg_pub"
                                 ng-bind="dcpfPlantnCrops.dmg_pub =
                                           dcpfPlantnCrops.num_dest_pub * bs_data['BacfPlantnCrops'][$index].fields.avg_value">
                             </td>
-                            <td width="112" ng-model="dcpfPlantnCrops.dmg_pvt"
+                            <td class="right" width="112" ng-model="dcpfPlantnCrops.dmg_pvt"
                                 ng-bind="dcpfPlantnCrops.dmg_pvt =
                                           dcpfPlantnCrops.num_dest_pvt * bs_data['BacfPlantnCrops'][$index].fields.avg_value">
                             </td>
@@ -346,11 +349,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112"
+                            <td class="right" width="112"
                                 ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops)">
 
                             </td>
-                            <td width="99"
+                            <td class="right" width="99"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfPlantnCrops)">
 
                             </td>
@@ -391,11 +394,11 @@
                             <td class="tdpa" width="117">
                             </td>
 
-                            <td width="112" ng-model="dcpfExportCrops.dmg_pub"
+                            <td class="right"  width="112" ng-model="dcpfExportCrops.dmg_pub"
                                 ng-bind="dcpfExportCrops.dmg_pub =
                                           dcpfExportCrops.num_dest_pub * bs_data['BacfExportCrops'][$index].fields.avg_value">
                             </td>
-                            <td width="112" ng-model="dcpfExportCrops.dmg_pvt"
+                            <td class="right" width="112" ng-model="dcpfExportCrops.dmg_pvt"
                                 ng-bind="dcpfExportCrops.dmg_pvt =
                                           dcpfExportCrops.num_dest_pvt * bs_data['BacfExportCrops'][$index].fields.avg_value">
                             </td>
@@ -414,11 +417,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112"
+                            <td class="right" width="112"
                                 ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops)">
 
                             </td>
-                            <td width="99"
+                            <td class="right" width="99"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfExportCrops)">
 
                             </td>
@@ -457,11 +460,11 @@
                             <td class="tdpa" width="117">
                             </td>
 
-                            <td width="112" ng-model="dcpfForestry.dmg_pub"
+                            <td class="right" width="112" ng-model="dcpfForestry.dmg_pub"
                                 ng-bind="dcpfForestry.dmg_pub =
                                           dcpfForestry.num_dest_pub * bs_data['BacfForestry'][$index].fields.avg_value">
                             </td>
-                            <td width="112" ng-model="dcpfForestry.dmg_pvt"
+                            <td class="right" width="112" ng-model="dcpfForestry.dmg_pvt"
                                 ng-bind="dcpfForestry.dmg_pvt =
                                           dcpfForestry.num_dest_pvt * bs_data['BacfForestry'][$index].fields.avg_value">
                             </td>
@@ -479,11 +482,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112"
+                            <td class="right" width="112"
                                 ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry)">
 
                             </td>
-                            <td width="99"
+                            <td class="right" width="99"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfForestry)">
 
                             </td>
@@ -521,11 +524,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112" ng-model="dcpfOther.dmg_pub"
+                            <td class="right" width="112" ng-model="dcpfOther.dmg_pub"
                                 ng-bind="dcpfOther.dmg_pub =
                                           dcpfOther.num_dest_pub * bs_data['BacfOther'][$index].fields.avg_value">
                             </td>
-                            <td width="112" ng-model="dcpfOther.dmg_pvt"
+                            <td class="right" width="112" ng-model="dcpfOther.dmg_pvt"
                                 ng-bind="dcpfOther.dmg_pvt =
                              dcpfOther.num_dest_pvt * bs_data['BacfOther'][$index].fields.avg_value">
                             </td>
@@ -546,11 +549,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112"
+                            <td class="right" width="112"
                                 ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther)">
 
                             </td>
-                            <td width="99"
+                            <td class="right" width="99"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfOther)">
 
                             </td>
@@ -588,11 +591,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112" ng-model="dcpfStocks.dmg_pub"
+                            <td class="right" width="112" ng-model="dcpfStocks.dmg_pub"
                                 ng-bind="dcpfStocks.dmg_pub =
                              dcpfStocks.num_dest_pub * bs_data['BacfStocks'][$index].fields.avg_value">
                             </td>
-                            <td width="112" ng-model="dcpfStocks.dmg_pvt"
+                            <td class="right" width="112" ng-model="dcpfStocks.dmg_pvt"
                                 ng-bind="dcpfStocks.dmg_pvt =
                               dcpfStocks.num_dest_pvt * bs_data['BacfStocks'][$index].fields.avg_value">
                             </td>
@@ -611,11 +614,11 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112"
+                            <td class="right" width="112"
                                 ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks)">
 
                             </td>
-                            <td width="99"
+                            <td class="right"  width="99"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfStocks)">
 
                             </td>
@@ -704,10 +707,10 @@
                             <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
-                            <td valign="middle" ng-model="dcpfRePlantnCrops.dmg_pub"
+                            <td class="right"   valign="middle" ng-model="dcpfRePlantnCrops.dmg_pub"
                                 ng-bind="dcpfRePlantnCrops.dmg_pub = dcpfRePlantnCrops.num_dest_pub * bs_data['BacfAvgrePlantnCrops'][$index].fields.avg_value">
                             </td>
-                            <td valign="middle" ng-model="dcpfRePlantnCrops.dmg_pvt"
+                            <td  class="right"  valign="middle" ng-model="dcpfRePlantnCrops.dmg_pvt"
                                 ng-bind="dcpfRePlantnCrops.dmg_pvt = dcpfRePlantnCrops.num_dest_pvt * bs_data['BacfAvgrePlantnCrops'][$index].fields.avg_value">
 
                             </td>
@@ -721,10 +724,10 @@
                             <td class="tdpa" width="249" height="19">
                             <td class="tdpa" width="249" height="19">
                             <td class="tdpa" width="249" height="19">
-                            <td width="249" height="19" ng-model="dcpfRePlantnCrops.dmg_pub"
-                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops)">
+                            <td class="right"   width="249" height="19" ng-model="dcpfRePlantnCrops.dmg_pub"
+                            ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops)">
                             </td>
-                            <td valign="middle" ng-model="dcpfRePlantnCrops.dmg_pvt"
+                            <td class="right"   valign="middle" ng-model="dcpfRePlantnCrops.dmg_pvt"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfRePlantnCrops)">
                             </td>
                         </tr>
@@ -778,10 +781,10 @@
                             <td class="tdpa" valign="middle">
                                 <br/>
                             </td>
-                            <td valign="middle" ng-model="dcpfReExportCrops.dmg_pub"
+                            <td class="right"   valign="middle" ng-model="dcpfReExportCrops.dmg_pub"
                                 ng-bind="dcpfReExportCrops.dmg_pub = dcpfReExportCrops.num_dest_pub * bs_data['BacfAvgreExportCrops'][$index].fields.avg_value">
                             </td>
-                            <td valign="middle" ng-model="dcpfReExportCrops.dmg_pvt"
+                            <td class="right"   valign="middle" ng-model="dcpfReExportCrops.dmg_pvt"
                                 ng-bind="dcpfReExportCrops.dmg_pvt = dcpfReExportCrops.num_dest_pvt * bs_data['BacfAvgreExportCrops'][$index].fields.avg_value">
                             </td>
                         </tr>
@@ -792,11 +795,10 @@
                             <td class="tdpa" width="249" height="19"></td>
                             <td class="tdpa" width="249" height="19"></td>
                             <td class="tdpa" width="249" height="19"></td>
-                            <td class="tdpa" width="249" height="19"></td>
-                            <td width="249" height="19" ng-model="dcpfReExportCrops.dmg_pub"
-                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops)">
+                            <td class="right"   width="249" height="19" ng-model="dcpfReExportCrops.dmg_pub"
+                            ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops)">
                             </td>
-                            <td valign="middle" ng-model="dcpfReExportCrops.dmg_pvt"
+                            <td class="right"   valign="middle" ng-model="dcpfReExportCrops.dmg_pvt"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReExportCrops)">
                             </td>
                         </tr>
@@ -851,10 +853,10 @@
                                 <br/>
                             </td>
 
-                            <td valign="middle" ng-model="dcpfReForestry.dmg_pub"
+                            <td  class="right"  valign="middle" ng-model="dcpfReForestry.dmg_pub"
                                 ng-bind="dcpfReForestry.dmg_pub = dcpfReForestry.num_dest_pub * bs_data['BacfAvgreForestry'][$index].fields.avg_value">
                             </td>
-                            <td valign="middle" ng-model="dcpfReForestry.dmg_pvt"
+                             <td class="right"   valign="middle" ng-model="dcpfReForestry.dmg_pvt"
                                 ng-bind="dcpfReForestry.dmg_pvt = dcpfReForestry.num_dest_pvt * bs_data['BacfAvgreForestry'][$index].fields.avg_value">
                             </td>
                         </tr>
@@ -868,10 +870,10 @@
                             <td class="tdpa" width="249" height="19"></td>
                             <td class="tdpa" width="249" height="19"></td>
 
-                            <td width="249" height="19" ng-model="dcpfReForestry.dmg_pub"
-                                ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry)">
+                            <td class="right"  width="249" height="19" ng-model="dcpfReForestry.dmg_pub"
+                            ng-bind="calPubTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry)">
                             </td>
-                            <td valign="middle" ng-model="dcpfReForestry.dmg_pvt"
+                            <td class="right"   valign="middle" ng-model="dcpfReForestry.dmg_pvt"
                                 ng-bind="calPvtTotal($parent.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry)">
                             </td>
                         </tr>
@@ -887,9 +889,9 @@
                             </td>
                             <td class="tdpa" width="117">
                             </td>
-                            <td width="112" ng-bind="calGrandPubTotal()">
+                            <td class="right"  width="112" ng-bind="calGrandPubTotal()">
                             </td>
-                            <td width="99" ng-bind="calGrandPvtTotal()">
+                            <td class="right"  width="99" ng-bind="calGrandPvtTotal()">
                             </td>
                         </tr>
                         </tbody>

@@ -1,7 +1,7 @@
 //Table 1
 var app = angular.module('bsPubRodsBridsUsrApp', [])
 
-app.controller('BsPubRodsBridsUsrController', ['$scope', '$http', function($scope, $http) {
+app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};

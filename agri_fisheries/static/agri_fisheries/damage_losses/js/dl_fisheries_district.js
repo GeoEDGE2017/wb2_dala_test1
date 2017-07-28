@@ -740,7 +740,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                        'incident': $scope.incident,
                        'user_id' : $scope.user_id,
                     },
-                    is_edit':$scope.is_edit
+                    'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
                 console.log(data);

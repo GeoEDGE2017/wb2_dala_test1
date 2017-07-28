@@ -2,6 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<style>
+    .right {text-align:right;}
+</style>
 <main class="main" ng-app="dlTouismInfrstrctCultNaturalApp" ng-Controller="dlTouismInfrstrctCultNaturalController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -220,7 +223,7 @@
                                    ng-model="DmgInfAsset.val_pdmg"
                                    class="form-control input-md">
                         </td>
-                        <td colspan="2" width="170" ng-model="DmgInfAsset.tot_dmg"
+                        <td  class="right" colspan="2" width="170" ng-model="DmgInfAsset.tot_dmg"
                             ng-bind="sum_of_dst_dpmg(DmgInfAsset.val_dst ,DmgInfAsset.val_pdmg,DmgInfAsset, 'tot_dmg')">
                             -tot
                         </td>
@@ -246,15 +249,15 @@
                         <td class="tdpa" height="19" width="263">
                             TOTAL
                         </td>
-                        <td colspan="2" width="229"
+                        <td class="right" colspan="2" width="229"
                             ng-bind="dmgInfAssets.val_dst = getTotalCol('DmgInfAssets','val_dst', dmgInfAssets)">
                             -
                         </td>
-                        <td colspan="2" width="232"
+                        <tdclass="right" colspan="2" width="232"
                             ng-bind="dmgInfAssets.val_pdmg = getTotalCol('DmgInfAssets','val_pdmg', dmgInfAssets)">
                             -
                         </td>
-                        <td colspan="2" width="170"
+                        <td class="right" colspan="2" width="170"
                             ng-bind="dmgInfAssets.tot_dmg = getTotalCol('DmgInfAssets','tot_dmg', dmgInfAssets)">
                             -
                         </td>

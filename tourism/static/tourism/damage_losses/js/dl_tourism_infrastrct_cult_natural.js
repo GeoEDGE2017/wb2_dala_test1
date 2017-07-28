@@ -100,7 +100,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                 }),
             }).success(function(data) {
                 $scope.districts = data;
-                $scope.selectedDistrict = "";s);
+                $scope.selectedDistrict = "";
             })
         }
         if($scope.incident && $scope.district ) {

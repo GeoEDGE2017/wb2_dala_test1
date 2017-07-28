@@ -1,7 +1,9 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 {% load static %}
-
+<style>
+    .right {text-align:right;}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlSumIrrigationDstrApp" ng-controller="dlSumIrrigationDstrController">
 
@@ -54,7 +56,7 @@
                         <td width="116">
                             Incident
                         </td>
-                        <td width="128">
+                        <td colspan="2"  width="128">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true);loadData(form_dlsum_irri_distr);"
                                     style="width:100%;font-weight:400;" required>
@@ -104,7 +106,7 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los">
                         </td>
-                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
+                        <td class="right" width="128" ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los">
 
                         </td>
@@ -117,7 +119,7 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los">
                         </td>
-                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
+                        <td class="right" width="128" ng-bind="data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
                           data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los ">
                         </td>
                     </tr>
@@ -129,7 +131,7 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los">
                         </td>
-                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
+                        <td class="right" width="128" ng-bind="data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los">
 
                         </td>
@@ -142,7 +144,7 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
                         </td>
-                        <td width="128"
+                        <td class="right" width="128"
                             ng-bind="data.agri_irrigation.Table_4.DlAnicutsDistrict[0].damages + data.agri_irrigation.Table_4.DlLosAnicutsDistrict[0].total_los">
 
                         </td>
@@ -155,7 +157,7 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
                         </td>
-                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
+                        <td class="right" width="128" ng-bind="data.agri_irrigation.Table_4.DlOtherStructuresDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
 
                         </td>
@@ -168,7 +170,7 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
                         </td>
-                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
+                        <td class="right" width="128" ng-bind="data.agri_irrigation.Table_4.DlRiverEmbankmntDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
 
                         </td>
@@ -181,7 +183,7 @@
                         </td>
                         <td width="116" ng-bind="data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
                         </td>
-                        <td width="128" ng-bind="data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages +
+                        <td class="right" width="128" ng-bind="data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlLosOtherDistrict[0].total_los">
 
                         </td>
@@ -190,7 +192,7 @@
                         <td class="tdpa" colspan="2" width="258" height="20">
                             TOTAL
                         </td>
-                        <td width="118"
+                        <td class="right" width="118"
                             ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +
@@ -200,7 +202,7 @@
                         data.agri_irrigation.Table_4.DlBuildingsDistrict[0].damages">
 
                         </td>
-                        <td width="116"
+                        <td class="right" width="116"
                             ng-bind="data.agri_irrigation.Table_4.DlLosMajorTanksDistrict[0].total_los +
                         data.agri_irrigation.Table_4.DlLosMediumTanksDistrict[0].total_los +
                         data.agri_irrigation.Table_4.DlLosMinorTanksDistrict[0].total_los +
@@ -210,7 +212,7 @@
                         data.agri_irrigation.Table_4.DlLosBuildingsDistrict[0].total_los">
 
 
-                        <td width="128"
+                        <td class="right" width="128"
                             ng-bind="data.agri_irrigation.Table_4.DlMajorTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMediumTanksDistrict[0].damages +
                         data.agri_irrigation.Table_4.DlMinorTanksDistrict[0].damages +

@@ -2,6 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<style>
+    .right {text-align:right;}
+</style>
 <main class="main" ng-app="dlStrutsOthAsetsApp" ng-controller="dlStrutsOthAsetsController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -157,14 +160,13 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDestStructures.tot_dest_pvt">
                             </td>
-
-                            <td width="85" ng-model="dsorDestStructures.dmg_pub"
-                                ng-bind="dsorDestStructures.dmg_pub =
+                            <td class="right" width="85" ng-model="dsorDestStructures.dmg_pub"
+                             ng-bind="dsorDestStructures.dmg_pub =
                                           dsorDestStructures.tot_dest_pub *
                                           bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
-                            </td>
-                            <td width="85" ng-model="dsorDestStructures.dmg_pvt"
-                                ng-bind="dsorDestStructures.dmg_pvt =
+                        </td>
+                           <td class="right" width="85" ng-model="dsorDestStructures.dmg_pvt"
+                             ng-bind="dsorDestStructures.dmg_pvt =
                                           dsorDestStructures.tot_dest_pvt *
                                           bs_data['BsoeStructure'][$index].fields.avg_replace_cost">
                             </td>
@@ -187,12 +189,10 @@
                             <td class="tdpa" colspan="2">
 
                             </td>
-                            <td width="85" ng-model="dsorDestStructures.dmg_pub"
-                                ng-bind="dsorDestStructures.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
+                            <td class="right" width="85" ng-model="dsorDestStructures.dmg_pub" ng-bind="dsorDestStructures.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
 
                             </td>
-                            <td width="85" ng-model="dsorDestStructures.dmg_pvt"
-                                ng-bind="dsorDestStructures.dmg_pvt = calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
+                            <td class="right" width="85" ng-model="dsorDestStructures.dmg_pvt" ng-bind="dsorDestStructures.dmg_pvt = calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures)">
 
                             </td>
                         </tr>
@@ -270,12 +270,12 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPubStructure.tot_dmg_walls">
                             </td>
-                            <td width="99">
+                            <td class="right" width="99">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPubStructure.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-model="dsorDmgPubStructure.damages"
-                                ng-bind="dsorDmgPubStructure.damages =
+                             <td class="right" colspan="2" width="170"  ng-model="dsorDmgPubStructure.damages"
+                             ng-bind="dsorDmgPubStructure.damages =
                                      dsorDmgPubStructure.tot_dmg_roof * bs_data['BsoeStructure'][$index].fields.avg_repair_roof +
                                      dsorDmgPubStructure.tot_dmg_walls * bs_data['BsoeStructure'][$index].fields.avg_repair_wall +
                                      dsorDmgPubStructure.tot_dmg_floors * bs_data['BsoeStructure'][$index].fields.avg_repair_flooring ">
@@ -294,8 +294,7 @@
                             </td>
                             <td class="tdpa" width="99">
                             </td>
-                            <td colspan="2" width="170" ng-model="dsorDmgPubStructure.damages"
-                                ng-bind="dsorDmgPubStructure.damages = calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure)">
+                            <td class="right" colspan="2" width="170" ng-model="dsorDmgPubStructure.damages" ng-bind="dsorDmgPubStructure.damages = calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure)">
 
                             </td>
                         </tr>
@@ -350,8 +349,8 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPvtStructures.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-model="dsorDmgPvtStructures.damages"
-                                ng-bind="dsorDmgPvtStructures.damages =
+                            <td class="right" colspan="2" width="170"  ng-model="dsorDmgPvtStructures.damages"
+                             ng-bind="dsorDmgPvtStructures.damages =
                                      dsorDmgPvtStructures.tot_dmg_roof * bs_data['BsoeStructure'][$index].fields.avg_repair_roof +
                                      dsorDmgPvtStructures.tot_dmg_walls * bs_data['BsoeStructure'][$index].fields.avg_repair_wall +
                                      dsorDmgPvtStructures.tot_dmg_floors * bs_data['BsoeStructure'][$index].fields.avg_repair_flooring ">
@@ -370,9 +369,7 @@
                             </td>
                             <td class="tdpa" width="99" ng-bind="dsorDmgPvtStructures.tot_dmg_floors">
                             </td>
-                            <td colspan="2" width="170" ng-model="dsorDmgPvtStructures.damages"
-                                ng-bind="dsorDmgPvtStructures.damages = calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures)">
-
+                            <td class="right" colspan="2" width="170" ng-model="dsorDmgPvtStructures.damages" ng-bind="dsorDmgPvtStructures.damages = calDamgTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures)">
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -434,14 +431,13 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dsorDmgPvtOequipment.num_dmg_pvt">
                             </td>
-
-                            <td width="85" ng-model="dsorDmgPvtOequipment.dmg_pub"
-                                ng-bind="dsorDmgPvtOequipment.dmg_pub =
+                            <td class="right" width="85"  ng-model="dsorDmgPvtOequipment.dmg_pub"
+                             ng-bind="dsorDmgPvtOequipment.dmg_pub =
                                      dsorDmgPvtOequipment.num_dest_pub * bs_data['BsoeOequipment'][$index].fields.avg_replace_cost +
                                      dsorDmgPvtOequipment.num_dmg_pub * bs_data['BsoeOequipment'][$index].fields.avg_repair_cost">
-                            </td>
-                            <td width="85" ng-model="dsorDmgPvtOequipment.dmg_pvt"
-                                ng-bind="dsorDmgPvtOequipment.dmg_pvt =
+                        </td>
+                            <td class="right" width="85"  ng-model="dsorDmgPvtOequipment.dmg_pvt"
+                             ng-bind="dsorDmgPvtOequipment.dmg_pvt =
                                      dsorDmgPvtOequipment.num_dest_pvt * bs_data['BsoeOequipment'][$index].fields.avg_replace_cost +
                                      dsorDmgPvtOequipment.num_dmg_pvt * bs_data['BsoeOequipment'][$index].fields.avg_repair_cost">
                             </td>
@@ -461,12 +457,10 @@
                             </td>
                             <td class="tdpa" colspan="2">
                             </td>
-                            <td width="85" ng-model="dsorDmgPvtOequipment.dmg_pub"
-                                ng-bind="dsorDmgPvtOequipment.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
+                            <td class="right" width="85" ng-model="dsorDmgPvtOequipment.dmg_pub" ng-bind="dsorDmgPvtOequipment.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
 
                             </td>
-                            <td width="85" ng-model="dsorDmgPvtOequipment.dmg_pvt"
-                                ng-bind="dsorDmgPvtOequipment.dmg_pvt = calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
+                            <td class="right" width="85" ng-model="dsorDmgPvtOequipment.dmg_pvt" ng-bind="dsorDmgPvtOequipment.dmg_pvt = calPvtTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment)">
 
                             </td>
                         </tr>
@@ -510,13 +504,13 @@
                                        class="form-control input-md" ng-model="dsorDmgPvtMachinery.num_dmg_pvt">
                             </td>
 
-                            <td width="85" ng-model="dsorDmgPvtMachinery.dmg_pub"
-                                ng-bind="dsorDmgPvtMachinery.dmg_pub =
+                            <td class="right" width="85"  ng-model="dsorDmgPvtMachinery.dmg_pub"
+                             ng-bind="dsorDmgPvtMachinery.dmg_pub =
                                      dsorDmgPvtMachinery.num_dest_pub * bs_data['BsoeMachinery'][$index].fields.avg_replace_cost +
                                      dsorDmgPvtMachinery.num_dmg_pub * bs_data['BsoeMachinery'][$index].fields.avg_repair_cost">
-                            </td>
-                            <td width="85" ng-model="dsorDmgPvtMachinery.dmg_pvt"
-                                ng-bind="dsorDmgPvtMachinery.dmg_pvt =
+                        </td>
+                          <td class="right" width="85"  ng-model="dsorDmgPvtMachinery.dmg_pvt"
+                             ng-bind="dsorDmgPvtMachinery.dmg_pvt =
                                      dsorDmgPvtMachinery.num_dest_pvt * bs_data['BsoeMachinery'][$index].fields.avg_replace_cost +
                                      dsorDmgPvtMachinery.num_dmg_pvt * bs_data['BsoeMachinery'][$index].fields.avg_repair_cost">
                             </td>
@@ -536,12 +530,10 @@
                             </td>
                             <td class="tdpa" colspan="2" ng-bind="dsorDmgPvtMachinery.num_dmg_pvt">
                             </td>
-                            <td width="85" ng-model="dsorDmgPvtMachinery.dmg_pub"
-                                ng-bind="dsorDmgPvtMachinery.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
+                            <td class="right" width="85" ng-model="dsorDmgPvtMachinery.dmg_pub" ng-bind="dsorDmgPvtMachinery.dmg_pub = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
 
                             </td>
-                            <td width="85" ng-model="dsorDmgPvtMachinery.dmg_pvt"
-                                ng-bind="dsorDmgPvtMachinery.dmg_pvt = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
+                            <td class="right" width="85" ng-model="dsorDmgPvtMachinery.dmg_pvt" ng-bind="dsorDmgPvtMachinery.dmg_pvt = calPubTotal($parent.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery)">
 
                             </td>
                         </tr>
@@ -550,10 +542,10 @@
                             <td class="boldash" colspan="7" width="963" height="19">
                                 GRAND TOTAL
                             </td>
-                            <td width="85" ng-bind="calGrandPubTotal()">
+                            <td class="right" width="85" ng-bind="calGrandPubTotal()">
 
                             </td>
-                            <td width="85" ng-bind="calGrandPvtTotal()">
+                            <td class="right" width="85" ng-bind="calGrandPvtTotal()">
 
                             </td>
                         </tr>

@@ -68,6 +68,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
                 $scope.data = data;
                 $scope.dlAgriFisheriesPro = data;
             })
+        }
     }
 
    $scope.convertToInt = function(val1,val2,val3){

@@ -25,138 +25,136 @@
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
             <tbody class="tab-pane active" id="step1">
-            <table class="table table-bordered">
-                <colgroup>
-                    <col width="249"/>
-                    <col width="148"/>
-                    <col width="121"/>
-                    <col width="117" span="2"/>
-                    <col width="112"/>
-                    <col width="99"/>
-                    <col width="85" span="2"/>
-                </colgroup>
-                <tr height="19" class="trhead1">
-                    <td colspan="2" style="padding-left:5px;">
-                        Incident:
-                    </td>
-                    <td colspan="5" style="background:#EFEFEF;">
-                        <select id="select" name="incident" ng-model="incident"
-                                class="form-control" style="width:100%;font-weight:400;"
-                                ng-change="changedValue(incident);fetchDlData();" required>
-                            <option value="" selected="true">Select an Incident</option>
-                            {% for incident in incidents %}
-                            <option value={{incident.id}}>
-                                <!--{{incident.disaster_type.name}}-->
-                                <!--{{incident.reported_date_time}}-->
-                                {{incident.incident_name}}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                    <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                </tr>
-                <tr class="trheadc1" height="20">
-                    <td rowspan="3" width="249" height="60" style="width:19.5%;">
-                        Province
-                    </td>
-                    <td colspan="4" width="503">
-                        Year 1
-                    </td>
-                    <td colspan="2" width="211">
-                        Year 2
-                    </td>
-                    <td colspan="2" rowspan="2" width="170">
-                        Total (LKR)
-                    </td>
-                </tr>
-                <tr class="trheadc1" height="20">
-                    <td colspan="2" width="269" height="20">
-                        Damages (LKR)
-                    </td>
-                    <td colspan="2" width="234">
-                        Losses (LKR)
-                    </td>
-                    <td colspan="2" width="211">
-                        Losses (LKR)
-                    </td>
-                </tr>
-                <tr class="trheadc1" height="20">
-                    <td width="148" height="20">
-                        Public
-                    </td>
-                    <td width="121" style="width:11%;">
-                        Private
-                    </td>
-                    <td width="117" style="width:12%;">
-                        Public
-                    </td>
-                    <td width="117" style="width:12.3%;">
-                        Private
-                    </td>
-                    <td width="112" style="width:9.8%;">
-                        Public
-                    </td>
-                    <td width="99" style="width:9.8%;">
-                        Private
-                    </td>
-                    <td width="85" style="width:9.2%;">
-                        Public
-                    </td>
-                    <td width="85" style="width:6.5%;">
-                        Private
-                    </td>
-                </tr>
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="249"/>
+                        <col width="148"/>
+                        <col width="121"/>
+                        <col width="117" span="2"/>
+                        <col width="112"/>
+                        <col width="99"/>
+                        <col width="85" span="2"/>
+                    </colgroup>
+                    <tr height="19" class="trhead1">
+                        <td colspan="2" style="padding-left:5px;">
+                            Incident:
+                        </td>
+                        <td colspan="7" style="background:#EFEFEF;">
+                            <select id="select" name="incident" ng-model="incident"
+                                        class="form-control" style="width:100%;font-weight:400;"
+                                        ng-change="changedValue(incident);fetchDlData();" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+                                        <option value={{incident.id}}>
+                                        <!--{{incident.disaster_type.name}}-->
+                                        <!--{{incident.reported_date_time}}-->
+                                            {{incident.incident_name}}
+                                        </option>
+                                    {% endfor %}
+                            </select>
+                        </td>
+                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                    </tr>
+                    <tr class="trheadc1" height="20">
+                        <td rowspan="3" width="249" height="60" style="width:19.5%;">
+                            Province
+                        </td>
+                        <td colspan="4" width="503">
+                            Year 1
+                        </td>
+                        <td colspan="2" width="211">
+                            Year 2
+                        </td>
+                        <td colspan="2" rowspan="2" width="170">
+                            Total (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc1" height="20">
+                        <td colspan="2" width="269" height="20">
+                            Damages (LKR)
+                        </td>
+                        <td colspan="2" width="234">
+                            Losses (LKR)
+                        </td>
+                        <td colspan="2" width="211">
+                            Losses (LKR)
+                        </td>
+                    </tr>
+                    <tr class="trheadc1" height="20">
+                        <td width="148" height="20">
+                            Public
+                        </td>
+                        <td width="121" style="width:11%;">
+                            Private
+                        </td>
+                        <td width="117" style="width:12%;">
+                            Public
+                        </td>
+                        <td width="117" style="width:12.3%;">
+                            Private
+                        </td>
+                        <td width="112" style="width:9.8%;">
+                            Public
+                        </td>
+                        <td width="99" style="width:9.8%;">
+                            Private
+                        </td>
+                        <td width="85" style="width:9.2%;">
+                            Public
+                        </td>
+                        <td width="85" style="width:6.5%;">
+                            Private
+                        </td>
+                    </tr>
                 <br>
                 <div class="pull-right">
                     <br>
                     <table ng-repeat="(key, value) in dlAgriAgrarianSumNat.agri_agrarian.Table_10"
                            class="table table-bordered">
                         <tbody>
-                        <tr height="20" ng-init="getTotal($index,key);">
-                            <td ng-bind="key" class="tdpa" width="253" height="19">
-                            </td>
-                            <td width="147" ng-bind="value.DsorDmgLosNational[0].dmg_los_pub">
-                            </td>
-                            <td width="151" ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt">
-                            </td>
-                            <td width="165" ng-bind="value.DsorLosYear1National[0].dmg_los_pub">
-                            </td>
-                            <td width="170" ng-bind="value.DsorLosYear1National[0].dmg_los_pvt">
-                            </td>
-                            <td width="135" ng-bind="value.DsorLosYear2National[0].dmg_los_pub">
-                            </td>
-                            <td width="133" ng-bind="value.DsorLosYear2National[0].dmg_los_pvt">
-                            </td>
-                            <td width="126"
-                                ng-bind="value.DsorDmgLosNational[0].dmg_los_pub + value.DsorLosYear1National[0].dmg_los_pub + value.DsorLosYear2National[0].dmg_los_pub ">
-                            </td>
-                            <td width="85"
-                                ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt + value.DsorLosYear1National[0].dmg_los_pvt + value.DsorLosYear2National[0].dmg_los_pvt ">
-                            </td>
+                        <tr  height="20" ng-init="getTotal($index,key);">
+                        <td ng-bind="key" class="tdpa" width="253" height="19">
+                        </td>
+                        <td width="147" ng-bind="value.DsorDmgLosNational[0].dmg_los_pub">
+                        </td>
+                        <td width="151" ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt">
+                        </td>
+                        <td width="165" ng-bind="value.DsorLosYear1National[0].dmg_los_pub">
+                        </td>
+                        <td width="170" ng-bind="value.DsorLosYear1National[0].dmg_los_pvt">
+                        </td>
+                        <td width="135" ng-bind="value.DsorLosYear2National[0].dmg_los_pub">
+                        </td>
+                        <td width="133" ng-bind="value.DsorLosYear2National[0].dmg_los_pvt">
+                        </td>
+                        <td class="right" width="126" ng-bind="value.DsorDmgLosNational[0].dmg_los_pub + value.DsorLosYear1National[0].dmg_los_pub + value.DsorLosYear2National[0].dmg_los_pub ">
+                        </td>
+                        <td class="right" width="85" ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt + value.DsorLosYear1National[0].dmg_los_pvt + value.DsorLosYear2National[0].dmg_los_pvt ">
+                        </td>
                         </tr>
                         <tr height="19">
-                            <td class="boldash" width="253" height="19">
-                                GRAND TOTAL
-                            </td>
-                            <td width="147" ng-bind="totaldpub">
-                            </td>
-                            <td width="151" ng-bind="totaldpvt">
-                            </td>
-                            <td width="165" ng-bind="totalyear1pub">
-                            </td>
-                            <td width="170" ng-bind="totalyear1pvt">
-                            </td>
-                            <td width="135" ng-bind="totalyear2pub">
-                            </td>
-                            <td width="133" ng-bind="totalyear2pvt">
-                            </td>
-                            <td width="126" ng-bind="finaltotalpublic">
-                            </td>
-                            <td width="85" ng-bind="finaltotalprivate">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        <td class="boldash" width="253" height="19">
+                            GRAND TOTAL
+                        </td>
+                        <td class="right" width="147" ng-bind="totaldpub">
+                        </td>
+                        <td class="right" width="151" ng-bind="totaldpvt"  >
+                        </td>
+                        <td class="right" width="165" ng-bind="totalyear1pub"  >
+                        </td>
+                        <td class="right" width="170"  ng-bind="totalyear1pvt"  >
+                        </td>
+                        <td class="right" width="135" ng-bind="totalyear2pub"  >
+                        </td>
+                        <td class="right" width="133" ng-bind="totalyear2pvt"  >
+                        </td>
+                        <td class="right" width="126" ng-bind="finaltotalpublic">
+                        </td>
+                        <td class="right" width="85" ng-bind="finaltotalprivate">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
                 </div>
             </table>
         </div>

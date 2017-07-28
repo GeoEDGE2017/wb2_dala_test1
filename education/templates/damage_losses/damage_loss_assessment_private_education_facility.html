@@ -60,6 +60,9 @@ $(document).on("click", "#add_technical", function () {
         var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     });
 </script>
+<style>
+    .right {text-align:right;}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlPvtEduFacilitiesApp" ng-controller="DlPvtEduFacilitiesController">
     <!-- Breadcrumb -->
@@ -214,14 +217,14 @@ $(document).on("click", "#add_technical", function () {
                         <td class="tdpa" width="280"
                             ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].edu_facilities" height="21">
                         </td>
-                        <td colspan="2" width="272"
+                        <td class="right" colspan="2" width="272"
                             ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].num_edu_facilities"
                             ng-value="dlPvtEduFacilities.education.Table_4.DpefNaf[5].num_edu_facilities = dlPvtEduFacilities.education.Table_4.DpefNaf[0].num_edu_facilities + dlPvtEduFacilities.education.Table_4.DpefNaf[1].num_edu_facilities  + dlPvtEduFacilities.education.Table_4.DpefNaf[2].num_edu_facilities + dlPvtEduFacilities.education.Table_4.DpefNaf[3].num_edu_facilities + dlPvtEduFacilities.education.Table_4.DpefNaf[4].num_edu_facilities">
                         </td>
-                        <td colspan="2" width="272" ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].male"
+                        <td class="right" colspan="2" width="272" ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].male"
                             ng-value="dlPvtEduFacilities.education.Table_4.DpefNaf[5].male = dlPvtEduFacilities.education.Table_4.DpefNaf[0].male + dlPvtEduFacilities.education.Table_4.DpefNaf[1].male  + dlPvtEduFacilities.education.Table_4.DpefNaf[2].male + dlPvtEduFacilities.education.Table_4.DpefNaf[3].male + dlPvtEduFacilities.education.Table_4.DpefNaf[4].male">
                         </td>
-                        <td colspan="2" width="272" ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].female"
+                        <td class="right"  colspan="2" width="272" ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].female"
                             ng-value="dlPvtEduFacilities.education.Table_4.DpefNaf[5].female = dlPvtEduFacilities.education.Table_4.DpefNaf[0].female + dlPvtEduFacilities.education.Table_4.DpefNaf[1].female  + dlPvtEduFacilities.education.Table_4.DpefNaf[2].female + dlPvtEduFacilities.education.Table_4.DpefNaf[3].female + dlPvtEduFacilities.education.Table_4.DpefNaf[4].female">
                         </td>
                     </tr>
@@ -358,15 +361,15 @@ $(document).on("click", "#add_technical", function () {
                             <td ng-bind="row.asset" class="tdpa"
                                 width="280" height="21">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_rep_cost"
                                 ng-value="row.est_rep_cost=dpefBefPreSchool[0].est_rep_cost + dpefBefPreSchool[1].est_rep_cost + dpefBefPreSchool[2].est_rep_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_repair_cost"
                                 ng-value="row.est_repair_cost=dpefBefPreSchool[0].est_repair_cost + dpefBefPreSchool[1].est_repair_cost + dpefBefPreSchool[2].est_repair_cost">
                             </td>
-                            <td ng-bind="row.tot_damages"
+                            <td class="right" ng-bind="row.tot_damages"
                                 ng-value="row.tot_damages=dpefBefPreSchool[0].tot_damages + dpefBefPreSchool[1].tot_damages + dpefBefPreSchool[2].tot_damages"
                                 width="136">
                             </td>
@@ -376,7 +379,7 @@ $(document).on("click", "#add_technical", function () {
                             <td width="136">
                                 <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
                             </td>
-                            <td width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                            <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
                             </td>
                         </tr>
                         </tbody>
@@ -460,15 +463,15 @@ $(document).on("click", "#add_technical", function () {
                             <td ng-bind="row.asset" class="tdpa"
                                 width="280" height="21">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_rep_cost"
                                 ng-value="row.est_rep_cost=dpefBefPrmSchool[0].est_rep_cost + dpefBefPrmSchool[1].est_rep_cost + dpefBefPrmSchool[2].est_rep_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_repair_cost"
                                 ng-value="row.est_repair_cost=dpefBefPrmSchool[0].est_repair_cost + dpefBefPrmSchool[1].est_repair_cost + dpefBefPrmSchool[2].est_repair_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.tot_damages"
                                 ng-value="row.tot_damages=dpefBefPrmSchool[0].tot_damages + dpefBefPrmSchool[1].tot_damages + dpefBefPrmSchool[2].tot_damages">
                             </td>
@@ -482,7 +485,7 @@ $(document).on("click", "#add_technical", function () {
                                        class="form-control input-md">
                                 <!--ng-bind="row.est_los_year_2" ng-value="row.est_los_year_2=dpefBefPrmSchool[0].est_los_year_2 + dpefBefPrmSchool[1].est_los_year_2 + dpefBefPrmSchool[2].est_los_year_2"-->
                             </td>
-                            <td width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                            <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
                                 <!--ng-bind="row.tot_los"-->
                                 <!--ng-value="row.tot_los=dpefBefPrmSchool[0].tot_los + dpefBefPrmSchool[1].tot_los + dpefBefPrmSchool[2].tot_los"-->
                             </td>
@@ -554,7 +557,7 @@ $(document).on("click", "#add_technical", function () {
                             <td width="136">
                                 <input ng-model="row.est_repair_cost" type="number" placeholder="" class="form-control input-md">
                             </td>
-                            <td ng-bind="row.tot_damages" ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
+                            <td class="right" ng-bind="row.tot_damages" ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
                                 width="136">
                             </td>
                             <td width="136" class="tdpa">
@@ -568,15 +571,15 @@ $(document).on("click", "#add_technical", function () {
                             <td ng-bind="row.asset" class="tdpa"
                                 width="280" height="21">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_rep_cost"
                                 ng-value="row.est_rep_cost=dpefBefSecSchool[0].est_rep_cost + dpefBefSecSchool[1].est_rep_cost + dpefBefSecSchool[2].est_rep_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_repair_cost"
                                 ng-value="row.est_repair_cost=dpefBefSecSchool[0].est_repair_cost + dpefBefSecSchool[1].est_repair_cost + dpefBefSecSchool[2].est_repair_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.tot_damages"
                                 ng-value="row.tot_damages=dpefBefSecSchool[0].tot_damages + dpefBefSecSchool[1].tot_damages + dpefBefSecSchool[2].tot_damages">
                             </td>
@@ -664,7 +667,7 @@ $(document).on("click", "#add_technical", function () {
                                 <input ng-model="row.est_repair_cost" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td ng-bind="row.tot_damages"
+                            <td class="right" ng-bind="row.tot_damages"
                                 ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
                                 width="136">
                             </td>
@@ -684,13 +687,13 @@ $(document).on("click", "#add_technical", function () {
                             <td ng-bind="row.asset" class="tdpa"
                                 width="280" height="21">
                             </td>
-                            <td width="136" ng-bind="row.est_rep_cost"
+                            <td class="right" width="136" ng-bind="row.est_rep_cost"
                                 ng-value="row.est_rep_cost=dpefBefUnv[0].est_rep_cost + dpefBefUnv[1].est_rep_cost + dpefBefUnv[2].est_rep_cost">
                             </td>
-                            <td width="136" ng-bind="row.est_repair_cost"
+                            <td class="right" width="136" ng-bind="row.est_repair_cost"
                                 ng-value="row.est_repair_cost=dpefBefUnv[0].est_repair_cost + dpefBefUnv[1].est_repair_cost + dpefBefUnv[2].est_repair_cost">
                             </td>
-                            <td width="136" ng-bind="row.tot_damages"
+                            <td class="right" width="136" ng-bind="row.tot_damages"
                                 ng-value="row.tot_damages=dpefBefUnv[0].tot_damages + dpefBefUnv[1].tot_damages + dpefBefUnv[2].tot_damages">
                             </td>
                             <td width="136">
@@ -792,15 +795,15 @@ $(document).on("click", "#add_technical", function () {
                             <td ng-bind="row.asset" class="tdpa"
                                 width="280" height="21">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_rep_cost"
                                 ng-value="row.est_rep_cost=dpefBefTechInst[0].est_rep_cost + dpefBefTechInst[1].est_rep_cost + dpefBefTechInst[2].est_rep_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.est_repair_cost"
                                 ng-value="row.est_repair_cost=dpefBefTechInst[0].est_repair_cost + dpefBefTechInst[1].est_repair_cost + dpefBefTechInst[2].est_repair_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="row.tot_damages"
                                 ng-value="row.tot_damages=dpefBefTechInst[0].tot_damages + dpefBefTechInst[1].tot_damages + dpefBefTechInst[2].tot_damages">
                             </td>
@@ -816,7 +819,7 @@ $(document).on("click", "#add_technical", function () {
                                 <!--ng-bind="row.est_los_year_2"-->
                                 <!--ng-value="row.est_los_year_2=dpefBefTechInst[0].est_los_year_2 + dpefBefTechInst[1].est_los_year_2 + dpefBefTechInst[2].est_los_year_2"-->
                             </td>
-                            <td width="136" ng-bind="row.tot_los"
+                            <td class="right" width="136" ng-bind="row.tot_los"
                                 ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
                                 <!--ng-bind="row.tot_los"-->
                                 <!--ng-value="row.tot_los=dpefBefTechInst[0].tot_los + dpefBefTechInst[1].tot_los + dpefBefTechInst[2].tot_los"-->
@@ -849,7 +852,7 @@ $(document).on("click", "#add_technical", function () {
                             <td width="136">
                             </td>
                         </tr>
-                        <tr class="trsub" height="21" ng-repeat="dpefBefOtherSchool in dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool" ng-if="dpefBefOtherSchool.asset != 'Total'">
+                        <tr  class="trsub" height="21" ng-repeat="dpefBefOtherSchool in dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool" ng-if="dpefBefOtherSchool.asset != 'Total'">
                             <td ng-bind="dpefBefOtherSchool.asset" class="tdpa"
                                 width="280" height="21">
                             </td>
@@ -873,21 +876,21 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tr class="trsub" height="21" ng-repeat="dpefBefOtherSchool in dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool" ng-if="dpefBefOtherSchool.asset == 'Total'">
-                            <td ng-bind="dpefBefOtherSchool.asset" class="tdpa" width="280" height="21">
+                            <td  ng-bind="dpefBefOtherSchool.asset" class="tdpa" width="280" height="21">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="dpefBefOtherSchool.est_rep_cost"
                                 ng-value="dpefBefOtherSchool.est_rep_cost = dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[0].est_rep_cost +
                                                 dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[1].est_rep_cost +
                                                 dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[2].est_rep_cost">
                             </td>
-                            <td width="136"
+                            <td class="right" width="136"
                                 ng-bind="dpefBefOtherSchool.est_repair_cost"
                                 ng-value="dpefBefOtherSchool.est_repair_cost = dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[0].est_repair_cost +
                                                 dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[1].est_repair_cost +
                                                 dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[2].est_repair_cost">
                             </td>
-                            <td width="136"
+                            <td class='right' width="136"
                                 ng-bind="dpefBefOtherSchool.tot_damages"
                                 ng-value="dpefBefOtherSchool.tot_damages = dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[0].tot_damages +
                                                 dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool[1].tot_damages +
@@ -905,7 +908,7 @@ $(document).on("click", "#add_technical", function () {
                                 <!--ng-bind="row.est_los_year_2"-->
                                 <!--ng-value="row.est_los_year_2=dpefBefTechInst[0].est_los_year_2 + dpefBefTechInst[1].est_los_year_2 + dpefBefTechInst[2].est_los_year_2"-->
                             </td>
-                            <td width="136" ng-bind="dpefBefOtherSchool.tot_los"
+                            <td class="right" width="136" ng-bind="dpefBefOtherSchool.tot_los"
                                 ng-value="dpefBefOtherSchool.tot_los = dpefBefOtherSchool.est_los_year_1 + dpefBefOtherSchool.est_los_year_2">
                                 <!--ng-bind="row.tot_los"-->
                                 <!--ng-value="row.tot_los=dpefBefTechInst[0].tot_los + dpefBefTechInst[1].tot_los + dpefBefTechInst[2].tot_los"-->

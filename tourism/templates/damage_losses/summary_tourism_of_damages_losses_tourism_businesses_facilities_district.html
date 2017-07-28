@@ -2,6 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<style>
+    .right {text-align:right;}
+</style>
 <main class="main" ng-app="dlSummTouBusiFaciDisApp" ng-controller="dlSummTouBusiFaciDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -176,34 +179,34 @@
                         <td class="tdpa" height="20" width="263">
                             Total
                         </td>
-                        <td width="115"
+                        <td class="right" width="115"
                             ng-bind="table.business.year1DamagePub = getAggrigatedTotal('year1Damage','Public','business')">
 
                         </td>
-                        <td width="114"
+                        <td class="right" width="114"
                             ng-bind="table.business.year1DamagePri = getAggrigatedTotal('year1Damage','Private','business')">
 
                         </td>
-                        <td width="114"
+                        <td class="right" width="114"
                             ng-bind="table.business.year1LossPub = getAggrigatedTotal('year1Loss','Public','business')">
 
                         </td>
-                        <td width="118"
+                        <td class="right" width="118"
                             ng-bind="table.business.year1LossPri = getAggrigatedTotal('year1Loss','Private','business')">
 
                         </td>
-                        <td width="85"
+                        <td class="right" width="85"
                             ng-bind="table.business.year2LossPub = getAggrigatedTotal('year2Loss','Public','business')">
 
                         </td>
-                        <td width="85"
+                        <td class="right" width="85"
                             ng-bind="table.business.year2LossPri = getAggrigatedTotal('year2Loss','Private','business')">
 
                         </td>
-                        <td width="85" ng-bind="table.business.fullTotPub = getPublicColBusinessTotal()">
+                        <td class="right" width="85" ng-bind="table.business.fullTotPub = getPublicColBusinessTotal()">
 
                         </td>
-                        <td width="85" ng-bind="table.business.fullTotPri = getPrivateColBusinessTotal()">
+                        <td class="right" width="85" ng-bind="table.business.fullTotPri = getPrivateColBusinessTotal()">
 
                         </td>
                     </tr>
@@ -229,35 +232,35 @@
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="inf_type in inf_types">
-                        <td class="tdpa" height="20" width="263" ng-bind="inf_type.infrastructure">
+                        <td  class="tdpa" height="20" width="263" ng-bind="inf_type.infrastructure">
 
                         </td>
-                        <td width="115"
+                        <td class="right" width="115"
                             ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Damage.Public)">
 
                         </td>
-                        <td width="114"
+                        <td class="right" width="114"
                             ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Damage.Private)">
 
                         </td>
-                        <td width="114" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Loss.Public)">
+                        <td class="right" width="114" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Loss.Public)">
 
                         </td>
-                        <td width="118" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Loss.Private)">
+                        <td class="right" width="118" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year1Loss.Private)">
 
                         </td>
-                        <td width="85" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year2Loss.Public)">
+                        <td class="right" width="85" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year2Loss.Public)">
 
                         </td>
-                        <td width="85" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year2Loss.Public)">
+                        <td class="right" width="85" ng-bind="getConvertedVal(table.infrastructures[inf_type.id].year2Loss.Public)">
 
                         </td>
-                        <td width="85" ng-bind="inf_type.totalPub = getSum3(table.infrastructures[inf_type.id].year1Damage.Public,
+                        <td class="right" width="85" ng-bind="inf_type.totalPub = getSum3(table.infrastructures[inf_type.id].year1Damage.Public,
                                                 table.infrastructures[inf_type.id].year1Loss.Public,
                                                 table.infrastructures[inf_type.id].year2Loss.Public)">
 
                         </td>
-                        <td width="85" ng-bind="inf_type.totalPri = getSum3(table.infrastructures[inf_type.id].year1Damage.Private ,
+                        <td class="right" width="85" ng-bind="inf_type.totalPri = getSum3(table.infrastructures[inf_type.id].year1Damage.Private ,
                                                 table.infrastructures[inf_type.id].year1Loss.Private ,
                                                 table.infrastructures[inf_type.id].year2Loss.Private)
                                                 ">
@@ -269,34 +272,34 @@
                         <td class="tdpa" height="20" width="263">
                             Total
                         </td>
-                        <td width="115"
+                        <td class="right" width="115"
                             ng-bind="table.infrastructures.year1DamagePub = getAggrigatedTotal('year1Damage','Public','infrastructures')">
 
                         </td>
-                        <td width="114"
+                        <td class="right" width="114"
                             ng-bind="table.infrastructures.year1DamagePri = getAggrigatedTotal('year1Damage','Private','infrastructures')">
 
                         </td>
-                        <td width="114"
+                        <td class="right" width="114"
                             ng-bind="table.infrastructures.year1LossPub = getAggrigatedTotal('year1Loss','Public','infrastructures')">
 
                         </td>
-                        <td width="118"
+                        <td class="right" width="118"
                             ng-bind="table.infrastructures.year1LossPri = getAggrigatedTotal('year1Loss','Private','infrastructures')">
 
                         </td>
-                        <td width="85"
+                        <td class="right" width="85"
                             ng-bind="table.infrastructures.year2LossPub = getAggrigatedTotal('year2Loss','Public','infrastructures')">
 
                         </td>
-                        <td width="85"
+                        <td class="right" width="85"
                             ng-bind="table.infrastructures.year2LossPri = getAggrigatedTotal('year2Loss','Private','infrastructures')">
 
                         </td>
-                        <td width="85" ng-bind="table.infrastructures.fullTotPub = getPublicColInfrastructuresTotal()">
+                        <td class="right" width="85" ng-bind="table.infrastructures.fullTotPub = getPublicColInfrastructuresTotal()">
 
                         </td>
-                        <td width="85" ng-bind="table.infrastructures.fullTotPri = getPrivateColInfrastructuresTotal()">
+                        <td class="right" width="85" ng-bind="table.infrastructures.fullTotPri = getPrivateColInfrastructuresTotal()">
 
                         </td>
                     </tr>
@@ -304,28 +307,28 @@
                         <td class="tdpa" height="20" width="263">
                             GRAND TOTAL
                         </td>
-                        <td width="115" ng-bind="getGrandTotal('year1DamagePub')">
+                        <td class="right" width="115" ng-bind="getGrandTotal('year1DamagePub')">
 
                         </td>
-                        <td width="114" ng-bind="getGrandTotal('year1DamagePri')">
+                        <td class="right" width="114" ng-bind="getGrandTotal('year1DamagePri')">
 
                         </td>
-                        <td width="114" ng-bind="getGrandTotal('year1LossPub')">
+                        <td class="right" width="114" ng-bind="getGrandTotal('year1LossPub')">
 
                         </td>
-                        <td width="118" ng-bind="getGrandTotal('year1LossPri')">
+                        <td class="right" width="118" ng-bind="getGrandTotal('year1LossPri')">
 
                         </td>
-                        <td width="85" ng-bind="getGrandTotal('year2LossPub')">
+                        <td class="right" width="85" ng-bind="getGrandTotal('year2LossPub')">
 
                         </td>
-                        <td width="85" ng-bind="getGrandTotal('year2LossPri')">
+                        <td class="right" width="85" ng-bind="getGrandTotal('year2LossPri')">
 
                         </td>
-                        <td width="85" ng-bind="getGrandTotal('fullTotPub')">
+                        <td class="right" width="85" ng-bind="getGrandTotal('fullTotPub')">
 
                         </td>
-                        <td width="85" ng-bind="getGrandTotal('fullTotPri')">
+                        <td class="right" width="85" ng-bind="getGrandTotal('fullTotPri')">
 
                         </td>
                     </tr>

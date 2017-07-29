@@ -13,6 +13,8 @@ from django.conf import settings
 from django.http import HttpResponse
 from mining.base_line.models import Firm
 from agri_livestock.base_line.models import Organization
+from health.base_line.models import PrivateClinic
+from education.base_line.models import PreSchools, PrimarySchools, SecondarySchools, TechInstitutes, Universities
 from users.models import UserDistrict
 import smtplib
 
@@ -902,7 +904,7 @@ def dl_save_data(request):
 # dileepa
 @csrf_exempt
 def dl_save_data_with_array(request):
-    print '*****************'
+    print '\n\ndl_save_data_with_array'
     dl_data = (yaml.safe_load(request.body))
     dl_table_data = dl_data['table_data']
     com_data = dl_data['com_data']
@@ -920,7 +922,7 @@ def dl_save_data_with_array(request):
         print 'Current User Error'
 
     if not is_edit:
-        print "not edit"
+        print "Mode - save"
 
         for sector in dl_table_data:
             print 'sector', sector
@@ -933,23 +935,21 @@ def dl_save_data_with_array(request):
                 com_data['table_name'] = interface_table
 
                 filter_fields = com_data
+                print 'filter_fields', filter_fields
                 print "be fore getting model"
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
                 print "before filtering", com_data
                 record_exist = sub_app_session.objects.filter(**filter_fields)
-                print "record_exist"
 
                 if not record_exist:
                     print "record does not exist"
 
-                    print 'interface table', ' -->', interface_table, '\n'
+                    print 'interface table', ' ->', interface_table, '\n'
                     for db_table in dl_table_data[sector][interface_table]:
-                        print 'db_table', db_table
-
-                        print 'db table', ' -->', db_table, '\n'
+                        print '\tdb table', ' ->', db_table, '\n'
 
                         for row in dl_table_data[sector][interface_table][db_table]:
-                            print 'row', row
+                            print '\t\trow', ' ->', row
 
                             model_class = apps.get_model(sub_app_name, db_table)
                             model_object = model_class()
@@ -961,12 +961,12 @@ def dl_save_data_with_array(request):
                             model_object.lmd = todate
 
                             for com_property in com_data:
-                                print com_data[com_property]
+                                print '\t\t\tcom_data[com_property]', com_data[com_property]
                                 setattr(model_object, com_property, com_data[com_property])
-
-                            print 'row', ' --> ', row, '\n', ' object '
+                            print '------'
 
                             for property in row:
+                                print '\t\t\tproperty', property
                                 if isinstance(property, dict):
                                     model_object_item = model_class()
 
@@ -978,11 +978,33 @@ def dl_save_data_with_array(request):
                                         setattr(model_object_item, com_property, com_data[com_property])
 
                                     for item in property:
-                                        setattr(model_object_item, item, property[item])
-                                        model_object_item.save()
-                                        print '#####', property[item]
+                                        print 'model_object_item ', model_object_item
+                                        print 'item ', item
+                                        print 'property[item] ', property[item]
+                                        if item == 'private_clinic':
+                                            setattr(model_object_item, item, PrivateClinic.objects.only('id').get(id=property[item]))
+                                            model_object_item.save()
+                                        elif item == 'pre_school':
+                                            setattr(model_object_item, item, PreSchools.objects.only('id').get(id=property[item]))
+                                            model_object_item.save()
+                                        elif item == 'primary_school':
+                                            setattr(model_object_item, item, PrimarySchools.objects.only('id').get(id=property[item]))
+                                            model_object_item.save()
+                                        elif item == 'secondary_school':
+                                            setattr(model_object_item, item, SecondarySchools.objects.only('id').get(id=property[item]))
+                                            model_object_item.save()
+                                        elif item == 'university':
+                                            setattr(model_object_item, item, Universities.objects.only('id').get(id=property[item]))
+                                            model_object_item.save()
+                                        elif item == 'tech_institute':
+                                            setattr(model_object_item, item, TechInstitutes.objects.only('id').get(id=property[item]))
+                                            model_object_item.save()
+                                        else:
+                                            setattr(model_object_item, item, property[item])
+                                            model_object_item.save()
+                                            print 'property', property[item]
                                 else:
-                                    print '@@@@@ ', row[property]
+                                    print '@@@@@', property, row[property]
                                     setattr(model_object, property, row[property])
 
                                     print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
@@ -1001,9 +1023,11 @@ def dl_save_data_with_array(request):
                     return HttpResponse(True)
 
                 else:
+                    print "record_exist"
                     return HttpResponse(False)
 
     else:
+        print "Mode - edit"
         dl_save_edit_data_with_array(dl_table_data, com_data)
 
     return HttpResponse('success')
@@ -1285,9 +1309,42 @@ def dl_save_edit_data_with_array(table_data, com_data):
                                     print com_data[com_property]
                                     setattr(model_object, com_property, com_data[com_property])
 
-                                for property in row_in:
-                                    setattr(model_object, property, row[property])
-                                    print 'property ', ' --> ', property, ' db_property ', row_in[property], ' index ', '\n'
+                                # for property in row_in:
+                                #     setattr(model_object, property, row[property])
+                                #     print 'property ', ' --> ', property, ' db_property ', row_in[property], ' index ', '\n'
+
+                                for item in row_in:
+                                    print 'model_object_item ', model_object
+                                    print 'item ', item
+                                    print 'property[item] ', row_in[item]
+                                    if item == 'private_clinic':
+                                        setattr(model_object, item,
+                                                PrivateClinic.objects.only('id').get(id=row_in[item]))
+                                        model_object.save()
+                                    elif item == 'pre_school':
+                                        setattr(model_object, item,
+                                                PreSchools.objects.only('id').get(id=row_in[item]))
+                                        model_object.save()
+                                    elif item == 'primary_school':
+                                        setattr(model_object, item,
+                                                PrimarySchools.objects.only('id').get(id=row_in[item]))
+                                        model_object.save()
+                                    elif item == 'secondary_school':
+                                        setattr(model_object, item,
+                                                SecondarySchools.objects.only('id').get(id=row_in[item]))
+                                        model_object.save()
+                                    elif item == 'university':
+                                        setattr(model_object, item,
+                                                Universities.objects.only('id').get(id=row_in[item]))
+                                        model_object.save()
+                                    elif item == 'tech_institute':
+                                        setattr(model_object, item,
+                                                TechInstitutes.objects.only('id').get(id=row_in[item]))
+                                        model_object.save()
+                                    else:
+                                        setattr(model_object, item, row_in[item])
+                                        model_object.save()
+                                        print 'property', row_in[item]
 
                                 model_object.save()
                                 print "saved--dl---", model_object.id

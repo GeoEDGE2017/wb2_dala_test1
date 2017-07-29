@@ -420,23 +420,46 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     $scope.bsHsDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
-        $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                'table_name': 'Table_2',
-                'sector': 'education',
-                'com_data': {
-                   'district': $scope.district,
-                   'bs_date': $scope.baselineDate,
-                   'user_id': $scope.user_id,
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'education',
+                    'com_data': {
+                       'district': $scope.district,
+                       'bs_date': $scope.baselineDate,
+                       'user_id': $scope.user_id,
+                    }
+               }),
+            }).success(function(data) {
+                console.log(data);
+    //            $scope.bsUcostGeduFacilities = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.education.Table_2, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsUcostGeduFacilities = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
                 }
-           }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.bsUcostGeduFacilities = data;
-        })
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
     }
 
     $scope.cancelEdit = function() {

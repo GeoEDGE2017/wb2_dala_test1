@@ -2,7 +2,6 @@
 var app = angular.module('dlHealthSectorDistrictApp', []);
 
 app.controller("DlHealthSectorDistrictController", ['$scope','$http',function ($scope,$http) {
-
     $scope.district;
     $scope.incident;
     $scope.dl_data={};

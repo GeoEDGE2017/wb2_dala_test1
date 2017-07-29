@@ -21,6 +21,12 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     $scope.user_id;
     $scope.is_edit_disable = false;
 
+    $scope.preSchool = [];
+    $scope.prmSchool = [];
+    $scope.secSchool = [];
+    $scope.unv = [];
+    $scope.techInst = [];
+
     $scope.new_school = {'PreSchools': {id: null, name: null, district_id: null},
                          'PrimarySchools': {id: null, name: null, district_id: null},
                          'SecondarySchools': {id: null, name: null, district_id: null},
@@ -111,8 +117,462 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 
     $scope.dlPvtEduFacilities = angular.copy(init_data);
 
-    $scope.test = function() {
+    $scope.totEstReplacementCost = function() {
+        var tot = 0;
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_rep_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_rep_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_rep_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_rep_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_rep_cost;
+                    }
+                })
+            })
+        }
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
+            if(value.asset == 'Total') {
+                tot = tot + value.est_rep_cost;
+            }
+        })
+
+        return tot;
+    }
+
+    $scope.totEstRepairCost = function() {
+        var tot = 0;
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_repair_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_repair_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_repair_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_repair_cost;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_repair_cost;
+                    }
+                })
+            })
+        }
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
+            if(value.asset == 'Total') {
+                tot = tot + value.est_rep_cost;
+            }
+        })
+
+        return tot;
+    }
+
+    $scope.totDamages = function() {
+        var tot = 0;
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_damages;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_damages;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_damages;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_damages;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_damages;
+                    }
+                })
+            })
+        }
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
+            if(value.asset == 'Total') {
+                tot = tot + value.tot_damages;
+            }
+        })
+
+        return tot;
+    }
+
+    $scope.totEstLosYear1 = function() {
+        var tot = 0;
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_1;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_1;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_1;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_1;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_1;
+                    }
+                })
+            })
+        }
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
+            if(value.asset == 'Total') {
+                tot = tot + value.est_los_year_1;
+            }
+        })
+
+        return tot;
+    }
+
+    $scope.totEstLosYear2 = function() {
+        var tot = 0;
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_2;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_2;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_2;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_2;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.est_los_year_2;
+                    }
+                })
+            })
+        }
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
+            if(value.asset == 'Total') {
+                tot = tot + value.est_los_year_2;
+            }
+        })
+
+        return tot;
+    }
+
+    $scope.totLos = function() {
+        var tot = 0;
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_los;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_los;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_los;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_los;
+                    }
+                })
+            })
+        }
+        if($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.length > 0) {
+            angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.asset == 'Total') {
+                        tot = tot + value_in.tot_los;
+                    }
+                })
+            })
+        }
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
+            if(value.asset == 'Total') {
+                tot = tot + value.tot_los;
+            }
+        })
+
+        return tot;
+    }
+
+    $scope.setSchoolTypeIDs = function() {
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                console.log(value_in);
+                value_in.pre_school = $scope.preSchool[index].id;
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                console.log(value_in);
+                value_in.primary_school = $scope.prmSchool[index].id;
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                console.log(value_in);
+                value_in.secondary_school = $scope.secSchool[index].id;
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                console.log(value_in);
+                value_in.university = $scope.unv[index].id;
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                console.log(value_in);
+                value_in.tech_institute = $scope.techInst[index].id;
+            })
+        })
+
+        console.log($scope.dlPvtEduFacilities.education.Table_4);
+    }
+
+    $scope.getPrivateClinicsIDs = function() {
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            console.log(value);
+            $scope.preSchool.push(null);
+            angular.forEach(value, function(value_in, index_in) {
+                angular.forEach($scope.schools.PreSchools, function(pre_school, pre_school_index) {
+                    if(value_in.pre_school == pre_school.id) {
+                        console.log(value_in);
+                        $scope.preSchool[index] = pre_school;
+                    }
+                })
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            console.log(value);
+            $scope.prmSchool.push(null);
+            angular.forEach(value, function(value_in, index_in) {
+                angular.forEach($scope.schools.PrimarySchools, function(prm_school, prm_school_index) {
+                    if(value_in.primary_school == prm_school.id) {
+                        console.log(value_in);
+                        $scope.prmSchool[index] = prm_school;
+                    }
+                })
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            console.log(value);
+            $scope.secSchool.push(null);
+            angular.forEach(value, function(value_in, index_in) {
+                angular.forEach($scope.schools.SecondarySchools, function(secondary_school, prm_school_index) {
+                    if(value_in.secondary_school == secondary_school.id) {
+                        console.log(value_in);
+                        $scope.secSchool[index] = secondary_school;
+                    }
+                })
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            console.log(value);
+            $scope.unv.push(null);
+            angular.forEach(value, function(value_in, index_in) {
+                angular.forEach($scope.schools.Universities, function(university, prm_school_index) {
+                    if(value_in.university == university.id) {
+                        console.log(value_in);
+                        $scope.unv[index] = university;
+                    }
+                })
+            })
+        })
+
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            console.log(value);
+            $scope.techInst.push(null);
+            angular.forEach(value, function(value_in, index_in) {
+                angular.forEach($scope.schools.TechInstitutes, function(tech_institute, prm_school_index) {
+                    if(value_in.tech_institute == tech_institute.id) {
+                        console.log(value_in);
+                        $scope.techInst[index] = tech_institute;
+                    }
+                })
+            })
+        })
+
+        console.log($scope.dlPvtEduFacilities.education.Table_4);
+    }
+
+    $scope.addPrmSchoolIndex = function(index) {
         console.log($scope.dlPvtEduFacilities);
+    }
+
+    $scope.testing = function() {
+        console.log("test", $scope.prmSchool);
     }
 
     // adding schools
@@ -142,6 +602,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 var school = $filter('filter')($scope.schools[$scope.schoolType], {id: data})[0];
                 school.name = $scope.new_school[$scope.schoolType].name;
             }
+            $scope.new_school[$scope.schoolType] = null;
             $scope.is_edit_model = false;
         })
     }
@@ -160,31 +621,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             }),
         }).success(function(data) {
             $scope.schools = data;
-        })
-    }
-
-    $scope.dlDataSubmit = function() {
-        $scope.submitted = true;
-        $http({
-            method: "POST",
-            url: "/dl_save_data",
-            data: angular.toJson({
-                'table_data': ($scope.dlPvtEduFacilities),
-                'com_data': {
-                    'district_id': $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'user_id': $scope.user_id,
-                },
-                'is_edit': $scope.is_edit
-            }),
-        }).success(function(data) {
-            $scope.dlPvtEduFacilities = init_data;
-            $scope.is_edit = false;
-
-            if(data == 'False')
-                $scope.is_valid_data = false;
-            else
-                $("#modal-container-239453").modal('show');
         })
     }
 
@@ -223,13 +659,30 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     }
 
     $scope.removeItem = function removeItem(table, index) {
-        if(table == 'DpefNaf') {
-            $scope.dlPvtEduFacilities.education.Table_4.DpefNaf.splice(index, 1);
+        console.log('removeItem', table, index);
+        if(table == 'DpefBefPreSchool') {
+            $scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.splice(index, 1);
+            $scope.preSchool.splice(index, 1);
+        }
+        else if(table == 'DpefBefPrmSchool') {
+            $scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.splice(index, 1);
+            $scope.prmSchool.splice(index, 1);
+        }
+        else if(table == 'DpefBefSecSchool') {
+            $scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.splice(index, 1);
+            $scope.secSchool.splice(index, 1);
+        }
+        else if(table == 'DpefBefUnv') {
+            $scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.splice(index, 1);
+            $scope.unv.splice(index, 1);
+        }
+        else if(table == 'DpefBefTechInst') {
+            $scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.splice(index, 1);
+            $scope.techInst.splice(index, 1);
         }
     }
 
     $scope.changedValue = function getBsData(selectedValue) {
-     alert('hi');
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -252,8 +705,9 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
-        console.log($scope.dlPvtEduFacilities);
         if(form.$valid) {
+            $scope.setSchoolTypeIDs();
+            console.log($scope.dlPvtEduFacilities);
             $http({
                 method : 'POST',
                 url : '/dl_save_data_with_array',
@@ -263,11 +717,9 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-
                     },
                     'is_edit': $scope.is_edit,
                     'user_id': $scope.user_id,
-
                 }),
                 dataType: 'json',
             }).then(function mySucces(response) {
@@ -285,31 +737,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
         }
     }
 
-    $scope.editdlData = function(form) {
-        $scope.is_edit = true;
-        $scope.submitted = true;
-
-        if(form.$valid) {
-            $http({
-                method: "POST",
-                url: '/dl_fetch_edit_data',
-                data: angular.toJson({
-                    'table_name':  'Table_4',
-                    'sector':'education',
-                    'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-                    },
-                    'is_edit': $scope.is_edit
-                }),
-            }).success(function(data) {
-                $scope.dlPvtEduFacilities = data;
-                console.log($scope.dlPvtEduFacilities);
-            })
-        }
-    }
-
-    $scope.editdlDataTest = function(form) {
+    $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
 
@@ -329,14 +757,38 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     },
                     'com_data': {
                         'district': $scope.district.district__id,
-                        'incident': $scope.incident,
+                        'incident': $scope.incident
 //                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.dlPvtEduFacilities = data;
+//                $scope.dlPvtEduFacilities = data;
+//                $scope.getPrivateClinicsIDs();
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.education.Table_4, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlPvtEduFacilities = data;
+                        $scope.getPrivateClinicsIDs();
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }
@@ -380,16 +832,16 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }];
 
-        $scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.push(new_row_one);
+        $scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.unshift(new_row_one);
         console.log($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool);
-
-        console.log($scope.dlPvtEduFacilities);
+        $scope.preSchool.unshift(null);
+        console.log('preSchool push', $scope.preSchool);
     }
 
     $scope.addPrmSchoolObject = function() {
         var new_row_one = [{
             asset: 'Structure',
-            pre_school: null,
+            primary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -398,7 +850,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Supplies and materials',
-            pre_school: null,
+            primary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -407,7 +859,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Equipment',
-            pre_school: null,
+            primary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -416,7 +868,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Total',
-            pre_school: null,
+            primary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -425,14 +877,16 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }]
 
-        $scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.push(new_row_one);
+        $scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.unshift(new_row_one);
         console.log($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool);
+        $scope.prmSchool.unshift(null);
+        console.log('prmSchool push', $scope.prmSchool);
     }
 
     $scope.addSecSchoolObject = function() {
         var new_row_one = [{
             asset: 'Structure',
-            pre_school: null,
+            secondary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -441,7 +895,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Supplies and materials',
-            pre_school: null,
+            secondary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -450,7 +904,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Equipment',
-            pre_school: null,
+            secondary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -459,7 +913,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Total',
-            pre_school: null,
+            secondary_school: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -468,14 +922,16 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }]
 
-        $scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.push(new_row_one);
+        $scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.unshift(new_row_one);
         console.log($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool);
+        $scope.secSchool.unshift(null);
+        console.log('prmSchool push', $scope.secSchool);
     }
 
     $scope.addUnvObject = function() {
         var new_row_one = [{
             asset: 'Structure',
-            pre_school: null,
+            university: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -484,7 +940,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Supplies and materials',
-            pre_school: null,
+            university: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -493,7 +949,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Equipment',
-            pre_school: null,
+            university: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -502,7 +958,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Total',
-            pre_school: null,
+            university: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -511,14 +967,16 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }]
 
-        $scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.push(new_row_one);
+        $scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.unshift(new_row_one);
         console.log($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv);
+        $scope.unv.unshift(null);
+        console.log('university push', $scope.unv);
     }
 
     $scope.addTechInstbject = function() {
         var new_row_one = [{
             asset: 'Structure',
-            pre_school: null,
+            tech_institute: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -527,7 +985,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Supplies and materials',
-            pre_school: null,
+            tech_institute: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -536,7 +994,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Equipment',
-            pre_school: null,
+            tech_institute: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -545,7 +1003,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }, {
             asset: 'Total',
-            pre_school: null,
+            tech_institute: null,
             est_rep_cost: null,
             est_repair_cost: null,
             tot_damages: null,
@@ -554,7 +1012,21 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             tot_los: null
         }]
 
-        $scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.push(new_row_one);
+        $scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.unshift(new_row_one);
         console.log($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst);
+        $scope.techInst.unshift(null);
+        console.log('prmSchool push', $scope.techInst);
+    }
+
+    $scope.test = function() {
+        console.log('preSchool', $scope.preSchool);
+        console.log('prmSchool', $scope.prmSchool);
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("clear")
+        $scope.is_edit = false;
+        $scope.dlPvtEduFacilities = angular.copy(init_data);
     }
 })

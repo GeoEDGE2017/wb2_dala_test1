@@ -735,7 +735,29 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                }),
             }).success(function(data) {
                 console.log(data);
-                $scope.dlGovnEduFacilities = data;
+//                $scope.dlGovnEduFacilities = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.education.Table_3, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlGovnEduFacilities = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }
@@ -982,6 +1004,13 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
         console.log($scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total);
 
         return tabfourtotal;
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("clear")
+        $scope.is_edit = false;
+        $scope.dlGovnEduFacilities = angular.copy(init_data);
     }
 })
 

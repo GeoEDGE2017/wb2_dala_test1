@@ -122,20 +122,20 @@
                             <input id="textinput" name="textinput" type="number" min="0"
                                    ng-model="dlInfDmgTypBusiness.repair_val_ast_damaged" placeholder="" class="form-control input-md">
                         </td>
-                        <td height="19" width="143" ng-bind="dlInfDmgTypBusiness.tot_damages = getSum2(dlInfDmgTypBusiness.replace_val_ast_destroyed, dlInfDmgTypBusiness.repair_val_ast_damaged)">
+                        <td class="right" height="19" width="143" ng-bind="dlInfDmgTypBusiness.tot_damages = getSum2(dlInfDmgTypBusiness.replace_val_ast_destroyed, dlInfDmgTypBusiness.repair_val_ast_damaged)">
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="dlInfDmgTypBusiness in dl_dmg_loss_infoml_sec.industry_services.Table_4.DlInfDmgTypBusiness" ng-if="dlInfDmgTypBusiness.assets == 'Total'">
                         <td class="tdpa" height="19" width="212">
                             Total
                         </td>
-                        <td height="19" width="108" ng-bind="dlInfDmgTypBusiness.tot_num_bus_affected = getTotalCol('DlInfDmgTypBusiness', 'tot_num_bus_affected', dlInfDmgTypBusiness)">
+                        <td class="right" height="19" width="108" ng-bind="dlInfDmgTypBusiness.tot_num_bus_affected = getTotalCol('DlInfDmgTypBusiness', 'tot_num_bus_affected', dlInfDmgTypBusiness)">
                         </td>
-                        <td colspan="2" height="19" width="220" ng-bind="dlInfDmgTypBusiness.replace_val_ast_destroyed = getTotalCol('DlInfDmgTypBusiness', 'replace_val_ast_destroyed', dlInfDmgTypBusiness)">
+                        <td class="right" colspan="2" height="19" width="220" ng-bind="dlInfDmgTypBusiness.replace_val_ast_destroyed = getTotalCol('DlInfDmgTypBusiness', 'replace_val_ast_destroyed', dlInfDmgTypBusiness)">
                         </td>
-                        <td colspan="2" height="19" width="216" ng-bind="dlInfDmgTypBusiness.repair_val_ast_damaged = getTotalCol('DlInfDmgTypBusiness', 'repair_val_ast_damaged', dlInfDmgTypBusiness)">
+                        <td class="right" colspan="2" height="19" width="216" ng-bind="dlInfDmgTypBusiness.repair_val_ast_damaged = getTotalCol('DlInfDmgTypBusiness', 'repair_val_ast_damaged', dlInfDmgTypBusiness)">
                         </td>
-                        <td height="19" width="143" ng-bind="getTotalCol('DlInfDmgTypBusiness', 'tot_damages', dlInfDmgTypBusiness)">
+                        <td class="right" height="19" width="143" ng-bind="getTotalCol('DlInfDmgTypBusiness', 'tot_damages', dlInfDmgTypBusiness)">
                         </td>
                     </tr>
                     </tbody>
@@ -204,7 +204,7 @@
                             <input id="textinput" name="textinput" type="number" min="0"
                                    ng-model="dlInfLosTypTrading.avg_val_output_year" placeholder="" class="form-control input-md" >
                         </td>
-                        <td height="19" class="tdpa" width="108" ng-if="$index != 0">
+                        <td  height="19" class="tdpa" width="108" ng-if="$index != 0">
                         </td>
                         <td height="19" width="110" ng-if="$index == 0">
                             <input id="textinput" name="textinput" type="number" min="0"
@@ -218,14 +218,14 @@
                         </td>
                         <td height="19" class="tdpa" width="108" ng-if="$index != 0">
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="dlInfLosTypTrading.los_year1 = getMultiply2(dlInfLosTypTrading.avg_val_output_year,dlInfLosTypTrading.est_val_output_year1 )">
                         </td>
                         <td height="19" width="108" ng-if="$index != 0">
                             <input id="textinput" name="textinput" type="number" min="0"
                                    ng-model="dlInfLosTypTrading.los_year1" placeholder="" class="form-control input-md" >
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="dlInfLosTypTrading.los_year2 = getMultiply2(dlInfLosTypTrading.avg_val_output_year,dlInfLosTypTrading.est_val_output_year2 )">
                         </td>
                         <td height="19" width="127" ng-if="$index != 0">
@@ -233,7 +233,7 @@
                                    ng-model="dlInfLosTypTrading.los_year2" placeholder=""
                                    class="form-control input-md" >
                         </td>
-                        <td height="19" width="100" ng-bind="dlInfLosTypTrading.tot_losses = getSum2(dlInfLosTypTrading.los_year1, dlInfLosTypTrading.los_year2)">
+                        <td class="right" height="19" width="100" ng-bind="dlInfLosTypTrading.tot_losses = getSum2(dlInfLosTypTrading.los_year1, dlInfLosTypTrading.los_year2)">
                             Tot row
                         </td>
                     </tr>
@@ -247,11 +247,11 @@
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td height="19" width="108" ng-bind="dlInfLosTypTrading.los_year1 = getTotalCol('DlInfLosTypTrading', 'los_year1', dlInfLosTypTrading)">
+                        <td class="right" height="19" width="108" ng-bind="dlInfLosTypTrading.los_year1 = getTotalCol('DlInfLosTypTrading', 'los_year1', dlInfLosTypTrading)">
                         </td>
-                        <td height="19" width="127" ng-bind="dlInfLosTypTrading.los_year2 = getTotalCol('DlInfLosTypTrading', 'los_year2', dlInfLosTypTrading)">
+                        <td class="right" height="19" width="127" ng-bind="dlInfLosTypTrading.los_year2 = getTotalCol('DlInfLosTypTrading', 'los_year2', dlInfLosTypTrading)">
                         </td>
-                        <td height="19" width="143" ng-bind="dlInfLosTypTrading.tot_losses =getTotalCol('DlInfLosTypTrading', 'tot_losses', dlInfLosTypTrading)">
+                        <td class="right" height="19" width="143" ng-bind="dlInfLosTypTrading.tot_losses =getTotalCol('DlInfLosTypTrading', 'tot_losses', dlInfLosTypTrading)">
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -293,21 +293,21 @@
                         </td>
                         <td height="19" class="tdpa" width="108" ng-if="$index != 0">
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="tableRow.los_year1 = getMultiply2(tableRow.avg_val_output_year,tableRow.est_val_output_year1 )">
                         </td>
                         <td height="19" width="108" ng-if="$index != 0">
                             <input id="textinput" name="textinput" type="number" min="0"
                                    ng-model="tableRow.los_year1" placeholder="" class="form-control input-md" >
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="tableRow.los_year2 = getMultiply2(tableRow.avg_val_output_year,tableRow.est_val_output_year2 )">
                         </td>
                         <td height="19" width="127" ng-if="$index != 0">
                             <input id="textinput" name="textinput" type="number" min="0"
                                    ng-model="tableRow.los_year2" placeholder="" class="form-control input-md" >
                         </td>
-                        <td height="19" width="100" ng-bind="tableRow.tot_losses = getSum2(tableRow.los_year1, tableRow.los_year2)">
+                        <td class="right" height="19" width="100" ng-bind="tableRow.tot_losses = getSum2(tableRow.los_year1, tableRow.los_year2)">
                             Tot row
                         </td>
                     </tr>
@@ -321,11 +321,11 @@
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td height="19" width="108" ng-bind="tableRow.los_year1 = getTotalCol('DlInfLosTypServices', 'los_year1', tableRow)">
+                        <td class="right" height="19" width="108" ng-bind="tableRow.los_year1 = getTotalCol('DlInfLosTypServices', 'los_year1', tableRow)">
                         </td>
-                        <td height="19" width="127" ng-bind="tableRow.los_year2 = getTotalCol('DlInfLosTypServices', 'los_year2', tableRow)">
+                        <td class="right" height="19" width="127" ng-bind="tableRow.los_year2 = getTotalCol('DlInfLosTypServices', 'los_year2', tableRow)">
                         </td>
-                        <td height="19" width="143" ng-bind="tableRow.tot_losses = getTotalCol('DlInfLosTypServices', 'tot_losses', tableRow)">
+                        <td class="right" height="19" width="143" ng-bind="tableRow.tot_losses = getTotalCol('DlInfLosTypServices', 'tot_losses', tableRow)">
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -371,7 +371,7 @@
                         </td>
                         <td height="19" class="tdpa" width="108" ng-if="$index != 0">
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="tableRow.los_year1 = getMultiply2(tableRow.avg_val_output_year,tableRow.est_val_output_year1 )">
                         </td>
                         <td height="19" width="108" ng-if="$index != 0">
@@ -379,7 +379,7 @@
                                    ng-model="tableRow.los_year1" placeholder=""
                                    class="form-control input-md" >
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="tableRow.los_year2 = getMultiply2(tableRow.avg_val_output_year,tableRow.est_val_output_year2 )">
                         </td>
                         <td height="19" width="127" ng-if="$index != 0">
@@ -387,7 +387,7 @@
                                    ng-model="tableRow.los_year2" placeholder=""
                                    class="form-control input-md" >
                         </td>
-                        <td height="19" width="100" ng-bind="tableRow.tot_losses = getSum2(tableRow.los_year1, tableRow.los_year2)">
+                        <td class="right" height="19" width="100" ng-bind="tableRow.tot_losses = getSum2(tableRow.los_year1, tableRow.los_year2)">
                             Tot row
                         </td>
                     </tr>
@@ -401,11 +401,11 @@
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td height="19" width="108" ng-bind="tableRow.los_year1 = getTotalCol('DlInfLosTypFood', 'los_year1', tableRow)">
+                        <td class="right" height="19" width="108" ng-bind="tableRow.los_year1 = getTotalCol('DlInfLosTypFood', 'los_year1', tableRow)">
                         </td>
-                        <td height="19" width="127" ng-bind="tableRow.los_year2 = getTotalCol('DlInfLosTypFood', 'los_year2', tableRow)">
+                        <td class="right" height="19" width="127" ng-bind="tableRow.los_year2 = getTotalCol('DlInfLosTypFood', 'los_year2', tableRow)">
                         </td>
-                        <td height="19" width="143" ng-bind="tableRow.tot_losses = getTotalCol('DlInfLosTypFood', 'tot_losses', tableRow)">
+                        <td class="right" height="19" width="143" ng-bind="tableRow.tot_losses = getTotalCol('DlInfLosTypFood', 'tot_losses', tableRow)">
                         </td>
                     </tr>
                     <!--Others-->
@@ -451,21 +451,21 @@
                         </td>
                         <td height="19" class="tdpa" width="108" ng-if="$index != 0">
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="tableRow.los_year1 = getMultiply2(tableRow.avg_val_output_year,tableRow.est_val_output_year1 )">
                         </td>
                         <td height="19" width="108" ng-if="$index != 0">
                             <input id="textinput" name="textinput" type="number" min="0"
                                    ng-model="tableRow.los_year1" placeholder="" class="form-control input-md">
                         </td>
-                        <td height="19" width="100" ng-if="$index == 0"
+                        <td class="right" height="19" width="100" ng-if="$index == 0"
                             ng-bind="tableRow.los_year2 = getMultiply2(tableRow.avg_val_output_year,tableRow.est_val_output_year2 )">
                         </td>
                         <td height="19" width="127" ng-if="$index != 0">
                             <input id="textinput" name="textinput" type="number" min="0"
                                    ng-model="tableRow.los_year2" placeholder="" class="form-control input-md">
                         </td>
-                        <td height="19" width="100" ng-bind="tableRow.tot_losses = getSum2(tableRow.los_year1, tableRow.los_year2)">
+                        <td class="right" height="19" width="100" ng-bind="tableRow.tot_losses = getSum2(tableRow.los_year1, tableRow.los_year2)">
                             Tot row
                         </td>
                     </tr>
@@ -479,11 +479,11 @@
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td height="19" width="108" ng-bind="tableRow.los_year1 = getTotalCol('DlInfLosTypOther', 'los_year1', tableRow)">
+                        <td class="right" height="19" width="108" ng-bind="tableRow.los_year1 = getTotalCol('DlInfLosTypOther', 'los_year1', tableRow)">
                         </td>
-                        <td height="19" width="127" ng-bind="tableRow.los_year2 = getTotalCol('DlInfLosTypOther', 'los_year2', tableRow)">
+                        <td class="right" height="19" width="127" ng-bind="tableRow.los_year2 = getTotalCol('DlInfLosTypOther', 'los_year2', tableRow)">
                         </td>
-                        <td height="19" width="143" ng-bind="tableRow.tot_losses = getTotalCol('DlInfLosTypOther', 'tot_losses', tableRow)">
+                        <td class="right" height="19" width="143" ng-bind="tableRow.tot_losses = getTotalCol('DlInfLosTypOther', 'tot_losses', tableRow)">
                         </td>
                     </tr>
                     <tr height="19">
@@ -496,11 +496,11 @@
                         </td>
                         <td class="tdpa" height="19" width="100">
                         </td>
-                        <td height="19" width="108" ng-bind="getGrandTotalCol('los_year1')">
+                        <td class="right" height="19" width="108" ng-bind="getGrandTotalCol('los_year1')">
                         </td>
-                        <td height="19" width="127" ng-bind="getGrandTotalCol('los_year2')">
+                        <td class="right" height="19" width="127" ng-bind="getGrandTotalCol('los_year2')">
                         </td>
-                        <td height="19" width="143" ng-bind="getGrandTotalCol('tot_losses')">
+                        <td class="right" height="19" width="143" ng-bind="getGrandTotalCol('tot_losses')">
                         </td>
                     </tr>
                     </tbody>

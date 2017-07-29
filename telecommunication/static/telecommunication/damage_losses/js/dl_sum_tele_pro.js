@@ -22,11 +22,9 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
 
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
-
         if($scope.incident && selectProvinces) {
-          fetchProvinces();
+            fetchProvinces();
         }
-
     }
 
     $scope.provinces = [];
@@ -183,5 +181,114 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
 
 }
 
+    $scope.getTotDistrictDamagesPub = function(dis) {
+        var tot_damages_pub=0;
+        angular.forEach($scope.dlSumTelePro.telecommunication.Table_4[dis], function(value, key, index) {
+            if(key == 'DlDmgFirmDistrict') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        tot_damages_pub = tot_damages_pub + value_in.tot_damages;
+                    }
+                })
+            }
+        })
 
+        return tot_damages_pub;
+    }
+
+    $scope.getTotDistrictDamagesPvt = function(dis) {
+        var tot_damages_pvt=0;
+        angular.forEach($scope.dlSumTelePro.telecommunication.Table_4[dis], function(value, key, index) {
+            if(key == 'DlDmgFirmDistrict') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        tot_damages_pvt = tot_damages_pvt + value_in.tot_damages;
+                    }
+                })
+            }
+        })
+
+        return tot_damages_pvt;
+    }
+
+    $scope.getTotDistrictLossesYear1Pub = function(dis) {
+        var year1_los_pub=0;
+        angular.forEach($scope.dlSumTelePro.telecommunication.Table_4[dis], function(value, key, index) {
+            if(key == 'LosFirmYear1District') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        year1_los_pub = year1_los_pub + value_in.year1_los;
+                    }
+                })
+            }
+        })
+
+        return year1_los_pub;
+    }
+
+    $scope.getTotDistrictLossesYear1Pvt = function(dis) {
+        var year1_los_pvt=0;
+        angular.forEach($scope.dlSumTelePro.telecommunication.Table_4[dis], function(value, key, index) {
+            if(key == 'LosFirmYear1District') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        year1_los_pvt = year1_los_pvt + value_in.year1_los;
+                    }
+                })
+            }
+        })
+
+        return year1_los_pvt;
+    }
+
+    $scope.getTotDistrictLossesYear2Pub = function(dis) {
+        var year2_los_pub=0;
+        angular.forEach($scope.dlSumTelePro.telecommunication.Table_4[dis], function(value, key, index) {
+            if(key == 'LosFirmYear2District') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        year2_los_pub = year2_los_pub + value_in.year2_los;
+                    }
+                })
+            }
+        })
+
+        return year2_los_pub;
+    }
+
+    $scope.getTotDistrictLossesYear2Pvt = function(dis) {
+        var year2_los_pvt=0;
+        angular.forEach($scope.dlSumTelePro.telecommunication.Table_4[dis], function(value, key, index) {
+            if(key == 'LosFirmYear2District') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        year2_los_pvt = year2_los_pvt + value_in.year2_los;
+                    }
+                })
+            }
+        })
+
+        return year2_los_pvt;
+    }
+
+    $scope.getTOTALDistrictDamagesPvt = function() {
+        var tot_damages_pvt=0;
+        if(typeof $scope.dlSumTelePro != 'undefined') {
+            console.log($scope.dlSumTelePro);
+            if($scope.dlSumTelePro.telecommunication != 'null') {
+                angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                    angular.forEach(value, function(dis, key, index) {
+                        if(key == 'DlDmgFirmDistrict') {
+                            angular.forEach(value, function(value_in, index_in) {
+                                if(value_in.ownership == 'Private') {
+                                    tot_damages_pvt = tot_damages_pvt + value_in.tot_damages;
+                                }
+                            })
+                        }
+                    })
+                })
+            }
+        }
+        return tot_damages_pvt;
+    }
  })

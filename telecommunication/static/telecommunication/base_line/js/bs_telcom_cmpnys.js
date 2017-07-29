@@ -63,7 +63,6 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     'sector' : 'telecommunication',
                 }),
             }).success(function(data) {
-                console.log('ok');
                 console.log(data);
                 $scope.is_edit = false;
                 if (data == 'False') {
@@ -180,6 +179,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -194,10 +194,33 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsTelcomCmpnys = data;
-                alert('hi');
-                alert('company '+$scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company);
-                $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company_name.value=26;
+//                $scope.bsTelcomCmpnys = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.telecommunication.Table_1, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsTelcomCmpnys = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
+
+//                alert('hi');
+//                alert('company '+$scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company);
+//                $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company_name.value=26;
 
 //                angular.forEach($scope.data, function(value, key) {
 //                    console.log('');
@@ -208,6 +231,21 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
 //                });
             })
         }
+    }
+
+    $scope.getPrivateClinicsIDs = function() {
+        angular.forEach($scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany, function(value, index) {
+            console.log(value);
+            $scope.preSchool.push(null);
+            angular.forEach(value, function(value_in, index_in) {
+                angular.forEach($scope.schools.PreSchools, function(pre_school, pre_school_index) {
+                    if(value_in.pre_school == pre_school.id) {
+                        console.log(value_in);
+                        $scope.preSchool[index] = pre_school;
+                    }
+                })
+            })
+        })
     }
 
     //Clear Function

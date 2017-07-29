@@ -92,6 +92,7 @@
                             Total Damages and Losses (LKR)
                         </td>
                     </tr>
+
                     <tr class="trheadc" height="19" ng-repeat="(key, value) in dlSumHousPro.housing.Table_5"
                         ng-init="getTotal(key)">
                         <td height="19" width="166" ng-bind="key">
@@ -112,21 +113,21 @@
                         <td class="tdpa" height="19" width="166">
                             Type 1. Permanent
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="data.housing.Table_5[key].DlNumDesPerProvince[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="112"
+                        <td class="right" height="19" width="112"
                             ng-bind="data.housing.Table_5[key].DlNumPdesPerProvince[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_5[key].DlDmgPerProvince[0].tot_damages">
+                        <td class="right" height="19" width="87" ng-bind="data.housing.Table_5[key].DlDmgPerProvince[0].tot_damages">
 
                         </td>
-                        <td height="19" width="104" ng-bind="data.housing.Table_5[key].DlLosPerProvince[0].tot_losses">
+                        <td class="right" height="19" width="104" ng-bind="data.housing.Table_5[key].DlLosPerProvince[0].tot_losses">
 
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="data.housing.Table_5[key].DlDmgPerProvince[0].tot_damages + data.housing.Table_5[key].DlLosPerProvince[0].tot_losses">
 
                         </td>
@@ -135,23 +136,23 @@
                         <td class="tdpa" height="19" width="166">
                             Type 2. Semi-Permanent
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="data.housing.Table_5[key].DlNumDesSemiPerProvince[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="112"
+                        <td class="right" height="19" width="112"
                             ng-bind="data.housing.Table_5[key].DlNumPdesSemiPerProvince[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="data.housing.Table_5[key].DlDmgSemiPerProvince[0].tot_damages">
 
                         </td>
-                        <td height="19" width="104"
+                        <td class="right" height="19" width="104"
                             ng-bind="data.housing.Table_5[key].DlLosSemiPerProvince[0].tot_losses">
 
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="data.housing.Table_5[key].DlDmgSemiPerProvince[0].tot_damages + data.housing.Table_5[key].DlLosSemiPerProvince[0].tot_losses">
 
                         </td>
@@ -160,21 +161,21 @@
                         <td class="tdpa" height="19" width="166">
                             Type 3. Improvised
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="data.housing.Table_5[key].DlNumDesImpProvince[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="112"
+                        <td class="right" height="19" width="112"
                             ng-bind="data.housing.Table_5[key].DlNumPdesImpProvince[0].tot_num_houses">
 
                         </td>
-                        <td height="19" width="87" ng-bind="data.housing.Table_5[key].DlDmgImpProvince[0].tot_damages">
+                        <td class="right" height="19" width="87" ng-bind="data.housing.Table_5[key].DlDmgImpProvince[0].tot_damages">
 
                         </td>
-                        <td height="19" width="104" ng-bind="data.housing.Table_5[key].DlLosImpProvince[0].tot_losses">
+                        <td class="right" height="19" width="104" ng-bind="data.housing.Table_5[key].DlLosImpProvince[0].tot_losses">
 
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="data.housing.Table_5[key].DlDmgImpProvince[0].tot_damages + data.housing.Table_5[key].DlLosImpProvince[0].tot_losses">
 
                         </td>
@@ -184,27 +185,27 @@
                             TOTAL
                         </td>
                         {% verbatim %}
-                        <td width="98" ng-model="noTotDes" ng-bind="noTotDes= {{'noTotDes'+key}}">
+                        <td class="right" width="98" ng-model="noTotDes" ng-bind="noTotDes= {{'noTotDes'+key}}">
 
                         </td>
                         {% endverbatim %}
 
                         {% verbatim %}
-                        <td width="98" ng-model="noPartDes" ng-bind="noPartDes= {{'noPartDes'+key}}">
+                        <td class="right" width="98" ng-model="noPartDes" ng-bind="noPartDes= {{'noPartDes'+key}}">
 
                         </td>
                         {% endverbatim %}
                         {% verbatim %}
-                        <td width="98" ng-model="totdamage" ng-bind="totdamage= {{'totdamage'+key}}">
+                        <td class="right" width="98" ng-model="totdamage" ng-bind="totdamage= {{'totdamage'+key}}">
 
                         </td>
                         {% endverbatim %}
                         {% verbatim %}
-                        <td width="98" ng-model="totalLosses" ng-bind="totalLosses= {{'totalLosses'+key}}">
+                        <td class="right" width="98" ng-model="totalLosses" ng-bind="totalLosses= {{'totalLosses'+key}}">
 
                         </td>
                         {% endverbatim %}
-                        <td height="19" width="87" ng-bind="tot">
+                        <td class="right" height="19" width="87" ng-bind="tot">
 
                         </td>
                     </tr>
@@ -213,19 +214,20 @@
                         <td class="boldash" height="19" width="166">
                             GRAND TOTAL
                         </td>
-                        <td height="19" width="87" ng-bind="grndtotalNumDes">
+                        <td class="right" height="19" width="87" ng-bind="grndtotalNumDes">
                         </td>
 
-                        <td height="19" width="112" ng-bind="grndtotalNumPart">
+                        <td class="right" height="19" width="112" ng-bind="grndtotalNumPart">
 
                         </td>
-                        <td height="19" width="87" ng-bind="grndtotalDamages">
+                        <td class="right" height="19" width="87" ng-bind="grndtotalDamages">
 
                         </td>
-                        <td height="19" width="104" ng-bind="grndtotalLosses">
+                        <td class="right" height="19" width="104" ng-bind="grndtotalLosses">
 
                         </td>
-                        <td height="19" width="87" ng-bind="grandTotal">
+                        <td class="right" height="19" width="87" ng-bind="grandTotal">
+                        </td>
                     </tr>
                 </table>
                 <br>

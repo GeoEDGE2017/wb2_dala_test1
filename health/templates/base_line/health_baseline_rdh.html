@@ -2,17 +2,16 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  });
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsHealthStatusApp" ng-controller="BsHealthStatusController">
     <style type="text/css">
-  .popover {
-    background: tomato;
-}
-
+        .popover {
+            background: tomato;
+        }
     </style>
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -20,7 +19,7 @@
             <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+            <a href="{% url 'dashboard:health_main' %}">Health</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -344,9 +343,12 @@
                             Edit
                         </button>
                     </span>
-                        <button type="button" ng-click="saveBsData(form_pop_lat_census)" class="btn btn-success">
-                            Submit
-                        </button>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        Cancel Edit
+                    </button>
+                    <button type="button" ng-click="saveBsData(form_pop_lat_census)" class="btn btn-success">
+                        Submit
+                    </button>
                     </div>
                 </div>
             </div>

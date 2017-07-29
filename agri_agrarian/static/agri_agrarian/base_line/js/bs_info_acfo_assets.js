@@ -165,7 +165,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }

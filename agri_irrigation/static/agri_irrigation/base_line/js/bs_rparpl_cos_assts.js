@@ -398,7 +398,7 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
     }
 
     //Edit data
-    $scope.bsHsDataEdit = function(){
+    $scope.bsHsDataEdit = function(form){
         $scope.submitted = true;
         $scope.is_edit = true;
         if (form.$valid) {

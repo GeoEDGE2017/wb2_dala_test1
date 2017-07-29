@@ -13,6 +13,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
      $scope.is_null = false;
      $scope.currentBaselineDate = null;
      $scope.user_id;
+     $scope.is_edit_disable = false;
 
     //Initialize Data
     var init_data = {
@@ -104,6 +105,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
             })
         }
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

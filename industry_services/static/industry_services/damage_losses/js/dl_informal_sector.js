@@ -15,6 +15,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
     $scope.businessTypes = [];
     $scope.is_edit = false;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'industry_services': {
@@ -261,8 +262,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         }
 
         if($scope.incident && $scope.district ) {
-//            $scope.fetchFirms();
-//            $scope.fetchBusinessTypes();
+            $scope.is_edit_disable = true;
         }
     }
 

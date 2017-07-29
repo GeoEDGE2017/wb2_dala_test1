@@ -224,6 +224,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
 
             }).then(function successCallback(response) {
+                    generateRefencedData()
                     var data = response.data;
                     console.log('*', response);
                     angular.forEach(data, function(value, key) {

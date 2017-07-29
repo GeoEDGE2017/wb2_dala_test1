@@ -8,6 +8,7 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'industry_services': {
@@ -33,6 +34,16 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     }
 
     $scope.bs_ind_ser_info_informl = angular.copy(init_data);
+
+     //disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
     $scope.insertRow = function(table) {
         var new_row;

@@ -15,6 +15,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.inf_types = [];
     $scope.infrastructures = [];
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'tourism': {
@@ -106,6 +107,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         if($scope.incident && $scope.district ) {
             $scope.fetchInfTypes();
             $scope.fetchTourismInfrastructures();
+            $scope.is_edit_disable = true;
         }
     }
 
@@ -246,9 +248,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        'user_id': $scope.user_id,
                         'inf_id': $scope.selectedInfrastructure.id,
-                        //                        'inf_type_id': $scope.selectedType.id,
                         'ownership': $scope.selectedInfrastructure.ownership
 
                     }

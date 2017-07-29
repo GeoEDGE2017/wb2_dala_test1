@@ -11,6 +11,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.Districts=[];
     $scope.is_valid_data = true;
     $scope.is_null = false;
+    $scope.is_edit_disable = false;
 
     //Initialize model
     var init_data = {
@@ -306,6 +307,70 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 $scope.selectedDistrict = "";
             })
         }
+        if($scope.incident && $scope.district){
+            $scope.is_edit_disable = true;
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BsPwGenFirm'],
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_1',
+                    'sector':'power_supply',
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                console.log('*', response);
+                angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+                });
+                console.log('*', $scope.bs_data);
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_1',
+                            'sector': 'power_supply'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        var result = response.data;
+                        if(result == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            result = result.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                        }
+                    });
+                }
+            }, function errorCallback(response) {
+
+            });
+        }
     }
 
     //Save Data
@@ -443,6 +508,174 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     grandTot = finalIncometotal + finaltotal;
     return grandTot;
     }
+
+    $scope.GrandTotalReplacementCost = function (){
+            var finaltotal1 = 0;
+            var finaltotal2 = 0;
+            var finaltotal3 = 0;
+            var finaltotal4 = 0;
+            var finaltotal5 = 0;
+            var finaltotal6 = 0;
+            var grantot = 0;
+
+            var array1 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration;
+            var array2 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstTransmision;
+            var array3 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution;
+            var array4 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures;
+            var array5 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment;
+            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.cebDmgAstOther;
+
+
+            angular.forEach(array1, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal1 = finaltotal1 + value.tot_replace_cost ;
+                }
+            })
+
+            angular.forEach(array2, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal2 = finaltotal2 + value.tot_replace_cost ;
+                }
+            })
+
+            angular.forEach(array3, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal3 = finaltotal3 + value.tot_replace_cost ;
+                }
+            })
+
+            angular.forEach(array4, function(value, key) {
+            if(value.assets !="Total"){
+             finaltotal4 = finaltotal4 + value.tot_replace_cost ;
+             }
+            })
+            angular.forEach(array5, function(value, key) {
+            if(value.assets !="Total" ){
+             finaltotal5 = finaltotal5 + value.tot_replace_cost ;
+             }
+            })
+             angular.forEach(array6, function(value, key) {
+            if(value.assets !="Total" && value.assets !="GRAND TOTAL"){
+             finaltotal6 = finaltotal6 + value.tot_replace_cost ;
+             }
+            })
+
+            grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 +finaltotal6 ;
+            return grantot;
+        }
+
+    $scope.GrandTotalRepairCost = function (){
+            var finaltotal1 = 0;
+            var finaltotal2 = 0;
+            var finaltotal3 = 0;
+            var finaltotal4 = 0;
+            var finaltotal5 = 0;
+            var finaltotal6 = 0;
+            var grantot = 0;
+
+            var array1 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration;
+            var array2 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstTransmision;
+            var array3 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution;
+            var array4 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures;
+            var array5 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment;
+            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.cebDmgAstOther;
+
+
+            angular.forEach(array1, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal1 = finaltotal1 + value.to_repair_cost ;
+                }
+            })
+
+            angular.forEach(array2, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal2 = finaltotal2 + value.to_repair_cost ;
+                }
+            })
+
+            angular.forEach(array3, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal3 = finaltotal3 + value.to_repair_cost ;
+                }
+            })
+
+            angular.forEach(array4, function(value, key) {
+            if(value.assets !="Total"){
+             finaltotal4 = finaltotal4 + value.to_repair_cost ;
+             }
+            })
+            angular.forEach(array5, function(value, key) {
+            if(value.assets !="Total"){
+             finaltotal5 = finaltotal5 + value.to_repair_cost ;
+             }
+            })
+            angular.forEach(array6, function(value, key) {
+              console.log("test", value.to_repair_cost );
+            if(value.assets !="Total" && value.assets !="GRAND TOTAL"){
+                console.log("test", value.to_repair_cost );
+             finaltotal6 = finaltotal6 + value.to_repair_cost ;
+             }
+            })
+
+            grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
+            return grantot;
+        }
+
+    $scope.GrandTotal = function (){
+            var finaltotal1 = 0;
+            var finaltotal2 = 0;
+            var finaltotal3 = 0;
+            var finaltotal4 = 0;
+            var finaltotal5 = 0;
+            var finaltotal6 = 0;
+            var grantot = 0;
+
+            var array1 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstGeneration;
+            var array2 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstTransmision;
+            var array3 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution;
+            var array4 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures;
+            var array5 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment;
+            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.cebDmgAstOther;
+
+
+            angular.forEach(array1, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal1 = finaltotal1 + value.tot_dmg ;
+                }
+            })
+
+            angular.forEach(array2, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal2 = finaltotal2 + value.tot_dmg ;
+                }
+            })
+
+            angular.forEach(array3, function(value, key) {
+            if(value.assets !="Total"){
+                finaltotal3 = finaltotal3 + value.tot_dmg ;
+                }
+            })
+
+            angular.forEach(array4, function(value, key) {
+            if(value.assets !="Total"){
+             finaltotal4 = finaltotal4 + value.tot_dmg ;
+             }
+            })
+            angular.forEach(array5, function(value, key) {
+            if(value.assets !="Total"){
+             finaltotal5 = finaltotal5 + value.tot_dmg ;
+             }
+            })
+             angular.forEach(array6, function(value, key) {
+            if(value.assets !="Total" && value.assets !="GRAND TOTAL"){
+             finaltotal6 = finaltotal6 + value.tot_dmg ;
+             }
+            })
+
+            grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6 ;
+            return grantot;
+        }
+
 
     //Clear Function
     $scope.clear = function() {

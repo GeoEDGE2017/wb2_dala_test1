@@ -205,7 +205,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         }
 
         if($scope.incident && $scope.district ) {
-            $scope.is_edit_disable = false;
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

@@ -14,7 +14,7 @@
             <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+            <a href="{% url 'dashboard:health_main' %}">Health</a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -301,10 +301,10 @@
                             Clear
                         </button>
                         <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit(form_health_baseline_district)" ng-if="!is_edit" class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
+                            <button type="button" ng-click="editBsData(form_health_baseline_district)" ng-if="!is_edit"
+                                    class="btn btn-success">Edit
+                            </button>
+                        </span>
                     <span ng-if="!is_edit_disable">
                         <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit

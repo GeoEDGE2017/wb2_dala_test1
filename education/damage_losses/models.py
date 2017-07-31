@@ -377,7 +377,7 @@ class DpefBefPreSchool(models.Model):
 
 class DpefBefPrmSchool(models.Model):
     asset = models.CharField(max_length=255, blank=True, null=True)
-    primary_school = models.ForeignKey(PrimarySchools, db_column='primary_school', blank=True, null=True)
+    primary_school = models.ForeignKey(PrimarySchools, db_column='primary_school_id', blank=True, null=True)
     est_rep_cost = models.FloatField(blank=True, null=True)
     est_repair_cost = models.FloatField(blank=True, null=True)
     tot_damages = models.FloatField(blank=True, null=True)

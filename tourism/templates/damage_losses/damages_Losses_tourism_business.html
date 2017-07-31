@@ -2,6 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<style>
+    .right {text-align:right;}
+</style>
 <main class="main" ng-app="dlTouismInfrstrctApp" ng-controller="dlTouismInfrstrctController">
 
     <!-- Breadcrumb -->
@@ -231,7 +234,7 @@
                             <input id="textinput" name="textinput" type="number"
                                    ng-model="dmgBusAstStructure.val_pdmg" placeholder="" class="form-control input-md">
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="sum_of_dst_dpmg(dmgBusAstStructure.val_dst,
                 dmgBusAstStructure.val_pdmg, dmgBusAstStructure, 'tot_dmg')">
                             -
@@ -258,15 +261,15 @@
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstStructure.val_dst = getTotalCol('DmgBusAstStructures', 'val_dst', dmgBusAstStructure )">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstStructure.val_pdmg = getTotalCol('DmgBusAstStructures', 'val_pdmg', dmgBusAstStructure)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstStructure.tot_dmg = getTotalCol('DmgBusAstStructures', 'tot_dmg', dmgBusAstStructure)">
                             -
                         </td>
@@ -309,11 +312,11 @@
                             <input id="textinput" name="textinput" type="number"
                                    ng-model="dmgBusAstEquipment.val_dst" placeholder="" class="form-control input-md">
                         </td>
-                        <td colspan="2" width="200">
+                        <td class="right" colspan="2" width="200">
                             <input id="textinput" name="textinput" type="number"
                                    ng-model="dmgBusAstEquipment.val_pdmg" placeholder="" class="form-control input-md">
                         </td>
-                        <td colspan="2" width="200" ng-model="dmgBusAstEquipment.tot_dmg"
+                        <td class="right" colspan="2" width="200" ng-model="dmgBusAstEquipment.tot_dmg"
                             ng-bind="sum_of_dst_dpmg(dmgBusAstEquipment.val_dst, dmgBusAstEquipment.val_pdmg,
                 dmgBusAstEquipment, 'tot_dmg')">
                             -
@@ -339,15 +342,15 @@
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstEquipment.val_dst = getTotalCol('DmgBusAstEquipment', 'val_dst', dmgBusAstEquipment)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstEquipment.val_pdmg = getTotalCol('DmgBusAstEquipment', 'val_pdmg', dmgBusAstEquipment)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstEquipment.tot_dmg = getTotalCol('DmgBusAstEquipment', 'tot_dmg', dmgBusAstEquipment)">
                             -
                         </td>
@@ -395,7 +398,7 @@
                             <input id="textinput" name="textinput" type="number"
                                    ng-model="dmgBusAstMachinery.val_pdmg" placeholder="" class="form-control input-md">
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="sum_of_dst_dpmg(dmgBusAstMachinery.val_dst, dmgBusAstMachinery.val_pdmg,
                 dmgBusAstMachinery, 'tot_dmg')">
 
@@ -421,15 +424,15 @@
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstMachinery.val_dst = getTotalCol('DmgBusAstMachinery', 'val_dst', dmgBusAstMachinery)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstMachinery.val_pdmg = getTotalCol('DmgBusAstMachinery', 'val_pdmg', dmgBusAstMachinery)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstMachinery.tot_dmg = getTotalCol('DmgBusAstMachinery', 'tot_dmg', dmgBusAstMachinery)">
                             -
                         </td>
@@ -476,7 +479,7 @@
                             <input id="textinput" name="textinput" type="number"
                                    ng-model="dmgBusAstVehicle.val_pdmg" placeholder="" class="form-control input-md">
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="sum_of_dst_dpmg(dmgBusAstVehicle.val_dst, dmgBusAstVehicle.val_pdmg,
                 dmgBusAstVehicle, 'tot_dmg')">
                             -
@@ -503,15 +506,15 @@
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstVehicle.val_dst = getTotalCol('DmgBusAstVehicle', 'val_dst', dmgBusAstVehicle)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstVehicle.val_pdmg = getTotalCol('DmgBusAstVehicle', 'val_pdmg', dmgBusAstVehicle)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstVehicle.tot_dmg = getTotalCol('DmgBusAstVehicle', 'tot_dmg', dmgBusAstVehicle)">
                             -
                         </td>
@@ -562,7 +565,7 @@
                                    ng-model="dmgBusAstInventories.val_pdmg" placeholder=""
                                    class="form-control input-md">
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="sum_of_dst_dpmg(dmgBusAstInventories.val_dst, dmgBusAstInventories.val_pdmg,
                 dmgBusAstInventories, 'tot_dmg')">
                             -
@@ -591,15 +594,15 @@
                         <td class="tdpa" width="229" height="20">
                             Total
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstInventories.val_dst = getTotalCol('DmgBusAstInventories', 'val_dst', dmgBusAstInventories)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstInventories.val_pdmg = getTotalCol('DmgBusAstInventories', 'val_pdmg', dmgBusAstInventories)">
                             -
                         </td>
-                        <td colspan="2" width="200"
+                        <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstInventories.tot_dmg = getTotalCol('DmgBusAstInventories', 'tot_dmg', dmgBusAstInventories)">
                             -
                         </td>
@@ -609,13 +612,13 @@
                         <td class="tdpa" width="229" height="20">
                             GRAND TOTAL
                         </td>
-                        <td colspan="2" width="200" ng-bind="getGrandTotalCol('val_dst')">
+                        <td  class="right"  colspan="2" width="200" ng-bind="getGrandTotalCol('val_dst')">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getGrandTotalCol('val_pdmg')">
+                        <td class="right"  colspan="2" width="200" ng-bind="getGrandTotalCol('val_pdmg')">
                             -
                         </td>
-                        <td colspan="2" width="200" ng-bind="getGrandTotalCol('tot_dmg')">
+                        <td class="right"  colspan="2" width="200" ng-bind="getGrandTotalCol('tot_dmg')">
                             -
                         </td>
                     </tr>

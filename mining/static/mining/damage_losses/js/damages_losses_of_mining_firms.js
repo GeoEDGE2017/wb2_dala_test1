@@ -601,7 +601,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                         'firm_id': $scope.selectedFirm.id,
-                        'user_id': $scope.user_id,
                     },
                     'is_edit':$scope.is_edit
                 }),

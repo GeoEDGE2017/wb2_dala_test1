@@ -2,6 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<style>
+    .right {text-align:right;}
+</style>
 <main class="main" ng-app="dlSumTeleDisApp" ng-controller="dlSumTeleDisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -149,13 +152,13 @@
                         {% endverbatim %}
 
                         {% verbatim %}
-                        <td height="19" width="63">
+                        <td class="right" height="19" width="63">
                             {{ data.ownership == 'Public' ?
                             data.tot_damages +
                             $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los +
                             $parent.data.telecommunication.Table_3.LosFirmYear2District[$index].year2_los : 0 }}
                         </td>
-                        <td height="19" width="63">
+                        <td class="right" height="19" width="63">
                             {{ data.ownership == 'Private' ?
                             data.tot_damages +
                             $parent.data.telecommunication.Table_3.LosFirmYear1District[$index].year1_los +
@@ -167,21 +170,21 @@
                         <td class="tdpa" height="21" width="293">
                             TOTAL
                         </td>
-                        <td height="21" width="254" ng-bind="tot_damages_pu">
+                        <td class="right" height="21" width="254" ng-bind="tot_damages_pu">
                         </td>
-                        <td height="21" width="145" ng-bind="tot_damages_pv">
+                        <td class="right" height="21" width="145" ng-bind="tot_damages_pv">
                         </td>
-                        <td height="21" width="221" ng-bind="year1_los_pu">
+                        <td class="right" height="21" width="221" ng-bind="year1_los_pu">
                         </td>
-                        <td height="21" width="63" ng-bind="year1_los_pv">
+                        <td class="right" height="21" width="63" ng-bind="year1_los_pv">
                         </td>
-                        <td height="21" width="63" ng-bind="year2_los_pu">
+                        <td class="right" height="21" width="63" ng-bind="year2_los_pu">
                         </td>
-                        <td height="21" width="63" ng-bind="year2_los_pv">
+                        <td class="right" height="21" width="63" ng-bind="year2_los_pv">
                         </td>
-                        <td height="21" width="63" ng-bind="pub_tot">
+                        <td class="right" height="21" width="63" ng-bind="pub_tot">
                         </td>
-                        <td height="21" width="63" ng-bind="pvt_tot">
+                        <td class="right" height="21" width="63" ng-bind="pvt_tot">
                         </td>
                     </tr>
                     </tbody>

@@ -2,11 +2,9 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  });
-
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!--table 7-->
 <!-- Main content -->
@@ -46,13 +44,12 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_private">
-                            <span style="color:red"
-                                  ng-show="submitted && form_health_damagelost_private.$error.required">
-                               Please fill all required fields
-                            </span>
+                    <span style="color:red" ng-show="submitted && form_health_damagelost_private.$error.required">
+                       Please fill all required fields
+                    </span>
                     <span style="color:red" ng-show="!is_valid_data">
-                                This request can't be proceed, there is data-set available for this selection.
-                            </span>
+                        This request can't be proceed, there is data-set available for this selection.
+                    </span>
                     <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
@@ -63,16 +60,14 @@
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box"
-                                      ng-show="submitted && form_health_damagelost_private.incident.$error.required">
+                                <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.incident.$error.required">
                                     Please select Incident
                                 </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box"
-                                      ng-show="submitted && form_health_damagelost_private.district.$error.required">
+                                <span class="arrow_box" ng-show="submitted && form_health_damagelost_private.district.$error.required">
                                     Please select District
                                 </span>
                             </td>
@@ -171,7 +166,7 @@
                         </colgroup>
                         <colgroup width="204">
                         </colgroup>
-                        <tr>
+                        <!--<tr>-->
                         <tr class="trheadc1">
                             <td rowspan="2" height="55" align="center" valign="middle">
                                 <br/>
@@ -202,7 +197,7 @@
                         </tr>
                         <tr class="trheadc1">
                             <td height="35" colspan="4" align="left">
-                                Private Clinic Name
+                                Private Clinic
                             </td>
                             <td align="center" valign="middle" class="trsub">
                                 <a id=""
@@ -216,10 +211,20 @@
                                    data-id="Edit Pre-school"
                                    class="btn  btn-block btn-primary btn-warning">Edit</a>
                             </td>
-                            <td colspan="4" align="center" valign="middle" class="trsub">
-                                <button type="button" ng-click="addPrivateClinicObject(form_health_damagelost_private)"
-                                        class="btn btn-info btn-block">
-                                    Add to View
+                            <!--<td colspan="4" align="center" valign="middle" class="trsub">-->
+                                <!--<button type="button" ng-click="addPrivateClinicObject(form_health_damagelost_private)"-->
+                                        <!--class="btn btn-info btn-block">-->
+                                    <!---->
+                                <!--</button>-->
+                            <!--</td>-->
+                        </tr>
+                        <tr>
+                            <td>
+                                Add to View
+                                <button ng-click="addPrivateClinicObject(form_health_damagelost_private)"
+                                        class="btn btn-sm btn-info btn-circle"
+                                        id="insert">
+                                    <span class="fa fa-plus"></span>
                                 </button>
                             </td>
                         </tr>
@@ -230,10 +235,11 @@
                             </td>
                             <td colspan="7" align="center" valign="middle">
                                 <select ng-options="privateClinic as privateClinic.name for privateClinic in privateClinics track by privateClinic.id"
-                                        name="company" id="ccyear" ng-model="dapBefPc.clinic" class="form-control"
+                                        name="company" id="ccyear" ng-model="privateClinicsData[$index]" class="form-control"
                                         required>
                                     <option value="" selected>Select Private Clinic</option>
                                 </select>
+                                <span></span>
                             </td>
                         </tr>
                         <tr ng-repeat="row in dapBefPc" ng-if="row.pvt_clinics != 'Total'">
@@ -282,6 +288,25 @@
                             </td>
                             <td class="right" ng-bind="row.total_losses"
                                 ng-value="row.total_losses = row.est_losses_y1 + row.est_losses_y2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tdpa" height="20" align="left" align="bottom">
+                                <button id="delete" ng-click="removeItem('DapBefPc', $index)"
+                                    class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
                             </td>
                         </tr>
                         </tbody>
@@ -416,7 +441,7 @@
                     </table>
                     <div class="pull-right">
                         <br>
-                        <button type="button" ng-click="tt2()" class="btn btn-info">
+                        <button type="button" ng-click="tt()" class="btn btn-info">
                             Clear
                         </button>
 

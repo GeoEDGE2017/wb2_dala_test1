@@ -8,19 +8,25 @@
     
   });
   
+
 </script>
+<style>
+    .right {text-align:right;}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlIrrigationApp" ng-controller="dlIrrigationController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation  Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_irrigation_main' %}">Agri Irrigation Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Damages and Losses</span>
         </li>
-         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-         <li style="float:right;"> <a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/4D-Agriculture-Irrigation-24Jan17.pdf' %}"
+                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_irrigation">
         <div>
@@ -41,17 +47,19 @@
                         </colgroup>
                         <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_dl_irrigation.incident.$error.required">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_dl_irrigation.incident.$error.required">
                                     Please Select Incident
                                 </span>
                             </td>
                             <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_dl_irrigation.district.$error.required">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_dl_irrigation.district.$error.required">
                                     Please Select District
                                 </span>
                             </td>
@@ -62,7 +70,8 @@
                             </td>
                             <td colspan="4" width="118">
                                 <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                        class="form-control" ng-change="changedValue(true)"
+                                        style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
 
@@ -74,13 +83,14 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                           
+
                             <td width="85">
                                 District
                             </td>
                             <td width="85" colspan="2">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                        class="form-control" ng-change="changedValue(false)" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
@@ -91,7 +101,7 @@
                                 Division
                             </td>
                             <td colspan="7" width="118">
-                                 <input type="text" class="form-control" name="division" ng-model="division" required>
+                                <input type="text" class="form-control" name="division" ng-model="division" required>
                             </td>
                         </tr>
                         <tr class="trhead1" height="19">
@@ -99,7 +109,7 @@
                                 Region
                             </td>
                             <td colspan="7" width="118">
-                                 <input type="text" class="form-control" name="region" ng-model="region" required>
+                                <input type="text" class="form-control" name="region" ng-model="region" required>
                             </td>
                         </tr>
                         <tr class="trheadc1" height="34">
@@ -117,319 +127,347 @@
                             </td>
                         </tr>
                         </tbody>
-                        </table>
+                    </table>
 
-                        <div id="boxscroll" style="height:400px;overflow:auto;">
+                    <div id="boxscroll" style="height:400px;overflow:auto;">
 
 
- <table class="table table-bordered">
-                        <tr class="trheadc" height="19">
-                            <td width="258" height="19" style="width:20%;">
-                                Major Tanks
-                            </td>
-                            <td colspan="4" style="width:20%;">
-                            </td>
-                            <td colspan="2" style="width:20%;">
-                            </td>
-                            <td width="85" style="width:20%;">
-                            </td>
-                        </tr>
-                        <!--Major Tanks-->
-                        <tr height="19" ng-repeat="dlMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlMajorTanks" ng-if="dlMajorTanks.irrigation_assets != 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlMajorTanks.irrigation_assets">
-                            </td>
-                            <td colspan="4">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlMajorTanks.partially_damaged">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlMajorTanks.totally_destroyed">
-                            </td>
-                            <td width="85" ng-model="dlMajorTanks.damages"
-                                ng-bind="dlMajorTanks.damages =
+                        <table class="table table-bordered">
+                            <tr class="trheadc" height="19">
+                                <td width="258" height="19" style="width:20%;">
+                                    Major Tanks
+                                </td>
+                                <td colspan="4" style="width:20%;">
+                                </td>
+                                <td colspan="2" style="width:20%;">
+                                </td>
+                                <td width="85" style="width:20%;">
+                                </td>
+                            </tr>
+                            <!--Major Tanks-->
+                            <tr height="19"
+                                ng-repeat="dlMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlMajorTanks"
+                                ng-if="dlMajorTanks.irrigation_assets != 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlMajorTanks.irrigation_assets">
+                                </td>
+                                <td colspan="4">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlMajorTanks.partially_damaged">
+                                </td>
+                                <td colspan="2">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlMajorTanks.totally_destroyed">
+                                </td>
+                                <td class="right" width="85" ng-model="dlMajorTanks.damages"
+                                    ng-bind="dlMajorTanks.damages =
                             dlMajorTanks.partially_damaged * bs_data['BsRciaMajorTanks'][$index].fields.avg_repair_cost +
                             dlMajorTanks.totally_destroyed * bs_data['BsRciaMajorTanks'][$index].fields.avg_replacement_cost">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlMajorTanks" ng-if="dlMajorTanks.irrigation_assets == 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlMajorTanks.irrigation_assets">
-                                Total
-                            </td>
-                            <td class="tdpa" colspan="4">
-                            </td>
-                            <td class="tdpa" colspan="2">
-                            </td>
-                            <td width="85" ng-model="dlMajorTanks.damages" ng-bind="dlMajorTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks)">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="dlMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlMajorTanks"
+                                ng-if="dlMajorTanks.irrigation_assets == 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlMajorTanks.irrigation_assets">
+                                    Total
+                                </td>
+                                <td class="tdpa" colspan="4">
+                                </td>
+                                <td class="tdpa" colspan="2">
+                                </td>
+                                <td class="right" width="85" ng-model="dlMajorTanks.damages"
+                                    ng-bind="dlMajorTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks)">
 
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="258" height="19">
-                                Medium Tanks
-                            </td>
-                            <td colspan="4">
-                            </td>
-                            <td colspan="2">
-                            </td>
-                            <td width="85">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlMediumTanks in dlIrrigation.agri_irrigation.Table_3.DlMediumTanks" ng-if="dlMediumTanks.irrigation_assets != 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlMediumTanks.irrigation_assets">
-                            </td>
-                            <td colspan="4">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlMediumTanks.partially_damaged">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlMediumTanks.totally_destroyed">
-                            </td>
-                            <td width="85" ng-model="dlMediumTanks.damages"
-                                ng-bind="dlMediumTanks.damages =
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td width="258" height="19">
+                                    Medium Tanks
+                                </td>
+                                <td colspan="4">
+                                </td>
+                                <td colspan="2">
+                                </td>
+                                <td width="85">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="dlMediumTanks in dlIrrigation.agri_irrigation.Table_3.DlMediumTanks"
+                                ng-if="dlMediumTanks.irrigation_assets != 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlMediumTanks.irrigation_assets">
+                                </td>
+                                <td colspan="4">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlMediumTanks.partially_damaged">
+                                </td>
+                                <td colspan="2">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlMediumTanks.totally_destroyed">
+                                </td>
+                                <td class="right" width="85" ng-model="dlMediumTanks.damages"
+                                    ng-bind="dlMediumTanks.damages =
                             dlMediumTanks.partially_damaged * bs_data['BsRciaMediumTanks'][$index].fields.avg_repair_cost +
                             dlMediumTanks.totally_destroyed * bs_data['BsRciaMediumTanks'][$index].fields.avg_replacement_cost">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlMediumTanks in dlIrrigation.agri_irrigation.Table_3.DlMediumTanks" ng-if="dlMediumTanks.irrigation_assets == 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlMediumTanks.irrigation_assets">
-                            </td>
-                            <td class="tdpa" colspan="4">
-                            </td>
-                            <td class="tdpa" colspan="2">
-                            </td>
-                            <td width="85" ng-model="dlMediumTanks.damages" ng-bind="dlMediumTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMediumTanks)">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="dlMediumTanks in dlIrrigation.agri_irrigation.Table_3.DlMediumTanks"
+                                ng-if="dlMediumTanks.irrigation_assets == 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlMediumTanks.irrigation_assets">
+                                </td>
+                                <td class="tdpa" colspan="4">
+                                </td>
+                                <td class="tdpa" colspan="2">
+                                </td>
+                                <td class="right" width="85" ng-model="dlMediumTanks.damages"
+                                    ng-bind="dlMediumTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMediumTanks)">
 
-                            </td>
+                                </td>
 
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="258" height="19">
-                                Minor Tanks
-                            </td>
-                            <td colspan="4">
-                            </td>
-                            <td colspan="2">
-                            </td>
-                            <td width="85">
-                            </td>
-                        </tr>
-                        <!--Minor Tanks-->
-                        <tr height="19" ng-repeat="dlMinorTanks in dlIrrigation.agri_irrigation.Table_3.DlMinorTanks" ng-if="dlMinorTanks.irrigation_assets != 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlMinorTanks.irrigation_assets">
-                            </td>
-                            <td colspan="4">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlMinorTanks.partially_damaged">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlMinorTanks.totally_destroyed">
-                            </td>
-                            <td width="85" ng-model="dlMinorTanks.damages"
-                                ng-bind="dlMinorTanks.damages =
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td width="258" height="19">
+                                    Minor Tanks
+                                </td>
+                                <td colspan="4">
+                                </td>
+                                <td colspan="2">
+                                </td>
+                                <td width="85">
+                                </td>
+                            </tr>
+                            <!--Minor Tanks-->
+                            <tr height="19"
+                                ng-repeat="dlMinorTanks in dlIrrigation.agri_irrigation.Table_3.DlMinorTanks"
+                                ng-if="dlMinorTanks.irrigation_assets != 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlMinorTanks.irrigation_assets">
+                                </td>
+                                <td colspan="4">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlMinorTanks.partially_damaged">
+                                </td>
+                                <td colspan="2">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlMinorTanks.totally_destroyed">
+                                </td>
+                                <td class="right" width="85" ng-model="dlMinorTanks.damages"
+                                    ng-bind="dlMinorTanks.damages =
                             dlMinorTanks.partially_damaged * bs_data['BsRciaMinorTanks'][$index].fields.avg_repair_cost +
                             dlMinorTanks.totally_destroyed * bs_data['BsRciaMinorTanks'][$index].fields.avg_replacement_cost">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlMinorTanks in dlIrrigation.agri_irrigation.Table_3.DlMinorTanks" ng-if="dlMinorTanks.irrigation_assets == 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlMinorTanks.irrigation_assets">
-                                Total
-                            </td>
-                            <td class="tdpa" colspan="4">
-                            </td>
-                            <td class="tdpa" colspan="2">
-                            </td>
-                            <td width="85" ng-model="dlMinorTanks.damages" ng-bind="dlMinorTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks)">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="dlMinorTanks in dlIrrigation.agri_irrigation.Table_3.DlMinorTanks"
+                                ng-if="dlMinorTanks.irrigation_assets == 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlMinorTanks.irrigation_assets">
+                                    Total
+                                </td>
+                                <td class="tdpa" colspan="4">
+                                </td>
+                                <td class="tdpa" colspan="2">
+                                </td>
+                                <td class="right" width="85" ng-model="dlMinorTanks.damages"
+                                    ng-bind="dlMinorTanks.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks)">
 
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="258" height="19">
-                                Anicuts
-                            </td>
-                            <td colspan="4">
-                            </td>
-                            <td colspan="2">
-                            </td>
-                            <td width="85">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlAnicuts in dlIrrigation.agri_irrigation.Table_3.DlAnicuts" ng-if="dlAnicuts.irrigation_assets != 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlAnicuts.irrigation_assets">
-                            </td>
-                            <td colspan="4">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlAnicuts.partially_damaged">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlAnicuts.totally_destroyed">
-                            </td>
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td width="258" height="19">
+                                    Anicuts
+                                </td>
+                                <td colspan="4">
+                                </td>
+                                <td colspan="2">
+                                </td>
+                                <td width="85">
+                                </td>
+                            </tr>
+                            <tr height="19" ng-repeat="dlAnicuts in dlIrrigation.agri_irrigation.Table_3.DlAnicuts"
+                                ng-if="dlAnicuts.irrigation_assets != 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlAnicuts.irrigation_assets">
+                                </td>
+                                <td colspan="4">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlAnicuts.partially_damaged">
+                                </td>
+                                <td colspan="2">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlAnicuts.totally_destroyed">
+                                </td>
 
-                            <td width="85" ng-model="dlAnicuts.damages"
-                                ng-bind="dlAnicuts.damages =
+                                <td class="right" width="85" ng-model="dlAnicuts.damages"
+                                    ng-bind="dlAnicuts.damages =
                             dlAnicuts.partially_damaged * bs_data['BsRciaAnicuts'][$index].fields.avg_repair_cost +
                             dlAnicuts.totally_destroyed * bs_data['BsRciaAnicuts'][$index].fields.avg_replacement_cost">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlAnicuts in dlIrrigation.agri_irrigation.Table_3.DlAnicuts" ng-if="dlAnicuts.irrigation_assets == 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlAnicuts.irrigation_assets">
-                            </td>
-                            <td class="tdpa" colspan="4" ng-bind="dlAnicuts.partially_damaged">
-                            </td>
-                            <td class="tdpa" colspan="2" ng-bind="dlAnicuts.totally_destroyed">
-                            </td>
-                            <td width="85" ng-model="dlAnicuts.damages" ng-bind="dlAnicuts.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlAnicuts)">
+                                </td>
+                            </tr>
+                            <tr height="19" ng-repeat="dlAnicuts in dlIrrigation.agri_irrigation.Table_3.DlAnicuts"
+                                ng-if="dlAnicuts.irrigation_assets == 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlAnicuts.irrigation_assets">
+                                </td>
+                                <td class="tdpa" colspan="4" ng-bind="dlAnicuts.partially_damaged">
+                                </td>
+                                <td class="tdpa" colspan="2" ng-bind="dlAnicuts.totally_destroyed">
+                                </td>
+                                <td  class="right" width="85" ng-model="dlAnicuts.damages"
+                                    ng-bind="dlAnicuts.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlAnicuts)">
 
-                            </td>
+                                </td>
 
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="258" height="19">
-                                Other Structures
-                            </td>
-                            <td colspan="4">
-                            </td>
-                            <td colspan="2">
-                            </td>
-                            <td width="85">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlOtherStructures in dlIrrigation.agri_irrigation.Table_3.DlOtherStructures" ng-if="dlOtherStructures.irrigation_assets != 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlOtherStructures.irrigation_assets">
-                                Roads
-                            </td>
-                            <td colspan="4">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherStructures.partially_damaged">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherStructures.totally_destroyed">
-                            </td>
-                             <td width="85" ng-model="dlOtherStructures.damages"
-                                ng-bind="dlOtherStructures.damages =
+                            </tr>
+                            <tr class="trheadc" height="19">
+                                <td width="258" height="19">
+                                    Other Structures
+                                </td>
+                                <td colspan="4">
+                                </td>
+                                <td colspan="2">
+                                </td>
+                                <td width="85">
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="dlOtherStructures in dlIrrigation.agri_irrigation.Table_3.DlOtherStructures"
+                                ng-if="dlOtherStructures.irrigation_assets != 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlOtherStructures.irrigation_assets">
+                                    Roads
+                                </td>
+                                <td colspan="4">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlOtherStructures.partially_damaged">
+                                </td>
+                                <td colspan="2">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlOtherStructures.totally_destroyed">
+                                </td>
+                                <td class="right" width="85" ng-model="dlOtherStructures.damages"
+                                    ng-bind="dlOtherStructures.damages =
                             dlOtherStructures.partially_damaged * bs_data['BsRciaOtherStructures'][$index].fields.avg_repair_cost +
                             dlOtherStructures.totally_destroyed * bs_data['BsRciaOtherStructures'][$index].fields.avg_replacement_cost">
-                            </td>
-                        </tr>
-                        <!--Total-->
-                        <tr height="19" ng-repeat="dlOtherStructures in dlIrrigation.agri_irrigation.Table_3.DlOtherStructures" ng-if="dlOtherStructures.irrigation_assets == 'Total'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlOtherStructures.irrigation_assets">
-                            </td>
-                            <td class="tdpa" colspan="4" ng-bind="dlOtherStructures.partially_damaged">
-                            </td>
-                            <td class="tdpa" colspan="2" ng-bind="dlOtherStructures.totally_destroyed">
-                            </td>
-                             <td width="85" ng-model="dlOtherStructures.damages" ng-bind="dlOtherStructures.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlOtherStructures)">
+                                </td>
+                            </tr>
+                            <!--Total-->
+                            <tr height="19"
+                                ng-repeat="dlOtherStructures in dlIrrigation.agri_irrigation.Table_3.DlOtherStructures"
+                                ng-if="dlOtherStructures.irrigation_assets == 'Total'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlOtherStructures.irrigation_assets">
+                                </td>
+                                <td class="tdpa" colspan="4" ng-bind="dlOtherStructures.partially_damaged">
+                                </td>
+                                <td class="tdpa" colspan="2" ng-bind="dlOtherStructures.totally_destroyed">
+                                </td>
+                                <td  class="right" width="85" ng-model="dlOtherStructures.damages"
+                                    ng-bind="dlOtherStructures.damages = CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlOtherStructures)">
 
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlRiverEmbankmnt in dlIrrigation.agri_irrigation.Table_3.DlRiverEmbankmnt" ng-if="dlRiverEmbankmnt.irrigation_assets == 'River Embankmentss'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlRiverEmbankmnt.irrigation_assets">
-                            </td>
-                            <td colspan="4">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlRiverEmbankmnt.partially_damaged">
-                            </td>
-                            <td colspan="2">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlRiverEmbankmnt.totally_destroyed">
-                            </td>
-                             <td width="85" ng-model="dlRiverEmbankmnt.damages"
-                                ng-bind="dlRiverEmbankmnt.damages =
+                                </td>
+                            </tr>
+                            <tr height="19"
+                                ng-repeat="dlRiverEmbankmnt in dlIrrigation.agri_irrigation.Table_3.DlRiverEmbankmnt"
+                                ng-if="dlRiverEmbankmnt.irrigation_assets == 'River Embankmentss'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlRiverEmbankmnt.irrigation_assets">
+                                </td>
+                                <td colspan="4">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlRiverEmbankmnt.partially_damaged">
+                                </td>
+                                <td colspan="2">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlRiverEmbankmnt.totally_destroyed">
+                                </td>
+                                <td class="right" width="85" ng-model="dlRiverEmbankmnt.damages"
+                                    ng-bind="dlRiverEmbankmnt.damages =
                             dlRiverEmbankmnt.partially_damaged * bs_data['BsRciRiverEmbankmnt'][$index].fields.avg_repair_cost +
                             dlRiverEmbankmnt.totally_destroyed * bs_data['BsRciRiverEmbankmnt'][$index].fields.avg_replacement_cost">
-                            </td>
-                        </tr>
-                        <tr class="trheadc1 " height="19">
-                            <td rowspan="2" width="258" height="53">
-                                Buildings
-                            </td>
-                            <td colspan="4" width="545">
-                                Partially Damaged
-                            </td>
-                            <td colspan="2" width="170">
-                                Totally Destroyed
-                            </td>
-                            <td rowspan="2" width="85">
-                                Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="34">
-                            <td width="118" height="34">
-                                Number
-                            </td>
-                            <td width="116">
-                                Roof (sqm)
-                            </td>
-                            <td width="128">
-                                Wall (sqm)
-                            </td>
-                            <td width="183">
-                                Floor (sqm)
-                            </td>
-                            <td width="85">
-                                Number
-                            </td>
-                            <td width="85">
-                                Total Square Meters
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlBuildings in dlIrrigation.agri_irrigation.Table_3.DlBuildings" ng-if="dlBuildings.building != 'Total' && dlBuildings.building != 'TOTAL DAMAGES'">
-                            <td class="tdpa" width="258" height="19" ng-bind="dlBuildings.building">
-                            </td>
-                            <td width="118">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlBuildings.part_damaged_num">
-                            </td>
-                            <td width="116">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlBuildings.part_damaged_roof">
-                            </td>
-                            <td width="128">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlBuildings.part_damaged_wall">
-                            </td>
-                            <td width="183">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlBuildings.part_damaged_floor">
-                            </td>
-                            <td width="85">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlBuildings.tot_destroyed_num">
-                            </td>
-                            <td width="85">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlBuildings.tot_destroyed_area">
-                            </td>
-                            <td width="85" ng-model="dlBuildings.damages"
-                                ng-bind="dlBuildings.damages =
+                                </td>
+                            </tr>
+                            <tr class="trheadc1 " height="19">
+                                <td rowspan="2" width="258" height="53">
+                                    Buildings
+                                </td>
+                                <td colspan="4" width="545">
+                                    Partially Damaged
+                                </td>
+                                <td colspan="2" width="170">
+                                    Totally Destroyed
+                                </td>
+                                <td rowspan="2" width="85">
+                                    Damages (LKR)
+                                </td>
+                            </tr>
+                            <tr class="trsubc" height="34">
+                                <td width="118" height="34">
+                                    Number
+                                </td>
+                                <td width="116">
+                                    Roof (sqm)
+                                </td>
+                                <td width="128">
+                                    Wall (sqm)
+                                </td>
+                                <td width="183">
+                                    Floor (sqm)
+                                </td>
+                                <td width="85">
+                                    Number
+                                </td>
+                                <td width="85">
+                                    Total Square Meters
+                                </td>
+                            </tr>
+                            <tr height="19" ng-repeat="dlBuildings in dlIrrigation.agri_irrigation.Table_3.DlBuildings"
+                                ng-if="dlBuildings.building != 'Total' && dlBuildings.building != 'TOTAL DAMAGES'">
+                                <td class="tdpa" width="258" height="19" ng-bind="dlBuildings.building">
+                                </td>
+                                <td width="118">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlBuildings.part_damaged_num">
+                                </td>
+                                <td width="116">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlBuildings.part_damaged_roof">
+                                </td>
+                                <td width="128">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlBuildings.part_damaged_wall">
+                                </td>
+                                <td width="183">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlBuildings.part_damaged_floor">
+                                </td>
+                                <td width="85">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlBuildings.tot_destroyed_num">
+                                </td>
+                                <td width="85">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlBuildings.tot_destroyed_area">
+                                </td>
+                                <td class="right" width="85" ng-model="dlBuildings.damages"
+                                    ng-bind="dlBuildings.damages =
                                 dlBuildings.part_damaged_roof  * bs_data['BsRciBuildings'][$index].fields.avg_repair_roof +
                                 dlBuildings.part_damaged_wall  * bs_data['BsRciBuildings'][$index].fields.avg_repair_wall +
                                 dlBuildings.part_damaged_floor * bs_data['BsRciBuildings'][$index].fields.avg_repair_floor +
                                 dlBuildings.tot_destroyed_area * bs_data['BsRciBuildings'][$index].fields.avg_replacement_cost ">
-                            </td>
-                        </tr>
-                        <!--Total-->
-                        <tr height="19" ng-repeat="dlBuildings in dlIrrigation.agri_irrigation.Table_3.DlBuildings" ng-if="dlBuildings.building == 'Total'">
-                            <td class="tdpa" colspan="7" width="973" height="19" ng-bind="dlBuildings.building">
-                            </td>
-                            <td width="85"  ng-model="dlBuildings.damages" ng-bind="dlBuildings.damages=CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlBuildings)">
-                            </td>
-                        </tr>
-                        <!--TOTAL DAMAGES-->
-                        <tr height="19" >
-                            <td class="boldash" colspan="7" width="973" height="19">
-                                TOTAL DAMAGES
-                            </td>
-                            <td width="85" ng-bind="calGrandTotal()">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                </td>
+                            </tr>
+                            <!--Total-->
+                            <tr height="19" ng-repeat="dlBuildings in dlIrrigation.agri_irrigation.Table_3.DlBuildings"
+                                ng-if="dlBuildings.building == 'Total'">
+                                <td class="tdpa" colspan="7" width="973" height="19" ng-bind="dlBuildings.building">
+                                </td>
+                                <td class="right" width="85" ng-model="dlBuildings.damages"
+                                    ng-bind="dlBuildings.damages=CalTot($parent.dlIrrigation.agri_irrigation.Table_3.DlBuildings)">
+                                </td>
+                            </tr>
+                            <!--TOTAL DAMAGES-->
+                            <tr height="19">
+                                <td class="boldash" colspan="7" width="973" height="19">
+                                    TOTAL DAMAGES
+                                </td>
+                                <td class="right" width="85" ng-bind="calGrandTotal()">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <br>
                     <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
@@ -464,7 +502,9 @@
                             </td>
                         </tr>
                         <!--Major Tanks-->
-                        <tr height="19" ng-repeat="dlLosMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks" ng-if="dlLosMajorTanks.irrigation_assets != 'Total'">
+                        <tr height="19"
+                            ng-repeat="dlLosMajorTanks in dlIrrigation.agri_irrigation.Table_3.DlLosMajorTanks"
+                            ng-if="dlLosMajorTanks.irrigation_assets != 'Total'">
                             <td class="tdpa" width="258" height="19" ng-bind="dlLosMajorTanks.irrigation_assets">
                                 Tank 1
                             </td>
@@ -474,9 +514,10 @@
                             </td>
                             <td colspan="2">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlLosMajorTanks.other_unexpected_expenses">
+                                       class="form-control input-md"
+                                       ng-model="dlLosMajorTanks.other_unexpected_expenses">
                             </td>
-                            <td width="85" ng-model="dlLosMajorTanks.total_los"
+                            <td class="right" width="85" ng-model="dlLosMajorTanks.total_los"
                                 ng-bind="dlLosMajorTanks.total_los = dlLosMajorTanks.high_operation_cost + dlLosMajorTanks.other_unexpected_expenses">
                             </td>
                         </tr>
@@ -494,7 +535,9 @@
                             </td>
                         </tr>
                         <!--Medium Tanks-->
-                        <tr height="19" ng-repeat="dlLosMediumTanks in dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks" ng-if="dlLosMediumTanks.irrigation_assets != 'Total'">
+                        <tr height="19"
+                            ng-repeat="dlLosMediumTanks in dlIrrigation.agri_irrigation.Table_3.DlLosMediumTanks"
+                            ng-if="dlLosMediumTanks.irrigation_assets != 'Total'">
                             <td class="tdpa" width="258" height="19" ng-bind="dlLosMediumTanks.irrigation_assets">
                                 Tank 1
                             </td>
@@ -504,9 +547,11 @@
                             </td>
                             <td colspan="2">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlLosMediumTanks.other_unexpected_expenses">
+                                       class="form-control input-md"
+                                       ng-model="dlLosMediumTanks.other_unexpected_expenses">
                             </td>
-                            <td width="85" ng-model="dlLosMediumTanks.total_los" ng-bind="dlLosMediumTanks.total_los = dlLosMediumTanks.high_operation_cost + dlLosMediumTanks.other_unexpected_expenses ">
+                            <td class="right"  width="85" ng-model="dlLosMediumTanks.total_los"
+                                ng-bind="dlLosMediumTanks.total_los = dlLosMediumTanks.high_operation_cost + dlLosMediumTanks.other_unexpected_expenses ">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -523,7 +568,9 @@
                             </td>
                         </tr>
                         <!--Minor Tanks-->
-                        <tr height="19" ng-repeat="dlLosMinorTanks in dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks" ng-if="dlLosMinorTanks.irrigation_assets != 'Total'">
+                        <tr height="19"
+                            ng-repeat="dlLosMinorTanks in dlIrrigation.agri_irrigation.Table_3.DlLosMinorTanks"
+                            ng-if="dlLosMinorTanks.irrigation_assets != 'Total'">
                             <td class="tdpa" width="258" height="19" ng-bind="dlLosMinorTanks.irrigation_assets">
                             </td>
                             <td colspan="4">
@@ -532,9 +579,11 @@
                             </td>
                             <td colspan="2">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlLosMinorTanks.other_unexpected_expenses">
+                                       class="form-control input-md"
+                                       ng-model="dlLosMinorTanks.other_unexpected_expenses">
                             </td>
-                            <td width="85" ng-model="dlLosMinorTanks.total_los" ng-bind="dlLosMinorTanks.total_los = dlLosMinorTanks.high_operation_cost + dlLosMinorTanks.other_unexpected_expenses ">
+                            <td class="right" width="85" ng-model="dlLosMinorTanks.total_los"
+                                ng-bind="dlLosMinorTanks.total_los = dlLosMinorTanks.high_operation_cost + dlLosMinorTanks.other_unexpected_expenses ">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -549,7 +598,8 @@
                             </td>
                         </tr>
                         <!--Anicuts-->
-                        <tr height="19" ng-repeat="dlLosAnicuts in dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts" ng-if="dlLosAnicuts.irrigation_assets != 'Total'">
+                        <tr height="19" ng-repeat="dlLosAnicuts in dlIrrigation.agri_irrigation.Table_3.DlLosAnicuts"
+                            ng-if="dlLosAnicuts.irrigation_assets != 'Total'">
                             <td class="tdpa" width="258" height="19" ng-bind="dlLosAnicuts.irrigation_assets">
                             </td>
                             <td colspan="4">
@@ -560,10 +610,12 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlLosAnicuts.other_unexpected_expenses">
                             </td>
-                            <td width="85" ng-model="dlLosAnicuts.total_los" ng-bind="dlLosAnicuts.total_los = dlLosAnicuts.high_operation_cost + dlLosAnicuts.other_unexpected_expenses ">
+                            <td class="right" width="85" ng-model="dlLosAnicuts.total_los"
+                                ng-bind="dlLosAnicuts.total_los = dlLosAnicuts.high_operation_cost + dlLosAnicuts.other_unexpected_expenses ">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlLosOther in dlIrrigation.agri_irrigation.Table_3.DlLosOther" ng-if="dlLosOther.irrigation_assets != 'TOTAL LOSSES'">
+                        <tr height="19" ng-repeat="dlLosOther in dlIrrigation.agri_irrigation.Table_3.DlLosOther"
+                            ng-if="dlLosOther.irrigation_assets != 'TOTAL LOSSES'">
                             <td class="tdpa" width="258" height="19" ng-bind="dlLosOther.irrigation_assets">
                             </td>
                             <td colspan="4">
@@ -574,38 +626,42 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlLosOther.other_unexpected_expenses">
                             </td>
-                            <td width="85" ng-model="dlLosOther.total_los" ng-bind="dlLosOther.total_los = dlLosOther.high_operation_cost + dlLosOther.other_unexpected_expenses">
+                            <td class="right" width="85" ng-model="dlLosOther.total_los"
+                                ng-bind="dlLosOther.total_los = dlLosOther.high_operation_cost + dlLosOther.other_unexpected_expenses">
                             </td>
                         </tr>
                         <!--TOTAL LOSSES-->
-                        <tr height="19" ng-repeat="dlLosOther in dlIrrigation.agri_irrigation.Table_3.DlLosOther" ng-if="dlLosOther.irrigation_assets == 'TOTAL LOSSES'">
+                        <tr height="19" ng-repeat="dlLosOther in dlIrrigation.agri_irrigation.Table_3.DlLosOther"
+                            ng-if="dlLosOther.irrigation_assets == 'TOTAL LOSSES'">
                             <td class="tdpa" width="258" height="19" ng-bind="dlLosOther.irrigation_assets">
                             </td>
-                            <td colspan="4" width="545" ng-model="dlLosOther.high_operation_cost" ng-bind="dlLosOther.high_operation_cost = calTotalOperatingLos()">
+                            <td class="right" colspan="4" width="545" ng-model="dlLosOther.high_operation_cost"
+                                ng-bind="dlLosOther.high_operation_cost = calTotalOperatingLos()">
                             </td>
-                            <td colspan="2" width="170" ng-model="dlLosOther.other_unexpected_expenses" ng-bind="dlLosOther.other_unexpected_expenses = calTotalOther()">
+                            <td class="right" colspan="2" width="170" ng-model="dlLosOther.other_unexpected_expenses"
+                                ng-bind="dlLosOther.other_unexpected_expenses = calTotalOther()">
                             </td>
-                            <td width="85"  ng-model="dlLosOther.total_los" ng-bind="dlLosOther.total_los = calTotalLosses()">
+                            <td class="right" width="85" ng-model="dlLosOther.total_los"
+                                ng-bind="dlLosOther.total_los = calTotalLosses()">
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <br>
                     <div class="pull-right">
-                      
-
-                    <button type="button"  ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
-                    </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_irrigation)"
-                    class="btn btn-success">Submit
-                    </button>
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="dlDataEdit(form_dl_irrigation)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
+                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                                ng-click="saveDlData(form_dl_irrigation)"
+                                class="btn btn-success">Submit
+                        </button>
                     </div>
-                     <br> <br>  <br>
+                    <br> <br> <br>
                 </div>
             </div>
         </div>
@@ -654,7 +710,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            onclick="javascript:window.location.reload()">
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
@@ -670,7 +727,8 @@
                     </h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            onclick="javascript:window.location.reload()">
                         Close
                     </button>
                     <button id="ok" onclick="javascript:window.location.reload()" type="button"

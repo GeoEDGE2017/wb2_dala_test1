@@ -17,7 +17,6 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.user_id;
 
@@ -35,7 +34,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
+                'incident': $scope.incident
             }),
         }).success(function(data) {
             $scope.provinces = data;
@@ -49,7 +48,6 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
             console.log($scope.incident);
             $scope.is_edit = true;
             $scope.submitted = true;
-
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
@@ -75,6 +73,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     }
    
     $scope.getTotal = function($index,key) {
+
         $scope.totaldpub = $scope.totaldpub +
         ($scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[1] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[1].tot_damages ?
@@ -83,9 +82,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
                          $scope.dlMiningPro.mining.Table_7[key].DlaDmgProvince[0].tot_damages ?
                          $scope.dlMiningPro.mining.Table_7[key].DlaDmgProvince[0].tot_damages : 0 ): 0);
 
-
         console.log($scope.totaldpub);
-
 
         $scope.totaldpvt = $scope.totaldpvt +
         ($scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[0] ? (
@@ -117,7 +114,6 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
         ($scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0] ? (
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year2 ?
                          $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year2 : 0 ) : 0);
-
 
         $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
 

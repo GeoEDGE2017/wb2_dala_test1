@@ -12,43 +12,31 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
     $scope.user_id;
 
     $scope.fetchData = function(){
-
-            if($scope.incident){
+        if($scope.incident){
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':  'Table_6',
-            'sector': 'tourism',
-            'com_data': {
-
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':  'Table_6',
+                    'sector': 'tourism',
+                    'com_data': {
+                            'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
-
             $scope.data = data.tourism.Table_6;
             $scope.provinces = Object.keys($scope.data);
             console.log('load ', Object.keys($scope.data));
-
             $scope.data_available = ($scope.provinces.length != 0)
-
             if(!$scope.data_available){
-                alert("no data available for your selection");
+                console.log("no data available for your selection");
             }
-
-//            console.log($scope.data);
-//            console.log($scope.provinces);
             $scope.makeTable();
-
             }).error(function(err){
                 $scope.data = null;
-
                 $scope.provinces = null;
-
             })
-
-            }
+        }
     }
 
     $scope.makeTable = function(){
@@ -90,37 +78,27 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
                     $scope.table.infrastructures[value].year1Loss[value2.ownership] = value2.tot_year2;
                 })
 
-
-
-
             })
-
             console.log('table', $scope.table);
-
-
         }
         else{
             console.log("data null");
         }
    }
 
-        $scope.getSum3 = function(val1, val2, val3){
+   $scope.getSum3 = function(val1, val2, val3){
         var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
         if(!isNaN(val3)) final_val += val3;
-
         return final_val;
     }
 
     $scope.getGrandTotCol = function(col){
         var final_val = 0;
-
         angular.forEach($scope.provinceTotals, function(value, key) {
-
             final_val += $scope.getConvertedVal( value[col] );
         })
-
         return final_val;
     }
 
@@ -129,6 +107,5 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
         if(isNaN(val)) return 0;
         return val;
     }
-
 
 });

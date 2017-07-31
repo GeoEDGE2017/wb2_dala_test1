@@ -15,6 +15,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.DlRbdLosses_year_1 = null;
     $scope.tot = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'transport_land' : {
@@ -186,7 +187,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.dlRoadBrdgs = init_data;
+    $scope.dlRoadBrdgs = angular.copy(init_data);
 
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -204,6 +205,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

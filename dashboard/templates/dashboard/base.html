@@ -378,6 +378,66 @@
     input[type=number]::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    </style>
+    <style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+    text-align:right; 
+}
+.right {text-align:right;padding:0.3rem 0.75rem;}
+.clickable{
+    cursor: pointer;   
+}
+
+.panel-heading span {
+    margin-top: -20px;
+    font-size: 15px;
+}
+td[comma-value]{
+    position:relative;
+}
+td[comma-value]:before{
+    content: attr(comma-value);
+    position:absolute;
+    left:0;
+}
+td[comma-value] input{
+    color:#fff;
+}
+.card-inverse {height:130px;}
+</style>
+<script>
+$(document).ready(function(){
+$.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+    })
+}
+});
+</script>
+<script>
+$(document).on('click', '.panel-heading span.clickable', function(e){
+    var $this = $(this);
+    if(!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('fa-chevron-circle-down').addClass('fa-chevron-circle-up');
 
     }
     input[type=number]::-webkit-outer-spin-button,

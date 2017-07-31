@@ -38,7 +38,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.mnArtisanalFirm = init_data;
+    $scope.mnArtisanalFirm = angular.copy(init_data);
 
     //Disable Edit Button
     $scope.changeDis = function changeDis() {
@@ -99,7 +99,6 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-        
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -122,12 +121,12 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
-        $scope.mnArtisanalFirm = init_data;
+        $scope.mnArtisanalFirm = angular.copy(init_data);
     }
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+
         $scope.is_edit = false;
         $scope.mnArtisanalFirm = angular.copy(init_data);
     }

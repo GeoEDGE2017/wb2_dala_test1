@@ -38,41 +38,33 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
     }
 
     $scope.LoadData = function() {
-   if($scope.incident && $scope.district){
-   $scope.tot_damages = null;
-   $scope.is_edit = true;
-   $scope.submitted = true;
-    $http({
-    method: "POST",
-    url: '/dl_fetch_total_data',
-    data: angular.toJson({
-    'table_name':  'Table_5',
-    'sector':'mining',
-    'com_data': {
-            'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-
-    $scope.data=data;
-
-    var arrayArti =  $scope.data.mining.Table_5.DlaDmgDistrict[0];
-    var arrayLosArti = $scope.data.mining.Table_5.DlaLosDistrict[0];
-
-
-     $scope.dPvtTot = arrayArti.tot_damages;
-     $scope.dPvtLosyear1 = arrayLosArti.los_year1;
-     $scope.dPvtLosyear2 = arrayLosArti.los_year2;
-
-
-    })
+        if($scope.incident && $scope.district){
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+            $scope.submitted = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_total_data',
+                data: angular.toJson({
+                    'table_name':  'Table_5',
+                    'sector':'mining',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                $scope.data=data;
+                var arrayArti =  $scope.data.mining.Table_5.DlaDmgDistrict[0];
+                var arrayLosArti = $scope.data.mining.Table_5.DlaLosDistrict[0];
+                $scope.dPvtTot = arrayArti.tot_damages;
+                $scope.dPvtLosyear1 = arrayLosArti.los_year1;
+                $scope.dPvtLosyear2 = arrayLosArti.los_year2;
+            })
+        }
     }
 
-
-}
     $scope.getTotal = function(model, property,$index) {
 
         var ownership = $scope.data.mining.Table_5.DloDmgDistrict[$index].ownership;
@@ -85,7 +77,6 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
                          $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages ?
                          $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages : 0;
 
-
         $scope.dPvtLosyear1 = $scope.dPvtLosyear1 + ($scope.data.mining.Table_5.DloLosDistrict[$index] ?
                          ($scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 ?
                          $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 : 0) : 0) ;
@@ -93,7 +84,6 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
         $scope.dPvtLosyear2 = $scope.dPvtLosyear2 +
                          $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 ?
                          $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 : 0;
-
         }
         else{
 
@@ -109,15 +99,12 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
                          $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 ?
                          $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 : 0;
 
-
-
-
         }
        if($scope.dPvtTot||$scope.dPvtLosyear1||$scope.dPvtLosyear2) {
-        $scope.dPvtLosTot = $scope.dPvtTot + $scope.dPvtLosyear1 + $scope.dPvtLosyear2 ;
+            $scope.dPvtLosTot = $scope.dPvtTot + $scope.dPvtLosyear1 + $scope.dPvtLosyear2 ;
         }
         if($scope.dPubTot||$scope.dPubLosyear1||$scope.dPubLosyear2) {
-        $scope.dPubLosTot = $scope.dPubTot + $scope.dPubLosyear1 + $scope.dPubLosyear2;
+            $scope.dPubLosTot = $scope.dPubTot + $scope.dPubLosyear1 + $scope.dPubLosyear2;
         }
 
     }

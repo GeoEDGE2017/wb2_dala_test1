@@ -15,6 +15,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     $scope.DlWaterDmgWcrafts_num_pdestroyed_public = null;
     $scope.DlWaterDmgWcrafts_num_pdestroyed_private = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'transport_water': {
@@ -110,22 +111,22 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
                     tot_dmg_private: null,
                     tot_dmg_public: null,
                 }],
-    //            'DlWaterDmgStructures': [ {
-    //                assets: 'Ports',
-    //                num_tdestroyed_num: null,
-    //                num_tdestroyed_meters: null,
-    //                num_pdestroyed_num: null,
-    //                num_pdestroyed_meters: null,
-    //                tot_damages: null,
-    //            },
-    //            {
-    //                assets: 'Total',
-    //                num_tdestroyed_num: null,
-    //                num_tdestroyed_meters: null,
-    //                num_pdestroyed_num: null,
-    //                num_pdestroyed_meters: null,
-    //                tot_damages: null,
-    //            },],
+                'DlWaterDmgStructures': [ {
+                    assets: 'Ports',
+                    num_tdestroyed_num: null,
+                    num_tdestroyed_meters: null,
+                    num_pdestroyed_num: null,
+                    num_pdestroyed_meters: null,
+                    tot_damages: null,
+                },
+                {
+                    assets: 'Total',
+                    num_tdestroyed_num: null,
+                    num_tdestroyed_meters: null,
+                    num_pdestroyed_num: null,
+                    num_pdestroyed_meters: null,
+                    tot_damages: null,
+                },],
                 'DlWaterDmgBuildings': [{
                     assets:'1 floor',
                     tdestroyed_num: null,
@@ -227,30 +228,32 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
 
     $scope.dlWaterTransportation = angular.copy(init_data);
 
-    $scope.saveDlData = function() {
+    $scope.saveDlData = function(form) {
         $scope.submitted = true;
-        $http({
-            method: 'POST',
-            url:'/dl_save_data',
-            contentType: 'application/json; charset=utf-8',
-            data: angular.toJson({
-                'table_data': $scope.dlWaterTransportation,
-                'com_data': {
-                    'district_id':  $scope.district.district__id,
-                    'incident_id': $scope.incident,
-                    'user_id': $scope.user_id
-                },
-                'is_edit' : $scope.is_edit,
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-            if(response.data == 'False')
-                $scope.is_valid_data = false;
-            else
-                $("#modal-container-239453").modal('show');
-        }, function errorCallback(response) {
+        if(form.$valid) {
+            $http({
+                method: 'POST',
+                url:'/dl_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.dlWaterTransportation,
+                    'com_data': {
+                        'district_id':  $scope.district.district__id,
+                        'incident_id': $scope.incident,
+                        'user_id': $scope.user_id
+                    },
+                    'is_edit' : $scope.is_edit,
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                if(response.data == 'False')
+                    $scope.is_valid_data = false;
+                else
+                    $("#modal-container-239453").modal('show');
+            }, function errorCallback(response) {
 
-        });
+            });
+        }
     }
 
     // get relevant base-line data for calculations
@@ -269,12 +272,13 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
             })
         }
         if($scope.incident && $scope.district) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsAstWaterWcrafts', 'BsAstWaterEquipment', 'BsAstWaterMaterials', 'BsAstWaterBuildings'],
+                    'db_tables': ['BsAstWaterWcrafts', 'BsAstWaterEquipment', 'BsAstWaterMaterials', 'BsAstWaterBuildings','BsAstWaterStructures'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -293,7 +297,6 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
                 console.log('bs_data', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, key) {
-                    alert('hi');
                     if(value == null) {
                         is_null = true;
                     }
@@ -314,7 +317,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
                         url: '/get_latest_bs_date',
                         contentType: 'application/json; charset=utf-8',
                         data: angular.toJson({
-                            'db_tables': ['BsAstWaterWcrafts', 'BsAstWaterEquipment', 'BsAstWaterMaterials', 'BsAstWaterBuildings'],
+                            'db_tables': ['BsAstWaterWcrafts', 'BsAstWaterEquipment', 'BsAstWaterMaterials', 'BsAstWaterBuildings','BsAstWaterStructures'],
                             'com_data': {
                                 'district': $scope.district.district__id,
                                 'incident': $scope.incident,
@@ -367,20 +370,20 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
        $scope.dlWaterTransportation.transport_water.Table_2[dl_model2] = [];
 
     }
-//     if(model_name == 'BsAstWaterMaterials')
-//    {
-//       dl_model1 = 'DlWaterDmgMaterials';
-//       particular_value_1 = 'Total';
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
-//
-//    }
-//     if(model_name == 'BsAstWaterStructures')
-//    {
-//       dl_model2 = 'DlWaterDmgStructures';
-//       particular_value_2 = 'Total';
-//       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2] = [];
-//
-//    }
+     if(model_name == 'BsAstWaterMaterials')
+    {
+       dl_model1 = 'DlWaterDmgMaterials';
+       particular_value_1 = 'Total';
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
+
+    }
+     if(model_name == 'BsAstWaterStructures')
+    {
+       dl_model2 = 'DlWaterDmgStructures';
+       particular_value_2 = 'Total';
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2] = [];
+
+    }
 
     var obj1 = {
        assets: particular_value_1,
@@ -624,38 +627,45 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     }
 
     //Edit Data
-  $scope.dlDataEdit = function() {
-
+  $scope.dlDataEdit = function(form) {
     $scope.is_edit = true;
     $scope.submitted = true;
+    if(form.$valid) {
+        $http({
+        method: "POST",
+        url: '/dl_fetch_edit_data',
+        data: angular.toJson({
+        'table_name':  'Table_2',
+        'sector':'transport_water',
+        'com_data': {
+               'district':  $scope.district.district__id,
+                'incident': $scope.incident,
+                'user_id': $scope.user_id
+              },
+               'is_edit':$scope.is_edit
+               }),
+        }).success(function(data) {
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_2',
-    'sector':'transport_water',
-    'com_data': {
-           'district':  $scope.district.district__id,
-            'incident': $scope.incident,
-            'user_id': $scope.user_id
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    console.log(data);
+        console.log(data);
 
 
-    $scope.dlWaterTransportation = data;
-    })
+        $scope.dlWaterTransportation = data;
+        })
+    }
 
 }
 
    //Cancel Edit
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
-       $scope.dlComWtrSply = init_data;
+       $scope.dlWaterTransportation = angular.copy(init_data);
+    }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("clear")
+        $scope.is_edit = false;
+          $scope.dlWaterTransportation = angular.copy(init_data);
     }
 });
 

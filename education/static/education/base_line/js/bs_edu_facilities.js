@@ -18,6 +18,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
     $scope.BefPvt_avg_male = null;
     $scope.BefPvt_avg_female = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'education': {
@@ -125,6 +126,16 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
     }
 
     $scope.bsEduFacilities = angular.copy(init_data);
+
+     //disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.baselineDate){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
+        }
+    }
 
     //Edit Data
     $scope.editBsData = function(form) {

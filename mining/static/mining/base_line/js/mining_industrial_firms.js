@@ -14,6 +14,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.is_edit_disable = false;
     $scope.user_id;
 
+
     var init_data = {
         'mining': {
             'Table_1': {
@@ -45,7 +46,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
         }
     }
 
-    $scope.mnIndusMinFirm = init_data;
+    $scope.mnIndusMinFirm = angular.copy(init_data);
 
     //Disable Edit Button
     $scope.changeDis = function changeDis() {
@@ -88,9 +89,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
                     model.firm_id = $scope.selectedFirm.id;
                 });
             });
-
             console.log($scope.mnIndusMinFirm);
-
             $http({
                 method: 'POST',
                 url: '/bs_save_data_with_firm',
@@ -148,7 +147,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
-        $scope.mnIndusMinFirm = init_data;
+        $scope.mnIndusMinFirm = angular.copy(init_data);
     }
 
     $scope.saveFirm = function(form) {
@@ -194,7 +193,23 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
             })
         }
         else {
-            alert('@@@');
+            console.log('@@@');
+        }
+    }
+
+    $scope.openAddFirm = function(form) {
+        $scope.submitted = true;
+        console.log('in');
+        if(form.$valid) {
+            $("#modal-container-469842").modal('show');
+        }
+    }
+
+    $scope.openEditFirm = function(form) {
+        $scope.submitted = true;
+        is_edit_model=true;
+        if(form.$valid) {
+            $("#modal-container-469842").modal('show');
         }
     }
 
@@ -216,7 +231,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
     //Clear Function
     $scope.clear = function() {
-        console.log("clear")
+        alert("clear");
         $scope.is_edit = false;
         $scope.mnIndusMinFirm = angular.copy(init_data);
     }

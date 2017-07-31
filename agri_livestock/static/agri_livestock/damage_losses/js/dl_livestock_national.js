@@ -16,70 +16,41 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
     $scope.totalyear2pvt = null;
     $scope.finaltotalpublic = null;
     $scope.finaltotalprivate = null;
-    // declaring total variables
     $scope.total_num_affected = 0;
     $scope.user_id;
 
 
-//    $scope.fetchDlData = function(){
-//        $scope.is_edit = true;
-//        $scope.submitted = true;
-//        console.log($scope.incident);
-//            $http({
-//            method: "POST",
-//            url: '/dl_fetch_summary_disagtn',
-//            data: angular.toJson({
-//            'table_name':'Table_6',
-//            'sector': 'agri_livestock',
-//            'com_data': {
-//                    'incident': $scope.incident,
-//                  },
-//                   }),
-//            }).success(function(data) {
-//
-//            console.log('load ', data);
-//            $scope.dlAgriLivestockSumNat = data;
-//
-//            })
-//
-//    }
-
-$scope.fetchDlData = function(form){
+    $scope.fetchDlData = function(form){
         if($scope.incident){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-
+            $scope.is_edit = true;
+            $scope.submitted = true;
             $http({
-            method: "POST",
-            url: '/dl_fetch_summary_disagtn',
-            data: angular.toJson({
-            'table_name':  ['Table_6'],
-            'sector': ['agri_livestock'],
-            'com_data': {
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_summary_disagtn',
+                data: angular.toJson({
+                    'table_name':  ['Table_6'],
+                    'sector': ['agri_livestock'],
+                    'com_data': {
+                        'incident': $scope.incident,
+                     },
+                }),
             }).success(function(data) {
-
             angular.forEach(data, function(value, key) {
-
             });
-           $scope.dlAgriLivestockSumNat = data  ;
-
+            $scope.dlAgriLivestockSumNat = data  ;
             })
-            }
+        }
 
+        }
+
+    $scope.checkIfNull = function(){
+        var isNull = $scope.dlAgriLivestockSumNat ? angular.equals({},
+        $scope.dlAgriLivestockSumNat.agri_livestock.Table_6) : true;
+        return isNull;
     }
 
-               $scope.checkIfNull = function()
-   {
-        var isNull = $scope.dlAgriLivestockSumNat ? angular.equals({},
-         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6) : true;
-        return isNull;
+    $scope.getTotal = function($index,key) {
 
-   }
-
- $scope.getTotal = function($index,key) {
          $scope.totaldpub = $scope.totaldpub +
          ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[$index] ? (
                          $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[$index].damages ?
@@ -113,14 +84,6 @@ $scope.fetchDlData = function(form){
 
          $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
-
-
-
-
-
-
     }
-
-
 
  }])

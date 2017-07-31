@@ -113,7 +113,7 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 //    }
 
 
-    $scope.bsAstTransWater = init_data;
+    $scope.bsAstTransWater = angular.copy(init_data);
 
     //Disable Edit Button
     $scope.changeDis = function changeDis(){

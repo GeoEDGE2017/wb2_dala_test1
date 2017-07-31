@@ -21,26 +21,24 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
 
 
     $scope.fetchDlData = function(){
-    if($scope.incident){
-
-    $scope.is_edit = true;
-    $scope.submitted = true;
-
-        $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_6',
-            'sector': 'housing',
-            'com_data': {
-                'incident': $scope.incident,
-                },
-            }),
-        }).success(function(data) {
-            console.log('load ', data);
-            $scope.data= data;
-            $scope.dlHousingSumNat = data;
-        })
+        if($scope.incident){
+        $scope.is_edit = true;
+        $scope.submitted = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                'table_name':'Table_6',
+                'sector': 'housing',
+                'com_data': {
+                    'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                console.log('load ', data);
+                $scope.data= data;
+                $scope.dlHousingSumNat = data;
+            })
         }
 
     }

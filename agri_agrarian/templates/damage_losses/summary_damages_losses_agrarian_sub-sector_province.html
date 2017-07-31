@@ -2,6 +2,9 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<style>
+    .right {text-align:right;}
+</style>
 <main class="main" ng-app="dlSummeryAgProApp" ng-controller="DlSummeryAgProController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
@@ -17,7 +20,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/4A-Agriculture-Agrarian-14Mar17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -38,7 +43,7 @@
                             <td class="trhead1" width="130" colspan="2">
                                 Incident:
                             </td>
-                            <td width="125" colspan="2">
+                            <td width="125" colspan="4">
                                 <select id="selectbasic" name="incident" ng-model="incident"
                                         class="form-control" ng-change="changedValue(true);fetchDlData(health_summery_damageloss_province);"
                                         style="width:100%;font-weight:400;" required>
@@ -122,47 +127,50 @@
                     <br>
                     <div class="pull-right">
                         <br>
-                        <table ng-repeat="(key, value) in dlAgriAgrarianPro.agri_agrarian.Table_9" class="table table-bordered">
+                        <table ng-repeat="(key, value) in dlAgriAgrarianPro.agri_agrarian.Table_9"
+                               class="table table-bordered">
                             <tbody>
-                                <tr height="20" ng-init="getTotal($index,key);">
-                                    <td ng-bind="key" class="tdpa" width="253" height="19">
-                                    </td>
-                                    <td width="147" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub">
-                                    </td>
-                                    <td width="151" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt">
-                                    </td>
-                                    <td width="165" ng-bind="value.DsorLosYear1Province[0].dmg_los_pub">
-                                    </td>
-                                    <td width="170" ng-bind="value.DsorLosYear1Province[0].dmg_los_pvt">
-                                    </td>
-                                    <td width="135" ng-bind="value.DsorLosYear2Province[0].dmg_los_pub">
-                                    </td>
-                                    <td width="133" ng-bind="value.DsorLosYear2Province[0].dmg_los_pvt">
-                                    </td>
-                                    <td width="126" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub + value.DsorLosYear1Province[0].dmg_los_pub + value.DsorLosYear2Province[0].dmg_los_pub ">
-                                    </td>
-                                    <td width="85" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt + value.DsorLosYear1Province[0].dmg_los_pvt + value.DsorLosYear2Province[0].dmg_los_pvt ">
-                                    </td>
-                                </tr>
-                                <tr height="19">
+                            <tr height="20" ng-init="getTotal($index,key);">
+                                <td ng-bind="key" class="tdpa" width="253" height="19">
+                                </td>
+                                <td width="147" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub">
+                                </td>
+                                <td width="151" ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt">
+                                </td>
+                                <td width="165" ng-bind="value.DsorLosYear1Province[0].dmg_los_pub">
+                                </td>
+                                <td width="170" ng-bind="value.DsorLosYear1Province[0].dmg_los_pvt">
+                                </td>
+                                <td width="135" ng-bind="value.DsorLosYear2Province[0].dmg_los_pub">
+                                </td>
+                                <td width="133" ng-bind="value.DsorLosYear2Province[0].dmg_los_pvt">
+                                </td>
+                                <td width="126"
+                                    ng-bind="value.DsorDmgLosProvince[0].dmg_los_pub + value.DsorLosYear1Province[0].dmg_los_pub + value.DsorLosYear2Province[0].dmg_los_pub ">
+                                </td>
+                                <td width="85"
+                                    ng-bind="value.DsorDmgLosProvince[0].dmg_los_pvt + value.DsorLosYear1Province[0].dmg_los_pvt + value.DsorLosYear2Province[0].dmg_los_pvt ">
+                                </td>
+                            </tr>
+                            <tr height="19">
                                 <td class="boldash" width="253" height="19">
                                     GRAND TOTAL
                                 </td>
-                                <td width="147" ng-bind="totaldpub">
+                                <td class="right" width="147" ng-bind="totaldpub">
                                 </td>
-                                <td width="151" ng-bind="totaldpvt">
+                                <td class="right" width="151" ng-bind="totaldpvt">
                                 </td>
-                                <td width="165" ng-bind="totalyear1pub">
+                                <td class="right" width="165" ng-bind="totalyear1pub">
                                 </td>
-                                <td width="170"  ng-bind="totalyear1pvt">
+                                <td class="right" width="170"  ng-bind="totalyear1pvt">
                                 </td>
-                                <td width="135" ng-bind="totalyear2pub">
+                                <td class="right" width="135" ng-bind="totalyear2pub">
                                 </td>
-                                <td width="133" ng-bind="totalyear2pvt">
+                                <td class="right" width="133" ng-bind="totalyear2pvt">
                                 </td>
-                                <td width="126" ng-bind="finaltotalpublic">
+                                <td class="right" width="126" ng-bind="finaltotalpublic">
                                 </td>
-                                <td width="85" ng-bind="finaltotalprivate">
+                                <td class="right" width="85" ng-bind="finaltotalprivate">
                                 </td>
                             </tr>
                             </tbody>
@@ -173,7 +181,8 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
+             aria-hidden="true">
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header">

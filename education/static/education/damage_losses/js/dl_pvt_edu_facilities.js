@@ -19,6 +19,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     $scope.schoolData = null;
     $scope.is_edit_model = false;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     $scope.preSchool = [];
     $scope.prmSchool = [];
@@ -682,6 +683,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     }
 
     $scope.changedValue = function getBsData(selectedValue) {
+     alert('hi');
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -695,6 +697,10 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 $scope.selectedDistrict = "";
                 console.log(data);
             })
+        }
+        if( $scope.incident && $scope.district){
+            $scope.is_edit_disable = true;
+
         }
     }
 

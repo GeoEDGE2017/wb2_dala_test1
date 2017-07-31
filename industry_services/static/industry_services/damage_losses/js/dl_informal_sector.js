@@ -270,7 +270,6 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         var final_val = 0;
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
-
         return final_val;
     }
 
@@ -279,41 +278,34 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
         if(!isNaN(val1)) final_val += val1;
         if(!isNaN(val2)) final_val += val2;
         if(!isNaN(val3)) final_val += val3;
-
         return final_val;
     }
 
     $scope.getMultiply2 = function(val1, val2) {
         if(isNaN(val1)) return 0;
         if(isNaN(val2)) return 0;
-
         return val1 * val2 * 0.01;
     }
 
     $scope.getMulitiplyedYearLoss = function(value, percentage) {
         if(isNaN(value)) return 0;
         if(isNaN(percentage)) return 0;
-
         return value * percentage * 0.01;
     }
 
     $scope.getTotalCol = function(subTable, column, total_object) {
         var table = $scope.dl_dmg_loss_infoml_sec.industry_services.Table_4;
         var final_total = 0;
-
         total_object[column] = 0;
-
         angular.forEach(table[subTable], function(value, key) {
             final_total += value[column] ;
         })
-
         return final_total;
     }
 
     $scope.getGrandTotalCol = function(column) {
         var table = $scope.dl_dmg_loss_infoml_sec.industry_services.Table_4;
         var final_total = 0;
-
         angular.forEach(table, function(subTable, key) {
             angular.forEach(subTable, function(value, key) {
                 if(value){
@@ -344,9 +336,6 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
                         'user_id':$scope.user_id,
-//                        'firm_id':$scope.selectedFirm.id,
-//                        'ownership':$scope.ownership,
-//                        'tou_business':$scope.selectedType.business,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -380,9 +369,6 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                         'com_data': {
                             'district': $scope.district.district__id,
                             'incident': $scope.incident,
-    //                        'firm_id':$scope.selectedFirm.id,
-    //                        'ownership':$scope.ownership,
-    //                        'tou_business':$scope.selectedType.business
                         }
                     }),
                 }).success(function(data) {
@@ -394,7 +380,6 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                         (data.industry_services.Table_4.DlInfLosTypServices.length == 0) ||
                         (data.industry_services.Table_4.DlInfLosTypTrading.length == 0)) {
                         $scope.is_edit = false;
-                            // do nothing or display msg that data are not available
                         }
                     else {
                         $scope.dl_dmg_loss_infoml_sec = data;

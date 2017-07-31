@@ -7,7 +7,11 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
 
   });
+
 </script>
+<style>
+    .right {text-align:right;}
+</style>
 <!-- Main content -->
 <main class="main" ng-app="dlFisheriesDistrictApp" ng-controller="dlFisheriesDistrictController">
     <!-- Breadcrumb -->
@@ -24,7 +28,9 @@
             </span>
         </li>
         <li style="float:right;">
-             <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/4C-Agriculture-Fisheries-24Jan17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -201,19 +207,19 @@
                                 </td>
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgFequipment.dmg_pub"
                                     ng-bind="dlfDmgFequipment.dmg_pub =
                                 dlfDmgFequipment.dmg_dest_pub * bs_data['BifAstFequipment'][$index].fields.if_avg_replace_cost +
                                 dlfDmgFequipment.dmg_pdmg_pub * bs_data['BifAstFequipment'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgFequipment.dmg_pub"
                                     ng-bind="dlfDmgFequipment.dmg_pub =
                                 dlfDmgFequipment.dmg_dest_pub * bs_data['BifAstFequipment'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgFequipment.dmg_pdmg_pub * bs_data['BifAstFequipment'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgFequipment.dmg_pub"
                                     ng-bind="dlfDmgFequipment.dmg_pub =
                                 dlfDmgFequipment.dmg_dest_pub * bs_data['BifAstFequipment'][$index].fields.mf_avg_replace_cost +
@@ -223,19 +229,19 @@
                                 <!--</td>-->
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgFequipment.dmg_pvt"
                                     ng-bind="dlfDmgFequipment.dmg_pvt =
                                 dlfDmgFequipment.dmg_dst_pvt * bs_data['BifAstFequipment'][$index].fields.if_avg_replace_cost +
                                 dlfDmgFequipment.dmg_pdmg_pvt * bs_data['BifAstFequipment'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgFequipment.dmg_pvt"
                                     ng-bind="dlfDmgFequipment.dmg_pvt =
                                 dlfDmgFequipment.dmg_dst_pvt * bs_data['BifAstFequipment'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgFequipment.dmg_pdmg_pvt * bs_data['BifAstFequipment'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgFequipment.dmg_pvt"
                                     ng-bind="dlfDmgFequipment.dmg_pvt =
                                 dlfDmgFequipment.dmg_dst_pvt * bs_data['BifAstFequipment'][$index].fields.mf_avg_replace_cost +
@@ -260,10 +266,10 @@
                                 <td class="tdpa" width="63" height="19">
                                     <br/>
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgFequipment.dmg_pub" ng-bind="dlfDmgFequipment.dmg_pub =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgFequipment.dmg_pub" ng-bind="dlfDmgFequipment.dmg_pub =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment,'dmg_pub')">
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgFequipment.dmg_pvt"
+                                <td class="right" width="63" height="19" ng-model="dlfDmgFequipment.dmg_pvt"
                                     ng-bind="dlfDmgFequipment.dmg_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgFequipment,'dmg_pvt')">
                                 </td>
                             </tr>
@@ -296,37 +302,41 @@
                                 ng-if="dlfDmgOequipment.assets != 'Total'">
                                 <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfDmgOequipment.assets">
                                 </td>
-                                <td width="111" height="19" >
-                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_dest_pub" type="number" placeholder=""
+                                <td width="111" height="19">
+                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_dest_pub"
+                                           type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="115" height="19" >
-                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_dst_pvt" type="number" placeholder=""
+                                <td width="115" height="19">
+                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_dst_pvt"
+                                           type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="63" height="19" >
-                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_pdmg_pub" type="number" placeholder=""
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_pdmg_pub"
+                                           type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
-                                <td width="63" height="19" >
-                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_pdmg_pvt" type="number" placeholder=""
+                                <td width="63" height="19">
+                                    <input id="textinput" name="textinput" ng-model="dlfDmgOequipment.dmg_pdmg_pvt"
+                                           type="number" placeholder=""
                                            class="form-control input-md">
                                 </td>
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgOequipment.dmg_pub"
                                     ng-bind="dlfDmgOequipment.dmg_pub =
                                 dlfDmgOequipment.dmg_dest_pub * bs_data['BifAstOequipment'][$index].fields.if_avg_replace_cost +
                                 dlfDmgOequipment.dmg_pdmg_pub * bs_data['BifAstOequipment'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgOequipment.dmg_pub"
                                     ng-bind="dlfDmgOequipment.dmg_pub =
                                 dlfDmgOequipment.dmg_dest_pub * bs_data['BifAstOequipment'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgOequipment.dmg_pdmg_pub * bs_data['BifAstOequipment'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgOequipment.dmg_pub"
                                     ng-bind="dlfDmgOequipment.dmg_pub =
                                 dlfDmgOequipment.dmg_dest_pub * bs_data['BifAstOequipment'][$index].fields.mf_avg_replace_cost +
@@ -334,19 +344,19 @@
                                 </td>
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgOequipment.dmg_pvt"
                                     ng-bind="dlfDmgOequipment.dmg_pvt =
                                 dlfDmgOequipment.dmg_dst_pvt * bs_data['BifAstOequipment'][$index].fields.if_avg_replace_cost +
                                 dlfDmgOequipment.dmg_pdmg_pvt * bs_data['BifAstOequipment'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgOequipment.dmg_pvt"
                                     ng-bind="dlfDmgOequipment.dmg_pvt =
                                 dlfDmgOequipment.dmg_dst_pvt * bs_data['BifAstOequipment'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgOequipment.dmg_pdmg_pvt * bs_data['BifAstOequipment'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgOequipment.dmg_pvt"
                                     ng-bind="dlfDmgOequipment.dmg_pvt =
                                 dlfDmgOequipment.dmg_dst_pvt * bs_data['BifAstOequipment'][$index].fields.mf_avg_replace_cost +
@@ -371,10 +381,10 @@
                                 <td class="tdpa" width="63" height="19">
                                     <br/>
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgOequipment.dmg_pub" ng-bind="dlfDmgOequipment.dmg_pub =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgOequipment.dmg_pub" ng-bind="dlfDmgOequipment.dmg_pub =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment,'dmg_pub')">
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgOequipment.dmg_pvt" ng-bind="dlfDmgOequipment.dmg_pvt =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgOequipment.dmg_pvt" ng-bind="dlfDmgOequipment.dmg_pvt =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgOequipment,'dmg_pvt')">
                                 </td>
                             </tr>
@@ -430,39 +440,39 @@
                                 </td>
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pub"
                                     ng-bind="dlfDmgMachinery.dmg_pub =
                                 dlfDmgMachinery.dmg_dest_pub * bs_data['BifAstMachinery'][$index].fields.if_avg_replace_cost +
                                 dlfDmgMachinery.dmg_pdmg_pub * bs_data['BifAstMachinery'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pub"
                                     ng-bind="dlfDmgMachinery.dmg_pub =
                                 dlfDmgMachinery.dmg_dest_pub * bs_data['BifAstMachinery'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgMachinery.dmg_pdmg_pub * bs_data['BifAstMachinery'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pub"
                                     ng-bind="dlfDmgMachinery.dmg_pub =
                                 dlfDmgMachinery.dmg_dest_pub * bs_data['BifAstMachinery'][$index].fields.mf_avg_replace_cost +
                                 dlfDmgMachinery.dmg_pdmg_pub * bs_data['BifAstMachinery'][$index].fields.mf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="!fishing_type.name">
+                                <td class="right" width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pvt"
                                     ng-bind="dlfDmgMachinery.dmg_pvt =
                                 dlfDmgMachinery.dmg_dst_pvt * bs_data['BifAstMachinery'][$index].fields.if_avg_replace_cost +
                                 dlfDmgMachinery.dmg_pdmg_pvt * bs_data['BifAstMachinery'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pvt"
                                     ng-bind="dlfDmgMachinery.dmg_pvt =
                                 dlfDmgMachinery.dmg_dst_pvt * bs_data['BifAstMachinery'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgMachinery.dmg_pdmg_pvt * bs_data['BifAstMachinery'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgMachinery.dmg_pvt"
                                     ng-bind="dlfDmgMachinery.dmg_pvt =
                                 dlfDmgMachinery.dmg_dst_pvt * bs_data['BifAstMachinery'][$index].fields.mf_avg_replace_cost +
@@ -487,10 +497,10 @@
                                 <td class="tdpa" width="63" height="19">
                                     <br/>
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgMachinery.dmg_pub" ng-bind="dlfDmgMachinery.dmg_pub =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgMachinery.dmg_pub" ng-bind="dlfDmgMachinery.dmg_pub =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery,'dmg_pub')">
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgMachinery.dmg_pvt" ng-bind="dlfDmgMachinery.dmg_pvt =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgMachinery.dmg_pvt" ng-bind="dlfDmgMachinery.dmg_pvt =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgMachinery,'dmg_pvt')">
                                 </td>
                             </tr>
@@ -541,39 +551,39 @@
                                 </td>
                                 <td width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pub"
                                     ng-bind="dlfDmgStructures.dmg_pub =
                                 dlfDmgStructures.dmg_dest_pub * bs_data['BifAstStructures'][$index].fields.if_avg_replace_cost +
                                 dlfDmgStructures.dmg_pdmg_pub * bs_data['BifAstStructures'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pub"
                                     ng-bind="dlfDmgStructures.dmg_pub =
                                 dlfDmgStructures.dmg_dest_pub * bs_data['BifAstStructures'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgStructures.dmg_pdmg_pub * bs_data['BifAstStructures'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pub"
                                     ng-bind="dlfDmgStructures.dmg_pub =
                                 dlfDmgStructures.dmg_dest_pub * bs_data['BifAstStructures'][$index].fields.mf_avg_replace_cost +
                                 dlfDmgStructures.dmg_pdmg_pub * bs_data['BifAstStructures'][$index].fields.mf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="!fishing_type.name">
+                                <td class="right" width="63" height="19" ng-if="!fishing_type.name">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Inland Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pvt"
                                     ng-bind="dlfDmgStructures.dmg_pvt =
                                 dlfDmgStructures.dmg_dst_pvt * bs_data['BifAstStructures'][$index].fields.if_avg_replace_cost +
                                 dlfDmgStructures.dmg_pdmg_pvt * bs_data['BifAstStructures'][$index].fields.if_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='River Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pvt"
                                     ng-bind="dlfDmgStructures.dmg_pvt =
                                 dlfDmgStructures.dmg_dst_pvt * bs_data['BifAstStructures'][$index].fields.rf_avg_replace_cost +
                                 dlfDmgStructures.dmg_pdmg_pvt * bs_data['BifAstStructures'][$index].fields.rf_avg_repair_cost ">
                                 </td>
-                                <td width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
+                                <td class="right" width="63" height="19" ng-if="fishing_type.name =='Marine Fisheries'"
                                     ng-model="dlfDmgStructures.dmg_pvt"
                                     ng-bind="dlfDmgStructures.dmg_pvt =
                                 dlfDmgStructures.dmg_dst_pvt * bs_data['BifAstStructures'][$index].fields.mf_avg_replace_cost +
@@ -598,10 +608,10 @@
                                 <td class="tdpa" width="63" height="19">
                                     <br/>
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgStructures.dmg_pub" ng-bind="dlfDmgStructures.dmg_pub =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgStructures.dmg_pub" ng-bind="dlfDmgStructures.dmg_pub =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures,'dmg_pub')">
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgStructures.dmg_pvt" ng-bind="dlfDmgStructures.dmg_pvt =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgStructures.dmg_pvt" ng-bind="dlfDmgStructures.dmg_pvt =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgStructures,'dmg_pvt')">
                                 </td>
                             </tr>
@@ -698,7 +708,7 @@
                                 </td>
                                 <!--<td width="63" height="19" ng-bind="dlfDmgPub.total">-->
                                 <!--</td>-->
-                                <td width="63" height="19" ng-model="dlfDmgPub.dmg_pub"
+                                <td class="right" width="63" height="19" ng-model="dlfDmgPub.dmg_pub"
                                     ng-bind="dlfDmgPub.dmg_pub =
                                 dlfDmgPub.tot_dest_sqm * bs_data['BifAstBuildings'][$index].fields.avg_replace_cost +
                                 dlfDmgPub.pdmg_roof * bs_data['BifAstBuildings'][$index].fields.avg_repair_cost_roof +
@@ -730,7 +740,7 @@
                                 <td class="tdpa" width="63" height="19">
                                     <br/>
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgPub.total" ng-bind="dlfDmgPub.total =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgPub.total" ng-bind="dlfDmgPub.total =
                             CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPub,'dmg_pub')">
                                 </td>
                             </tr>
@@ -790,7 +800,7 @@
                                     <input id="textinput" name="textinput" type="number" placeholder=""
                                            class="form-control input-md" ng-model="dlfDmgPvt.pdmg_floor">
                                 </td>
-                                <td width="63" height="19" ng-model="dlfDmgPvt.dmg_pvt"
+                                <td class="right" width="63" height="19" ng-model="dlfDmgPvt.dmg_pvt"
                                     ng-bind="dlfDmgPvt.dmg_pvt =
                                 dlfDmgPvt.tot_dest_sqm * bs_data['BifAstBuildings'][$index].fields.avg_replace_cost +
                                 dlfDmgPvt.pdmg_roof * bs_data['BifAstBuildings'][$index].fields.avg_repair_cost_roof +
@@ -823,7 +833,7 @@
                                     <br/>
                                 </td>
 
-                                <td width="63" height="19" ng-model="dlfDmgPvt.total" ng-bind="dlfDmgPvt.total =
+                                <td class="right" width="63" height="19" ng-model="dlfDmgPvt.total" ng-bind="dlfDmgPvt.total =
                                CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfDmgPvt,'dmg_pvt')">
                                 </td>
                             </tr>
@@ -839,9 +849,9 @@
                                 </td>
                             </tr>
                             <tr height="19">
-                                <td width="63" height="19" ng-bind="calGrandPubTotal()">
+                                <td class="right" width="63" height="19" ng-bind="calGrandPubTotal()">
                                 </td>
-                                <td width="63" height="19" ng-bind="calGrandPvtTotal()">
+                                <td class="right" width="63" height="19" ng-bind="calGrandPvtTotal()">
                                 </td>
                             </tr>
                             </tbody>
@@ -857,7 +867,7 @@
                 <div class="tab-pane fade" id="step2">
                     <table class="table table-bordered">
                         <tr class="trheadc1" height="19">
-                            <td colspan="8" width="760" height="19" >
+                            <td colspan="8" width="760" height="19">
                                 LOSSES
                             </td>
                         </tr>
@@ -924,7 +934,7 @@
                                 <br/>
                             </td>
                         </tr>
-                         <tr height="36"
+                        <tr height="36"
                             ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries"
                             ng-if="dlfLosIfisheries.assets == 'Percentage Reduction in Value of Yield (%)' && dlfLosIfisheries.assets != 'Total'">
                             <td class="tdpa" colspan="2" width="250" height="36" ng-bind="dlfLosIfisheries.assets">
@@ -950,50 +960,52 @@
                             <td class="trsubc" width="63" height="36">
                             </td>
                         </tr>
-                        <tr height="36" ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' && dlfLosIfisheries.assets != 'Total'"
+                        <tr height="36"
+                            ng-if="dlfLosIfisheries.assets != 'Percentage Reduction in Value of Yield (%)' && dlfLosIfisheries.assets != 'Total'"
                             ng-repeat="dlfLosIfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries">
-                            <td class="tdpa"
+                            <td class="tdpa "
                                 colspan="2" width="250" height="36" ng-bind="dlfLosIfisheries.assets">
                             </td>
-                            <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
-                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                            <td class="tdpa" ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pub">
                             </td>
-                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_1_pub" ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="
+                            <td class="right" width="115" height="36" ng-model="dlfLosIfisheries.los_year_1_pub"
+                                ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="
                                 dlfLosIfisheries.los_year_1_pub = (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_1_pub) *
                                 (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
                             </td>
                             <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
-                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_1_pvt">
                             </td>
-                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_1_pvt"
+                            <td class="right" width="115" height="36" ng-model="dlfLosIfisheries.los_year_1_pvt"
                                 ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="dlfLosIfisheries.los_year_1_pvt =
                                 (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_1_pvt) *
                                 (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
                             </td>
-                            <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
-                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                            <td class="tdpa" ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pub">
                             </td>
-                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_2_pub"
+                            <td class="right" width="115" height="36" ng-model="dlfLosIfisheries.los_year_2_pub"
                                 ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="
                                 dlfLosIfisheries.los_year_2_pub = (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_2_pub) *
                                 (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
                             </td>
-                            <td class="tdpa"  ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
-                                 <input id="textinput" name="textinput" type="number" placeholder=""
+                            <td class="tdpa" ng-if="dlfLosIfisheries.assets != 'Production losses (Private)'">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlfLosIfisheries.los_year_2_pvt">
                             </td>
-                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_year_2_pvt"
+                            <td class="right" width="115" height="36" ng-model="dlfLosIfisheries.los_year_2_pvt"
                                 ng-if="dlfLosIfisheries.assets == 'Production losses (Private)'" ng-bind="
                                 dlfLosIfisheries.los_year_2_pvt = (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries[0].los_year_2_pvt) *
                                 (bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
                             </td>
-                            <td width="115" height="36" ng-model="dlfLosIfisheries.los_pub"
+                            <td class="right" width="115" height="36" ng-model="dlfLosIfisheries.los_pub"
                                 ng-bind="dlfLosIfisheries.los_pub = dlfLosIfisheries.los_year_1_pub + dlfLosIfisheries.los_year_2_pub ">
                             </td>
-                            <td width="63" height="36" ng-model="dlfLosIfisheries.los_pvt"
+                            <td class="right" width="63" height="36" ng-model="dlfLosIfisheries.los_pvt"
                                 ng-bind="dlfLosIfisheries.los_pvt = dlfLosIfisheries.los_year_1_pvt + dlfLosIfisheries.los_year_2_pvt ">
                             </td>
                         </tr>
@@ -1003,23 +1015,23 @@
                             ng-if="dlfLosIfisheries.assets == 'Total'">
                             <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosIfisheries.assets">
                             </td>
-                            <td width="111" height="19" ng-model="dlfLosIfisheries.los_year_1_pub"
+                            <td class="right" width="111" height="19" ng-model="dlfLosIfisheries.los_year_1_pub"
                                 ng-bind="dlfLosIfisheries.los_year_1_pub =
                                 CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_1_pub')">
                             </td>
-                            <td width="115" height="19" ng-model="dlfLosIfisheries.los_year_1_pvt"
+                            <td class="right" width="115" height="19" ng-model="dlfLosIfisheries.los_year_1_pvt"
                                 ng-bind="dlfLosIfisheries.los_year_1_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_1_pvt')">
                             </td>
-                            <td width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pub"
+                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pub"
                                 ng-bind="dlfLosIfisheries.los_year_2_pub = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_2_pub')">
                             </td>
-                            <td width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pvt"
+                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_year_2_pvt"
                                 ng-bind="dlfLosIfisheries.los_year_2_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_year_2_pvt')">
                             </td>
-                            <td width="63" height="19" ng-model="dlfLosIfisheries.los_pub"
+                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_pub"
                                 ng-bind="dlfLosIfisheries.los_pub = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_pub')">
                             </td>
-                            <td width="63" height="19" ng-model="dlfLosIfisheries.los_pvt"
+                            <td class="right" width="63" height="19" ng-model="dlfLosIfisheries.los_pvt"
                                 ng-bind="dlfLosIfisheries.los_pvt = CalTot($parent.dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosIfisheries,'los_pvt')">
                             </td>
                         </tr>
@@ -1089,23 +1101,23 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr  height="19"
+                        <tr height="19"
                             ng-repeat="dlfLosRfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries"
                             ng-if="dlfLosRfisheries.assets == 'Production losses'">
                             <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
-                             ng-bind="dlfLosRfisheries.los_year_1_pub =
+                                ng-bind="dlfLosRfisheries.los_year_1_pub =
                              (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries[0].los_year_1_pub *
                              bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pvt"
-                             ng-bind="dlfLosRfisheries.los_year_1_pvt =
+                                ng-bind="dlfLosRfisheries.los_year_1_pvt =
                              (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries[0].los_year_1_pvt *
                              bs_data['BifProduction'][$index].fields.avg_yield_pvt)/100">
                             </td>
                             <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_2_pub"
-                             ng-bind="dlfLosRfisheries.los_year_1_pvt =
+                                ng-bind="dlfLosRfisheries.los_year_1_pvt =
                              (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosRfisheries[0].los_year_2_pub *
                              bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
                             </td>
@@ -1119,7 +1131,8 @@
                                 ng-bind="dlfLosRfisheries.los_pub = dlfLosRfisheries.los_year_1_pub + dlfLosRfisheries.los_year_2_pub ">
                             </td>
                             <td width="63" height="19"
-                                ng-model="dlfLosRfisheries.los_pvt"  ng-bind="dlfLosRfisheries.los_pvt = dlfLosRfisheries.los_year_1_pvt + dlfLosRfisheries.los_year_2_pvt " >
+                                ng-model="dlfLosRfisheries.los_pvt"
+                                ng-bind="dlfLosRfisheries.los_pvt = dlfLosRfisheries.los_year_1_pvt + dlfLosRfisheries.los_year_2_pvt ">
                             </td>
                         </tr>
                         <tr class="tdpa" height="19"
@@ -1260,9 +1273,9 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr  height="31"
+                        <tr height="31"
                             ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
-                             ng-if="dlfLosMfisheries.assets == 'Production losses'">
+                            ng-if="dlfLosMfisheries.assets == 'Production losses'">
                             <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosMfisheries.assets">
                             </td>
                             <td width="111" height="19" ng-model="dlfLosMfisheries.los_year_1_pub"
@@ -1275,7 +1288,7 @@
                                 (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries[0].los_year_1_pvt *
                                 bs_data['BifProduction'][$index].fields.avg_yield_pvt)/100">
                             </td>
-                            <td width="63" height="19"  ng-model="dlfLosMfisheries.los_year_2_pub"
+                            <td width="63" height="19" ng-model="dlfLosMfisheries.los_year_2_pub"
                                 ng-bind="dlfLosMfisheries.los_year_2_pub =
                                 (dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries[0].los_year_2_pub *
                                 bs_data['BifProduction'][$index].fields.avg_yield_pub)/100">
@@ -1335,22 +1348,22 @@
                             </td>
                         </tr>
                         <!--Total-->
-                        <tr  height="19"
+                        <tr height="19"
                             ng-repeat="dlfLosMfisheries in dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries"
                             ng-if="dlfLosMfisheries.assets == 'Total'">
                             <td class="tdpa" colspan="2" width="250" height="19" ng-bind="dlfLosRfisheries.assets">
                             </td>
-                            <td width="111" height="19"  ng-model="dlfLosRfisheries.los_year_1_pub"
+                            <td width="111" height="19" ng-model="dlfLosRfisheries.los_year_1_pub"
                                 ng-bind="dlfLosRfisheries.los_year_1_pub
                                 = CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pub')">
                             </td>
                             <td width="115" height="19" ng-model="dlfLosRfisheries.los_year_1_pvt"
                                 ng-bind="dlfLosRfisheries.los_year_1_pvt =
-                                CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pvt')" >
+                                CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_1_pvt')">
                             </td>
                             <td width="63" height="19" ng-model="dlfLosRfisheries.los_year_2_pub"
                                 ng-bind="dlfLosRfisheries.los_year_2_pub =
-                                CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pub')" >
+                                CalTot(dlFisheriesDistrict.agri_fisheries.Table_3.DlfLosMfisheries,'los_year_2_pub')">
                             </td>
                             <td width="63" height="19"
                                 ng-bind="dlfLosRfisheries.los_year_2_pvt =
@@ -1371,35 +1384,35 @@
                     <!--TOTAL LOSSES-->
                     <!--</td>-->
                     <!--<td width="111" height="19">-->
-                     <!-- - -->
+                    <!-- - -->
                     <!--</td>-->
                     <!--<td width="115" height="19">-->
-                     <!-- - -->
+                    <!-- - -->
                     <!--</td>-->
                     <!--<td width="63" height="19">-->
-                     <!-- - -->
+                    <!-- - -->
                     <!--</td>-->
                     <!--<td width="63" height="19">-->
-                     <!-- - -->
+                    <!-- - -->
                     <!--</td>-->
                     <!--<td width="63" height="19">-->
-                     <!-- - -->
+                    <!-- - -->
                     <!--</td>-->
                     <!--<td width="63" height="19">-->
-                     <!-- - -->
+                    <!-- - -->
                     <!--</td>-->
                     <!--</tr>-->
                     <!--</tbody>-->
                     <!--</table>-->
                     <div class="pull-right">
                         <br>
-                        <button type="button"  ng-click="clear()" class="btn btn-info">Clear</button>
-                        <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
-                    </button>
+                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="dlDataEdit(form_dl_fisheries_district)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                            Edit
+                        </button>
                         <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_fisheries_district)">
                             Submit
                         </button>

@@ -5,15 +5,11 @@ app.controller('dlSumAgriDstrController', function($scope, $http) {
     $scope.selectedDistrict;
     $scope.incident;
     $scope.isLoded = false;
-
     $scope.dlDate;
     $scope.bs_data={};
-
     $scope.baselineDate;
-
     $scope.is_edit = false;
     $scope.is_valid_data = true;
-
     $scope.dl_data={};
     $scope.submitted = false;
     $scope.Districts=[];
@@ -44,14 +40,12 @@ app.controller('dlSumAgriDstrController', function($scope, $http) {
         if(form.$valid) {
             $scope.tot_damages = null;
             $scope.is_edit = true;
-
             $http({
                 method: "POST",
                 url: '/dl_fetch_summary_dis_disagtn',
                 data: angular.toJson({
                     'table_name':  ['Table_9', 'Table_5'],
                     'sector': ['agri_agrarian', 'agri_irrigation'],
-//                    'agri_agrarian','agri_fisheries', 'agri_irrigation', 'agri_livestock'
                     'com_data': {
                         'district':  $scope.district.district__id,
                         'incident': $scope.incident,

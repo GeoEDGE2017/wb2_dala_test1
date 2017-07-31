@@ -5,13 +5,15 @@
 <main class="main" ng-app="bsLivestockPoultryDstApp" ng-controller="bsLivestockPoultryDstController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_livestock_main' %}">Agri Livestock  Sector</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:agri_livestock_main' %}">Agri Livestock Sector</a>
         </li>
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline Information on the Number of People Engaged in Livestock and Poultry in a District</span>
         </li>
-          <li style="float:right;"> <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}"
+                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_livestock_poultry_dst">
         <div id="myTabContent" class="tab-content">
@@ -28,19 +30,21 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="3"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_bs_livestock_poultry_dst.district.$error.required">
+                        <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_bs_livestock_poultry_dst.district.$error.required">
                                 Please select District
                             </span>
                         </td>
                         <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_bs_livestock_poultry_dst.baselineDate.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_bs_livestock_poultry_dst.baselineDate.$error.required">
                                 Please Select Date
                             </span>
                         </td>
@@ -50,10 +54,11 @@
                             District
                         </td>
                         <td colspan="3" height="19" width="378">
-                            <select id="selectbasic" name="district" class="form-control" ng-model="district" style="width:100%;font-weight:400;" required>
+                            <select id="selectbasic" name="district" ng-change="changeDis()" class="form-control"
+                                    ng-model="district" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
-                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                <option value={{ district.id }}>{{ district.name }}</option>
                                 {% endfor %}
                             </select>
                         </td>
@@ -61,7 +66,8 @@
                             Year/Month:
                         </td>
                         <td colspan="2">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
+                                   id="datepicker" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
@@ -104,20 +110,23 @@
                             Female
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="belLivestock in bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock">
+                    <tr height="19"
+                        ng-repeat="belLivestock in bsLivestockPoultryDst.agri_livestock.Table_1.BelLivestock">
                         <td class="tdpa" width="113" height="19" ng-bind="belLivestock.livestock" ng-if="$index < 5">
                         </td>
                         <td width="98" ng-if="$index > 4">
                             {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BelLivestock', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <button id="delete" ng-click="removeItem('BelLivestock', $index)"
+                                    class="btn btn-sm btn-danger btn-circle">
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:80%;float:right;" name="belLivestock_{{$index}}" ng-model="belLivestock.livestock"
-                                popover="This field is required"
-                                popover-toggle="form_bs_livestock_poultry_dst['belLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['belLivestock_' + $index].$valid"
-                                popover-placement="top" required
-                                type="text"
-                                class="form-control input-md">
+                            <input style="width:80%;float:right;" name="belLivestock_{{$index}}"
+                                   ng-model="belLivestock.livestock"
+                                   popover="This field is required"
+                                   popover-toggle="form_bs_livestock_poultry_dst['belLivestock_' + $index].$dirty && !form_bs_livestock_poultry_dst['belLivestock_' + $index].$valid"
+                                   popover-placement="top" required
+                                   type="text"
+                                   class="form-control input-md">
                             {% endverbatim %}
                         </td>
                         <td width="117" height="19">
@@ -148,7 +157,8 @@
                     <tr class="tdpa" height="34">
                         <td width="113" height="34">
                             Others
-                            <button ng-click="insertAsset('BelLivestock')" class="btn btn-sm btn-info btn-circle" id="insert">
+                            <button ng-click="insertAsset('BelLivestock')" class="btn btn-sm btn-info btn-circle"
+                                    id="insert">
                                 <span class="fa fa-plus"></span>
                             </button>
                         </td>
@@ -199,15 +209,17 @@
                         </td>
                         <td width="98" ng-if="$index > 1">
                             {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BelPoultry', $index)" class="btn btn-sm btn-danger btn-circle" >
+                            <button id="delete" ng-click="removeItem('BelPoultry', $index)"
+                                    class="btn btn-sm btn-danger btn-circle">
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <input style="width:80%;float:right;" name="belPoultry_{{$index}}" ng-model="belPoultry.poultry"
-                                popover="This field is required"
-                                popover-toggle="form_bs_livestock_poultry_dst['belPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['belPoultry_' + $index].$valid"
-                                popover-placement="top" required
-                                type="text"
-                                class="form-control input-md">
+                            <input style="width:80%;float:right;" name="belPoultry_{{$index}}"
+                                   ng-model="belPoultry.poultry"
+                                   popover="This field is required"
+                                   popover-toggle="form_bs_livestock_poultry_dst['belPoultry_' + $index].$dirty && !form_bs_livestock_poultry_dst['belPoultry_' + $index].$valid"
+                                   popover-placement="top" required
+                                   type="text"
+                                   class="form-control input-md">
                             {% endverbatim %}
                         </td>
                         <td width="117" height="19">
@@ -238,7 +250,8 @@
                     <tr class="tdpa" height="34">
                         <td width="113" height="34">
                             Others &nbsp;&nbsp;
-                            <button ng-click="insertAsset('BelPoultry')" class="btn btn-sm btn-info btn-circle" id="insert">
+                            <button ng-click="insertAsset('BelPoultry')" class="btn btn-sm btn-info btn-circle"
+                                    id="insert">
                                 <span class="fa fa-plus"></span>
                             </button>
                         </td>
@@ -265,16 +278,26 @@
                 </table>
                 <br>
                 <div class="pull-right">
-                   
-                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                            <button type="button" ng-click="bsHsDataEdit()" ng-if="!is_edit" class="btn btn-success">Edit
-                            </button>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit
-                            </button>
-                            <button type="button" ng-click="saveBsData(form_bs_livestock_poultry_dst)" class="btn btn-success">Submit
-                            </button>
+
+                    <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="bsHsDataEdit(form_bs_livestock_poultry_dst)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
+                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit
+                    </button>
+                    <button type="button" ng-click="saveBsData(form_bs_livestock_poultry_dst)" class="btn btn-success">
+                        Submit
+                    </button>
                 </div>
-                 <br> <br>
+                <br> <br>
             </div>
         </div>
     </div>

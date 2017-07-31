@@ -1974,37 +1974,37 @@
                             </tr>
                             <tr>
                                 <td height="20" class="boldash">GRAND TOTAL OF DAMAGES</td>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital +
+                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital +
                                     dlMinistryHealthSys.health.Table_5.DmhLosCud[2].teaching_hospital +
                                     dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].teaching_hospital +
                                     dlMinistryHealthSys.health.Table_5.DmhLosOue[2].teaching_hospital"
                                     width="98">
                                 </td>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital +
+                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital +
                                 dlMinistryHealthSys.health.Table_5.DmhLosCud[2].provincial_general_hospital +
                                 dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].provincial_general_hospital +
                                 dlMinistryHealthSys.health.Table_5.DmhLosOue[2].provincial_general_hospital"
                                     width="98">
 
                                 </td>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital +
+                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital +
                                 dlMinistryHealthSys.health.Table_5.DmhLosCud[2].district_general_hospital +
                                 dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].district_general_hospital +
                                 dlMinistryHealthSys.health.Table_5.DmhLosOue[2].district_general_hospital"
                                     width="98">
                                 </td>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office +
+                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office +
                                 dlMinistryHealthSys.health.Table_5.DmhLosCud[2].office +
                                 dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].office +
                                 dlMinistryHealthSys.health.Table_5.DmhLosOue[2].office"
                                     width="98">
                                 </td>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other +
+                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other +
                                 dlMinistryHealthSys.health.Table_5.DmhLosCud[2].other +
                                 dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].other +
                                 dlMinistryHealthSys.health.Table_5.DmhLosOue[2].other" width="98">
                                 </td>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total +
+                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total +
                                 dlMinistryHealthSys.health.Table_5.DmhLosCud[2].total +
                                 dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].total +
                                 dlMinistryHealthSys.health.Table_5.DmhLosOue[2].total" width="98">
@@ -2017,13 +2017,16 @@
                             <button type="button" ng-click="clear()" class="btn btn-info">
                                 Clear
                             </button>
-                            <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit"
-                                    class="btn btn-success">
-                                Edit
-                            </button>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                                Edit
-                            </button>
+                            <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                    <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                             <button type="button" ng-disabled="form_pop_lat_census.$invalid"
                                     ng-click="dlSaveData(form_health_damagelost_lmh)"
                                     class="btn btn-success">Submit

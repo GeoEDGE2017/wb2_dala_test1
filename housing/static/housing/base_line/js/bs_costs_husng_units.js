@@ -132,20 +132,20 @@ app.controller('bsCostsHusngUnitsController',  ['$scope', '$http', function($sco
         $scope.submitted = true;
         $scope.is_edit = true;
             $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                'table_name': 'Table_2',
-                'sector': 'housing',
-                'com_data': {
-                    'district': $scope.district,
-                    'bs_date': $scope.bs_date,
-                    'user_id': $scope.user_id
-                }
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.bsCostsHusngUnits = data;
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'housing',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.bsCostsHusngUnits = data;
         })
     }
 

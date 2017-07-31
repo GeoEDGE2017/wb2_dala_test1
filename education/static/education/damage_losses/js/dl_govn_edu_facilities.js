@@ -27,6 +27,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
     var tabtwototal = 0;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'education':{
@@ -675,6 +676,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
         }
 
         if( $scope.incident && $scope.district){
+            $scope.is_edit_disable = true;
             $scope.fetchDlData();
         }
     }

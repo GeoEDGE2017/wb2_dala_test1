@@ -19,7 +19,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -36,17 +38,19 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0" >
+                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_industrial_mining.district.$error.required">
+                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_industrial_mining.district.$error.required">
                                 Please Select District
                             </span>
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_industrial_mining.baselineDate.$error.required">
+                            <span class="arrow_box"
+                                  ng-show="submitted && form_industrial_mining.baselineDate.$error.required">
                                 Please Select Date
                             </span>
                         </td>
@@ -54,7 +58,8 @@
                     <tr class="trhead1">
                         <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="1" style="">
-                            <select id="selectbasic" name="district" ng-change="fetchFirms();changeDis();" ng-model='district'
+                            <select id="selectbasic" name="district" ng-change="fetchFirms();changeDis();"
+                                    ng-model='district'
                                     class="form-control"
                                     style="font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
@@ -68,7 +73,8 @@
                             Year/Month
                         </td>
                         <td colspan="1" style="font-weight:normal;">
-                            <input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis();" ng-model="baselineDate"
+                            <input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis();"
+                                   ng-model="baselineDate"
                                    class="form-control input-md" name="baselineDate" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -79,15 +85,18 @@
                         </td>
                         <td colspan="2">
                             <select ng-options="firm as firm.name for firm in firms track by firm.id"
-                                    name="district" id="ccyear" ng-model="selectedFirm" ng-change="changeDis();" class="form-control" required>
+                                    name="district" id="ccyear" ng-model="selectedFirm" ng-change="changeDis();"
+                                    class="form-control" required>
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
                         <td class="trsubc1">
-                            <a id="modal-469842" href="#modal-container-469842" role="button" data-toggle="modal"
-                               class="btn btn-sm btn-info">Add</a>
-                            <a id="modal-469840" href="#modal-container-469840" role="button" data-toggle="modal"
-                               class="btn btn-sm btn-warning">Edit</a>
+                            <!--a id="modal-469842" href="#modal-container-469842" role="button" data-toggle="modal"
+                               class="btn btn-sm btn-info">Add</a-->
+                            <button id="modal-469842" role="button" data-toggle="modal"
+                               class="btn btn-sm btn-info" ng-click="openAddFirm(form_industrial_mining)">Add</button>
+                            <button id="modal-469840" ng-click="openEditFirm(form_industrial_mining)" role="button" data-toggle="modal"
+                               class="btn btn-sm btn-warning">Edit</button>
                         </td>
                     </tr>
                     <tr>
@@ -153,13 +162,14 @@
                         <td width="98" class="tdpa">
                         </td>
                         <td width="98">
-                            <input ng-model="bmaImFn.avg_per_year" id="textinput" name="textinput" type="number" placeholder=""
+                            <input ng-model="bmaImFn.avg_per_year" id="textinput" name="textinput" type="number"
+                                   placeholder=""
                                    class="form-control input-md">
                         </td>
                     </tr>
                     <tr height="19">
                         <td colspan="4" class="tdpa" height="19" width="171">
-                            Others 
+                            Others
                             <button ng-click="insertFirm('BmaImFn')" class="btn btn-sm btn-info btn-circle" id="insert">
                                 <span class="fa fa-plus"></span>
                             </button>
@@ -171,7 +181,8 @@
                     <br>
                     <button type="button" class="btn btn-info">Clear</button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editBsData(form_industrial_mining)" ng-if="!is_edit" class="btn btn-success">
+                        <button type="button" ng-click="editBsData(form_industrial_mining)" ng-if="!is_edit"
+                                class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -196,7 +207,8 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <button type="button" ng-click="editBsData(form_industrial_mining)" ng-if="!is_edit" class="btn btn-success">
+                    <button type="button" ng-click="editBsData(form_industrial_mining)" ng-if="!is_edit"
+                            class="btn btn-success">
                         Edit
                     </button>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
@@ -210,7 +222,7 @@
             </div>
         </div>
     </div>
-    <!-- /.conainer-fluid -->
+
     <div class="col-md-12">
         <!-- add model -->
         <div class="modal fade" id="modal-container-469842" role="dialog" aria-labelledby="myModalLabel"
@@ -297,7 +309,7 @@
                         </div>
                         <br>
                     </div>
-                        <div class="modal-footer">
+                    <div class="modal-footer">
                         <button id="button2id" ng-click="saveEditFirm()" name="button2id" class="btn btn-success">
                             Save
                         </button>

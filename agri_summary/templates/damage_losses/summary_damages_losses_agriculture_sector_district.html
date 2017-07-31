@@ -32,7 +32,7 @@
                     </colgroup>
                     <tbody>
                     <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
                             <span class="arrow_box" ng-show="isLoded && form_dl_sum_agri.incident.$error.required">
@@ -57,11 +57,11 @@
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
+                                <option value={{incident.id}}>
+                                    <!--{{incident.disaster_type.name}}-->
+                                    <!--{{incident.reported_date_time}}-->
+                                    {{incident.incident_name}}
+                                </option>
                                 {% endfor %}
                             </select>
                         </td>
@@ -70,13 +70,15 @@
                         </td>
                         <td colspan="3" width="504" height="17">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    style="font-weight:400;"
                                     class="form-control" required>
                                 <option value="" selected>Select district</option>
                             </select>
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-success" ng-click="loadData(form_dl_sum_agri)">Load</button>
+                            <button type="submit" class="btn btn-success" ng-click="loadData(form_dl_sum_agri)">Load
+                            </button>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
@@ -138,22 +140,29 @@
                         <td class="tdpa" height="17" width="213">
                             Agrarian
                         </td>
-                        <td height="17" width="107" ng-bind="data.agri_agrarian.Table_9.DsorDmgLosProvince[0].dmg_los_pub">
+                        <td height="17" width="107"
+                            ng-bind="data.agri_agrarian.Table_9.DsorDmgLosProvince[0].dmg_los_pub">
                         </td>
-                        <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorDmgLosProvince[0].dmg_los_pvt">
+                        <td height="17" width="63"
+                            ng-bind="data.agri_agrarian.Table_9.DsorDmgLosProvince[0].dmg_los_pvt">
                         </td>
-                        <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear1Province[0].dmg_los_pub">
+                        <td height="17" width="63"
+                            ng-bind="data.agri_agrarian.Table_9.DsorLosYear1Province[0].dmg_los_pub">
                         </td>
-                        <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear1Province[0].dmg_los_pvt">
+                        <td height="17" width="63"
+                            ng-bind="data.agri_agrarian.Table_9.DsorLosYear1Province[0].dmg_los_pvt">
                         </td>
-                        <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear2Province[0].dmg_los_pub">
+                        <td height="17" width="63"
+                            ng-bind="data.agri_agrarian.Table_9.DsorLosYear2Province[0].dmg_los_pub">
                         </td>
-                        <td height="17" width="63" ng-bind="data.agri_agrarian.Table_9.DsorLosYear2Province[0].dmg_los_pvt">
+                        <td height="17" width="63"
+                            ng-bind="data.agri_agrarian.Table_9.DsorLosYear2Province[0].dmg_los_pvt">
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
+
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
                     </tr>
@@ -179,10 +188,10 @@
                         <td height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
                     </tr>
@@ -208,10 +217,10 @@
                         <td height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right"  height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right"  height="17" width="63">
                             <!-- - -->
                         </td>
                     </tr>
@@ -219,7 +228,8 @@
                         <td class="tdpa" height="17" width="213">
                             Irrigation
                         </td>
-                        <td height="17" width="107" ng-bind="data.agri_agrarian.Table_9.DlIrrigatnDmgDistrict[0].dmg_los_pub">
+                        <td height="17" width="107"
+                            ng-bind="data.agri_agrarian.Table_9.DlIrrigatnDmgDistrict[0].dmg_los_pub">
                             <!-- - -->
                         </td>
                         <td class="tdpa" height="17" width="63">
@@ -233,38 +243,38 @@
                         </td>
                         <td class="tdpa" height="17" width="63">
                         </td>
-                        <td height="17" width="63">
+                        <td class="right"  height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td class="tdpa" height="17" width="63">
+                        <td class="right"  class="tdpa" height="17" width="63">
                         </td>
                     </tr>
                     <tr height="17">
                         <td class="tdpa" height="17" width="213">
                             GRAND TOTAL
                         </td>
-                        <td height="17" width="107">
+                        <td class="right" height="17" width="107">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
-                        <td height="17" width="63">
+                        <td class="right" height="17" width="63">
                             <!-- - -->
                         </td>
                     </tr>
@@ -292,10 +302,10 @@
                         <td colspan="2" height="17" width="126">
                             <!-- - -->
                         </td>
-                        <td colspan="2" height="17" width="126">
+                        <td class="right" colspan="2" height="17" width="126">
                             <!-- - -->
                         </td>
-                        <td colspan="2" height="17" width="126">
+                        <td class="right" colspan="2" height="17" width="126">
                             <!-- - -->
                         </td>
                     </tr>

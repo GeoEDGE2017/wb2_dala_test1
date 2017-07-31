@@ -17,6 +17,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.user_id;
     $scope.selectedCliniEdit = null;
 
+    $scope.privateClinicsData = [];
+
     //initialize model
     var init_data = {
         'health': {
@@ -84,9 +86,11 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     //Save Data
     $scope.saveDlData = function(form) {
+        console.log('private_clinic', $scope.private_clinic);
         console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
         if(form.$valid) {
+            $scope.setPrivateClinicsIDs();
             $http({
                 method: 'POST',
                 url: '/dl_save_data_with_array',
@@ -96,9 +100,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        'private_clinic': $scope.clinic,
+//                        'private_clinic': $scope.clinic,
                     },
-                    'is_edit':$scope.is_edit,
+                    'is_edit': $scope.is_edit,
                     'user_id': $scope.user_id
                 }),
                 dataType: 'json',
@@ -220,31 +224,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
     }
 
-    $scope.dlDataEdit = function(form) {
-        $scope.is_edit = true;
-        $scope.submitted = true;
-
-        if(form.$valid) {
-            $http({
-                method: "POST",
-                url: '/dl_fetch_edit_data',
-                data: angular.toJson({
-                    'table_name':  'Table_7',
-                    'sector':'health',
-                    'com_data': {
-                        'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-                        'user_id': $scope.user_id,
-                    },
-                }),
-            }).success(function(data) {
-                $scope.dlHealthDamagelostPrivateSys = data;
-                console.log($scope.dlHealthDamagelostPrivateSys);
-            })
-        }
-    }
-
-    //Edit Data
+    //Edit Data$scope.private_clinic
     $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
@@ -261,13 +241,14 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     },
                     'com_data': {
                         'district': $scope.district.district__id,
-                        'incident': $scope.incident,
-                        'user_id': $scope.user_id,
+                        'incident': $scope.incident
+//                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                }),
             }).success(function(data) {
                 $scope.dlHealthDamagelostPrivateSys = data;
+                $scope.getPrivateClinicsIDs();
                 console.log($scope.dlHealthDamagelostPrivateSys);
             })
         }
@@ -373,7 +354,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     $scope.addPrivateClinicObject = function(form) {
         if(form.$valid) {
-            var new_row_one =[ {
+            var new_row_one =[{
                 pvt_clinics : 'Structure',
                 est_replacement_cost : null,
                 est_repair_cost : null,
@@ -381,6 +362,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 est_losses_y1 : null,
                 est_losses_y2 : null,
                 total_losses : null,
+                private_clinic : null,
             }, {
                 pvt_clinics : 'Supplies and Materials',
                 est_replacement_cost : null,
@@ -389,6 +371,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 est_losses_y1 : null,
                 est_losses_y2 : null,
                 total_losses : null,
+                private_clinic : null,
             }, {
                 pvt_clinics : 'Equipment',
                 est_replacement_cost : null,
@@ -397,6 +380,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 est_losses_y1 : null,
                 est_losses_y2 : null,
                 total_losses : null,
+                private_clinic : null,
             }, {
                 pvt_clinics : 'Total',
                 est_replacement_cost : null,
@@ -405,11 +389,34 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 est_losses_y1 : null,
                 est_losses_y2 : null,
                 total_losses : null,
+                private_clinic : null,
             }]
-            $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.unshift(new_row_one);
 
+            $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.unshift(new_row_one);
             console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+            $scope.privateClinicsData.unshift(null);
+            console.log('privateClinicsData push', $scope.privateClinicsData);
         }
+    }
+
+    $scope.removeItem = function removeItem(table, index) {
+        console.log('removeItem', table, index);
+        if(table == 'DapBefPc') {
+            console.log('removeItem', $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+            $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.splice(index, 1);
+            $scope.privateClinicsData.splice(index, 1);
+        }
+    }
+
+    $scope.setPrivateClinicsIDs = function() {
+        angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                console.log(value_in);
+                value_in.private_clinic = $scope.privateClinicsData[index].id;
+            })
+        })
+
+        console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7);
     }
 
     $scope.Test = function() {
@@ -480,12 +487,26 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
     $scope.tt = function() {
-        console.log($scope.private_clinic);
-        console.log($scope.selectedCliniEdit);
+//        $scope.setPrivateClinicsIDs();
+//        console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
+//        console.log($scope.privateClinicsData);
+        console.log($scope.privateClinics);
     }
 
-    $scope.tt2 = function() {
-        console.log($scope.private_clinic);
-        console.log($scope.selectedCliniEdit);
+    $scope.getPrivateClinicsIDs = function() {
+        angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
+            console.log(value);
+            $scope.privateClinicsData.push(null);
+            angular.forEach(value, function(value_in, index_in) {
+                angular.forEach($scope.privateClinics, function(pvt_clinic, pvt_clinic_index) {
+                    if(value_in.private_clinic == pvt_clinic.id) {
+                        console.log(index, index_in, pvt_clinic_index, pvt_clinic);
+                        $scope.privateClinicsData[index] = pvt_clinic;
+                    }
+                })
+            })
+        })
+
+        console.log('privateClinicsData', $scope.privateClinicsData);
     }
 })

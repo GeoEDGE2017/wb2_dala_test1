@@ -341,8 +341,7 @@ TABLE_PROPERTY_MAPPER = {
             'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female', 'id'],
             'DapBefOther': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1',
                             'est_losses_y2', 'total_losses', 'id'],
-            'DapBefPc': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1',
-                         'est_losses_y2', 'total_losses', 'private_clinic', 'id'],
+            'DapBefPc': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1', 'est_losses_y2', 'total_losses', 'private_clinic', 'id'],
         },
         'Table_6': {
             'DmfDfaNum': ['num_des_facilities',
@@ -797,7 +796,8 @@ TABLE_PROPERTY_MAPPER = {
             'DpefBefUnv': ['asset', 'university', 'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1',
                            'est_los_year_2', 'tot_los', 'id'],
             'DpefBefTechInst': ['asset', 'tech_institute', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
-                                'est_los_year_1', 'est_los_year_2', 'tot_los', 'id']
+                                'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
+            'DpefBefOtherSchool': ['asset', 'other_school' ,'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id']
         },
         'Table_2': {
             'BugArcStructures': [

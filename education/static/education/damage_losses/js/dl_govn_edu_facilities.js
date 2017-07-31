@@ -981,5 +981,12 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 
         return tabfourtotal;
     }
+
+    //Clear Function
+    $scope.clear = function() {
+        console.log("clear")
+        $scope.is_edit = false;
+        $scope.dlGovnEduFacilities = angular.copy(init_data);
+    }
 })
 

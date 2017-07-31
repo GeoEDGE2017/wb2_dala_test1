@@ -325,7 +325,7 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
     }
 
     //Edit Data
-    $scope.bsHsDataEdit = function(form) {
+    $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
         if (form.$valid) {

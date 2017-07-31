@@ -508,8 +508,29 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     },
                 }),
             }).success(function(data) {
-                $scope.dlMinistryHealthSys = data;
-                console.log($scope.dlMinistryHealthSys.health.Table_5.DmhNdatFacStructure);
+                console.log(data);
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.health.Table_5, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlMinistryHealthSys = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }
@@ -537,7 +558,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
             })
         }
 
-        if($scope.incident && $scope.district ) {
+        if($scope.incident && $scope.district) {
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -607,7 +628,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dlMinistryHealthSys = angular.copy(init_data);
     }

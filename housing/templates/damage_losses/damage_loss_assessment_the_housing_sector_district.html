@@ -149,7 +149,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder="" step="0.01"
                                    class="form-control input-md" ng-model="dlDesPermanent.house_val_affected">
                         </td>
-                        <td height="19" width="93" ng-model="dlDesPermanent.damages" ng-bind="dlDesPermanent.damages =
+                        <td class="right" height="19" width="93" ng-model="dlDesPermanent.damages" ng-bind="dlDesPermanent.damages =
                         (dlDesPermanent.tot_sqm_destroyed * bs_data['BhClfPermanentCost'][$index].fields.avg_replace_cost) +
                         (dlDesPermanent.tot_num_houses * dlDesPermanent.house_val_affected/100 * bs_data['BhClfPermanentCost'][$index].fields.avg_val_content)">
 
@@ -158,7 +158,7 @@
                     <tr height="19" ng-repeat="dlDesPermanent in dlAssmntHusing.housing.Table_3.DlDesPermanent" ng-if="dlDesPermanent.assets == 'Total'">
                         <td class="boldash" height="19" width="166" ng-bind="dlDesPermanent.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlDesPermanent.tot_num_houses"
+                        <td class="right" height="19" width="87" ng-model="dlDesPermanent.tot_num_houses"
                             ng-bind="dlDesPermanent.tot_num_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlDesPermanent,'tot_num_houses')">
 
                         </td>
@@ -168,7 +168,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="93" ng-model="dlDesPermanent.damages"
+                        <td class="right" height="19" width="93" ng-model="dlDesPermanent.damages"
                             ng-bind="dlDesPermanent.damages = calTotal($parent.dlAssmntHusing.housing.Table_3.DlDesPermanent,'damages')">
 
                         </td>
@@ -207,7 +207,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlDesSemiPermanent.house_val_affected">
                         </td>
-                          <td height="19" width="93" ng-model="dlDesSemiPermanent.damages" ng-bind="dlDesSemiPermanent.damages =
+                          <td class="right" height="19" width="93" ng-model="dlDesSemiPermanent.damages" ng-bind="dlDesSemiPermanent.damages =
                         (dlDesSemiPermanent.tot_sqm_destroyed* bs_data['BhClfSmiPermanentCost'][$index].fields.avg_replace_cost) +
                         (dlDesSemiPermanent.tot_num_houses * dlDesSemiPermanent.house_val_affected/100 * bs_data['BhClfSmiPermanentCost'][$index].fields.avg_val_content)">
 
@@ -216,7 +216,7 @@
                     <tr height="19" ng-repeat="dlDesSemiPermanent in dlAssmntHusing.housing.Table_3.DlDesSemiPermanent" ng-if="dlDesSemiPermanent.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlDesSemiPermanent.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlDesSemiPermanent.tot_num_houses"
+                        <td class="right" height="19" width="87" ng-model="dlDesSemiPermanent.tot_num_houses"
                             ng-bind="dlDesSemiPermanent.tot_num_houses =
                             calTotal($parent.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent,'tot_num_houses')">
 
@@ -227,7 +227,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="87" ng-model="dlDesSemiPermanent.damages"
+                        <td class="right" height="19" width="87" ng-model="dlDesSemiPermanent.damages"
                             ng-bind="dlDesSemiPermanent.damages =
                             calTotal($parent.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent,'damages')">
 
@@ -267,7 +267,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlDesImprovised.house_val_affected">
                         </td>
-                          <td height="19" width="93" ng-model="dlDesImprovised.damages" ng-bind="dlDesImprovised.damages =
+                          <td class="right" height="19" width="93" ng-model="dlDesImprovised.damages" ng-bind="dlDesImprovised.damages =
                         (dlDesImprovised.tot_sqm_destroyed * bs_data['BhClfImprovisedCost'][$index].fields.avg_replace_cost) +
                         (dlDesImprovised.tot_num_houses * dlDesImprovised.house_val_affected/100 * bs_data['BhClfImprovisedCost'][$index].fields.avg_val_content)">
 
@@ -276,7 +276,7 @@
                     <tr height="19" ng-repeat="dlDesImprovised in dlAssmntHusing.housing.Table_3.DlDesImprovised" ng-if="dlDesImprovised.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlDesImprovised.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlDesImprovised.tot_num_houses"
+                        <td class="right" height="19" width="87" ng-model="dlDesImprovised.tot_num_houses"
                             ng-bind="dlDesImprovised.tot_num_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlDesImprovised,'tot_num_houses')">
 
                         </td>
@@ -286,7 +286,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-model="dlDesImprovised.damages"
                             ng-bind="dlDesImprovised.damages = calTotal($parent.dlAssmntHusing.housing.Table_3.DlDesImprovised,'damages')">
 
@@ -296,7 +296,7 @@
                         <td class="tdpa" height="19" width="166">
                             TOTAL
                         </td>
-                        <td height="19" width="87" ng-model="destot" ng-bind="destot = calTotTotal()">
+                        <td class="right" height="19" width="87" ng-model="destot" ng-bind="destot = calTotTotal()">
 
                         </td>
                         <td class="tdpa" height="19" width="112">
@@ -305,7 +305,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="93" ng-model="desgrndtot" ng-bind="desgrndtot = calGrandTotal()">
+                        <td class="right" height="19" width="93" ng-model="desgrndtot" ng-bind="desgrndtot = calGrandTotal()">
 
                         </td>
                     </tr>
@@ -409,7 +409,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlPdesPermanent.house_val_affected">
                         </td>
-                          <td height="19" width="93" ng-model="dlPdesPermanent.damages" ng-bind="dlPdesPermanent.damages =
+                          <td class="right" height="19" width="93" ng-model="dlPdesPermanent.damages" ng-bind="dlPdesPermanent.damages =
                         (dlPdesPermanent.tot_sqm_roof * bs_data['BhClfPermanentCost'][$index].fields.avg_repair_cost_roof) +
                         (dlPdesPermanent.tot_sqm_wall * bs_data['BhClfPermanentCost'][$index].fields.avg_repair_cost_wall) +
                         (dlPdesPermanent.tot_sqm_floor * bs_data['BhClfPermanentCost'][$index].fields.avg_repair_cost_floor) +
@@ -419,7 +419,7 @@
                     <tr height="19" ng-repeat="dlPdesPermanent in dlAssmntHusing.housing.Table_3.DlPdesPermanent" ng-if="dlPdesPermanent.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlPdesPermanent.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlPdesPermanent.tot_num_houses"
+                        <td class="right" height="19" width="87" ng-model="dlPdesPermanent.tot_num_houses"
                             ng-bind="dlPdesPermanent.tot_num_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlPdesPermanent,'tot_num_houses')">
 
                         </td>
@@ -433,7 +433,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="87" ng-model="dlPdesPermanent.damages"
+                        <td class="right" height="19" width="87" ng-model="dlPdesPermanent.damages"
                             ng-bind="dlPdesPermanent.damages = calTotal($parent.dlAssmntHusing.housing.Table_3.DlPdesPermanent,'damages')">
 
                         </td>
@@ -484,7 +484,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlPdesSemiPermanent.house_val_affected">
                         </td>
-                          <td height="19" width="93" ng-model="dlPdesSemiPermanent.damages" ng-bind="dlPdesSemiPermanent.damages =
+                          <td class="right" height="19" width="93" ng-model="dlPdesSemiPermanent.damages" ng-bind="dlPdesSemiPermanent.damages =
                         (dlPdesSemiPermanent.tot_sqm_roof * bs_data['BhClfSmiPermanentCost'][$index].fields.avg_repair_cost_roof) +
                         (dlPdesSemiPermanent.tot_sqm_wall * bs_data['BhClfSmiPermanentCost'][$index].fields.avg_repair_cost_wall) +
                         (dlPdesSemiPermanent.tot_sqm_floor * bs_data['BhClfSmiPermanentCost'][$index].fields.avg_repair_cost_floor) +
@@ -494,7 +494,7 @@
                     <tr height="19" ng-repeat="dlPdesSemiPermanent in dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent" ng-if="dlPdesSemiPermanent.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlPdesSemiPermanent.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlPdesSemiPermanent.tot_num_houses"
+                        <td class="right" height="19" width="87" ng-model="dlPdesSemiPermanent.tot_num_houses"
                             ng-bind="dlPdesSemiPermanent.tot_num_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent,'tot_num_houses')">
 
                         </td>
@@ -508,7 +508,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="87" ng-model="dlPdesSemiPermanent.damages"
+                        <td class="right" height="19" width="87" ng-model="dlPdesSemiPermanent.damages"
                             ng-bind="dlPdesSemiPermanent.damages = calTotal($parent.dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent,'damages')">
 
                         </td>
@@ -559,7 +559,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlPdesImprovised.house_val_affected">
                         </td>
-                          <td height="19" width="93" ng-model="dlPdesImprovised.damages" ng-bind="dlPdesImprovised.damages =
+                          <td class="right" height="19" width="93" ng-model="dlPdesImprovised.damages" ng-bind="dlPdesImprovised.damages =
                         (dlPdesImprovised.tot_sqm_roof * bs_data['BhClfImprovisedCost'][$index].fields.avg_repair_cost_roof) +
                         (dlPdesImprovised.tot_sqm_wall * bs_data['BhClfImprovisedCost'][$index].fields.avg_repair_cost_wall) +
                         (dlPdesImprovised.tot_sqm_floor * bs_data['BhClfImprovisedCost'][$index].fields.avg_repair_cost_floor) +
@@ -569,7 +569,7 @@
                     <tr height="19" ng-repeat="dlPdesImprovised in dlAssmntHusing.housing.Table_3.DlPdesImprovised" ng-if="dlPdesImprovised.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlPdesImprovised.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlPdesImprovised.tot_num_houses"
+                        <td class="right" height="19" width="87" ng-model="dlPdesImprovised.tot_num_houses"
                             ng-bind="dlPdesImprovised.tot_num_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlPdesImprovised,'tot_num_houses')">
 
                         </td>
@@ -583,7 +583,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="87" ng-model="dlPdesImprovised.damages"
+                        <td class="right" height="19" width="87" ng-model="dlPdesImprovised.damages"
                             ng-bind="dlPdesImprovised.damages = calTotal($parent.dlAssmntHusing.housing.Table_3.DlPdesImprovised,'damages')">
 
                         </td>
@@ -592,7 +592,7 @@
                         <td class="tdpa" height="19" width="166">
                             TOTAL
                         </td>
-                        <td height="19" width="87" ng-model="partialtot" ng-bind="partialtot = calPartialTotTotal()">
+                        <td class="right" height="19" width="87" ng-model="partialtot" ng-bind="partialtot = calPartialTotTotal()">
 
                         </td>
                         <td class="tdpa" height="19" width="112">
@@ -605,7 +605,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="93" ng-model="partialgrndtot" ng-bind=" partialgrndtot  = calPartialGrandTotal()">
+                        <td class="right" height="19" width="93" ng-model="partialgrndtot" ng-bind=" partialgrndtot  = calPartialGrandTotal()">
 
                         </td>
                     </tr>
@@ -613,7 +613,7 @@
                         <td class="tdpa" height="19" width="166">
                             TOTAL DAMAGES
                         </td>
-                        <td height="19" width="87" ng-bind="destot + partialtot">
+                        <td class="right" height="19" width="87" ng-bind="destot + partialtot">
 
                         </td>
                         <td class="tdpa" height="19" width="112">
@@ -626,7 +626,7 @@
                         </td>
                         <td class="tdpa" height="19" width="83">
                         </td>
-                        <td height="19" width="93" ng-bind="desgrndtot + partialgrndtot">
+                        <td class="right" height="19" width="93" ng-bind="desgrndtot + partialgrndtot">
 
                         </td>
                     </tr>
@@ -703,19 +703,19 @@
                     <tr height="19" ng-repeat="dlLosPermanent in dlAssmntHusing.housing.Table_3.DlLosPermanent" ng-if="dlLosPermanent.assets != 'Total' ">
                         <td class="tdpa" height="19" width="166" ng-bind="dlLosPermanent.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlLosPermanent.tot_num_des_houses"
+                        <td class="right" height="19" width="87" ng-model="dlLosPermanent.tot_num_des_houses"
                             ng-bind="dlLosPermanent.tot_num_des_houses =roundOffFunc (
                             $parent.dlAssmntHusing.housing.Table_3.DlDesPermanent[$index].tot_num_houses ,
                             ($parent.dlAssmntHusing.housing.Table_3.DlDesPermanent[$index].per_cent_tot_rent/100))">
 
                         </td>
-                        <td height="19" width="112" ng-model="dlLosPermanent.tot_num_dmg_houses"
+                        <td class="right" height="19" width="112" ng-model="dlLosPermanent.tot_num_dmg_houses"
                             ng-bind="dlLosPermanent.tot_num_dmg_houses = roundOffFunc(
                             $parent.dlAssmntHusing.housing.Table_3.DlPdesPermanent[$index].tot_num_houses ,
                             ($parent.dlAssmntHusing.housing.Table_3.DlPdesPermanent[$index].per_cent_tot_rent/100))" >
 
                         </td>
-                        <td height="19" width="87" ng-model="dlLosPermanent.frg_income"
+                        <td class="right" height="19" width="87" ng-model="dlLosPermanent.frg_income"
                             ng-bind="dlLosPermanent.frg_income =
                             (dlLosPermanent.tot_num_des_houses *
                             bs_data['BhClfPermanent'][$index].fields.avg_rent_mont *
@@ -734,7 +734,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlLosPermanent.avg_un_expenses">
                         </td>
-                        <td colspan="2" height="19" width="166" ng-model="dlLosPermanent.losses"
+                        <td class="right" colspan="2" height="19" width="166" ng-model="dlLosPermanent.losses"
                             ng-bind="dlLosPermanent.losses =
                             dlLosPermanent.frg_income +
                             (dlAssmntHusing.housing.Table_3.DlDesPermanent[$index].tot_num_houses +
@@ -748,16 +748,16 @@
                     <tr height="19" ng-repeat="dlLosPermanent in dlAssmntHusing.housing.Table_3.DlLosPermanent" ng-if="dlLosPermanent.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlLosPermanent.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlLosPermanent.tot_num_des_houses"
+                        <td class="right" height="19" width="87" ng-model="dlLosPermanent.tot_num_des_houses"
                             ng-bind="dlLosPermanent.tot_num_des_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosPermanent,'tot_num_des_houses')">
 
                         </td>
-                        <td height="19" width="112" ng-model="dlLosPermanent.tot_num_dmg_houses"
+                        <td class="right" height="19" width="112" ng-model="dlLosPermanent.tot_num_dmg_houses"
                             ng-bind="dlLosPermanent.tot_num_dmg_houses =
                             calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosPermanent,'tot_num_dmg_houses')">
 
                         </td>
-                        <td height="19" width="87" ng-model="dlLosPermanent.frg_income"
+                        <td class="right" height="19" width="87" ng-model="dlLosPermanent.frg_income"
                             ng-bind="dlLosPermanent.frg_income = calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosPermanent,'frg_income')">
 
                         </td>
@@ -765,7 +765,7 @@
                         </td>
                         <td class="tdpa" height="19" width="87">
                         </td>
-                        <td colspan="2" height="19" width="166" ng-model="dlLosPermanent.losses"
+                        <td class="right" colspan="2" height="19" width="166" ng-model="dlLosPermanent.losses"
                             ng-bind="dlLosPermanent.losses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosPermanent,'losses')">
 
                         </td>
@@ -791,19 +791,19 @@
                     <tr height="19" ng-repeat="dlLosSemiPermanent in dlAssmntHusing.housing.Table_3.DlLosSemiPermanent" ng-if="dlLosSemiPermanent.assets != 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlLosSemiPermanent.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlLosSemiPermanent.tot_num_des_houses"
+                        <td class="right" height="19" width="87" ng-model="dlLosSemiPermanent.tot_num_des_houses"
                             ng-bind="dlLosSemiPermanent.tot_num_des_houses =roundOffFunc(
                             $parent.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent[$index].tot_num_houses ,
                             ($parent.dlAssmntHusing.housing.Table_3.DlDesSemiPermanent[$index].per_cent_tot_rent/100))">
 
                         </td>
-                        <td height="19" width="112" ng-model="dlLosSemiPermanent.tot_num_dmg_houses"
+                        <td class="right" height="19" width="112" ng-model="dlLosSemiPermanent.tot_num_dmg_houses"
                             ng-bind="dlLosSemiPermanent.tot_num_dmg_houses =roundOffFunc(
                             $parent.dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent[$index].tot_num_houses ,
                             ($parent.dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent[$index].per_cent_tot_rent/100))" >
 
                         </td>
-                        <td height="19" width="87" ng-model="dlLosSemiPermanent.frg_income"
+                        <td class="right" height="19" width="87" ng-model="dlLosSemiPermanent.frg_income"
                             ng-bind="dlLosSemiPermanent.frg_income =
                             (dlLosSemiPermanent.tot_num_des_houses * bs_data['BhClfSmiPermanent'][$index].fields.avg_rent_mont * bs_data['BhClfSmiPermanent'][$index].fields.avg_period_construct) +
                             (dlLosSemiPermanent.tot_num_dmg_houses * bs_data['BhClfSmiPermanent'][$index].fields.avg_rent_mont * bs_data['BhClfSmiPermanent'][$index].fields.avg_period_repair)">
@@ -818,7 +818,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlLosSemiPermanent.avg_un_expenses">
                         </td>
-                         <td colspan="2" height="19" width="166" ng-model="dlLosSemiPermanent.losses"
+                         <td class="right" colspan="2" height="19" width="166" ng-model="dlLosSemiPermanent.losses"
                             ng-bind="dlLosSemiPermanent.losses = dlLosSemiPermanent.frg_income +
                         ((dlAssmntHusing.housing.Table_3.DlDesSemiPermanent[$index].tot_num_houses + dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent[$index].tot_num_houses) * dlLosSemiPermanent.avg_cost_clean) +
                         ((dlAssmntHusing.housing.Table_3.DlDesSemiPermanent[$index].tot_num_houses + dlAssmntHusing.housing.Table_3.DlPdesSemiPermanent[$index].tot_num_houses) * dlLosSemiPermanent.avg_un_expenses)">
@@ -830,19 +830,19 @@
                         ng-if="dlLosSemiPermanent.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlLosSemiPermanent.assets">
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-model="dlLosSemiPermanent.tot_num_des_houses"
                             ng-bind="dlLosSemiPermanent.tot_num_des_houses =
                             calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent,'tot_num_des_houses')">
 
                         </td>
-                        <td height="19" width="112"
+                        <td class="right" height="19" width="112"
                             ng-model="dlLosSemiPermanent.tot_num_dmg_houses"
                             ng-bind="dlLosSemiPermanent.tot_num_dmg_houses  =
                             calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent,'tot_num_dmg_houses')">
 
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-model="dlLosSemiPermanent.frg_income"
                             ng-bind="dlLosSemiPermanent.frg_income =
                             calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent,'frg_income')">
@@ -852,7 +852,7 @@
                         </td>
                         <td class="tdpa" height="19" width="87">
                         </td>
-                        <td colspan="2" height="19" width="166"
+                        <td class="right" colspan="2" height="19" width="166"
                             ng-model="dlLosSemiPermanent.losses"
                             ng-bind="dlLosSemiPermanent.losses =
                             calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent,'losses')">
@@ -881,19 +881,19 @@
                         <td class="tdpa" height="19" width="166" ng-bind="dlLosImprovised.assets">
 
                         </td>
-                        <td height="19" width="87" ng-model="dlLosImprovised.tot_num_des_houses"
+                        <td class="right" height="19" width="87" ng-model="dlLosImprovised.tot_num_des_houses"
                             ng-bind="dlLosImprovised.tot_num_des_houses =roundOffFunc(
                             $parent.dlAssmntHusing.housing.Table_3.DlDesImprovised[$index].tot_num_houses ,
                             ($parent.dlAssmntHusing.housing.Table_3.DlDesImprovised[$index].per_cent_tot_rent/100))">
 
                         </td>
-                        <td height="19" width="112" ng-model="dlLosImprovised.tot_num_dmg_houses"
+                        <td class="right" height="19" width="112" ng-model="dlLosImprovised.tot_num_dmg_houses"
                             ng-bind="dlLosImprovised.tot_num_dmg_houses =roundOffFunc(
                             $parent.dlAssmntHusing.housing.Table_3.DlPdesImprovised[$index].tot_num_houses ,
                             ($parent.dlAssmntHusing.housing.Table_3.DlPdesImprovised[$index].per_cent_tot_rent/100))" >
 
                         </td>
-                         <td height="19" width="87" ng-model="dlLosImprovised.frg_income"
+                         <td class="right" height="19" width="87" ng-model="dlLosImprovised.frg_income"
                             ng-bind="dlLosImprovised.frg_income =
                             (dlLosImprovised.tot_num_des_houses * bs_data['BhClfImprovised'][$index].fields.avg_rent_mont * bs_data['BhClfImprovised'][$index].fields.avg_period_construct) +
                             (dlLosImprovised.tot_num_dmg_houses * bs_data['BhClfImprovised'][$index].fields.avg_rent_mont * bs_data['BhClfImprovised'][$index].fields.avg_period_repair)">
@@ -910,7 +910,7 @@
                             <input id="textinput" name="textinput" type="number" placeholder=""
                                    class="form-control input-md" ng-model="dlLosImprovised.avg_un_expenses">
                         </td>
-                       <td colspan="2" height="19" width="166" ng-model="dlLosImprovised.losses"
+                       <td class="right" colspan="2" height="19" width="166" ng-model="dlLosImprovised.losses"
                             ng-bind="dlLosImprovised.losses = dlLosImprovised.frg_income +
                         ((dlAssmntHusing.housing.Table_3.DlDesImprovised[$index].tot_num_houses + dlAssmntHusing.housing.Table_3.DlPdesImprovised[$index].tot_num_houses) * dlLosImprovised.avg_cost_clean) +
                         ((dlAssmntHusing.housing.Table_3.DlDesImprovised[$index].tot_num_houses + dlAssmntHusing.housing.Table_3.DlPdesImprovised[$index].tot_num_houses) * dlLosImprovised.avg_un_expenses)">
@@ -919,15 +919,15 @@
                     <tr height="19" ng-repeat="dlLosImprovised in dlAssmntHusing.housing.Table_3.DlLosImprovised" ng-if="dlLosImprovised.assets == 'Total'">
                         <td class="tdpa" height="19" width="166" ng-bind="dlLosImprovised.assets">
                         </td>
-                        <td height="19" width="87" ng-model="dlLosImprovised.tot_num_des_houses"
+                        <td class="right" height="19" width="87" ng-model="dlLosImprovised.tot_num_des_houses"
                             ng-bind="dlLosImprovised.tot_num_des_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosImprovised,'tot_num_des_houses' )">
 
                         </td>
-                        <td height="19" width="112" ng-model="dlLosImprovised.tot_num_dmg_houses"
+                        <td class="right" height="19" width="112" ng-model="dlLosImprovised.tot_num_dmg_houses"
                             ng-bind="dlLosImprovised.tot_num_dmg_houses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosImprovised,'tot_num_dmg_houses' )">
 
                         </td>
-                        <td height="19" width="87" ng-model="dlLosImprovised.frg_income"
+                        <td class="right" height="19" width="87" ng-model="dlLosImprovised.frg_income"
                             ng-bind="dlLosImprovised.frg_income = calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosImprovised,'frg_income' )">
 
                         </td>
@@ -935,7 +935,7 @@
                         </td>
                         <td class="tdpa" height="19" width="87">
                         </td>
-                        <td colspan="2" height="19" width="166"
+                        <td class="right" colspan="2" height="19" width="166"
                             ng-model="dlLosImprovised.losses" ng-bind="dlLosImprovised.losses = calTotal($parent.dlAssmntHusing.housing.Table_3.DlLosImprovised,'losses' )">
 
                         </td>
@@ -943,15 +943,15 @@
                     <tr height="19">
                         <td class="tdpa" height="19" width="166">TOTAL LOSSES
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="dlAssmntHusing.housing.Table_3.DlLosImprovised[0].tot_num_des_houses + dlAssmntHusing.housing.Table_3.DlLosImprovised[1].tot_num_des_houses + dlAssmntHusing.housing.Table_3.DlLosImprovised[2].tot_num_des_houses ">
 
                         </td>
-                        <td height="19" width="112"
+                        <td class="right" height="19" width="112"
                             ng-bind="dlAssmntHusing.housing.Table_3.DlLosImprovised[0].tot_num_dmg_houses + dlAssmntHusing.housing.Table_3.DlLosImprovised[1].tot_num_dmg_houses + dlAssmntHusing.housing.Table_3.DlLosImprovised[2].tot_num_dmg_houses">
 
                         </td>
-                        <td height="19" width="87"
+                        <td class="right" height="19" width="87"
                             ng-bind="dlAssmntHusing.housing.Table_3.DlLosImprovised[0].frg_income + dlAssmntHusing.housing.Table_3.DlLosImprovised[1].frg_income + dlAssmntHusing.housing.Table_3.DlLosImprovised[2].frg_income">
 
                         </td>
@@ -959,7 +959,7 @@
                         </td>
                         <td class="tdpa" height="19" width="87">
                         </td>
-                        <td colspan="2" height="19" width="166"
+                        <td class="right" colspan="2" height="19" width="166"
                             ng-bind="dlAssmntHusing.housing.Table_3.DlLosImprovised[0].losses + dlAssmntHusing.housing.Table_3.DlLosImprovised[1].losses + dlAssmntHusing.housing.Table_3.DlLosImprovised[2].losses">
                         </td>
                     </tr>

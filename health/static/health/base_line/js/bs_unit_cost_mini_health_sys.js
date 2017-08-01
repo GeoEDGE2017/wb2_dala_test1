@@ -9,7 +9,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
-     $scope.is_edit_disable = false;
+    $scope.is_edit_disable = false;
 
     //initialize model
     var init_data = {
@@ -222,7 +222,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     }
 
     //Save Data
-    $scope.saveBucMarStructure = function(form) {
+    $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
             console.log($scope.data);
@@ -256,7 +256,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     }
 
     //Edit Data
-    $scope.blDataEdit = function(form) {
+    $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
         if(form.$valid) {
@@ -274,7 +274,30 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsUnitCostMiniHealthSys = data;
+//                $scope.bsUnitCostMiniHealthSys = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.health.Table_3, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsUnitCostMiniHealthSys = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

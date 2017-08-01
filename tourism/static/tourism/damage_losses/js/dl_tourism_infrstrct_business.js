@@ -16,6 +16,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     $scope.is_edit = false;
     $scope.new_firm = {id: null, name: null, ownership: null,};
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'tourism': {
@@ -201,6 +202,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
         if($scope.incident && $scope.district ) {
             $scope.fetchFirms();
             $scope.fetchBusinessTypes();
+            $scope.is_edit_disable = true;
         }
     }
 
@@ -347,7 +349,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
      $scope.saveDlData = function(form) {
         console.log($scope.selectedType);
         $scope.submitted = true;
-        if (form.$valid) {
+//        if (form.$valid) {
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
@@ -373,11 +375,11 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 else
                     $("#modal-container-239453").modal('show');
                 })
-        }
-            else{
-                console.log("form Error", form.$error);
-                console.log("invalid data ! You may have entered decimal values for a number11");
-            }
+//        }
+//            else{
+//                console.log("form Error", form.$error);
+//                console.log("invalid data ! You may have entered decimal values for a number11");
+//            }
         }
 
 
@@ -396,7 +398,6 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                                 'district': $scope.district.district__id,
                                 'incident': $scope.incident,
                                 'firm_id':$scope.selectedFirm.id,
-                                'user_id': $scope.user_id,
                                 'ownership':$scope.selectedFirm.ownership,
                                 'tou_business':$scope.selectedType.business
                             }

@@ -157,8 +157,28 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
                 }),
             }).success(function(data) {
                 console.log(data);
-                console.log(data);
-                $scope.bsEduFacilities = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.education.Table_1, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsEduFacilities = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

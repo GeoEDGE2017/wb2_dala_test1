@@ -161,7 +161,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=industry_services'
         # },
-        'NAME': 'dala_2017_07_13',
+        'NAME': 'final_dala_2017',
         'USER': 'postgres',
     },
 }
@@ -3392,7 +3392,7 @@ TABLE_PROPERTY_MAPPER = {
                  'num_diesel',
                  'num_other',
                  'tot_capacity',
-                 'avg_income', 'id'],
+                 'avg_income'],
         },
         'Table_2': {
             'CebNumEmp':

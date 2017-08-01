@@ -309,11 +309,14 @@
                         <td class="tdpa" height="21" width="212">
                             Total
                         </td>
+
+
                         <td class="right" colspan="2" height="21" width="216"
                             ng-bind="dmgRow.replace_val_destroyed = getTotalCol('DmgAstStructures', 'replace_val_destroyed', dmgRow )">
                         </td>
                         <td class="right" colspan="2" height="21" width="200"
                             ng-bind="dmgRow.repair_val_damaged = getTotalCol('DmgAstStructures', 'repair_val_damaged', dmgRow )">
+
                         </td>
                         <td class="right" colspan="2" height="21" width="254"
                             ng-bind="dmgRow.tot_damaged = getTotalCol('DmgAstStructures', 'tot_damaged', dmgRow )">
@@ -379,11 +382,12 @@
                         <td class="tdpa" height="21" width="212">
                             Total
                         </td>
-                        <td class="right" colspan="2" height="21" width="216"
+                <td class="right" colspan="2" height="21" width="216"
                             ng-bind="dmgRow.replace_val_destroyed = getTotalCol('DmgAstEquipment', 'replace_val_destroyed', dmgRow )">
                         </td>
                         <td class="right" colspan="2" height="21" width="200"
                             ng-bind="dmgRow.repair_val_damaged = getTotalCol('DmgAstEquipment', 'repair_val_damaged', dmgRow )">
+
                         </td>
                         <td class="right" colspan="2" height="21" width="254"
                             ng-bind="dmgRow.tot_damaged = getTotalCol('DmgAstEquipment', 'tot_damaged', dmgRow )">
@@ -449,6 +453,7 @@
                         <td class="tdpa" height="21" width="212">
                             Total
                         </td>
+
                         <td class="right" colspan="2" height="21" width="216"
                             ng-bind="dmgRow.replace_val_destroyed = getTotalCol('DmgAstMachinery', 'replace_val_destroyed', dmgRow )">
                         </td>
@@ -457,6 +462,7 @@
                         </td>
                         <td class="right" colspan="2" height="21" width="254"
                             ng-bind="dmgRow.tot_damaged = getTotalCol('DmgAstMachinerys', 'tot_damaged', dmgRow )">
+
                         </td>
                     </tr>
                     <!--Vehicles-->
@@ -603,12 +609,14 @@
                         </td>
                         <td class="right" colspan="2" height="21" width="254"
                             ng-bind="dmgRow.tot_damaged = getTotalCol('DmgAstStocks', 'tot_damaged', dmgRow )">
+
                         </td>
                     </tr>
                     <tr height="21">
                         <td class="tdpa" height="21" width="212">
                             GRAND TOTAL
                         </td>
+
                         <td class="right" colspan="2" height="21" width="216"
                             ng-bind="getGrandTotalCol('replace_val_destroyed')">
                         </td>
@@ -756,12 +764,17 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <!--<button type="button" ng-click="dataEdit(form_dl_ind_serv_forml_sec)"-->
-                    <!--ng-if="!is_edit" class="btn btn-success">Edit-->
-                    <!--</button>-->
-                    <button type="button" ng-click="initiateEdit()"
-                            ng-if="!is_edit" class="btn btn-success">Edit
-                    </button>
+                     <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="initiateEdit()" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                        <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="clear()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>

@@ -383,7 +383,7 @@
                             </td>
                             <td class="right" width="103" ng-model="cebDmgAstDistribution.to_repair_cost"
                                 ng-bind="cebDmgAstDistribution.to_repair_cost =
-                                    CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution,'to_repair_costssss')">
+                                    CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution,'to_repair_cost')">
                             </td>
                             <td class="right" colspan="2" width="218" ng-model="cebDmgAstDistribution.tot_dmg"
                                 ng-bind="cebDmgAstDistribution.tot_dmg = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution,'tot_dmg')">
@@ -544,15 +544,15 @@
                             <td class="tdpa" width="112">
                             </td>
                             <td class="right" width="108" ng-model="cebDmgAstOther.tot_replace_cost"
-                                ng-bind="cebDmgAstOther.tot_replace_cost = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstOther,'tot_replace_cost')">
+                                ng-bind="cebDmgAstOther.tot_replace_cost = GrandTotalReplacementCost()">
                             </td>
                             <td class="tdpa" width="108">
                             </td>
-                            <td class="right"  width="103" ng-model="cebDmgAstOther.num_dmg_ast"
-                                ng-bind="cebDmgAstOther.num_dmg_ast = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstOther,'num_dmg_ast')">
+                            <td class="right"  width="103" ng-model="cebDmgAstOther.to_repair_cost"
+                                ng-bind="cebDmgAstOther.to_repair_cost = GrandTotalRepairCost()">
                             </td>
                             <td class="right" colspan="2" width="218" ng-model="cebDmgAstOther.tot_dmg"
-                                ng-bind="cebDmgAstOther.tot_dmg = CalTotal(dlPowSupCeb.power_supply.Table_2.CebDmgAstOther,'tot_dmg')">
+                                ng-bind="cebDmgAstOther.tot_dmg = GrandTotal()">
                             </td>
                         </tr>
                         </tbody>
@@ -613,7 +613,8 @@
                     <tr height="19" ng-repeat="cebLosAstIncome in dlPowSupCeb.power_supply.Table_2.CebLosAstIncome">
                         <td class="tdpa" height="19" width="244" ng-bind="cebLosAstIncome.assets">
                         </td>
-                        <td class="right" width="112" ng-model="cebLosAstIncome.avg_income" ng-bind="cebLosAstIncome.avg_income = 1">
+            
+                        <td class="right" width="112" ng-model="cebLosAstIncome.avg_income" ng-bind="cebLosAstIncome.avg_income = bs_data['BsPwGenFirm'][$index].fields.avg_income">
                         </td>
                         <td width="108">
                             <input id="textinput" name="textinput" ng-model="cebLosAstIncome.reduction_y1" type="number"
@@ -695,9 +696,17 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit(form_dl_ceb)" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
+                     <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_dl_ceb)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                        <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>

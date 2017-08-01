@@ -249,7 +249,31 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
             }).success(function(data) {
                 $scope.dlHealthDamagelostPrivateSys = data;
                 $scope.getPrivateClinicsIDs();
-                console.log($scope.dlHealthDamagelostPrivateSys);
+                console.log(data);
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.health.Table_7, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlHealthDamagelostPrivateSys = data;
+                        $scope.getPrivateClinicsIDs();
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

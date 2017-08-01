@@ -278,7 +278,7 @@
                             ng-if="cebDmgAstTransmision.assets != 'Total'">
                             <td class="tdpa" height="19" width="244" ng-bind="cebDmgAstTransmision.assets">
                             </td>
-                            <td class="right" width="112">
+                            <td  width="112">
                                 <input id="textinput" name="textinput" ng-model="cebDmgAstTransmision.num_dst_ast"
                                        type="number" placeholder=""
                                        class="form-control input-md">
@@ -613,7 +613,7 @@
                     <tr height="19" ng-repeat="cebLosAstIncome in dlPowSupCeb.power_supply.Table_2.CebLosAstIncome">
                         <td class="tdpa" height="19" width="244" ng-bind="cebLosAstIncome.assets">
                         </td>
-                        <td width="112" ng-model="cebLosAstIncome.avg_income" ng-bind="cebLosAstIncome.avg_income = 1">
+                        <td class="right" width="112" ng-model="cebLosAstIncome.avg_income" ng-bind="cebLosAstIncome.avg_income = 1">
                         </td>
                         <td width="108">
                             <input id="textinput" name="textinput" ng-model="cebLosAstIncome.reduction_y1" type="number"
@@ -623,13 +623,13 @@
                             <input id="textinput" name="textinput" ng-model="cebLosAstIncome.reduction_y2" type="number"
                                    placeholder="" class="form-control input-md">
                         </td>
-                        <td width="103" ng-model="cebLosAstIncome.losses_y1"
+                        <td class="right" width="103" ng-model="cebLosAstIncome.losses_y1"
                             ng-bind="cebLosAstIncome.losses_y1 = cebLosAstIncome.avg_income * cebLosAstIncome.reduction_y1 ">
                         </td>
-                        <td width="103" ng-model="cebLosAstIncome.losses_y2"
+                        <td class="right" width="103" ng-model="cebLosAstIncome.losses_y2"
                             ng-bind="cebLosAstIncome.losses_y2 = cebLosAstIncome.avg_income * cebLosAstIncome.reduction_y2 ">
                         </td>
-                        <td width="111" ng-model="cebLosAstIncome.tot_losses"
+                        <td class="right" width="111" ng-model="cebLosAstIncome.tot_losses"
                             ng-bind="cebLosAstIncome.tot_losses = cebLosAstIncome.losses_y1 + cebLosAstIncome.losses_y2">
                         </td>
                     </tr>
@@ -668,7 +668,7 @@
                             <input id="textinput" name="textinput" ng-model="cebLosAstOther.losses_y2" type="number"
                                    placeholder="" class="form-control input-md">
                         </td>
-                        <td width="111" ng-model="cebLosAstOther.tot_losses"
+                        <td class="right" width="111" ng-model="cebLosAstOther.tot_losses"
                             ng-bind="cebLosAstOther.tot_losses = cebLosAstOther.losses_y1 + cebLosAstOther.losses_y2">
                         </td>
                     </tr>
@@ -682,11 +682,11 @@
                         </td>
                         <td class="tdpa" width="108">
                         </td>
-                        <td width="103" ng-model="cebLosAstOther.losses_y1" ng-bind="cebLosAstOther.losses_y1 = CalLosYear1Total() ">
+                        <td class="right" width="103" ng-model="cebLosAstOther.losses_y1" ng-bind="cebLosAstOther.losses_y1 = CalLosYear1Total() ">
                         </td>
-                        <td width="107" ng-model="cebLosAstOther.losses_y2" ng-bind="cebLosAstOther.losses_y2 = CalLosYear2Total()">
+                        <td class="right" width="107" ng-model="cebLosAstOther.losses_y2" ng-bind="cebLosAstOther.losses_y2 = CalLosYear2Total()">
                         </td>
-                        <td width="111" ng-model="cebLosAstOther.tot_losses" ng-bind="cebLosAstOther.tot_losses = CalLosTotal()">
+                        <td class="right" width="111" ng-model="cebLosAstOther.tot_losses" ng-bind="cebLosAstOther.tot_losses = CalLosTotal()">
                         </td>
                     </tr>
                     </tbody>

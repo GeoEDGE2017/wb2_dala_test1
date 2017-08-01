@@ -174,6 +174,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
         return final_total;
     }
+
     $scope.getMulitiplyedYearLoss = function(avgincome, reduction, year){
 
         var subTable = $scope.dl_tourism_infrs.tourism.Table_3.DlInfLosses;
@@ -273,6 +274,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         }
 
     }
+    
     $scope.cancelEdit = function()
     {
         $scope.is_edit = false;

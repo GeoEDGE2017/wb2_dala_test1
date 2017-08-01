@@ -70,34 +70,32 @@
                         <td colspan="2" height="19" width="290">
                             Year/Month
                         </td>
-                        <td colspan="4" height="19" width="252">
+                        <td colspan="7" height="19" width="252">
                             <input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    <tr height="19">
+                    <tr height="19" class="tdpa">
                         <td class="tdpa" height="19" width="293">
                             Company Name
                         </td>
-                        <td colspan="2" height="19" width="126">
+                        <td colspan="10" height="19" width="126">
                             <button id="add_preschool" href="#modal-container-218029" role="button" data-toggle="modal"
                                data-id="Add "
-                               class="open-modal-container-218029 btn  btn-block btn-primary btn-info">Add New Company</button>
+                               class="open-modal-container-218029 btn   btn-primary btn-info">Add New Company</button>
+                                <a id="edit_preschool" href="#modal-container-218020" role="button" data-toggle="modal"
+                               data-id="Edit " class="btn   btn-primary btn-warning">Edit Company</a>
                         </td>
-                        <td colspan="2" height="19" width="126">
-                            <a id="edit_preschool" href="#modal-container-218020" role="button" data-toggle="modal"
-                               data-id="Edit " class="btn  btn-block btn-primary btn-warning">Edit Company</a>
-                        </td>
-                        <td colspan="4"></td>
+                        
                     </tr>
                     <tr class="trheadc" height="19">
-                        <td colspan="10" height="19" width="1395">
+                        <td colspan="12" height="19" width="1395">
                             Services provided
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td colspan="3" height="19" width="840">
+                        <td colspan="6" height="19" width="840">
                             Fixed
                         </td>
                         <td colspan="6" height="19" width="631">
@@ -111,7 +109,7 @@
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
-                        <td ng-model="company_name" ng-bind="bsTelCompany.company_name = bsTelCompany.company.company_name">
+                        <td style="display:none;" ng-model="company_name" ng-bind="bsTelCompany.company_name = bsTelCompany.company.company_name">
                         </td>
                         <td ng-model="bsTelCompany.ownership" ng-bind="bsTelCompany.ownership = bsTelCompany.company.ownership">
                         </td>
@@ -162,26 +160,13 @@
                         </td>
                     </tr>
                     <tr class="trsubc" height="19">
-                        <td height="19" width="293" align="left">
+                        <td height="19" colspan="11" width="293" align="left">
                             New Company &nbsp;&nbsp;
                             <button ng-click="addFermForForm()" class="btn btn-sm btn-info btn-circle" id="insert">
                                 <span class="fa fa-plus"></span>
                             </button>
                         </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td height="19" width="293">
-                        </td>
-                        <td height="19" width="254">
-                        </td>
-                        <td height="19" width="145">
-                        </td>
-                        <td colspan="2" height="19" width="442">
-                        </td>
-                        <td colspan="3" height="19" width="189" style="width:17%;">
-                        </td>
+                        
                         <!--<td class="tdpa" height="19" width="293">-->
                             <!---->
                         <!--</td>-->
@@ -192,7 +177,7 @@
                 <div class="pull-right">
                     <br>
                     <!--<button type="button" class="btn btn-info" ng-click="display()">Test</button>-->
-                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                    <button type="button" class="btn btn-warning" ng-click="clear()">Clear</button>
                     <button type="button" class="btn btn-info" ng-click="editBsData(form_bs_telcom_cmpnys)">Edit</button>
                     <button type="button" class="btn btn-success" ng-click="saveBsData(form_bs_telcom_cmpnys)">Submit</button>
                 </div>
@@ -216,16 +201,16 @@
                     <div class="modal-body">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 control-label" for="textinput">Name</label>
+                            <div class="col-md-8">
                                 <input id="textinput" name="textinput" ng-model="company" type="text" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group" style="margin-top:5px;">
-                            <label class="col-md-2 control-label" for="textinput">Ownership</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-8">
                                 <select id="selectbasic" name="ownership" ng-model='ownership' class="form-control" style="font-weight:400;" required>
                                     <option value="" selected="true">Select Ownership</option>
                                     <option value="Public">Public</option>
@@ -261,25 +246,26 @@
                     <div class="modal-body">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Select Company</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 control-label" for="textinput">Select Company</label>
+                            <div class="col-md-8">
                                 <select ng-options="company as company.company_name for company in companies track by company.id"
                                     name="firm" ng-value="company.id" id="ccyear" ng-model="editTelCompany" class="form-control" style="font-weight:400;" required>
                                     <option value="" selected>Select Firm</option>
                                 </select>
                             </div>
                         </div>
+                         <div class="clearfix"></div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Edit Name</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 control-label" for="textinput">Edit Name</label>
+                            <div class="col-md-8">
                                 <input id="textinput" name="textinput" ng-model="editTelCompany.company_name" type="text" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group" style="margin-top:5px;">
-                            <label class="col-md-2 control-label" for="textinput">Ownership</label>
-                            <div class="col-md-10">
+                            <label class="col-md-4 control-label" for="textinput">Ownership</label>
+                            <div class="col-md-8">
                                 <select id="selectbasic" name="ownership" ng-model='editTelCompany.ownership' class="form-control" style="font-weight:400;" required>
                                     <option value="" selected="true">Select Ownership</option>
                                     <option value="Public">Public</option>

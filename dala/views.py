@@ -1540,6 +1540,9 @@ def dl_fetch_district_disagtn(request):
                 model_class = apps.get_model(sub_app_name, table)
 
                 table_fields = tables[table]
+                print sector, table_name, category_name, table
+                print filter_fields
+
                 dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
                                                                                 filter(**filter_fields)
                                                                                 .values(*table_fields))

@@ -107,11 +107,11 @@ bsHealthStatusApp.controller('BsHousingDisController', function ($scope, $http) 
     $scope.bsHousingDis = angular.copy(init_data);
 
     //Disable Edit Button
-    $scope.changeDis = function changeDis(){
-        if($scope.district && $scope.bs_date){
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -137,41 +137,67 @@ bsHealthStatusApp.controller('BsHousingDisController', function ($scope, $http) 
                 $scope.bsHousingDis = init_data;
                 $scope.is_edit = false;
 
-                if(data == 'False')
-                   {
+                if(data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             })
         }
     }
 
     //Edit data
-   $scope.editBsData = function(form){
+    $scope.editBsData = function(form){
         $scope.submitted = true;
-           $scope.is_edit = true;
+        $scope.is_edit = true;
+
+        if (form.$valid) {
             $http({
                 method: "POST",
                 url: "/bs_fetch_edit_data",
                 data: angular.toJson({
-                      'table_name': 'Table_1',
-                      'sector': 'housing',
-                      'com_data': {
-                      'district': $scope.district,
-                      'bs_date': $scope.bs_date,
-                      'user_id': $scope.user_id
-                      }
+                    'table_name': 'Table_1',
+                    'sector': 'housing',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                        'user_id': $scope.user_id
+                    }
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsHousingDis = data;
+//                $scope.bsHousingDis = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.housing.Table_1, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsHousingDis = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
+        }
     }
 
     //Cancel Edit
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsHousingDis = init_data;
     }
@@ -182,5 +208,4 @@ bsHealthStatusApp.controller('BsHousingDisController', function ($scope, $http) 
         $scope.is_edit = false;
         $scope.bsHousingDis = angular.copy(init_data);
     }
-
 });

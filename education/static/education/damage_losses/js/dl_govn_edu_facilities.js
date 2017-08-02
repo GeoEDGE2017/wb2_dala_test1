@@ -729,7 +729,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
-                        'user_id': $scope.user_id,
+//                        'user_id': $scope.user_id,
                     },
                     'is_edit':$scope.is_edit
                }),

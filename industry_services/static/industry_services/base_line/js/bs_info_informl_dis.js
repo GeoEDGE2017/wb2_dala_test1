@@ -100,7 +100,6 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
                 else {
                     $("#modal-container-239453").modal('show');
                 }
-
             })
         }
     }
@@ -108,6 +107,7 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+
         if (form.$valid) {
             $http({
                 method: "POST",

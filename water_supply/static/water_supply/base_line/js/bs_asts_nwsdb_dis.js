@@ -226,9 +226,6 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         var the_string = model + '_' + property;
         var model = $parse(the_string);
         model.assign($scope, cumulative);
-
-
-
     }
 
     //Edit Data
@@ -246,7 +243,30 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
               'bs_date': $scope.bs_date} }),
         }).success(function(data) {
             console.log(data);
-            $scope.bsAstsNwsdbDis = data;
+//            $scope.bsAstsNwsdbDis = data;
+
+            var edit_data_not_found = false;
+            if(data != null) {
+                console.log('----if');
+                angular.forEach(data.water_supply.Table_1, function(value, index) {
+                    console.log('----forEach');
+                    console.log(value);
+                    if(value.length == 0) {
+                        console.log('----');
+                        edit_data_not_found = true;
+                    }
+                })
+                if(edit_data_not_found != true) {
+                    $scope.bsAstsNwsdbDis = data;
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            }
+            else {
+                console.log('----else');
+                $("#modal-container-239456").modal('show');
+            }
         })
     }
 

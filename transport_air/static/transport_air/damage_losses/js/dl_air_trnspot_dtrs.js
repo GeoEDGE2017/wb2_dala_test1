@@ -57,4 +57,20 @@ bsHealthStatusApp.controller('DlSumTrnsAirDistController', function DlEduDistric
             }
         }
     }
+
+    //convert tot
+    $scope.convertTotOne = function(val1,val2,val3,val4,val5){
+       var sum = parseInt(val1) + parseInt(val2) + parseInt(val3)+ parseInt(val4)+ parseInt(val5);
+       return sum;
+    }
+    //convert tot
+    $scope.convertTotTwo = function(val1,val2){
+       var sum = parseInt(val1) + parseInt(val2);
+       return sum;
+    }
+    //convert tot
+    $scope.convertTotThree = function(val1,val2,val3,val4,val5,val6,val7){
+       var sum = parseInt(val1) + parseInt(val2) + parseInt(val3)+ parseInt(val4)+ parseInt(val5) + parseInt(val6)+ parseInt(val7);
+       return sum;
+    }
 })

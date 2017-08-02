@@ -102,7 +102,9 @@
                         </td>
                         <td class="right" colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt">
                         </td>
-                        <td class="right" colspan="2" width="126" height="19" ng-bind="data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pub + data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt">
+                        <td class="right" colspan="2" width="126" height="19"
+                            ng-bind="convertTotTwo(data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pub,
+                            data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt)">
                         </td>
                     </tr>
                     <tr height="19">
@@ -157,22 +159,24 @@
                             TOTAL
                         </td>
                         <td class="right" colspan="2" width="126" height="19"
-                            ng-bind="data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pub +
-                                    data.transport_air.Table_3.DlAirDmgGstructuresDistrict[0].tot_pub +
-                                    data.transport_air.Table_3.DlAirDmgEquipmentDistrict[0].tot_dmg_pub +
-                                    data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pub +
-                                    data.transport_air.Table_3.DlAirDmgOthersDistrict[0].tot_dmg_pub">
+                            ng-bind="convertTotOne(data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pub,
+                                    data.transport_air.Table_3.DlAirDmgGstructuresDistrict[0].tot_pub ,
+                                    data.transport_air.Table_3.DlAirDmgEquipmentDistrict[0].tot_dmg_pub,
+                                    data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pub ,
+                                    data.transport_air.Table_3.DlAirDmgOthersDistrict[0].tot_dmg_pub)">
                         </td>
                         <td class="right" colspan="2" width="126" height="19"
-                            ng-bind="data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt +
-                                    data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pvt">
+                            ng-bind="convertTotTwo(data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt,
+                                    data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pvt)">
                         </td>
-                        <td class="right" colspan="2" width="126" height="19" ng-bind="(data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pub +
-                                    data.transport_air.Table_3.DlAirDmgGstructuresDistrict[0].tot_pub +
-                                    data.transport_air.Table_3.DlAirDmgEquipmentDistrict[0].tot_dmg_pub +
-                                    data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pub +
-                                    data.transport_air.Table_3.DlAirDmgOthersDistrict[0].tot_dmg_pub) +
-                                    (data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt + data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pvt)">
+                        <td class="right" colspan="2" width="126" height="19" ng-bind="
+                                    convertTotThree(data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pub,
+                                    data.transport_air.Table_3.DlAirDmgGstructuresDistrict[0].tot_pub,
+                                    data.transport_air.Table_3.DlAirDmgEquipmentDistrict[0].tot_dmg_pub ,
+                                    data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pub ,
+                                    data.transport_air.Table_3.DlAirDmgOthersDistrict[0].tot_dmg_pub ,
+                                    data.transport_air.Table_3.DlAirDmgAircraftsDistrict[0].tot_destroyed_pvt,
+                                    data.transport_air.Table_3.DlAirDmgSuppliesDistrict[0].tot_dmg_pvt)">
                         </td>
                     </tr>
                     <tr class="trheadc1" height="19">

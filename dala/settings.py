@@ -3392,7 +3392,7 @@ TABLE_PROPERTY_MAPPER = {
                  'num_diesel',
                  'num_other',
                  'tot_capacity',
-                 'avg_income', 'id'],
+                 'avg_income'],
         },
         'Table_2': {
             'CebNumEmp':

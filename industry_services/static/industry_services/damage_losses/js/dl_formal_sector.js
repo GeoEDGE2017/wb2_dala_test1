@@ -39,6 +39,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     $scope.dataForm;
     $scope.firms = [];
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'industry_services': {
@@ -186,6 +187,10 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         }
         if($scope.incident && $scope.district ) {
         }
+
+        if($scope.incident && $scope.district){
+            $scope.is_edit_disable = true;
+        }
     }
 
     $scope.fetchFormalFirmTypes = function(){
@@ -314,7 +319,8 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             angular.forEach(subTable, function(value, key) {
                 if(value){
                     if(value[column]){
-                        final_total += value[column];
+                        console.log('print',value[column]);
+                        final_total += value[column]/2;
                     }
                 }
             })
@@ -474,12 +480,13 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
     $scope.initiateEdit = function(){
         $scope.loadFirms();
-        if($scope.classification && $scope.district && $scope.incident){
-            $("#modal-container-218029").modal('show');
-        }
-        else{
-            alert("please select Indident, District and Classification")
-        }
+            if($scope.classification && $scope.district && $scope.incident){
+                $("#modal-container-218029").modal('show');
+            }
+            else{
+                console.log("please select Indident, District and Classification")
+            }
+
     }
 
 

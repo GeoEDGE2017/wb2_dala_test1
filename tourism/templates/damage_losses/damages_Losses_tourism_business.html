@@ -6,36 +6,28 @@
     .right {text-align:right;}
 </style>
 <main class="main" ng-app="dlTouismInfrstrctApp" ng-controller="dlTouismInfrstrctController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
         <li class="breadcrumb-item"><a href="{% url 'dashboard:tourism_main' %}">Tourism Sector</a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 2. Damages and Losses in Tourism Business</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 2. Damages and Losses in Tourism Business
+            </span>
         </li>
-
         <li style="float:right;"><a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank"
                                     style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
                                     data-toggle="tooltip" title="Veiw Document"></a></li>
     </ol>
-
-
     <div class="container-fluid" ng-form name="form_dl_tou_buss">
-
         <ul class='nav nav-wizard'>
             <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
             <li id="li2"><a href='#step2' data-toggle="tab">2 - Tourism</a></li>
-
         </ul>
-
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
-
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="229"/>
@@ -237,7 +229,7 @@
                         <td class="right" colspan="2" width="200"
                             ng-bind="sum_of_dst_dpmg(dmgBusAstStructure.val_dst,
                 dmgBusAstStructure.val_pdmg, dmgBusAstStructure, 'tot_dmg')">
-                            -
+
                         </td>
                     </tr>
                     <tr class="tdpa" class="tdpa" height="20">
@@ -252,7 +244,7 @@
                         <td colspan="2" width="200">
                         </td>
                         <td colspan="2" width="200">
-                            -
+
                         </td>
                     </tr>
 
@@ -267,11 +259,11 @@
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstStructure.val_pdmg = getTotalCol('DmgBusAstStructures', 'val_pdmg', dmgBusAstStructure)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstStructure.tot_dmg = getTotalCol('DmgBusAstStructures', 'tot_dmg', dmgBusAstStructure)">
-                            -
+
                         </td>
                     </tr>
 
@@ -334,7 +326,7 @@
                         <td colspan="2" width="200">
                         </td>
                         <td colspan="2" width="200">
-                            -
+
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstEquipment in
@@ -344,15 +336,15 @@
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstEquipment.val_dst = getTotalCol('DmgBusAstEquipment', 'val_dst', dmgBusAstEquipment)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstEquipment.val_pdmg = getTotalCol('DmgBusAstEquipment', 'val_pdmg', dmgBusAstEquipment)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstEquipment.tot_dmg = getTotalCol('DmgBusAstEquipment', 'tot_dmg', dmgBusAstEquipment)">
-                            -
+
                         </td>
 
                     </tr>
@@ -416,7 +408,7 @@
                         <td colspan="2" width="200">
                         </td>
                         <td colspan="2" width="200">
-                            -
+
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstMachinery in
@@ -426,15 +418,15 @@
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstMachinery.val_dst = getTotalCol('DmgBusAstMachinery', 'val_dst', dmgBusAstMachinery)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstMachinery.val_pdmg = getTotalCol('DmgBusAstMachinery', 'val_pdmg', dmgBusAstMachinery)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstMachinery.tot_dmg = getTotalCol('DmgBusAstMachinery', 'tot_dmg', dmgBusAstMachinery)">
-                            -
+
                         </td>
 
                     </tr>
@@ -498,7 +490,7 @@
                         <td colspan="2" width="200">
                         </td>
                         <td colspan="2" width="200">
-                            -
+
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstVehicle in
@@ -508,15 +500,15 @@
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstVehicle.val_dst = getTotalCol('DmgBusAstVehicle', 'val_dst', dmgBusAstVehicle)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstVehicle.val_pdmg = getTotalCol('DmgBusAstVehicle', 'val_pdmg', dmgBusAstVehicle)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstVehicle.tot_dmg = getTotalCol('DmgBusAstVehicle', 'tot_dmg', dmgBusAstVehicle)">
-                            -
+
                         </td>
 
                     </tr>
@@ -568,7 +560,7 @@
                         <td class="right" colspan="2" width="200"
                             ng-bind="sum_of_dst_dpmg(dmgBusAstInventories.val_dst, dmgBusAstInventories.val_pdmg,
                 dmgBusAstInventories, 'tot_dmg')">
-                            -
+
                         </td>
                     </tr>
 
@@ -585,7 +577,7 @@
                         <td colspan="2" width="200">
                         </td>
                         <td colspan="2" width="200">
-                            -
+
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dmgBusAstInventories in
@@ -596,15 +588,15 @@
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstInventories.val_dst = getTotalCol('DmgBusAstInventories', 'val_dst', dmgBusAstInventories)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstInventories.val_pdmg = getTotalCol('DmgBusAstInventories', 'val_pdmg', dmgBusAstInventories)">
-                            -
+
                         </td>
                         <td class="right" colspan="2" width="200"
                             ng-bind="dmgBusAstInventories.tot_dmg = getTotalCol('DmgBusAstInventories', 'tot_dmg', dmgBusAstInventories)">
-                            -
+
                         </td>
 
                     </tr>
@@ -613,13 +605,13 @@
                             GRAND TOTAL
                         </td>
                         <td  class="right"  colspan="2" width="200" ng-bind="getGrandTotalCol('val_dst')">
-                            -
+
                         </td>
                         <td class="right"  colspan="2" width="200" ng-bind="getGrandTotalCol('val_pdmg')">
-                            -
+
                         </td>
                         <td class="right"  colspan="2" width="200" ng-bind="getGrandTotalCol('tot_dmg')">
-                            -
+
                         </td>
                     </tr>
 
@@ -691,22 +683,22 @@
                                    ng-model="dlBusLosses.val_income_year2"
                                    class="form-control input-md">
                         </td>
-                        <td width="100" ng-model="dlBusLosses.val_los_year1"
+                        <td class="right" width="100" ng-model="dlBusLosses.val_los_year1"
                             ng-bind="getMulitiplyedYearLoss(dlBusLosses.avg_val_income_year
             ,dlBusLosses.val_income_year1,1)">
-                            -
+
                         </td>
-                        <td width="100" ng-model="dlBusLosses.val_los_year2"
+                        <td class="right" width="100" ng-model="dlBusLosses.val_los_year2"
                             ng-bind="getMulitiplyedYearLoss(dlBusLosses.avg_val_income_year
             ,dlBusLosses.val_income_year2,2)">
-                            -
+
                         </td>
-                        <td width="100" ng-model="dlBusLosses.tol_losses"
+                        <td class="right" width="100" ng-model="dlBusLosses.tol_losses"
                             ng-bind="getSumOfTwo(dlBusLosses.val_los_year1,
                 dlBusLosses.val_los_year2,
                 dlBusLosses, 'tol_losses')"
                         >
-                            -
+
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dlBusLosses in dl_tourism_business.tourism.Table_2.DlBusLosses"
@@ -721,7 +713,7 @@
                         </td>
                         <td class="tdpa" width="100">
                         </td>
-                        <td width="100">
+                        <td  width="100">
                             <input id="textinput" name="textinput" type="number" ng-model="dlBusLosses.val_los_year1"
                                    placeholder="" class="form-control input-md">
                         </td>
@@ -729,38 +721,38 @@
                             <input id="textinput" name="textinput" type="number" ng-model="dlBusLosses.val_los_year2"
                                    class="form-control input-md">
                         </td>
-                        <td width="100" ng-model="dlBusLosses.tol_losses"
+                        <td class="right" width="100" ng-model="dlBusLosses.tol_losses"
                             ng-bind="getSumOfTwo(dlBusLosses.val_los_year1,dlBusLosses.val_los_year2,
                 dlBusLosses, 'tol_losses')">
-                            -
+
                         </td>
                     </tr>
 
                     <tr height="20" ng-repeat="dlBusLosses in dl_tourism_business.tourism.Table_2.DlBusLosses"
                         ng-if="dlBusLosses.los_type == 'Total'">
                         <td class="tdpa" width="229" height="20" ng-bind="dlBusLosses.los_type">
-                            GRAND TOTAL
+
                         </td>
-                        <td class="tdpa" width="100"
-                            ng-bind="dlBusLosses.avg_val_income_year = getTotalCol('DlBusLosses', 'avg_val_income_year', dlBusLosses)">
+                        <td class="tdpa" width="100">
+                            <!--ng-bind="dlBusLosses.avg_val_income_year = getTotalCol('DlBusLosses', 'avg_val_income_year', dlBusLosses)">-->
                         </td>
-                        <td class="tdpa" width="100"
-                            ng-bind="dlBusLosses.val_income_year1 = getTotalCol('DlBusLosses', 'val_income_year1', dlBusLosses)">
+                        <td class="tdpa" width="100">
+                            <!--ng-bind="dlBusLosses.val_income_year1 = getTotalCol('DlBusLosses', 'val_income_year1', dlBusLosses)">-->
                         </td>
-                        <td class="tdpa" width="100"
-                            ng-bind="dlBusLosses.val_income_year2 = getTotalCol('DlBusLosses', 'val_income_year2', dlBusLosses)">
+                        <td class="tdpa" width="100">
+                            <!--ng-bind="dlBusLosses.val_income_year2 = getTotalCol('DlBusLosses', 'val_income_year2', dlBusLosses)">-->
                         </td>
-                        <td width="100"
+                        <td class="right" width="100"
                             ng-bind="dlBusLosses.val_los_year1 = getTotalCol('DlBusLosses', 'val_los_year1', dlBusLosses)">
-                            -
+
                         </td>
-                        <td width="100"
+                        <td class="right" width="100"
                             ng-bind="dlBusLosses.val_los_year2 = getTotalCol('DlBusLosses', 'val_los_year2' ,dlBusLosses)">
-                            -
+
                         </td>
-                        <td width="100"
+                        <td class="right" width="100"
                             ng-bind="dlBusLosses.tol_losses = getTotalCol('DlBusLosses', 'tol_losses', dlBusLosses)">
-                            -
+
                         </td>
                     </tr>
                     </tbody>
@@ -771,9 +763,17 @@
                 <div class="pull-right">
                     <br>
                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dataEdit(form_dl_tou_buss)"
-                            ng-if="!is_edit" class="btn btn-success">Edit
-                    </button>
+                     <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dataEdit(form_dl_tou_buss)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                        <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>

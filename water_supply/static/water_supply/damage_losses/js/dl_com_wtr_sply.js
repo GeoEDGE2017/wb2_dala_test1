@@ -13,6 +13,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.is_null = false;
     $scope.grantot = 0;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
 
     //Initialize Data
@@ -138,6 +139,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         }
 
         if($scope.incident && $scope.district ) {
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

@@ -8,6 +8,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.is_edit_disable = false;
 
     var init_data = {
         'industry_services': {
@@ -111,6 +112,16 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
                     'num_female': null,
                 }],
             }
+        }
+    }
+
+    //disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+        }
+        else{
+            $scope.is_edit_disable = false;
         }
     }
 

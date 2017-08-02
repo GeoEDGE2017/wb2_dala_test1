@@ -19,7 +19,7 @@
         <link href="{% static 'dashboard/css/datepicker.css' %}" rel="stylesheet">
 
         <script src='{% static "dashboard/js/jquery.min.js" %}'></script>
-
+        <!-- <script src='{% static "dashboard/js/jquery.numberformatter.js" %}'></script> -->
         <script src='{% static "dashboard/js/jquery.nicescroll.min.js" %}'></script>
         <script src='{% static "dashboard/js/bootstrap.min.js" %}'></script>
         <script src='{% static "dashboard/js/angular/angular.js" %}'></script>
@@ -319,22 +319,17 @@
 
 
         </script>
-<script>
+<!-- <script>
 
- window.onload = function(){
-    $('.right').text(function () { 
-    var str = $(this).html() + ''; 
-    x = str.split('.'); 
-    x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : ''; 
-    var rgx = /(\d+)(\d{3})/; 
-    while (rgx.test(x1)) { 
-        x1 = x1.replace(rgx, '$1' + ',' + '$2'); 
-    } 
-    $(this).html(x1 + x2); 
-})
-}
+  
+        $(document).ready(function() {
+            $(".right").each(function() {
+                $(this).format({format:"#,###", locale:"us"});
+            });
+        });
+        </script> -->
 
-</script>
+
 
         <script>
     $(document).ready(function(){

@@ -303,11 +303,11 @@
                             <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgMainOffice.assets">
                             </td>
                             <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlcwDmgMainOffice.num_tot_destoyed">
                             </td>
                             <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
+                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlcwDmgMainOffice.num_part_damaged">
                             </td>
 
@@ -459,9 +459,17 @@
                     <br>
 
                     <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                    <button type="button" ng-click="dlDataEdit()" ng-if="!is_edit" class="btn btn-success">
-                        Edit
-                    </button>
+                    <span ng-if="is_edit_disable">
+                        <button type="button" ng-click="dlDataEdit(form_dl_com_wtr_sply)" ng-if="!is_edit"
+                                class="btn btn-success">
+                            Edit
+                        </button>
+                    </span>
+                        <span ng-if="!is_edit_disable">
+                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
+                        </button>
+                    </span>
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>

@@ -320,7 +320,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
 
      //Disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.bs_date){
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
         else{
@@ -481,9 +481,9 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     }
 
     //Save Organization
-    $scope.saveOrganization = function(form){
+    $scope.saveOrganization = function(form) {
         $scope.new_organization.district_id = $scope.district;
-        if($scope.selectedOrganization){
+        if($scope.selectedOrganization) {
             $scope.new_organization.id = $scope.selectedOrganization.id;
             $scope.new_organization.name = $scope.selectedOrganization.name;
             $scope.new_organization.ownership = $scope.selectedOrganization.ownership;
@@ -496,10 +496,10 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                 'is_edit' :$scope.is_edit,
                 'model': 'Organization',
                 'sector': 'agri_livestock',
-             }),
+            }),
         }).success(function(data) {
             console.log(data);
-            if(data){
+            if(data) {
                 $scope.organizations.push($scope.new_organization);
                 $scope.new_organization.id = data;
                 console.log($scope.new_organization);
@@ -543,7 +543,7 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                 'district':  $scope.district,
                 'model': 'Organization',
                 'sector':'agri_livestock'
-             }),
+            }),
         }).success(function(data) {
             console.log(data);
             $scope.organizations = data;
@@ -713,7 +713,30 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsLivestockPoultry = data;
+//                $scope.bsLivestockPoultry = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.agri_livestock.Table_2, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsLivestockPoultry = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

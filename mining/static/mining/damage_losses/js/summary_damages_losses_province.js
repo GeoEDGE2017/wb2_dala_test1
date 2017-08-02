@@ -23,7 +23,7 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     // get relevant damage_losses data for calculations
     $scope.changedValue = function getDlData(selectProvinces) {
         if($scope.incident && selectProvinces) {
-          fetchProvinces();
+            fetchProvinces();
         }
     }
 
@@ -42,17 +42,41 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
         })
     }
 
+//    $scope.fetchDlData = function(form) {
+//        if($scope.province && $scope.incident) {
+//            console.log($scope.province);
+//            console.log($scope.incident);
+//            $scope.is_edit = true;
+//            $scope.submitted = true;
+//            $http({
+//                method: "POST",
+//                url: '/dl_fetch_district_disagtn',
+//                data: angular.toJson({
+//                    'table_name': 'Table_7',
+//                    'sector': 'mining',
+//                    'com_data': {
+//                        'province': $scope.province,
+//                        'incident': $scope.incident,
+//                    },
+//                }),
+//            }).success(function(data) {
+//                console.log('load ', data);
+//                $scope.data = data;
+//                $scope.dlMiningPro = data;
+//            })
+//        }
+//    }
+
     $scope.fetchDlData = function(form) {
-        if($scope.province && $scope.incident) {
-            console.log($scope.province);
-            console.log($scope.incident);
+        if($scope.incident && $scope.province) {
             $scope.is_edit = true;
             $scope.submitted = true;
+
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_7',
+                    'table_name': 'Table_7',
                     'sector': 'mining',
                     'com_data': {
                         'province': $scope.province,
@@ -60,7 +84,6 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
                     },
                 }),
             }).success(function(data) {
-                console.log('load ', data);
                 $scope.data = data;
                 $scope.dlMiningPro = data;
             })

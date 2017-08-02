@@ -171,7 +171,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     }
 
     //related baseline data
-    $scope.getValue=function getBsData() {
+    $scope.getValue = function getBsData() {
         if($scope.district && $scope.bs_date) {
             $http({
                 method: 'POST',
@@ -375,17 +375,39 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                 method: "POST",
                 url: "/bs_fetch_edit_data",
                 data: angular.toJson({
-                      'table_name': 'Table_2',
-                      'sector': 'agri_agrarian',
-                      'com_data':
-                      {
-                          'district': $scope.district,
-                          'bs_date': $scope.bs_date
-                       }
+                    'table_name': 'Table_2',
+                    'sector': 'agri_agrarian',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsInfoAcfoAssets = data;
+//                $scope.bsInfoAcfoAssets = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.agri_agrarian.Table_2, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsInfoAcfoAssets = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

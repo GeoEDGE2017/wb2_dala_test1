@@ -201,7 +201,30 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsLandTrnsAsst = data;
+//                $scope.bsLandTrnsAsst = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.transport_land.Table_2, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsLandTrnsAsst = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

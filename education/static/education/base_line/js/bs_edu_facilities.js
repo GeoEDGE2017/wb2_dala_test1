@@ -226,7 +226,8 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
 
     //Clear Function
     $scope.clear = function() {
-        console.log("clear")
+        console.log($scope.bsEduFacilities.education.Table_1.BefPubSchools[0].total_number);
+        console.log("clear");
         $scope.is_edit = false;
         $scope.bsEduFacilities = angular.copy(init_data);
     }
@@ -322,5 +323,70 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
                 value.avg_female = avg_female;
             }
         })
+    }
+
+    $scope.totTotalNumber = function() {
+        var tot = 0;
+
+        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPubSchools, function(value, index) {
+            tot = tot + value.total_number;
+        })
+
+        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPubOffices, function(value, index) {
+            if(value.type_facilities != 'TOTAL NUMBER OF STUDENTS') {
+                tot = tot + value.total_number;
+            }
+        })
+
+        return tot;
+    }
+
+    $scope.totAvgMale = function() {
+        var tot = 0;
+
+        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPubSchools, function(value, index) {
+            tot = tot + (value.total_number * $scope.bsEduFacilities.education.Table_1.BefPubSchools[index].avg_male);
+        })
+
+        return tot;
+    }
+
+    $scope.totAvgFemaler = function() {
+        var tot = 0;
+
+        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPubSchools, function(value, index) {
+            tot = tot + (value.total_number * $scope.bsEduFacilities.education.Table_1.BefPubSchools[index].avg_female);
+        })
+        return tot;
+    }
+
+    $scope.totBefPvtTotalNumber = function() {
+        var tot = 0;
+        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPvt, function(value, index) {
+            if(value.type_facilities != 'TOTAL NUMBER OF STUDENTS') {
+                tot = tot + value.total_number;
+            }
+        })
+        return tot;
+    }
+
+    $scope.totBefPvtAvgMale = function() {
+        var tot = 0;
+        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPvt, function(value, index) {
+            if(value.type_facilities != 'TOTAL NUMBER OF STUDENTS') {
+                tot = tot + (value.total_number * value.avg_male);
+            }
+        })
+        return tot;
+    }
+
+    $scope.totBefPvtAvgFemale = function() {
+        var tot = 0;
+        angular.forEach($scope.bsEduFacilities.education.Table_1.BefPvt, function(value, index) {
+            if(value.type_facilities != 'TOTAL NUMBER OF STUDENTS') {
+                tot = tot + (value.total_number * value.avg_female);
+            }
+        })
+        return tot;
     }
 })

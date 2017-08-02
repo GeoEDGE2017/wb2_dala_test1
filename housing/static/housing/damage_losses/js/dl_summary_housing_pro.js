@@ -159,6 +159,12 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
 
         $scope.tot = totalNumDes + totalNumPart + totalDamages + totalLosses;
 
-        $scope.grandTotal =  $scope.grndtotalNumDes + $scope.grndtotalNumPart + $scope.grndtotalDamages + $scope.grndtotalLosses;
+        $scope.grandTotal =  $scope.grandTotal +
+        $scope.dlSumHousPro.housing.Table_5[key].DlDmgPerProvince[0].tot_damages +
+        $scope.dlSumHousPro.housing.Table_5[key].DlLosPerProvince[0].tot_losses +
+        $scope.dlSumHousPro.housing.Table_5[key].DlDmgSemiPerProvince[0].tot_damages +
+        $scope.dlSumHousPro.housing.Table_5[key].DlLosSemiPerProvince[0].tot_losses+
+        $scope.dlSumHousPro.housing.Table_5[key].DlDmgImpProvince[0].tot_damages +
+        $scope.dlSumHousPro.housing.Table_5[key].DlLosImpProvince[0].tot_losses;
     }
 })

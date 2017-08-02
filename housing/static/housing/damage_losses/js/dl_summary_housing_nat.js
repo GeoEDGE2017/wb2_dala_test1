@@ -74,7 +74,7 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
 
         model.assign($scope, parseInt(totalNumDes));
 
-        $scope.grndtotalNumDes = $scope.grndtotalNumDes + totalNumDes ;
+        $scope.grndtotalNumDes = totalNumDes ;
 
         var totalNumPart = 0;
 
@@ -95,7 +95,7 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
 
         model.assign($scope, parseInt(totalNumPart));
 
-        $scope.grndtotalNumPart = $scope.grndtotalNumPart + totalNumPart ;
+        $scope.grndtotalNumPart = totalNumPart ;
 
         var totalDamages = 0;
 
@@ -116,7 +116,7 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
 
         model.assign($scope, parseInt(totalDamages));
 
-        $scope.grndtotalDamages = $scope.grndtotalDamages + totalDamages ;
+        $scope.grndtotalDamages = totalDamages ;
 
          var totalLosses = 0;
 
@@ -124,12 +124,15 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
                       ($scope.dlHousingSumNat.housing.Table_6[key].DlLosPerNational[0] ?
                       ($scope.dlHousingSumNat.housing.Table_6[key].DlLosPerNational[0].tot_losses ?
                       $scope.dlHousingSumNat.housing.Table_6[key].DlLosPerNational[0].tot_losses : 0):0) ,
+
                       ($scope.dlHousingSumNat.housing.Table_6[key].DlLosSemiPerNational[0] ?
                       ($scope.dlHousingSumNat.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses ?
                       $scope.dlHousingSumNat.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses : 0):0) ,
+
                       ($scope.dlHousingSumNat.housing.Table_6[key].DlLosImpNational[0] ?
                       ($scope.dlHousingSumNat.housing.Table_6[key].DlLosImpNational[0].tot_losses ?
                       $scope.dlHousingSumNat.housing.Table_6[key].DlLosImpNational[0].tot_losses : 0):0));
+
 
         var totalLossesstring = "totalLosses"+ key;
 
@@ -137,11 +140,16 @@ app.controller("DlSummHouNatController", function ($scope,$http,$parse, _) {
 
         model.assign($scope, parseInt(totalLosses));
 
-        $scope.grndtotalLosses = $scope.grndtotalLosses + totalLosses ;
+        $scope.grndtotalLosses =  totalLosses ;
 
-        $scope.tot = totalNumDes + totalNumPart + totalDamages + totalLosses;
+        $scope.grandTotal =  $scope.grandTotal + $scope.dlHousingSumNat.housing.Table_6[key].DlDmgPerNational[0].tot_damages +
+        $scope.dlHousingSumNat.housing.Table_6[key].DlLosPerNational[0].tot_losses +
+        $scope.dlHousingSumNat.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages +
+        $scope.dlHousingSumNat.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses+
+        $scope.dlHousingSumNat.housing.Table_6[key].DlDmgImpNational[0].tot_damages +
+        $scope.dlHousingSumNat.housing.Table_6[key].DlLosImpNational[0].tot_losses;
 
-        $scope.grandTotal =  $scope.grndtotalNumDes + $scope.grndtotalNumPart + $scope.grndtotalDamages + $scope.grndtotalLosses;
+//          console.log("test",totalLosses,totalDamages,totalNumPart,totalNumDes);
 
     }
 

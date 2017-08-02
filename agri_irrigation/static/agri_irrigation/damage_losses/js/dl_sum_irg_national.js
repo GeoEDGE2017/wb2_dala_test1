@@ -1,6 +1,6 @@
 var app = angular.module('dlAgriIrrifationNatApp', ['underscore']);
 
-app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _) {
+app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _) {
     $scope.National;
     $scope.incident;
     $scope.bs_data={};
@@ -44,10 +44,10 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
         return sum;
     }
 
-   $scope.convertTotal = function(val1,val2,val3,val4)
-        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
-        return sum;
-    }
+//   $scope.convertTotal = function(val1,val2,val3,val4)
+//        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
+//        return sum;
+//    }
 
 
    $scope.getTotal = function(key) {
@@ -84,7 +84,7 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
         var model = $parse(totaldamgestring);
         model.assign($scope, totaldamge);
 
-        $scope.grnddamage = $scope.grnddamage + totaldamge ;
+        $scope.grnddamage =  totaldamge ;
 
         var totalLoss =
             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMajorTanksNational[0] ?
@@ -102,12 +102,12 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0] ?
             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los  ?
             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los : 0):0) +
-             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[1] ?
+             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0] ?
             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[1].total_los  ?
             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[1].total_los : 0):0) +
-             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[3] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[3].total_los  ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[3].total_los : 0):0)
+             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2] ?
+            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2].total_los  ?
+            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2].total_los : 0):0)
             ;
 
 
@@ -116,7 +116,7 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
         var model = $parse(totalLossstring);
         model.assign($scope, totalLoss);
 
-        $scope.grndLoss = $scope.grndLoss + totalLoss ;
+        $scope.grndLoss = totalLoss ;
 
         var finalgrandtot = $scope.grndLoss + $scope.grnddamage ;
 
@@ -124,7 +124,7 @@ app.controller("DlAgriIrrifationNatController", function ($scope,$http,$parse, _
 
         var model = $parse(finalgrandtotstring);
         model.assign($scope, finalgrandtot);
-        $scope.grndfinaltotal = $scope.grndfinaltotal + finalgrandtot ;
+        $scope.grndfinaltotal = finalgrandtot ;
 
     }
 

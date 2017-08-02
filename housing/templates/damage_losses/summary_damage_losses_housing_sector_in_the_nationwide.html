@@ -111,7 +111,8 @@
 
                         </td>
                         <td class="right" height="19" width="87"
-                            ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages + data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
+                            ng-bind="data.housing.Table_6[key].DlDmgPerNational[0].tot_damages +
+                            data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
 
                         </td>
                     </tr>
@@ -136,7 +137,8 @@
 
                         </td>
                         <td class="right" height="19" width="87"
-                            ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages + data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
+                            ng-bind="data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages +
+                            data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses">
 
                         </td>
                     </tr>
@@ -159,7 +161,8 @@
 
                         </td>
                         <td class="right" height="19" width="87"
-                            ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages + data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
+                            ng-bind="data.housing.Table_6[key].DlDmgImpNational[0].tot_damages +
+                            data.housing.Table_6[key].DlLosImpNational[0].tot_losses">
 
                         </td>
                     </tr>
@@ -188,9 +191,16 @@
 
                         </td>
                         {% endverbatim %}
-                        <td class="right" height="19" width="87" ng-bind="tot">
+                        {% verbatim %}
+                        <td class="right" height="19" width="87"  ng-model="tot" ng-bind="tot= data.housing.Table_6[key].DlDmgImpNational[0].tot_damages +
+                            data.housing.Table_6[key].DlLosImpNational[0].tot_losses +
+                            data.housing.Table_6[key].DlDmgSemiPerNational[0].tot_damages +
+                            data.housing.Table_6[key].DlLosSemiPerNational[0].tot_losses +
+                            data.housing.Table_6[key].DlDmgPerNational[0].tot_damages +
+                            data.housing.Table_6[key].DlLosPerNational[0].tot_losses">
 
                         </td>
+                        {% endverbatim %}
                     </tr>
                     </tbody>
                     <tr height="19">

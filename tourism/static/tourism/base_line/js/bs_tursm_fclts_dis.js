@@ -82,9 +82,8 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
 
     console.log(init_data);
 
-        //Disable Edit Button
-    $scope.changeDis = function changeDis()
-    {
+    //Disable Edit Button
+    $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
         }
@@ -93,7 +92,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         }
     }
 
-    $scope.insertBussiness = function(table){
+    $scope.insertBussiness = function(table) {
         var new_row;
         if(table == 'BsTouBusiness') {
             new_row = {
@@ -172,12 +171,11 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         }
     }
 
-        //clear the data from table
+    //clear the data from table
     $scope.clear = function(){
         console.log("init")
         $scope.is_edit = false;
         $scope.bs_tourism_facilities = angular.copy(init_data);
-
     }
 
     $scope.bsTouDataEdit = function(form) {
@@ -199,15 +197,14 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
             }).success(function(data) {
                 if((data.tourism.Table_1.BsCultSites.length == 0) ||
                     (data.tourism.Table_1.BsNatFormation.length == 0) ||
-                    (data.tourism.Table_1.BsTouBusiness.length == 0) ){
+                    (data.tourism.Table_1.BsTouBusiness.length == 0) ) {
                     $scope.is_edit = false;
-                    }
-                else{
-                        $scope.bs_tourism_facilities = data;
-                    }
+                }
+                else {
+                    $scope.bs_tourism_facilities = data;
+                }
             })
         }
-
     }
 
     $scope.cancelEdit = function(){

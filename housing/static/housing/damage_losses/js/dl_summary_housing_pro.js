@@ -22,12 +22,11 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
         if($scope.incident && selectProvinces) {
           fetchProvinces();
         }
-
     }
 
     $scope.provinces = [];
 
-    function fetchProvinces(){
+    function fetchProvinces() {
         $http({
         method: "POST",
         url: '/fetch_incident_provinces',
@@ -40,21 +39,22 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
         })
     }
 
-    $scope.fetchDlData = function(form){
-    if($scope.incident && $scope.province){
-        $scope.is_edit = true;
-        $scope.submitted = true;
+    $scope.fetchDlData = function(form) {
+        if($scope.incident && $scope.province) {
+            $scope.is_edit = true;
+            $scope.submitted = true;
+
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name': 'Table_5',
-            'sector': 'housing',
-            'com_data': {
-                    'province': $scope.province,
-                    'incident': $scope.incident,
-                 },
-              }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name': 'Table_5',
+                    'sector': 'housing',
+                    'com_data': {
+                        'province': $scope.province,
+                        'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
                 $scope.data = data;
                 $scope.dlSumHousPro = data;
@@ -62,20 +62,18 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
         }
     }
 
-   $scope.checkIfNull = function(){
+    $scope.checkIfNull = function(){
         var isNull = $scope.dlSumHousPro ? angular.equals({}, $scope.dlSumHousPro.housing.Table_5) : true;
         return isNull;
-   }
+    }
 
-   $scope.convertToInt = function(val1,val2,val3){
+    $scope.convertToInt = function(val1,val2,val3){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
 
- $scope.getTotal = function(key) {
-
+    $scope.getTotal = function(key) {
         var totalNumDes = 0;
-
         totalNumDes =     $scope.convertToInt(
                           ($scope.dlSumHousPro.housing.Table_5[key].DlNumDesPerProvince[0] ?
                           ($scope.dlSumHousPro.housing.Table_5[key].DlNumDesPerProvince[0].tot_num_houses ?
@@ -116,7 +114,6 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
 
         $scope.grndtotalNumPart = $scope.grndtotalNumPart + totalNumPart ;
 
-
         var totalDamages = 0;
 
         totalDamages =    $scope.convertToInt(
@@ -139,7 +136,7 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
         $scope.grndtotalDamages = $scope.grndtotalDamages + totalDamages ;
 
 
-         var totalLosses = 0;
+        var totalLosses = 0;
 
         totalLosses =     $scope.convertToInt(
                           ($scope.dlSumHousPro.housing.Table_5[key].DlLosPerProvince[0] ?
@@ -163,8 +160,5 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
         $scope.tot = totalNumDes + totalNumPart + totalDamages + totalLosses;
 
         $scope.grandTotal =  $scope.grndtotalNumDes + $scope.grndtotalNumPart + $scope.grndtotalDamages + $scope.grndtotalLosses;
-
     }
-
-
- })
+})

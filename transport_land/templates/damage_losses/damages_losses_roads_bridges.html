@@ -182,8 +182,10 @@
 
                             </td>
                         </tr>
-                        <tr height="19" >
-                            <td class="tdpa" height="19" width="156" ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].road_classification">
+                        <tr height="19" ng-repeat="dlRbdRclassification in dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification"
+                            ng-if="dlRbdRclassification.road_classification == 'Total'" >
+                            <td class="tdpa" height="19" width="156"
+                                ng-bind="dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification[5].road_classification">
 
                             </td>
                             <td class="tdpa" height="19" width="63">
@@ -211,7 +213,7 @@
                                 <br/>
                             </td>
                             <td class="right" height="19" width="63" ng-model="dlRbdRclassification.damages"
-                                ng-bind="dlRbdRclassification.damages = calTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification)">
+                                ng-bind="dlRbdRclassification.damages = calTot()">
 
                             </td>
 

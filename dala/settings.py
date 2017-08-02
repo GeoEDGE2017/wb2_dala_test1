@@ -1308,6 +1308,14 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_2': {
+            'DlWaterDmgStructures':
+                ['assets',
+                 'num_tdestroyed_num',
+                 'num_tdestroyed_meters',
+                 'num_pdestroyed_num',
+                 'num_pdestroyed_meters',
+                 'tot_damages',
+                 'id'],
             'DlWaterDmgBuildings':
                 ['assets',
                  'tdestroyed_num',
@@ -1650,10 +1658,12 @@ TABLE_PROPERTY_MAPPER = {
                 ['tot_damages_pub', 'tot_damages_pvt', 'incident', 'district'],
             'DlGacPubDistrict':
                 ['damages', 'incident', 'district'],
+            'DlRbdLossesDistrict':
+                ['year_1', 'year_2', 'incident', 'district'],
             'DlOtherLosPubDistrict':
                 ['year_1_pub', 'year_2_pub', 'incident', 'district'],
             'DlOtherLosPvtDistrict':
-                ['year_1_pvt', 'year_2_pub', 'incident', 'district'],
+                ['year_2_pub', 'year_1_pvt', 'incident', 'district'],
             'DlGacLosTypeDistrict':
                 ['los_year_1', 'los_year_2', 'incident', 'district'],
         },

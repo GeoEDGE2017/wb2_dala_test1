@@ -367,7 +367,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     {
        dl_model1 = 'DlWaterDmgEquipment';
        particular_value_1 = 'Total';
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2] = [];
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1] = [];
 
     }
      if(model_name == 'BsAstWaterMaterials')
@@ -428,7 +428,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     }
     if(model_name == 'BsAstWaterEquipment')
     {
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
     }
     if(model_name == 'BsAstWaterMaterials')
     {
@@ -446,7 +446,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
        $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
     }
     if(model_name == 'BsAstWaterEquipment') {
-       $scope.dlWaterTransportation.transport_water.Table_2[dl_model2].push(obj2);
+       $scope.dlWaterTransportation.transport_water.Table_2[dl_model1].push(obj1);
     }
     if(model_name == 'BsAstWaterMaterials')
     {
@@ -599,24 +599,21 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     }
 
   $scope.getTotal = function(model, property) {
-
         var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
          console.log(array);
         var cumulative = null;
         var sums = _.map(array, function(obj) {
-          if(obj.assets != 'Total')
+          if(obj.type_los != 'Total'){
             cumulative += obj[property];
             console.log(obj);
             return cumulative;
+            }
 
         });
 
         var the_string = model + '_' + property;
         var model = $parse(the_string);
         model.assign($scope, cumulative);
-
-
-
     }
 
     //Clear Function
@@ -653,6 +650,73 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
     }
 
 }
+
+    //Calculate Gardn Private Total
+    $scope.GrandTotal=function(property){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var grantot = 0;
+
+        var array1=$scope.dlWaterTransportation.transport_water.Table_2.DlWaterLosFi;
+        var array2 =$scope.dlWaterTransportation.transport_water.Table_2.DlWaterLosOther;
+
+        angular.forEach(array1, function(value, key) {
+        if(value.type_los !='Total'){
+         finaltotal1 += value[property] ;
+         }
+
+        })
+        angular.forEach(array2, function(value, key) {
+        if(value.type_los !='TOTAL LOSSES'){
+         finaltotal2 += value[property] ;
+         }
+
+        })
+        console.log('value',finaltotal1,finaltotal2)
+        grantot = finaltotal1+ finaltotal2;
+        return grantot;
+    }
+
+    $scope.calGrandTotal=function(property){
+        var finaltotal1 = 0;
+        var grantot = 0;
+
+        var array1=$scope.dlWaterTransportation.transport_water.Table_2.DlWaterLosFi;
+
+        angular.forEach(array1, function(value, key) {
+        if(value.type_los !='Total'){
+         finaltotal1 += value[property] ;
+         }
+        })
+        grantot = finaltotal1;
+        return grantot;
+    }
+    $scope.waterCraftTotal=function(property){
+        var finaltotal1 = 0;
+        var grantot = 0;
+
+        var array1=$scope.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts;
+
+        angular.forEach(array1, function(value, key) {
+        if(value.assets !='Total'){
+         finaltotal1 += value[property] ;
+         }
+        })
+        grantot = finaltotal1;
+        return grantot;
+    }
+    $scope.calculateTotal=function(arr,property){
+        var finaltotal1 = 0;
+        var grantot = 0;
+
+        angular.forEach(arr, function(value, key) {
+        if(value.assets !='Total'){
+         finaltotal1 += value[property] ;
+         }
+        })
+        grantot = finaltotal1;
+        return grantot;
+    }
 
    //Cancel Edit
     $scope.cancelEdit = function(){

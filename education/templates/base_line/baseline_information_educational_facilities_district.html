@@ -66,7 +66,7 @@ $(document).ready(function() {
                                 </select>
                             </td>
                             <td colspan="" style="padding-left:5px;">
-                                Year/Month {{user.id}}
+                                Month/Year
                             </td>
                             <td colspan="2" style="font-weight:normal;">
                                 <input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy" id="datepicker"
@@ -144,26 +144,28 @@ $(document).ready(function() {
                                 <td colspan="3" width="136">
                                 </td>
                             </tr>
-                            <tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices" ng-if="befPubOffice.type_facilities != 'TOTAL NUMBER OF STUDENTS'" height="17">
+                            <tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices"
+                                ng-if="befPubOffice.type_facilities != 'TOTAL NUMBER OF STUDENTS'" height="17">
                                 <td ng-bind="befPubOffice.type_facilities" class="tdpa" width="280" height="17">
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="befPubOffice.total_number" type="number" placeholder="" ng-change="getTotal('BefPubOffices');"
-                                           class="form-control input-md">
+                                    <input ng-model="befPubOffice.total_number" type="number" placeholder=""
+                                           ng-change="getTotal('BefPubOffices')" class="form-control input-md">
                                 </td>
                                 <td colspan="3" class="tdpa" width="136">
                                 </td>
                                 <td colspan="3" class="tdpa" width="136">
                                 </td>
                             </tr>
-                            <tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices" ng-if="befPubOffice.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
+                            <tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices"
+                                ng-if="befPubOffice.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
                                 <td class="tdpa" width="280" height="17" ng-bind="befPubOffice.type_facilities">
                                 </td>
-                                <td colspan="3" width="136" ng-bind="befPubOffice.total_number">
+                                <td colspan="3" width="136" class="right" ng-model="befPubOffice.total_number" ng-bind="befPubOffice.total_number = totTotalNumber()">
                                 </td>
-                                <td colspan="3" width="136" ng-bind="befPubOffice.avg_male">
+                                <td colspan="3" width="136" class="right" ng-model="befPubOffice.avg_male" ng-bind="befPubOffice.avg_male = totAvgMale()">
                                 </td>
-                                <td colspan="3" width="136" ng-bind="befPubOffice.avg_female">
+                                <td colspan="3" width="136" class="right" ng-model="befPubOffice.avg_female" ng-bind="befPubOffice.avg_female = totAvgFemaler()">
                                 </td>
                             </tr>
                             <tr class="trheadc" height="17">
@@ -190,20 +192,13 @@ $(document).ready(function() {
                                     {% endverbatim %}
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="befPvt.total_number"
-                                           ng-change="getPvtTotal('BefPvt');"
-                                           type="number" placeholder=""
-                                           class="form-control input-md">
+                                    <input ng-model="befPvt.total_number" type="number" placeholder="" class="form-control input-md">
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="befPvt.avg_male"
-                                           ng-change="getPvtTotal('BefPvt');" placeholder=""
-                                           type="number" class="form-control input-md">
+                                    <input ng-model="befPvt.avg_male" placeholder="" type="number" class="form-control input-md">
                                 </td>
                                 <td colspan="3" width="136">
-                                    <input ng-model="befPvt.avg_female"
-                                           ng-change="getPvtTotal('BefPvt');" placeholder=""
-                                           type="number" class="form-control input-md">
+                                    <input ng-model="befPvt.avg_female" placeholder="" type="number" class="form-control input-md">
                                 </td>
                             </tr>
                             <tr class="tdpa" height="20">
@@ -217,14 +212,15 @@ $(document).ready(function() {
                                 <td colspan="3" colspan="3" width="136">
                                 </td>
                             </tr>
-                            <tr ng-repeat ="befPvt in bsEduFacilities.education.Table_1.BefPvt" ng-if="befPvt.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
+                            <tr ng-repeat ="befPvt in bsEduFacilities.education.Table_1.BefPvt"
+                                ng-if="befPvt.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
                                 <td ng-bind="befPvt.type_facilities" class="tdpa" width="280" height="17">
                                 </td>
-                                <td colspan="3" width="136" ng-bind="befPvt.total_number">
+                                <td colspan="3" class="right" width="136" ng-model="befPvt.total_number" ng-bind="totBefPvtTotalNumber()">
                                 </td>
-                                <td colspan="3" width="136" ng-bind="befPvt.avg_male">
+                                <td colspan="3" class="right" width="136" ng-model="befPvt.avg_male" ng-bind="befPvt.avg_male = totBefPvtAvgMale()">
                                 </td>
-                                <td colspan="3" width="136" ng-bind="befPvt.avg_female">
+                                <td colspan="3" class="right" width="136" ng-model="befPvt.avg_female" ng-bind="befPvt.avg_male = totBefPvtAvgFemale()">
                                 </td>
                             </tr>
                             </tbody>
@@ -232,19 +228,21 @@ $(document).ready(function() {
                     </div>
                     <div class="pull-right">
                         <br>
-                        <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
+                        <button type="button" class="btn btn-info" ng-click="clear()">
+                            Clear
+                        </button>
                         <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editBsData(form_bs_edu_fac)" ng-if="!is_edit" class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                            Edit
+                            <button type="button" ng-click="editBsData(form_bs_edu_fac)" ng-if="!is_edit" class="btn btn-success">
+                                Edit
+                            </button>
+                        </span>
+                        <span ng-if="!is_edit_disable">
+                            <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                Edit
+                            </button>
+                        </span>
+                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                            Cancel Edit
                         </button>
                         <button type="button" ng-click="saveBsData(form_bs_edu_fac)" class="btn btn-success">
                             Submit

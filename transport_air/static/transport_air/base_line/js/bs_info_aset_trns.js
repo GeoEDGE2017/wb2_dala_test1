@@ -157,7 +157,7 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     //disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.bs_date){
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
         else{
@@ -271,7 +271,30 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.bsInfoAsetTrans = data;
+//                $scope.bsInfoAsetTrans = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.transport_air.Table_1, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsInfoAsetTrans = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

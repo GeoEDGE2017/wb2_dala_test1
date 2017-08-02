@@ -78,9 +78,9 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
         $scope.finaltotalprivate = 0;
         var totalDamages = 0;
 
-        totalDamages =  totalDamages + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0] ?
-                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg ?
-                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg : 0):0);
+        totalDamages =  $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0] ?
+                        ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg ?
+                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg : 0):0;
 
         var totaldpubstring = "totalDamages"+ key;
 
@@ -89,18 +89,18 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
 
 
         var totalLossYear1 = 0;
-        totalLossYear1 =  totalLossYear1 + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0] ?
-                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1 ?
-                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1 : 0):0);
+        totalLossYear1 =  ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0] ?
+                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[3].tot_los_year_1 ?
+                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[3].tot_los_year_1 : 0):0);
 
         var totalLossYear1string = "totalLossYear1"+ key;
         var model = $parse(totalLossYear1string);
         model.assign($scope, totalLossYear1);
 
         var totalLossYear2 = 0;
-        totalLossYear2 =  totalLossYear2 + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0] ?
-                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2 ?
-                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2 : 0):0);
+        totalLossYear2 =  ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0] ?
+                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[3].tot_los_year_2 ?
+                          $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[3].tot_los_year_2 : 0):0);
 
         var totalLossYear2string = "totalLossYear2"+ key;
 

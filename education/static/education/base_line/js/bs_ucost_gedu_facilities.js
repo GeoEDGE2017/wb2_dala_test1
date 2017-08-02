@@ -438,12 +438,9 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     //            $scope.bsUcostGeduFacilities = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.education.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })

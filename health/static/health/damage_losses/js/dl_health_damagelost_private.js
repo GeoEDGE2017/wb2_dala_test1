@@ -299,7 +299,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
 
         if($scope.incident && $scope.district) {
-            $scope.is_edit_disable = false;
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

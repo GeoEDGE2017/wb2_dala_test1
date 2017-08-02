@@ -219,6 +219,7 @@ app.controller('dlSummTouBusiFaciDisController', function($scope, $http, $parse,
     }
 
     $scope.getConvertedVal = function(val){
+        console.log("Type",val);
         if(!val)    return 0;
         if(isNaN(val)) return 0;
         return val;

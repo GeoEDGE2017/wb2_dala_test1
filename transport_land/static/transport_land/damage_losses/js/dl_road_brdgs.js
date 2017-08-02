@@ -515,6 +515,23 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         return grantot;
     }
 
+     $scope.calTot = function() {
+        var finaltotal1 = 0;
+
+        var grantot = 0;
+
+        var array1=$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification;
+
+        angular.forEach(array1, function(value, key) {
+            if(value.road_classification != 'Total') {
+                finaltotal1 = finaltotal1 + value.damages ;
+            }
+        })
+
+        grantot = finaltotal1;
+        return grantot;
+    }
+
     //Clear Function
     $scope.clear = function() {
         console.log("clear")

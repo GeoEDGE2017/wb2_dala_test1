@@ -174,20 +174,21 @@
 
                         </td>
                         <td class="right" width="147" ng-model="dlWaterDmgWcrafts.num_tdestroyed_public"
-                         ng-bind="dlWaterDmgWcrafts.num_tdestroyed_public = DlWaterDmgWcrafts_num_tdestroyed_public">
+                         ng-bind="dlWaterDmgWcrafts.num_tdestroyed_public = waterCraftTotal('num_tdestroyed_public')">
                         </td>
                         <td class="right" width="151" ng-model="dlWaterDmgWcrafts.num_tdestroyed_private"
-                            ng-bind="DlWaterDmgWcrafts_num_tdestroyed_private">
+                            ng-bind="dlWaterDmgWcrafts.num_tdestroyed_private = waterCraftTotal('num_tdestroyed_private')">
                         </td>
                         <td class="right" width="165" ng-model="dlWaterDmgWcrafts.num_pdestroyed_public"
-                            ng-bind="DlWaterDmgWcrafts_num_pdestroyed_public">
+                            ng-bind="dlWaterDmgWcrafts.num_pdestroyed_public = waterCraftTotal('num_pdestroyed_public')">
                         </td>
-                        <td class="right" width="170" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private" ng-bind="DlWaterDmgWcrafts_num_pdestroyed_private">
+                        <td class="right" width="170" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private"
+                            ng-bind="dlWaterDmgWcrafts.num_pdestroyed_private = waterCraftTotal('num_pdestroyed_private')">
                         </td>
                         </td>
-                        <td class="right" colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts)" width="268">
+                        <td class="right" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_public" ng-bind="dlWaterDmgWcrafts.tot_dmg_public = waterCraftTotal('tot_dmg_public')" width="268">
                         </td>
-                         <td class="right" colspan="2" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts)" width="268">
+                         <td class="right" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_private" ng-bind="dlWaterDmgWcrafts.tot_dmg_private = waterCraftTotal('tot_dmg_private')" width="268">
                         </td>
                     </tr>
                     <tr class="trheadc">
@@ -258,9 +259,9 @@
                         </td>
                         <td width="170" class="tdpa">
                         </td>
-                        <td class="right" colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment)" width="268">
+                        <td class="right" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_public" ng-bind="dlWaterDmgEquipment.tot_dmg_public = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment,'tot_dmg_public')" width="268">
                         </td>
-                         <td class="right" colspan="2" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment)" width="268">
+                         <td class="right" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_private" ng-bind="dlWaterDmgEquipment.tot_dmg_private = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment,'tot_dmg_private')" width="268">
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -342,10 +343,10 @@
                         <td width="170" class="tdpa">
 
                         </td>
-                        <td class="right" colspan="2" ng-bind="CalPub($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials)" width="268">
+                        <td class="right" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public" ng-bind="dlWaterDmgMaterials.tot_dmg_public = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials,'tot_dmg_public')" width="268">
 
                         </td>
-                        <td class="right" width="126" ng-bind="CalPvt($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials)">
+                        <td class="right" width="126" ng-model="dlWaterDmgMaterials.tot_dmg_private" ng-bind="dlWaterDmgMaterials.tot_dmg_private = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials,'tot_dmg_private')">
 
                         </td>
                     </tr>
@@ -441,7 +442,7 @@
                         <td width="165" class="tdpa">
 
                         </td>
-                        <td width="126" ng-bind="CalStruTot($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures)" colspan="4">
+                        <td width="126" ng-model="dlWaterDmgStructures.tot_damages" ng-bind="dlWaterDmgStructures.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures,'tot_damages')" colspan="4">
 
                         </td>
                     </tr>
@@ -553,7 +554,7 @@
                         <td width="165" class="tdpa">
 
                         </td>
-                        <td class="right" width="126" colspan="4" ng-bind="CalBuildingTot(dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings)">
+                        <td class="right" width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages" ng-bind="dlWaterDmgBuildings.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings,'tot_damages')">
 
                         </td>
                     </tr>
@@ -683,24 +684,24 @@
                         <td class="boldash" width="253" height="19" ng-bind="dlWaterLosFi.type_los">
 
                         </td>
-                        <td class="right" width="147" ng-bind="DlWaterLosFi_year_1_pub">
+                        <td class="right" width="147" ng-model="dlWaterLosFi.year_1_pub"  ng-bind="dlWaterLosFi.year_1_pub = calGrandTotal('year_1_pub')">
 
                         </td>
-                        <td class="right" width="151" ng-bind="DlWaterLosFi_year_1_pvt">
+                        <td class="right" width="151" ng-model="dlWaterLosFi.year_1_pvt" ng-bind="dlWaterLosFi.year_1_pvt =calGrandTotal('year_1_pvt') ">
 
                         </td>
-                        <td class="right" width="165" ng-bind="DlWaterLosFi_year_2_pub">
+                        <td class="right" width="165" ng-model="dlWaterLosFi.year_2_pub" ng-bind="dlWaterLosFi.year_2_pvt = calGrandTotal('year_2_pub')">
 
                         </td>
 
-                        <td class="right" width="165" ng-bind="DlWaterLosFi_year_2_pvt">
+                        <td class="right" width="165" ng-model="dlWaterLosFi.year_2_pvt" ng-bind="dlWaterLosFi.year_2_pvt = calGrandTotal('year_2_pvt')">
 
                         </td>
                         <td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pub"
-                           ng-bind="CalFiPub(dlWaterTransportation.transport_water.Table_2.DlWaterLosFi)">
+                           ng-bind="dlWaterLosFi.tot_los_pub = calGrandTotal('tot_los_pub')">
                         </td>
                         <td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pvt"
-                           ng-bind="CalFiPvt(dlWaterTransportation.transport_water.Table_2.DlWaterLosFi)">
+                           ng-bind="dlWaterLosFi.tot_los_pvt = calGrandTotal('tot_los_pvt')">
                         </td>
                     </tr>
 
@@ -745,23 +746,23 @@
                         <td class="boldash" width="253" height="19" ng-bind="dlWaterLosOther.type_los">
 
                         </td>
-                        <td width="147" ng-bind="DlWaterLosOther_year_1_pub">
+                        <td width="147" ng-model="dlWaterLosOther.year_1_pub"  ng-bind="dlWaterLosOther.year_1_pub = GrandTotal('year_1_pub')">
                         </td>
-                        <td width="151" ng-bind="DlWaterLosOther_year_1_pvt">
+                        <td width="151" ng-model="dlWaterLosOther.year_1_pvt" ng-bind="dlWaterLosOther.year_1_pvt = GrandTotal('year_1_pvt') ">
 
                         </td>
-                        <td width="165" ng-bind="DlWaterLosOther_year_2_pub">
+                        <td width="165" ng-model="dlWaterLosOther.year_2_pub" ng-bind="dlWaterLosOther.year_2_pub = GrandTotal('year_2_pub')">
 
                         </td>
 
-                        <td width="165" ng-bind="DlWaterLosOther_year_2_pvt">
+                        <td width="165"  ng-model="dlWaterLosOther.year_2_pvt" ng-bind="dlWaterLosOther.year_2_pvt = GrandTotal('year_2_pvt')">
 
                         </td>
                         <td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pub"
-                           ng-bind="CalFiPub(dlWaterTransportation.transport_water.Table_2.DlWaterLosOther)">
+                           ng-bind="dlWaterLosOther.tot_los_pub =GrandTotal ('tot_los_pub')">
                         </td>
                         <td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pvt"
-                           ng-bind="CalFiPvt(dlWaterTransportation.transport_water.Table_2.DlWaterLosOther)">
+                           ng-bind="dlWaterLosOther.tot_los_pvt = GrandTotal('tot_los_pvt')">
                         </td>
 
                     </tr>

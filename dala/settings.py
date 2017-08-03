@@ -162,6 +162,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
         'NAME': 'dala_2017_08_01',
+        # 'NAME': 'dala_ix',
         'USER': 'postgres',
     },
 }
@@ -285,7 +286,6 @@ TABLE_PROPERTY_MAPPER = {
                                 'rural_hospital',
                                 'central_dispensary', 'pri_med_cunits', 'pri_health_ccenters',
                                 'mat_child_health_clinics', 'id']
-
         },
         'Table_3': {
             'BucMarStructure': ['particulars', 'teaching_hospital', 'provincial_general_hospital',
@@ -344,15 +344,8 @@ TABLE_PROPERTY_MAPPER = {
             'DapBefPc': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1', 'est_losses_y2', 'total_losses', 'private_clinic', 'id'],
         },
         'Table_6': {
-            'DmfDfaNum': ['num_des_facilities',
-                          'base_hospital',
-                          'divisional_hospital',
-                          'rural_hospital',
-                          'central_dispensary',
-                          'pmcus',
-                          'phccs',
-                          'mchcs',
-                          'total', 'id'],
+            'DmfDfaNum': ['num_des_facilities', 'base_hospital', 'divisional_hospital', 'rural_hospital',
+                          'central_dispensary', 'pmcus', 'phccs', 'mchcs', 'total', 'id'],
             'DmfDfaPaf': ['num_patients_affected',
                           'base_hospital',
                           'divisional_hospital',

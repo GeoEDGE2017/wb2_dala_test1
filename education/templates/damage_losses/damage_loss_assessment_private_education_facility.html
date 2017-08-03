@@ -1007,17 +1007,17 @@ $(document).on("click", "#add_technical", function () {
                             <td class="tdpa" width="280" height="21">
                                 GRAND TOTAL
                             </td>
-                            <td width="136" ng-bind="totEstReplacementCost()">
+                            <td width="136" class="right" ng-bind="totEstReplacementCost()">
                             </td>
-                            <td width="136" ng-bind="totEstRepairCost()">
+                            <td width="136" class="right" ng-bind="totEstRepairCost()">
                             </td>
-                            <td width="136" ng-bind="totDamages()">
+                            <td width="136" class="right" ng-bind="totDamages()">
                             </td>
-                            <td width="136" ng-bind="totEstLosYear1()">
+                            <td width="136" class="right" ng-bind="totEstLosYear1()">
                             </td>
-                            <td width="136" ng-bind="totEstLosYear2()">
+                            <td width="136" class="right" ng-bind="totEstLosYear2()">
                             </td>
-                            <td width="136" ng-bind="totLos()">
+                            <td width="136" class="right" ng-bind="totLos()">
                             </td>
                         </tr>
                         </tbody>
@@ -1026,19 +1026,17 @@ $(document).on("click", "#add_technical", function () {
                 <br>
                 <div class="pull-right">
                     <br>
-                    <button type="button" class="btn btn-info" ng-click="test()">
+                    <button type="button" class="btn btn-info" ng-click="clear()">
                         Clear
                     </button>
-                    <span ng-if="is_edit_disable">
+                    <!--<span ng-if="is_edit_disable">-->
                         <button type="button" ng-click="editDlData(form_pvt_edu_facility_dl)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
-                    </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
+                    <!--</span>-->
+                    <!--<button type="button" class="btn btn-success" disabled>-->
+                        <!--Edit-->
+                    <!--</button>-->
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>

@@ -103,7 +103,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
         var model = $parse(totaldamgestring);
         model.assign($scope, totaldamge);
 
-        $scope.grnddamage = $scope.grnddamage + totaldamge ;
+        $scope.grnddamage = totaldamge ;
 
         var totalLoss =
             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMajorTanksDistrict[0] ?
@@ -118,15 +118,15 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosAnicutsDistrict[0] ?
             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosAnicutsDistrict[0].total_los ?
             $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosAnicutsDistrict[0].total_los : 0) : 0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[1] ?
+            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[0] ?
+            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[0].total_los  ?
+            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[0].total_los : 0):0) +
+             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[1] ?
             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[1].total_los  ?
             $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[1].total_los : 0):0) +
              ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[2] ?
             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[2].total_los  ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[2].total_los : 0):0) +
-             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[3] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[3].total_los  ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[3].total_los : 0):0);
+            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[2].total_los : 0):0);
 
 
             var totalLossstring = "totalLoss_"+ key;
@@ -134,15 +134,16 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
             var model = $parse(totalLossstring);
             model.assign($scope, totalLoss);
 
-            $scope.grndLoss = $scope.grndLoss + totalLoss ;
+            $scope.grndLoss = totalLoss ;
 
-            var finalgrandtot = $scope.grndLoss + $scope.grnddamage ;
+            var finalgrandtot = $scope.grnddamage + $scope.grndLoss ;
 
              var finalgrandtotstring = "finalgrandtot_"+ key;
 
              var model = $parse(finalgrandtotstring);
              model.assign($scope, finalgrandtot);
-             $scope.grndfinaltotal = $scope.grndfinaltotal + finalgrandtot ;
+             $scope.grndfinaltotal = finalgrandtot ;
+             console.log('test',finalgrandtot);
 
 
    }

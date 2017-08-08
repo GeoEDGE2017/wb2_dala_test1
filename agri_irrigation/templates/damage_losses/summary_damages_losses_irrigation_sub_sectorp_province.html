@@ -69,6 +69,8 @@
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
+                    <table ng-repeat="(key, value) in dlAgriIrrifationPro.agri_irrigation.Table_5" ng-if="!checkIfNull()"
+                           class="table table-bordered">
                     <tr class="trheadc1" height="20">
                         <td width="258" height="20">
                             Type of Irrigation Facility
@@ -83,8 +85,7 @@
                             Total (LKR)
                         </td>
                     </tr>
-                    <table ng-repeat="(key, value) in dlAgriIrrifationPro.agri_irrigation.Table_5"
-                           class="table table-bordered">
+
                         <tbody>
                         <tr class="trhead" height="20" ng-init="getTotal(key)">
                             <td ng-bind="key" width="253" height="19" colspan="4">
@@ -233,6 +234,9 @@
                         </tr>
 
                         </tbody>
+                        </table>
+                    <table ng-if="!checkIfNull()"
+                           class="table table-bordered">
                         <tr height="20">
                             <td class="boldash" width="258" height="20">
                                 GRAND TOTAL

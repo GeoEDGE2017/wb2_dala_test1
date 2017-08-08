@@ -44,10 +44,11 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
         return sum;
     }
 
-//   $scope.convertTotal = function(val1,val2,val3,val4)
-//        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
-//        return sum;
-//    }
+
+      $scope.checkIfNull = function() {
+        var isNull = $scope.dlagriIrrigationNat ? angular.equals({}, $scope.dlagriIrrigationNat.agri_irrigation.Table_6) : true;
+        return isNull;
+    }
 
 
    $scope.getTotal = function(key) {

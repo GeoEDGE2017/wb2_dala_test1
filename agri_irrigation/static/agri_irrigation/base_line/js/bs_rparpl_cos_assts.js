@@ -433,6 +433,9 @@ app.controller('bsRparplCosAsstsController',function($scope, $http) {
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsRparplCosAssts = data;
+                        console.log('alert',$scope.bsRparplCosAssts);
+//                         $scope.division = $scope.bsRparplCosAssts.agri_irrigation.Table_2.[0].division;
+//                         $scope.region = $scope.bsRparplCosAssts.agri_irrigation.Table_2.[0].region;
                     }
                     else {
                         $("#modal-container-239456").modal('show');

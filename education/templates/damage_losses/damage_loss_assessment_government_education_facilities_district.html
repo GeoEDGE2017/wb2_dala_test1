@@ -408,9 +408,9 @@ $(document).ready(function() {
                                 <input ng-model="dugPdfaNsa.tc_crc_resc" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="136">
-                                <input ng-model="dugPdfaNsa.min_pzd_offices" type="number" placeholder=""
-                                       class="form-control input-md">
+                            <td width="136" class="tdpa">
+                                <!--<input ng-model="dugPdfaNsa.min_pzd_offices" type="number" placeholder=""-->
+                                       <!--class="form-control input-md">-->
                             </td>
                             <td class="right" width="122" ng-model="dugPdfaNsa.total" ng-bind="dugPdfaNsa.total=
                                     dugPdfaNsa.ab1_1c +
@@ -1885,22 +1885,23 @@ $(document).ready(function() {
                     </table>
                     <div class="pull-right">
                         <br>
-                        <button type="button" class="btn btn-info">Clear</button>
-
+                        <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
                         <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="dlDataEdit(form_govn_edu_facility_dist_dl)" ng-if="!is_edit" class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
+                            <button type="button" ng-click="dlDataEdit(form_govn_edu_facility_dist_dl)" ng-if="!is_edit" class="btn btn-success">
+                                Edit
+                            </button>
+                        </span>
+                        <span ng-if="!is_edit_disable">
+                            <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                Edit
+                            </button>
+                        </span>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>
-                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_govn_edu_facility_dist_dl)">Submit</button>
+                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_govn_edu_facility_dist_dl)">
+                            Submit
+                        </button>
                     </div>
                     <br><br><br>
                 </div>

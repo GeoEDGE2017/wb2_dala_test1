@@ -39,6 +39,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
 //            console.log('load ', data);
             $scope.data= data;
             $scope.dlSumTeleNat = data;
+            console.log($scope.dlSumTeleNat);
         })
     }
 
@@ -135,5 +136,99 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
 //        }
 
 //        return pub_tot;
+    }
+
+    $scope.getTotDistrictDamagesPvt = function(dis) {
+        var tot_damages_pvt = 0;
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
+            if(key == 'DlDmgFirmNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        tot_damages_pvt = tot_damages_pvt + value_in.tot_damages;
+                    }
+                })
+            }
+        })
+
+        return tot_damages_pvt;
+    }
+
+    $scope.getTotDistrictDamagesPub = function(dis) {
+        var tot_damages_pub = 0;
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
+            if(key == 'DlDmgFirmNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        tot_damages_pub = tot_damages_pub + value_in.tot_damages;
+                    }
+                })
+            }
+        })
+
+        return tot_damages_pub;
+    }
+
+    $scope.getTotLosFirmYear1Pub = function(dis) {
+        var tot_los_firm_year1_pub = 0;
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
+            if(key == 'LosFirmYear1National') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        tot_los_firm_year1_pub = tot_los_firm_year1_pub + value_in.year1_los;
+                    }
+                })
+            }
+        })
+        return tot_los_firm_year1_pub;
+    }
+
+    $scope.getTotLosFirmYear1Pvt = function(dis) {
+        var tot_los_firm_year1_pvt = 0;
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
+            if(key == 'LosFirmYear1National') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        tot_los_firm_year1_pvt = tot_los_firm_year1_pvt + value_in.year1_los;
+                    }
+                })
+            }
+        })
+        return tot_los_firm_year1_pvt;
+    }
+
+    $scope.getTotLosFirmYear2Pub = function(dis) {
+        var tot_los_firm_year2_pub = 0;
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
+            if(key == 'LosFirmYear2National') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        tot_los_firm_year2_pub = tot_los_firm_year2_pub + value_in.year2_los;
+                    }
+                })
+            }
+        })
+        return tot_los_firm_year2_pub;
+    }
+
+    $scope.getTotLosFirmYear2Pvt = function(dis) {
+        var tot_los_firm_year2_pvt = 0;
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
+            if(key == 'LosFirmYear2National') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        tot_los_firm_year2_pvt = tot_los_firm_year2_pvt + value_in.year2_los;
+                    }
+                })
+            }
+        })
+
+        return tot_los_firm_year2_pvt;
+    }
+
+    $scope.getTotPub = function(dis) {
+        console.log(dis);
+        console.log($scope.getTotDistrictDamagesPub(dis));
+        var totpPub = $scope.getTotDistrictDamagesPub(dis) + $scope.getTotLosFirmYear1Pub(dis) + $scope.getTotLosFirmYear2Pub(dis);
+        return totpPub;
     }
  })

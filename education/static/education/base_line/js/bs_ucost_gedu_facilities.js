@@ -452,7 +452,6 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })

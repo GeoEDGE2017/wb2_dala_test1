@@ -99,135 +99,135 @@ $(document).on("click", "#add_technical", function () {
                         <col width="136" span="6"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_pvt_edu_facility_dl.incident.$error.required">
-                                Please Select Incident
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_pvt_edu_facility_dl.district.$error.required">
-                                Please Select District
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1">
-                        <td style="padding-left:5px;">Incident</td>
-                        <td colspan="2" style="background:#EFEFEF;">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-                                <option value={{incident.id}}>
-                                     {{incident.incident_name}}
-                                    <!--{{incident.incident_name}}-->
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td colspan="2" style="padding-left:5px;">
-                            Name of District
-                        </td>
-                        <td colspan="3" style="background:#EFEFEF;">
-                            <select ng-change="fetchSchools()"
-                                    ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" style="font-weight:400;" ng-model="district" ng-change="changedValue(false)"
-                                    class="form-control" required>
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trheadc1" height="21">
-                        <td rowspan="2" width="280" height="42">
-                            Types of Educational Facilities
-                        </td>
-                        <td colspan="2" rowspan="2" width="272">
-                            Number of Affected Educational Facilities
-                        </td>
-                        <td colspan="4" width="544">
-                            Number of Affected Students
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="21">
-                        <td colspan="2" width="272" height="21">
-                            Male
-                        </td>
-                        <td colspan="2" width="272">
-                            Female
-                        </td>
-                    </tr>
-                    <tr ng-repeat="dpefNaf in dlPvtEduFacilities.education.Table_4.DpefNaf"
-                        ng-if="dpefNaf.edu_facilities != 'TOTAL'" sheight="21">
-                        <td ng-bind="dpefNaf.edu_facilities" ng-if="$index < 5" class="tdpa" width="280" height="21">
-                        </td>
-                        <td width="98" ng-if="$index > 4">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('DpefNaf', $index)"
-                                    class="btn btn-sm btn-danger btn-circle">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="dlPvtEduFacilities_{{$index}}"
-                                   ng-model="dpefNaf.edu_facilities"
-                                   popover="This field is required"
-                                   popover-toggle="form_pop_lat_census['dlPvtEduFacilities_' + $index].$dirty && !form_pop_lat_census['dlPvtEduFacilities_' + $index].$valid"
-                                   popover-placement="top" required type="text" class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td colspan="2" width="272">
-                            <input ng-model="dpefNaf.num_edu_facilities" id="textinput" name="textinput" type="number"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="272">
-                            <input ng-model="dpefNaf.male" id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" width="272">
-                            <input ng-model="dpefNaf.female" id="textinput" name="textinput" type="number"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="21">
-                        <td class="tdpa" width="280" height="21">
-                            Others
-                            <button ng-click="insertAsset('DpefNaf')"
-                                    class="btn btn-sm btn-info btn-circle" id="insert">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </td>
-                        <td colspan="2" width="272">
-                        </td>
-                        <td colspan="2" width="272">
-                        </td>
-                        <td colspan="2" width="272">
-                        </td>
-                    </tr>
-                    <tr height="21">
-                        <td class="tdpa" width="280"
-                            ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].edu_facilities" height="21">
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_pvt_edu_facility_dl.incident.$error.required">
+                                    Please Select Incident
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_pvt_edu_facility_dl.district.$error.required">
+                                    Please Select District
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead1">
+                            <td style="padding-left:5px;">Incident</td>
+                            <td colspan="2" style="background:#EFEFEF;">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+                                    <option value={{incident.id}}>
+                                         {{incident.incident_name}}
+                                        <!--{{incident.incident_name}}-->
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td colspan="2" style="padding-left:5px;">
+                                Name of District
+                            </td>
+                            <td colspan="3" style="background:#EFEFEF;">
+                                <select ng-change="fetchSchools()"
+                                        ng-options="district as district.district__name for district in districts track by district.district__id"
+                                        name="district" id="ccyear" style="font-weight:400;" ng-model="district" ng-change="changedValue(false)"
+                                        class="form-control" required>
+                                    <option value="" selected>Select District</option>
+                                </select>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
+                        <tr class="trheadc1" height="21">
+                            <td rowspan="2" width="280" height="42">
+                                Types of Educational Facilities
+                            </td>
+                            <td colspan="2" rowspan="2" width="272">
+                                Number of Affected Educational Facilities
+                            </td>
+                            <td colspan="4" width="544">
+                                Number of Affected Students
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="21">
+                            <td colspan="2" width="272" height="21">
+                                Male
+                            </td>
+                            <td colspan="2" width="272">
+                                Female
+                            </td>
+                        </tr>
+                        <tr ng-repeat="dpefNaf in dlPvtEduFacilities.education.Table_4.DpefNaf"
+                            ng-if="dpefNaf.edu_facilities != 'TOTAL'" sheight="21">
+                            <td ng-bind="dpefNaf.edu_facilities" ng-if="$index < 5" class="tdpa" width="280" height="21">
+                            </td>
+                            <td width="98" ng-if="$index > 4">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('DpefNaf', $index)"
+                                        class="btn btn-sm btn-danger btn-circle">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="dlPvtEduFacilities_{{$index}}"
+                                       ng-model="dpefNaf.edu_facilities"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['dlPvtEduFacilities_' + $index].$dirty && !form_pop_lat_census['dlPvtEduFacilities_' + $index].$valid"
+                                       popover-placement="top" required type="text" class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="2" width="272">
+                                <input ng-model="dpefNaf.num_edu_facilities" id="textinput" name="textinput" type="number"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="272">
+                                <input ng-model="dpefNaf.male" id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md">
+                            </td>
+                            <td colspan="2" width="272">
+                                <input ng-model="dpefNaf.female" id="textinput" name="textinput" type="number"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="21">
+                            <td class="tdpa" width="280" height="21">
+                                Others
+                                <button ng-click="insertAsset('DpefNaf')"
+                                        class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="2" width="272">
+                            </td>
+                            <td colspan="2" width="272">
+                            </td>
+                            <td colspan="2" width="272">
+                            </td>
+                        </tr>
+                        <tr height="21" ng-repeat="dpefNaf in dlPvtEduFacilities.education.Table_4.DpefNaf" ng-if="dpefNaf.edu_facilities == 'TOTAL'" sheight="21">
+                        <td class="tdpa" width="280" ng-bind="dpefNaf.edu_facilities" height="21">
                         </td>
                         <td class="right" colspan="2" width="272"
-                            ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].num_edu_facilities"
-                            ng-value="dlPvtEduFacilities.education.Table_4.DpefNaf[5].num_edu_facilities = dlPvtEduFacilities.education.Table_4.DpefNaf[0].num_edu_facilities + dlPvtEduFacilities.education.Table_4.DpefNaf[1].num_edu_facilities  + dlPvtEduFacilities.education.Table_4.DpefNaf[2].num_edu_facilities + dlPvtEduFacilities.education.Table_4.DpefNaf[3].num_edu_facilities + dlPvtEduFacilities.education.Table_4.DpefNaf[4].num_edu_facilities">
+                            ng-bind="dpefNaf.num_edu_facilities" ng-value="dpefNaf.num_edu_facilities = totDpefNaf_NumEduFacilities()">
                         </td>
-                        <td class="right" colspan="2" width="272" ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].male"
-                            ng-value="dlPvtEduFacilities.education.Table_4.DpefNaf[5].male = dlPvtEduFacilities.education.Table_4.DpefNaf[0].male + dlPvtEduFacilities.education.Table_4.DpefNaf[1].male  + dlPvtEduFacilities.education.Table_4.DpefNaf[2].male + dlPvtEduFacilities.education.Table_4.DpefNaf[3].male + dlPvtEduFacilities.education.Table_4.DpefNaf[4].male">
+                        <td class="right" colspan="2" width="272" ng-bind="dpefNaf.male"
+                            ng-value="dpefNaf.male = totDpefNaf_Male()">
                         </td>
                         <td class="right"  colspan="2" width="272" ng-bind="dlPvtEduFacilities.education.Table_4.DpefNaf[5].female"
-                            ng-value="dlPvtEduFacilities.education.Table_4.DpefNaf[5].female = dlPvtEduFacilities.education.Table_4.DpefNaf[0].female + dlPvtEduFacilities.education.Table_4.DpefNaf[1].female  + dlPvtEduFacilities.education.Table_4.DpefNaf[2].female + dlPvtEduFacilities.education.Table_4.DpefNaf[3].female + dlPvtEduFacilities.education.Table_4.DpefNaf[4].female">
+                            ng-value="dpefNaf.female = totDpefNaf_Female()">
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                        class="glyphicon glyphicon-arrow-right"></span> Fill Type of Schools and Assets Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    Fill Type of Schools and Assets Informations
+                </a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">

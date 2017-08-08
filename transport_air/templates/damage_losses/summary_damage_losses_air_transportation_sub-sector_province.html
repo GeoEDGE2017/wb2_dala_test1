@@ -8,7 +8,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
 
-          <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
 
         <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_air_main' %}">Transport Air Sector</a>
@@ -16,7 +16,9 @@
 
         <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 4. Summary of Damage and Losses in the Air Transportation Sub-sector in a Province</span>
         </li>
-<li style="float:right;"> <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"><a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}"
+                                    target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                                    class="icon-info" data-toggle="tooltip" title="Veiw Document"></a></li>
 
     </ol>
 
@@ -39,45 +41,47 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                     <td class="trhead1 p5" width="130" colspan="2">
-                            Incident
-                        </td>
-                        <td class="trhead1" width="125" colspan="4">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);fetchProvinces();fetchDlData(health_summery_damageloss_province);"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
+                    <td class="trhead1 p5" width="130" colspan="2">
+                        Incident
+                    </td>
+                    <td class="trhead1" width="125" colspan="4">
+                        <select id="selectbasic" name="incident" ng-model="incident"
+                                class="form-control"
+                                ng-change="changedValue(true);fetchProvinces();fetchDlData(health_summery_damageloss_province);"
+                                style="width:100%;font-weight:400;" required>
+                            <option value="" selected="true">Select an Incident</option>
+                            {% for incident in incidents %}
 
-                                <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td class="trhead1" width="281" height="20">
-                            Province
-                        </td>
-                        <td width="170" class="trhead1" colspan="2">
-                            <select name="province" ng-model="province"
-                                    class="form-control"
-                                    style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(false);fetchDlData(health_summery_damageloss_province);" required>
-                                <option value="" selected="true">Select Province</option>
-                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
-                                        ng-bind="province.district__province__name"></option>
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                            <option value={{incident.id}}>
+                                <!--{{incident.disaster_type.name}}-->
+                                <!--{{incident.reported_date_time}}-->
+                                {{incident.incident_name}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td class="trhead1" width="281" height="20">
+                        Province
+                    </td>
+                    <td width="170" class="trhead1" colspan="2">
+                        <select name="province" ng-model="province"
+                                class="form-control"
+                                style="width:100%;font-weight:400;"
+                                ng-change="changedValue(false);fetchDlData(health_summery_damageloss_province);"
+                                required>
+                            <option value="" selected="true">Select Province</option>
+                            <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                    ng-bind="province.district__province__name"></option>
+                        </select>
+                    </td>
+                    <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-                     </tbody>
-                    </table>
+                    </tbody>
+                </table>
 
-       <table class="table table-bordered" ng-if="!checkIfNull()">
-                        <tbody>
-                        <tr class="trheadc1" height="19">
+                <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlAirTransSumPro.transport_air.Table_4">
+                    <tbody>
+                    <tr class="trheadc1" height="19">
                         <td rowspan="3" width="218" height="57" style="width:25%;">
                             Districts
                         </td>
@@ -128,61 +132,66 @@
                             Private
                         </td>
                     </tr>
-                        <tr  ng-repeat="(key, value) in dlAirTransSumPro.transport_air.Table_4" height="20" ng-init="getTotal($index,key)">
+                    <tr  height="20"
+                        ng-init="getTotal($index,key)">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19" style="">
 
                         </td>
-                        <td class="right" width="147" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub" >
+                        <td class="right" width="147" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub">
 
                         </td>
-                        <td class="right" width="151" ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt" >
+                        <td class="right" width="151" ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt">
 
                         </td>
-                        <td class="right" width="165" ng-bind="value.DlAirLosProvince[0].year_1_pub" >
+                        <td class="right" width="165" ng-bind="value.DlAirLosProvince[0].year_1_pub">
 
                         </td>
-                        <td class="right" width="170" ng-bind="value.DlAirLosProvince[0].year_1_pvt" >
+                        <td class="right" width="170" ng-bind="value.DlAirLosProvince[0].year_1_pvt">
 
                         </td>
-                        <td class="right" width="135" ng-bind="value.DlAirLosProvince[0].year_2_pub" >
+                        <td class="right" width="135" ng-bind="value.DlAirLosProvince[0].year_2_pub">
 
                         </td>
-                        <td width="133" ng-bind="value.DlAirLosProvince[0].year_2_pvt" >
+                        <td width="133" ng-bind="value.DlAirLosProvince[0].year_2_pvt">
 
                         </td>
-                        <td class="right" width="126" ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub + value.DlAirLosProvince[0].year_1_pub + value.DlAirLosProvince[0].year_2_pub " >
-
-                        </td>
-
-                        <td class="right" width="85" ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt + value.DlAirLosProvince[0].year_1_pvt + value.DlAirLosProvince[0].year_2_pvt ">
+                        <td class="right" width="126"
+                            ng-bind="value.DlAirDmgPubProvince[0].tot_destroyed_pub + value.DlAirLosProvince[0].year_1_pub + value.DlAirLosProvince[0].year_2_pub ">
 
                         </td>
 
-                        </tr>
+                        <td class="right" width="85"
+                            ng-bind="value.DlAirDmgPvtProvince[0].tot_destroyed_pvt + value.DlAirLosProvince[0].year_1_pvt + value.DlAirLosProvince[0].year_2_pvt ">
+
+                        </td>
+
+                    </tr>
 
 
                     </tbody>
-           <tr height="19">
+                    </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
+                    <tr height="19">
                         <td class="boldash" width="253" height="19">
                             TOTAL
                         </td>
                         <td class="right" width="147" ng-bind="totaldpub">
 
                         </td>
-                        <td class="right" width="151" ng-bind="totaldpvt"  >
+                        <td class="right" width="151" ng-bind="totaldpvt">
 
                         </td>
-                        <td class="right" width="165" ng-bind="totalyear1pub"  >
+                        <td class="right" width="165" ng-bind="totalyear1pub">
 
                         </td>
-                        <td class="right" width="170"  ng-bind="totalyear1pvt"  >
+                        <td class="right" width="170" ng-bind="totalyear1pvt">
 
                         </td>
-                        <td class="right" width="135" ng-bind="totalyear2pub"  >
+                        <td class="right" width="135" ng-bind="totalyear2pub">
 
                         </td>
-                        <td class="right" width="133" ng-bind="totalyear2pvt"  >
+                        <td class="right" width="133" ng-bind="totalyear2pvt">
 
                         </td>
                         <td class="right" width="126" ng-bind="finaltotalpublic">
@@ -194,7 +203,7 @@
                     </tr>
                 </table>
 
-         <div class="pull-right">
+                <div class="pull-right">
                     <br>
 
                 </div>

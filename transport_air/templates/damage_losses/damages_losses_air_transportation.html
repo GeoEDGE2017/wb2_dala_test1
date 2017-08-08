@@ -375,9 +375,9 @@
                             <td class="tdpa" colspan="2" width="126" height="19">
                                 <br/>
                             </td>
-                            <td class="right" width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub" ng-bind="calculatePubMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
+                            <td class="right" width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pub" ng-bind="dlAirDmgSupplies.tot_dmg_pub = calculatePubMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
                             </td>
-                            <td class="right" width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt" ng-bind="calculatePvtMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
+                            <td class="right" width="63" height="19" ng-model="dlAirDmgSupplies.tot_dmg_pvt" ng-bind="dlAirDmgSupplies.tot_dmg_pvt = calculatePvtMaterialTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgSupplies)">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -434,7 +434,7 @@
                             <td class="tdpa" colspan="4" width="252" height="19">
                                 <br/>
                             </td>
-                            <td class="right" width="63" height="19" ng-model="dlAirDmgOthers.tot_dmg_pub" ng-bind="$parent.calculatePubOtherTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgOthers)">
+                            <td class="right" width="63" height="19" ng-model="dlAirDmgOthers.tot_dmg_pub" ng-bind="dlAirDmgOthers.tot_dmg_pub = calculatePubOtherTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgOthers)">
                             </td>
                             <td class="tdpa" width="63" height="19">
                                 <br/>
@@ -556,7 +556,7 @@
                                 <br/>
                             </td>
                             <td class="right" width="63" height="19" ng-model="dlAirDmgGstructures.tot_pub"
-                                ng-bind=" $parent.calculatePubStrucTotal(dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures)">
+                                ng-bind=" dlAirDmgGstructures.tot_pub = calculatePubStrucTotal($parent.dlAirTrnspotation.transport_air.Table_2.DlAirDmgGstructures)">
                             </td>
                             <td class="tdpa" width="63" height="19">
                                 <br/>
@@ -706,12 +706,12 @@
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_1_pvt">
                         </td>
                         <td class="right" colspan="2" width="126" height="19" ng-model="dlAirLosFi.year_2_pub"
-                            ng-bind="dlAirLosFi.year_1_pvt =
+                            ng-bind="dlAirLosFi.year_2_pub =
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pub +
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pub">
                         </td>
                         <td class="right" colspan="2" width="126" height="19" ng-model="dlAirLosFi.year_2_pvt"
-                            ng-bind="dlAirLosFi.year_1_pvt =
+                            ng-bind="dlAirLosFi.year_2_pvt =
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[0].year_2_pvt +
                             dlAirTrnspotation.transport_air.Table_2.DlAirLosFi[1].year_2_pvt">
                         </td>

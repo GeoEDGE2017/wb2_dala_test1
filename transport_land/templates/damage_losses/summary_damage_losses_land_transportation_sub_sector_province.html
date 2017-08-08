@@ -72,7 +72,7 @@
 
                     </tbody>
                     </table>
-                  <table class="table table-bordered" ng-if="!checkIfNull()">
+                  <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlLandTransSumPro.transport_land.Table_8">
                         <tbody>
                         <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="156">
@@ -128,7 +128,7 @@
                             Private
                         </td>
                     </tr>
-                        <tr  ng-repeat="(key, value) in dlLandTransSumPro.transport_land.Table_8" height="20" ng-init="getTotal($index,key);">
+                        <tr  height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 
@@ -158,7 +158,8 @@
                         </td>
 
                         <td class="right" width="85"
-                            ng-bind="convertToInt(value.DlGacPvtProvince[0].tot_damages_pvt , value.DlOtherLosPvtDistrict[0].year_1_pvt,value.DlOtherLosPvtDistrict[0].year_2_pub) ">
+                            ng-bind="convertToInt(value.DlGacPvtProvince[0].tot_damages_pvt ,
+                            value.DlOtherLosPvtDistrict[0].year_1_pvt,value.DlOtherLosPvtDistrict[0].year_2_pub) ">
 
                         </td>
 
@@ -166,6 +167,8 @@
 
 
                     </tbody>
+                      </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()" >
 
                       <tr height="19" >
                         <td class="boldash" width="253" height="19">

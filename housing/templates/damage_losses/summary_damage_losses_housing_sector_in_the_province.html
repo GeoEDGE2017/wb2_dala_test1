@@ -68,7 +68,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
+                <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlSumHousPro.housing.Table_5">
 
                     <tbody>
 
@@ -93,7 +93,7 @@
                         </td>
                     </tr>
 
-                    <tr class="trheadc" height="19" ng-repeat="(key, value) in dlSumHousPro.housing.Table_5"
+                    <tr class="trheadc" height="19"
                         ng-init="getTotal(key)">
                         <td height="19" width="166" ng-bind="key">
 
@@ -109,7 +109,7 @@
                         <td height="19" width="87">
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlSumHousPro.housing.Table_5">
+                    <tr height="19">
                         <td class="tdpa" height="19" width="166">
                             Type 1. Permanent
                         </td>
@@ -132,7 +132,7 @@
 
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlSumHousPro.housing.Table_5">
+                    <tr height="19" >
                         <td class="tdpa" height="19" width="166">
                             Type 2. Semi-Permanent
                         </td>
@@ -157,7 +157,7 @@
 
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlSumHousPro.housing.Table_5">
+                    <tr height="19">
                         <td class="tdpa" height="19" width="166">
                             Type 3. Improvised
                         </td>
@@ -180,7 +180,7 @@
 
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlSumHousPro.housing.Table_5">
+                    <tr height="19">
                         <td class="boldash" height="19" width="166">
                             TOTAL
                         </td>
@@ -216,6 +216,8 @@
                         </td>
                     </tr>
                     </tbody>
+                    </table>
+                    <table class="table table-bordered" ng-if="!checkIfNull()" >
                     <tr height="19">
                         <td class="boldash" height="19" width="166">
                             GRAND TOTAL

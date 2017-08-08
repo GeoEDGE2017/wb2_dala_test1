@@ -107,7 +107,6 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
     'com_data': {
 
             'incident': $scope.incident,
-            'user_id': $scope.user_id
           },
            'is_edit':$scope.is_edit
            }),

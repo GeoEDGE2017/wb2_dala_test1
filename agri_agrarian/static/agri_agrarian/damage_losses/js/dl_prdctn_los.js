@@ -313,6 +313,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
+                generateRefencedData()
                 var data = response.data;
                 console.log('*', response);
                 angular.forEach(data, function(value, key) {
@@ -589,7 +590,6 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                     'com_data': {
                        'district':  $scope.district.district__id,
                         'incident': $scope.incident,
-                        'user_id' : $scope.user_id,
                     },
                      'is_edit':$scope.is_edit
                 }),

@@ -81,27 +81,27 @@ app.controller("DlSummeryTWProController", ['$scope','$http',function ($scope,$h
    }
 
  $scope.getTotal = function($index,key) {
-         $scope.totaldpub = $scope.totaldpub + (
+         $scope.totaldpub =  (
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPubProvince[0].tot_dmg_public ?
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPubProvince[0].tot_dmg_public : 0 );
 
-         $scope.totaldpvt = $scope.totaldpvt + (
+         $scope.totaldpvt = (
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPvtProvince[0].tot_dmg_private ?
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterDmgPvtProvince[0].tot_dmg_private : 0 );
 
-         $scope.totalyear1pub = $scope.totalyear1pub + (
+         $scope.totalyear1pub = (
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pub ?
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pub : 0);
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt + (
+         $scope.totalyear1pvt = (
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pvt ?
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_1_pvt : 0 );
 
-         $scope.totalyear2pub = $scope.totalyear2pub + (
+         $scope.totalyear2pub = (
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pub ?
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pub : 0);
 
-         $scope.totalyear2pvt = $scope.totalyear2pvt + (
+         $scope.totalyear2pvt = (
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pvt ?
                          $scope.dlWaterTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pvt : 0);
 

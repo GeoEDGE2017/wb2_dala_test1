@@ -517,32 +517,37 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         var grantot = 0;
 
         var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
-        var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+        var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildForestry;
         var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
         var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
 
-        angular.forEach(array1, function(value, key) {
 
+        angular.forEach(array1, function(value, key) {
+        if(value.seasonal_crops !='Total'){
          finaltotal1 = finaltotal1 + value.invest_los_pub ;
+         }
 
         })
         angular.forEach(array2, function(value, key) {
-
+        if(value.forestry !='Total'){
          finaltotal2 = finaltotal2 + value.invest_los_pub ;
+         }
 
         })
         angular.forEach(array3, function(value, key) {
-
+         if(value.plantn_crops !='Total'){
          finaltotal3 = finaltotal3 + value.invest_los_pub ;
+         }
 
         })
         angular.forEach(array4, function(value, key) {
-
+        if(value.export_crops !='Total'){
          finaltotal4 = finaltotal4 + value.invest_los_pub ;
+         }
 
         })
 
-        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+        grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
         return grantot;
     }
 
@@ -554,29 +559,33 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
         var finaltotal4 = 0;
         var grantot = 0;
         var array1=$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
-        var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildSeasonalCrops;
+        var array2 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildForestry;
         var array3 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildPlantnCrops;
         var array4 =$scope.dlInvsmntLos.agri_agrarian.Table_6.DildExportCrops;
 
 
         angular.forEach(array1, function(value, key) {
-
+        if(value.seasonal_crops !='Total'){
          finaltotal1 = finaltotal1 + value.invest_los_pvt ;
+         }
 
         })
         angular.forEach(array2, function(value, key) {
-
+        if(value.forestry !='Total'){
          finaltotal2 = finaltotal2 + value.invest_los_pvt ;
+         }
 
         })
         angular.forEach(array3, function(value, key) {
-
+        if(value.plantn_crops !='Total'){
          finaltotal3 = finaltotal3 + value.invest_los_pvt ;
+         }
 
         })
         angular.forEach(array4, function(value, key) {
-
+        if(value.export_crops !='Total'){
          finaltotal4 = finaltotal4 + value.invest_los_pvt ;
+         }
 
         })
 

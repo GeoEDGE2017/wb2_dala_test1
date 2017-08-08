@@ -345,6 +345,7 @@ class DldTmfIfProvince(models.Model):
     year1_losses_pvt = models.FloatField(blank=True, null=True)
     year2_losses_pub = models.FloatField(blank=True, null=True)
     year2_losses_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
@@ -361,6 +362,7 @@ class DldTmfAmProvince(models.Model):
     year1_losses_pvt = models.FloatField(blank=True, null=True)
     year2_losses_pub = models.FloatField(blank=True, null=True)
     year2_losses_pvt = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
@@ -445,6 +447,7 @@ class DlaDmgProvince(models.Model):
     rep_tot_dassets = models.IntegerField(blank=True, null=True)
     repair_pdmg_assets = models.IntegerField(blank=True, null=True)
     tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
@@ -457,6 +460,7 @@ class DlaLosProvince(models.Model):
     los_year1 = models.FloatField(blank=True, null=True)
     los_year2 = models.FloatField(blank=True, null=True)
     tot_losses = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
@@ -469,6 +473,7 @@ class DloDmgProvince(models.Model):
     rep_tot_dassets = models.IntegerField(blank=True, null=True)
     repair_pdmg_assets = models.IntegerField(blank=True, null=True)
     tot_damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
@@ -483,6 +488,7 @@ class DloLosProvince(models.Model):
     los_year2 = models.FloatField(blank=True, null=True)
     tot_losses = models.FloatField(blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 

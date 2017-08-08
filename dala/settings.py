@@ -161,7 +161,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=industry_services'
         # },
-        'NAME': 'dala_2017_07_13',
+        'NAME': 'final_dala_2017',
         'USER': 'postgres',
     },
 }
@@ -1811,6 +1811,8 @@ TABLE_PROPERTY_MAPPER = {
             'DlAirLosHocDistrict':
                 ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt', 'incident',
                  'district'],
+            'DlAirLosOther': ['year_1_pub', 'year_1_pvt', 'year_2_pub', 'year_2_pvt', 'tot_los_pub', 'tot_los_pvt',
+                              'assets']
         },
         'Table_4': {
             'DlAirDmgPubProvince':

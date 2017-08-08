@@ -71,31 +71,31 @@ app.controller("DlSummeryTAProController", ['$scope','$http',function ($scope,$h
     }
 
     $scope.getTotal = function($index,key) {
-         $scope.totaldpub = $scope.totaldpub + (
+         $scope.totaldpub = (
                          $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirDmgPubProvince[0].tot_destroyed_pub ?
                          $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirDmgPubProvince[0].tot_destroyed_pub : 0 ) ;
 
-         $scope.totaldpvt = $scope.totaldpvt + (
+         $scope.totaldpvt = (
                          $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirDmgPvtProvince[0].tot_destroyed_pvt ?
                          $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirDmgPvtProvince[0].tot_destroyed_pvt : 0 );
 
-         $scope.totalyear1pub = $scope.totalyear1pub + (
+         $scope.totalyear1pub = (
                          $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pub ?
                          $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pub : 0 );
 
-        $scope.totalyear1pub = $scope.totalyear1pub +
+        $scope.totalyear1pub =
                 ($scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pub ?
                 $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pub : 0 );
 
-        $scope.totalyear1pvt = $scope.totalyear1pvt +
+        $scope.totalyear1pvt =
                 ($scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pvt ?
                 $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pvt : 0 );
 
-        $scope.totalyear2pub = $scope.totalyear2pub +
+        $scope.totalyear2pub =
                 ($scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pub ?
                 $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pub : 0) ;
 
-        $scope.totalyear2pvt = $scope.totalyear2pvt +
+        $scope.totalyear2pvt =
                 ($scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pvt ?
                 $scope.dlAirTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pvt : 0) ;
 

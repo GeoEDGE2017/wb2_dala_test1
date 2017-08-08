@@ -79,7 +79,7 @@
 
                     </tbody>
                 </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
+                <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9" >
                     <tbody>
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="156">
@@ -135,7 +135,7 @@
                             Private
                         </td>
                     </tr>
-                    <tr ng-repeat="(key, value) in dlLandTransSumNat.transport_land.Table_9"  height="20" ng-init="getTotal($index,key);">
+                    <tr  height="20" ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
 
@@ -169,6 +169,8 @@
 
 
                     </tbody>
+                    </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tr height="19">
                         <td class="boldash" width="253" height="19">
                             TOTAL

@@ -190,7 +190,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
                     tot_los_pvt: null,
                 }],
                 'DlWaterLosOther': [{
-                type_los:'Cleaning up of debris',
+                type_los:'Cleaning costs',
                 year_1_pub: null,
                 year_1_pvt: null,
                 year_2_pub: null,

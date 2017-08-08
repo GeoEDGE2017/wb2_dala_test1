@@ -505,12 +505,9 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             }).then(function successCallback(response) {
                 generateRefencedData();
                 var data = response.data;
-                console.log('*', response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-
-                console.log('*', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -572,6 +569,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
+            console.log('iri',obj_array);
             model_name = value;
 
             var particular_value_1 = null;
@@ -836,10 +834,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
         var finaltotal5 = 0;
         var finaltotal6 = 0;
         var finaltotal7 = 0;
-
-
         var grantot = 0;
-
         var array1 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks;
         var array2 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMediumTanks;
         var array3 = $scope.dlIrrigation.agri_irrigation.Table_3.DlMinorTanks;
@@ -886,9 +881,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             }
         })
         grantot = finaltotal1+ finaltotal2 + finaltotal3  + finaltotal4 + finaltotal5 + finaltotal6 + finaltotal7 ;
-        console.log('final',finaltotal5);
         return grantot;
-        }
+    }
 
     //Calculate Operating Loss
     $scope.calTotalOperatingLos=function() {
@@ -937,9 +931,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             }
         })
         grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4+ finaltotal5+finaltotal6;
-        console.log(grantot);
         return grantot;
-        }
+    }
 
     //Calculate Total Other
     $scope.calTotalOther=function() {
@@ -989,7 +982,6 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
         })
 
         grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6;
-        console.log(grantot);
         return grantot;
     }
 
@@ -1039,9 +1031,8 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             }
         })
         grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
-        console.log(grantot);
         return grantot;
-        }
+    }
 
     //Edit Data
     $scope.dlDataEdit = function(form) {

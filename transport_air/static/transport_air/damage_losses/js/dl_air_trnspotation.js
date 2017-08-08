@@ -714,7 +714,9 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
         })
 
         angular.forEach(array2, function(value, key) {
+        if(value.assets !='Total') {
             finaltotal2= finaltotal2 + value.tot_dmg_pvt ;
+            }
         })
 
         grantot = grantot + finaltotal1+ finaltotal2 ;
@@ -724,7 +726,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.calculatePubStrucTotal=function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
-            if(value.assets !='Total' || value.assets!='TOTAL DAMAGES'){
+            if(value.assets !='Total' && value.assets!='TOTAL DAMAGES'){
                 finaltotal = finaltotal + value.tot_pub ;
             }
         })

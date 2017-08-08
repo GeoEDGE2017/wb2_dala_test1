@@ -210,12 +210,12 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
+                generateRefencedData();
                 var data = response.data;
-                console.log('*', response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-                console.log('*', $scope.bs_data);
+                console.log('up',$scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -267,6 +267,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
+            console.log('test',obj_array);
             model_name = value;
 
             var particular_value_1 = null;
@@ -285,25 +286,42 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
 
             var obj1 = {
                 assets : particular_value_1,
-                avg_replace_cost : null,
-                avg_repair_cost : null,
+                num_dest_pub: null,
+                num_dest_pvt: null,
+                num_dmg_pub: null,
+                num_dmg_pvt: null,
+                dmg_pub: null,
+                dmg_pvt: null
             };
+
             var obj2 = {
                 assets : particular_value_2,
-                avg_replace_cost : null,
-                avg_repair_cost : null,
+                num_dest_pub: null,
+                num_dest_pvt: null,
+                num_dmg_pub: null,
+                num_dmg_pvt: null,
+                dmg_pub: null,
+                dmg_pvt: null
             };
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
                     assets : value.fields.assets,
-                    avg_replace_cost : null,
-                    avg_repair_cost : null,
+                    num_dest_pub: null,
+                    num_dest_pvt: null,
+                    num_dmg_pub: null,
+                    num_dmg_pvt: null,
+                    dmg_pub: null,
+                    dmg_pvt: null
                 };
                 var obj2 = {
                     assets : value.fields.assets,
-                    avg_replace_cost : null,
-                    avg_repair_cost : null,
+                    num_dest_pub: null,
+                    num_dest_pvt: null,
+                    num_dmg_pub: null,
+                    num_dmg_pvt: null,
+                    dmg_pub: null,
+                    dmg_pvt: null
                 };
 
                 if(model_name == 'BsoeOequipment') {
@@ -373,7 +391,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
                    'is_edit':$scope.is_edit
                    }),
             }).success(function(data) {
-            console.log(data);
+//            console.log(data);
             $scope.dlStrutsOthAsets = data;
             })
         }
@@ -426,32 +444,36 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
         var finaltotal4 = 0;
         var grantot = 0;
         var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
-        var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructures;
+        var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPubStructure;
         var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
         var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
 
 
         angular.forEach(array1, function(value, key) {
 
-         finaltotal1 = finaltotal1 + value.dmg_pub ;
+         finaltotal1 = value.dmg_pub ;
 
         })
         angular.forEach(array2, function(value, key) {
-
+        if(value.assets !='Total'){
          finaltotal2 = finaltotal2 + value.damages;
+         }
 
         })
         angular.forEach(array3, function(value, key) {
-
+        if(value.assets !='Total'){
          finaltotal3 = finaltotal3 + value.dmg_pub ;
+         }
 
         })
         angular.forEach(array4, function(value, key) {
-
+        if(value.assets !='Total'){
          finaltotal4 = finaltotal4 + value.dmg_pub ;
+         }
 
         })
-        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+        grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+        console.log('pub',finaltotal1, finaltotal2 , finaltotal3,finaltotal4);
         return grantot;
     }
 
@@ -461,29 +483,41 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
         var finaltotal2 = 0;
         var finaltotal3 = 0;
         var finaltotal4 = 0;
+        var finaltotal5 = 0;
         var grantot = 0;
+
         var array1=$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDestStructures;
         var array2 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtStructures;
         var array3 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtOequipment;
         var array4 =$scope.dlStrutsOthAsets.agri_agrarian.Table_5.DsorDmgPvtMachinery;
 
+
         angular.forEach(array1, function(value, key) {
-             finaltotal1 = finaltotal1 + value.dmg_pvt ;
+             finaltotal1 =  value.dmg_pvt ;
 
         })
+        console.log('try',finaltotal1);
         angular.forEach(array2, function(value, key) {
+            if(value.assets !='Total'){
             finaltotal2 = finaltotal2 + value.damages;
+            }
 
         })
         angular.forEach(array3, function(value, key) {
+         if(value.assets !='Total'){
              finaltotal3 = finaltotal3 + value.dmg_pvt ;
+             }
 
         })
         angular.forEach(array4, function(value, key) {
+         if(value.assets !='Total'){
              finaltotal4 = finaltotal4 + value.dmg_pvt ;
+             }
 
         })
-        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4;
+
+        grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 ;
+         console.log('pvt',finaltotal1, finaltotal2 , finaltotal3,finaltotal4);
         return grantot;
     }
 

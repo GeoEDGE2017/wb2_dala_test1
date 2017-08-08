@@ -253,11 +253,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 //                $scope.dlHealthDamagelostPrivateSys = data;
 //                $scope.getPrivateClinicsIDs();
                 console.log(data);
-
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.health.Table_7, function(value, index) {
-                        console.log(value);
                         if(value.length == 0) {
                             edit_data_not_found = true;
                         }
@@ -265,13 +263,13 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     if(edit_data_not_found != true) {
                         $scope.dlHealthDamagelostPrivateSys = data;
                         $scope.getPrivateClinicsIDs();
+                        console.log($scope.dlHealthDamagelostPrivateSys);
                     }
                     else {
                         $("#modal-container-239456").modal('show');
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -425,9 +423,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
     $scope.removeItem = function removeItem(table, index) {
-        console.log('removeItem', table, index);
         if(table == 'DapBefPc') {
-            console.log('removeItem', $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
             $scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc.splice(index, 1);
             $scope.privateClinicsData.splice(index, 1);
         }
@@ -436,12 +432,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.setPrivateClinicsIDs = function() {
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
             angular.forEach(value, function(value_in, index_in) {
-                console.log(value_in);
                 value_in.private_clinic = $scope.privateClinicsData[index].id;
             })
         })
-
-        console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7);
     }
 
     $scope.Test = function() {
@@ -520,24 +513,19 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     $scope.getPrivateClinicsIDs = function() {
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
-            console.log(value);
             $scope.privateClinicsData.push(null);
             angular.forEach(value, function(value_in, index_in) {
                 angular.forEach($scope.privateClinics, function(pvt_clinic, pvt_clinic_index) {
                     if(value_in.private_clinic == pvt_clinic.id) {
-                        console.log(index, index_in, pvt_clinic_index, pvt_clinic);
                         $scope.privateClinicsData[index] = pvt_clinic;
                     }
                 })
             })
         })
-
-        console.log('privateClinicsData', $scope.privateClinicsData);
     }
 
     $scope.totDapNapTmfTypeMedFac = function() {
         var tot = 0;
-
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapNapTmf, function(value, index) {
             if(value.type_med_fac != 'Total') {
                 tot = tot + value.num_affected_fac;
@@ -548,7 +536,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     $scope.totDapNapTmfMale = function() {
         var tot = 0;
-
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapNapTmf, function(value, index) {
             if(value.type_med_fac != 'Total') {
                 tot = tot + value.male;
@@ -559,7 +546,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     $scope.totDapNapTmfFemale = function() {
         var tot = 0;
-
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapNapTmf, function(value, index) {
             if(value.type_med_fac != 'Total') {
                 tot = tot + value.female;
@@ -570,10 +556,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     $scope.totGrandTotEstReplacementCost = function() {
         var tot = 0;
-
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
             angular.forEach(value, function(value_in, index_in) {
-                console.log(value_in);
                 if(value_in.pvt_clinics == 'Total') {
                     tot = tot + value_in.est_replacement_cost;
                 }
@@ -581,7 +565,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther, function(value, index) {
-            console.log(value);
             if(value.pvt_clinics == 'Total') {
                 tot = tot + value.est_replacement_cost;
             }
@@ -592,10 +575,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     $scope.totGrandTotEstRepairCost = function() {
         var tot = 0;
-
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
             angular.forEach(value, function(value_in, index_in) {
-                console.log(value_in);
                 if(value_in.pvt_clinics == 'Total') {
                     tot = tot + value_in.est_repair_cost;
                 }
@@ -603,21 +584,17 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther, function(value, index) {
-            console.log(value);
             if(value.pvt_clinics == 'Total') {
                 tot = tot + value.est_repair_cost;
             }
         })
-
         return tot;
     }
 
     $scope.totGrandTotDamages = function() {
         var tot = 0;
-
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
             angular.forEach(value, function(value_in, index_in) {
-                console.log(value_in);
                 if(value_in.pvt_clinics == 'Total') {
                     tot = tot + value_in.total_damages;
                 }
@@ -625,7 +602,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther, function(value, index) {
-            console.log(value);
             if(value.pvt_clinics == 'Total') {
                 tot = tot + value.total_damages;
             }
@@ -638,7 +614,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
             angular.forEach(value, function(value_in, index_in) {
-                console.log(value_in);
                 if(value_in.pvt_clinics == 'Total') {
                     tot = tot + value_in.est_losses_y1;
                 }
@@ -646,7 +621,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther, function(value, index) {
-            console.log(value);
             if(value.pvt_clinics == 'Total') {
                 tot = tot + value.est_losses_y1;
             }
@@ -659,7 +633,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
             angular.forEach(value, function(value_in, index_in) {
-                console.log(value_in);
                 if(value_in.pvt_clinics == 'Total') {
                     tot = tot + value_in.est_losses_y2;
                 }
@@ -667,7 +640,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther, function(value, index) {
-            console.log(value);
             if(value.pvt_clinics == 'Total') {
                 tot = tot + value.est_losses_y2;
             }
@@ -687,7 +659,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         })
 
         angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther, function(value, index) {
-            console.log(value);
             if(value.pvt_clinics == 'Total') {
                 tot = tot + value.total_losses;
             }

@@ -357,7 +357,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-            console.log($scope.selectedCompany);
+            console.log($scope.dlTelcomFirms);
             $http({
                 method : 'POST',
                 url : '/dl_save_data',
@@ -415,12 +415,9 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
 //                $scope.dlTelcomFirms = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.telecommunication.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -433,7 +430,6 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })

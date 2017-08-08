@@ -56,6 +56,7 @@ app.controller("dlSumTeleDisController", ['$scope','$http',function ($scope,$htt
             }).success(function(data) {
                 $scope.data=data;
 //                $scope.dlWaterSupplyDis = data;
+                console.log($scope.data);
             })
         }
     }

@@ -1025,4 +1025,34 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
         $scope.is_edit = false;
         $scope.dlPvtEduFacilities = angular.copy(init_data);
     }
+
+    $scope.totDpefNaf_NumEduFacilities = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefNaf, function(value, index) {
+            if(value.edu_facilities != 'TOTAL') {
+                tot = tot + value.num_edu_facilities;
+            }
+        })
+        return tot;
+    }
+
+    $scope.totDpefNaf_Male = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefNaf, function(value, index) {
+            if(value.edu_facilities != 'TOTAL') {
+                tot = tot + value.male;
+            }
+        })
+        return tot;
+    }
+
+    $scope.totDpefNaf_Female = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefNaf, function(value, index) {
+            if(value.edu_facilities != 'TOTAL') {
+                tot = tot + value.female;
+            }
+        })
+        return tot;
+    }
 })

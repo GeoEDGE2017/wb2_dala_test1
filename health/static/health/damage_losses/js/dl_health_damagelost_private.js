@@ -122,6 +122,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     //Fetch Entities
     $scope.fetchPrivateClinics = function() {
+        if($scope.incident && $scope.district) {
+            $scope.is_edit_disable = true;
+            }
         $scope.private_clinic.district_id = $scope.district;
         $http({
             method: "POST",
@@ -299,7 +302,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
 
         if($scope.incident && $scope.district) {
-            $scope.is_edit_disable = true;
+
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

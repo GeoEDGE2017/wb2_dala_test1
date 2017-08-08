@@ -377,6 +377,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
             }).then(function successCallback(response) {
                 if(response.data == 'False') {
                     $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
                 }
                 else {
                     $("#modal-container-239453").modal('show');

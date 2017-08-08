@@ -698,8 +698,8 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
             })
         }
         if( $scope.incident && $scope.district){
+            alert('hi');
             $scope.is_edit_disable = true;
-
         }
     }
 
@@ -768,12 +768,9 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 //                $scope.getPrivateClinicsIDs();
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.education.Table_4, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -786,7 +783,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })

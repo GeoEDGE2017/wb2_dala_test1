@@ -867,46 +867,44 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
             //    console.log($scope.dlGovnEduFacilities.education.Table_3);
 
             angular.forEach(obj_array, function(value, key) {
-            var obj1 = {
-                particulars: value.fields.particulars,
-                ab1_1c: null,
-                type_2: null,
-                type_3: null,
-                pirivena: null,
-                training_institutes: null,
-                training_colleges: null,
-                tc_crc_resc: null,
-                min_pzd_offices: null,
-                total: null
-            };
+                var obj1 = {
+                    particulars: value.fields.particulars,
+                    ab1_1c: null,
+                    type_2: null,
+                    type_3: null,
+                    pirivena: null,
+                    training_institutes: null,
+                    training_colleges: null,
+                    tc_crc_resc: null,
+                    min_pzd_offices: null,
+                    total: null
+                };
 
-            var obj2 = {
-                particulars: value.fields.particulars,
-                ab1_1c: null,
-                type_2: null,
-                type_3: null,
-                pirivena: null,
-                training_institutes: null,
-                training_colleges: null,
-                tc_crc_resc: null,
-                min_pzd_offices: null,
-                total: null
-            };
+                var obj2 = {
+                    particulars: value.fields.particulars,
+                    ab1_1c: null,
+                    type_2: null,
+                    type_3: null,
+                    pirivena: null,
+                    training_institutes: null,
+                    training_colleges: null,
+                    tc_crc_resc: null,
+                    min_pzd_offices: null,
+                    total: null
+                };
 
-            if(model_name == 'BugArcSupplies') {
-               $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
-               $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
-            }
-            else if(model_name == 'BugArcEquipment') {
-               $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
-               $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
-            }
-
+                if(model_name == 'BugArcSupplies') {
+                   $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
+                   $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
+                }
+                else if(model_name == 'BugArcEquipment') {
+                   $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
+                   $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
+                }
             });
 
             $scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
             $scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
-
         });
     }
 

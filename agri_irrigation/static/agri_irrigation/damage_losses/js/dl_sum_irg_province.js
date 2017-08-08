@@ -71,6 +71,11 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
         return sum;
     }
 
+      $scope.checkIfNull = function() {
+        var isNull = $scope.dlAgriIrrifationPro ? angular.equals({}, $scope.dlAgriIrrifationPro.agri_irrigation.Table_5) : true;
+        return isNull;
+    }
+
    $scope.getTotal = function(key) {
        $scope.finaltotalprivate = 0;
 

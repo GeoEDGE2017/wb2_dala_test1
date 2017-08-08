@@ -280,7 +280,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
                     tot_los_pvt : null,
                 }],
                 'DlAirLosOther':[{
-                    assets : 'Cleaning up of debris',
+                    assets : 'Cleaning costs',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,

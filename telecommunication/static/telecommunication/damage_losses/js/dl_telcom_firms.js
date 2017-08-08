@@ -140,7 +140,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     year2_los : null,
                     tot_losses : null,
                 }, {
-                    assets : 'Cleaning up of debris',
+                    assets : 'Cleaning costs',
                     year1_los : null,
                     year2_los : null,
                     tot_losses : null,

@@ -65,7 +65,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                         'tot_losses':null,
                     },
                     {
-                        'assets':'Cleaning up of debris',
+                        'assets':'Cleaning costs',
                         'avg_val_output_year':null,
                         'est_val_output_year1':null,
                         'est_val_output_year2':null,
@@ -111,7 +111,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                         'tot_losses':null,
                     },
                     {
-                        'assets':'Cleaning up of debris',
+                        'assets':'Cleaning costs',
                         'avg_val_output_year':null,
                         'est_val_output_year1':null,
                         'est_val_output_year2':null,
@@ -157,7 +157,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                         'tot_losses':null,
                     },
                     {
-                        'assets':'Cleaning up of debris',
+                        'assets':'Cleaning costs',
                         'avg_val_output_year':null,
                         'est_val_output_year1':null,
                         'est_val_output_year2':null,
@@ -203,7 +203,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
                         'tot_losses':null,
                     },
                     {
-                        'assets':'Cleaning up of debris',
+                        'assets':'Cleaning costs',
                         'avg_val_output_year':null,
                         'est_val_output_year1':null,
                         'est_val_output_year2':null,

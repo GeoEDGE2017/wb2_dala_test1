@@ -393,7 +393,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 //                }
 ],
                 'DlpLosOther':[{
-                    others : 'Cleaning of Debris',
+                    others : 'Cleaning costs',
                     los_year_1 : null,
                     los_year_2 : null,
                 }, {

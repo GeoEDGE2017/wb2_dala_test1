@@ -130,7 +130,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                         'los_year2':null,
                         'tot_losses':null,
                     },{
-                        'assets':'Cleaning up of debris',
+                        'assets':'Cleaning costs',
                         'avg_val_output_year':null,
                         'est_val_output_year1':null,
                         'est_val_output_year2':null,

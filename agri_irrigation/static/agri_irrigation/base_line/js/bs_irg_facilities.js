@@ -255,6 +255,9 @@ app.controller('bsIrgFacilitiesController', function($scope, $http,_) {
                 })
                 if(edit_data_not_found != true) {
                     $scope.bsIrgFacilities = data;
+                    console.log('alert',$scope.bsIrgFacilities.agri_irrigation.Table_1.BsIfAnicuts[0].division);
+                    $scope.division = $scope.bsIrgFacilities.agri_irrigation.Table_1.BsIfAnicuts[0].division;
+                    $scope.region = $scope.bsIrgFacilities.agri_irrigation.Table_1.BsIfAnicuts[0].region;
                 }
                 else {
                     $("#modal-container-239456").modal('show');

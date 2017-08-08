@@ -241,7 +241,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                     tot_prod_pvt : null,
                 }],
                 'PldyOtherLos': [{
-                    other_los : 'Clearing of Debris',
+                    other_los : 'Clearing costs',
                     year_1_pub : null,
                     year_1_pvt : null,
                     year_2_pub : null,

@@ -49,7 +49,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'tol_losses':null
                 },
                 {
-                    'los_type':'Cleaning up of debris',
+                    'los_type':'Cleaning costs',
                     'avg_val_income_year': null,
                     'val_income_year1': null,
                     'val_income_year2': null,

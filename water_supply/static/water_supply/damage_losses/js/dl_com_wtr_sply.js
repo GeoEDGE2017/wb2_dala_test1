@@ -97,7 +97,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                     tot_los : null,
                 }],
                 'DlcwLosOther':[{
-                    other_los : 'Cleaning up of debris',
+                    other_los : 'Cleaning costs',
                     tot_los_year_1 : null,
                     tot_los_year_2 : null,
                     tot_los : null,

@@ -101,7 +101,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                     'val_los_year2':null,
                     'tol_losses':null,
                 },{
-                    'los_type':'Cleaning up of debris',
+                    'los_type':'Cleaning costs',
                     'avg_val_income_year':null,
                     'val_income_year1':null,
                     'val_income_year2':null,

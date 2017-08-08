@@ -254,7 +254,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     tot_losses : null,
                 }],
                  'CebLosAstOther': [{
-                    assets : 'Cleaning up of debris',
+                    assets : 'Cleaning costs',
                     avg_income : null,
                     reduction_y1 : null,
                     reduction_y2 : null,

@@ -109,7 +109,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
                     los_year_2 : null,
                     total : null,
                 }, {
-                    assets : 'Cleaning up of debris',
+                    assets : 'Cleaning costs',
                     los_year_1 : null,
                     los_year_2 : null,
                     total : null,

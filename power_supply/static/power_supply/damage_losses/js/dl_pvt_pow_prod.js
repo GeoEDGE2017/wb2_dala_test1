@@ -90,7 +90,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     'los_year1':null,
                     'los_year2':null,
                 }, {
-                    'losses_type':'Cleaning up of debris',
+                    'losses_type':'Cleaning costs',
                     'los_year1':null,
                     'los_year2':null,
                 }, {

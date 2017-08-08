@@ -130,7 +130,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     tot_losses: null,
                 }],
                 'DloLosOlos': [{
-                    type_los: 'Cleaning up of debris',
+                    type_los: 'Cleaning costs',
                     los_year1: null,
                     los_year2: null,
                     tot_losses: null,

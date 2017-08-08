@@ -86,7 +86,7 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
                     tot_losses: null,
                 }],
                 'DlaLosOlos': [{
-                    type_los:"Cleaning up of debris",
+                    type_los:"Cleaning costs",
                     avg_per_year: null,
                     red_voutput_year1: null,
                     red_voutput_year2: null,

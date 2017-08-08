@@ -159,7 +159,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                     part_destroyed : null,
                     losses : null,
                 }, {
-                    loss_type : 'Cleaning up of debris',
+                    loss_type : 'Cleaning costs',
                     year_1 : null,
                     year_2 : null,
                     part_destroyed : null,

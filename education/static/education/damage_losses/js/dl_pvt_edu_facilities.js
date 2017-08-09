@@ -1055,4 +1055,369 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
         })
         return tot;
     }
+
+//    DpefBefPreSchool Totals
+    $scope.totDpefBefPreSchool_EstRepCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_rep_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPreSchool_EstRepairCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_repair_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPreSchool_TotDamages = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_damages;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPreSchool_EstLosYear1 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_1;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPreSchool_EstLosYear2 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_2;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPreSchool_TotLos = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_los;
+                }
+            })
+        })
+        return tot;
+    }
+
+//    DpefBefPrmSchool
+    $scope.totDpefBefPrmSchool_EstRepCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_rep_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPrmSchool_EstRepairCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_repair_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPrmSchool_TotDamages = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_damages;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPrmSchool_EstLosYear1 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_1;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPrmSchool_EstLosYear2 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_2;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefPrmSchool_TotLos = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_los;
+                }
+            })
+        })
+        return tot;
+    }
+
+//    DpefBefSecSchool
+    $scope.totDpefBefSecSchool_EstRepCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_rep_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefSecSchool_EstRepairCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_repair_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefSecSchool_TotDamages = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_damages;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefSecSchool_EstLosYear1 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_1;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefSecSchool_EstLosYear2 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_2;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefSecSchool_TotLos = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_los;
+                }
+            })
+        })
+        return tot;
+    }
+
+//    DpefBefUnv
+    $scope.totDpefBefUnv_EstRepCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_rep_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefUnv_EstRepairCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_repair_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefUnv_TotDamages = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_damages;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefUnv_EstLosYear1 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_1;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefUnv_EstLosYear2 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_2;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefUnv_TotLos = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_los;
+                }
+            })
+        })
+        return tot;
+    }
+
+//    DpefBefTechInst
+    $scope.totDpefBefTechInst_EstRepCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_rep_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefTechInst_EstRepairCost = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_repair_cost;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefTechInst_TotDamages = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_damages;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefTechInst_EstLosYear1 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_1;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefTechInst_EstLosYear2 = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.est_los_year_2;
+                }
+            })
+        })
+        return tot;
+    }
+
+    $scope.totDpefBefTechInst_TotLos = function() {
+        var tot = 0;
+        angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst, function(value, index) {
+            angular.forEach(value, function(value_in, index_in) {
+                if(value_in.asset == 'Total') {
+                    tot = tot + value_in.tot_los;
+                }
+            })
+        })
+        return tot;
+    }
 })

@@ -313,90 +313,107 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tbody ng-repeat="dpefBefPreSchool in dlPvtEduFacilities.education.Table_4.DpefBefPreSchool">
-                        <tr height="21">
-                            <td height="20" align="left" valign="middle">
-                                Pre-school Name
-                            </td>
-                            <td class="trsub" colspan="2" width="136">
-                                <select ng-options="school as school.name for school in schools.PreSchools track by school.id"
-                                        name="district" id="ccyear" ng-model="preSchool[$index]"
-                                        class="form-control" required>
-                                    <option value="" selected>Select pre-school name</option>
-                                </select>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset != 'Total'">
-                            <td ng-bind="row.asset" class="tdpa" width="280" height="21">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_rep_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_repair_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136" ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset == 'Total'">
-                            <td ng-bind="row.asset" class="tdpa"
-                                width="280" height="21">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_rep_cost"
-                                ng-value="row.est_rep_cost=dpefBefPreSchool[0].est_rep_cost + dpefBefPreSchool[1].est_rep_cost + dpefBefPreSchool[2].est_rep_cost">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_repair_cost"
-                                ng-value="row.est_repair_cost=dpefBefPreSchool[0].est_repair_cost + dpefBefPreSchool[1].est_repair_cost + dpefBefPreSchool[2].est_repair_cost">
-                            </td>
-                            <td class="right" ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages=dpefBefPreSchool[0].tot_damages + dpefBefPreSchool[1].tot_damages + dpefBefPreSchool[2].tot_damages"
-                                width="136">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
-                            </td>
-                        </tr>
-                        <tr height="21">
-                            <td class="tdpa" width="280" height="21">
-                                <!--{% verbatim %}-->
-                                <button id="delete" ng-click="removeItem('DpefBefPreSchool', $index)"
-                                    class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
-                                </button>
-                                <!--{% endverbatim %}-->
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                        </tr>
+                            <tr height="21">
+                                <td height="20" align="left" valign="middle">
+                                    Pre-school Name
+                                </td>
+                                <td class="trsub" colspan="2" width="136">
+                                    <select ng-options="school as school.name for school in schools.PreSchools track by school.id"
+                                            name="district" id="ccyear" ng-model="preSchool[$index]"
+                                            class="form-control" required>
+                                        <option value="" selected>Select pre-school name</option>
+                                    </select>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset != 'Total'">
+                                <td ng-bind="row.asset" class="tdpa" width="280" height="21">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_rep_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_repair_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136" ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefPreSchool" ng-if="row.asset == 'Total'">
+                                <td ng-bind="row.asset" class="tdpa"
+                                    width="280" height="21">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_rep_cost"
+                                    ng-value="row.est_rep_cost=dpefBefPreSchool[0].est_rep_cost + dpefBefPreSchool[1].est_rep_cost + dpefBefPreSchool[2].est_rep_cost">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_repair_cost"
+                                    ng-value="row.est_repair_cost=dpefBefPreSchool[0].est_repair_cost + dpefBefPreSchool[1].est_repair_cost + dpefBefPreSchool[2].est_repair_cost">
+                                </td>
+                                <td class="right" ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages=dpefBefPreSchool[0].tot_damages + dpefBefPreSchool[1].tot_damages + dpefBefPreSchool[2].tot_damages"
+                                    width="136">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                                </td>
+                            </tr>
+                            <tr height="21">
+                                <td class="tdpa" width="280" height="21">
+                                    <!--{% verbatim %}-->
+                                    <button id="delete" ng-click="removeItem('DpefBefPreSchool', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                    </button>
+                                    <!--{% endverbatim %}-->
+                                </td>
+                                <td width="136">
+                                </td>
+                                <td width="136">
+                                </td>
+                                <td width="136">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                            </tr>
                         </tbody>
+                        <tr height="21" ng-if="dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.length > 0">
+                            <td class="tdpa" width="280" height="21">
+                                TOTAL
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPreSchool_EstRepCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPreSchool_EstRepairCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPreSchool_TotDamages()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPreSchool_EstLosYear1()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPreSchool_EstLosYear2()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPreSchool_TotLos()">
+                            </td>
+                        </tr>
                         <!--Primary School Name-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -439,70 +456,70 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tbody ng-repeat="dpefBefPrmSchool in dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool">
-                        <tr height="21">
-                            <td height="20" align="left" valign="middle">
-                                Primary School Name
-                            </td>
-                            <td class="trsub" colspan="2" width="136">
-                                <select ng-options="school as school.name for school in schools.PrimarySchools track by school.id"
-                                        name="district" id="ccyear" class="form-control" ng-model="prmSchool[$index]" required>
-                                    <option value="" selected>Select primary school name</option>
-                                </select>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefPrmSchool" ng-if="row.asset != 'Total'">
-                            <td ng-bind="row.asset" class="tdpa" width="280" height="21">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_rep_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_repair_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost" width="136">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefPrmSchool" ng-if="row.asset == 'Total'">
-                            <td ng-bind="row.asset" class="tdpa" width="280" height="21">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_rep_cost"
-                                ng-value="row.est_rep_cost=dpefBefPrmSchool[0].est_rep_cost + dpefBefPrmSchool[1].est_rep_cost + dpefBefPrmSchool[2].est_rep_cost">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_repair_cost"
-                                ng-value="row.est_repair_cost=dpefBefPrmSchool[0].est_repair_cost + dpefBefPrmSchool[1].est_repair_cost + dpefBefPrmSchool[2].est_repair_cost">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages=dpefBefPrmSchool[0].tot_damages + dpefBefPrmSchool[1].tot_damages + dpefBefPrmSchool[2].tot_damages">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_1" type="number" placeholder=""
-                                       class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_1" ng-value="row.est_los_year_1=dpefBefPrmSchool[0].est_los_year_1 + dpefBefPrmSchool[1].est_los_year_1 + dpefBefPrmSchool[2].est_los_year_1"-->
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_2" ng-value="row.est_los_year_2=dpefBefPrmSchool[0].est_los_year_2 + dpefBefPrmSchool[1].est_los_year_2 + dpefBefPrmSchool[2].est_los_year_2"-->
-                            </td>
-                            <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
-                                <!--ng-bind="row.tot_los"-->
-                                <!--ng-value="row.tot_los=dpefBefPrmSchool[0].tot_los + dpefBefPrmSchool[1].tot_los + dpefBefPrmSchool[2].tot_los"-->
-                            </td>
-                        </tr>
-                        <tr height="21">
+                            <tr height="21">
+                                <td height="20" align="left" valign="middle">
+                                    Primary School Name
+                                </td>
+                                <td class="trsub" colspan="2" width="136">
+                                    <select ng-options="school as school.name for school in schools.PrimarySchools track by school.id"
+                                            name="district" id="ccyear" class="form-control" ng-model="prmSchool[$index]" required>
+                                        <option value="" selected>Select primary school name</option>
+                                    </select>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefPrmSchool" ng-if="row.asset != 'Total'">
+                                <td ng-bind="row.asset" class="tdpa" width="280" height="21">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_rep_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_repair_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost" width="136">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefPrmSchool" ng-if="row.asset == 'Total'">
+                                <td ng-bind="row.asset" class="tdpa" width="280" height="21">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_rep_cost"
+                                    ng-value="row.est_rep_cost=dpefBefPrmSchool[0].est_rep_cost + dpefBefPrmSchool[1].est_rep_cost + dpefBefPrmSchool[2].est_rep_cost">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_repair_cost"
+                                    ng-value="row.est_repair_cost=dpefBefPrmSchool[0].est_repair_cost + dpefBefPrmSchool[1].est_repair_cost + dpefBefPrmSchool[2].est_repair_cost">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages=dpefBefPrmSchool[0].tot_damages + dpefBefPrmSchool[1].tot_damages + dpefBefPrmSchool[2].tot_damages">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_1" type="number" placeholder=""
+                                           class="form-control input-md">
+                                    <!--ng-bind="row.est_los_year_1" ng-value="row.est_los_year_1=dpefBefPrmSchool[0].est_los_year_1 + dpefBefPrmSchool[1].est_los_year_1 + dpefBefPrmSchool[2].est_los_year_1"-->
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
+                                    <!--ng-bind="row.est_los_year_2" ng-value="row.est_los_year_2=dpefBefPrmSchool[0].est_los_year_2 + dpefBefPrmSchool[1].est_los_year_2 + dpefBefPrmSchool[2].est_los_year_2"-->
+                                </td>
+                                <td class="right" width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                                    <!--ng-bind="row.tot_los"-->
+                                    <!--ng-value="row.tot_los=dpefBefPrmSchool[0].tot_los + dpefBefPrmSchool[1].tot_los + dpefBefPrmSchool[2].tot_los"-->
+                                </td>
+                            </tr>
+                            <tr height="21">
                             <td class="tdpa" width="280" height="21">
                                 <!--{% verbatim %}-->
                                 <button id="delete" ng-click="removeItem('DpefBefPrmSchool', $index)"
@@ -524,6 +541,23 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         </tbody>
+                        <tr height="21" ng-if="dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.length > 0">
+                            <td class="tdpa" width="280" height="21">
+                                TOTAL
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPrmSchool_EstRepCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPrmSchool_EstRepairCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPrmSchool_TotDamages()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPrmSchool_EstLosYear1()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPrmSchool_EstLosYear2()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefPrmSchool_TotLos()">
+                            </td>
+                        </tr>
                         <!--Secondary School-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -565,73 +599,73 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tbody ng-repeat="dpefBefSecSchool in dlPvtEduFacilities.education.Table_4.DpefBefSecSchool">
-                        <tr height="21">
-                            <td height="20" align="left" valign="middle">
-                                Secondary School Name
-                            </td>
-                            <td class="trsub" colspan="2" width="136">
-                                <select ng-options="school as school.name for school in schools.SecondarySchools track by school.id"
-                                        name="district" id="ccyear" ng-model="secSchool[$index]"
-                                        class="form-control" required>
-                                    <option value="" selected>Select Secondary School Name</option>
-                                </select>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefSecSchool" ng-if="row.asset != 'Total'">
-                            <td ng-bind="row.asset" class="tdpa"
-                                width="280" height="21">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_rep_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_repair_cost" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td class="right" ng-bind="row.tot_damages" ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
-                                width="136">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefSecSchool" ng-if="row.asset == 'Total'">
-                            <td ng-bind="row.asset" class="tdpa"
-                                width="280" height="21">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_rep_cost"
-                                ng-value="row.est_rep_cost=dpefBefSecSchool[0].est_rep_cost + dpefBefSecSchool[1].est_rep_cost + dpefBefSecSchool[2].est_rep_cost">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_repair_cost"
-                                ng-value="row.est_repair_cost=dpefBefSecSchool[0].est_repair_cost + dpefBefSecSchool[1].est_repair_cost + dpefBefSecSchool[2].est_repair_cost">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages=dpefBefSecSchool[0].tot_damages + dpefBefSecSchool[1].tot_damages + dpefBefSecSchool[2].tot_damages">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_1"-->
-                                <!--ng-value="row.est_los_year_1=dpefBefSecSchool[0].est_los_year_1 + dpefBefSecSchool[1].est_los_year_1 + dpefBefSecSchool[2].est_los_year_1"-->
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_2"-->
-                                <!--ng-value="row.est_los_year_2=dpefBefSecSchool[0].est_los_year_2 + dpefBefSecSchool[1].est_los_year_2 + dpefBefSecSchool[2].est_los_year_2"-->
-                            </td>
-                            <td width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
-                                <!--ng-bind="row.tot_los"-->
-                                <!--ng-value="row.tot_los=dpefBefSecSchool[0].tot_los + dpefBefSecSchool[1].tot_los + dpefBefSecSchool[2].tot_los"-->
-                            </td>
-                        </tr>
-                        <tr height="21">
+                            <tr height="21">
+                                <td height="20" align="left" valign="middle">
+                                    Secondary School Name
+                                </td>
+                                <td class="trsub" colspan="2" width="136">
+                                    <select ng-options="school as school.name for school in schools.SecondarySchools track by school.id"
+                                            name="district" id="ccyear" ng-model="secSchool[$index]"
+                                            class="form-control" required>
+                                        <option value="" selected>Select Secondary School Name</option>
+                                    </select>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefSecSchool" ng-if="row.asset != 'Total'">
+                                <td ng-bind="row.asset" class="tdpa"
+                                    width="280" height="21">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_rep_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_repair_cost" type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td class="right" ng-bind="row.tot_damages" ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
+                                    width="136">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefSecSchool" ng-if="row.asset == 'Total'">
+                                <td ng-bind="row.asset" class="tdpa"
+                                    width="280" height="21">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_rep_cost"
+                                    ng-value="row.est_rep_cost=dpefBefSecSchool[0].est_rep_cost + dpefBefSecSchool[1].est_rep_cost + dpefBefSecSchool[2].est_rep_cost">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_repair_cost"
+                                    ng-value="row.est_repair_cost=dpefBefSecSchool[0].est_repair_cost + dpefBefSecSchool[1].est_repair_cost + dpefBefSecSchool[2].est_repair_cost">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages=dpefBefSecSchool[0].tot_damages + dpefBefSecSchool[1].tot_damages + dpefBefSecSchool[2].tot_damages">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
+                                    <!--ng-bind="row.est_los_year_1"-->
+                                    <!--ng-value="row.est_los_year_1=dpefBefSecSchool[0].est_los_year_1 + dpefBefSecSchool[1].est_los_year_1 + dpefBefSecSchool[2].est_los_year_1"-->
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
+                                    <!--ng-bind="row.est_los_year_2"-->
+                                    <!--ng-value="row.est_los_year_2=dpefBefSecSchool[0].est_los_year_2 + dpefBefSecSchool[1].est_los_year_2 + dpefBefSecSchool[2].est_los_year_2"-->
+                                </td>
+                                <td width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                                    <!--ng-bind="row.tot_los"-->
+                                    <!--ng-value="row.tot_los=dpefBefSecSchool[0].tot_los + dpefBefSecSchool[1].tot_los + dpefBefSecSchool[2].tot_los"-->
+                                </td>
+                            </tr>
+                            <tr height="21">
                             <td class="tdpa" width="280" height="21">
                                 <!--{% verbatim %}-->
                                 <button id="delete" ng-click="removeItem('DpefBefSecSchool', $index)"
@@ -653,6 +687,23 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         </tbody>
+                        <tr height="21" ng-if="dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.length > 0">
+                            <td class="tdpa" width="280" height="21">
+                                TOTAL
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefSecSchool_EstRepCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefSecSchool_EstRepairCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefSecSchool_TotDamages()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefSecSchool_EstLosYear1()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefSecSchool_EstLosYear2()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefSecSchool_TotLos()">
+                            </td>
+                        </tr>
                         <!--University-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -697,73 +748,73 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tbody ng-repeat="dpefBefUnv in dlPvtEduFacilities.education.Table_4.DpefBefUnv">
-                        <tr height="21">
-                            <td height="20" align="left" valign="middle">
-                                University Name
-                            </td>
-                            <td class="trsub" colspan="2" width="136">
-                                <select ng-options="school as school.name for school in schools.Universities track by school.id"
-                                        name="district" id="ccyear" ng-model="unv[$index]"
-                                        class="form-control" required>
-                                    <option value="" selected>Select University Name</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefUnv" ng-if="row.asset != 'Total'">
-                            <td ng-bind="row.asset" class="tdpa" width="280"
-                                height="21">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_rep_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_repair_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td class="right" ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
-                                width="136">
-                            </td>
-                            <td width="136" class="tdpa">
-                                <!--<input ng-model="row.est_los_year_1" type="number" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            </td>
-                            <td width="136" class="tdpa">
-                                <!--<input ng-model="row.est_los_year_2" type="number" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            </td>
-                            <td width="136" class="tdpa">
-                                <!--ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2"-->
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefUnv" ng-if="row.asset == 'Total'">
-                            <td ng-bind="row.asset" class="tdpa"
-                                width="280" height="21">
-                            </td>
-                            <td class="right" width="136" ng-bind="row.est_rep_cost"
-                                ng-value="row.est_rep_cost=dpefBefUnv[0].est_rep_cost + dpefBefUnv[1].est_rep_cost + dpefBefUnv[2].est_rep_cost">
-                            </td>
-                            <td class="right" width="136" ng-bind="row.est_repair_cost"
-                                ng-value="row.est_repair_cost=dpefBefUnv[0].est_repair_cost + dpefBefUnv[1].est_repair_cost + dpefBefUnv[2].est_repair_cost">
-                            </td>
-                            <td class="right" width="136" ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages=dpefBefUnv[0].tot_damages + dpefBefUnv[1].tot_damages + dpefBefUnv[2].tot_damages">
-                            </td>
-                            <td width="136">
-                                <!--ng-value="row.est_los_year_1=dpefBefUnv[0].est_los_year_1 + dpefBefUnv[1].est_los_year_1 + dpefBefUnv[2].est_los_year_1"-->
-                                <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <!--ng-value="row.est_los_year_2=dpefBefUnv[0].est_los_year_2 + dpefBefUnv[1].est_los_year_2 + dpefBefUnv[2].est_los_year_2"-->
-                                <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
-                                <!--ng-bind="row.tot_los"-->
-                                <!--ng-value="row.tot_los=dpefBefUnv[0].tot_los + dpefBefUnv[1].tot_los + dpefBefUnv[2].tot_los"-->
-                            </td>
-                        </tr>
-                        <tr height="21">
+                            <tr height="21">
+                                <td height="20" align="left" valign="middle">
+                                    University Name
+                                </td>
+                                <td class="trsub" colspan="2" width="136">
+                                    <select ng-options="school as school.name for school in schools.Universities track by school.id"
+                                            name="district" id="ccyear" ng-model="unv[$index]"
+                                            class="form-control" required>
+                                        <option value="" selected>Select University Name</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefUnv" ng-if="row.asset != 'Total'">
+                                <td ng-bind="row.asset" class="tdpa" width="280"
+                                    height="21">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_rep_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_repair_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td class="right" ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
+                                    width="136">
+                                </td>
+                                <td width="136" class="tdpa">
+                                    <!--<input ng-model="row.est_los_year_1" type="number" placeholder=""-->
+                                           <!--class="form-control input-md">-->
+                                </td>
+                                <td width="136" class="tdpa">
+                                    <!--<input ng-model="row.est_los_year_2" type="number" placeholder=""-->
+                                           <!--class="form-control input-md">-->
+                                </td>
+                                <td width="136" class="tdpa">
+                                    <!--ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2"-->
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefUnv" ng-if="row.asset == 'Total'">
+                                <td ng-bind="row.asset" class="tdpa"
+                                    width="280" height="21">
+                                </td>
+                                <td class="right" width="136" ng-bind="row.est_rep_cost"
+                                    ng-value="row.est_rep_cost=dpefBefUnv[0].est_rep_cost + dpefBefUnv[1].est_rep_cost + dpefBefUnv[2].est_rep_cost">
+                                </td>
+                                <td class="right" width="136" ng-bind="row.est_repair_cost"
+                                    ng-value="row.est_repair_cost=dpefBefUnv[0].est_repair_cost + dpefBefUnv[1].est_repair_cost + dpefBefUnv[2].est_repair_cost">
+                                </td>
+                                <td class="right" width="136" ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages=dpefBefUnv[0].tot_damages + dpefBefUnv[1].tot_damages + dpefBefUnv[2].tot_damages">
+                                </td>
+                                <td width="136">
+                                    <!--ng-value="row.est_los_year_1=dpefBefUnv[0].est_los_year_1 + dpefBefUnv[1].est_los_year_1 + dpefBefUnv[2].est_los_year_1"-->
+                                    <input ng-model="row.est_los_year_1" type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <!--ng-value="row.est_los_year_2=dpefBefUnv[0].est_los_year_2 + dpefBefUnv[1].est_los_year_2 + dpefBefUnv[2].est_los_year_2"-->
+                                    <input ng-model="row.est_los_year_2" type="number" placeholder="" class="form-control input-md">
+                                </td>
+                                <td width="136" ng-bind="row.tot_los" ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                                    <!--ng-bind="row.tot_los"-->
+                                    <!--ng-value="row.tot_los=dpefBefUnv[0].tot_los + dpefBefUnv[1].tot_los + dpefBefUnv[2].tot_los"-->
+                                </td>
+                            </tr>
+                            <tr height="21">
                             <td class="tdpa" width="280" height="21">
                                 <!--{% verbatim %}-->
                                 <button id="delete" ng-click="removeItem('DpefBefUnv', $index)"
@@ -785,6 +836,23 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         </tbody>
+                        <tr height="21" ng-if="dlPvtEduFacilities.education.Table_4.DpefBefUnv.length > 0">
+                            <td class="tdpa" width="280" height="21">
+                                TOTAL
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefUnv_EstRepCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefUnv_EstRepairCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefUnv_TotDamages()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefUnv_EstLosYear1()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefUnv_EstLosYear2()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefUnv_TotLos()">
+                            </td>
+                        </tr>
                         <!--Technical Institutes-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">
@@ -829,76 +897,76 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         <tbody ng-repeat="dpefBefTechInst in dlPvtEduFacilities.education.Table_4.DpefBefTechInst">
-                        <tr height="21">
-                            <td height="20" align="left" valign="middle">
-                                Technical Institute Name
-                            </td>
-                            <td class="trsub" colspan="2" width="136">
-                                <select ng-options="school as school.name for school in schools.TechInstitutes track by school.id"
-                                        name="district" id="ccyear" ng-model="techInst[$index]"
-                                        class="form-control" required>
-                                    <option value="" selected>Select Technical Institute Name</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefTechInst" ng-if="row.asset != 'Total'">
-                            <td ng-bind="row.asset" class="tdpa"
-                                width="280" height="21">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_rep_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_repair_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
-                                width="136">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                            <td width="136" class="tdpa">
-                            </td>
-                        </tr>
-                        <tr height="21" ng-repeat="row in dpefBefTechInst" ng-if="row.asset == 'Total'">
-                            <td ng-bind="row.asset" class="tdpa"
-                                width="280" height="21">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_rep_cost"
-                                ng-value="row.est_rep_cost=dpefBefTechInst[0].est_rep_cost + dpefBefTechInst[1].est_rep_cost + dpefBefTechInst[2].est_rep_cost">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.est_repair_cost"
-                                ng-value="row.est_repair_cost=dpefBefTechInst[0].est_repair_cost + dpefBefTechInst[1].est_repair_cost + dpefBefTechInst[2].est_repair_cost">
-                            </td>
-                            <td class="right" width="136"
-                                ng-bind="row.tot_damages"
-                                ng-value="row.tot_damages=dpefBefTechInst[0].tot_damages + dpefBefTechInst[1].tot_damages + dpefBefTechInst[2].tot_damages">
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_1" type="number" placeholder=""
-                                       class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_1"-->
-                                <!--ng-value="row.est_los_year_1=dpefBefTechInst[0].est_los_year_1 + dpefBefTechInst[1].est_los_year_1 + dpefBefTechInst[2].est_los_year_1"-->
-                            </td>
-                            <td width="136">
-                                <input ng-model="row.est_los_year_2" type="number" placeholder=""
-                                       class="form-control input-md">
-                                <!--ng-bind="row.est_los_year_2"-->
-                                <!--ng-value="row.est_los_year_2=dpefBefTechInst[0].est_los_year_2 + dpefBefTechInst[1].est_los_year_2 + dpefBefTechInst[2].est_los_year_2"-->
-                            </td>
-                            <td class="right" width="136" ng-bind="row.tot_los"
-                                ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
-                                <!--ng-bind="row.tot_los"-->
-                                <!--ng-value="row.tot_los=dpefBefTechInst[0].tot_los + dpefBefTechInst[1].tot_los + dpefBefTechInst[2].tot_los"-->
-                            </td>
-                        </tr>
-                        <tr height="21">
+                            <tr height="21">
+                                <td height="20" align="left" valign="middle">
+                                    Technical Institute Name
+                                </td>
+                                <td class="trsub" colspan="2" width="136">
+                                    <select ng-options="school as school.name for school in schools.TechInstitutes track by school.id"
+                                            name="district" id="ccyear" ng-model="techInst[$index]"
+                                            class="form-control" required>
+                                        <option value="" selected>Select Technical Institute Name</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefTechInst" ng-if="row.asset != 'Total'">
+                                <td ng-bind="row.asset" class="tdpa"
+                                    width="280" height="21">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_rep_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_repair_cost" type="number" placeholder=""
+                                           class="form-control input-md">
+                                </td>
+                                <td ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages = row.est_rep_cost + row.est_repair_cost"
+                                    width="136">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                                <td width="136" class="tdpa">
+                                </td>
+                            </tr>
+                            <tr height="21" ng-repeat="row in dpefBefTechInst" ng-if="row.asset == 'Total'">
+                                <td ng-bind="row.asset" class="tdpa"
+                                    width="280" height="21">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_rep_cost"
+                                    ng-value="row.est_rep_cost=dpefBefTechInst[0].est_rep_cost + dpefBefTechInst[1].est_rep_cost + dpefBefTechInst[2].est_rep_cost">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.est_repair_cost"
+                                    ng-value="row.est_repair_cost=dpefBefTechInst[0].est_repair_cost + dpefBefTechInst[1].est_repair_cost + dpefBefTechInst[2].est_repair_cost">
+                                </td>
+                                <td class="right" width="136"
+                                    ng-bind="row.tot_damages"
+                                    ng-value="row.tot_damages=dpefBefTechInst[0].tot_damages + dpefBefTechInst[1].tot_damages + dpefBefTechInst[2].tot_damages">
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_1" type="number" placeholder=""
+                                           class="form-control input-md">
+                                    <!--ng-bind="row.est_los_year_1"-->
+                                    <!--ng-value="row.est_los_year_1=dpefBefTechInst[0].est_los_year_1 + dpefBefTechInst[1].est_los_year_1 + dpefBefTechInst[2].est_los_year_1"-->
+                                </td>
+                                <td width="136">
+                                    <input ng-model="row.est_los_year_2" type="number" placeholder=""
+                                           class="form-control input-md">
+                                    <!--ng-bind="row.est_los_year_2"-->
+                                    <!--ng-value="row.est_los_year_2=dpefBefTechInst[0].est_los_year_2 + dpefBefTechInst[1].est_los_year_2 + dpefBefTechInst[2].est_los_year_2"-->
+                                </td>
+                                <td class="right" width="136" ng-bind="row.tot_los"
+                                    ng-value="row.tot_los = row.est_los_year_1 + row.est_los_year_2">
+                                    <!--ng-bind="row.tot_los"-->
+                                    <!--ng-value="row.tot_los=dpefBefTechInst[0].tot_los + dpefBefTechInst[1].tot_los + dpefBefTechInst[2].tot_los"-->
+                                </td>
+                            </tr>
+                            <tr height="21">
                             <td class="tdpa" width="280" height="21">
                                 <!--{% verbatim %}-->
                                 <button id="delete" ng-click="removeItem('DpefBefTechInst', $index)"
@@ -920,14 +988,23 @@ $(document).on("click", "#add_technical", function () {
                             </td>
                         </tr>
                         </tbody>
-                        <!--<tr class="tdpa" height="21">-->
-                            <!--<td colspan="6" width="280" height="21">-->
-                            <!--</td>-->
-                            <!--<td width="136">-->
-                                <!--<button type="button" class="btn btn-block btn-success">save</button>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-
+                        <tr height="21" ng-if="dlPvtEduFacilities.education.Table_4.DpefBefTechInst.length > 0">
+                            <td class="tdpa" width="280" height="21">
+                                TOTAL
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefTechInst_EstRepCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefTechInst_EstRepairCost()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefTechInst_TotDamages()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefTechInst_EstLosYear1()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefTechInst_EstLosYear2()">
+                            </td>
+                            <td width="136" class="right" ng-bind="totDpefBefTechInst_TotLos()">
+                            </td>
+                        </tr>
                         <!--Others-->
                         <tr class="trheadc" height="21">
                             <td width="280" height="21">

@@ -55,6 +55,10 @@
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
+                    </table>
+                    <table ng-repeat="(key, value) in dlAgriAgrarianSumNat.agri_agrarian.Table_10" ng-if="!checkIfNull()"
+                           class="table table-bordered">
+                        <tbody>
                     <tr class="trheadc1" height="20">
                         <td rowspan="3" width="249" height="60" style="width:19.5%;">
                             Province
@@ -106,18 +110,14 @@
                             Private
                         </td>
                     </tr>
-                <br>
                 <div class="pull-right">
-                    <br>
-                    <table ng-repeat="(key, value) in dlAgriAgrarianSumNat.agri_agrarian.Table_10"
-                           class="table table-bordered">
-                        <tbody>
+
                         <tr  height="20" ng-init="getTotal($index,key);">
                         <td ng-bind="key" class="tdpa" width="253" height="19">
                         </td>
-                        <td width="147" ng-bind="value.DsorDmgLosNational[0].dmg_los_pub">
+                        <td width="147" ng-bind="value.DsorDmgPubNational[0].sum">
                         </td>
-                        <td width="151" ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt">
+                        <td width="151" ng-bind="value.DsorDmgPvtNational[0].sum">
                         </td>
                         <td width="165" ng-bind="value.DsorLosYear1National[0].dmg_los_pub">
                         </td>
@@ -127,11 +127,19 @@
                         </td>
                         <td width="133" ng-bind="value.DsorLosYear2National[0].dmg_los_pvt">
                         </td>
-                        <td class="right" width="126" ng-bind="value.DsorDmgLosNational[0].dmg_los_pub + value.DsorLosYear1National[0].dmg_los_pub + value.DsorLosYear2National[0].dmg_los_pub ">
+                        <td class="right" width="126" ng-bind="value.DsorDmgPubProvince[0].damages +
+                        value.DsorLosYear1National[0].dmg_los_pub + value.DsorLosYear2National[0].dmg_los_pub ">
                         </td>
-                        <td class="right" width="85" ng-bind="value.DsorDmgLosNational[0].dmg_los_pvt + value.DsorLosYear1National[0].dmg_los_pvt + value.DsorLosYear2National[0].dmg_los_pvt ">
+                        <td class="right" width="85" ng-bind="DsorDmgPvtProvince[0].damages +
+                        value.DsorLosYear1National[0].dmg_los_pvt + value.DsorLosYear2National[0].dmg_los_pvt ">
                         </td>
                         </tr>
+                    </div>
+                    </tbody>
+                        </table>
+                    <table ng-if="!checkIfNull()"
+                           class="table table-bordered">
+                        <tbody>
                         <tr height="19">
                         <td class="boldash" width="253" height="19">
                             GRAND TOTAL

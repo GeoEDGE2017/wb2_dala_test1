@@ -2468,10 +2468,15 @@ TABLE_PROPERTY_MAPPER = {
                 ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
             'DcpfExportCropsDistrict':
                 ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfRrePlantnDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
             'DcpfForestryDistrict':
                 ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
             'DcpfOtherDistrict':
                 ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+
+
+
 
             'DildSeasonalCropsDistrict':
                 ['invest_los_pub', 'invest_los_pvt', 'incident', 'district'],
@@ -2507,13 +2512,21 @@ TABLE_PROPERTY_MAPPER = {
             'DsorLosYear2Province':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
+                 ],
+            'DsorDmgPubProvince':
+                ['damages'
+                 ],
+            'DsorDmgPvtProvince':
+                ['damages'
                  ]
 
         },
         'Table_10': {
-            'DsorDmgLosNational':
-                ['dmg_los_pub',
-                 'dmg_los_pvt',
+            'DsorDmgPubNational':
+                ['sum',
+                 ],
+            'DsorDmgPvtNational':
+                ['sum',
                  ],
             'DsorLosYear1National':
                 ['dmg_los_pub',

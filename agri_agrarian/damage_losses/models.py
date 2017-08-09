@@ -839,3 +839,54 @@ class DcpfRePlantnCrops(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_agrarian\".\"dcpf_re_plantn_crops'
+
+
+class DcpfRrePlantnDistrict(models.Model):
+    dmg_pub = models.FloatField(blank=True, null=True)
+    dmg_pvt = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dcpf_re_plantn_district'
+
+
+class DsorDmgPubProvince(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pub_province'
+
+
+class DsorDmgPvtProvince(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pvt_province'
+
+
+class DsorDmgPubNational(models.Model):
+    sum = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pub_national'
+
+
+class DsorDmgpvtNational(models.Model):
+    sum = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_agrarian\".\"dsor_dmg_pvt_national'

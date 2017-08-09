@@ -662,7 +662,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.calPubTotal=function(arr) {
     var finaltotal = 0;
     angular.forEach(arr, function(value, key) {
+    if(value.assets !="Total"){
          finaltotal = finaltotal + value.dmg_pub ;
+         }
     })
     return finaltotal;
     }
@@ -671,7 +673,9 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.calPvtTotal = function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
+        if(value.assets !="Total"){
              finaltotal = finaltotal + value.dmg_pvt ;
+             }
         })
         return finaltotal;
     }
@@ -702,43 +706,57 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         var array10 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
 
         angular.forEach(array1, function(value, key) {
+            if(value.assets !="Total"){
             finaltotal1 = finaltotal1 + value.dmg_pub ;
+            }
         })
 
         angular.forEach(array2, function(value, key) {
+        if(value.assets !="Total"){
             finaltotal2 = finaltotal2 + value.dmg_pub ;
+            }
         })
 
         angular.forEach(array3, function(value, key) {
+        if(value.assets !="Total"){
             finaltotal3 = finaltotal3 + value.dmg_pub ;
+            }
         })
 
         angular.forEach(array4, function(value, key) {
+        if(value.assets !="Total"){
          finaltotal4 = finaltotal4 + value.dmg_pub ;
+         }
         })
         angular.forEach(array5, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal5 = finaltotal5 + value.dmg_pub ;
+         }
         })
         angular.forEach(array6, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal6 = finaltotal6 + value.dmg_pub ;
+         }
         })
         angular.forEach(array7, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal7 = finaltotal7 + value.dmg_pub ;
+         }
         })
         angular.forEach(array8, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal8 = finaltotal8 + value.dmg_pub ;
+         }
         })
         angular.forEach(array9, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal9 = finaltotal9 + value.dmg_pub ;
+         }
         })
         angular.forEach(array10, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal10 = finaltotal10 + value.dmg_pub ;
+         }
         })
         grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9 + finaltotal10;
         return grantot;
@@ -770,44 +788,54 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         var array10 =$scope.dlFrstPrductAsets.agri_agrarian.Table_4.DcpfReForestry;
 
         angular.forEach(array1, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal1 = finaltotal1 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array2, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal2 = finaltotal2 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array3, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal3 = finaltotal3 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array4, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal4 = finaltotal4 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array5, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal5 = finaltotal5 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array6, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal6 = finaltotal6 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array7, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal7 = finaltotal7 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array8, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal8 = finaltotal8 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array9, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal9 = finaltotal9 + value.dmg_pvt ;
+         }
         })
         angular.forEach(array10, function(value, key) {
-
+        if(value.assets !="Total"){
          finaltotal10 = finaltotal10 + value.dmg_pvt ;
+         }
         })
         grantot = grantot  + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5+ finaltotal6 + finaltotal7 + finaltotal8 + finaltotal9  + finaltotal10;
         return grantot;

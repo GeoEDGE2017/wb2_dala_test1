@@ -568,7 +568,8 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     var finaltotal = 0;
 
     angular.forEach(arr, function(value, key) {
-        if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' && value.forestry !='Total' && value.other_products!='Total'){
+        if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' &&
+        value.forestry !='Total' && value.other_products!='Total'){
             console.log('Test',value[property]);
              finaltotal = finaltotal + value[property] ;
          }
@@ -605,6 +606,52 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
      $scope.is_edit = false;
      $scope.dlPrdctnLos = init_data;
     }
+
+    $scope.calTotal=function(property) {
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var finaltotal4 = 0;
+        var finaltotal5 = 0;
+
+        var grantot = 0;
+        var array1 = $scope.dlPrdctnLos.agri_agrarian.Table_7.PldySeasonalCrops;
+        var array2 = $scope.dlPrdctnLos.agri_agrarian.Table_7.PldyPlantnCrops;
+        var array3 = $scope.dlPrdctnLos.agri_agrarian.Table_7.PldyExportCrops;
+        var array4 = $scope.dlPrdctnLos.agri_agrarian.Table_7.PldyForestry;
+        var array5 = $scope.dlPrdctnLos.agri_agrarian.Table_7.PldyOther;
+
+
+        angular.forEach(array1, function(value, key) {
+            if(value.seasonal_crops != 'Total'){
+                finaltotal1 = finaltotal1 + value[property] ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.plantn_crops != 'Total'){
+                finaltotal2 = finaltotal2 + value[property] ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.export_crops != 'Total'){
+                finaltotal3 = finaltotal3 + value[property] ;
+            }
+        })
+        angular.forEach(array4, function(value, key) {
+            if(value.forestry != 'Total'){
+                finaltotal4 = finaltotal4 + value[property] ;
+            }
+        })
+        angular.forEach(array5, function(value, key) {
+            if(value.other_products != 'Total' && value.other_products != "TOTAL"){
+                finaltotal5 = finaltotal5 + value[property] ;
+            }
+        })
+
+        grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4+ finaltotal5;
+        return grantot;
+    }
+
 
 
     //Clear Function

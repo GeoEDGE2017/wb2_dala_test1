@@ -1377,9 +1377,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>***</td>
-                            </tr>
-                            <tr>
                                 <td width="264" ng-bind="dlMinistryHealthSys.health.Table_5.DmhPdfaOassets[6].asset"
                                     height="20" class="tdpa"></td>
                                 <td width="98">
@@ -2018,18 +2015,21 @@
                                 Clear
                             </button>
                             <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
+                                <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
+                                    Edit
+                                </button>
+                            </span>
+                            <span ng-if="!is_edit_disable">
+                                <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                    Edit
+                                </button>
+                            </span>
+                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                                Cancel Edit
+                            </button>
                             <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                                    ng-click="dlSaveData(form_health_damagelost_lmh)"
-                                    class="btn btn-success">Submit
+                                    ng-click="dlSaveData(form_health_damagelost_lmh)" class="btn btn-success">
+                                Submit
                             </button>
                         </div>
                     </div>

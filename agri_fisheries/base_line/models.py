@@ -16,6 +16,12 @@ class BdSessionKeys(models.Model):
         managed = False
         db_table = 'agri_fisheries\".\"bd_session_keys'
 
+class FishingTypes(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_fisheries\".\"fishing_types'
 
 # Table 1
 class BsPeoFisheries(models.Model):

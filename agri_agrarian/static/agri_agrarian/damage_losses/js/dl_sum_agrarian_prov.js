@@ -64,23 +64,23 @@ app.controller("DlSummeryAgProController", ['$scope','$http',function ($scope,$h
     }
 
     $scope.getTotal = function($index,key) {
-        $scope.totaldpub = $scope.totaldpub + ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[$index].dmg_los_pub ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[$index].dmg_los_pub : 0 ): 0) ;
+        $scope.totaldpub = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPubProvince[$index] ? (
+                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPubProvince[$index].damages ?
+                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPubProvince[$index].damages : 0 ): 0) ;
 
-        $scope.totaldpvt = $scope.totaldpvt + ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[$index].dmg_los_pvt ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgLosProvince[$index].dmg_los_pvt : 0 ) : 0) ;
+        $scope.totaldpvt = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPvtProvince[$index] ? (
+                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPvtProvince[$index].damages ?
+                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPvtProvince[$index].damages : 0 ) : 0) ;
 
-        $scope.totalyear1pub = $scope.totalyear1pub + ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index] ? (
+        $scope.totalyear1pub = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index] ? (
                  $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pub ?
                  $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pub : 0 ) : 0) ;
 
-        $scope.totalyear1pvt = $scope.totalyear1pvt + ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index] ? (
+        $scope.totalyear1pvt = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index] ? (
                  $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pvt ?
                  $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pvt : 0 ) : 0 );
 
-        $scope.totalyear2pub = $scope.totalyear2pub + ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index] ? (
+        $scope.totalyear2pub = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index] ? (
                  $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index].dmg_los_pub ?
                  $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index].dmg_los_pub : 0 ) : 0) ;
 
@@ -89,10 +89,15 @@ app.controller("DlSummeryAgProController", ['$scope','$http',function ($scope,$h
                  $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index].dmg_los_pvt : 0 ) : 0);
 
 
-        $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
+        $scope.finaltotalpublic = $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
 
-        $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
+        $scope.finaltotalprivate = $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
 
+    }
+
+      $scope.checkIfNull = function() {
+        var isNull = $scope.dlAgriAgrarianPro ? angular.equals({}, $scope.dlAgriAgrarianPro.agri_agrarian.Table_9) : true;
+        return isNull;
     }
 
  }])

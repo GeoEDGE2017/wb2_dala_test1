@@ -19,14 +19,14 @@
         </li>
           <li style="float:right;"> <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form="dl_livestock_summary_dis_form">
         <div>
             <ul class='nav nav-wizard'>
                 <li class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
                 <li><a href='#step2' data-toggle="tab">2 Losses</a></li>
             </ul>
 
-            <div id="myTabContent" class="tab-content">
+            <div id="myTabContent" class="tab-content" >
                 <div class="tab-pane active" id="step1">
                     <table class="table table-bordered">
                         <colgroup>
@@ -61,7 +61,7 @@
                                 District
                             </td>
                             <td colspan="3" width="415" height="19">
-                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
+                                <select ng-change="loadData(dl_livestock_summary_dis_form);" ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
                                         style="font-weight:400;"
                                         class="form-control" required>
@@ -100,13 +100,13 @@
                                 Swine
                             </td>
                             <td colspan="2" width="234" height="19">
-                                -
+
                             </td>
                             <td colspan="2" width="206" height="19">
-                                -
+
                             </td>
                             <td class="right" colspan="2" width="286" height="19">
-                                -
+
                             </td>
                         </tr>
                         <tr height="19">
@@ -264,7 +264,7 @@
                             </td>
                         </tr>
                         <tr height="19">
-                            <td class="tdpa" width="113" height="19">
+                            <td class="boldash" width="113" height="19">
                                 Production Assets
                             </td>
                             <td colspan="2" width="234" height="19">
@@ -278,7 +278,7 @@
                             </td>
                         </tr>
                         <tr height="19">
-                            <td class="tdpa" width="113" height="19">
+                            <td class="boldash" width="113" height="19">
                                 Structures
                             </td>
                             <td colspan="2" width="234" height="19">
@@ -292,7 +292,7 @@
                             </td>
                         </tr>
                         <tr height="19">
-                            <td class="tdpa" width="113" height="19">
+                            <td class="boldash" width="113" height="19">
                                 Other Assets
                             </td>
                             <td colspan="2" width="234" height="19">
@@ -306,7 +306,7 @@
                             </td>
                         </tr>
                         <tr height="34">
-                            <td class="tdpa" width="113" height="34">
+                            <td class="boldash" width="113" height="34">
                                 TOTAL OF DAMAGES
                             </td>
                             <td colspan="2" width="234" height="34">
@@ -690,7 +690,7 @@
                             </td>
                         </tr>
                         <tr height="19">
-                            <td class="tdpa" width="113" height="19">
+                            <td class="boldash" width="113" height="19">
                                 Cleaning costs
                             </td>
                             <td width="117" height="19">
@@ -713,7 +713,7 @@
                             </td>
                         </tr>
                         <tr height="34">
-                            <td class="tdpa" width="113" height="34">
+                            <td class="boldash" width="113" height="34">
                                 Higher Operating Costs
                             </td>
                             <td width="117" height="34">
@@ -736,7 +736,7 @@
                             </td>
                         </tr>
                         <tr height="34">
-                            <td class="tdpa" width="113" height="34">
+                            <td class="boldash" width="113" height="34">
                                 Other Unexpected Expenses
                             </td>
                             <td width="117" height="34">
@@ -759,7 +759,7 @@
                             </td>
                         </tr>
                         <tr height="19">
-                            <td class="tdpa" width="113" height="19">
+                            <td class="boldash" width="113" height="19">
                                 TOTAL OF LOSSES
                             </td>
                             <td class="right" width="117" height="19">

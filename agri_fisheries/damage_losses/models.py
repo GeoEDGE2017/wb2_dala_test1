@@ -1,6 +1,8 @@
 from django.db import models
 from settings.models import District, Province
 from incidents.models import IncidentReport
+from agri_fisheries.base_line.models import FishingTypes
+
 
 
 class DlSessionKeys(models.Model):
@@ -8,21 +10,14 @@ class DlSessionKeys(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     user = models.IntegerField(blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
-    incident = models.IntegerField(blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype', blank=True, related_name='agrifi_dl_ftype', null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='agrifi_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='agrifi_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='agrifi_dl_district', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'agri_fisheries\".\"dl_session_keys'
-
-
-class FishingTypes(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'agri_fisheries\".\"fishing_types'
 
 
 # Table 3
@@ -40,7 +35,7 @@ class DlfDmgFequipment(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -61,7 +56,7 @@ class DlfDmgOequipment(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -82,7 +77,7 @@ class DlfDmgMachinery(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -103,7 +98,7 @@ class DlfDmgStructures(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -125,7 +120,7 @@ class DlfDmgPub(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -147,8 +142,7 @@ class DlfDmgPvt(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
-
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
     class Meta:
         managed = False
         db_table = 'agri_fisheries\".\"dlf_dmg_pvt'
@@ -168,6 +162,7 @@ class DlfLosIfisheries(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -188,6 +183,7 @@ class DlfLosRfisheries(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -208,6 +204,7 @@ class DlfLosMfisheries(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
+    ftype = models.ForeignKey(FishingTypes, db_column='ftype_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -363,7 +360,7 @@ class DlfLosMfisheriesDistrict(models.Model):
 
 # National Table
 class DlfDmgPubNational(models.Model):
-    fishing_type = models.ForeignKey(FishingTypes, db_column='fishing_type', blank=True, null=True)
+    fishing_type = models.ForeignKey(FishingTypes, db_column='ftype', blank=True, null=True)
     dmg_pub = models.FloatField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)

@@ -123,7 +123,6 @@ MIDDLEWARE_CLASSES = [
 ROOT_URLCONF = 'dala.urls'
 JQUERY_URL = True
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -161,6 +160,7 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=industry_services'
         # },
+
         # 'NAME': 'dala_2017_08_01',
         'NAME': 'dala_08_09',
         'USER': 'postgres',
@@ -342,7 +342,8 @@ TABLE_PROPERTY_MAPPER = {
             'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female', 'id'],
             'DapBefOther': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1',
                             'est_losses_y2', 'total_losses', 'id'],
-            'DapBefPc': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1', 'est_losses_y2', 'total_losses', 'private_clinic', 'id'],
+            'DapBefPc': ['pvt_clinics', 'est_replacement_cost', 'est_repair_cost', 'total_damages', 'est_losses_y1',
+                         'est_losses_y2', 'total_losses', 'private_clinic', 'id'],
         },
         'Table_6': {
             'DmfDfaNum': ['num_des_facilities', 'base_hospital', 'divisional_hospital', 'rural_hospital',
@@ -564,9 +565,9 @@ TABLE_PROPERTY_MAPPER = {
     'mining': {
         'Table_1': {'BmaImFn': ['name_min_outputs', 'avg_per_year', 'firm_id', 'id'],
                     'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'],
-        },
+                    },
         'Table_2': {
-            'BmaAmMin': ['minerals','avg_per_year', 'id'],
+            'BmaAmMin': ['minerals', 'avg_per_year', 'id'],
             'BmaAmMinNum': ['male', 'female', 'id'],
         },
         'Table_3': {
@@ -576,8 +577,9 @@ TABLE_PROPERTY_MAPPER = {
             'DloDmgMachinery': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
             'DloDmgVehicles': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
             'DloDmgStocks': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
-            'DloLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2',
-                'tot_losses', 'firm_id', 'id'],
+            'DloLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1',
+                           'los_year2',
+                           'tot_losses', 'firm_id', 'id'],
             'DloLosOlos': ['type_los', 'los_year1', 'los_year2', 'tot_losses', 'firm_id', 'id']
         },
         'Table_4': {
@@ -585,14 +587,16 @@ TABLE_PROPERTY_MAPPER = {
             'DlaDmgEquipment': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
             'DlaDmgMachinery': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
             'DlaDmgStocks': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'id'],
-            'DlaLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2', 'tot_losses', 'id'],
-            'DlaLosOlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1', 'los_year2', 'tot_losses', 'id']
+            'DlaLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1',
+                           'los_year2', 'tot_losses', 'id'],
+            'DlaLosOlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1',
+                           'los_year2', 'tot_losses', 'id']
         },
         'Table_5': {
             'DloDmgDistrict': ['rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm__name', 'ownership'],
-            'DlaDmgDistrict': ['rep_tot_dassets','repair_pdmg_assets','tot_damages'],
-            'DlaLosDistrict': ['los_year1','los_year2','tot_losses'],
-            'DloLosDistrict': ['los_year1','los_year2','tot_losses','firm__name','ownership'],
+            'DlaDmgDistrict': ['rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages'],
+            'DlaLosDistrict': ['los_year1', 'los_year2', 'tot_losses'],
+            'DloLosDistrict': ['los_year1', 'los_year2', 'tot_losses', 'firm__name', 'ownership'],
         },
         'Table_6': {
             'DlaDmgNational': [
@@ -791,7 +795,8 @@ TABLE_PROPERTY_MAPPER = {
                            'est_los_year_2', 'tot_los', 'id'],
             'DpefBefTechInst': ['asset', 'tech_institute', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
                                 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id'],
-            'DpefBefOtherSchool': ['asset', 'other_school' ,'est_rep_cost', 'est_repair_cost', 'tot_damages', 'est_los_year_1', 'est_los_year_2', 'tot_los', 'id']
+            'DpefBefOtherSchool': ['asset', 'other_school', 'est_rep_cost', 'est_repair_cost', 'tot_damages',
+                                   'est_los_year_1', 'est_los_year_2', 'tot_los', 'id']
         },
         'Table_2': {
             'BugArcStructures': [
@@ -1382,7 +1387,6 @@ TABLE_PROPERTY_MAPPER = {
                  'tot_los_pvt',
                  'type_los',
                  'id'],
-
 
         },
         'Table_3': {
@@ -2486,6 +2490,8 @@ TABLE_PROPERTY_MAPPER = {
                 ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
             'DcpfExportCropsDistrict':
                 ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
+            'DcpfRrePlantnDistrict':
+                ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
             'DcpfForestryDistrict':
                 ['dmg_pub', 'dmg_pvt', 'incident', 'district'],
             'DcpfOtherDistrict':
@@ -2525,13 +2531,21 @@ TABLE_PROPERTY_MAPPER = {
             'DsorLosYear2Province':
                 ['dmg_los_pub',
                  'dmg_los_pvt',
+                 ],
+            'DsorDmgPubProvince':
+                ['damages'
+                 ],
+            'DsorDmgPvtProvince':
+                ['damages'
                  ]
 
         },
         'Table_10': {
-            'DsorDmgLosNational':
-                ['dmg_los_pub',
-                 'dmg_los_pvt',
+            'DsorDmgPubNational':
+                ['sum',
+                 ],
+            'DsorDmgPvtNational':
+                ['sum',
                  ],
             'DsorLosYear1National':
                 ['dmg_los_pub',
@@ -2633,11 +2647,11 @@ TABLE_PROPERTY_MAPPER = {
             ],
             'DlpPafLivestock': [
                 'animals', 'dest_animal_shed', 'dest_feeds', 'dest_medicines', 'dest_tools', 'dest_others',
-                'dmg_animal_shed', 'dmg_tools', 'dmg_others', 'damages' 'id',
+                'dmg_animal_shed', 'dmg_tools', 'dmg_others', 'damages', 'id',
             ],
             'DlpPafPoultry': [
                 'animals', 'dest_animal_shed', 'dest_feeds', 'dest_medicines', 'dest_tools', 'dest_others',
-                'dmg_animal_shed', 'dmg_tools', 'dmg_others', 'damages' 'id',
+                'dmg_animal_shed', 'dmg_tools', 'dmg_others', 'damages', 'id',
             ],
             'DlpStructStructures': [
                 'structures', 'dest_num', 'dest_sqm', 'pdmg_num', 'pdmg_roof', 'pdmg_wall', 'pdmg_floor', 'damages',
@@ -2650,10 +2664,10 @@ TABLE_PROPERTY_MAPPER = {
                 'animals', 'milk_year_1', 'milk_year_2', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2',
                 'los_year_1', 'los_year_2', 'id',
             ],
-            # 'DlpLosPoultry': [
-            #     'animals', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'eggs_year_1', 'eggs_year_2',
-            #     'los_year_1', 'los_year_2', 'id',
-            # ],
+            'DlpLosPoultry': [
+                'animals', 'meat_year_1', 'meat_year_2', 'others_year_1', 'others_year_2', 'eggs_year_1', 'eggs_year_2',
+                'los_year_1', 'los_year_2', 'id',
+            ],
             'DlpLosOther': [
                 'others', 'los_year_1', 'los_year_2', 'id',
             ],
@@ -2712,6 +2726,58 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_1',
                 'los_year_2',
             ],
+
+        },
+        'Table_4': {
+            'DlpNdaLivestockPubDistrict': [
+                'animals', 'damages',
+            ],
+            'DlpNdaLivestockPvtDistrict': [
+                'animals', 'damages',
+            ],
+            'DlpNdaPoultryPubDistrict': [
+                'animals', 'damages',
+            ],
+            'DlpNdaPoultryPvtDistrict': [
+                'animals', 'damages',
+            ],
+            'DlpLosLivestockPubDistrict': [
+                'animals', 'los_year_1', 'los_year_2',
+            ],
+            'DlpLosLivestockPvtDistrict': [
+                'animals', 'los_year_1', 'los_year_2',
+            ],
+            'DlpLosPoultryPubDistrict': [
+                'animals', 'los_year_1', 'los_year_2',
+            ],
+            'DlpLosPoultryPvtDistrict': [
+                'animals', 'los_year_1', 'los_year_2',
+            ],
+            'DlpLosOtherPubDistrict': [
+                'others', 'los_year_1', 'los_year_2',
+            ],
+            'DlpLosOtherPvtDistrict': [
+                'others', 'los_year_1', 'los_year_2',
+            ],
+            'DlpPafPubDistrict': [
+                'damages',
+            ],
+            'DlpPafPvtDistrict': [
+                'damages',
+            ],
+            'DlpStructStructuresPubDistrict': [
+                'damages',
+            ],
+            'DlpStructStructuresPvtDistrict': [
+                'damages',
+            ],
+            'DlpStructOtherPubDistrict': [
+                'damages',
+            ],
+            'DlpStructOtherPvtDistrict': [
+                'damages',
+            ],
+
 
         },
     },

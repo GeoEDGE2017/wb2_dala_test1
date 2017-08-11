@@ -104,16 +104,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     dead_mature_male : null,
                     damages : null,
                },
-//{
-//                    animals : 'TOTAL',
-//                    dead_young_male : null,
-//                    dead_young_female : null,
-//                    dead_juvenile_male : null,
-//                    dead_juvenile_female : null,
-//                    dead_mature_female : null,
-//                    dead_mature_male : null,
-//                    damages : null,
-//                }
+
                 ],
                 //Tab 2
                 'DlpPafLivestock':[{
@@ -370,27 +361,27 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     los_year_1 : null,
                     los_year_2 : null,
                 }
-//                , {
-//                    animals : 'Total',
-//                    meat_year_1 : null,
-//                    meat_year_2 : null,
-//                    others_year_1 : null,
-//                    others_year_2 : null,
-//                    eggs_year_1 : null,
-//                    eggs_year_2 : null,
-//                    los_year_1 : null,
-//                    los_year_2 : null,
-//                }, {
-//                    animals : 'Total Production Losses',
-//                    meat_year_1 : null,
-//                    meat_year_2 : null,
-//                    others_year_1 : null,
-//                    others_year_2 : null,
-//                    eggs_year_1 : null,
-//                    eggs_year_2 : null,
-//                    los_year_1 : null,
-//                    los_year_2 : null,
-//                }
+                , {
+                    animals : 'Total',
+                    meat_year_1 : null,
+                    meat_year_2 : null,
+                    others_year_1 : null,
+                    others_year_2 : null,
+                    eggs_year_1 : null,
+                    eggs_year_2 : null,
+                    los_year_1 : null,
+                    los_year_2 : null,
+                }, {
+                    animals : 'Total Production Losses',
+                    meat_year_1 : null,
+                    meat_year_2 : null,
+                    others_year_1 : null,
+                    others_year_2 : null,
+                    eggs_year_1 : null,
+                    eggs_year_2 : null,
+                    los_year_1 : null,
+                    los_year_2 : null,
+                }
 ],
                 'DlpLosOther':[{
                     others : 'Cleaning costs',
@@ -431,7 +422,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
             })
         }
 
-        if($scope.incident && $scope.district ) {
+        if($scope.incident && $scope.district && $scope.selectedOrganization) {
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -441,6 +432,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
+                        'organization_id': $scope.selectedOrganization.id,
                     },
                     'table_name': 'Table_2',
                     'sector':'agri_livestock',
@@ -448,7 +440,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-                console.log(data);
+                generateRefencedData();
+
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
@@ -462,19 +455,15 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
                 if(is_null == true) {
                     $("#modal-container-239455").modal('show');
-                    console.log('baseline table or tables are empty');
-                    console.log($scope.bs_data);
+
                 }
-                else {
-                    generateRefencedData();
-                }
+
             }, function errorCallback(response) {
-                console.log('baseline tables data retrieving error');
-                console.log(response);
+
             });
         }
 
-        if($scope.incident && $scope.district && $scope.selectedOrganization ) {
+        if($scope.incident && $scope.district ) {
             $scope.is_edit_disable = true;
         }
 
@@ -482,6 +471,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
     //get fields from baseline data
     function generateRefencedData() {
+
         data_array = ['BlpAnmLivestock', 'BlpAnmPoultry', 'BlpAstLivestock', 'BlpAstPoultry', 'BlpAstOther', 'BlpApyLivestock', 'BlpApyPoultry'];
 
         var dl_model1 = null;
@@ -494,9 +484,13 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         angular.forEach(data_array, function(value, key) {
             obj_array = $scope.bs_data[value];
-            console.log(obj_array);
+            console.log('bs_data',$scope.bs_data[value]);
+            console.log('value',value);
 
-            model_name = obj_array;
+
+            model_name = value;
+            if(model_name){
+             console.log('name',model_name);
 
             var particular_value_1 = null;
             var particular_value_2 = null;
@@ -517,28 +511,28 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model2] = [];
             }
             if(model_name == 'BlpAstLivestock') {
-               dl_model2 = 'DlpPafLivestock';
-               particular_value_2 = 'Total';
+               dl_model3 = 'DlpPafLivestock';
+               particular_value_3 = 'Total';
                $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model3] = [];
             }
             if(model_name == 'BlpAstPoultry') {
-               dl_model2 = 'DlpPafPoultry';
-               particular_value_2 = 'Total';
+               dl_model4 = 'DlpPafPoultry';
+               particular_value_4 = 'Total';
                $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model4] = [];
             }
             if(model_name == 'BlpAstOther') {
-               dl_model2 = 'DlpStructOther';
-               particular_value_2 = 'Total';
+               dl_model5 = 'DlpStructOther';
+               particular_value_5 = 'Total';
                $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model5] = [];
             }
             if(model_name == 'BlpApyLivestock') {
-               dl_model2 = 'DlpLosLivestock';
-               particular_value_2 = 'Total';
+               dl_model6 = 'DlpLosLivestock';
+               particular_value_6 = 'Total';
                $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model6] = [];
             }
             if(model_name == 'BlpApyPoultry') {
-               dl_model2 = 'DlpLosPoultry';
-               particular_value_2 = 'Total';
+               dl_model7 = 'DlpLosPoultry';
+               particular_value_7 = 'Total';
                $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model7] = [];
             }
 
@@ -552,6 +546,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 dead_mature_male : null,
                 damages : null,
             };
+
             var obj2 = {
                 animals : particular_value_2,
                 dead_young_male : null,
@@ -627,7 +622,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     damages : null,
                 };
                 var obj2 = {
-                    animals : value.fields.animals,
+                    animals : value.fields.poultry,
                     dead_young_male : null,
                     dead_young_female : null,
                     dead_juvenile_male : null,
@@ -637,7 +632,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     damages : null,
                 };
                 var obj3 = {
-                    animals : value.fields.animals,
+                    animals : value.fields.livestock,
                     dest_animal_shed : null,
                     dest_feeds : null,
                     dest_medicines : null,
@@ -649,7 +644,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     damages : null,
                 };
                 var obj4 = {
-                    animals : value.fields.animals,
+                    animals : value.fields.poultry,
                     dest_animal_shed : null,
                     dest_feeds : null,
                     dest_medicines : null,
@@ -667,7 +662,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     damages : null,
                 };
                 var obj6 = {
-                    animals : value.fields.animals,
+                    animals : value.fields.livestock,
                     milk_year_1 : null,
                     milk_year_2 : null,
                     meat_year_1 : null,
@@ -678,7 +673,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     los_year_2 : null,
                 };
                 var obj7 = {
-                    animals : value.fields.animals,
+                    animals : value.fields.poultry,
                     meat_year_1 : null,
                     meat_year_2 : null,
                     others_year_1 : null,
@@ -733,6 +728,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
             if(model_name == 'BlpApyPoultry') {
                $scope.dlLivestockPoultry.agri_livestock.Table_3[dl_model7].push(obj7);
             }
+            }
         });
     }
 
@@ -749,6 +745,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                     'com_data': {
                         'district_id':  $scope.district.district__id,
                         'incident_id': $scope.incident,
+                        'organizationtype_id':$scope.selectedOrganization.id,
                         'user_id':$scope.user_id
                     },
                     'is_edit' : $scope.is_edit,
@@ -779,7 +776,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 'sector':'agri_livestock'
             }),
         }).success(function(data) {
-            console.log(data);
+
             $scope.organizations = data;
         })
     }
@@ -789,7 +786,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
        $scope.is_edit = true;
        $scope.submitted = true;
         if(form.$valid){
-            console.log("hi");
+
             $http({
             method: "POST",
             url: '/dl_fetch_edit_data',
@@ -799,6 +796,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
             'com_data': {
                    'district':  $scope.district.district__id,
                     'incident': $scope.incident,
+                    'organizationtype_id':$scope.selectedOrganization.id,
                   },
                    'is_edit':$scope.is_edit
                    }),
@@ -852,7 +850,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         })
 
         grantot = grantot + finaltotal1+ finaltotal2;
-        console.log(grantot);
+
         return grantot;
     }
 
@@ -876,11 +874,11 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
              }
         })
         grantot = grantot + finaltotal1+ finaltotal2;
-        console.log(grantot);
+
         return grantot;
     }
 
-       $scope.calTotalStructures=function(){
+    $scope.calTotalStructures=function(){
 
         var finaltotal1 = 0;
         var finaltotal2 = 0;
@@ -894,22 +892,183 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
         var array2 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry;
         var array3 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry;
         var array4 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock;
-//        var array5 =
-//        var array6 =
+        var array4 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock;
+        var array4 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock;
+        var array5 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures;
+        var array6 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther;
 
-        angular.forEach(array1, function(value, key) {
+
+         angular.forEach(array1, function(value, key) {
             if(value.animals != 'Total'){
                 finaltotal1 = finaltotal1 + value.damages ;
              }
         })
-//        angular.forEach(array2, function(value, key) {
-//             if(value.animals != 'Total' ){
-//                finaltotal2 = finaltotal2 + value.damages ;
-//             }
-//        })
-//        grantot = grantot + finaltotal1+ finaltotal2;
-//        console.log(grantot);
-//        return grantot;
+
+        angular.forEach(array2, function(value, key) {
+             if(value.animals != 'Total' ){
+                finaltotal2 = finaltotal2 + value.damages ;
+             }
+        })
+
+
+        angular.forEach(array3, function(value, key) {
+            if(value.animals != 'Total'){
+                finaltotal3 = finaltotal3 + value.damages ;
+             }
+        })
+        angular.forEach(array4, function(value, key) {
+             if(value.animals != 'Total' ){
+                finaltotal4 = finaltotal4 + value.damages ;
+             }
+        })
+        angular.forEach(array5, function(value, key) {
+             if(value.structures != 'Total' ){
+                finaltotal5 = finaltotal5 + value.damages ;
+             }
+        })
+        angular.forEach(array6, function(value, key) {
+             if(value.other_assets != 'Total' ){
+                finaltotal6 = finaltotal6 + value.damages ;
+             }
+        })
+
+        grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
+
+        return grantot;
+
+
+    }
+
+    //Get Calculate data
+    $scope.CalTotlosses=function(arr,property){
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal = finaltotal + value[property] ;
+                }
+
+        })
+         return finaltotal;
+    }
+
+    $scope.totalProLossesYear1 = function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock;
+        var array2 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry;
+
+        angular.forEach(array1, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal1 = finaltotal1 + value.los_year_1 ;
+                }
+
+        })
+        angular.forEach(array2, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal2 = finaltotal2 + value.los_year_1 ;
+                }
+
+        })
+         grantot = grantot + finaltotal1+ finaltotal2;
+
+        return grantot;
+
+
+    }
+
+    $scope.totalProLossesYear2 = function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock;
+        var array2 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry;
+
+        angular.forEach(array1, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal1 = finaltotal1 + value.los_year_2 ;
+                }
+
+        })
+        angular.forEach(array2, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal2 = finaltotal2 + value.los_year_2 ;
+                }
+
+        })
+         grantot = grantot + finaltotal1+ finaltotal2;
+
+        return grantot;
+
+
+    }
+
+    $scope.totalOtherLossesYear1 = function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock;
+        var array2 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry;
+        var array3 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther;
+
+        angular.forEach(array1, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal1 = finaltotal1 + value.los_year_1 ;
+                }
+
+        })
+        angular.forEach(array2, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal2 = finaltotal2 + value.los_year_1 ;
+                }
+
+        })
+         angular.forEach(array3, function(value, key) {
+                if(value.others !='TOTAL OF LOSSES'){
+                finaltotal3 = finaltotal3 + value.los_year_1 ;
+                }
+
+        })
+         grantot = grantot + finaltotal1+ finaltotal2 +finaltotal3 ;
+
+        return grantot;
+
+
+    }
+
+    $scope.totalOtherLossesYear2 = function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock;
+        var array2 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry;
+        var array3 = $scope.dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther;
+
+        angular.forEach(array1, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal1 = finaltotal1 + value.los_year_2 ;
+                }
+
+        })
+        angular.forEach(array2, function(value, key) {
+                if(value.animals != 'Total'){
+                finaltotal2 = finaltotal2 + value.los_year_2 ;
+                }
+
+        })
+         angular.forEach(array3, function(value, key) {
+                if(value.others !='TOTAL OF LOSSES'){
+                finaltotal3 = finaltotal3 + value.los_year_2 ;
+                }
+
+        })
+         grantot = grantot + finaltotal1+ finaltotal2 +finaltotal3 ;
+
+        return grantot;
+
+
     }
 
 }]);

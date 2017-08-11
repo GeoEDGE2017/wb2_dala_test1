@@ -2,6 +2,14 @@ from django.db import models
 from settings.models import District
 
 
+class Company(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transport_rail\".\"company'
+
+
 class BdSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     key = models.BigIntegerField(blank=True, null=True)
@@ -11,18 +19,11 @@ class BdSessionKeys(models.Model):
     table_name = models.CharField(max_length=255, blank=True, null=True)
     full_bs_date = models.DateField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='tr_bs_district', blank=True, null=True)
+    company = models.ForeignKey(Company, db_column='company', related_name='tr_bs_company', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'transport_rail\".\"bd_session_keys'
-
-
-class Company(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'transport_rail\".\"company'
 
 
 class BsBuildingAst(models.Model):

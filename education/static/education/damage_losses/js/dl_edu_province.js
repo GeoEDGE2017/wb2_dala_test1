@@ -1,4 +1,4 @@
-
+//Table 6
 var bsHealthStatusApp = angular.module('dlEduProvinceApp', ['ui.bootstrap', 'popoverToggle']);
 
 bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceController($scope, $http) {
@@ -20,7 +20,7 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
                 method: "POST",
                 url: '/fetch_incident_provinces',
                 data: angular.toJson({
-                        'incident': $scope.incident
+                    'incident': $scope.incident
                 }),
             }).success(function(data) {
                 $scope.provinces = data;
@@ -30,7 +30,7 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
     }
 
     $scope.loadData = function() {
-        if($scope.incident && $scope.province ){
+        if($scope.incident && $scope.province) {
             $scope.is_edit = true;
             $scope.submitted = true;
 
@@ -39,7 +39,7 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':  'Table_6',
+                    'table_name': 'Table_6',
                     'sector': 'education',
                     'com_data': {
                         'province': $scope.province,
@@ -48,16 +48,24 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
                 }),
             }).success(function(data) {
                 $scope.data=data;
+                console.log($scope.data);
             })
         }
     }
 
-    $scope.sumFunc8 = function(val1, val2, val3, val4, val5, val6, val7, val8) {
-        return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) + parseInt(val6) + parseInt(val7) + parseInt(val8);
+    $scope.sumFunc2 = function(val1, val2) {
+        return parseInt(val1) + parseInt(val2);
     }
 
     $scope.sumFunc5 = function(val1, val2, val3, val4, val5) {
         return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5);
     }
 
+    $scope.sumFunc6 = function(val1, val2, val3, val4, val5, val6) {
+        return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) + parseInt(val6);
+    }
+
+    $scope.sumFunc8 = function(val1, val2, val3, val4, val5, val6, val7, val8) {
+        return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) + parseInt(val6) + parseInt(val7) + parseInt(val8);
+    }
 })

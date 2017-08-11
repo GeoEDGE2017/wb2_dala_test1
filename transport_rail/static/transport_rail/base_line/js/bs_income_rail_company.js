@@ -176,16 +176,16 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                    console.log(response);
-                    if(response.data == 'False'){
-                        $("#modal-container-239454").modal('show');
-                        $scope.is_valid_data = false;
-                    }
-                    else{
-                        $("#modal-container-239453").modal('show');
-                    }
-                },function errorCallback(response) {
-                    console.log(response);
+                console.log(response);
+                if(response.data == 'False'){
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
+                else{
+                    $("#modal-container-239453").modal('show');
+                }
+            },function errorCallback(response) {
+                console.log(response);
             });
         }
     }
@@ -199,22 +199,41 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                 data: angular.toJson({
                     'model': 'Company',
                     'model_fields': $scope.new_company,
-                     'is_edit' : false,
-                     'sector':'transport_rail'
+                    'is_edit': false,
+                    'sector': 'transport_rail'
                 }),
-
             }).success(function(data) {
                 console.log(data);
-
                 $scope.new_company.id = data;
                 if(data) {
                     $scope.companies.push($scope.new_company);
                     console.log($scope.new_company);
                 }
-
                 $("#modal-container-218029").modal('hide');
             })
         }
+    }
+
+    $scope.editCompany = function() {
+        console.log('editCompany', $scope.new_company);
+        $http({
+            method: "POST",
+            url: "/add_entity",
+            data: angular.toJson({
+                'model': 'Company',
+                'model_fields': $scope.new_company,
+                'is_edit': true,
+                'sector': 'transport_rail'
+            }),
+        }).success(function(data) {
+            console.log(data);
+            if(data) {
+                $scope.companies.push($scope.new_company);
+                $("#modal-container-218029").modal('hide');
+//                    $("#modal-container-469840").modal('hide');
+                window.location.reload();
+            }
+        })
     }
 
     $scope.fetchCompanies = function() {
@@ -245,15 +264,11 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
             }).success(function(data) {
                 console.log(data);
 //                $scope.bsIncomeRailCompany = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.transport_rail.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -265,7 +280,6 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -279,7 +293,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 
     //Clear Function
     $scope.clear = function() {
-        console.log("init")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.bsIncomeRailCompany = angular.copy(init_data);
     }

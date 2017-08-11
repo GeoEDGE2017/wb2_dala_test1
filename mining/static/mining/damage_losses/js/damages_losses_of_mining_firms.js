@@ -622,7 +622,5 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
         console.log("clear")
         $scope.is_edit = false;
         $scope.dmLosOfMinFirms = angular.copy(init_data);
-
     }
-
 })

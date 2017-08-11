@@ -1014,6 +1014,7 @@ def dl_save_data_with_array(request):
                         filter_fields['province_id'] = district.province.id
                         dl_session = sub_app_session(**filter_fields)
                         dl_session.date = todate
+                        dl_session.data_type = 'damage_losses'
                         dl_session.save()
                     else:
                         dl_session = sub_app_session(**filter_fields)
@@ -1658,14 +1659,46 @@ def add_entity(request):
 
     if is_edit == False:
         print 'new'
-
         print model_fields
-
         model_object = model_class(**model_fields)
         model_object.save()
 
     else:
         print 'update'
+        object_id = model_fields['id']
+        modified_model = model_class.objects.filter(pk=object_id)
+        modified_model.update(**model_fields)
+        return HttpResponse(object_id)
+
+    if model_object.id is not None:
+        return HttpResponse(model_object.id)
+    else:
+        return HttpResponse(False)
+
+
+# dileepa
+@csrf_exempt
+def edit_entity(request):
+    data = (yaml.safe_load(request.body))
+    model_fields = data['model_fields']
+    model_name = data['model']
+    is_edit = data['is_edit']
+    sector = data['sector']
+
+    sub_app_name = sector + '.base_line'
+
+    model_class = apps.get_model(sub_app_name, model_name)
+
+    print is_edit
+
+    if is_edit == False:
+        print 'new'
+        print model_fields
+        model_object = model_class(**model_fields)
+        model_object.save()
+
+    else:
+        print '****update'
         object_id = model_fields['id']
         modified_model = model_class.objects.filter(pk=object_id)
         modified_model.update(**model_fields)

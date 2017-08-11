@@ -246,9 +246,9 @@ $(document).ready(function() {
                                 <input ng-model="dugDfNsa.tc_crc_resc" type="number" placeholder=""
                                        class="form-control input-md">
                             </td>
-                            <td width="136">
-                                <input ng-model="dugDfNsa.min_pzd_offices" type="number" placeholder=""
-                                       class="form-control input-md">
+                            <td width="136" class="tdpa">
+                                <!--<input ng-model="dugDfNsa.min_pzd_offices" type="number" placeholder=""-->
+                                       <!--class="form-control input-md">-->
                             </td>
                             <td class="right" width="122" ng-model="dugDfNsa.total" ng-bind="dugDfNsa.total =
                                     dugDfNsa.ab1_1c +
@@ -1044,7 +1044,7 @@ $(document).ready(function() {
                             </tr>
                             <tr height="17"
                                 ng-repeat="dugNpdatEquipment in dlGovnEduFacilities.education.Table_3.DugNpdatEquipment"
-                                ng-if="dugNpdatEquipment.particulars !='Value of Partially Damaged Equipment'">
+                                ng-if="dugNpdatEquipment.particulars != 'Value of Partially Damaged Equipment'">
                                 <td ng-model="dugNpdatEquipment.particulars" ng-bind="dugNpdatEquipment.particulars"
                                     class="tdpa" width="280"
                                     height="17">
@@ -1097,10 +1097,8 @@ $(document).ready(function() {
                                 ng-repeat="dugNpdatEquipment in dlGovnEduFacilities.education.Table_3.DugNpdatEquipment"
                                 ng-if="dugNpdatEquipment.particulars == 'Value of Partially Damaged Equipment'">
                                 <td class="boldash" width="280" height="17" ng-bind="dugNpdatEquipment.particulars">
-
                                 </td>
-
-                            <td width="136" ng-model="dugNpdatEquipment.ab1_1c"
+                                <td width="136" ng-model="dugNpdatEquipment.ab1_1c"
                                     ng-bind="dugNpdatEquipment.ab1_1c = calTotal('DugNpdatEquipment' ,'ab1_1c')">
                                 </td>
                                 <td class="right" width="136" ng-model="dugNpdatEquipment.type_2"

@@ -458,13 +458,14 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         if(form.$valid){
             $http({
                 method: 'POST',
-                url: '/bs_save_data',
+                url: '/bs_save_data_with_organization',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
                     'table_data': $scope.bsLivestockPoultry,
                     'com_data': {
                         'district': $scope.district,
                         'bs_date': $scope.bs_date,
+                        'organization_id': $scope.selectedOrganization.id,
                         'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
@@ -702,13 +703,14 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
         if (form.$valid) {
             $http({
                 method: "POST",
-                url: "/bs_fetch_edit_data",
+                url: "/bs_livestock_fetch_edit_data",
                 data: angular.toJson({
                     'table_name': 'Table_2',
                     'sector': 'agri_livestock',
                     'com_data': {
                         'district': $scope.district,
-                        'bs_date': $scope.bs_date
+                        'bs_date': $scope.bs_date,
+                        'organization_id': $scope.selectedOrganization.id,
                     }
                 }),
             }).success(function(data) {

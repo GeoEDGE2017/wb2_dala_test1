@@ -565,7 +565,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
                     'table_data': $scope.dmLosOfMinFirms,
                     'com_data': {
                         'district_id': $scope.district.district__id,
-                        'incident_id': $scope.incident,
+                        'incident': 15,
                         'firm_id': $scope.selectedFirm.id,
                         'user_id': $scope.user_id,
                     },

@@ -47,6 +47,7 @@ urlpatterns = [
     url(r'^dl_delete_data', views.dl_delete_data, name='dl_delete_data'),
     url(r'^is_enum_used_in_dl', views.is_enum_used_in_dl, name='is_enum_used_in_dl'),
     url(r'^bs_save_data_with_firm', views.bs_save_data_with_firm, name='bs_save_data_with_firm'),
+    url(r'^bs_save_data_with_organization', views.bs_save_data_with_organization, name='bs_save_data_with_organization'),
 
     # add_entity_with_district
     url(r'^add_entity_with_district$', views.add_entity_with_district, name='add_entity_with_district'),
@@ -83,6 +84,7 @@ urlpatterns = [
 
     # agri_livestock
     url(r'^agri_livestock/', include('agri_livestock.urls', namespace='agri_livestock')),
+     url(r'^bs_livestock_fetch_edit_data$', views.bs_livestock_fetch_edit_data, name='bs_livestock_fetch_edit_data'),
 
     # agri_fisheries
     url(r'^agri_fisheries/', include('agri_fisheries.urls', namespace='agri_fisheries')),

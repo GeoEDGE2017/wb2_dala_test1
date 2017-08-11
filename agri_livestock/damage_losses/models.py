@@ -12,6 +12,7 @@ class DlSessionKeys(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='alvs_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', related_name='alvs_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='alvs_dl_district', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organizationType', blank=True, related_name='alvs_dl_Organizationtype', null=True)
 
     class Meta:
         managed = False
@@ -34,7 +35,7 @@ class DlpNdaLivestock(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -56,7 +57,7 @@ class DlpNdaPoultry(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -79,7 +80,7 @@ class DlpPafLivestock(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
     dmg_tools = models.BigIntegerField(blank=True, null=True)
 
     class Meta:
@@ -103,7 +104,7 @@ class DlpPafPoultry(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
     dmg_tools = models.BigIntegerField(blank=True, null=True)
 
     class Meta:
@@ -126,7 +127,7 @@ class DlpStructStructures(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -144,7 +145,7 @@ class DlpStructOther(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -167,7 +168,7 @@ class DlpLosLivestock(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -178,6 +179,8 @@ class DlpLosPoultry(models.Model):
     animals = models.CharField(max_length=255, blank=True, null=True)
     meat_year_1 = models.FloatField(blank=True, null=True)
     meat_year_2 = models.FloatField(blank=True, null=True)
+    eggs_year_1 = models.FloatField(blank=True, null=True)
+    eggs_year_2 = models.FloatField(blank=True, null=True)
     others_year_1 = models.FloatField(blank=True, null=True)
     others_year_2 = models.FloatField(blank=True, null=True)
     los_year_1 = models.FloatField(blank=True, null=True)
@@ -188,7 +191,7 @@ class DlpLosPoultry(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -205,7 +208,7 @@ class DlpLosOther(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organizationtype = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
 
     class Meta:
         managed = False

@@ -21,6 +21,7 @@ class BdSessionKeys(models.Model):
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     table_name = models.CharField(max_length=255, blank=True, null=True)
     full_bs_date = models.DateField(blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, related_name='alvs_bs_Organizationtype', null=True)
     district = models.ForeignKey(District, db_column='district', related_name='alvs_bs_district', blank=True, null=True)
 
     class Meta:
@@ -90,7 +91,7 @@ class BlpAnmLivestock(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -117,7 +118,7 @@ class BlpAnmPoultry(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -140,7 +141,7 @@ class BlpAstLivestock(models.Model):
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
     livestock = models.CharField(max_length=255, blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -163,7 +164,7 @@ class BlpAstPoultry(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -182,7 +183,7 @@ class BlpAstStructures(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -199,7 +200,7 @@ class BlpAstOther(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -218,7 +219,7 @@ class BlpApyLivestock(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -236,7 +237,7 @@ class BlpApyPoultry(models.Model):
     lmd = models.DateTimeField(blank=True, null=True)
     bs_date = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(blank=True, null=True)
-    organization = models.ForeignKey(Organization, db_column='organization', blank=True, null=True)
+    organization = models.ForeignKey(Organization, db_column='organization_id', blank=True, null=True)
 
     class Meta:
         managed = False

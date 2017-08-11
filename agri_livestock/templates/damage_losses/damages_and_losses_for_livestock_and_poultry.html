@@ -93,7 +93,7 @@
                         </td>
                         <td class="trsub" colspan="5" height="19" width="400">
                             <select ng-options="organization as organization.name for organization in organizations track by organization.id"
-                                    name="firm" id="ccyear" ng-change="changedValue();" ng-model="selectedOrganization" class="form-control" style="font-weight:400;" required>
+                                    name="firm" id="ccyear"  ng-model="selectedOrganization" ng-change="changedValue();" class="form-control" style="font-weight:400;" required>
                                 <option value="" selected>Select Organization</option>
                             </select>
                         </td>
@@ -185,11 +185,12 @@
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpNdaLivestock.damages" ng-bind="dlpNdaLivestock.damages =
                             dlpNdaLivestock.dead_young_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_young_male +
                             dlpNdaLivestock.dead_young_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_young_female +
-                            dlpNdaLivestock.dead_juvenile_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_female +
-                            dlpNdaLivestock.dead_juvenile_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_male +
+                            dlpNdaLivestock.dead_juvenile_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_male +
+                            dlpNdaLivestock.dead_juvenile_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_juvenile_female +
                             dlpNdaLivestock.dead_mature_male * bs_data['BlpAnmLivestock'][$index].fields.avg_val_mature_male +
                             dlpNdaLivestock.dead_mature_female * bs_data['BlpAnmLivestock'][$index].fields.avg_val_mature_female ">
                             </td>
+
 
                         </tr>
 
@@ -216,7 +217,8 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td class="right" colspan="4" width="252" height="19" ng-model="dlpNdaLivestock.damages" ng-bind="CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock)">
+                            <td class="right" colspan="4" width="252" height="19" ng-model="dlpNdaLivestock.damages"
+                                ng-bind="CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpNdaLivestock)">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -267,54 +269,25 @@
                             </td>
                             <td width="143" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_female">
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_male">
                             </td>
                             <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_male">
+                                       class="form-control input-md" ng-model="dlpNdaPoultry.dead_mature_female">
                             </td>
 
                             <td class="right" colspan="4" width="252" height="19" ng-model="dlpNdaPoultry.damages" ng-bind="dlpNdaPoultry.damages =
                             dlpNdaPoultry.dead_young_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_young_male +
                             dlpNdaPoultry.dead_young_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_young_female +
-                            dlpNdaPoultry.dead_juvenile_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_female +
-                            dlpNdaPoultry.dead_juvenile_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_male +
+                            dlpNdaPoultry.dead_juvenile_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_male +
+                            dlpNdaPoultry.dead_juvenile_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_juvenile_female +
                             dlpNdaPoultry.dead_mature_male * bs_data['BlpAnmPoultry'][$index].fields.avg_val_mature_male +
                             dlpNdaPoultry.dead_mature_female * bs_data['BlpAnmPoultry'][$index].fields.avg_val_mature_female ">
                             </td>
+
+
                         </tr>
-                        <!--<tr height="19">-->
-                            <!--<td class="tdpa" width="113" height="19">-->
-                                <!--Others-->
-                            <!--</td>-->
-                            <!--<td width="117" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="122" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="103" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="136" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="143" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td colspan="4" width="252" height="19">-->
-                                <!-- - -->
-                            <!--</td>-->
-                        <!--</tr>-->
+
                         <!--Poultry Total-->
                         <tr height="19" ng-repeat="dlpNdaPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpNdaPoultry" ng-if="dlpNdaPoultry.animals == 'Total'">
                             <td class="tdpa" width="113" height="19" ng-bind="dlpNdaPoultry.animals">
@@ -363,7 +336,7 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td class="right" colspan="4" width="252" height="19" ng-bind="calTotaltabOne()">
+                            <td class="right" colspan="4" width="252" height="19" ng-model="value1" ng-bind="value1 = calTotaltabOne()">
 
                             </td>
                         </tr>
@@ -507,46 +480,7 @@
                             dlpPafLivestock.dmg_others * bs_data['BlpAstLivestock'][$index].fields.avg_repairc_others ">
                             </td>
                         </tr>
-                        <!--<tr height="19">-->
-                            <!--<td class="tdpa" width="113" height="19">-->
-                                <!--Others-->
-                            <!--</td>-->
-                            <!--<td width="117" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="122" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="103" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="136" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="143" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td colspan="2" width="126" height="19">-->
-                                <!-- - -->
-                            <!--</td>-->
-                        <!--</tr>-->
+
                         <tr height="19" ng-repeat="dlpPafLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpPafLivestock" ng-if="dlpPafLivestock.animals == 'Total'">
                             <td class="tdpa" width="113" height="19" ng-bind="dlpPafLivestock.animals">
                             </td>
@@ -657,46 +591,7 @@
                             dlpPafPoultry.dmg_others * bs_data['BlpAstPoultry'][$index].fields.avg_repairc_others ">
                             </td>
                         </tr>
-                        <!--<tr height="19">-->
-                            <!--<td class="tdpa" width="113" height="19">-->
-                                <!--Others-->
-                            <!--</td>-->
-                            <!--<td width="117" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="122" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="103" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="136" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="143" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td colspan="2" width="126" height="19">-->
-                                <!-- - -->
-                            <!--</td>-->
-                        <!--</tr>-->
+
                         <tr height="43" ng-repeat="dlpPafPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpPafPoultry" ng-if="dlpPafPoultry.animals == 'Total'">
                             <td class="tdpa" width="113" height="43">
                                 Total
@@ -748,7 +643,7 @@
                             <td class="tdpa" width="63" height="19">
                                 <br/>
                             </td>
-                            <td class="right" colspan="2" width="126" height="19" ng-bind="calTotalProduction()">
+                            <td class="right" colspan="2" width="126" height="19" ng-model="value2" ng-bind="value2 = calTotalProduction()">
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -846,7 +741,9 @@
                             <td width="63" height="19" class="tdpa">
                                 <br/>
                             </td>
-                            <td class="right" colspan="2" width="126" height="19" ng-model="dlpStructStructures.damages" ng-bind="dlpStructStructures.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures)">
+                            <td class="right" colspan="2" width="126" height="19"
+                                ng-model="dlpStructStructures.damages"
+                                ng-bind="dlpStructStructures.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructStructures)">
                             </td>
                         </tr>
                         <tr class="trheadc1" height="19">
@@ -880,21 +777,7 @@
                             dlpStructOther.num_part_dmg * bs_data['BlpAstOther'][$index].fields.avg_repair_cost">
                             </td>
                         </tr>
-                        <!--<tr height="19">-->
-                            <!--<td class="tdpa" colspan="3" width="343" height="19">-->
-                                <!--Others-->
-                            <!--</td>-->
-                            <!--<td colspan="3" width="342" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td colspan="3" width="189" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td colspan="2" width="126" height="19">-->
-                            <!--</td>-->
-                        <!--</tr>-->
+
                         <tr height="19" ng-repeat="dlpStructOther in dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther" ng-if="dlpStructOther.other_assets == 'Total'">
                             <td class="tdpa" colspan="3" width="343" height="19">
                                 Total
@@ -905,7 +788,9 @@
                             <td class="tdpa" colspan="3" width="189" height="19">
                                 <br/>
                             </td>
-                            <td class="right" colspan="2" width="126" height="19" ng-model="dlpStructOther.damages" ng-bind="dlpStructOther.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther)">
+                            <td class="right" colspan="2" width="126" height="19"
+                                ng-model="dlpStructOther.damages"
+                                ng-bind="dlpStructOther.damages = CalTot(dlLivestockPoultry.agri_livestock.Table_3.DlpStructOther)">
                             </td>
                         </tr>
                         <tr height="19" >
@@ -918,7 +803,7 @@
                             <td class="tdpa" colspan="3" width="189" height="19">
                                 <br/>
                             </td>
-                            <td class="right" colspan="2" width="126" height="19" ng-bind="">
+                            <td class="right" colspan="2" width="126" height="19" ng-bind="calTotalStructures()">
                             </td>
                         </tr>
                         </tbody>
@@ -1028,61 +913,36 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpLosLivestock.others_year_2">
                             </td>
-                            <td width="63" height="19" ng-bind="dlpLosLivestock.los_year_1">
+                            <td width="63" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
+                                height="19" ng-model="dlpLosLivestock.los_year_1" ng-bind="dlpLosLivestock.los_year_1 =
+                            dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
+                            dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
-                            <td width="63" height="19" ng-bind="dlpLosLivestock.los_year_2">
+                            <td width="63" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
+                                height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 =
+                            dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
+                            dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
+                            </td>
+                            <td width="63" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' "
+                                height="19" ng-model="dlpLosLivestock.los_year_1" ng-bind="dlpLosLivestock.los_year_1 =
+                            dlpLosLivestock.milk_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
+                            dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
+                            dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
+                            </td>
+                            <td width="63" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' " height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 =
+                            dlpLosLivestock.milk_year_2/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
+                            dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
+                            dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
                         </tr>
-                        <!--<tr height="19">-->
-                            <!--<td class="tdpa" width="113" height="19">-->
-                                <!--Others-->
-                            <!--</td>-->
-                            <!--<td width="117" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="122" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="103" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="136" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="143" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="text" placeholder=""-->
-                                       <!--class="form-control input-md">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!-- - -->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!-- - -->
-                            <!--</td>-->
-                        <!--</tr>-->
+
                         <!--Livestock Total-->
                         <tr height="19" ng-repeat="dlpLosLivestock in dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock" ng-if="dlpLosLivestock.animals == 'Total'">
                             <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosLivestock.animals">
                             </td>
-                            <td class="right" width="63" height="19" ng-bind="dlpLosLivestock.los_year_1">
+                            <td class="right" width="63" height="19" ng-model="dlpLosLivestock.los_year_1" ng-bind="dlpLosLivestock.los_year_1 = CalTotlosses($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock,'los_year_1')">
                             </td>
-                            <td class="right" width="63" height="19" ng-bind="dlpLosLivestock.los_year_2">
+                            <td class="right" width="63" height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 = CalTotlosses ($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosLivestock,'los_year_2')">
                             </td>
                         </tr>
                         <tr class="trheadc" height="19">
@@ -1137,64 +997,73 @@
                             </td>
                             <td width="143" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlpLosPoultry.others_year_1">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlpLosPoultry.others_year_2">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpLosPoultry.eggs_year_1">
                             </td>
                             <td width="63" height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpLosPoultry.eggs_year_2">
                             </td>
-                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1">
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.others_year_1">
                             </td>
-                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2">
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosPoultry.others_year_2">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1 =
+                            dlpLosPoultry.meat_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
+                            dlpLosPoultry.eggs_year_1/100* bs_data['BlpApyPoultry'][$index].fields.eggs +
+                            dlpLosPoultry.others_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
+                            </td>
+                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2 =
+                            dlpLosPoultry.meat_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
+                            dlpLosPoultry.eggs_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.eggs +
+                            dlpLosPoultry.others_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
                             </td>
                         </tr>
 
-                        <!--<tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals == 'Total'">-->
-                            <!--<td class="tdpa" colspan="9" width="973" height="19">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2">-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals == 'Total Production Losses'">-->
-                            <!--<td class="tdpa" colspan="9" width="973" height="19">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2">-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--&lt;!&ndash;Cleaning of Debris&ndash;&gt;-->
-                        <!--<tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others != 'TOTAL OF LOSSES'">-->
-                            <!--<td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
-                                       <!--class="form-control input-md" ng-model="dlpLosOther.los_year_1">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19">-->
-                                <!--<input id="textinput" name="textinput" type="number" placeholder=""-->
-                                       <!--class="form-control input-md" ng-model="dlpLosOther.los_year_2">-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others == 'TOTAL OF LOSSES'">-->
-                            <!--<td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">-->
-                                <!--TOTAL OF LOSSES-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19" ng-bind="dlpLosOther.los_year_1">-->
-                            <!--</td>-->
-                            <!--<td width="63" height="19" ng-bind="dlpLosOther.los_year_2">-->
-                            <!--</td>-->
-                        <!--</tr>-->
+                        <tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals == 'Total'">
+                            <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosPoultry.animals">
+                            </td>
+                            <td width="63" height="19" ng-model ="dlpLosPoultry.los_year_1" ng-bind="dlpLosPoultry.los_year_1 =CalTotlosses($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry,'los_year_1') ">
+                            </td>
+                            <td width="63" height="19" ng-model="dlpLosPoultry.los_year_2" ng-bind="dlpLosPoultry.los_year_2 = CalTotlosses($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry,'los_year_2')">
+                            </td>
+                        </tr>
+                         <tr height="19">
+                            <td class="tdpa" colspan="9" width="973" height="19">Total Production Losses
+                            </td>
+                            <td width="63" height="19" ng-bind="totalProLossesYear1()">
+                            </td>
+                            <td width="63" height="19" ng-bind="totalProLossesYear2()">
+                            </td>
+                        </tr>
+
+
+
+                        <!--Cleaning of Debris-->
+                        <tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others != 'TOTAL OF LOSSES'">
+                            <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosOther.los_year_1">
+                            </td>
+                            <td width="63" height="19">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="dlpLosOther.los_year_2">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others == 'TOTAL OF LOSSES'">
+                            <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">
+                                TOTAL OF LOSSES
+                            </td>
+                            <td width="63" height="19" ng-model="dlpLosOther.los_year_1" ng-bind="dlpLosOther.los_year_1 =totalOtherLossesYear1() ">
+                            </td>
+                            <td width="63" height="19" ng-model="dlpLosOther.los_year_2" ng-bind="dlpLosOther.los_year_2 =totalOtherLossesYear2()">
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     </tbody>

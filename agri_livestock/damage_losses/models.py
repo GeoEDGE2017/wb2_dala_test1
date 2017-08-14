@@ -290,6 +290,26 @@ class DlpStructStructuresPubDistrict(models.Model):
         db_table = 'agri_livestock\".\"dlp_struct_structures_pub_district'
 
 
+class DlpStructProductionPubDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_struct_production_pub_district'
+
+
+class DlpStructProductionPvtDistrict(models.Model):
+    damages = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'agri_livestock\".\"dlp_struct_production_pvt_district'
+
+
 class DlpStructStructuresPvtDistrict(models.Model):
     damages = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)

@@ -2746,6 +2746,12 @@ TABLE_PROPERTY_MAPPER = {
             'DlpPafPvtDistrict': [
                 'damages',
             ],
+            'DlpStructProductionPubDistrict': [
+                'damages',
+            ],
+            'DlpStructProductionPvtDistrict': [
+                'damages',
+            ],
             'DlpStructStructuresPubDistrict': [
                 'damages',
             ],
@@ -2758,7 +2764,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlpStructOtherPvtDistrict': [
                 'damages',
             ],
-
 
         },
     },

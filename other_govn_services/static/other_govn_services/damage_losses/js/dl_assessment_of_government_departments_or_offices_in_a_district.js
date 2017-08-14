@@ -142,7 +142,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.selectedDistrict = "";
-                console.log(data);
+                console.log('* ',data);
             })
         }
 
@@ -164,7 +164,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-                console.log('*', response);
+                console.log(response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
@@ -305,7 +305,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                console.log('test', response.data);
+                console.log(response.data);
                 if(response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
@@ -313,8 +313,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 else {
                     $("#modal-container-239453").modal('show');
                 }
-                console.log(response);
-
             }, function errorCallback(response) {
                 $("#modal-container-239454").modal('show');
                 console.log(response);
@@ -343,12 +341,9 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 console.log(data);
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.other_govn_services.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -360,7 +355,6 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -412,6 +406,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
             delete $scope.new_department['ownership']
             $scope.new_department.district_id = $scope.district.district__id;
 
+            console.log($scope.new_department);
+
             if(!$scope.is_edit_model) {
                 $scope.new_department.id = null;
             }
@@ -432,6 +428,10 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                         $scope.departments.push($scope.new_department);
                     }
                     $scope.new_department.id = data;
+                    console.log('2 - ', $scope.new_department.id);
+
+//                    $scope.ownership.id = $scope.new_department.ownership_id;
+//                    console.log('2 - ', $scope.ownership);
                 }
                 else {
                     var department = $filter('filter')($scope.departments, {id: data})[0];
@@ -446,6 +446,10 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
         else {
             console.log('***');
         }
+    }
+
+    $scope.test = function() {
+        console.log($scope.ownership);
     }
 
     $scope.editDepartment = function(form) {
@@ -491,7 +495,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.openAddDepartment = function(form) {
         $scope.submitted = true;
         console.log('in');
-        if(form.$valid) {
+        if($scope.incident && $scope.district) {
             $("#modal-container-218029").modal('show');
         }
     }
@@ -514,7 +518,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 }),
             }).success(function(data) {
                 $scope.ownership = data;
-                console.log(data);
+                console.log('ownership', data);
             })
         }
     }
@@ -574,7 +578,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     //Clear Function
     $scope.clear = function() {
-        alert("clear")
+        console.log("clear")
         $scope.is_edit = false;
         $scope.dlAssessmentOfGovnDeptOrOfcInADistrictSys = angular.copy(init_data);
     }

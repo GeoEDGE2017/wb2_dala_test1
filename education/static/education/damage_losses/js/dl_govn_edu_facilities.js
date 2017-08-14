@@ -908,7 +908,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
         });
     }
 
-    $scope.calTotal = function(model,property) {
+    $scope.calTotal = function(model, property) {
         var obj_array;
         total=0;
 
@@ -982,7 +982,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                 $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies[suppDmLength -1].total +
                 $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total;
 
-        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total);
+//        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total);
         return tabtwototal;
     }
 
@@ -995,7 +995,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
         var tabfourtotal= $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength -1].total +
             $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies[suppDmLength -1].total +
             $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total
-        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total);
+//        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total);
 
         return tabfourtotal;
     }

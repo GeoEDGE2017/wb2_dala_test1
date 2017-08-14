@@ -25,9 +25,15 @@
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Public Sector</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Private Sector</a></li>
-            <li id="li3"><a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a></li>
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 - Public Sector</a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 - Private Sector</a>
+            </li>
+            <li id="li3">
+                <a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a>
+            </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
@@ -47,10 +53,7 @@
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
-
                                 <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
                                     {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
@@ -129,9 +132,9 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][0].ab1_1c">
                             </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].ab1_1c">
-                            </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][2].ab1_1c">
+                            </td>
+                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].ab1_1c">
                             </td>
                         </tr>
                         <tr height="17">
@@ -147,9 +150,9 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][0].type_2">
                             </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_2">
-                            </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][2].type_2">
+                            </td>
+                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_2">
                             </td>
                         </tr>
                         <tr height="17">
@@ -166,9 +169,9 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][0].type_3">
                             </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_3">
-                            </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][2].type_3">
+                            </td>
+                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_3">
                             </td>
                         </tr>
                         <tr height="17">
@@ -184,33 +187,33 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][0].pirivena">
                             </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].pirivena">
-                            </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][2].pirivena">
+                            </td>
+                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].pirivena">
                             </td>
                         </tr>
                         <tr height="17">
-                            <td class="tdpa" width="307" height="17">Training Institutes
+                            <td class="tdpa" width="307" height="17">
+                                Training Institutes
                             </td>
                             <td class="right" width="110" ng-bind="value['DugDfNational'][0].training_institutes">
                             </td>
-                            <td class="right" width="110"
-                                ng-bind="value['DugNsaNational'][0].training_institutes">
+                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].training_institutes">
                             </td>
                             <td class="right" width="110" ng-bind="value['DugNsaNational'][1].training_institutes">
                             </td>
                             <td class="right" width="110" ng-bind="value['DugNdafNational'][0].training_institutes">
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][0].training_institutes">
-
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].training_institutes">
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][2].training_institutes">
                             </td>
+                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].training_institutes">
+                            </td>
                         </tr>
                         <tr height="17">
-                            <td class="tdpa" width="307" height="17">NCOE, Training Colleges
+                            <td class="tdpa" width="307" height="17">
+                                NCOE, Training Colleges
                             </td>
                             <td class="right" width="110" ng-bind="value['DugDfNational'][0].training_colleges">
                             </td>
@@ -227,10 +230,10 @@
                                 ng-bind="value['DpefBefNational'][0].training_colleges">
                             </td>
                             <td class="right" width="110"
-                                ng-bind="value['DpefBefNational'][1].training_colleges">
+                                ng-bind="value['DpefBefNational'][2].training_colleges">
                             </td>
                             <td class="right"  width="110"
-                                ng-bind="value['DpefBefNational'][2].training_colleges">
+                                ng-bind="value['DpefBefNational'][1].training_colleges">
                             </td>
                         </tr>
                         <tr height="17">
@@ -247,9 +250,9 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][0].tc_crc_resc">
                             </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].tc_crc_resc">
-                            </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][2].tc_crc_resc">
+                            </td>
+                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].tc_crc_resc">
                             </td>
                         </tr>
                         <tr height="17">
@@ -266,9 +269,9 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][0].min_pzd_offices">
                             </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].min_pzd_offices">
-                            </td>
                             <td class="right" width="110" ng-bind="value['DpefBefNational'][2].min_pzd_offices">
+                            </td>
+                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].min_pzd_offices">
                             </td>
                         </tr>
                         <tr height="17">
@@ -276,33 +279,35 @@
                                 Total
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc8(value['DugDfNational'][0].ab1_1c, value['DugDfNational'][0].type_2, value['DugDfNational'][0].type_3, value['DugDfNational'][0].pirivena, value['DugDfNational'][0].training_institutes, value['DugDfNational'][0].training_colleges, value['DugDfNational'][0].tc_crc_resc, value['DugDfNational'][0].min_pzd_offices)"></span>
+                                <span ng-bind="sumFunc8(value['DugDfNational'][0].ab1_1c, value['DugDfNational'][0].type_2, value['DugDfNational'][0].type_3, value['DugDfNational'][0].pirivena, value['DugDfNational'][0].training_institutes, value['DugDfNational'][0].training_colleges, value['DugDfNational'][0].tc_crc_resc, value['DugDfNational'][0].min_pzd_offices)"></span>
                             </td>
                             <td class="right"   width="110">
-                                <span ng-bind="$parent.sumFunc8(value['DugNsaNational'][0].ab1_1c, value['DugNsaNational'][0].type_2, value['DugNsaNational'][0].type_3, value['DugNsaNational'][0].pirivena, value['DugNsaNational'][0].training_institutes, value['DugNsaNational'][0].training_colleges, value['DugNsaNational'][0].tc_crc_resc, 0)"></span>
+                                <span ng-bind="sumFunc8(value['DugNsaNational'][0].ab1_1c, value['DugNsaNational'][0].type_2, value['DugNsaNational'][0].type_3, value['DugNsaNational'][0].pirivena, value['DugNsaNational'][0].training_institutes, value['DugNsaNational'][0].training_colleges, value['DugNsaNational'][0].tc_crc_resc, 0)"></span>
                             </td>
                             <td  class="right" width="110">
-                                <span ng-bind="$parent.sumFunc8(value['DugNsaNational'][1].ab1_1c, value['DugNsaNational'][1].type_2, value['DugNsaNational'][1].type_3, value['DugNsaNational'][1].pirivena, value['DugNsaNational'][1].training_institutes, value['DugNsaNational'][1].training_colleges, value['DugNsaNational'][1].tc_crc_resc, 0)"></span>
+                                <span ng-bind="sumFunc8(value['DugNsaNational'][1].ab1_1c, value['DugNsaNational'][1].type_2, value['DugNsaNational'][1].type_3, value['DugNsaNational'][1].pirivena, value['DugNsaNational'][1].training_institutes, value['DugNsaNational'][1].training_colleges, value['DugNsaNational'][1].tc_crc_resc, 0)"></span>
                             </td>
                             <td class="right" width="110">
-                                <!--<span ng-bind="$parent.sumFunc8(value['DugNdafNational'][0].ab1_1c, value['DugNdafNational'][0].type_2, value['DugNdafNational'][0].type_3, value['DugNdafNational'][0].pirivena, value['DugNdafNational'][0].training_institutes, value['DugNdafNational'][0].training_colleges, value['DugNdafNational'][0].tc_crc_resc, value['DugNdafNational'][0].min_pzd_offices"></span>-->
+                                <span ng-bind="sumFunc8(value['DugNdafNational'][0].ab1_1c, value['DugNdafNational'][0].type_2, value['DugNdafNational'][0].type_3, value['DugNdafNational'][0].pirivena, value['DugNdafNational'][0].training_institutes, value['DugNdafNational'][0].training_colleges, value['DugNdafNational'][0].tc_crc_resc, value['DugNdafNational'][0].min_pzd_offices)"></span>
                             </td>
                             <td class="right"  width="110">
-                                <span ng-bind="$parent.sumFunc8(value['DpefBefNational'][0].ab1_1c, value['DpefBefNational'][0].type_2, value['DpefBefNational'][0].type_3, value['DpefBefNational'][0].pirivena, value['DpefBefNational'][0].training_institutes, value['DpefBefNational'][0].training_colleges, value['DpefBefNational'][0].tc_crc_resc, value['DpefBefNational'][0].min_pzd_offices)"></span>
-                            </td>
-                            <td class="right"  width="110">
-                                <span ng-bind="$parent.sumFunc8(value['DpefBefNational'][1].ab1_1c, value['DpefBefNational'][1].type_2, value['DpefBefNational'][1].type_3, value['DpefBefNational'][1].pirivena, value['DpefBefNational'][1].training_institutes, value['DpefBefNational'][1].training_colleges, value['DpefBefNational'][1].tc_crc_resc, value['DpefBefNational'][1].min_pzd_offices)"></span>
+                                <span ng-bind="sumFunc8(value['DpefBefNational'][0].ab1_1c, value['DpefBefNational'][0].type_2, value['DpefBefNational'][0].type_3, value['DpefBefNational'][0].pirivena, value['DpefBefNational'][0].training_institutes, value['DpefBefNational'][0].training_colleges, value['DpefBefNational'][0].tc_crc_resc, value['DpefBefNational'][0].min_pzd_offices)"></span>
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc8(value['DpefBefNational'][2].ab1_1c, value['DpefBefNational'][2].type_2, value['DpefBefNational'][2].type_3, value['DpefBefNational'][2].pirivena, value['DpefBefNational'][2].training_institutes, value['DpefBefNational'][2].training_colleges, value['DpefBefNational'][2].tc_crc_resc, value['DpefBefNational'][2].min_pzd_offices)"></span>
+                                <span ng-bind="sumFunc8(value['DpefBefNational'][2].ab1_1c, value['DpefBefNational'][2].type_2, value['DpefBefNational'][2].type_3, value['DpefBefNational'][2].pirivena, value['DpefBefNational'][2].training_institutes, value['DpefBefNational'][2].training_colleges, value['DpefBefNational'][2].tc_crc_resc, value['DpefBefNational'][2].min_pzd_offices)"></span>
+                            </td>
+                            <td class="right"  width="110">
+                                <span ng-bind="sumFunc8(value['DpefBefNational'][1].ab1_1c, value['DpefBefNational'][1].type_2, value['DpefBefNational'][1].type_3, value['DpefBefNational'][1].pirivena, value['DpefBefNational'][1].training_institutes, value['DpefBefNational'][1].training_colleges, value['DpefBefNational'][1].tc_crc_resc, value['DpefBefNational'][1].min_pzd_offices)"></span>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                        class="glyphicon glyphicon-arrow-right"></span> Fill Private Sector Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    Fill Private Sector Informations
+                </a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
@@ -374,29 +379,10 @@
                             <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].tot_damages">
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_1">
-                            <td width="91">
-                                1
-                            </td>
-                            <td class="right" width="91">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Pre-schools
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][0].num_edu_facilities">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][0].male">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][0].female">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].tot_damages">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_1">
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_2">
                             </td>
-                            <td class="right" class="right" width="110">
+                            <td class="right" class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_1 + value['DpefBefPreNational'][0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17">
@@ -411,11 +397,11 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].tot_damages">
                             </td>
-                            <tdclass="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_1">
+                            <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_1">
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_2">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_1 + value['DpefBefPrimaryNational'][0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17">
@@ -434,7 +420,7 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_2">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_1 + value['DpefBefSecondaryNational'][0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17">
@@ -453,7 +439,7 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_2">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_1 + value['DpefBefUnvNational'][0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17">
@@ -472,26 +458,26 @@
                             </td>
                             <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_2">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_1 + value['DpefBefTechNational'][0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17">
                             <td class="tdpa" width="307" height="17">
                                 Others
                             </td>
-                            <td  class="right" width="110">
+                            <td class="right" width="110" ng-bind="value['DpefNafNational'][5].num_edu_facilities">
                             </td>
-                            <td width="110">
+                            <td class="right" width="110" ng-bind="value['DpefNafNational'][5].male">
                             </td>
-                            <td width="110">
+                            <td class="right" width="110" ng-bind="value['DpefNafNational'][5].female">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].tot_damages">
                             </td>
-                            <td width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_1">
                             </td>
-                            <td width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_2">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_1 + value['DpefBefOtherNational'][0].est_los_year_2">
                             </td>
                         </tr>
                         <tr height="17">
@@ -499,25 +485,67 @@
                                 Total
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc5(value['DpefNafNational'][0].num_edu_facilities, value['DpefNafNational'][1].num_edu_facilities, value['DpefNafNational'][2].num_edu_facilities, value['DpefNafNational'][3].num_edu_facilities, value['DpefNafNational'][4].num_edu_facilities)"></span>
+                                <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].num_edu_facilities,
+                                    value['DpefNafNational'][1].num_edu_facilities,
+                                    value['DpefNafNational'][2].num_edu_facilities,
+                                    value['DpefNafNational'][3].num_edu_facilities,
+                                    value['DpefNafNational'][4].num_edu_facilities,
+                                    value['DpefNafNational'][5].num_edu_facilities)">
+                                </span>
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc5(value['DpefNafNational'][0].male, value['DpefNafNational'][1].male, value['DpefNafNational'][2].male, value['DpefNafNational'][3].male, value['DpefNafNational'][4].male)"></span>
+                                <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].male,
+                                    value['DpefNafNational'][1].male,
+                                    value['DpefNafNational'][2].male,
+                                    value['DpefNafNational'][3].male,
+                                    value['DpefNafNational'][4].male,
+                                    value['DpefNafNational'][5].male)">
+                                </span>
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc5(value['DpefNafNational'][0].female, value['DpefNafNational'][1].female, value['DpefNafNational'][2].female, value['DpefNafNational'][3].female, value['DpefNafNational'][4].female)"></span>
+                                <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].female,
+                                    value['DpefNafNational'][1].female,
+                                    value['DpefNafNational'][2].female,
+                                    value['DpefNafNational'][3].female,
+                                    value['DpefNafNational'][4].female,
+                                    value['DpefNafNational'][5].female)">
+                                </span>
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc5(value['DpefBefPreNational'][0].tot_damages, value['DpefBefPrimaryNational'][0].tot_damages, value['DpefBefUnvNational'][0].tot_damages, value['DpefBefTechNational'][0].tot_damages)"></span>
+                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].tot_damages,
+                                    value['DpefBefPrimaryNational'][0].tot_damages,
+                                    value['DpefBefSecondaryNational'][0].tot_damages,
+                                    value['DpefBefUnvNational'][0].tot_damages,
+                                    value['DpefBefTechNational'][0].tot_damages,
+                                    value['DpefBefOtherNational'][0].tot_damages)">
+                                </span>
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc5(value['DpefBefPreNational'][0].tot_damages, value['DpefBefPrimaryNational'][0].tot_damages, value['DpefBefSecondaryNational'][0].tot_damages, value['DpefBefUnvNational'][0].tot_damages, value['DpefBefTechNational'][0].tot_damages)"></span>
+                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_1,
+                                    value['DpefBefPrimaryNational'][0].est_los_year_1,
+                                    value['DpefBefSecondaryNational'][0].est_los_year_1,
+                                    value['DpefBefUnvNational'][0].est_los_year_1,
+                                    value['DpefBefTechNational'][0].est_los_year_1,
+                                    value['DpefBefOtherNational'][0].est_los_year_1)">
+                                </span>
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc5(value['DpefBefPreNational'][0].est_los_year_1, value['DpefBefPrimaryNational'][0].est_los_year_1, value['DpefBefSecondaryNational'][0].est_los_year_1, value['DpefBefUnvNational'][0].est_los_year_1, value['DpefBefTechNational'][0].est_los_year_1)"></span>
+                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_2,
+                                    value['DpefBefPrimaryNational'][0].est_los_year_2,
+                                    value['DpefBefSecondaryNational'][0].est_los_year_2,
+                                    value['DpefBefUnvNational'][0].est_los_year_2,
+                                    value['DpefBefTechNational'][0].est_los_year_2,
+                                    value['DpefBefOtherNational'][0].est_los_year_2)">
+                                </span>
                             </td>
                             <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc5(value['DpefBefPreNational'][0].est_los_year_2, value['DpefBefPrimaryNational'][0].est_los_year_2, value['DpefBefSecondaryNational'][0].est_los_year_2, value['DpefBefUnvNational'][0].est_los_year_2, value['DpefBefTechNational'][0].est_los_year_2)"></span>
+                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_1 + value['DpefBefPreNational'][0].est_los_year_2,
+                                    value['DpefBefPrimaryNational'][0].est_los_year_1 + value['DpefBefPrimaryNational'][0].est_los_year_2,
+                                    value['DpefBefSecondaryNational'][0].est_los_year_1 + value['DpefBefSecondaryNational'][0].est_los_year_2,
+                                    value['DpefBefUnvNational'][0].est_los_year_1 + value['DpefBefUnvNational'][0].est_los_year_2,
+                                    value['DpefBefTechNational'][0].est_los_year_1 + value['DpefBefTechNational'][0].est_los_year_2,
+                                    value['DpefBefOtherNational'][0].est_los_year_1 + value['DpefBefOtherNational'][0].est_los_year_2)">
+                                </span>
                             </td>
                         </tr>
                         </tbody>

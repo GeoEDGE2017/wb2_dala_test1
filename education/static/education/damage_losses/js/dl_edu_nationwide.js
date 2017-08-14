@@ -48,4 +48,9 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
     //  console.log('hi', val1);
       return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5);
     }
+
+    $scope.sumFunc6 = function(val1, val2, val3, val4, val5, val6) {
+    //  console.log('hi', val1);
+      return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) + parseInt(val6);
+    }
 })

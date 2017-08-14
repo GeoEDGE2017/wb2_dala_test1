@@ -570,10 +570,24 @@ class DpefBefDistrict(models.Model):
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
 
-
     class Meta:
         managed = False
         db_table = 'education\".\"dpef_bef_district'
+
+
+class DpefBefOtherDistrict(models.Model):
+    est_rep_cost = models.FloatField(blank=True, null=True)
+    est_repair_cost = models.FloatField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    est_los_year_1 = models.FloatField(blank=True, null=True)
+    est_los_year_2 = models.FloatField(blank=True, null=True)
+    tot_los = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'education\".\"dpef_bef_other_district'
 
 
 class DpefBefPreDistrict(models.Model):
@@ -700,6 +714,19 @@ class DpefBefTechDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'education\".\"dpef_bef_tech_district'
+
+
+class DpefNafDistrict(models.Model):
+    edu_facilities = models.CharField(max_length=255, blank=True, null=True)
+    num_edu_facilities = models.FloatField(blank=True, null=True)
+    male = models.BigIntegerField(blank=True, null=True)
+    female = models.BigIntegerField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'education\".\"dpef_naf_district'
 
 
 class DpefBefOtherNational(models.Model):

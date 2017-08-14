@@ -63,6 +63,11 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     male: null,
                     female: null
                 }, {
+                    edu_facilities: 'Other',
+                    num_edu_facilities: null,
+                    male: null,
+                    female: null
+                }, {
                     edu_facilities: 'TOTAL',
                     num_edu_facilities: null,
                     male: null,
@@ -164,7 +169,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 })
             })
         }
-
         angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
             if(value.asset == 'Total') {
                 tot = tot + value.est_rep_cost;
@@ -221,10 +225,9 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 })
             })
         }
-
         angular.forEach($scope.dlPvtEduFacilities.education.Table_4.DpefBefOtherSchool, function(value, index) {
             if(value.asset == 'Total') {
-                tot = tot + value.est_rep_cost;
+                tot = tot + value.est_repair_cost;
             }
         })
 
@@ -768,9 +771,10 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 //                $scope.getPrivateClinicsIDs();
                 var edit_data_not_found = false;
                 if(data != null) {
-                    angular.forEach(data.education.Table_4, function(value, index) {
-                        console.log(value);
-                        if(value.length == 0) {
+                    angular.forEach(data.education.Table_4, function(value, key, index) {
+                        console.log('value ', value, 'key ', key);
+                        if((value.length == 0) && (key != 'DpefBefPreSchool') && (key != 'DpefBefPrmSchool')  && (key != 'DpefBefSecSchool')  &&
+                            (key != 'DpefBefTechInst')  && (key != 'DpefBefUnv') ) {
                             edit_data_not_found = true;
                         }
                     })

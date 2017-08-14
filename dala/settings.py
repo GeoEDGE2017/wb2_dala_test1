@@ -160,8 +160,10 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=industry_services'
         # },
-        'NAME': 'final_dala_2017',
-        # 'NAME': 'dala_ix',
+
+        # 'NAME': 'dala_2017_08_01',
+        'NAME': 'test_dala',
+        # 'NAME': 'dala_08_09',
         'USER': 'postgres',
     },
 }
@@ -214,7 +216,8 @@ STATIC_URL = '/static/'
 TABLE_PROPERTY_MAPPER = {
     'dashboard': {
         'IncidentTotal': [
-            'tot_dmgloss', 'incident', 'reported_date_time', 'name'],
+            'tot_dmgloss', 'incident', 'reported_date_time', 'name'
+        ],
     },
     'health': {
         'Table_1': {
@@ -922,7 +925,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefTechDistrict': [
                 'est_rep_cost',
@@ -931,7 +933,6 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_1',
                 'est_los_year_2',
                 'tot_los',
-
             ],
             'DpefBefUnvDistrict': [
                 'est_rep_cost',
@@ -942,6 +943,16 @@ TABLE_PROPERTY_MAPPER = {
                 'tot_los',
 
             ],
+            'DpefBefOtherDistrict': [
+                'est_rep_cost',
+                'est_repair_cost',
+                'tot_damages',
+                'est_los_year_1',
+                'est_los_year_2',
+                'tot_los',
+                'district',
+                'incident'
+            ],
             'DugDfDistrict': [
                 'ab1_1c',
                 'type_2',
@@ -951,7 +962,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
             'DugNsaDistrict': [
                 'ab1_1c',
@@ -961,7 +971,6 @@ TABLE_PROPERTY_MAPPER = {
                 'training_institutes',
                 'training_colleges',
                 'tc_crc_resc',
-
             ],
             'DpefNaf': [
                 'edu_facilities',
@@ -979,11 +988,38 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
-
             ],
-
         },
         'Table_6': {
+            'DugDfDistrict': [
+                'ab1_1c',
+                'type_2',
+                'type_3',
+                'pirivena',
+                'training_institutes',
+                'training_colleges',
+                'tc_crc_resc',
+                'min_pzd_offices',
+            ],
+            'DugNsaDistrict': [
+                'ab1_1c',
+                'type_2',
+                'type_3',
+                'pirivena',
+                'training_institutes',
+                'training_colleges',
+                'tc_crc_resc',
+            ],
+            'DugNdafDistrict': [
+                'ab1_1c',
+                'type_2',
+                'type_3',
+                'pirivena',
+                'training_institutes',
+                'training_colleges',
+                'tc_crc_resc',
+                'min_pzd_offices',
+            ],
             'DpefBefDistrict': [
                 'ab1_1c',
                 'type_2',
@@ -993,6 +1029,14 @@ TABLE_PROPERTY_MAPPER = {
                 'training_colleges',
                 'tc_crc_resc',
                 'min_pzd_offices',
+            ],
+
+            'DpefNaf': [
+                'edu_facilities',
+                'num_edu_facilities',
+                'male',
+                'female',
+                'id',
             ],
             'DpefBefPreDistrict': [
                 'est_rep_cost',
@@ -1034,42 +1078,18 @@ TABLE_PROPERTY_MAPPER = {
                 'est_los_year_2',
                 'tot_los',
             ],
-            'DugDfDistrict': [
-                'ab1_1c',
-                'type_2',
-                'type_3',
-                'pirivena',
-                'training_institutes',
-                'training_colleges',
-                'tc_crc_resc',
-                'min_pzd_offices',
+            'DpefBefOtherDistrict': [
+                'est_rep_cost',
+                'est_repair_cost',
+                'tot_damages',
+                'est_los_year_1',
+                'est_los_year_2',
+                'tot_los',
+                'district',
+                'incident'
             ],
-            'DugNsaDistrict': [
-                'ab1_1c',
-                'type_2',
-                'type_3',
-                'pirivena',
-                'training_institutes',
-                'training_colleges',
-                'tc_crc_resc',
-            ],
-            'DpefNaf': [
-                'edu_facilities',
-                'num_edu_facilities',
-                'male',
-                'female',
-                'id',
-            ],
-            'DugNdafDistrict': [
-                'ab1_1c',
-                'type_2',
-                'type_3',
-                'pirivena',
-                'training_institutes',
-                'training_colleges',
-                'tc_crc_resc',
-                'min_pzd_offices',
-            ],
+
+            'DpefNafDistrict': ['edu_facilities', 'num_edu_facilities', 'male', 'female', 'district', 'incident']
         },
         'Table_7': {
             'DpefBefOtherNational': [
@@ -1163,12 +1183,11 @@ TABLE_PROPERTY_MAPPER = {
                 'training_institutes',
                 'training_colleges',
                 'tc_crc_resc',
-            ],
+            ]
         },
     },
     'transport_rail': {
         'Table_1': {
-
             'BsTotEmpRailCompny':
                 ['total_emp', 'particulars', 'no_of_male', 'no_of_female', 'id'],
             'BsMovingAst':
@@ -1178,8 +1197,8 @@ TABLE_PROPERTY_MAPPER = {
                  'id'],
             'BsIncAstRailIncome':
                 ['annual_income',
-                 'id'],
-
+                 'id'
+                 ],
             'BsEquipMachineryAst':
                 ['asset',
                  'avg_replace_cost',
@@ -1201,7 +1220,8 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_cost_roof',
                 'avg_repair_cost_wall',
                 'avg_repair_cost_floor',
-                'id'],
+                'id'
+            ],
         },
         'Table_2': {
             'DlMovingAstLoss':

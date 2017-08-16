@@ -13,7 +13,6 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
         if(form.$valid){
             $http({
                 method: "POST",

@@ -73,7 +73,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
+                <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlAgriLivestockPro.agri_livestock.Table_5">
                     <tbody>
                     <tr class="trhead1" height="19">
                         <td rowspan="3" width="113" height="57">
@@ -127,7 +127,7 @@
                         </td>
                     </tr>
 
-                    <tr ng-repeat="(key, value) in dlAgriLivestockPro.agri_livestock.Table_5" height="20"
+                    <tr  height="20"
                         ng-init="getTotal($index,key);">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19">
@@ -162,6 +162,9 @@
                         </td>
 
                     </tr>
+                    </tbody>
+                    </table>
+                 <table class="table table-bordered" ng-if="!checkIfNull()" >
                     <tr height="19">
                         <td class="boldash" width="253" height="19">
                             GRAND TOTAL

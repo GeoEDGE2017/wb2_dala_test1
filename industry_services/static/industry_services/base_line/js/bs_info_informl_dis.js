@@ -132,12 +132,26 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
                     }
                 }),
             }).success(function(data) {
-                console.log("data" , data);
-                if((data.industry_services.Table_2.BsNumBusSector.length == 0)) {
-                    $scope.is_edit = false;
+                console.log(data);
+                console.log(data.industry_services.industry_services);
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.industry_services.Table_2, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                            $scope.is_edit = false;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bs_ind_ser_info_informl = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
                 }
                 else {
-                    $scope.bs_ind_ser_info_informl = data;
+                    $("#modal-container-239456").modal('show');
                 }
             })
         }

@@ -175,7 +175,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
     }
 
     //clear the data from table
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bs_ind_ser_info_forml = angular.copy(init_data);
     }
@@ -224,14 +224,25 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
                     }
                 }),
             }).success(function(data) {
-                console.log("data" , data);
-                // handling response from server if data are not available in this
-                if((data.industry_services.Table_1.BsFrmNumBusIndustry.length == 0) ||(data.industry_services.Table_1.BsFrmNumBusServices.length == 0)){
-                    $scope.is_edit = false;
-                        // do nothing or display msg that data are not available
+                console.log(data);
+                console.log(data.industry_services.industry_services);
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.industry_services.Table_1, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bs_ind_ser_info_forml = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
                 }
                 else {
-                    $scope.bs_ind_ser_info_forml = data;
+                    $("#modal-container-239456").modal('show');
                 }
             })
         }
@@ -242,7 +253,7 @@ app.controller('bsindustryServicesInfoFormalController', ['$scope', '$http', fun
     }
 
     $scope.cancelEdit = function() {
-         $scope.is_edit = false;
-         $scope.clear();
+        $scope.is_edit = false;
+        $scope.clear();
     }
 }]);

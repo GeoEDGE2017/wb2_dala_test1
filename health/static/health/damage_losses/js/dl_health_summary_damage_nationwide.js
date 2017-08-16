@@ -61,6 +61,8 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
         return isNull;
     }
 
+
+
     $scope.sumFunc2 = function(val1=0, val2=0) {
         if(val1 == null) {
             val1=0;

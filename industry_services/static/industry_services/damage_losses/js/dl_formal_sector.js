@@ -44,133 +44,114 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     var init_data = {
         'industry_services': {
             'Table_3': {
-                'DmgAstStructures':[
-                    {
-                        'assets':'Office buildings',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                    {
-                        'assets':'Total',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                ],
-                'DmgAstEquipment':[
-                    {
-                        'assets':'Computers',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                    {
-                        'assets':'Total',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                ],
-                'DmgAstMachinery':[
-                    {
-                        'assets':'Generators',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                    {
-                        'assets':'Total',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                ],
-                'DmgAstVehicles':[
-                    {
-                        'assets':'Trucks',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                    {
-                        'assets':'Cars',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                    {
-                        'assets':'Total',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                ],
-                'DmgAstStocks':[
-                    {
-                        'assets':'Finished products',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                    {
-                        'assets':'Total',
-                        'replace_val_destroyed':null,
-                        'repair_val_damaged':null,
-                        'tot_damaged':null,
-                    },
-                ],
-                'LosTypeLossses':[
-                    {
-                        'assets':'Production Losses',
-                        'avg_val_output_year':null,
-                        'est_val_output_year1':null,
-                        'est_val_output_year2':null,
-                        'los_year1':null,
-                        'los_year2':null,
-                        'tot_losses':null,
-                    },{
-                        'assets':'Cleaning costs',
-                        'avg_val_output_year':null,
-                        'est_val_output_year1':null,
-                        'est_val_output_year2':null,
-                        'los_year1':null,
-                        'los_year2':null,
-                        'tot_losses':null,
-                    },{
-                        'assets':'Higher operating costs',
-                        'avg_val_output_year':null,
-                        'est_val_output_year1':null,
-                        'est_val_output_year2':null,
-                        'los_year1':null,
-                        'los_year2':null,
-                        'tot_losses':null,
-                    },{
-                        'assets':'Other unexpected expenses',
-                        'avg_val_output_year':null,
-                        'est_val_output_year1':null,
-                        'est_val_output_year2':null,
-                        'los_year1':null,
-                        'los_year2':null,
-                        'tot_losses':null,
-                    },
-                    {
-                        'assets':'Total',
-                        'avg_val_output_year':null,
-                        'est_val_output_year1':null,
-                        'est_val_output_year2':null,
-                        'los_year1':null,
-                        'los_year2':null,
-                        'tot_losses':null,
-                    }
-                ],
-                }
+                'DmgAstStructures':[{
+                    'assets':'Office buildings',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }, {
+                    'assets':'Total',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }],
+                'DmgAstEquipment':[{
+                    'assets':'Computers',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }, {
+                    'assets':'Total',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }],
+                'DmgAstMachinery':[{
+                    'assets':'Generators',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }, {
+                    'assets':'Total',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }],
+                'DmgAstVehicles':[{
+                    'assets':'Trucks',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }, {
+                    'assets':'Cars',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }, {
+                    'assets':'Total',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }],
+                'DmgAstStocks':[{
+                    'assets':'Finished products',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }, {
+                    'assets':'Total',
+                    'replace_val_destroyed':null,
+                    'repair_val_damaged':null,
+                    'tot_damaged':null,
+                }],
+                'LosTypeLossses':[{
+                    'assets':'Production Losses',
+                    'avg_val_output_year':null,
+                    'est_val_output_year1':null,
+                    'est_val_output_year2':null,
+                    'los_year1':null,
+                    'los_year2':null,
+                    'tot_losses':null,
+                }, {
+                    'assets':'Cleaning costs',
+                    'avg_val_output_year':null,
+                    'est_val_output_year1':null,
+                    'est_val_output_year2':null,
+                    'los_year1':null,
+                    'los_year2':null,
+                    'tot_losses':null,
+                }, {
+                    'assets':'Higher operating costs',
+                    'avg_val_output_year':null,
+                    'est_val_output_year1':null,
+                    'est_val_output_year2':null,
+                    'los_year1':null,
+                    'los_year2':null,
+                    'tot_losses':null,
+                }, {
+                    'assets':'Other unexpected expenses',
+                    'avg_val_output_year':null,
+                    'est_val_output_year1':null,
+                    'est_val_output_year2':null,
+                    'los_year1':null,
+                    'los_year2':null,
+                    'tot_losses':null,
+                }, {
+                    'assets':'Total',
+                    'avg_val_output_year':null,
+                    'est_val_output_year1':null,
+                    'est_val_output_year2':null,
+                    'los_year1':null,
+                    'los_year2':null,
+                    'tot_losses':null,
+                }]
             }
         }
+    }
 
     $scope.dl_dmg_loss_foml_sec = angular.copy(init_data);
 
-    $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -186,14 +167,14 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             })
         }
         if($scope.incident && $scope.district ) {
-        }
 
+        }
         if($scope.incident && $scope.district){
             $scope.is_edit_disable = true;
         }
     }
 
-    $scope.fetchFormalFirmTypes = function(){
+    $scope.fetchFormalFirmTypes = function() {
         $http({
             method: "POST",
             url: "/fetch_entities_plain",
@@ -206,8 +187,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         })
     }
 
-
-    $scope.loadBusinessSubSectorsInd = function(){
+    $scope.loadBusinessSubSectorsInd = function() {
         $http({
             method: "POST",
             url: "/fetch_entities_plain_column", //single column data load
@@ -221,7 +201,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         })
     }
 
-    $scope.loadBusinessSubSectorsSer = function(){
+    $scope.loadBusinessSubSectorsSer = function() {
         $http({
             method: "POST",
             url: "/fetch_entities_plain_column", //single column data load
@@ -235,7 +215,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         })
     }
 
-    $scope.changeBusinessSubSectors = function(){
+    $scope.changeBusinessSubSectors = function() {
         $scope.currentSubSector = $scope.subSectors[$scope.selected_formal_type.firm_type.toLowerCase()];
         $scope.subSector = null;
         $scope.isIndustrySelected = ($scope.selected_formal_type.firm_type.toLowerCase() == 'services');
@@ -266,13 +246,9 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                 'district': $scope.district.district__id,
             }),
         }).success(function(data) {
-
             $scope.firms = data;
-
         })
     }
-
-
 
     $scope.getSum2 = function(val1, val2){
         var final_val = 0;
@@ -312,7 +288,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         return final_total;
     }
 
-    $scope.getGrandTotalCol = function(column){
+    $scope.getGrandTotalCol = function(column) {
         var table = $scope.dl_dmg_loss_foml_sec.industry_services.Table_3;
         var final_total = 0;
         angular.forEach(table, function(subTable, key) {
@@ -330,15 +306,15 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
 
     $scope.insertRow = function(table){
         var new_row;
-        if((table == 'DmgAstStructures') ||(table == 'DmgAstEquipment') ||(table == 'DmgAstMachinery') ||(table == 'DmgAstVehicles') ||(table == 'DmgAstStocks')){
+        if((table == 'DmgAstStructures') || (table == 'DmgAstEquipment') || (table == 'DmgAstMachinery') ||
+            (table == 'DmgAstVehicles') || (table == 'DmgAstStocks')) {
             new_row = {
-            'assets':'',
-            'replace_val_destroyed':null,
-            'repair_val_damaged':null,
-            'tot_damaged':null,
+                'assets':'',
+                'replace_val_destroyed':null,
+                'repair_val_damaged':null,
+                'tot_damaged':null,
             }
             $scope.dl_dmg_loss_foml_sec.industry_services.Table_3[table].push(new_row);
-
         }
 
         $scope.removeItem = function removeItem(table, index) {
@@ -348,38 +324,36 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         }
     }
 
-
-    $scope.clear = function(){
+    $scope.clear = function() {
         $scope.is_edit = false;
         $scope.dl_dmg_loss_foml_sec = angular.copy(init_data);
-        $scope.selectedFirm = {};
+        $scope.selectedFirm = { };
     }
 
-    $scope.saveData = function(form){
+    $scope.saveData = function(form) {
         console.log("save firm" , $scope.selectedFirm);
         if($scope.is_edit){
             $scope.saveFirm(form);
             $scope.saveDlData(form);
         }
-        else{
+        else {
             $scope.setFirmData(form);
         }
-
     }
 
-    $scope.setFirmData = function(form){
+    $scope.setFirmData = function(form) {
         if($scope.selected_formal_type.firm_type.toLowerCase() == 'industry') {
             $scope.selectedSubSector = $scope.selectedSubSectorInd;
         }
-        else{
+        else {
             $scope.selectedSubSector =     $scope.selectedSubSectorSer;
             console.log("ind:", $scope.subSector);
         }
-        if(($scope.district ) &&($scope.selectedFirm.sector )){
+        if(($scope.district ) &&($scope.selectedFirm.sector )) {
              $scope.selectedFirm.district_id = $scope.district.district__id;
              $scope.saveFirm(form);
         }
-        else{
+        else {
             console.log("firmdata", $scope.district )
             console.log($scope.selectedFirm.firm_name )
             console.log($scope.selected_formal_type )
@@ -391,9 +365,9 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     }
 
     //Do not call this function directly
-    $scope.saveFirm = function(form){
+    $scope.saveFirm = function(form) {
         $scope.dataForm = form;
-        if(!$scope.is_edit_model){
+        if(!$scope.is_edit_model) {
             $http({
                 method: "POST",
                 url: "/add_entity",
@@ -402,25 +376,25 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     'model': 'FrmFirm',
                     'is_edit': $scope.is_edit,
                     'sector': 'industry_services'
-                 }),
+                }),
             }).success(function(data) {
-                if(data){
+                if(data) {
                     $scope.selectedFirm.id = data;
                     $("#modal-container-469842").modal('hide');
                     $("#modal-container-469840").modal('hide');
                     $scope.is_edit_model = false;
                     $scope.saveDlData(form);
                 }
-             }).error(function(){
+            }).error(function(){
 
-             })
+            })
         }
     }
 
     // do not call this directly
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
-        if($scope.is_edit){
+        if($scope.is_edit) {
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
@@ -436,17 +410,19 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     },
                     'is_edit': $scope.is_edit
                 }),
-            dataType: 'json',
-        }).success(function(data) {
-            $scope.is_edit = false;
-            if (data == 'False'){
-                $("#modal-container-239454").modal('show');
-                $scope.is_valid_data = false;
-            }
-            else
-                $("#modal-container-239453").modal('show');
+                dataType: 'json',
+            }).success(function(data) {
+                $scope.is_edit = false;
+                if (data == 'False') {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
             })
-        }else if (form.$valid) {
+        }
+        else if (form.$valid) {
             $http({
                 method: 'POST',
                 url: '/dl_save_data',
@@ -461,82 +437,84 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                         'ownership':$scope.selectedFirm.ownership,
                     },
                     'is_edit': $scope.is_edit
-                 }),
+                }),
                 dataType: 'json',
             }).success(function(data) {
                 $scope.bs_tourism_facilities = init_data;
                 $scope.is_edit = false;
-                if (data == 'False')
+                if (data == 'False') {
                     $scope.is_valid_data = false;
-                else{
+                }
+                else {
                     $("#modal-container-239453").modal('show');
                 }
-
             })
-        }else if (!form.$valid){
+        }
+        else if (!form.$valid) {
             console.log(form.$error);
         }
     }
 
     $scope.initiateEdit = function(){
         $scope.loadFirms();
-            if($scope.classification && $scope.district && $scope.incident){
-                $("#modal-container-218029").modal('show');
-            }
-            else{
-                console.log("please select Indident, District and Classification")
-            }
-
+        if($scope.classification && $scope.district && $scope.incident) {
+            $("#modal-container-218029").modal('show');
+        }
+        else {
+            console.log("please select Indident, District and Classification")
+        }
     }
-
 
     $scope.dataEdit = function() {
         $("#modal-container-218029").modal('hide');
-        if($scope.district && $scope.incident && $scope.selectedFirm.id){
+        if($scope.district && $scope.incident && $scope.selectedFirm.id) {
             $scope.is_edit = true;
             $scope.submitted = true;
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                'table_name': 'Table_3',
-                'sector': 'industry_services',
-                'com_data': {
-                    'district': $scope.district.district__id,
-                    'incident': $scope.incident,
-                    'frm_firm': $scope.selectedFirm.id,
-                }
-            }),
+                    'table_name': 'Table_3',
+                    'sector': 'industry_services',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'frm_firm': $scope.selectedFirm.id,
+                    }
+                }),
             }).success(function(data) {
                 console.log("edit", data);
-                if((data.industry_services.Table_3.DmgAstEquipment.length == 0) ||(data.industry_services.Table_3.DmgAstMachinery.length == 0) ||(data.industry_services.Table_3.DmgAstStocks.length == 0) ||(data.industry_services.Table_3.DmgAstStructures.length == 0) ||(data.industry_services.Table_3.LosTypeLossses.length == 0) ||(data.industry_services.Table_3.DmgAstVehicles.length == 0)){
+                if((data.industry_services.Table_3.DmgAstEquipment.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstMachinery.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstStocks.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstStructures.length == 0) ||
+                    (data.industry_services.Table_3.LosTypeLossses.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstVehicles.length == 0)) {
+
                     $scope.is_edit = false;
                 }
-                else{
+                else {
                     $scope.dl_dmg_loss_foml_sec = data;
                 }
             })
-
         }
-        else{
+        else {
            console.log("enter Incident, District")
         }
-
-
     }
 
-    $scope.setClassificationID = function(){
+    $scope.setClassificationID = function() {
         $scope.selectedFirm.classification_id = $scope.classification.id;
         console.log("selectedFirm", $scope.selectedFirm);
     }
 
 
-   $scope.loadAllData = function(){
+    $scope.loadAllData = function() {
+        if($scope.district && $scope.incident && $scope.selectedFirm) {
+            $scope.is_edit = true;
+            $scope.submitted = true;
+            $scope.new_firm = $scope.selectedFirm;
 
-        if($scope.district && $scope.incident && $scope.selectedFirm){
-                    $scope.is_edit = true;
-        $scope.submitted = true;
-        $scope.new_firm = $scope.selectedFirm;
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
@@ -557,12 +535,10 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     (data.industry_services.Table_3.DmgAstStocks.length == 0) ||
                     (data.industry_services.Table_3.DmgAstStructures.length == 0) ||
                     (data.industry_services.Table_3.DmgAstVehicles.length == 0) ||
-                    (data.industry_services.Table_3.LosTypeLossses.length == 0)
-                     ){
-                    $scope.is_edit = false;
-                    }
-                else
-                {
+                    (data.industry_services.Table_3.LosTypeLossses.length == 0)) {
+                        $scope.is_edit = false;
+                }
+                else {
                     $scope.dl_dmg_loss_foml_sec = data;
                     $scope.classification = {};
                     $scope.classification.id = $scope.selectedFirm.classification_id;
@@ -572,26 +548,29 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                     console.log("classification set4", $scope.selectedFirm);
                     $("#modal-container-469842").modal('hide');
                     $("#modal-container-469840").modal('hide');
-
                 }
             })
         }
-        else{
-
-            if(!$scope.district) { console.log("no district") }
-            if(!$scope.incident) { console.log("no incident") }
-            if(!$scope.selectedFirm) { console.log("no firm") }
+        else {
+            if(!$scope.district) {
+                console.log("no district")
+            }
+            if(!$scope.incident) {
+                console.log("no incident")
+            }
+            if(!$scope.selectedFirm) {
+                console.log("no firm")
+            }
             alert("District, Incident needed ! ")
         }
-   }
+    }
 
-   $scope.changeSubSector = function(){
+    $scope.changeSubSector = function() {
         $scope.selectedFirm.sector = $scope.subSector;
-   }
+    }
 
     $scope.fetchFormalFirmTypes();
     $scope.loadBusinessSubSectorsInd();
     $scope.loadBusinessSubSectorsSer();
     $scope.loadBusinessClassification();
-
 }])

@@ -34,238 +34,236 @@
                         <col width="63"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
-                        </td>
-                        <td colspan="3"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                                && form_bs_industry_services_info_formal_sector.district.$error.required">
-                                Please Select District
-                            </span>
-                        </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_bs_industry_services_info_formal_sector.baselineDate.$error.required">
-                                Please Select Date
-                            </span>
-                        </td>
-                    </tr>
-                    <tr height="19" class="trhead1">
-                        <td  height="19" width="186">
-                            District
-                        </td>
-                        <td colspan="3" height="19" width="494">
-                            <select id="selectbasic"  name="district" class="form-control"  ng-change="changeDis();" ng-model="district" style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select a District</option>
-                                {% for district in districts %}
-                                <option value={{ district.id }}>{{ district.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td height="19" width="186">
-                            Year/Month
-                        </td>
-                        <td colspan="2" height="19" width="494">
-                            <input name="baselineDate" type="text" style="font-weight:normal;"  ng-change="changeDis();" placeholder="mm/yy"
-                                   id="datepicker" ng-model="bs_date" class="form-control input-md" required="true">
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trheadc1" height="34">
-                        <td height="34" width="186">
-                            Type of firms in the Formal Sector
-                        </td>
-                        <td colspan="6" height="34" width="494">
-                            Number of Businesses by Classification
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" height="38" width="186" style="width:15%;">
-                            Industry
-                        </td>
-                        <td rowspan="2" height="38" width="121" style="width:10%;">
-                            Micro
-                        </td>
-                        <td rowspan="2" height="38" width="63" style="width:10%;">
-                            Small
-                        </td>
-                        <td rowspan="2" height="38" width="63" style="width:10%;">
-                            Medium
-                        </td>
-                        <td rowspan="2" height="38" width="63" style="width:10%;">
-                            Large
-                        </td>
-                        <td colspan="2" height="19" width="126" style="width:20%;">
-                            Total Number of People Employed
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
-                        <td height="19" width="63">
-                            Male
-                        </td>
-                        <td height="19" width="63">
-                            Female
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="bsFrmNumBusIndustry in
-                    bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusIndustry">
-                        <td class="tdpa" width="186" height="19" ng-bind="bsFrmNumBusIndustry.industry" ng-if="$index < 7">
-                        </td>
-                        <td width="98" ng-if="$index > 6">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BsFrmNumBusIndustry', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="bsFrmNumBusIndustry_{{$index}}" ng-model="bsFrmNumBusIndustry.industry"
-                                   popover="This field is required"
-                                   popover-toggle="form_pop_lat_census['bsFrmNumBusIndustry_' + $index].$dirty && !form_pop_lat_census['bsFrmNumBusIndustry_' + $index].$valid"
-                                   popover-placement="top" required
-                                   type="text"
-                                   class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td height="19" width="121">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_micro"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_small"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_medium"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_large"
-                            " placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_male"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_female"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="19">
-                        <td class="tdpa" height="19" width="186">
-                            Others &nbsp;&nbsp;
-                            <button ng-click="insertRow('BsFrmNumBusIndustry')"
-                                    class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
-                        </td>
-                        <td height="19" width="121">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="186">
-                            Services
-                        </td>
-                        <td height="19" width="121">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="bsFrmNumBusServices in
-                    bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusServices" >
-                        <td class="tdpa" height="19" width="186" ng-bind="bsFrmNumBusServices.service" ng-if="$index < 5">
-                        </td>
-                        <td width="98" ng-if="$index > 4">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BsFrmNumBusServices', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="BsFrmNumBusServices_{{$index}}" ng-model="bsFrmNumBusIndustry.service"
-                                   popover="This field is required"
-                                   popover-toggle="form_pop_lat_census['bsFrmNumBusServices_' + $index].$dirty && !form_pop_lat_census['bsFrmNumBusServices_' + $index].$valid"
-                                   popover-placement="top" required
-                                   type="text"
-                                   class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td height="19" width="121">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_micro"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_small"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_medium"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_large"
-                            " placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_male"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_female"
-                                   placeholder="" class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="19">
-                        <td class="tdpa" height="19" width="186">
-                            Others &nbsp;&nbsp;
-                            <button ng-click="insertRow('BsFrmNumBusServices')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </td>
-                        <td height="19" width="121">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="tdpa" height="19" width="186">
-                            TOTAL
-                        </td>
-                        <td class="right" height="19" width="121" ng-bind="getGrandTotalCol('num_micro')">
-                        </td>
-                        <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_small')">
-                        </td>
-                        <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_medium')">
-                        </td>
-                        <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_large')">
-                        </td>
-                        <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_male')">
-                        </td>
-                        <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_female')">
-                        </td>
-                    </tr>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            </td>
+                            <td colspan="3"  style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted
+                                    && form_bs_industry_services_info_formal_sector.district.$error.required">
+                                    Please Select District
+                                </span>
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted
+                                && form_bs_industry_services_info_formal_sector.baselineDate.$error.required">
+                                    Please Select Date
+                                </span>
+                            </td>
+                        </tr>
+                        <tr height="19" class="trhead1">
+                            <td  height="19" width="186">
+                                District
+                            </td>
+                            <td colspan="3" height="19" width="494">
+                                <select id="selectbasic"  name="district" class="form-control"  ng-change="changeDis();" ng-model="district" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select a District</option>
+                                    {% for district in districts %}
+                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td height="19" width="186">
+                                Year/Month
+                            </td>
+                            <td colspan="2" height="19" width="494">
+                                <input name="baselineDate" type="text" style="font-weight:normal;"  ng-change="changeDis();" placeholder="mm/yy"
+                                       id="datepicker" ng-model="bs_date" class="form-control input-md" required="true">
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
+                        <tr class="trheadc1" height="34">
+                            <td height="34" width="186">
+                                Type of firms in the Formal Sector
+                            </td>
+                            <td colspan="6" height="34" width="494">
+                                Number of Businesses by Classification
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="19">
+                            <td rowspan="2" height="38" width="186" style="width:15%;">
+                                Industry
+                            </td>
+                            <td rowspan="2" height="38" width="121" style="width:10%;">
+                                Micro
+                            </td>
+                            <td rowspan="2" height="38" width="63" style="width:10%;">
+                                Small
+                            </td>
+                            <td rowspan="2" height="38" width="63" style="width:10%;">
+                                Medium
+                            </td>
+                            <td rowspan="2" height="38" width="63" style="width:10%;">
+                                Large
+                            </td>
+                            <td colspan="2" height="19" width="126" style="width:20%;">
+                                Total Number of People Employed
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="19">
+                            <td height="19" width="63">
+                                Male
+                            </td>
+                            <td height="19" width="63">
+                                Female
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="bsFrmNumBusIndustry in
+                        bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusIndustry">
+                            <td class="tdpa" width="186" height="19" ng-bind="bsFrmNumBusIndustry.industry" ng-if="$index < 7">
+                            </td>
+                            <td width="98" ng-if="$index > 6">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsFrmNumBusIndustry', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="bsFrmNumBusIndustry_{{$index}}" ng-model="bsFrmNumBusIndustry.industry"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['bsFrmNumBusIndustry_' + $index].$dirty && !form_pop_lat_census['bsFrmNumBusIndustry_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td height="19" width="121">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_micro"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_small"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_medium"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_large"
+                                " placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_male"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusIndustry.num_female"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="19">
+                            <td class="tdpa" height="19" width="186">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertRow('BsFrmNumBusIndustry')"
+                                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span></button>
+                            </td>
+                            <td height="19" width="121">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="19">
+                            <td height="19" width="186">
+                                Services
+                            </td>
+                            <td height="19" width="121">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                        </tr>
+                        <tr height="19" ng-repeat="bsFrmNumBusServices in
+                            bs_ind_ser_info_forml.industry_services.Table_1.BsFrmNumBusServices">
+                            <td class="tdpa" height="19" width="186" ng-bind="bsFrmNumBusServices.service" ng-if="$index < 5">
+                            </td>
+                            <td width="98" ng-if="$index > 4">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsFrmNumBusServices', $index)" class="btn btn-sm btn-danger btn-circle" >
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="BsFrmNumBusServices_{{$index}}" ng-model="bsFrmNumBusServices.service"
+                                    popover="This field is required"
+                                    popover-toggle="form_pop_lat_census['bsFrmNumBusServices_' + $index].$dirty && !form_pop_lat_census['bsFrmNumBusServices_' + $index].$valid"
+                                    popover-placement="top" required type="text" class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td height="19" width="121">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_micro"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_small"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_medium"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_large"
+                                " placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_male"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                            <td height="19" width="63">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" ng-model="bsFrmNumBusServices.num_female"
+                                       placeholder="" class="form-control input-md">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="19">
+                            <td class="tdpa" height="19" width="186">
+                                Others &nbsp;&nbsp;
+                                <button ng-click="insertRow('BsFrmNumBusServices')" class="btn btn-sm btn-info btn-circle" id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td height="19" width="121">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                            <td height="19" width="63">
+                            </td>
+                        </tr>
+                        <tr height="19">
+                            <td class="tdpa" height="19" width="186">
+                                TOTAL
+                            </td>
+                            <td class="right" height="19" width="121" ng-bind="getGrandTotalCol('num_micro')">
+                            </td>
+                            <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_small')">
+                            </td>
+                            <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_medium')">
+                            </td>
+                            <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_large')">
+                            </td>
+                            <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_male')">
+                            </td>
+                            <td class="right" height="19" width="63" ng-bind="getGrandTotalCol('num_female')">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
@@ -314,11 +312,11 @@
                             <label class="col-md-2 control-label" for="textinput">Name</label>
                             <div class="col-md-10">
                                 <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
-
                             </div>
                         </div>
                     </div>
-                    <br><br>
+                    <br>
+                    <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close

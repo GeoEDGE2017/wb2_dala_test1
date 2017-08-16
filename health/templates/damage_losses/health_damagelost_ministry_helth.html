@@ -15,10 +15,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:health_main' %}">Health Sector</a>
+            <a href="{% url 'dashboard:health_main' %}">
+                Health Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -101,7 +105,7 @@
                                     {% endfor %}
                                 </select>
                             </td>
-                            <td colspan="2" style="padding-left:5px;"> Name of District:</td>
+                            <td colspan="2" style="padding-left:5px;">Name of District:</td>
                             <td colspan="3" style="">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" style="font-weight:400;"
@@ -470,7 +474,7 @@
                             <!--Structures (in sqm)-->
                             <tr height="20" class="trheadc">
                                 <td width="264" height="20">
-                                    Structures (in sqm)
+                                    Structures (in sqm)***
                                 </td>
                                 <td width="98">
                                 </td>
@@ -510,8 +514,7 @@
                                 </td>
                                 <td width="98">
                                     <input id="textinput" ng-model="dmhNdatFacStructure.office" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md"
+                                           type="number" placeholder="" class="form-control input-md"
                                            onkeypress="return isNumberKey(event)">
                                 </td>
                                 <td width="98">
@@ -520,17 +523,16 @@
                                            placeholder="" class="form-control input-md"
                                            onkeypress="return isNumberKey(event)">
                                 </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhNdatFacStructure.total" name="textinput"
-                                           type="number"
-                                           ng-value="dmhNdatFacStructure.total=(dmhNdatFacStructure.teaching_hospital * bs_data['BucMarStructure'][$index].fields.teaching_hospital) + (dmhNdatFacStructure.provincial_general_hospital * bs_data['BucMarStructure'][$index].fields.provincial_general_hospital) + (dmhNdatFacStructure.district_general_hospital * bs_data['BucMarStructure'][$index].fields.district_general_hospital) + (dmhNdatFacStructure.office * bs_data['BucMarStructure'][$index].fields.office) + (dmhNdatFacStructure.other * bs_data['BucMarStructure'][$index].fields.other)"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
+                                <td width="98" class="right" ng-model="dmhNdatFacStructure.total" ng-bind="dmhNdatFacStructure.total = dmhNdatFacStructure.teaching_hospital * bs_data['BucMarStructure'][$index].fields.teaching_hospital +
+                                    dmhNdatFacStructure.provincial_general_hospital * bs_data['BucMarStructure'][$index].fields.provincial_general_hospital +
+                                    dmhNdatFacStructure.district_general_hospital * bs_data['BucMarStructure'][$index].fields.district_general_hospital +
+                                    dmhNdatFacStructure.office * bs_data['BucMarStructure'][$index].fields.office +
+                                    parseIntFunc(dmhNdatFacStructure.other) * bs_data['BucMarStructure'][$index].fields.other">
                                 </td>
                             </tr>
                             <tr>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhNdatFacStructure[3].asset"
-                                    height="20" class="tdpa"></td>
+                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhNdatFacStructure[3].asset" height="20" class="tdpa">
+                                </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhNdatFacStructure[3].teaching_hospital"

@@ -159,14 +159,13 @@
                                 </td>
                             </tr>
                             <tr ng-repeat="(key, value) in lmh_hospitals" height="20">
-                                <td ng-bind="value.name"
-                                    width="264" height="20" class="tdpa">
+                                <td ng-bind="value.name" width="264" height="20" class="tdpa">
                                 </td>
                                 <td class="right" ng-bind="dlSummaryDis.health.Table_8.DmhLmhMohDistrict[0][value.property]" width="98">
                                 </td>
-                                <td class="right" ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[0][value.property]" width="98">
-                                </td>
                                 <td class="right" ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[1][value.property]" width="98">
+                                </td>
+                                <td class="right" ng-bind="dlSummaryDis.health.Table_8.DmhPafDistrict[0][value.property]" width="98">
                                 </td>
                                 <td class="right" ng-bind="dlSummaryDis.health.Table_8.DmhDamagesDistrict[0][value.property]" width="98">
                                 </td>
@@ -175,7 +174,7 @@
                                 <td class="right" ng-bind="dlSummaryDis.health.Table_8.DmhLosDistrict[1][value.property]" width="98">
                                 </td>
                                 <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmhLosDistrict[0][value.property] +
-                                dlSummaryDis.health.Table_8.DmhLosDistrict[1][value.property]">
+                                    dlSummaryDis.health.Table_8.DmhLosDistrict[1][value.property]">
                                 </td>
                             </tr>
                             <tr height="20">
@@ -233,8 +232,7 @@
                                 </td>
                             </tr>
                             <tr ng-repeat="(key, value) in moh_hospitals" height="20">
-                                <td ng-bind="value.name"
-                                    width="264" height="20" class="tdpa">
+                                <td ng-bind="value.name" width="264" height="20" class="tdpa">
                                 </td>
                                 <td class="right" ng-bind="dlSummaryDis.health.Table_8.DmhLmhMohDistrict[0][value.property]" width="98">
                                 </td>
@@ -310,11 +308,11 @@
                                 </td>
                                 <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmfDamagesDistrict[0].base_hospital">
                                 </td>
-                                <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmfLosDistrict[2].base_hospital">
+                                <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmfLosDistrict[0].base_hospital">
                                 </td>
-                                <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmfLosDistrict[3].base_hospital">
+                                <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmfLosDistrict[1].base_hospital">
                                 </td>
-                                <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmfLosDistrict[2].base_hospital + dlSummaryDis.health.Table_8.DmfLosDistrict[3].base_hospital">
+                                <td class="right" width="98" ng-bind="dlSummaryDis.health.Table_8.DmfLosDistrict[0].base_hospital + dlSummaryDis.health.Table_8.DmfLosDistrict[1].base_hospital">
                                 </td>
                             </tr>
                             <!--Table 8 :table three:tab1  second row-->
@@ -474,7 +472,7 @@
                                                     dlSummaryDis.health.Table_8.DmfDamagesDistrict[0].phccs,
                                                     dlSummaryDis.health.Table_8.DmfDamagesDistrict[0].mchcs)">
                                 </td>
-                                <td class="right" width="98" ng-bind="sumFunc7(dlSummaryDis.health.Table_8.DmfLosDistrict[2].base_hospital,
+                                <td class="right" width="98" ng-bind="sumFunc7(dlSummaryDis.health.Table_8.DmfLosDistrict[0].base_hospital,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[2].divisional_hospital,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[2].rural_hospital,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[2].central_dispensary,
@@ -482,7 +480,7 @@
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[2].phccs,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[2].mchcs)">
                                 </td>
-                                <td class="right" width="98" ng-bind="sumFunc7(dlSummaryDis.health.Table_8.DmfLosDistrict[3].base_hospital,
+                                <td class="right" width="98" ng-bind="sumFunc7(dlSummaryDis.health.Table_8.DmfLosDistrict[1].base_hospital,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[3].divisional_hospital,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[3].rural_hospital,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[3].central_dispensary,
@@ -490,7 +488,7 @@
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[3].phccs,
                                                     dlSummaryDis.health.Table_8.DmfLosDistrict[3].mchcs)">
                                 </td>
-                                <td class="right" width="98" ng-bind="sumFunc7((dlSummaryDis.health.Table_8.DmfLosDistrict[2].base_hospital + dlSummaryDis.health.Table_8.DmfLosDistrict[3].base_hospital),
+                                <td class="right" width="98" ng-bind="sumFunc7((dlSummaryDis.health.Table_8.DmfLosDistrict[0].base_hospital + dlSummaryDis.health.Table_8.DmfLosDistrict[1].base_hospital),
                                                     (dlSummaryDis.health.Table_8.DmfLosDistrict[2].divisional_hospital + dlSummaryDis.health.Table_8.DmfLosDistrict[3].divisional_hospital),
                                                     (dlSummaryDis.health.Table_8.DmfLosDistrict[2].rural_hospital + dlSummaryDis.health.Table_8.DmfLosDistrict[3].rural_hospital),
                                                     (dlSummaryDis.health.Table_8.DmfLosDistrict[2].central_dispensary + dlSummaryDis.health.Table_8.DmfLosDistrict[3].central_dispensary),

@@ -1,21 +1,15 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
 <main class="main" ng-app="agriLivestockChartApp" ng-controller="AgriLivestockChartController">
-
     <div class="container-fluid">
         <br>
         <div class="card">
             <div class="card-header">
                 <strong>Search</strong>
-
             </div>
             <div class="card-block">
-
-
                 <div class="row">
-
                     <div class="col-sm-4">
-
                         <div class="form-group">
                             <label class="col-xs-4" for="cvv">Incident</label>
                             <div class="col-sm-8">
@@ -24,10 +18,7 @@
                                         style="width:100%;font-weight:400;" required>
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
-
                                     <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
                                         {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
@@ -38,21 +29,16 @@
                                        Please select Incident
                             </span>
                         </div>
-
                     </div>
                     <div class="col-sm-2">
 
                         <div class="form-group">
-<button class="btn btn-md btn-primary" ng-click="printDiv();"><i class="fa fa-print"></i> Print
+                            <button class="btn btn-md btn-primary" ng-click="printDiv();"><i class="fa fa-print"></i>
+                                Print
                             </button>
                         </div>
-
                     </div>
-
-
                 </div>
-
-
             </div>
         </div>
 
@@ -61,20 +47,20 @@
             <div class="col-md-6">
                 <div class="card" ng-if="!checkIfNull()">
                     <div class="card-header">
-
                         Total Public & Private Damages
-
                     </div>
                     <div class="card-block">
                         <div class="chart-wrapper">
                             <canvas id="bar" class="chart chart-bar"
                                     chart-data="totalDamagePrivatePublic" chart-labels="provincenames"
-                                    chart-series="totalDamagePrivatePublicSeries">
+                                    chart-series="totalDamagePrivatePublicSeries" chart-options="damageLossesSeries"
+                                    chart-legend="true">
                             </canvas>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="card" ng-if="!checkIfNull()">
                     <div class="card-header">
@@ -82,33 +68,32 @@
                     </div>
                     <div class="card-block">
                         <canvas id="pie" class="chart chart-pie"
-                                chart-data="totalDamagePrivatePublic" chart-labels="totalDamagePrivatePublicSeries"
-                                chart-options="options">
+                                chart-data="totalDamagePrivatePublic"
+                                chart-labels="totalDamagePrivatePublicSeries"
+                                chart-options="options" chart-legend="true">
                         </canvas>
                     </div>
                 </div>
 
-
             </div>
-             <div class="col-md-6">
+            <div class="col-md-6">
                 <div class="card" ng-if="!checkIfNull()">
                     <div class="card-header">
                         Total number of Losses
                     </div>
                     <div class="card-block">
                         <canvas id="pie" class="chart chart-pie"
-                                chart-data="totalLossesPrivatePublic" chart-labels="totalLossesPrivatePublicSeries"
+                                chart-data="totalLossesPrivatePublic" chart-legend="true"
+                                chart-labels="totalLossesPrivatePublicSeries"
                                 chart-options="options">
                         </canvas>
                     </div>
                 </div>
-
-
             </div>
-
-
         </div>
-<div class="modal fade" id="modal-container-508661" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <div class="modal fade" id="modal-container-508661" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -136,13 +121,8 @@
                         </button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
-
 </main>
 {% endblock content %}

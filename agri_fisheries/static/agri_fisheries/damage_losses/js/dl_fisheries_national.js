@@ -133,9 +133,9 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
                 ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_1_pvt ?
                 $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_1_pvt : 0):0) +
 
-                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0] ?
-                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_1_pvt ?
-                $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_1_pvt:0):0);
+                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0] ?
+                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0].los_year_1_pvt ?
+                $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0].los_year_1_pvt:0):0);
 
 
             var losPrivateyear1string = "losPrivateyear1_"+ key;
@@ -151,9 +151,9 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
                 ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosIfisheriesNational[0].los_year_2_pub ?
                 $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosIfisheriesNational[0].los_year_2_pub : 0) : 0 ) +
 
-                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0] ?
-                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_2_pub ?
-                $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_2_pub : 0):0) +
+                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0] ?
+                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0].los_year_2_pub ?
+                $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0].los_year_2_pub : 0):0) +
 
                 ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0] ?
                 ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_2_pub ?
@@ -177,18 +177,18 @@ app.controller("DlAgriFisheriesNatController", function ($scope,$http,$parse, _)
                 ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_2_pvt ?
                 $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_2_pvt : 0):0) +
 
-                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0] ?
-                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_2_pvt ?
-                $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosRfisheriesNational[0].los_year_2_pvt:0):0);
+                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0] ?
+                ($scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0].los_year_2_pvt ?
+                $scope.dlAgriFisheriesSumNat.agri_fisheries.Table_6[key].DlfLosMfisheriesNational[0].los_year_2_pvt:0):0);
 
 
             var losPrivateyear2string = "losPrivateyear2_"+ key;
 
-            var model = $parse(losPubliceyear1string);
+            var model = $parse(losPrivateyear2string);
 
-            model.assign($scope, losPublicyear2);
+            model.assign($scope, losPrivateyear2);
 
-            $scope.grndlosPrivateyear2 = $scope.grndlosPrivateyear2+ losPrivateyear2 ;
+            $scope.grndlosPrivateyear2 = $scope.grndlosPrivateyear2 + losPrivateyear2 ;
 
             $scope.finalGrandTotPublic =
             $scope.grnddamagepublic + $scope.grndlosPubliceyear1  + $scope.grndlosPublicyear2 ;

@@ -147,6 +147,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
         var model = $parse(losPubliceyear1string);
         model.assign($scope, losPubliceyear1);
+        console.log('gtlog',losPubliceyear1);
 
         $scope.grndlosPubliceyear1 = $scope.grndlosPubliceyear1 + losPubliceyear1 ;
 
@@ -209,7 +210,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
 
         var losPrivateyear2string = "losPrivateyear2_"+ key;
 
-        var model = $parse(losPubliceyear1string);
+        var model = $parse(losPrivateyear2string);
         model.assign($scope, losPrivateyear2);
         console.log("my",losPrivateyear2);
 

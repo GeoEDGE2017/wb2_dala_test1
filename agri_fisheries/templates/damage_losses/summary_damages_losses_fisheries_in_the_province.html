@@ -132,7 +132,7 @@
                         </td>
                     </tr>
 
-                    <tr class="trhead" ng-repeat="(key, value) in dlAgriFisheriesPro.agri_fisheries.Table_5" height="20" ng-init="getTotal(key)">
+                    <tr class="trhead" height="20" ng-init="getTotal(key)">
                         <td ng-bind="key" width="253" height="19" colspan="10">
 
                         </td>
@@ -261,6 +261,11 @@
                         </td>
                     </tr>
                     </tbody>
+                        </table>
+
+                 <table  ng-if="!checkIfNull()"
+                           class="table table-bordered">
+
 
                         <td class="boldash" width="125" height="19">
                             GRAND TOTAL
@@ -350,7 +355,7 @@
                             Private
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlAgriFisheriesPro.agri_fisheries.Table_5">
+                    <tr height="19" >
                         <td class="tdpa" width="125" height="19" ng-bind="key">
 
                         </td>
@@ -396,6 +401,9 @@
                         {% endverbatim %}
                     </tr>
                     </tbody>
+                    </table>
+                 <table  ng-if="!checkIfNull()"
+                           class="table table-bordered">
 
                     <tr height="19">
                         <td class="boldash" width="125" height="19">

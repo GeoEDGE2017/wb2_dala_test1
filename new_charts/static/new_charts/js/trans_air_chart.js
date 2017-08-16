@@ -42,6 +42,7 @@ app.controller('TransAirChartController',function($scope,$http,$parse, _) {
             $scope.provincenames=["Western"];
 
         angular.forEach($scope.provincenames, function(value, key) {
+        console.log('value',value);
 
             $scope.totaldpub = $scope.totaldpub + (
                          $scope.dlAirTransSumNat.transport_air.Table_5[value].DlAirDmgPubNational[0].tot_destroyed_pub ?

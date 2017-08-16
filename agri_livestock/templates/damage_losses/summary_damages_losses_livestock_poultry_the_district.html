@@ -17,7 +17,7 @@
                     Table 4. Summary of Damages and Losses to Livestock and Poultry in the District
                 </span>
         </li>
-          <li style="float:right;"> <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;"> <a href="{% static 'dashboard/doc/4B-Agriculture-Livestock-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
     </ol>
     <div class="container-fluid" ng-form="dl_livestock_summary_dis_form">
         <div>
@@ -25,7 +25,6 @@
                 <li class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
                 <li><a href='#step2' data-toggle="tab">2 Losses</a></li>
             </ul>
-
             <div id="myTabContent" class="tab-content" >
                 <div class="tab-pane active" id="step1">
                     <table class="table table-bordered">
@@ -97,16 +96,14 @@
                         </tr>
                         <tr height="19" ng-repeat="dlpNdaLivestockPubDistrict in data.agri_livestock.Table_4.DlpNdaLivestockPubDistrict" ng-if="dlpNdaLivestockPubDistrict.animals !='Total'">
                             <td class="tdpa" width="113" height="19" ng-bind="dlpNdaLivestockPubDistrict.animals">
-
                             </td>
                             <td colspan="2" class="right" width="234" height="19" ng-bind="dlpNdaLivestockPubDistrict.damages">
-
                             </td>
-                            <td colspan="2" class="right" width="206" height="19" ng-bind="data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict[$index].damages">
-
+                            <td colspan="2" class="right" width="206" height="19"
+                                ng-bind="data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict[$index].damages">
                             </td>
-                            <td class="right" colspan="2" width="286" height="19" ng-bind="dlpNdaLivestockPubDistrict.damages + data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict[$index].damages">
-
+                            <td class="right" colspan="2" width="286" height="19"
+                                ng-bind="dlpNdaLivestockPubDistrict.damages + data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict[$index].damages">
                             </td>
                         </tr>
 
@@ -114,15 +111,16 @@
                             <td class="tdpa" width="113" height="19" ng-bind="dlpNdaLivestockPubDistrict.animals">
 
                             </td>
-                            <td colspan="2" class="right" width="234" height="19" ng-model="value1"
-                                ng-bind="value1 = calTotal($parent.data.agri_livestock.Table_4.DlpNdaLivestockPubDistrict,'damages')">
+                            <td colspan="2" class="right" width="234" height="19" ng-model="dlpNdaLivestockPubDistrict.damages"
+                                ng-bind="dlpNdaLivestockPubDistrict.damages = calTotal($parent.data.agri_livestock.Table_4.DlpNdaLivestockPubDistrict,'damages')">
 
                             </td>
-                            <td colspan="2" class="right" width="206" height="19" ng-model="value2"
-                                ng-bind="value2 = calTotal($parent.data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict,'damages')">
+                            <td colspan="2" class="right" width="206" height="19" ng-model="data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict[$index].damages"
+                                ng-bind="data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict[$index].damages = calTotal($parent.data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict,'damages')">
 
                             </td>
-                            <td class="right" colspan="2" width="286" height="19" ng-bind="value1 + value2">
+                            <td class="right" colspan="2" width="286" height="19" ng-bind="dlpNdaLivestockPubDistrict.damages +
+                            data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict[$index].damages">
 
                             </td>
                         </tr>
@@ -155,20 +153,19 @@
                             </td>
                         </tr>
 
-                        <tr height="19" ng-repeat="dlpNdaPoultryPubDistrict in data.agri_livestock.Table_4.DlpNdaPoultryPubDistrict" ng-if="dlpNdaPoultryPubDistrict.animals =='Total'">
-                            <td class="tdpa" width="113" height="19">
-                                Total
-                            </td>
-                            <td colspan="2" class="right" width="234" height="19" ng-model="val1"
-                                ng-bind="val1 = calTotal($parent.data.agri_livestock.Table_4.DlpNdaPoultryPubDistrict,'damages')">
+
+                        <tr height="19" ng-repeat="dlpNdaPoultryPubDistrict in data.agri_livestock.Table_4.DlpNdaPoultryPubDistrict"
+                            ng-if="dlpNdaPoultryPubDistrict.animals =='Total'">
+                            <td class="boldash" width="113" height="19" ng-bind="dlpNdaPoultryPubDistrict.animals">
 
                             </td>
-                            <td colspan="2" class="right" width="206" height="19"
-                                ng-model="val2" ng-bind="val2 =
-                                calTotal($parent.data.dlpNdaPoultryPubDistrict.Table_4.DlpNdaPoultryPvtDistrict[$index].damages,'damages')">
+                            <td colspan="2" class="right" width="234" height="19" ng-bind="dlpNdaPoultryPubDistrict.damages">
 
                             </td>
-                            <td class="right" colspan="2" width="286" height="19" ng-bind="val1 + val2">
+                            <td colspan="2" class="right" width="206" height="19" ng-bind="data.dlpNdaPoultryPubDistrict.Table_4.DlpNdaPoultryPvtDistrict[$index].damages">
+
+                            </td>
+                            <td class="right" colspan="2" width="286" height="19" ng-bind="dlpNdaPoultryPubDistrict.damages + data.agri_livestock.Table_4.DlpNdaPoultryPvtDistrict[$index].damages">
 
                             </td>
                         </tr>
@@ -231,31 +228,26 @@
                             <td class="boldash" width="113" height="34">
                                 TOTAL OF DAMAGES
                             </td>
-                            <td colspan="2"  class="right"  width="234" height="34" ng-bind="value1 + val1 +
-                            data.agri_livestock.Table_4.DlpStructProductionPubDistrict[0].damages +
+                            <td colspan="2"  class="right"  width="234" height="34" ng-bind="calTotal1()+
+                                data.agri_livestock.Table_4.DlpStructProductionPubDistrict[0].damages +
                                 data.agri_livestock.Table_4.DlpStructProductionPubDistrict[1].damages +
                                 data.agri_livestock.Table_4.DlpStructStructuresPubDistrict[0].damages +
                                 data.agri_livestock.Table_4.DlpStructOtherPubDistrict[0].damages">
 
                             </td>
-                            <span ng-bind="value1"></span>
-                            <span ng-bind="val1"></span>
-
-
-
-                            <td colspan="2"  class="right"  width="206" height="34" ng-bind="value2 + val2 +
+                            <td colspan="2"  class="right"  width="206" height="34" ng-bind="calTotal2()+
                                 data.agri_livestock.Table_4.DlpStructProductionPvtDistrict[0].damages +
                                 data.agri_livestock.Table_4.DlpStructProductionPvtDistrict[1].damages +
                                 data.agri_livestock.Table_4.DlpStructStructuresPvtDistrict[0].damages +
                                 data.agri_livestock.Table_4.DlpStructOtherPvtDistrict[0].damages">
 
                             </td>
-                            <td class="right" colspan="2" width="286" height="34" ng-bind="value1 + val1 +
-                                 data.agri_livestock.Table_4.DlpStructProductionPubDistrict[0].damages +
+                            <td class="right" colspan="2" width="286" height="34" ng-bind="calTotal1()+
+                                data.agri_livestock.Table_4.DlpStructProductionPubDistrict[0].damages +
                                 data.agri_livestock.Table_4.DlpStructProductionPubDistrict[1].damages +
                                 data.agri_livestock.Table_4.DlpStructStructuresPubDistrict[0].damages +
                                 data.agri_livestock.Table_4.DlpStructOtherPubDistrict[0].damages +
-                                value2 + val2 +
+                                calTotal2()+
                                 data.agri_livestock.Table_4.DlpStructProductionPvtDistrict[0].damages +
                                 data.agri_livestock.Table_4.DlpStructProductionPvtDistrict[1].damages +
                                 data.agri_livestock.Table_4.DlpStructStructuresPvtDistrict[0].damages +
@@ -357,167 +349,47 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Swine
+                        <tr height="19" ng-repeat="dlpLosLivestockPubDistrict in data.agri_livestock.Table_4.DlpLosLivestockPubDistrict"
+                            ng-if="dlpLosLivestockPubDistrict.animals !='Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpLosLivestockPubDistrict.animals">
                             </td>
-                            <td width="117" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="dlpLosLivestockPubDistrict.los_year_1">
                             </td>
-                            <td width="122" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_1">
                             </td>
-                            <td width="103" height="19">
-                                <!-- - -->
+                            <td class="right" width="103" height="19" ng-bind="dlpLosLivestockPubDistrict.los_year_2">
                             </td>
-                            <td width="136" height="19">
-                                <!-- - -->
+                            <td class="right" width="136" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_2">
                             </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
+                            <td  class="right" width="143" height="19" ng-bind="dlpLosLivestockPubDistrict.los_year_1 +
+                            dlpLosLivestockPubDistrict.los_year_2">
                             </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
+                            <td class="right" width="66" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_1 +
+                            data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_2">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Sheep
+
+                        <tr height="19" ng-repeat="dlpLosLivestockPubDistrict in data.agri_livestock.Table_4.DlpLosLivestockPubDistrict"
+                            ng-if="dlpLosLivestockPubDistrict.animals =='Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpLosLivestockPubDistrict.animals">
                             </td>
-                            <td width="117" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="dlpLosLivestockPubDistrict.los_year_1">
                             </td>
-                            <td width="122" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_1">
                             </td>
-                            <td width="103" height="19">
-                                <!-- - -->
+                            <td class="right" width="103" height="19" ng-bind="dlpLosLivestockPubDistrict.los_year_2">
                             </td>
-                            <td width="136" height="19">
-                                <!-- - -->
+                            <td class="right" width="136" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_2">
                             </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
+                            <td  class="right" width="143" height="19" ng-bind="dlpLosLivestockPubDistrict.los_year_1 +
+                            dlpLosLivestockPubDistrict.los_year_2">
                             </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
+                            <td class="right" width="66" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_1 +
+                            data.agri_livestock.Table_4.DlpLosLivestockPvtDistrict[$index].los_year_2">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Goat
-                            </td>
-                            <td width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Cattle
-                            </td>
-                            <td width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Buffalo
-                            </td>
-                            <td width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Others
-                            </td>
-                            <td width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Total
-                            </td>
-                            <td class="right" width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
+
+
                         <tr class="trheadc" height="19">
                             <td width="113" height="19">
                                 Poultry
@@ -541,190 +413,66 @@
                                 <br/>
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Chicken
+
+                        <tr height="19" ng-repeat="dlpLosPoultryPubDistrict in data.agri_livestock.Table_4.DlpLosPoultryPubDistrict"
+                            ng-if="dlpLosPoultryPubDistrict.animals !='Total'">
+                            <td class="tdpa" width="113" height="19" ng-bind="dlpLosPoultryPubDistrict.animals">
                             </td>
-                            <td width="117" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="dlpLosPoultryPubDistrict.los_year_1">
                             </td>
-                            <td width="122" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_1">
                             </td>
-                            <td width="103" height="19">
-                                <!-- - -->
+                            <td class="right" width="103" height="19" ng-bind="dlpLosPoultryPubDistrict.los_year_2">
                             </td>
-                            <td width="136" height="19">
-                                <!-- - -->
+                            <td class="right" width="136" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_2">
                             </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
+                            <td  class="right" width="143" height="19" ng-bind="dlpLosPoultryPubDistrict.los_year_1 +
+                            dlpLosPoultryPubDistrict.los_year_2">
                             </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
+                            <td class="right" width="66" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_1 +
+                            data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_2">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Ducks
+                        <tr height="19"  ng-repeat="dlpLosPoultryPubDistrict in data.agri_livestock.Table_4.DlpLosPoultryPubDistrict"
+                            ng-if="dlpLosPoultryPubDistrict.animals =='Total'">
+                            <td class="boldash" width="113" height="19" ng-bind="dlpLosPoultryPubDistrict.animals">
                             </td>
-                            <td width="117" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="dlpLosPoultryPubDistrict.los_year_1">
                             </td>
-                            <td width="122" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_1">
                             </td>
-                            <td width="103" height="19">
-                                <!-- - -->
+                            <td class="right" width="103" height="19" ng-bind="dlpLosPoultryPubDistrict.los_year_2">
                             </td>
-                            <td width="136" height="19">
-                                <!-- - -->
+                            <td class="right" width="136" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_2">
                             </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
+                            <td  class="right" width="143" height="19" ng-bind="dlpLosPoultryPubDistrict.los_year_1 +
+                            dlpLosPoultryPubDistrict.los_year_2">
                             </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
+                            <td class="right" width="66" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_1 +
+                            data.agri_livestock.Table_4.DlpLosPoultryPvtDistrict[$index].los_year_2">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Others
+                        <tr height="19"  ng-repeat="dlpLosOtherPubDistrict in data.agri_livestock.Table_4.DlpLosOtherPubDistrict">
+                            <td class="boldash" width="113" height="19" ng-bind="dlpLosOtherPubDistrict.others">
                             </td>
-                            <td width="117" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="dlpLosOtherPubDistrict.los_year_1">
                             </td>
-                            <td width="122" height="19">
-                                <!-- - -->
+                            <td class="right" width="50" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosOtherPvtDistrict[$index].los_year_1">
                             </td>
-                            <td width="103" height="19">
-                                <!-- - -->
+                            <td class="right" width="103" height="19" ng-bind="dlpLosOtherPubDistrict.los_year_2">
                             </td>
-                            <td width="136" height="19">
-                                <!-- - -->
+                            <td class="right" width="136" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosOtherPvtDistrict[$index].los_year_2">
                             </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
+                            <td  class="right" width="143" height="19" ng-bind="dlpLosOtherPubDistrict.los_year_1 +
+                            dlpLosOtherPubDistrict.los_year_2">
                             </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
+                            <td class="right" width="66" height="19" ng-bind="data.agri_livestock.Table_4.DlpLosOtherPvtDistrict[$index].los_year_1 +
+                            data.agri_livestock.Table_4.DlpLosOtherPvtDistrict[$index].los_year_2">
                             </td>
                         </tr>
-                        <tr height="19">
-                            <td class="tdpa" width="113" height="19">
-                                Total
-                            </td>
-                            <td width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="boldash" width="113" height="19">
-                                Cleaning costs
-                            </td>
-                            <td width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="34">
-                            <td class="boldash" width="113" height="34">
-                                Higher Operating Costs
-                            </td>
-                            <td width="117" height="34">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="34">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="34">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="34">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="34">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="34">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="34">
-                            <td class="boldash" width="113" height="34">
-                                Other Unexpected Expenses
-                            </td>
-                            <td width="117" height="34">
-                                <!-- - -->
-                            </td>
-                            <td width="122" height="34">
-                                <!-- - -->
-                            </td>
-                            <td width="103" height="34">
-                                <!-- - -->
-                            </td>
-                            <td width="136" height="34">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="34">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="34">
-                                <!-- - -->
-                            </td>
-                        </tr>
-                        <tr height="19">
-                            <td class="boldash" width="113" height="19">
-                                TOTAL OF LOSSES
-                            </td>
-                            <td class="right" width="117" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="122" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="103" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="136" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="143" height="19">
-                                <!-- - -->
-                            </td>
-                            <td class="right" width="63" height="19">
-                                <!-- - -->
-                            </td>
-                        </tr>
+
+
+
                         </tbody>
                     </table>
                 </div>

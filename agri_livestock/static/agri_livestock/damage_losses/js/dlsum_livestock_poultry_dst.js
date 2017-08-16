@@ -68,4 +68,50 @@ app.controller('dlSumLivestockPoultryDstController', function($scope, $http,$par
         return finaltotal;
     }
 
+     $scope.calTotal1 = function() {
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var garnd = 0;
+        var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPubDistrict;
+        var arraytwo= $scope.data.agri_livestock.Table_4.DlpNdaPoultryPubDistrict;
+        angular.forEach(arrayone, function(value, key) {
+        if(value.animals !="Total"){
+             finaltotal1 = finaltotal1 + value.damages ;
+             }
+        })
+
+        angular.forEach(arraytwo, function(value, key) {
+        if(value.animals =="Total"){
+             finaltotal2 = value.damages ;
+             }
+        })
+
+        garnd   = finaltotal1 + finaltotal2;
+        return garnd;
+
+    }
+
+    $scope.calTotal2 = function() {
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var garnd = 0;
+        var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict;
+        var arraytwo= $scope.data.agri_livestock.Table_4.DlpNdaPoultryPvtDistrict;
+        angular.forEach(arrayone, function(value, key) {
+        if(value.animals !="Total"){
+             finaltotal1 = finaltotal1 + value.damages ;
+             }
+        })
+
+        angular.forEach(arraytwo, function(value, key) {
+        if(value.animals =="Total"){
+             finaltotal2 = value.damages ;
+             }
+        })
+
+        garnd   = finaltotal1 + finaltotal2;
+        return garnd;
+
+    }
+
 });

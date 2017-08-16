@@ -1,7 +1,7 @@
 //Table 4
-var app = angular.module('dlSumLivestockPoultryDstApp', [])
+var app = angular.module('dlSumLivestockPoultryDstApp', ['underscore'])
 
-app.controller('dlSumLivestockPoultryDstController', ['$scope', '$http', function($scope, $http) {
+app.controller('dlSumLivestockPoultryDstController', function($scope, $http,$parse, _) {
     $scope.dlEduDistrict;
     $scope.total;
     $scope.iter_tot;
@@ -51,10 +51,21 @@ app.controller('dlSumLivestockPoultryDstController', ['$scope', '$http', functio
                    }),
                 }).success(function(data) {
                     $scope.data=data;
-                    console.log(data);
+                    console.log('get',data);
                 })
             }
          }
     }
 
-}]);
+    //Calculate Private Total
+    $scope.calTotal = function(arr,property) {
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+        if(value.animals !="Total"){
+             finaltotal = finaltotal + value[property] ;
+             }
+        })
+        return finaltotal;
+    }
+
+});

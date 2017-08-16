@@ -846,7 +846,6 @@ def bs_fetch_edit_data(request):
 
 # new method added by chamupathi mendis to work with enum field edit
 
-
 @csrf_exempt
 def bs_save_edit_data(table_data, com_data):
     district = com_data['district']

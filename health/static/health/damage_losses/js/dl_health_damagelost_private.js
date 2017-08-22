@@ -118,6 +118,9 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 console.log(response);
             });
         }
+        else {
+             console.log('validate failed');
+        }
     }
 
     //Fetch Entities
@@ -375,7 +378,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         $scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
     }
 
-    $scope.addPrivateClinicObject = function(form) {
+    $scope.addPrivateClinicObject = function() {
         if($scope.incident && $scope.district) {
             var new_row_one =[{
                 pvt_clinics : 'Structure',

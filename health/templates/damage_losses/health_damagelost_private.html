@@ -48,7 +48,7 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1" ng-form name="form_health_damagelost_private">
                     <span style="color:red" ng-show="submitted && form_health_damagelost_private.$error.required">
-                       Please fill all required fields
+                        Please fill all required fields
                     </span>
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
@@ -63,18 +63,18 @@
                             <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                    <span class="arrow_box"
-                                          ng-show="submitted && form_health_damagelost_private.incident.$error.required">
-                                        Please select Incident
-                                    </span>
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_health_damagelost_private.incident.$error.required">
+                                    Please select Incident
+                                </span>
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
                             <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                    <span class="arrow_box"
-                                          ng-show="submitted && form_health_damagelost_private.district.$error.required">
-                                        Please select District
-                                    </span>
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_health_damagelost_private.district.$error.required">
+                                    Please select District
+                                </span>
                             </td>
                         </tr>
                         <tr class="trhead1">
@@ -98,9 +98,9 @@
                             <td colspan="2" style="padding-left:5px;"> Name of District</td>
                             <td colspan="2" style="">
                                 <select style="font-weight:normal;"
-                                        ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                        class="form-control" ng-change="fetchPrivateClinics();" required>
+                                    ng-options="district as district.district__name for district in districts track by district.district__id"
+                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
+                                    class="form-control" ng-change="fetchPrivateClinics();" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
@@ -230,17 +230,11 @@
                                    data-id="Edit Pre-school"
                                    class="btn  btn-block btn-primary btn-warning">Edit</a>
                             </td>
-                            <!--<td colspan="4" align="center" valign="middle" class="trsub">-->
-                            <!--<button type="button" ng-click="addPrivateClinicObject(form_health_damagelost_private)"-->
-                            <!--class="btn btn-info btn-block">-->
-                            <!---->
-                            <!--</button>-->
-                            <!--</td>-->
                         </tr>
                         <tr>
                             <td>
                                 Add to View
-                                <button ng-click="addPrivateClinicObject(form_health_damagelost_private)"
+                                <button ng-click="addPrivateClinicObject()"
                                         class="btn btn-sm btn-info btn-circle"
                                         id="insert">
                                     <span class="fa fa-plus"></span>
@@ -489,9 +483,8 @@
         </div>
         <div class="col-md-12">
             <!-- save -->
-            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-                 aria-hidden="true">
-                <div class="modal-dialog" style="width:50%;" ng-form name="form_health_damagelost_private">
+            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+                <div class="modal-dialog" style="width:50%;" ng-form name="form_health_pvt_clinic_save">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -506,7 +499,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Name</label>
                                 <div class="col-md-10">
-                                    <span class="arrow_box" ng-show="form_health_damagelost_private.$error.required">
+                                    <span class="arrow_box" ng-show="form_health_pvt_clinic_save.$error.required">
                                          Please enter Name
                                     </span>
                                     <input id="textinput" ng-model="private_clinic.name" name="textinput" type="text"

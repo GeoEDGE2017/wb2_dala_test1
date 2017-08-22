@@ -376,7 +376,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     }
 
     $scope.addPrivateClinicObject = function(form) {
-        if(form.$valid) {
+        if($scope.incident && $scope.district) {
             var new_row_one =[{
                 pvt_clinics : 'Structure',
                 est_replacement_cost : null,

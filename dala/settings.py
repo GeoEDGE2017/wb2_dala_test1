@@ -162,7 +162,7 @@ DATABASES = {
         # },
 
         # 'NAME': 'dala_2017_08_01',
-        'NAME': 'dala_08_16',
+        'NAME': 'dala_08_23',
         # 'NAME': 'dala_08_09',
         'USER': 'postgres',
     },
@@ -249,9 +249,10 @@ TABLE_PROPERTY_MAPPER = {
             'DmfLosDistrict': ['type_of_losses', 'base_hospital', 'divisional_hospital', 'rural_hospital',
                                'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
             'DapPvtDistrict': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
-            'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
-            'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
+            'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2', 'total_damages'],
+            'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2', 'total_damages'],
             'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
+            'DapBefPcTotDmgDistrict': ['tot_dmg'],
         },
         'Table_4': {
             'BucOmarStructure': ['particulars', 'base_hospital', 'divisional_hospital',

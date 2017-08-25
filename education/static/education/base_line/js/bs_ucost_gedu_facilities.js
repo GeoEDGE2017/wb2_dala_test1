@@ -14,9 +14,9 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     $scope.is_edit_disable = false;
 
     var init_data = {
-        'education':{
-            'Table_2':{
-                'BugArcStructures':[{
+        'education': {
+            'Table_2': {
+                'BugArcStructures': [{
                     particulars: '1 floor structure',
                     ab1_1c: null,
                     type_2: null,
@@ -47,7 +47,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     tc_crc_resc: null,
                     min_pzd_offices: null,
                 }],
-                'BugArcSupplies':[{
+                'BugArcSupplies': [{
                     particulars: 'Books',
                     ab1_1c: null,
                     type_2: null,
@@ -98,7 +98,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     tc_crc_resc: null,
                     min_pzd_offices: null,
                 }],
-                'BugArcEquipment':[{
+                'BugArcEquipment': [{
                     particulars: 'Computers',
                     ab1_1c: null,
                     type_2: null,
@@ -139,7 +139,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     tc_crc_resc: null,
                     min_pzd_offices: null,
                 }],
-                'BugArpcStructures':[{
+                'BugArpcStructures': [{
                     particulars: 'Roof',
                     ab1_1c: null,
                     type_2: null,
@@ -170,7 +170,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     tc_crc_resc: null,
                     min_pzd_offices: null,
                 }],
-                'BugArpcSupplies':[{
+                'BugArpcSupplies': [{
                     particulars: 'Books',
                     ab1_1c: null,
                     type_2: null,
@@ -221,7 +221,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     tc_crc_resc: null,
                     min_pzd_offices: null,
                 }],
-                'BugArpcEquipment':[{
+                'BugArpcEquipment': [{
                     particulars: 'Computers',
                     ab1_1c: null,
                     type_2: null,
@@ -262,7 +262,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     tc_crc_resc: null,
                     min_pzd_offices: null,
                 }],
-                'BugAfr':[{
+                'BugAfr': [{
                     particulars: 'Average revenue per month',
                     ab1_1c: null,
                     type_2: null,
@@ -273,7 +273,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     tc_crc_resc: null,
                     min_pzd_offices: null,
                 }],
-                'BugCrp':[{
+                'BugCrp': [{
                     particulars: 'Average construction period',
                     ab1_1c: null,
                     type_2: null,

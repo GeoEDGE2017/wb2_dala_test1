@@ -303,7 +303,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         }
 
         if($scope.incident && $scope.district) {
-
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',

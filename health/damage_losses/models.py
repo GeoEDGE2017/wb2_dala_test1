@@ -1725,10 +1725,21 @@ class DapBefPcDistrict(models.Model):
     est_losses_y2 = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    total_damages = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'health\".\"dap_bef_pc_district'
+
+
+class DapBefPcTotDmgDistrict(models.Model):
+    tot_dmg = models.FloatField(blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'health\".\"dap_bef_pc_tot_dmg_district'
 
 
 class DapBefOtherDistrict(models.Model):
@@ -1737,6 +1748,7 @@ class DapBefOtherDistrict(models.Model):
     est_losses_y2 = models.FloatField(blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    total_damages = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False

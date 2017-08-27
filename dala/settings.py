@@ -162,7 +162,7 @@ DATABASES = {
         # },
 
         # 'NAME': 'dala_2017_08_01',
-        'NAME': 'dala_08_23',
+        'NAME': 'dala_08_25',
         # 'NAME': 'dala_08_09',
         'USER': 'postgres',
     },
@@ -560,7 +560,7 @@ TABLE_PROPERTY_MAPPER = {
             'DapBefOtherNational': [
                 'est_replacement_cost',
                 'est_losses_y1',
-                'est_losses_y2'],
+                'est_losses_y2', 'total_damages'],
 
         },
     },

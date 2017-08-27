@@ -14,7 +14,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
     $scope.is_edit_disable = false;
     $scope.user_id;
 
-
     var init_data = {
         'mining': {
             'Table_1': {
@@ -82,6 +81,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
+        console.log('saveBsData');
         if (form.$valid) {
             var array = $scope.mnIndusMinFirm.mining.Table_1;
             var details = _.map(array, function(model_array) {
@@ -119,6 +119,9 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
                 $scope.is_valid_data = false;
                 console.log(response);
             });
+        }
+        else {
+            console.log('saveBsData else');
         }
     }
 
@@ -197,19 +200,19 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
         }
     }
 
-    $scope.openAddFirm = function(form) {
+    $scope.openAddFirm = function() {
         $scope.submitted = true;
-        console.log('in');
-        if(form.$valid) {
+//        console.log('in');
+        if($scope.district && $scope.baselineDate) {
             $("#modal-container-469842").modal('show');
         }
     }
 
-    $scope.openEditFirm = function(form) {
+    $scope.openEditFirm = function() {
         $scope.submitted = true;
         is_edit_model=true;
-        if(form.$valid) {
-            $("#modal-container-469842").modal('show');
+        if($scope.district && $scope.baselineDate && $scope.selectedFirm) {
+            $("#modal-container-469840").modal('show');
         }
     }
 

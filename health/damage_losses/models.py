@@ -1920,6 +1920,7 @@ class DapBefOtherNational(models.Model):
     est_losses_y2 = models.BigIntegerField(blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    total_damages = models.BigIntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

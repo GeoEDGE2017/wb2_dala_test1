@@ -48,9 +48,9 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
                   },
                }),
             }).success(function(data) {
-                console.log('load ', data);
-                $scope.data= data;
+                $scope.data = data;
                 $scope.dlhealthsummarydamagenationwide = data;
+                console.log($scope.dlhealthsummarydamagenationwide);
             })
         }
     }
@@ -324,6 +324,103 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
                 })
             })
             return tot_number_affected;
+        }
+    }
+
+
+
+    $scope.totNumberAffectedPvt = function() {
+        console.log('*** totNumberAffectedPvt');
+        if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
+            var tot_number_affected = 0;
+            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DapPvtNational') {
+                        tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[1].num_affected_fac,
+                            value_in[0].num_affected_fac);
+                    }
+                })
+            })
+            return tot_number_affected;
+        }
+    }
+
+    $scope.totNoOfPatientsAffectedMalePvt = function() {
+        if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
+            var tot_male = 0;
+            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DapPvtNational') {
+                        tot_male = tot_male + $scope.sumFunc2(value_in[1].male, value_in[0].male);
+                    }
+                })
+            })
+            return tot_male;
+        }
+    }
+
+    $scope.totNoOfPatientsAffectedFemalePvt = function() {
+        if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
+            var tot_female = 0;
+            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DapPvtNational') {
+                        tot_female = tot_female + $scope.sumFunc2(value_in[1].female, value_in[0].female);
+                    }
+                })
+            })
+            return tot_female;
+        }
+    }
+
+    $scope.totDamagesPvt = function() {
+        if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
+            var tot_damages = 0;
+//            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
+//                angular.forEach(value, function(value_in, key) {
+//                    if(key == 'DapBefPcDistrict') {
+//                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
+//                    }
+//                    else if(key == 'DapBefOtherDistrict') {
+//                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
+//                    }
+//                })
+//            })
+            return tot_damages;
+        }
+    }
+
+    $scope.totLossesYear1Pvt = function() {
+        if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
+            var tot_est_losses_y1 = 0;
+            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DapBefPcNational') {
+                        tot_est_losses_y1 = tot_est_losses_y1 + $scope.sumFunc2(value_in[0].est_losses_y1, 0);
+                    }
+                    else if(key == 'DapBefOtherNational') {
+                        tot_est_losses_y1 = tot_est_losses_y1 + $scope.sumFunc2(value_in[0].est_losses_y1, 0);
+                    }
+                })
+            })
+            return tot_est_losses_y1;
+        }
+    }
+
+    $scope.totLossesYear2Pvt = function() {
+        if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
+            var tot_est_losses_y2 = 0;
+            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DapBefPcNational') {
+                        tot_est_losses_y2 = tot_est_losses_y2 + $scope.sumFunc2(value_in[0].est_losses_y2, 0);
+                    }
+                    else if(key == 'DapBefOtherNational') {
+                        tot_est_losses_y2 = tot_est_losses_y2 + $scope.sumFunc2(value_in[0].est_losses_y2, 0);
+                    }
+                })
+            })
+            return tot_est_losses_y2;
         }
     }
 }])

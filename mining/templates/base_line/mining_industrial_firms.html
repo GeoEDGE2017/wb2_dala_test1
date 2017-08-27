@@ -41,16 +41,14 @@
                         <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_industrial_mining.district.$error.required">
+                            <span class="arrow_box" ng-show="submitted && form_industrial_mining.district.$error.required">
                                 Please Select District
                             </span>
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_industrial_mining.baselineDate.$error.required">
+                            <span class="arrow_box" ng-show="submitted && form_industrial_mining.baselineDate.$error.required">
                                 Please Select Date
                             </span>
                         </td>
@@ -59,12 +57,9 @@
                         <td style="padding-left:5px;"> Name of District</td>
                         <td colspan="1" style="">
                             <select id="selectbasic" name="district" ng-change="fetchFirms();changeDis();"
-                                    ng-model='district'
-                                    class="form-control"
-                                    style="font-weight:400;" required>
+                                    ng-model='district' class="form-control" style="font-weight:400;" required>
                                 <option value="" selected="true">Select a District</option>
                                 {% for district in districts %}
-
                                 <option value={{district.id}}>{{district.name}}
                                     {% endfor %}
                             </select>
@@ -73,8 +68,7 @@
                             Year/Month
                         </td>
                         <td colspan="1" style="font-weight:normal;">
-                            <input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis();"
-                                   ng-model="baselineDate"
+                            <input id="datepicker" type="text" placeholder="mm/yy" ng-change="changeDis();" ng-model="baselineDate"
                                    class="form-control input-md" name="baselineDate" required>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
@@ -86,7 +80,7 @@
                         <td colspan="2">
                             <select ng-options="firm as firm.name for firm in firms track by firm.id"
                                     name="district" id="ccyear" ng-model="selectedFirm" ng-change="changeDis();"
-                                    class="form-control" required>
+                                    class="form-control">
                                 <option value="" selected>Select Firm</option>
                             </select>
                         </td>
@@ -94,9 +88,9 @@
                             <!--a id="modal-469842" href="#modal-container-469842" role="button" data-toggle="modal"
                                class="btn btn-sm btn-info">Add</a-->
                             <button id="modal-469842" role="button" data-toggle="modal"
-                               class="btn btn-sm btn-info" ng-click="openAddFirm(form_industrial_mining)">Add</button>
-                            <button id="modal-469840" ng-click="openEditFirm(form_industrial_mining)" role="button" data-toggle="modal"
-                               class="btn btn-sm btn-warning">Edit</button>
+                                class="btn btn-sm btn-info" ng-click="openAddFirm()">Add</button>
+                            <button id="modal-469840" ng-click="openEditFirm()" role="button" data-toggle="modal"
+                                class="btn btn-sm btn-warning">Edit</button>
                         </td>
                     </tr>
                     <tr>

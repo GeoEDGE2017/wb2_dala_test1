@@ -130,7 +130,7 @@
                     </tbody>
                 </table>
                 <div id="boxscroll" style="max-height:400px;overflow:auto;">
-                    <table ng-repeat="(key, value) in data.education.Table_6" class="table table-bordered">
+                    <table ng-repeat="(key, value) in dlEduProvince.education.Table_6" class="table table-bordered">
                         <tbody>
                             <tr height="20" class="trheadc">
                                 <td ng-bind="key" width="202" height="20">
@@ -326,6 +326,29 @@
                             </tr>
                         </tbody>
                     </table>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    TOTAL
+                                </td>
+                                <td class="right" width="110" ng-bind="totNumberAffectedPub()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totNoOfPatientsAffectedMalePub()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totNoOfPatientsAffectedFemalePub()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totDamagesPub()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totLossesYear1Pub()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totLossesYear2Pub()">
+                                </td>
+                                <td class="right" width="110" ng-bind="totLossesYear1Pub() + totLossesYear2Pub()">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
@@ -371,7 +394,7 @@
                                 Year 2
                             </td>
                         </tr>
-                        <table ng-repeat="(key, value) in data.education.Table_6" class="table table-bordered">
+                        <table ng-repeat="(key, value) in dlEduProvince.education.Table_6" class="table table-bordered">
                             <tbody>
                                 <tr height="20" class="trheadc">
                                     <td ng-bind="key" width="202" height="20">
@@ -539,6 +562,29 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td class="tdpa" width="307" height="17">
+                                        TOTAL
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totNumberAffectedPvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totNoOfPatientsAffectedMalePvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totNoOfPatientsAffectedFemalePvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totDamagesPvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totLossesYear1Pvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totLossesYear2Pvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totLossesYear1Pvt() + totLossesYear2Pvt()">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <br>
                             <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab">
                                 <span class="glyphicon glyphicon-arrow-right"></span>
@@ -577,48 +623,44 @@
                             <td class="tdpa" width="307" height="17">
                                 Public Sector
                             </td>
-                            <td class="right" width="110" colspan="2">
+                            <td class="right" width="110" colspan="2" ng-bind="totDamagesPub()">
                             </td>
-                            <td class="right" width="110" colspan="2">
+                            <td class="right" width="110" colspan="2" ng-bind="totLossesYear1Pub()">
                             </td>
-                            <td class="right" width="110" colspan="2">
+                            <td class="right" width="110" colspan="2" ng-bind="totLossesYear2Pub()">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="totDamagesPub() + totLossesYear1Pub() + totLossesYear2Pub()">
                             </td>
                         </tr>
                         <tr height="17">
                             <td class="tdpa" width="307" height="17">
                                 Private Sector
                             </td>
-                            <td class="right" width="110" colspan="2">
+                            <td class="right" width="110" colspan="2" ng-bind="totDamagesPvt()">
                             </td>
-                            <td class="right" width="110" colspan="2">
+                            <td class="right" width="110" colspan="2" ng-bind="totLossesYear1Pvt()">
                             </td>
-                            <td class="right" width="110" colspan="2">
+                            <td class="right" width="110" colspan="2" ng-bind="totLossesYear2Pvt()">
                             </td>
-                            <td class="right" width="110">
+                            <td class="right" width="110" ng-bind="totDamagesPvt() + totLossesYear1Pvt() + totLossesYear2Pvt()">
                             </td>
                         </tr>
                         <tr height="17">
                         <td class="tdpa" width="307" height="17">
                             Total
                         </td>
-                        <td class="right" width="110" colspan="2">
+                        <td class="right" width="110" colspan="2" ng-bind="totDamagesPub() + totDamagesPvt()">
                         </td>
-                        <td class="right" width="110" colspan="2">
+                        <td class="right" width="110" colspan="2" ng-bind="totLossesYear1Pub() + totLossesYear1Pvt()">
                         </td>
-                        <td class="right" width="110" colspan="2">
+                        <td class="right" width="110" colspan="2" ng-bind="totLossesYear2Pub() + totLossesYear2Pvt()">
                         </td>
-                        <td class="right" width="110">
+                        <td class="right" width="110" ng-bind="totDamagesPub() + totLossesYear1Pub() + totLossesYear2Pub() + totDamagesPvt() + totLossesYear1Pvt() + totLossesYear2Pvt()">
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <br>
-                <div class="pull-right">
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <!--<button type="button" class="btn btn-success">Submit</button>-->
-                </div>
                 <br><br><br>
             </div>
         </div>

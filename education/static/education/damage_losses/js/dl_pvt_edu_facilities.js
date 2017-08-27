@@ -793,6 +793,11 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
         }
     }
 
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlPvtEduFacilities = init_data;
+    }
+
     $scope.addPreSchoolObject = function() {
         var new_row_one = [{
             asset: 'Structure',

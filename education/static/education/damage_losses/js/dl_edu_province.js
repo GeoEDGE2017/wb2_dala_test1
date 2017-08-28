@@ -153,7 +153,6 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
     }
 
     $scope.totNoOfPatientsAffectedMalePub = function() {
-//        console.log($scope.dlEduProvince);
         if(!angular.isUndefined($scope.dlEduProvince)) {
             var tot_no_of_patients_affected = 0;
             angular.forEach($scope.dlEduProvince.education.Table_6, function(value, index) {

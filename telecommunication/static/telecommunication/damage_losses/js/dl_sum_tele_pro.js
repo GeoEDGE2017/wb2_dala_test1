@@ -109,7 +109,6 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
         var model = $parse(totaldpubstring);
         model.assign($scope, totalDamages);
 
-
 //        $scope.grndtotaldpub = $scope.grndtotaldpub + totaldpub ;
 
         var totalLossYear1 = 0;
@@ -138,8 +137,6 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
 
 
         $scope.tot = totalDamages + totalLossYear1 + totalLossYear2;
-
-
         //Rural
 
         var ruraltotalDamage = 0;
@@ -153,9 +150,7 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
         var model = $parse(ruraltotalDamagestring);
         model.assign($scope, ruraltotalDamage);
 
-
-
-         var ruralLosstot = 0;
+        var ruralLosstot = 0;
 
         ruralLosstot =  ruralLosstot + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotLosDistrict[0]?
                           ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotLosDistrict[0].tot_los ?
@@ -169,17 +164,11 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
 
         $scope.ruraltot = ruraltotalDamage + ruralLosstot ;
 
-
         $scope.grandDamge = totalDamages + ruraltotalDamage;
         $scope.grandLossYear1 = totalLossYear1 + ruralLosstot;
         $scope.grandLossYear2 = totalLossYear2;
         $scope.grandTot = totalDamages + ruraltotalDamage + totalLossYear1 + ruralLosstot + totalLossYear2;
-
-
-
-
-
-}
+    }
 
     $scope.getTotDistrictDamagesPub = function(dis) {
         var tot_damages_pub=0;
@@ -291,4 +280,212 @@ app.controller("dlSumTeleProController", function ($scope,$http,$parse, _) {
         }
         return tot_damages_pvt;
     }
- })
+
+    $scope.grndTotDamagesPub = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlDmgFirmDistrict') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.tot_damages);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages', grnd_tot_damages);
+            return grnd_tot_damages;
+        }
+    }
+
+    $scope.grndTotDamagesPvt = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlDmgFirmDistrict') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.tot_damages);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages', grnd_tot_damages);
+            return grnd_tot_damages;
+        }
+    }
+
+    $scope.grndTotLossesYear1Pub = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosFirmYear1District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year1_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages', grnd_tot_damages);
+            return grnd_tot_damages;
+        }
+    }
+
+    $scope.grndTotLossesYear1Pvt = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosFirmYear1District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year1_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages', grnd_tot_damages);
+            return grnd_tot_damages;
+        }
+    }
+
+    $scope.grndTotLosseYear2Pub = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosFirmYear2District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year2_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages', grnd_tot_damages);
+            return grnd_tot_damages;
+        }
+    }
+
+    $scope.grndTotLosseYear2Pvt = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosFirmYear2District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year2_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages', grnd_tot_damages);
+            return grnd_tot_damages;
+        }
+    }
+
+    $scope.grndTotDamagesLossesPub = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages_losses = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosFirmYear1District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year1_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages_losses));
+                            }
+                        })
+                    }
+                    else if(key == 'LosFirmYear2District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year2_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages_losses));
+                            }
+                        })
+                    }
+                    else if(key == 'DlDmgFirmDistrict') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.tot_damages);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages_losses));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages_losses', grnd_tot_damages_losses);
+            return grnd_tot_damages_losses;
+        }
+    }
+
+    $scope.grndTotDamagesLossesPvt = function() {
+        console.log($scope.dlSumTelePro);
+        if($scope.dlSumTelePro != null) {
+            console.log('in');
+            var grnd_tot_damages_losses = 0;
+            angular.forEach($scope.dlSumTelePro.telecommunication.Table_4, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'LosFirmYear1District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year1_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages_losses));
+                            }
+                        })
+                    }
+                    else if(key == 'LosFirmYear2District') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year2_los);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages_losses));
+                            }
+                        })
+                    }
+                    else if(key == 'DlDmgFirmDistrict') {
+                        angular.forEach(value_in, function(each_firm, firm_index) {
+                            if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
+                                grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.tot_damages);
+                                console.log(each_firm.tot_damages, '->', parseInt(grnd_tot_damages_losses));
+                            }
+                        })
+                    }
+                })
+            })
+            console.log('grnd_tot_damages', grnd_tot_damages_losses);
+            return grnd_tot_damages_losses;
+        }
+    }
+})

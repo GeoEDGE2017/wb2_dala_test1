@@ -166,6 +166,7 @@ class LosFirmYear1District(models.Model):
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -178,6 +179,7 @@ class LosFirmYear2District(models.Model):
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     firm = models.ForeignKey(CompanyName, db_column='firm', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
+    company_name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

@@ -162,7 +162,7 @@ DATABASES = {
         # },
 
         # 'NAME': 'dala_2017_08_01',
-        'NAME': 'dala_08_25',
+        'NAME': 'dala_08_28',
         # 'NAME': 'dala_08_09',
         'USER': 'postgres',
     },
@@ -3605,13 +3605,13 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_3': {
             'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
-            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
         },
         'Table_4': {
             'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
-            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
         },
         'Table_5': {
             'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],

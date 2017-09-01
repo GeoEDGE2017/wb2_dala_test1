@@ -6,6 +6,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.baselineDate;
     $scope.bs_data={};
     $scope.is_edit = false;
+    $scope.is_submit = false;
     $scope.new_company = {id: null, district:null, company_name: null, ownership: null};
     $scope.submitted = false;
     $scope.is_valid_data = true;
@@ -193,28 +194,23 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     },
                 }),
             }).success(function(data) {
-                console.log(data);
-//                $scope.bsTelcomCmpnys = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.telecommunication.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsTelcomCmpnys = data;
+                        console.log($scope.bsTelcomCmpnys);
                     }
                     else {
                         $("#modal-container-239456").modal('show');
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
 
@@ -257,5 +253,12 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
 
     $scope.display = function() {
         console.log($scope.bsTelcomCmpnys);
+    }
+
+    //Cancel Edit
+    $scope.cancelEdit = function() {
+        console.log("edit close")
+        $scope.is_edit = false;
+        $scope.bsTelcomCmpnys = init_data;
     }
 });

@@ -910,6 +910,7 @@ def bs_save_edit_data(table_data, com_data):
 
 @csrf_exempt
 def dl_save_data(request):
+    print '-----------dl_save_data-----------'
     dl_data = (yaml.safe_load(request.body))
     dl_table_data = dl_data['table_data']
     com_data = dl_data['com_data']
@@ -992,7 +993,7 @@ def dl_save_data(request):
                     return HttpResponse(False)
 
     else:
-        dl_save_edit_data(dl_table_data, com_data)
+        dl_save_edit_data(dl_table_data, com_data, current_user)
 
     return HttpResponse('success')
 
@@ -1327,11 +1328,10 @@ def dl_fetch_edit_data_with_array(request):
 # new method is added by chamupathi mendis to support new enum fields in edit mode
 
 @csrf_exempt
-def dl_save_edit_data(table_data, com_data):
+def dl_save_edit_data(table_data, com_data, current_user):
     todate = timezone.now()
     print "\n"
-    print "\n"
-    print "Edit -------------"
+    print "Edit -------------", current_user
     for sector in table_data:
 
         sub_app_name = sector + '.damage_losses'
@@ -1349,11 +1349,14 @@ def dl_save_edit_data(table_data, com_data):
                     model_class = apps.get_model(sub_app_name, db_table)
 
                     if not has_the_id(row):
+                        print '*** has_the_id ', has_the_id(row)
                         model_object = model_class()
                         # assigning common properties to model object
                         model_object.created_date = todate
                         model_object.lmd = todate
-                        model_object.lmu = "*"
+                        if current_user != None:
+                            model_object.created_user = current_user
+                            model_object.lmu = current_user
 
                         for com_property in com_data:
                             print com_data[com_property]
@@ -1368,10 +1371,17 @@ def dl_save_edit_data(table_data, com_data):
                         print "no id found in dl"
 
                     else:
+                        print '*** has_the_id ', has_the_id(row)
                         model_object = model_class.objects.filter(id=row['id'])
+                        model_object.lmd = todate
+
+                        if current_user != None:
+                            model_object.lmu = current_user
+
                         model_object.update(**row)
 
                         print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+                        model_class.objects.filter(id=model_object[0].id).update(lmu=current_user, lmd=todate)
 
 
 # dileepa
@@ -1619,6 +1629,7 @@ def bs_livestock_fetch_edit_data(request):
 
 @csrf_exempt
 def dl_fetch_district_disagtn(request):
+    print '*** dl_fetch_district_disagtn()'
     data = (yaml.safe_load(request.body))
     table_name = data['table_name']
     sector = data['sector']
@@ -1626,17 +1637,21 @@ def dl_fetch_district_disagtn(request):
     incident = com_data['incident']
     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
 
-    print tables
+    print 'tables', tables
     dl_mtable_data = {sector: {}}
     dl_mtable_data[sector][table_name] = {}
 
     filter_fields = {}
     sub_app_name = sector + '.damage_losses'
 
+    print 'com_data', com_data
+
     if 'province' in com_data:
+        print 'if province'
         admin_area = com_data['province']
         filter_fields = {'incident': incident, 'district__province': admin_area}
     else:
+        print 'else province'
         filter_fields = {'incident': incident}
 
     dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
@@ -1659,7 +1674,7 @@ def dl_fetch_district_disagtn(request):
             filter_fields = {'incident': incident, 'province': province_id}
             print '% - ', filter_fields
 
-        print dl_session.district.province
+        # print dl_session.district.province
 
         if category_name is not None:
             dl_mtable_data[sector][table_name][category_name] = {}

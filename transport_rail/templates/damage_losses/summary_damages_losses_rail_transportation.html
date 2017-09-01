@@ -4,19 +4,25 @@
 
 <!-- Main content -->
 <main class="main" ng-app="dlRailTransSumDisApp" ng-controller="dlRailTransSumDisController">
-
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-         <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">Dashboard</a>
         </li>
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:transport_rail_main' %}">Transport Rail Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:transport_rail_main' %}">
+                Transport Rail Sector
+            </a>
         </li>
-
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 3. Summary of Damages and Losses in the Rail Transportation in a District</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 3. Summary of Damages and Losses in the Rail Transportation in a District
+            </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/1D-Rail_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+               class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
@@ -29,7 +35,7 @@
                         <col width="125"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                         <td colspan=""  style="background:#fff;border:1px solid #fff;text-align:center;">
                         </td>
                         <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
@@ -45,7 +51,7 @@
                             </span>
                         </td>
                     </tr>
-                    <tr height="20">
+                        <tr height="20">
                         <td class="trhead1" width="130">
                             Incident
                         </td>
@@ -80,60 +86,43 @@
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </tbody>
-                    </table>
-
-                    <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlRailTransSumDis.transport_rail.Table_3" >
-                        <tbody>
+                </table>
+                <table class="table table-bordered">
+                    <tbody ng-if="!checkIfNull()">
                         <tr class="trheadc1" height="20">
-                        <td colspan="3" width="281" height="20" style="width:41%;">
-                            Name of District
-                        </td>
-                        <td colspan="3" width="425">
-                            Total Damage (LKR)
-                        </td>
-                    </tr>
+                            <td colspan="3" width="281" height="20" style="width:41%;">
+                                Name of District
+                            </td>
+                            <td colspan="3" width="425">
+                                Total Damage (LKR)
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlRailTransSumDis.transport_rail.Table_3" >
                         <tr  height="20" ng-init="getTotal('TotDmgProvince','tot_damages', $index,key);">
                             <td colspan="3" ng-bind="key"  class="tdpa" width="275">
                             </td>
                             <td class="right" colspan="3" width="400" ng-bind="value.TotDmgProvince[0].tot_damages" >
                             </td>
-
                         </tr>
-
-
                     </tbody>
-                        </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()" >
+                    <tbody class="table table-bordered" ng-if="!checkIfNull()" >
                         <tr height="20">
-                        <td class="boldash" width="281" height="20">
-                            TOTAL
-                        </td>
-                        <td width="425" colspan="3" class="right">
-                            <span class="right" ng-bind="total"></span>
-                        </td>
-
-                    </tr>
+                            <td class="boldash" width="281" height="20">
+                                TOTAL
+                            </td>
+                            <td width="425" colspan="3" class="right" ng-bind="total">
+                                <!--<span class="right" ng-bind="total"></span>-->
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-
-
                 <div class="pull-right">
                     <br>
-
                 </div>
-
-
             </div>
-
-
             <br><br><br>
-
         </div>
-
-
-    </div>
-    </div>
-
-
     </div>
     <!-- add model -->
     <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
@@ -141,7 +130,6 @@
         <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
@@ -156,13 +144,11 @@
                         <div class="col-md-10">
                             <input id="textinput" name="textinput" type="text" placeholder=""
                                    class="form-control input-md">
-
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -171,9 +157,7 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- edit model -->
     <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
@@ -181,7 +165,6 @@
         <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
@@ -196,13 +179,11 @@
                         <div class="col-md-10">
                             <input id="textinput" name="textinput" type="text" placeholder=""
                                    class="form-control input-md">
-
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -211,12 +192,8 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

@@ -104,24 +104,67 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
                     },
                 }),
             }).success(function(data) {
-               $scope.districtData = data;
-               console.log('load ', data);
+                $scope.districtData = data;
+                console.log($scope.districtData);
             })
         }
     }
 
-    $scope.getTotal = function(key) {
-        $scope.finaltotalprivate = 0;
-        var totalDamages = 0;
-        totalDamages =  totalDamages + ($scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0] ?
-                          ($scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0].damages ?
-                         $scope.districtData.other_govn_services.Table_3[key].DlagdDmgDistrict[0].damages : 0):0);
+    $scope.getTotDamages = function(type) {
+        var tot_damages = 0;
+        angular.forEach($scope.districtData.other_govn_services.Table_3[type], function(values, keys, index) {
+            angular.forEach(values, function(value, key, index) {
+                if(key == 'DlagdDmgDistrict') {
+                    angular.forEach(value, function(value_in, index_in) {
+                        tot_damages = tot_damages + parseFloat(value_in.damages);
+                    })
+                }
+            })
+        })
+        return tot_damages;
+    }
 
-        var totaldpubstring = "totalDamages"+ key;
+    $scope.getTotLosYear1 = function(type) {
+        var los_year1 = 0;
+        angular.forEach($scope.districtData.other_govn_services.Table_3[type], function(values, keys, index) {
+            angular.forEach(values, function(value, key, index) {
+                if(key == 'DlagdLossesDistrict') {
+                    angular.forEach(value, function(value_in, index_in) {
+                        los_year1 = los_year1 + parseFloat(value_in.los_year1);
+                    })
+                }
+            })
+        })
+        return los_year1;
+    }
 
-        var model = $parse(totaldpubstring);
-        model.assign($scope, totalDamages);
+    $scope.getTotLosYear2 = function(type) {
+        var los_year2 = 0;
+        angular.forEach($scope.districtData.other_govn_services.Table_3[type], function(values, keys, index) {
+            angular.forEach(values, function(value, key, index) {
+                if(key == 'DlagdLossesDistrict') {
+                    angular.forEach(value, function(value_in, index_in) {
+                        los_year2 = los_year2 + parseFloat(value_in.los_year2);
+                    })
+                }
+            })
+        })
+        return los_year2;
+    }
+
+    $scope.grandTotDamages = function(type) {
+        return  $scope.getTotDamages('Provincial Government') +  $scope.getTotDamages('Provincial Government') +
+             $scope.getTotDamages('National Ministry or Agency');
+    }
+
+    $scope.grandTotLosYear1 = function(type) {
+        return  $scope.getTotLosYear1('Provincial Government') +  $scope.getTotLosYear1('Provincial Government') +
+             $scope.getTotLosYear1('National Ministry or Agency');
+    }
+
+    $scope.grandTotLosYear2 = function(type) {
+        return  $scope.getTotLosYear2('Provincial Government') +  $scope.getTotLosYear2('Provincial Government') +
+             $scope.getTotLosYear2('National Ministry or Agency');
     }
 })
-
 

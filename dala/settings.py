@@ -162,7 +162,7 @@ DATABASES = {
         # },
 
         # 'NAME': 'dala_2017_08_01',
-        'NAME': 'dala_08_28',
+        'NAME': 'dala_09_01',
         # 'NAME': 'dala_08_09',
         'USER': 'postgres',
     },
@@ -565,9 +565,10 @@ TABLE_PROPERTY_MAPPER = {
         },
     },
     'mining': {
-        'Table_1': {'BmaImFn': ['name_min_outputs', 'avg_per_year', 'firm_id', 'id'],
-                    'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'],
-                    },
+        'Table_1': {
+            'BmaImFn': ['name_min_outputs', 'avg_per_year', 'firm_id', 'id'],
+            'BmaImFirmNum': ['male', 'female', 'firm_id', 'id'],
+        },
         'Table_2': {
             'BmaAmMin': ['minerals', 'avg_per_year', 'id'],
             'BmaAmMinNum': ['male', 'female', 'id'],
@@ -580,8 +581,7 @@ TABLE_PROPERTY_MAPPER = {
             'DloDmgVehicles': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
             'DloDmgStocks': ['assets', 'rep_tot_dassets', 'repair_pdmg_assets', 'tot_damages', 'firm_id', 'id'],
             'DloLosPlos': ['type_los', 'avg_per_year', 'red_voutput_year1', 'red_voutput_year2', 'los_year1',
-                           'los_year2',
-                           'tot_losses', 'firm_id', 'id'],
+                           'los_year2', 'tot_losses', 'firm_id', 'id'],
             'DloLosOlos': ['type_los', 'los_year1', 'los_year2', 'tot_losses', 'firm_id', 'id']
         },
         'Table_4': {
@@ -656,7 +656,14 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year2',
                 'total_losses',
                 'department__name'
-            ]
+            ],
+            # 'DlagdLossesDistrictn': [
+            #     'los_year1',
+            #     'los_year2',
+            #     'total_losses',
+            #     'ownership',
+            #     'department__name'
+            # ],
         },
         'Table_4': {
             'DlagdDmgProvince': [

@@ -300,7 +300,7 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
         return total;
     }
 
-    $scope.test = function(){
+    $scope.test = function() {
         console.log($scope.dlhealthsummarydamagenationwide.health.Table_10);
     }
 

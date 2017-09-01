@@ -50,8 +50,6 @@
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
                                         {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
@@ -91,20 +89,16 @@
                     </tr>
                     <table ng-repeat="(key, value) in dlAssessmenProvinceSys.other_govn_services.Table_4" class="table table-bordered">
                         <tbody>
-                        <tr height="20">
-                            <td ng-bind="key" class="tdpa" width="191" style="width:10%;">
+                        <tr height="20" class="trhead">
+                            <td ng-bind="key" width="191" style="width:10%;">
                             </td>
                             <td width="118"  style="width:10%;">
-                                -
                             </td>
                             <td width="118" style="width:5%;">
-                                -
                             </td>
                             <td width="118" style="width:5%;">
-                                -
                             </td>
                             <td class="right" width="118" style="width:10%;">
-                                -
                             </td>
                         </tr>
                         <tr ng-repeat="(key, value) in value" height="20">

@@ -31,7 +31,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
                 console.log("data", $scope.data);
                 $scope.data_available = ($scope.provinces.length != 0)
                 if(!$scope.data_available){
-                    cosnole.log("no data available for your selection");
+                    console.log("no data available for your selection");
                     $scope.isDataAvailable = false;
                 }
                 $scope.isDataAvailable = true;;
@@ -50,6 +50,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
             $scope.table = {};
             $scope.table.formal = {};
             $scope.table.informal = {};
+
             angular.forEach($scope.provinces, function(value, key) {
                 $scope.table.formal[value] = {'name':value }
                 $scope.table.formal[value].year1Damage = {};
@@ -60,6 +61,8 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
                 $scope.table.informal[value].year1Damage = {};
                 $scope.table.informal[value].year1Loss = {};
                 $scope.table.informal[value].year2Loss = {};
+
+                console.log('provinces',$scope.data);
 
                 angular.forEach($scope.data[$scope.provinces].DmgTotFrmYear1National, function(value2, key) {
                     $scope.table.formal[value].year1Damage[value2.ownership] = value2.tot_damages;

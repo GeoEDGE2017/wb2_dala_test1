@@ -17,7 +17,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -58,10 +60,10 @@
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </tbody>
-                    </table>
-                    <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlAirTransSumNat.transport_air.Table_5">
-                        <tbody>
-                        <tr class="trheadc1" height="19">
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
+                    <tbody>
+                    <tr class="trheadc1" height="19">
                         <td rowspan="3" width="218" height="57" style="width:19.3%;">
                             Province
                         </td>
@@ -112,7 +114,12 @@
                             Private
                         </td>
                     </tr>
-                    <tr   height="20" ng-init="getTotal($index,key)">
+                    </tbody>
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()"
+                       ng-repeat="(key, value) in dlAirTransSumNat.transport_air.Table_5">
+                    <tbody>
+                    <tr height="20" ng-init="getTotal($index,key)">
                         <td ng-bind="key" class="tdpa" width="253" height="19">
                         </td>
                         <td class="right" width="147" ng-bind="value.DlAirDmgPubNational[0].tot_destroyed_pub">
@@ -127,29 +134,31 @@
                         </td>
                         <td class="right" width="133" ng-bind="value.DlAirLosNational[0].year_2_pvt">
                         </td>
-                        <td class="right" width="126" ng-bind="value.DlAirDmgPubNational[0].tot_destroyed_pub + value.DlAirLosNational[0].year_1_pub + value.DlAirLosNational[0].year_2_pub ">
+                        <td class="right" width="126"
+                            ng-bind="value.DlAirDmgPubNational[0].tot_destroyed_pub + value.DlAirLosNational[0].year_1_pub + value.DlAirLosNational[0].year_2_pub ">
                         </td>
-                        <td class="right" width="85" ng-bind="value.DlAirDmgPvtNational[0].tot_destroyed_pvt + value.DlAirLosNational[0].year_1_pvt + value.DlAirLosNational[0].year_2_pvt ">
+                        <td class="right" width="85"
+                            ng-bind="value.DlAirDmgPvtNational[0].tot_destroyed_pvt + value.DlAirLosNational[0].year_1_pvt + value.DlAirLosNational[0].year_2_pvt ">
                         </td>
                     </tr>
                     </tbody>
-                        </table>
+                </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
-                        <tr height="19">
+                    <tr height="19">
                         <td class="boldash" width="253" height="19">
                             TOTAL
                         </td>
                         <td class="right" width="147" ng-bind="totaldpub">
                         </td>
-                        <td class="right" width="151" ng-bind="totaldpvt"  >
+                        <td class="right" width="151" ng-bind="totaldpvt">
                         </td>
-                        <td class="right" width="165" ng-bind="totalyear1pub"  >
+                        <td class="right" width="165" ng-bind="totalyear1pub">
                         </td>
-                        <td class="right" width="170"  ng-bind="totalyear1pvt"  >
+                        <td class="right" width="170" ng-bind="totalyear1pvt">
                         </td>
-                        <td class="right" width="135" ng-bind="totalyear2pub"  >
+                        <td class="right" width="135" ng-bind="totalyear2pub">
                         </td>
-                        <td class="right" width="133" ng-bind="totalyear2pvt"  >
+                        <td class="right" width="133" ng-bind="totalyear2pvt">
                         </td>
                         <td class="right" width="126" ng-bind="finaltotalpublic">
                         </td>

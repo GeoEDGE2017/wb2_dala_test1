@@ -163,6 +163,7 @@ DATABASES = {
 
         # 'NAME': 'dala_2017_08_01',
         'NAME': 'dala_09_01',
+        # 'NAME': '2017_08_28_DB',
         # 'NAME': 'dala_08_09',
         'USER': 'postgres',
     },
@@ -249,10 +250,9 @@ TABLE_PROPERTY_MAPPER = {
             'DmfLosDistrict': ['type_of_losses', 'base_hospital', 'divisional_hospital', 'rural_hospital',
                                'central_dispensary', 'pmcus', 'phccs', 'mchcs'],
             'DapPvtDistrict': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
-            'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2', 'total_damages'],
-            'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2', 'total_damages'],
+            'DapBefPcDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
+            'DapBefOtherDistrict': ['est_replacement_cost', 'est_losses_y1', 'est_losses_y2'],
             'DapNapTmf': ['type_med_fac', 'num_affected_fac', 'male', 'female'],
-            'DapBefPcTotDmgDistrict': ['tot_dmg'],
         },
         'Table_4': {
             'BucOmarStructure': ['particulars', 'base_hospital', 'divisional_hospital',
@@ -560,7 +560,7 @@ TABLE_PROPERTY_MAPPER = {
             'DapBefOtherNational': [
                 'est_replacement_cost',
                 'est_losses_y1',
-                'est_losses_y2', 'total_damages'],
+                'est_losses_y2'],
 
         },
     },
@@ -3090,25 +3090,29 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_6': {
-            'DlRuralDmg': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
-                           'tot_damages', 'id', ],
+            'DlRuralDmgProvince': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
+                           'tot_damages', ],
             'DlRuralLos': ['type_water_supply', 'cleaning_debris', 'high_ocost', 'other_unexpected_exps', 'tot_los',
                            'id', ],
-            'DlcwNumClients': ['residential', 'commercial', 'industrial', 'others', 'total', 'id', ],
+            'DlcwNumClientsProvince': ['residential', 'commercial', 'industrial', 'others', 'total' ],
             'DlcwLosOther': ['other_los', 'tot_los_year_1', 'tot_los_year_2', 'tot_los', 'id', ],
-            'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
+            'DlcwTotDmgProvince': ['dlcw_tot_dmg','sum_tot'],
+            'DlcwTotLosProvince':['tot_los_year1','tot_los_year2'],
             'DlRuralTotDmgDistrict': ['tot_damages'],
+            'DlRuralTotLosProvince':['tot_los'],
             'DlRuralTotLosDistrict': ['tot_los'],
 
         },
         'Table_7': {
             'DlcwNumAfNational': ['tot_dmg_residential', 'tot_dmg_commercial', 'tot_dmg_industrial', 'tot_dmg_others',
                                   'tot_dmg_total'],
-            'DlRuralNumAfNational': ['type_water_supply', 'tot_num_fam_aff'],
-            'DlcwTotDmgNational': ['total_dmgs'],
-            'DlcwTotLosNational': ['tot_los_year1', 'tot_los_year2'],
-            'DlRuralTotDmgNational': ['type_water_supply', 'tot_damages'],
-            'DlRuralTotLosNational': ['tot_los'],
+            'DlRuralNumAfNational': ['type_water_supply', 'families_affected'],
+            'DlcwDmgNational': ['sum'],
+            # 'DlcwTotDmgNational': ['sum'],
+            'DlcwLosNational': ['tot_los_year1', 'tot_los_year2'],
+            'DlRuralDmgNational': ['type_water_supply', 'tot_damages'],
+            'DlRuralLosNational': ['tot_los'],
+            'DlcwNumClientsNational':['residential', 'commercial', 'industrial', 'others', 'total'],
         }
     },
     'tourism': {
@@ -3612,13 +3616,13 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_3': {
             'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
         },
         'Table_4': {
             'DlDmgFirmDistrict': ['tot_damages', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
-            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership', 'company_name'],
+            'LosFirmYear1District': ['year1_los', 'incident', 'district', 'firm', 'ownership'],
+            'LosFirmYear2District': ['year2_los', 'incident', 'district', 'firm', 'ownership'],
         },
         'Table_5': {
             'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],

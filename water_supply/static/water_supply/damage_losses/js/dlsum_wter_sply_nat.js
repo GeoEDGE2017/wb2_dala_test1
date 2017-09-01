@@ -49,70 +49,77 @@ app.controller("DlWaterSupplyNatController", function ($scope,$http,$parse, _) {
         return isNull;
     }
 
-    $scope.getTotal = function(key) {
-        $scope.finaltotalprivate = 0;
-        var totalDamages = 0;
-        totalDamages =  totalDamages + ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotDmgNational[0] ?
-                          ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotDmgNational[0].total_dmgs ?
-                         $scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotDmgNational[0].total_dmgs : 0):0);
-
-        var totaldpubstring = "totalDamages"+ key;
-
-        var model = $parse(totaldpubstring);
-        model.assign($scope, totalDamages);
-
-
-        var totalLossYear1 = 0;
-        totalLossYear1 =  totalLossYear1 + ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotLosNational[0] ?
-                          ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year1 ?
-                         $scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year1 : 0):0);
-
-        var totalLossYear1string = "totalLossYear1"+ key;
-        var model = $parse(totalLossYear1string);
-        model.assign($scope, totalLossYear1);
-
-
-
-        var totalLossYear2 = 0;
-        totalLossYear2 =  totalLossYear2 + ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotLosNational[0] ?
-                          ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year2 ?
-                         $scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlcwTotLosNational[0].tot_los_year2 : 0):0);
-
-        var totalLossYear2string = "totalLossYear2"+ key;
-        var model = $parse(totalLossYear2string);
-        model.assign($scope, totalLossYear2);
-
-
-        $scope.tot = totalDamages + totalLossYear1 + totalLossYear2;
-
-
-        //Rural
-
-        var ruraltotalDamage = 0;
-        ruraltotalDamage =  ruraltotalDamage + ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlRuralTotDmgNational[0]?
-                          ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlRuralTotDmgNational[0].tot_damages ?
-                         $scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlRuralTotDmgNational[0].tot_damages : 0):0);
-
-        var ruraltotalDamagestring = "ruraltotalDamage"+ key;
-        var model = $parse(ruraltotalDamagestring);
-        model.assign($scope, ruraltotalDamage);
-
-
-
-        var ruralLosstot = 0;
-        ruralLosstot =  ruralLosstot + ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlRuralTotLosNational[0]?
-                          ($scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlRuralTotLosNational[0].tot_los ?
-                         $scope.dlWaterSupplySumNat.water_supply.Table_7[key].DlRuralTotLosNational[0].tot_los : 0):0);
-
-        var ruralLosstotstring = "ruralLosstot"+ key;
-        var model = $parse(ruralLosstotstring);
-        model.assign($scope, ruralLosstot);
-
-        $scope.ruraltot = ruraltotalDamage + ruralLosstot ;
-
-        $scope.grandDamge = totalDamages + ruraltotalDamage;
-        $scope.grandLossYear1 = totalLossYear1 + ruralLosstot;
-        $scope.grandLossYear2 = totalLossYear2;
-        $scope.grandTot = totalDamages + ruraltotalDamage + totalLossYear1 + ruralLosstot + totalLossYear2;
+    $scope.totNoOfCommercialWaterSupply = function() {
+        if(!angular.isUndefined($scope.dlWaterSupplySumNat)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlWaterSupplySumNat.water_supply.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+            console.log('test',key);
+                    if(key == 'DlcwDmgNational') {
+                          totDmg = totDmg + value_in[0].sum;
+                    }
+                    })
+                })
+            return totDmg;
+        }
     }
+
+    $scope.totCommercialWaterSupplyLosYear1 = function() {
+        if(!angular.isUndefined($scope.dlWaterSupplySumNat)) {
+            var totLossY1 = 0;
+            angular.forEach($scope.dlWaterSupplySumNat.water_supply.Table_7, function(value, index) {
+            console.log('test',value);
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlcwLosNational') {
+                          totLossY1 = totLossY1 + value_in[0].tot_los_year1;
+                    }
+                    })
+                })
+            return totLossY1;
+        }
+    }
+
+    $scope.totCommercialWaterSupplyLosYear2 = function() {
+        if(!angular.isUndefined($scope.dlWaterSupplySumNat)) {
+            var totLossY2 = 0;
+            angular.forEach($scope.dlWaterSupplySumNat.water_supply.Table_7, function(value, index) {
+            console.log('test',value);
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlcwLosNational') {
+                          totLossY2 = totLossY2 + value_in[0].tot_los_year2;
+                   }
+                    })
+                })
+            return totLossY2;
+            }
+        }
+
+    $scope.totRuralWaterSupplyDmg = function() {
+        if(!angular.isUndefined($scope.dlWaterSupplySumNat)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlWaterSupplySumNat.water_supply.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlRuralDmgNational') {
+                          totDmg = totDmg + value_in[0].tot_damages;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+
+    $scope.totRuralWaterSupplyLossY1 = function() {
+        if(!angular.isUndefined($scope.dlWaterSupplySumNat)) {
+            var totLos = 0;
+            angular.forEach($scope.dlWaterSupplySumNat.water_supply.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlRuralLosNational') {
+                          totLos = totLos + value_in[0].tot_los;
+                    }
+                    })
+                })
+            return totLos;
+        }
+    }
+
 })

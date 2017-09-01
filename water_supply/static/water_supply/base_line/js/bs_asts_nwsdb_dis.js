@@ -281,9 +281,13 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         var finaltotal = 0;
         var grantot = 0;
         var array1 = $scope.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers;
-
+        console.log('array',array1);
         angular.forEach(array1, function(value, key) {
-            finaltotal = finaltotal + (value.annual_demand  * value.rate);
+            if(value.type_wusers != 'Total' && value.type_wusers != 'Average Income Per Year (LKR/Year)'){
+
+                finaltotal = finaltotal + (value.annual_demand  * value.rate);
+                console.log('key',value.rate);
+             }
         })
 
         grantot = finaltotal;

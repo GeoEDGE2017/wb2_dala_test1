@@ -226,6 +226,70 @@ class DlRuralTotLosDistrict(models.Model):
 # National
 
 
+class DlcwNumClientsProvince(models.Model):
+    residential = models.BigIntegerField(blank=True, null=True)
+    commercial = models.BigIntegerField(blank=True, null=True)
+    industrial = models.BigIntegerField(blank=True, null=True)
+    others = models.BigIntegerField(blank=True, null=True)
+    total = models.BigIntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'water_supply\".\"dlcw_num_clients_province'
+
+
+class DlRuralDmgProvince(models.Model):
+    type_water_supply = models.CharField(max_length=255, blank=True, null=True)
+    families_affected = models.BigIntegerField(blank=True, null=True)
+    tot_destroyed_assets = models.BigIntegerField(blank=True, null=True)
+    part_damaged_assets = models.BigIntegerField(blank=True, null=True)
+    tot_damages = models.FloatField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+            managed = False
+            db_table = 'water_supply\".\"dl_rural_dmg_province'
+
+
+class DlcwTotDmgProvince(models.Model):
+    dlcw_tot_dmg = models.IntegerField(blank=True, null=True)
+    sum_tot = models.IntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'water_supply\".\"dlcw_tot_dmg_province'
+
+
+class DlcwTotLosProvince(models.Model):
+    tot_los_year1 = models.IntegerField(blank=True, null=True)
+    tot_los_year2 = models.IntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'water_supply\".\"dlcw_tot_los_province'
+
+
+class DlRuralTotLosProvince(models.Model):
+    tot_los = models.IntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'water_supply\".\"dl_rural_tot_los_province'
+
+
 class DlcwNumAfNational(models.Model):
     tot_dmg_residential = models.BigIntegerField(blank=True, null=True)
     tot_dmg_commercial = models.BigIntegerField(blank=True, null=True)
@@ -242,7 +306,7 @@ class DlcwNumAfNational(models.Model):
 
 class DlRuralNumAfNational(models.Model):
     type_water_supply = models.CharField(max_length=255, blank=True, null=True)
-    tot_num_fam_aff = models.BigIntegerField(blank=True, null=True)
+    families_affected = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
 
@@ -251,17 +315,32 @@ class DlRuralNumAfNational(models.Model):
         db_table = 'water_supply\".\"dl_rural_num_af_national'
 
 
-class DlcwTotDmgNational(models.Model):
-    total_dmgs = models.BigIntegerField(blank=True, null=True)
+class DlcwDmgNational(models.Model):
+    sum = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'water_supply\".\"dlcw_tot_dmg_national'
+        db_table = 'water_supply\".\"dlcw_dmg_national'
 
 
-class DlcwTotLosNational(models.Model):
+
+class DlcwNumClientsNational(models.Model):
+    residential = models.BigIntegerField(blank=True, null=True)
+    commercial = models.BigIntegerField(blank=True, null=True)
+    industrial = models.BigIntegerField(blank=True, null=True)
+    others = models.BigIntegerField(blank=True, null=True)
+    total = models.BigIntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'water_supply\".\"dlcw_num_clients_national'
+
+
+class DlcwLosNational(models.Model):
     tot_los_year1 = models.BigIntegerField(blank=True, null=True)
     tot_los_year2 = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
@@ -269,10 +348,10 @@ class DlcwTotLosNational(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'water_supply\".\"dlcw_tot_los_national'
+        db_table = 'water_supply\".\"dlcw_los_national'
 
 
-class DlRuralTotDmgNational(models.Model):
+class DlRuralDmgNational(models.Model):
     type_water_supply = models.CharField(max_length=255, blank=True, null=True)
     tot_damages = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
@@ -280,16 +359,16 @@ class DlRuralTotDmgNational(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'water_supply\".\"dl_rural_tot_dmg_national'
+        db_table = 'water_supply\".\"dl_rural_dmg_national'
 
 
-class DlRuralTotLosNational(models.Model):
+class DlRuralLosNational(models.Model):
     tot_los = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'water_supply\".\"dl_rural_tot_los_national'
+        db_table = 'water_supply\".\"dl_rural_los_national'
 
 

@@ -79,7 +79,8 @@
                     </tbody>
                 </table>
 
-                <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlAirTransSumPro.transport_air.Table_4">
+                <table class="table table-bordered" ng-if="!checkIfNull()"
+                       >
                     <tbody>
                     <tr class="trheadc1" height="19">
                         <td rowspan="3" width="218" height="57" style="width:25%;">
@@ -132,7 +133,12 @@
                             Private
                         </td>
                     </tr>
-                    <tr  height="20"
+                    </tbody>
+                    </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()"
+                       ng-repeat="(key, value) in dlAirTransSumPro.transport_air.Table_4">
+                    <tbody>
+                    <tr height="20"
                         ng-init="getTotal($index,key)">
 
                         <td ng-bind="key" class="tdpa" width="253" height="19" style="">
@@ -170,34 +176,34 @@
 
 
                     </tbody>
-                    </table>
+                </table>
                 <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tr height="19">
                         <td class="boldash" width="253" height="19">
                             TOTAL
                         </td>
-                        <td class="right" width="147" ng-bind="totaldpub">
+                        <td class="right" width="147" ng-bind="totDamagesPublic()">
 
                         </td>
-                        <td class="right" width="151" ng-bind="totaldpvt">
+                        <td class="right" width="151" ng-bind="totDamagesPrivate()">
 
                         </td>
-                        <td class="right" width="165" ng-bind="totalyear1pub">
+                        <td class="right" width="165" ng-bind="totLossesPublicY1()">
 
                         </td>
-                        <td class="right" width="170" ng-bind="totalyear1pvt">
+                        <td class="right" width="170" ng-bind="totLossesPrivateY1()">
 
                         </td>
-                        <td class="right" width="135" ng-bind="totalyear2pub">
+                        <td class="right" width="135" ng-bind="totLossesPublicY2()">
 
                         </td>
-                        <td class="right" width="133" ng-bind="totalyear2pvt">
+                        <td class="right" width="133" ng-bind="totLossesPrivateY2()">
 
                         </td>
-                        <td class="right" width="126" ng-bind="finaltotalpublic">
+                        <td class="right" width="126" ng-bind="totDamagesPublic() + totLossesPublicY1() + totLossesPublicY2()">
 
                         </td>
-                        <td class="right" width="85" ng-bind="finaltotalprivate">
+                        <td class="right" width="85" ng-bind="totDamagesPrivate() + totLossesPrivateY1() + totLossesPrivateY2()">
 
                         </td>
                     </tr>
@@ -257,6 +263,8 @@
                     </button>
                 </div>
             </div>
+            </div>
+        </div>
 </main>
 {% endblock content %}
 

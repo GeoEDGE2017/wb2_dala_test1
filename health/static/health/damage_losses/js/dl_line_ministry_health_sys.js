@@ -14,6 +14,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     //initialize model
     var init_data = {
@@ -460,6 +461,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     //Save Data
     $scope.dlSaveData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid){
             $http({
                 method : 'POST',
@@ -489,6 +491,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     //Edit Data

@@ -489,26 +489,37 @@
                     <div class="pull-right">
                         <br>
 
-                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button type="button" ng-click="clear()" class="btn btn-info">
+                            Clear
+                        </button>
                         <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="bsHsDataEdit(form_bs_nopopl_agrb_actv)" ng-if="!is_edit"
-                                class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
+                            <button type="button" ng-click="bsHsDataEdit(form_bs_nopopl_agrb_actv)" ng-if="!is_edit"
+                                    class="btn btn-success">
+                                Edit
+                            </button>
+                        </span>
                         <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
+                            <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                Edit
+                            </button>
+                        </span>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>
-                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                                ng-click="saveBsData(form_bs_nopopl_agrb_actv)"
-
-                                class="btn btn-success">Submit
-                        </button>
+                        <!--<button type="button" ng-disabled="form_pop_lat_census.$invalid"-->
+                                <!--ng-click="saveBsData(form_bs_nopopl_agrb_actv)" class="btn btn-success">-->
+                            <!--Submit-->
+                        <!--</button>-->
+                        <span ng-if="!is_submit">
+                            <button type="button" ng-click="saveBsData(form_bs_nopopl_agrb_actv)" ng-disabled="form_pop_lat_census.$invalid" class="btn btn-success">
+                                Submit
+                            </button>
+                        </span>
+                        <span ng-if="is_submit">
+                            <button type="button" class="btn btn-success" disabled>
+                                Submit
+                            </button>
+                        </span>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.is_edit_disable = false;
     $scope.bs_date;
     $scope.user_id;
+    $scope.is_submit = false;
 
     //Initialize Data
     var init_data = {
@@ -201,6 +202,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     //Save data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
+       $scope.is_submit = true;
         if (form.$valid) {
              $http({
                 method: "POST",
@@ -227,6 +229,7 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
                     $("#modal-container-239453").modal('show');
             })
         }
+        $scope.is_submit = false;
     }
 
     //Edit Data

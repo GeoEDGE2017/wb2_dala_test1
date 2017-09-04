@@ -14,6 +14,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.new_company = {id: null, name: null};
     $scope.is_edit_disable = false;
     $scope.user_id;
+    $scope.is_submit = false;
 
     //initialize models
     var init_data = {
@@ -154,6 +155,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
     //save data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             var array = $scope.bsIncomeRailCompany.transport_rail.Table_1;
             var details = _.map(array, function(model_array) {
@@ -188,6 +190,7 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     //save company

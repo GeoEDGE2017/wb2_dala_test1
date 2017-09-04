@@ -14,6 +14,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     //initialize model
     var init_data = {
@@ -604,6 +605,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
     //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             $http({
                 method: 'POST',
@@ -631,6 +633,7 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     //Get Baseline Data
@@ -738,12 +741,9 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                 console.log(data);
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.health.Table_6, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -755,7 +755,6 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })

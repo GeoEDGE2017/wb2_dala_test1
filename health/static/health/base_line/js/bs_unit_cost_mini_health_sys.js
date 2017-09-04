@@ -10,6 +10,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     $scope.is_valid_data = true;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     //initialize model
     var init_data = {
@@ -224,6 +225,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
     //Save Data
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             console.log($scope.data);
             $http({
@@ -253,6 +255,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     //Edit Data

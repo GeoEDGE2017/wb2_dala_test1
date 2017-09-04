@@ -319,8 +319,27 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-                console.log(data);
-                $scope.dlGovnAdmnAsets = data;
+//                console.log(data);
+//                $scope.dlGovnAdmnAsets = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_6, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlGovnAdmnAsets = data;
+                        console.log($scope.dlGovnAdmnAsets);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

@@ -11,6 +11,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
     $scope.is_valid_data = true;
 //    $scope.del_status = false;
     $scope.user_id;
+    $scope.is_submit = false;
 
     var init_data = {
         'other_govn_services': {
@@ -214,6 +215,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             $http({
                 method : 'POST',
@@ -243,6 +245,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     $scope.editBsData = function(form) {

@@ -14,6 +14,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     //Initialize data
     var init_data = {
@@ -533,6 +534,7 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
     //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             $http({
                 method: 'POST',
@@ -561,19 +563,19 @@ app.controller('dlPrdctnLosController', ['$scope', '$http', function($scope, $ht
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     //Calculate Total
-    $scope.CalTot=function(arr,property){
-    var finaltotal = 0;
-
-    angular.forEach(arr, function(value, key) {
-        if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' &&
-        value.forestry !='Total' && value.other_products!='Total'){
-            console.log('Test',value[property]);
-             finaltotal = finaltotal + value[property] ;
-         }
-    })
+    $scope.CalTot=function(arr,property) {
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.seasonal_crops != 'Total' && value.plantn_crops != 'Total' && value.export_crops !='Total' &&
+            value.forestry !='Total' && value.other_products!='Total'){
+                console.log('Test',value[property]);
+                 finaltotal = finaltotal + value[property] ;
+             }
+        })
         return finaltotal;
     }
 

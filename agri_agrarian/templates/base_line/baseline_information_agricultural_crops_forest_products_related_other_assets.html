@@ -7,7 +7,6 @@
     var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
     
   });
-
 </script>
 <!-- Main content -->
 <main class="main" ng-app="bsInfoAcfoAssetsApp" ng-controller="bsInfoAcfoAssetsController">
@@ -568,31 +567,39 @@
                         <br>
                         <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
                         <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editBsData(form_bs_info_sero_assets)" ng-if="!is_edit"
-                                class="btn btn-success">
-                            Edit
-                        </button>
-                    </span>
+                            <button type="button" ng-click="editBsData(form_bs_info_sero_assets)" ng-if="!is_edit"
+                                    class="btn btn-success">
+                                Edit
+                            </button>
+                        </span>
                         <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
+                            <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                Edit
+                            </button>
+                        </span>
                         <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>
-                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                                ng-click="saveBsData(form_bs_info_sero_assets)"
-
-                                class="btn btn-success">Submit
-                        </button>
+                        <!--<button type="button" ng-disabled="form_pop_lat_census.$invalid"-->
+                                <!--ng-click="saveBsData(form_bs_info_sero_assets)" class="btn btn-success">-->
+                            <!--Submit-->
+                        <!--</button>-->
+                        <span ng-if="!is_submit">
+                            <button type="button" ng-click="saveBsData(form_bs_info_sero_assets)"
+                                    ng-disabled="form_pop_lat_census.$invalid" class="btn btn-success">
+                                Submit
+                            </button>
+                        </span>
+                        <span ng-if="is_submit">
+                            <button type="button" class="btn btn-success" disabled>
+                                Submit
+                            </button>
+                        </span>
                     </div>
                     <br><br><br>
                 </div>
             </div>
         </div>
-
-
         <div class="col-md-12">
             <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
                  aria-hidden="true">

@@ -15,6 +15,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     //Initailize data
     var init_data = {
@@ -343,6 +344,7 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
     //Save data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             $http({
                 method: 'POST',
@@ -369,8 +371,8 @@ app.controller('dlStrutsOthAsetsController', ['$scope', '$http', function($scope
             }, function errorCallback(response) {
                 console.log(response);
             });
-
         }
+        $scope.is_submit = false;
     }
 
     //Edit Data

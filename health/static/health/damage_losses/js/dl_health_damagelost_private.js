@@ -18,6 +18,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
     $scope.is_edit_disable = false;
     $scope.selectedCliniEdit = null;
     $scope.privateClinicsData = [];
+    $scope.is_submit = false;
 
     //initialize model
     var init_data = {
@@ -89,6 +90,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         console.log('private_clinic', $scope.private_clinic);
         console.log($scope.dlHealthDamagelostPrivateSys);
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             $scope.setPrivateClinicsIDs();
             $http({
@@ -118,9 +120,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 console.log(response);
             });
         }
-        else {
-             console.log('validate failed');
-        }
+        $scope.is_submit = false;
     }
 
     //Fetch Entities

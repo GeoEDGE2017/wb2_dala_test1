@@ -479,23 +479,42 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-         if(form.$valid) {
-        $http({
-            method: "POST",
-            url: '/dl_fetch_edit_data',
-            data: angular.toJson({
-                'table_name':  'Table_5',
-                'sector':'transport_land',
-                'com_data': {
-                    'district':  $scope.district.district__id,
-                    'incident': $scope.incident,
-                },
-                'is_edit':$scope.is_edit
-            }),
-        }).success(function(data) {
-            console.log(data);
-            $scope.dlOthLndAsets = data;
-        })
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_5',
+                    'sector':'transport_land',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+//                console.log(data);
+//                $scope.dlOthLndAsets = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_6, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlOthLndAsets = data;
+                        console.log($scope.dlOthLndAsets);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            })
         }
     }
 

@@ -28,6 +28,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     var init_data = {
         'education':{
@@ -683,8 +684,9 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
-        console.log($scope.dlGovnEduFacilities);
+        $scope.is_submit = true;
         if(form.$valid) {
+            console.log($scope.dlGovnEduFacilities);
             $http({
                 method : 'POST',
                 url : '/dl_save_data',
@@ -713,6 +715,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     $scope.dlDataEdit = function(form) {

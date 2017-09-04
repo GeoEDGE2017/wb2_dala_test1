@@ -1,8 +1,7 @@
-
+//Table 1
 var app = angular.module('bsTursmFcltsFisApp', [])
 
 app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope, $http) {
-
     $scope.district;
     $scope.baselineDate;
     $scope.bs_data={};
@@ -84,10 +83,10 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
 
     //Disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.bs_date){
+        if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
@@ -195,23 +194,41 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                     }
                 }),
             }).success(function(data) {
-                if((data.tourism.Table_1.BsCultSites.length == 0) ||
-                    (data.tourism.Table_1.BsNatFormation.length == 0) ||
-                    (data.tourism.Table_1.BsTouBusiness.length == 0) ) {
-                    $scope.is_edit = false;
+//                if((data.tourism.Table_1.BsCultSites.length == 0) ||
+//                    (data.tourism.Table_1.BsNatFormation.length == 0) ||
+//                    (data.tourism.Table_1.BsTouBusiness.length == 0) ) {
+//                    $scope.is_edit = false;
+//                }
+//                else {
+//                    $scope.bs_tourism_facilities = data;
+//                }
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.tourism.Table_1, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bs_tourism_facilities = data;
+                        console.log(data);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
                 }
                 else {
-                    $scope.bs_tourism_facilities = data;
+                    $("#modal-container-239456").modal('show');
                 }
             })
         }
     }
 
     $scope.cancelEdit = function(){
-         $scope.is_edit = false;
-         $scope.bs_tourism_facilities = angular.copy(init_data);
+        $scope.is_edit = false;
+        $scope.bs_tourism_facilities = angular.copy(init_data);
     }
-
 }]);
 
 

@@ -50,8 +50,6 @@
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
                                         {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
@@ -91,51 +89,61 @@
                     </tr>
                     <table ng-repeat="(key, value) in dlAssessmenProvinceSys.other_govn_services.Table_4" class="table table-bordered">
                         <tbody>
-                        <tr height="20">
-                            <td ng-bind="key" class="tdpa" width="191" style="width:10%;">
+                        <tr height="20" class="trhead">
+                            <td ng-bind="key" width="191" style="width:10%;">
                             </td>
                             <td width="118"  style="width:10%;">
-                                -
                             </td>
                             <td width="118" style="width:5%;">
-                                -
                             </td>
                             <td width="118" style="width:5%;">
-                                -
                             </td>
                             <td class="right" width="118" style="width:10%;">
-                                -
                             </td>
                         </tr>
                         <tr ng-repeat="(key, value) in value" height="20">
                             <td ng-bind="key" class="tdpa" width="191">
                             </td>
-                            <td ng-bind="value.DlagdDmgProvince[0].damages" width="118">
+                            <td class="right" ng-bind="value.DlagdDmgProvince[0].damages" width="118">
                             </td>
-                            <td ng-bind="value.DlagdLossesProvince[0].los_year1" width="118" >
+                            <td class="right" ng-bind="value.DlagdLossesProvince[0].los_year1" width="118" >
                             </td>
-                            <td ng-bind="value.DlagdLossesProvince[0].los_year2" width="118" >
+                            <td class="right" ng-bind="value.DlagdLossesProvince[0].los_year2" width="118" >
                             </td>
-                            <td class="right">
+                            <td class="right" ng-bind="value.DlagdDmgProvince[0].damages +
+                                value.DlagdLossesProvince[0].los_year1 + value.DlagdLossesProvince[0].los_year2">
                             </td>
                         </tr>
                         <tr height="20">
                             <td class="tdpa" colspan="0" width="298" height="20">
-                                TOTAL
+                                Total
                             </td>
-                            <td width="118">
-                                -
+                            <td class="right" width="118" ng-bind="getTotDamages(key)">
                             </td>
-                            <td width="118">
-                                -
+                            <td class="right" width="118" ng-bind="getTotLosYear1(key)">
                             </td>
-                            <td width="118">
-                                -
+                            <td class="right" width="118" ng-bind="getTotLosYear2(key)">
                             </td>
-                            <td class="right" width="118">
-                                -
+                            <td class="right" width="118" ng-bind="getTotDamages(key) + getTotLosYear1(key) + getTotLosYear2(key)">
                             </td>
                         </tr>
+                        </tbody>
+                    </table>
+                    <table ng-if="dlAssessmenProvinceSys.other_govn_services.Table_4 != null" class="table table-bordered">
+                        <tbody>
+                            <tr height="20">
+                                <td class="tdpa" colspan="0" width="298" height="20">
+                                    TOTAL
+                                </td>
+                                <td class="right" width="118" ng-bind="getTOTDamages()">
+                                </td>
+                                <td class="right" width="118" ng-bind="getTOTLosYear1()">
+                                </td>
+                                <td class="right" width="118" ng-bind="getTOTLosYear2()">
+                                </td>
+                                <td class="right" width="118" ng-bind="getTOTDamages() + getTOTLosYear1() + getTOTLosYear2()">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     </tbody>

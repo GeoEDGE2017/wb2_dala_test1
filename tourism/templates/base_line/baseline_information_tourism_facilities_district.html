@@ -5,306 +5,291 @@
 <main class="main" ng-app="bsTursmFcltsFisApp" ng-controller="bsTursmFcltsFisController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:tourism_main' %}">Tourism Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:tourism_main' %}">
+                Tourism Sector
+            </a>
         </li>
-        <li class="breadcrumb-item active"><span class="label label-success" style="font-size:14px;">Table 1. Baseline information of tourism facilities in a district</span>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
+                Table 1. Baseline information of tourism facilities in a district
+            </span>
         </li>
-
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
-
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Tourism.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+                data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_tourism_facilities">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="172"/>
                         <col width="101" span="4"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
-                        </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_bs_tourism_facilities.district.$error.required">
-                                Please Select District
-                            </span>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted
+                                    && form_bs_tourism_facilities.district.$error.required">
+                                    Please Select District
+                                </span>
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted
+                                && form_bs_tourism_facilities.baselineDate.$error.required">
+                                    Please Select Date
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead1" height="19">
+                            <td style="padding-left:5px;" height="19" width="171">
+                                District
+                            </td>
+                            <td colspan="1" height="19" style="font-weight:normal;" width="427">
+                                <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()"
+                                        ng-model="district" style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select a District</option>
+                                    {% for district in districts %}
+                                    <option value={{ district.id }}>{{ district.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td style="padding-left:5px;" height="19" width="171">
+                                Year/Month
+                            </td>
+                            <td colspan="2" height="19" style="font-weight:normal;" width="427">
+                                <input name="baselineDate" type="text" style="font-weight:normal;" ng-change="changeDis()"
+                                       placeholder="mm/yy"
+                                       id="datepicker" ng-model="bs_date" class="form-control input-md" required>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
+                        <tr class="trheadc1" height="20">
+                            <td rowspan="2" width="172" height="40">
+                                Tourism Business
+                            </td>
+                            <td colspan="2" width="202">
+                                Number by Ownership
+                            </td>
+                            <td colspan="2" width="202">
+                                Number of Employees
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="20">
+                            <td width="101" style="width:20%;">
+                                Public
+                            </td>
+                            <td width="101" height="20">
+                                Private
+                            </td>
+                            <td width="101">
+                                Male
+                            </td>
+                            <td width="101">
+                                Female
+                            </td>
+                        </tr>
+                        <!--Tourism Bussiness-->
+                        <tr height="20"
+                            ng-repeat="BsTourrismBussines in bs_tourism_facilities.tourism.Table_1.BsTouBusiness">
+                            <td class="tdpa" width="172" height="20" ng-bind="BsTourrismBussines.business"
+                                ng-if="$index < 6">
+                            </td>
+                            <td width="98" ng-if="$index > 5">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsTouBusiness', $index)"
+                                        class="btn btn-sm btn-danger btn-circle">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="BsTouBusiness_{{$index}}"
+                                       ng-model="BsTourrismBussines.business"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['BsTourrismBussines_' + $index].$dirty && !form_pop_lat_census['BsTourrismBussines_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
+                                       placeholder="" class="form-control input-md" ng-model="BsTourrismBussines.num_bis_public">
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
+                                       placeholder="" class="form-control input-md" ng-model="BsTourrismBussines.num_bis_private">
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
+                                       placeholder="" class="form-control input-md" ng-model="BsTourrismBussines.num_emp_male">
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
+                                       placeholder="" class="form-control input-md" ng-model="BsTourrismBussines.num_empfemale">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="20">
+                            <td class="tdpa" width="172" height="20">
+                                Others (Enumerate) &nbsp;&nbsp;
+                                <button ng-click="insertBussiness('BsTouBusiness')"
+                                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                        </tr>
+                        <!--Tourism Infrastructure-->
+                        <tr class="trheadc" height="20">
+                            <td width="172" height="20">
+                                Tourism Infrastructure
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="172" height="20">
+                                Cultural sites
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                        </tr>
+                        <tr height="20" ng-repeat="BsCultSites in bs_tourism_facilities.tourism.Table_1.BsCultSites">
+                            <td class="tdpa" width="172" height="20" ng-bind="BsCultSites.site" ng-if="$index < 1">
+                            </td>
+                            <td width="98" ng-if="$index > 0">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsCultSites', $index)" class="btn btn-sm btn-danger btn-circle">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="BsCultSites_{{$index}}"
+                                       ng-model="BsCultSites.site"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['BsCultSites_' + $index].$dirty &&
+                                        !form_pop_lat_census['BsCultSites_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="BsCultSites.num_bis_public">
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="BsCultSites.num_bis_private">
+                            </td>
 
-                        </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted
-                            && form_bs_tourism_facilities.baselineDate.$error.required">
-                                Please Select Date
-                            </span>
-                        </td>
-                    </tr>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="BsCultSites.num_emp_male">
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="BsCultSites.num_empfemale">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="20">
+                            <td class="tdpa" width="172" height="20">
+                                Others (Enumerate) &nbsp;&nbsp;
+                                <button ng-click="insertBussiness('BsCultSites')"
+                                        class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                        </tr>
+                        <tr class="trheadc" height="20">
+                            <td width="172" height="20">
+                                Natural Formations
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                            <td width="101">
+                            </td>
+                        </tr>
+                        <tr height="20" ng-repeat="bsNatFormation in bs_tourism_facilities.tourism.Table_1.BsNatFormation">
+                            <td class="tdpa" width="172" height="20" ng-bind="bsNatFormation.site" ng-if="$index < 1">
+                            </td>
+                            <td width="98" ng-if="$index > 0">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsNatFormation', $index)"
+                                        class="btn btn-sm btn-danger btn-circle">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="BsNatFormation_{{$index}}"
+                                       ng-model="bsNatFormation.site"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['bsNatFormation_' + $index].$dirty &&
+                                !form_pop_lat_census['bsNatFormation_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="bsNatFormation.num_bis_public">
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="bsNatFormation.num_bis_private">
+                            </td>
 
-                    <tr class="trhead1" height="19">
-                        <td style="padding-left:5px;" height="19" width="171">
-                            District
-                        </td>
-                        <td colspan="1" height="19" style="font-weight:normal;" width="427">
-                            <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()"
-                                    ng-model="district" style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select a District</option>
-                                {% for district in districts %}
-                                <option value={{ district.id }}>{{ district.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td style="padding-left:5px;" height="19" width="171">
-                            Year/Month
-                        </td>
-                        <td colspan="2" height="19" style="font-weight:normal;" width="427">
-                            <input name="baselineDate" type="text" style="font-weight:normal;" ng-change="changeDis()"
-                                   placeholder="mm/yy"
-                                   id="datepicker" ng-model="bs_date" class="form-control input-md" required>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trheadc1" height="20">
-                        <td rowspan="2" width="172" height="40">
-                            Tourism Business
-                        </td>
-                        <td colspan="2" width="202">
-                            Number by Ownership
-                        </td>
-                        <td colspan="2" width="202">
-                            Number of Employees
-                        </td>
-                    </tr>
-
-
-                    <tr class="trsubc" height="20">
-
-                        <td width="101" style="width:20%;">
-                            Public
-                        </td>
-
-                        <td width="101" height="20">
-                            Private
-                        </td>
-                        <td width="101">
-                            Male
-                        </td>
-                        <td width="101">
-                            Female
-                        </td>
-                    </tr>
-                    <!--Tourism Bussiness-->
-                    <tr height="20"
-                        ng-repeat="BsTourrismBussines in bs_tourism_facilities.tourism.Table_1.BsTouBusiness">
-                        <td class="tdpa" width="172" height="20" ng-bind="BsTourrismBussines.business"
-                            ng-if="$index < 6">
-                        </td>
-                        <td width="98" ng-if="$index > 5">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BsTouBusiness', $index)"
-                                    class="btn btn-sm btn-danger btn-circle">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="BsTouBusiness_{{$index}}"
-                                   ng-model="BsTourrismBussines.business"
-                                   popover="This field is required"
-                                   popover-toggle="form_pop_lat_census['BsTourrismBussines_' + $index].$dirty && !form_pop_lat_census['BsTourrismBussines_' + $index].$valid"
-                                   popover-placement="top" required
-                                   type="text"
-                                   class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
-                                   placeholder=""
-                                   class="form-control input-md" ng-model="BsTourrismBussines.num_bis_public">
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
-                                   placeholder=""
-                                   class="form-control input-md" ng-model="BsTourrismBussines.num_bis_private">
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
-                                   placeholder=""
-                                   class="form-control input-md" ng-model="BsTourrismBussines.num_emp_male">
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" step="1" pattern="[0-9]*"
-                                   placeholder=""
-                                   class="form-control input-md" ng-model="BsTourrismBussines.num_empfemale">
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="20">
-                        <td class="tdpa" width="172" height="20">
-                            Others (Enumerate) &nbsp;&nbsp;
-                            <button ng-click="insertBussiness('BsTouBusiness')"
-                                    class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span>
-                            </button>
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                    </tr>
-
-                    <!--Tourism Infrastructure-->
-                    <tr class="trheadc" height="20">
-                        <td width="172" height="20">
-                            Tourism Infrastructure
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="172" height="20">
-                            Cultural sites
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="BsCultSites in
-                bs_tourism_facilities.tourism.Table_1.BsCultSites">
-
-                        <td class="tdpa" width="172" height="20" ng-bind="BsCultSites.site" ng-if="$index < 1">
-                        </td>
-                        <td width="98" ng-if="$index > 0">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BsCultSites', $index)"
-                                    class="btn btn-sm btn-danger btn-circle">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="BsCultSites_{{$index}}"
-                                   ng-model="BsCultSites.site"
-                                   popover="This field is required"
-                                   popover-toggle="form_pop_lat_census['BsCultSites_' + $index].$dirty &&
-                            !form_pop_lat_census['BsCultSites_' + $index].$valid"
-                                   popover-placement="top" required
-                                   type="text"
-                                   class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="BsCultSites.num_bis_public">
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="BsCultSites.num_bis_private">
-                        </td>
-
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="BsCultSites.num_emp_male">
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="BsCultSites.num_empfemale">
-                        </td>
-
-                    </tr>
-
-                    <tr class="tdpa" height="20">
-                        <td class="tdpa" width="172" height="20">
-                            Others (Enumerate) &nbsp;&nbsp;
-                            <button ng-click="insertBussiness('BsCultSites')"
-                                    class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span>
-                            </button>
-
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="20">
-                        <td width="172" height="20">
-                            Natural Formations
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                        <td width="101">
-                        </td>
-                    </tr>
-                    <tr height="20" ng-repeat="bsNatFormation in
-                bs_tourism_facilities.tourism.Table_1.BsNatFormation">
-
-                        <td class="tdpa" width="172" height="20" ng-bind="bsNatFormation.site" ng-if="$index < 1">
-                        </td>
-                        <td width="98" ng-if="$index > 0">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BsNatFormation', $index)"
-                                    class="btn btn-sm btn-danger btn-circle">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="BsNatFormation_{{$index}}"
-                                   ng-model="bsNatFormation.site"
-                                   popover="This field is required"
-                                   popover-toggle="form_pop_lat_census['bsNatFormation_' + $index].$dirty &&
-                            !form_pop_lat_census['bsNatFormation_' + $index].$valid"
-                                   popover-placement="top" required
-                                   type="text"
-                                   class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="bsNatFormation.num_bis_public">
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="bsNatFormation.num_bis_private">
-                        </td>
-
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="bsNatFormation.num_emp_male">
-                        </td>
-                        <td width="101">
-                            <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
-                                   class="form-control input-md" ng-model="bsNatFormation.num_empfemale">
-                        </td>
-
-                    </tr>
-
-                    <tr class="tdpa" height="20">
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="bsNatFormation.num_emp_male">
+                            </td>
+                            <td width="101">
+                                <input id="textinput" name="textinput" type="number" min="0" pattern="[0-9]*" placeholder=""
+                                       class="form-control input-md" ng-model="bsNatFormation.num_empfemale">
+                            </td>
+                        </tr>
+                        <tr class="tdpa" height="20">
                         <td class="tdpa" width="172" height="20">
                             Others (Enumerate) &nbsp;&nbsp;
                             <button ng-click="insertBussiness('BsNatFormation')"
                                     class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span>
                             </button>
-
                         </td>
                         <td width="101">
                         </td>
@@ -317,11 +302,8 @@
                     </tr>
                     </tbody>
                 </table>
-
-
                 <div class="pull-right">
                     <br>
-
                     <button type="button" ng-click="clear()" class="btn btn-info">
                         Clear
                     </button>
@@ -339,28 +321,16 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
-
                     <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                            ng-click="saveBsData(form_bs_tourism_facilities)"
-
-                            class="btn btn-success">Submit
+                            ng-click="saveBsData(form_bs_tourism_facilities)" class="btn btn-success">Submit
                     </button>
                 </div>
                 <br>
-
                 <br>
-
                 <br>
             </div>
-
         </div>
-
     </div>
-    </div>
-
-
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

@@ -4,7 +4,6 @@ from incidents.models import IncidentReport
 from agri_fisheries.base_line.models import FishingTypes
 
 
-
 class DlSessionKeys(models.Model):
     data_type = models.CharField(max_length=120, blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
@@ -222,30 +221,6 @@ class DlfDmgPubDistrict(models.Model):
     class Meta:
         managed = False
         db_table = 'agri_fisheries\".\"dlf_dmg_pub_district'
-
-
-class DlfDmgPvtDistrict(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    dmg_pvt = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'agri_fisheries\".\"dlf_dmg_pvt_district'
-
-
-class DlfLosIfisheriesDistrict(models.Model):
-    los_year_1_pub = models.FloatField(blank=True, null=True)
-    los_year_1_pvt = models.FloatField(blank=True, null=True)
-    los_year_2_pub = models.FloatField(blank=True, null=True)
-    los_year_2_pvt = models.FloatField(blank=True, null=True)
-    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
-    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'agri_fisheries\".\"dlf_los_ifisheries_district'
 
 
 class DlfLosRfisheriesDistrict(models.Model):

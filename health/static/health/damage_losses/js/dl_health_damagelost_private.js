@@ -253,9 +253,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'is_edit': $scope.is_edit
                }),
             }).success(function(data) {
-//                $scope.dlHealthDamagelostPrivateSys = data;
-//                $scope.getPrivateClinicsIDs();
-                console.log(data);
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.health.Table_7, function(value, index) {

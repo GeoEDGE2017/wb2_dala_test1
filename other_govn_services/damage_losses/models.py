@@ -207,6 +207,20 @@ class DlagdLossesDistrict(models.Model):
         db_table = 'other_government\".\"dlagd_losses_district'
 
 
+class DlagdLossesDistrictn(models.Model):
+    los_year1 = models.FloatField(max_length=255, blank=True, null=True)
+    los_year2 = models.FloatField(max_length=255, blank=True, null=True)
+    total_losses = models.FloatField(max_length=255, blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    department = models.ForeignKey(Department, db_column='department', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    ownership = models.FloatField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'other_government\".\"dlagd_losses_districtn'
+
+
 class DlagdDmgProvince(models.Model):
     damages = models.FloatField(max_length=255, blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)

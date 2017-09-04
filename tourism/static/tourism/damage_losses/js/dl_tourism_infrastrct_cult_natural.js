@@ -1,8 +1,6 @@
 //Table 3
 var app = angular.module('dlTouismInfrstrctCultNaturalApp', ['underscore'])
-
 app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http, $parse, _) {
-
     $scope.incident;
     $scope.districts;
     $scope.selectedDistrict;
@@ -20,26 +18,23 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     var init_data = {
         'tourism': {
             'Table_3': {
-                'DmgInfAssets':[
-                {
+                'DmgInfAssets':[{
                     'assets':'Structure',
                     'val_dst': null,
                     'val_pdmg':null,
                     'tot_dmg':null,
-                },{
+                }, {
                     'assets':'Equipment',
                     'val_dst': null,
                     'val_pdmg':null,
                     'tot_dmg':null,
-                },{
+                }, {
                     'assets':'Total',
                     'val_dst': null,
                     'val_pdmg':null,
                     'tot_dmg':null,
-                }
-                ],
-                'DlInfLosses':[
-                {
+                }],
+                'DlInfLosses':[{
                     'los_type':'Income Losses',
                     'avg_val_income_year': null,
                     'val_income_year1': null,
@@ -47,8 +42,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'val_los_year1': null,
                     'val_los_year2':null,
                     'tol_losses':null
-                },
-                {
+                }, {
                     'los_type':'Cleaning costs',
                     'avg_val_income_year': null,
                     'val_income_year1': null,
@@ -56,8 +50,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'val_los_year1': null,
                     'val_los_year2':null,
                     'tol_losses':null
-                },
-                {
+                }, {
                     'los_type':'Higher operating costs',
                     'avg_val_income_year': null,
                     'val_income_year1': null,
@@ -65,8 +58,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'val_los_year1': null,
                     'val_los_year2':null,
                     'tol_losses':null
-                },
-                {
+                }, {
                     'los_type':'Other unexpected expenses',
                     'avg_val_income_year': null,
                     'val_income_year1': null,
@@ -74,7 +66,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'val_los_year1': null,
                     'val_los_year2':null,
                     'tol_losses':null
-                },{
+                }, {
                     'los_type':'Total',
                     'avg_val_income_year': null,
                     'val_income_year1': null,
@@ -82,13 +74,12 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                     'val_los_year1': null,
                     'val_los_year2':null,
                     'tol_losses':null
-                },
-                ]
+                }]
             }
         }
     }
 
-        $scope.dl_tourism_infrs = angular.copy(init_data);
+    $scope.dl_tourism_infrs = angular.copy(init_data);
 
     $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
@@ -113,12 +104,12 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
 
     $scope.fetchInfTypes = function(){
         $http({
-        method: "POST",
-        url: "/fetch_entities_plain",
-        data: angular.toJson({
-            'model': 'InfType',
-            'sector':'tourism',
-         }),
+            method: "POST",
+            url: "/fetch_entities_plain",
+            data: angular.toJson({
+                'model': 'InfType',
+                'sector':'tourism',
+            }),
         }).success(function(data) {
             console.log(data);
             $scope.inf_types = data;
@@ -134,7 +125,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                 'district':  $scope.district.district__id,
                 'model': 'Infrastructure',
                 'sector':'tourism'
-             }),
+            }),
         }).success(function(data) {
             $scope.infrastructures = data;
         })
@@ -149,15 +140,13 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     }
 
     $scope.removeItem = function removeItem(table, index) {
-        if(table == 'DmgInfAssets')
-            {
+        if(table == 'DmgInfAssets') {
             $scope.dl_tourism_infrs.tourism.Table_3[table].splice(index, 1);
         }
-
     }
 
     //Correct way of binding data to avoid NaN
-    $scope.sum_of_dst_dpmg = function(a, b, field, totalField){
+    $scope.sum_of_dst_dpmg = function(a, b, field, totalField) {
         if(field){
             field[totalField] = a + b;
             return field[totalField];
@@ -165,8 +154,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         return 0;
     }
 
-    $scope.getTotalCol = function(subTable, column, total_object){
-
+    $scope.getTotalCol = function(subTable, column, total_object) {
         var table = $scope.dl_tourism_infrs.tourism.Table_3;
         var final_total = 0;
         total_object[column] = 0;
@@ -177,8 +165,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         return final_total;
     }
 
-    $scope.getMulitiplyedYearLoss = function(avgincome, reduction, year){
-
+    $scope.getMulitiplyedYearLoss = function(avgincome, reduction, year) {
         var subTable = $scope.dl_tourism_infrs.tourism.Table_3.DlInfLosses;
         var yearName = 'val_los_year'+year;
         var finalValue;
@@ -188,21 +175,21 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         return finalValue;
     }
 
-     $scope.getSumOfTwo = function(val_a, val_b, total_object, total_field){
+    $scope.getSumOfTwo = function(val_a, val_b, total_object, total_field) {
         total_object[total_field] = val_a + val_b;
         console.log("val_a", val_a, val_b);
         return total_object[total_field];
     }
 
-     $scope.clear = function(){
+    $scope.clear = function() {
         $scope.is_edit = false;
         $scope.dl_tourism_infrs = angular.copy(init_data);
 
-     }
-
+    }
 
     $scope.saveDlData = function(form) {
         console.log($scope.selectedType);
+        console.log($scope.dl_tourism_infrs);
         $scope.submitted = true;
         if (form.$valid) {
             $http({
@@ -219,19 +206,20 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                         'ownership':$scope.selectedInfrastructure.ownership,
                     },
                     'is_edit': $scope.is_edit
-            }),
+                }),
                 dataType: 'json',
             }).success(function(data) {
                 $scope.bs_tourism_facilities = init_data;
                 $scope.is_edit = false;
-                if (data == 'False')
-                $scope.is_valid_data = false;
-                else{
-                $("#modal-container-239453").modal('show');
+                if (data == 'False') {
+                    $scope.is_valid_data = false;
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
                 }
             })
         }
-        else{
+        else {
             console.log("invalid");
         }
     }
@@ -251,38 +239,34 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                         'incident': $scope.incident,
                         'inf_id': $scope.selectedInfrastructure.id,
                         'ownership': $scope.selectedInfrastructure.ownership
-
                     }
                 }),
             }).success(function(data) {
                 console.log("edit", data);
-                if((data.tourism.Table_3.DlInfLosses.length == 0) ||(data.tourism.Table_3.DmgInfAssets.length == 0))
-                {
+                if((data.tourism.Table_3.DlInfLosses.length == 0) ||(data.tourism.Table_3.DmgInfAssets.length == 0)) {
                     $scope.is_edit = false;
                 }
-                else{
+                else {
                     $scope.dl_tourism_infrs = data;
                 }
             })
         }
-        else{
+        else {
             console.log("enter Incident, District, Infrastructure, ownership");
             console.log($scope.district);
             console.log($scope.incident);
             console.log($scope.selectedFirm);
             console.log($scope.ownership);
         }
-
     }
     
-    $scope.cancelEdit = function()
-    {
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.clear();
     }
 
     $scope.saveInfrastructure = function(form) {
-        if(!$scope.district && !$scope.selectedType){
+        if(!$scope.district && !$scope.selectedType) {
             console.log("please select an Incident, Inf Type and a District" );
             return;
         }
@@ -307,7 +291,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                 if(data) {
                     $scope.infrastructures.push($scope.new_infra);
                 }
-                 $("#modal-container-218029").modal('hide');
+                $("#modal-container-218029").modal('hide');
             })
         }
     }
@@ -332,9 +316,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
                 $("#modal-container-218030").modal('hide');
             })
         }
-        else{
+        else {
             console.log("Select an Infrastructure to edit")
         }
     }
-
 })

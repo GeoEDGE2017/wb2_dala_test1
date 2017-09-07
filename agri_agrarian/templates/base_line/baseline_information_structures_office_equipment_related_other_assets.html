@@ -16,6 +16,8 @@
     <div class="container-fluid" ng-form name="form_bs_info_acfo_assets">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
+              <td><a href="#" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></a>
+                            </td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="249"/>
@@ -229,10 +231,21 @@
                     <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                         Cancel Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_info_acfo_assets)"
-
-                    class="btn btn-success">Submit
-                    </button>
+                    <!--<button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_info_acfo_assets)"-->
+                        <!--class="btn btn-success">-->
+                        <!--Submit-->
+                    <!--</button>-->
+                    <span ng-if="!is_submit">
+                        <button type="button" ng-click="saveBsData(form_bs_info_acfo_assets)"
+                                ng-disabled="form_pop_lat_census.$invalid" class="btn btn-success">
+                            Submit
+                        </button>
+                    </span>
+                    <span ng-if="is_submit">
+                        <button type="button" class="btn btn-success" disabled>
+                            Submit
+                        </button>
+                    </span>
                 </div>
                 <br><br>
             </div>
@@ -273,8 +286,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <!-- /.conainer-fluid -->
 </main>

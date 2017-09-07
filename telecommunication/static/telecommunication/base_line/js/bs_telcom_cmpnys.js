@@ -18,6 +18,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     $scope.is_edit_disable = false;
     $scope.user_id;
     $scope.editTelCompany;
+    $scope.is_submit = false;
 
     var init_data = {
         'telecommunication': {
@@ -40,8 +41,8 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
     }
 
     $scope.saveBsData = function(form) {
-        console.log('in');
         $scope.submitted = true;
+        $scope.is_submit = true;
         if (form.$valid) {
             var array = $scope.bsTelcomCmpnys.telecommunication.Table_1;
             var details = _.map(array, function(model_array) {
@@ -75,6 +76,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 }
             }).error(function(data, status) {})
         }
+        $scope.is_submit = false;
     }
 
     $scope.saveCompany = function() {

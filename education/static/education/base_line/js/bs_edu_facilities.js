@@ -19,6 +19,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
     $scope.BefPvt_avg_female = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     var init_data = {
         'education': {
@@ -187,6 +188,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
     $scope.saveBsData = function(form) {
         console.log($scope.bsEduFacilities);
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             console.log($scope.data);
             $http({
@@ -216,6 +218,7 @@ bsHealthStatusApp.controller('BsEduFacilitiesController', function ($scope, $htt
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     //Cancel Edit

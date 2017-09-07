@@ -12,6 +12,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     $scope.baselineDate;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     var init_data = {
         'education': {
@@ -386,6 +387,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     $scope.saveBsData = function(form) {
         console.log($scope.bsUcostGeduFacilities);
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             console.log($scope.data);
             $http({
@@ -415,6 +417,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     $scope.bsHsDataEdit = function(form) {

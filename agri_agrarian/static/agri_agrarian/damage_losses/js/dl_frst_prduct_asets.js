@@ -14,6 +14,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     //Initialize Data
     var init_data = {
@@ -600,6 +601,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid){
             $http({
                 method: 'POST',
@@ -626,6 +628,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
                 }, function errorCallback(response) {
             });
         }
+        $scope.is_submit = false;
     }
 
     //Edit Data

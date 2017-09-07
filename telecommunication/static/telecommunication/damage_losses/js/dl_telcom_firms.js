@@ -356,6 +356,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             console.log($scope.dlTelcomFirms);
             $http({
@@ -386,6 +387,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
 
             });
         }
+        $scope.is_submit = false;
     }
 
     $scope.test = function(form) {

@@ -27,6 +27,8 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
             $scope.data = data.tourism.Table_6;
             $scope.provinces = Object.keys($scope.data);
             console.log('load ', Object.keys($scope.data));
+            console.log('data ', $scope.data);
+
             $scope.data_available = ($scope.provinces.length != 0)
             if(!$scope.data_available){
                 console.log("no data available for your selection");
@@ -60,20 +62,20 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
                 $scope.table.infrastructures[value].year1Loss = {};
                 $scope.table.infrastructures[value].year2Loss = {};
 
-                angular.forEach($scope.data[$scope.provinces].DlDmgBusTotNational, function(value2, key) {
+                angular.forEach($scope.data[value].DlDmgBusTotNational, function(value2, key) {
                     $scope.table.business[value].year1Damage[value2.ownership] = value2.tot_damages;
                 })
 
-                angular.forEach($scope.data[$scope.provinces].DlLosBusTotNational, function(value2, key) {
+                angular.forEach($scope.data[value].DlLosBusTotNational, function(value2, key) {
                     $scope.table.business[value].year1Loss[value2.ownership] = value2.los_year1;
                     $scope.table.business[value].year2Loss[value2.ownership] = value2.los_year2;
                 })
 
-                angular.forEach($scope.data[$scope.provinces].DlDmgInfTotNational, function(value2, key) {
+                angular.forEach($scope.data[value].DlDmgInfTotNational, function(value2, key) {
                     $scope.table.infrastructures[value].year1Damage[value2.ownership] = value2.sum;
                 })
 
-                angular.forEach($scope.data[$scope.provinces].DlLosInfTotNational, function(value2, key) {
+                angular.forEach($scope.data[value].DlLosInfTotNational, function(value2, key) {
                     $scope.table.infrastructures[value].year1Loss[value2.ownership] = value2.tot_year1;
                     $scope.table.infrastructures[value].year1Loss[value2.ownership] = value2.tot_year2;
                 })

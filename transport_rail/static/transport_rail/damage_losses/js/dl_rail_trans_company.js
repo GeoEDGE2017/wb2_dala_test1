@@ -16,6 +16,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.DlBuildingAstLoss_no_of_partially_damaged = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     var init_data = {
         'transport_rail' : {
@@ -256,6 +257,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
     $scope.saveDlData = function(form) {
         console.log($scope.company);
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             if($scope.company) {
                 $http({
@@ -274,15 +276,18 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     }),
                     dataType: 'json',
                 }).then(function successCallback(response) {
-                    if(response.data == 'False')
+                    if(response.data == 'False') {
                         $scope.is_valid_data = false;
-                    else
+                    }
+                    else {
                         $("#modal-container-239453").modal('show');
+                    }
                 }, function errorCallback(response) {
                     console.log(response);
                 });
             }
         }
+        $scope.is_submit = false;
     }
 
     $scope.calTotal=function(arr) {
@@ -355,8 +360,27 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-                console.log(data);
-                $scope.dlIncomeRailCompany = data;
+//                console.log(data);
+//                $scope.dlIncomeRailCompany = data;
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_6, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlIncomeRailCompany = data;
+                        console.log($scope.dlIncomeRailCompany);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
             })
         }
     }

@@ -10,6 +10,7 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
     $scope.is_valid_data = true;
     $scope.is_edit_disable = false;
     $scope.user_id;
+    $scope.is_submit = false;
 
     //initialize Data
     var init_data = {
@@ -118,6 +119,7 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
     //Save Data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
+       $scope.is_submit = true;
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -145,6 +147,7 @@ app.controller('bsInfoSeroAssetsController', ['$scope', '$http', function($scope
                     $("#modal-container-239453").modal('show');
             })
         }
+        $scope.is_submit = false;
     }
 
     //Edit Data

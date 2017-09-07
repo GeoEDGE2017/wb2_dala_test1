@@ -13,6 +13,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.currentBaselineDate = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     //Initialize Data
     var init_data = {
@@ -424,8 +425,9 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     //Save Data
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
-           $http({
+            $http({
                 method: 'POST',
                 url: '/dl_save_data',
                contentType: 'application/json; charset=utf-8',
@@ -450,8 +452,8 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
             }, function errorCallback(response) {
                 console.log(response);
             });
-
         }
+        $scope.is_submit = false;
     }
 
     //Edit data

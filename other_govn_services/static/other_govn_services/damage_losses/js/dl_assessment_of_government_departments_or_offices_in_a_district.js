@@ -20,6 +20,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
     $scope.new_department = {id: null, name: null, ownership_id: null, district_id: null};
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.is_submit = false;
 
     var init_data = {
         'other_govn_services': {
@@ -287,6 +288,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         console.log($scope.new_department);
         if(form.$valid && (($scope.new_department.name != null) || ($scope.new_department.ownership_id))) {
             $http({
@@ -318,6 +320,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function ($sc
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     $scope.dlDataEdit = function(form) {

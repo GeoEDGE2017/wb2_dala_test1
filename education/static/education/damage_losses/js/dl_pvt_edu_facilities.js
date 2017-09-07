@@ -26,6 +26,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
     $scope.secSchool = [];
     $scope.unv = [];
     $scope.techInst = [];
+    $scope.is_submit = false;
 
     $scope.new_school = {'PreSchools': {id: null, name: null, district_id: null},
                          'PrimarySchools': {id: null, name: null, district_id: null},
@@ -708,6 +709,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 
     $scope.saveDlData = function(form) {
         $scope.submitted = true;
+        $scope.is_submit = true;
         if(form.$valid) {
             $scope.setSchoolTypeIDs();
             console.log($scope.dlPvtEduFacilities);
@@ -738,6 +740,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                 console.log(response);
             });
         }
+        $scope.is_submit = false;
     }
 
     $scope.editDlData = function(form) {

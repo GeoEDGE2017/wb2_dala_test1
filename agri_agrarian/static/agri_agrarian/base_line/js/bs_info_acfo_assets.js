@@ -9,6 +9,8 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.is_valid_data = true;
     $scope.is_edit_disable = false;
     $scope.user_id;
+    $scope.is_submit = false;
+
 
     //initialize data
     var init_data = {
@@ -336,6 +338,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     //Save Data
     $scope.saveBsData = function(form) {
        $scope.submitted = true;
+       $scope.is_submit = true;
         if (form.$valid) {
              $http({
                 method: "POST",
@@ -364,6 +367,7 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
                 }
             })
         }
+        $scope.is_submit = false;
     }
 
     //edit data

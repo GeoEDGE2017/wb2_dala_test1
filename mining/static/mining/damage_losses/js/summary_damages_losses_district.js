@@ -32,7 +32,7 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
             }).success(function(data) {
                 $scope.districts = data;
                 $scope.district = "";
-                console.log(data);
+//                console.log(data);
             })
         }
     }
@@ -70,18 +70,13 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
         var ownership = $scope.data.mining.Table_5.DloDmgDistrict[$index].ownership;
 
         if(ownership == 'Private'){
-        console.log($scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages);
-        console.log($scope.dPvtTot + $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages );
 
-        $scope.dPvtTot =$scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages + $scope.data.mining.Table_5.DlaDmgDistrict[0].tot_damages;
+        $scope.dPvtTot = $scope.dPvtTot  + $scope.data.mining.Table_5.DloDmgDistrict[$index].tot_damages ;
 
+        $scope.dPvtLosyear1 = $scope.dPvtLosyear1 + $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1
+                         ;
 
-
-        $scope.dPvtLosyear1 = $scope.data.mining.Table_5.DloLosDistrict[$index].los_year1 +
-                         $scope.data.mining.Table_5.DlaLosDistrict[0].los_year1;
-
-        $scope.dPvtLosyear2 = $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 +
-                         $scope.data.mining.Table_5.DlaLosDistrict[0].los_year2 ;
+        $scope.dPvtLosyear2 = $scope.dPvtLosyear2 + $scope.data.mining.Table_5.DloLosDistrict[$index].los_year2 ;
 
         }
         else{
@@ -106,14 +101,34 @@ app.controller("DmLosOfMinFirmsDisController", function($scope,$http,$parse, _) 
             $scope.dPubLosTot = $scope.dPubTot + $scope.dPubLosyear1 + $scope.dPubLosyear2;
         }
 
-        $scope.checkIfNull = function() {
-        var isNull =
-        $scope.data ? angular.equals({}, $scope.data.mining.Table_5) : true;
-        return isNull;
-    }
+//        $scope.checkIfNull = function() {
+//        var isNull =
+//        $scope.data ? angular.equals({}, $scope.data.mining.Table_5) : true;
+//        return isNull;
+//    }
 
 
 
     }
+
+
+
+//    $scope.checkIfNull = function() {
+//        var isNull = $scope.arrayArti ? angular.equals({},
+//        $scope.arrayArti.mining.Table_5) : true ;
+//        return isNull;
+//    }
+//
+//    $scope.checkIfNullTwo = function() {
+//        var isNull = $scope.arrayArti ? angular.equals({},
+//        $scope.arrayLosArti.mining.Table_5) : true ;
+//        return isNull;
+//    }
+//
+//    $scope.checkIfNullThree = function() {
+//        var isNull = $scope.data ? angular.equals({},
+//        $scope.data.mining.Table_5) : true ;
+//        return isNull;
+//    }
 
 })

@@ -234,8 +234,8 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
     //Clear Function
     $scope.clear = function() {
-        alert("clear");
         $scope.is_edit = false;
         $scope.mnIndusMinFirm = angular.copy(init_data);
     }
+
 })

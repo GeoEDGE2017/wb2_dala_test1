@@ -182,11 +182,11 @@
                                 class="boldash">
                             </td>
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.rep_tot_dassets"
-                                ng-bind="dlaDmgStructures.rep_tot_dassets = DlaDmgStructures_rep_tot_dassets">
+                                ng-bind="dlaDmgStructures.rep_tot_dassets = totalFunc('DlaDmgStructures','rep_tot_dassets')">
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.repair_pdmg_assets"
-                                ng-bind="dlaDmgStructures.repair_pdmg_assets=DlaDmgStructures_repair_pdmg_assets">
+                                ng-bind="dlaDmgStructures.repair_pdmg_assets=totalFunc('DlaDmgStructures','repair_pdmg_assets')">
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgStructures.tot_damages"
-                                ng-bind="dlaDmgStructures.tot_damages = DlaDmgStructures_total">
+                                ng-bind="dlaDmgStructures.tot_damages = totalFunc('DlaDmgStructures','tot_damages')">
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="171" height="20">
@@ -253,11 +253,11 @@
                                 class="boldash">
                             </td>
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.rep_tot_dassets"
-                                ng-bind="dlaDmgEquipment.rep_tot_dassets = DlaDmgEquipment_rep_tot_dassets">
+                                ng-bind="dlaDmgEquipment.rep_tot_dassets = totalFunc('DlaDmgEquipment','rep_tot_dassets')">
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.repair_pdmg_assets"
-                                ng-bind=" dlaDmgEquipment.repair_pdmg_assets = DlaDmgEquipment_repair_pdmg_assets">
+                                ng-bind=" dlaDmgEquipment.repair_pdmg_assets = totalFunc('DlaDmgEquipment','repair_pdmg_assets')">
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgEquipment.tot_damages"
-                                ng-bind="dlaDmgEquipment.tot_damages = DlaDmgEquipment_total">
+                                ng-bind="dlaDmgEquipment.tot_damages = totalFunc('DlaDmgEquipment','tot_damages')">
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="171" height="20">
@@ -325,11 +325,11 @@
                                 class="boldash">
                             </td>
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.rep_tot_dassets"
-                                ng-bind="dlaDmgMachinery.rep_tot_dassets = DlaDmgMachinery_rep_tot_dassets">
+                                ng-bind="dlaDmgMachinery.rep_tot_dassets = totalFunc('DlaDmgMachinery','rep_tot_dassets')">
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.repair_pdmg_assets"
-                                ng-bind="dlaDmgMachinery.repair_pdmg_assets = DlaDmgMachinery_repair_pdmg_assets">
+                                ng-bind="dlaDmgMachinery.repair_pdmg_assets = totalFunc('DlaDmgMachinery','repair_pdmg_assets')">
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgMachinery.tot_damages"
-                                ng-bind="dlaDmgMachinery.tot_damages = DlaDmgMachinery_total">
+                                ng-bind="dlaDmgMachinery.tot_damages = totalFunc('DlaDmgMachinery','tot_damages')">
                         </tr>
                         <tr class="trheadc" height="20">
                             <td width="171" height="20">
@@ -377,24 +377,34 @@
                                 class="boldash">
                             </td>
                             <td class="right" width="98" colspan="2" ng-model="dlaDmgStocks.rep_tot_dassets "
-                                ng-bind="dlaDmgStocks.rep_tot_dassets = DlaDmgStocks_rep_tot_dassets"></td>
+                                ng-bind="dlaDmgStocks.rep_tot_dassets = totalFunc('DlaDmgStocks','rep_tot_dassets')"></td>
                             <td class="right" width="98" colspan="2" class="tdpa">
                             </td>
                             <td class="right" width="98" colspan="2" ng-moddel="dlaDmgStocks.tot_damages"
-                                ng-bind="dlaDmgStocks.tot_damages = DlaDmgStocks_total">
+                                ng-bind="dlaDmgStocks.tot_damages = totalFunc('DlaDmgStocks','tot_damages')">
                             </td>
                         </tr>
                         <tr height="20">
-                            <!-- Fixed rows -->
-                            <td height="20" width="264"
-                                class="boldash">GRAND TOTAL
-                            </td>
+
+
+                        <td class="right" width="98" colspan="2"
+                                ng-bind="totalFunc('DlaDmgStructures','rep_tot_dassets')  +
+                                totalFunc('DlaDmgEquipment','rep_tot_dassets') +
+                                totalFunc('DlaDmgMachinery','rep_tot_dassets') +
+                                totalFunc('DlaDmgVehicles','rep_tot_dassets') +
+                                totalFunc('DlaDmgStocks','rep_tot_dassets')">
                             <td class="right" width="98" colspan="2"
-                                ng-bind="DlaDmg_rep_tot_dassets_grnd"></td>
+                                ng-bind="totalFunc('DlaDmgStructures','repair_pdmg_assets')  +
+                                totalFunc('DlaDmgEquipment','repair_pdmg_assets') +
+                                totalFunc('DlaDmgMachinery','repair_pdmg_assets') +
+                                totalFunc('DlaDmgVehicles','repair_pdmg_assets')">
                             <td class="right" width="98" colspan="2"
-                                ng-bind="DlaDmg_repair_pdmg_assets_grnd"></td>
-                            <td class="right" width="98" colspan="2"
-                                ng-bind="DlaDmg_tot_damages_grnd"></td>
+                                ng-bind="totalFunc('DlaDmgStructures','tot_damages')  +
+                                totalFunc('DlaDmgEquipment','tot_damages') +
+                                totalFunc('DlaDmgMachinery','tot_damages') +
+                                totalFunc('DlaDmgVehicles','tot_damages') +
+                                totalFunc('DlaDmgStocks','tot_damages')">
+                        </td>
                         </tr>
                         </tbody>
                     </table>
@@ -508,11 +518,11 @@
                         </td>
                         <td width="98" colspan="1" ng-model="dlaLosPlos.red_voutput_year2" class="boldash">
                         </td>
-                        <td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year1" ng-bind="dlaLosPlos.los_year1 = DlaLosPlos_los_year1">
+                        <td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year1" ng-bind="dlaLosPlos.los_year1 = totalFunc('DlaLosPlos','los_year1')">
                         </td>
-                        <td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year2" ng-bind="dlaLosPlos.los_year2 = DlaLosPlos_los_year2">
+                        <td class="right" width="98" colspan="1" ng-model="dlaLosPlos.los_year2" ng-bind="dlaLosPlos.los_year2 = totalFunc('DlaLosPlos','los_year2')">
                         </td>
-                        <td class="right" width="98" colspan="1" ng-model="dlaLosPlos.tot_losses" ng-bind="dlaLosPlos.tot_losses = DlaLosPlos_total">
+                        <td class="right" width="98" colspan="1" ng-model="dlaLosPlos.tot_losses" ng-bind="dlaLosPlos.tot_losses = totalFunc('DlaLosPlos','tot_losses')">
                         </td>
                     </tr>
                     <tr class="trheadc" height="19">
@@ -580,11 +590,11 @@
                         </td>
                         <td width="98" colspan="1" class="boldash">
                         </td>
-                        <td class="right" width="98" colspan="1" ng-model="dlaLosOlos.los_year1" ng-bind="dlaLosOlos.los_year1 = DlaLosOlos_los_year1">
+                        <td class="right" width="98" colspan="1" ng-model="dlaLosOlos.los_year1" ng-bind="dlaLosOlos.los_year1 = totalFunc('DlaLosOlos','los_year1')">
                         </td>
-                        <td class="right" width="98" colspan="1" ng-model="dlaLosOlos.los_year2" ng-bind="dlaLosOlos.los_year2 = DlaLosOlos_los_year2">
+                        <td class="right" width="98" colspan="1" ng-model="dlaLosOlos.los_year2" ng-bind="dlaLosOlos.los_year2 = totalFunc('DlaLosOlos','los_year2')">
                         </td>
-                        <td class="right" width="98" colspan="1" ng-model="dlaLosOlos.tot_losses" ng-bind="dlaLosOlos.tot_losses = DlaLosOlos_total">
+                        <td class="right" width="98" colspan="1" ng-model="dlaLosOlos.tot_losses" ng-bind="dlaLosOlos.tot_losses = totalFunc('DlaLosOlos','tot_losses')">
                         </td>
                     </tr>
                     <tr height="20">
@@ -597,12 +607,15 @@
                         </td>
                         <td width="98" colspan="1" class="boldash">
                         </td>
-                        <td class="right" width="98" colspan="1" ng-bind="DlaLosOlos_los_year1_grnd">
-                        </td>
-                        <td class="right" width="98" colspan="1" ng-bind="DlaLosOlos_los_year2_grnd">
-                        </td>
-                        <td class="right" width="98" colspan="1" ng-bind="DlaLosOlos_tot_losses_grnd">
-                        </td>
+                         <td class="right" width="98" colspan="1"
+                            ng-bind="totalFunc('DlaLosOlos','los_year1') +
+                            totalFunc('DlaLosPlos','los_year1')"></td>
+                        <td class="right" width="98" colspan="1"
+                            ng-bind="totalFunc('DlaLosOlos','los_year2') +
+                            totalFunc('DlaLosPlos','los_year2')"></td>
+                        <td class="right" width="98" colspan="1"
+                            ng-bind="totalFunc('DlaLosOlos','tot_losses') +
+                            totalFunc('DlaLosPlos','tot_losses')"></td>
                     </tr>
                     </tbody>
                 </table>

@@ -37,6 +37,7 @@ app.controller('dlSummTouBusiFaciPovController', function($scope, $http, $parse,
     }
 
     $scope.fetchData = function(){
+    $scope.districtTotals = [];
         if($scope.province && $scope.incident){
             $http({
                 method: "POST",

@@ -12,6 +12,7 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
     $scope.user_id;
 
     $scope.fetchData = function(){
+    $scope.provinceTotals = [];
         if($scope.incident){
             $http({
                 method: "POST",
@@ -33,6 +34,7 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
             if(!$scope.data_available){
                 console.log("no data available for your selection");
             }
+            $scope.provinceTotals = [];
             $scope.makeTable();
             }).error(function(err){
                 $scope.data = null;
@@ -98,6 +100,7 @@ app.controller('dlSummTouBusiFaciNatController', function($scope, $http, $parse,
 
     $scope.getGrandTotCol = function(col){
         var final_val = 0;
+
         angular.forEach($scope.provinceTotals, function(value, key) {
             final_val += $scope.getConvertedVal( value[col] );
         })

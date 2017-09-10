@@ -32,6 +32,10 @@ $(document).ready(function() {
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
+                     <td><a href="#" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></a>
+                            </td>
+
+
                     <table ng-form name="form_bs_edu_fac" class="table table-bordered">
                         <colgroup>
                             <col width="280"/>
@@ -55,7 +59,7 @@ $(document).ready(function() {
                             </td>
                         </tr>
                         <tr class="trhead1">
-                            <td style="padding-left:5px;"> Name of District</td>
+                            <td style="padding-left:5px;width:10%;"> Name of District</td>
                             <td colspan="" style="">
                                 <select ng-model="district" id="selectbasic" ng-change="changeDis();" name="district" class="form-control"
                                         style="font-weight:400;" required>
@@ -68,10 +72,11 @@ $(document).ready(function() {
                             <td colspan="" style="padding-left:5px;">
                                 Month/Year
                             </td>
-                            <td colspan="2" style="font-weight:normal;">
+                            <td colspan="" style="font-weight:normal;">
                                 <input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy" id="datepicker"
                                        ng-model="baselineDate" class="form-control input-md" required>
                             </td>
+                            
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr class="trheadc1" height="17">

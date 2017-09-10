@@ -67,7 +67,7 @@
                         </tr>
                         <tr class="trhead1 p5">
                             <td class=""> Name of District or RDH</td>
-                            <td colspan="2">
+                            <td colspan="">
                                 <select ng-model="district" id="selectbasic" name="district" ng-change="getLatestBsDate;changeDis();" class="form-control"
                                         style="font-weight:400;" required>
                                     <option value="">Select the District or RDH</option>
@@ -79,10 +79,12 @@
                             <td colspan="1" class="p5">
                                 Year/Month
                             </td>
-                            <td colspan="2">
+                            <td colspan="">
                                 <input ng-model="bs_date" required name="bs_date"  ng-change="changeDis();" type="text" placeholder="mm/yyyy"
                                        id="datepicker"
                                        class="form-control input-md">
+                            </td>
+                             <td><button ng-click="editBsData(form_pop_lat_census)" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
                             </td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>

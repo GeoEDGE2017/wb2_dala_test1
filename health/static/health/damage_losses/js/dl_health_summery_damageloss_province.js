@@ -352,12 +352,21 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             angular.forEach($scope.dlhealthsummarydamageprovince.health.Table_8, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DmhDamagesDistrict') {
+                        console.log('DmhDamagesDistrict', value_in);
                         tot_damages = tot_damages + $scope.sumFunc3(value_in[0].teaching_hospital,
                                     value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
 
+//                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].office, value_in[0].other);
+                    }
+                    else if(key == 'DmhDamagesMohDistrict') {
+                        console.log('DmhDamagesMohDistrict', value_in);
+
                         tot_damages = tot_damages + $scope.sumFunc2(value_in[0].office, value_in[0].other);
+
+                        console.log('DmhDamagesMohDistrict', $scope.sumFunc2(value_in[0].office, value_in[0].other));
                     }
                     else if(key == 'DmfDamagesDistrict') {
+                        console.log('DmhDamagesMohDistrict', value_in);
                         tot_damages = tot_damages + $scope.sumFunc7(value_in[0].base_hospital, value_in[0].divisional_hospital,
                         value_in[0].rural_hospital, value_in[0].central_dispensary, value_in[0].pmcus,value_in[0].phccs, value_in[0].mchcs);
                     }

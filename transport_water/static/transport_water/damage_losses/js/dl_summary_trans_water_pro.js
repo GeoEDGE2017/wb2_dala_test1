@@ -19,16 +19,18 @@ app.controller("DlSummeryTWProController", ['$scope','$http',function ($scope,$h
     // declaring total variables
     $scope.total_num_affected = 0;
     $scope.user_id;
+    $scope.provinces;
 
     // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-
-        if($scope.incident && selectProvinces) {
-          fetchProvinces();
+    $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            fetchProvinces();
         }
-
+        if($scope.incident && $scope.province) {
+            $scope.fetchData();
+        }
     }
-    $scope.provinces = [];
+
 
     function fetchProvinces()
     {
@@ -40,39 +42,34 @@ app.controller("DlSummeryTWProController", ['$scope','$http',function ($scope,$h
                    }),
             }).success(function(data) {
                 $scope.provinces = data;
-                $scope.province = "";
+                $scope.province = null;
 
             })
 
     }
 
-    $scope.fetchDlData = function(form){
-    if($scope.incident && $scope.province){
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        if(form.$valid) {
+ $scope.fetchData = function(){
+        if($scope.province && $scope.incident){
             $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':  'Table_4',
-            'sector': 'transport_water',
-            'com_data': {
-                    'province': $scope.province,
-                    'incident': $scope.incident,
-                  },
-                   }),
+                method: "POST",
+                url: '/dl_fetch_district_disagtn',
+                data: angular.toJson({
+                    'table_name':  'Table_4',
+                    'sector': 'transport_water',
+                    'com_data': {
+                        'province': $scope.province,
+                        'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
 
-            console.log('load ', data);
-
-            $scope.dlWaterTransSumPro = data;
-
+                console.log('load ', data);
+                $scope.data = data;
+                $scope.dlWaterTransSumPro = data;
             })
-            }
-        }
 
-    }
+        }
+        }
               $scope.checkIfNull = function()
    {
         var isNull = $scope.dlWaterTransSumPro ? angular.equals({}, $scope.dlWaterTransSumPro.transport_water.Table_4) : true;

@@ -31,17 +31,17 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
     $scope.summaryLossYear2 = 0;
     $scope.summaryTotal = 0;
     $scope.user_id;
+    $scope.provinces;
 
     // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-
-        if($scope.incident && selectProvinces) {
-
-         fetchProvinces();
+      $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            fetchProvinces();
         }
-
+        if($scope.incident && $scope.province) {
+            $scope.fetchDlData();
+        }
     }
-    $scope.provinces = [];
 
     function fetchProvinces()
     {
@@ -54,7 +54,7 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
                    }),
             }).success(function(data) {
                 $scope.provinces = data;
-                $scope.province = "";
+                $scope.province = null;
                 console.log(data);
 
             })

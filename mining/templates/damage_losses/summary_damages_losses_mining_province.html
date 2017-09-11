@@ -152,18 +152,18 @@
                         </td>
                         <td class="right" width="90" ng-bind="value.DloDmgProvince[1].tot_damages"></td>
                         <td class="right" width="90" ng-bind="value.DloDmgProvince[0].tot_damages"></td>
-                        <td class="right" width="90" ng-bind="value.DloLosProvince[1].los_year1"></td>
                         <td class="right" width="90" ng-bind="value.DloLosProvince[0].los_year1"></td>
-                        <td class="right" width="90" ng-bind="value.DloLosProvince[1].los_year2"></td>
+                        <td class="right" width="90" ng-bind="value.DloLosProvince[1].los_year1"></td>
                         <td class="right" width="90" ng-bind="value.DloLosProvince[0].los_year2"></td>
+                        <td class="right" width="90" ng-bind="value.DloLosProvince[1].los_year2"></td>
                         <td class="right" width="90"
                             ng-bind="value.DloDmgProvince[1].tot_damages +
-                            value.DloLosProvince[1].los_year1+
-                            value.DloLosProvince[1].los_year2 "></td>
-                        <td class="right" width="90"
-                            ng-bind="value.DloDmgProvince[0].tot_damages +
                             value.DloLosProvince[0].los_year1+
                             value.DloLosProvince[0].los_year2 "></td>
+                        <td class="right" width="90"
+                            ng-bind="value.DloDmgProvince[0].tot_damages +
+                            value.DloLosProvince[1].los_year1+
+                            value.DloLosProvince[1].los_year2 "></td>
                     </tr>
                     <tr height="20">
                         <td width="202" height="20" class="tdpa">Artisanal mining
@@ -186,10 +186,10 @@
                         </td>
                          <td class="right" width="90" ng-model="totdmg" ng-bind="totdmg = value.DloDmgProvince[1].tot_damages "></td>
                          <td class="right" width="90" ng-model="artitotdmg" ng-bind="artitotdmg = value.DloDmgProvince[0].tot_damages + value.DlaDmgProvince[0].tot_damages"></td>
-                        <td class="right" width="90" ng-model="losy1" ng-bind="losy1 = value.DloLosProvince[1].los_year1"></td>
-                        <td class="right" width="90" ng-model="artilos1" ng-bind="artilos1 = value.DloLosProvince[0].los_year1 +value.DlaLosProvince[0].los_year1 "></td>
-                        <td class="right" width="90" ng-model="los2" ng-bind="los2 = value.DloLosProvince[1].los_year2"></td>
-                        <td class="right" width="90" ng-model="artilos2" ng-bind="artilos2 = value.DloLosProvince[0].los_year2 + value.DlaLosProvince[0].los_year2"></td>
+                        <td class="right" width="90" ng-model="losy1" ng-bind="losy1 = value.DloLosProvince[0].los_year1"></td>
+                        <td class="right" width="90" ng-model="artilos1" ng-bind="artilos1 = value.DloLosProvince[1].los_year1 +value.DlaLosProvince[0].los_year1 "></td>
+                        <td class="right" width="90" ng-model="los2" ng-bind="los2 = value.DloLosProvince[0].los_year2"></td>
+                        <td class="right" width="90" ng-model="artilos2" ng-bind="artilos2 = value.DloLosProvince[1].los_year2 + value.DlaLosProvince[0].los_year2"></td>
                         <td class="right" width="90" ng-bind="totdmg + losy1 + los2"></td>
                         <td class="right" width="90" ng-bind="artitotdmg + artilos1 +artilos2 "></td>
                     </tr>
@@ -200,14 +200,14 @@
                     <tr height="20">
                         <td width="202" height="20" class="boldash">GRAND TOTAL
                         </td>
-                        <td class="right" width="90" ng-bind="totaldpub"></td>
-                        <td class="right" width="90" ng-bind="totaldpvt"></td>
-                        <td class="right" width="90" ng-bind="totalyear1pub"></td>
-                        <td class="right" width="90" ng-bind="totalyear1pvt"></td>
-                        <td class="right" width="90" ng-bind="totalyear2pub"></td>
-                        <td class="right" width="90" ng-bind="totalyear2pvt"></td>
-                        <td class="right" width="90" ng-bind="finaltotalpublic"></td>
-                        <td class="right" width="90" ng-bind="finaltotalprivate"></td>
+                        <td class="right" width="90" ng-bind="totDmgPub()"></td>
+                        <td class="right" width="90" ng-bind="totDmgPvt()"></td>
+                        <td class="right" width="90" ng-bind="totLosY1Pub()"></td>
+                        <td class="right" width="90" ng-bind="totLosY1Pvt()"></td>
+                        <td class="right" width="90" ng-bind="totLosY2Pub()"></td>
+                        <td class="right" width="90" ng-bind="totLosY2Pvt()"></td>
+                        <td class="right" width="90" ng-bind="totDmgPub() + totLosY1Pub() + totLosY2Pub()"></td>
+                        <td class="right" width="90" ng-bind="totDmgPvt() + totLosY1Pvt() + totLosY2Pvt()"></td>
                     </tr>
 
                 </table>

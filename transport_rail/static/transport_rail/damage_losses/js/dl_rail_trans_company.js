@@ -364,7 +364,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 //                $scope.dlIncomeRailCompany = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    angular.forEach(data.health.Table_6, function(value, index) {
+                    angular.forEach(data.transport_rail.Table_2, function(value, index) {
                         console.log(value);
                         if(value.length == 0) {
                             edit_data_not_found = true;

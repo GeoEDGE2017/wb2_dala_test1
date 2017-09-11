@@ -20,36 +20,34 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
     // declaring total variables
     $scope.total_num_affected = 0;
     $scope.user_id;
+    $scope.provinces;
 
-    // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-        if($scope.incident && selectProvinces) {
-          fetchProvinces();
+
+        $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchData();
         }
     }
 
-    $scope.provinces = [];
-
-    function fetchProvinces() {
-          $http({
+    function fetchProvinces(){
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
                     'incident': $scope.incident
                    }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-
-            })
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = null;
+        })
 
     }
 
-    $scope.fetchDlData = function(form) {
-        if($scope.incident && $scope.province){
-            $scope.is_edit = true;
-            $scope.submitted = true;
-
+    $scope.fetchData = function(){
+        if($scope.province && $scope.incident){
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
@@ -62,12 +60,14 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
                     },
                 }),
             }).success(function(data) {
+
                 console.log('load ', data);
                 $scope.data = data;
                 $scope.dlWaterSupplyPro = data;
             })
+
         }
-    }
+        }
 
     $scope.checkIfNull = function() {
         var isNull = $scope.dlWaterSupplyPro ? angular.equals({}, $scope.dlWaterSupplyPro.water_supply.Table_6) : true;

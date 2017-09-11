@@ -36,7 +36,7 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-             <td><a href="#" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></a>
+             <td><button ng-click="dlDataEdit(form_dl_air_trnspotation)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
                             </td>
                 <table class="table table-bordered">
                     <colgroup>
@@ -200,7 +200,8 @@
                                 dlAirDmgAircrafts.part_damaged_pvt * bs_data['BsAstAirAircrafts'][$index].fields.avg_repair_cost">
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlAirDmgAircrafts in dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts" ng-if="dlAirDmgAircrafts.assets == 'Total'">
+                        <tr height="19" ng-repeat="dlAirDmgAircrafts in dlAirTrnspotation.transport_air.Table_2.DlAirDmgAircrafts"
+                            ng-if="dlAirDmgAircrafts.assets == 'Total'">
                             <td class="tdpa" width="218" height="19" ng-bind="dlAirDmgAircrafts.assets">
                             </td>
                             <td class="tdpa" colspan="2" width="126" height="19">

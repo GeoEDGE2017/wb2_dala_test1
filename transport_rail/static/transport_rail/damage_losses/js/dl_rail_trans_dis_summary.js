@@ -11,18 +11,23 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
     $scope.total = null;
     $scope.isLoded = false;
     $scope.user_id;
+    $scope.provinces;
 
     // declaring total variables
     $scope.total_num_affected = 0;
 
     // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-        if($scope.incident && selectProvinces) {
+     $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
             fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchDlData();
         }
     }
 
-    $scope.provinces = [];
+
+
 
     function fetchProvinces() {
         $http({
@@ -33,7 +38,7 @@ app.controller("dlRailTransSumDisController", function($scope,$http,$parse, _) {
             }),
         }).success(function(data) {
             $scope.provinces = data;
-            $scope.province = "";
+            $scope.province = null;
         })
     }
 

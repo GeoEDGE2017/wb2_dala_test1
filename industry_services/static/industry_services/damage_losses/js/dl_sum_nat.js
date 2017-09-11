@@ -106,6 +106,7 @@ app.controller('dl_sum_natController', function($scope, $http, $parse, _) {
 
     $scope.getGrandTotCol = function(col){
         var final_val = 0;
+        console.log("$scope.provinceTotals ",$scope.provinceTotals);
         angular.forEach($scope.provinceTotals, function(value, key) {
             final_val += $scope.getConvertedVal( value[col] );
         })

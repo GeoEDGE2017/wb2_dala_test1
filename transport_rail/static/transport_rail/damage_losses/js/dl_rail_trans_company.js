@@ -267,7 +267,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     data: angular.toJson({
                         'table_data': $scope.dlIncomeRailCompany,
                         'com_data': {
-                           'district_id': $scope.district.district__id,
+                            'district_id': $scope.district.district__id,
                             'incident_id' : $scope.incident,
                             'company_id' : $scope.company.id,
                             'user_id': $scope.user_id
@@ -351,7 +351,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 method: "POST",
                 url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                    'table_name':  'Table_2',
+                    'table_name': 'Table_2',
                     'sector':'transport_rail',
                     'com_data': {
                         'district':  $scope.district.district__id,

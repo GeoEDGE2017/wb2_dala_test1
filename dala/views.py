@@ -1352,10 +1352,10 @@ def dl_save_edit_data(table_data, com_data, current_user):
                         print '*** has_the_id ', has_the_id(row)
                         model_object = model_class()
                         # assigning common properties to model object
-                        model_object.created_date = todate
+                        # model_object.created_date = todate
                         model_object.lmd = todate
                         if current_user != None:
-                            model_object.created_user = current_user
+                            # model_object.created_user = current_user
                             model_object.lmu = current_user
 
                         for com_property in com_data:

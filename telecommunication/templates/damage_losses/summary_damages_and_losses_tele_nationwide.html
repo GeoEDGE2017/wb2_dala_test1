@@ -4,23 +4,30 @@
 <!-- Main content -->
 <style>
     .right {text-align:right;}
+
 </style>
 <main class="main" ng-app="dlSumTeleNatApp" ng-controller="dlSumTeleNatController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
+            <a href="{% url 'dashboard:telecom_main' %}">
+                Telecommunication Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
-                Table 5.  Summary of Damages and Losses in a Nationwide
+                Table 5. Summary of Damages and Losses in a Nationwide
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document"></a>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_sum_tele_nat">
@@ -60,8 +67,8 @@
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </tbody>
-                    </table>
-                    <table class="table table-bordered" ng-if="!checkIfNull()">
+                </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tbody>
                     <tr class="trheadc1" height="19">
                         <td rowspan="3" height="59" width="293">
@@ -115,87 +122,103 @@
                         </td>
                     </tr>
                     <tbody height="19" ng-repeat="(key, value) in data.telecommunication.Table_5">
-                        <tr class="trheadc">
-                            <td height="19" width="293" ng-bind="key">
-                            </td>
-                            <td height="19" width="254">
-                            </td>
-                            <td height="19" width="145">
-                            </td>
-                            <td height="19" width="221">
-                            </td>
-                            <td height="19" width="63">
-                            </td>
-                            <td height="19" width="63">
-                            </td>
-                            <td height="19" width="63">
-                            </td>
-                            <td height="19" width="63">
-                            </td>
-                            <td height="19" width="63">
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="company in value.DlDmgFirmNational">
-                            <td class="tdpa" height="19" width="293" ng-bind="company.company_name">
-                            </td>
-                            <td class="right" height="19" width="254" ng-if="company.ownership == 'Public'" ng-bind="company.tot_damages">
-                            </td>
-                            <td class="right" height="19" width="254" ng-if="company.ownership != 'Public'">
-                            </td>
-                            <td class="right" height="19" width="145" ng-if="company.ownership == 'Private'" ng-bind="company.tot_damages">
-                            </td>
-                            <td class="right" height="19" width="145" ng-if="company.ownership != 'Private'">
-                            </td>
-                            <td class="right" height="19" width="221" ng-if="value.LosFirmYear1National[$index].ownership == 'Public'" ng-bind="value.LosFirmYear1National[$index].year1_los">
-                            </td>
-                            <td class="right" height="19" width="221" ng-if="value.LosFirmYear1National[$index].ownership != 'Public'">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="value.LosFirmYear1National[$index].ownership == 'Private'" ng-bind="value.LosFirmYear1National[$index].year1_los">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="value.LosFirmYear1National[$index].ownership != 'Private'">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="value.LosFirmYear2National[$index].ownership == 'Public'" ng-bind="value.LosFirmYear2National[$index].year2_los">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="value.LosFirmYear2National[$index].ownership != 'Public'">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="value.LosFirmYear2National[$index].ownership == 'Private'" ng-bind="value.LosFirmYear2National[$index].year2_los">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="value.LosFirmYear2National[$index].ownership != 'Private'">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="company.ownership == 'Public'" ng-bind="company.tot_damages + value.LosFirmYear1National[$index].year1_los +
-                                 + value.LosFirmYear2National[$index].year2_los">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="company.ownership != 'Public'">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="company.ownership == 'Private'" ng-bind="company.tot_damages + value.LosFirmYear1National[$index].year1_los +
-                                 + value.LosFirmYear2National[$index].year2_los">
-                            </td>
-                            <td class="right" height="19" width="63" ng-if="company.ownership != 'Private'">
-                            </td>
-                        </tr>
-                        <tr height="21">
-                            <td class="tdpa" height="21" width="293">
-                                Total
-                            </td>
-                            <td class="right" height="21" width="254" ng-bind="getTotDistrictDamagesPub(key)">
-                            </td>
-                            <td class="right" height="21" width="145" ng-bind="getTotDistrictDamagesPvt(key)">
-                            </td>
-                            <td class="right" height="21" width="221" ng-bind="getTotLosFirmYear1Pub(key)">
-                            </td>
-                            <td class="right" height="21" width="63" ng-bind="getTotLosFirmYear1Pvt(key)">
-                            </td>
-                            <td class="right" height="21" width="63" ng-bind="getTotLosFirmYear2Pub(key)">
-                            </td>
-                            <td class="right" height="21" width="63" ng-bind="getTotLosFirmYear2Pvt(key)">
-                            </td>
-                            <td class="right" height="21" width="63" ng-bind="getTotPub(key)">
-                            </td>
-                            <td class="right" height="21" width="63" ng-bind="getTotPvt(key)">
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tr class="trheadc">
+                        <td height="19" width="293" ng-bind="key">
+                        </td>
+                        <td height="19" width="254">
+                        </td>
+                        <td height="19" width="145">
+                        </td>
+                        <td height="19" width="221">
+                        </td>
+                        <td height="19" width="63">
+                        </td>
+                        <td height="19" width="63">
+                        </td>
+                        <td height="19" width="63">
+                        </td>
+                        <td height="19" width="63">
+                        </td>
+                        <td height="19" width="63">
+                        </td>
+                    </tr>
+                    <tr height="19" ng-repeat="company in value.DlDmgFirmGroupNational">
+                        <td class="tdpa" height="19" width="293" ng-bind="company.company_name">
+                        </td>
+                        <td class="right" height="19" width="254" ng-if="company.ownership == 'Public'"
+                            ng-bind="company.tot_damages">
+                        </td>
+                        <td class="right" height="19" width="254" ng-if="company.ownership != 'Public'">
+                        </td>
+                        <td class="right" height="19" width="145" ng-if="company.ownership == 'Private'"
+                            ng-bind="company.tot_damages">
+                        </td>
+                        <td class="right" height="19" width="145" ng-if="company.ownership != 'Private'">
+                        </td>
+                        <td class="right" height="19" width="221"
+                            ng-if="value.LosFirmYear1GroupsNational[$index].ownership == 'Public'"
+                            ng-bind="value.LosFirmYear1GroupsNational[$index].year1_los">
+                        </td>
+                        <td class="right" height="19" width="221"
+                            ng-if="value.LosFirmYear1GroupsNational[$index].ownership != 'Public'">
+                        </td>
+                        <td class="right" height="19" width="63"
+                            ng-if="value.LosFirmYear1GroupsNational[$index].ownership == 'Private'"
+                            ng-bind="value.LosFirmYear1GroupsNational[$index].year1_los">
+                        </td>
+                        <td class="right" height="19" width="63"
+                            ng-if="value.LosFirmYear1GroupsNational[$index].ownership != 'Private'">
+                        </td>
+                        <td class="right" height="19" width="63"
+                            ng-if="value.LosFirmYear2GroupsNational[$index].ownership == 'Public'"
+                            ng-bind="value.LosFirmYear2GroupsNational[$index].year2_los">
+                        </td>
+                        <td class="right" height="19" width="63"
+                            ng-if="value.LosFirmYear2GroupsNational[$index].ownership != 'Public'">
+                        </td>
+                        <td class="right" height="19" width="63"
+                            ng-if="value.LosFirmYear2GroupsNational[$index].ownership == 'Private'"
+                            ng-bind="value.LosFirmYear2GroupsNational[$index].year2_los">
+                        </td>
+                        <td class="right" height="19" width="63"
+                            ng-if="value.LosFirmYear2GroupsNational[$index].ownership != 'Private'">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="company.ownership == 'Public'"
+                            ng-bind="company.tot_damages + value.LosFirmYear1GroupsNational[$index].year1_los +
+                                     + value.LosFirmYear2GroupsNational[$index].year2_los">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="company.ownership != 'Public'">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="company.ownership == 'Private'"
+                            ng-bind="company.tot_damages + value.LosFirmYear1GroupsNational[$index].year1_los +
+                                     + value.LosFirmYear2GroupsNational[$index].year2_los">
+                        </td>
+                        <td class="right" height="19" width="63" ng-if="company.ownership != 'Private'">
+                        </td>
+                    </tr>
                     <tr height="21">
+                        <td class="tdpa" height="21" width="293">
+                            Total
+                        </td>
+                        <td class="right" height="21" width="254" ng-bind="getTotDistrictDamagesPub(key)">
+                        </td>
+                        <td class="right" height="21" width="145" ng-bind="getTotDistrictDamagesPvt(key)">
+                        </td>
+                        <td class="right" height="21" width="221" ng-bind="getTotLosFirmYear1Pub(key)">
+                        </td>
+                        <td class="right" height="21" width="63" ng-bind="getTotLosFirmYear1Pvt(key)">
+                        </td>
+                        <td class="right" height="21" width="63" ng-bind="getTotLosFirmYear2Pub(key)">
+                        </td>
+                        <td class="right" height="21" width="63" ng-bind="getTotLosFirmYear2Pvt(key)">
+                        </td>
+                        <td class="right" height="21" width="63" ng-bind="getTotPub(key)">
+                        </td>
+                        <td class="right" height="21" width="63" ng-bind="getTotPvt(key)">
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tr height="21" style="font-weight:bold;">
                         <td class="tdpa" height="21" width="293">
                             GRAND TOTAL
                         </td>
@@ -217,7 +240,6 @@
                         </td>
                     </tr>
                     </tbody>
-                    </table>
                 </table>
                 <br>
             </div>
@@ -259,6 +281,6 @@
             </div>
         </div>
     </div>
-<!-- /.conainer-fluid -->
+    <!-- /.conainer-fluid -->
 </main>
 {% endblock content %}

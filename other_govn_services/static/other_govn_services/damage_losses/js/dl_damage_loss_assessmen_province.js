@@ -11,21 +11,31 @@ app.controller("dlAssessmenProvinceController", function ($scope,$http, _) {
     $scope.province;
     $scope.dlAssessmenProvinceSys = null;
     $scope.user_id;
+    $scope.provinces;
 
-    $scope.changedValue = function getDlData() {
-        if ($scope.incident) {
-           $http({
+        $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchDlData();
+        }
+    }
+
+
+    function fetchProvinces() {
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
                 'incident': $scope.incident
-               }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-            })
-        }
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = null;
+        })
     }
+
 
     $scope.fetchDlData = function() {
         if($scope.incident && $scope.province){

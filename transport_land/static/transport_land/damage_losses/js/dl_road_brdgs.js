@@ -447,7 +447,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 //                $scope.dlRoadBrdgs = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    angular.forEach(data.health.Table_6, function(value, index) {
+                    angular.forEach(data.transport_land.Table_4, function(value, index) {
                         console.log(value);
                         if(value.length == 0) {
                             edit_data_not_found = true;

@@ -34,7 +34,7 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-            <td><a href="#" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></a>
+            <td><button ng-click="bsHsDataEdit(form_bs_asts_nwsdb_dis)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
                             </td>
                 <table class="table table-bordered">
                     <colgroup>
@@ -187,11 +187,11 @@
                         ng-if="biaWaterUsers.type_wusers == 'Total'">
                         <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
                         </td>
-                        <td class="right" width="108" ng-model="biaWaterUsers.num_clients" ng-bind="biaWaterUsers.num_clients = BiaWaterUsers_num_clients">
+                        <td class="right" width="108" ng-model="biaWaterUsers.num_clients" ng-bind="biaWaterUsers.num_clients = totalFunc('BiaWaterUsers','num_clients')">
                         </td>
-                        <td class="right" width="108" ng-model="biaWaterUsers.daily_demand" ng-bind="biaWaterUsers.daily_demand = BiaWaterUsers_daily_demand">
+                        <td class="right" width="108" ng-model="biaWaterUsers.daily_demand" ng-bind="biaWaterUsers.daily_demand = totalFunc('BiaWaterUsers','daily_demand')">
                         </td>
-                        <td class="right" width="108" ng-model="biaWaterUsers.annual_demand" ng-bind="biaWaterUsers.annual_demand = BiaWaterUsers_annual_demand">
+                        <td class="right" width="108" ng-model="biaWaterUsers.annual_demand" ng-bind="biaWaterUsers.annual_demand = totalFunc('BiaWaterUsers','annual_demand')">
                         </td>
                         <td width="108" class="tdpa">
                         </td>

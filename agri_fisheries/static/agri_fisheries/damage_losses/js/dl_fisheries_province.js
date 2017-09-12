@@ -20,16 +20,19 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
     $scope.finalGrandTotPublic = null;
     $scope.finalGrandTotPrivate = null;
     $scope.user_id;
+    $scope.provinces;
 
 
     // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-        if($scope.incident && selectProvinces) {
+        $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
             fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchDlData();
         }
     }
 
-    $scope.provinces = [];
 
     function fetchProvinces(){
           $http({
@@ -40,7 +43,7 @@ app.controller("DlAgriFisheriesProController", function ($scope, $http, $parse, 
                    }),
             }).success(function(data) {
                 $scope.provinces = data;
-                $scope.province = "";
+                $scope.province = null;
                 console.log(data);
             })
     }

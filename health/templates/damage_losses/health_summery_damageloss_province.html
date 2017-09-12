@@ -71,36 +71,37 @@
                             </td>
                         </tr>
                         <tr class="trhead1">
-                            <td class="trhead1 p5" width="130" colspan="">
-                                Incident
-                            </td>
-                            <td width="125">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true);fetchProvinces();fetchDlData();"
-                                        style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
+               <td class="trhead1 p5" width="281" height="20">
+                            Incident
+                        </td>
+                        <td width="125">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
 
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                        {% endfor %}
-                                </select>
-                            </td>
-                            <td class="trhead1 p5" width="281" height="20">
-                                Province
-                            </td>
-                            <td width="170" >
-                                <select name="province" ng-model="province"
-                                        class="form-control"
-                                        style="width:100%;font-weight:400;"
-                                        ng-change="changedValue(false);fetchDlData();" required>
-                                    <option value="" selected="true">Select Province</option>
-                                    <option ng-repeat="province in provinces" ng-value="province.district__province_id"
-                                            ng-bind="province.district__province__name"></option>
-                                </select>
-                            </td>
+                                <option value={{incident.id}}>
+                                    <!--{{incident.disaster_type.name}}-->
+                                    <!--{{incident.reported_date_time}}-->
+                                    {{incident.incident_name}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead1 p5" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false);fetchDlData();" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
                             
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>

@@ -159,9 +159,11 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
+
         }
         else{
             $scope.is_edit_disable = false;
+
         }
     }
 

@@ -549,4 +549,18 @@ app.controller("mnDLArtisanalMinController", function($scope, $http,$parse, _) {
         $scope.mnDLArtisanalMin = angular.copy(init_data);
         $route.reload();
     }
+
+    $scope.totalFunc = function(array,property) {
+        if(!angular.isUndefined($scope.mnDLArtisanalMin)) {
+            var totLos = 0;
+            angular.forEach($scope.mnDLArtisanalMin.mining.Table_4[array], function(value, index) {
+            console.log('test',value);
+                    if(value[property] != null && value.assets != 'Total' && value.type_los !='Total') {
+                          totLos = totLos + value[property];
+                    }
+
+                })
+            return totLos;
+        }
+    }
 })

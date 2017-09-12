@@ -300,4 +300,17 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         $scope.is_edit = false;
         $scope.bsAstsNwsdbDis = angular.copy(init_data);
     }
+
+    $scope.totalFunc = function(array,property) {
+        if(!angular.isUndefined($scope.bsAstsNwsdbDis)) {
+            var tot = 0;
+            angular.forEach($scope.bsAstsNwsdbDis.water_supply.Table_1[array], function(value, index) {
+                    if(value[property] != null && value.type_wusers != 'Total') {
+                          tot = tot + value[property];
+                    }
+
+                })
+            return tot;
+        }
+    }
 })

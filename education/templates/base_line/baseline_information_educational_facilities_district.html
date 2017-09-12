@@ -25,16 +25,18 @@ $(document).ready(function() {
             <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
         </li>
     </ol>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-form name="form_bs_edu_fac">
         <div class="col-sm-12" style="padding:0;">
             <div class="card">
                 <div class="card-block">
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                     <td><a href="#" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></a>
+                     <td><button ng-click="editBsData(form_bs_edu_fac)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
                             </td>
-                    <table ng-form name="form_bs_edu_fac" class="table table-bordered">
+
+
+                    <table class="table table-bordered">
                         <colgroup>
                             <col width="280"/>
                             <col width="136" span="3"/>
@@ -74,7 +76,7 @@ $(document).ready(function() {
                                 <input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy" id="datepicker"
                                        ng-model="baselineDate" class="form-control input-md" required>
                             </td>
-                            
+
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr class="trheadc1" height="17">

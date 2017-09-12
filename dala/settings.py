@@ -161,11 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-<<<<<<< HEAD
         'NAME': 'dala_09_11',
-=======
-        'NAME': '2017_09_07_DB',
->>>>>>> 9dc17311ad6853b9f1f2c51ff5a90493dad5469c
         'USER': 'postgres',
     },
 }

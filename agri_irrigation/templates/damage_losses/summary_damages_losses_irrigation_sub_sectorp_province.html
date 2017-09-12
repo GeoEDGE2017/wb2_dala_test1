@@ -4,6 +4,7 @@
 <!-- Main content -->
 <style>
     .right {text-align:right;}
+
 </style>
 <main class="main" ng-app="dlAgriIrrifationProApp" ng-controller="DlAgriIrrifationProController">
 
@@ -69,22 +70,23 @@
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-                    <table ng-repeat="(key, value) in dlAgriIrrifationPro.agri_irrigation.Table_5" ng-if="!checkIfNull()"
+                    <table ng-repeat="(key, value) in dlAgriIrrifationPro.agri_irrigation.Table_5"
+                           ng-if="!checkIfNull()"
                            class="table table-bordered">
-                    <tr class="trheadc1" height="20">
-                        <td width="258" height="20">
-                            Type of Irrigation Facility
-                        </td>
-                        <td width="118">
-                            Damages (LKR)
-                        </td>
-                        <td width="116">
-                            Losses (LKR)
-                        </td>
-                        <td width="128" colspan="2">
-                            Total (LKR)
-                        </td>
-                    </tr>
+                        <tr class="trheadc1" height="20">
+                            <td width="258" height="20">
+                                Type of Irrigation Facility
+                            </td>
+                            <td width="118">
+                                Damages (LKR)
+                            </td>
+                            <td width="116">
+                                Losses (LKR)
+                            </td>
+                            <td width="128" colspan="2">
+                                Total (LKR)
+                            </td>
+                        </tr>
 
                         <tbody>
                         <tr class="trhead" height="20" ng-init="getTotal(key)">
@@ -163,11 +165,11 @@
                             <td width="118" class="right" ng-bind="value.DlOtherStructuresDistrict[0].damages">
 
                             </td>
-                            <td width="116" class="right" ng-bind="value.DlLosOtherDistrict[0].total_los">
+                            <td width="116" class="right" ng-bind="value.DlLosOtherDistrict[1].total_los">
 
                             </td>
                             <td class="right" width="128"
-                                ng-bind="value.DlOtherStructuresDistrict[0].damages + value.DlLosOtherDistrict[0].total_los">
+                                ng-bind="value.DlOtherStructuresDistrict[0].damages + value.DlLosOtherDistrict[1].total_los">
 
                             </td>
                         </tr>
@@ -195,11 +197,11 @@
                             <td width="118" class="right" ng-bind="value.DlBuildingsDistrict[0].damages">
 
                             </td>
-                            <td width="116" class="right" ng-bind="value.DlLosOtherDistrict[1].total_los">
+                            <td width="116" class="right" ng-bind="value.DlLosOtherDistrict[0].total_los">
 
                             </td>
                             <td class="right" width="128"
-                                ng-bind="value.DlBuildingsDistrict[0].damages + value.DlLosOtherDistrict[1].total_los">
+                                ng-bind="value.DlBuildingsDistrict[0].damages + value.DlLosOtherDistrict[0].total_los">
 
                             </td>
                         </tr>
@@ -234,20 +236,20 @@
                         </tr>
 
                         </tbody>
-                        </table>
+                    </table>
                     <table ng-if="!checkIfNull()"
                            class="table table-bordered">
                         <tr height="20">
                             <td class="boldash" width="258" height="20">
                                 GRAND TOTAL
                             </td>
-                            <td class="right" width="118" ng-bind="grnddamage">
+                            <td class="right" width="118" ng-bind="totDmg()">
 
                             </td>
-                            <td class="right" width="116" ng-bind="grndLoss">
+                            <td class="right" width="116" ng-bind="totLoss()">
 
                             </td>
-                            <td class="right" width="128" ng-bind="grndfinaltotal">
+                            <td class="right" width="128" ng-bind="totDmg() + totLoss()">
 
                             </td>
                         </tr>
@@ -268,36 +270,36 @@
             <div class="modal-dialog" style="width:50%;">
                 <div class="modal-content">
                     <div class="modal-header"
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h5 class="modal-title">
-                            <span id="bookId"> </span>
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-                            </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                    <h5 class="modal-title">
+                        <span id="bookId"> </span>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="textinput">Name</label>
+                        <div class="col-md-10">
+                            <input id="textinput" name="textinput" type="text" placeholder=""
+                                   class="form-control input-md">
                         </div>
                     </div>
-                    <br><br>
-                    <div class="modal-footer">
+                </div>
+                <br><br>
+                <div class="modal-footer">
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
-                        </button>
-                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        Save changes
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
     </div>

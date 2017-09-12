@@ -5,6 +5,7 @@
 <style>
     .right {text-align:right;}
 
+
 </style>
 <main class="main" ng-app="dlSummeryAgProApp" ng-controller="DlSummeryAgProController">
     <!-- Breadcrumb -->
@@ -75,7 +76,7 @@
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
-                    <table ng-repeat="(key, value) in dlAgriAgrarianPro.agri_agrarian.Table_9" ng-if="!checkIfNull()"
+                    <table ng-if="!checkIfNull()"
                            class="table table-bordered">
                         <tbody>
                         <tr class="trheadc1" height="20">
@@ -133,64 +134,68 @@
                         <br>
                         <div class="pull-right">
                             <br>
+                        </div>
+                    </table>
+                    <table ng-repeat="(key, value) in dlAgriAgrarianPro.agri_agrarian.Table_9" ng-if="!checkIfNull()"  class="table table-bordered">
 
-                            <tr height="20" ng-init="getTotal($index,key);">
-                                <td ng-bind="key" class="tdpa" width="253" height="19">
-                                </td>
-                                <td width="147" ng-bind="value.DsorDmgPubProvince[0].damages">
-                                </td>
-                                <td width="151" ng-bind="value.DsorDmgPvtProvince[0].damages">
-                                </td>
-                                <td width="165" ng-bind="value.DsorLosYear1Province[0].dmg_los_pub">
-                                </td>
-                                <td width="170" ng-bind="value.DsorLosYear1Province[0].dmg_los_pvt">
-                                </td>
-                                <td width="135" ng-bind="value.DsorLosYear2Province[0].dmg_los_pub">
-                                </td>
-                                <td width="133" ng-bind="value.DsorLosYear2Province[0].dmg_los_pvt">
-                                </td>
-                                <td width="126"
-                                    ng-bind="value.DsorDmgPubProvince[0].dmg_los_pub +
+
+                    <tr height="20" ng-init="getTotal($index,key);">
+                        <td ng-bind="key" class="tdpa" width="253" height="19">
+                        </td>
+                        <td width="147" ng-bind="value.DsorDmgPubProvince[0].damages">
+                        </td>
+                        <td width="151" ng-bind="value.DsorDmgPvtProvince[0].damages">
+                        </td>
+                        <td width="165" ng-bind="value.DsorLosYear1Province[0].dmg_los_pub">
+                        </td>
+                        <td width="170" ng-bind="value.DsorLosYear1Province[0].dmg_los_pvt">
+                        </td>
+                        <td width="135" ng-bind="value.DsorLosYear2Province[0].dmg_los_pub">
+                        </td>
+                        <td width="133" ng-bind="value.DsorLosYear2Province[0].dmg_los_pvt">
+                        </td>
+                        <td width="126"
+                            ng-bind="value.DsorDmgPubProvince[0].damages +
                                     value.DsorLosYear1Province[0].dmg_los_pub +
                                     value.DsorLosYear2Province[0].dmg_los_pub ">
-                                </td>
-                                <td width="85"
-                                    ng-bind="value.DsorDmgPvtProvince[0].dmg_los_pvt +
+                        </td>
+                        <td width="85"
+                            ng-bind="value.DsorDmgPvtProvince[0].damages +
                                     value.DsorLosYear1Province[0].dmg_los_pvt +
                                     value.DsorLosYear2Province[0].dmg_los_pvt ">
-                                </td>
-                            </tr>
-                        </div>
-                        </tbody>
-                    </table>
-                    <table ng-if="!checkIfNull()"
-                           class="table table-bordered">
-                        <tr height="19">
-                            <td class="boldash" width="253" height="19">
-                                GRAND TOTAL
-                            </td>
-                            <td class="right" width="147" ng-bind="totaldpub">
-                            </td>
-                            <td class="right" width="151" ng-bind="totaldpvt">
-                            </td>
-                            <td class="right" width="165" ng-bind="totalyear1pub">
-                            </td>
-                            <td class="right" width="170" ng-bind="totalyear1pvt">
-                            </td>
-                            <td class="right" width="135" ng-bind="totalyear2pub">
-                            </td>
-                            <td class="right" width="133" ng-bind="totalyear2pvt">
-                            </td>
-                            <td class="right" width="126" ng-bind="finaltotalpublic">
-                            </td>
-                            <td class="right" width="85" ng-bind="finaltotalprivate">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                        </td>
+                    </tr>
             </div>
+            </tbody>
+            </table>
+            <table ng-if="!checkIfNull()"
+                   class="table table-bordered">
+                <tr height="19">
+                    <td class="boldash" width="253" height="19">
+                        GRAND TOTAL
+                    </td>
+                    <td class="right" width="147" ng-bind="totDmgPublic()">
+                    </td>
+                    <td class="right" width="151" ng-bind="totDmgPrivate()">
+                    </td>
+                    <td class="right" width="165" ng-bind="totLosY1Public()">
+                    </td>
+                    <td class="right" width="170" ng-bind="totLosY1Private()">
+                    </td>
+                    <td class="right" width="135" ng-bind="totLosY2Public()">
+                    </td>
+                    <td class="right" width="133" ng-bind="totLosY2Private()">
+                    </td>
+                    <td class="right" width="126" ng-bind="totDmgPublic() + totLosY1Public()+ totLosY2Public() ">
+                    </td>
+                    <td class="right" width="85" ng-bind="totDmgPrivate()+ totLosY1Private() + totLosY2Private()">
+                    </td>
+                </tr>
+                </tbody>
             </table>
         </div>
+        </table>
+    </div>
     </div>
     </div>
     <div class="col-md-12">

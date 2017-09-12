@@ -454,7 +454,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 })
 
                 if(is_null == true) {
-                    $("#modal-container-239455").modal('show');
+//                    $("#modal-container-239455").modal('show');
 
                 }
 

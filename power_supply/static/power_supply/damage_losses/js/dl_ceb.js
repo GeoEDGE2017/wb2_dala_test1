@@ -99,7 +99,15 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     num_dmg_ast :null,
                     to_repair_cost:null,
                     tot_dmg:null,
-                }, {
+                },
+                 {
+                    assets : 'Others',
+                    num_dst_ast:null,
+                    tot_replace_cost:null,
+                    num_dmg_ast :null,
+                    to_repair_cost:null,
+                    tot_dmg:null,
+                },{
                     assets : 'Total',
                     num_dst_ast:null,
                     tot_replace_cost:null,
@@ -326,9 +334,9 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             }).then(function successCallback(response) {
                 var data = response.data;
                 console.log('*', response);
-                angular.forEach(data, function(value, key) {
-                    $scope.bs_data[key] = JSON.parse(value);
-                });
+
+                    $scope.bs_data = response.data;
+
                 console.log('*', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {

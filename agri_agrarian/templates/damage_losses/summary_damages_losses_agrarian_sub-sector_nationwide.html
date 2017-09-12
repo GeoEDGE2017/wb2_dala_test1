@@ -56,7 +56,7 @@
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </table>
-                    <table ng-repeat="(key, value) in dlAgriAgrarianSumNat.agri_agrarian.Table_10" ng-if="!checkIfNull()"
+                    <table ng-if="!checkIfNull()"
                            class="table table-bordered">
                         <tbody>
                     <tr class="trheadc1" height="20">
@@ -110,6 +110,10 @@
                             Private
                         </td>
                     </tr>
+                    </tbody>
+                        </table>
+                <table ng-repeat="(key, value) in dlAgriAgrarianSumNat.agri_agrarian.Table_10" ng-if="!checkIfNull()"
+                           class="table table-bordered">
                 <div class="pull-right">
 
                         <tr  height="20" ng-init="getTotal($index,key);">

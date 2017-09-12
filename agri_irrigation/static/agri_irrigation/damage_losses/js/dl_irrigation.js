@@ -1054,6 +1054,9 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             }).success(function(data) {
                 console.log(data);
                 $scope.dlIrrigation = data;
+                console.log('alert',$scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division);
+                    $scope.division = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].division;
+                    $scope.region = $scope.dlIrrigation.agri_irrigation.Table_3.DlMajorTanks[0].region;
             })
         }
     }

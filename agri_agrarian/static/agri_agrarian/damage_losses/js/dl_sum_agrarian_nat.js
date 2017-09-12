@@ -42,29 +42,29 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
     }
 
      $scope.getTotal = function($index,key) {
-         $scope.totaldpub = ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[$index] ? (
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[$index].sum ?
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[$index].sum : 0 ): 0) ;
+         $scope.totaldpub = $scope.totaldpub  + ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[0] ? (
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[0].sum ?
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[0].sum : 0 ): 0) ;
 
-         $scope.totaldpvt =  ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPvtNational[$index] ? (
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPvtNational[$index].sum ?
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPvtNational[$index].sum : 0 ) : 0) ;
+         $scope.totaldpvt = $scope.totaldpvt +  ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPvtNational[0] ? (
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPvtNational[0].sum ?
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorDmgPvtNational[0].sum : 0 ) : 0) ;
 
-         $scope.totalyear1pub = ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[$index] ? (
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[$index].dmg_los_pub ?
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[$index].dmg_los_pub : 0 ) : 0) ;
+         $scope.totalyear1pub = $scope.totalyear1pub +  ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0] ? (
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pub ?
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pub : 0 ) : 0) ;
 
-         $scope.totalyear1pvt =  ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[$index] ? (
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[$index].dmg_los_pvt ?
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[$index].dmg_los_pvt : 0 ) : 0 );
+         $scope.totalyear1pvt =  $scope.totalyear1pvt + ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0] ? (
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pvt ?
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pvt : 0 ) : 0 );
 
-         $scope.totalyear2pub = ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[$index] ? (
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[$index].dmg_los_pub ?
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[$index].dmg_los_pub : 0 ) : 0) ;
+         $scope.totalyear2pub = $scope.totalyear2pub + ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0] ? (
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pub ?
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pub : 0 ) : 0) ;
 
-         $scope.totalyear2pvt =($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[$index] ? (
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[$index].dmg_los_pvt ?
-                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[$index].dmg_los_pvt : 0 ) : 0);
+         $scope.totalyear2pvt = $scope.totalyear2pvt  + ($scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0] ? (
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pvt ?
+                         $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pvt : 0 ) : 0);
 
 
          $scope.finaltotalpublic = $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
@@ -73,7 +73,7 @@ app.controller("DlAgriAgrarianNatController", ['$scope','$http',function ($scope
 
         }
 
-         $scope.checkIfNull = function() {
+     $scope.checkIfNull = function() {
         var isNull = $scope.dlAgriAgrarianSumNat ? angular.equals({}, $scope.dlAgriAgrarianSumNat.agri_agrarian.Table_10) : true;
         return isNull;
     }

@@ -55,4 +55,6 @@ app.controller('dlSumIrrigationDstrController', ['$scope', '$http', function($sc
             }
         }
     }
+
+
 }]);

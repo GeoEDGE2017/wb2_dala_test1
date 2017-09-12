@@ -39,94 +39,149 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
         }
     }
 
-   $scope.convertToInt = function(val1,val2,val3){
+    $scope.convertToInt = function(val1,val2,val3){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
 
-
-      $scope.checkIfNull = function() {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlagriIrrigationNat ? angular.equals({}, $scope.dlagriIrrigationNat.agri_irrigation.Table_6) : true;
         return isNull;
     }
 
+//    $scope.getTotal = function(key) {
+//
+//
+//
+//        var totalLoss =
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMajorTanksNational[0] ?
+//             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMajorTanksNational[0].total_los ?
+//             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMajorTanksNational[0].total_los : 0) : 0 ) +
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMediumTanksNational[0] ?
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMediumTanksNational[0].total_los ?
+//            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMediumTanksNational[0].total_los : 0):0) +
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMinorTanksNational[0] ?
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMinorTanksNational[0].total_los ?
+//             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMinorTanksNational[0].total_los:0):0) +
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosAnicutsNational[0] ?
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosAnicutsNational[0].total_los ?
+//            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosAnicutsNational[0].total_los : 0) : 0) +
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0] ?
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los  ?
+//            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los : 0):0) +
+//             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0] ?
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[1].total_los  ?
+//            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[1].total_los : 0):0) +
+//             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2] ?
+//            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2].total_los  ?
+//            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2].total_los : 0):0)
+//            ;
+//
+//
+//        var totalLossstring = "totalLoss_"+ key;
+//
+//        var model = $parse(totalLossstring);
+//        model.assign($scope, totalLoss);
+//
+//        $scope.grndLoss = totalLoss ;
+//
+//        var finalgrandtot = $scope.grndLoss + $scope.grnddamage ;
+//
+//        var finalgrandtotstring = "finalgrandtot_"+ key;
+//
+//        var model = $parse(finalgrandtotstring);
+//        model.assign($scope, finalgrandtot);
+//        $scope.grndfinaltotal = finalgrandtot ;
+//
+//    }
 
-   $scope.getTotal = function(key) {
+    $scope.totDmg = function() {
+        if(!angular.isUndefined($scope.dlagriIrrigationNat)) {
+            var totDmg1 = 0;
+            var totDmg2 = 0;
+            var totDmg3 = 0;
+            var totDmg4 = 0;
+            var totDmg5 = 0;
+            var totDmg6 = 0;
+            var totDmg7 = 0;
+            var totDmg= 0;
+            angular.forEach($scope.dlagriIrrigationNat.agri_irrigation.Table_6, function(value, index) {
 
-        $scope.finaltotalprivate = 0;
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlMajorTanksNational') {
+                          totDmg1 = totDmg1 + value_in[0].damages;
+                    }
+                    if(key == 'DlMediumTanksNational') {
+                          totDmg2 = totDmg2 + value_in[0].damages;
+                    }
+                    if(key == 'DlMinorTanksNational') {
+                          totDmg3 = totDmg3 + value_in[0].damages;
+                    }
+                    if(key == 'DlAnicutsNational') {
+                          totDmg4 = totDmg4 + value_in[0].damages;
+                    }
+                    if(key == 'DlOtherStructuresNational') {
+                          totDmg5 = totDmg5 + value_in[0].damages;
+                    }
+                    if(key == 'DlRiverEmbankmntNational') {
+                          totDmg6 = totDmg6 + value_in[0].damages;
+                    }
+                    if(key == 'DlBuildingsNational') {
+                          totDmg7 = totDmg7 + value_in[0].damages;
+                    }
+                    totDmg =  totDmg1 + totDmg2 + totDmg3 + totDmg4 + totDmg5 + totDmg6 + totDmg7;
 
-        var totaldamge =
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMajorTanksNational[0] ?
-             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMajorTanksNational[0].damages ?
-             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMajorTanksNational[0].damages : 0) : 0 ) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMediumTanksNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMediumTanksNational[0].damages ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMediumTanksNational[0].damages : 0):0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMinorTanksNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMinorTanksNational[0].damages ?
-             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlMinorTanksNational[0].damages:0):0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlAnicutsNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlAnicutsNational[0].damages ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlAnicutsNational[0].damages : 0) : 0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlOtherStructuresNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlOtherStructuresNational[0].damages  ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlOtherStructuresNational[0].damages : 0):0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlRiverEmbankmntNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlRiverEmbankmntNational[0].damages ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlRiverEmbankmntNational[0].damages : 0):0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlBuildingsNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlBuildingsNational[0].damages ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlBuildingsNational[0].damages : 0):0)
-            ;
-
-
-        var totaldamgestring = "totaldamge_"+ key;
-
-        var model = $parse(totaldamgestring);
-        model.assign($scope, totaldamge);
-
-        $scope.grnddamage =  totaldamge ;
-
-        var totalLoss =
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMajorTanksNational[0] ?
-             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMajorTanksNational[0].total_los ?
-             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMajorTanksNational[0].total_los : 0) : 0 ) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMediumTanksNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMediumTanksNational[0].total_los ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMediumTanksNational[0].total_los : 0):0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMinorTanksNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMinorTanksNational[0].total_los ?
-             $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosMinorTanksNational[0].total_los:0):0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosAnicutsNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosAnicutsNational[0].total_los ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosAnicutsNational[0].total_los : 0) : 0) +
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los  ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los : 0):0) +
-             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[0] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[1].total_los  ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[1].total_los : 0):0) +
-             ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2] ?
-            ($scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2].total_los  ?
-            $scope.dlagriIrrigationNat.agri_irrigation.Table_6[key].DlLosOtherNational[2].total_los : 0):0)
-            ;
+                    console.log('ttttt',totDmg);
+                    })
 
 
-        var totalLossstring = "totalLoss_"+ key;
+                })
 
-        var model = $parse(totalLossstring);
-        model.assign($scope, totalLoss);
+            return totDmg;
+        }
+    }
 
-        $scope.grndLoss = totalLoss ;
+    $scope.totLoss = function() {
+        if(!angular.isUndefined($scope.dlagriIrrigationNat)) {
+            var totLos1 = 0;
+            var totLos2 = 0;
+            var totLos3 = 0;
+            var totLos4 = 0;
+            var totLos5 = 0;
+            var totLos6 = 0;
+            var totLos7 = 0;
+            var totLos= 0;
+            angular.forEach($scope.dlagriIrrigationNat.agri_irrigation.Table_6, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlLosMajorTanksNational') {
+                          totLos1 = totLos1 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosMediumTanksNational') {
+                          totLos2 = totLos2 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosMinorTanksNational') {
+                          totLos3 = totLos3 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosAnicutsNational') {
+                          totLos4 = totLos4 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosOtherNational') {
+                          totLos5 = totLos5 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosOtherNational') {
+                          totLos6 = totLos6 + value_in[2].total_los;
+                    }
+                    if(key == 'DlLosOtherNational') {
+                          totLos7 = totLos7 + value_in[1].total_los;
+                    }
+                    totLos = totLos1 + totLos2 + totLos3 + totLos4 + totLos5 + totLos6 + totLos7;
+                    console.log('test',totLos);
+                    })
 
-        var finalgrandtot = $scope.grndLoss + $scope.grnddamage ;
+                })
 
-        var finalgrandtotstring = "finalgrandtot_"+ key;
-
-        var model = $parse(finalgrandtotstring);
-        model.assign($scope, finalgrandtot);
-        $scope.grndfinaltotal = finalgrandtot ;
-
+            return totLos;
+        }
     }
 
  })

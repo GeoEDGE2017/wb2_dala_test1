@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': '2017_09_07_DB',
+        'NAME': '2017_09_12_DB',
         'USER': 'postgres',
     },
 }
@@ -1930,6 +1930,8 @@ TABLE_PROPERTY_MAPPER = {
                 ['irrigation_facility',
                  'avg_repair_cost',
                  'avg_replacement_cost',
+                 'division',
+                 'region',
                  'id'],
             'BsRciaMediumTanks':
                 ['irrigation_facility',
@@ -1971,6 +1973,8 @@ TABLE_PROPERTY_MAPPER = {
                  'partially_damaged',
                  'totally_destroyed',
                  'damages',
+                 'division',
+                 'region',
                  'id'],
             'DlMediumTanks':
                 ['irrigation_assets',

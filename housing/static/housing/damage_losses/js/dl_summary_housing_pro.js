@@ -5,7 +5,7 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
     $scope.district;
     $scope.incident;
     $scope.bs_data={};
-    $scope.province = "";
+    $scope.province;
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
@@ -17,38 +17,39 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
     $scope.grandTotal = 0;
     $scope.total_num_affected = 0;
     $scope.user_id;
+    $scope.provinces;
 
-    $scope.changedValue = function getDlData(selectProvinces) {
-        if($scope.incident && selectProvinces) {
-          fetchProvinces();
+
+        $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchData();
         }
     }
 
-    $scope.provinces = [];
-
-    function fetchProvinces() {
+    function fetchProvinces(){
         $http({
-        method: "POST",
-        url: '/fetch_incident_provinces',
-        data: angular.toJson({
-                'incident': $scope.incident
-               }),
+            method: "POST",
+            url: '/fetch_incident_provinces',
+            data: angular.toJson({
+                    'incident': $scope.incident
+                   }),
         }).success(function(data) {
             $scope.provinces = data;
-            $scope.province = "";
+            $scope.province = null;
         })
+
     }
 
-    $scope.fetchDlData = function(form) {
-        if($scope.incident && $scope.province) {
-            $scope.is_edit = true;
-            $scope.submitted = true;
-
+    $scope.fetchData = function(){
+        if($scope.province && $scope.incident){
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name': 'Table_5',
+                    'table_name':  'Table_5',
                     'sector': 'housing',
                     'com_data': {
                         'province': $scope.province,
@@ -56,11 +57,60 @@ app.controller("DlSummHousroController", function ($scope,$http,$parse, _) {
                     },
                 }),
             }).success(function(data) {
+
+                console.log('load ', data);
                 $scope.data = data;
                 $scope.dlSumHousPro = data;
             })
+
         }
-    }
+        }
+
+
+
+//     $scope.getProvince =  function getProvince() {
+//        if($scope.incident) {
+//                $http({
+//                method: "POST",
+//                url: '/fetch_incident_provinces',
+//                data: angular.toJson({
+//                        'incident': $scope.incident
+//                       }),
+//                }).success(function(data) {
+//                    $scope.provinces = data;
+//                    $scope.province ;
+//                    console.log(data);
+//                })
+//            }
+//    }
+
+
+//
+//    $scope.changedValue = function getDlData() {
+//        if($scope.incident && $scope.province) {
+//            $scope.is_edit = true;
+//            $scope.submitted = true;
+//            console.log('province',$scope.province);
+//            $http({
+//                method: "POST",
+//                url: '/dl_fetch_district_disagtn',
+//                data: angular.toJson({
+//                    'table_name': 'Table_5',
+//                    'sector': 'housing',
+//                    'com_data': {
+//                        'province':  1,
+//                        'incident': $scope.incident,
+//                    },
+//                }),
+//            }).success(function(data) {
+//                $scope.data = data;
+//                $scope.dlSumHousPro = data;
+//            })
+//
+//        }
+//    }
+
+
 
     $scope.checkIfNull = function(){
         var isNull = $scope.dlSumHousPro ? angular.equals({}, $scope.dlSumHousPro.housing.Table_5) : true;

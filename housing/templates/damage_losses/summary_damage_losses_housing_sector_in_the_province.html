@@ -33,12 +33,14 @@
                     <tbody>
 
                     <tr class="trhead1">
-                        <td width="130" class="p5" colspan="2">
+
+
+                        <td width="118">
                             Incident
                         </td>
-                        <td width="125">
+                        <td colspan="4" width="340">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);fetchProvinces();fetchDlData();"
+                                    class="form-control" ng-change="changedValue(true)"
                                     style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
@@ -50,20 +52,55 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td class="p5" width="281">
-                            Province
+                        <td height="20" width="263">
+                            Name of Province:
                         </td>
-
-                        <td width="170">
-                            <select name="province" ng-model="province"
+                        <td colspan="3" width="343">
+                            <select name="province" ng-model="province" ng-change="fetchData()"
                                     class="form-control"
                                     style="width:100%;font-weight:400;"
-                                    ng-change="changedValue(false);fetchDlData();" required>
+
+                                    required>
                                 <option value="" selected="true">Select Province</option>
                                 <option ng-repeat="province in provinces" ng-value="province.district__province_id"
                                         ng-bind="province.district__province__name"></option>
                             </select>
                         </td>
+
+
+
+
+                        <!--<td width="130" class="p5" colspan="2">-->
+                            <!--Incident-->
+                        <!--</td>-->
+                        <!--<td width="125">-->
+                            <!--<select id="selectbasic" name="incident" ng-model="incident"-->
+                                    <!--class="form-control" ng-change="changedValue(true);fetchProvinces();fetchDlData();"-->
+                                    <!--style="width:100%;font-weight:400;" required>-->
+                                <!--<option value="" selected="true">Select an Incident</option>-->
+                                <!--{% for incident in incidents %}-->
+                                <!--<option value={{incident.id}}>-->
+                                    <!--&lt;!&ndash;{{incident.disaster_type.name}}&ndash;&gt;-->
+                                    <!--&lt;!&ndash;{{incident.reported_date_time}}&ndash;&gt;-->
+                                    <!--{{incident.incident_name}}-->
+                                <!--</option>-->
+                                <!--{% endfor %}-->
+                            <!--</select>-->
+                        <!--</td>-->
+                        <!--<td class="p5" width="281">-->
+                            <!--Province-->
+                        <!--</td>-->
+
+                        <!--<td width="170">-->
+                            <!--<select name="province" ng-model="province"-->
+                                    <!--class="form-control"-->
+                                    <!--style="width:100%;font-weight:400;"-->
+                                    <!--ng-change="changedValue(false);fetchDlData();" required>-->
+                                <!--<option value="" selected="true">Select Province</option>-->
+                                <!--<option ng-repeat="province in provinces" ng-value="province.district__province_id"-->
+                                        <!--ng-bind="province.district__province__name"></option>-->
+                            <!--</select>-->
+                        <!--</td>-->
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </tbody>

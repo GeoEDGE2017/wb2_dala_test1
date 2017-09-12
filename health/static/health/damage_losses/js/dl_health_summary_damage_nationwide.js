@@ -309,7 +309,6 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_number_affected = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    console.log(key, value_in);
                     if(key == 'DmhLmhMohNational') {
                         tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[0].teaching_hospital,
                             value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
@@ -332,7 +331,6 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_number_affected = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-//                    console.log(key, value_in);
                     if(key == 'DmhPafNational') {
                         tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[1].teaching_hospital,
                             value_in[1].provincial_general_hospital, value_in[1].district_general_hospital);
@@ -360,15 +358,11 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
                             value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
 
                         tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[0].office, value_in[0].other);
-                        console.log(key, value_in, tot_number_affected);
                     }
                     else if(key == 'DmfOmfTpaNational') {
-                        console.log(key, value_in);
                         tot_number_affected = tot_number_affected + $scope.sumFunc7(value_in[0].base_hospital,
                             value_in[0].divisional_hospital, value_in[0].rural_hospital,value_in[0].central_dispensary,
                             value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
-
-                        console.log(key, value_in, tot_number_affected);
                     }
                 })
             })
@@ -425,7 +419,6 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
                     if(key == 'DmhLosNational') {
-                        console.log(value_in);
                         tot_losses_year2 = tot_losses_year2 + $scope.sumFunc3(value_in[1].teaching_hospital,
                             value_in[1].provincial_general_hospital, value_in[1].district_general_hospital);
 
@@ -487,16 +480,16 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
     $scope.totDamagesPvt = function() {
         if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
             var tot_damages = 0;
-//            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
-//                angular.forEach(value, function(value_in, key) {
-//                    if(key == 'DapBefPcDistrict') {
-//                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
-//                    }
-//                    else if(key == 'DapBefOtherDistrict') {
-//                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
-//                    }
-//                })
-//            })
+            angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(key == 'DapBefPcDistrict') {
+                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
+                    }
+                    else if(key == 'DapBefOtherDistrict') {
+                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
+                    }
+                })
+            })
             return tot_damages;
         }
     }

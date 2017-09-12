@@ -20,15 +20,18 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
     $scope.total_num_affected = 0;
     $scope.user_id;
     $scope.totaldpub = 0;
+    $scope.provinces;
 
     // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-        if($scope.incident && selectProvinces) {
+        $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
             fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchDlData();
         }
     }
 
-    $scope.provinces = [];
 
     function fetchProvinces() {
         $http({
@@ -39,34 +42,9 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
             }),
         }).success(function(data) {
             $scope.provinces = data;
-            $scope.province = "";
+            $scope.province = null;
         })
     }
-
-//    $scope.fetchDlData = function(form) {
-//        if($scope.province && $scope.incident) {
-//            console.log($scope.province);
-//            console.log($scope.incident);
-//            $scope.is_edit = true;
-//            $scope.submitted = true;
-//            $http({
-//                method: "POST",
-//                url: '/dl_fetch_district_disagtn',
-//                data: angular.toJson({
-//                    'table_name': 'Table_7',
-//                    'sector': 'mining',
-//                    'com_data': {
-//                        'province': $scope.province,
-//                        'incident': $scope.incident,
-//                    },
-//                }),
-//            }).success(function(data) {
-//                console.log('load ', data);
-//                $scope.data = data;
-//                $scope.dlMiningPro = data;
-//            })
-//        }
-//    }
 
  $scope.fetchDlData = function(form) {
         if($scope.incident && $scope.province){
@@ -101,30 +79,124 @@ app.controller("DlminingProController", function ($scope,$http,$parse, _) {
    
     $scope.getTotal = function($index,key) {
 
-        $scope.totaldpub = $scope.totaldpub +
-                         $scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[1].tot_damages;
-
-        $scope.totaldpvt = $scope.totaldpvt +
-                         $scope.dlMiningPro.mining.Table_7[key].DloDmgProvince[0].tot_damages +
-                         $scope.dlMiningPro.mining.Table_7[key].DlaDmgProvince[0].tot_damages;
-
-
-        $scope.totalyear1pub = $scope.totalyear1pub +
-                         $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year1;
-
         $scope.totalyear1pvt = $scope.totalyear1pvt +
-                         $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year1+
+                         $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year1+
                          $scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0].los_year1;
 
         $scope.totalyear2pub = $scope.totalyear2pub +
-                         $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year2 ;
+                         $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year2 ;
 
         $scope.totalyear2pvt =$scope.totalyear2pvt +
-                         $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[0].los_year2 +
+                         $scope.dlMiningPro.mining.Table_7[key].DloLosProvince[1].los_year2 +
                          $scope.dlMiningPro.mining.Table_7[key].DlaLosProvince[0].los_year2;
 
         $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
 
         $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
+    }
+
+    $scope.totDmgPub = function() {
+        if(!angular.isUndefined($scope.dlMiningPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DloDmgProvince') {
+                          totDmg = totDmg + value_in[1].tot_damages;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+    $scope.totDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlMiningPro)) {
+            var totLosOne = 0;
+            var totLosTwo = 0;
+            var totLos = 0;
+            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DloDmgProvince') {
+                          totLosOne = totLosOne + value_in[0].tot_damages;
+                    }
+                    if(key == 'DlaDmgProvince') {
+                          totLosTwo = totLosTwo + value_in[0].tot_damages;
+                    }
+                    })
+
+                    totLos = totLosOne + totLosTwo;
+
+                })
+            return totLos;
+        }
+    }
+
+    $scope.totLosY1Pub = function() {
+        if(!angular.isUndefined($scope.dlMiningPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DloLosProvince') {
+                          totDmg = totDmg + value_in[0].los_year1;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+    $scope.totLosY1Pvt = function() {
+        if(!angular.isUndefined($scope.dlMiningPro)) {
+            var totLosOne = 0;
+            var totLosTwo = 0;
+            var totLos = 0;
+            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DloLosProvince') {
+                          totLosOne = totLosOne + value_in[1].los_year1;
+                    }
+                    if(key == 'DlaLosProvince') {
+                          totLosTwo = totLosTwo + value_in[0].los_year1;
+                    }
+                    })
+
+                    totLos = totLosOne + totLosTwo;
+
+                })
+            return totLos;
+        }
+    }
+
+    $scope.totLosY2Pub = function() {
+        if(!angular.isUndefined($scope.dlMiningPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DloLosProvince') {
+                          totDmg = totDmg + value_in[0].los_year2;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+    $scope.totLosY2Pvt = function() {
+        if(!angular.isUndefined($scope.dlMiningPro)) {
+            var totLosOne = 0;
+            var totLosTwo = 0;
+            var totLos = 0;
+            angular.forEach($scope.dlMiningPro.mining.Table_7, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DloLosProvince') {
+                          totLosOne = totLosOne + value_in[1].los_year2;
+                    }
+                    if(key == 'DlaLosProvince') {
+                          totLosTwo = totLosTwo + value_in[0].los_year2;
+                    }
+                    })
+
+                    totLos = totLosOne + totLosTwo;
+
+                })
+            return totLos;
+        }
     }
 })

@@ -12,21 +12,31 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
     $scope.submitted = false;
     $scope.data={};
     $scope.user_id;
+    $scope.province;
 
-    $scope.changedValue = function getDlData() {
-        if ($scope.incident) {
-            $http({
-                method: "POST",
-                url: '/fetch_incident_provinces',
-                data: angular.toJson({
-                    'incident': $scope.incident
-                }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = "";
-            })
+       $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.loadData();
         }
     }
+
+    function fetchProvinces(){
+        $http({
+            method: "POST",
+            url: '/fetch_incident_provinces',
+            data: angular.toJson({
+                    'incident': $scope.incident
+                   }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = null;
+        })
+
+    }
+
 
     $scope.loadData = function() {
         if($scope.incident && $scope.province) {

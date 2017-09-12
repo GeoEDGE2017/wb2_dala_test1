@@ -177,6 +177,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 
     $scope.saveEditFirm = function(form) {
         console.log($scope.editedFirmName);
+        console.log("ownership",$scope.ownership);
         if(!angular.isUndefined($scope.editedFirmName) || $scope.editedFirmName === null) {
             console.log('2');
             $http({

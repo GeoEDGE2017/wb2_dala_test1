@@ -15,13 +15,17 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
     $scope.grndfinaltotal = null;
     $scope.finalgrandtot = null;
     $scope.user_id;
+    $scope.provinces;
+
     // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-        if($scope.incident && selectProvinces) {
-         fetchProvinces();
+        $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
+            fetchProvinces();
+        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchDlData();
         }
     }
-    $scope.provinces = [];
 
     function fetchProvinces()
     {
@@ -33,7 +37,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
                }),
         }).success(function(data) {
             $scope.provinces = data;
-            $scope.province = "";
+            $scope.province = null;
             console.log(data);
 
         })

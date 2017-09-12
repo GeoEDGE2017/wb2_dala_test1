@@ -11,6 +11,7 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
     $scope.is_valid_data = true;
     $scope.is_null = false;
     $scope.user_id;
+    $scope.provinces;
 
     // declaring total variables
     $scope.total_num_affected = 0;
@@ -45,73 +46,35 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
         }
     }
 
-    // get relevant damage_losses data for calculations
-    $scope.changedValue = function getDlData(selectProvinces) {
-        if($scope.incident && selectProvinces) {
+    $scope.changedValue=function getBsData(selectedValue) {
+        if($scope.incident && selectedValue) {
             fetchProvinces();
         }
-//        if($scope.province && $scope.incident) {
-//            console.log($scope.district);
-//            console.log($scope.incident);
-//            $http({
-//                method: 'POST',
-//                url: '/dl_get_data',
-//                contentType: 'application/json; charset=utf-8',
-//                data: angular.toJson({
-//                    'table_name': 'Table_9',
-//                    'db_tables': ['DshPubLmhProvince', 'DshPubMohProvince', 'DshPubOmfProvince',  'DshPvtFaProvince',  'DshTdlOwshipProvince'],
-//                    'com_data': {
-//                        'province': $scope.province,
-//                        'incident': $scope.incident,
-//                    },
-//                    'is_edit' : $scope.is_edit,
-//                    'sector':'health'
-//                }),
-//                dataType: 'json',
-//            }).then(function successCallback(response) {
-//                var data = response.data;
-//                angular.forEach(data, function(value, key) {
-//                    $scope.bs_data[key] = JSON.parse(value);
-//
-//
-//                });
-//
-//                console.log($scope.bs_data);
-//
-//            }, function errorCallback(response) {
-//
-//                console.log(response);
-//            });
-//        }
+        if($scope.incident && $scope.province) {
+            $scope.fetchData();
+        }
     }
-
-    $scope.provinces = [];
 
     function fetchProvinces() {
         $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                'incident': $scope.incident
-            }),
+                    'incident': $scope.incident
+                   }),
         }).success(function(data) {
             $scope.provinces = data;
-            $scope.province = "";
+            $scope.province = null;
         })
     }
 
-    $scope.fetchDlData = function() {
-        if($scope.incident && $scope.province) {
-            console.log($scope.province);
-            console.log($scope.incident);
-            $scope.is_edit = true;
-            $scope.submitted = true;
-
+    $scope.fetchData = function() {
+        if($scope.province && $scope.incident){
             $http({
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                    'table_name':'Table_8',
+                    'table_name':  'Table_8',
                     'sector': 'health',
                     'com_data': {
                         'province': $scope.province,
@@ -119,10 +82,11 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
                     },
                 }),
             }).success(function(data) {
-                console.log('load ', data);
                 $scope.data = data;
                 $scope.dlhealthsummarydamageprovince = data;
+                console.log($scope.dlhealthsummarydamageprovince);
             })
+
         }
     }
 
@@ -355,18 +319,11 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
                         console.log('DmhDamagesDistrict', value_in);
                         tot_damages = tot_damages + $scope.sumFunc3(value_in[0].teaching_hospital,
                                     value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
-
-//                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].office, value_in[0].other);
                     }
                     else if(key == 'DmhDamagesMohDistrict') {
-                        console.log('DmhDamagesMohDistrict', value_in);
-
                         tot_damages = tot_damages + $scope.sumFunc2(value_in[0].office, value_in[0].other);
-
-                        console.log('DmhDamagesMohDistrict', $scope.sumFunc2(value_in[0].office, value_in[0].other));
                     }
                     else if(key == 'DmfDamagesDistrict') {
-                        console.log('DmhDamagesMohDistrict', value_in);
                         tot_damages = tot_damages + $scope.sumFunc7(value_in[0].base_hospital, value_in[0].divisional_hospital,
                         value_in[0].rural_hospital, value_in[0].central_dispensary, value_in[0].pmcus,value_in[0].phccs, value_in[0].mchcs);
                     }
@@ -403,7 +360,6 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             var tot_losses_year2 = 0;
             angular.forEach($scope.dlhealthsummarydamageprovince.health.Table_8, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    console.log(key, value_in);
                     if(key == 'DmhLosDistrict') {
                         tot_losses_year2 = tot_losses_year2 + $scope.sumFunc3(value_in[1].teaching_hospital,
                             value_in[1].provincial_general_hospital, value_in[1].district_general_hospital);
@@ -421,7 +377,6 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
         }
     }
 
-
     $scope.totNumberAffectedPvt = function() {
         if(!angular.isUndefined($scope.dlhealthsummarydamageprovince)) {
             var tot_number_affected = 0;
@@ -431,12 +386,6 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
                         tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[1].num_affected_fac,
                             value_in[0].num_affected_fac);
                     }
-
-//                    angular.forEach($scope.privateClinics, function(pvt_clinic, pvt_clinic_index) {
-//                        if(value_in.private_clinic == pvt_clinic.id) {
-//                            $scope.privateClinicsData[index] = pvt_clinic;
-//                        }
-//                    })
                 })
             })
             return tot_number_affected;
@@ -521,5 +470,4 @@ app.controller("dlHealthSummeryDamageLossProvinceAppController", ['$scope','$htt
             return tot_est_losses_y2;
         }
     }
-
  }])

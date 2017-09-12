@@ -26,7 +26,10 @@
                 Table 9: Summary of Damage and Losses in the Health Sector Province
             </span>
         </li>
-        <li style="float:right;"> <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+               class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+        </li>
     </ol>
     <div class="container-fluid">
         <div>
@@ -68,36 +71,37 @@
                             </td>
                         </tr>
                         <tr class="trhead1">
-                            <td class="trhead1 p5" width="130" colspan="">
-                                Incident
-                            </td>
-                            <td width="125">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true);fetchProvinces();fetchDlData();"
-                                        style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
+               <td class="trhead1 p5" width="281" height="20">
+                            Incident
+                        </td>
+                        <td width="125">
+                            <select id="selectbasic" name="incident" ng-model="incident"
+                                    class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                    style="width:100%;font-weight:400;" required>
+                                <option value="" selected="true">Select an Incident</option>
+                                {% for incident in incidents %}
 
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                        {% endfor %}
-                                </select>
-                            </td>
-                            <td class="trhead1 p5" width="281" height="20">
-                                Province
-                            </td>
-                            <td width="170" >
-                                <select name="province" ng-model="province"
-                                        class="form-control"
-                                        style="width:100%;font-weight:400;"
-                                        ng-change="changedValue(false);fetchDlData();" required>
-                                    <option value="" selected="true">Select Province</option>
-                                    <option ng-repeat="province in provinces" ng-value="province.district__province_id"
-                                            ng-bind="province.district__province__name"></option>
-                                </select>
-                            </td>
+                                <option value={{incident.id}}>
+                                    <!--{{incident.disaster_type.name}}-->
+                                    <!--{{incident.reported_date_time}}-->
+                                    {{incident.incident_name}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="trhead1 p5" width="281" height="20">
+                            Province
+                        </td>
+                        <td width="170">
+                            <select name="province" ng-model="province"
+                                    class="form-control"
+                                    style="width:100%;font-weight:400;"
+                                    ng-change="changedValue(false);fetchDlData();" required>
+                                <option value="" selected="true">Select Province</option>
+                                <option ng-repeat="province in provinces" ng-value="province.district__province_id"
+                                        ng-bind="province.district__province__name"></option>
+                            </select>
+                        </td>
                             
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
@@ -496,19 +500,19 @@
                                     data.health.Table_8[key].DmfLosDistrict[3].phccs,
                                     data.health.Table_8[key].DmfLosDistrict[3].mchcs)">
                                 </td>
-                                <td class="right" width="90" ng-bind="sumFunc7(sdata.health.Table_8[key].DmfLosDistrict[0].base_hospital,
-                                    data.health.Table_8[key].DmfLosDistrict[0].divisional_hospital,
-                                    data.health.Table_8[key].DmfLosDistrict[0].rural_hospital,
-                                    data.health.Table_8[key].DmfLosDistrict[0].central_dispensary,
-                                    data.health.Table_8[key].DmfLosDistrict[0].pmcus,
-                                    data.health.Table_8[key].DmfLosDistrict[0].phccs,
-                                    data.health.Table_8[key].DmfLosDistrict[0].mchcs) +
-                                    sumFunc7(data.health.Table_8[key].DmfLosDistrict[3].base_hospital,
-                                    data.health.Table_8[key].DmfLosDistrict[3].divisional_hospital,
-                                    data.health.Table_8[key].DmfLosDistrict[3].rural_hospital,
-                                    data.health.Table_8[key].DmfLosDistrict[3].central_dispensary,
-                                    data.health.Table_8[key].DmfLosDistrict[3].pmcus,
-                                    data.health.Table_8[key].DmfLosDistrict[3].phccs,
+                                <td class="right" width="90" ng-bind="sumFunc2(data.health.Table_8[key].DmfLosDistrict[0].base_hospital,
+                                    data.health.Table_8[key].DmfLosDistrict[3].base_hospital) +
+                                    sumFunc2(data.health.Table_8[key].DmfLosDistrict[0].divisional_hospital,
+                                    data.health.Table_8[key].DmfLosDistrict[3].divisional_hospital) +
+                                    sumFunc2(data.health.Table_8[key].DmfLosDistrict[0].rural_hospital,
+                                    data.health.Table_8[key].DmfLosDistrict[3].rural_hospital) +
+                                    sumFunc2(data.health.Table_8[key].DmfLosDistrict[0].central_dispensary,
+                                    data.health.Table_8[key].DmfLosDistrict[3].central_dispensary) +
+                                    sumFunc2(data.health.Table_8[key].DmfLosDistrict[0].pmcus,
+                                    data.health.Table_8[key].DmfLosDistrict[3].pmcus) +
+                                    sumFunc2(data.health.Table_8[key].DmfLosDistrict[0].phccs,
+                                    data.health.Table_8[key].DmfLosDistrict[3].phccs) +
+                                    sumFunc2(data.health.Table_8[key].DmfLosDistrict[0].mchcs,
                                     data.health.Table_8[key].DmfLosDistrict[3].mchcs)">
                                 </td>
                             </tr>
@@ -622,7 +626,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" ng-if="!checkIfNull()">
                             <tbody>
                                 <tr>
                                     <td width="202" height="20" class="tdpa">
@@ -782,7 +786,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" ng-if="!checkIfNull()">
                             <tbody>
                                 <tr>
                                     <td width="202" height="20" class="tdpa">

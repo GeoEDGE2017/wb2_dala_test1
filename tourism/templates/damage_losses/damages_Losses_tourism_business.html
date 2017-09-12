@@ -623,11 +623,11 @@
                             ng-bind="getMulitiplyedYearLoss(dlBusLosses.avg_val_income_year, dlBusLosses.val_income_year2,2)">
                         </td>
                         <td class="right" width="100" ng-model="dlBusLosses.tol_losses"
-                            ng-bind="getSumOfTwo(dlBusLosses.val_los_year1, BusLosses.val_los_year2, dlBusLosses, 'tol_losses')">
+                            ng-bind="getSumOfTwo(dlBusLosses.val_los_year1, dlBusLosses.val_los_year2, dlBusLosses, 'tol_losses')">
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dlBusLosses in dl_tourism_business.tourism.Table_2.DlBusLosses"
-                        ng-if="(dlBusLosses.los_type != 'GRAND TOTAL') && ($index > 0)">
+                        ng-if="(dlBusLosses.los_type != 'Total') && ($index > 0)">
                         <td class="tdpa" width="229" height="20" ng-bind="dlBusLosses.los_type">
                             Cleaning up of debris
                         </td>
@@ -650,7 +650,7 @@
                         </td>
                     </tr>
                     <tr height="20" ng-repeat="dlBusLosses in dl_tourism_business.tourism.Table_2.DlBusLosses"
-                        ng-if="dlBusLosses.los_type == 'GRAND TOTAL'">
+                        ng-if="dlBusLosses.los_type == 'Total'">
                         <td class="tdpa" width="229" height="20" ng-bind="dlBusLosses.los_type">
                         </td>
                         <td class="tdpa" width="100">

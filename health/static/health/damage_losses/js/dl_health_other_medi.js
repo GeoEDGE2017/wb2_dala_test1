@@ -654,13 +654,14 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
         }
 
         if($scope.incident && $scope.district) {
-         $scope.is_edit_disable = true;
+            $scope.is_edit_disable = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets','BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
+                    'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets',
+                        'BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
@@ -693,7 +694,8 @@ app.controller("DsHealthDamagelostOtherMediController", ['$scope','$http',functi
                         url: '/get_latest_bs_date',
                         contentType: 'application/json; charset=utf-8',
                         data: angular.toJson({
-                            'db_tables': ['BucOmarStructure','BucOmarSupplies','BucOmarMequipment','BucOmarOassets','BucOmarcStructure','BucOmarcCrpm','BucOmarcMequipment','BucOmarcOassets'],
+                            'db_tables': ['BucOmarStructure', 'BucOmarSupplies', 'BucOmarMequipment',
+                                'BucOmarOassets', 'BucOmarcStructure', 'BucOmarcCrpm', 'BucOmarcMequipment','BucOmarcOassets'],
                             'com_data': {
                                 'district': $scope.district.district__id,
                                 'incident': $scope.incident,

@@ -267,7 +267,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                     data: angular.toJson({
                         'table_data': $scope.dlIncomeRailCompany,
                         'com_data': {
-                           'district_id': $scope.district.district__id,
+                            'district_id': $scope.district.district__id,
                             'incident_id' : $scope.incident,
                             'company_id' : $scope.company.id,
                             'user_id': $scope.user_id
@@ -351,7 +351,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
                 method: "POST",
                 url: '/dl_fetch_edit_data',
                 data: angular.toJson({
-                    'table_name':  'Table_2',
+                    'table_name': 'Table_2',
                     'sector':'transport_rail',
                     'com_data': {
                         'district':  $scope.district.district__id,
@@ -364,7 +364,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 //                $scope.dlIncomeRailCompany = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    angular.forEach(data.health.Table_6, function(value, index) {
+                    angular.forEach(data.transport_rail.Table_2, function(value, index) {
                         console.log(value);
                         if(value.length == 0) {
                             edit_data_not_found = true;

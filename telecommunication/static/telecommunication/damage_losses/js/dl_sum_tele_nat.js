@@ -141,7 +141,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
     $scope.getTotDistrictDamagesPvt = function(dis) {
         var tot_damages_pvt = 0;
         angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
-            if(key == 'DlDmgFirmNational') {
+            if(key == 'DlDmgFirmGroupNational') {
                 angular.forEach(value, function(value_in, index_in) {
                     if(value_in.ownership == 'Private') {
                         tot_damages_pvt = tot_damages_pvt + value_in.tot_damages;
@@ -156,7 +156,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
     $scope.getTotDistrictDamagesPub = function(dis) {
         var tot_damages_pub = 0;
         angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
-            if(key == 'DlDmgFirmNational') {
+            if(key == 'DlDmgFirmGroupNational') {
                 angular.forEach(value, function(value_in, index_in) {
                     if(value_in.ownership == 'Public') {
                         tot_damages_pub = tot_damages_pub + value_in.tot_damages;
@@ -171,7 +171,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
     $scope.getTotLosFirmYear1Pub = function(dis) {
         var tot_los_firm_year1_pub = 0;
         angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
-            if(key == 'LosFirmYear1National') {
+            if(key == 'LosFirmYear1GroupNational') {
                 angular.forEach(value, function(value_in, index_in) {
                     if(value_in.ownership == 'Public') {
                         tot_los_firm_year1_pub = tot_los_firm_year1_pub + value_in.year1_los;
@@ -185,7 +185,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
     $scope.getTotLosFirmYear1Pvt = function(dis) {
         var tot_los_firm_year1_pvt = 0;
         angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
-            if(key == 'LosFirmYear1National') {
+            if(key == 'LosFirmYear1GroupNational') {
                 angular.forEach(value, function(value_in, index_in) {
                     if(value_in.ownership == 'Private') {
                         tot_los_firm_year1_pvt = tot_los_firm_year1_pvt + value_in.year1_los;
@@ -199,7 +199,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
     $scope.getTotLosFirmYear2Pub = function(dis) {
         var tot_los_firm_year2_pub = 0;
         angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
-            if(key == 'LosFirmYear2National') {
+            if(key == 'LosFirmYear2GroupNational') {
                 angular.forEach(value, function(value_in, index_in) {
                     if(value_in.ownership == 'Public') {
                         tot_los_firm_year2_pub = tot_los_firm_year2_pub + value_in.year2_los;
@@ -213,7 +213,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
     $scope.getTotLosFirmYear2Pvt = function(dis) {
         var tot_los_firm_year2_pvt = 0;
         angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[dis], function(value, key, index) {
-            if(key == 'LosFirmYear2National') {
+            if(key == 'LosFirmYear2GroupNational') {
                 angular.forEach(value, function(value_in, index_in) {
                     if(value_in.ownership == 'Private') {
                         tot_los_firm_year2_pvt = tot_los_firm_year2_pvt + value_in.year2_los;
@@ -248,7 +248,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DlDmgFirmNational') {
+                    if(key == 'DlDmgFirmGroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.tot_damages);
@@ -270,7 +270,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DlDmgFirmNational') {
+                    if(key == 'DlDmgFirmGroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.tot_damages);
@@ -292,7 +292,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'LosFirmYear1National') {
+                    if(key == 'LosFirmYear1GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year1_los);
@@ -314,7 +314,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'LosFirmYear1National') {
+                    if(key == 'LosFirmYear1GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year1_los);
@@ -336,7 +336,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'LosFirmYear2National') {
+                    if(key == 'LosFirmYear2GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year2_los);
@@ -358,7 +358,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'LosFirmYear2National') {
+                    if(key == 'LosFirmYear2GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages = grnd_tot_damages + parseInt(each_firm.year2_los);
@@ -380,7 +380,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages_losses = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'LosFirmYear1National') {
+                    if(key == 'LosFirmYear1GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year1_los);
@@ -388,7 +388,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
                             }
                         })
                     }
-                    else if(key == 'LosFirmYear2National') {
+                    else if(key == 'LosFirmYear2GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year2_los);
@@ -396,7 +396,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
                             }
                         })
                     }
-                    else if(key == 'DlDmgFirmNational') {
+                    else if(key == 'DlDmgFirmGroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Public' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.tot_damages);
@@ -418,7 +418,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
             var grnd_tot_damages_losses = 0;
             angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'LosFirmYear1National') {
+                    if(key == 'LosFirmYear1GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year1_los);
@@ -426,7 +426,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
                             }
                         })
                     }
-                    else if(key == 'LosFirmYear2National') {
+                    else if(key == 'LosFirmYear2GroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.year2_los);
@@ -434,7 +434,7 @@ app.controller("dlSumTeleNatController", function ($scope,$http,$parse, _) {
                             }
                         })
                     }
-                    else if(key == 'DlDmgFirmNational') {
+                    else if(key == 'DlDmgFirmGroupNational') {
                         angular.forEach(value_in, function(each_firm, firm_index) {
                             if(each_firm.ownership == 'Private' && each_firm.company_name != 'Total') {
                                 grnd_tot_damages_losses = grnd_tot_damages_losses + parseInt(each_firm.tot_damages);

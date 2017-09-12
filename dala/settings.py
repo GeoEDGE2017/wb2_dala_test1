@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': 'dala_09_07',
+        'NAME': 'dala_09_11',
         'USER': 'postgres',
     },
 }
@@ -2802,7 +2802,6 @@ TABLE_PROPERTY_MAPPER = {
                 'num_female',
                 'id',
             ],
-
         },
         'Table_2': {
             'BifProduction': [
@@ -2865,6 +2864,7 @@ TABLE_PROPERTY_MAPPER = {
             ],
 
         },
+        # dlf_dmg_pvt
         'Table_3': {
             'DlfDmgFequipment': [
                 'assets',
@@ -2955,7 +2955,6 @@ TABLE_PROPERTY_MAPPER = {
                 'los_pub',
                 'los_pvt',
             ],
-
         },
         'Table_5': {
             'DlfDmgPubDistrict': [
@@ -3055,9 +3054,11 @@ TABLE_PROPERTY_MAPPER = {
             'BiaWaterIntake': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
             'BiaTreatmentPlant': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
             'BiaWaterDistribution': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
-            'BiaMainOffice': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'], },
+            'BiaMainOffice': ['components', 'avg_replace_cost', 'avg_repair_cost', 'id'],
+        },
         'Table_2': {
-            'BimRuralWater': ['type_water_supply', 'num_users', 'avg_replace_cost', 'avg_repair_cost', 'id', ]},
+            'BimRuralWater': ['type_water_supply', 'num_users', 'avg_replace_cost', 'avg_repair_cost', 'id']
+        },
         'Table_3': {
             'DlcwNumClients': ['residential', 'commercial', 'industrial', 'others', 'total', 'id', ],
             'DlcwNumEmployees': ['male', 'female', 'total', 'id', ],
@@ -3085,7 +3086,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlcwTotDmgDistrict': ['dlcw_tot_dmg'],
             'DlRuralTotDmgDistrict': ['tot_damages'],
             'DlRuralTotLosDistrict': ['tot_los'],
-
         },
         'Table_6': {
             'DlRuralDmgProvince': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
@@ -3099,7 +3099,6 @@ TABLE_PROPERTY_MAPPER = {
             'DlRuralTotDmgDistrict': ['tot_damages'],
             'DlRuralTotLosProvince':['tot_los'],
             'DlRuralTotLosDistrict': ['tot_los'],
-
         },
         'Table_7': {
             'DlcwNumAfNational': ['tot_dmg_residential', 'tot_dmg_commercial', 'tot_dmg_industrial', 'tot_dmg_others',
@@ -3249,7 +3248,6 @@ TABLE_PROPERTY_MAPPER = {
             'BhClfImprovised': ['components', 'tot_num_house', 'tot_num_house_rent', 'avg_rent_mont',
                                 'ang_num_occ_female', 'avg_num_occ_male', 'avg_period_construct', 'avg_period_repair',
                                 'id'],
-
         },
         'Table_2': {
             'BhClfPermanentCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
@@ -3258,7 +3256,6 @@ TABLE_PROPERTY_MAPPER = {
                                     'avg_repair_cost_floor', 'avg_val_content', 'id'],
             'BhClfSmiPermanentCost': ['components', 'avg_replace_cost', 'avg_repair_cost_roof', 'avg_repair_cost_wall',
                                       'avg_repair_cost_floor', 'avg_val_content', 'id'],
-
         },
         'Table_3': {
             'DlDesPermanent':
@@ -3330,7 +3327,6 @@ TABLE_PROPERTY_MAPPER = {
                  'avg_cost_clean',
                  'avg_un_expenses',
                  'losses', 'id'],
-
         },
         'Table_4': {
             'DlDmgImpDistrict':
@@ -3381,7 +3377,6 @@ TABLE_PROPERTY_MAPPER = {
                 ['assets',
                  'tot_num_houses',
                  ],
-
         },
         'Table_5': {
             'DlDmgImpProvince':
@@ -3432,7 +3427,6 @@ TABLE_PROPERTY_MAPPER = {
                 [
                     'tot_num_houses',
                 ],
-
         },
         'Table_6': {
             'DlDmgImpNational':
@@ -3483,7 +3477,6 @@ TABLE_PROPERTY_MAPPER = {
                 [
                     'tot_num_houses',
                 ],
-
         }
     },
     'power_supply': {
@@ -3624,9 +3617,13 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_5': {
             'DlDmgBusTotNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
+            'DlDmgBusTotGroupNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
             'DlDmgFirmNational': ['tot_damages', 'incident', 'firm', 'ownership', 'province', 'company_name'],
+            'DlDmgFirmGroupNational': ['tot_damages', 'incident', 'ownership', 'province', 'company_name'],
             'LosFirmYear1National': ['year1_los', 'incident', 'firm', 'ownership', 'province'],
+            'LosFirmYear1GroupsNational': ['year1_los', 'incident', 'ownership', 'province'],
             'LosFirmYear2National': ['year2_los', 'incident', 'firm', 'ownership', 'province'],
+            'LosFirmYear2GroupsNational': ['year2_los', 'incident', 'ownership', 'province'],
         },
     }
 }

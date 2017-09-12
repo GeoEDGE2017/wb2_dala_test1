@@ -3206,6 +3206,7 @@ TABLE_PROPERTY_MAPPER = {
             'DmgFrmYear1District': ['assets', 'incident', 'ownership', 'district', 'tot_damages', 'sector'],
             'LosFrmYear1District': ['los_year1', 'incident', 'district', 'assets', 'ownership', 'sector'],
             'LosFrmYear2District': ['los_year2', 'incident', 'district', 'assets', 'ownership', 'sector'],
+            'DlNuAffBisDistrict': ['count_no', 'sector', 'district', 'ownership', 'firm_type', 'incident'],
         },
         'Table_6_2': {
             'DlInfNumBusDistrict': ['assets', 'incident', 'district', 'tot_num_bus_affected'],
@@ -3220,6 +3221,9 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_6_3': {
             'DlInfDmgDistrict': ['assets', 'incident', 'district', 'tot_damages'],
+        },
+        'Table_6_4': {
+            'DlNuAffBisDistrict': ['count_no', 'sector', 'district',  'ownership', 'firm_type', 'incident'],
         },
         'Table_8': {
             'DmgTotFrmYear1District': ['incident', 'ownership', 'district', 'tot_damages'],

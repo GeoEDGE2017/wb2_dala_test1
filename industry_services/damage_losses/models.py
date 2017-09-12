@@ -733,3 +733,16 @@ class LosFrmYear2Tot(models.Model):
     class Meta:
         managed = False
         db_table = 'industry_services\".\"los_frm_year2_tot'
+
+
+class DlNuAffBisDistrict(models.Model):
+    count_no = models.BigIntegerField(blank=True, null=True)
+    sector = models.CharField(max_length=255, blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    ownership = models.CharField(max_length=255, blank=True, null=True)
+    firm_type = models.ForeignKey(FormalFirmTypes,  db_column='firm_type', blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'industry_services\".\"dl_nu_aff_bis_district'

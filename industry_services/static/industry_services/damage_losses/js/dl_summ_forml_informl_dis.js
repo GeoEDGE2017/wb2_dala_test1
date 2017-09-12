@@ -22,6 +22,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
     $scope.serviceTotal = {};
     $scope.data2;
     $scope.data3;
+    $scope.data4;
     $scope.user_id;
 
     $scope.changedValue=function getBsData(selectedValue) {
@@ -42,6 +43,10 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
              $scope.loadData();
              $scope.loadData2();
              $scope.loadData3();
+             $scope.loadData4();
+
+
+
         }
     }
 
@@ -64,7 +69,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
                 }).success(function(data) {
                 $scope.data=data.industry_services.Table_6;
                 $scope.makeTable();
-                console.log($scope.data);
+//                console.log($scope.data);
             })
         }
     }
@@ -115,6 +120,30 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
         }
     }
 
+    $scope.loadData4 = function() {
+        if($scope.incident && $scope.district && $scope.district.district__id) {
+            $scope.isLoded = true;
+            $scope.tot_damages = null;
+            $scope.is_edit = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_summary_dis_disagtn',
+                    data: angular.toJson({
+                    'table_name':  ['Table_6_4'],
+                    'sector': ['industry_services'],
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                $scope.data4=data.industry_services.Table_6_4;
+                $scope.makeTable_add_counts_industry();
+                $scope.makeTable_add_counts_service();
+//                console.log("data came", $scope.data4);
+            })
+        }
+    }
 
    $scope.makeTable = function(){
         if($scope.data != null){
@@ -127,7 +156,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
 
 //                console.log(value);
                 $scope.table.industry[value.industry] = {'name':value.industry }
-                $scope.table.industry[value.industry].numAffected = {};
+//                $scope.table.industry[value.industry].numAffected = {};
                 $scope.table.industry[value.industry].year1Damage = {};
                 $scope.table.industry[value.industry].year1Damage = {};
                 $scope.table.industry[value.industry].year1Loss = {};
@@ -137,7 +166,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
                 angular.forEach($scope.data.DlNumAffBusIndustry, function(value2, key) {
                     if($scope.table.industry[value.industry].name == value2.assets)
                         {
-                            $scope.table.industry[value.industry].numAffected = value2;
+//                            $scope.table.industry[value.industry].numAffected = value2;
                         }
                 })
 
@@ -179,7 +208,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
 
 //                console.log(value);
                 $scope.table.service[value.service] = {'name':value.service }
-                $scope.table.service[value.service].numAffected = {};
+//                $scope.table.service[value.service].numAffected = {};
                 $scope.table.service[value.service].year1Damage = {};
                 $scope.table.service[value.service].year1Damage = {};
                 $scope.table.service[value.service].year1Loss = {};
@@ -189,14 +218,14 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
                 angular.forEach($scope.data.DlNumAffBusServices, function(value2, key) {
                     if($scope.table.service[value.service].name == value2.assets)
                         {
-                            $scope.table.service[value.service].numAffected = value2;
+//                            $scope.table.service[value.service].numAffected = value2;
                         }
                 })
 
                 angular.forEach($scope.data.DmgFrmYear1District, function(value2, key) {
                     if($scope.table.service[value.service].name == value2.sector)
                         {
-                            console.log("secotr ser ", value2);
+//                            console.log("secotr ser ", value2);
                               if(value2.ownership){
                                   $scope.table.service[value.service].year1Damage[value2.ownership] = value2.tot_damages;
                               }
@@ -225,9 +254,53 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
 
             })
 
-            console.log('table', $scope.table);
+            $scope.makeTable_add_counts_industry();
+            $scope.makeTable_add_counts_service();
+//            console.log('table', $scope.table);
          }
     }
+
+       $scope.makeTable_add_counts_industry = function(){
+        if($scope.data4 != null && $scope.table &&$scope.table.industry != null){
+        console.log("$scope.indSubSec", $scope.indSubSec);
+            angular.forEach($scope.indSubSec, function(value, key) {
+               angular.forEach($scope.data4.DlNuAffBisDistrict, function(value2, key) {
+               if($scope.table.industry[value.industry].name == value2.sector){
+                    $scope.table.industry[value.industry].numAffected = {}
+                    if(value2.ownership == 'Public'){
+                        $scope.table.industry[value.industry].numAffected.num_bus_public = value2.count_no;
+                    }
+                    else{
+                        $scope.table.industry[value.industry].numAffected.num_bus_private = value2.count_no;
+                    }
+                    }
+             })
+            })
+        }
+        console.log("$scope.table",$scope.table);
+    }
+
+    $scope.makeTable_add_counts_service = function(){
+        if($scope.data4 != null && $scope.table && $scope.table.service != null){
+
+            angular.forEach($scope.serSubSec, function(value, key) {
+               angular.forEach($scope.data4.DlNuAffBisDistrict, function(value2, key) {
+               if($scope.table.service[value.service].name == value2.sector){
+
+               $scope.table.service[value.service].numAffected = {}
+                    if(value2.ownership == 'Public'){
+                        $scope.table.service[value.service].numAffected.num_bus_public = value2.count_no;
+                    }
+                    else{
+                        $scope.table.service[value.service].numAffected.num_bus_private = value2.count_no;
+                    }
+
+                    }
+             })
+            })
+        }
+    }
+
 
    $scope.makeTable2 = function(){
         if($scope.data2 != null){
@@ -242,7 +315,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
                 $scope.table2[value.assets].year1Loss = {};
                 $scope.table2[value.assets].year2Loss = {};
 
-                console.log($scope.data2);
+
 
                 angular.forEach($scope.data2.DlInfNumBusDistrict, function(value2, key) {
                       if(value2.assets == value.assets){
@@ -299,7 +372,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
                 })
 
              })
-                console.log('table2', $scope.table2);
+//                console.log('table2', $scope.table2);
         }
     }
 
@@ -316,7 +389,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
 
                  angular.forEach($scope.data3.DlInfDmgDistrict, function(value2, key) {
                       if(value2.assets == value.assets){
-                            console.log("found", value2)
+//                            console.log("found", value2)
                             $scope.table3[value.assets].tot_damages = value2.tot_damages;
                       }
 //                    $scope.table.formal[value].year1Damage[value2.ownership] = value2.tot_damages;
@@ -325,7 +398,7 @@ app.controller('dlSummFormlInformldisController', ['$scope', '$http', function($
 //               $scope.table3[value.assets].year1Loss['Private'] = $scope.data2.DlInfTotLodTrdY1District[value.assets].tot_los_year1;
 
              })
-                console.log('table3', $scope.table3);
+//                console.log('table3', $scope.table3);
         }
     }
 

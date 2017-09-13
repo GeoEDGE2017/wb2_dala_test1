@@ -9,6 +9,8 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
     $scope.ownership;
     $scope.is_edit_disable = false;
     $scope.user_id;
+    $scope.is_edit_disable = false;
+    $scope.is_valid_data = true;
 
     //Initialize model
     var init_data = {
@@ -107,6 +109,30 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
             }).success(function(data) {
                 console.log(data);
                 $scope.bsPowGenFrimDis = data;
+
+
+                var edit_data_not_found = false;
+            if(data != null) {
+                console.log('----if');
+                angular.forEach(data.power_supply.Table_1, function(value, index) {
+                    console.log('----forEach');
+                    console.log(value);
+                    if(value.length == 0) {
+                        console.log('----');
+                        edit_data_not_found = true;
+                    }
+                })
+                if(edit_data_not_found != true) {
+                    $scope.bsPowGenFrimDis = data;
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            }
+            else {
+                console.log('----else');
+                $("#modal-container-239456").modal('show');
+            }
             })
         }
     }

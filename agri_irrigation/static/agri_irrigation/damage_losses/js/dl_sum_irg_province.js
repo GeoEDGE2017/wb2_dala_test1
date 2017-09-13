@@ -27,8 +27,7 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
         }
     }
 
-    function fetchProvinces()
-    {
+    function fetchProvinces(){
         $http({
         method: "POST",
         url: '/fetch_incident_provinces',
@@ -75,86 +74,97 @@ app.controller("DlAgriIrrifationProController", function ($scope, $http, $parse,
         return sum;
     }
 
-      $scope.checkIfNull = function() {
+   $scope.checkIfNull = function() {
         var isNull = $scope.dlAgriIrrifationPro ? angular.equals({}, $scope.dlAgriIrrifationPro.agri_irrigation.Table_5) : true;
         return isNull;
     }
 
-   $scope.getTotal = function(key) {
-       $scope.finaltotalprivate = 0;
+   $scope.totDmg = function() {
+        if(!angular.isUndefined($scope.dlAgriIrrifationPro)) {
+            var totDmg1 = 0;
+            var totDmg2 = 0;
+            var totDmg3 = 0;
+            var totDmg4 = 0;
+            var totDmg5 = 0;
+            var totDmg6 = 0;
+            var totDmg7 = 0;
+            var totDmg= 0;
+            angular.forEach($scope.dlAgriIrrifationPro.agri_irrigation.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlMajorTanksDistrict') {
+                          totDmg1 = totDmg1 + value_in[0].damages;
+                    }
+                    if(key == 'DlMediumTanksDistrict') {
+                          totDmg2 = totDmg2 + value_in[0].damages;
+                    }
+                    if(key == 'DlMinorTanksDistrict') {
+                          totDmg3 = totDmg3 + value_in[0].damages;
+                    }
+                    if(key == 'DlAnicutsDistrict') {
+                          totDmg4 = totDmg4 + value_in[0].damages;
+                    }
+                    if(key == 'DlOtherStructuresDistrict') {
+                          totDmg5 = totDmg5 + value_in[0].damages;
+                    }
+                    if(key == 'DlRiverEmbankmntDistrict') {
+                          totDmg6 = totDmg6 + value_in[0].damages;
+                    }
+                    if(key == 'DlBuildingsDistrict') {
+                          totDmg7 = totDmg7 + value_in[0].damages;
+                    }
+                    totDmg = totDmg1 + totDmg2 + totDmg3 + totDmg4 + totDmg5 + totDmg6 + totDmg7;
+                    console.log('test',totDmg);
+                    })
 
-        var totaldamge =
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMajorTanksDistrict[0] ?
-             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMajorTanksDistrict[0].damages ?
-             $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMajorTanksDistrict[0].damages : 0) : 0 ) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMediumTanksDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMediumTanksDistrict[0].damages ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMediumTanksDistrict[0].damages : 0):0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMinorTanksDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMinorTanksDistrict[0].damages ?
-             $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlMinorTanksDistrict[0].damages:0):0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlAnicutsDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlAnicutsDistrict[0].damages ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlAnicutsDistrict[0].damages : 0) : 0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlOtherStructuresDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlOtherStructuresDistrict[0].damages  ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlOtherStructuresDistrict[0].damages : 0):0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlRiverEmbankmntDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlRiverEmbankmntDistrict[0].damages ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlRiverEmbankmntDistrict[0].damages : 0):0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlBuildingsDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlBuildingsDistrict[0].damages ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlBuildingsDistrict[0].damages : 0):0);
+                })
+
+            return totDmg;
+        }
+    }
+
+   $scope.totLoss = function() {
+        if(!angular.isUndefined($scope.dlAgriIrrifationPro)) {
+            var totLos1 = 0;
+            var totLos2 = 0;
+            var totLos3 = 0;
+            var totLos4 = 0;
+            var totLos5 = 0;
+            var totLos6 = 0;
+            var totLos7 = 0;
+            var totLos= 0;
+            angular.forEach($scope.dlAgriIrrifationPro.agri_irrigation.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlLosMajorTanksDistrict') {
+                          totLos1 = totLos1 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosMediumTanksDistrict') {
+                          totLos2 = totLos2 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosMinorTanksDistrict') {
+                          totLos3 = totLos3 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosAnicutsDistrict') {
+                          totLos4 = totLos4 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosOtherDistrict') {
+                          totLos5 = totLos5 + value_in[0].total_los;
+                    }
+                    if(key == 'DlLosOtherDistrict') {
+                          totLos6 = totLos6 + value_in[2].total_los;
+                    }
+                    if(key == 'DlLosOtherDistrict') {
+                          totLos7 = totLos7 + value_in[1].total_los;
+                    }
+                    totLos = totLos1 + totLos2 + totLos3 + totLos4 + totLos5 + totLos6 + totLos7;
+                    console.log('test',totLos);
+                    })
+
+                })
+
+            return totLos;
+        }
+    }
 
 
-        var totaldamgestring = "totaldamge_"+ key;
-
-        var model = $parse(totaldamgestring);
-        model.assign($scope, totaldamge);
-
-        $scope.grnddamage = totaldamge ;
-
-        var totalLoss =
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMajorTanksDistrict[0] ?
-             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMajorTanksDistrict[0].total_los ?
-             $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMajorTanksDistrict[0].total_los : 0) : 0 ) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMediumTanksDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMediumTanksDistrict[0].total_los ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMediumTanksDistrict[0].total_los : 0):0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMinorTanksDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMinorTanksDistrict[0].total_los ?
-             $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosMinorTanksDistrict[0].total_los:0):0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosAnicutsDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosAnicutsDistrict[0].total_los ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosAnicutsDistrict[0].total_los : 0) : 0) +
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[0] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[0].total_los  ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[0].total_los : 0):0) +
-             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[1] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[1].total_los  ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[1].total_los : 0):0) +
-             ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[2] ?
-            ($scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[2].total_los  ?
-            $scope.dlAgriIrrifationPro.agri_irrigation.Table_5[key].DlLosOtherDistrict[2].total_los : 0):0);
-
-
-            var totalLossstring = "totalLoss_"+ key;
-
-            var model = $parse(totalLossstring);
-            model.assign($scope, totalLoss);
-
-            $scope.grndLoss = totalLoss ;
-
-            var finalgrandtot = $scope.grnddamage + $scope.grndLoss ;
-
-             var finalgrandtotstring = "finalgrandtot_"+ key;
-
-             var model = $parse(finalgrandtotstring);
-             model.assign($scope, finalgrandtot);
-             $scope.grndfinaltotal = finalgrandtot ;
-             console.log('test',finalgrandtot);
-
-
-   }
 
  })

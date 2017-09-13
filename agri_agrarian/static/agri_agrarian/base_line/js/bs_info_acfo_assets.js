@@ -11,7 +11,6 @@ app.controller('bsInfoAcfoAssetsController', ['$scope', '$http', function($scope
     $scope.user_id;
     $scope.is_submit = false;
 
-
     //initialize data
     var init_data = {
         'agri_agrarian': {

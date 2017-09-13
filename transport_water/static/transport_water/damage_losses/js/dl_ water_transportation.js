@@ -563,7 +563,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
 
      finaltotal5 = finaltotal5 + value.tot_damages;
     })
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3  + finaltotal5;
+    grantot = finaltotal1+ finaltotal2 + finaltotal3  + finaltotal5;
 
     return grantot;
     }
@@ -594,7 +594,7 @@ app.controller("DlWaterTransController", function ($scope, $http, $parse, _) {
      finaltotal3 = finaltotal3 + value.tot_dmg_private ;
     })
 
-    grantot = grantot + finaltotal1+ finaltotal2 + finaltotal3 ;
+    grantot = finaltotal1+ finaltotal2 + finaltotal3 ;
     return grantot;
     }
 

@@ -67,39 +67,91 @@ app.controller("DlSummeryAgProController", ['$scope','$http',function ($scope,$h
         }
     }
 
-    $scope.getTotal = function($index,key) {
-        $scope.totaldpub = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPubProvince[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPubProvince[$index].damages ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPubProvince[$index].damages : 0 ): 0) ;
-
-        $scope.totaldpvt = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPvtProvince[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPvtProvince[$index].damages ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorDmgPvtProvince[$index].damages : 0 ) : 0) ;
-
-        $scope.totalyear1pub = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pub ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pub : 0 ) : 0) ;
-
-        $scope.totalyear1pvt = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pvt ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear1Province[$index].dmg_los_pvt : 0 ) : 0 );
-
-        $scope.totalyear2pub = ($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index].dmg_los_pub ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index].dmg_los_pub : 0 ) : 0) ;
-
-        $scope.totalyear2pvt =($scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index] ? (
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index].dmg_los_pvt ?
-                 $scope.dlAgriAgrarianPro.agri_agrarian.Table_9[key].DsorLosYear2Province[$index].dmg_los_pvt : 0 ) : 0);
-
-
-        $scope.finaltotalpublic = $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
-
-        $scope.finaltotalprivate = $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
-
+   $scope.totDmgPublic = function() {
+        if(!angular.isUndefined($scope.dlAgriAgrarianPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlAgriAgrarianPro.agri_agrarian.Table_9, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DsorDmgPubProvince') {
+                          totDmg = totDmg + value_in[0].damages;
+                    }
+                    })
+                })
+            return totDmg;
+        }
     }
 
-      $scope.checkIfNull = function() {
+   $scope.totDmgPrivate = function() {
+        if(!angular.isUndefined($scope.dlAgriAgrarianPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlAgriAgrarianPro.agri_agrarian.Table_9, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DsorDmgPvtProvince') {
+                          totDmg = totDmg + value_in[0].damages;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+
+   $scope.totLosY1Public = function() {
+        if(!angular.isUndefined($scope.dlAgriAgrarianPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlAgriAgrarianPro.agri_agrarian.Table_9, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DsorLosYear1Province') {
+                          totDmg = totDmg + value_in[0].dmg_los_pub;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+
+   $scope.totLosY1Private = function() {
+        if(!angular.isUndefined($scope.dlAgriAgrarianPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlAgriAgrarianPro.agri_agrarian.Table_9, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DsorLosYear1Province') {
+                          totDmg = totDmg + value_in[0].dmg_los_pvt;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+
+   $scope.totLosY2Public = function() {
+        if(!angular.isUndefined($scope.dlAgriAgrarianPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlAgriAgrarianPro.agri_agrarian.Table_9, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DsorLosYear2Province') {
+                          totDmg = totDmg + value_in[0].dmg_los_pub;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+
+   $scope.totLosY2Private = function() {
+        if(!angular.isUndefined($scope.dlAgriAgrarianPro)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlAgriAgrarianPro.agri_agrarian.Table_9, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DsorLosYear2Province') {
+                          totDmg = totDmg + value_in[0].dmg_los_pvt;
+                    }
+                    })
+                })
+            return totDmg;
+        }
+    }
+
+   $scope.checkIfNull = function() {
         var isNull = $scope.dlAgriAgrarianPro ? angular.equals({}, $scope.dlAgriAgrarianPro.agri_agrarian.Table_9) : true;
         return isNull;
     }

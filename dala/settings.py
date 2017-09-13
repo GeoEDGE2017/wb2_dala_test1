@@ -665,7 +665,7 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_4': {
             'DlagdDmgProvince': [
-                'damages',
+                'damages', 'ownership', 'name'
             ],
             'DlagdLossesProvince': [
                 'los_year1',
@@ -675,12 +675,10 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_5': {
             'DlagdDmgNational': [
-                'damages',
+                'damages', 'name', 'ownership'
             ],
             'DlagdLossesNational': [
-                'los_year1',
-                'los_year2',
-                'total_losses'
+                'los_year1', 'los_year2', 'total_losses', 'name', 'ownership'
             ]
         },
         'Table_2': {

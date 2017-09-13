@@ -11,7 +11,9 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
         <li class="breadcrumb-item">
             <a href="{% url 'dashboard:othergov_main' %}">
@@ -25,7 +27,8 @@
         </li>
         <li style="float:right;">
             <a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-               class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+                class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid">
@@ -101,7 +104,7 @@
                             <td class="right" width="118" style="width:10%;">
                             </td>
                         </tr>
-                        <tr ng-repeat="(key, value) in value" height="20">
+                        <tr ng-repeat="(key, value) in value" ng-if="value.DlagdDmgProvince[0].ownership == 1" height="20">
                             <td ng-bind="key" class="tdpa" width="191">
                             </td>
                             <td class="right" ng-bind="value.DlagdDmgProvince[0].damages" width="118">
@@ -114,6 +117,34 @@
                                 value.DlagdLossesProvince[0].los_year1 + value.DlagdLossesProvince[0].los_year2">
                             </td>
                         </tr>
+                        <tr ng-repeat="(key, value) in value" ng-if="value.DlagdDmgProvince[0].ownership == 2" height="20">
+                            <td ng-bind="key" class="tdpa" width="191">
+                            </td>
+                            <td class="right" ng-bind="value.DlagdDmgProvince[0].damages" width="118">
+                            </td>
+                            <td class="right" ng-bind="value.DlagdLossesProvince[0].los_year1" width="118" >
+                            </td>
+                            <td class="right" ng-bind="value.DlagdLossesProvince[0].los_year2" width="118" >
+                            </td>
+                            <td class="right" ng-bind="value.DlagdDmgProvince[0].damages +
+                                value.DlagdLossesProvince[0].los_year1 + value.DlagdLossesProvince[0].los_year2">
+                            </td>
+                        </tr>
+                        <tbody ng-repeat="(key, uui) in value" ng-if="key == 'National Ministry or Agency'" height="20">
+                            <tr ng-repeat="tbl in uui.DlagdDmgProvince">
+                                <td ng-bind="tbl.name" class="tdpa" width="191">
+                                </td>
+                                <td class="right" ng-bind="tbl.damages" width="118">
+                                </td>
+                                <td class="right" ng-bind="uui.DlagdLossesProvince[$index].los_year1" width="118" >
+                                </td>
+                                <td class="right" ng-bind="uui.DlagdLossesProvince[$index].los_year2" width="118" >
+                                </td>
+                                <td class="right" ng-bind="tbl.damages +
+                                    uui.DlagdLossesProvince[$index].los_year1 + uui.DlagdLossesProvince[$index].los_year2">
+                                </td>
+                            </tr>
+                        </tbody>
                         <tr height="20">
                             <td class="tdpa" colspan="0" width="298" height="20">
                                 Total

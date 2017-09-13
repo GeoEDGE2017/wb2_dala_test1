@@ -25,8 +25,11 @@
     <div class="container-fluid">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-             <td><a href="#" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></a>
-                            </td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-info" style="float:right;">
+                        <span class="fa fa-search"></span>
+                    </a>
+                </td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="107"/>
@@ -86,31 +89,60 @@
                                 <td width="118" style="width:16%;">
                                 </td>
                             </tr>
-                            <tr ng-repeat="(key, value) in value" height="20">
+                            <tr ng-repeat="(key, value) in value" ng-if="value.DlagdDmgNational[0].ownership == 1" height="20">
                                 <td ng-bind="key" class="tdpa" width="191">
                                 </td>
-                                <td ng-bind="value.DlagdDmgNational[0].damages" class="right" width="118">
+                                <td class="right" ng-bind="value.DlagdDmgNational[0].damages" width="118">
                                 </td>
-                                <td ng-bind="value.DlagdLossesNational[0].los_year1" class="right" width="118">
+                                <td class="right" ng-bind="value.DlagdLossesNational[0].los_year1" width="118">
                                 </td>
-                                <td ng-bind="value.DlagdLossesNational[0].los_year2" class="right" width="118">
+                                <td class="right" ng-bind="value.DlagdLossesNational[0].los_year2" width="118">
                                 </td>
-                                <td ng-bind="value.DlagdDmgNational[0].damages + value.DlagdLossesNational[0].los_year1 + value.DlagdLossesNational[0].los_year2" class="right">
+                                <td class="right" ng-bind="value.damages + value.DlagdLossesNational[0].los_year1 +
+                                    value.DlagdLossesNational[0].los_year2">
                                 </td>
                             </tr>
+                            <tr ng-repeat="(key, value) in value" ng-if="value.DlagdDmgNational[0].ownership == 2" height="20">
+                                <td ng-bind="key" class="tdpa" width="191">
+                                </td>
+                                <td class="right" ng-bind="value.DlagdDmgNational[0].damages" width="118">
+                                </td>
+                                <td class="right" ng-bind="value.DlagdLossesNational[0].los_year1" width="118">
+                                </td>
+                                <td class="right" ng-bind="value.DlagdLossesNational[0].los_year2" width="118">
+                                </td>
+                                <td class="right" ng-bind="value.damages + value.DlagdLossesNational[0].los_year1 +
+                                    value.DlagdLossesNational[0].los_year2">
+                                </td>
+                            </tr>
+                            <tbody ng-repeat="(key, uui) in value" ng-if="key == 'National Ministry or Agency'" height="20">
+                                <tr ng-repeat="tbl in uui.DlagdDmgNational" height="20">
+                                    <td ng-bind="tbl.name" class="tdpa" width="191">
+                                    </td>
+                                    <td ng-bind="tbl.damages" class="right" width="118">
+                                    </td>
+                                    <td ng-bind="uui.DlagdLossesNational[$index].los_year1" class="right" width="118">
+                                    </td>
+                                    <td ng-bind="uui.DlagdLossesNational[$index].los_year2" class="right" width="118">
+                                    </td>
+                                    <td ng-bind="tbl.damages + uui.DlagdLossesNational[$index].los_year1 +
+                                        uui.DlagdLossesNational[$index].los_year2" class="right">
+                                    </td>
+                                </tr>
+                            </tbody>
                             <tr height="20">
-                            <td class="tdpa" width="191" height="20">
-                                Total
-                            </td>
-                            <td class="right" width="118" ng-bind="getTotDamages(key)">
-                            </td>
-                            <td class="right" width="118" ng-bind="getTotLosYear1(key)">
-                            </td>
-                            <td class="right" width="118" ng-bind="getTotLosYear2(key)">
-                            </td>
-                            <td class="right" width="118" ng-bind="getTotDamages(key) + getTotLosYear1(key) + getTotLosYear2(key)">
-                            </td>
-                        </tr>
+                                <td class="tdpa" width="191" height="20">
+                                    Total
+                                </td>
+                                <td class="right" width="118" ng-bind="getTotDamages(key)">
+                                </td>
+                                <td class="right" width="118" ng-bind="getTotLosYear1(key)">
+                                </td>
+                                <td class="right" width="118" ng-bind="getTotLosYear2(key)">
+                                </td>
+                                <td class="right" width="118" ng-bind="getTotDamages(key) + getTotLosYear1(key) + getTotLosYear2(key)">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table ng-if="dlNationwideSys.other_govn_services.Table_5 != null" class="table table-bordered">

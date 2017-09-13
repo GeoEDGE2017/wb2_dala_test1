@@ -226,6 +226,7 @@ class DlagdDmgProvince(models.Model):
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     ownership = models.ForeignKey(Ownership, db_column='ownership', blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -250,6 +251,7 @@ class DlagdDmgNational(models.Model):
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     ownership = models.ForeignKey(Ownership, db_column='ownership', blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -263,6 +265,7 @@ class DlagdLossesNational(models.Model):
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     ownership = models.ForeignKey(Ownership, db_column='ownership', blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False

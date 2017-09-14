@@ -127,10 +127,12 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_number_affected = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DugDfNational') {
-                        tot_number_affected = tot_number_affected +
-                            $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
-                            value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                    if(value_in.length > 0) {
+                        if(key == 'DugDfNational') {
+                            tot_number_affected = tot_number_affected +
+                                $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
+                                value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                        }
                     }
                 })
             })
@@ -143,10 +145,12 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_no_of_patients_affected = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DugNsaNational') {
-                        tot_no_of_patients_affected = tot_no_of_patients_affected +
-                            $scope.sumFunc8(value_in[1].ab1_1c, value_in[1].type_2, value_in[1].type_3, value_in[1].pirivena,
-                            value_in[1].training_institutes, value_in[1].training_colleges, value_in[1].tc_crc_resc, value_in[1].min_pzd_offices);
+                    if(value_in.length > 0) {
+                        if(key == 'DugNsaNational') {
+                            tot_no_of_patients_affected = tot_no_of_patients_affected +
+                                $scope.sumFunc8(value_in[1].ab1_1c, value_in[1].type_2, value_in[1].type_3, value_in[1].pirivena,
+                                value_in[1].training_institutes, value_in[1].training_colleges, value_in[1].tc_crc_resc, value_in[1].min_pzd_offices);
+                        }
                     }
                 })
             })
@@ -159,10 +163,12 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_no_of_patients_affected = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DugNsaNational') {
-                        tot_no_of_patients_affected = tot_no_of_patients_affected +
-                            $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
-                            value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                    if(value_in.length > 0) {
+                        if(key == 'DugNsaNational') {
+                            tot_no_of_patients_affected = tot_no_of_patients_affected +
+                                $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
+                                value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                        }
                     }
                 })
             })
@@ -175,10 +181,12 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_damages = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DugNdafNational') {
-                        tot_damages = tot_damages +
-                            $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
-                            value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                    if(value_in.length > 0) {
+                        if(key == 'DugNdafNational') {
+                            tot_damages = tot_damages +
+                                $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
+                                value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                        }
                     }
                 })
             })
@@ -191,10 +199,12 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_losses_year1 = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DpefBefNational') {
-                        tot_losses_year1 = tot_losses_year1 +
-                            $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
-                            value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                    if(value_in.length > 0) {
+                        if(key == 'DpefBefNational') {
+                            tot_losses_year1 = tot_losses_year1 +
+                                $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
+                                value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+                        }
                     }
                 })
             })
@@ -207,10 +217,12 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_losses_year2 = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DpefBefNational') {
-                        tot_losses_year2 = tot_losses_year2 +
-                            $scope.sumFunc8(value_in[2].ab1_1c, value_in[2].type_2, value_in[2].type_3, value_in[2].pirivena,
-                            value_in[2].training_institutes, value_in[2].training_colleges, value_in[2].tc_crc_resc, value_in[2].min_pzd_offices);
+                    if(value_in.length > 0) {
+                        if(key == 'DpefBefNational') {
+                            tot_losses_year2 = tot_losses_year2 +
+                                $scope.sumFunc8(value_in[2].ab1_1c, value_in[2].type_2, value_in[2].type_3, value_in[2].pirivena,
+                                value_in[2].training_institutes, value_in[2].training_colleges, value_in[2].tc_crc_resc, value_in[2].min_pzd_offices);
+                        }
                     }
                 })
             })
@@ -224,12 +236,14 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_number_affected = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DpefNafNational') {
-                        angular.forEach(value_in, function(pvt_school, pvt_school_index) {
-                            if(pvt_school.edu_facilities != 'Total') {
-                                tot_number_affected = tot_number_affected + parseInt(pvt_school.num_edu_facilities);
-                            }
-                        })
+                    if(value_in.length > 0) {
+                        if(key == 'DpefNafNational') {
+                            angular.forEach(value_in, function(pvt_school, pvt_school_index) {
+                                if(pvt_school.edu_facilities != 'Total') {
+                                    tot_number_affected = tot_number_affected + parseInt(pvt_school.num_edu_facilities);
+                                }
+                            })
+                        }
                     }
                 })
             })
@@ -242,12 +256,14 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_male = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DpefNafNational') {
-                        angular.forEach(value_in, function(pvt_school, pvt_school_index) {
-                            if(pvt_school.edu_facilities != 'Total') {
-                                tot_male = tot_male + parseInt(pvt_school.male);
-                            }
-                        })
+                    if(value_in.length > 0) {
+                        if(key == 'DpefNafNational') {
+                            angular.forEach(value_in, function(pvt_school, pvt_school_index) {
+                                if(pvt_school.edu_facilities != 'Total') {
+                                    tot_male = tot_male + parseInt(pvt_school.male);
+                                }
+                            })
+                        }
                     }
                 })
             })
@@ -260,12 +276,14 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_female = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DpefNafNational') {
-                        angular.forEach(value_in, function(pvt_school, pvt_school_index) {
-                            if(pvt_school.edu_facilities != 'Total') {
-                                tot_female = tot_female + parseInt(pvt_school.female);
-                            }
-                        })
+                    if(value_in.length > 0) {
+                        if(key == 'DpefNafNational') {
+                            angular.forEach(value_in, function(pvt_school, pvt_school_index) {
+                                if(pvt_school.edu_facilities != 'Total') {
+                                    tot_female = tot_female + parseInt(pvt_school.female);
+                                }
+                            })
+                        }
                     }
                 })
             })
@@ -278,27 +296,91 @@ bsHealthStatusApp.controller('DlEduNationController', function DlEduProvinceCont
             var tot_damages = 0;
             angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DpefBefPreNational') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
-                    }
-                    else if(key == 'DpefBefPrimaryNational') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
-                    }
-                    else if(key == 'DpefBefSecondaryNational') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
-                    }
-                    else if(key == 'DpefBefUnvNational') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
-                    }
-                    else if(key == 'DpefBefTechNational') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
-                    }
-                    else if(key == 'DpefBefOtherNational') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
+                    if(value_in.length > 0) {
+                        if(key == 'DpefBefPreNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
+                        }
+                        else if(key == 'DpefBefPrimaryNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
+                        }
+                        else if(key == 'DpefBefSecondaryNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
+                        }
+                        else if(key == 'DpefBefUnvNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
+                        }
+                        else if(key == 'DpefBefTechNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
+                        }
+                        else if(key == 'DpefBefOtherNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].tot_damages, 0);
+                        }
                     }
                 })
             })
             return tot_damages;
+        }
+    }
+
+    $scope.totLossesYear1Pvt = function() {
+        if(!angular.isUndefined($scope.dlNational)) {
+            var est_los_year_1 = 0;
+            angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(value_in.length > 0) {
+                        if(key == 'DpefBefPreNational') {
+                            est_los_year_1 = est_los_year_1 + $scope.sumFunc2(value_in[0].est_los_year_1, 0);
+                        }
+                        else if(key == 'DpefBefPrimaryNational') {
+                            est_los_year_1 = est_los_year_1 + $scope.sumFunc2(value_in[0].est_los_year_1, 0);
+                        }
+                        else if(key == 'DpefBefSecondaryNational') {
+                            est_los_year_1 = est_los_year_1 + $scope.sumFunc2(value_in[0].est_los_year_1, 0);
+                        }
+                        else if(key == 'DpefBefUnvNational') {
+                            est_los_year_1 = est_los_year_1 + $scope.sumFunc2(value_in[0].est_los_year_1, 0);
+                        }
+                        else if(key == 'DpefBefTechNational') {
+                            est_los_year_1 = est_los_year_1 + $scope.sumFunc2(value_in[0].est_los_year_1, 0);
+                        }
+                        else if(key == 'DpefBefOtherNational') {
+                            est_los_year_1 = est_los_year_1 + $scope.sumFunc2(value_in[0].est_los_year_1, 0);
+                        }
+                    }
+                })
+            })
+            return est_los_year_1;
+        }
+    }
+
+    $scope.totLossesYear2Pvt = function() {
+        if(!angular.isUndefined($scope.dlNational)) {
+            var est_los_year_2 = 0;
+            angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
+                angular.forEach(value, function(value_in, key) {
+                    if(value_in.length > 0) {
+                        if(key == 'DpefBefPreNational') {
+                            est_los_year_2 = est_los_year_2 + $scope.sumFunc2(value_in[0].est_los_year_2, 0);
+                        }
+                        else if(key == 'DpefBefPrimaryNational') {
+                            est_los_year_2 = est_los_year_2 + $scope.sumFunc2(value_in[0].est_los_year_2, 0);
+                        }
+                        else if(key == 'DpefBefSecondaryNational') {
+                            est_los_year_2 = est_los_year_2 + $scope.sumFunc2(value_in[0].est_los_year_2, 0);
+                        }
+                        else if(key == 'DpefBefUnvNational') {
+                            est_los_year_2 = est_los_year_2 + $scope.sumFunc2(value_in[0].est_los_year_2, 0);
+                        }
+                        else if(key == 'DpefBefTechNational') {
+                            est_los_year_2 = est_los_year_2 + $scope.sumFunc2(value_in[0].est_los_year_2, 0);
+                        }
+                        else if(key == 'DpefBefOtherNational') {
+                            est_los_year_2 = est_los_year_2 + $scope.sumFunc2(value_in[0].est_los_year_2, 0);
+                        }
+                    }
+                })
+            })
+            return est_los_year_2;
         }
     }
 })

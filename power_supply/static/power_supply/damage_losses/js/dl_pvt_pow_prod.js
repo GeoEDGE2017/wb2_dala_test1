@@ -82,10 +82,6 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     'tot_damaged_cost':null,
                 }],
                 'PvtDmgLosses': [{
-                    'losses_type':'Total',
-                    'los_year1':null,
-                    'los_year2':null,
-                }, {
                     'losses_type':'Income Losses',
                     'los_year1':null,
                     'los_year2':null,
@@ -101,7 +97,14 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     'losses_type':'Other unexpected expenses',
                     'los_year1':null,
                     'los_year2':null,
-                }],
+                },
+                {
+                    'losses_type':'Total',
+                    'los_year1':null,
+                    'los_year2':null,
+                }
+
+                ],
             }
         }
     }

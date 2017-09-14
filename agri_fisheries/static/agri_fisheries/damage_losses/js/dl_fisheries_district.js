@@ -692,15 +692,48 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
     //Calculate total
     $scope.CalTot = function(arr,property) {
         var finaltotal = 0;
-//
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'Total' && value.assets !='Percentage Reduction in Value of Yield (%)'){
+                console.log('printing',value[property]);
                 finaltotal = finaltotal + value[property] ;
             }
         })
-//        }
         return finaltotal;
     }
+
+     $scope.CalTote = function(arr,property) {
+        var finaltotal = 0;
+        angular.forEach(arr, function(value, key) {
+            if(value.assets != 'Total'){
+                console.log('printing',value[property]);
+                finaltotal = finaltotal + value[property] ;
+            }
+        })
+        return finaltotal;
+    }
+
+
+
+//     $scope.CalTote = function() {
+//        if(!angular.isUndefined($scope.dlFisheriesDistrict)) {
+//            var totDmg = 0;
+//            angular.forEach($scope.dlFisheriesDistrict.agri_fisheries.Table_3, function(value, index) {
+//            if(value.assets =='1 floor' && value.assets =='2-3 floors' && value.assets =='More than 3 floors'){
+//            console.log('test',value);
+//            angular.forEach(value, function(value_in, key) {
+//                    if(key == 'DlfDmgPub') {
+//                          totDmg = totDmg + value_in[0].total;
+//                    }
+//                    })
+//                    }
+//                })
+//                }
+//
+//            return totDmg;
+//
+//    }
+
+
 
     //Calculate Grand Total
     $scope.calGrandPubTotal = function(){
@@ -741,7 +774,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
         })
          angular.forEach(array5, function(value, key) {
             if(value.assets !='Total'){
-                finaltotal5 = finaltotal5 + value.dmg_pub ;
+                finaltotal5 = finaltotal5 + value.total ;
              }
         })
 
@@ -793,7 +826,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
 
         angular.forEach(array5, function(value, key) {
             if(value.assets !='Total'){
-                finaltotal5 = finaltotal5 + value.dmg_pvt ;
+                finaltotal5 = finaltotal5 + value.total ;
              }
         })
         grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;

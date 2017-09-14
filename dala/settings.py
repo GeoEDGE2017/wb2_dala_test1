@@ -161,7 +161,6 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-
         'NAME': 'dala_09_14',
         'USER': 'postgres',
     },
@@ -2952,6 +2951,7 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pvt',
                 'los_pub',
                 'los_pvt',
+                'id',
             ],
             'DlfLosRfisheries': [
                 'assets',
@@ -2961,6 +2961,7 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pvt',
                 'los_pub',
                 'los_pvt',
+                 'id',
             ],
             'DlfLosMfisheries': [
                 'assets',
@@ -2970,6 +2971,7 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pvt',
                 'los_pub',
                 'los_pvt',
+                'id',
             ],
         },
         'Table_5': {
@@ -3510,7 +3512,8 @@ TABLE_PROPERTY_MAPPER = {
                  'num_diesel',
                  'num_other',
                  'tot_capacity',
-                 'avg_income'],
+                 'avg_income',
+                 'id'],
         },
         'Table_2': {
             'CebNumEmp':
@@ -3592,22 +3595,22 @@ TABLE_PROPERTY_MAPPER = {
             'DlNumAffDistrict': ['domestic', 'industrial', 'commercial', 'other', 'incident', 'district'],
             'TotDmgCebDistrict': ['tot_dmg', 'incident', 'district'],
             'TotLosCebDistrict': ['losses_y1', 'losses_y2', 'incident', 'district'],
-            'TotDmgPvtDistrict': ['tot_replace_cost', 'district', 'incident', 'pw_gen_firm', 'ownership'],
+            'TotDmgPvtDistrict': ['tot_replace_cost', 'district', 'incident', 'pw_gen_firm', 'ownership','assets'],
             'TotLossesPvtDistrict': ['los_year1', 'los_year2', 'district', 'incident', 'pw_gen_firm', 'ownership',
-                                     'losses_type'],
+                                     'losses_type','assets'],
         },
         'Table_5': {
             'DlNumAffProvince': ['domestic', 'industrial', 'commercial', 'other'],
             'TotDmgCebProvince': ['tot_dmg'],
             'TotLosCebProvince': ['losses_y1', 'losses_y2'],
-            'TotDmgPvtProvince': ['tot_replace_cost', 'ownership'],
+            'TotDmgPvtProvince': ['tot_dmg', 'ownership'],
             'TotLossesPvtProvince': ['los_year1', 'los_year2', 'ownership'],
         },
         'Table_6': {
             'DlNumAffNational': ['domestic', 'industrial', 'commercial', 'other'],
             'TotDmgCebNational': ['tot_dmg'],
             'TotLosCebNational': ['losses_y1', 'losses_y2'],
-            'TotDmgPvtNational': ['tot_replace_cost', 'ownership'],
+            'TotDmgPvtNational': ['tot_dmg', 'ownership'],
             'TotLossesPvtNational': ['los_year1', 'los_year2', 'ownership'],
         },
     },

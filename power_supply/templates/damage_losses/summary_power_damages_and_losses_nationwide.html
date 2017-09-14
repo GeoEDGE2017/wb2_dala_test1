@@ -63,7 +63,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <table class="table table-bordered" ngif="!checkIfNull()">
+                <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tbody>
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="193">
@@ -85,27 +85,27 @@
                             Total
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
-                        <td height="19" width="97" ng-bind="data.power_supply.Table_6[key].DlNumAffNational[0].domestic">
+
+                    <tr height="19">
+                        <td height="19" width="97" ng-bind="totNumAffDom()">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].DlNumAffNational[0].industrial">
+                        <td height="19" width="63" ng-bind="totNumAffInd()">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].DlNumAffNational[0].commercial">
+                        <td height="19" width="63" ng-bind="totNumAffComm()">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].DlNumAffNational[0].other">
+                        <td height="19" width="63" ng-bind="totNumAffOther()">
 
                         </td>
-                        <td class="right" height="19" width="63" ng-bind="
-                        data.power_supply.Table_6[key].DlNumAffNational[0].domestic +
-                        data.power_supply.Table_6[key].DlNumAffNational[0].industrial +
-                        data.power_supply.Table_6[key].DlNumAffNational[0].commercial +
-                        data.power_supply.Table_6[key].DlNumAffNational[0].other">
+                        <td class="right" height="19" width="63" ng-bind="totNumAffDom() + totNumAffInd() + totNumAffComm() + totNumAffOther()">
 
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+                         <table class="table table-bordered" ng-if="!checkIfNull()">
                     <tr class="trheadc1" height="19">
                         <td rowspan="2" height="38" width="193">
                             District
@@ -120,6 +120,7 @@
                             Total (LKR)
                         </td>
                     </tr>
+
                     <tr class="trsubc" height="19">
                         <td height="19" width="63">
                             Year 1
@@ -128,7 +129,9 @@
                             Year 2
                         </td>
                     </tr>
-                    <tr class="trheadc" height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
+                             </table>
+                         <table class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
+                    <tr class="trheadc" height="19" >
                         <td height="19" width="193" ng-bind="key">
 
                         </td>
@@ -141,17 +144,17 @@
                         <td class="right" height="19" width="63">
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
+                    <tr height="19" >
                         <td class="tdpa" height="19" width="193">
                             CEB
                         </td>
-                        <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
+                        <td colspan="2" class="right"height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
+                        <td height="19" class="right"width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2">
+                        <td height="19" class="right"width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2">
 
                         </td>
                         <td class="right" height="19" width="63"
@@ -161,97 +164,100 @@
 
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
-                        <td class="tdpa" height="19" width="193" >
+                    <tr height="19" >
+                        <td class="tdpa" class="right"height="19" width="193" >
                             IPPs
                         </td>
-                        <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
+                        <td colspan="2" class="right"height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgPvtNational[0].tot_dmg">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
+                        <td height="19" class="right"width="63" ng-bind="data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year1">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2">
+                        <td height="19" class="right"width="63" ng-bind="data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year2">
 
                         </td>
                         <td class="right" height="19" width="63"
                             ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1 +
-                             data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2">
+                            data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year1 +
+                             data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year2">
 
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
-                        <td class="tdpa" height="19" width="193">
+                    <tr height="19" >
+                        <td class="tdpa" class="right"height="19" width="193">
                             SPPs
                         </td>
-                        <td colspan="2" height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
+                        <td colspan="2" class="right"height="19" width="194" ng-bind="data.power_supply.Table_6[key].TotDmgPvtNational[1].tot_dmg">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
+                        <td height="19" class="right"width="63" ng-bind="data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year1">
 
                         </td>
-                        <td height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2">
+                        <td height="19" class="right"width="63" ng-bind="data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year2">
 
                         </td>
                         <td class="right" height="19" width="63"
-                            ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1 +
-                             data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2">
+                            ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[1].tot_dmg +
+                            data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year1 +
+                             data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year2">
 
                         </td>
                     </tr>
-                    <tr height="19" ng-repeat="(key, value) in dlPowerSupplySumNat.power_supply.Table_6">
-                        <td class="tdpa" height="19" width="193">
+                    <tr height="19" >
+                        <td class="boldash" height="19" width="193">
                             Total
                         </td>
                         <td class="right" colspan="2" height="19" width="194"
                             ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
-                            data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
-                            data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg">
+                            data.power_supply.Table_6[key].TotDmgPvtNational[1].tot_dmg +
+                            data.power_supply.Table_6[key].TotDmgPvtNational[0].tot_dmg">
 
                         </td>
                         <td class="right" height="19" width="63"
                             ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1">
+                            data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year1 +
+                            data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year1">
                         </td>
                         <td class="right" height="19" width="63"
                             ng-bind="data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2">
+                            data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year2 +
+                            data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year2">
                         </td>
                         <td class="right" height="19" width="63" ng-bind="data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
-                            data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
-                            data.power_supply.Table_6[key].TotDmgCebNational[0].tot_dmg +
+                            data.power_supply.Table_6[key].TotDmgPvtNational[1].tot_dmg +
+                            data.power_supply.Table_6[key].TotDmgPvtNational[0].tot_dmg +
                             data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y1 +
+                            data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year1 +
+                            data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year1 +
                             data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2 +
-                            data.power_supply.Table_6[key].TotLosCebNational[0].losses_y2"
+                            data.power_supply.Table_6[key].TotLossesPvtNational[1].los_year2 +
+                            data.power_supply.Table_6[key].TotLossesPvtNational[0].los_year2"
                         >
 
                         </td>
                     </tr>
 
-                    <!--<tr height="19">-->
-                    <!--<td class="tdpa" height="19" width="193">-->
-                    <!--TOTAL-->
-                    <!--</td>-->
-                    <!--<td colspan="2" height="19" width="194">-->
-                    <!-- - -->
-                    <!--</td>-->
-                    <!--<td height="19" width="63">-->
-                    <!-- - -->
-                    <!--</td>-->
-                    <!--<td height="19" width="63">-->
-                    <!-- - -->
-                    <!--</td>-->
-                    <!--<td height="19" width="63">-->
-                    <!-- - -->
-                    <!--</td>-->
-                    <!--</tr>-->
+                          </table>
+                <table class="table table-bordered" ng-if="!checkIfNull()" >
+
+                    <tr height="19">
+                        <td class="boldash" height="19" width="193">
+                            TOTAL
+                        </td>
+                        <td colspan="2" class="right" height="19" width="194" ng-bind="totDmg()">
+
+                        </td>
+                        <td height="19" class="right"width="63" ng-bind="totLossY1()">
+
+                        </td>
+                        <td height="19"class="right" width="63" ng-bind="totLossY2()">
+
+                        </td>
+                        <td height="19" class="right"width="63" ng-bind="totDmg() +totLossY1() + totLossY2() ">
+
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 

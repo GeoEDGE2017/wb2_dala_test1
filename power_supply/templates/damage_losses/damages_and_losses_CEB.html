@@ -616,6 +616,9 @@
                         <td class="tdpa" height="19" width="244" ng-bind="cebLosAstIncome.assets">
                         </td>
             
+                        <!--<td class="right" width="112" ng-model="cebLosAstIncome.avg_income" ng-bind="-->
+                        <!--bs_data['BsPwGenFirm'][$index].fields.avg_income">-->
+                        <!--</td>-->
                         <td class="right" width="112" ng-model="cebLosAstIncome.avg_income" ng-bind="cebLosAstIncome.avg_income = bs_data['BsPwGenFirm'][$index].fields.avg_income">
                         </td>
                         <td width="108">
@@ -627,10 +630,10 @@
                                    placeholder="" class="form-control input-md">
                         </td>
                         <td class="right" width="103" ng-model="cebLosAstIncome.losses_y1"
-                            ng-bind="cebLosAstIncome.losses_y1 = cebLosAstIncome.avg_income * cebLosAstIncome.reduction_y1 ">
+                            ng-bind="cebLosAstIncome.losses_y1 = cebLosAstIncome.avg_income * cebLosAstIncome.reduction_y1/100 ">
                         </td>
                         <td class="right" width="103" ng-model="cebLosAstIncome.losses_y2"
-                            ng-bind="cebLosAstIncome.losses_y2 = cebLosAstIncome.avg_income * cebLosAstIncome.reduction_y2 ">
+                            ng-bind="cebLosAstIncome.losses_y2 = cebLosAstIncome.avg_income * cebLosAstIncome.reduction_y2/100 ">
                         </td>
                         <td class="right" width="111" ng-model="cebLosAstIncome.tot_losses"
                             ng-bind="cebLosAstIncome.tot_losses = cebLosAstIncome.losses_y1 + cebLosAstIncome.losses_y2">

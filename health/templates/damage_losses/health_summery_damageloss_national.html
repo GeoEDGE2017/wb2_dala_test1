@@ -77,8 +77,6 @@
                                     <option value="" selected="true">Select an Incident</option>
                                     {% for incident in incidents %}
                                     <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
                                         {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
@@ -614,7 +612,7 @@
                                 </td>
                                 <td class="right" width="90" ng-bind="grndTotLossesYear2Pub()">
                                 </td>
-                                <td class="right" width="90" ng-bind="0">
+                                <td class="right" width="90" ng-bind="grndTotLossesYear1Pub() + grndTotLossesYear2Pub()">
                                 </td>
                             </tr>
                         </table>
@@ -740,7 +738,7 @@
                                         data.health.Table_10[key].DapPvtNational[0].female)">
                                     </td>
                                     <td class="right" width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_replacement_cost,
-                                        data.health.Table_10[key].DapBefOtherNational[0].est_replacement_cost)">
+                                        data.health.Table_10[key].DapBefOtherNational[0].total_damages)">
                                     </td>
                                     <td class="right" width="98" ng-bind="sumFunc2(data.health.Table_10[key].DapBefPcNational[0].est_losses_y1,
                                         data.health.Table_10[key].DapBefOtherNational[0].est_losses_y1)">
@@ -766,7 +764,7 @@
                                     </td>
                                     <td class="right" width="98" ng-bind="totNoOfPatientsAffectedFemalePvt()">
                                     </td>
-                                    <td class="right" width="98" ng-bind="0">
+                                    <td class="right" width="98" ng-bind="totDamagesPvt()">
                                     </td>
                                     <td class="right" width="98" ng-bind="totLossesYear1Pvt()">
                                     </td>
@@ -818,39 +816,44 @@
                                     <td width="264" height="20" class="tdpa">
                                         Public Sector
                                     </td>
-                                    <td class="right" width="98" colspan="2" ng-bind="">
+                                    <td class="right" width="98" colspan="2" ng-bind="grndTotDamagesPub()">
                                     </td>
-                                    <td class="right" width="90" colspan="2" ng-bind="">
+                                    <td class="right" width="90" colspan="2" ng-bind="grndTotLossesYear1Pub()">
                                     </td>
-                                    <td class="right" width="90" colspan="2" ng-bind="">
+                                    <td class="right" width="90" colspan="2" ng-bind="grndTotLossesYear2Pub()">
                                     </td>
-                                    <td class="right" width="98" colspan="2" ng-bind="">
+                                    <td class="right" width="98" colspan="2"
+                                        ng-bind="grndTotDamagesPub() + grndTotLossesYear1Pub() + grndTotLossesYear2Pub()">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="264" height="20" class="tdpa">
                                         Private Sector
                                     </td>
-                                    <td class="right" width="98" colspan="2" ng-bind="">
+                                    <td class="right" width="98" colspan="2" ng-bind="totDamagesPvt()">
                                     </td>
                                     <td class="right" width="98" colspan="2" ng-bind="totLossesYear1Pvt()">
                                     </td>
                                     <td class="right" width="98" colspan="2" ng-bind="totLossesYear2Pvt()">
                                     </td>
-                                    <td class="right" width="98" colspan="2" ng-bind="">
+                                    <td class="right" width="98" colspan="2"
+                                        ng-bind="totDamagesPvt() + totLossesYear1Pvt() + totLossesYear2Pvt()">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="264" height="20" class="boldash">
                                         Total
                                     </td>
-                                    <td class="right" width="98" colspan="2" ng-bind="">
+                                    <td class="right" width="98" colspan="2" ng-bind="grndTotDamagesPub() + totDamagesPvt()">
                                     </td>
-                                    <td class="right" width="90" colspan="2" ng-bind="">
+                                    <td class="right" width="90" colspan="2" ng-bind="grndTotLossesYear1Pub() + totLossesYear1Pvt()">
                                     </td>
-                                    <td class="right" width="98" colspan="2" ng-bind="">
+                                    <td class="right" width="98" colspan="2" ng-bind="grndTotLossesYear2Pub() + totLossesYear2Pvt()">
                                     </td>
-                                    <td class="right" colspan="2" width="98" ng-bind="">
+                                    <td class="right" colspan="2" width="98"
+                                        ng-bind="grndTotDamagesPub() + totDamagesPvt() +
+                                        grndTotLossesYear1Pub() + totLossesYear1Pvt() +
+                                        grndTotLossesYear2Pub() + totLossesYear2Pvt()">
                                     </td>
                                 </tr>
                             </tbody>

@@ -34,7 +34,7 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
     $scope.provinces;
 
     // get relevant damage_losses data for calculations
-      $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue = function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             fetchProvinces();
         }
@@ -43,75 +43,60 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
         }
     }
 
-    function fetchProvinces()
-    {
-
-          $http({
+    function fetchProvinces() {
+        $http({
             method: "POST",
             url: '/fetch_incident_provinces',
             data: angular.toJson({
-                    'incident': $scope.incident
-                   }),
-            }).success(function(data) {
-                $scope.provinces = data;
-                $scope.province = null;
-                console.log(data);
-
-            })
-
+                'incident': $scope.incident
+            }),
+        }).success(function(data) {
+            $scope.provinces = data;
+            $scope.province = null;
+            console.log(data);
+        })
     }
 
-    $scope.fetchDlData = function(form){
+    $scope.fetchDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-            $http({
+        $http({
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-            'table_name':  ['Table_8','Table_4','Table_4','Table_3'],
-            'sector': ['transport_land','transport_air','transport_water','transport_rail'],
-            'com_data': {
+                'table_name':  ['Table_8', 'Table_4', 'Table_4', 'Table_3'],
+                'sector': ['transport_land', 'transport_air', 'transport_water', 'transport_rail'],
+                'com_data': {
                     'province': $scope.province,
                     'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-
-
-
+                },
+            }),
+        }).success(function(data) {
             $scope.dlTransSumPro = data;
-
-            })
+        })
     }
 
-           $scope.checkIfNull = function()
-   {
+    $scope.checkIfNull = function() {
         var isNull = $scope.dlTransSumPro ?
          ((angular.equals({}, $scope.dlTransSumPro.transport_land.Table_8) ) ||
          (angular.equals({}, $scope.dlTransSumPro.transport_air.Table_4)) ||
          (angular.equals({}, $scope.dlTransSumPro.transport_water.Table_4)) ||
          (angular.equals({}, $scope.dlTransSumPro.transport_rail.Table_3))) : true ;
         return isNull;
+    }
 
-   }
-
-   $scope.convertToInt = function(val1,val2,val3){
-
+    $scope.convertToInt = function(val1,val2,val3){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
         return sum;
     }
 
-   $scope.convertTotal = function(val1,val2,val3,val4){
-
+    $scope.convertTotal = function(val1,val2,val3,val4){
         var sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
         return sum;
     }
 
-   $scope.getTotal = function(key) {
-
+    $scope.getTotal = function(key) {
         $scope.finaltotalprivate = 0;
-
-
 
         var totaldpub =  ($scope.dlTransSumPro.transport_land.Table_8[key].DlGacPubProvince[0] ? ($scope.dlTransSumPro.transport_land.Table_8[key].DlGacPubProvince[0].damages ?
                          $scope.dlTransSumPro.transport_land.Table_8[key].DlGacPubProvince[0].damages : 0):0) +
@@ -129,11 +114,7 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
 
         $scope.grndtotaldpub = $scope.grndtotaldpub + totaldpub ;
 
-
-
-
-
-         var totaldpvt =$scope.convertToInt(
+        var totaldpvt =$scope.convertToInt(
                          ($scope.dlTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[0]?($scope.dlTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[0].tot_damages_pvt ?
                          $scope.dlTransSumPro.transport_land.Table_8[key].DlGacPvtProvince[0].tot_damages_pvt : 0 ) : 0),
                          ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirDmgPvtProvince[0] ? ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirDmgPvtProvince[0].tot_destroyed_pvt ?
@@ -149,9 +130,7 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
         $scope.grndtotaldpvt = $scope.grndtotaldpvt + totaldpvt ;
         $scope.summaryDamages = $scope.grndtotaldpub + $scope.grndtotaldpvt;
 
-
-         var totalyear1pub =
-                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0]?($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0].year_1 ?
+        var totalyear1pub = ($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0]?($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0].year_1 ?
                          $scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0].year_1 : 0):0)  +
                          ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0]?($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pub ?
                          $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pub : 0) : 0) +
@@ -164,9 +143,7 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
         model.assign($scope, totalyear1pub);
         $scope.grndtotalyear1pub = $scope.grndtotalyear1pub + totalyear1pub ;
 
-
-         var totalyear1pvt =
-                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0] ? ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0].year_1_pvt ?
+        var totalyear1pvt = ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0] ? ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0].year_1_pvt ?
                          $scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0].year_1_pvt : 0) :0) +
                          ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0] ? ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pvt ?
                          $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_1_pvt : 0): 0 )+
@@ -180,62 +157,48 @@ app.controller("DlSummeryTSProController", function ($scope, $http, $parse, _) {
         $scope.grndtotalyear1pvt = $scope.grndtotalyear1pvt + totalyear1pvt ;
         $scope.summaryLossYear1 = $scope.grndtotalyear1pub + $scope.grndtotalyear1pvt;
 
-
-
-         var totalyear2pub =
-                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0]?($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0].year_2 ?
+        var totalyear2pub = ($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0]?($scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0].year_2 ?
                          $scope.dlTransSumPro.transport_land.Table_8[key].DlYearsPubProvince[0].year_2 : 0 ) :0)+
                          ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0]?($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pub ?
                          $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pub : 0) :0)+
                          ($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0]?($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pub ?
                          $scope.dlTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pub : 0):0);
 
-         var totalyear2pubstring = "totalyear2pub_"+ key;
+        var totalyear2pubstring = "totalyear2pub_"+ key;
 
-         var model = $parse(totalyear2pubstring);
-         model.assign($scope, totalyear2pub);
-         $scope.grndtotalyear2pub = $scope.grndtotalyear2pub + totalyear2pub ;
+        var model = $parse(totalyear2pubstring);
+        model.assign($scope, totalyear2pub);
+        $scope.grndtotalyear2pub = $scope.grndtotalyear2pub + totalyear2pub ;
 
-         var totalyear2pvt =
-                         ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0] ?($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0].year_2_pub ?
+        var totalyear2pvt = ($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0] ?($scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0].year_2_pub ?
                          $scope.dlTransSumPro.transport_land.Table_8[key].DlOtherLosPvtDistrict[0].year_2_pub : 0 ) : 0)+
                          ($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0] ?($scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pvt ?
                          $scope.dlTransSumPro.transport_air.Table_4[key].DlAirLosProvince[0].year_2_pvt : 0) : 0 ) +
                          ($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0] ? ($scope.dlTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pvt ?
                          $scope.dlTransSumPro.transport_water.Table_4[key].DlWaterLosProvince[0].year_2_pvt : 0) : 0) ;
 
-         var totalyear2pvtstring = "totalyear2pvt_"+ key;
+        var totalyear2pvtstring = "totalyear2pvt_"+ key;
 
-         var model = $parse(totalyear2pvtstring);
-         model.assign($scope, totalyear2pvt);
-         $scope.grndtotalyear2pvt = $scope.grndtotalyear2pvt + totalyear2pvt ;
-         $scope.summaryLossYear2 = $scope.grndtotalyear2pub + $scope.grndtotalyear2pvt;
+        var model = $parse(totalyear2pvtstring);
+        model.assign($scope, totalyear2pvt);
+        $scope.grndtotalyear2pvt = $scope.grndtotalyear2pvt + totalyear2pvt ;
+        $scope.summaryLossYear2 = $scope.grndtotalyear2pub + $scope.grndtotalyear2pvt;
 
+        var finaltotalpublic = totaldpub + totalyear1pub + totalyear2pub;
 
-         var finaltotalpublic = totaldpub + totalyear1pub + totalyear2pub;
+        var finaltotalpublicstring = "finaltotalpublic_"+ key;
 
-         var finaltotalpublicstring = "finaltotalpublic_"+ key;
+        var model = $parse(finaltotalpublicstring);
+        model.assign($scope, finaltotalpublic);
+        $scope.grndfinaltotalpublic = $scope.grndfinaltotalpublic + finaltotalpublic ;
 
-         var model = $parse(finaltotalpublicstring);
-         model.assign($scope, finaltotalpublic);
-         $scope.grndfinaltotalpublic = $scope.grndfinaltotalpublic + finaltotalpublic ;
+        var finaltotalprivate = totaldpvt + totalyear1pvt + totalyear2pvt;
 
+        var finaltotalprivatestring = "finaltotalprivate_"+ key;
 
-         var finaltotalprivate = totaldpvt + totalyear1pvt + totalyear2pvt;
-
-         var finaltotalprivatestring = "finaltotalprivate_"+ key;
-
-         var model = $parse(finaltotalprivatestring);
-         model.assign($scope, finaltotalprivate);
-         $scope.grndfinaltotalprivate = $scope.grndfinaltotalprivate + finaltotalprivate ;
-         $scope.summaryTotal = $scope.grndfinaltotalpublic + $scope.grndfinaltotalprivate;
-
-
-
+        var model = $parse(finaltotalprivatestring);
+        model.assign($scope, finaltotalprivate);
+        $scope.grndfinaltotalprivate = $scope.grndfinaltotalprivate + finaltotalprivate ;
+        $scope.summaryTotal = $scope.grndfinaltotalpublic + $scope.grndfinaltotalprivate;
     }
-
-
-
-
-
- })
+})

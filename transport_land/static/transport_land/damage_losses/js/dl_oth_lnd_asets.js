@@ -518,7 +518,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
         }
     }
 
-    $scope.cancelEdit = function(){
+    $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlOthLndAsets = init_data;
     }
@@ -526,7 +526,8 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     $scope.calPvtTotal=function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
-            if((value.private_vehicles != 'Total') && (value.bus_companies != 'Total' ) && (value.taxi_companies != 'Total' ) && (value.truck_companies != 'Total' ) && (value.tuk_companies != 'Total')){
+            if((value.private_vehicles != 'Total') && (value.bus_companies != 'Total' ) &&
+                (value.taxi_companies != 'Total' ) && (value.truck_companies != 'Total' ) && (value.tuk_companies != 'Total')){
                 finaltotal = finaltotal + value.tot_damages_pvt ;
             }
         })
@@ -535,13 +536,12 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 
     $scope.calPubTotal=function(arr) {
         var finaltotal = 0;
-        //     console.log(arr);
         angular.forEach(arr, function(value, key) {
-            if((value.bus_companies != 'Total') && (value.taxi_companies != 'Total' ) && (value.truck_companies != 'Total') && (value.tuk_companies != 'Total' )) {
+            if((value.bus_companies != 'Total') && (value.taxi_companies != 'Total' ) &&
+                (value.truck_companies != 'Total') && (value.tuk_companies != 'Total' )) {
                 finaltotal = finaltotal + value.tot_damages_pub ;
             }
         })
-        //      console.log(finaltotal);
         return finaltotal;
     }
 
@@ -594,7 +594,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
     }
 
     $scope.calGrandPubTotal = function() {
-
         var finaltotal2 = 0;
         var finaltotal3 = 0;
         var finaltotal4 = 0;
@@ -605,7 +604,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
         var array3 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies;
         var array4 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies;
         var array5 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies;
-
 
         angular.forEach(array2, function(value, key) {
             if(value.bus_companies !='Total'){
@@ -642,6 +640,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
                 finaltotal = finaltotal + value.tot_los ;
             }
         })
+
         return finaltotal;
     }
 
@@ -653,7 +652,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 
         var array1=$scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPub;
         var array2 =$scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt;
-
 
         angular.forEach(array1, function(value, key) {
             if(value.tr_company !='Total'){

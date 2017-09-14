@@ -284,13 +284,12 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
                         'district_id':  $scope.district.district__id,
                         'incident_id': $scope.incident,
                         'user_id': $scope.user_id
-
                     },
                     'is_edit' : $scope.is_edit,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False'){
+                if(response.data == 'False') {
                     $scope.is_valid_data = false;
                 }
                 else {
@@ -319,8 +318,6 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
                     'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-//                console.log(data);
-//                $scope.dlGovnAdmnAsets = data;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.transport_land.Table_6, function(value, index) {
@@ -375,25 +372,26 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
         var array4 =$scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures;
 
         angular.forEach(array1, function(value, key) {
-        if(value.assets !="Total"){
-            finaltotal1 = finaltotal1 + value.damages ;
+            if(value.assets !="Total") {
+                finaltotal1 = finaltotal1 + value.damages ;
             }
         })
 
         angular.forEach(array2, function(value, key) {
-            if(value.assets !="Total"){
-            finaltotal2 = finaltotal2 + value.damages ;
+            if(value.assets !="Total") {
+                finaltotal2 = finaltotal2 + value.damages ;
             }
         })
 
         angular.forEach(array3, function(value, key) {
-        if(value.assets !="Total"){
-            finaltotal3 = finaltotal3 + value.damages ;
+            if(value.assets !="Total") {
+                finaltotal3 = finaltotal3 + value.damages ;
             }
         })
-         angular.forEach(array4, function(value, key) {
-         if(value.assets !="Total"){
-            finaltotal4= finaltotal4 + value.damages ;
+
+        angular.forEach(array4, function(value, key) {
+            if(value.assets !="Total") {
+                finaltotal4= finaltotal4 + value.damages ;
             }
         })
 

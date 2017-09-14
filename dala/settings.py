@@ -494,27 +494,32 @@ TABLE_PROPERTY_MAPPER = {
                 'provincial_general_hospital',
                 'district_general_hospital',
                 'office',
-                'other'],
+                'other'
+            ],
             'DmhPafNational': [
                 'teaching_hospital',
                 'provincial_general_hospital',
                 'district_general_hospital',
                 'office',
-                'other'],
+                'other'
+            ],
             'DmhDamagesNational': [
                 'teaching_hospital',
                 'provincial_general_hospital',
-                'district_general_hospital'],
+                'district_general_hospital'
+            ],
             'DmhLosNational': [
                 'teaching_hospital',
                 'provincial_general_hospital',
                 'district_general_hospital',
                 'office',
                 'other',
-                'type_of_losses'],
+                'type_of_losses'
+            ],
             'DmhDamagesMohNational': [
                 'office',
-                'other'],
+                'other'
+            ],
             'DmfTotAffectedNational': [
                 'base_hospital',
                 'divisional_hospital',
@@ -522,7 +527,8 @@ TABLE_PROPERTY_MAPPER = {
                 'central_dispensary',
                 'pmcus',
                 'phccs',
-                'mchcs', ],
+                'mchcs'
+            ],
             'DmfOmfTpaNational': [
                 'base_hospital',
                 'divisional_hospital',
@@ -530,7 +536,8 @@ TABLE_PROPERTY_MAPPER = {
                 'central_dispensary',
                 'pmcus',
                 'phccs',
-                'mchcs'],
+                'mchcs'
+            ],
             'DmfDamagesNational': [
                 'base_hospital',
                 'divisional_hospital',
@@ -538,7 +545,8 @@ TABLE_PROPERTY_MAPPER = {
                 'central_dispensary',
                 'pmcus',
                 'phccs',
-                'mchcs'],
+                'mchcs'
+            ],
             'DmfLosNational': [
                 'base_hospital',
                 'divisional_hospital',
@@ -546,20 +554,25 @@ TABLE_PROPERTY_MAPPER = {
                 'central_dispensary',
                 'pmcus',
                 'phccs',
-                'mchcs'],
+                'mchcs'
+            ],
             'DapPvtNational': [
                 'type_med_fac',
                 'num_affected_fac',
                 'male',
-                'female', ],
+                'female'
+            ],
             'DapBefPcNational': [
                 'est_replacement_cost',
                 'est_losses_y1',
-                'est_losses_y2'],
+                'est_losses_y2'
+            ],
             'DapBefOtherNational': [
                 'est_replacement_cost',
                 'est_losses_y1',
-                'est_losses_y2'],
+                'est_losses_y2',
+                'total_damages'
+            ],
 
         },
     },
@@ -666,7 +679,7 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_4': {
             'DlagdDmgProvince': [
-                'damages',
+                'damages', 'ownership', 'name'
             ],
             'DlagdLossesProvince': [
                 'los_year1',
@@ -676,12 +689,10 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_5': {
             'DlagdDmgNational': [
-                'damages',
+                'damages', 'name', 'ownership'
             ],
             'DlagdLossesNational': [
-                'los_year1',
-                'los_year2',
-                'total_losses'
+                'los_year1', 'los_year2', 'total_losses', 'name', 'ownership'
             ]
         },
         'Table_2': {

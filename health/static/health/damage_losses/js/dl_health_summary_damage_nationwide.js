@@ -10,27 +10,27 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
     $scope.user_id;
 
     // edit relevant damage_losses data
-    $scope.dlDataEdit = function(form) {
-        $scope.is_edit = true;
-        $scope.submitted = true;
-        if(form.$valid){
-            $http({
-                method: "POST",
-                url: '/dl_fetch_edit_data',
-                data: angular.toJson({
-                    'table_name':  'Table_10',
-                    'sector' : 'health',
-                    'com_data': {
-                       'incident': $scope.incident,
-                    },
-                    'is_edit':$scope.is_edit
-                }),
-            }).success(function(data) {
-                console.log(data);
-                $scope.dlhealthsummarydamagenationwide = data;
-            })
-        }
-    }
+//    $scope.dlDataEdit = function(form) {
+//        $scope.is_edit = true;
+//        $scope.submitted = true;
+//        if(form.$valid){
+//            $http({
+//                method: "POST",
+//                url: '/dl_fetch_edit_data',
+//                data: angular.toJson({
+//                    'table_name':  'Table_10',
+//                    'sector' : 'health',
+//                    'com_data': {
+//                       'incident': $scope.incident,
+//                    },
+//                    'is_edit':$scope.is_edit
+//                }),
+//            }).success(function(data) {
+//                console.log(data);
+//                $scope.dlhealthsummarydamagenationwide = data;
+//            })
+//        }
+//    }
 
     $scope.fetchDlData = function(form) {
         if($scope.incident) {
@@ -300,25 +300,23 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
         return total;
     }
 
-    $scope.test = function() {
-        console.log($scope.dlhealthsummarydamagenationwide.health.Table_10);
-    }
-
     $scope.grandTotNumberAffectedPub = function() {
         if(!angular.isUndefined($scope.dlhealthsummarydamagenationwide)) {
             var tot_number_affected = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DmhLmhMohNational') {
-                        tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[0].teaching_hospital,
-                            value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
+                    if(value_in.length > 0) {
+                        if(key == 'DmhLmhMohNational') {
+                            tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[0].teaching_hospital,
+                                value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
 
-                        tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[0].office, value_in[0].other);
-                    }
-                    else if(key == 'DmfTotAffectedNational') {
-                        tot_number_affected = tot_number_affected + $scope.sumFunc7(value_in[0].base_hospital,
-                            value_in[0].divisional_hospital, value_in[0].rural_hospital,value_in[0].central_dispensary,
-                            value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                            tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[0].office, value_in[0].other);
+                        }
+                        else if(key == 'DmfTotAffectedNational') {
+                            tot_number_affected = tot_number_affected + $scope.sumFunc7(value_in[0].base_hospital,
+                                value_in[0].divisional_hospital, value_in[0].rural_hospital,value_in[0].central_dispensary,
+                                value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                        }
                     }
                 })
             })
@@ -331,16 +329,18 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_number_affected = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DmhPafNational') {
-                        tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[1].teaching_hospital,
-                            value_in[1].provincial_general_hospital, value_in[1].district_general_hospital);
+                    if(value_in.length > 0) {
+                        if(key == 'DmhPafNational') {
+                            tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[1].teaching_hospital,
+                                value_in[1].provincial_general_hospital, value_in[1].district_general_hospital);
 
-                        tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[1].office, value_in[1].other);
-                    }
-                    else if(key == 'DmfOmfTpaNational') {
-                        tot_number_affected = tot_number_affected + $scope.sumFunc7(value_in[1].base_hospital,
-                            value_in[1].divisional_hospital, value_in[1].rural_hospital,value_in[1].central_dispensary,
-                            value_in[1].pmcus, value_in[1].phccs, value_in[1].mchcs);
+                            tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[1].office, value_in[1].other);
+                        }
+                        else if(key == 'DmfOmfTpaNational') {
+                            tot_number_affected = tot_number_affected + $scope.sumFunc7(value_in[1].base_hospital,
+                                value_in[1].divisional_hospital, value_in[1].rural_hospital,value_in[1].central_dispensary,
+                                value_in[1].pmcus, value_in[1].phccs, value_in[1].mchcs);
+                        }
                     }
                 })
             })
@@ -353,16 +353,18 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_number_affected = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DmhPafNational') {
-                        tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[0].teaching_hospital,
-                            value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
+                    if(value_in.length > 0) {
+                        if(key == 'DmhPafNational') {
+                            tot_number_affected = tot_number_affected + $scope.sumFunc3(value_in[0].teaching_hospital,
+                                value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
 
-                        tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[0].office, value_in[0].other);
-                    }
-                    else if(key == 'DmfOmfTpaNational') {
-                        tot_number_affected = tot_number_affected + $scope.sumFunc7(value_in[0].base_hospital,
-                            value_in[0].divisional_hospital, value_in[0].rural_hospital,value_in[0].central_dispensary,
-                            value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                            tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[0].office, value_in[0].other);
+                        }
+                        else if(key == 'DmfOmfTpaNational') {
+                            tot_number_affected = tot_number_affected + $scope.sumFunc7(value_in[0].base_hospital,
+                                value_in[0].divisional_hospital, value_in[0].rural_hospital,value_in[0].central_dispensary,
+                                value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                        }
                     }
                 })
             })
@@ -375,16 +377,19 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_damages = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DmhDamagesMohNational') {
-                        tot_damages = tot_damages + $scope.sumFunc3(value_in[0].teaching_hospital,
-                            value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
-
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].office, value_in[0].other);
-                    }
-                    else if(key == 'DmfDamagesNational') {
-                        tot_damages = tot_damages + $scope.sumFunc7(value_in[0].base_hospital,
-                            value_in[0].divisional_hospital, value_in[0].rural_hospital,value_in[0].central_dispensary,
-                            value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                    if(value_in.length > 0) {
+                        if(key == 'DmhDamagesMohNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].office, value_in[0].other);
+                        }
+                        else if(key == 'DmhDamagesNational') {
+                            tot_damages = tot_damages + $scope.sumFunc3(value_in[0].teaching_hospital,
+                                value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
+                        }
+                        else if(key == 'DmfDamagesNational') {
+                            tot_damages = tot_damages + $scope.sumFunc7(value_in[0].base_hospital,
+                                value_in[0].divisional_hospital, value_in[0].rural_hospital, value_in[0].central_dispensary,
+                                value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                        }
                     }
                 })
             })
@@ -397,15 +402,18 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_losses_year1 = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DmhLosNational') {
-                        tot_losses_year1 = tot_losses_year1 + $scope.sumFunc3(value_in[0].teaching_hospital,
-                            value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
+                    if(value_in.length > 0) {
+                        if(key == 'DmhLosNational') {
+                            tot_losses_year1 = tot_losses_year1 + $scope.sumFunc3(value_in[0].teaching_hospital,
+                                value_in[0].provincial_general_hospital, value_in[0].district_general_hospital);
 
-                        tot_losses_year1 = tot_losses_year1 + $scope.sumFunc2(value_in[0].office, value_in[0].other);
-
-                        tot_losses_year1 = tot_losses_year1 + $scope.sumFunc7(value_in[0].base_hospital,
-                            value_in[0].divisional_hospital, value_in[0].rural_hospital, value_in[0].central_dispensary,
-                            value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                            tot_losses_year1 = tot_losses_year1 + $scope.sumFunc2(value_in[0].office, value_in[0].other);
+                        }
+                        else if(key == 'DmfLosNational') {
+                            tot_losses_year1 = tot_losses_year1 + $scope.sumFunc7(value_in[0].base_hospital,
+                                value_in[0].divisional_hospital, value_in[0].rural_hospital, value_in[0].central_dispensary,
+                                value_in[0].pmcus, value_in[0].phccs, value_in[0].mchcs);
+                        }
                     }
                 })
             })
@@ -418,15 +426,18 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_losses_year2 = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DmhLosNational') {
-                        tot_losses_year2 = tot_losses_year2 + $scope.sumFunc3(value_in[1].teaching_hospital,
-                            value_in[1].provincial_general_hospital, value_in[1].district_general_hospital);
+                    if(value_in.length > 0) {
+                        if(key == 'DmhLosNational') {
+                            tot_losses_year2 = tot_losses_year2 + $scope.sumFunc3(value_in[1].teaching_hospital,
+                                value_in[1].provincial_general_hospital, value_in[1].district_general_hospital);
 
-                        tot_losses_year2 = tot_losses_year2 + $scope.sumFunc2(value_in[1].office, value_in[1].other);
-
-                        tot_losses_year2 = tot_losses_year2 + $scope.sumFunc7(value_in[1].base_hospital,
-                            value_in[1].divisional_hospital, value_in[1].rural_hospital, value_in[1].central_dispensary,
-                            value_in[1].pmcus, value_in[1].phccs, value_in[1].mchcs);
+                            tot_losses_year2 = tot_losses_year2 + $scope.sumFunc2(value_in[1].office, value_in[1].other);
+                        }
+                        else if(key == 'DmfLosNational') {
+                            tot_losses_year2 = tot_losses_year2 + $scope.sumFunc7(value_in[3].base_hospital,
+                                value_in[3].divisional_hospital, value_in[3].rural_hospital, value_in[3].central_dispensary,
+                                value_in[3].pmcus, value_in[3].phccs, value_in[3].mchcs);
+                        }
                     }
                 })
             })
@@ -439,9 +450,11 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_number_affected = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DapPvtNational') {
-                        tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[1].num_affected_fac,
-                            value_in[0].num_affected_fac);
+                    if(value_in.length > 0) {
+                        if(key == 'DapPvtNational') {
+                            tot_number_affected = tot_number_affected + $scope.sumFunc2(value_in[1].num_affected_fac,
+                                value_in[0].num_affected_fac);
+                        }
                     }
                 })
             })
@@ -454,8 +467,10 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_male = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DapPvtNational') {
-                        tot_male = tot_male + $scope.sumFunc2(value_in[1].male, value_in[0].male);
+                    if(value_in.length > 0) {
+                        if(key == 'DapPvtNational') {
+                            tot_male = tot_male + $scope.sumFunc2(value_in[1].male, value_in[0].male);
+                        }
                     }
                 })
             })
@@ -468,8 +483,10 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_female = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DapPvtNational') {
-                        tot_female = tot_female + $scope.sumFunc2(value_in[1].female, value_in[0].female);
+                    if(value_in.length > 0) {
+                        if(key == 'DapPvtNational') {
+                            tot_female = tot_female + $scope.sumFunc2(value_in[1].female, value_in[0].female);
+                        }
                     }
                 })
             })
@@ -482,11 +499,13 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_damages = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DapBefPcDistrict') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
-                    }
-                    else if(key == 'DapBefOtherDistrict') {
-                        tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
+                    if(value_in.length > 0) {
+                        if(key == 'DapBefPcNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].est_replacement_cost, 0);
+                        }
+                        else if(key == 'DapBefOtherNational') {
+                            tot_damages = tot_damages + $scope.sumFunc2(value_in[0].total_damages, 0);
+                        }
                     }
                 })
             })
@@ -499,11 +518,13 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_est_losses_y1 = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DapBefPcNational') {
-                        tot_est_losses_y1 = tot_est_losses_y1 + $scope.sumFunc2(value_in[0].est_losses_y1, 0);
-                    }
-                    else if(key == 'DapBefOtherNational') {
-                        tot_est_losses_y1 = tot_est_losses_y1 + $scope.sumFunc2(value_in[0].est_losses_y1, 0);
+                    if(value_in.length > 0) {
+                        if(key == 'DapBefPcNational') {
+                            tot_est_losses_y1 = tot_est_losses_y1 + $scope.sumFunc2(value_in[0].est_losses_y1, 0);
+                        }
+                        else if(key == 'DapBefOtherNational') {
+                            tot_est_losses_y1 = tot_est_losses_y1 + $scope.sumFunc2(value_in[0].est_losses_y1, 0);
+                        }
                     }
                 })
             })
@@ -516,11 +537,13 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
             var tot_est_losses_y2 = 0;
             angular.forEach($scope.dlhealthsummarydamagenationwide.health.Table_10, function(value, index) {
                 angular.forEach(value, function(value_in, key) {
-                    if(key == 'DapBefPcNational') {
-                        tot_est_losses_y2 = tot_est_losses_y2 + $scope.sumFunc2(value_in[0].est_losses_y2, 0);
-                    }
-                    else if(key == 'DapBefOtherNational') {
-                        tot_est_losses_y2 = tot_est_losses_y2 + $scope.sumFunc2(value_in[0].est_losses_y2, 0);
+                    if(value_in.length > 0) {
+                        if(key == 'DapBefPcNational') {
+                            tot_est_losses_y2 = tot_est_losses_y2 + $scope.sumFunc2(value_in[0].est_losses_y2, 0);
+                        }
+                        else if(key == 'DapBefOtherNational') {
+                            tot_est_losses_y2 = tot_est_losses_y2 + $scope.sumFunc2(value_in[0].est_losses_y2, 0);
+                        }
                     }
                 })
             })

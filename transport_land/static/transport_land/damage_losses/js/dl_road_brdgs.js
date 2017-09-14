@@ -249,13 +249,13 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                         url: '/get_latest_bs_date',
                         contentType: 'application/json; charset=utf-8',
                         data: angular.toJson({
-                            'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains','BsRbuRclassificattion'],
+                            'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains', 'BsRbuRclassificattion'],
                             'com_data': {
                                 'district': $scope.district.district__id,
                                 'incident': $scope.incident,
                             },
                             'table_name': 'Table_1',
-                            'sector':'transport_land'
+                            'sector': 'transport_land'
                         }),
                         dataType: 'json',
                     }).then(function successCallback(response) {
@@ -416,10 +416,12 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                if(response.data == 'False')
+                if(response.data == 'False') {
                     $scope.is_valid_data = false;
-               else
+                }
+                else {
                     $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });
@@ -444,7 +446,6 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                    'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-//                $scope.dlRoadBrdgs = data;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.transport_land.Table_4, function(value, index) {

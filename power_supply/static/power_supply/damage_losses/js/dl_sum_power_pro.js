@@ -69,95 +69,88 @@ app.controller("DlpowSupplyProController", function ($scope,$http,$parse, _) {
         }
     }
 
+
+    $scope.convertTotal = function(val1,val2,val3,val4){
+            var sum = 0;
+            sum = parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) ;
+            return sum;
+        }
     $scope.checkIfNull = function() {
         var isNull = $scope.dlPowerSupplyPro ? angular.equals({}, $scope.dlPowerSupplyPro.power_supply.Table_5) : true;
         return isNull;
     }
 
-// $scope.getTotal = function(key) {
-//
-//        $scope.finaltotalprivate = 0;
-//
-//        var totalDamages = 0;
-//
-//        totalDamages =  totalDamages + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0] ?
-//                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg ?
-//                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwTotDmgDistrict[0].dlcw_tot_dmg : 0):0);
-//
-//        var totaldpubstring = "totalDamages"+ key;
-//
-//        var model = $parse(totaldpubstring);
-//        model.assign($scope, totalDamages);
-//
-//
-////        $scope.grndtotaldpub = $scope.grndtotaldpub + totaldpub ;
-//
-//        var totalLossYear1 = 0;
-//
-//        totalLossYear1 =  totalLossYear1 + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0] ?
-//                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1 ?
-//                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_1 : 0):0);
-//
-//        var totalLossYear1string = "totalLossYear1"+ key;
-//
-//        var model = $parse(totalLossYear1string);
-//        model.assign($scope, totalLossYear1);
-//
-//
-//
-//        var totalLossYear2 = 0;
-//
-//        totalLossYear2 =  totalLossYear2 + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0] ?
-//                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2 ?
-//                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlcwLosOther[0].tot_los_year_2 : 0):0);
-//
-//        var totalLossYear2string = "totalLossYear2"+ key;
-//
-//        var model = $parse(totalLossYear2string);
-//        model.assign($scope, totalLossYear2);
-//
-//
-//        $scope.tot = totalDamages + totalLossYear1 + totalLossYear2;
-//
-//
-//        //Rural
-//
-//        var ruraltotalDamage = 0;
-//
-//        ruraltotalDamage =  ruraltotalDamage + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotDmgDistrict[0]?
-//                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotDmgDistrict[0].tot_damages ?
-//                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotDmgDistrict[0].tot_damages : 0):0);
-//
-//        var ruraltotalDamagestring = "ruraltotalDamage"+ key;
-//
-//        var model = $parse(ruraltotalDamagestring);
-//        model.assign($scope, ruraltotalDamage);
-//
-//
-//
-//         var ruralLosstot = 0;
-//
-//        ruralLosstot =  ruralLosstot + ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotLosDistrict[0]?
-//                          ($scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotLosDistrict[0].tot_los ?
-//                         $scope.dlWaterSupplyPro.water_supply.Table_6[key].DlRuralTotLosDistrict[0].tot_los : 0):0);
-//
-//        var ruralLosstotstring = "ruralLosstot"+ key;
-//
-//        var model = $parse(ruralLosstotstring);
-//        model.assign($scope, ruralLosstot);
-//
-//
-//        $scope.ruraltot = ruraltotalDamage + ruralLosstot ;
-//
-//
-//        $scope.grandDamge = totalDamages + ruraltotalDamage;
-//        $scope.grandLossYear1 = totalLossYear1 + ruralLosstot;
-//        $scope.grandLossYear2 = totalLossYear2;
-//        $scope.grandTot = totalDamages + ruraltotalDamage + totalLossYear1 + ruralLosstot + totalLossYear2;
-//
-//
-//
-//
-//
-//}
+     $scope.totDmg = function() {
+        if(!angular.isUndefined($scope.data)) {
+            var totDmg = 0;
+            var totDmgOne = 0;
+            var totDmgTwo = 0;
+            var totDmgThree = 0;
+            angular.forEach($scope.data.power_supply.Table_5, function(value, index) {
+              angular.forEach(value,function(value_in, key) {
+                   console.log('print',key);
+                    if(key == 'TotDmgCebProvince') {
+                          totDmgOne = totDmgOne + value_in[0].tot_dmg;
+                    }
+                    if(key == 'TotDmgPvtProvince') {
+                          totDmgTwo = totDmgTwo + value_in[1].tot_dmg;
+                    }
+                    if(key == 'TotDmgPvtProvince') {
+                          totDmgThree = totDmgThree + value_in[0].tot_dmg;
+                    }
+                totDmg = totDmgOne + totDmgTwo + totDmgThree;
+                })
+                })
+            return totDmg;
+        }
+    }
+     $scope.totLossY1 = function() {
+        if(!angular.isUndefined($scope.data)) {
+            var totLoss = 0;
+            var totLossOne = 0;
+            var totLossTwo = 0;
+            var totLossThree = 0;
+            angular.forEach($scope.data.power_supply.Table_5, function(value, index) {
+              angular.forEach(value,function(value_in, key) {
+                   console.log('print',key);
+                    if(key == 'TotLosCebProvince') {
+                          totLossOne = totLossOne + value_in[0].losses_y1;
+                    }
+                    if(key == 'TotLossesPvtProvince') {
+                          totLossTwo = totLossTwo + value_in[1].los_year1;
+                    }
+                    if(key == 'TotLossesPvtProvince') {
+                          totLossThree = totLossThree + value_in[0].los_year1;
+                    }
+                totLoss = totLossOne + totLossTwo + totLossThree;
+                })
+                })
+            return totLoss;
+        }
+        }
+     $scope.totLossY2= function() {
+        if(!angular.isUndefined($scope.data)) {
+            var totLoss = 0;
+            var totLossOne = 0;
+            var totLossTwo = 0;
+            var totLossThree = 0;
+            angular.forEach($scope.data.power_supply.Table_5, function(value, index) {
+              angular.forEach(value,function(value_in, key) {
+                   console.log('print',key);
+                    if(key == 'TotLosCebProvince') {
+                          totLossOne = totLossOne + value_in[0].losses_y2;
+                    }
+                    if(key == 'TotLossesPvtProvince') {
+                          totLossTwo = totLossTwo + value_in[1].los_year2;
+                    }
+                    if(key == 'TotLossesPvtProvince') {
+                          totLossThree = totLossThree + value_in[0].los_year2;
+                    }
+                totLoss = totLossOne + totLossTwo + totLossThree;
+                })
+                })
+            return totLoss;
+        }
+    }
+
  })

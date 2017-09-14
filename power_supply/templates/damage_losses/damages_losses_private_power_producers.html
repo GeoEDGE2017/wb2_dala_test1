@@ -241,7 +241,7 @@
                     </tr>
                     <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type != 'Total'">
                         <td class="tdpa" height="19" width="244" ng-bind="row.losses_type">
-                            Income Losses
+
                         </td>
                         <td colspan="2">
                             <input id="textinput" name="textinput" type="number" ng-model="row.los_year1"
@@ -251,21 +251,21 @@
                             <input id="textinput" name="textinput" type="number" ng-model="row.los_year2"
                                    placeholder="" class="form-control input-md">
                         </td>
-                        <td class="right" width="107" ng-bind="lossTotals[$index].tot = getSum2(row.los_year1, row.los_year2)">
+                        <td class="right" width="107" ng-model="lossTotals[$index].tot" ng-bind="lossTotals[$index].tot = getSum2(row.los_year1, row.los_year2)">
                         </td>
                     </tr>
                     <tr height="19" ng-repeat="row in data.power_supply.Table_3.PvtDmgLosses" ng-if="row.losses_type == 'Total'">
-                        <td class="tdpa" height="19" width="244">
-                            Total
+                        <td class="tdpa" height="19" width="244" ng-bind="row.losses_type ">
+
                         </td>
-                        <td class="right" colspan="2" width="220"
+                        <td class="right" colspan="2" width="220" ng-model="row.los_year1"
                             ng-bind="row.los_year1 = getTotalCol('PvtDmgLosses','los_year1',row)">
                         </td>
-                        <td class="right" colspan="2" width="211"
+                        <td class="right" colspan="2" width="211" ng-model="row.los_year2"
                             ng-bind="row.los_year2 = getTotalCol('PvtDmgLosses','los_year2',row)">
                         </td>
-                        <td class="right" width="107"
-                            ng-bind="lossTotals[1].tot +lossTotals[2].tot  + lossTotals[3].tot + lossTotals[4].tot ">
+                        <td class="right" width="107" ng-model="lossTotals[$index].tot"
+                            ng-bind="lossTotals[$index].tot = lossTotals[1].tot +lossTotals[2].tot  + lossTotals[3].tot + lossTotals[4].tot ">
                         </td>
                     </tr>
                     </tbody>

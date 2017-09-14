@@ -226,6 +226,9 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
+        alert($scope.district);
+             alert($scope.bs_date);
+             alert($scope.is_edit);
             $http({
                 method: "POST",
                 url: "/bs_save_data",
@@ -260,6 +263,9 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
         $scope.submitted = true;
         $scope.is_edit = true;
         if (form.$valid) {
+        alert($scope.district);
+             alert($scope.bs_date);
+             alert($scope.is_edit);
             $http({
                 method: "POST",
                 url: "/bs_fetch_edit_data",

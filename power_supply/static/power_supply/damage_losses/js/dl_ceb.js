@@ -324,7 +324,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 data: angular.toJson({
                     'db_tables': ['BsPwGenFirm'],
                     'com_data': {
-                        'district': $scope.district.district__id,
+                        'district': 1,
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_1',
@@ -335,9 +335,12 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 var data = response.data;
                 console.log('*', response);
 
-                    $scope.bs_data = response.data;
+                    angular.forEach(data, function(value, key) {
+                    $scope.bs_data[key] = JSON.parse(value);
+//                     console.log('**', $scope.bs_data[key][0].fields.avg_income);
+                });
 
-                console.log('*', $scope.bs_data);
+
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -531,7 +534,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             var array3 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution;
             var array4 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures;
             var array5 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment;
-            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.cebDmgAstOther;
+            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOther;
 
 
             angular.forEach(array1, function(value, key) {
@@ -563,12 +566,14 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
              }
             })
              angular.forEach(array6, function(value, key) {
-            if(value.assets !="Total" && value.assets !="GRAND TOTAL"){
+            if(value.assets !="GRAND TOTAL"){
+
              finaltotal6 = finaltotal6 + value.tot_replace_cost ;
+             console.log('mytest',finaltotal6);
              }
             })
 
-            grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 +finaltotal6 ;
+            grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 +finaltotal6 ;
             return grantot;
         }
 
@@ -586,7 +591,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             var array3 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution;
             var array4 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures;
             var array5 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment;
-            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.cebDmgAstOther;
+            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOther;
 
 
             angular.forEach(array1, function(value, key) {
@@ -619,13 +624,13 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             })
             angular.forEach(array6, function(value, key) {
               console.log("test", value.to_repair_cost );
-            if(value.assets !="Total" && value.assets !="GRAND TOTAL"){
+            if( value.assets !="GRAND TOTAL"){
                 console.log("test", value.to_repair_cost );
              finaltotal6 = finaltotal6 + value.to_repair_cost ;
              }
             })
 
-            grantot = grantot +finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
+            grantot = finaltotal1+ finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5 + finaltotal6;
             return grantot;
         }
 
@@ -643,7 +648,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
             var array3 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstDistribution;
             var array4 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstStructures;
             var array5 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOffEquipment;
-            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.cebDmgAstOther;
+            var array6 = $scope.dlPowSupCeb.power_supply.Table_2.CebDmgAstOther;
 
 
             angular.forEach(array1, function(value, key) {

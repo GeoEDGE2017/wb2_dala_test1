@@ -305,6 +305,7 @@ class TotDmgPvtDistrict(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     pw_gen_firm = models.ForeignKey(BsPwGenFirm, db_column='pw_gen_firm', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -319,6 +320,7 @@ class TotLossesPvtDistrict(models.Model):
     pw_gen_firm = models.ForeignKey(BsPwGenFirm, db_column='pw_gen_firm', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     losses_type = models.CharField(max_length=255, blank=True, null=True)
+    assets = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -364,7 +366,7 @@ class TotLosCebProvince(models.Model):
 
 
 class TotDmgPvtProvince(models.Model):
-    tot_replace_cost = models.BigIntegerField(blank=True, null=True)
+    tot_dmg = models.BigIntegerField(blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
@@ -436,7 +438,7 @@ class TotLosCebNational(models.Model):
 
 
 class TotDmgPvtNational(models.Model):
-    tot_replace_cost = models.BigIntegerField(blank=True, null=True)
+    tot_dmg = models.BigIntegerField(blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)

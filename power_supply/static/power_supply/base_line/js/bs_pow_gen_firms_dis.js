@@ -93,7 +93,6 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -109,13 +108,9 @@ app.controller("BsPowGenFrimDisController", function($scope, $http) {
             }).success(function(data) {
                 console.log(data);
                 $scope.bsPowGenFrimDis = data;
-
-
                 var edit_data_not_found = false;
             if(data != null) {
-                console.log('----if');
                 angular.forEach(data.power_supply.Table_1, function(value, index) {
-                    console.log('----forEach');
                     console.log(value);
                     if(value.length == 0) {
                         console.log('----');

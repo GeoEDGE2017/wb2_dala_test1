@@ -24,283 +24,290 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+               class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
             <li id="li1" class="active">
-                <a href='#step1' data-toggle="tab">1 - Public Sector</a>
+                <a href='#step1' data-toggle="tab">
+                    1 - Public Sector
+                </a>
             </li>
             <li id="li2">
-                <a href='#step2' data-toggle="tab">2 - Private Sector</a>
+                <a href='#step2' data-toggle="tab">
+                    2 - Private Sector
+                </a>
             </li>
             <li id="li3">
-                <a href='#step3' data-toggle="tab">3 - Total Damages and Losses</a>
+                <a href='#step3' data-toggle="tab">
+                    3 - Total Damages and Losses
+                </a>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-             
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="296"/>
                         <col width="91" span="7"/>
                     </colgroup>
                     <tbody>
-                    <tr class="trhead1" height="17">
-                        <td colspan="3" style="padding-left:5px;">
-                            Incident
-                        </td>
-                        <td colspan="5" style="">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true);loadData();"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-                                <option value={{incident.id}}>
-                                    {{incident.incident_name}}
+                        <tr class="trhead1" height="17">
+                            <td colspan="3" style="padding-left:5px;">
+                                Incident
+                            </td>
+                            <td colspan="5" style="">
+                                <select id="selectbasic" name="incident" ng-model="incident"
+                                        class="form-control" ng-change="changedValue(true);loadData();"
+                                        style="width:100%;font-weight:400;" required>
+                                    <option value="" selected="true">Select an Incident</option>
+                                    {% for incident in incidents %}
+                                    <option value={{incident.id}}>
+                                        {{incident.incident_name}}
                                     </option>
                                     {% endfor %}
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trheadc1" height="34" >
-                        <td rowspan="2" width="296" height="51" style="width:28.5%;">
-                            Facilities and Assets
-                        </td>
-                        <td rowspan="2" width="91">
-                            Total Number Affected
-                        </td>
-                        <td colspan="2" width="182">
-                            Total Number of Students Affected
-                        </td>
-                        <td rowspan="2" width="91">
-                            Total Damages (LKR)
-                        </td>
-                        <td colspan="2" width="182">
-                            Losses (LKR)
-                        </td>
-                        <td rowspan="2" width="91">
-                            Total Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="17">
-                        <td width="91" height="17">
-                            Male
-                        </td>
-                        <td width="91">
-                            Female
-                        </td>
-                        <td width="91">
-                            Year 1
-                        </td>
-                        <td width="91">
-                            Year 2
-                        </td>
-                    </tr>
+                                </select>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
+                        <tr class="trheadc1" height="34" >
+                            <td rowspan="2" width="296" height="51" style="width:28.5%;">
+                                Facilities and Assets
+                            </td>
+                            <td rowspan="2" width="91">
+                                Total Number Affected
+                            </td>
+                            <td colspan="2" width="182">
+                                Total Number of Students Affected
+                            </td>
+                            <td rowspan="2" width="91">
+                                Total Damages (LKR)
+                            </td>
+                            <td colspan="2" width="182">
+                                Losses (LKR)
+                            </td>
+                            <td rowspan="2" width="91">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="17">
+                            <td width="91" height="17">
+                                Male
+                            </td>
+                            <td width="91">
+                                Female
+                            </td>
+                            <td width="91">
+                                Year 1
+                            </td>
+                            <td width="91">
+                                Year 2
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <div id="boxscroll" style="max-height:400px;overflow:auto;">
                     <table ng-repeat="(key, value) in dlNational.education.Table_7" class="table table-bordered">
                         <tbody>
-                        <tr height="20" class="trheadc">
-                            <td ng-bind="key" width="202" height="20">
-                            </td>
-                            <td class="right" width="90">
-                            </td>
-                            <td width="90">
-                            </td>
-                            <td width="90">
-                            </td>
-                            <td class="right" width="90">
-                            </td>
-                            <td width="90">
-                            </td>
-                            <td width="90">
-                            </td>
-                            <td class="right" width="90">
-                            </td>
-                        </tr>
-                        <tr height="17" colspan="2">
-                            <td class="tdpa" width="307" height="17">
-                                1AB, 1C
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].ab1_1c">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][1].ab1_1c">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].ab1_1c">
-                            </td>
-                            <td class="right" class="right" width="110" ng-bind="value['DugNdafNational'][0].ab1_1c">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].ab1_1c">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].ab1_1c">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].ab1_1c">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Type 2
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].type_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][1].type_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].type_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNdafNational'][0].type_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].type_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].type_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_2">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Type 3
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].type_3">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][1].type_3">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].type_3">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNdafNational'][0].type_3">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].type_3">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].type_3">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_3">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Pirivena
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].pirivena">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][1].pirivena">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].pirivena">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNdafNational'][0].pirivena">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].pirivena">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].pirivena">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].pirivena">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Training Institutes
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].training_institutes">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][1].training_institutes">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].training_institutes">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNdafNational'][0].training_institutes">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].training_institutes">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].training_institutes">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].training_institutes">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                NCOE, Training Colleges
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].training_colleges">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][1].training_colleges">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].training_colleges">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNdafNational'][0].training_colleges">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].training_colleges">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].training_colleges">
-                            </td>
-                            <td class="right"  width="110" ng-bind="value['DpefBefNational'][1].training_colleges">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                TC, CRC, RESC
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].tc_crc_resc">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][1].tc_crc_resc">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNsaNational'][0].tc_crc_resc">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNdafNational'][0].tc_crc_resc">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].tc_crc_resc">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].tc_crc_resc">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].tc_crc_resc">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Ministry, Provincial, Zonal, Divisional Offices, NIE
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugDfNational'][0].min_pzd_offices">
-                            </td>
-                            <td class="tdpa" width="110">
-                            </td>
-                            <td class="tdpa" width="110">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DugNdafNational'][0].min_pzd_offices">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][0].min_pzd_offices">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][2].min_pzd_offices">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefNational'][1].min_pzd_offices">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Total
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="sumFunc8(value['DugDfNational'][0].ab1_1c, value['DugDfNational'][0].type_2, value['DugDfNational'][0].type_3, value['DugDfNational'][0].pirivena, value['DugDfNational'][0].training_institutes, value['DugDfNational'][0].training_colleges, value['DugDfNational'][0].tc_crc_resc, value['DugDfNational'][0].min_pzd_offices)"></span>
-                            </td>
-                            <td  class="right" width="110">
-                                <span ng-bind="sumFunc8(value['DugNsaNational'][1].ab1_1c, value['DugNsaNational'][1].type_2, value['DugNsaNational'][1].type_3, value['DugNsaNational'][1].pirivena, value['DugNsaNational'][1].training_institutes, value['DugNsaNational'][1].training_colleges, value['DugNsaNational'][1].tc_crc_resc, 0)"></span>
-                            </td>
-                            <td class="right"   width="110">
-                                <span ng-bind="sumFunc8(value['DugNsaNational'][0].ab1_1c, value['DugNsaNational'][0].type_2, value['DugNsaNational'][0].type_3, value['DugNsaNational'][0].pirivena, value['DugNsaNational'][0].training_institutes, value['DugNsaNational'][0].training_colleges, value['DugNsaNational'][0].tc_crc_resc, 0)"></span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="sumFunc8(value['DugNdafNational'][0].ab1_1c, value['DugNdafNational'][0].type_2, value['DugNdafNational'][0].type_3, value['DugNdafNational'][0].pirivena, value['DugNdafNational'][0].training_institutes, value['DugNdafNational'][0].training_colleges, value['DugNdafNational'][0].tc_crc_resc, value['DugNdafNational'][0].min_pzd_offices)"></span>
-                            </td>
-                            <td class="right"  width="110">
-                                <span ng-bind="sumFunc8(value['DpefBefNational'][0].ab1_1c, value['DpefBefNational'][0].type_2, value['DpefBefNational'][0].type_3, value['DpefBefNational'][0].pirivena, value['DpefBefNational'][0].training_institutes, value['DpefBefNational'][0].training_colleges, value['DpefBefNational'][0].tc_crc_resc, value['DpefBefNational'][0].min_pzd_offices)"></span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="sumFunc8(value['DpefBefNational'][2].ab1_1c, value['DpefBefNational'][2].type_2, value['DpefBefNational'][2].type_3, value['DpefBefNational'][2].pirivena, value['DpefBefNational'][2].training_institutes, value['DpefBefNational'][2].training_colleges, value['DpefBefNational'][2].tc_crc_resc, value['DpefBefNational'][2].min_pzd_offices)"></span>
-                            </td>
-                            <td class="right"  width="110">
-                                <span ng-bind="sumFunc8(value['DpefBefNational'][1].ab1_1c, value['DpefBefNational'][1].type_2, value['DpefBefNational'][1].type_3, value['DpefBefNational'][1].pirivena, value['DpefBefNational'][1].training_institutes, value['DpefBefNational'][1].training_colleges, value['DpefBefNational'][1].tc_crc_resc, value['DpefBefNational'][1].min_pzd_offices)"></span>
-                            </td>
-                        </tr>
+                            <tr height="20" class="trheadc">
+                                <td ng-bind="key" width="202" height="20">
+                                </td>
+                                <td class="right" width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td class="right" width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td width="90">
+                                </td>
+                                <td class="right" width="90">
+                                </td>
+                            </tr>
+                            <tr height="17" colspan="2">
+                                <td class="tdpa" width="307" height="17">
+                                    1AB, 1C
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].ab1_1c">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][1].ab1_1c">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][0].ab1_1c">
+                                </td>
+                                <td class="right" class="right" width="110" ng-bind="value['DugNdafNational'][0].ab1_1c">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].ab1_1c">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].ab1_1c">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][1].ab1_1c">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    Type 2
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].type_2">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][1].type_2">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][0].type_2">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNdafNational'][0].type_2">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].type_2">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].type_2">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_2">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    Type 3
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].type_3">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][1].type_3">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][0].type_3">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNdafNational'][0].type_3">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].type_3">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].type_3">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][1].type_3">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    Pirivena
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].pirivena">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][1].pirivena">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][0].pirivena">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNdafNational'][0].pirivena">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].pirivena">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].pirivena">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][1].pirivena">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    Training Institutes
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].training_institutes">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][1].training_institutes">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][0].training_institutes">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNdafNational'][0].training_institutes">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].training_institutes">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].training_institutes">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][1].training_institutes">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    NCOE, Training Colleges
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].training_colleges">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][1].training_colleges">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][0].training_colleges">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNdafNational'][0].training_colleges">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].training_colleges">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].training_colleges">
+                                </td>
+                                <td class="right"  width="110" ng-bind="value['DpefBefNational'][1].training_colleges">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    TC, CRC, RESC
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].tc_crc_resc">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][1].tc_crc_resc">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNsaNational'][0].tc_crc_resc">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNdafNational'][0].tc_crc_resc">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].tc_crc_resc">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].tc_crc_resc">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][1].tc_crc_resc">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    Ministry, Provincial, Zonal, Divisional Offices, NIE
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugDfNational'][0].min_pzd_offices">
+                                </td>
+                                <td class="tdpa" width="110">
+                                </td>
+                                <td class="tdpa" width="110">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DugNdafNational'][0].min_pzd_offices">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][0].min_pzd_offices">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][2].min_pzd_offices">
+                                </td>
+                                <td class="right" width="110" ng-bind="value['DpefBefNational'][1].min_pzd_offices">
+                                </td>
+                            </tr>
+                            <tr height="17">
+                                <td class="tdpa" width="307" height="17">
+                                    Total
+                                </td>
+                                <td class="right" width="110">
+                                    <span ng-bind="sumFunc8(value['DugDfNational'][0].ab1_1c, value['DugDfNational'][0].type_2, value['DugDfNational'][0].type_3, value['DugDfNational'][0].pirivena, value['DugDfNational'][0].training_institutes, value['DugDfNational'][0].training_colleges, value['DugDfNational'][0].tc_crc_resc, value['DugDfNational'][0].min_pzd_offices)"></span>
+                                </td>
+                                <td  class="right" width="110">
+                                    <span ng-bind="sumFunc8(value['DugNsaNational'][1].ab1_1c, value['DugNsaNational'][1].type_2, value['DugNsaNational'][1].type_3, value['DugNsaNational'][1].pirivena, value['DugNsaNational'][1].training_institutes, value['DugNsaNational'][1].training_colleges, value['DugNsaNational'][1].tc_crc_resc, 0)"></span>
+                                </td>
+                                <td class="right"   width="110">
+                                    <span ng-bind="sumFunc8(value['DugNsaNational'][0].ab1_1c, value['DugNsaNational'][0].type_2, value['DugNsaNational'][0].type_3, value['DugNsaNational'][0].pirivena, value['DugNsaNational'][0].training_institutes, value['DugNsaNational'][0].training_colleges, value['DugNsaNational'][0].tc_crc_resc, 0)"></span>
+                                </td>
+                                <td class="right" width="110">
+                                    <span ng-bind="sumFunc8(value['DugNdafNational'][0].ab1_1c, value['DugNdafNational'][0].type_2, value['DugNdafNational'][0].type_3, value['DugNdafNational'][0].pirivena, value['DugNdafNational'][0].training_institutes, value['DugNdafNational'][0].training_colleges, value['DugNdafNational'][0].tc_crc_resc, value['DugNdafNational'][0].min_pzd_offices)"></span>
+                                </td>
+                                <td class="right"  width="110">
+                                    <span ng-bind="sumFunc8(value['DpefBefNational'][0].ab1_1c, value['DpefBefNational'][0].type_2, value['DpefBefNational'][0].type_3, value['DpefBefNational'][0].pirivena, value['DpefBefNational'][0].training_institutes, value['DpefBefNational'][0].training_colleges, value['DpefBefNational'][0].tc_crc_resc, value['DpefBefNational'][0].min_pzd_offices)"></span>
+                                </td>
+                                <td class="right" width="110">
+                                    <span ng-bind="sumFunc8(value['DpefBefNational'][2].ab1_1c, value['DpefBefNational'][2].type_2, value['DpefBefNational'][2].type_3, value['DpefBefNational'][2].pirivena, value['DpefBefNational'][2].training_institutes, value['DpefBefNational'][2].training_colleges, value['DpefBefNational'][2].tc_crc_resc, value['DpefBefNational'][2].min_pzd_offices)"></span>
+                                </td>
+                                <td class="right"  width="110">
+                                    <span ng-bind="sumFunc8(value['DpefBefNational'][1].ab1_1c, value['DpefBefNational'][1].type_2, value['DpefBefNational'][1].type_3, value['DpefBefNational'][1].pirivena, value['DpefBefNational'][1].training_institutes, value['DpefBefNational'][1].training_colleges, value['DpefBefNational'][1].tc_crc_resc, value['DpefBefNational'][1].min_pzd_offices)"></span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-bordered">
@@ -337,338 +344,340 @@
             <div class="tab-pane fade" id="step2">
                 <table class="table table-bordered">
                     <tbody>
-                    <tr class="trheadc1" height="34">
-                        <td rowspan="2" width="296" height="51" style="width:28.5%;">
-                            Facilities and Assets
-                        </td>
-                        <td rowspan="2" width="91">
-                            Total Number Affected
-                        </td>
-                        <td colspan="2" width="182">
-                            Total Number of Students Affected
-                        </td>
-                        <td rowspan="2" width="91">
-                            Total Damages (LKR)
-                        </td>
-                        <td colspan="2" width="182">
-                            Losses (LKR)
-                        </td>
-                        <td rowspan="2" width="91">
-                            Total Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="17">
-                        <td width="91" height="17">
-                            Male
-                        </td>
-                        <td width="91">
-                            Female
-                        </td>
-                        <td width="91">
-                            Year 1
-                        </td>
-                        <td width="91">
-                            Year 2
-                        </td>
-                    </tr>
-                    <table ng-repeat="(key, value) in dlNational.education.Table_7" class="table table-bordered">
-                        <tbody>
-                        <tr height="20" class="trheadc" colspan="3">
-                            <td ng-bind="key" width="202" height="20">
-                            <td  class="right" width="91">
+                        <tr class="trheadc1" height="34">
+                            <td rowspan="2" width="296" height="51" style="width:28.5%;">
+                                Facilities and Assets
+                            </td>
+                            <td rowspan="2" width="91">
+                                Total Number Affected
+                            </td>
+                            <td colspan="2" width="182">
+                                Total Number of Students Affected
+                            </td>
+                            <td rowspan="2" width="91">
+                                Total Damages (LKR)
+                            </td>
+                            <td colspan="2" width="182">
+                                Losses (LKR)
+                            </td>
+                            <td rowspan="2" width="91">
+                                Total Losses (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="17">
+                            <td width="91" height="17">
+                                Male
                             </td>
                             <td width="91">
+                                Female
                             </td>
                             <td width="91">
-                            </td>
-                            <td class="right" width="91">
-                            </td>
-                            <td width="91">
+                                Year 1
                             </td>
                             <td width="91">
-                            </td>
-                            <td class="right" width="91">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Pre-schools
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][0].num_edu_facilities">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][0].male">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][0].female">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].tot_damages">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_1">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_2">
-                            </td>
-                            <td class="right" class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_1 + value['DpefBefPreNational'][0].est_los_year_2">
+                                Year 2
                             </td>
                         </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Primary Schools
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][1].num_edu_facilities">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][1].male">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][1].female">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].tot_damages">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_1">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_1 + value['DpefBefPrimaryNational'][0].est_los_year_2">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Secondary Schools
-                            </td>
-                            <td class="right"  width="110" ng-bind="value['DpefNafNational'][2].num_edu_facilities">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][2].male">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][2].female">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].tot_damages">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_1">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_1 + value['DpefBefSecondaryNational'][0].est_los_year_2">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Universities
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][3].num_edu_facilities">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][3].male">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][3].female">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].tot_damages">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_1">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_1 + value['DpefBefUnvNational'][0].est_los_year_2">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Technical Institutes
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][4].num_edu_facilities">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][4].male">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][4].female">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].tot_damages">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_1">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_1 + value['DpefBefTechNational'][0].est_los_year_2">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Others
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][5].num_edu_facilities">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][5].male">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefNafNational'][5].female">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].tot_damages">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_1">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_2">
-                            </td>
-                            <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_1 + value['DpefBefOtherNational'][0].est_los_year_2">
-                            </td>
-                        </tr>
-                        <tr height="17">
-                            <td class="tdpa" width="307" height="17">
-                                Total
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].num_edu_facilities,
-                                    value['DpefNafNational'][1].num_edu_facilities,
-                                    value['DpefNafNational'][2].num_edu_facilities,
-                                    value['DpefNafNational'][3].num_edu_facilities,
-                                    value['DpefNafNational'][4].num_edu_facilities,
-                                    value['DpefNafNational'][5].num_edu_facilities)">
-                                </span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].male,
-                                    value['DpefNafNational'][1].male,
-                                    value['DpefNafNational'][2].male,
-                                    value['DpefNafNational'][3].male,
-                                    value['DpefNafNational'][4].male,
-                                    value['DpefNafNational'][5].male)">
-                                </span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].female,
-                                    value['DpefNafNational'][1].female,
-                                    value['DpefNafNational'][2].female,
-                                    value['DpefNafNational'][3].female,
-                                    value['DpefNafNational'][4].female,
-                                    value['DpefNafNational'][5].female)">
-                                </span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].tot_damages,
-                                    value['DpefBefPrimaryNational'][0].tot_damages,
-                                    value['DpefBefSecondaryNational'][0].tot_damages,
-                                    value['DpefBefUnvNational'][0].tot_damages,
-                                    value['DpefBefTechNational'][0].tot_damages,
-                                    value['DpefBefOtherNational'][0].tot_damages)">
-                                </span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_1,
-                                    value['DpefBefPrimaryNational'][0].est_los_year_1,
-                                    value['DpefBefSecondaryNational'][0].est_los_year_1,
-                                    value['DpefBefUnvNational'][0].est_los_year_1,
-                                    value['DpefBefTechNational'][0].est_los_year_1,
-                                    value['DpefBefOtherNational'][0].est_los_year_1)">
-                                </span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_2,
-                                    value['DpefBefPrimaryNational'][0].est_los_year_2,
-                                    value['DpefBefSecondaryNational'][0].est_los_year_2,
-                                    value['DpefBefUnvNational'][0].est_los_year_2,
-                                    value['DpefBefTechNational'][0].est_los_year_2,
-                                    value['DpefBefOtherNational'][0].est_los_year_2)">
-                                </span>
-                            </td>
-                            <td class="right" width="110">
-                                <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_1 + value['DpefBefPreNational'][0].est_los_year_2,
-                                    value['DpefBefPrimaryNational'][0].est_los_year_1 + value['DpefBefPrimaryNational'][0].est_los_year_2,
-                                    value['DpefBefSecondaryNational'][0].est_los_year_1 + value['DpefBefSecondaryNational'][0].est_los_year_2,
-                                    value['DpefBefUnvNational'][0].est_los_year_1 + value['DpefBefUnvNational'][0].est_los_year_2,
-                                    value['DpefBefTechNational'][0].est_los_year_1 + value['DpefBefTechNational'][0].est_los_year_2,
-                                    value['DpefBefOtherNational'][0].est_los_year_1 + value['DpefBefOtherNational'][0].est_los_year_2)">
-                                </span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr height="17">
-                                <td class="tdpa" width="307" height="17">
-                                    TOTAL
-                                </td>
-                                <td class="right" width="110" ng-bind="totNumberAffectedPvt()">
-                                </td>
-                                <td class="right" width="110" ng-bind="totNoOfPatientsAffectedMalePvt()">
-                                </td>
-                                <td class="right" width="110" ng-bind="totNoOfPatientsAffectedFemalePvt()">
-                                </td>
-                                <td class="right" width="110" ng-bind="totDamagesPvt()">
-                                </td>
-                                <td class="right" width="110" ng-bind="totLossesYear1Pvt()">
-                                </td>
-                                <td class="right" width="110" ng-bind="totLossesYear2Pvt()">
-                                </td>
-                                <td class="right" width="110" ng-bind="totLossesYear1Pvt() + totLossesYear2Pvt()">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table ng-repeat="(key, value) in dlNational.education.Table_7" class="table table-bordered">
+                            <tbody>
+                                <tr height="20" class="trheadc" colspan="3">
+                                    <td ng-bind="key" width="202" height="20">
+                                    <td  class="right" width="91">
+                                    </td>
+                                    <td width="91">
+                                    </td>
+                                    <td width="91">
+                                    </td>
+                                    <td class="right" width="91">
+                                    </td>
+                                    <td width="91">
+                                    </td>
+                                    <td width="91">
+                                    </td>
+                                    <td class="right" width="91">
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        Pre-schools
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][0].num_edu_facilities">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][0].male">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][0].female">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].tot_damages">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_1">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_2">
+                                    </td>
+                                    <td class="right" class="right" width="110" ng-bind="value['DpefBefPreNational'][0].est_los_year_1 + value['DpefBefPreNational'][0].est_los_year_2">
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        Primary Schools
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][1].num_edu_facilities">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][1].male">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][1].female">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].tot_damages">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_1">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_2">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefPrimaryNational'][0].est_los_year_1 + value['DpefBefPrimaryNational'][0].est_los_year_2">
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        Secondary Schools
+                                    </td>
+                                    <td class="right"  width="110" ng-bind="value['DpefNafNational'][2].num_edu_facilities">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][2].male">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][2].female">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].tot_damages">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_1">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_2">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefSecondaryNational'][0].est_los_year_1 + value['DpefBefSecondaryNational'][0].est_los_year_2">
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        Universities
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][3].num_edu_facilities">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][3].male">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][3].female">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].tot_damages">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_1">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_2">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefUnvNational'][0].est_los_year_1 + value['DpefBefUnvNational'][0].est_los_year_2">
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        Technical Institutes
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][4].num_edu_facilities">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][4].male">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][4].female">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].tot_damages">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_1">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_2">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefTechNational'][0].est_los_year_1 + value['DpefBefTechNational'][0].est_los_year_2">
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        Others
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][5].num_edu_facilities">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][5].male">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefNafNational'][5].female">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].tot_damages">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_1">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_2">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="value['DpefBefOtherNational'][0].est_los_year_1 + value['DpefBefOtherNational'][0].est_los_year_2">
+                                    </td>
+                                </tr>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        Total
+                                    </td>
+                                    <td class="right" width="110">
+                                        <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].num_edu_facilities,
+                                            value['DpefNafNational'][1].num_edu_facilities,
+                                            value['DpefNafNational'][2].num_edu_facilities,
+                                            value['DpefNafNational'][3].num_edu_facilities,
+                                            value['DpefNafNational'][4].num_edu_facilities,
+                                            value['DpefNafNational'][5].num_edu_facilities)">
+                                        </span>
+                                    </td>
+                                    <td class="right" width="110">
+                                        <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].male,
+                                            value['DpefNafNational'][1].male,
+                                            value['DpefNafNational'][2].male,
+                                            value['DpefNafNational'][3].male,
+                                            value['DpefNafNational'][4].male,
+                                            value['DpefNafNational'][5].male)">
+                                        </span>
+                                    </td>
+                                    <td class="right" width="110">
+                                        <span ng-bind="$parent.sumFunc6(value['DpefNafNational'][0].female,
+                                            value['DpefNafNational'][1].female,
+                                            value['DpefNafNational'][2].female,
+                                            value['DpefNafNational'][3].female,
+                                            value['DpefNafNational'][4].female,
+                                            value['DpefNafNational'][5].female)">
+                                        </span>
+                                    </td>
+                                    <td class="right" width="110">
+                                        <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].tot_damages,
+                                            value['DpefBefPrimaryNational'][0].tot_damages,
+                                            value['DpefBefSecondaryNational'][0].tot_damages,
+                                            value['DpefBefUnvNational'][0].tot_damages,
+                                            value['DpefBefTechNational'][0].tot_damages,
+                                            value['DpefBefOtherNational'][0].tot_damages)">
+                                        </span>
+                                    </td>
+                                    <td class="right" width="110">
+                                        <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_1,
+                                            value['DpefBefPrimaryNational'][0].est_los_year_1,
+                                            value['DpefBefSecondaryNational'][0].est_los_year_1,
+                                            value['DpefBefUnvNational'][0].est_los_year_1,
+                                            value['DpefBefTechNational'][0].est_los_year_1,
+                                            value['DpefBefOtherNational'][0].est_los_year_1)">
+                                        </span>
+                                    </td>
+                                    <td class="right" width="110">
+                                        <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_2,
+                                            value['DpefBefPrimaryNational'][0].est_los_year_2,
+                                            value['DpefBefSecondaryNational'][0].est_los_year_2,
+                                            value['DpefBefUnvNational'][0].est_los_year_2,
+                                            value['DpefBefTechNational'][0].est_los_year_2,
+                                            value['DpefBefOtherNational'][0].est_los_year_2)">
+                                        </span>
+                                    </td>
+                                    <td class="right" width="110">
+                                        <span ng-bind="$parent.sumFunc6(value['DpefBefPreNational'][0].est_los_year_1 + value['DpefBefPreNational'][0].est_los_year_2,
+                                            value['DpefBefPrimaryNational'][0].est_los_year_1 + value['DpefBefPrimaryNational'][0].est_los_year_2,
+                                            value['DpefBefSecondaryNational'][0].est_los_year_1 + value['DpefBefSecondaryNational'][0].est_los_year_2,
+                                            value['DpefBefUnvNational'][0].est_los_year_1 + value['DpefBefUnvNational'][0].est_los_year_2,
+                                            value['DpefBefTechNational'][0].est_los_year_1 + value['DpefBefTechNational'][0].est_los_year_2,
+                                            value['DpefBefOtherNational'][0].est_los_year_1 + value['DpefBefOtherNational'][0].est_los_year_2)">
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr height="17">
+                                    <td class="tdpa" width="307" height="17">
+                                        TOTAL
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totNumberAffectedPvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totNoOfPatientsAffectedMalePvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totNoOfPatientsAffectedFemalePvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totDamagesPvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totLossesYear1Pvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totLossesYear2Pvt()">
+                                    </td>
+                                    <td class="right" width="110" ng-bind="totLossesYear1Pvt() + totLossesYear2Pvt()">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </tbody>
                 </table>
                 <br>
-                <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                        class="glyphicon glyphicon-arrow-right"></span> Fill Total Damages and Losses</a>
+                <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    Fill Total Damages and Losses
+                </a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step3">
                 <table class="table table-bordered">
                     <tbody>
-                    <tr class="trheadc1" height="17">
-                        <td rowspan="2" width="296" height="34">
-                            Ownership
-                        </td>
-                        <td colspan="2" rowspan="2" width="182">
-                            Damages (LKR)
-                        </td>
-                        <td colspan="4" width="364">
-                            Losses (LKR)
-                        </td>
-                        <td rowspan="2" width="91">
-                            Total (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="17">
-                        <td colspan="2" width="182" height="17">
-                            Year 1
-                        </td>
-                        <td colspan="2" width="182">
-                            Year 2
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" width="296" height="17">
-                            Public Sector
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totDamagesPub()">
-                        </td>
-                        <td class="right"  colspan="2" width="182" ng-bind="totLossesYear1Pub()">
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totLossesYear2Pub()">
-                        </td>
-                        <td class="right" width="91" ng-bind="totDamagesPub() + totLossesYear1Pub() + totLossesYear2Pub()">
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" width="296" height="17">
-                            Private Sector
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totDamagesPvt()">
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totLossesYear1Pvt()">
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totLossesYear2Pvt()">
-                        </td>
-                        <td class="right" class="right" width="91" ng-bind="totDamagesPvt() + totLossesYear1Pvt() + totLossesYear2Pvt()">
-                        </td>
-                    </tr>
-                    <tr height="17">
-                        <td class="tdpa" width="296" height="17">
-                            TOTAL
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totDamagesPub() + totDamagesPvt()">
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totLossesYear1Pub() + totLossesYear1Pvt()">
-                        </td>
-                        <td class="right" colspan="2" width="182" ng-bind="totLossesYear2Pub() + totLossesYear2Pvt()">
-                        </td>
-                        <td class="right" width="91" ng-bind="totDamagesPub() + totLossesYear1Pub() + totLossesYear2Pub() +
-                            totDamagesPvt() + totLossesYear1Pvt() + totLossesYear2Pvt()">
-                        </td>
-                    </tr>
+                        <tr class="trheadc1" height="17">
+                            <td rowspan="2" width="296" height="34">
+                                Ownership
+                            </td>
+                            <td colspan="2" rowspan="2" width="182">
+                                Damages (LKR)
+                            </td>
+                            <td colspan="4" width="364">
+                                Losses (LKR)
+                            </td>
+                            <td rowspan="2" width="91">
+                                Total (LKR)
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="17">
+                            <td colspan="2" width="182" height="17">
+                                Year 1
+                            </td>
+                            <td colspan="2" width="182">
+                                Year 2
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" width="296" height="17">
+                                Public Sector
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totDamagesPub()">
+                            </td>
+                            <td class="right"  colspan="2" width="182" ng-bind="totLossesYear1Pub()">
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totLossesYear2Pub()">
+                            </td>
+                            <td class="right" width="91" ng-bind="totDamagesPub() + totLossesYear1Pub() + totLossesYear2Pub()">
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" width="296" height="17">
+                                Private Sector
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totDamagesPvt()">
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totLossesYear1Pvt()">
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totLossesYear2Pvt()">
+                            </td>
+                            <td class="right" class="right" width="91" ng-bind="totDamagesPvt() + totLossesYear1Pvt() + totLossesYear2Pvt()">
+                            </td>
+                        </tr>
+                        <tr height="17">
+                            <td class="tdpa" width="296" height="17">
+                                TOTAL
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totDamagesPub() + totDamagesPvt()">
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totLossesYear1Pub() + totLossesYear1Pvt()">
+                            </td>
+                            <td class="right" colspan="2" width="182" ng-bind="totLossesYear2Pub() + totLossesYear2Pvt()">
+                            </td>
+                            <td class="right" width="91" ng-bind="totDamagesPub() + totLossesYear1Pub() + totLossesYear2Pub() +
+                                totDamagesPvt() + totLossesYear1Pvt() + totLossesYear2Pvt()">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>

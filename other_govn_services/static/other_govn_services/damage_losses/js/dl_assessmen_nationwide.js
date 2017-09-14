@@ -29,10 +29,12 @@ app.controller("dlNationwideController", function ($scope,$http, _) {
         var tot_damages = 0;
         angular.forEach($scope.dlNationwideSys.other_govn_services.Table_5[type], function(values, keys, index) {
             angular.forEach(values, function(value, key, index) {
-                if(key == 'DlagdDmgNational') {
-                    angular.forEach(value, function(value_in, index_in) {
-                        tot_damages = tot_damages + parseFloat(value_in.damages);
-                    })
+                if(value.length > 0) {
+                    if(key == 'DlagdDmgNational') {
+                        angular.forEach(value, function(value_in, index_in) {
+                            tot_damages = tot_damages + parseFloat(value_in.damages);
+                        })
+                    }
                 }
             })
         })
@@ -43,10 +45,12 @@ app.controller("dlNationwideController", function ($scope,$http, _) {
         var los_year1 = 0;
         angular.forEach($scope.dlNationwideSys.other_govn_services.Table_5[type], function(values, keys, index) {
             angular.forEach(values, function(value, key, index) {
-                if(key == 'DlagdLossesNational') {
-                    angular.forEach(value, function(value_in, index_in) {
-                        los_year1 = los_year1 + parseFloat(value_in.los_year1);
-                    })
+                if(value.length > 0) {
+                    if(key == 'DlagdLossesNational') {
+                        angular.forEach(value, function(value_in, index_in) {
+                            los_year1 = los_year1 + parseFloat(value_in.los_year1);
+                        })
+                    }
                 }
             })
         })
@@ -57,10 +61,12 @@ app.controller("dlNationwideController", function ($scope,$http, _) {
         var los_year2 = 0;
         angular.forEach($scope.dlNationwideSys.other_govn_services.Table_5[type], function(values, keys, index) {
             angular.forEach(values, function(value, key, index) {
-                if(key == 'DlagdLossesNational') {
-                    angular.forEach(value, function(value_in, index_in) {
-                        los_year2 = los_year2 + parseFloat(value_in.los_year2);
-                    })
+                if(value.length > 0) {
+                    if(key == 'DlagdLossesNational') {
+                        angular.forEach(value, function(value_in, index_in) {
+                            los_year2 = los_year2 + parseFloat(value_in.los_year2);
+                        })
+                    }
                 }
             })
         })
@@ -72,10 +78,12 @@ app.controller("dlNationwideController", function ($scope,$http, _) {
         angular.forEach($scope.dlNationwideSys.other_govn_services.Table_5, function(dists, keys, index) {
             angular.forEach(dists, function(govn, index) {
                 angular.forEach(govn, function(value, key, index) {
-                    if(key == 'DlagdDmgNational') {
-                        angular.forEach(value, function(value_in, index_in) {
-                            tot_damages = tot_damages + parseFloat(value_in.damages);
-                        })
+                    if(value.length > 0) {
+                        if(key == 'DlagdDmgNational') {
+                            angular.forEach(value, function(value_in, index_in) {
+                                tot_damages = tot_damages + parseFloat(value_in.damages);
+                            })
+                        }
                     }
                 })
             })
@@ -88,10 +96,12 @@ app.controller("dlNationwideController", function ($scope,$http, _) {
         angular.forEach($scope.dlNationwideSys.other_govn_services.Table_5, function(dists, keys, index) {
             angular.forEach(dists, function(govn, index) {
                 angular.forEach(govn, function(value, key, index) {
-                    if(key == 'DlagdLossesNational') {
-                        angular.forEach(value, function(value_in, index_in) {
-                            los_year1 = los_year1 + parseFloat(value_in.los_year1);
-                        })
+                    if(value.length > 0) {
+                        if(key == 'DlagdLossesNational') {
+                            angular.forEach(value, function(value_in, index_in) {
+                                los_year1 = los_year1 + parseFloat(value_in.los_year1);
+                            })
+                        }
                     }
                 })
             })
@@ -104,10 +114,12 @@ app.controller("dlNationwideController", function ($scope,$http, _) {
         angular.forEach($scope.dlNationwideSys.other_govn_services.Table_5, function(dists, keys, index) {
             angular.forEach(dists, function(govn, index) {
                 angular.forEach(govn, function(value, key, index) {
-                    if(key == 'DlagdLossesNational') {
-                        angular.forEach(value, function(value_in, index_in) {
-                            los_year2 = los_year2 + parseFloat(value_in.los_year2);
-                        })
+                    if(value.length > 0) {
+                        if(key == 'DlagdLossesNational') {
+                            angular.forEach(value, function(value_in, index_in) {
+                                los_year2 = los_year2 + parseFloat(value_in.los_year2);
+                            })
+                        }
                     }
                 })
             })

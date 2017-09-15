@@ -134,6 +134,7 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
+//                $timeout(function() { $scope.displayErrorMsg = false;}, 3000);
                 if (response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;

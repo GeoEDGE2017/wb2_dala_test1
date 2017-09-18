@@ -311,7 +311,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
     $scope.dlAirTrnspotation = angular.copy(init_data);
 
     //fetch incident districts
-    $scope.changedValue = function getBsData(selectedValue) {
+    $scope.changedValue = function(selectedValue) {
         if($scope.incident && selectedValue) {
             $http({
                 method: "POST",
@@ -413,7 +413,6 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
             var particular_value_3 = null;
             var particular_value_4 = null;
 
-
             if(model_name == 'BsAstAirAircrafts') {
                dl_model1 = 'DlAirDmgAircrafts';
                particular_value_1 = 'Total';
@@ -504,7 +503,6 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
                     tot_pub : null,
                 };
 
-
                 if(model_name == 'BsAstAirAircrafts') {
                    $scope.dlAirTrnspotation.transport_air.Table_2[dl_model1].push(obj1);
                 }
@@ -523,11 +521,9 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
                 $scope.dlAirTrnspotation.transport_air.Table_2[dl_model1].push(obj1);
             }
             if(model_name == 'BsAstAirEquipment') {
-
                 $scope.dlAirTrnspotation.transport_air.Table_2[dl_model2].push(obj2);
             }
             if(model_name == 'BsAstAirSupplies') {
-
                 $scope.dlAirTrnspotation.transport_air.Table_2[dl_model3].push(obj3);
             }
             if(model_name == 'BsAstAirStructures') {
@@ -723,7 +719,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
         return grantot;
     }
 
-    $scope.calculatePubStrucTotal=function(arr) {
+    $scope.calculatePubStrucTotal = function(arr) {
         var finaltotal = 0;
         angular.forEach(arr, function(value, key) {
             if(value.assets !='Total' && value.assets!='TOTAL DAMAGES'){

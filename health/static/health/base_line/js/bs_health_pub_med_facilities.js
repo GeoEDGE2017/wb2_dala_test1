@@ -228,7 +228,8 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 					}
 				})
             }
-		}
+            }
+
 		//Cancel Edit
 	$scope.cancelEdit = function() {
 			location.reload();
@@ -243,4 +244,6 @@ app.controller("BsPubMedicalFacilitiesController", ['$scope', '$http', function(
 		location.reload();
 		$scope.bsDataMedicalFacilities = angular.copy(init_data);
 	}
+
+
 }])

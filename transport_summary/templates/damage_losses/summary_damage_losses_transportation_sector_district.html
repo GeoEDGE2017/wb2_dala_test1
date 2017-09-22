@@ -60,13 +60,10 @@
                         </td>
                         <td colspan="3" width="504" height="17">
                             <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
+                                    class="form-control" ng-change="getDistrict()" style="width:100%;font-weight:400;" required>
                                 <option value="" selected="true">Select an Incident</option>
                                 {% for incident in incidents %}
                                     <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
                                         {{incident.incident_name}}
                                     </option>
                                 {% endfor %}
@@ -78,12 +75,11 @@
                         <td colspan="3" width="504" height="17">
                             <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;"
-                                    class="form-control" required>
-                                <option value="" selected>Select district</option>
+                                    class="form-control" ng-change="loadData(form_sum_dl_trnspt_district);" required>
+                                <option value="" selected>
+                                    Select district
+                                </option>
                             </select>
-                        </td>
-                        <td >
-                            <button type="submit" class="btn btn-success" ng-click="loadData(form_sum_dl_trnspt_district)">Load</button>
                         </td>
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
@@ -148,81 +144,81 @@
                         <td class="tdpa" width="197" height="17">
                             Land Transportation
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlGacPubProvince[0].damages">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_land.Table_8.DlGacPubProvince[0].damages">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlGacPvtProvince[0].damages">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_land.Table_8.DlGacPvtProvince[0].tot_damages_pvt">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_1">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_1">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_1_pvt">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_2">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_2">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub">
-                        </td>
-                        <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlGacPubProvince[0].damages +
-                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
-                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_2">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_2_pub">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
-                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlGacPubProvince[0].damages,
+                                     dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_1,
+                                     dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_2)">
+                        </td>
+                        <td class="right" width="63" height="17"
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlGacPvtProvince[0].tot_damages_pvt,
+                                     dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_2_pub)">
                         </td>
                     </tr>
                     <tr height="17">
                         <td class="tdpa" width="197" height="17">
                             Air Transportation
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPubProvince[0].tot_destroyed_pub">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPvtProvince[0].tot_destroyed_pvt">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pub">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pvt">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pub">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt">
-                        </td>
-                        <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pvt">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPubProvince[0].tot_destroyed_pub,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pub,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pub)">
+                        </td>
+                        <td class="right" width="63" height="17"
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPvtProvince[0].tot_destroyed_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pvt)">
                         </td>
                     </tr>
                     <tr height="17">
                         <td class="tdpa" width="197" height="17">
                             Water Transportation
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPubProvince[0].tot_dmg_public">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPvtProvince[0].tot_dmg_private">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pub">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pvt">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pub">
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt">
-                        </td>
-                        <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pvt">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPubProvince[0].tot_dmg_public,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pub)">
+                        </td>
+                        <td class="right" width="63" height="17"
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPvtProvince[0].tot_dmg_private,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pvt)">
                         </td>
                     </tr>
                     <tr height="17">
@@ -230,7 +226,7 @@
                         <td class="tdpa" width="197" height="17">
                             Rail Transportation
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.TotDmgProvince[0].tot_damages">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_rail.Table_3.TotDmgProvince[0].tot_damages">
                         </td>
                         <td  class="tdpa" width="63" height="17">
                             <br/>
@@ -247,7 +243,7 @@
                         <td class="tdpa" width="63" height="17">
                             <br/>
                         </td>
-                        <td class="right" width="63" height="17" ng-bind="data.transport_summary.Table_1.TotDmgProvince[0].tot_damages">
+                        <td class="right" width="63" height="17" ng-bind="dlSumTrnsptDst.transport_rail.Table_3.TotDmgProvince[0].tot_damages">
                         </td>
                         <td class="tdpa" width="63" height="17">
                             <br/>
@@ -258,58 +254,58 @@
                             GRAND TOTAL
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlGacPubProvince[0].damages +
-                                     data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
-                                     data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
-                                     data.transport_summary.Table_1.TotDmgProvince[0].tot_damages">
+                            ng-bind="sumFunc4(dlSumTrnsptDst.transport_land.Table_8.DlGacPubProvince[0].damages,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPubProvince[0].tot_destroyed_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPubProvince[0].tot_dmg_public,
+                                     dlSumTrnsptDst.transport_rail.Table_3.TotDmgProvince[0].tot_damages)">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
-                                     data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
-                                     data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlGacPvtProvince[0].tot_damages_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPvtProvince[0].tot_destroyed_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPvtProvince[0].tot_dmg_private)">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_1,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pub)">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pvt)">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlYearsPubProvince[0].year_2 +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_2,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pub)">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pvt)">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="(data.transport_summary.Table_1.DlGacPubProvince[0].damages +
-                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
-                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_2) +
-                                     (data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub)+
-                                     (data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub)+
-                                     (data.transport_summary.Table_1.TotDmgProvince[0].tot_damages)">
+                            ng-bind="sumFunc4(dlSumTrnsptDst.transport_land.Table_8.DlGacPubProvince[0].damages,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPubProvince[0].tot_destroyed_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPubProvince[0].tot_dmg_public,
+                                     dlSumTrnsptDst.transport_rail.Table_3.TotDmgProvince[0].tot_damages) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_1,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pub) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_2,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pub)">
                         </td>
                         <td class="right" width="63" height="17"
-                            ng-bind="(data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
-                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub) +
-                                     (data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt) +
-                                     (data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt)">
+                            ng-bind="sumFunc4(dlSumTrnsptDst.transport_land.Table_8.DlGacPvtProvince[0].tot_damages_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPvtProvince[0].tot_destroyed_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPvtProvince[0].tot_dmg_private) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pvt) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pvt)">
                         </td>
                     </tr>
                     <tr class="trheadc1" height="17">
@@ -331,74 +327,60 @@
                     </tr>
                     <tr height="17">
                         <td class="right" colspan="2" width="126" height="17"
-                            ng-bind="(data.transport_summary.Table_1.DlGacPubProvince[0].damages +
-                                     data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
-                                     data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
-                                     data.transport_summary.Table_1.TotDmgProvince[0].tot_damages) +
-                                     (data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
-                                     data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
-                                     data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private)">
+                            ng-bind="sumFunc4(dlSumTrnsptDst.transport_land.Table_8.DlGacPubProvince[0].damages,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPubProvince[0].tot_destroyed_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPubProvince[0].tot_dmg_public,
+                                     dlSumTrnsptDst.transport_rail.Table_3.TotDmgProvince[0].tot_damages) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlGacPvtProvince[0].tot_damages_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPvtProvince[0].tot_destroyed_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPvtProvince[0].tot_dmg_private)">
                         </td>
                         <td class="right" colspan="2" width="126" height="17"
-                            ng-bind="(data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub) +
-                                     (data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt)">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_1,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pub) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pvt)">
                         </td>
                         <td class="right" colspan="2" width="126" height="17"
-                            ng-bind="(data.transport_summary.Table_1.DlYearsPubProvince[0].year_2 +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub) +
-                                     (data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt)">
+                            ng-bind="sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_2,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pub) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pvt)">
                         </td>
                         <td class="right" colspan="2" width="126" height="17"
-                            ng-bind="((data.transport_summary.Table_1.DlGacPubProvince[0].damages +
-                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_1 +
-                                     data.transport_summary.Table_1.DlYearsPubProvince[0].year_2) +
-                                     (data.transport_summary.Table_1.DlAirDmgPubProvince[0].tot_destroyed_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pub)+
-                                     (data.transport_summary.Table_1.DlWaterDmgPubProvince[0].tot_dmg_public +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pub +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pub)+
-                                     (data.transport_summary.Table_1.TotDmgProvince[0].tot_damages)) +
-                                     ((data.transport_summary.Table_1.DlGacPvtProvince[0].damages +
-                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlOtherLosPvtDistrict[0].year_2_pub) +
-                                     (data.transport_summary.Table_1.DlAirDmgPvtProvince[0].tot_destroyed_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlAirLosProvince[0].year_2_pvt) +
-                                     (data.transport_summary.Table_1.DlWaterDmgPvtProvince[0].tot_dmg_private +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_1_pvt +
-                                     data.transport_summary.Table_1.DlWaterLosProvince[0].year_2_pvt))">
+                            ng-bind="sumFunc4(dlSumTrnsptDst.transport_land.Table_8.DlGacPubProvince[0].damages,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPubProvince[0].tot_destroyed_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPubProvince[0].tot_dmg_public,
+                                     dlSumTrnsptDst.transport_rail.Table_3.TotDmgProvince[0].tot_damages) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_1,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pub) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlYearsPubProvince[0].year_2,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pub) +
+                                     sumFunc4(dlSumTrnsptDst.transport_land.Table_8.DlGacPvtProvince[0].tot_damages_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirDmgPvtProvince[0].tot_destroyed_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterDmgPvtProvince[0].tot_dmg_private) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_1_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_1_pvt) +
+                                     sumFunc3(dlSumTrnsptDst.transport_land.Table_8.DlOtherLosPvtDistrict[0].year_2_pub,
+                                     dlSumTrnsptDst.transport_air.Table_4.DlAirLosProvince[0].year_2_pvt,
+                                     dlSumTrnsptDst.transport_water.Table_4.DlWaterLosProvince[0].year_2_pvt)">
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
-
                 <div class="pull-right">
                     <br>
-                    
                 </div>
-
-
             </div>
-
-
             <br><br><br>
-
         </div>
-
-
-    </div>
-    </div>
-
-
     </div>
     <!-- add model -->
     <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
@@ -406,7 +388,6 @@
         <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
@@ -419,15 +400,12 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="textinput">Name</label>
                         <div class="col-md-10">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-
+                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -436,9 +414,7 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- edit model -->
     <div class="modal fade" id="modal-container-218028" role="dialog" style="width:50%;margin:0 auto;"
@@ -446,7 +422,6 @@
         <div class="modal-dialog" style="width:50%;">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
@@ -459,15 +434,12 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="textinput">Name</label>
                         <div class="col-md-10">
-                            <input id="textinput" name="textinput" type="text" placeholder=""
-                                   class="form-control input-md">
-
+                            <input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class="modal-footer">
-
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         Close
                     </button>
@@ -476,12 +448,8 @@
                     </button>
                 </div>
             </div>
-
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
 </main>
-
-
 {% endblock content %}

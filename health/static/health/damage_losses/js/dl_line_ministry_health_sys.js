@@ -475,7 +475,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-//                        'user_id': $scope.user_id,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),

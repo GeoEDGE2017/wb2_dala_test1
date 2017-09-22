@@ -280,7 +280,7 @@ def bs_save_data(request):
                     bs_full_date = datetime.date(int(bs_year), int(bs_month), 1)
 
                     bd_session = sub_app_session(bs_date=com_data['bs_date'], table_name=interface_table,
-                                               date=todate, district_id=district, data_type='base_line',
+                                               date=todate, district_id=district, user=current_user, data_type='base_line',
                                                full_bs_date=bs_full_date)
                     bd_session.save()
 
@@ -920,8 +920,10 @@ def dl_save_data(request):
 
     filter_fields = {}
     current_user = None
+    print 'com_data', com_data
     try:
         current_user = com_data['user_id']
+
         print 'Current User', current_user
     except Exception as e:
         print 'Current User Error'
@@ -978,13 +980,17 @@ def dl_save_data(request):
                     if 'district_id' in com_data:
                         district = District.objects.get(pk=com_data['district_id'])
                         filter_fields['province_id'] = district.province.id
+                        filter_fields['user'] = current_user
                         dl_session = sub_app_session(**filter_fields)
+                        print '=== filter_fields', filter_fields
                         dl_session.date = todate
-                        dl_session.data_type = 'damage_losses'
+                        # dl_session.user = current_user
+                        dl_session.data_type = 'damage_losses*'
                         dl_session.save()
                     else:
                         dl_session = sub_app_session(**filter_fields)
                         dl_session.date = todate
+                        dl_session.user = current_user
                         dl_session.save()
 
                     return HttpResponse(True)
@@ -1109,11 +1115,13 @@ def dl_save_data_with_array(request):
                     if 'district_id' in com_data:
                         district = District.objects.get(pk=com_data['district_id'])
                         filter_fields['province_id'] = district.province.id
+                        filter_fields['user'] = current_user
                         dl_session = sub_app_session(**filter_fields)
                         dl_session.date = todate
                         dl_session.data_type = 'damage_losses'
                         dl_session.save()
                     else:
+                        filter_fields['user'] = current_user
                         dl_session = sub_app_session(**filter_fields)
                         dl_session.date = todate
                         dl_session.save()

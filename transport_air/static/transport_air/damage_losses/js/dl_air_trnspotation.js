@@ -737,4 +737,5 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
 		$scope.dlAirTrnspotation = angular.copy(init_data);
 		location.reload();
 	}
+
 }]);

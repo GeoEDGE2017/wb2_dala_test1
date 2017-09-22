@@ -130,7 +130,7 @@ app.controller('HousingChartController',function($scope,$http,$parse, _) {
         return sum;
     }
 
-    $scope.printDiv = function() {
+    $scope.printDiv = function(){
         window.print();
     }
 

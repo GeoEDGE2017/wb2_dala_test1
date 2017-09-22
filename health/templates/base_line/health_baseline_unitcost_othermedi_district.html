@@ -1,527 +1,303 @@
 {% extends "dashboard/base.html" %} {% load static %} {% block content %}
 <script>
-    $(document).ready(function() {
-
-        var nicesx = $("#boxscroll1").niceScroll({
-            touchbehavior: false,
-            cursorcolor: "#4679B2",
-            cursoropacitymax: 0.6,
-            cursorwidth: 8
-        });
-        var nicesx = $("#boxscroll2").niceScroll({
-            touchbehavior: false,
-            cursorcolor: "#4679B2",
-            cursoropacitymax: 0.6,
-            cursorwidth: 8
-        });
-    });
-
+$(document).ready(function() {
+	var nicesx = $("#boxscroll1").niceScroll({
+		touchbehavior: false,
+		cursorcolor: "#4679B2",
+		cursoropacitymax: 0.6,
+		cursorwidth: 8
+	});
+	var nicesx = $("#boxscroll2").niceScroll({
+		touchbehavior: false,
+		cursorcolor: "#4679B2",
+		cursoropacitymax: 0.6,
+		cursorwidth: 8
+	});
+});
 </script>
 <main class="main" ng-app="bsOtherMedFaciUnitCostApp" ng-controller="BsOtherMedFaciUnitCostController">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:health_main' %}">Health</a>
-        </li>
-
-        <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">
+	<!-- Breadcrumb -->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:health_main' %}">Health</a> </li>
+		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
                 Table 4: Baseline Information of Unit Cost of Other Medical Facilities in a District
-            </span>
-        </li>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank"
-               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
-               title="Veiw Document"></a>
-        </li>
-    </ol>
-    <div class="container-fluid">
-        <div>
-            <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Average Replacement Cost</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 - Average Repair Cost</a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content" ng-form name="form_health_baseline_unitcost_othermedi_district">
-                <div class="tab-pane active" id="step1">
-                    <span style="color:red"
-                          ng-show="submitted && form_health_baseline_unitcost_othermedi_district.$error.required">
+            </span> </li>
+		<li style="float:right;">
+			<a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+		</li>
+	</ol>
+	<div class="container-fluid">
+		<div>
+			<ul class='nav nav-wizard'>
+				<li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Average Replacement Cost</a></li>
+				<li id="li2"><a href='#step2' data-toggle="tab">2 - Average Repair Cost</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content" ng-form name="form_health_baseline_unitcost_othermedi_district">
+				<div class="tab-pane active" id="step1"> <span style="color:red" ng-show="submitted && form_health_baseline_unitcost_othermedi_district.$error.required">
                                        Please fill all required fields
-                    </span>
-                    <span style="color:red" ng-show="!is_valid_data">
+                    </span> <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                    <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
-                        <colgroup>
-                            <col width="264"/>
-                            <col width="98" span="7"/>
-                        </colgroup>
-                        <tbody>
-                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                    <span class="arrow_box"
-                                          ng-show="submitted && form_health_baseline_unitcost_othermedi_district.district.$error.required">
+					<table class="table table-bordered" style="width:100%;background:#E4E5E6;">
+						<colgroup>
+							<col width="264" />
+							<col width="98" span="7" /> </colgroup>
+						<tbody>
+							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+								<td style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_health_baseline_unitcost_othermedi_district.district.$error.required">
                                 Please Select District
-                                </span>
-                            </td>
-                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box"
-                                      ng-show="submitted && form_health_baseline_unitcost_othermedi_district.baselineDate.$error.required">
+                                </span> </td>
+								<td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_health_baseline_unitcost_othermedi_district.baselineDate.$error.required">
                                     Please Select Date
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="trhead1">
-                            <td style="padding-left:5px;"> Name of District:</td>
-                            <td colspan="2" style="">
-                                <!--Binding Districts to dropdown-->
-                                <select id="selectbasic" name="district" ng-change="changeDis();" ng-model='district'
-                                        class="form-control"
-                                        style="font-weight:400;" required>
-                                    <option value="" selected="true">Select a District</option>
-                                    {% for district in districts %}
-                                    <option value={{district.id}}>{{district.name}} {% endfor %}
-                                </select>
-                            </td>
-                            <td colspan="2" style="padding-left:5px;">
-                                Year/Month:
-                            </td>
-                            <td colspan="2" style="font-weight:normal;">
-                                <input name="baselineDate" type="text" ng-change="changeDis();" placeholder="mm/yyyy"
-                                       id="datepicker"
-                                       class="form-control input-md" ng-model="baselineDate" required>
-                            </td>
-                             <td><button ng-click="editBsData(form_health_baseline_unitcost_othermedi_district)" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
-                            </td>
-                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                        </tr>
-                        <tr height="20" class="trhead1">
-                            <td rowspan="3" width="264" height="70" style="padding-left:5px;">
-                                Particulars
-                            </td>
-                            <td colspan="7" width="686" style="text-align:center;">
-                                Types of Medical Facilities
-                            </td>
-                        </tr>
-                        <tr height="30" class="trsubc">
-                            <td rowspan="2" width="98" height="50">
-                                Base Hospital
-                            </td>
-                            <td rowspan="2" width="98">
-                                Divisional Hospital
-                            </td>
-                            <td rowspan="2" width="98">
-                                Rural Hospital
-                            </td>
-                            <td rowspan="2" width="98">
-                                Central Dispensary
-                            </td>
-                            <td rowspan="2" width="98">
-                                Primary Medical Care Units
-                            </td>
-                            <td rowspan="2" width="98">
-                                Primary Health Care Centers
-                            </td>
-                            <td rowspan="2" width="98">
-                                Maternal and Child Health Clinics
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div id="boxscroll1" style="height:400px;overflow:auto;">
-                        <table class="table table-bordered">
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Structure (LKR/sqm)
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarStructure in bsDataOtherMedicalFacilities.health.Table_4.BucOmarStructure"
-                                ng-if="$index < 3" height="20">
-                                <td ng-bind="bucOmarStructure.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarStructure.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarStructure.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarStructure.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarStructure.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarStructure.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarStructure.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarStructure.mat_child_health_clinics"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Set of Supplies (LKR/Unit)
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarSupplies in bsDataOtherMedicalFacilities.health.Table_4.BucOmarSupplies"
-                                ng-if="$index < 3" height="20">
-                                <td ng-bind="bucOmarSupplies.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarSupplies.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarSupplies.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarSupplies.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarSupplies.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarSupplies.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarSupplies.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarSupplies.mat_child_health_clinics"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Medical Equipment (LKR/Unit)
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarMequipment in bsDataOtherMedicalFacilities.health.Table_4.BucOmarMequipment"
-                                ng-if="$index < 4" height="20">
-                                <td ng-bind="bucOmarMequipment.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarMequipment.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarMequipment.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarMequipment.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarMequipment.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarMequipment.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarMequipment.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarMequipment.mat_child_health_clinics"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Other Assets (LKR/Unit)
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarOassets in bsDataOtherMedicalFacilities.health.Table_4.BucOmarOassets"
-                                ng-if="$index < 5" height="20">
-                                <td ng-bind="bucOmarOassets.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarOassets.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarOassets.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarOassets.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarOassets.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarOassets.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarOassets.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarOassets.mat_child_health_clinics" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                        <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                                </span> </td>
+							</tr>
+							<tr class="trhead1">
+								<td style="padding-left:5px;"> Name of District:</td>
+								<td colspan="2" style="">
+									<select id="selectbasic" name="district" ng-change="changeDis();" ng-model='district' class="form-control" style="font-weight:400;" required>
+										<option value="" selected="true">Select a District</option> {% for district in districts %}
+										<option value={{district.id}}>{{district.name}} {% endfor %} </select>
+								</td>
+								<td colspan="2" style="padding-left:5px;"> Year/Month: </td>
+								<td colspan="2" style="font-weight:normal;">
+									<input name="baselineDate" type="text" ng-change="changeDis();" placeholder="mm/yyyy" id="datepicker" class="form-control input-md" ng-model="baselineDate" required> </td>
+								<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-block btn-info" disabled><span class="fa fa-search"></span></button>
+									</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_health_baseline_unitcost_othermedi_district)" ng-if="!is_search" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-block btn-warning">Cancel Search</button>
+								</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							<tr height="20" class="trhead1">
+								<td rowspan="3" width="264" height="70" style="padding-left:5px;"> Particulars </td>
+								<td colspan="7" width="686" style="text-align:center;"> Types of Medical Facilities </td>
+							</tr>
+							<tr height="30" class="trsubc">
+								<td rowspan="2" width="98" height="50"> Base Hospital </td>
+								<td rowspan="2" width="98"> Divisional Hospital </td>
+								<td rowspan="2" width="98"> Rural Hospital </td>
+								<td rowspan="2" width="98"> Central Dispensary </td>
+								<td rowspan="2" width="98"> Primary Medical Care Units </td>
+								<td rowspan="2" width="98"> Primary Health Care Centers </td>
+								<td rowspan="2" width="98"> Maternal and Child Health Clinics </td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="boxscroll1" style="height:400px;overflow:auto;">
+						<table class="table table-bordered">
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Structure (LKR/sqm) </td>
+							</tr>
+							<tr ng-repeat="bucOmarStructure in bsDataOtherMedicalFacilities.health.Table_4.BucOmarStructure" ng-if="$index < 3" height="20">
+								<td ng-bind="bucOmarStructure.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarStructure.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarStructure.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarStructure.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarStructure.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarStructure.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarStructure.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarStructure.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Set of Supplies (LKR/Unit) </td>
+							</tr>
+							<tr ng-repeat="bucOmarSupplies in bsDataOtherMedicalFacilities.health.Table_4.BucOmarSupplies" ng-if="$index < 3" height="20">
+								<td ng-bind="bucOmarSupplies.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarSupplies.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarSupplies.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarSupplies.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarSupplies.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarSupplies.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarSupplies.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarSupplies.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Medical Equipment (LKR/Unit) </td>
+							</tr>
+							<tr ng-repeat="bucOmarMequipment in bsDataOtherMedicalFacilities.health.Table_4.BucOmarMequipment" ng-if="$index < 4" height="20">
+								<td ng-bind="bucOmarMequipment.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarMequipment.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarMequipment.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarMequipment.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarMequipment.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarMequipment.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarMequipment.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarMequipment.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Other Assets (LKR/Unit) </td>
+							</tr>
+							<tr ng-repeat="bucOmarOassets in bsDataOtherMedicalFacilities.health.Table_4.BucOmarOassets" ng-if="$index < 5" height="20">
+								<td ng-bind="bucOmarOassets.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarOassets.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarOassets.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarOassets.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarOassets.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarOassets.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarOassets.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarOassets.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							</tbody>
+						</table>
+						<br> <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                                 class="glyphicon glyphicon-arrow-right"></span> Fill Average Repair Cost
-                            Informations</a>
-                    </div>
-                </div>
-                <div class="tab-pane" id="step2">
-                    <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
-                        <colgroup>
-                            <col width="264"/>
-                            <col width="98" span="7"/>
-                        </colgroup>
-                        <tbody>
-                        <tr height="20" class="trhead1">
-                            <td rowspan="3" width="264" height="70" style="padding-left:5px;">
-                                Particulars
-                            </td>
-                            <td colspan="7" width="686" style="text-align:center;">
-                                Types of Medical Facilities
-                            </td>
-                        </tr>
-                        <tr height="30" class="trsubc">
-                            <td rowspan="2" width="98" height="50">
-                                Base Hospital
-                            </td>
-                            <td rowspan="2" width="98">
-                                Divisional Hospital
-                            </td>
-                            <td rowspan="2" width="98">
-                                Rural Hospital
-                            </td>
-                            <td rowspan="2" width="98">
-                                Central Dispensary
-                            </td>
-                            <td rowspan="2" width="98">
-                                Primary Medical Care Units
-                            </td>
-                            <td rowspan="2" width="98">
-                                Primary Health Care Centers
-                            </td>
-                            <td rowspan="2" width="98">
-                                Maternal and Child Health Clinics
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div id="boxscroll2" style="height:400px;overflow:auto;">
-                        <table class="table table-bordered">
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Structure (LKR/sqm)
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarcStructure in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcStructure"
-                                ng-if="$index < 3" height="20">
-                                <td ng-bind="bucOmarcStructure.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcStructure.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcStructure.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcStructure.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcStructure.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcStructure.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcStructure.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcStructure.mat_child_health_clinics"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Medical Equipment (LKR/Unit)
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarcMequipment in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcMequipment"
-                                ng-if="$index < 4" height="20">
-                                <td ng-bind="bucOmarcMequipment.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcMequipment.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcMequipment.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcMequipment.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcMequipment.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcMequipment.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcMequipment.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcMequipment.mat_child_health_clinics"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Other Assets (LKR/Unit)
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarcOassets in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcOassets"
-                                ng-if="$index < 5" height="20">
-                                <td ng-bind="bucOmarcOassets.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcOassets.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcOassets.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcOassets.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcOassets.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcOassets.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcOassets.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcOassets.mat_child_health_clinics"
-                                           name="textinput" type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td colspan="8" width="950" height="20">
-                                    Construction/ Repair Period in Months
-                                </td>
-                            </tr>
-                            <tr ng-repeat="bucOmarcCrpm in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcCrpm"
-                                ng-if="$index < 5" height="20">
-                                <td ng-bind="bucOmarcCrpm.particulars" width="264" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcCrpm.base_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcCrpm.divisional_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcCrpm.rural_hospital" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcCrpm.central_dispensary" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcCrpm.pri_med_cunits" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcCrpm.pri_health_ccenters" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                                <td width="98">
-                                    <input id="text" ng-model="bucOmarcCrpm.mat_child_health_clinics" name="textinput"
-                                           type="number" placeholder="" class="form-control input-md">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="pull-right">
-                            <br>
-                            <button type="button" ng-click="clear()" class="btn btn-info">
-                                Clear
-                            </button>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                                Edit
-                            </button>
-                            <span ng-if="is_edit_disable">
-                                <button type="button" ng-click="editBsData(form_health_baseline_unitcost_othermedi_district)"
+                            Informations</a> </div>
+				</div>
+				<div class="tab-pane" id="step2">
+					<table class="table table-bordered" style="width:100%;background:#E4E5E6;">
+						<colgroup>
+							<col width="264" />
+							<col width="98" span="7" /> </colgroup>
+						<tbody>
+							<tr height="20" class="trhead1">
+								<td rowspan="3" width="264" height="70" style="padding-left:5px;"> Particulars </td>
+								<td colspan="7" width="686" style="text-align:center;"> Types of Medical Facilities </td>
+							</tr>
+							<tr height="30" class="trsubc">
+								<td rowspan="2" width="98" height="50"> Base Hospital </td>
+								<td rowspan="2" width="98"> Divisional Hospital </td>
+								<td rowspan="2" width="98"> Rural Hospital </td>
+								<td rowspan="2" width="98"> Central Dispensary </td>
+								<td rowspan="2" width="98"> Primary Medical Care Units </td>
+								<td rowspan="2" width="98"> Primary Health Care Centers </td>
+								<td rowspan="2" width="98"> Maternal and Child Health Clinics </td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="boxscroll2" style="height:400px;overflow:auto;">
+						<table class="table table-bordered">
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Structure (LKR/sqm) </td>
+							</tr>
+							<tr ng-repeat="bucOmarcStructure in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcStructure" ng-if="$index < 3" height="20">
+								<td ng-bind="bucOmarcStructure.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcStructure.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcStructure.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcStructure.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcStructure.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcStructure.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcStructure.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcStructure.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Medical Equipment (LKR/Unit) </td>
+							</tr>
+							<tr ng-repeat="bucOmarcMequipment in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcMequipment" ng-if="$index < 4" height="20">
+								<td ng-bind="bucOmarcMequipment.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcMequipment.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcMequipment.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcMequipment.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcMequipment.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcMequipment.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcMequipment.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcMequipment.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Other Assets (LKR/Unit) </td>
+							</tr>
+							<tr ng-repeat="bucOmarcOassets in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcOassets" ng-if="$index < 5" height="20">
+								<td ng-bind="bucOmarcOassets.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcOassets.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcOassets.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcOassets.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcOassets.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcOassets.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcOassets.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcOassets.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr height="20" class="trheadc">
+								<td colspan="8" width="950" height="20"> Construction/ Repair Period in Months </td>
+							</tr>
+							<tr ng-repeat="bucOmarcCrpm in bsDataOtherMedicalFacilities.health.Table_4.BucOmarcCrpm" ng-if="$index < 5" height="20">
+								<td ng-bind="bucOmarcCrpm.particulars" width="264" height="20" class="tdpa"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcCrpm.base_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcCrpm.divisional_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcCrpm.rural_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcCrpm.central_dispensary" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcCrpm.pri_med_cunits" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcCrpm.pri_health_ccenters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="98">
+									<input id="text" ng-model="bucOmarcCrpm.mat_child_health_clinics" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							</tbody>
+						</table>
+						<div class="pull-right">
+							<br>
+							<button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info"> Clear </button>
+							<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit </button> <span ng-if="is_edit_disable">
+                                <button id="editbtn"type="button" ng-click="editBsData(form_health_baseline_unitcost_othermedi_district)"
                                     ng-if="!is_edit" class="btn btn-success">
                                     Edit
                                 </button>
-                            </span>
-                            <span ng-if="!is_edit_disable">
-                                <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            </span> <span ng-if="!is_edit_disable">
+                                <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                                     Edit
                                 </button>
                             </span>
-                            <button type="button"
-                                    ng-click="saveBsData(form_health_baseline_unitcost_othermedi_district)"
-                                    class="btn btn-success">Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-    </div>
-    <!-- /.conainer-fluid -->
+							<button id="subbtn" type="button" ng-click="saveBsData(form_health_baseline_unitcost_othermedi_district)" class="btn btn-success">Submit </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br> </div>
 </main>
 {% endblock content %}

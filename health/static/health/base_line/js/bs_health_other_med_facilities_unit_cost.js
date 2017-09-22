@@ -10,6 +10,8 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
     $scope.user_id;
     $scope.is_edit_disable = false;
     $scope.is_submit = false;
+    $scope.is_search = false;
+    $scope.check_search = false;
 
     //initialize model
     var init_data = {
@@ -290,13 +292,15 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
 
     $scope.bsDataOtherMedicalFacilities = angular.copy(init_data);
 
-     //disable Edit Button
+    //disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.baselineDate){
+        if ($scope.district && $scope.baselineDate) {
             $scope.is_edit_disable = true;
-        }
-        else{
+            $scope.check_search = true;
+
+        } else {
             $scope.is_edit_disable = false;
+            $scope.check_search = false;
         }
     }
 
@@ -320,15 +324,14 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-//                $scope.bsDataOtherMedicalFacilities = init_data;
-//                $scope.is_edit = false;
+                //                $scope.bsDataOtherMedicalFacilities = init_data;
+                //                $scope.is_edit = false;
                 console.log(response);
                 console.log(response.data);
                 if (response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
-                }
-                else {
+                } else {
                     $("#modal-container-239453").modal('show');
                 }
             }, function errorCallback(data) {
@@ -340,6 +343,7 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
 
     //Edit Data
     $scope.editBsData = function(form) {
+        document.getElementById("clearbtn").disabled = true;
         $scope.is_edit = true;
         $scope.submitted = true;
         if (form.$valid) {
@@ -358,21 +362,63 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                 console.log(data);
                 console.log(data.health.Table_4);
                 var edit_data_not_found = false;
-                if(data != null) {
+                if (data != null) {
                     angular.forEach(data.health.Table_4, function(value, index) {
                         console.log(value);
-                        if(value.length == 0) {
+                        if (value.length == 0) {
                             edit_data_not_found = true;
                         }
                     })
-                    if(edit_data_not_found != true) {
+                    if (edit_data_not_found != true) {
                         $scope.bsDataOtherMedicalFacilities = data;
-                    }
-                    else {
+                    } else {
                         $("#modal-container-239456").modal('show');
                     }
+                } else {
+                    $("#modal-container-239456").modal('show');
                 }
-                else {
+            })
+        }
+    }
+
+    //Search Data
+    $scope.searchBsData = function(form) {
+        document.getElementById("clearbtn").disabled = true;
+        document.getElementById("editbtn").disabled = true;
+        document.getElementById("subbtn").disabled = true;
+        console.log("test", $scope.district);
+        console.log("test", $scope.bs_date);
+        $scope.is_search = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_4',
+                    'sector': 'health',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                console.log(data.health.Table_4);
+                var edit_data_not_found = false;
+                if (data != null) {
+                    angular.forEach(data.health.Table_4, function(value, index) {
+                        console.log(value);
+                        if (value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if (edit_data_not_found != true) {
+                        $scope.bsDataOtherMedicalFacilities = data;
+                    } else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                } else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -383,12 +429,15 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsDataOtherMedicalFacilities = init_data;
+        location.reload();
     }
 
     //Clear Function
     $scope.clear = function() {
         console.log("clear")
         $scope.is_edit = false;
+        $scope.is_search = false;
+        location.reload();
         $scope.bsDataOtherMedicalFacilities = angular.copy(init_data);
     }
 }])

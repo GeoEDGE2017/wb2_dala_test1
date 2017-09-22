@@ -1,727 +1,416 @@
-{% extends "dashboard/base.html" %}
-{% block content %}
-{% load static %}
+{% extends "dashboard/base.html" %} {% block content %} {% load static %}
 <script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
-  });
+$(document).ready(function() {
+	var nicesx = $("#boxscroll1").niceScroll({
+		touchbehavior: false,
+		cursorcolor: "#4679B2",
+		cursoropacitymax: 0.6,
+		cursorwidth: 8
+	});
+});
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlOthLndAsetsApp" ng-controller="dlOthLndAsetsController">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
-        </li>
-        <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">
+	<!-- Breadcrumb -->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a> </li>
+		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
                 Table 5. Damages and Losses to Other Land Transportation Assets
-            </span>
-        </li>
-        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
-        </li>
-    </ol>
-    <div class="container-fluid" ng-form name="form_dl_oth_lnd_asets">
-        <div>
-            <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content" ng-form name="form_dl_oth_lnd_asets">
-                <div class="tab-pane active" id="step1">
-                
-                <td><button ng-click="dlDataEdit(form_dl_oth_lnd_asets)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
-                    <table class="table table-bordered">
-                        <colgroup>
-                            <col width="156"/>
-                            <col width="63"/>
-                            <col width="120"/>
-                            <col width="99"/>
-                            <col width="145"/>
-                            <col width="148"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                        </colgroup>
-                        <tbody>
-                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box"
-                                      ng-show="submitted && form_dl_oth_lnd_asets.incident.$error.required">
+            </span> </li> <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+		<li style="float:right;">
+			<a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+		</li>
+	</ol>
+	<div class="container-fluid" ng-form name="form_dl_oth_lnd_asets">
+		<div>
+			<ul class='nav nav-wizard'>
+				<li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Damages</a></li>
+				<li id="li2"><a href='#step2' data-toggle="tab">2 Losses </a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content" ng-form name="form_dl_oth_lnd_asets">
+				<div class="tab-pane active" id="step1">
+					<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+						</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_dl_oth_lnd_asets)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+					</td>
+					<table class="table table-bordered">
+						<colgroup>
+							<col width="156" />
+							<col width="63" />
+							<col width="120" />
+							<col width="99" />
+							<col width="145" />
+							<col width="148" />
+							<col width="63" />
+							<col width="63" />
+							<col width="63" />
+							<col width="63" /> </colgroup>
+						<tbody>
+							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+								<td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_oth_lnd_asets.incident.$error.required">
                                     Please select Incident
-                                </span>
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box"
-                                      ng-show="submitted && form_dl_oth_lnd_asets.district.$error.required">
+                                </span> </td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+								<td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_oth_lnd_asets.district.$error.required">
                                     Please select District
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="trhead1" width="156">
-                                Incident
-                            </td>
-                            <td class="trhead1" colspan="4"  width="63">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true)"
-                                        style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td class="trhead1"  width="120">
-                                District
-                            </td>
-                            <td class="trhead1" colspan="4"  width="680">
-                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                        class="form-control" ng-change="changedValue(false)" required>
-                                    <option value="" selected>Select District</option>
-                                </select>
-                            </td>
-                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td colspan="2" height="19" width="312" style="width:27%;">
-                                Type of Land Transportation Vehicles
-                            </td>
-                            <td colspan="2" height="19" width="240">
-                                Number of Totally Destroyed
-                            </td>
-                            <td colspan="2" height="19" width="290">
-                                Number of Partially Damaged
-                            </td>
-                            <td colspan="4" height="19" width="252">
-                                Total Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="19">
-                            <td colspan="2" height="19" width="312" style="width:27.3%;">
-                                <br/>
-                            </td>
-                            <td height="19" width="120" style="width:12%;">
-                                Public
-                            </td>
-                            <td height="19" width="99" style="width:12%;">
-                                Private
-                            </td>
-                            <td height="19" width="145" style="width:12%;">
-                                Public
-                            </td>
-                            <td height="19" width="148" style="width:12%;">
-                                Private
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:12%;">
-                                Public
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:12%;">
-                                Private
-                            </td>
-                        </tr>
-                        </tbody>
-                        </tbody>
-                    </table>
-                    <!--Private Vehicles-->
-                    <div id="boxscroll1" style="height:400px;overflow:auto;">
-                        <table class="table table-bordered">
-                            <tr class="trheadc" height="19">
-                                <td colspan="2" height="19" width="312" style="width:27.3%;">
-                                    Private Vehicles
-                                </td>
-                                <td height="19" width="120" style="width:12%;">
-                                    <br/>
-                                </td>
-                                <td height="19" width="99" style="width:12%;">
-                                    <br/>
-                                </td>
-                                <td height="19" width="145" style="width:12%;">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148" style="width:12%;">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126" style="width:12%;">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126" style="width:12%;">
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsPvehicles in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles"
-                                ng-if="dlOtherDmgsPvehicles.private_vehicles != 'Total'">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsPvehicles.private_vehicles">
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsPvehicles.num_tot_dest_pvt">
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsPvehicles.num_part_dest_pvt">
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsPvehicles.tot_damages_pvt"
-                                    ng-bind="dlOtherDmgsPvehicles.tot_damages_pvt =
+                                </span> </td>
+							</tr>
+							<tr>
+								<td class="trhead1" width="156"> Incident </td>
+								<td class="trhead1" colspan="4" width="63">
+									<select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+										<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
+										<option value={{incident.id}}>
+											<!--{{incident.disaster_type.name}}-->
+											<!--{{incident.reported_date_time}}-->{{incident.incident_name}} </option> {% endfor %} </select>
+								</td>
+								<td class="trhead1" width="120"> District </td>
+								<td class="trhead1" colspan="4" width="680">
+									<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+										<option value="" selected>Select District</option>
+									</select>
+								</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							<tr class="trheadc1" height="19">
+								<td colspan="2" height="19" width="312" style="width:27%;"> Type of Land Transportation Vehicles </td>
+								<td colspan="2" height="19" width="240"> Number of Totally Destroyed </td>
+								<td colspan="2" height="19" width="290"> Number of Partially Damaged </td>
+								<td colspan="4" height="19" width="252"> Total Damages (LKR) </td>
+							</tr>
+							<tr class="trsubc" height="19">
+								<td colspan="2" height="19" width="312" style="width:27.3%;">
+									<br/> </td>
+								<td height="19" width="120" style="width:12%;"> Public </td>
+								<td height="19" width="99" style="width:12%;"> Private </td>
+								<td height="19" width="145" style="width:12%;"> Public </td>
+								<td height="19" width="148" style="width:12%;"> Private </td>
+								<td colspan="2" height="19" width="126" style="width:12%;"> Public </td>
+								<td colspan="2" height="19" width="126" style="width:12%;"> Private </td>
+							</tr>
+						</tbody>
+						</tbody>
+					</table>
+					<!--Private Vehicles-->
+					<div id="boxscroll1" style="height:400px;overflow:auto;">
+						<table class="table table-bordered">
+							<tr class="trheadc" height="19">
+								<td colspan="2" height="19" width="312" style="width:27.3%;"> Private Vehicles </td>
+								<td height="19" width="120" style="width:12%;">
+									<br/> </td>
+								<td height="19" width="99" style="width:12%;">
+									<br/> </td>
+								<td height="19" width="145" style="width:12%;">
+									<br/> </td>
+								<td height="19" width="148" style="width:12%;">
+									<br/> </td>
+								<td colspan="2" height="19" width="126" style="width:12%;">
+									<br/> </td>
+								<td colspan="2" height="19" width="126" style="width:12%;">
+									<br/> </td>
+							</tr>
+							<tr height="19" ng-repeat="dlOtherDmgsPvehicles in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles" ng-if="dlOtherDmgsPvehicles.private_vehicles != 'Total'">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsPvehicles.private_vehicles"> </td>
+								<td class="tdpa" height="19" width="120">
+									<br/> </td>
+								<td height="19" width="99">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsPvehicles.num_tot_dest_pvt"> </td>
+								<td class="tdpa" height="19" width="145">
+									<br/> </td>
+								<td height="19" width="148">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsPvehicles.num_part_dest_pvt"> </td>
+								<td class="tdpa" colspan="2" height="19" width="126">
+									<br/> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsPvehicles.tot_damages_pvt" ng-bind="dlOtherDmgsPvehicles.tot_damages_pvt =
                                     dlOtherDmgsPvehicles.num_tot_dest_pvt * bs_data['BsGtlAstPvehicles'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsPvehicles.num_part_dest_pvt * bs_data['BsGtlAstPvehicles'][$index].fields.avg_repair_cost">
-                                </td>
-
-                            </tr>
-                            <!--Total-->
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsPvehicles in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles"
-                                ng-if="dlOtherDmgsPvehicles.private_vehicles == 'Total'">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsPvehicles.private_vehicles">
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsPvehicles.tot_damages_pvt"
-                                    ng-bind="dlOtherDmgsPvehicles.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles)">
-                                </td>
-                            </tr>
-                            <!--Bus Companies-->
-                            <tr class="trheadc" height="19">
-                                <td colspan="2" height="19" width="312">
-                                    Bus Companies
-                                </td>
-                                <td height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsBcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies"
-                                ng-if="$index < 4">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsBcompanies.bus_companies">
-                                </td>
-                                <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsBcompanies.num_tot_dest_pub">
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsBcompanies.num_tot_dest_pvt">
-                                </td>
-                                <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsBcompanies.num_part_dest_pub">
-                                </td>
-                                <td height="19" width="148">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                          ng-model="dlOtherDmgsBcompanies.num_part_dest_pvt">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsBcompanies.tot_damages_pub'
-                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pub =
+                                    dlOtherDmgsPvehicles.num_part_dest_pvt * bs_data['BsGtlAstPvehicles'][$index].fields.avg_repair_cost"> </td>
+							</tr>
+							<!--Total-->
+							<tr height="19" ng-repeat="dlOtherDmgsPvehicles in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles" ng-if="dlOtherDmgsPvehicles.private_vehicles == 'Total'">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsPvehicles.private_vehicles"> </td>
+								<td class="tdpa" height="19" width="120">
+									<br/> </td>
+								<td class="tdpa" height="19" width="99">
+									<br/> </td>
+								<td class="tdpa" height="19" width="145">
+									<br/> </td>
+								<td class="tdpa" height="19" width="148">
+									<br/> </td>
+								<td class="tdpa" colspan="2" height="19" width="126">
+									<br/> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsPvehicles.tot_damages_pvt" ng-bind="dlOtherDmgsPvehicles.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsPvehicles)"> </td>
+							</tr>
+							<!--Bus Companies-->
+							<tr class="trheadc" height="19">
+								<td colspan="2" height="19" width="312"> Bus Companies </td>
+								<td height="19" width="120">
+									<br/> </td>
+								<td height="19" width="99">
+									<br/> </td>
+								<td height="19" width="145">
+									<br/> </td>
+								<td height="19" width="148">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+							</tr>
+							<tr height="19" ng-repeat="dlOtherDmgsBcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies" ng-if="$index < 4">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsBcompanies.bus_companies"> </td>
+								<td height="19" width="120">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsBcompanies.num_tot_dest_pub"> </td>
+								<td height="19" width="99">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsBcompanies.num_tot_dest_pvt"> </td>
+								<td height="19" width="145">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsBcompanies.num_part_dest_pub"> </td>
+								<td height="19" width="148">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsBcompanies.num_part_dest_pvt"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsBcompanies.tot_damages_pub' ng-bind="dlOtherDmgsBcompanies.tot_damages_pub =
                                     dlOtherDmgsBcompanies.num_tot_dest_pub * bs_data['BsGtlAstBcompanies'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsBcompanies.num_part_dest_pub * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsBcompanies.tot_damages_pvt'
-                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pvt =
+                                    dlOtherDmgsBcompanies.num_part_dest_pub * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsBcompanies.tot_damages_pvt' ng-bind="dlOtherDmgsBcompanies.tot_damages_pvt =
                                     dlOtherDmgsBcompanies.num_tot_dest_pvt * bs_data['BsGtlAstBcompanies'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsBcompanies.num_part_dest_pvt * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost">
-                                </td>
-                            </tr>
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsBcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies"
-                                ng-if="dlOtherDmgsBcompanies.bus_companies == 'Total'">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsBcompanies.bus_companies">
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsBcompanies.tot_damages_pub"
-                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsBcompanies.tot_damages_pvt"
-                                    ng-bind="dlOtherDmgsBcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)">
-                                </td>
-                            </tr>
-                            <!--Taxi companies-->
-                            <tr class="trheadc" height="19">
-                                <td colspan="2" height="19" width="312">
-                                    Taxi companies
-                                </td>
-                                <td height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsTcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies"
-                                ng-if="$index < 3">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsTcompanies.taxi_companies">
-                                </td>
-                                <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTcompanies.num_tot_dest_pub">
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTcompanies.num_tot_dest_pvt">
-                                </td>
-                                <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTcompanies.num_part_dest_pub">
-                                </td>
-                                <td height="19" width="148">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTcompanies.num_part_dest_pvt">
-                                </td>
-
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pub'
-                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pub=
+                                    dlOtherDmgsBcompanies.num_part_dest_pvt * bs_data['BsGtlAstBcompanies'][$index].fields.avg_repair_cost"> </td>
+							</tr>
+							<tr height="19" ng-repeat="dlOtherDmgsBcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies" ng-if="dlOtherDmgsBcompanies.bus_companies == 'Total'">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsBcompanies.bus_companies"> </td>
+								<td class="tdpa" height="19" width="120">
+									<br/> </td>
+								<td class="tdpa" height="19" width="99">
+									<br/> </td>
+								<td class="tdpa" height="19" width="145">
+									<br/> </td>
+								<td class="tdpa" height="19" width="148">
+									<br/> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsBcompanies.tot_damages_pub" ng-bind="dlOtherDmgsBcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model="dlOtherDmgsBcompanies.tot_damages_pvt" ng-bind="dlOtherDmgsBcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsBcompanies)"> </td>
+							</tr>
+							<!--Taxi companies-->
+							<tr class="trheadc" height="19">
+								<td colspan="2" height="19" width="312"> Taxi companies </td>
+								<td height="19" width="120">
+									<br/> </td>
+								<td height="19" width="99">
+									<br/> </td>
+								<td height="19" width="145">
+									<br/> </td>
+								<td height="19" width="148">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+							</tr>
+							<tr height="19" ng-repeat="dlOtherDmgsTcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies" ng-if="$index < 3">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsTcompanies.taxi_companies"> </td>
+								<td height="19" width="120">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTcompanies.num_tot_dest_pub"> </td>
+								<td height="19" width="99">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTcompanies.num_tot_dest_pvt"> </td>
+								<td height="19" width="145">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTcompanies.num_part_dest_pub"> </td>
+								<td height="19" width="148">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTcompanies.num_part_dest_pvt"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pub' ng-bind="dlOtherDmgsTcompanies.tot_damages_pub=
                                     dlOtherDmgsTcompanies.num_tot_dest_pub * bs_data['BsGtlAstTcompanies'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsTcompanies.num_part_dest_pub * bs_data['BsGtlAstTcompanies'][$index].fields.avg_repair_cost ">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pvt'
-                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pvt =
+                                    dlOtherDmgsTcompanies.num_part_dest_pub * bs_data['BsGtlAstTcompanies'][$index].fields.avg_repair_cost "> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pvt' ng-bind="dlOtherDmgsTcompanies.tot_damages_pvt =
                                     dlOtherDmgsTcompanies.num_tot_dest_pvt * bs_data['BsGtlAstTcompanies'][$index].fields.avg_replace_cost +
                                     dlOtherDmgsTcompanies.num_part_dest_pvt * bs_data['BsGtlAstTcompanies'][$index].fields.avg_repair_cost">
-                            </tr>
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsTcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies"
-                                ng-if="dlOtherDmgsTcompanies.taxi_companies == 'Total'">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsTcompanies.taxi_companies">
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pub'
-                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pvt'
-                                    ng-bind="dlOtherDmgsTcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)">
-                                </td>
-                            </tr>
-                            <!--Truck Companies-->
-                            <tr class="trheadc" height="19">
-                                <td colspan="2" height="19" width="312">
-                                    Truck Companies
-                                </td>
-                                <td height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsTrcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies"
-                                ng-if="$index < 3">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsTrcompanies.truck_companies">
-                                </td>
-                                <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTrcompanies.num_tot_dest_pub">
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTrcompanies.num_tot_dest_pvt">
-                                </td>
-                                <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTrcompanies.num_part_dest_pub">
-                                </td>
-                                <td height="19" width="148">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTrcompanies.num_part_dest_pvt">
-                                </td>
-
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pub'
-                                    ng-bind="dlOtherDmgsTrcompanies. tot_damages_pub =
+							</tr>
+							<tr height="19" ng-repeat="dlOtherDmgsTcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies" ng-if="dlOtherDmgsTcompanies.taxi_companies == 'Total'">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsTcompanies.taxi_companies"> </td>
+								<td class="tdpa" height="19" width="120">
+									<br/> </td>
+								<td class="tdpa" height="19" width="99">
+									<br/> </td>
+								<td class="tdpa" height="19" width="145">
+									<br/> </td>
+								<td class="tdpa" height="19" width="148">
+									<br/> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pub' ng-bind="dlOtherDmgsTcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTcompanies.tot_damages_pvt' ng-bind="dlOtherDmgsTcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTcompanies)"> </td>
+							</tr>
+							<!--Truck Companies-->
+							<tr class="trheadc" height="19">
+								<td colspan="2" height="19" width="312"> Truck Companies </td>
+								<td height="19" width="120">
+									<br/> </td>
+								<td height="19" width="99">
+									<br/> </td>
+								<td height="19" width="145">
+									<br/> </td>
+								<td height="19" width="148">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+							</tr>
+							<tr height="19" ng-repeat="dlOtherDmgsTrcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies" ng-if="$index < 3">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsTrcompanies.truck_companies"> </td>
+								<td height="19" width="120">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTrcompanies.num_tot_dest_pub"> </td>
+								<td height="19" width="99">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTrcompanies.num_tot_dest_pvt"> </td>
+								<td height="19" width="145">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTrcompanies.num_part_dest_pub"> </td>
+								<td height="19" width="148">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTrcompanies.num_part_dest_pvt"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pub' ng-bind="dlOtherDmgsTrcompanies. tot_damages_pub =
                                     dlOtherDmgsTrcompanies.num_tot_dest_pub * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsTrcompanies.num_part_dest_pub * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pvt'
-                                    ng-bind="dlOtherDmgsTrcompanies.tot_damages_pvt =
+                                    dlOtherDmgsTrcompanies.num_part_dest_pub * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pvt' ng-bind="dlOtherDmgsTrcompanies.tot_damages_pvt =
                                     dlOtherDmgsTrcompanies.num_tot_dest_pvt * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsTrcompanies.num_part_dest_pvt * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost">
-                                </td>
-                            </tr>
-                            <!--Totla-->
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsTrcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies"
-                                ng-if="dlOtherDmgsTrcompanies.truck_companies == 'Total'">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsTrcompanies.truck_companies">
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pub'
-                                   ng-bind="dlOtherDmgsTrcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pvt'
-                                   ng-bind="dlOtherDmgsTrcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)">
-                                </td>
-                            </tr>
-                            <!--Tuk Tuk Companies-->
-                            <tr class="trheadc" height="19">
-                                <td colspan="2" height="19" width="312">
-                                    Tuk Tuk Companies
-                                </td>
-                                <td height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsTucompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies"
-                                ng-if="$index < 3">
-                                <td class="tdpa" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsTucompanies.tuk_companies">
-                                </td>
-                                <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTucompanies.num_tot_dest_pub">
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTucompanies.num_tot_dest_pvt">
-                                </td>
-                                <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTucompanies.num_part_dest_pub">
-                                </td>
-                                <td height="19" width="148">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md"
-                                           ng-model="dlOtherDmgsTucompanies.num_part_dest_pvt">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pub'
-                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pub=
+                                    dlOtherDmgsTrcompanies.num_part_dest_pvt * bs_data['BsGtlAstTrcompanies'][$index].fields.avg_repair_cost"> </td>
+							</tr>
+							<!--Totla-->
+							<tr height="19" ng-repeat="dlOtherDmgsTrcompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies" ng-if="dlOtherDmgsTrcompanies.truck_companies == 'Total'">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsTrcompanies.truck_companies"> </td>
+								<td class="tdpa" height="19" width="120">
+									<br/> </td>
+								<td class="tdpa" height="19" width="99">
+									<br/> </td>
+								<td class="tdpa" height="19" width="145">
+									<br/> </td>
+								<td class="tdpa" height="19" width="148">
+									<br/> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pub' ng-bind="dlOtherDmgsTrcompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTrcompanies.tot_damages_pvt' ng-bind="dlOtherDmgsTrcompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTrcompanies)"> </td>
+							</tr>
+							<!--Tuk Tuk Companies-->
+							<tr class="trheadc" height="19">
+								<td colspan="2" height="19" width="312"> Tuk Tuk Companies </td>
+								<td height="19" width="120">
+									<br/> </td>
+								<td height="19" width="99">
+									<br/> </td>
+								<td height="19" width="145">
+									<br/> </td>
+								<td height="19" width="148">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+							</tr>
+							<tr height="19" ng-repeat="dlOtherDmgsTucompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies" ng-if="$index < 3">
+								<td class="tdpa" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsTucompanies.tuk_companies"> </td>
+								<td height="19" width="120">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTucompanies.num_tot_dest_pub"> </td>
+								<td height="19" width="99">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTucompanies.num_tot_dest_pvt"> </td>
+								<td height="19" width="145">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTucompanies.num_part_dest_pub"> </td>
+								<td height="19" width="148">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherDmgsTucompanies.num_part_dest_pvt"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pub' ng-bind="dlOtherDmgsTucompanies.tot_damages_pub=
                                     dlOtherDmgsTucompanies.num_tot_dest_pub * bs_data['BsGtlAstTucompanies'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsTucompanies.num_part_dest_pub * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pvt'
-                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pvt =
+                                    dlOtherDmgsTucompanies.num_part_dest_pub * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pvt' ng-bind="dlOtherDmgsTucompanies.tot_damages_pvt =
                                     dlOtherDmgsTucompanies.num_tot_dest_pvt * bs_data['BsGtlAstTucompanies'][$index].fields.avg_replace_cost +
-                                    dlOtherDmgsTucompanies.num_part_dest_pvt * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost ">
-                                </td>
-                            </tr>
-                            <!--Total-->
-                            <tr height="19"
-                                ng-repeat="dlOtherDmgsTucompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies"
-                                ng-if="dlOtherDmgsTucompanies.tuk_companies == 'Total'">
-                                <td class="boldash" colspan="2" height="19" width="312"
-                                    ng-bind="dlOtherDmgsTucompanies.tuk_companies">
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pub'
-                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pvt'
-                                    ng-bind="dlOtherDmgsTucompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)">
-                                </td>
-                            </tr>
-                            <tr height="19">
-                                <td class="boldash" colspan="2" height="19" width="312">
-                                    TOTAL DAMAGES
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="148">
-                                    <br/>
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-bind="calGrandPubTotal()">
-                                </td>
-                                <td class="right" colspan="2" height="19" width="126" ng-bind="calGrandPvtTotal()">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                                    dlOtherDmgsTucompanies.num_part_dest_pvt * bs_data['BsGtlAstTucompanies'][$index].fields.avg_repair_cost "> </td>
+							</tr>
+							<!--Total-->
+							<tr height="19" ng-repeat="dlOtherDmgsTucompanies in dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies" ng-if="dlOtherDmgsTucompanies.tuk_companies == 'Total'">
+								<td class="boldash" colspan="2" height="19" width="312" ng-bind="dlOtherDmgsTucompanies.tuk_companies"> </td>
+								<td class="tdpa" height="19" width="120">
+									<br/> </td>
+								<td class="tdpa" height="19" width="99">
+									<br/> </td>
+								<td class="tdpa" height="19" width="145">
+									<br/> </td>
+								<td class="tdpa" height="19" width="148">
+									<br/> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pub' ng-bind="dlOtherDmgsTucompanies.tot_damages_pub = calPubTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model='dlOtherDmgsTucompanies.tot_damages_pvt' ng-bind="dlOtherDmgsTucompanies.tot_damages_pvt = calPvtTotal(dlOthLndAsets.transport_land.Table_5.DlOtherDmgsTucompanies)"> </td>
+							</tr>
+							<tr height="19">
+								<td class="boldash" colspan="2" height="19" width="312"> TOTAL DAMAGES </td>
+								<td class="tdpa" height="19" width="120">
+									<br/> </td>
+								<td class="tdpa" height="19" width="99">
+									<br/> </td>
+								<td class="tdpa" height="19" width="145">
+									<br/> </td>
+								<td class="tdpa" height="19" width="148">
+									<br/> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-bind="calGrandPubTotal()"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-bind="calGrandPvtTotal()"> </td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<br> <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Other Losses Informations</a>
-                    <br>
-                </div>
-                <div class="tab-pane fade" id="step2">
-                    <table class="table table-bordered">
-                        <tr class="trheadc1" height="19">
-                            <td rowspan="3" height="57" width="156">
-                                Transport Company
-                            </td>
-                            <td colspan="8" height="19" width="764">
-                                Types of Losses and Their Values (LKR)
-                            </td>
-                            <td rowspan="3" height="57" width="63">
-                                Total Losses (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td colspan="2" height="19" width="126" style="width:20%;">
-                                Foregone Income
-                            </td>
-                            <td colspan="2" height="19" width="198" style="width:20%;">
-                                Cleaning costs
-                            </td>
-                            <td colspan="2" height="19" width="296" style="width:20%;">
-                                Higher Operating Costs
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:20%;">
-                                Other Unexpected Expenses
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="19">
-                            <td height="19" width="63" style="width:10%;">
-                                Year 1
-                            </td>
-                            <td height="19" width="120">
-                                Year 2
-                            </td>
-                            <td height="19" width="99" style="width:10%;"s>
-                                Year 1
-                            </td>
-                            <td height="19" width="145">
-                                Year 2
-                            </td>
-                            <td height="19" width="148">
-                                Year 1
-                            </td>
-                            <td height="19" width="63" style="width:10%;">
-                                Year 2
-                            </td>
-                            <td height="19" width="63">
-                                Year 1
-                            </td>
-                            <td height="19" width="63">
-                                Year 2
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="156">
-                                Public
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="120">
-                                <br/>
-                            </td>
-                            <td height="19" width="99">
-                                <br/>
-                            </td>
-                            <td height="19" width="145">
-                                <br/>
-                            </td>
-                            <td height="19" width="148">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlOtherLosPub in dlOthLndAsets.transport_land.Table_5.DlOtherLosPub"
-                            ng-if="$index < 4">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPub.tr_company">
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.fi_year_1">
-                            </td>
-                            <td height="19" width="120">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.fi_year_2">
-                            </td>
-                            <td height="19" width="99">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.cl_debris_year_1">
-                            </td>
-                            <td height="19" width="145">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.cl_debris_year_2">
-                            </td>
-                            <td height="19" width="148">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.hoc_year_1">
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.hoc_year_2">
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.oue_year_1">
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPub.oue_year_2">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.tot_los" ng-bind="dlOtherLosPub.tot_los =
+					<br> </div>
+				<div class="tab-pane fade" id="step2">
+					<table class="table table-bordered">
+						<tr class="trheadc1" height="19">
+							<td rowspan="3" height="57" width="156"> Transport Company </td>
+							<td colspan="8" height="19" width="764"> Types of Losses and Their Values (LKR) </td>
+							<td rowspan="3" height="57" width="63"> Total Losses (LKR) </td>
+						</tr>
+						<tr class="trheadc1" height="19">
+							<td colspan="2" height="19" width="126" style="width:20%;"> Foregone Income </td>
+							<td colspan="2" height="19" width="198" style="width:20%;"> Cleaning costs </td>
+							<td colspan="2" height="19" width="296" style="width:20%;"> Higher Operating Costs </td>
+							<td colspan="2" height="19" width="126" style="width:20%;"> Other Unexpected Expenses </td>
+						</tr>
+						<tr class="trsubc" height="19">
+							<td height="19" width="63" style="width:10%;"> Year 1 </td>
+							<td height="19" width="120"> Year 2 </td>
+							<td height="19" width="99" style="width:10%;" s> Year 1 </td>
+							<td height="19" width="145"> Year 2 </td>
+							<td height="19" width="148"> Year 1 </td>
+							<td height="19" width="63" style="width:10%;"> Year 2 </td>
+							<td height="19" width="63"> Year 1 </td>
+							<td height="19" width="63"> Year 2 </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="156"> Public </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="120">
+								<br/> </td>
+							<td height="19" width="99">
+								<br/> </td>
+							<td height="19" width="145">
+								<br/> </td>
+							<td height="19" width="148">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+						</tr>
+						<tr height="19" ng-repeat="dlOtherLosPub in dlOthLndAsets.transport_land.Table_5.DlOtherLosPub" ng-if="$index < 4">
+							<td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPub.tr_company"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.fi_year_1"> </td>
+							<td height="19" width="120">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.fi_year_2"> </td>
+							<td height="19" width="99">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.cl_debris_year_1"> </td>
+							<td height="19" width="145">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.cl_debris_year_2"> </td>
+							<td height="19" width="148">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.hoc_year_1"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.hoc_year_2"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.oue_year_1"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPub.oue_year_2"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.tot_los" ng-bind="dlOtherLosPub.tot_los =
                             dlOtherLosPub.fi_year_1 +
                             dlOtherLosPub.fi_year_2 +
                             dlOtherLosPub.cl_debris_year_1 +
@@ -729,143 +418,93 @@
                             dlOtherLosPub.hoc_year_1 +
                             dlOtherLosPub.hoc_year_2 +
                             dlOtherLosPub.oue_year_1 +
-                            dlOtherLosPub.oue_year_2">
-                            </td>
-                        </tr>
-                        <!--Total-->
-                        <tr height="19" ng-repeat="dlOtherLosPub in dlOthLndAsets.transport_land.Table_5.DlOtherLosPub"
-                            ng-if="dlOtherLosPub.tr_company == 'Total'">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPub.tr_company">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.fi_year_1"
-                                ng-bind="dlOtherLosPub.fi_year_1=
+                            dlOtherLosPub.oue_year_2"> </td>
+						</tr>
+						<!--Total-->
+						<tr height="19" ng-repeat="dlOtherLosPub in dlOthLndAsets.transport_land.Table_5.DlOtherLosPub" ng-if="dlOtherLosPub.tr_company == 'Total'">
+							<td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPub.tr_company"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.fi_year_1" ng-bind="dlOtherLosPub.fi_year_1=
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_1">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.fi_year_2" ng-bind="dlOtherLosPub.fi_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_1"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.fi_year_2" ng-bind="dlOtherLosPub.fi_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].fi_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].fi_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].fi_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_2">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_1"
-                                ng-bind="dlOtherLosPub.cl_debris_year_1 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].fi_year_2"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_1" ng-bind="dlOtherLosPub.cl_debris_year_1 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_1">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_2"
-                                ng-bind="dlOtherLosPub.cl_debris_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_1"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.cl_debris_year_2" ng-bind="dlOtherLosPub.cl_debris_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].cl_debris_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].cl_debris_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].cl_debris_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_2">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.hoc_year_1"
-                                ng-bind="dlOtherLosPub.hoc_year_1 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].cl_debris_year_2"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.hoc_year_1" ng-bind="dlOtherLosPub.hoc_year_1 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_1">
-                            </td>
-
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.hoc_year_2"
-                                ng-bind="dlOtherLosPub.hoc_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_1"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.hoc_year_2" ng-bind="dlOtherLosPub.hoc_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].hoc_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].hoc_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].hoc_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_2">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.oue_year_1"
-                                ng-bind="dlOtherLosPub.oue_year_1 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].hoc_year_2"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.oue_year_1" ng-bind="dlOtherLosPub.oue_year_1 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_1">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.oue_year_2"
-                                ng-bind="dlOtherLosPub.oue_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_1"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.oue_year_2" ng-bind="dlOtherLosPub.oue_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[0].oue_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[1].oue_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[2].oue_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_2">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPub.tot_los" ng-bind="dlOtherLosPub.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPub)">
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="156">
-                                Private
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="120">
-                                <br/>
-                            </td>
-                            <td height="19" width="99">
-                                <br/>
-                            </td>
-                            <td height="19" width="145">
-                                <br/>
-                            </td>
-                            <td height="19" width="148">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                            <td height="19" width="63">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlOtherLosPvt in dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt"
-                            ng-if="$index < 5">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company">
-                                Private Vehicles
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.fi_year_1">
-                            </td>
-                            <td height="19" width="120">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.fi_year_2">
-                            </td>
-                            <td height="19" width="99">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.cl_debris_year_1">
-                            </td>
-                            <td height="19" width="145">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.cl_debris_year_2">
-                            </td>
-                            <td height="19" width="148">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.hoc_year_1">
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.hoc_year_2">
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.oue_year_1">
-                            </td>
-                            <td height="19" width="63">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlOtherLosPvt.oue_year_2">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.tot_los" ng-bind="dlOtherLosPvt.tot_los =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPub[3].oue_year_2"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPub.tot_los" ng-bind="dlOtherLosPub.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPub)"> </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="156"> Private </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="120">
+								<br/> </td>
+							<td height="19" width="99">
+								<br/> </td>
+							<td height="19" width="145">
+								<br/> </td>
+							<td height="19" width="148">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+							<td height="19" width="63">
+								<br/> </td>
+						</tr>
+						<tr height="19" ng-repeat="dlOtherLosPvt in dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt" ng-if="$index < 5">
+							<td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company"> Private Vehicles </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.fi_year_1"> </td>
+							<td height="19" width="120">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.fi_year_2"> </td>
+							<td height="19" width="99">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.cl_debris_year_1"> </td>
+							<td height="19" width="145">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.cl_debris_year_2"> </td>
+							<td height="19" width="148">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.hoc_year_1"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.hoc_year_2"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.oue_year_1"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlOtherLosPvt.oue_year_2"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.tot_los" ng-bind="dlOtherLosPvt.tot_los =
                                 dlOtherLosPvt.fi_year_1+
                                 dlOtherLosPvt.fi_year_2+
                                 dlOtherLosPvt.cl_debris_year_1+
@@ -873,209 +512,152 @@
                                 dlOtherLosPvt.hoc_year_1+
                                 dlOtherLosPvt.hoc_year_2+
                                 dlOtherLosPvt.oue_year_1+
-                                dlOtherLosPvt.oue_year_2">
-                            </td>
-                        </tr>
-                        <!--Total-->
-                        <tr height="19" ng-repeat="dlOtherLosPvt in dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt"
-                            ng-if="dlOtherLosPvt.tr_company == 'Total'">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.fi_year_1"
-                                ng-bind="dlOtherLosPvt.fi_year_1 =
+                                dlOtherLosPvt.oue_year_2"> </td>
+						</tr>
+						<!--Total-->
+						<tr height="19" ng-repeat="dlOtherLosPvt in dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt" ng-if="dlOtherLosPvt.tr_company == 'Total'">
+							<td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company"> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.fi_year_1" ng-bind="dlOtherLosPvt.fi_year_1 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].fi_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_1 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.fi_year_2"
-                                ng-bind="dlOtherLosPvt.fi_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_1 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.fi_year_2" ng-bind="dlOtherLosPvt.fi_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].fi_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].fi_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].fi_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].fi_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_2 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_1"
-                                ng-bind="dlOtherLosPvt.cl_debris_year_1 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].fi_year_2 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_1" ng-bind="dlOtherLosPvt.cl_debris_year_1 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].cl_debris_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_1 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_2"
-                                ng-bind="dlOtherLosPvt.cl_debris_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_1 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.cl_debris_year_2" ng-bind="dlOtherLosPvt.cl_debris_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].cl_debris_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].cl_debris_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].cl_debris_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].cl_debris_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_2 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_1"
-                                ng-bind="dlOtherLosPvt.hoc_year_1 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].cl_debris_year_2 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_1" ng-bind="dlOtherLosPvt.hoc_year_1 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].hoc_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_1 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_2"
-                                ng-bind="dlOtherLosPvt.hoc_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_1 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.hoc_year_2" ng-bind="dlOtherLosPvt.hoc_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].hoc_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].hoc_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].hoc_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].hoc_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_2 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.oue_year_1"
-                                ng-bind="dlOtherLosPvt.oue_year_1 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].hoc_year_2 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.oue_year_1" ng-bind="dlOtherLosPvt.oue_year_1 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_1 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].oue_year_1 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_1 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.oue_year_2"
-                                ng-bind="dlOtherLosPvt.oue_year_2 =
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_1 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.oue_year_2" ng-bind="dlOtherLosPvt.oue_year_2 =
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[0].oue_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[1].oue_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[2].oue_year_2 +
                                 dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[3].oue_year_2 +
-                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_2 ">
-                            </td>
-                            <td class="right" height="19" width="63" ng-model="dlOtherLosPvt.tot_los" ng-bind="dlOtherLosPvt.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt)">
-                            </td>
-                        </tr>
-                        <!--TOTAL LOSSES-->
-                        <tr height="19" ng-repeat="dlOtherLosPvt in dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt"
-                            ng-if="dlOtherLosPvt.tr_company == 'TOTAL LOSSES'">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company">
-                            </td>
-                            <td class="tdpa" height="19" width="63">
-                                <br/>
-                            </td>
-                            <td class="tdpa" height="19" width="120">
-                                <br/>
-                            </td>
-                            <td class="tdpa" height="19" width="99">
-                                <br/>
-                            </td>
-                            <td class="tdpa" height="19" width="145">
-                                <br/>
-                            </td>
-                            <td class="tdpa" height="19" width="148">
-                                <br/>
-                            </td>
-                            <td class="tdpa" height="19" width="63">
-                                <br/>
-                            </td>
-                            <td class="tdpa" height="19" width="63">
-                                <br/>
-                            </td>
-                            <td class="tdpa" height="19" width="63">
-                                <br/>
-                            </td>
-                            <td class="right" height="19" width="63" ng-bind="calGrandTotal()">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br>
-                    <div class="pull-right">
-                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-
-                        <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="dlDataEdit(form_dl_oth_lnd_asets)" ng-if="!is_edit" class="btn btn-success">
+                                dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt[4].oue_year_2 "> </td>
+							<td class="right" height="19" width="63" ng-model="dlOtherLosPvt.tot_los" ng-bind="dlOtherLosPvt.tot_los = calTotal(dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt)"> </td>
+						</tr>
+						<!--TOTAL LOSSES-->
+						<tr height="19" ng-repeat="dlOtherLosPvt in dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt" ng-if="dlOtherLosPvt.tr_company == 'TOTAL LOSSES'">
+							<td class="tdpa" height="19" width="156" ng-bind="dlOtherLosPvt.tr_company"> </td>
+							<td class="tdpa" height="19" width="63">
+								<br/> </td>
+							<td class="tdpa" height="19" width="120">
+								<br/> </td>
+							<td class="tdpa" height="19" width="99">
+								<br/> </td>
+							<td class="tdpa" height="19" width="145">
+								<br/> </td>
+							<td class="tdpa" height="19" width="148">
+								<br/> </td>
+							<td class="tdpa" height="19" width="63">
+								<br/> </td>
+							<td class="tdpa" height="19" width="63">
+								<br/> </td>
+							<td class="tdpa" height="19" width="63">
+								<br/> </td>
+							<td class="right" height="19" width="63" ng-bind="calGrandTotal()"> </td>
+						</tr>
+						</tbody>
+					</table>
+					<br>
+					<div class="pull-right">
+						<button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button> <span ng-if="is_edit_disable">
+                        <button id="editbtn" type="button" ng-click="dlDataEdit(form_dl_oth_lnd_asets)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span> <span ng-if="!is_edit_disable">
+                        <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                            Edit
-                        </button>
-                        <button type="button" ng-disabled="form_pop_lat_census.$invalid"
-                                ng-click="saveDlData(form_dl_oth_lnd_asets)"
-                                class="btn btn-success">Submit</button>
-                    </div>
-                    <br><br>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-                 aria-hidden="true">
-                <div class="modal-dialog" style="width:50%;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                ×
-                            </button>
-                            <h5 class="modal-title">
+						<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit </button>
+						<button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_oth_lnd_asets)" class="btn btn-success">Submit</button>
+					</div>
+					<br>
+					<br> </div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+				<div class="modal-dialog" style="width:50%;">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+							<h5 class="modal-title">
                                 <span id="bookId"> </span>
-                            </h5>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="textinput">Name</label>
-                                <div class="col-md-10">
-                                    <input id="textinput" name="textinput" type="text" placeholder=""
-                                           class="form-control input-md">
-                                </div>
-                            </div>
-                        </div>
-                        <br><br>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary">
-                                Save changes
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.conainer-fluid -->
-    <!-- update the baseline Model -->
-    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
-                        ×
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
+                            </h5> </div>
+						<div class="modal-body">
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="textinput">Name</label>
+								<div class="col-md-10">
+									<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"> </div>
+							</div>
+						</div>
+						<br>
+						<br>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+							<button type="button" class="btn btn-primary"> Save changes </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.conainer-fluid -->
+	<!-- update the baseline Model -->
+	<div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()"> × </button>
+					<h4 class="modal-title" id="myModalLabel">
                         Warning
-                    </h4>
-                </div>
-                <div class="modal-body alert-info">
-                    <h4>
+                    </h4> </div>
+				<div class="modal-body alert-info">
+					<h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
                         <b>Table 2. Land Transportation Assets</b><br>
                         information before you calculate the damage and loss !
-                    </h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
-                        Close
-                    </button>
-                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                            class="btn btn-primary">
-                        OK
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-{% endblock content %}
+                    </h4> </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()"> Close </button>
+					<button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary"> OK </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main> {% endblock content %}

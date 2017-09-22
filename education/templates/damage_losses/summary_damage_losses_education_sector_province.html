@@ -2,6 +2,11 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<script>
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
+</script>
 <style>
     .right {text-align:right;}
 </style>
@@ -129,10 +134,8 @@
                         </td>
                     </tr>
                     </tbody>
-                </table>
-                <div id="boxscroll" style="max-height:400px;overflow:auto;">
-                    <table ng-repeat="(key, value) in dlEduProvince.education.Table_6" class="table table-bordered">
-                        <tbody>
+              
+                        <tbody ng-repeat="(key, value) in dlEduProvince.education.Table_6" id="boxscroll1" style="max-height:800px;overflow:auto;">
                             <tr height="20" class="trheadc">
                                 <td ng-bind="key" width="202" height="20">
                                 </td>
@@ -299,7 +302,7 @@
                                 <td class="right" width="110" ng-bind="value['DpefBefDistrict'][1].min_pzd_offices">
                                 </td>
                             </tr>
-                            <tr height="17">
+                            <tr height="17" class="boldash">
                                 <td class="tdpa" width="307" height="17">
                                     Total
                                 </td>
@@ -325,11 +328,8 @@
                                     <span ng-bind="$parent.sumFunc8(value['DpefBefDistrict'][1].ab1_1c, value['DpefBefDistrict'][1].type_2, value['DpefBefDistrict'][1].type_3, value['DpefBefDistrict'][1].pirivena, value['DpefBefDistrict'][1].training_institutes, value['DpefBefDistrict'][1].training_colleges, value['DpefBefDistrict'][1].tc_crc_resc, value['DpefBefDistrict'][1].min_pzd_offices)"></span>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr height="17">
+                        
+                            <tr height="17" class="boldash">
                                 <td class="tdpa" width="307" height="17">
                                     TOTAL
                                 </td>
@@ -350,7 +350,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+               
                 <br>
                 <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
                     <span class="glyphicon glyphicon-arrow-right"></span>
@@ -362,7 +362,7 @@
                 <table class="table table-bordered">
                     <tbody>
                         <tr class="trheadc1" height="34">
-                            <td rowspan="2" width="296" style="width:28.5%" height="51">
+                            <td rowspan="2" width="296" style="width:29%" height="51">
                                 Facilities and Assets
                             </td>
                             <td rowspan="2" width="91">
@@ -529,7 +529,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                                <tr height="17" ng-repeat="dpefNafDistrict in value.DpefNafDistrict" ng-if="dpefNafDistrict.edu_facilities == 'TOTAL'">
+                                <tr class="boldash" height="17" ng-repeat="dpefNafDistrict in value.DpefNafDistrict" ng-if="dpefNafDistrict.edu_facilities == 'TOTAL'">
                                     <td class="tdpa" width="307" height="17">
                                         Total
                                     </td>
@@ -561,11 +561,8 @@
                                         </span>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
+                           
+                                <tr class="boldash">
                                     <td class="tdpa" width="307" height="17">
                                         TOTAL
                                     </td>

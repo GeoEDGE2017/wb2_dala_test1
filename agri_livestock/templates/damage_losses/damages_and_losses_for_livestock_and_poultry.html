@@ -915,23 +915,23 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpLosLivestock.others_year_2">
                             </td>
-                            <td width="63" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
+                            <td width="63" class="right" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
                                 height="19" ng-model="dlpLosLivestock.los_year_1" ng-bind="dlpLosLivestock.los_year_1 =
                             dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
                             dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
-                            <td width="63" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
+                            <td width="63" class="right" ng-if="dlpLosLivestock.animals == 'Swine' && dlpLosLivestock.animals == 'Sheep' "
                                 height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 =
                             dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
                             dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
-                            <td width="63" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' "
+                            <td width="63" class="right" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' "
                                 height="19" ng-model="dlpLosLivestock.los_year_1" ng-bind="dlpLosLivestock.los_year_1 =
                             dlpLosLivestock.milk_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
                             dlpLosLivestock.meat_year_1/100 * bs_data['BlpApyLivestock'][$index].fields.meat +
                             dlpLosLivestock.others_year_1/100 *bs_data['BlpApyLivestock'][$index].fields.others">
                             </td>
-                            <td width="63" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' " height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 =
+                            <td width="63" class="right" ng-if="dlpLosLivestock.animals != 'Swine' || dlpLosLivestock.animals != 'Sheep' " height="19" ng-model="dlpLosLivestock.los_year_2" ng-bind="dlpLosLivestock.los_year_2 =
                             dlpLosLivestock.milk_year_2/100 * bs_data['BlpApyLivestock'][$index].fields.milk +
                             dlpLosLivestock.meat_year_2/100* bs_data['BlpApyLivestock'][$index].fields.meat +
                             dlpLosLivestock.others_year_2/100 *bs_data['BlpApyLivestock'][$index].fields.others">
@@ -1013,12 +1013,12 @@
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpLosPoultry.others_year_2">
                             </td>
-                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_1 =
+                            <td width="63" class="right" height="19" ng-bind="dlpLosPoultry.los_year_1 =
                             dlpLosPoultry.meat_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
                             dlpLosPoultry.eggs_year_1/100* bs_data['BlpApyPoultry'][$index].fields.eggs +
                             dlpLosPoultry.others_year_1/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
                             </td>
-                            <td width="63" height="19" ng-bind="dlpLosPoultry.los_year_2 =
+                            <td width="63" class="right" height="19" ng-bind="dlpLosPoultry.los_year_2 =
                             dlpLosPoultry.meat_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.meat+
                             dlpLosPoultry.eggs_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.eggs +
                             dlpLosPoultry.others_year_2/100 * bs_data['BlpApyPoultry'][$index].fields.others ">
@@ -1028,17 +1028,17 @@
                         <tr height="19" ng-repeat="dlpLosPoultry in dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry" ng-if="dlpLosPoultry.animals == 'Total'">
                             <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosPoultry.animals">
                             </td>
-                            <td width="63" height="19" ng-model ="dlpLosPoultry.los_year_1" ng-bind="dlpLosPoultry.los_year_1 =CalTotlosses($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry,'los_year_1') ">
+                            <td width="63" class="right" height="19" ng-model ="dlpLosPoultry.los_year_1" ng-bind="dlpLosPoultry.los_year_1 =CalTotlosses($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry,'los_year_1') ">
                             </td>
-                            <td width="63" height="19" ng-model="dlpLosPoultry.los_year_2" ng-bind="dlpLosPoultry.los_year_2 = CalTotlosses($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry,'los_year_2')">
+                            <td width="63" class="right" height="19" ng-model="dlpLosPoultry.los_year_2" ng-bind="dlpLosPoultry.los_year_2 = CalTotlosses($parent.dlLivestockPoultry.agri_livestock.Table_3.DlpLosPoultry,'los_year_2')">
                             </td>
                         </tr>
                          <tr height="19">
                             <td class="tdpa" colspan="9" width="973" height="19">Total Production Losses
                             </td>
-                            <td width="63" height="19" ng-bind="totalProLossesYear1()">
+                            <td width="63" class="right" height="19" ng-bind="totalProLossesYear1()">
                             </td>
-                            <td width="63" height="19" ng-bind="totalProLossesYear2()">
+                            <td width="63" class="right" height="19" ng-bind="totalProLossesYear2()">
                             </td>
                         </tr>
 
@@ -1048,7 +1048,7 @@
                         <tr height="19" ng-repeat="dlpLosOther in dlLivestockPoultry.agri_livestock.Table_3.DlpLosOther" ng-if="dlpLosOther.others != 'TOTAL OF LOSSES'">
                             <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">
                             </td>
-                            <td width="63" height="19">
+                            <td width="63"  height="19">
                                 <input id="textinput" name="textinput" type="number" placeholder=""
                                        class="form-control input-md" ng-model="dlpLosOther.los_year_1">
                             </td>
@@ -1061,9 +1061,9 @@
                             <td class="tdpa" colspan="9" width="973" height="19" ng-bind="dlpLosOther.others">
                                 TOTAL OF LOSSES
                             </td>
-                            <td width="63" height="19" ng-model="dlpLosOther.los_year_1" ng-bind="dlpLosOther.los_year_1 =totalOtherLossesYear1() ">
+                            <td width="63" class="right" height="19" ng-model="dlpLosOther.los_year_1" ng-bind="dlpLosOther.los_year_1 =totalOtherLossesYear1() ">
                             </td>
-                            <td width="63" height="19" ng-model="dlpLosOther.los_year_2" ng-bind="dlpLosOther.los_year_2 =totalOtherLossesYear2()">
+                            <td width="63" class="right" height="19" ng-model="dlpLosOther.los_year_2" ng-bind="dlpLosOther.los_year_2 =totalOtherLossesYear2()">
                             </td>
                         </tr>
                         </tbody>

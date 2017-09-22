@@ -172,7 +172,7 @@
                     <tr height="19"
                         ng-repeat="dlWaterDmgWcrafts in dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts"
                         ng-if="dlWaterDmgWcrafts.assets == 'Total'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterDmgWcrafts.assets">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgWcrafts.assets">
 
                         </td>
                         <td class="right" width="147" ng-model="dlWaterDmgWcrafts.num_tdestroyed_public"
@@ -251,7 +251,7 @@
                     <tr height="19"
                         ng-repeat="dlWaterDmgEquipment in dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment"
                         ng-if="dlWaterDmgEquipment.assets == 'Total'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterDmgEquipment.assets">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgEquipment.assets">
                         </td>
                         <td width="147" class="tdpa" >
                         </td>
@@ -326,7 +326,7 @@
                             ng-model="dlWaterDmgMaterials.tot_dmg_private" ng-bind="dlWaterDmgMaterials.tot_dmg_private =
                         dlWaterDmgMaterials.num_tdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost">
                         </td>
-                        <td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private"
+                        <td width="85" class="right" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private"
                             ng-bind="dlWaterDmgMaterials.tot_dmg_private =
                                           dlWaterDmgMaterials.num_tdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost +
                                           dlWaterDmgMaterials.num_pdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_repair_cost">
@@ -335,7 +335,7 @@
                     <tr height="19"
                         ng-repeat="dlWaterDmgMaterials in dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials"
                         ng-if="dlWaterDmgMaterials.assets == 'Total'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterDmgMaterials.assets">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgMaterials.assets">
 
                         </td>
                         <td width="147" class="tdpa">
@@ -422,7 +422,7 @@
                                    type="number" placeholder=""
                                    class="form-control input-md">
                         </td>
-                        <td width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages"
+                        <td class="right" width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages"
                        ng-bind="dlWaterDmgStructures.tot_damages =
                        $parent.dlWaterDmgStructures.num_tdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_replace_cost +
                        $parent.dlWaterDmgStructures.num_pdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_repair_cost">
@@ -433,7 +433,7 @@
                     <tr height="19"
                         ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures"
                         ng-if="dlWaterDmgStructures.assets == 'Total'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">
 
                         </td>
                         <td width="147" class="tdpa">
@@ -448,7 +448,7 @@
                         <td width="165" class="tdpa">
 
                         </td>
-                        <td width="126" ng-model="dlWaterDmgStructures.tot_damages" ng-bind="dlWaterDmgStructures.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures,'tot_damages')" colspan="4">
+                        <td width="126" class="right" ng-model="dlWaterDmgStructures.tot_damages" ng-bind="dlWaterDmgStructures.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures,'tot_damages')" colspan="4">
 
                         </td>
                     </tr>
@@ -538,7 +538,7 @@
                     <tr height="19"
                         ng-repeat="dlWaterDmgBuildings in dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings"
                         ng-if="dlWaterDmgBuildings.assets == 'Total'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterDmgBuildings.assets">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgBuildings.assets">
 
                         </td>
                         <td width="147" class="tdpa">
@@ -687,7 +687,7 @@
                     <tr height="19"
                         ng-repeat="dlWaterLosFi in dlWaterTransportation.transport_water.Table_2.DlWaterLosFi"
                         ng-if="dlWaterLosFi.type_los == 'Total'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterLosFi.type_los">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterLosFi.type_los">
 
                         </td>
                         <td class="right" width="147" ng-model="dlWaterLosFi.year_1_pub"  ng-bind="dlWaterLosFi.year_1_pub = calGrandTotal('year_1_pub')">
@@ -714,7 +714,7 @@
                     <tr height="19"
                         ng-repeat="dlWaterLosOther in dlWaterTransportation.transport_water.Table_2.DlWaterLosOther"
                         ng-if="dlWaterLosOther.type_los != 'TOTAL LOSSES'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterLosOther.type_los">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterLosOther.type_los">
 
                         </td>
                         <td width="147">
@@ -749,19 +749,19 @@
                     <tr height="19"
                         ng-repeat="dlWaterLosOther in dlWaterTransportation.transport_water.Table_2.DlWaterLosOther"
                         ng-if="dlWaterLosOther.type_los == 'TOTAL LOSSES'">
-                        <td class="boldash" width="253" height="19" ng-bind="dlWaterLosOther.type_los">
+                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterLosOther.type_los">
 
                         </td>
-                        <td width="147" ng-model="dlWaterLosOther.year_1_pub"  ng-bind="dlWaterLosOther.year_1_pub = GrandTotal('year_1_pub')">
+                        <td width="147" class="right" ng-model="dlWaterLosOther.year_1_pub"  ng-bind="dlWaterLosOther.year_1_pub = GrandTotal('year_1_pub')">
                         </td>
-                        <td width="151" ng-model="dlWaterLosOther.year_1_pvt" ng-bind="dlWaterLosOther.year_1_pvt = GrandTotal('year_1_pvt') ">
+                        <td width="151" class="right" ng-model="dlWaterLosOther.year_1_pvt" ng-bind="dlWaterLosOther.year_1_pvt = GrandTotal('year_1_pvt') ">
 
                         </td>
-                        <td width="165" ng-model="dlWaterLosOther.year_2_pub" ng-bind="dlWaterLosOther.year_2_pub = GrandTotal('year_2_pub')">
+                        <td width="165" class="right" ng-model="dlWaterLosOther.year_2_pub" ng-bind="dlWaterLosOther.year_2_pub = GrandTotal('year_2_pub')">
 
                         </td>
 
-                        <td width="165"  ng-model="dlWaterLosOther.year_2_pvt" ng-bind="dlWaterLosOther.year_2_pvt = GrandTotal('year_2_pvt')">
+                        <td width="165" class="right" ng-model="dlWaterLosOther.year_2_pvt" ng-bind="dlWaterLosOther.year_2_pvt = GrandTotal('year_2_pvt')">
 
                         </td>
                         <td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pub"

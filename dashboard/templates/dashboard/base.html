@@ -320,6 +320,11 @@
 
 
         </script>
+
+
+
+
+
 <!-- <script>
 
   
@@ -428,6 +433,7 @@ td[comma-value] input{
     color:#fff;
 }
 .card-inverse {height:130px;}
+
 </style>
 <script>
 $(document).ready(function(){
@@ -909,6 +915,38 @@ body {color:#000Important;}
     </script>
     <script>
     </script>
+    <script>
+$("body").bind("DOMNodeInserted", function() {
+
+$('tr').each(function(){
+   if($('td:contains("TOTAL")', this).length){       
+       // alert('here');
+       $(this).addClass('boldash');
+       // $(this).children('td').first().addClass('class');
+    }
+     if($('td:contains("Total")', this).length){       
+       // alert('here');
+         $(this).addClass('boldash');
+        // $(this).children('td').first().addClass('class');
+    }
+
+    if($('td:contains("Value of")', this).length){       
+       // alert('here');
+         $(this).addClass('boldash');
+        // $(this).children('td').first().addClass('class');
+    }
+     if($('td:contains("VALUE OF")', this).length){       
+       // alert('here');
+         $(this).addClass('boldash');
+        // $(this).children('td').first().addClass('class');
+    }
+});
+
+
+
+
+});
+</script>
     <script src='{% static "dashboard/js/app.js" %}'></script>
     </body>
 </html>

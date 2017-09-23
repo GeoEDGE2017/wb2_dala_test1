@@ -50,8 +50,8 @@ app.controller('dlSumLivestockPoultryDstController', function($scope, $http,$par
                         'is_edit': $scope.is_edit
                    }),
                 }).success(function(data) {
-                    $scope.data=data;
-                    console.log('get',data);
+                    $scope.data = data;
+                    console.log('get',$scope.data);
                 })
             }
          }
@@ -72,8 +72,12 @@ app.controller('dlSumLivestockPoultryDstController', function($scope, $http,$par
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var garnd = 0;
+        console.log('type',$scope.data);
+        if($scope.data){
         var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPubDistrict;
         var arraytwo= $scope.data.agri_livestock.Table_4.DlpNdaPoultryPubDistrict;
+        }
+        console.log('type',$scope.data);
         angular.forEach(arrayone, function(value, key) {
         if(value.animals !="Total"){
              finaltotal1 = finaltotal1 + value.damages ;
@@ -95,8 +99,10 @@ app.controller('dlSumLivestockPoultryDstController', function($scope, $http,$par
         var finaltotal1 = 0;
         var finaltotal2 = 0;
         var garnd = 0;
+        if($scope.data){
         var arrayone = $scope.data.agri_livestock.Table_4.DlpNdaLivestockPvtDistrict;
         var arraytwo= $scope.data.agri_livestock.Table_4.DlpNdaPoultryPvtDistrict;
+        }
         angular.forEach(arrayone, function(value, key) {
         if(value.animals !="Total"){
              finaltotal1 = finaltotal1 + value.damages ;

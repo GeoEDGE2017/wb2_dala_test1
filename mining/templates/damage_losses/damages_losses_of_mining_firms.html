@@ -1,793 +1,416 @@
-{% extends "dashboard/base.html" %}
-{% block content %}
-{% load static %}
+{% extends "dashboard/base.html" %} {% block content %} {% load static %}
 <script>
-  $(document).ready(function() {
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  });
-
+$(document).ready(function() {
+	var nicesx = $("#boxscroll1").niceScroll({
+		touchbehavior: false,
+		cursorcolor: "#4679B2",
+		cursoropacitymax: 0.6,
+		cursorwidth: 8
+	});
+});
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dmLosOfMinFirmsApp" ng-controller="DmLosOfMinFirmsAppController">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:mining_main' %}">Mining Sector</a>
-        </li>
-        <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">
+	<!-- Breadcrumb -->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:mining_main' %}">Mining Sector</a> </li>
+		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
                 Table 3: Damages and Losses of Mining Firms
-            </span>
-        </li>
-        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank"
-               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
-               title="Veiw Document"></a>
-        </li>
-    </ol>
-    <div class="container-fluid" ng-form name="(form_damagelost_mining_firm)">
-        <ul class='nav nav-wizard'>
-            <li id="li1" class="active">
-                <a href='#step1' data-toggle="tab">1 - Damages</a>
-            </li>
-            <li id="li2">
-                <a href='#step2' data-toggle="tab">2 - Losses</a>
-            </li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active" id="step1">
-             <td><button ng-click="dlDataEdit(form_damagelost_mining_firm)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
-                <table class="table table-bordered">
-                    <colgroup>
-                        <col width="171"/>
-                        <col width="119"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="120"/>
-                    </colgroup>
-                    <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_damagelost_mining_firm.incident.$error.required">
+            </span> </li> <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+		<li style="float:right;">
+			<a href="{% static 'dashboard/doc/Mining.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+		</li>
+	</ol>
+	<div class="container-fluid" ng-form name="(form_damagelost_mining_firm)">
+		<ul class='nav nav-wizard'>
+			<li id="li1" class="active"> <a href='#step1' data-toggle="tab">1 - Damages</a> </li>
+			<li id="li2"> <a href='#step2' data-toggle="tab">2 - Losses</a> </li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane active" id="step1">
+				<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+					</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_damagelost_mining_firm)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+				</td>
+				<table class="table table-bordered">
+					<colgroup>
+						<col width="171" />
+						<col width="119" />
+						<col width="63" />
+						<col width="63" />
+						<col width="63" />
+						<col width="63" />
+						<col width="120" /> </colgroup>
+					<tbody>
+						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.incident.$error.required">
                                 Please Select Incident
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_damagelost_mining_firm.district.$error.required">
+                            </span> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.district.$error.required">
                                 Please Select District
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1">
-                        <td style="padding-left:5px;"> Incident</td>
-                        <td colspan="2" style="">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-                                <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td colspan="2" style="padding-left:5px;">
-                            Name of District
-                        </td>
-                        <td colspan="3" style="">
-                            <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    style="font-weight:400;"
-                                    class="form-control" ng-change="changedValue(false);fetchFirms();" required>
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trhead1" height="19">
-                        <td height="19" width="171">
-                            Name of Firm
-                        </td>
-                        <td colspan="6" height="19" width="400">
-                            <select ng-options="firm as firm.name for firm in firms track by firm.id"
-                                    name="firm" id="ccyear" ng-change="changedValuefirm(true);" ng-model="selectedFirm"
-                                    class="form-control" style="font-weight:400;" required>
-                                <option value="" selected>Select Firm</option>
-                            </select>
-                        </td>
-                        <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.firm.$error.required">
+                            </span> </td>
+						</tr>
+						<tr class="trhead1">
+							<td style="padding-left:5px;"> Incident</td>
+							<td colspan="2" style="">
+								<select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+									<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
+									<option value={{incident.id}}>
+										<!--{{incident.disaster_type.name}}-->
+										<!--{{incident.reported_date_time}}-->{{incident.incident_name}} </option> {% endfor %} </select>
+							</td>
+							<td colspan="2" style="padding-left:5px;"> Name of District </td>
+							<td colspan="3" style="">
+								<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" style="font-weight:400;" class="form-control" ng-change="changedValue(false);fetchFirms();" required>
+									<option value="" selected>Select District</option>
+								</select>
+							</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+						<tr class="trhead1" height="19">
+							<td height="19" width="171"> Name of Firm </td>
+							<td colspan="6" height="19" width="400">
+								<select ng-options="firm as firm.name for firm in firms track by firm.id" name="firm" id="ccyear" ng-change="changedValuefirm(true);" ng-model="selectedFirm" class="form-control" style="font-weight:400;" required>
+									<option value="" selected>Select Firm</option>
+								</select>
+							</td> <span class="arrow_box" ng-show="submitted && form_damagelost_mining_firm.firm.$error.required">
                             Please Select Firm
-                        </span>
-                    </tr>
-                    <tr class="trhead1" height="19">
-                        <td height="19" width="171">
-                            Ownership
-                        </td>
-                        <td class="trsub" colspan="6" height="19" width="490">
-                            <span ng-bind="selectedFirm.ownership"></span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1" height="19">
-                        <td rowspan="2" height="38" width="171">
-                            Number of Employees
-                        </td>
-                        <td colspan="3" height="19" width="301" style="width:39%;">
-                            Male
-                        </td>
-                        <td colspan="3" height="19" width="189">
-                            Female
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td width="98" colspan="3">
-                            <input id="textinput"
-                                   ng-model="dmLosOfMinFirms.mining.Table_3.DloNumEmps[0].male"
-                                   name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="98" colspan="3">
-                            <input id="textinput"
-                                   ng-model="dmLosOfMinFirms.mining.Table_3.DloNumEmps[0].female"
-                                   name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr class="trhead1" height="37">
-                        <td height="37" width="171" style="width:25%;">
-                            Assets
-                        </td>
-                        <td colspan="2" height="37" width="235" style="width:25%;">
-                            Replacement Value of Totally Destroyed Assets (LKR)
-                        </td>
-                        <td colspan="2" height="37" width="100" style="width:25%;">
-                            Repair Cost for Partially Damaged Assets (LKR)
-                        </td>
-                        <td colspan="2" height="37" width="" style="width:25%;">
-                            Total Damages (LKR)
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div id="boxscroll1" style="height:400px;overflow:auto;">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="171" style="width:25%;">
-                                Structures
-                            </td>
-                            <td colspan="2" height="19" width="218" style="width:25%;">
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:25%;">
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:25%;">
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures"
-                            height="20" ng-if="dloDmgStructures.assets !='Total'">
-                            <td ng-bind="dloDmgStructures.assets" height="20" width="174"
-                                class="tdpa" ng-if="$index < 2">
-                            </td>
-                            <td colspan="" width="98"
-                                ng-if="$index > 1">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('DloDmgStructures', $index)"
-                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-                                <input style="width:80%;float:right;" ng-model="dloDmgStructures.assets"
-                                       popover="This field is required" required
-                                       popover-toggle="form_pop_lat_census['dloDmgStructures' + $index].$dirty && !form_pop_lat_census['dloDmgStructures' + $index].$valid"
-                                       name="dloDmgStructures_{{$index}}" type="text" placeholder=""
-                                       class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="2" width="98">
-                                <input
-                                        ng-change="getTotal('DloDmgStructures','rep_tot_dassets');
-                                getColumnTotal('DloDmgStructures');"
-                                        ng-model="dloDmgStructures.rep_tot_dassets"
-                                        id="textinput" name="textinput" type="number" placeholder=""
-                                        class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgStructures.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgStructures','repair_pdmg_assets');
-                                       getColumnTotal('DloDmgStructures');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td  colspan="2" width="98">
-                                <input ng-model="dloDmgStructures.tot_damages"
-                                       id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                       class="form-control input-md nborder right"
-                                       ng-bind="dloDmgStructures.tot_damages=dloDmgStructures.rep_tot_dassets + dloDmgStructures.repair_pdmg_assets">
-                            </td>
-                        </tr>
-                        <tr height="20">
-                            <td colspan="6" class="tdpa" height="20" width="174">
-                                Others
-                                <button ng-click="insertFirm('DloDmgStructures')" class="btn btn-sm btn-info btn-circle"
-                                        id="insert"><span
-                                        class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures"
-                            ng-if="dloDmgStructures.assets=='Total' " height="20">
-                            <td ng-bind="dloDmgStructures.assets"
-                                height="20" width="264"
-                                class="boldash"></td>
-                            <td width="98" class="right" colspan="2" ng-model="dloDmgStructures.rep_tot_dassets"
-                                ng-bind="dloDmgStructures.rep_tot_dassets = totalFunc('DloDmgStructures','rep_tot_dassets')"></td>
-                            <td width="98" class="right" colspan="2" ng-model="dloDmgStructures.repair_pdmg_assets"
-                                ng-bind="dloDmgStructures.repair_pdmg_assets = totalFunc('DloDmgStructures','repair_pdmg_assets')"></td>
-                            <td class="right" width="98" colspan="2" ng-model="dloDmgStructures.tot_damages "
-                                ng-bind="dloDmgStructures.tot_damages =totalFunc('DloDmgStructures','tot_damages')"></td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="171">
-                                Equipment
-                            </td>
-                            <td colspan="2" height="19" width="238">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgEquipment in dmLosOfMinFirms.mining.Table_3.DloDmgEquipment"
-                            height="20" ng-if="dloDmgEquipment.assets !='Total'">
-                            <td ng-bind="dloDmgEquipment.assets" height="20" width="174"
-                                class="tdpa" ng-if="$index < 2">
-                            </td>
-                            <td colspan="" width="98"
-                                ng-if="$index > 1">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('DloDmgEquipment', $index)"
-                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-                                <input style="width:80%;float:right;" ng-model="dloDmgEquipment.assets"
-                                       popover="This field is required" required
-                                       popover-toggle="form_pop_lat_census['dloDmgEquipment' + $index].$dirty && !form_pop_lat_census['dloDmgEquipment' + $index].$valid"
-                                       name="dloDmgEquipment_{{$index}}" type="text" placeholder=""
-                                       class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgEquipment.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgEquipment','rep_tot_dassets',$index);getColumnTotal('DloDmgEquipment');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgEquipment.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgEquipment','repair_pdmg_assets',$index);getColumnTotal('DloDmgEquipment');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgEquipment.tot_damages"
-                                       id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                       class="form-control input-md nborder right"
-                                       ng-bind="dloDmgEquipment.tot_damages=dloDmgEquipment.rep_tot_dassets+ dloDmgEquipment.repair_pdmg_assets">
-                            </td>
-                        </tr>
-                        <tr height="20">
-                            <td colspan="6" class="tdpa" height="19" width="171">
-                                Others
-                                <button ng-click="insertFirm('DloDmgEquipment')" class="btn btn-sm btn-info btn-circle"
-                                        id="insert"><span
-                                        class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgEquipment in dmLosOfMinFirms.mining.Table_3.DloDmgEquipment"
-                            ng-if="dloDmgEquipment.assets=='Total'" height="20">
-                            <td ng-bind="dloDmgEquipment.assets"
-                                height="20" width="264"
-                                class="boldash">
-                            </td>
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgEquipment.rep_tot_dassets"
-                                ng-bind="dloDmgEquipment.rep_tot_dassets = totalFunc('DloDmgEquipment','rep_tot_dassets')">
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgEquipment.repair_pdmg_assets"
-                                ng-bind="dloDmgEquipment.repair_pdmg_assets = totalFunc('DloDmgEquipment','repair_pdmg_assets')">
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgEquipment.tot_damages"
-                                ng-bind="dloDmgEquipment.tot_damages= totalFunc('DloDmgEquipment','tot_damages')">
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="171">
-                                Machinery
-                            </td>
-                            <td colspan="2" height="19" width="238">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery"
-                            height="20" ng-if="dloDmgMachinery.assets !='Total'">
-                            <td ng-bind="dloDmgMachinery.assets" height="20" width="174"
-                                class="tdpa" ng-if="$index < 1">
-                            </td>
-                            <td colspan="" width="98"
-                                ng-if="$index > 0">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('DloDmgMachinery', $index)"
-                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-                                <input style="width:80%;float:right;" ng-model="dloDmgMachinery.assets"
-                                       popover="This field is required" required
-                                       popover-toggle="form_pop_lat_census['dloDmgMachinery' + $index].$dirty && !form_pop_lat_census['dloDmgMachinery' + $index].$valid"
-                                       name="dloDmgMachinery_{{$index}}" type="text" placeholder=""
-                                       class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgMachinery.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgMachinery','rep_tot_dassets',$index);getColumnTotal('DloDmgMachinery');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgMachinery.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgMachinery','repair_pdmg_assets',$index);getColumnTotal('DloDmgMachinery');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgMachinery.tot_damages"
-                                       id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                       class="form-control input-md nborder right"
-                                       ng-bind="dloDmgMachinery.tot_damages = dloDmgMachinery.rep_tot_dassets+ dloDmgMachinery.repair_pdmg_assets">
-                            </td>
-                        </tr>
-                        <tr height="20">
-                            <td colspan="6" class="tdpa" height="19" width="171">
-                                Others
-                                <button ng-click="insertFirm('DloDmgMachinery')" class="btn btn-sm btn-info btn-circle"
-                                        id="insert"><span
-                                        class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery"
-                            ng-if="dloDmgMachinery.assets=='Total'" height="20">
-                            <!-- Fixed rows -->
-                            <td ng-bind="dloDmgMachinery.assets"
-                                height="20" width="264"
-                                class="boldash">
-                            </td>
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgMachinery.rep_tot_dassets"
-                                ng-bind=" dloDmgMachinery.rep_tot_dassets =  totalFunc('DloDmgMachinery','rep_tot_dassets')">
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgMachinery.repair_pdmg_assets"
-                                ng-bind="dloDmgMachinery.repair_pdmg_assets = totalFunc('DloDmgMachinery','repair_pdmg_assets')">
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgMachinery.tot_damage"
-                                ng-bind="dloDmgMachinery.tot_damages = totalFunc('DloDmgMachinery','tot_damage')">
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="171">
-                                Vehicles
-                            </td>
-                            <td colspan="2" height="19" width="238">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgVehicles in dmLosOfMinFirms.mining.Table_3.DloDmgVehicles"
-                            height="20" ng-if="dloDmgVehicles.assets !='Total'">
-                            <td ng-bind="dloDmgVehicles.assets" height="20" width="174"
-                                class="tdpa" ng-if="$index < 2">
-                            </td>
-                            <td colspan="" width="98"
-                                ng-if="$index > 1 ">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('DloDmgVehicles', $index)"
-                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
-                                <input style="width:80%;float:right;" ng-model="dloDmgVehicles.assets"
-                                       popover="This field is required" required
-                                       popover-toggle="form_pop_lat_census['dloDmgVehicles' + $index].$dirty && !form_pop_lat_census['dloDmgVehicles' + $index].$valid"
-                                       name="dloDmgVehicles_{{$index}}" type="text" placeholder=""
-                                       class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgVehicles.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgVehicles','rep_tot_dassets',$index);getColumnTotal('DloDmgVehicles');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgVehicles.repair_pdmg_assets"
-                                       ng-change="getTotal('DloDmgVehicles','repair_pdmg_assets',$index);getColumnTotal('DloDmgVehicles');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgVehicles.tot_damages"
-                                       id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                       class="form-control input-md nborder right"
-                                       ng-bind="dloDmgVehicles.tot_damages=dloDmgVehicles.rep_tot_dassets+ dloDmgVehicles.repair_pdmg_assets">
-                            </td>
-                        </tr>
-                        <tr height="20">
-                            <td colspan="6" class="tdpa" height="19" width="171">
-                                Others
-                                <button ng-click="insertFirm('DloDmgVehicles')" class="btn btn-sm btn-info btn-circle"
-                                        id="insert"><span
-                                        class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgVehicles in dmLosOfMinFirms.mining.Table_3.DloDmgVehicles"
-                            ng-if="dloDmgVehicles.assets=='Total'" height="20">
-                            <td ng-bind="dloDmgVehicles.assets"
-                                height="20" width="264"
-                                class="boldash">
-                            </td>
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgVehicles.rep_tot_dassets "
-                                ng-bind="dloDmgVehicles.rep_tot_dassets = totalFunc('DloDmgVehicles','rep_tot_dassets')">
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgVehicles.repair_pdmg_assets"
-                                ng-bind="dloDmgVehicles.repair_pdmg_assets = totalFunc('DloDmgVehicles','repair_pdmg_assets')">
-                            <td width="98" class="right"  colspan="2" ng-model="dloDmgVehicles.tot_damages"
-                                ng-bind="dloDmgVehicles.tot_damages = totalFunc('DloDmgVehicles','tot_damages')">
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="171">
-                                Stocks
-                            </td>
-                            <td colspan="2" height="19" width="238">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                            </td>
-                        </tr>
-                        <tr ng-repeat="dloDmgStocks in dmLosOfMinFirms.mining.Table_3.DloDmgStocks" height="20"
-                            ng-if="dloDmgStocks.assets !='Total'">
-                            <!-- Fixed rows -->
-                            <td ng-bind="dloDmgStocks.assets"
-                                height="20" width="264"
-                                class="tdpa">
-                            </td>
-
-                            <td colspan="2" width="98">
-
-                                <input ng-model="dloDmgStocks.rep_tot_dassets"
-                                       ng-change="getTotal('DloDmgStocks','rep_tot_dassets',$index);getColumnTotal('DloDmgStocks','rep_tot_dassets');"
-                                       id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-
-                            <td class="tdpa" colspan="2" width="98" >
-
-                            </td>
-                            <td colspan="2" width="98">
-                                <input ng-model="dloDmgStocks.tot_damages"
-                                       id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                       class="form-control input-md nborder right"
-                                       ng-bind="dloDmgStocks.tot_damages=dloDmgStocks.rep_tot_dassets + dloDmgStocks.repair_pdmg_assets">
-                            </td>
-                        </tr>
-
-                        <tr ng-repeat="dloDmgStocks in dmLosOfMinFirms.mining.Table_3.DloDmgStocks"
-                            ng-if="dloDmgStocks.assets=='Total'" height="20">
-                            <td ng-bind="dloDmgStocks.assets"
-                                height="20" width="264"
-                                class="boldash">
-                            </td>
-                            <td width="98" colspan="2" class="right"  ng-model="dloDmgStocks.rep_tot_dassets"
-                                ng-bind="dloDmgStocks.rep_tot_dassets = totalFunc('DloDmgStocks','rep_tot_dassets')">
-                            <td width="98" colspan="2" class="right"  class="tdpa">
-                            <td width="98" colspan="2" class="right"  ng-model="dloDmgStocks.tot_damages"
-                                ng-bind="dloDmgStocks.tot_damages = totalFunc('DloDmgStocks','tot_damages')">
-                        </tr>
-
-                        <tr height="20">
-                            <!-- Fixed rows -->
-                            <td
-                                    height="20" width="264"
-                                    class="boldash">GRAND TOTAL
-                            </td>
-                            <td class="right" width="98" colspan="2"
-                                ng-bind="totalFunc('DloDmgStructures','rep_tot_dassets')  +
+                        </span> </tr>
+						<tr class="trhead1" height="19">
+							<td height="19" width="171"> Ownership </td>
+							<td class="trsub" colspan="6" height="19" width="490"> <span ng-bind="selectedFirm.ownership"></span> </td>
+						</tr>
+						<tr class="trhead1" height="19">
+							<td rowspan="2" height="38" width="171"> Number of Employees </td>
+							<td colspan="3" height="19" width="301" style="width:39%;"> Male </td>
+							<td colspan="3" height="19" width="189"> Female </td>
+						</tr>
+						<tr height="19">
+							<td width="98" colspan="3">
+								<input id="textinput" ng-model="dmLosOfMinFirms.mining.Table_3.DloNumEmps[0].male" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="98" colspan="3">
+								<input id="textinput" ng-model="dmLosOfMinFirms.mining.Table_3.DloNumEmps[0].female" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						</tr>
+						<tr class="trhead1" height="37">
+							<td height="37" width="171" style="width:25%;"> Assets </td>
+							<td colspan="2" height="37" width="235" style="width:25%;"> Replacement Value of Totally Destroyed Assets (LKR) </td>
+							<td colspan="2" height="37" width="100" style="width:25%;"> Repair Cost for Partially Damaged Assets (LKR) </td>
+							<td colspan="2" height="37" width="" style="width:25%;"> Total Damages (LKR) </td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="boxscroll1" style="height:400px;overflow:auto;">
+					<table class="table table-bordered">
+						<tbody>
+							<tr class="trheadc" height="19">
+								<td height="19" width="171" style="width:25%;"> Structures </td>
+								<td colspan="2" height="19" width="218" style="width:25%;"> </td>
+								<td colspan="2" height="19" width="126" style="width:25%;"> </td>
+								<td colspan="2" height="19" width="126" style="width:25%;"> </td>
+							</tr>
+							<tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures" height="20" ng-if="dloDmgStructures.assets !='Total'">
+								<td ng-bind="dloDmgStructures.assets" height="20" width="174" class="tdpa" ng-if="$index < 2"> </td>
+								<td colspan="" width="98" ng-if="$index > 1"> {% verbatim %}
+									<button id="delete" ng-click="removeItem('DloDmgStructures', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
+									<input style="width:80%;float:right;" ng-model="dloDmgStructures.assets" popover="This field is required" required popover-toggle="form_pop_lat_census['dloDmgStructures' + $index].$dirty && !form_pop_lat_census['dloDmgStructures' + $index].$valid" name="dloDmgStructures_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="2" width="98">
+									<input ng-change="getTotal('DloDmgStructures','rep_tot_dassets');
+                                getColumnTotal('DloDmgStructures');" ng-model="dloDmgStructures.rep_tot_dassets" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgStructures.repair_pdmg_assets" ng-change="getTotal('DloDmgStructures','repair_pdmg_assets');
+                                       getColumnTotal('DloDmgStructures');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgStructures.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloDmgStructures.tot_damages=dloDmgStructures.rep_tot_dassets + dloDmgStructures.repair_pdmg_assets"> </td>
+							</tr>
+							<tr height="20">
+								<td colspan="6" class="tdpa" height="20" width="174"> Others
+									<button ng-click="insertFirm('DloDmgStructures')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+								</td>
+							</tr>
+							<tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures" ng-if="dloDmgStructures.assets=='Total' " height="20">
+								<td ng-bind="dloDmgStructures.assets" height="20" width="264" class="boldash"></td>
+								<td width="98" class="right" colspan="2" ng-model="dloDmgStructures.rep_tot_dassets" ng-bind="dloDmgStructures.rep_tot_dassets = totalFunc('DloDmgStructures','rep_tot_dassets')"></td>
+								<td width="98" class="right" colspan="2" ng-model="dloDmgStructures.repair_pdmg_assets" ng-bind="dloDmgStructures.repair_pdmg_assets = totalFunc('DloDmgStructures','repair_pdmg_assets')"></td>
+								<td class="right" width="98" colspan="2" ng-model="dloDmgStructures.tot_damages " ng-bind="dloDmgStructures.tot_damages =totalFunc('DloDmgStructures','tot_damages')"></td>
+							</tr>
+							<tr class="trheadc" height="19">
+								<td height="19" width="171"> Equipment </td>
+								<td colspan="2" height="19" width="238"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+							</tr>
+							<tr ng-repeat="dloDmgEquipment in dmLosOfMinFirms.mining.Table_3.DloDmgEquipment" height="20" ng-if="dloDmgEquipment.assets !='Total'">
+								<td ng-bind="dloDmgEquipment.assets" height="20" width="174" class="tdpa" ng-if="$index < 2"> </td>
+								<td colspan="" width="98" ng-if="$index > 1"> {% verbatim %}
+									<button id="delete" ng-click="removeItem('DloDmgEquipment', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
+									<input style="width:80%;float:right;" ng-model="dloDmgEquipment.assets" popover="This field is required" required popover-toggle="form_pop_lat_census['dloDmgEquipment' + $index].$dirty && !form_pop_lat_census['dloDmgEquipment' + $index].$valid" name="dloDmgEquipment_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgEquipment.rep_tot_dassets" ng-change="getTotal('DloDmgEquipment','rep_tot_dassets',$index);getColumnTotal('DloDmgEquipment');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgEquipment.repair_pdmg_assets" ng-change="getTotal('DloDmgEquipment','repair_pdmg_assets',$index);getColumnTotal('DloDmgEquipment');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgEquipment.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloDmgEquipment.tot_damages=dloDmgEquipment.rep_tot_dassets+ dloDmgEquipment.repair_pdmg_assets"> </td>
+							</tr>
+							<tr height="20">
+								<td colspan="6" class="tdpa" height="19" width="171"> Others
+									<button ng-click="insertFirm('DloDmgEquipment')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+								</td>
+							</tr>
+							<tr ng-repeat="dloDmgEquipment in dmLosOfMinFirms.mining.Table_3.DloDmgEquipment" ng-if="dloDmgEquipment.assets=='Total'" height="20">
+								<td ng-bind="dloDmgEquipment.assets" height="20" width="264" class="boldash"> </td>
+								<td width="98" class="right" colspan="2" ng-model="dloDmgEquipment.rep_tot_dassets" ng-bind="dloDmgEquipment.rep_tot_dassets = totalFunc('DloDmgEquipment','rep_tot_dassets')">
+									<td width="98" class="right" colspan="2" ng-model="dloDmgEquipment.repair_pdmg_assets" ng-bind="dloDmgEquipment.repair_pdmg_assets = totalFunc('DloDmgEquipment','repair_pdmg_assets')">
+										<td width="98" class="right" colspan="2" ng-model="dloDmgEquipment.tot_damages" ng-bind="dloDmgEquipment.tot_damages= totalFunc('DloDmgEquipment','tot_damages')">
+							</tr>
+							<tr class="trheadc" height="19">
+								<td height="19" width="171"> Machinery </td>
+								<td colspan="2" height="19" width="238"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+							</tr>
+							<tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery" height="20" ng-if="dloDmgMachinery.assets !='Total'">
+								<td ng-bind="dloDmgMachinery.assets" height="20" width="174" class="tdpa" ng-if="$index < 1"> </td>
+								<td colspan="" width="98" ng-if="$index > 0"> {% verbatim %}
+									<button id="delete" ng-click="removeItem('DloDmgMachinery', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
+									<input style="width:80%;float:right;" ng-model="dloDmgMachinery.assets" popover="This field is required" required popover-toggle="form_pop_lat_census['dloDmgMachinery' + $index].$dirty && !form_pop_lat_census['dloDmgMachinery' + $index].$valid" name="dloDmgMachinery_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgMachinery.rep_tot_dassets" ng-change="getTotal('DloDmgMachinery','rep_tot_dassets',$index);getColumnTotal('DloDmgMachinery');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgMachinery.repair_pdmg_assets" ng-change="getTotal('DloDmgMachinery','repair_pdmg_assets',$index);getColumnTotal('DloDmgMachinery');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgMachinery.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloDmgMachinery.tot_damages = dloDmgMachinery.rep_tot_dassets+ dloDmgMachinery.repair_pdmg_assets"> </td>
+							</tr>
+							<tr height="20">
+								<td colspan="6" class="tdpa" height="19" width="171"> Others
+									<button ng-click="insertFirm('DloDmgMachinery')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+								</td>
+							</tr>
+							<tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery" ng-if="dloDmgMachinery.assets=='Total'" height="20">
+								<!-- Fixed rows -->
+								<td ng-bind="dloDmgMachinery.assets" height="20" width="264" class="boldash"> </td>
+								<td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.rep_tot_dassets" ng-bind=" dloDmgMachinery.rep_tot_dassets =  totalFunc('DloDmgMachinery','rep_tot_dassets')">
+									<td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.repair_pdmg_assets" ng-bind="dloDmgMachinery.repair_pdmg_assets = totalFunc('DloDmgMachinery','repair_pdmg_assets')">
+										<td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.tot_damage" ng-bind="dloDmgMachinery.tot_damages = totalFunc('DloDmgMachinery','tot_damage')">
+							</tr>
+							<tr class="trheadc" height="19">
+								<td height="19" width="171"> Vehicles </td>
+								<td colspan="2" height="19" width="238"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+							</tr>
+							<tr ng-repeat="dloDmgVehicles in dmLosOfMinFirms.mining.Table_3.DloDmgVehicles" height="20" ng-if="dloDmgVehicles.assets !='Total'">
+								<td ng-bind="dloDmgVehicles.assets" height="20" width="174" class="tdpa" ng-if="$index < 2"> </td>
+								<td colspan="" width="98" ng-if="$index > 1 "> {% verbatim %}
+									<button id="delete" ng-click="removeItem('DloDmgVehicles', $index)" class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i></button>
+									<input style="width:80%;float:right;" ng-model="dloDmgVehicles.assets" popover="This field is required" required popover-toggle="form_pop_lat_census['dloDmgVehicles' + $index].$dirty && !form_pop_lat_census['dloDmgVehicles' + $index].$valid" name="dloDmgVehicles_{{$index}}" type="text" placeholder="" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgVehicles.rep_tot_dassets" ng-change="getTotal('DloDmgVehicles','rep_tot_dassets',$index);getColumnTotal('DloDmgVehicles');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgVehicles.repair_pdmg_assets" ng-change="getTotal('DloDmgVehicles','repair_pdmg_assets',$index);getColumnTotal('DloDmgVehicles');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgVehicles.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloDmgVehicles.tot_damages=dloDmgVehicles.rep_tot_dassets+ dloDmgVehicles.repair_pdmg_assets"> </td>
+							</tr>
+							<tr height="20">
+								<td colspan="6" class="tdpa" height="19" width="171"> Others
+									<button ng-click="insertFirm('DloDmgVehicles')" class="btn btn-sm btn-info btn-circle" id="insert"><span class="fa fa-plus"></span> </button>
+								</td>
+							</tr>
+							<tr ng-repeat="dloDmgVehicles in dmLosOfMinFirms.mining.Table_3.DloDmgVehicles" ng-if="dloDmgVehicles.assets=='Total'" height="20">
+								<td ng-bind="dloDmgVehicles.assets" height="20" width="264" class="boldash"> </td>
+								<td width="98" class="right" colspan="2" ng-model="dloDmgVehicles.rep_tot_dassets " ng-bind="dloDmgVehicles.rep_tot_dassets = totalFunc('DloDmgVehicles','rep_tot_dassets')">
+									<td width="98" class="right" colspan="2" ng-model="dloDmgVehicles.repair_pdmg_assets" ng-bind="dloDmgVehicles.repair_pdmg_assets = totalFunc('DloDmgVehicles','repair_pdmg_assets')">
+										<td width="98" class="right" colspan="2" ng-model="dloDmgVehicles.tot_damages" ng-bind="dloDmgVehicles.tot_damages = totalFunc('DloDmgVehicles','tot_damages')">
+							</tr>
+							<tr class="trheadc" height="19">
+								<td height="19" width="171"> Stocks </td>
+								<td colspan="2" height="19" width="238"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+								<td colspan="2" height="19" width="126"> </td>
+							</tr>
+							<tr ng-repeat="dloDmgStocks in dmLosOfMinFirms.mining.Table_3.DloDmgStocks" height="20" ng-if="dloDmgStocks.assets !='Total'">
+								<!-- Fixed rows -->
+								<td ng-bind="dloDmgStocks.assets" height="20" width="264" class="tdpa"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgStocks.rep_tot_dassets" ng-change="getTotal('DloDmgStocks','rep_tot_dassets',$index);getColumnTotal('DloDmgStocks','rep_tot_dassets');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td class="tdpa" colspan="2" width="98"> </td>
+								<td colspan="2" width="98">
+									<input ng-model="dloDmgStocks.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloDmgStocks.tot_damages=dloDmgStocks.rep_tot_dassets + dloDmgStocks.repair_pdmg_assets"> </td>
+							</tr>
+							<tr ng-repeat="dloDmgStocks in dmLosOfMinFirms.mining.Table_3.DloDmgStocks" ng-if="dloDmgStocks.assets=='Total'" height="20">
+								<td ng-bind="dloDmgStocks.assets" height="20" width="264" class="boldash"> </td>
+								<td width="98" colspan="2" class="right" ng-model="dloDmgStocks.rep_tot_dassets" ng-bind="dloDmgStocks.rep_tot_dassets = totalFunc('DloDmgStocks','rep_tot_dassets')">
+									<td width="98" colspan="2" class="right" class="tdpa">
+										<td width="98" colspan="2" class="right" ng-model="dloDmgStocks.tot_damages" ng-bind="dloDmgStocks.tot_damages = totalFunc('DloDmgStocks','tot_damages')">
+							</tr>
+							<tr height="20">
+								<!-- Fixed rows -->
+								<td height="20" width="264" class="boldash">GRAND TOTAL </td>
+								<td class="right" width="98" colspan="2" ng-bind="totalFunc('DloDmgStructures','rep_tot_dassets')  +
                                 totalFunc('DloDmgEquipment','rep_tot_dassets') +
                                 totalFunc('DloDmgMachinery','rep_tot_dassets') +
                                 totalFunc('DloDmgVehicles','rep_tot_dassets') +
                                 totalFunc('DloDmgStocks','rep_tot_dassets')">
-                            <td class="right" width="98" colspan="2"
-                                ng-bind="totalFunc('DloDmgStructures','repair_pdmg_assets')  +
+									<td class="right" width="98" colspan="2" ng-bind="totalFunc('DloDmgStructures','repair_pdmg_assets')  +
                                 totalFunc('DloDmgEquipment','repair_pdmg_assets') +
                                 totalFunc('DloDmgMachinery','repair_pdmg_assets') +
                                 totalFunc('DloDmgVehicles','repair_pdmg_assets')">
-                            <td class="right" width="98" colspan="2"
-                                ng-bind="totalFunc('DloDmgStructures','tot_damages')  +
+										<td class="right" width="98" colspan="2" ng-bind="totalFunc('DloDmgStructures','tot_damages')  +
                                 totalFunc('DloDmgEquipment','tot_damages') +
                                 totalFunc('DloDmgMachinery','tot_damages') +
                                 totalFunc('DloDmgVehicles','tot_damages') +
                                 totalFunc('DloDmgStocks','tot_damages')">
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<br> <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Losses Information</a>
-                <br>
-            </div>
-            <div class="tab-pane fade" id="step2">
-                <table class="table table-bordered">
-                    <colgroup>
-                        <col width="171"/>
-                        <col width="119"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="63"/>
-                        <col width="120"/>
-                    </colgroup>
-                    <tbody>
-                    <tr class="trheadc1" height="34">
-                        <td height="34" width="171">
-                            Types of Losses
-                        </td>
-                        <td colspan="2" height="34" width="119">
-                            Average Value of Output Per Year
-                        </td>
-                        <td colspan="2" height="34" width="126">
-                            Reduction in Value 0f Output (%)
-                        </td>
-                        <td colspan="2" height="34" width="126">
-                            Losses (LKR)
-                        </td>
-                        <td rowspan="2" height="53" width="120">
-                            Total Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td height="19" width="171">
-                            Production Losses
-                        </td>
-                        <td colspan="2" height="19" width="119">
-                            LKR/Year
-                        </td>
-                        <td height="19" width="63">
-                            Year 1
-                        </td>
-                        <td height="19" width="63">
-                            Year 2
-                        </td>
-                        <td height="19" width="63">
-                            Year 1
-                        </td>
-                        <td height="19" width="63">
-                            Year 2
-                        </td>
-                    </tr>
-                    <tr ng-repeat="dloLosPlos in dmLosOfMinFirms.mining.Table_3.DloLosPlos"
-                        height="20" ng-if="dloLosPlos.type_los !='Total'">
-                        <td ng-bind="dloLosPlos.type_los" height="20" width="174"
-                            class="tdpa">
-                        </td>
-
-                        <td colspan="2" width="98">
-                            <input ng-model="dloLosPlos.avg_per_year" ng-change="getValue('DloLosPlos','avg_per_year');"
-                                   id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosPlos.red_voutput_year1"
-                                   ng-change="getValue('DloLosPlos','red_voutput_year1');"
-                                   id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosPlos.red_voutput_year2"
-                                   ng-change="getValue('DloLosPlos','red_voutput_year2');"
-                                   id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosPlos.los_year1"
-                                   id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                   class="form-control input-md nborder right"
-                                   ng-bind="dloLosPlos.los_year1=(dloLosPlos.avg_per_year * dloLosPlos.red_voutput_year1/100)">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosPlos.los_year2"
-                                   id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                   class="form-control input-md nborder right"
-                                   ng-bind="dloLosPlos.los_year2=(dloLosPlos.avg_per_year * dloLosPlos.red_voutput_year2/100)">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosPlos.tot_losses"
-                                   id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                   class="form-control input-md nborder right"
-                                   ng-bind="dloLosPlos.tot_losses=dloLosPlos.los_year1 + dloLosPlos.los_year2">
-                        </td>
-                    </tr>
-
-                    <tr ng-repeat="dloLosPlos in dmLosOfMinFirms.mining.Table_3.DloLosPlos"
-                        ng-if="dloLosPlos.type_los=='Total'" height="20">
-                        <td ng-bind="dloLosPlos.type_los"
-                            height="20" width="264"
-                            class="boldash">
-                        </td>
-                        <td width="98" colspan="2" class="boldash right">
-                        <td width="98" colspan="1" class="boldash right">
-                        <td width="98" colspan="1" class="boldash right">
-                        <td width="98" colspan="1" class="right" ng-model="dloLosPlos.los_year1"
-                            ng-bind="dloLosPlos.los_year1 = totalFunc('DloLosPlos','los_year1')">
-                        <td width="98" colspan="1" class="right"  ng-model="dloLosPlos.los_year2"
-                            ng-bind="dloLosPlos.los_year2 = totalFunc('DloLosPlos','los_year2')">
-                        <td width="98" colspan="1" class="right"  ng-model="dloLosPlos.tot_losses "
-                            ng-bind="dloLosPlos.tot_losses = totalFunc('DloLosPlos','tot_losses')">
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="171">
-                            Other Losses
-                        </td>
-                        <td colspan="2" height="19" width="119">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="63">
-                        </td>
-                        <td height="19" width="120">
-                        </td>
-                    </tr>
-                    <tr ng-repeat="dloLosOlos in dmLosOfMinFirms.mining.Table_3.DloLosOlos" height="20"
-                        ng-if="dloLosOlos.type_los !='Total'">
-                        <td ng-bind="dloLosOlos.type_los"
-                            height="20" width="264"
-                            class="tdpa">
-                        </td>
-                        <td colspan="2" width="98" class="tdpa">
-                        </td>
-                        <td colspan="1" width="98" class="tdpa">
-                        </td>
-                        <td colspan="1" width="98" class="tdpa">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosOlos.los_year1"
-                                   id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('DloLosOlos','los_year1');getColumnTotal('DloLosOlos','los_year1');"
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosOlos.los_year2"
-                                   id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('DloLosOlos','los_year2');getColumnTotal('DloLosOlos','los_year2');"
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="1" width="98">
-                            <input ng-model="dloLosOlos.tot_losses"
-                                   id="textinput" name="textinput" onfocus="this.blur()" placeholder=""
-                                   class="form-control input-md nborder right"
-                                   ng-bind="dloLosOlos.tot_losses = dloLosOlos.los_year1 + dloLosOlos.los_year2">
-                        </td>
-                    </tr>
-                    <tr ng-repeat="dloLosOlos in dmLosOfMinFirms.mining.Table_3.DloLosOlos"
-                        ng-if="dloLosOlos.type_los=='Total'" height="20">
-                        <td ng-bind="dloLosOlos.type_los"
-                            height="20" width="264"
-                            class="boldash">
-                        </td>
-                        <td width="98" colspan="2" class="boldash right"></td>
-                        <td width="98" colspan="1" class="boldash right"></td>
-                        <td width="98" colspan="1" class="boldash right"></td>
-                        <td width="98" colspan="1" class="right" ng-model="dloLosOlos.los_year1 "
-                            ng-bind="dloLosOlos.los_year1 = totalFunc('DloLosOlos','los_year1')"></td>
-                        <td width="98" colspan="1" class="right"  ng-model="dloLosOlos.los_year2"
-                            ng-bind="dloLosOlos.los_year2 = totalFunc('DloLosOlos','los_year2')"></td>
-                        <td width="98" colspan="1" class="right"  ng-model="dloLosOlos.tot_losses"
-                            ng-bind="dloLosOlos.tot_losses =  totalFunc('DloLosOlos','tot_losses')"></td>
-                    </tr>
-                    <tr height="20">
-                        <!-- Fixed rows -->
-                        <td height="20" width="264"
-                            class="boldash">GRAND TOTAL
-                        </td>
-                        <td width="98" colspan="2" class="boldash"></td>
-                        <td width="98" colspan="1" class="boldash"></td>
-                        <td width="98" colspan="1" class="boldash"></td>
-                        <td class="right" width="98" colspan="1"
-                            ng-bind="totalFunc('DloLosOlos','los_year1') +
+				<br> </div>
+			<div class="tab-pane fade" id="step2">
+				<table class="table table-bordered">
+					<colgroup>
+						<col width="171" />
+						<col width="119" />
+						<col width="63" />
+						<col width="63" />
+						<col width="63" />
+						<col width="63" />
+						<col width="120" /> </colgroup>
+					<tbody>
+						<tr class="trheadc1" height="34">
+							<td height="34" width="171"> Types of Losses </td>
+							<td colspan="2" height="34" width="119"> Average Value of Output Per Year </td>
+							<td colspan="2" height="34" width="126"> Reduction in Value 0f Output (%) </td>
+							<td colspan="2" height="34" width="126"> Losses (LKR) </td>
+							<td rowspan="2" height="53" width="120"> Total Losses (LKR) </td>
+						</tr>
+						<tr class="trheadc1" height="19">
+							<td height="19" width="171"> Production Losses </td>
+							<td colspan="2" height="19" width="119"> LKR/Year </td>
+							<td height="19" width="63"> Year 1 </td>
+							<td height="19" width="63"> Year 2 </td>
+							<td height="19" width="63"> Year 1 </td>
+							<td height="19" width="63"> Year 2 </td>
+						</tr>
+						<tr ng-repeat="dloLosPlos in dmLosOfMinFirms.mining.Table_3.DloLosPlos" height="20" ng-if="dloLosPlos.type_los !='Total'">
+							<td ng-bind="dloLosPlos.type_los" height="20" width="174" class="tdpa"> </td>
+							<td colspan="2" width="98">
+								<input ng-model="dloLosPlos.avg_per_year" ng-change="getValue('DloLosPlos','avg_per_year');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosPlos.red_voutput_year1" ng-change="getValue('DloLosPlos','red_voutput_year1');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosPlos.red_voutput_year2" ng-change="getValue('DloLosPlos','red_voutput_year2');" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosPlos.los_year1" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloLosPlos.los_year1=(dloLosPlos.avg_per_year * dloLosPlos.red_voutput_year1/100)"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosPlos.los_year2" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloLosPlos.los_year2=(dloLosPlos.avg_per_year * dloLosPlos.red_voutput_year2/100)"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosPlos.tot_losses" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloLosPlos.tot_losses=dloLosPlos.los_year1 + dloLosPlos.los_year2"> </td>
+						</tr>
+						<tr ng-repeat="dloLosPlos in dmLosOfMinFirms.mining.Table_3.DloLosPlos" ng-if="dloLosPlos.type_los=='Total'" height="20">
+							<td ng-bind="dloLosPlos.type_los" height="20" width="264" class="boldash"> </td>
+							<td width="98" colspan="2" class="boldash right">
+								<td width="98" colspan="1" class="boldash right">
+									<td width="98" colspan="1" class="boldash right">
+										<td width="98" colspan="1" class="right" ng-model="dloLosPlos.los_year1" ng-bind="dloLosPlos.los_year1 = totalFunc('DloLosPlos','los_year1')">
+											<td width="98" colspan="1" class="right" ng-model="dloLosPlos.los_year2" ng-bind="dloLosPlos.los_year2 = totalFunc('DloLosPlos','los_year2')">
+												<td width="98" colspan="1" class="right" ng-model="dloLosPlos.tot_losses " ng-bind="dloLosPlos.tot_losses = totalFunc('DloLosPlos','tot_losses')">
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="171"> Other Losses </td>
+							<td colspan="2" height="19" width="119"> </td>
+							<td height="19" width="63"> </td>
+							<td height="19" width="63"> </td>
+							<td height="19" width="63"> </td>
+							<td height="19" width="63"> </td>
+							<td height="19" width="120"> </td>
+						</tr>
+						<tr ng-repeat="dloLosOlos in dmLosOfMinFirms.mining.Table_3.DloLosOlos" height="20" ng-if="dloLosOlos.type_los !='Total'">
+							<td ng-bind="dloLosOlos.type_los" height="20" width="264" class="tdpa"> </td>
+							<td colspan="2" width="98" class="tdpa"> </td>
+							<td colspan="1" width="98" class="tdpa"> </td>
+							<td colspan="1" width="98" class="tdpa"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosOlos.los_year1" id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('DloLosOlos','los_year1');getColumnTotal('DloLosOlos','los_year1');" class="form-control input-md"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosOlos.los_year2" id="textinput" name="textinput" type="number" placeholder="" ng-change="getTotal('DloLosOlos','los_year2');getColumnTotal('DloLosOlos','los_year2');" class="form-control input-md"> </td>
+							<td colspan="1" width="98">
+								<input ng-model="dloLosOlos.tot_losses" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloLosOlos.tot_losses = dloLosOlos.los_year1 + dloLosOlos.los_year2"> </td>
+						</tr>
+						<tr ng-repeat="dloLosOlos in dmLosOfMinFirms.mining.Table_3.DloLosOlos" ng-if="dloLosOlos.type_los=='Total'" height="20">
+							<td ng-bind="dloLosOlos.type_los" height="20" width="264" class="boldash"> </td>
+							<td width="98" colspan="2" class="boldash right"></td>
+							<td width="98" colspan="1" class="boldash right"></td>
+							<td width="98" colspan="1" class="boldash right"></td>
+							<td width="98" colspan="1" class="right" ng-model="dloLosOlos.los_year1 " ng-bind="dloLosOlos.los_year1 = totalFunc('DloLosOlos','los_year1')"></td>
+							<td width="98" colspan="1" class="right" ng-model="dloLosOlos.los_year2" ng-bind="dloLosOlos.los_year2 = totalFunc('DloLosOlos','los_year2')"></td>
+							<td width="98" colspan="1" class="right" ng-model="dloLosOlos.tot_losses" ng-bind="dloLosOlos.tot_losses =  totalFunc('DloLosOlos','tot_losses')"></td>
+						</tr>
+						<tr height="20">
+							<!-- Fixed rows -->
+							<td height="20" width="264" class="boldash">GRAND TOTAL </td>
+							<td width="98" colspan="2" class="boldash"></td>
+							<td width="98" colspan="1" class="boldash"></td>
+							<td width="98" colspan="1" class="boldash"></td>
+							<td class="right" width="98" colspan="1" ng-bind="totalFunc('DloLosOlos','los_year1') +
                             totalFunc('DloLosPlos','los_year1')"></td>
-                        <td class="right" width="98" colspan="1"
-                            ng-bind="totalFunc('DloLosOlos','los_year2') +
+							<td class="right" width="98" colspan="1" ng-bind="totalFunc('DloLosOlos','los_year2') +
                             totalFunc('DloLosPlos','los_year2')"></td>
-                        <td class="right" width="98" colspan="1"
-                            ng-bind="totalFunc('DloLosOlos','tot_losses') +
+							<td class="right" width="98" colspan="1" ng-bind="totalFunc('DloLosOlos','tot_losses') +
                             totalFunc('DloLosPlos','tot_losses')"></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <br>
-                <div class="pull-right">
-                    <br>
-                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="dlDataEdit(form_damagelost_mining_firm)" ng-if="!is_edit"
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<div class="pull-right">
+					<br>
+					<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button> <span ng-if="is_edit_disable">
+                        <button id="editbtn" type="button" ng-click="dlDataEdit(form_damagelost_mining_firm)" ng-if="!is_edit"
                                 class="btn btn-success">
                             Edit
                         </button>
-                    </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                    </span> <span ng-if="!is_edit_disable">
+                        <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                        Cancel Edit
-                    </button>
-                    <button type="button" ng-click="saveDlData(form_damagelost_mining_firm)"
-                            class="btn btn-success">
-                        Submit
-                    </button>
-                </div>
-                <br><br><br>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- /.conainer-fluid -->
-    <!-- update the baseline Model -->
-    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            onclick="javascript:window.location.reload()">
-                        ×
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
+					<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning"> Cancel Edit </button>
+					<button id="subbtn" type="button" ng-click="saveDlData(form_damagelost_mining_firm)" class="btn btn-success"> Submit </button>
+				</div>
+				<br>
+				<br>
+				<br> </div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<!-- /.conainer-fluid -->
+	<!-- update the baseline Model -->
+	<div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()"> × </button>
+					<h4 class="modal-title" id="myModalLabel">
                         Warning
-                    </h4>
-                </div>
-                <div class="modal-body alert-info">
-                    <h4>
+                    </h4> </div>
+				<div class="modal-body alert-info">
+					<h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
                         <b>Table 1: Baseline Information for Industrial Mining Firms</b><br>
                         information before you calculate the damage and loss !
-                    </h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"
-                            onclick="javascript:window.location.reload()">
-                        Close
-                    </button>
-                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                            class="btn btn-primary">
-                        OK
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-{% endblock content %}
+                    </h4> </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()"> Close </button>
+					<button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary"> OK </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main> {% endblock content %}

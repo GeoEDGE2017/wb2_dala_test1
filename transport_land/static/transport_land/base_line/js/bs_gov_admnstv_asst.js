@@ -1,6 +1,5 @@
 //Table 3
 var app = angular.module('bsGovAdmnstvAssetApp', [])
-
 app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
@@ -10,6 +9,7 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.check_search = false;
 
     //initialize models
     var init_data = {
@@ -73,9 +73,10 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
-        }
-        else {
+            $scope.check_search = true;
+        } else {
             $scope.is_edit_disable = false;
+            $scope.check_search = false;
         }
     }
 
@@ -185,13 +186,57 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsGovAdmnstvAsset = init_data;
+        location.reload();
     }
 
     //Clear Function
-    $scope.clear = function() {
-        console.log("clear")
-        $scope.is_edit = false;
-        $scope.bsGovAdmnstvAsset = angular.copy(init_data);
+	$scope.clear = function() {
+		console.log("clear")
+		$scope.is_edit = false;
+		$scope.bsGovAdmnstvAsset = angular.copy(init_data);
+		location.reload();
+	}
+
+    // search data
+	$scope.searchBsData = function(form) {
+        document.getElementById("clearbtn").disabled = true;
+        document.getElementById("editbtn").disabled = true;
+        document.getElementById("subbtn").disabled = true;
+        console.log("test", $scope.district);
+        console.log("test", $scope.bs_date);
+        $scope.is_search = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'transport_land',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.transport_land.Table_3, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsGovAdmnstvAsset = data;
+                    } else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                } else {
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
     }
 
     $scope.enum_data = {
@@ -208,7 +253,6 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.getEnumDataFromStart = function() {
         var biaGacLandOequipment_e_index = 0;
         angular.forEach($scope.bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment, function(value, index, key) {
-//            var bsRbuTbridges_index = 0;
             if(value.asset != 'Computers' && value.asset != 'Furniture') {
                 var enum_val = {
                     oldasset: value.asset,

@@ -1,6 +1,5 @@
 //Table 4
 var app = angular.module('dlRoadBrdgsApp', ['underscore'])
-
 app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.district;
     $scope.selectedDistrict;
@@ -16,6 +15,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.tot = null;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
 
     var init_data = {
         'transport_land' : {
@@ -469,10 +469,53 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         }
     }
 
+    $scope.searchDlData = function(form) {
+		document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
+		if(form.$valid) {
+			$http({
+				method: "POST",
+				url: '/dl_fetch_edit_data',
+				data: angular.toJson({
+					'table_name': 'Table_4',
+					'sector': 'transport_land',
+					'com_data': {
+						'district': $scope.district.district__id,
+						'incident': $scope.incident,
+					},
+					'is_edit': $scope.is_edit
+				}),
+			}).success(function(data) {
+				var edit_data_not_found = false;
+				if(data != null) {
+					angular.forEach(data.transport_land.Table_4, function(value, index) {
+						console.log(value);
+						if(value.length == 0) {
+							edit_data_not_found = true;
+						}
+					})
+					if(edit_data_not_found != true) {
+						$scope.dlRoadBrdgs = data;
+						console.log($scope.dlRoadBrdgs);
+					} else {
+						$("#modal-container-239456").modal('show');
+					}
+				} else {
+					$("#modal-container-239456").modal('show');
+				}
+			})
+		}
+	}
+
     $scope.cancelEdit = function() {
-        $scope.is_edit = false;
-        $scope.dlRoadBrdgs = init_data;
-    }
+		$scope.is_edit = false;
+		$scope.dlRoadBrdgs = init_data;
+		location.reload();
+	}
 
     $scope.calTotal = function(arr) {
         var finaltotal = 0;
@@ -535,7 +578,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         return grantot;
     }
 
-     $scope.calTot = function() {
+    $scope.calTot = function() {
         var finaltotal1 = 0;
 
         var grantot = 0;
@@ -554,9 +597,9 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 
     //Clear Function
     $scope.clear = function() {
-        console.log("clear")
-        $scope.is_edit = false;
-        $scope.dlRoadBrdgs = angular.copy(init_data);
-    }
+		console.log("clear")
+		$scope.is_edit = false;
+		$scope.dlRoadBrdgs = angular.copy(init_data);
+		location.reload();
+	}
 });
-

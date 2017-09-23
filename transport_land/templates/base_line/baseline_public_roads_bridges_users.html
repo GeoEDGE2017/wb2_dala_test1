@@ -1,459 +1,251 @@
-{% extends "dashboard/base.html" %}
-{% block content %}
-{% load static %}
+{% extends "dashboard/base.html" %} {% block content %} {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsPubRodsBridsUsrApp" ng-controller="bsPubRodsBridsUsrController">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">
-                Dashboard
-            </a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:transport_land_main' %}">
-                Transport Land Sector
-            </a>
-        </li>
-        <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">
+	<!-- Breadcrumb -->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a> </li>
+		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline of Public Roads, Bridges and Users
-            </span>
-        </li>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
-               class="icon-info" data-toggle="tooltip" title="Veiw Document">
-            </a>
-        </li>
-    </ol>
-    <div class="container-fluid">
-        <div>
-            <ul class='nav nav-wizard'>
-                <li id="li1" class="active">
-                    <a href='#step1' data-toggle="tab">
-                        1 Road Classification
-                    </a>
-                </li>
-                <li id="li2">
-                    <a href='#step2' data-toggle="tab">
-                        2 Other Assets
-                    </a>
-                </li>
-            </ul>
-            <div id="myTabContent" class="tab-content" ng-form name="form_pub_rod_brg_use">
-                <div class="tab-pane active" id="step1">
-                 <td><button ng-click="editBsData(form_pub_rod_brg_use)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
-                    <table class="table table-bordered">
-                        <colgroup>
-                            <col width="156"/>
-                            <col width="63"/>
-                            <col width="120"/>
-                            <col width="99"/>
-                            <col width="145"/>
-                            <col width="148"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                        </colgroup>
-                        <tbody>
-                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;" border="0" >
-                            </td>
-                            <td colspan="4"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.district.$error.required">
+            </span> </li>
+		<li style="float:right;">
+			<a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+		</li>
+	</ol>
+	<div class="container-fluid">
+		<div>
+			<ul class='nav nav-wizard'>
+				<li id="li1" class="active"> <a href='#step1' data-toggle="tab">1 Road Classification</a> </li>
+				<li id="li2"> <a href='#step2' data-toggle="tab">2 Other Assets </a> </li>
+			</ul>
+			<div id="myTabContent" class="tab-content" ng-form name="form_pub_rod_brg_use">
+				<div class="tab-pane active" id="step1">
+					<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+						</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_pub_rod_brg_use)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+					</td>
+					<table class="table table-bordered">
+						<colgroup>
+							<col width="156" />
+							<col width="63" />
+							<col width="120" />
+							<col width="99" />
+							<col width="145" />
+							<col width="148" />
+							<col width="63" />
+							<col width="63" />
+							<col width="63" /> </colgroup>
+						<tbody>
+							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>
+								<td colspan="4" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.district.$error.required">
                                     Please select District
-                                </span>
-                            </td>
-                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.baselineDate.$error.required">
+                                </span> </td>
+								<td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+								<td colspan="3" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_pub_rod_brg_use.baselineDate.$error.required">
                                     Please select Date
-                                </span>
-                            </td>
-                        </tr>
-                        <tr height="19" colspan="3" class="trhead1">
-                            <td style="padding-left:5px;" height="19" width="171">
-                                District
-                            </td>
-                            <td colspan="4" height="19" style="font-weight:normal;" width="427">
-                                <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select a District</option>
-                                    {% for district in districts %}
-                                        <option value={{ district.id }}>{{ district.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td class="trhead1" width="240" height="19">
-                                Year/Month
-                            </td>
-                            <td colspan="3" height="19" style="font-weight:normal;" width="427">
-                                <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker"
-                                       ng-model="bs_date" class="form-control input-md" required>
-                            </td>
-                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                        </tr>
-                        <tr class="trheadc1" height="71">
-                            <td rowspan="2" width="156" height="90">
-                                Road Classification
-                            </td>
-                            <td colspan="4" width="345" height="71" style="width:40%;">
-                                Average Replacement Cost per km (LKR/km)
-                            </td>
-                            <td colspan="4" width="422" height="71">
-                                Average Repair Cost per km (LKR/km)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="19">
-                            <td width="63" height="19" style="width:10%;">
-                                Concrete
-                            </td>
-                            <td width="120" height="19">
-                                Asphalt
-                            </td>
-                            <td width="99" height="19" style="width:11%;">
-                                Gravel
-                            </td>
-                            <td width="145" height="19">
-                                Earth
-                            </td>
-                            <td width="148" height="19" style="width:10%;">
-                                Concrete
-                            </td>
-                            <td width="63" height="19">
-                                Asphalt
-                            </td>
-                            <td width="63" height="19">
-                                Gravel
-                            </td>
-                            <td width="63" height="19">
-                                Earth
-                            </td>
-                        </tr>
-                        <tr height="19"
-                            ng-repeat="bsRbuRclassificattion in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuRclassificattion">
-                            <td class="tdpa" width="156" height="19" ng-bind="bsRbuRclassificattion.road_classification">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_concrete"
-                                       name="textinput" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="120" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_asphalt"
-                                       name="textinput" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="99" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_gravel"
-                                       name="textinput" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="145" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_earth"
-                                       name="textinput" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="148" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_concrete"
-                                       name="textinput" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_asphalt"
-                                       name="textinput" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_gravel"
-                                       name="textinput" type="number" placeholder="" class="form-control input-md">
-                            </td>
-                            <td width="63" height="19">
-                                <input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_earth" name="textinput"
-                                       type="number" placeholder="" class="form-control input-md">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <br>
-                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                                </span> </td>
+							</tr>
+							<tr height="19" colspan="3" class="trhead1">
+								<td style="padding-left:5px;" height="19" width="171"> District </td>
+								<td colspan="4" height="19" style="font-weight:normal;" width="427">
+									<select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
+										<option value="" selected="true">Select a District</option> {% for district in districts %}
+										<option value={{ district.id }}>{{ district.name }}</option> {% endfor %} </select>
+								</td>
+								<td class="trhead1" width="240" height="19"> Year/Month </td>
+								<td colspan="3" height="19" style="font-weight:normal;" width="427">
+									<input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							<tr class="trheadc1" height="71">
+								<td rowspan="2" width="156" height="90"> Road Classification </td>
+								<td colspan="4" width="345" height="71" style="width:40%;"> Average Replacement Cost per km (LKR/km) </td>
+								<td colspan="4" width="422" height="71"> Average Repair Cost per km (LKR/km) </td>
+							</tr>
+							<tr class="trsubc" height="19">
+								<td width="63" height="19" style="width:10%;"> Concrete </td>
+								<td width="120" height="19"> Asphalt </td>
+								<td width="99" height="19" style="width:11%;"> Gravel </td>
+								<td width="145" height="19"> Earth </td>
+								<td width="148" height="19" style="width:10%;"> Concrete </td>
+								<td width="63" height="19"> Asphalt </td>
+								<td width="63" height="19"> Gravel </td>
+								<td width="63" height="19"> Earth </td>
+							</tr>
+							<tr height="19" ng-repeat="bsRbuRclassificattion in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuRclassificattion">
+								<td class="tdpa" width="156" height="19" ng-bind="bsRbuRclassificattion.road_classification"> </td>
+								<td width="63" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_concrete" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="120" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_asphalt" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="99" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_gravel" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="145" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_replace_earth" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="148" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_concrete" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="63" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_asphalt" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="63" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_gravel" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<td width="63" height="19">
+									<input id="textinput" ng-model="bsRbuRclassificattion.avg_repair_earth" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+						</tbody>
+					</table>
+					<br> <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill ther Assest Informations</a>
-                    <br>
-                </div>
-
-                <div class="tab-pane fade" id="step2">
-                    <table class="table table-bordered">
-                        <colgroup>
-                            <col width="156"/>
-                            <col width="63"/>
-                            <col width="120"/>
-                            <col width="99"/>
-                            <col width="145"/>
-                            <col width="148"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                        </colgroup>
-                        <tbody>
-
-                        <tr class="trhead1" style="padding-left:5px;" height="42">
-                            <td rowspan="2" style="padding-left:5px;width:32%;" width="156" height="61">
-                                Types of Bridges
-                            </td>
-                            <td colspan="4" style="padding-left:5px;width:35%;" width="345" height="42" >
-                                Average Replacement Cost per Meter (LKR/m)
-                            </td>
-                            <td colspan="4" style="padding-left:5px;" width="422" height="42">
-                                Average Repair Cost per Meter (LKR/m)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="19">
-                            <td colspan="2" width="126" height="19" style="width:17%;">
-                                2 lanes
-                            </td>
-                            <td colspan="2" width="198" height="19">
-                                Multi-lanes
-                            </td>
-                            <td colspan="2" width="296" height="19" style="width:15%;">
-                                2 lanes
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                Multi-lanes
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bsRbuTbridges in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTbridges">
-                            <td class="tdpa" width="156" height="19" ng-bind="bsRbuTbridges.type_bridges" ng-if="$index < 2">
-                            </td>
-                            <td width="98" ng-if="$index > 1">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BsRbuTbridges', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:90%;float:right;" name="bsRbuTbridges_{{$index}}" ng-model="bsRbuTbridges.type_bridges"
-                                    popover="This field is required"
-                                    popover-toggle="form_pop_lat_census['bsRbuTbridges_' + $index].$dirty && !form_pop_lat_census['bsRbuTbridges' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_replace_2_lanes" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="198" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_replace_multi_lanes" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="296" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_repair_2_lanes" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_repair_multi_lanes" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="156" height="19">
-                                Others &nbsp;
-                                <button ng-click="insertAsset('BsRbuTbridges')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="198" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="296" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="2" width="126" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="156" height="19">
-                                Types of Culverts
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                Average Replacement Cost per Meter (LKR/m)
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                Average Repair Cost per Meter (LKR/m)
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bsRbuTculverts in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTculverts">
-                            <td class="tdpa" width="156" height="19" ng-bind="bsRbuTculverts.type_culverts" ng-if="$index < 1">
-                            </td>
-                            <td width="98" ng-if="$index > 0">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BsRbuTculverts', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:90%;float:right;" name="bsRbuTculverts_{{$index}}" ng-model="bsRbuTculverts.type_culverts"
-                                    popover="This field is required"
-                                    popover-toggle="form_pop_lat_census['bsRbuTculverts_' + $index].$dirty && !form_pop_lat_census['bsRbuTculverts_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTculverts.avg_replace_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTculverts.avg_repair_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="156" height="19">
-                                Others &nbsp;
-                                <button ng-click="insertAsset('BsRbuTculverts')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="156" height="19">
-                                Types of Retaining Walls
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bsRbuTrwalls in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTrwalls">
-                            <td class="tdpa" width="156" height="19" ng-bind="bsRbuTrwalls.type_retain_walls" ng-if="$index < 1">
-                            </td>
-                            <td width="98" ng-if="$index > 0">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BsRbuTrwalls', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:90%;float:right;" name="bsRbuTdrains_{{$index}}" ng-model="bsRbuTrwalls.type_retain_walls"
-                                    popover="This field is required"
-                                    popover-toggle="form_pop_lat_census['bsRbuTdrains_' + $index].$dirty && !form_pop_lat_census['bsRbuTdrains_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTrwalls.avg_replace_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <input id="textinput" name="textinput" ng-model="bsRbuTrwalls.avg_repair_cost" type="number" placeholder=""
-                                       class="form-control input-md">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="156" height="19">
-                                Others &nbsp;
-                                <button ng-click="insertAsset('BsRbuTrwalls')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td width="156" height="19">
-                                Types of Drains
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="bsRbuTdrains in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTdrains">
-                            <td class="tdpa" width="156" height="19" ng-if="$index < 3" ng-bind="bsRbuTdrains.type_drains">
-                            </td>
-                            <td width="98" ng-if="$index > 2">
-                                {% verbatim %}
-                                <button id="delete" ng-click="removeItem('BsRbuTdrains', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input style="width:90%;float:right;" name="bsRbuTdrains_{{$index}}" ng-model="bsRbuTdrains.type_drains"
-                                    popover="This field is required"
-                                    popover-toggle="form_pop_lat_census['bsRbuTdrains_' + $index].$dirty && !form_pop_lat_census['bsRbuTdrains_' + $index].$valid"
-                                    popover-placement="top" required
-                                    type="text"
-                                    class="form-control input-md">
-                                {% endverbatim %}
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder=""  ng-model="bsRbuTdrains.avg_replace_cost"
-                                       class="form-control input-md">
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <input id="textinput" name="textinput" type="number" placeholder="" ng-model="bsRbuTdrains.avg_repair_cost"
-                                       class="form-control input-md">
-                            </td>
-                        </tr>
-                        <tr class="tdpa" height="19">
-                            <td width="156" height="19">
-                                Others &nbsp;
-                                <button ng-click="insertAsset('BsRbuTdrains')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </td>
-                            <td colspan="4" width="345" height="19">
-                                <br/>
-                            </td>
-                            <td colspan="4" width="422" height="19">
-                                <br/>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="pull-right">
-                        <br>
-                        <button type="button" class="btn btn-info" ng-click="clear()">
-                            Clear
+					<br> </div>
+				<div class="tab-pane fade" id="step2">
+					<table class="table table-bordered">
+						<colgroup>
+							<col width="156" />
+							<col width="63" />
+							<col width="120" />
+							<col width="99" />
+							<col width="145" />
+							<col width="148" />
+							<col width="63" />
+							<col width="63" />
+							<col width="63" /> </colgroup>
+						<tbody>
+							<tr class="trhead1" style="padding-left:5px;" height="42">
+								<td rowspan="2" style="padding-left:5px;width:32%;" width="156" height="61"> Types of Bridges </td>
+								<td colspan="4" style="padding-left:5px;width:35%;" width="345" height="42"> Average Replacement Cost per Meter (LKR/m) </td>
+								<td colspan="4" style="padding-left:5px;" width="422" height="42"> Average Repair Cost per Meter (LKR/m) </td>
+							</tr>
+							<tr class="trsubc" height="19">
+								<td colspan="2" width="126" height="19" style="width:17%;"> 2 lanes </td>
+								<td colspan="2" width="198" height="19"> Multi-lanes </td>
+								<td colspan="2" width="296" height="19" style="width:15%;"> 2 lanes </td>
+								<td colspan="2" width="126" height="19"> Multi-lanes </td>
+							</tr>
+							<tr height="19" ng-repeat="bsRbuTbridges in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTbridges">
+								<td class="tdpa" width="156" height="19" ng-bind="bsRbuTbridges.type_bridges" ng-if="$index < 2"> </td>
+								<td width="98" ng-if="$index > 1"> {% verbatim %}
+									<button id="delete" ng-click="removeItem('BsRbuTbridges', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
+									<input style="width:90%;float:right;" name="bsRbuTbridges_{{$index}}" ng-model="bsRbuTbridges.type_bridges" popover="This field is required" popover-toggle="form_pop_lat_census['bsRbuTbridges_' + $index].$dirty && !form_pop_lat_census['bsRbuTbridges' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="2" width="126" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_replace_2_lanes" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="198" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_replace_multi_lanes" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="296" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_repair_2_lanes" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="2" width="126" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTbridges.avg_repair_multi_lanes" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr class="tdpa" height="19">
+								<td width="156" height="19"> Others &nbsp;
+									<button ng-click="insertAsset('BsRbuTbridges')" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
+								</td>
+								<td colspan="2" width="126" height="19">
+									<br/> </td>
+								<td colspan="2" width="198" height="19">
+									<br/> </td>
+								<td colspan="2" width="296" height="19">
+									<br/> </td>
+								<td colspan="2" width="126" height="19">
+									<br/> </td>
+							</tr>
+							<tr class="trheadc" height="19">
+								<td width="156" height="19"> Types of Culverts </td>
+								<td colspan="4" width="345" height="19"> Average Replacement Cost per Meter (LKR/m) </td>
+								<td colspan="4" width="422" height="19"> Average Repair Cost per Meter (LKR/m) </td>
+							</tr>
+							<tr height="19" ng-repeat="bsRbuTculverts in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTculverts">
+								<td class="tdpa" width="156" height="19" ng-bind="bsRbuTculverts.type_culverts" ng-if="$index < 1"> </td>
+								<td width="98" ng-if="$index > 0"> {% verbatim %}
+									<button id="delete" ng-click="removeItem('BsRbuTculverts', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
+									<input style="width:90%;float:right;" name="bsRbuTculverts_{{$index}}" ng-model="bsRbuTculverts.type_culverts" popover="This field is required" popover-toggle="form_pop_lat_census['bsRbuTculverts_' + $index].$dirty && !form_pop_lat_census['bsRbuTculverts_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="4" width="345" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTculverts.avg_replace_cost" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="4" width="422" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTculverts.avg_repair_cost" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr class="tdpa" height="19">
+								<td width="156" height="19"> Others &nbsp;
+									<button ng-click="insertAsset('BsRbuTculverts')" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
+								</td>
+								<td colspan="4" width="345" height="19">
+									<br/> </td>
+								<td colspan="4" width="422" height="19">
+									<br/> </td>
+							</tr>
+							<tr class="trheadc" height="19">
+								<td width="156" height="19"> Types of Retaining Walls </td>
+								<td colspan="4" width="345" height="19">
+									<br/> </td>
+								<td colspan="4" width="422" height="19">
+									<br/> </td>
+							</tr>
+							<tr height="19" ng-repeat="bsRbuTrwalls in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTrwalls">
+								<td class="tdpa" width="156" height="19" ng-bind="bsRbuTrwalls.type_retain_walls" ng-if="$index < 1"> </td>
+								<td width="98" ng-if="$index > 0"> {% verbatim %}
+									<button id="delete" ng-click="removeItem('BsRbuTrwalls', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
+									<input style="width:90%;float:right;" name="bsRbuTdrains_{{$index}}" ng-model="bsRbuTrwalls.type_retain_walls" popover="This field is required" popover-toggle="form_pop_lat_census['bsRbuTdrains_' + $index].$dirty && !form_pop_lat_census['bsRbuTdrains_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="4" width="345" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTrwalls.avg_replace_cost" type="number" placeholder="" class="form-control input-md"> </td>
+								<td colspan="4" width="422" height="19">
+									<input id="textinput" name="textinput" ng-model="bsRbuTrwalls.avg_repair_cost" type="number" placeholder="" class="form-control input-md"> </td>
+							</tr>
+							<tr class="tdpa" height="19">
+								<td width="156" height="19"> Others &nbsp;
+									<button ng-click="insertAsset('BsRbuTrwalls')" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
+								</td>
+								<td colspan="4" width="345" height="19">
+									<br/> </td>
+								<td colspan="4" width="422" height="19">
+									<br/> </td>
+							</tr>
+							<tr class="trheadc" height="19">
+								<td width="156" height="19"> Types of Drains </td>
+								<td colspan="4" width="345" height="19">
+									<br/> </td>
+								<td colspan="4" width="422" height="19">
+									<br/> </td>
+							</tr>
+							<tr height="19" ng-repeat="bsRbuTdrains in bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTdrains">
+								<td class="tdpa" width="156" height="19" ng-if="$index < 3" ng-bind="bsRbuTdrains.type_drains"> </td>
+								<td width="98" ng-if="$index > 2"> {% verbatim %}
+									<button id="delete" ng-click="removeItem('BsRbuTdrains', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
+									<input style="width:90%;float:right;" name="bsRbuTdrains_{{$index}}" ng-model="bsRbuTdrains.type_drains" popover="This field is required" popover-toggle="form_pop_lat_census['bsRbuTdrains_' + $index].$dirty && !form_pop_lat_census['bsRbuTdrains_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+								<td colspan="4" width="345" height="19">
+									<input id="textinput" name="textinput" type="number" placeholder="" ng-model="bsRbuTdrains.avg_replace_cost" class="form-control input-md"> </td>
+								<td colspan="4" width="422" height="19">
+									<input id="textinput" name="textinput" type="number" placeholder="" ng-model="bsRbuTdrains.avg_repair_cost" class="form-control input-md"> </td>
+							</tr>
+							<tr class="tdpa" height="19">
+								<td width="156" height="19"> Others &nbsp;
+									<button ng-click="insertAsset('BsRbuTdrains')" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
+								</td>
+								<td colspan="4" width="345" height="19">
+									<br/> </td>
+								<td colspan="4" width="422" height="19">
+									<br/> </td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pull-right">
+						<br>
+						<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button> <span ng-if="is_edit_disable">
+                        <button id="editbtn"type="button" ng-click="editBsData(form_pub_rod_brg_use)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
                         </button>
-                        <button type="button" class="btn btn-info" ng-click="updateEnums()">
-                            Change
+                    </span> <span ng-if="!is_edit_disable">
+                        <button id="editbtn"type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            Edit
                         </button>
-                        <span ng-if="is_edit_disable">
-                            <button type="button" ng-click="editBsData(form_pub_rod_brg_use)" ng-if="!is_edit"
-                                    class="btn btn-success">
-                                Edit
-                            </button>
-                        </span>
-                        <span ng-if="!is_edit_disable">
-                            <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                                Edit
-                            </button>
-                        </span>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                            Cancel Edit
-                        </button>
-                        <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_pub_rod_brg_use)"
-                                class="btn btn-success">
-                            Submit
-                        </button>
-                    </div>
-                    <br><br>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.conainer-fluid -->
-</main>
-{% endblock content %}
+                    </span>
+						<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning"> Cancel Edit </button>
+						<button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_pub_rod_brg_use)" class="btn btn-success">Submit </button>
+					</div>
+					<br>
+					<br> </div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- /.conainer-fluid -->
+</main> {% endblock content %}

@@ -1,12 +1,19 @@
-{% extends "dashboard/base.html" %}
-{% block content %}
-{% load static %}
+{% extends "dashboard/base.html" %} {% block content %} {% load static %}
 <script>
-  $(document).ready(function() {
-
-   var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8}); 
-   var nicesx = $("#boxscroll2").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-  });
+$(document).ready(function() {
+	var nicesx = $("#boxscroll1").niceScroll({
+		touchbehavior: false,
+		cursorcolor: "#4679B2",
+		cursoropacitymax: 0.6,
+		cursorwidth: 8
+	});
+	var nicesx = $("#boxscroll2").niceScroll({
+		touchbehavior: false,
+		cursorcolor: "#4679B2",
+		cursoropacitymax: 0.6,
+		cursorwidth: 8
+	});
+});
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlGovnAdmnAsetsApp" ng-controller="dlGovnAdmnAsetsController">
@@ -25,488 +32,313 @@
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 6. Damages and Losses to Government Agency in Charge of Land Transportation
-            </span>
-        </li>
-        <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
-        </li>
-    </ol>
-    <div class="container-fluid" ng-form name="form_dl_govn_admn_asets">
-        <div>
-            <ul class='nav nav-wizard'>
-                <li id="li1" class="active">
-                    <a href='#step1' data-toggle="tab">1 Damages</a></li>
-                <li id="li2">
-                    <a href='#step2' data-toggle="tab">2 Partially Damaged</a>
-                </li>
-                <li id="li3">
-                    <a href='#step3' data-toggle="tab">3 Losses</a>
-                </li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane active" id="step1">
-                 <td><button ng-click="editDlData(form_dl_govn_admn_asets)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
-                    <table class="table table-bordered">
-                        <colgroup>
-                            <col width="156"/>
-                            <col width="63"/>
-                            <col width="120"/>
-                            <col width="99"/>
-                            <col width="145"/>
-                            <col width="148"/>
-                        </colgroup>
-                        <tbody>
-                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.incident.$error.required">
+            </span> </li> <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+		<li style="float:right;">
+			<a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+		</li>
+	</ol>
+	<div class="container-fluid" ng-form name="form_dl_govn_admn_asets">
+		<div>
+			<ul class='nav nav-wizard'>
+				<li id="li1" class="active"> <a href='#step1' data-toggle="tab">1 Damages</a></li>
+				<li id="li2"> <a href='#step2' data-toggle="tab">2 Partially Damaged</a> </li>
+				<li id="li3"> <a href='#step3' data-toggle="tab">3 Losses</a> </li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane active" id="step1">
+					<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+						</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_dl_govn_admn_asets)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+					</td>
+					<table class="table table-bordered">
+						<colgroup>
+							<col width="156" />
+							<col width="63" />
+							<col width="120" />
+							<col width="99" />
+							<col width="145" />
+							<col width="148" /> </colgroup>
+						<tbody>
+							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.incident.$error.required">
                                     Please Select Incident
-                                </span>
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            </td>
-                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                                <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.district.$error.required">
+                                </span> </td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_govn_admn_asets.district.$error.required">
                                     Please Select District
-                                </span>
-                            </td>
-                        </tr>
-                        <tr >
-                            <td class="trhead1"  width="156">
-                                Incident
-                            </td>
-                            <td class="trhead1" colspan="2"  width="63">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td class="trhead1"  width="120">
-                                District
-                            </td>
-                            <td class="trhead1" colspan="2"  width="343">
-                                <select ng-options="district as district.district__name for district in districts track by district.district__id"
-                                        name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
-                                    <option value="" selected>Select District</option>
-                                </select>
-                            </td>
-                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                        </tr>
-
-                        <tr class="trheadc1" height="19">
-                            <td colspan="6" height="19" width="739">
-                                Totally Destroyed
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td height="19" width="156">
-                                Assets
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:25%;">
-                                Number of Totally Destroyed
-                            </td>
-                            <td colspan="2" height="19" width="198" style="width:25%;">
-                                Number of Square Meters
-                            </td>
-                            <td height="19" width="148" style="width:25%;">
-                                Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="19">
-                            <td height="19" width="156">
-                                Structures
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <br/>
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <br/>
-                            </td>
-                            <td height="19" width="148">
-                                <br/>
-                            </td>
-                        </tr>
-                        <!--Structures-->
-                        <tr height="19" ng-repeat="dlGacDmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures" ng-if="$index < 3">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlGacDmgStructures.assets">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlGacDmgStructures.num_tot_destroyed">
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlGacDmgStructures.num_square_meters">
-                            </td>
-                            <td class="right" height="19" width="148" ng-model="dlGacDmgStructures.damages"
-                                ng-bind="dlGacDmgStructures.damages =
-                                dlGacDmgStructures.num_square_meters * bs_data['BiaGacLandStructure'][$index].fields.avg_repair_cost">
-                            </td>
-                        </tr>
-                        <!--Structures Total-->
-                        <tr height="19" ng-repeat="dlGacDmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures" ng-if="dlGacDmgStructures.assets == 'Total'">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlGacDmgStructures.assets">
-                            </td>
-                            <td class="tdpa" colspan="2" height="19" width="126">
-                                <br/>
-                            </td>
-                            <td class="tdpa" colspan="2" height="19" width="198">
-                                <br/>
-                            </td>
-                            <td class="right" height="19" width="148" ng-model="dlGacDmgStructures.damages" ng-bind="dlGacDmgStructures.damages = calTotal($parent.dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures)">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br>
-                    <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                                </span> </td>
+							</tr>
+							<tr>
+								<td class="trhead1" width="156"> Incident </td>
+								<td class="trhead1" colspan="2" width="63">
+									<select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+										<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
+										<option value={{incident.id}}>
+											<!--{{incident.disaster_type.name}}-->
+											<!--{{incident.reported_date_time}}-->{{incident.incident_name}} </option> {% endfor %} </select>
+								</td>
+								<td class="trhead1" width="120"> District </td>
+								<td class="trhead1" colspan="2" width="343">
+									<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+										<option value="" selected>Select District</option>
+									</select>
+								</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+							<tr class="trheadc1" height="19">
+								<td colspan="6" height="19" width="739"> Totally Destroyed </td>
+							</tr>
+							<tr class="trheadc1" height="19">
+								<td height="19" width="156"> Assets </td>
+								<td colspan="2" height="19" width="126" style="width:25%;"> Number of Totally Destroyed </td>
+								<td colspan="2" height="19" width="198" style="width:25%;"> Number of Square Meters </td>
+								<td height="19" width="148" style="width:25%;"> Damages (LKR) </td>
+							</tr>
+							<tr class="trheadc" height="19">
+								<td height="19" width="156"> Structures </td>
+								<td colspan="2" height="19" width="126">
+									<br/> </td>
+								<td colspan="2" height="19" width="198">
+									<br/> </td>
+								<td height="19" width="148">
+									<br/> </td>
+							</tr>
+							<!--Structures-->
+							<tr height="19" ng-repeat="dlGacDmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures" ng-if="$index < 3">
+								<td class="tdpa" height="19" width="156" ng-bind="dlGacDmgStructures.assets"> </td>
+								<td colspan="2" height="19" width="126">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacDmgStructures.num_tot_destroyed"> </td>
+								<td colspan="2" height="19" width="198">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacDmgStructures.num_square_meters"> </td>
+								<td class="right" height="19" width="148" ng-model="dlGacDmgStructures.damages" ng-bind="dlGacDmgStructures.damages =
+                                dlGacDmgStructures.num_square_meters * bs_data['BiaGacLandStructure'][$index].fields.avg_repair_cost"> </td>
+							</tr>
+							<!--Structures Total-->
+							<tr height="19" ng-repeat="dlGacDmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures" ng-if="dlGacDmgStructures.assets == 'Total'">
+								<td class="tdpa" height="19" width="156" ng-bind="dlGacDmgStructures.assets"> </td>
+								<td class="tdpa" colspan="2" height="19" width="126">
+									<br/> </td>
+								<td class="tdpa" colspan="2" height="19" width="198">
+									<br/> </td>
+								<td class="right" height="19" width="148" ng-model="dlGacDmgStructures.damages" ng-bind="dlGacDmgStructures.damages = calTotal($parent.dlGovnAdmnAsets.transport_land.Table_6.DlGacDmgStructures)"> </td>
+							</tr>
+						</tbody>
+					</table>
+					<br> <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Partially Damaged Informations</a>
-                    <br>
-                </div>
-
-
-                <div class="tab-pane fade" id="step2">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr height="19">
-                <td class="trheadc1" colspan="6" height="19" width="739" >
-                                Partially Damaged
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td height="19" width="156" >
-                                Assets
-                            </td>
-                            <td height="19" width="63" style="width:18%;">
-                                Partially Damaged
-                            </td>
-                            <td colspan="3" height="19" width="339" >
-                                Damaged in Square Meters
-                            </td>
-                            <td rowspan="2" height="38" width="148">
-                                Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="19">
-                            <td height="19" width="156">
-                                Structure
-                            </td>
-                            <td height="19" width="63">
-                                Number
-                            </td>
-                            <td height="19" width="120">
-                                Roof
-                            </td>
-                            <td height="19" width="99">
-                                Walls
-                            </td>
-                            <td height="19" width="145">
-                                Floors
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div id="boxscroll1" style="height:400px;overflow:auto;">
-                        <table class="table table-bordered">
-                            <tbody>
-                            <tr height="19" ng-repeat="dlGacPdmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures" ng-if="$index < 3">
-                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgStructures.assets">
-                                </td>
-                                <td height="19" width="63" style="width:18%;">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgStructures.num_part_damaged">
-                                </td>
-                                <td height="19" width="120">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_roof">
-                                </td>
-                                <td height="19" width="99">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_walls">
-                                </td>
-                                <td height="19" width="145">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_floors">
-                                </td>
-                                <td class="right" height="19" width="148" ng-model="dlGacPdmgStructures.damages" ng-bind="dlGacPdmgStructures.damages =
+					<br> </div>
+				<div class="tab-pane fade" id="step2">
+					<table class="table table-bordered">
+						<tbody>
+							<tr height="19">
+								<td class="trheadc1" colspan="6" height="19" width="739"> Partially Damaged </td>
+							</tr>
+							<tr class="trheadc1" height="19">
+								<td height="19" width="156"> Assets </td>
+								<td height="19" width="63" style="width:18%;"> Partially Damaged </td>
+								<td colspan="3" height="19" width="339"> Damaged in Square Meters </td>
+								<td rowspan="2" height="38" width="148"> Damages (LKR) </td>
+							</tr>
+							<tr class="trsubc" height="19">
+								<td height="19" width="156"> Structure </td>
+								<td height="19" width="63"> Number </td>
+								<td height="19" width="120"> Roof </td>
+								<td height="19" width="99"> Walls </td>
+								<td height="19" width="145"> Floors </td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="boxscroll1" style="height:400px;overflow:auto;">
+						<table class="table table-bordered">
+							<tbody>
+								<tr height="19" ng-repeat="dlGacPdmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures" ng-if="$index < 3">
+									<td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgStructures.assets"> </td>
+									<td height="19" width="63" style="width:18%;">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgStructures.num_part_damaged"> </td>
+									<td height="19" width="120">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_roof"> </td>
+									<td height="19" width="99">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_walls"> </td>
+									<td height="19" width="145">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgStructures.damaged_floors"> </td>
+									<td class="right" height="19" width="148" ng-model="dlGacPdmgStructures.damages" ng-bind="dlGacPdmgStructures.damages =
                                 dlGacPdmgStructures.damaged_roof * bs_data['BiaGacLandPbuilding'][0].fields.avg_repair_cost_floor_1 +
                                 dlGacPdmgStructures.damaged_walls * bs_data['BiaGacLandPbuilding'][1].fields.avg_repair_cost_floor_1 +
-                                dlGacPdmgStructures.damaged_floors * bs_data['BiaGacLandPbuilding'][2].fields.avg_repair_cost_floor_1">
-                                </td>
-                            </tr>
-                            <!--Total-->
-                            <tr height="19" ng-repeat="dlGacPdmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures" ng-if="dlGacPdmgStructures.assets == 'Total'">
-                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgStructures.assets">
-                                </td>
-                                <td class="tdpa" height="19" width="63">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="120">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="99">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" height="19" width="145">
-                                    <br/>
-                                </td>
-                                <td class="right" height="19" width="148" ng-model="dlGacPdmgStructures.damages" ng-bind="dlGacPdmgStructures.damages = calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures)">
-                                </td>
-                            </tr>
-                            <tr class="trheadc1" height="19">
-                                <td height="19" width="156">
-                                    Assets
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    Number of Totally Destroyed
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    Number of Partially Damaged
-                                </td>
-                                <td height="19" width="148">
-                                    Damages (LKR)
-                                </td>
-                            </tr>
-                            <tr class="trheadc" height="19">
-                                <td height="19" width="156">
-                                    Office Equipment
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148">
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr height="19" ng-repeat="dlGacPdmgEquipment in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment" ng-if="dlGacPdmgEquipment.assets != 'Total'">
-                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgEquipment.assets">
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgEquipment.num_tot_destroyed">
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgEquipment.num_part_damaged">
-                                </td>
-                                <td class="right" height="19" width="148" ng-model="dlGacPdmgEquipment.damages" ng-bind="dlGacPdmgEquipment.damages =
+                                dlGacPdmgStructures.damaged_floors * bs_data['BiaGacLandPbuilding'][2].fields.avg_repair_cost_floor_1"> </td>
+								</tr>
+								<!--Total-->
+								<tr height="19" ng-repeat="dlGacPdmgStructures in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures" ng-if="dlGacPdmgStructures.assets == 'Total'">
+									<td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgStructures.assets"> </td>
+									<td class="tdpa" height="19" width="63">
+										<br/> </td>
+									<td class="tdpa" height="19" width="120">
+										<br/> </td>
+									<td class="tdpa" height="19" width="99">
+										<br/> </td>
+									<td class="tdpa" height="19" width="145">
+										<br/> </td>
+									<td class="right" height="19" width="148" ng-model="dlGacPdmgStructures.damages" ng-bind="dlGacPdmgStructures.damages = calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgStructures)"> </td>
+								</tr>
+								<tr class="trheadc1" height="19">
+									<td height="19" width="156"> Assets </td>
+									<td colspan="2" height="19" width="126"> Number of Totally Destroyed </td>
+									<td colspan="2" height="19" width="198"> Number of Partially Damaged </td>
+									<td height="19" width="148"> Damages (LKR) </td>
+								</tr>
+								<tr class="trheadc" height="19">
+									<td height="19" width="156"> Office Equipment </td>
+									<td colspan="2" height="19" width="126">
+										<br/> </td>
+									<td colspan="2" height="19" width="198">
+										<br/> </td>
+									<td height="19" width="148">
+										<br/> </td>
+								</tr>
+								<tr height="19" ng-repeat="dlGacPdmgEquipment in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment" ng-if="dlGacPdmgEquipment.assets != 'Total'">
+									<td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgEquipment.assets"> </td>
+									<td colspan="2" height="19" width="126">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgEquipment.num_tot_destroyed"> </td>
+									<td colspan="2" height="19" width="198">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgEquipment.num_part_damaged"> </td>
+									<td class="right" height="19" width="148" ng-model="dlGacPdmgEquipment.damages" ng-bind="dlGacPdmgEquipment.damages =
                                 dlGacPdmgEquipment.num_tot_destroyed * bs_data['BiaGacLandOequipment'][$index].fields.avg_replace_cost +
-                                dlGacPdmgEquipment.num_part_damaged * bs_data['BiaGacLandOequipment'][$index].fields.avg_repair_cost ">
-
-                                </td>
-                            </tr>
-                            <!--Office Equipment Total-->
-                            <tr height="19" ng-repeat="dlGacPdmgEquipment in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment" ng-if="dlGacPdmgEquipment.assets == 'Total'">
-                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgEquipment.assets">
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="198">
-                                    <br/>
-                                </td>
-                                <td class="right" height="19" width="148" ng-model="dlGacPdmgEquipment.damages" ng-bind="dlGacPdmgEquipment.damages = calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment)">
-                                </td>
-                            </tr>
-                            <tr class="trheadc" height="19">
-                                <td height="19" width="156">
-                                    Machinery
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <br/>
-                                </td>
-                                <td height="19" width="148">
-                                    <br/>
-                                </td>
-                            </tr>
-                            <tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets != 'Total'">
-                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets">
-
-                                </td>
-                                <td colspan="2" height="19" width="126">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgMachinery.num_tot_destroyed">
-                                </td>
-                                <td colspan="2" height="19" width="198">
-                                    <input id="textinput" name="textinput" type="number" placeholder=""
-                                           class="form-control input-md" ng-model="dlGacPdmgMachinery.num_part_damaged">
-                                </td>
-
-                                <td class="right" height="19" width="148" ng-model="dlGacPdmgMachinery.damages" ng-bind="dlGacPdmgMachinery.damages =
+                                dlGacPdmgEquipment.num_part_damaged * bs_data['BiaGacLandOequipment'][$index].fields.avg_repair_cost "> </td>
+								</tr>
+								<!--Office Equipment Total-->
+								<tr height="19" ng-repeat="dlGacPdmgEquipment in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment" ng-if="dlGacPdmgEquipment.assets == 'Total'">
+									<td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgEquipment.assets"> </td>
+									<td class="tdpa" colspan="2" height="19" width="126">
+										<br/> </td>
+									<td class="tdpa" colspan="2" height="19" width="198">
+										<br/> </td>
+									<td class="right" height="19" width="148" ng-model="dlGacPdmgEquipment.damages" ng-bind="dlGacPdmgEquipment.damages = calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgEquipment)"> </td>
+								</tr>
+								<tr class="trheadc" height="19">
+									<td height="19" width="156"> Machinery </td>
+									<td colspan="2" height="19" width="126">
+										<br/> </td>
+									<td colspan="2" height="19" width="198">
+										<br/> </td>
+									<td height="19" width="148">
+										<br/> </td>
+								</tr>
+								<tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets != 'Total'">
+									<td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets"> </td>
+									<td colspan="2" height="19" width="126">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgMachinery.num_tot_destroyed"> </td>
+									<td colspan="2" height="19" width="198">
+										<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacPdmgMachinery.num_part_damaged"> </td>
+									<td class="right" height="19" width="148" ng-model="dlGacPdmgMachinery.damages" ng-bind="dlGacPdmgMachinery.damages =
                                 dlGacPdmgMachinery.num_tot_destroyed * bs_data['BiaGacLandMachinery'][$index].fields.avg_replace_cost +
-                                dlGacPdmgMachinery.num_part_damaged * bs_data['BiaGacLandMachinery'][$index].fields.avg_repair_cost ">
-                                </td>
-                            </tr>
-                            <!--Machinery Total-->
-                            <tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets == 'Total'">
-                                <td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets">
-                                    Total
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="198">
-                                    <br/>
-                                </td>
-                                <td class="right" height="19" width="148" ng-model="dlGacPdmgMachinery.damages" ng-bind="dlGacPdmgMachinery.damages = calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery)">
-                                </td>
-                            </tr>
-                            <!--Machinery TOTAL DAMAGES-->
-                            <tr height="19">
-                                <td class="tdpa" height="19" width="156">TOTAL DAMAGES
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="126">
-                                    <br/>
-                                </td>
-                                <td class="tdpa" colspan="2" height="19" width="198">
-                                    <br/>
-                                </td>
-                                <td class="right" height="19" width="148" ng-bind="calGrandTotal()">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                                dlGacPdmgMachinery.num_part_damaged * bs_data['BiaGacLandMachinery'][$index].fields.avg_repair_cost "> </td>
+								</tr>
+								<!--Machinery Total-->
+								<tr height="19" ng-repeat="dlGacPdmgMachinery in dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery" ng-if="dlGacPdmgMachinery.assets == 'Total'">
+									<td class="tdpa" height="19" width="156" ng-bind="dlGacPdmgMachinery.assets"> Total </td>
+									<td class="tdpa" colspan="2" height="19" width="126">
+										<br/> </td>
+									<td class="tdpa" colspan="2" height="19" width="198">
+										<br/> </td>
+									<td class="right" height="19" width="148" ng-model="dlGacPdmgMachinery.damages" ng-bind="dlGacPdmgMachinery.damages = calTotal(dlGovnAdmnAsets.transport_land.Table_6.DlGacPdmgMachinery)"> </td>
+								</tr>
+								<!--Machinery TOTAL DAMAGES-->
+								<tr height="19">
+									<td class="tdpa" height="19" width="156">TOTAL DAMAGES </td>
+									<td class="tdpa" colspan="2" height="19" width="126">
+										<br/> </td>
+									<td class="tdpa" colspan="2" height="19" width="198">
+										<br/> </td>
+									<td class="right" height="19" width="148" ng-bind="calGrandTotal()"> </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br> <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
-                    <br>
-                    <br>
-                </div>
-                <div class="tab-pane fade" id="step3">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr class="trheadc1" height="19">
-                            <td colspan="6" height="19" width="739">
-                                Losses (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trheadc1" height="19">
-                            <td height="19" width="156">
-                                Type of Losses
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:35%;">
-                                Year 1
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                Year 2
-                            </td>
-                            <td height="19" width="148">
-                                Total (LKR)
-                            </td>
-                        </tr>
-                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets != 'TOTAL LOSSES'">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
-                            </td>
-                            <td colspan="2" height="19" width="126">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlGacLosType.los_year_1">
-                            </td>
-                            <td colspan="2" height="19" width="198">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlGacLosType.los_year_2">
-                            </td>
-                            <td class="right" height="19" width="148" ng-model="dlGacLosType.total" ng-bind="dlGacLosType.total = dlGacLosType.los_year_1 + dlGacLosType.los_year_2  ">
-                            </td>
-                        </tr>
-
-                        <!--TOTAL LOSSES-->
-                        <tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets == 'TOTAL LOSSES'">
-                            <td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets">
-                            </td>
-                            <td class="right" colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_1" ng-bind="dlGacLosType.los_year_1 =
+					<br>
+					<br> </div>
+				<div class="tab-pane fade" id="step3">
+					<table class="table table-bordered">
+						<tbody>
+							<tr class="trheadc1" height="19">
+								<td colspan="6" height="19" width="739"> Losses (LKR) </td>
+							</tr>
+							<tr class="trheadc1" height="19">
+								<td height="19" width="156"> Type of Losses </td>
+								<td colspan="2" height="19" width="126" style="width:35%;"> Year 1 </td>
+								<td colspan="2" height="19" width="198"> Year 2 </td>
+								<td height="19" width="148"> Total (LKR) </td>
+							</tr>
+							<tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets != 'TOTAL LOSSES'">
+								<td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets"> </td>
+								<td colspan="2" height="19" width="126">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacLosType.los_year_1"> </td>
+								<td colspan="2" height="19" width="198">
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="dlGacLosType.los_year_2"> </td>
+								<td class="right" height="19" width="148" ng-model="dlGacLosType.total" ng-bind="dlGacLosType.total = dlGacLosType.los_year_1 + dlGacLosType.los_year_2  "> </td>
+							</tr>
+							<!--TOTAL LOSSES-->
+							<tr height="19" ng-repeat="dlGacLosType in dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType" ng-if="dlGacLosType.assets == 'TOTAL LOSSES'">
+								<td class="tdpa" height="19" width="156" ng-bind="dlGacLosType.assets"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_1" ng-bind="dlGacLosType.los_year_1 =
                              dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[0].los_year_1+
                              dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[1].los_year_1+
                              dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[2].los_year_1+
-                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_1">
-                            </td>
-                            <td class="right" colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_2" ng-bind="dlGacLosType.los_year_2 =
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_1"> </td>
+								<td class="right" colspan="2" height="19" width="126" ng-model="dlGacLosType.los_year_2" ng-bind="dlGacLosType.los_year_2 =
                              dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[0].los_year_2+
                              dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[1].los_year_2+
                              dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[2].los_year_2+
-                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_2">
-                            </td>
-                            <td class="right" height="19" width="148" ng-model="dlGacLosType.total" ng-bind="dlGacLosType.total = calGrandTypeLossTotal()">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br>
-                    <div class="pull-right">
-                        <br>
-                        <button type="button" ng-click="clear()" class="btn btn-info">
-                            Clear
+                             dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType[3].los_year_2"> </td>
+								<td class="right" height="19" width="148" ng-model="dlGacLosType.total" ng-bind="dlGacLosType.total = calGrandTypeLossTotal()"> </td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<div class="pull-right">
+						<br>
+						<button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info"> Clear </button> <span ng-if="is_edit_disable">
+                        <button id="editbtn" type="button" ng-click="editDlData(form_dl_govn_admn_asets)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
                         </button>
-
-                        <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editDlData(form_dl_govn_admn_asets)" ng-if="!is_edit" class="btn btn-success">
+                    </span> <span ng-if="!is_edit_disable">
+                        <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                            Cancel Edit
-                        </button>
-                        <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_govn_admn_asets)" class="btn btn-success">
-                            Submit
-                        </button>
-                    </div>
-                    <br><br>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.conainer-fluid -->
-    <!-- update the baseline Model -->
-    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
-                        ×
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
+						<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning"> Cancel Edit </button>
+						<button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_govn_admn_asets)" class="btn btn-success"> Submit </button>
+					</div>
+					<br>
+					<br> </div>
+			</div>
+		</div>
+	</div>
+	<!-- /.conainer-fluid -->
+	<!-- update the baseline Model -->
+	<div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()"> × </button>
+					<h4 class="modal-title" id="myModalLabel">
                         Warning
-                    </h4>
-                </div>
-                <div class="modal-body alert-info">
-                    <h4>
+                    </h4> </div>
+				<div class="modal-body alert-info">
+					<h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
                         <b>Table 3. Government Administrative Assets</b><br>
                         information before you calculate the damage and loss !
-                    </h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
-                        Close
-                    </button>
-                    <button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary">
-                        OK
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-{% endblock content %}
+                    </h4> </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()"> Close </button>
+					<button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary"> OK </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main> {% endblock content %}

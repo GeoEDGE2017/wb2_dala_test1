@@ -1,6 +1,5 @@
 //Table 1
 var app = angular.module('bsPubRodsBridsUsrApp', [])
-
 app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scope, $http) {
     $scope.district;
     $scope.baselineDate;
@@ -10,6 +9,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.check_search = false;
 
     //initialize models
     var init_data = {
@@ -120,9 +120,11 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
         }
         else {
             $scope.is_edit_disable = false;
+            $scope.check_search = false;
         }
     }
 
@@ -254,17 +256,66 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         }
     }
 
-    $scope.cancelEdit = function() {
+    // search data
+	$scope.searchBsData = function(form) {
+		document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
+		if(form.$valid) {
+			$http({
+				method: "POST",
+				url: "/bs_fetch_edit_data",
+				data: angular.toJson({
+					'table_name': 'Table_1',
+					'sector': 'transport_land',
+					'com_data': {
+						'district': $scope.district,
+						'bs_date': $scope.bs_date
+					}
+				}),
+			}).success(function(data) {
+				console.log(data);
+				$scope.bsPubRodsBridsUsr = data;
+				var edit_data_not_found = false;
+				if(data != null) {
+					console.log('----if');
+					angular.forEach(data.transport_land.Table_1, function(value, index) {
+						console.log('----forEach');
+						console.log(value);
+						if(value.length == 0) {
+							console.log('----');
+							edit_data_not_found = true;
+						}
+					})
+					if(edit_data_not_found != true) {
+						$scope.bsPubRodsBridsUsr = data;
+					} else {
+						$("#modal-container-239456").modal('show');
+					}
+				} else {
+					console.log('----else');
+					$("#modal-container-239456").modal('show');
+				}
+			})
+		}
+	}
+
+	$scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsPubRodsBridsUsr = init_data;
+        location.reload();
     }
 
     //clear Function
-    $scope.clear = function() {
-        console.log("clear")
-        $scope.is_edit = false;
-        $scope.bsPubRodsBridsUsr = angular.copy(init_data);
-    }
+	$scope.clear = function() {
+		console.log("clear")
+		$scope.is_edit = false;
+		$scope.bsPubRodsBridsUsr = angular.copy(init_data);
+		location.reload();
+	}
 
     $scope.enum_data = {
         'transport_land': {

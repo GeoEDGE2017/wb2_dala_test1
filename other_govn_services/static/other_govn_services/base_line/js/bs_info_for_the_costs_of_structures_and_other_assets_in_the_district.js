@@ -12,6 +12,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 //    $scope.del_status = false;
     $scope.user_id;
     $scope.is_submit = false;
+    $scope.check_search = false;
 
     var init_data = {
         'other_govn_services': {
@@ -74,13 +75,14 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 
     //Disable Edit Button
     $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.baselineDate) {
-            $scope.is_edit_disable = true;
-        }
-        else {
-            $scope.is_edit_disable = false;
-        }
-    }
+		if($scope.district && $scope.baselineDate) {
+			$scope.is_edit_disable = true;
+			$scope.check_search = true;
+		} else {
+			$scope.is_edit_disable = false;
+			$scope.check_search = false;
+		}
+	}
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1[table]);
@@ -288,39 +290,86 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
         }
     }
 
-    $scope.cancelEdit = function() {
+    $scope.searchBsData = function(form) {
+		document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
+		$scope.submitted = true;
+		if(form.$valid) {
+			$http({
+				method: "POST",
+				url: "/bs_fetch_edit_data",
+				data: angular.toJson({
+					'table_name': 'Table_1',
+					'sector': 'other_govn_services',
+					'com_data': {
+						'district': $scope.district,
+						'bs_date': $scope.baselineDate,
+					}
+				}),
+			}).success(function(data) {
+				console.log(data.other_govn_services.Table_1);
+				var edit_data_not_found = false;
+				if(data != null) {
+					console.log('----if');
+					angular.forEach(data.other_govn_services.Table_1, function(value, index) {
+						console.log('----forEach');
+						console.log(value);
+						if(value.length == 0) {
+							console.log('----');
+							edit_data_not_found = true;
+						}
+					})
+					if(edit_data_not_found != true) {
+						$scope.bsCostsOfAssetsOnTheDistrict = data;
+					} else {
+						$("#modal-container-239456").modal('show');
+					}
+				} else {
+					console.log('----else');
+					$("#modal-container-239456").modal('show');
+				}
+			})
+		}
+	}
+
+	$scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsCostsOfAssetsOnTheDistrict = init_data;
+        location.reload();
     }
 
     //Clear Function
-    $scope.clear = function() {
-        console.log("init")
-        $scope.is_edit = false;
-        $scope.bsCostsOfAssetsOnTheDistrict = angular.copy(init_data);
-    }
+	$scope.clear = function() {
+		console.log("init")
+		$scope.is_edit = false;
+		$scope.bsCostsOfAssetsOnTheDistrict = angular.copy(init_data);
+		location.reload();
+	}
 
-    $scope.deleteing = function() {
-        console.log('$$$', $scope.dele_data);
-    }
+	$scope.deleteing = function() {
+		console.log('$$$', $scope.dele_data);
+	}
 
 	$scope.is_exsis = function(sector) {
-        $http({
-            method : 'POST',
-            url : '/is_data_exsis',
-            contentType : 'application/json; charset=utf-8',
-            data : angular.toJson({
-                'sector': 'services'
-            }),
-            dataType: 'json',
-        }).then(function successCallback(response) {
-            console.log(response.data); //http respond
-            if(response.data == 'False') {
-         		return false;
-            }
-            else {
-                return true;
-            }
-        })
-    }
+		$http({
+			method: 'POST',
+			url: '/is_data_exsis',
+			contentType: 'application/json; charset=utf-8',
+			data: angular.toJson({
+				'sector': 'services'
+			}),
+			dataType: 'json',
+		}).then(function successCallback(response) {
+			console.log(response.data); //http respond
+			if(response.data == 'False') {
+				return false;
+			} else {
+				return true;
+			}
+		})
+	}
 }])

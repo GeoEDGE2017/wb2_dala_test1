@@ -1,6 +1,5 @@
 //Table 2
 var bsHealthStatusApp = angular.module('bsUcostGeduFacilitiesApp', ['ui.bootstrap', 'popoverToggle']);
-
 bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcostGeduFacilitiesController($scope, $http) {
     $scope.bsUcostGeduFacilities;
     $scope.total;
@@ -13,6 +12,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
     $scope.user_id;
     $scope.is_edit_disable = false;
     $scope.is_submit = false;
+    $scope.check_search = false;
 
     var init_data = {
         'education': {
@@ -301,15 +301,17 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
 
     $scope.bsUcostGeduFacilities = angular.copy(init_data);
 
-     //disable Edit Button
-    $scope.changeDis = function changeDis() {
-        if($scope.district && $scope.baselineDate){
-            $scope.is_edit_disable = true;
-        }
-        else{
-            $scope.is_edit_disable = false;
-        }
-    }
+    //disable Edit Button
+	$scope.changeDis = function changeDis() {
+		if($scope.district && $scope.baselineDate) {
+			$scope.is_edit_disable = true;
+			$scope.check_search = true;
+		}
+		else {
+			$scope.is_edit_disable = false;
+			$scope.check_search = false;
+		}
+	}
 
     $scope.insertAsset = function(table) {
         console.log($scope.bsUcostGeduFacilities.education.Table_2[table]);
@@ -460,17 +462,62 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
         }
     }
 
-    $scope.cancelEdit = function() {
+    $scope.searchBsData = function(form) {
+		$scope.submitted = true;
+		document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
+		if(form.$valid) {
+			$http({
+				method: "POST",
+				url: "/bs_fetch_edit_data",
+				data: angular.toJson({
+					'table_name': 'Table_2',
+					'sector': 'education',
+					'com_data': {
+						'district': $scope.district,
+						'bs_date': $scope.baselineDate,
+						'user_id': $scope.user_id,
+					}
+				}),
+			}).success(function(data) {
+				console.log(data);
+				var edit_data_not_found = false;
+				if(data != null) {
+					angular.forEach(data.education.Table_2, function(value, index) {
+						console.log(value);
+						if(value.length == 0) {
+							edit_data_not_found = true;
+						}
+					})
+					if(edit_data_not_found != true) {
+						$scope.bsUcostGeduFacilities = data;
+					} else {
+						$("#modal-container-239456").modal('show');
+					}
+				} else {
+					$("#modal-container-239456").modal('show');
+				}
+			})
+		}
+	}
+
+	$scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsUcostGeduFacilities = init_data;
+        location.reload();
     }
 
     //Clear Function
-    $scope.clear = function() {
-        console.log("clear")
-        $scope.is_edit = false;
-        $scope.bsUcostGeduFacilities = angular.copy(init_data);
-    }
+	$scope.clear = function() {
+		console.log("clear")
+		$scope.is_edit = false;
+		$scope.bsUcostGeduFacilities = angular.copy(init_data);
+		location.reload();
+	}
 
     $scope.enum_data = {
         'education': {
@@ -659,4 +706,3 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
         });
     }
 })
-

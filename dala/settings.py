@@ -2595,6 +2595,7 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_val_juvenile_male',
                 'avg_val_mature_male',
                 'avg_val_mature_female',
+                'id',
             ],
             'BlpAnmPoultry': [
                 'poultry',
@@ -2609,7 +2610,8 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_val_juvenile_female',
                 'avg_val_juvenile_male',
                 'avg_val_mature_male',
-                'avg_val_mature_female', ],
+                'avg_val_mature_female',
+            'id',],
             'BlpAstLivestock': [
                 'livestock',
                 'avg_replacec_anm_shed',
@@ -2619,7 +2621,8 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_replacec_others',
                 'avg_repairc_anm_shed',
                 'avg_repairc_tools',
-                'avg_repairc_others'],
+                'avg_repairc_others',
+                'id',],
             'BlpAstPoultry': [
                 'poultry',
                 'avg_replacec_anm_shed',
@@ -2630,6 +2633,7 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repairc_anm_shed',
                 'avg_repairc_tools',
                 'avg_repairc_others',
+                'id',
             ],
             'BlpAstStructures': [
                 'structures',
@@ -2637,11 +2641,13 @@ TABLE_PROPERTY_MAPPER = {
                 'avg_repair_roof',
                 'avg_repair_wall',
                 'avg_repair_floor',
+                'id',
             ],
             'BlpAstOther': [
                 'other_assets',
                 'avg_replace_cost',
                 'avg_repair_cost',
+                'id',
 
             ],
             'BlpApyLivestock': [
@@ -2650,12 +2656,14 @@ TABLE_PROPERTY_MAPPER = {
                 'meat',
                 'eggs',
                 'others',
+                'id',
             ],
             'BlpApyPoultry': [
                 'poultry',
                 'meat',
                 'eggs',
                 'others',
+                'id',
             ],
         },
         'Table_3': {

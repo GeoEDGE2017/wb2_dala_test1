@@ -1,51 +1,37 @@
-var app = angular.module('powerChartApp', ['chart.js','underscore']);
-app.controller('PowerChartController',function($scope,$http,$parse, _) {
-
-    $scope.district;
-    $scope.incident;
-    $scope.bs_data={};
-    $scope.province = "";
-    $scope.is_edit = false;
-    $scope.submitted = false;
-    $scope.is_valid_data = true;
-    $scope.total_num_affected = 0;
-    $scope.totalNumDes = null;
-    $scope.grndtotalNumPart = 0;
-    $scope.grndtotalNumDes = 0;
-    $scope.grndtotalDamages = 0;
-    $scope.grndtotalLosses = 0;
-    $scope.grandTotal = 0;
-    $scope.total_num_affected = 0;
-    $scope.tableDamageLosses = [[],[]];
-
-
-    $scope.fetchDlData = function(){
-
-        $scope.is_edit = true;
-        $scope.submitted = true;
-
-            $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_6',
-            'sector': 'power_supply',
-            'com_data': {
-                    'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-
-            console.log('load ', data);
-            $scope.data= data;
+var app = angular.module('powerChartApp', ['underscore']);
+app.controller('PowerChartController', function($scope, $http, $parse, _) {
+	google.charts.load('current', {
+		'packages': ['corechart', 'bar']
+	});
+	$scope.fetchDlData = function() {
+		$scope.is_edit = true;
+		$scope.submitted = true;
+		$http({
+			method: "POST",
+			url: '/dl_fetch_district_disagtn',
+			data: angular.toJson({
+				'table_name': 'Table_6',
+				'sector': 'power_supply',
+				'com_data': {
+					'incident': $scope.incident,
+				},
+			}),
+		}).success(function(data) {
+			console.log('load ', data);
+			$scope.data= data;
             $scope.dlPowerSumNat = data;
-            console.log('data',data);
+			$scope.provincenames = [];
 
-            $scope.provincenames=["Western"];
+			angular.forEach(data.power_supply.Table_6, function(value, key) {
+				$scope.provincenames.push(key);
+			})
+			angular.forEach($scope.provincenames.sort(), function(value, key) {
+				google.charts.setOnLoadCallback(drawPieChart);
+				google.charts.setOnLoadCallback(drawPieChartTwo);
+				google.charts.setOnLoadCallback(drawPieChartThree);
+				google.charts.setOnLoadCallback(drawBarChart);
 
-        angular.forEach($scope.provincenames, function(value, key) {
-
-            var totalAffDomestic = 0;
+			var totalAffDomestic = 0;
             totalAffDomestic =  ($scope.dlPowerSumNat.power_supply.Table_6[value].DlNumAffNational[0] ?
                            ($scope.dlPowerSumNat.power_supply.Table_6[value].DlNumAffNational[0].domestic ?
                             $scope.dlPowerSumNat.power_supply.Table_6[value].DlNumAffNational[0].domestic : 0):0)
@@ -67,50 +53,139 @@ app.controller('PowerChartController',function($scope,$http,$parse, _) {
 
 
             var totalCEBDamages = 0;
-            totalCEBDamages =($scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgCebNational[0] ?
+            totalCEBDamages =totalCEBDamages + ($scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgCebNational[0] ?
                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgCebNational[0].tot_dmg ?
                             $scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgCebNational[0].tot_dmg : 0):0)
 
 
             var totalCebLosses = 0;
-            totalCebLosses =($scope.dlPowerSumNat.power_supply.Table_6[value].TotLosCebNational[0] ?
+            totalCebLosses = totalCebLosses + ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLosCebNational[0] ?
                             ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLosCebNational[0].losses_y1 ?
                             $scope.dlPowerSumNat.power_supply.Table_6[value].TotLosCebNational[0].losses_y1 : 0):0) +
                             ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLosCebNational[0] ?
                             ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLosCebNational[0].losses_y2 ?
                             $scope.dlPowerSumNat.power_supply.Table_6[value].TotLosCebNational[0].losses_y2 : 0):0)
 
+            var totalIPPDamages = 0;
+            totalIPPDamages =totalIPPDamages + ($scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgPvtNational[0] ?
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgPvtNational[0].tot_dmg ?
+                            $scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgPvtNational[0].tot_dmg : 0):0)
 
-            $scope.tableDamageLosses[0][key]=totalCEBDamages;
-            $scope.tableDamageLosses[1][key]=totalCebLosses;
-
-            $scope.totalAffected = [totalAffDomestic, totalAffCommercial,totalAffindustrial,totalAffother];
-
-            })
-
-             $scope.damageLossesSeries = ['Total Damages', 'Total Losses'];
-             $scope.totalAffectedSeries = ['Number of Domestic Customers Affected ', 'Number of Commercial Customers Affected','Number of Industrial Customers Affected','Number of Other Customers Affected'];
+            var totalIPPLosses = 0;
+            totalIPPLosses = totalIPPLosses + ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[0] ?
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[0].los_year1 ?
+                            $scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[0].los_year1 : 0):0) +
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[0] ?
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[0].los_year2 ?
+                            $scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[0].los_year2 : 0):0)
 
 
-            })
+            var totalSPPADamages = 0;
+            totalSPPADamages =totalSPPADamages + ($scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgPvtNational[0] ?
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgPvtNational[1].tot_dmg ?
+                            $scope.dlPowerSumNat.power_supply.Table_6[value].TotDmgPvtNational[1].tot_dmg : 0):0)
+
+            var totalSPPALosses = 0;
+            totalSPPALosses = totalSPPALosses + ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[0] ?
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[1].los_year1 ?
+                            $scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[1].los_year1 : 0):0) +
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[1] ?
+                            ($scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[1].los_year2 ?
+                            $scope.dlPowerSumNat.power_supply.Table_6[value].TotLossesPvtNational[1].los_year2 : 0):0)
+
+            var totalDmg = totalCEBDamages + totalIPPDamages + totalSPPADamages;
+            var totalLos = totalCebLosses + totalIPPLosses + totalSPPALosses;
+
+            console.log('printting',totalAffDomestic);
+				function drawPieChart() {
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Name');
+					data.addColumn('number', 'Data');
+					data.addRows([
+						['Domestic ', parseInt(totalAffDomestic)],
+						['Commercial', parseInt(totalAffCommercial)],
+						['Industrial', parseInt(totalAffindustrial)],
+						['Other', parseInt(totalAffother)],
+					]);
+					var options = {
+						width: 350,
+						height: 200
+					};
+					var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+					chart.draw(data, options);
+				}
+
+				function drawPieChartTwo() {
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Name');
+					data.addColumn('number', 'Data');
+					data.addRows([
+						['CEB', parseInt(totalCebLosses)],
+						['IPP', parseInt(totalIPPLosses)],
+						['SPPA', parseInt(totalSPPALosses)],
+
+					]);
+					var options = {
+						width: 350,
+						height: 200
+					};
+					var chart = new google.visualization.PieChart(document.getElementById('piechartTwo'));
+					chart.draw(data, options);
+				}
+
+				function drawPieChartThree() {
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Name');
+					data.addColumn('number', 'Data');
+					data.addRows([
+						['CEB', parseInt(totalCEBDamages)],
+						['IPP', parseInt(totalIPPDamages)],
+						['SPPA', parseInt(totalSPPADamages)],
+					]);
+					var options = {
+						width: 350,
+						height: 200
+					};
+					var chart = new google.visualization.PieChart(document.getElementById('piechartThree'));
+					chart.draw(data, options);
+				}
 
 
-    }
-
-    $scope.checkIfNull = function(){
+				function drawBarChart() {
+					var data = [];
+					var chartsdata = [];
+					var Header = ['Province', 'Damages', 'Losses',{
+						role: 'style'
+					}];
+					data.push(Header);
+					angular.forEach($scope.provincenames, function(value, key) {
+						var temp = [];
+						temp.push(value, parseInt(totalDmg),parseInt(totalLos), null);
+						data.push(temp);
+					})
+					var chartdata = new google.visualization.arrayToDataTable(data);
+					var options = {
+						chart: {
+							width: 400,
+							height: 250
+						}
+					};
+					var chart = new google.charts.Bar(document.getElementById('barchart'));
+					chart.draw(chartdata, options);
+				}
+			})
+		})
+	}
+	 $scope.checkIfNull = function(){
         var isNull = $scope.dlPowerSumNat ? angular.equals({}, $scope.dlPowerSumNat.power_supply.Table_6) : true;
         return isNull;
 
    }
-
-    $scope.convertToInt = function(val1,val2,val3){
-
-        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
-        return sum;
-    }
-
-    $scope.printDiv = function() {
-        window.print();
-    }
-
- });
+	$scope.convertToInt = function(val1, val2, val3) {
+		var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+		return sum;
+	}
+//	$scope.printDiv = function() {
+//		window.print();
+//	}
+});

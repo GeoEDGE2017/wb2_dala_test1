@@ -12,10 +12,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-             <a href="{% url 'dashboard:index' %}">Dashboard</a>
+             <a href="{% url 'dashboard:index' %}">
+                 Dashboard
+             </a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
+            <a href="{% url 'dashboard:transport_land_main' %}">
+                Transport Land Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -24,33 +28,45 @@
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_road_brdgs">
         <div>
             <ul class='nav nav-wizard'>
-                <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 Road Classification</a></li>
-                <li id="li2"><a href='#step2' data-toggle="tab">2 Other Assest </a></li>
+                <li id="li1" class="active">
+                    <a href='#step1' data-toggle="tab">
+                        1 Road Classification
+                    </a>
+                </li>
+                <li id="li2">
+                    <a href='#step2' data-toggle="tab">
+                        2 Other Assest
+                    </a>
+                </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active" id="step1">
-                <td><button ng-click="dlDataEdit(form_dl_road_brdgs)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
-                    <table class="table table-bordered">
-                        <colgroup>
-                            <col width="156"/>
-                            <col width="63"/>
-                            <col width="120"/>
-                            <col width="99"/>
-                            <col width="145"/>
-                            <col width="148"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                            <col width="63"/>
-                        </colgroup>
-                        <tbody>
+                <td>
+                    <button ng-click="dlDataEdit(form_dl_road_brdgs)" class="btn btn-sm btn-info" style="float:right;">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </td>
+                <table class="table table-bordered">
+                    <colgroup>
+                        <col width="156"/>
+                        <col width="63"/>
+                        <col width="120"/>
+                        <col width="99"/>
+                        <col width="145"/>
+                        <col width="148"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                        <col width="63"/>
+                    </colgroup>
+                    <tbody>
                         <tr style="background:#fff;border:1px solid #fff;text-align:center;">
                             <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
                             </td>
@@ -135,7 +151,8 @@
                                 Earth
                             </td>
                         </tr>
-                        <tr height="19" ng-repeat="dlRbdRclassification in dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification" ng-if="dlRbdRclassification.road_classification != 'Total'">
+                        <tr height="19" ng-repeat="dlRbdRclassification in dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification"
+                            ng-if="dlRbdRclassification.road_classification != 'Total'">
                             <td class="tdpa" height="19" width="156" ng-bind="dlRbdRclassification.road_classification">
                             </td>
                             <td height="19" width="63">
@@ -216,21 +233,16 @@
                             </td>
                             <td class="right" height="19" width="63" ng-model="dlRbdRclassification.damages"
                                 ng-bind="dlRbdRclassification.damages = calTot()">
-
                             </td>
-
-                        </tr>
-                        </tbody>
-                    </table>
+                    </tr>
+                    </tbody>
+                </table>
                     <br>
                     <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                             class="glyphicon glyphicon-arrow-right"></span> Fill Other Assest Informations</a>
                     <br>
                 </div>
-
-
                 <div class="tab-pane fade" id="step2">
-
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="156"/>
@@ -245,36 +257,34 @@
                             <col width="63"/>
                         </colgroup>
                         <tbody>
-
-                        <tr class="trheadc1" height="19">
-                            <td rowspan="2" height="38" width="156" style="width:16.3%;">
-                                Types of Bridges
-                            </td>
-                            <td colspan="4" height="19" width="345">
-                                Totally Destroyed (m)
-                            </td>
-                            <td colspan="4" height="19" width="422">
-                                Partially Damaged (m)
-                            </td>
-                            <td rowspan="2" height="38" width="63">
-                                Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr class="trsubc" height="19">
-                            <td colspan="2" height="19" width="126" style="width:18%;">
-                                2 lanes
-                            </td>
-                            <td colspan="2" height="19" width="198" style="width:18%;">
-                                Multi-lanes
-                            </td>
-                            <td colspan="2" height="19" width="296" style="width:18%;">
-                                2 lanes
-                            </td>
-                            <td colspan="2" height="19" width="126" style="width:18%;">
-                                Multi-lanes
-                            </td>
-                        </tr>
-
+                            <tr class="trheadc1" height="19">
+                                <td rowspan="2" height="38" width="156" style="width:16.3%;">
+                                    Types of Bridges
+                                </td>
+                                <td colspan="4" height="19" width="345">
+                                    Totally Destroyed (m)
+                                </td>
+                                <td colspan="4" height="19" width="422">
+                                    Partially Damaged (m)
+                                </td>
+                                <td rowspan="2" height="38" width="63">
+                                    Damages (LKR)
+                                </td>
+                            </tr>
+                            <tr class="trsubc" height="19">
+                                <td colspan="2" height="19" width="126" style="width:18%;">
+                                    2 lanes
+                                </td>
+                                <td colspan="2" height="19" width="198" style="width:18%;">
+                                    Multi-lanes
+                                </td>
+                                <td colspan="2" height="19" width="296" style="width:18%;">
+                                    2 lanes
+                                </td>
+                                <td colspan="2" height="19" width="126" style="width:18%;">
+                                    Multi-lanes
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div id="boxscroll1" style="height:400px;overflow:auto;">
@@ -307,7 +317,6 @@
                                           dlRbdTbridges.part_dest_multi_lanes * bs_data['BsRbuTbridges'][$index].fields.avg_repair_multi_lanes">
                                 </td>
                             </tr>
-
                             <tr height="19" ng-repeat="dlRbdTbridges in dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges" ng-if="dlRbdTbridges.type_bridges == 'Total'">
                                 <td class="tdpa" height="19" width="156" ng-bind="dlRbdTbridges.type_bridges">
                                 </td>
@@ -326,7 +335,6 @@
                                 <td class="right" height="19" width="63" ng-model="dlRbdTbridges.damages"
                                    ng-bind="dlRbdTbridges.damages = calTotal(dlRoadBrdgs.transport_land.Table_4.DlRbdTbridges)">
                                 </td>
-
                             </tr>
                             <tr class="trheadc" height="34">
                                 <td height="34" width="156">
@@ -359,7 +367,6 @@
                                           dlRbdTculverts.part_destroyed * bs_data['BsRbuTculverts'][$index].fields.avg_repair_cost">
                                 </td>
                             </tr>
-
                             <tr height="19" ng-repeat="dlRbdTculverts in dlRoadBrdgs.transport_land.Table_4.DlRbdTculverts" ng-if="dlRbdTculverts.type_culverts == 'Total'">
                                 <td class="tdpa" height="19" width="156" ng-bind="dlRbdTculverts.type_culverts">
                                     Total
@@ -465,7 +472,6 @@
                                 <td class="tdpa" class="boldash" colspan="9" height="19" width="1013">
                                     TOTAL DAMAGES
                                 </td>
-
                                 <td class="right" height="19" width="63" ng-bind="calGrandTotal()">
                                 </td>
                             </tr>

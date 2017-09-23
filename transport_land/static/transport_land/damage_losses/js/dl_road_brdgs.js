@@ -211,7 +211,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains','BsRbuRclassificattion'],
+                    'db_tables': ['BsRbuTbridges', 'BsRbuTculverts', 'BsRbuTrwalls', 'BsRbuTdrains', 'BsRbuRclassificattion'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,

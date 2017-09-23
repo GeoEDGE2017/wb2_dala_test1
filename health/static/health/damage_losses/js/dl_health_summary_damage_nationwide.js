@@ -41,12 +41,12 @@ app.controller("DlHealthSummaryDamageNationwideController", ['$scope','$http',fu
                 method: "POST",
                 url: '/dl_fetch_district_disagtn',
                 data: angular.toJson({
-                'table_name':  'Table_10',
-                'sector': 'health',
-                'com_data': {
-                    'incident': $scope.incident,
-                  },
-               }),
+                    'table_name':  'Table_10',
+                    'sector': 'health',
+                    'com_data': {
+                        'incident': $scope.incident,
+                    },
+                }),
             }).success(function(data) {
                 $scope.data = data;
                 $scope.dlhealthsummarydamagenationwide = data;

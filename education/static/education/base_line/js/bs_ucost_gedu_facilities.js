@@ -389,7 +389,6 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
         $scope.submitted = true;
         $scope.is_submit = true;
         if(form.$valid) {
-            console.log($scope.data);
             $http({
                 method : 'POST',
                 url : '/bs_save_data',
@@ -411,6 +410,7 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                     $scope.is_valid_data = false;
                 }
                 else {
+                    $scope.updateEnums();
                     $("#modal-container-239453").modal('show');
                 }
             }, function errorCallback(response) {
@@ -438,17 +438,16 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
                }),
             }).success(function(data) {
                 console.log(data);
-    //            $scope.bsUcostGeduFacilities = data;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.education.Table_2, function(value, index) {
-                        console.log(value);
                         if(value.length == 0) {
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsUcostGeduFacilities = data;
+                        $scope.getEnumDataFromStart();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
@@ -471,6 +470,193 @@ bsHealthStatusApp.controller('BsUcostGeduFacilitiesController', function BsUcost
         console.log("clear")
         $scope.is_edit = false;
         $scope.bsUcostGeduFacilities = angular.copy(init_data);
+    }
+
+    $scope.enum_data = {
+        'education': {
+            'Table_2': {
+                'BugArcSupplies': [],
+                'BugArcEquipment': [],
+                'BugArpcSupplies': [],
+                'BugArpcEquipment': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bugArcSupplies_e_index = 0;
+        var bugArcEquipment_e_index = 0;
+        var bugArpcSupplies_e_index = 0;
+        var bugArpcEquipment_e_index = 0;
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArcSupplies, function(value, index, key) {
+            if(value.particulars != 'Books' && value.particulars != 'Desks' &&
+                value.particulars != 'Chairs' && value.particulars != 'Boards' && value.particulars != 'Tables') {
+                var enum_val = {
+                    oldasset: value.particulars,
+                    newasset: null,
+                    enum_index: bugArcSupplies_e_index,
+                    bs_asset_field: 'particulars',
+                    dl_tables: {
+                        'Table_3': {
+                            'DugNdafSupplies': {
+                                dl_asset_field: 'particulars'
+                            }
+                        }
+                    }
+                };
+                bugArcSupplies_e_index = bugArcSupplies_e_index + 1;
+                $scope.enum_data.education.Table_2.BugArcSupplies.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArcEquipment, function(value, index, key) {
+            if(value.particulars != 'Computers' && value.particulars != 'Aesthetic Equipment' &&
+                value.particulars != 'Sports Equipment' && value.particulars != 'Science Equipment') {
+                var enum_val = {
+                    oldasset: value.particulars,
+                    newasset: null,
+                    enum_index: bugArcEquipment_e_index,
+                    bs_asset_field: 'particulars',
+                    dl_tables: {
+                        'Table_3': {
+                            'DugNdafEquipment': {
+                                dl_asset_field: 'particulars'
+                            }
+                        }
+                    }
+                };
+                bugArcEquipment_e_index = bugArcEquipment_e_index + 1;
+                $scope.enum_data.education.Table_2.BugArcEquipment.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArpcSupplies, function(value, index, key) {
+            if(value.particulars != 'Books' && value.particulars != 'Desks' &&
+                value.particulars != 'Chairs' && value.particulars != 'Boards' && value.particulars != 'Tables') {
+                var enum_val = {
+                    oldasset: value.particulars,
+                    newasset: null,
+                    enum_index: bugArpcSupplies_e_index,
+                    bs_asset_field: 'particulars',
+                    dl_tables: {
+                        'Table_3': {
+                            'DugNpdatSupplies': {
+                                dl_asset_field: 'particulars'
+                            }
+                        }
+                    }
+                };
+                bugArpcSupplies_e_index = bugArpcSupplies_e_index + 1;
+                $scope.enum_data.education.Table_2.BugArpcSupplies.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArpcEquipment, function(value, index, key) {
+            if(value.particulars != 'Computers' && value.particulars != 'Aesthetic Equipment' &&
+                value.particulars != 'Sports Equipment' && value.particulars != 'Science Equipment') {
+                var enum_val = {
+                    oldasset: value.particulars,
+                    newasset: null,
+                    enum_index: bugArpcEquipment_e_index,
+                    bs_asset_field: 'particulars',
+                    dl_tables: {
+                        'Table_3': {
+                            'DugNpdatEquipment': {
+                                dl_asset_field: 'particulars'
+                            }
+                        }
+                    }
+                };
+                bugArpcEquipment_e_index = bugArpcEquipment_e_index + 1;
+                $scope.enum_data.education.Table_2.BugArpcEquipment.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.bsUcostGeduFacilities.education.Table_2);
+        var bugArcSupplies_e_index = 0;
+        var bugArcEquipment_e_index = 0;
+        var bugArpcSupplies_e_index = 0;
+        var bugArpcEquipment_e_index = 0;
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArcSupplies, function(value, key) {
+            if(value.particulars != 'Books' && value.particulars != 'Desks' &&
+                value.particulars != 'Chairs' && value.particulars != 'Boards' && value.particulars != 'Tables') {
+                angular.forEach($scope.enum_data.education.Table_2.BugArcSupplies, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.education.Table_2.BugArcSupplies);
+                    if(each_enum.enum_index == bugArcSupplies_e_index) {
+                        $scope.enum_data.education.Table_2.BugArcSupplies[index].newasset = value.particulars;
+                    }
+                })
+                bugArcSupplies_e_index = bugArcSupplies_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArcEquipment, function(value, key) {
+            if(value.particulars != 'Computers' && value.particulars != 'Aesthetic Equipment' &&
+                value.particulars != 'Sports Equipment' && value.particulars != 'Science Equipment') {
+                angular.forEach($scope.enum_data.education.Table_2.BugArcEquipment, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.education.Table_2.BugArcEquipment);
+                    if(each_enum.enum_index == bugArcEquipment_e_index) {
+                        $scope.enum_data.education.Table_2.BugArcEquipment[index].newasset = value.particulars;
+                    }
+                })
+                bugArcEquipment_e_index = bugArcEquipment_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArpcSupplies, function(value, key) {
+            if(value.particulars != 'Books' && value.particulars != 'Desks' &&
+                value.particulars != 'Chairs' && value.particulars != 'Boards' && value.particulars != 'Tables') {
+                angular.forEach($scope.enum_data.education.Table_2.BugArpcSupplies, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.education.Table_2.BugArpcSupplies);
+                    if(each_enum.enum_index == bugArpcSupplies_e_index) {
+                        $scope.enum_data.education.Table_2.BugArpcSupplies[index].newasset = value.particulars;
+                    }
+                })
+                bugArpcSupplies_e_index = bugArpcSupplies_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsUcostGeduFacilities.education.Table_2.BugArpcEquipment, function(value, key) {
+            if(value.particulars != 'Computers' && value.particulars != 'Aesthetic Equipment' &&
+                value.particulars != 'Sports Equipment' && value.particulars != 'Science Equipment') {
+                angular.forEach($scope.enum_data.education.Table_2.BugArpcEquipment, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.education.Table_2.BugArpcEquipment);
+                    if(each_enum.enum_index == bugArpcEquipment_e_index) {
+                        $scope.enum_data.education.Table_2.BugArpcEquipment[index].newasset = value.particulars;
+                    }
+                })
+                bugArpcEquipment_e_index = bugArpcEquipment_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        console.log('---updateEnums');
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.baselineDate,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'education'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+            if(response.data == 'False') {
+                alert('False');
+            }
+            else {
+                alert('True');
+            }
+        }, function errorCallback(response) {
+
+        });
     }
 })
 

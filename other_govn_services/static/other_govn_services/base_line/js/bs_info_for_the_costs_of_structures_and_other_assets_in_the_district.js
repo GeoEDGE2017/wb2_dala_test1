@@ -268,12 +268,9 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                 console.log(data.other_govn_services.Table_1);
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.other_govn_services.Table_1, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -285,7 +282,6 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })

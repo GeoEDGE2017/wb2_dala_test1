@@ -17,7 +17,7 @@ from health.base_line.models import PrivateClinic
 from education.base_line.models import PreSchools, PrimarySchools, SecondarySchools, TechInstitutes, Universities
 from users.models import UserDistrict
 import smtplib
-
+from django.db import connection
 
 @csrf_exempt
 def send_email(request):
@@ -283,9 +283,6 @@ def bs_save_data(request):
                                                date=todate, district_id=district, user=current_user, data_type='base_line',
                                                full_bs_date=bs_full_date)
                     bd_session.save()
-
-
-
                 else:
                     return HttpResponse(False)
 
@@ -293,6 +290,90 @@ def bs_save_data(request):
         bs_save_edit_data(bs_table_hs_data, com_data)
 
     return HttpResponse('success')
+
+
+# dileepa
+@csrf_exempt
+def update_enumirate_dl_data(request):
+    print 'update_enumirate_dl_data\n'
+    data = (yaml.safe_load(request.body))
+    enum_data = data['enum_data']
+    com_data = data['com_data']
+
+    interface_table_name = None
+    for sector in enum_data:
+        for interface_table in enum_data[sector]:
+            interface_table_name = interface_table
+
+    print data['sector']
+    print interface_table_name
+    print com_data['district']
+    print com_data['bs_date']
+
+    dsdate = get_bd_session_key_record(data['sector'], interface_table_name, com_data['district'], com_data['bs_date'])
+
+    for sector in enum_data:
+        sub_app_name = sector + '.base_line'
+        print 'sub_app_name :', sub_app_name
+        for interface_table in enum_data[sector]:
+            for db_table in enum_data[sector][interface_table]:
+                for row in enum_data[sector][interface_table][db_table]:
+                    for dl_interface_table in row['dl_tables']:
+                        for dl_db_table in row['dl_tables'][dl_interface_table]:
+                            info = {'sector': data['sector'], 'dltable': get_db_table_from_model(str(dl_db_table)),
+                                    'district': com_data['district'], 'dsdate': dsdate,
+                                    'oldasset': row['oldasset'], 'newasset': row['newasset'],
+                                    'dl_asset_field': row['dl_tables'][dl_interface_table][dl_db_table]['dl_asset_field']}
+
+                            sql = """UPDATE {sector}.{dltable} dla
+                                SET {dl_asset_field} = '{newasset}'
+                                WHERE dla.{dl_asset_field} = (SELECT di.{dl_asset_field}
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')
+                                AND dla.district = {district}
+                                AND dla.created_date = (SELECT dls.date
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')""".format(**info)
+
+                            print dl_db_table
+                            print sql
+                            cursor = connection.cursor()
+                            cursor.execute(sql)
+                            # row = cursor.fetchone()
+    return HttpResponse('success')
+
+
+# dileepa
+def get_bd_session_key_record(sector, table_name, district, bs_date):
+    print '*get_bd_session_key_record', sector, table_name, district, bs_date
+    sub_app_name = sector + '.base_line'
+    sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
+    bd_session = sub_app_session.objects.get(district=district, bs_date=bs_date, table_name=table_name)
+    # bd_session = sub_app_session.objects.get(id=1)
+    return bd_session.date
+
+
+# dileepa
+def get_db_table_from_model(model_name):
+    # model_name = 'BsRbuRclassificattion'
+    db_table_new = ''
+    # print 'get_db_table_from_model ', model_name
+    for i, s in enumerate(model_name):
+        if str(s).isupper():
+            if i != 0:
+                db_table_new += str('_' + s.lower())
+            else:
+                db_table_new += str(s.lower())
+        else:
+            db_table_new += str(s)
+    print db_table_new
+    return db_table_new
 
 
 # dileepa
@@ -852,6 +933,9 @@ def bs_save_edit_data(table_data, com_data):
     bs_date = com_data['bs_date']
     todate = timezone.now()
 
+    print 'table_data'
+    print table_data
+
     try:
         current_user = com_data['user_id']
         print 'Edit Current User', current_user
@@ -859,18 +943,12 @@ def bs_save_edit_data(table_data, com_data):
         print 'Current User Error'
 
     for sector in table_data:
-
         sub_app_name = sector + '.base_line'
-
         for interface_table in table_data[sector]:
             print 'interface table', ' -->', interface_table, '\n'
             for db_table in table_data[sector][interface_table]:
-
                 print 'db table', ' -->', db_table, '\n'
-
                 for row in table_data[sector][interface_table][db_table]:
-                    print 'row', ' --> ', row
-
                     if not has_the_id(row):
                         model_class = apps.get_model(sub_app_name, db_table)
                         model_object = model_class()
@@ -881,7 +959,6 @@ def bs_save_edit_data(table_data, com_data):
 
                             print 'property ', ' --> ', property, ' db_property ', row[property], ' index ', '\n'
                         if current_user != None:
-                            print '*-**-*-*--'
                             model_object.created_user = current_user
                             model_object.lmu = current_user
 
@@ -905,7 +982,7 @@ def bs_save_edit_data(table_data, com_data):
                             #     print '$', property
                         model_object.update(**row)
 
-                        print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
+                        print 'row', ' --> ', row, ' id ', model_object[0].id
 
 
 @csrf_exempt
@@ -985,7 +1062,7 @@ def dl_save_data(request):
                         print '=== filter_fields', filter_fields
                         dl_session.date = todate
                         # dl_session.user = current_user
-                        dl_session.data_type = 'damage_losses*'
+                        dl_session.data_type = 'damage_losses'
                         dl_session.save()
                     else:
                         dl_session = sub_app_session(**filter_fields)

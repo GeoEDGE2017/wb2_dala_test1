@@ -177,6 +177,7 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
                     $scope.is_valid_data = false;
                 }
                 else {
+                    $scope.updateEnums();
                     $("#modal-container-239453").modal('show');
                 }
             })
@@ -202,27 +203,23 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
             }).success(function(data) {
                 console.log(data);
 //                $scope.bsLandTrnsAsst = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.transport_land.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsLandTrnsAsst = data;
+                        $scope.getEnumDataFromStart();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -240,5 +237,85 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         console.log("clear")
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = angular.copy(init_data);
+    }
+
+    $scope.enum_data = {
+        'transport_land': {
+            'Table_2': {
+                'BsGtlAstPvehicles': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bsGtlAstPvehicles_e_index = 0;
+        angular.forEach($scope.bsLandTrnsAsst.transport_land.Table_2.BsGtlAstPvehicles, function(value, index, key) {
+//            var bsRbuTbridges_index = 0;
+            if(value.private_vehicles != 'Cars' && value.private_vehicles != 'Motorcycles' && value.private_vehicles != 'Bicycles') {
+                var enum_val = {
+                    oldasset: value.private_vehicles,
+                    newasset: null,
+                    enum_index: bsGtlAstPvehicles_e_index,
+                    bs_asset_field: 'private_vehicles',
+                    dl_tables: {
+                        'Table_5': {
+                            'DlOtherDmgsPvehicles': {
+                                dl_asset_field: 'private_vehicles'
+                            }
+                        }
+                    }
+                };
+                bsGtlAstPvehicles_e_index = bsGtlAstPvehicles_e_index + 1;
+                $scope.enum_data.transport_land.Table_2.BsGtlAstPvehicles.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.bsLandTrnsAsst.transport_land.Table_2);
+        var bsGtlAstPvehicles_e_index = 0;
+        angular.forEach($scope.bsLandTrnsAsst.transport_land.Table_2.BsGtlAstPvehicles, function(value, key) {
+            if(value.private_vehicles != 'Asset_01' && value.private_vehicles != 'Asset_02') {
+                angular.forEach($scope.enum_data.transport_land.Table_2.BsGtlAstPvehicles, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_land.Table_2.BsGtlAstPvehicles);
+                    if(each_enum.enum_index == bsGtlAstPvehicles_e_index) {
+                        $scope.enum_data.transport_land.Table_2.BsGtlAstPvehicles[index].newasset = value.private_vehicles;
+                    }
+                })
+                bsGtlAstPvehicles_e_index = bsGtlAstPvehicles_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'transport_land': 'transport_land'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+//            if(response.data == 'False') {
+//                alert('False');
+//            }
+//            else {
+//                alert('True');
+//            }
+        }, function errorCallback(response) {
+
+        });
     }
 }]);

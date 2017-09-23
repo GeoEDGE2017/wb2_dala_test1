@@ -73,7 +73,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     avg_repair_2_lanes: null,
                     avg_repair_multi_lanes: null,
                 }, {
-                    type_bridges: 'Wooden bridges',
+                    type_bridges: 'Wooden Bridges',
                     avg_replace_2_lanes: null,
                     avg_replace_multi_lanes: null,
                     avg_repair_2_lanes: null,
@@ -108,19 +108,27 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
 
     $scope.bsPubRodsBridsUsr = angular.copy(init_data);
 
+//    angular.forEach(db_table_data function(value_in, key_in) {
+//
+//    }
+//
+//    angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1, function(value_in, key_in) {
+//
+//    })
+
     //disable Edit Button
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
         }
-        else{
+        else {
             $scope.is_edit_disable = false;
         }
     }
 
     //add enumerate fields
     $scope.insertAsset = function(table) {
-        console.log($scope.bsPubRodsBridsUsr.transport_land.Table_1[table]);
+//        console.log($scope.bsPubRodsBridsUsr.transport_land.Table_1[table]);
         var new_row;
         if(table == 'BsRbuTbridges') {
             new_row = {
@@ -190,21 +198,21 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     'sector':'transport_land'
                 }),
             }).success(function(data) {
-                $scope.bsPubRodsBridsUsr = init_data;
-                $scope.is_edit = false;
-
                 if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
                 else {
+                    $scope.updateEnums();
                     $("#modal-container-239453").modal('show');
                 }
+                $scope.bsPubRodsBridsUsr = init_data;
+                $scope.is_edit = false;
             })
         }
     }
 
-    // edit data
+    //edit data
     $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
@@ -222,29 +230,24 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
                     }
                 }),
             }).success(function(data) {
-                console.log(data);
                 $scope.bsPubRodsBridsUsr = data;
 
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.transport_land.Table_1, function(value, index) {
-                        console.log('----forEach');
-                        console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsPubRodsBridsUsr = data;
+                        $scope.getEnumDataFromStart();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -261,5 +264,188 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
         console.log("clear")
         $scope.is_edit = false;
         $scope.bsPubRodsBridsUsr = angular.copy(init_data);
+    }
+
+    $scope.enum_data = {
+        'transport_land': {
+            'Table_1': {
+                'BsRbuTbridges': [],
+                'BsRbuTculverts': [],
+                'BsRbuTrwalls': [],
+                'BsRbuTdrains': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bsRbuTbridges_e_index = 0;
+        var bsRbuTculverts_e_index = 0;
+        var bsRbuTrwalls_e_index = 0;
+        var bsRbuTdrains_e_index = 0;
+
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTbridges, function(value, index, key) {
+//            var bsRbuTbridges_index = 0;
+            if(value.type_bridges != 'Steel Bridges' && value.type_bridges != 'Wooden Bridges') {
+                var enum_val = {
+                    oldasset: value.type_bridges,
+                    newasset: null,
+                    enum_index: bsRbuTbridges_e_index,
+                    bs_asset_field: 'type_bridges',
+                    dl_tables: {
+                        'Table_4': {
+                            'DlRbdTbridges': {
+                                dl_asset_field: 'type_bridges'
+                            }
+                        }
+                    }
+                };
+                bsRbuTbridges_e_index = bsRbuTbridges_e_index + 1;
+                $scope.enum_data.transport_land.Table_1.BsRbuTbridges.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTculverts, function(value, index, key) {
+            if(value.type_culverts != 'Box Culvert') {
+                var enum_val = {
+                    oldasset: value.type_culverts,
+                    newasset: null,
+                    enum_index: bsRbuTculverts_e_index,
+                    bs_asset_field: 'type_culverts',
+                    dl_tables: {
+                        'Table_4': {
+                            'DlRbdTculverts': {
+                                dl_asset_field: 'type_culverts'
+                            }
+                        }
+                    }
+                };
+                bsRbuTculverts_e_index = bsRbuTculverts_e_index + 1;
+                $scope.enum_data.transport_land.Table_1.BsRbuTculverts.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTrwalls, function(value, index, key) {
+            if(value.type_retain_walls != 'RRM') {
+                var enum_val = {
+                    oldasset: value.type_retain_walls,
+                    newasset: null,
+                    enum_index: bsRbuTrwalls_e_index,
+                    bs_asset_field: 'type_retain_walls',
+                    dl_tables: {
+                        'Table_4': {
+                            'DlRbdTrwalls': {
+                                dl_asset_field: 'type_retain_walls'
+                            }
+                        }
+                    }
+                };
+                bsRbuTrwalls_e_index = bsRbuTrwalls_e_index + 1;
+                $scope.enum_data.transport_land.Table_1.BsRbuTrwalls.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTdrains, function(value, index, key) {
+            if(value.type_drains != 'Concrete' && value.type_drains != 'Bricks' && value.type_drains != 'Earth') {
+                var enum_val = {
+                    oldasset: value.type_drains,
+                    newasset: null,
+                    enum_index: bsRbuTdrains_e_index,
+                    bs_asset_field: 'type_drains',
+                    dl_tables: {
+                        'Table_4': {
+                            'DlRbdTdrains': {
+                                dl_asset_field: 'type_drains'
+                            }
+                        }
+                    }
+                };
+                bsRbuTdrains_e_index = bsRbuTdrains_e_index + 1;
+                $scope.enum_data.transport_land.Table_1.BsRbuTdrains.push(enum_val);
+            }
+        })
+
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.bsPubRodsBridsUsr.transport_land.Table_1);
+        var bsRbuTbridges_e_index = 0;
+        var bsRbuTculverts_e_index = 0;
+        var bsRbuTrwalls_e_index = 0;
+        var bsRbuTdrains_e_index = 0;
+
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTbridges, function(value, key) {
+            if(value.type_bridges != 'Steel Bridges' && value.type_bridges != 'Wooden Bridges') {
+                angular.forEach($scope.enum_data.transport_land.Table_1.BsRbuTbridges, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_land.Table_1.BsRbuTbridges);
+                    if(each_enum.enum_index == bsRbuTbridges_e_index) {
+                        $scope.enum_data.transport_land.Table_1.BsRbuTbridges[index].newasset = value.type_bridges;
+                    }
+                })
+                bsRbuTbridges_e_index = bsRbuTbridges_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTculverts, function(value, key) {
+            if(value.type_culverts != 'Box Culvert') {
+                angular.forEach($scope.enum_data.transport_land.Table_1.BsRbuTculverts, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_land.Table_1.BsRbuTculverts);
+                    if(each_enum.enum_index == bsRbuTculverts_e_index) {
+                        $scope.enum_data.transport_land.Table_1.BsRbuTculverts[index].newasset = value.type_culverts;
+                    }
+                })
+                bsRbuTculverts_e_index = bsRbuTculverts_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTrwalls, function(value, key) {
+            if(value.type_retain_walls != 'RRM') {
+                angular.forEach($scope.enum_data.transport_land.Table_1.BsRbuTrwalls, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_land.Table_1.BsRbuTrwalls);
+                    if(each_enum.enum_index == bsRbuTrwalls_e_index) {
+                        $scope.enum_data.transport_land.Table_1.BsRbuTrwalls[index].newasset = value.type_retain_walls;
+                    }
+                })
+                bsRbuTrwalls_e_index = bsRbuTrwalls_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1.BsRbuTdrains, function(value, key) {
+            if(value.type_drains != 'Concrete' && value.type_drains != 'Bricks' && value.type_drains != 'Earth') {
+                angular.forEach($scope.enum_data.transport_land.Table_1.BsRbuTdrains, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_land.Table_1.BsRbuTdrains);
+                    if(each_enum.enum_index == bsRbuTdrains_e_index) {
+                        $scope.enum_data.transport_land.Table_1.BsRbuTdrains[index].newasset = value.type_drains;
+                    }
+                })
+                bsRbuTdrains_e_index = bsRbuTdrains_e_index + 1;
+            }
+        })
+
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'transport_land'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+            if(response.data == 'False') {
+                alert('False');
+            }
+            else {
+                alert('True');
+            }
+        }, function errorCallback(response) {
+
+        });
     }
 }]);

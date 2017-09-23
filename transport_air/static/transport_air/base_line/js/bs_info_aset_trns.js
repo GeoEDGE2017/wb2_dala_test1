@@ -169,7 +169,6 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
 
     //Add Enumerate Filed
     $scope.insertAsset = function(table) {
-        console.log($scope.bsInfoAsetTrans.transport_air.Table_1[table]);
         var new_row;
         if(table == 'BsAstAirAircrafts') {
             new_row = {
@@ -226,9 +225,6 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
     $scope.saveBsData = function(form) {
         $scope.submitted = true;
         if(form.$valid) {
-        alert($scope.district);
-             alert($scope.bs_date);
-             alert($scope.is_edit);
             $http({
                 method: "POST",
                 url: "/bs_save_data",
@@ -243,29 +239,26 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                     'sector':'transport_air'
                 }),
             }).success(function(data) {
-                $scope.bsInfoAsetTrans = init_data;
                 $scope.is_edit = false;
-                console.log(data);
                 if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
                 else {
+                    $scope.updateEnums();
+                    console.log('saveBsData  - bsInfoAsetTrans', $scope.bsInfoAsetTrans);
+                    $scope.bsInfoAsetTrans = init_data;
                     $("#modal-container-239453").modal('show');
                 }
             })
         }
     }
 
-
     //edit Bs Data
     $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
         if (form.$valid) {
-        alert($scope.district);
-             alert($scope.bs_date);
-             alert($scope.is_edit);
             $http({
                 method: "POST",
                 url: "/bs_fetch_edit_data",
@@ -278,29 +271,23 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
                     }
                 }),
             }).success(function(data) {
-                console.log(data);
-//                $scope.bsInfoAsetTrans = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.transport_air.Table_1, function(value, index) {
-                        console.log('----forEach');
-                        console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsInfoAsetTrans = data;
+                        console.log('editBsData - bsInfoAsetTrans', $scope.bsInfoAsetTrans);
+                        $scope.getEnumDataFromStart();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -318,5 +305,202 @@ app.controller('BsInfoAsetTransController', ['$scope', '$http', function($scope,
         console.log("clear")
         $scope.is_edit = false;
         $scope.bsInfoAsetTrans = angular.copy(init_data);
+    }
+
+    $scope.enum_data = {
+        'transport_air': {
+            'Table_1': {
+                'BsAstAirAircrafts': [],
+                'BsAstAirEquipment': [],
+                'BsAstAirSupplies': [],
+                'BsAstAirStructures': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bsAstAirAircrafts_e_index = 0;
+        var bsAstAirEquipment_e_index = 0;
+        var bsAstAirSupplies_e_index = 0;
+        var bsAstAirStructures_e_index = 0;
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirAircrafts, function(value, index, key) {
+            if(value.assets != 'Airplanes' && value.assets != 'Helicopters') {
+                var enum_val = {
+                    oldasset: value.assets,
+                    newasset: null,
+                    enum_index: bsAstAirAircrafts_e_index,
+                    bs_asset_field: 'assets',
+                    dl_tables: {
+                        'Table_2': {
+                            'DlAirDmgAircrafts': {
+                                dl_asset_field: 'assets'
+                            }
+                        }
+                    }
+                };
+                bsAstAirAircrafts_e_index = bsAstAirAircrafts_e_index + 1;
+                $scope.enum_data.transport_air.Table_1.BsAstAirAircrafts.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirEquipment, function(value, index, key) {
+            if(value.assets != 'Office equipment' && value.assets != 'Baggage handling system' &&
+                value.assets != 'Cargo handling system' && value.assets != 'Aero bridges' &&
+                value.assets != 'Security equipment' && value.assets != 'Vehicles') {
+                var enum_val = {
+                    oldasset: value.assets,
+                    newasset: null,
+                    enum_index: bsAstAirEquipment_e_index,
+                    bs_asset_field: 'assets',
+                    dl_tables: {
+                        'Table_2': {
+                            'DlAirDmgEquipment': {
+                                dl_asset_field: 'assets'
+                            }
+                        }
+                    }
+                };
+                bsAstAirEquipment_e_index = bsAstAirEquipment_e_index + 1;
+                $scope.enum_data.transport_air.Table_1.BsAstAirEquipment.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirSupplies, function(value, index, key) {
+            if(value.assets != 'Fuel (per Liter)') {
+                var enum_val = {
+                    oldasset: value.assets,
+                    newasset: null,
+                    enum_index: bsAstAirSupplies_e_index,
+                    bs_asset_field: 'assets',
+                    dl_tables: {
+                        'Table_2': {
+                            'DlAirDmgSupplies': {
+                                dl_asset_field: 'assets'
+                            }
+                        }
+                    }
+                };
+                bsAstAirSupplies_e_index = bsAstAirSupplies_e_index + 1;
+                $scope.enum_data.transport_air.Table_1.BsAstAirSupplies.push(enum_val);
+            }
+        })
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirStructures, function(value, index, key) {
+            if(value.assets != 'Airport Terminal buildings' &&
+                value.assets != 'Aircraft Hangars and associated buildings' &&
+                value.assets != 'Administrative buildings' &&
+                value.assets != 'Fire services buildings' &&
+                value.assets != 'Airport Maintenance' &&
+                value.assets != 'Sri Lankan Airlines office complex' &&
+                value.assets != 'Navigation services complex' &&
+                value.assets != 'Control tower') {
+
+                var enum_val = {
+                    oldasset: value.assets,
+                    newasset: null,
+                    enum_index: bsAstAirStructures_e_index,
+                    bs_asset_field: 'assets',
+                    dl_tables: {
+                        'Table_2': {
+                            'DlAirDmgGstructures': {
+                                dl_asset_field: 'assets'
+                            }
+                        }
+                    }
+                };
+                bsAstAirStructures_e_index = bsAstAirStructures_e_index + 1;
+                $scope.enum_data.transport_air.Table_1.BsAstAirStructures.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart - enum_data', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log('getEnumDataFromEnd - bsInfoAsetTrans', $scope.bsInfoAsetTrans);
+        var bsAstAirAircrafts_e_index = 0;
+        var bsAstAirEquipment_e_index = 0;
+        var bsAstAirSupplies_e_index = 0;
+        var bsAstAirStructures_e_index = 0;
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirAircrafts, function(value, key) {
+            if(value.assets != 'Airplanes' && value.assets != 'Helicopters') {
+                angular.forEach($scope.enum_data.transport_air.Table_1.BsAstAirAircrafts, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_air.Table_1.BsAstAirAircrafts);
+                    if(each_enum.enum_index == bsAstAirAircrafts_e_index) {
+                        $scope.enum_data.transport_air.Table_1.BsAstAirAircrafts[index].newasset = value.assets;
+                    }
+                })
+                bsAstAirAircrafts_e_index = bsAstAirAircrafts_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirEquipment, function(value, key) {
+            if(value.assets != 'Office equipment' && value.assets != 'Baggage handling system' &&
+                value.assets != 'Cargo handling system' && value.assets != 'Aero bridges' &&
+                value.assets != 'Security equipment' && value.assets != 'Vehicles') {
+                angular.forEach($scope.enum_data.transport_air.Table_1.BsAstAirEquipment, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_air.Table_1.BsAstAirEquipment);
+                    if(each_enum.enum_index == bsAstAirEquipment_e_index) {
+                        $scope.enum_data.transport_air.Table_1.BsAstAirEquipment[index].newasset = value.assets;
+                    }
+                })
+                bsAstAirEquipment_e_index = bsAstAirEquipment_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirSupplies, function(value, key) {
+            if(value.assets != 'Fuel (per Liter)') {
+                angular.forEach($scope.enum_data.transport_air.Table_1.BsAstAirSupplies, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_air.Table_1.BsAstAirSupplies);
+                    if(each_enum.enum_index == bsAstAirSupplies_e_index) {
+                        $scope.enum_data.transport_air.Table_1.BsAstAirSupplies[index].newasset = value.assets;
+                    }
+                })
+                bsAstAirSupplies_e_index = bsAstAirSupplies_e_index + 1;
+            }
+        })
+        angular.forEach($scope.bsInfoAsetTrans.transport_air.Table_1.BsAstAirStructures, function(value, key) {
+            if(value.assets != 'Airport Terminal buildings' &&
+                value.assets != 'Aircraft Hangars and associated buildings' &&
+                value.assets != 'Administrative buildings' &&
+                value.assets != 'Fire services buildings' &&
+                value.assets != 'Airport Maintenance' &&
+                value.assets != 'Sri Lankan Airlines office complex' &&
+                value.assets != 'Navigation services complex' &&
+                value.assets != 'Control tower') {
+                angular.forEach($scope.enum_data.transport_air.Table_1.BsAstAirStructures, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_air.Table_1.BsAstAirStructures);
+                    if(each_enum.enum_index == bsAstAirStructures_e_index) {
+                        $scope.enum_data.transport_air.Table_1.BsAstAirStructures[index].newasset = value.assets;
+                    }
+                })
+                bsAstAirStructures_e_index = bsAstAirStructures_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd - enum_data', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'transport_air'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+//            if(response.data == 'False') {
+//                alert('False');
+//            }
+//            else {
+//                alert('True');
+//            }
+        }, function errorCallback(response) {
+
+        });
     }
 }]);

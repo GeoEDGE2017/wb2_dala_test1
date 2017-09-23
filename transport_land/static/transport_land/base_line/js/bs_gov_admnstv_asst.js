@@ -133,6 +133,7 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
                     $scope.is_valid_data = false;
                 }
                 else {
+                    $scope.updateEnums();
                     $("#modal-container-239453").modal('show');
                 }
             })
@@ -157,28 +158,23 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
                 }),
             }).success(function(data) {
                 console.log(data);
-//                $scope.bsGovAdmnstvAsset = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.transport_land.Table_3, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsGovAdmnstvAsset = data;
+                        $scope.getEnumDataFromStart();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -196,5 +192,82 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         console.log("clear")
         $scope.is_edit = false;
         $scope.bsGovAdmnstvAsset = angular.copy(init_data);
+    }
+
+    $scope.enum_data = {
+        'transport_land': {
+            'Table_3': {
+                'BiaGacLandOequipment': [],
+                'BS_Table2': [],
+                'BS_Table3': [],
+                'BS_Table4': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var biaGacLandOequipment_e_index = 0;
+        angular.forEach($scope.bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment, function(value, index, key) {
+//            var bsRbuTbridges_index = 0;
+            if(value.asset != 'Computers' && value.asset != 'Furniture') {
+                var enum_val = {
+                    oldasset: value.asset,
+                    newasset: null,
+                    enum_index: biaGacLandOequipment_e_index,
+                    bs_asset_field: 'asset',
+                    dl_tables: {
+                        'Table_6': {
+                            'DlGacPdmgEquipment': {
+                                dl_asset_field: 'assets'
+                            }
+                        }
+                    }
+                };
+                biaGacLandOequipment_e_index = biaGacLandOequipment_e_index + 1;
+                $scope.enum_data.transport_land.Table_3.BiaGacLandOequipment.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.bsGovAdmnstvAsset.transport_land.Table_3);
+        var biaGacLandOequipment_e_index = 0;
+        angular.forEach($scope.bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment, function(value, key) {
+            if(value.asset != 'Computers' && value.asset != 'Furniture') {
+                angular.forEach($scope.enum_data.transport_land.Table_3.BiaGacLandOequipment, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.transport_land.Table_3.BiaGacLandOequipment);
+                    if(each_enum.enum_index == biaGacLandOequipment_e_index) {
+                        $scope.enum_data.transport_land.Table_3.BiaGacLandOequipment[index].newasset = value.asset;
+                    }
+                })
+                biaGacLandOequipment_e_index = biaGacLandOequipment_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'transport_land'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+        }, function errorCallback(response) {
+
+        });
     }
 }]);

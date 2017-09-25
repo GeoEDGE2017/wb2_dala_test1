@@ -12,6 +12,7 @@ def index_charts(request):
     }
     return render(request, 'new_charts/index_chart.html', context)
 
+
 def test_charts(request):
     districts = District.objects.all()
     incidents = IncidentReport.objects.all()
@@ -21,6 +22,17 @@ def test_charts(request):
         'module': 'new_charts'
     }
     return render(request, 'new_charts/test.html', context)
+
+
+def test_two_charts(request):
+    districts = District.objects.all()
+    incidents = IncidentReport.objects.all()
+    context = {
+        'districts': districts,
+        'incidents': incidents,
+        'module': 'new_charts'
+    }
+    return render(request, 'new_charts/test_two.html', context)
 
 
 def housing_charts(request):

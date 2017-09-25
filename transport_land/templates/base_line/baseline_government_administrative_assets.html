@@ -1,302 +1,185 @@
-{% extends "dashboard/base.html" %}
-{% block content %}
-{% load static %}
+{% extends "dashboard/base.html" %} {% block content %} {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="bsGovAdmnstvAssetApp" ng-controller="BsGovAdmnstvAssetController">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a>
-        </li>
-        <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">
+	<!-- Breadcrumb -->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a> </li>
+		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
                 Table 3. Government Administrative Assets
-            </span>
-        </li>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
-        </li>
-    </ol>
-    <div class="container-fluid">
-        <div id="myTabContent" class="tab-content" ng-form name="form_bs_gov_admin_aset">
-            <div class="tab-pane active" id="step1">
-             <td><button ng-click="editBsData(form_bs_gov_admin_aset)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
-                <table class="table table-bordered">
-                    <colgroup>
-                        <col width="156"/>
-                        <col width="63"/>
-                        <col width="120"/>
-                        <col width="99"/>
-                        <col width="145"/>
-                    </colgroup>
-                    <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td  style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
-                        </td>
-                        <td colspan="2"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_bs_gov_admin_aset.district.$error.required">
+            </span> </li>
+		<li style="float:right;">
+			<a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+		</li>
+	</ol>
+	<div class="container-fluid">
+		<div id="myTabContent" class="tab-content" ng-form name="form_bs_gov_admin_aset">
+			<div class="tab-pane active" id="step1">
+				<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+					</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_bs_gov_admin_aset)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+				</td>
+				<table class="table table-bordered">
+					<colgroup>
+						<col width="156" />
+						<col width="63" />
+						<col width="120" />
+						<col width="99" />
+						<col width="145" /> </colgroup>
+					<tbody>
+						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+							<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_gov_admin_aset.district.$error.required">
                                 Please Select District
-                            </span>
-                        </td>
-                        <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_bs_gov_admin_aset.baselineDate.$error.required">
+                            </span> </td>
+							<td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_gov_admin_aset.baselineDate.$error.required">
                                 Please Select Date
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1" height="43">
-                        <td height="43" width="156" style="padding:5px;">
-                            District
-                        </td>
-                        <td colspan="2" height="43" width="63">
-                            <select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select a District</option>
-                                {% for district in districts %}
-                                    <option value={{ district.id }}>{{ district.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td height="43" width="240" style="padding:5px;">
-                            Year/Month
-                        </td>
-                        <td height="43" width="145" >
-                            <input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" ng-change="changeDis()"  id="datepicker" ng-model="bs_date" class="form-control input-md" required>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td height="19" width="156">
-                            Asset
-                        </td>
-                        <td colspan="4" height="19" width="345">
-                            Average Replacement Cost Per Square Meter (LKR/sqm)
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="156">
-                            Structure
-                        </td>
-                        <td colspan="4" height="19" width="345">
-                            <br/>
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="biaGacLandStructure in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandStructure">
-                        <td class="tdpa" height="19" width="156" ng-bind="biaGacLandStructure.asset">
-                        </td>
-                        <td colspan="4" height="19" width="345">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="biaGacLandStructure.avg_repair_cost">
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="156">
-                            <br/>
-                        </td>
-                        <td colspan="4" height="19" width="345">
-                            Average Repair Cost Per Square Meter (LKR/sqm)
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="156">
-                            Building Parts
-                        </td>
-                        <td height="19" width="63" style="width:25%;">
-                            1 Floor
-                        </td>
-                        <td colspan="2" height="19" width="240" style="width:25%;">
-                            2-3 Floor
-                        </td>
-                        <td height="19" width="145">
-                            More than 3 floors
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="biaGacLandPbuilding in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandPbuilding">
-                        <td class="tdpa" height="19" width="156" ng-bind="biaGacLandPbuilding.asset">
-                        </td>
-                        <td height="19" width="63">
-                            <input id="textinput" name="textinput" ng-model="biaGacLandPbuilding.avg_repair_cost_floor_1" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" height="19" width="240">
-                            <input id="textinput" name="textinput" ng-model="biaGacLandPbuilding.avg_repair_cost_floor_2_3" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td height="19" width="145">
-                            <input id="textinput" name="textinput" ng-model="biaGacLandPbuilding.avg_repair_cost_floor_more_3" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="156">
-                            Office Equipment
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            Average Replacement Cost (LKR)
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            Average Repair Cost (LKR)
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="biaGacLandOequipment in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment">
-                        <td class="tdpa" height="19" width="156" ng-bind="biaGacLandOequipment.asset" ng-if="$index < 2">
-                        </td>
-                        <td width="98" ng-if="$index > 1">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BiaGacLandOequipment', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="biaGacLandOequipment_{{$index}}" ng-model="biaGacLandOequipment.asset"
-                                popover="This field is required"
-                                popover-toggle="form_pop_lat_census['biaGacLandOequipment_' + $index].$dirty && !form_pop_lat_census['biaGacLandOequipment_' + $index].$valid"
-                                popover-placement="top" required
-                                type="text"
-                                class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            <input id="textinput" name="textinput" ng-model="biaGacLandOequipment.avg_replace_cost" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            <input id="textinput" name="textinput" ng-model="biaGacLandOequipment.avg_repair_cost" type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="19">
-                        <td height="19" width="156">
-                            Others
-                            <button ng-click="insertAsset('BiaGacLandOequipment')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            <br/>
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            <br/>
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td height="19" width="156">
-                            Machinery
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            <br/>
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            <br/>
-                        </td>
-                    </tr>
-                    <tr height="19" ng-repeat="biaGacLandMachinery in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandMachinery">
-                        <td class="tdpa" height="19" width="156" ng-bind="biaGacLandMachinery.asset" ng-if="$index < 3">
-                        </td>
-                        <td width="98" ng-if="$index > 2">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BiaGacLandMachinery', $index)" class="btn btn-sm btn-danger btn-circle" >
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="biaGacLandMachinery_{{$index}}" ng-model="biaGacLandMachinery.asset"
-                                popover="This field is required"
-                                popover-toggle="form_pop_lat_census['biaGacLandMachinery_' + $index].$dirty && !form_pop_lat_census['biaGacLandMachinery_' + $index].$valid"
-                                popover-placement="top" required
-                                type="text"
-                                class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="biaGacLandMachinery.avg_replace_cost">
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="biaGacLandMachinery.avg_repair_cost">
-                        </td>
-                    </tr>
-                    <tr class="tdpa" height="19">
-                        <td height="19" width="156">
-                            Others
-                            <button ng-click="insertAsset('BiaGacLandMachinery')" class="btn btn-sm btn-info btn-circle" id="insert">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                        </td>
-                        <td colspan="2" height="19" width="126">
-                            <br/>
-                        </td>
-                        <td colspan="2" height="19" width="198">
-                            <br/>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <br>
-                <div class="pull-right">
-                    <button type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-                    <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="editBsData(form_bs_gov_admin_aset)" ng-if="!is_edit" class="btn btn-success">
+                            </span> </td>
+						</tr>
+						<tr class="trhead1" height="43">
+							<td height="43" width="156" style="padding:5px;"> District </td>
+							<td colspan="2" height="43" width="63">
+								<select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
+									<option value="" selected="true">Select a District</option> {% for district in districts %}
+									<option value={{ district.id }}>{{ district.name }}</option> {% endfor %} </select>
+							</td>
+							<td height="43" width="240" style="padding:5px;"> Year/Month </td>
+							<td height="43" width="145">
+								<input name="baselineDate" style="font-weight:normal;" type="text" placeholder="mm/yy" ng-change="changeDis()" id="datepicker" ng-model="bs_date" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+						<tr class="trheadc1" height="19">
+							<td height="19" width="156"> Asset </td>
+							<td colspan="4" height="19" width="345"> Average Replacement Cost Per Square Meter (LKR/sqm) </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="156"> Structure </td>
+							<td colspan="4" height="19" width="345">
+								<br/> </td>
+						</tr>
+						<tr height="19" ng-repeat="biaGacLandStructure in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandStructure">
+							<td class="tdpa" height="19" width="156" ng-bind="biaGacLandStructure.asset"> </td>
+							<td colspan="4" height="19" width="345">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="biaGacLandStructure.avg_repair_cost"> </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="156">
+								<br/> </td>
+							<td colspan="4" height="19" width="345"> Average Repair Cost Per Square Meter (LKR/sqm) </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="156"> Building Parts </td>
+							<td height="19" width="63" style="width:25%;"> 1 Floor </td>
+							<td colspan="2" height="19" width="240" style="width:25%;"> 2-3 Floor </td>
+							<td height="19" width="145"> More than 3 floors </td>
+						</tr>
+						<tr height="19" ng-repeat="biaGacLandPbuilding in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandPbuilding">
+							<td class="tdpa" height="19" width="156" ng-bind="biaGacLandPbuilding.asset"> </td>
+							<td height="19" width="63">
+								<input id="textinput" name="textinput" ng-model="biaGacLandPbuilding.avg_repair_cost_floor_1" type="number" placeholder="" class="form-control input-md"> </td>
+							<td colspan="2" height="19" width="240">
+								<input id="textinput" name="textinput" ng-model="biaGacLandPbuilding.avg_repair_cost_floor_2_3" type="number" placeholder="" class="form-control input-md"> </td>
+							<td height="19" width="145">
+								<input id="textinput" name="textinput" ng-model="biaGacLandPbuilding.avg_repair_cost_floor_more_3" type="number" placeholder="" class="form-control input-md"> </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="156"> Office Equipment </td>
+							<td colspan="2" height="19" width="126"> Average Replacement Cost (LKR) </td>
+							<td colspan="2" height="19" width="198"> Average Repair Cost (LKR) </td>
+						</tr>
+						<tr height="19" ng-repeat="biaGacLandOequipment in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment">
+							<td class="tdpa" height="19" width="156" ng-bind="biaGacLandOequipment.asset" ng-if="$index < 2"> </td>
+							<td width="98" ng-if="$index > 1"> {% verbatim %}
+								<button id="delete" ng-click="removeItem('BiaGacLandOequipment', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
+								<input style="width:80%;float:right;" name="biaGacLandOequipment_{{$index}}" ng-model="biaGacLandOequipment.asset" popover="This field is required" popover-toggle="form_pop_lat_census['biaGacLandOequipment_' + $index].$dirty && !form_pop_lat_census['biaGacLandOequipment_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+							<td colspan="2" height="19" width="126">
+								<input id="textinput" name="textinput" ng-model="biaGacLandOequipment.avg_replace_cost" type="number" placeholder="" class="form-control input-md"> </td>
+							<td colspan="2" height="19" width="198">
+								<input id="textinput" name="textinput" ng-model="biaGacLandOequipment.avg_repair_cost" type="number" placeholder="" class="form-control input-md"> </td>
+						</tr>
+						<tr class="tdpa" height="19">
+							<td height="19" width="156"> Others
+								<button ng-click="insertAsset('BiaGacLandOequipment')" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
+							</td>
+							<td colspan="2" height="19" width="126">
+								<br/> </td>
+							<td colspan="2" height="19" width="198">
+								<br/> </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td height="19" width="156"> Machinery </td>
+							<td colspan="2" height="19" width="126">
+								<br/> </td>
+							<td colspan="2" height="19" width="198">
+								<br/> </td>
+						</tr>
+						<tr height="19" ng-repeat="biaGacLandMachinery in bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandMachinery">
+							<td class="tdpa" height="19" width="156" ng-bind="biaGacLandMachinery.asset" ng-if="$index < 3"> </td>
+							<td width="98" ng-if="$index > 2"> {% verbatim %}
+								<button id="delete" ng-click="removeItem('BiaGacLandMachinery', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
+								<input style="width:80%;float:right;" name="biaGacLandMachinery_{{$index}}" ng-model="biaGacLandMachinery.asset" popover="This field is required" popover-toggle="form_pop_lat_census['biaGacLandMachinery_' + $index].$dirty && !form_pop_lat_census['biaGacLandMachinery_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+							<td colspan="2" height="19" width="126">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="biaGacLandMachinery.avg_replace_cost"> </td>
+							<td colspan="2" height="19" width="198">
+								<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="biaGacLandMachinery.avg_repair_cost"> </td>
+						</tr>
+						<tr class="tdpa" height="19">
+							<td height="19" width="156"> Others
+								<button ng-click="insertAsset('BiaGacLandMachinery')" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
+							</td>
+							<td colspan="2" height="19" width="126">
+								<br/> </td>
+							<td colspan="2" height="19" width="198">
+								<br/> </td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<div class="pull-right">
+					<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button> <span ng-if="is_edit_disable">
+                        <button id="editbtn" type="button" ng-click="editBsData(form_bs_gov_admin_aset)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span> <span ng-if="!is_edit_disable">
+                        <button id="editbtn"type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
-                        Cancel Edit
-                    </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_gov_admin_aset)"
-                        class="btn btn-success">
-                        Submit
-                    </button>
-                </div>
-                <br><br>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-             aria-hidden="true">
-            <div class="modal-dialog" style="width:50%;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h5 class="modal-title">
+					<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning"> Cancel Edit </button>
+					<button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveBsData(form_bs_gov_admin_aset)" class="btn btn-success"> Submit </button>
+				</div>
+				<br>
+				<br> </div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+			<div class="modal-dialog" style="width:50%;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+						<h5 class="modal-title">
                             <span id="bookId"> </span>
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-
-                            </div>
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.conainer-fluid -->
-</main>
-{% endblock content %}
+                        </h5> </div>
+					<div class="modal-body">
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="textinput">Name</label>
+							<div class="col-md-10">
+								<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"> </div>
+						</div>
+					</div>
+					<br>
+					<br>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+						<button type="button" class="btn btn-primary"> Save changes </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.conainer-fluid -->
+</main> {% endblock content %}

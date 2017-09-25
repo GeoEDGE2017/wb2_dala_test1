@@ -7,6 +7,7 @@ app_name = 'new_charts'
 urlpatterns = [
  url(r'^index_charts', views.index_charts, name='index_charts'),
     url(r'^test_charts', views.test_charts, name='test_charts'),
+    url(r'^test_two_charts', views.test_two_charts, name='test_two_charts'),
     url(r'^housing_charts', views.housing_charts, name='housing_charts'),
     url(r'^water_charts', views.water_charts, name='water_charts'),
     url(r'^tourism_charts', views.tourism_charts, name='tourism_charts'),

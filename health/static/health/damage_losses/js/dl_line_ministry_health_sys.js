@@ -15,6 +15,9 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
     $scope.user_id;
     $scope.is_edit_disable = false;
     $scope.is_submit = false;
+    $scope.is_search_disable = false;
+    $scope.is_search=false;
+    $scope.check_search = false;
 
     //initialize model
     var init_data = {
@@ -472,7 +475,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-//                        'user_id': $scope.user_id,
+                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -536,10 +539,59 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         }
     }
 
+    //Search Data
+    $scope.searchDlData = function(form) {
+document.getElementById("clearbtn").disabled = true;
+document.getElementById("editbtn").disabled = true;
+document.getElementById("subbtn").disabled = true;
+
+console.log("test",$scope.district);
+console.log("test",$scope.bs_date);
+
+$scope.is_search = true;
+
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_5',
+                    'sector':'health',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                }),
+            }).success(function(data) {
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_5, function(value, index) {
+//                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.dlMinistryHealthSys = data;
+                        console.log('bs_data', $scope.bs_data);
+                        console.log(data);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
+    }
+
     //Cancel Edit
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlMinistryHealthSys = init_data;
+        location.reload();
     }
 
     //Fetch district
@@ -561,6 +613,7 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
 
         if($scope.incident && $scope.district) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
 
             $http({
                 method: 'POST',
@@ -641,5 +694,6 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
         console.log("clear")
         $scope.is_edit = false;
         $scope.dlMinistryHealthSys = angular.copy(init_data);
+        location.reload();
     }
 }])

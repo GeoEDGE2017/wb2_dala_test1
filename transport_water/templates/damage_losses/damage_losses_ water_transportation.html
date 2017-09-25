@@ -1,881 +1,432 @@
-{% extends "dashboard/base.html" %}
-{% block content %}
-{% load static %}
+{% extends "dashboard/base.html" %} {% block content %} {% load static %}
 <!-- Main content -->
 <main class="main" ng-app="dlWaterTransApp" ng-controller="DlWaterTransController">
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:transport_water_main' %}">Transport Water Sector</a>
-        </li>
-        <li class="breadcrumb-item active">
-            <span class="label label-success" style="font-size:14px;">
+	<!-- Breadcrumb -->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
+		<li class="breadcrumb-item"> <a href="{% url 'dashboard:transport_water_main' %}">Transport Water Sector</a> </li>
+		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
                 Table 2. Damages and Losses to Water Transportation
-            </span>
-        </li>
-        <li style="float:right;">
-            <a href="{% static 'dashboard/doc/1C-Water_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
-        </li>
-    </ol>
-    <div class="container-fluid">
-        <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
-            <li id="li2" class=""><a href='#step2' data-toggle="tab">2 - Structures/Buildings</a></li>
-            <li id="li3"><a href='#step3' data-toggle="tab">3 - Losses</a></li>
-        </ul>
-        <div id="myTabContent" class="tab-content" ng-form name="form_dl_water_transportation">
-            <div class="tab-pane active" id="step1">
-            <td><button ng-click="dlDataEdit(form_dl_water_transportation)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
-                <table class="table table-bordered">
-                    <colgroup>
-                        <col width="253"/>
-                        <col width="147"/>
-                        <col width="151"/>
-                        <col width="165"/>
-                        <col width="170"/>
-                        <col width="135"/>
-                        <col width="133"/>
-                        <col width="126"/>
-                    </colgroup>
-                    <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td colspan="1"  style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.incident.$error.required">
+            </span> </li>
+		<li style="float:right;">
+			<a href="{% static 'dashboard/doc/1C-Water_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+		</li>
+	</ol>
+	<div class="container-fluid">
+		<ul class='nav nav-wizard'>
+			<li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
+			<li id="li2" class=""><a href='#step2' data-toggle="tab">2 - Structures/Buildings</a></li>
+			<li id="li3"><a href='#step3' data-toggle="tab">3 - Losses</a></li>
+		</ul>
+		<div id="myTabContent" class="tab-content" ng-form name="form_dl_water_transportation">
+			<div class="tab-pane active" id="step1">
+				<td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+					</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_dl_water_transportation)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+				</td>
+				<table class="table table-bordered">
+					<colgroup>
+						<col width="253" />
+						<col width="147" />
+						<col width="151" />
+						<col width="165" />
+						<col width="170" />
+						<col width="135" />
+						<col width="133" />
+						<col width="126" /> </colgroup>
+					<tbody>
+						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.incident.$error.required">
                                 Please select Incident
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.district.$error.required">
+                            </span> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_dl_water_transportation.district.$error.required">
                                 Please select District
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1">
-                        <td style="padding-right:5px;">
-                            Incident
-                        </td>
-                        <td colspan="2" style="">
-                            <select id="selectbasic" name="incident" ng-model="incident"
-                                    class="form-control" ng-change="changedValue(true)"
-                                    style="width:100%;font-weight:400;" required>
-                                <option value="" selected="true">Select an Incident</option>
-                                {% for incident in incidents %}
-
-                                <option value={{incident.id}}>
-                                    <!--{{incident.disaster_type.name}}-->
-                                    <!--{{incident.reported_date_time}}-->
-                                    {{incident.incident_name}}
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td colspan="3" style="padding-left:5px;"> Name of District</td>
-                        <td colspan="3" style="">
-                            <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
-                                    name="district" id="ccyear" ng-model="district" ng-value="district.district__id"
-                                    class="form-control" ng-change="changedValue(false)" required>
-
-                                <option value="" selected>Select District</option>
-                            </select>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td colspan="8" width="1280" height="19">
-                            Damages
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td width="253" height="19">
-                            Assets
-                        </td>
-                        <td colspan="2" width="298" style="width:20%;">
-                            Number of Totally Destroyed
-                        </td>
-                        <td colspan="2" width="335" style="width:20%;">
-                            Number of Partially Damaged
-                        </td>
-                        <td colspan="3" width="394" style="width:20%;">
-                            Total Damages (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td width="253" height="19">
-                            Watercrafts
-                        </td>
-                        <td width="" style="width:10%;">
-                            Public
-                        </td>
-                        <td width="" style="width:10%;">
-                            Private
-                        </td>
-                        <td width="" style="width:10%;">
-                            Public
-                        </td>
-                        <td width="" style="width:10%;">
-                            Private
-                        </td>
-                        <td colspan="2" style="width:10%;">
-                            Public
-                        </td>
-                        <td width="" style="width:10%;">
-                            Private
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgWcrafts in dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts"
-                        ng-if="dlWaterDmgWcrafts.assets != 'Total'">
-                        <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgWcrafts.assets">
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterDmgWcrafts.num_tdestroyed_public" ng-change="getTotal('DlWaterDmgWcrafts','num_tdestroyed_public')"  name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterDmgWcrafts.num_tdestroyed_private" ng-change="getTotal('DlWaterDmgWcrafts','num_tdestroyed_private')" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgWcrafts.num_pdestroyed_public" ng-change="getTotal('DlWaterDmgWcrafts','num_pdestroyed_public')"   name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="170">
-                            <input id="textinput" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private"  ng-change="getTotal('DlWaterDmgWcrafts','num_pdestroyed_private')"   name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td class="right" width="85" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_public"
-                            ng-bind="dlWaterDmgWcrafts.tot_dmg_public =
+                            </span> </td>
+						</tr>
+						<tr class="trhead1">
+							<td style="padding-right:5px;"> Incident </td>
+							<td colspan="2" style="">
+								<select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
+									<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
+									<option value={{incident.id}}>
+										<!--{{incident.disaster_type.name}}-->
+										<!--{{incident.reported_date_time}}-->{{incident.incident_name}} </option> {% endfor %} </select>
+							</td>
+							<td colspan="3" style="padding-left:5px;"> Name of District</td>
+							<td colspan="3" style="">
+								<select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
+									<option value="" selected>Select District</option>
+								</select>
+							</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+						<tr class="trheadc1" height="19">
+							<td colspan="8" width="1280" height="19"> Damages </td>
+						</tr>
+						<tr class="trheadc1" height="19">
+							<td width="253" height="19"> Assets </td>
+							<td colspan="2" width="298" style="width:20%;"> Number of Totally Destroyed </td>
+							<td colspan="2" width="335" style="width:20%;"> Number of Partially Damaged </td>
+							<td colspan="3" width="394" style="width:20%;"> Total Damages (LKR) </td>
+						</tr>
+						<tr class="trheadc1" height="19">
+							<td width="253" height="19"> Watercrafts </td>
+							<td width="" style="width:10%;"> Public </td>
+							<td width="" style="width:10%;"> Private </td>
+							<td width="" style="width:10%;"> Public </td>
+							<td width="" style="width:10%;"> Private </td>
+							<td colspan="2" style="width:10%;"> Public </td>
+							<td width="" style="width:10%;"> Private </td>
+						</tr>
+						<tr height="19" ng-repeat="dlWaterDmgWcrafts in dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts" ng-if="dlWaterDmgWcrafts.assets != 'Total'">
+							<td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgWcrafts.assets"> </td>
+							<td width="147">
+								<input id="textinput" ng-model="dlWaterDmgWcrafts.num_tdestroyed_public" ng-change="getTotal('DlWaterDmgWcrafts','num_tdestroyed_public')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="151">
+								<input id="textinput" ng-model="dlWaterDmgWcrafts.num_tdestroyed_private" ng-change="getTotal('DlWaterDmgWcrafts','num_tdestroyed_private')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="165">
+								<input id="textinput" ng-model="dlWaterDmgWcrafts.num_pdestroyed_public" ng-change="getTotal('DlWaterDmgWcrafts','num_pdestroyed_public')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="170">
+								<input id="textinput" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private" ng-change="getTotal('DlWaterDmgWcrafts','num_pdestroyed_private')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td class="right" width="85" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_public" ng-bind="dlWaterDmgWcrafts.tot_dmg_public =
                                           dlWaterDmgWcrafts.num_tdestroyed_public * bs_data['BsAstWaterWcrafts'][$index].fields.avg_replace_cost +
-                                          dlWaterDmgWcrafts.num_pdestroyed_public * bs_data['BsAstWaterWcrafts'][$index].fields.avg_repair_cost">
-
-                        </td>
-
-                        <td class="right" width="85" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_private"
-                            ng-bind="dlWaterDmgWcrafts.tot_dmg_private =
+                                          dlWaterDmgWcrafts.num_pdestroyed_public * bs_data['BsAstWaterWcrafts'][$index].fields.avg_repair_cost"> </td>
+							<td class="right" width="85" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_private" ng-bind="dlWaterDmgWcrafts.tot_dmg_private =
                                           dlWaterDmgWcrafts.num_tdestroyed_private * bs_data['BsAstWaterWcrafts'][$index].fields.avg_replace_cost +
-                                          dlWaterDmgWcrafts.num_pdestroyed_private * bs_data['BsAstWaterWcrafts'][$index].fields.avg_repair_cost">
-
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgWcrafts in dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts"
-                        ng-if="dlWaterDmgWcrafts.assets == 'Total'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgWcrafts.assets">
-
-                        </td>
-                        <td class="right" width="147" ng-model="dlWaterDmgWcrafts.num_tdestroyed_public"
-                         ng-bind="dlWaterDmgWcrafts.num_tdestroyed_public = waterCraftTotal('num_tdestroyed_public')">
-                        </td>
-                        <td class="right" width="151" ng-model="dlWaterDmgWcrafts.num_tdestroyed_private"
-                            ng-bind="dlWaterDmgWcrafts.num_tdestroyed_private = waterCraftTotal('num_tdestroyed_private')">
-                        </td>
-                        <td class="right" width="165" ng-model="dlWaterDmgWcrafts.num_pdestroyed_public"
-                            ng-bind="dlWaterDmgWcrafts.num_pdestroyed_public = waterCraftTotal('num_pdestroyed_public')">
-                        </td>
-                        <td class="right" width="170" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private"
-                            ng-bind="dlWaterDmgWcrafts.num_pdestroyed_private = waterCraftTotal('num_pdestroyed_private')">
-                        </td>
-                        </td>
-                        <td class="right" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_public" ng-bind="dlWaterDmgWcrafts.tot_dmg_public = waterCraftTotal('tot_dmg_public')" width="268">
-                        </td>
-                         <td class="right" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_private" ng-bind="dlWaterDmgWcrafts.tot_dmg_private = waterCraftTotal('tot_dmg_private')" width="268">
-                        </td>
-                    </tr>
-                    <tr class="trheadc">
-                        <td width="253" height="19">
-                            Equipment and Machinery
-                        </td>
-                        <td width="147">
-                        </td>
-                        <td width="151">
-                        </td>
-                        <td width="165">
-                        </td>
-                        <td width="170">
-                        </td>
-                        <td colspan="2">
-                        </td>
-                        <td width="126">
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgEquipment in dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment"
-                        ng-if="dlWaterDmgEquipment.assets != 'Total'">
-                        <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgEquipment.assets">
-
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterDmgEquipment.num_tdestroyed_public"  name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterDmgEquipment.num_tdestroyed_private" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgEquipment.num_pdestroyed_public" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="170">
-                            <input id="textinput" ng-model="dlWaterDmgEquipment.num_pdestroyed_private" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td class="right" width="85" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_public"
-                            ng-bind="dlWaterDmgEquipment.tot_dmg_public =
+                                          dlWaterDmgWcrafts.num_pdestroyed_private * bs_data['BsAstWaterWcrafts'][$index].fields.avg_repair_cost"> </td>
+						</tr>
+						<tr height="19" ng-repeat="dlWaterDmgWcrafts in dlWaterTransportation.transport_water.Table_2.DlWaterDmgWcrafts" ng-if="dlWaterDmgWcrafts.assets == 'Total'">
+							<td class="boldash" width="253" height="19" ng-bind="dlWaterDmgWcrafts.assets"> </td>
+							<td class="right" width="147" ng-model="dlWaterDmgWcrafts.num_tdestroyed_public" ng-bind="dlWaterDmgWcrafts.num_tdestroyed_public = waterCraftTotal('num_tdestroyed_public')"> </td>
+							<td class="right" width="151" ng-model="dlWaterDmgWcrafts.num_tdestroyed_private" ng-bind="dlWaterDmgWcrafts.num_tdestroyed_private = waterCraftTotal('num_tdestroyed_private')"> </td>
+							<td class="right" width="165" ng-model="dlWaterDmgWcrafts.num_pdestroyed_public" ng-bind="dlWaterDmgWcrafts.num_pdestroyed_public = waterCraftTotal('num_pdestroyed_public')"> </td>
+							<td class="right" width="170" ng-model="dlWaterDmgWcrafts.num_pdestroyed_private" ng-bind="dlWaterDmgWcrafts.num_pdestroyed_private = waterCraftTotal('num_pdestroyed_private')"> </td>
+							</td>
+							<td class="right" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_public" ng-bind="dlWaterDmgWcrafts.tot_dmg_public = waterCraftTotal('tot_dmg_public')" width="268"> </td>
+							<td class="right" colspan="2" ng-model="dlWaterDmgWcrafts.tot_dmg_private" ng-bind="dlWaterDmgWcrafts.tot_dmg_private = waterCraftTotal('tot_dmg_private')" width="268"> </td>
+						</tr>
+						<tr class="trheadc">
+							<td width="253" height="19"> Equipment and Machinery </td>
+							<td width="147"> </td>
+							<td width="151"> </td>
+							<td width="165"> </td>
+							<td width="170"> </td>
+							<td colspan="2"> </td>
+							<td width="126"> </td>
+						</tr>
+						<tr height="19" ng-repeat="dlWaterDmgEquipment in dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment" ng-if="dlWaterDmgEquipment.assets != 'Total'">
+							<td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgEquipment.assets"> </td>
+							<td width="147">
+								<input id="textinput" ng-model="dlWaterDmgEquipment.num_tdestroyed_public" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="151">
+								<input id="textinput" ng-model="dlWaterDmgEquipment.num_tdestroyed_private" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="165">
+								<input id="textinput" ng-model="dlWaterDmgEquipment.num_pdestroyed_public" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="170">
+								<input id="textinput" ng-model="dlWaterDmgEquipment.num_pdestroyed_private" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td class="right" width="85" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_public" ng-bind="dlWaterDmgEquipment.tot_dmg_public =
                                           dlWaterDmgEquipment.num_tdestroyed_public * bs_data['BsAstWaterEquipment'][$index].fields.avg_replace_cost +
-                                          dlWaterDmgEquipment.num_pdestroyed_public * bs_data['BsAstWaterEquipment'][$index].fields.avg_repair_cost">
-                        </td>
-
-                        <td class="right" width="85" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_private"
-                            ng-bind="dlWaterDmgEquipment.tot_dmg_private =
+                                          dlWaterDmgEquipment.num_pdestroyed_public * bs_data['BsAstWaterEquipment'][$index].fields.avg_repair_cost"> </td>
+							<td class="right" width="85" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_private" ng-bind="dlWaterDmgEquipment.tot_dmg_private =
                                           dlWaterDmgEquipment.num_tdestroyed_private * bs_data['BsAstWaterEquipment'][$index].fields.avg_replace_cost +
-                                          dlWaterDmgEquipment.num_pdestroyed_private * bs_data['BsAstWaterEquipment'][$index].fields.avg_repair_cost">
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgEquipment in dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment"
-                        ng-if="dlWaterDmgEquipment.assets == 'Total'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgEquipment.assets">
-                        </td>
-                        <td width="147" class="tdpa" >
-                        </td>
-                        <td width="151" class="tdpa" >
-                        </td>
-                        <td width="165" class="tdpa">
-                        </td>
-                        <td width="170" class="tdpa">
-                        </td>
-                        <td class="right" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_public" ng-bind="dlWaterDmgEquipment.tot_dmg_public = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment,'tot_dmg_public')" width="268">
-                        </td>
-                         <td class="right" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_private" ng-bind="dlWaterDmgEquipment.tot_dmg_private = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment,'tot_dmg_private')" width="268">
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td width="253" height="19">
-                            Materials and Supplies
-                        </td>
-                        <td width="147">
-                        </td>
-                        <td width="151">
-                        </td>
-                        <td width="165">
-                        </td>
-                        <td width="170">
-                        </td>
-                        <td colspan="2">
-                        </td>
-                        <td width="126">
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgMaterials in dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials"
-                        ng-if="dlWaterDmgMaterials.assets != 'Total'">
-                        <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgMaterials.assets">
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterDmgMaterials.num_tdestroyed_public" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterDmgMaterials.num_tdestroyed_private" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165" class="tdpa" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'">
-                        </td>
-                        <td width="165" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'">
-                            <input id="textinput" ng-model="dlWaterDmgMaterials.num_pdestroyed_public" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="170" class="tdpa" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'">
-
-                        </td>
-                        <td width="170" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'">
-                            <input id="textinput" ng-model="dlWaterDmgMaterials.num_pdestroyed_private" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td  width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'" colspan="2"  ng-model="dlWaterDmgMaterials.tot_dmg_public"
-                        ng-bind="dlWaterDmgMaterials.tot_dmg_public = dlWaterDmgMaterials.num_tdestroyed_public *
-                        bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost">
-                        </td>
-                        <td class="right" width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public"
-                            ng-bind="dlWaterDmgMaterials.tot_dmg_public =
+                                          dlWaterDmgEquipment.num_pdestroyed_private * bs_data['BsAstWaterEquipment'][$index].fields.avg_repair_cost"> </td>
+						</tr>
+						<tr height="19" ng-repeat="dlWaterDmgEquipment in dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment" ng-if="dlWaterDmgEquipment.assets == 'Total'">
+							<td class="boldash" width="253" height="19" ng-bind="dlWaterDmgEquipment.assets"> </td>
+							<td width="147" class="tdpa"> </td>
+							<td width="151" class="tdpa"> </td>
+							<td width="165" class="tdpa"> </td>
+							<td width="170" class="tdpa"> </td>
+							<td class="right" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_public" ng-bind="dlWaterDmgEquipment.tot_dmg_public = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment,'tot_dmg_public')" width="268"> </td>
+							<td class="right" colspan="2" ng-model="dlWaterDmgEquipment.tot_dmg_private" ng-bind="dlWaterDmgEquipment.tot_dmg_private = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgEquipment,'tot_dmg_private')" width="268"> </td>
+						</tr>
+						<tr class="trheadc" height="19">
+							<td width="253" height="19"> Materials and Supplies </td>
+							<td width="147"> </td>
+							<td width="151"> </td>
+							<td width="165"> </td>
+							<td width="170"> </td>
+							<td colspan="2"> </td>
+							<td width="126"> </td>
+						</tr>
+						<tr height="19" ng-repeat="dlWaterDmgMaterials in dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials" ng-if="dlWaterDmgMaterials.assets != 'Total'">
+							<td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgMaterials.assets"> </td>
+							<td width="147">
+								<input id="textinput" ng-model="dlWaterDmgMaterials.num_tdestroyed_public" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="151">
+								<input id="textinput" ng-model="dlWaterDmgMaterials.num_tdestroyed_private" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="165" class="tdpa" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'"> </td>
+							<td width="165" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'">
+								<input id="textinput" ng-model="dlWaterDmgMaterials.num_pdestroyed_public" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="170" class="tdpa" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'"> </td>
+							<td width="170" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'">
+								<input id="textinput" ng-model="dlWaterDmgMaterials.num_pdestroyed_private" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+							<td width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public" ng-bind="dlWaterDmgMaterials.tot_dmg_public = dlWaterDmgMaterials.num_tdestroyed_public *
+                        bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost"> </td>
+							<td class="right" width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public" ng-bind="dlWaterDmgMaterials.tot_dmg_public =
                                           dlWaterDmgMaterials.num_tdestroyed_public * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost +
-                                          dlWaterDmgMaterials.num_pdestroyed_public * bs_data['BsAstWaterMaterials'][$index].fields.avg_repair_cost">
-                        </td>
-                        <td class="right" width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'" colspan="2"
-                            ng-model="dlWaterDmgMaterials.tot_dmg_private" ng-bind="dlWaterDmgMaterials.tot_dmg_private =
-                        dlWaterDmgMaterials.num_tdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost">
-                        </td>
-                        <td width="85" class="right" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private"
-                            ng-bind="dlWaterDmgMaterials.tot_dmg_private =
+                                          dlWaterDmgMaterials.num_pdestroyed_public * bs_data['BsAstWaterMaterials'][$index].fields.avg_repair_cost"> </td>
+							<td class="right" width="85" ng-if="dlWaterDmgMaterials.assets == 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private" ng-bind="dlWaterDmgMaterials.tot_dmg_private =
+                        dlWaterDmgMaterials.num_tdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost"> </td>
+							<td width="85" ng-if="dlWaterDmgMaterials.assets != 'Fuel (per Liter)'" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_private" ng-bind="dlWaterDmgMaterials.tot_dmg_private =
                                           dlWaterDmgMaterials.num_tdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_replace_cost +
-                                          dlWaterDmgMaterials.num_pdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_repair_cost">
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgMaterials in dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials"
-                        ng-if="dlWaterDmgMaterials.assets == 'Total'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgMaterials.assets">
-
-                        </td>
-                        <td width="147" class="tdpa">
-
-                        </td>
-                        <td width="151" class="tdpa">
-                        </td>
-                        <td width="165" class="tdpa">
-
-                        </td>
-                        <td width="170" class="tdpa">
-
-                        </td>
-                        <td class="right" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public" ng-bind="dlWaterDmgMaterials.tot_dmg_public = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials,'tot_dmg_public')" width="268">
-
-                        </td>
-                        <td class="right" width="126" ng-model="dlWaterDmgMaterials.tot_dmg_private" ng-bind="dlWaterDmgMaterials.tot_dmg_private = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials,'tot_dmg_private')">
-
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-
-                <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                                          dlWaterDmgMaterials.num_pdestroyed_private * bs_data['BsAstWaterMaterials'][$index].fields.avg_repair_cost"> </td>
+						</tr>
+						<tr height="19" ng-repeat="dlWaterDmgMaterials in dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials" ng-if="dlWaterDmgMaterials.assets == 'Total'">
+							<td class="boldash" width="253" height="19" ng-bind="dlWaterDmgMaterials.assets"> </td>
+							<td width="147" class="tdpa"> </td>
+							<td width="151" class="tdpa"> </td>
+							<td width="165" class="tdpa"> </td>
+							<td width="170" class="tdpa"> </td>
+							<td class="right" colspan="2" ng-model="dlWaterDmgMaterials.tot_dmg_public" ng-bind="dlWaterDmgMaterials.tot_dmg_public = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials,'tot_dmg_public')" width="268"> </td>
+							<td class="right" width="126" ng-model="dlWaterDmgMaterials.tot_dmg_private" ng-bind="dlWaterDmgMaterials.tot_dmg_private = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgMaterials,'tot_dmg_private')"> </td>
+						</tr>
+					</tbody>
+				</table>
+				<br> <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Structures/Buildings Informations</a>
-                <br>
-            </div>
-            <div class="tab-pane" id="step2">
-                <table class="table table-bordered">
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" width="253" height="38">
-                            Structures
-                        </td>
-                        <td colspan="2" width="298">
-                            Totally Destroyed
-                        </td>
-                        <td colspan="2" width="335">
-                            Partially Damaged
-                        </td>
-                        <td colspan="3" rowspan="2" width="394">
-                            Total Damages (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
-                        <td width="147" height="19">
-                            Number
-                        </td>
-                        <td width="151">
-                            Total Meters
-                        </td>
-                        <td width="165">
-                            Number
-                        </td>
-                        <td width="170">
-                            Total Meters
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures"
-                        ng-if="dlWaterDmgStructures.assets != 'Total'">
-                        <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">
-
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_num" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_meters" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_num" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_meters" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td class="right" width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages"
-                       ng-bind="dlWaterDmgStructures.tot_damages =
+				<br> </div>
+			<div class="tab-pane" id="step2">
+				<table class="table table-bordered">
+					<tr class="trheadc1" height="19">
+						<td rowspan="2" width="253" height="38"> Structures </td>
+						<td colspan="2" width="298"> Totally Destroyed </td>
+						<td colspan="2" width="335"> Partially Damaged </td>
+						<td colspan="3" rowspan="2" width="394"> Total Damages (LKR) </td>
+					</tr>
+					<tr class="trsubc" height="19">
+						<td width="147" height="19"> Number </td>
+						<td width="151"> Total Meters </td>
+						<td width="165"> Number </td>
+						<td width="170"> Total Meters </td>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures" ng-if="dlWaterDmgStructures.assets != 'Total'">
+						<td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgStructures.assets"> </td>
+						<td width="147">
+							<input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_num" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="151">
+							<input id="textinput" ng-model="dlWaterDmgStructures.num_tdestroyed_meters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_num" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterDmgStructures.num_pdestroyed_meters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="126" colspan="4" ng-model="dlWaterDmgStructures.tot_damages" ng-bind="dlWaterDmgStructures.tot_damages =
                        $parent.dlWaterDmgStructures.num_tdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_replace_cost +
-                       $parent.dlWaterDmgStructures.num_pdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_repair_cost">
-
-                        </td>
-                    </tr>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures"
-                        ng-if="dlWaterDmgStructures.assets == 'Total'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgStructures.assets">
-
-                        </td>
-                        <td width="147" class="tdpa">
-
-                        </td>
-                        <td width="151" class="tdpa">
-
-                        </td>
-                        <td width="165" class="tdpa">
-
-                        </td>
-                        <td width="165" class="tdpa">
-
-                        </td>
-                        <td width="126" class="right" ng-model="dlWaterDmgStructures.tot_damages" ng-bind="dlWaterDmgStructures.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures,'tot_damages')" colspan="4">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" width="253" height="38">
-                            Buildings
-                        </td>
-                        <td colspan="2" width="298">
-                            Totally Destroyed
-                        </td>
-                        <td colspan="4" width="603">
-                            Partially Damaged
-                        </td>
-                        <td rowspan="2" width="126">
-                            Total Damages (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
-                        <td width="147" height="19">
-                            Number
-                        </td>
-                        <td width="151">
-                            Total Square Meters
-                        </td>
-                        <td width="165">
-                            Number
-                        </td>
-                        <td width="170">
-                            Roof (sqm)
-                        </td>
-                        <td width="135">
-                            Wall (sqm)
-                        </td>
-                        <td width="133">
-                            Floor (sqm)
-                        </td>
-                    </tr>
-
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgBuildings in dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings"
-                        ng-if="dlWaterDmgBuildings.assets != 'Total'">
-                        <td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgBuildings.assets">
-
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterDmgBuildings.tdestroyed_num" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterDmgBuildings.tdestroyed_smeters" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgBuildings.pdamaged_num" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgBuildings.pdamaged_roof" name="textinput"
-                                   type="number" placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgBuildings.wall" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterDmgBuildings.floor" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td class="right" width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages"
-
-                       ng-bind="dlWaterDmgBuildings.tot_damages =
+                       $parent.dlWaterDmgStructures.num_pdestroyed_meters * bs_data['BsAstWaterStructures'][$index].fields.avg_repair_cost"> </td>
+					</tr>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterDmgStructures in dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures" ng-if="dlWaterDmgStructures.assets == 'Total'">
+						<td class="boldash" width="253" height="19" ng-bind="dlWaterDmgStructures.assets"> </td>
+						<td width="147" class="tdpa"> </td>
+						<td width="151" class="tdpa"> </td>
+						<td width="165" class="tdpa"> </td>
+						<td width="165" class="tdpa"> </td>
+						<td width="126" ng-model="dlWaterDmgStructures.tot_damages" ng-bind="dlWaterDmgStructures.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgStructures,'tot_damages')" colspan="4"> </td>
+					</tr>
+					<tr class="trheadc1" height="19">
+						<td rowspan="2" width="253" height="38"> Buildings </td>
+						<td colspan="2" width="298"> Totally Destroyed </td>
+						<td colspan="4" width="603"> Partially Damaged </td>
+						<td rowspan="2" width="126"> Total Damages (LKR) </td>
+					</tr>
+					<tr class="trsubc" height="19">
+						<td width="147" height="19"> Number </td>
+						<td width="151"> Total Square Meters </td>
+						<td width="165"> Number </td>
+						<td width="170"> Roof (sqm) </td>
+						<td width="135"> Wall (sqm) </td>
+						<td width="133"> Floor (sqm) </td>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterDmgBuildings in dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings" ng-if="dlWaterDmgBuildings.assets != 'Total'">
+						<td class="tdpa" width="253" height="19" ng-bind="dlWaterDmgBuildings.assets"> </td>
+						<td width="147">
+							<input id="textinput" ng-model="dlWaterDmgBuildings.tdestroyed_num" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="151">
+							<input id="textinput" ng-model="dlWaterDmgBuildings.tdestroyed_smeters" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterDmgBuildings.pdamaged_num" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterDmgBuildings.pdamaged_roof" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterDmgBuildings.wall" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterDmgBuildings.floor" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td class="right" width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages" ng-bind="dlWaterDmgBuildings.tot_damages =
                         $parent.dlWaterDmgBuildings.tdestroyed_smeters * bs_data['BsAstWaterBuildings'][$index].fields.avg_replace_cost +
                        $parent.dlWaterDmgBuildings.pdamaged_roof * bs_data['BsAstWaterBuildings'][$index].fields.avg_repair_cost_roof+
                        $parent.dlWaterDmgBuildings.wall *bs_data['BsAstWaterBuildings'][$index].fields.avg_repair_cost_wall+
-                       $parent.dlWaterDmgBuildings.floor *bs_data['BsAstWaterBuildings'][$index].fields.avg_repair_cost_floor">
-
-                        </td>
-
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterDmgBuildings in dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings"
-                        ng-if="dlWaterDmgBuildings.assets == 'Total'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterDmgBuildings.assets">
-
-                        </td>
-                        <td width="147" class="tdpa">
-
-                        </td>
-                        <td width="151" class="tdpa">
-
-                        </td>
-                        <td width="165" class="tdpa">
-
-                        </td>
-
-                        <td width="165" class="tdpa">
-
-                        </td>
-                        <td width="165" class="tdpa">
-
-                        </td>
-                        <td width="165" class="tdpa">
-
-                        </td>
-                        <td class="right" width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages" ng-bind="dlWaterDmgBuildings.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings,'tot_damages')">
-
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td colspan="5" rowspan="2" width="886" height="38">
-                            TOTAL DAMAGES
-                        </td>
-                        <td colspan="2" width="268">
-                            Public
-                        </td>
-                        <td width="126">
-                            Private
-                        </td>
-                    </tr>
-                    <tr height="19">
-                        <td class="right" colspan="2" width="268" height="19" ng-bind="calGrandTotalPub()">
-
-                        </td>
-                        <td class="right" width="126" ng-bind="calGrandTotalPvt()">
-
-                        </td>
-                    </tr>
-
-
-                    </tbody>
-                </table>
-
-
-                <br>
-                <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
+                       $parent.dlWaterDmgBuildings.floor *bs_data['BsAstWaterBuildings'][$index].fields.avg_repair_cost_floor"> </td>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterDmgBuildings in dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings" ng-if="dlWaterDmgBuildings.assets == 'Total'">
+						<td class="boldash" width="253" height="19" ng-bind="dlWaterDmgBuildings.assets"> </td>
+						<td width="147" class="tdpa"> </td>
+						<td width="151" class="tdpa"> </td>
+						<td width="165" class="tdpa"> </td>
+						<td width="165" class="tdpa"> </td>
+						<td width="165" class="tdpa"> </td>
+						<td width="165" class="tdpa"> </td>
+						<td class="right" width="126" colspan="4" ng-model="dlWaterDmgBuildings.tot_damages" ng-bind="dlWaterDmgBuildings.tot_damages = calculateTotal($parent.dlWaterTransportation.transport_water.Table_2.DlWaterDmgBuildings,'tot_damages')"> </td>
+					</tr>
+					<tr class="trheadc" height="19">
+						<td colspan="5" rowspan="2" width="886" height="38"> TOTAL DAMAGES </td>
+						<td colspan="2" width="268"> Public </td>
+						<td width="126"> Private </td>
+					</tr>
+					<tr height="19">
+						<td class="right" colspan="2" width="268" height="19" ng-bind="calGrandTotalPub()"> </td>
+						<td class="right" width="126" ng-bind="calGrandTotalPvt()"> </td>
+					</tr>
+					</tbody>
+				</table>
+				<br> <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
                         class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
-                <br>
-            </div>
-            <div class="tab-pane fade" id="step3">
+				<br> </div>
+			<div class="tab-pane fade" id="step3">
+				<table class="table table-bordered">
+					<tr class="trheadc1" height="19">
+						<td rowspan="2" width="253" height="38"> Type of Losses </td>
+						<td colspan="2" width="298" style="width:20%;"> Year 1 </td>
+						<td colspan="2" width="335" style="width:20%;"> Year2 </td>
+						<td colspan="3" width="394" style="width:20%;"> Total Losses (LKR) </td>
+					</tr>
+					<tr class="trsubc" height="19">
+						<td width="147" height="19" style="width:10%;"> Public </td>
+						<td width="151" style="width:10%;"> Private </td>
+						<td width="165" style="width:10%;"> Public </td>
+						<td width="170" style="width:10%;"> Private </td>
+						<td colspan="2" width="268" style="width:10%;"> Public </td>
+						<td width="126" style="width:10%;"> Private </td>
+					</tr>
+					<tr class="trheadc" height="19">
+						<td width="253" height="19"> Foregone Income </td>
+						<td width="147"> </td>
+						<td width="151"> </td>
+						<td width="165"> </td>
+						<td width="170"> </td>
+						<td colspan="2"> </td>
+						<td width="126"> </td>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterLosFi in dlWaterTransportation.transport_water.Table_2.DlWaterLosFi" ng-if="dlWaterLosFi.type_los != 'Total'">
+						<td class="tdpa" width="253" height="19" ng-bind="dlWaterLosFi.type_los"> </td>
+						<td width="147">
+							<input id="textinput" ng-model="dlWaterLosFi.year_1_pub" ng-change="getTotal('DlWaterLosFi','year_1_pub')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="151">
+							<input id="textinput" ng-model="dlWaterLosFi.year_1_pvt" ng-change="getTotal('DlWaterLosFi','year_1_pvt')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterLosFi.year_2_pub" ng-change="getTotal('DlWaterLosFi','year_2_pub')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterLosFi.year_2_pvt" ng-change="getTotal('DlWaterLosFi','year_2_pvt')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pub" ng-bind="dlWaterLosFi.tot_los_pub =dlWaterLosFi.year_1_pub + dlWaterLosFi.year_2_pub "> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pvt" ng-bind="dlWaterLosFi.tot_los_pvt =dlWaterLosFi.year_1_pvt + dlWaterLosFi.year_2_pvt "> </td>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterLosFi in dlWaterTransportation.transport_water.Table_2.DlWaterLosFi" ng-if="dlWaterLosFi.type_los == 'Total'">
+						<td class="boldash" width="253" height="19" ng-bind="dlWaterLosFi.type_los"> </td>
+						<td class="right" width="147" ng-model="dlWaterLosFi.year_1_pub" ng-bind="dlWaterLosFi.year_1_pub = calGrandTotal('year_1_pub')"> </td>
+						<td class="right" width="151" ng-model="dlWaterLosFi.year_1_pvt" ng-bind="dlWaterLosFi.year_1_pvt =calGrandTotal('year_1_pvt') "> </td>
+						<td class="right" width="165" ng-model="dlWaterLosFi.year_2_pub" ng-bind="dlWaterLosFi.year_2_pvt = calGrandTotal('year_2_pub')"> </td>
+						<td class="right" width="165" ng-model="dlWaterLosFi.year_2_pvt" ng-bind="dlWaterLosFi.year_2_pvt = calGrandTotal('year_2_pvt')"> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pub" ng-bind="dlWaterLosFi.tot_los_pub = calGrandTotal('tot_los_pub')"> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pvt" ng-bind="dlWaterLosFi.tot_los_pvt = calGrandTotal('tot_los_pvt')"> </td>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterLosOther in dlWaterTransportation.transport_water.Table_2.DlWaterLosOther" ng-if="dlWaterLosOther.type_los != 'TOTAL LOSSES'">
+						<td class="boldash" width="253" height="19" ng-bind="dlWaterLosOther.type_los"> </td>
+						<td width="147">
+							<input id="textinput" ng-model="dlWaterLosOther.year_1_pub" ng-change="getTotal('DlWaterLosOther','year_1_pub')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="151">
+							<input id="textinput" ng-model="dlWaterLosOther.year_1_pvt" ng-change="getTotal('DlWaterLosOther','year_1_pvt')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterLosOther.year_2_pub" ng-change="getTotal('DlWaterLosOther','year_2_pub')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td width="165">
+							<input id="textinput" ng-model="dlWaterLosOther.year_2_pvt" ng-change="getTotal('DlWaterLosOther','year_2_pvt')" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pub" ng-bind="dlWaterLosOther.tot_los_pub =dlWaterLosOther.year_1_pub + dlWaterLosOther.year_2_pub "> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pvt" ng-bind="dlWaterLosOther.tot_los_pvt =dlWaterLosOther.year_1_pvt + dlWaterLosOther.year_2_pvt "> </td>
+					</tr>
+					<tr height="19" ng-repeat="dlWaterLosOther in dlWaterTransportation.transport_water.Table_2.DlWaterLosOther" ng-if="dlWaterLosOther.type_los == 'TOTAL LOSSES'">
+						<td class="boldash" width="253" height="19" ng-bind="dlWaterLosOther.type_los"> </td>
+						<td width="147" ng-model="dlWaterLosOther.year_1_pub" ng-bind="dlWaterLosOther.year_1_pub = GrandTotal('year_1_pub')"> </td>
+						<td width="151" ng-model="dlWaterLosOther.year_1_pvt" ng-bind="dlWaterLosOther.year_1_pvt = GrandTotal('year_1_pvt') "> </td>
+						<td width="165" ng-model="dlWaterLosOther.year_2_pub" ng-bind="dlWaterLosOther.year_2_pub = GrandTotal('year_2_pub')"> </td>
+						<td width="165" ng-model="dlWaterLosOther.year_2_pvt" ng-bind="dlWaterLosOther.year_2_pvt = GrandTotal('year_2_pvt')"> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pub" ng-bind="dlWaterLosOther.tot_los_pub =GrandTotal ('tot_los_pub')"> </td>
+						<td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pvt" ng-bind="dlWaterLosOther.tot_los_pvt = GrandTotal('tot_los_pvt')"> </td>
+					</tr>
+					</tbody>
+				</table>
+				<div class="pull-right">
+					<br>
+					<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button> <span ng-if="is_edit_disable">
 
-                <table class="table table-bordered">
-
-                    <tr class="trheadc1" height="19">
-                        <td rowspan="2" width="253" height="38">
-                            Type of Losses
-                        </td>
-                        <td colspan="2" width="298" style="width:20%;">
-                            Year 1
-                        </td>
-                        <td colspan="2" width="335" style="width:20%;">
-                            Year2
-                        </td>
-                        <td colspan="3" width="394" style="width:20%;">
-                            Total Losses (LKR)
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="19">
-                        <td width="147" height="19" style="width:10%;">
-                            Public
-                        </td>
-                        <td width="151" style="width:10%;">
-                            Private
-                        </td>
-                        <td width="165" style="width:10%;">
-                            Public
-                        </td>
-                        <td width="170" style="width:10%;">
-                            Private
-                        </td>
-                        <td colspan="2" width="268" style="width:10%;">
-                            Public
-                        </td>
-                        <td width="126" style="width:10%;">
-                            Private
-                        </td>
-                    </tr>
-                    <tr class="trheadc" height="19">
-                        <td width="253" height="19">
-                            Foregone Income
-                        </td>
-                        <td width="147">
-                        </td>
-                        <td width="151">
-                        </td>
-                        <td width="165">
-                        </td>
-                        <td width="170">
-                        </td>
-                        <td colspan="2">
-                        </td>
-                        <td width="126">
-                        </td>
-                    </tr>
-
-                    <tr height="19"
-                        ng-repeat="dlWaterLosFi in dlWaterTransportation.transport_water.Table_2.DlWaterLosFi"
-                        ng-if="dlWaterLosFi.type_los != 'Total'">
-                        <td class="tdpa" width="253" height="19" ng-bind="dlWaterLosFi.type_los">
-
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_1_pub" ng-change="getTotal('DlWaterLosFi','year_1_pub')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_1_pvt" ng-change="getTotal('DlWaterLosFi','year_1_pvt')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_2_pub" ng-change="getTotal('DlWaterLosFi','year_2_pub')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterLosFi.year_2_pvt" ng-change="getTotal('DlWaterLosFi','year_2_pvt')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pub" ng-bind="dlWaterLosFi.tot_los_pub =dlWaterLosFi.year_1_pub + dlWaterLosFi.year_2_pub ">
-
-                        </td>
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pvt" ng-bind="dlWaterLosFi.tot_los_pvt =dlWaterLosFi.year_1_pvt + dlWaterLosFi.year_2_pvt ">
-
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterLosFi in dlWaterTransportation.transport_water.Table_2.DlWaterLosFi"
-                        ng-if="dlWaterLosFi.type_los == 'Total'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterLosFi.type_los">
-
-                        </td>
-                        <td class="right" width="147" ng-model="dlWaterLosFi.year_1_pub"  ng-bind="dlWaterLosFi.year_1_pub = calGrandTotal('year_1_pub')">
-
-                        </td>
-                        <td class="right" width="151" ng-model="dlWaterLosFi.year_1_pvt" ng-bind="dlWaterLosFi.year_1_pvt =calGrandTotal('year_1_pvt') ">
-
-                        </td>
-                        <td class="right" width="165" ng-model="dlWaterLosFi.year_2_pub" ng-bind="dlWaterLosFi.year_2_pvt = calGrandTotal('year_2_pub')">
-
-                        </td>
-
-                        <td class="right" width="165" ng-model="dlWaterLosFi.year_2_pvt" ng-bind="dlWaterLosFi.year_2_pvt = calGrandTotal('year_2_pvt')">
-
-                        </td>
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pub"
-                           ng-bind="dlWaterLosFi.tot_los_pub = calGrandTotal('tot_los_pub')">
-                        </td>
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosFi.tot_los_pvt"
-                           ng-bind="dlWaterLosFi.tot_los_pvt = calGrandTotal('tot_los_pvt')">
-                        </td>
-                    </tr>
-
-                    <tr height="19"
-                        ng-repeat="dlWaterLosOther in dlWaterTransportation.transport_water.Table_2.DlWaterLosOther"
-                        ng-if="dlWaterLosOther.type_los != 'TOTAL LOSSES'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterLosOther.type_los">
-
-                        </td>
-                        <td width="147">
-                            <input id="textinput" ng-model="dlWaterLosOther.year_1_pub" ng-change="getTotal('DlWaterLosOther','year_1_pub')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="151">
-                            <input id="textinput" ng-model="dlWaterLosOther.year_1_pvt" ng-change="getTotal('DlWaterLosOther','year_1_pvt')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterLosOther.year_2_pub" ng-change="getTotal('DlWaterLosOther','year_2_pub')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-
-                        <td width="165">
-                            <input id="textinput" ng-model="dlWaterLosOther.year_2_pvt" ng-change="getTotal('DlWaterLosOther','year_2_pvt')" name="textinput" type="number"
-                                   placeholder=""
-                                   class="form-control input-md">
-                        </td>
-
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pub" ng-bind="dlWaterLosOther.tot_los_pub =dlWaterLosOther.year_1_pub + dlWaterLosOther.year_2_pub ">
-
-                        </td>
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pvt" ng-bind="dlWaterLosOther.tot_los_pvt =dlWaterLosOther.year_1_pvt + dlWaterLosOther.year_2_pvt ">
-
-                        </td>
-                    </tr>
-                    <tr height="19"
-                        ng-repeat="dlWaterLosOther in dlWaterTransportation.transport_water.Table_2.DlWaterLosOther"
-                        ng-if="dlWaterLosOther.type_los == 'TOTAL LOSSES'">
-                        <td class="boldash tdpa" width="253" height="19" ng-bind="dlWaterLosOther.type_los">
-
-                        </td>
-                        <td width="147" class="right" ng-model="dlWaterLosOther.year_1_pub"  ng-bind="dlWaterLosOther.year_1_pub = GrandTotal('year_1_pub')">
-                        </td>
-                        <td width="151" class="right" ng-model="dlWaterLosOther.year_1_pvt" ng-bind="dlWaterLosOther.year_1_pvt = GrandTotal('year_1_pvt') ">
-
-                        </td>
-                        <td width="165" class="right" ng-model="dlWaterLosOther.year_2_pub" ng-bind="dlWaterLosOther.year_2_pub = GrandTotal('year_2_pub')">
-
-                        </td>
-
-                        <td width="165" class="right" ng-model="dlWaterLosOther.year_2_pvt" ng-bind="dlWaterLosOther.year_2_pvt = GrandTotal('year_2_pvt')">
-
-                        </td>
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pub"
-                           ng-bind="dlWaterLosOther.tot_los_pub =GrandTotal ('tot_los_pub')">
-                        </td>
-                        <td class="right" width="126" colspan="2" ng-model="dlWaterLosOther.tot_los_pvt"
-                           ng-bind="dlWaterLosOther.tot_los_pvt = GrandTotal('tot_los_pvt')">
-                        </td>
-
-                    </tr>
-                    </tbody>
-                </table>
-
-
-
-                <div class="pull-right">
-                    <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="dlDataEdit(form_dl_water_transportation)" ng-if="!is_edit" class="btn btn-success">
+					<span ng-if="is_edit_disable">
+                        <button id="editbtn" type="button" ng-click="dlDataEdit(form_dl_water_transportation)" ng-if="!is_edit" class="btn btn-success">
+                            Edit
+                        </button>
+                    </span> <span ng-if="!is_edit_disable">
+                        <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                    <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
-                            Edit
-                        </button>
-                    </span>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
-                        Edit
-                    </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_water_transportation)"
-                    class="btn btn-success">Submit
-                    </button>
-                </div>
-                <br><br><br>
-            </div>
-        </div>
-
-
-    </div>
-    </div>
-
-    <div class="col-md-12">
-
-
-        <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
-             aria-hidden="true">
-            <div class="modal-dialog" style="width:50%;">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h5 class="modal-title">
+					<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel Edit </button>
+					<button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid" ng-click="saveDlData(form_dl_water_transportation)" class="btn btn-success">Submit </button>
+				</div>
+				<br>
+				<br>
+				<br> </div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-12">
+		<div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;" aria-hidden="true">
+			<div class="modal-dialog" style="width:50%;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
+						<h5 class="modal-title">
                             <span id="bookId"> </span>
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Name</label>
-                            <div class="col-md-10">
-                                <input id="textinput" name="textinput" type="text" placeholder=""
-                                       class="form-control input-md">
-
-                            </div>
-                        </div>
-                    </div>
-                    <br><br>
-                     <div class="pull-right">
-                    <br>
-                    <button type="button" class="btn btn-info">Clear</button>
-                    <button type="button" class="btn btn-success">Submit</button>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.conainer-fluid -->
-    <!-- update the baseline Model -->
-    <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">
-                        ×
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
+                        </h5> </div>
+					<div class="modal-body">
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="textinput">Name</label>
+							<div class="col-md-10">
+								<input id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md"> </div>
+						</div>
+					</div>
+					<br>
+					<br>
+					<div class="pull-right">
+						<br>
+						<button type="button" class="btn btn-info">Clear</button>
+						<button type="button" class="btn btn-success">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.conainer-fluid -->
+	<!-- update the baseline Model -->
+	<div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()"> × </button>
+					<h4 class="modal-title" id="myModalLabel">
                         Warning
-                    </h4>
-                </div>
-                <div class="modal-body alert-info">
-                    <h4>
+                    </h4> </div>
+				<div class="modal-body alert-info">
+					<h4>
                         <span class="icon-close"></span>
                         Please update the baseline <br>
                         <b>Table 1. Assets in the Water Transportation Sub-sector</b><br>
                         information before you calculate the damage and loss !
-                    </h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()">
-                        Close
-                    </button>
-                    <button id="ok" onclick="javascript:window.location.reload()" type="button"
-                            class="btn btn-primary">
-                        OK
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
-
-{% endblock content %}
+                    </h4> </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:window.location.reload()"> Close </button>
+					<button id="ok" onclick="javascript:window.location.reload()" type="button" class="btn btn-primary"> OK </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main> {% endblock content %}

@@ -3,32 +3,48 @@
 <main class="main" ng-app="bsGovAdmnstvAssetApp" ng-controller="BsGovAdmnstvAssetController">
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:transport_land_main' %}">Transport Land Sector</a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:index' %}">Dashboard</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:transport_land_main' %}">
+				Transport Land Sector
+			</a>
+		</li>
+		<li class="breadcrumb-item active">
+			<span class="label label-success" style="font-size:14px;">
                 Table 3. Government Administrative Assets
-            </span> </li>
+            </span>
+		</li>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+			<a href="{% static 'dashboard/doc/1A-Land_Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document">
+			</a>
 		</li>
 	</ol>
 	<div class="container-fluid">
 		<div id="myTabContent" class="tab-content" ng-form name="form_bs_gov_admin_aset">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_gov_admin_aset)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+				<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<span ng-if="check_search">
+						<button ng-click="searchBsData(form_bs_gov_admin_aset)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span></button>
 					</span>
 					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
 				</td>
 				<table class="table table-bordered">
 					<colgroup>
-						<col width="156" />
-						<col width="63" />
-						<col width="120" />
-						<col width="99" />
-						<col width="145" /> </colgroup>
+						<col width="156"/>
+						<col width="63"/>
+						<col width="120"/>
+						<col width="99"/>
+						<col width="145"/>
+					</colgroup>
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
 							<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>

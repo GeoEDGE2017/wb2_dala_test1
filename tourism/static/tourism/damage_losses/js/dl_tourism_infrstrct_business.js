@@ -17,6 +17,8 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
     $scope.new_firm = {id: null, name: null, ownership: null,};
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
+    $scope.is_search = false;
 
     var init_data = {
         'tourism': {
@@ -196,6 +198,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
             $scope.fetchFirms();
             $scope.fetchBusinessTypes();
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
         }
     }
 
@@ -336,6 +339,7 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
      $scope.clear = function(){
             $scope.is_edit = false;
             $scope.dl_tourism_business = angular.copy(init_data);
+            location.reload();
 
      }
 
@@ -375,11 +379,11 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
 //            }
         }
 
-
-        $scope.dataEdit = function(form) {
+     $scope.dataEdit = function(form) {
             if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
                 $scope.is_edit = true;
                 $scope.submitted = true;
+                document.getElementById("clearbtn").disabled = true;
                 if (form.$valid) {
                     $http({
                         method: "POST",
@@ -438,15 +442,83 @@ app.controller('dlTouismInfrstrctController', function($scope, $http, $parse, _)
                 alert("enter Incident, District, Firm, ownership, Type")
             }
         }
-        $scope.cancelEdit = function()
-        {
-             $scope.is_edit = false;
-             $scope.clear();
+
+     $scope.searchDlData = function(form) {
+            if($scope.district && $scope.incident && $scope.selectedFirm  && $scope.selectedType){
+                document.getElementById("clearbtn").disabled = true;
+		        document.getElementById("editbtn").disabled = true;
+		        document.getElementById("subbtn").disabled = true;
+		        console.log("test", $scope.district);
+		        console.log("test", $scope.bs_date);
+		        $scope.is_search = true;
+                if (form.$valid) {
+                    $http({
+                        method: "POST",
+                        url: '/dl_fetch_edit_data',
+                        data: angular.toJson({
+                            'table_name': 'Table_2',
+                            'sector': 'tourism',
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                                'firm_id':$scope.selectedFirm.id,
+                                'ownership':$scope.selectedFirm.ownership,
+                                'tou_business':$scope.selectedType.business
+                            }
+                        }),
+                    }).success(function(data) {
+                        console.log("edit", data);
+//                        // handling response from server if data are not available in this
+//                        if((data.tourism.Table_2.DlBusLosses.length == 0) ||
+//                            (data.tourism.Table_2.DlNumEmpBusiness.length == 0) ||
+//                            (data.tourism.Table_2.DmgBusAstEquipment.length == 0) ||
+//                            (data.tourism.Table_2.DmgBusAstInventories.length == 0) ||
+//                            (data.tourism.Table_2.DmgBusAstMachinery.length == 0) ||
+//                            (data.tourism.Table_2.DmgBusAstStructures.length == 0) ||
+//                            (data.tourism.Table_2.DmgBusAstVehicle.length == 0)
+//                             ) {
+//                                $scope.is_edit = false;
+//                                // do nothing or display msg that data are not available
+//                        }
+//                        else {
+//                                $scope.dl_tourism_business = data;
+//                        }
+                        var edit_data_not_found = false;
+                        if(data != null) {
+                            angular.forEach(data.tourism.Table_2, function(value, index) {
+                                console.log(value);
+                                if(value.length == 0) {
+                                    edit_data_not_found = true;
+                                }
+                            })
+                            if(edit_data_not_found != true) {
+                                $scope.dl_tourism_business = data;
+                                console.log(data);
+                            }
+                            else {
+                                $("#modal-container-239456").modal('show');
+                            }
+                        }
+                        else {
+                            $("#modal-container-239456").modal('show');
+                        }
+                    })
+                }
+            }
+            else {
+                alert("enter Incident, District, Firm, ownership, Type")
+            }
         }
 
-        changeSelectedType = function(){
-            $scope.selectedFirm = $scope.selectedFirm.ownership;
+     $scope.cancelEdit = function(){
+             $scope.is_edit = false;
+             $scope.clear();
+             location.reload();
         }
+
+     changeSelectedType = function(){
+        $scope.selectedFirm = $scope.selectedFirm.ownership;
+     }
 
 
 });

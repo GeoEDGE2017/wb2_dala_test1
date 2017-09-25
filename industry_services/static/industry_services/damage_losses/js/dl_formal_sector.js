@@ -40,6 +40,8 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
     $scope.firms = [];
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
+    $scope.is_search=false;
 
     var init_data = {
         'industry_services': {
@@ -166,11 +168,10 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                 ////console.log($scope.districts);
             })
         }
-        if($scope.incident && $scope.district ) {
 
-        }
         if($scope.incident && $scope.district){
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
         }
     }
 
@@ -328,6 +329,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         $scope.is_edit = false;
         $scope.dl_dmg_loss_foml_sec = angular.copy(init_data);
         $scope.selectedFirm = { };
+        location.reload();
     }
 
     $scope.saveData = function(form) {
@@ -470,6 +472,49 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
         if($scope.district && $scope.incident && $scope.selectedFirm.id) {
             $scope.is_edit = true;
             $scope.submitted = true;
+             document.getElementById("clearbtn").disabled = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'industry_services',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'frm_firm': $scope.selectedFirm.id,
+                    }
+                }),
+            }).success(function(data) {
+                console.log("edit", data);
+                if((data.industry_services.Table_3.DmgAstEquipment.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstMachinery.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstStocks.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstStructures.length == 0) ||
+                    (data.industry_services.Table_3.LosTypeLossses.length == 0) ||
+                    (data.industry_services.Table_3.DmgAstVehicles.length == 0)) {
+
+                    $scope.is_edit = false;
+                }
+                else {
+                    $scope.dl_dmg_loss_foml_sec = data;
+                }
+            })
+        }
+        else {
+           console.log("enter Incident, District")
+        }
+    }
+
+    $scope.searchDlData = function() {
+        $("#modal-container-218029").modal('hide');
+        if($scope.district && $scope.incident && $scope.selectedFirm.id) {
+            document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',

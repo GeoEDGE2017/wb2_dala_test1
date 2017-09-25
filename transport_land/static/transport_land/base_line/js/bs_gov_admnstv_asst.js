@@ -145,6 +145,7 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
+        document.getElementById("clearbtn").disabled = true;
         if (form.$valid) {
             $http({
                 method: "POST",

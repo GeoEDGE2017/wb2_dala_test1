@@ -45,8 +45,13 @@
             </ul>
             <div id="myTabContent" class="tab-content" ng-form name="form_dl_fisheries_district">
                 <div class="tab-pane active" id="step1">
-                 <td><button ng-click="dlDataEdit(form_dl_fisheries_district)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
+                 <td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+									</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_dl_fisheries_district)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+								</td>
                     <table class="table table-bordered">
                         <colgroup>
                             <col width="125"/>
@@ -1491,14 +1496,14 @@
                     <!--</table>-->
                     <div class="pull-right">
                         <br>
-                        <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
-                        <button type="button" ng-click="dlDataEdit(form_dl_fisheries_district)" ng-if="!is_edit" class="btn btn-success">
+                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                        <button id="editbtn" type="button" ng-click="dlDataEdit(form_dl_fisheries_district)" ng-if="!is_edit" class="btn btn-success">
                             Edit
                         </button>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                        <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                             Edit
                         </button>
-                        <button type="button" class="btn btn-success" ng-click="saveDlData(form_dl_fisheries_district)">
+                        <button id="subbtn"type="button" class="btn btn-success" ng-click="saveDlData(form_dl_fisheries_district)">
                             Submit
                         </button>
                     </div>

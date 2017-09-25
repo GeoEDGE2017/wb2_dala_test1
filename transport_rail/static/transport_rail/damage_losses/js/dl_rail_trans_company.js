@@ -32,11 +32,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 					no_of_partially_damaged: null,
 					tot_damages: null,
 				}, {
-					asset: 'Others',
-					no_of_tot_destroyed: null,
-					no_of_partially_damaged: null,
-					tot_damages: null,
-				}, {
 					asset: 'Total',
 					no_of_tot_destroyed: null,
 					no_of_partially_damaged: null,
@@ -68,11 +63,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 					no_of_partially_damaged: null,
 					tot_damages: null,
 				}, {
-					asset: 'Others',
-					no_of_tot_destroyed: null,
-					no_of_partially_damaged: null,
-					tot_damages: null,
-				}, {
 					asset: 'Total',
 					no_of_tot_destroyed: null,
 					no_of_partially_damaged: null,
@@ -83,12 +73,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 					no_of_tot_destroyed: null,
 					no_of_partially_damaged: null,
 					tot_damages: null,
-				}, {
-					asset: 'Others',
-					no_of_tot_destroyed: null,
-					no_of_partially_damaged: null,
-					tot_damages: null,
-				}, {
+				},{
 					asset: 'Total',
 					no_of_tot_destroyed: null,
 					no_of_partially_damaged: null,
@@ -196,6 +181,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
+			    generateRefencedData();
 				var data = response.data;
 				console.log(response);
 				angular.forEach(data, function(value, key) {
@@ -247,6 +233,92 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 	$scope.getCompany = function() {
 		$scope.company;
 	}
+
+	 //Get Reference Data from Baseline
+    function generateRefencedData() {
+        data_array = ['BsMovingAst', 'BsEquipMachineryAst', 'BsMatSuppliesAst'];
+        var dl_model1 = null;
+        var dl_model2 = null;
+
+        angular.forEach(data_array, function(value, key) {
+            obj_array = $scope.bs_data[value];
+            model_name = value;
+
+            var particular_value_1 = null;
+            var particular_value_2 = null;
+            var particular_value_3 = null;
+
+            if(model_name == 'BsMovingAst') {
+                dl_model1 = 'DlMovingAstLoss';
+                particular_value_1 = 'Total';
+                $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model1] = [];
+
+            }
+            if(model_name == 'BsEquipMachineryAst') {
+                dl_model2 = 'DlEquipMachineryAstLoss';
+                particular_value_2 = 'Total';
+                $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model2] = [];
+            }
+            if(model_name == 'BsMatSuppliesAst') {
+                dl_model3 = 'DlMatSuppliesAstLoss';
+                particular_value_3 = 'Total';
+                 $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model3] = [];
+            }
+
+            var obj1 = {
+                asset: particular_value_1,
+					no_of_tot_destroyed: null,
+					no_of_partially_damaged: null,
+					tot_damages: null,
+            };
+            var obj2 = {
+                asset: particular_value_2,
+					no_of_tot_destroyed: null,
+					no_of_partially_damaged: null,
+					tot_damages: null,
+            };
+            var obj3 = {
+                asset: particular_value_3,
+					no_of_tot_destroyed: null,
+					no_of_partially_damaged: null,
+					tot_damages: null,
+            };
+
+
+            angular.forEach(obj_array, function(value, key) {
+                var obj1 = {
+                    asset: value.fields.asset,
+					no_of_tot_destroyed: null,
+					no_of_partially_damaged: null,
+					tot_damages: null,
+                };
+                var obj2 = {
+                    asset: value.fields.asset,
+					no_of_tot_destroyed: null,
+					no_of_partially_damaged: null,
+					tot_damages: null,
+                };
+                var obj3 = {
+                    asset: value.fields.asset,
+					no_of_tot_destroyed: null,
+					no_of_partially_damaged: null,
+					tot_damages: null,
+                };
+
+
+                if(model_name == 'BsMovingAst') {
+                   $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model1].push(obj1);
+                }
+                if(model_name == 'BsEquipMachineryAst') {
+                   $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model2].push(obj2);
+                }
+                if(model_name == 'BsMatSuppliesAst') {
+                   $scope.dlIncomeRailCompany.transport_rail.Table_2[dl_model3].push(obj3);
+                }
+
+            });
+        });
+    }
 
 	$scope.saveDlData = function(form) {
 		console.log($scope.company);

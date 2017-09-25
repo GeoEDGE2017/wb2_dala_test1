@@ -14,6 +14,8 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.user_id;
     $scope.is_edit_disable = false;
     $scope.is_submit = false;
+    $scope.check_search = false;
+    $scope.is_search = false;
 
     //Initialize Data
     var init_data = {
@@ -208,6 +210,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 
         if($scope.incident && $scope.district ) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -458,9 +461,37 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 
     //Edit data
     $scope.dlDataEdit = function(form){
+        document.getElementById("clearbtn").disabled = true;
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid){
+            $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+            'table_name':  'Table_6',
+            'sector':'agri_agrarian',
+            'com_data': {
+                   'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                  },
+                   'is_edit':$scope.is_edit
+                   }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlInvsmntLos = data;
+            })
+        }
+}
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
+    //Search data
+    $scope.searchDlData = function(form){
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
     if(form.$valid){
         $http({
         method: "POST",
@@ -485,6 +516,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.cancelEdit = function(){
      $scope.is_edit = false;
      $scope.dlInvsmntLos = init_data;
+     location.reload();
 }
 
     //Calculate Public Total
@@ -599,5 +631,6 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
     $scope.clear = function() {
         $scope.is_edit = false;
         $scope.dlInvsmntLos = angular.copy(init_data);
+        location.reload();
     }
 }]);

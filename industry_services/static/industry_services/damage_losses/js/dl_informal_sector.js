@@ -16,6 +16,8 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
     $scope.is_edit = false;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
+    $scope.is_search=false;
 
     var init_data = {
         'industry_services': {
@@ -239,6 +241,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
 
         if($scope.incident && $scope.district ) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
         }
     }
 
@@ -297,6 +300,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
     $scope.clear = function() {
         $scope.is_edit = false;
         $scope.dl_dmg_loss_infoml_sec = angular.copy(init_data);
+        location.reload();
     }
 
     $scope.saveDlData = function(form) {
@@ -334,6 +338,46 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
     $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
+        if (form.$valid) {
+            if($scope.district && $scope.incident) {
+                $http({
+                    method: "POST",
+                    url: '/dl_fetch_edit_data',
+                    data: angular.toJson({
+                        'table_name': 'Table_4',
+                        'sector': 'industry_services',
+                        'com_data': {
+                            'district': $scope.district.district__id,
+                            'incident': $scope.incident,
+                        }
+                    }),
+                }).success(function(data) {
+                    console.log("edit", data);
+                    // handling response from server if data are not available in this
+                    if((data.industry_services.Table_4.DlInfDmgTypBusiness.length == 0) ||
+                        (data.industry_services.Table_4.DlInfLosTypFood.length == 0) ||
+                        (data.industry_services.Table_4.DlInfLosTypOther.length == 0) ||
+                        (data.industry_services.Table_4.DlInfLosTypServices.length == 0) ||
+                        (data.industry_services.Table_4.DlInfLosTypTrading.length == 0)) {
+                            $("#modal-container-239456").modal('show');
+                            $scope.is_edit = false;
+                        }
+                    else {
+                        $scope.dl_dmg_loss_infoml_sec = data;
+                    }
+                })
+            }
+        }
+    }
+
+    $scope.editDlData = function(form) {
+       document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
         if (form.$valid) {
             if($scope.district && $scope.incident) {
                 $http({

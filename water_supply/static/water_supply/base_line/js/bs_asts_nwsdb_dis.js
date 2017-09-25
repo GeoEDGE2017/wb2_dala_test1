@@ -13,6 +13,8 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.BiaWaterUsers_rate = null;
     $scope.is_edit_disable = false;
     $scope.user_id;
+    $scope.check_search = false;
+    $scope.is_search = false;
 
     //initialize model
     var init_data = {
@@ -107,9 +109,12 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
         }
         else{
             $scope.is_edit_disable = false;
+            $scope.check_search = false;
+
         }
     }
 
@@ -231,8 +236,53 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     //Edit Data
     $scope.bsHsDataEdit = function(form) {
         $scope.submitted = true;
-
         $scope.is_edit = true;
+        document.getElementById("clearbtn").disabled = true;
+        $http({
+        method: "POST",
+        url: "/bs_fetch_edit_data",
+        data: angular.toJson({
+              'table_name': 'Table_1',
+              'sector': 'water_supply',
+              'com_data': {'district': $scope.district,
+              'bs_date': $scope.bs_date} }),
+        }).success(function(data) {
+            console.log(data);
+//            $scope.bsAstsNwsdbDis = data;
+
+            var edit_data_not_found = false;
+            if(data != null) {
+                console.log('----if');
+                angular.forEach(data.water_supply.Table_1, function(value, index) {
+                    console.log('----forEach');
+                    console.log(value);
+                    if(value.length == 0) {
+                        console.log('----');
+                        edit_data_not_found = true;
+                    }
+                })
+                if(edit_data_not_found != true) {
+                    $scope.bsAstsNwsdbDis = data;
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            }
+            else {
+                console.log('----else');
+                $("#modal-container-239456").modal('show');
+            }
+        })
+    }
+
+    //Search Data
+    $scope.searchBsData = function(form) {
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
         $http({
         method: "POST",
         url: "/bs_fetch_edit_data",
@@ -274,6 +324,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bsLandTrnsAsst = init_data;
+        location.reload();
     }
 
     //Calculate Grand Total
@@ -299,6 +350,7 @@ app.controller('bsAstsNwsdbDisController', function($scope, $http,$parse, _) {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsAstsNwsdbDis = angular.copy(init_data);
+        location.reload();
     }
 
     $scope.totalFunc = function(array,property) {

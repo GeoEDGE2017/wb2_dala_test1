@@ -12,6 +12,9 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.bs_date;
     $scope.user_id;
     $scope.is_submit = false;
+    $scope.check_search = false;
+    $scope.is_search = false;
+
 
     //Initialize Data
     var init_data = {
@@ -116,9 +119,11 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
         }
         else{
             $scope.is_edit_disable = false;
+            $scope.check_search = false;
         }
     }
 
@@ -276,10 +281,59 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
 
     }
 
+    //Search Data
+    $scope.searchBsData = function(form){
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
+        if (form.$valid) {
+            $http({
+            method: "POST",
+            url: "/bs_fetch_edit_data",
+            data: angular.toJson({
+                  'table_name': 'Table_1',
+                  'sector': 'agri_agrarian',
+                  'com_data': {'district': $scope.district,
+                  'bs_date': $scope.bs_date} }),
+            }).success(function(data) {
+                console.log(data);
+//                $scope.bsNopoplAgrbActv = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.agri_agrarian.Table_1, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsNopoplAgrbActv = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
+
+    }
+
     //Cancel Edit
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsNopoplAgrbActv = init_data;
+        location.reload();
     }
 
     //Clear Function
@@ -287,5 +341,6 @@ app.controller('bsNopoplAgrbActvController', ['$scope', '$http', function($scope
         console.log('done');
         $scope.is_edit = false;
         $scope.bsNopoplAgrbActv = angular.copy(init_data);
+        location.reload();
     }
 }]);

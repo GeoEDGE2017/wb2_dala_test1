@@ -43,11 +43,6 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 					avg_replace_cost: null,
 					avg_repair_cost: null,
 					company_id: $scope.selectedCompany,
-				}, {
-					asset: 'Others',
-					avg_replace_cost: null,
-					avg_repair_cost: null,
-					company_id: $scope.selectedCompany,
 				}],
 				'BsEquipMachineryAst': [{
 					asset: 'Signal equipment',
@@ -74,19 +69,9 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 					avg_replace_cost: null,
 					avg_repair_cost: null,
 					company_id: $scope.selectedCompany,
-				}, {
-					asset: 'Others',
-					avg_replace_cost: null,
-					avg_repair_cost: null,
-					company_id: $scope.selectedCompany,
 				}],
 				'BsMatSuppliesAst': [{
 					asset: 'Fuel (per Liter)',
-					avg_replace_cost: null,
-					avg_repair_cost: null,
-					company_id: $scope.selectedCompany,
-				}, {
-					asset: 'Others',
 					avg_replace_cost: null,
 					avg_repair_cost: null,
 					company_id: $scope.selectedCompany,
@@ -187,6 +172,50 @@ app.controller('BsIncomeRailCompanyController', function($scope, $http, $parse, 
 			}
 			$scope.is_submit = false;
 		}
+
+	//Add Enumerate Fileds
+    $scope.insertAssets = function(table) {
+        var new_row;
+        if(table == 'BsEquipMachineryAst') {
+            new_row = {
+                asset: ' ',
+				avg_replace_cost: null,
+				avg_repair_cost: null,
+            }
+        }
+        else if(table == 'BsMovingAst') {
+            new_row = {
+                asset : '',
+                avg_replace_cost : null,
+                avg_repair_cost : null,
+            }
+        }
+        else if(table == 'BsMatSuppliesAst') {
+            new_row = {
+                components : '',
+                avg_replace_cost : null,
+                avg_repair_cost : null,
+            }
+        }
+         console.log('row',new_row);
+
+        $scope.bsIncomeRailCompany.transport_rail.Table_1[table].push(new_row);
+    }
+
+    //Remove Enumerate Fileds
+    $scope.removeItem = function removeItem(table, index) {
+        if(table == 'BsEquipMachineryAst') {
+            $scope.bsIncomeRailCompany.transport_rail.Table_1.BsEquipMachineryAst.splice(index, 1);
+        }
+        else if(table == 'BsMovingAst') {
+             $scope.bsIncomeRailCompany.transport_rail.Table_1.BsMovingAst.splice(index, 1);
+        }
+        else if(table == 'BsMatSuppliesAst') {
+             $scope.bsIncomeRailCompany.transport_rail.Table_1.BsMatSuppliesAst.splice(index, 1);
+        }
+
+    }
+
 		//save company
 	$scope.saveCompany = function(form) {
 		if(form.$valid) {

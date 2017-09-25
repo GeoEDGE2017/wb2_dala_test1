@@ -389,7 +389,6 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
         console.log("test", $scope.district);
         console.log("test", $scope.bs_date);
         $scope.is_search = true;
-        $scope.submitted = true;
         if(form.$valid) {
             $http({
                 method: "POST",

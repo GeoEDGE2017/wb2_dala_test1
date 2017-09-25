@@ -26,8 +26,13 @@
     <div class="container-fluid" ng-form name="form_bs_nopopl_agrb_actv">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-              <td><button ng-click="bsHsDataEdit(form_bs_nopopl_agrb_actv)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
+              <td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+					</span> <span ng-if="check_search">
+									<button ng-click="searchBsData(form_bs_nopopl_agrb_actv)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+				</td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="249"/>
@@ -491,21 +496,21 @@
                     <div class="pull-right">
                         <br>
 
-                        <button type="button" ng-click="clear()" class="btn btn-info">
+                        <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
                             Clear
                         </button>
                         <span ng-if="is_edit_disable">
-                            <button type="button" ng-click="bsHsDataEdit(form_bs_nopopl_agrb_actv)" ng-if="!is_edit"
+                            <button id="editbtn" type="button" ng-click="bsHsDataEdit(form_bs_nopopl_agrb_actv)" ng-if="!is_edit"
                                     class="btn btn-success">
                                 Edit
                             </button>
                         </span>
                         <span ng-if="!is_edit_disable">
-                            <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                            <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                                 Edit
                             </button>
                         </span>
-                        <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                        <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                             Cancel Edit
                         </button>
                         <!--<button type="button" ng-disabled="form_pop_lat_census.$invalid"-->
@@ -513,12 +518,12 @@
                             <!--Submit-->
                         <!--</button>-->
                         <span ng-if="!is_submit">
-                            <button type="button" ng-click="saveBsData(form_bs_nopopl_agrb_actv)" ng-disabled="form_pop_lat_census.$invalid" class="btn btn-success">
+                            <button id="subbtn" type="button" ng-click="saveBsData(form_bs_nopopl_agrb_actv)" ng-disabled="form_pop_lat_census.$invalid" class="btn btn-success">
                                 Submit
                             </button>
                         </span>
                         <span ng-if="is_submit">
-                            <button type="button" class="btn btn-success" disabled>
+                            <button id="subbtn" type="button" class="btn btn-success" disabled>
                                 Submit
                             </button>
                         </span>

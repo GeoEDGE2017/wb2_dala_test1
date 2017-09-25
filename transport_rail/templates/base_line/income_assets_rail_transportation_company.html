@@ -114,38 +114,141 @@ $(document).ready(function() {
 							<td colspan="2"> </td>
 							<td colspan="3" style="width:27.5%;"> </td>
 						</tr>
-						<tr height="20" ng-repeat="bsMovingAst in bsIncomeRailCompany.transport_rail.Table_1.BsMovingAst">
-							<td class="tdpa" width="281" height="20" ng-bind="bsMovingAst.asset"> </td>
-							<td colspan="2">
-								<input ng-model="bsMovingAst.avg_replace_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-							<td colspan="3">
-								<input ng-model="bsMovingAst.avg_repair_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-						</tr>
+						<tr height="18" ng-repeat="bsMovingAst in bsIncomeRailCompany.transport_rail.Table_1.BsMovingAst">
+                            <td class="tdpa" width="223" height="18" ng-bind="bsMovingAst.asset"
+                                ng-if="$index < 2">
+                            </td>
+                            <td width="98" ng-if="$index > 1">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsMovingAst', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="bsMovingAst_{{$index}}"
+                                       ng-model="bsMovingAst.components"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['bsMovingAst_' + $index].$dirty && !form_pop_lat_census['bsMovingAst_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="bsMovingAst.avg_replace_cost">
+                            </td>
+                            <td colspan="3" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="bsMovingAst.avg_repair_cost">
+                            </td>
+                        </tr>
+						<tr class="tdpa" height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BsMovingAst')" class="btn btn-sm btn-info btn-circle"
+                                        id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="4" width="216">
+                            </td>
+
+                        </tr>
 						<tr class="trheadc" height="20">
 							<td width="281" height="20"> Equipment and Machinery </td>
 							<td colspan="2" width="300"> (LKR/Unit) </td>
 							<td colspan="3" width="322"> (LKR/Unit) </td>
 						</tr>
-						<tr height="20" ng-repeat="bsEquipMachineryAst in bsIncomeRailCompany.transport_rail.Table_1.BsEquipMachineryAst">
-							<td class="tdpa" width="281" height="20" ng-bind="bsEquipMachineryAst.asset"> Signal Equipment </td>
-							<td colspan="2">
-								<input ng-model="bsEquipMachineryAst.avg_replace_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-							<td colspan="3">
-								<input ng-model="bsEquipMachineryAst.avg_repair_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-						</tr>
+
+						 <tr height="18" ng-repeat="bsEquipMachineryAst in bsIncomeRailCompany.transport_rail.Table_1.BsEquipMachineryAst">
+                            <td class="tdpa" width="223" height="18" ng-bind="bsEquipMachineryAst.asset"
+                                ng-if="$index < 5">
+                            </td>
+                            <td width="98" ng-if="$index > 4">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsEquipMachineryAst', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="bsEquipMachineryAst_{{$index}}"
+                                       ng-model="bsEquipMachineryAst.components"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['bsEquipMachineryAst_' + $index].$dirty && !form_pop_lat_census['bsEquipMachineryAst_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="bsEquipMachineryAst.avg_replace_cost">
+                            </td>
+                            <td colspan="3" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="bsEquipMachineryAst.avg_repair_cost">
+                            </td>
+                        </tr>
+						<tr class="tdpa" height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BsEquipMachineryAst')" class="btn btn-sm btn-info btn-circle"
+                                        id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="4" width="216">
+                            </td>
+
+                        </tr>
+
+
 						<tr class="trheadc" height="20">
 							<td width="281" height="20"> Materials and Supplies </td>
 							<td colspan="2" width="300"> (LKR/Unit) </td>
 							<td colspan="3" width="322"> (LKR/Unit) </td>
 						</tr>
-						<tr height="20" ng-repeat="bsMatSuppliesAst in bsIncomeRailCompany.transport_rail.Table_1.BsMatSuppliesAst">
-							<td class="tdpa" width="281" height="20" ng-bind="bsMatSuppliesAst.asset"> </td>
-							<td colspan="2">
+						<!--<tr height="20" ng-repeat="bsMatSuppliesAst in bsIncomeRailCompany.transport_rail.Table_1.BsMatSuppliesAst">-->
+							<!--<td class="tdpa" width="281" height="20" ng-bind="bsMatSuppliesAst.asset"> </td>-->
+							<!--<td colspan="2">-->
+								<!--<input ng-model="bsMatSuppliesAst.avg_replace_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>-->
+							<!--<td colspan="3" ng-if="bsMatSuppliesAst.asset !='Fuel (per Liter)'">-->
+								<!--<input ng-model="bsMatSuppliesAst.avg_repair_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>-->
+							<!--<td colspan="3" class="tdpa" ng-if="bsMatSuppliesAst.asset =='Fuel (per Liter)'"> </td>-->
+						<!--</tr>-->
+						<tr height="18" ng-repeat="bsMatSuppliesAst in bsIncomeRailCompany.transport_rail.Table_1.BsMatSuppliesAst">
+                            <td class="tdpa" width="223" height="18" ng-bind="bsMatSuppliesAst.asset"
+                                ng-if="$index < 1">
+                            </td>
+                            <td width="98" ng-if="$index > 0">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BsMatSuppliesAst', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="bsMatSuppliesAst_{{$index}}"
+                                       ng-model="bsMatSuppliesAst.components"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['bsMatSuppliesAst_' + $index].$dirty && !form_pop_lat_census['bsMatSuppliesAst_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                           <td colspan="2">
 								<input ng-model="bsMatSuppliesAst.avg_replace_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 							<td colspan="3" ng-if="bsMatSuppliesAst.asset !='Fuel (per Liter)'">
 								<input ng-model="bsMatSuppliesAst.avg_repair_cost" id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
 							<td colspan="3" class="tdpa" ng-if="bsMatSuppliesAst.asset =='Fuel (per Liter)'"> </td>
-						</tr>
+                        </tr>
+						<tr class="tdpa" height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BsMatSuppliesAst')" class="btn btn-sm btn-info btn-circle"
+                                        id="insert">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="4" width="216">
+                            </td>
+
+                        </tr>
 						<tr class="trheadc" height="20">
 							<td width="281" height="20"> Structures (in Meter) </td>
 							<td colspan="2" width="300"> (LKR/Meter) </td>

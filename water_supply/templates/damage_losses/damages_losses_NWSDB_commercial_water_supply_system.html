@@ -44,8 +44,13 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1" ng-form name="form_dl_com_wtr_sply">
-            <td><button ng-click="dlDataEdit(form_dl_com_wtr_sply)" class="btn btn-sm btn-info" style="float:right;"><span class="fa fa-search"></span></button>
-                            </td>
+            <td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+									</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_dl_com_wtr_sply)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+								</td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="223"/>
@@ -320,7 +325,7 @@
                             </td>
                         </tr>
                         <tr height="18">
-                            <td class="boldash" width="223" height="18">TOTAL
+                            <td class="tdpa" width="223" height="18">TOTAL
                             </td>
                             <td class="tdpa" colspan="2" width="216">
                             </td>
@@ -460,22 +465,22 @@
                 <div class="pull-right">
                     <br>
 
-                    <button type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                    <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
                     <span ng-if="is_edit_disable">
-                        <button type="button" ng-click="dlDataEdit(form_dl_com_wtr_sply)" ng-if="!is_edit"
+                        <button id="editbtn" type="button" ng-click="dlDataEdit(form_dl_com_wtr_sply)" ng-if="!is_edit"
                                 class="btn btn-success">
                             Edit
                         </button>
                     </span>
                         <span ng-if="!is_edit_disable">
-                        <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                        <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-                    <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
+                    <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">Cancel
                         Edit
                     </button>
-                    <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                    <button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid"
                             ng-click="saveDlData(form_dl_com_wtr_sply)"
                             class="btn btn-success">Submit
                     </button>

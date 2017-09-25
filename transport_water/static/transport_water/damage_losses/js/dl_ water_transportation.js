@@ -546,6 +546,7 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 	$scope.dlDataEdit = function(form) {
 			$scope.is_edit = true;
 			$scope.submitted = true;
+			document.getElementById("clearbtn").disabled = true;
 			if(form.$valid) {
 				$http({
 					method: "POST",
@@ -643,7 +644,7 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 			return grantot;
 		}
 
-		//Cancel Edit
+		//Cancel Edits
 	$scope.cancelEdit = function() {
 			$scope.is_edit = false;
 			$scope.dlWaterTransportation = angular.copy(init_data);

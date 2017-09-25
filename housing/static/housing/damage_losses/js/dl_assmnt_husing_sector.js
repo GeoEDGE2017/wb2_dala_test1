@@ -16,6 +16,9 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.is_edit_disable = false;
     $scope.currentBaselineDate = null;
     $scope.user_id;
+    $scope.check_search = false;
+    $scope.is_search = false;
+
 
     //initialize Data
     var init_data = {
@@ -345,6 +348,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
 
         if($scope.incident && $scope.district ) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -611,6 +615,33 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.dlDataEdit = function(form){
         $scope.is_edit = true;
         $scope.submitted = true;
+          document.getElementById("clearbtn").disabled = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':'Table_3',
+                    'sector':'housing',
+                    'com_data': {
+                            'district_id':  $scope.district.district__id,
+                            'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlAssmntHusing = data;
+            })
+    }
+
+    //Search Data
+    $scope.searchDlData = function(form){
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
@@ -633,6 +664,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.cancelEdit = function(){
        $scope.is_edit = false;
         $scope.dlAssmntHusing = init_data;
+        location.reload();
      }
 
     //Clear Function
@@ -640,5 +672,6 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         console.log('done');
         $scope.is_edit = false;
         $scope.dlAssmntHusing = angular.copy(init_data);
+        location.reload();
     }
 }]);

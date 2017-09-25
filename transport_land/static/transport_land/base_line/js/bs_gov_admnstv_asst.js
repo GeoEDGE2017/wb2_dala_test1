@@ -243,9 +243,9 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         'transport_land': {
             'Table_3': {
                 'BiaGacLandOequipment': [],
-                'BS_Table2': [],
-                'BS_Table3': [],
-                'BS_Table4': [],
+//                'BS_Table2': [],
+//                'BS_Table3': [],
+//                'BS_Table4': [],
             }
         }
     }

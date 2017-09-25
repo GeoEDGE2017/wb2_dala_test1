@@ -9,6 +9,8 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     $scope.is_valid_data = true;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
+	$scope.is_search = false;
 
     var init_data = {
         'industry_services': {
@@ -39,9 +41,12 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date){
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
+
         }
         else{
             $scope.is_edit_disable = false;
+            $scope.check_search = false;
         }
     }
 
@@ -83,6 +88,7 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.bs_ind_ser_info_informl = angular.copy(init_data);
+        location.reload();
     }
 
     $scope.saveBsData = function(form) {
@@ -118,7 +124,52 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
     $scope.editBsData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
+        if (form.$valid) {
+            $http({
+                method: "POST",
+                url: '/bs_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'industry_services',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+                console.log(data.industry_services.industry_services);
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.industry_services.Table_2, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                            $scope.is_edit = false;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bs_ind_ser_info_informl = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
+    }
 
+    $scope.searchBsData = function(form) {
+       document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
         if (form.$valid) {
             $http({
                 method: "POST",
@@ -159,10 +210,12 @@ app.controller('bsindustryServicesInfoInformalController', ['$scope', '$http', f
 
     $scope.clear = function() {
         $scope.bs_ind_ser_info_informl = angular.copy(init_data);
+        location.reload();
     }
 
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.clear();
+        location.reload();
     }
 }])

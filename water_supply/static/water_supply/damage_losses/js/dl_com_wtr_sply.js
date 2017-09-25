@@ -14,6 +14,8 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.grantot = 0;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
+    $scope.is_search = false;
 
 
     //Initialize Data
@@ -140,6 +142,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
 
         if($scope.incident && $scope.district ) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -403,6 +406,35 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_3',
+                    'sector':'water_supply',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlComWtrSply = data;
+            })
+        }
+    }
+
+    //Search Data
+    $scope.searchDlData = function(form) {
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -427,6 +459,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlComWtrSply = init_data;
+        location.reload();
     }
 
     //Clear Function
@@ -434,5 +467,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         console.log('clear');
         $scope.is_edit = false;
         $scope.dlComWtrSply = angular.copy(init_data);
+        location.reload();
     }
 }]);

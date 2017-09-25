@@ -14,6 +14,8 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
      $scope.currentBaselineDate = null;
      $scope.user_id;
      $scope.is_edit_disable = false;
+     $scope.check_search = false;
+     $scope.is_search = false;
 
     //Initialize Data
     var init_data = {
@@ -106,6 +108,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
         }
         if($scope.incident && $scope.district ) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -206,6 +209,34 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
     $scope.dlDataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name':  'Table_4',
+                    'sector':'water_supply',
+                    'com_data': {
+                        'district':  $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                   'is_edit':$scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlRuralWtrSply = data;
+            })
+        }
+    }
+
+    $scope.searchDlData = function(form) {
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -230,6 +261,7 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlRuralWtrSply = init_data;
+        location.reload();
     }
 
     //Clear Function
@@ -237,5 +269,6 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
         console.log('clear');
         $scope.is_edit = false;
         $scope.dlRuralWtrSply = angular.copy(init_data);
+        location.reload();
     }
 }]);

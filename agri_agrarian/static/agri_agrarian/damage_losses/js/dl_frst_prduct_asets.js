@@ -15,6 +15,8 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.user_id;
     $scope.is_edit_disable = false;
     $scope.is_submit = false;
+    $scope.check_search = false;
+    $scope.is_search = false;
 
     //Initialize Data
     var init_data = {
@@ -259,6 +261,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
 
         if($scope.incident && $scope.district) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
@@ -635,6 +638,35 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.dlDataEdit = function(form){
        $scope.is_edit = true;
        $scope.submitted = true;
+       document.getElementById("clearbtn").disabled = true;
+        if(form.$valid){
+            $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+            'table_name':  'Table_4',
+            'sector':'agri_agrarian',
+            'com_data': {
+                   'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                  },
+                   'is_edit':$scope.is_edit
+                   }),
+            }).success(function(data) {
+
+            $scope.dlFrstPrductAsets = data;
+            })
+        }
+}
+
+    //Search Data
+    $scope.searchDlData = function(form){
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
         if(form.$valid){
             $http({
             method: "POST",
@@ -659,6 +691,7 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.dlFrstPrductAsets = init_data;
+        location.reload();
     }
 
     //Calculate Public Total
@@ -849,5 +882,6 @@ app.controller('dlFrstPrductAsetsController', ['$scope', '$http', function($scop
         console.log('clear');
         $scope.is_edit = false;
         $scope.dlFrstPrductAsets = angular.copy(init_data);
+        location.reload();
     }
 }]);

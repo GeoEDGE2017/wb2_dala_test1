@@ -15,6 +15,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.is_null = false;
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
+    $scope.is_search = false;
 
     //initialize Data
     var init_data = {
@@ -465,6 +467,8 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 
         if($scope.incident && $scope.district ) {
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
+
         }
 
     }
@@ -785,6 +789,36 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.dlDataEdit = function(form){
        $scope.is_edit = true;
        $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
+        if(form.$valid){
+
+            $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+            'table_name':  'Table_3',
+            'sector':'agri_livestock',
+            'com_data': {
+                   'district':  $scope.district.district__id,
+                    'incident': $scope.incident,
+                    'organizationtype_id':$scope.selectedOrganization.id,
+                  },
+                   'is_edit':$scope.is_edit
+                   }),
+            }).success(function(data) {
+                $scope.dlLivestockPoultry = data;
+            })
+        }
+    }
+
+    //Search Data
+    $scope.searchDlData = function(form){
+       document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
         if(form.$valid){
 
             $http({
@@ -810,12 +844,14 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.dlLivestockPoultry = init_data;
+        location.reload();
     }
 
     //clear Function
     $scope.clear = function() {
         $scope.is_edit = false;
         $scope.dlLivestockPoultry = angular.copy(init_data);
+         location.reload();
     }
 
     //Get Calculate data

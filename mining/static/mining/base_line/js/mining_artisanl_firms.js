@@ -9,6 +9,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 	$scope.is_edit_disable = false;
 	$scope.user_id;
 	$scope.check_search = false;
+	$scope.is_search = false;
 
 	var init_data = {
 		'mining': {
@@ -127,7 +128,6 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 		console.log("test", $scope.district);
 		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
-		$scope.submitted = true;
 		if(form.$valid) {
 			$http({
 				method: "POST",

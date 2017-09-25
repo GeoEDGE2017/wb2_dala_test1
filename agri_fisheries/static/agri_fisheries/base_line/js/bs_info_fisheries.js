@@ -9,6 +9,9 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
     $scope.submitted = false;
     $scope.is_valid_data = true;
     $scope.user_id;
+    $scope.check_search = false;
+    $scope.is_search = false;
+
 
     //initialize Data
     var init_data = {
@@ -155,6 +158,19 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
     }
 
     $scope.bsInfoFisheries = angular.copy(init_data);
+
+    //Disable Edit Button
+    $scope.changeDis = function changeDis() {
+        if($scope.district && $scope.bs_date){
+            $scope.is_edit_disable = true;
+              $scope.check_search = true;
+        }
+        else {
+            $scope.is_edit_disable = false;
+            $scope.check_search = false;
+        }
+    }
+
 
     //Add Enumerate fields
     $scope.insertAsset = function(table) {
@@ -314,10 +330,62 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         }
     }
 
+    //Search Data
+    $scope.searchBsData = function(form){
+        document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		console.log("test", $scope.district);
+		console.log("test", $scope.bs_date);
+		$scope.is_search = true;
+        if (form.$valid) {
+            $http({
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'agri_fisheries',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date,
+                        'user_id' : $scope.user_id,
+                    }
+                }),
+            }).success(function(data) {
+                console.log(data);
+//                $scope.bsInfoFisheries = data;
+
+                var edit_data_not_found = false;
+                if(data != null) {
+                    console.log('----if');
+                    angular.forEach(data.agri_fisheries.Table_2, function(value, index) {
+                        console.log('----forEach');
+                        console.log(value);
+                        if(value.length == 0) {
+                            console.log('----');
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsInfoFisheries = data;
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    console.log('----else');
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
+    }
+
     //Cancel Edit
      $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.bsInfoFisheries = init_data;
+        location.reload();
      }
 
     //Clear Function
@@ -325,6 +393,7 @@ app.controller('bsInfoFisheriesController', function($scope, $http) {
         console.log('done');
         $scope.is_edit = false;
         $scope.bsInfoFisheries = angular.copy(init_data);
+        location.reload();
     }
 
 });

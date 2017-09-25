@@ -14,6 +14,8 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.infrastructures = [];
     $scope.user_id;
     $scope.is_edit_disable = false;
+    $scope.check_search = false;
+    $scope.is_search = false;
 
     var init_data = {
         'tourism': {
@@ -99,6 +101,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
             $scope.fetchInfTypes();
             $scope.fetchTourismInfrastructures();
             $scope.is_edit_disable = true;
+            $scope.check_search = true;
         }
     }
 
@@ -184,6 +187,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.clear = function() {
         $scope.is_edit = false;
         $scope.dl_tourism_infrs = angular.copy(init_data);
+         location.reload();
 
     }
 
@@ -228,6 +232,47 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
         if($scope.district && $scope.incident && $scope.selectedInfrastructure  ){
             $scope.is_edit = true;
             $scope.submitted = true;
+            document.getElementById("clearbtn").disabled = true;
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'tourism',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                        'inf_id': $scope.selectedInfrastructure.id,
+                        'ownership': $scope.selectedInfrastructure.ownership
+                    }
+                }),
+            }).success(function(data) {
+                console.log("edit", data);
+                if((data.tourism.Table_3.DlInfLosses.length == 0) ||(data.tourism.Table_3.DmgInfAssets.length == 0)) {
+                    $scope.is_edit = false;
+                }
+                else {
+                    $scope.dl_tourism_infrs = data;
+                }
+            })
+        }
+        else {
+            console.log("enter Incident, District, Infrastructure, ownership");
+            console.log($scope.district);
+            console.log($scope.incident);
+            console.log($scope.selectedFirm);
+            console.log($scope.ownership);
+        }
+    }
+
+    $scope.searchDlData = function() {
+        if($scope.district && $scope.incident && $scope.selectedInfrastructure  ){
+            document.getElementById("clearbtn").disabled = true;
+		    document.getElementById("editbtn").disabled = true;
+		    document.getElementById("subbtn").disabled = true;
+		    console.log("test", $scope.district);
+		    console.log("test", $scope.bs_date);
+		    $scope.is_search = true;
             $http({
                 method: "POST",
                 url: '/dl_fetch_edit_data',
@@ -263,6 +308,7 @@ app.controller('dlTouismInfrstrctCultNaturalController', function($scope, $http,
     $scope.cancelEdit = function() {
         $scope.is_edit = false;
         $scope.clear();
+        location.reload();
     }
 
     $scope.saveInfrastructure = function(form) {

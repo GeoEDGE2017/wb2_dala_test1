@@ -13,6 +13,7 @@ class DlSessionKeys(models.Model):
     province = models.ForeignKey(Province, db_column='province', related_name='alvs_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='alvs_dl_district', blank=True, null=True)
     organizationtype = models.ForeignKey(Organization, db_column='organizationType', blank=True, related_name='alvs_dl_Organizationtype', null=True)
+    bs_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

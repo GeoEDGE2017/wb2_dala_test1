@@ -11,6 +11,7 @@ class DlSessionKeys(models.Model):
     incident = models.ForeignKey(IncidentReport, db_column='incident', related_name='tl_dl_incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    bs_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

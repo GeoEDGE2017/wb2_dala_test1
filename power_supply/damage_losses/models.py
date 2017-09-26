@@ -15,6 +15,7 @@ class DlSessionKeys(models.Model):
     district = models.ForeignKey(District, db_column='district', related_name='pow_dl_district', blank=True, null=True)
     # pvt_pw_producers = models.ForeignKey(PvtPwProducers, db_column='pvt_pw_producers', related_name='pow_dl_pvt_pw_producers', blank=True, null=True)
     pw_gen_firm = models.ForeignKey(BsPwGenFirm, db_column='pw_gen_firm', blank=True, null=True)
+    bs_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

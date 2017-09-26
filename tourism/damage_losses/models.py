@@ -17,6 +17,7 @@ class DlSessionKeys(models.Model):
     inf_type = models.ForeignKey(InfType, db_column='inf_type', blank=True, null=True)
     ownership = models.CharField(max_length=255, blank=True, null=True)
     tou_business = models.CharField(max_length=255, blank=True, null=True)
+    bs_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

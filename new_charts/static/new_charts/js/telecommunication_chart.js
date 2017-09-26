@@ -1,6 +1,5 @@
-var app = angular.module('teleChartApp', ['chart.js','underscore']);
-app.controller('TeleChartController',function($scope,$http,$parse, _) {
-
+var app = angular.module('teleChartApp', ['underscore']);
+app.controller('TeleChartController', function($scope, $http, $parse, _) {
     $scope.district;
     $scope.incident;
     $scope.bs_data={};
@@ -8,128 +7,196 @@ app.controller('TeleChartController',function($scope,$http,$parse, _) {
     $scope.is_edit = false;
     $scope.submitted = false;
     $scope.is_valid_data = true;
-    $scope.total_num_affected = 0;
-    $scope.totalNumDes = null;
-    $scope.grndtotalNumPart = 0;
-    $scope.grndtotalNumDes = 0;
-    $scope.grndtotalDamages = 0;
-    $scope.grndtotalLosses = 0;
-    $scope.grandTotal = 0;
-    $scope.total_num_affected = 0;
-    $scope.tableDamageLosses = [[],[]];
+    $scope.totaldpub = null;
+    $scope.totaldpvt = null;
+    $scope.totalyear1pub = null;
+    $scope.totalyear1pvt = null;
+    $scope.totalyear2pub = null;
+    $scope.totalyear2pvt = null;
+    $scope.finaltotalpublic = null;
+    $scope.finaltotalprivate = null;
+    var tot_damages_pub = 0;
+    var tot_los_firm_year1_pub = 0;
+    var tot_los_firm_year2_pvt = 0;
+    var tot_damages_pvt = 0;
+    var tot_los_firm_year2_pub = 0;
+    var tot_los_firm_year1_pvt = 0;
+
+	google.charts.load('current', {
+		'packages': ['corechart', 'bar']
+	});
+	$scope.fetchDlData = function() {
+		$scope.is_edit = true;
+		$scope.submitted = true;
+		$http({
+			method: "POST",
+			url: '/dl_fetch_district_disagtn',
+			data: angular.toJson({
+				'table_name': 'Table_5',
+				'sector': 'telecommunication',
+				'com_data': {
+					'incident': $scope.incident,
+				},
+			}),
+		}).success(function(data) {
+			console.log('load ', data);
+			$scope.data = data;
+			$scope.dlSumTeleNat = data;
+			$scope.provincenames = [];
+			angular.forEach(data.telecommunication.Table_5, function(value, key) {
+				$scope.provincenames.push(key);
+			})
+			angular.forEach($scope.provincenames.sort(), function(value, key) {
+				google.charts.setOnLoadCallback(drawPieChart);
+				google.charts.setOnLoadCallback(drawPieChartTwo);
+				google.charts.setOnLoadCallback(drawBarChart);
 
 
-    $scope.fetchDlData = function(){
 
-        $scope.is_edit = true;
-        $scope.submitted = true;
-
-            $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_6',
-            'sector': 'housing',
-            'com_data': {
-                    'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-
-            console.log('load ', data);
-            $scope.data= data;
-            $scope.dlHousingSumNat = data;
-
-            $scope.provincenames=["Western"];
-
-        angular.forEach($scope.provincenames, function(value, key) {
-
-            var totalNumDes = 0;
-            totalNumDes =     $scope.convertToInt(
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0].tot_num_houses : 0):0));
-
-            var totalNumPart = 0;
-            totalNumPart =      $scope.convertToInt(
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesSemiPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesSemiPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesSemiPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesImpNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesImpNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesImpNational[0].tot_num_houses : 0):0));
-
-            var totalDamages = 0;
-           totalDamages =     $scope.convertToInt(
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgPerNational[0].tot_damages ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlDmgPerNational[0].tot_damages : 0):0) ,
-
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgSemiPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgSemiPerNational[0].tot_damages ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlDmgSemiPerNational[0].tot_damages : 0):0) ,
-
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgImpNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgImpNational[0].tot_damages ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlDmgImpNational[0].tot_damages : 0):0));
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[value], function(value, key, index) {
+            if(key == 'DlDmgFirmGroupNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        tot_damages_pvt = tot_damages_pvt + value_in.tot_damages;
+                    }
+                })
+            }
+        })
 
 
-            var totalLosses = 0;
-            totalLosses = $scope.convertToInt(
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosPerNational[0].tot_losses ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlLosPerNational[0].tot_losses : 0):0) ,
 
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosSemiPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosSemiPerNational[0].tot_losses ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlLosSemiPerNational[0].tot_losses : 0):0) ,
-
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosImpNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosImpNational[0].tot_losses ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlLosImpNational[0].tot_losses : 0):0));
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[value], function(value, key, index) {
+            if(key == 'DlDmgFirmGroupNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        tot_damages_pub = tot_damages_pub + value_in.tot_damages;
+                    }
+                })
+            }
+        })
 
 
-            $scope.tableDamageLosses[0][key]=totalDamages;
-            $scope.tableDamageLosses[1][key]=totalLosses;
-            $scope.totalDamagePartialDamage = [totalNumDes, totalNumPart];
-
-            })
-
-             $scope.damageLossesSeries = ['Total Damages', 'Total Losses'];
-             $scope.totalDamagePartialDamageSeries = ['Number of Totally Destroyed', 'Number of Partially Damaged'];
 
 
-            })
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[value], function(value, key, index) {
+            if(key == 'LosFirmYear1GroupsNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        tot_los_firm_year1_pub = tot_los_firm_year1_pub + value_in.year1_los;
+                    }
+                })
+            }
+        })
 
 
-    }
 
-    $scope.checkIfNull = function(){
-        var isNull = $scope.dlHousingSumNat ? angular.equals({}, $scope.dlHousingSumNat.housing.Table_6) : true;
+
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[value], function(value, key, index) {
+            if(key == 'LosFirmYear1GroupsNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        tot_los_firm_year1_pvt = tot_los_firm_year1_pvt + value_in.year1_los;
+                    }
+                })
+            }
+        })
+
+
+
+
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[value], function(value, key, index) {
+            if(key == 'LosFirmYear2GroupsNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Public') {
+                        tot_los_firm_year2_pub = tot_los_firm_year2_pub + value_in.year2_los;
+                    }
+                })
+            }
+        })
+
+
+
+
+        angular.forEach($scope.dlSumTeleNat.telecommunication.Table_5[value], function(value, key, index) {
+            if(key == 'LosFirmYear2GroupsNational') {
+                angular.forEach(value, function(value_in, index_in) {
+                    if(value_in.ownership == 'Private') {
+                        tot_los_firm_year2_pvt = tot_los_firm_year2_pvt + value_in.year2_los;
+                    }
+                })
+            }
+        })
+
+
+
+ 			function drawPieChart() {
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Name');
+					data.addColumn('number', 'Data');
+					data.addRows([
+						['Private Damages', tot_damages_pvt],
+						['Public damages', tot_damages_pub],
+					]);
+					var options = {
+						width: 400,
+						height: 200
+					};
+					var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+					chart.draw(data, options);
+				}
+
+		     function drawPieChartTwo() {
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Name');
+					data.addColumn('number', 'Data');
+					data.addRows([
+						['Private Losses', tot_los_firm_year2_pvt + tot_los_firm_year1_pvt],
+						['Public Losses', tot_los_firm_year1_pub + tot_los_firm_year2_pub],
+					]);
+					var options = {
+						width: 400,
+						height: 200
+					};
+					var chart = new google.visualization.PieChart(document.getElementById('piechartTwo'));
+					chart.draw(data, options);
+				}
+
+            function drawBarChart() {
+                var data = [];
+                var chartsdata = [];
+                var Header = ['Province', 'Damages', 'Losses', {
+                    role: 'style'
+                }];
+                data.push(Header);
+                angular.forEach($scope.provincenames, function(value, key) {
+                    var temp = [];
+                    temp.push(value, tot_damages_pvt + tot_damages_pub, tot_los_firm_year2_pvt + tot_los_firm_year1_pvt + tot_los_firm_year1_pub + tot_los_firm_year2_pub, null);
+                    data.push(temp);
+                })
+                var chartdata = new google.visualization.arrayToDataTable(data);
+                var options = {
+                    chart: {
+                        width: 400,
+                        height: 300
+                    }
+                };
+                var chart = new google.charts.Bar(document.getElementById('barchart'));
+                chart.draw(chartdata, options);
+            }
+
+
+		})
+	})
+	}
+	$scope.checkIfNull = function() {
+        var isNull = $scope.dlSumTeleNat ? angular.equals({}, $scope.dlSumTeleNat.telecommunication.Table_5) : true;
         return isNull;
-
-   }
-
-    $scope.convertToInt = function(val1,val2,val3){
-
-        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
-        return sum;
     }
-    $scope.printDiv = function() {
-        window.print();
-    }
-
- });
+	$scope.convertToInt = function(val1, val2, val3) {
+		var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+		return sum;
+	}
+	$scope.printDiv = function() {
+		window.print();
+	}
+});

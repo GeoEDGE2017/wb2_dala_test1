@@ -1,6 +1,6 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<main class="main" ng-app="healthChartApp" ng-controller="HealthChartController">
+<main class="main" ng-app="healthApp" ng-controller="HealthChartController">
     <div class="container-fluid" >
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
@@ -10,7 +10,7 @@
         </style>
         <div class="container-fluid">
             <br>
-            <div class="card">
+            <div class="card no-print" >
                 <div class="card-header" id="search">
                     <strong>Search</strong>
                 </div>
@@ -52,27 +52,42 @@
             </div>
 
             <div class="row">
-                <!--<div class="col-md-6">-->
-                    <!--<div class="card" ng-if="!checkIfNull()">-->
-                        <!--<div class="card-header">-->
-                            <!--Total Damages and Total Losses-->
-                        <!--</div>-->
-                        <!--<div class="card-block" style="height:300px;">-->
-                            <!--<div id="barchart" style="border: 0px solid #ccc;padding:15px;"></div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <div class="col-md-6">
+                <div class="col-xs-6">
                     <div class="card" ng-if="!checkIfNull()">
                         <div class="card-header">
-                            Number of Totally Damaged and Partially Damaged
+                           Total Damages and Total Losses
                         </div>
-                        <div class="card-block" style="height:300px;">
-                            <div id="piechart" style="border: 0px solid #ccc;padding:0;"></div>
+                        <div class="card-block" style="height:250px;">
+                            <div id="barchart" style="border: 0px solid #ccc;padding:15px;"></div>
                         </div>
                     </div>
                 </div>
-            </div>
+                 <div class="col-xs-6">
+                    <div class="card" ng-if="!checkIfNull()">
+                        <div class="card-header">
+                           Total Number of Patients Affected in  Private Sector
+                        </div>
+                        <div class="card-block" style="height:250px;">
+                            <div id="piechart" style="border: 0px solid #ccc;padding:15px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="card" ng-if="!checkIfNull()">
+                        <div class="card-header">
+                          Total Number of Patients Affected in  Public Sector
+                        </div>
+                        <div class="card-block" style="height:250px;">
+                            <div id="piechartTwo" style="border: 0px solid #ccc;padding:15px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                </div>
+
+
+
         </div>
         </div>
 </main>

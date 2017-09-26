@@ -437,48 +437,79 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 		}
 	}
 
+//	$scope.saveDepartment = function(form) {
+//		$scope.submitted = true;
+//		if(form.$valid) {
+//			delete $scope.new_department['ownership']
+//			$scope.new_department.district_id = $scope.district.district__id;
+//			console.log($scope.new_department);
+//			if(!$scope.is_edit_model) {
+//				$scope.new_department.id = null;
+//			}
+//			$http({
+//				method: "POST",
+//				url: "/add_entity",
+//				data: angular.toJson({
+//					'model': 'Department',
+//					'model_fields': $scope.new_department,
+//					'is_edit': $scope.is_edit_model,
+//					'sector': 'other_govn_services'
+//				}),
+//			}).success(function(data) {
+//				console.log(data);
+//				if(!$scope.is_edit_model) {
+//					if(data) {
+//						$scope.departments.push($scope.new_department);
+//
+//					}
+////					$scope.new_department.id = data;
+////					console.log('2 - ', $scope.new_department.id);
+//
+//
+//				} else {
+//					var department = $filter('filter')($scope.departments, {
+//						id: data
+//					})[0];
+////					department.name = $scope.new_department.name;
+//
+//
+//				}
+//				$("#modal-container-218029").modal('hide');
+//				$("#modal-container-218020").modal('hide');
+//				$scope.is_edit_model = false;
+//
+//			})
+//		} else {
+//			console.log('***');
+//		}
+//	}
+
+
 	$scope.saveDepartment = function(form) {
-		$scope.submitted = true;
-		if(form.$valid) {
-			delete $scope.new_department['ownership']
-			$scope.new_department.district_id = $scope.district.district__id;
-			console.log($scope.new_department);
-			if(!$scope.is_edit_model) {
-				$scope.new_department.id = null;
-			}
+		if(!$scope.is_edit_model) {
 			$http({
 				method: "POST",
 				url: "/add_entity",
 				data: angular.toJson({
-					'model': 'Department',
 					'model_fields': $scope.new_department,
+					'model': 'Department',
 					'is_edit': $scope.is_edit_model,
 					'sector': 'other_govn_services'
 				}),
 			}).success(function(data) {
-				console.log(data);
-				if(!$scope.is_edit_model) {
-					if(data) {
-						$scope.departments.push($scope.new_department);
-					}
-					$scope.new_department.id = data;
-					console.log('2 - ', $scope.new_department.id);
-				} else {
-					var department = $filter('filter')($scope.departments, {
-						id: data
-					})[0];
-					department.name = $scope.new_department.name;
-				}
-				$("#modal-container-218029").modal('hide');
-				$("#modal-container-218020").modal('hide');
-				$scope.is_edit_model = false;
+
+                    $scope.departments.push($scope.new_department);
+					$("#modal-container-218029").modal('hide');
+    				$("#modal-container-218020").modal('hide');
+					$scope.is_edit_model = false;
+
 			})
-		} else {
-			console.log('***');
 		}
+
 	}
 
-	$scope.test = function() {
+
+	$scope.test = function(){
 		console.log($scope.ownership);
 	}
 
@@ -523,6 +554,8 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 		$scope.submitted = true;
 		console.log('in');
 		if($scope.incident && $scope.district) {
+		    $scope.new_department.name = null;
+			$scope.new_department.ownership_id = null;
 			$("#modal-container-218029").modal('show');
 		}
 	}

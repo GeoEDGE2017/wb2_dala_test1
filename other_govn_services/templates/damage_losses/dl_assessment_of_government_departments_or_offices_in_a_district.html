@@ -80,7 +80,7 @@ $(document).ready(function() {
 						<tr height="20">
 							<td class="trheadc1" width="241" height="20" style="width:35%;"> Department or Office </td>
 							<td colspan="5" class="trheadc1" width="724">
-								<select ng-options="department as department.name for department in departments track by department.id" id="ccyear" ng-change="fetchOwnership()" ng-model="new_department" class="form-control" required>
+								<select id="department" ng-options="department as department.name for department in departments track by department.id" id="ccyear" ng-change="fetchOwnership()" ng-model="new_department" class="form-control" required>
 									<option value="" selected>Select Department</option>
 								</select>
 							</td>
@@ -273,7 +273,7 @@ $(document).ready(function() {
 					<div class="form-group">
 						<label class="col-md-3 control-label" for="textinput">Name</label>
 						<div class="col-md-9">
-							<input ng-model="new_department.name" type="text" placeholder="" class="form-control input-md" required> <span style="color:red;" ng-show="submitted && form_ogs_add_firm.new_department.name.$error.required">
+							<input id="new_department" ng-model="new_department.name" type="text" placeholder="" class="form-control input-md" required> <span style="color:red;" ng-show="submitted && form_ogs_add_firm.new_department.name.$error.required">
                                 Please enter department name
                             </span> </div>
 					</div>
@@ -281,7 +281,7 @@ $(document).ready(function() {
 					<div class="form-group" style="margin-top:5px;">
 						<label class="col-md-3 control-label" for="textinput">Ownership</label>
 						<div class="col-md-9">
-							<select id="ccyear" ng-model="new_department.ownership_id" ng-change="validateSaveAndEdit()" class="form-control" required>
+							<select id="department" ng-model="new_department.ownership_id" ng-change="validateSaveAndEdit()" class="form-control" required>
 								<option value="" selected>Select Ownership</option> {% for ownership in ownerships %}
 								<option value="{{ ownership.id }}">{{ ownership.ownership_name }}</option> {% endfor %} </select> <span style="color:red;" ng-show="submitted && form_ogs_add_firm.new_department.ownership_id.$error.required">
                                 Please select Department or Office
@@ -292,7 +292,7 @@ $(document).ready(function() {
 				<br>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
-					<button ng-click="saveDepartment(form_ogs_add_firm)" type="button" class="btn btn-primary"> Save </button>
+					<button id="dep" ng-click="saveDepartment(form_ogs_add_firm);" type="button" class="btn btn-primary"> Save </button>
 				</div>
 			</div>
 		</div>

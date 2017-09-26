@@ -28,10 +28,8 @@ app.controller('AgriLivestockChartController',function($scope,$http,$parse, _) {
 
 
     $scope.fetchDlData = function(){
-
         $scope.is_edit = true;
         $scope.submitted = true;
-
             $http({
             method: "POST",
             url: '/dl_fetch_district_disagtn',

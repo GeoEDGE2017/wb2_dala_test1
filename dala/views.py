@@ -647,13 +647,18 @@ def bs_get_data_mock(request):
         if thrid_filter_enable:
             bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)). \
                 filter(table_name=table_name, district=district, **{thrid_filter_key: thrid_filter_value}). \
-                values('difference', 'id', 'bs_date', thrid_filter_key).order_by('difference').latest('difference')
+                values('difference', 'id', 'bs_date', thrid_filter_key, 'date').order_by('difference').latest('difference')
 
             print '*'
             print bd_sessions
             print '**'
+
             bs_date = bd_sessions['bs_date']
             print 'bs_date', bs_date
+
+            bs_created_date = bd_sessions['date']
+            print '******* bs_created_date', bs_created_date
+
             for db_table in db_tables:
                 model_class = apps.get_model(sub_app_name, db_table)
                 # assuming there could be multiple data sets for bs_date
@@ -666,13 +671,16 @@ def bs_get_data_mock(request):
             print "------+------"
             bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'}, select_params=(incident_date,)). \
                 filter(table_name=table_name, district=district). \
-                values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+                values('difference', 'id', 'bs_date', 'date').order_by('difference').latest('difference')
 
             print '*'
             print bd_sessions
             print '**'
             bs_date = bd_sessions['bs_date']
-            print 'bs_date', bs_date
+            print '******* bs_date', bs_date
+
+            bs_created_date = bd_sessions['date']
+            print '******* bs_created_date', bs_created_date
             for db_table in db_tables:
                 model_class = apps.get_model(sub_app_name, db_table)
                 # assuming there could be multiple data sets for bs_date
@@ -754,6 +762,7 @@ def bs_get_data_mock_for_bs(request):
 # dileepa
 @csrf_exempt
 def get_latest_bs_date(request):
+    print '\n----------------------'
     todate = timezone.now()
     data = (yaml.safe_load(request.body))
     com_data = data['com_data']
@@ -777,21 +786,35 @@ def get_latest_bs_date(request):
         bd_sessions = bs_session_model.objects.extra(select={'difference': 'full_bs_date - %s'},
                                                      select_params=(incident_date,)). \
             filter(table_name=table_name, district=district). \
-            values('difference', 'id', 'bs_date').order_by('difference').latest('difference')
+            values('difference', 'id', 'bs_date', 'date').order_by('difference').latest('difference')
 
         print bd_sessions
+
         bs_date = bd_sessions['bs_date']
         print 'bs_date', bs_date
+
+        bs_created_date = str(bd_sessions['date'])
+        print '******* bs_created_date', bs_created_date
+
+        # data = {
+        #     'bs_date': bs_date,
+        #     'bs_created_date': bs_created_date,
+        # }
+
         return HttpResponse(
-            json.dumps((bs_date)),
-            content_type='application/javascript; charset=utf8'
+            json.dumps(({
+                'bs_date': bs_date,
+                'bs_created_date': bs_created_date,
+            })),
+            content_type='application/json; charset=utf8'
         )
     except Exception as ex:
+        print '** Error', ex
         bs_date = None
 
         return HttpResponse(
             json.dumps((bs_date)),
-            content_type='application/javascript; charset=utf8'
+            content_type='application/json; charset=utf8'
         )
 
 
@@ -994,10 +1017,10 @@ def dl_save_data(request):
     todate = timezone.now()
     is_edit = dl_data['is_edit']
     admin_area = None
-
     filter_fields = {}
     current_user = None
     print 'com_data', com_data
+    print 'bs_date', dl_data['bs_date']
     try:
         current_user = com_data['user_id']
 
@@ -1021,6 +1044,7 @@ def dl_save_data(request):
                 print "be fore getting model"
                 sub_app_session = apps.get_model(sub_app_name, 'DlSessionKeys')
                 filter_fields.pop('user_id', None)
+                print 'filter_fields', filter_fields
                 record_exist = sub_app_session.objects.filter(**filter_fields)
                 print "record_exist", record_exist
 
@@ -1058,10 +1082,11 @@ def dl_save_data(request):
                         district = District.objects.get(pk=com_data['district_id'])
                         filter_fields['province_id'] = district.province.id
                         filter_fields['user'] = current_user
+                        filter_fields['bs_date'] = dl_data['bs_date']
                         dl_session = sub_app_session(**filter_fields)
                         print '=== filter_fields', filter_fields
                         dl_session.date = todate
-                        # dl_session.user = current_user
+                        dl_session.user = current_user
                         dl_session.data_type = 'damage_losses'
                         dl_session.save()
                     else:

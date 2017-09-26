@@ -275,10 +275,12 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 				dataType: 'json',
 			}).then(function successCallback(response) {
 				if(response.data == 'False') {
-					$scope.is_valid_data = false;
-				} else {
-					$("#modal-container-239453").modal('show');
-				}
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
 			}, function errorCallback(response) {
 				console.log(response);
 			});

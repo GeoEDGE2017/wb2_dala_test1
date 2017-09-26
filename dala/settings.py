@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': '2017_09_13_DB',
+        'NAME': 'dala_09_18',
         'USER': 'postgres',
     },
 }
@@ -355,8 +355,7 @@ TABLE_PROPERTY_MAPPER = {
                           'central_dispensary',
                           'pmcus',
                           'phccs',
-                          'mchcs',
-                          'total', 'id'],
+                          'mchcs', 'total', 'id'],
             'DmfDaStructure': ['asset',
                                'base_hospital',
                                'divisional_hospital',

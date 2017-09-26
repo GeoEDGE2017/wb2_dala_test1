@@ -142,6 +142,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 			}).success(function(data) {
 				console.log(data);
 				$scope.mnIndusMinFirm = data;
+
 			})
 		}
 	}
@@ -191,6 +192,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 			}).success(function(data) {
 				if(data) {
 					$scope.firms.push($scope.new_firm);
+					console.log($scope.firms);
 					$("#modal-container-469842").modal('hide');
 					$("#modal-container-469840").modal('hide');
 					$scope.is_edit_model = false;
@@ -216,6 +218,7 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 				console.log(data);
 				$scope.editedFirmName = null;
 				$scope.fetchFirms();
+
 				$("#modal-container-469840").modal('hide');
 			})
 		} else {

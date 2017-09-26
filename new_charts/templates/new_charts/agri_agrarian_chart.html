@@ -1,150 +1,94 @@
 {% extends "dashboard/base.html" %}
 {% block content %}
-<main class="main" ng-app="agriAgrarianChartApp" ng-controller="AgriAgrarianChartController">
+<main class="main" ng-app="agriAgrarianApp" ng-controller="AgriAgrarianAppChartController">
+    <div class="container-fluid" >
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        </script>
+        <style>
+        text {font-size:11px!important;color:#000!important;}
+        </style>
+        <div class="container-fluid">
+            <br>
+            <div class="card no-print" >
+                <div class="card-header" id="search">
+                    <strong>Search</strong>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-xs-4" for="cvv">Incident</label>
+                                <div class="col-sm-8">
+                                    <select id="selectbasic" name="incident" ng-model="incident"
+                                            class="form-control" ng-change="changedValue(true);fetchDlData();"
+                                            style="width:100%;font-weight:400;" required>
+                                        <option value="" selected="true">Select an Incident</option>
+                                        {% for incident in incidents %}
 
-    <div class="container-fluid">
-        <br>
-        <div class="card">
-            <div class="card-header">
-                <strong>Search</strong>
-
-            </div>
-            <div class="card-block">
-
-
-                <div class="row">
-
-                    <div class="col-sm-4">
-
-                        <div class="form-group">
-                            <label class="col-xs-4" for="cvv">Incident</label>
-                            <div class="col-sm-8">
-                                <select id="selectbasic" name="incident" ng-model="incident"
-                                        class="form-control" ng-change="changedValue(true);fetchDlData();"
-                                        style="width:100%;font-weight:400;" required>
-                                    <option value="" selected="true">Select an Incident</option>
-                                    {% for incident in incidents %}
-
-                                    <option value={{incident.id}}>
-                                        <!--{{incident.disaster_type.name}}-->
-                                        <!--{{incident.reported_date_time}}-->
-                                        {{incident.incident_name}}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <span style="color:red"
-                                  ng-show="submitted && chart_sum_dl_province.incident.$error.required">
+                                        <option value={{incident.id}}>
+                                            <!--{{incident.disaster_type.name}}-->
+                                            <!--{{incident.reported_date_time}}-->
+                                            {{incident.incident_name}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <span style="color:red"
+                                      ng-show="submitted && chart_sum_dl_province.incident.$error.required">
                                        Please select Incident
                             </span>
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="col-sm-2">
-
-                        <div class="form-group">
-
-                            <button class="btn btn-md btn-primary" ng-click="printDiv();"><i class="fa fa-print"></i> Print
-                            </button>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card" ng-if="!checkIfNull()">
-                    <div class="card-header">
-
-                        Total Damages and Total Losses
-
-                    </div>
-                    <div class="card-block">
-                        <div class="chart-wrapper">
-                            <canvas id="bar" class="chart chart-bar"
-                                    chart-data="tableDamageLosses" chart-labels="provincenames"
-                                    chart-series="damageLossesSeries">
-                            </canvas>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <button class="btn btn-md btn-primary" ng-click="printDiv();"><i
+                                        class="fa fa-print"></i> Print
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card" ng-if="!checkIfNull()">
-                    <div class="card-header">
-                        Total Public & Private Damages
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="card" ng-if="!checkIfNull()">
+                        <div class="card-header">
+                           Total Damages and Total Losses
+                        </div>
+                        <div class="card-block" style="height:250px;">
+                            <div id="barchart" style="border: 0px solid #ccc;padding:15px;"></div>
+                        </div>
                     </div>
-                    <div class="card-block">
-                        <canvas id="pie1" class="chart chart-pie"
-                                chart-data="totalDamagePrivatePublic" chart-labels="totalDamagePrivatePublicSeries"
-                                chart-options="options">
-                        </canvas>
+                </div>
+                 <div class="col-xs-6">
+                    <div class="card" ng-if="!checkIfNull()">
+                        <div class="card-header">
+                           Number of Private Public damages
+                        </div>
+                        <div class="card-block" style="height:250px;">
+                            <div id="piechart" style="border: 0px solid #ccc;padding:15px;"></div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-xs-6">
+                    <div class="card" ng-if="!checkIfNull()">
+                        <div class="card-header">
+                           Number of Private Public Losses
+                        </div>
+                        <div class="card-block" style="height:250px;">
+                            <div id="piechartTwo" style="border: 0px solid #ccc;padding:15px;"></div>
+                        </div>
                     </div>
                 </div>
 
-
-            </div>
-            <div class="col-md-6">
-                <div class="card" ng-if="!checkIfNull()">
-                    <div class="card-header">
-                        Total Public & Private Losses
-                    </div>
-                    <div class="card-block">
-                        <canvas id="pie" class="chart chart-pie"
-                                chart-data="totalLossesPrivatePublic" chart-labels="totalLossesPrivatePublicSeries"
-                                chart-options="options">
-                        </canvas>
-                    </div>
                 </div>
 
-
-            </div>
 
 
         </div>
-
-  <div class="modal fade no-print" id="modal-container-print" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Print report
-                        </h4>
-                    </div>
-                    <div class="modal-body alert-info">
-                        <h4>Enter a memo: </h4>
-                        <textarea ng-model="print_memo" style="width:100%"></textarea>
-                        <!--<h4><span class="icon-close"> </span> No Related data found! </h4>-->
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button id="ok" ng-print print-element-id="print_report" type="button" data-dismiss="modal"
-                                class="btn btn-primary">
-                            OK
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
-    </div>
-
-
 </main>
+
 {% endblock content %}

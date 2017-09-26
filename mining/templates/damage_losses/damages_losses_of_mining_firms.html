@@ -132,7 +132,7 @@ $(document).ready(function() {
                                 </td>
                             </tr>
                             <tr ng-repeat="dloDmgStructures in dmLosOfMinFirms.mining.Table_3.DloDmgStructures" ng-if="dloDmgStructures.assets=='Total' " height="20">
-                                <td ng-bind="dloDmgStructures.assets" height="20" width="264" class="boldash"></td>
+                                <td ng-bind="dloDmgStructures.assets" height="20" width="264" class="tdpa"></td>
                                 <td width="98" class="right" colspan="2" ng-model="dloDmgStructures.rep_tot_dassets" ng-bind="dloDmgStructures.rep_tot_dassets = totalFunc('DloDmgStructures','rep_tot_dassets')"></td>
                                 <td width="98" class="right" colspan="2" ng-model="dloDmgStructures.repair_pdmg_assets" ng-bind="dloDmgStructures.repair_pdmg_assets = totalFunc('DloDmgStructures','repair_pdmg_assets')"></td>
                                 <td class="right" width="98" colspan="2" ng-model="dloDmgStructures.tot_damages " ng-bind="dloDmgStructures.tot_damages =totalFunc('DloDmgStructures','tot_damages')"></td>
@@ -161,7 +161,8 @@ $(document).ready(function() {
                                 </td>
                             </tr>
                             <tr ng-repeat="dloDmgEquipment in dmLosOfMinFirms.mining.Table_3.DloDmgEquipment" ng-if="dloDmgEquipment.assets=='Total'" height="20">
-                                <td ng-bind="dloDmgEquipment.assets" height="20" width="264" class="boldash"> </td>
+                                <td ng-bind="dloDmgEquipment.assets" height="20" width="264" class="tdpa
+                                "> </td>
                                 <td width="98" class="right" colspan="2" ng-model="dloDmgEquipment.rep_tot_dassets" ng-bind="dloDmgEquipment.rep_tot_dassets = totalFunc('DloDmgEquipment','rep_tot_dassets')">
                                     <td width="98" class="right" colspan="2" ng-model="dloDmgEquipment.repair_pdmg_assets" ng-bind="dloDmgEquipment.repair_pdmg_assets = totalFunc('DloDmgEquipment','repair_pdmg_assets')">
                                         <td width="98" class="right" colspan="2" ng-model="dloDmgEquipment.tot_damages" ng-bind="dloDmgEquipment.tot_damages= totalFunc('DloDmgEquipment','tot_damages')">
@@ -191,7 +192,7 @@ $(document).ready(function() {
                             </tr>
                             <tr ng-repeat="dloDmgMachinery in dmLosOfMinFirms.mining.Table_3.DloDmgMachinery" ng-if="dloDmgMachinery.assets=='Total'" height="20">
                                 <!-- Fixed rows -->
-                                <td ng-bind="dloDmgMachinery.assets" height="20" width="264" class="boldash"> </td>
+                                <td ng-bind="dloDmgMachinery.assets" height="20" width="264" class="tdpa"> </td>
                                 <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.rep_tot_dassets" ng-bind=" dloDmgMachinery.rep_tot_dassets =  totalFunc('DloDmgMachinery','rep_tot_dassets')">
                                     <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.repair_pdmg_assets" ng-bind="dloDmgMachinery.repair_pdmg_assets = totalFunc('DloDmgMachinery','repair_pdmg_assets')">
                                         <td width="98" class="right" colspan="2" ng-model="dloDmgMachinery.tot_damage" ng-bind="dloDmgMachinery.tot_damages = totalFunc('DloDmgMachinery','tot_damage')">
@@ -220,7 +221,7 @@ $(document).ready(function() {
                                 </td>
                             </tr>
                             <tr ng-repeat="dloDmgVehicles in dmLosOfMinFirms.mining.Table_3.DloDmgVehicles" ng-if="dloDmgVehicles.assets=='Total'" height="20">
-                                <td ng-bind="dloDmgVehicles.assets" height="20" width="264" class="boldash"> </td>
+                                <td ng-bind="dloDmgVehicles.assets" height="20" width="264" class="tdpa"> </td>
                                 <td width="98" class="right" colspan="2" ng-model="dloDmgVehicles.rep_tot_dassets " ng-bind="dloDmgVehicles.rep_tot_dassets = totalFunc('DloDmgVehicles','rep_tot_dassets')">
                                     <td width="98" class="right" colspan="2" ng-model="dloDmgVehicles.repair_pdmg_assets" ng-bind="dloDmgVehicles.repair_pdmg_assets = totalFunc('DloDmgVehicles','repair_pdmg_assets')">
                                         <td width="98" class="right" colspan="2" ng-model="dloDmgVehicles.tot_damages" ng-bind="dloDmgVehicles.tot_damages = totalFunc('DloDmgVehicles','tot_damages')">
@@ -241,14 +242,14 @@ $(document).ready(function() {
                                     <input ng-model="dloDmgStocks.tot_damages" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloDmgStocks.tot_damages=dloDmgStocks.rep_tot_dassets + dloDmgStocks.repair_pdmg_assets"> </td>
                             </tr>
                             <tr ng-repeat="dloDmgStocks in dmLosOfMinFirms.mining.Table_3.DloDmgStocks" ng-if="dloDmgStocks.assets=='Total'" height="20">
-                                <td ng-bind="dloDmgStocks.assets" height="20" width="264" class="boldash"> </td>
+                                <td ng-bind="dloDmgStocks.assets" height="20" width="264" class="tdpa"> </td>
                                 <td width="98" colspan="2" class="right" ng-model="dloDmgStocks.rep_tot_dassets" ng-bind="dloDmgStocks.rep_tot_dassets = totalFunc('DloDmgStocks','rep_tot_dassets')">
                                     <td width="98" colspan="2" class="right" class="tdpa">
                                         <td width="98" colspan="2" class="right" ng-model="dloDmgStocks.tot_damages" ng-bind="dloDmgStocks.tot_damages = totalFunc('DloDmgStocks','tot_damages')">
                             </tr>
                             <tr height="20">
                                 <!-- Fixed rows -->
-                                <td height="20" width="264" class="boldash">GRAND TOTAL </td>
+                                <td height="20" width="264" class="tdpa">GRAND TOTAL </td>
                                 <td class="right" width="98" colspan="2" ng-bind="totalFunc('DloDmgStructures','rep_tot_dassets')  +
                                 totalFunc('DloDmgEquipment','rep_tot_dassets') +
                                 totalFunc('DloDmgMachinery','rep_tot_dassets') +
@@ -312,7 +313,7 @@ $(document).ready(function() {
                                 <input ng-model="dloLosPlos.tot_losses" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloLosPlos.tot_losses=dloLosPlos.los_year1 + dloLosPlos.los_year2"> </td>
                         </tr>
                         <tr ng-repeat="dloLosPlos in dmLosOfMinFirms.mining.Table_3.DloLosPlos" ng-if="dloLosPlos.type_los=='Total'" height="20">
-                            <td ng-bind="dloLosPlos.type_los" height="20" width="264" class="boldash"> </td>
+                            <td ng-bind="dloLosPlos.type_los" height="20" width="264" class="tdpa"> </td>
                             <td width="98" colspan="2" class="boldash right">
                                 <td width="98" colspan="1" class="boldash right">
                                     <td width="98" colspan="1" class="boldash right">
@@ -342,7 +343,7 @@ $(document).ready(function() {
                                 <input ng-model="dloLosOlos.tot_losses" id="textinput" name="textinput" onfocus="this.blur()" placeholder="" class="form-control input-md nborder right" ng-bind="dloLosOlos.tot_losses = dloLosOlos.los_year1 + dloLosOlos.los_year2"> </td>
                         </tr>
                         <tr ng-repeat="dloLosOlos in dmLosOfMinFirms.mining.Table_3.DloLosOlos" ng-if="dloLosOlos.type_los=='Total'" height="20">
-                            <td ng-bind="dloLosOlos.type_los" height="20" width="264" class="boldash"> </td>
+                            <td ng-bind="dloLosOlos.type_los" height="20" width="264" class="tdpa"> </td>
                             <td width="98" colspan="2" class="boldash right"></td>
                             <td width="98" colspan="1" class="boldash right"></td>
                             <td width="98" colspan="1" class="boldash right"></td>
@@ -352,10 +353,10 @@ $(document).ready(function() {
                         </tr>
                         <tr height="20">
                             <!-- Fixed rows -->
-                            <td height="20" width="264" class="boldash">GRAND TOTAL </td>
-                            <td width="98" colspan="2" class="boldash"></td>
-                            <td width="98" colspan="1" class="boldash"></td>
-                            <td width="98" colspan="1" class="boldash"></td>
+                            <td height="20" width="264" class="tdpa">GRAND TOTAL </td>
+                            <td width="98" colspan="2" class="tdpa"></td>
+                            <td width="98" colspan="1" class="tdpa"></td>
+                            <td width="98" colspan="1" class="tdpa"></td>
                             <td class="right" width="98" colspan="1" ng-bind="totalFunc('DloLosOlos','los_year1') +
                             totalFunc('DloLosPlos','los_year1')"></td>
                             <td class="right" width="98" colspan="1" ng-bind="totalFunc('DloLosOlos','los_year2') +

@@ -688,7 +688,7 @@ app.controller('dlFisheriesDistrictController', function($scope, $http, $parse, 
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                f(response.data == 'False') {
+                if(response.data == 'False') {
                         $scope.is_valid_data = false;
                         $("#modal-container-239454").modal('show');
                     }

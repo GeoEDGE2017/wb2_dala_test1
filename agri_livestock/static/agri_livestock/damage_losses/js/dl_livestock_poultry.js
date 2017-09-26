@@ -17,6 +17,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
     $scope.is_edit_disable = false;
     $scope.check_search = false;
     $scope.is_search = false;
+    $scope.bsCreatedeDate;
 
     //initialize Data
     var init_data = {
@@ -442,23 +443,52 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-                generateRefencedData();
-
-                angular.forEach(data, function(value, key) {
-                    $scope.bs_data[key] = JSON.parse(value);
-                });
-                var is_null = false;
-
-                angular.forEach($scope.bs_data, function(value, index) {
-                    if(value==null) {
-                        is_null = true;
-                    }
-                })
-
-                if(is_null == true) {
-//                    $("#modal-container-239455").modal('show');
-
-                }
+					console.log('response', response);
+					angular.forEach(data, function(value, key) {
+						$scope.bs_data[key] = JSON.parse(value);
+					});
+					console.log($scope.bs_data);
+					var is_null = false;
+					angular.forEach($scope.bs_data, function(value, index) {
+						if(value == null) {
+							is_null = true;
+						}
+					})
+					if(is_null == true) {
+						$("#modal-container-239458").modal('show');
+						console.log('baseline table or tables are empty');
+						console.log($scope.bs_data);
+						$scope.currentBaselineDate = null;
+					} else {
+						generateRefencedData();
+						$http({
+							method: 'POST',
+							url: '/get_latest_bs_date',
+							contentType: 'application/json; charset=utf-8',
+							data: angular.toJson({
+                                    'db_tables': ['BlpAnmLivestock', 'BlpAnmPoultry', 'BlpAstLivestock', 'BlpAstPoultry', 'BlpAstOther', 'BlpApyLivestock', 'BlpApyPoultry','BlpAstStructures'],								'com_data': {
+									'district': $scope.district.district__id,
+									'incident': $scope.incident,
+								},
+								'table_name': 'Table_2',
+								'sector': 'agri_livestock',
+							}),
+							dataType: 'json',
+						}).then(function successCallback(response) {
+						    console.log('response', response);
+							var result = response.data;
+							if(result.bs_date == null) {
+								$("#modal-container-239458").modal('show');
+							}
+							else {
+								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+								$scope.bsCreatedeDate = result.bs_created_date;
+								console.log('bs_date', result.bs_date);
+								console.log('bsCreatedeDate', result.bs_created_date);
+							}
+						});
+					}
 
             }, function errorCallback(response) {
 
@@ -752,12 +782,14 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
                         'organizationtype_id':$scope.selectedOrganization.id,
                         'user_id':$scope.user_id
                     },
+                    'bs_date': $scope.bsCreatedeDate,
                     'is_edit' : $scope.is_edit,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
                     if(response.data == 'False') {
                         $scope.is_valid_data = false;
+                        $("#modal-container-239454").modal('show');
                     }
                     else {
                         $("#modal-container-239453").modal('show');
@@ -791,7 +823,6 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
        $scope.submitted = true;
         document.getElementById("clearbtn").disabled = true;
         if(form.$valid){
-
             $http({
             method: "POST",
             url: '/dl_fetch_edit_data',

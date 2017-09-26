@@ -26,6 +26,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 	$scope.is_edit_disable = false;
 	$scope.is_submit = false;
 	$scope.check_search = false;
+	$scope.bsCreatedeDate;
 
 	var init_data = {
 		'other_govn_services': {
@@ -200,12 +201,17 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 							}),
 							dataType: 'json',
 						}).then(function successCallback(response) {
+							console.log('response', response);
 							var result = response.data;
-							if(result == null) {
+							if(result.bs_date == null) {
 								$("#modal-container-239458").modal('show');
-							} else {
-								result = result.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + result;
+							}
+							else {
+								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+								$scope.bsCreatedeDate = result.bs_created_date;
+								console.log('bs_date', result.bs_date);
+								console.log('bsCreatedeDate', result.bs_created_date);
 							}
 						});
 					}
@@ -297,17 +303,18 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 						'department_id': $scope.new_department.id,
 						'user_id': $scope.user_id,
 					},
+					'bs_date': $scope.bsCreatedeDate,
 					'is_edit': $scope.is_edit
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
-				console.log(response.data);
 				if(response.data == 'False') {
-					$("#modal-container-239454").modal('show');
-					$scope.is_valid_data = false;
-				} else {
-					$("#modal-container-239453").modal('show');
-				}
+                        $scope.is_valid_data = false;
+                        $("#modal-container-239454").modal('show');
+                    }
+                    else {
+                        $("#modal-container-239453").modal('show');
+                    }
 			}, function errorCallback(response) {
 				$("#modal-container-239454").modal('show');
 				console.log(response);

@@ -24,6 +24,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 	$scope.is_submit = false;
 	$scope.is_search = false;
 	$scope.check_search = false;
+	$scope.bsCreatedeDate;
 
 	//initialize model
 	var init_data = {
@@ -106,6 +107,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 							'incident_id': $scope.incident,
 							//                        'private_clinic': $scope.clinic,
 						},
+						'bs_date': $scope.bsCreatedeDate,
 						'is_edit': $scope.is_edit,
 						'user_id': $scope.user_id
 					}),
@@ -386,12 +388,17 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 							}),
 							dataType: 'json',
 						}).then(function successCallback(response) {
+							console.log('response', response);
 							var result = response.data;
-							if(result == null) {
+							if(result.bs_date == null) {
 								$("#modal-container-239458").modal('show');
-							} else {
-								result = result.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + result;
+							}
+							else {
+								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+								$scope.bsCreatedeDate = result.bs_created_date;
+								console.log('bs_date', result.bs_date);
+								console.log('bsCreatedeDate', result.bs_created_date);
 							}
 						});
 					}

@@ -18,6 +18,7 @@ app.controller('dlindustryServicesInfoSecController', ['$scope', '$http', functi
     $scope.is_edit_disable = false;
     $scope.check_search = false;
     $scope.is_search=false;
+    $scope.bsCreatedeDate;
 
     var init_data = {
         'industry_services': {

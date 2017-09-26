@@ -1,136 +1,238 @@
-var app = angular.module('educationChartApp', ['chart.js','underscore']);
-app.controller('EducationChartController',function($scope,$http,$parse, _) {
-
-    $scope.district;
-    $scope.incident;
-    $scope.bs_data={};
-    $scope.province = "";
-    $scope.is_edit = false;
-    $scope.submitted = false;
-    $scope.is_valid_data = true;
-    $scope.total_num_affected = 0;
-    $scope.totalNumDes = null;
-    $scope.grndtotalNumPart = 0;
-    $scope.grndtotalNumDes = 0;
-    $scope.grndtotalDamages = 0;
-    $scope.grndtotalLosses = 0;
-    $scope.grandTotal = 0;
-    $scope.total_num_affected = 0;
-    $scope.tableDamageLosses = [[],[]];
-
-
-    $scope.fetchDlData = function(){
-
-        $scope.is_edit = true;
-        $scope.submitted = true;
-
-            $http({
-            method: "POST",
-            url: '/dl_fetch_district_disagtn',
-            data: angular.toJson({
-            'table_name':'Table_6',
-            'sector': 'housing',
-            'com_data': {
-                    'incident': $scope.incident,
-                  },
-                   }),
-            }).success(function(data) {
-
-            console.log('load ', data);
-            $scope.data= data;
-            $scope.dlHousingSumNat = data;
-
-            $scope.provincenames=["Western"];
-
-        angular.forEach($scope.provincenames, function(value, key) {
-
-            var totalNumDes = 0;
-            totalNumDes =     $scope.convertToInt(
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesSemiPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumDesImpNational[0].tot_num_houses : 0):0));
-
-            var totalNumPart = 0;
-            totalNumPart =      $scope.convertToInt(
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesSemiPerNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesSemiPerNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesSemiPerNational[0].tot_num_houses : 0):0) ,
-
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesImpNational[0] ?
-                              ($scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesImpNational[0].tot_num_houses ?
-                              $scope.dlHousingSumNat.housing.Table_6[value].DlNumPdesImpNational[0].tot_num_houses : 0):0));
-
-            var totalDamages = 0;
-           totalDamages =     $scope.convertToInt(
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgPerNational[0].tot_damages ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlDmgPerNational[0].tot_damages : 0):0) ,
-
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgSemiPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgSemiPerNational[0].tot_damages ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlDmgSemiPerNational[0].tot_damages : 0):0) ,
-
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgImpNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlDmgImpNational[0].tot_damages ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlDmgImpNational[0].tot_damages : 0):0));
-
-
-            var totalLosses = 0;
-            totalLosses = $scope.convertToInt(
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosPerNational[0].tot_losses ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlLosPerNational[0].tot_losses : 0):0) ,
-
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosSemiPerNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosSemiPerNational[0].tot_losses ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlLosSemiPerNational[0].tot_losses : 0):0) ,
-
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosImpNational[0] ?
-                          ($scope.dlHousingSumNat.housing.Table_6[value].DlLosImpNational[0].tot_losses ?
-                          $scope.dlHousingSumNat.housing.Table_6[value].DlLosImpNational[0].tot_losses : 0):0));
-
-
-            $scope.tableDamageLosses[0][key]=totalDamages;
-            $scope.tableDamageLosses[1][key]=totalLosses;
-            $scope.totalDamagePartialDamage = [totalNumDes, totalNumPart];
-
-            })
-
-             $scope.damageLossesSeries = ['Total Damages', 'Total Losses'];
-             $scope.totalDamagePartialDamageSeries = ['Number of Totally Destroyed', 'Number of Partially Damaged'];
-
-
-            })
-
-
-    }
-
-    $scope.checkIfNull = function(){
-        var isNull = $scope.dlHousingSumNat ? angular.equals({}, $scope.dlHousingSumNat.housing.Table_6) : true;
-        return isNull;
-
-   }
-
-    $scope.convertToInt = function(val1,val2,val3){
-
-        var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
-        return sum;
-    }
-
-    $scope.printDiv = function() {
-        window.print();
-    }
-
- });
+//var app = angular.module('educationChartApp', ['underscore']);
+//app.controller('EducationChartController', function($scope, $http, $parse, _) {
+//
+//    var tot_damages = 0;
+//    var tot_damages_private = 0;
+//	google.charts.load('current', {
+//		'packages': ['corechart', 'bar']
+//	});
+//	$scope.fetchDlData = function() {
+//		$scope.is_edit = true;
+//		$scope.submitted = true;
+//		$http({
+//			method: "POST",
+//			url: '/dl_fetch_district_disagtn',
+//			data: angular.toJson({
+//				'table_name': 'Table_7',
+//				'sector': 'education',
+//				'com_data': {
+//					'incident': $scope.incident,
+//				},
+//			}),
+//		}).success(function(data) {
+//			console.log('load ', data);
+//			$scope.data = data;
+//			$scope.dlNational = data;
+//			$scope.provincenames = [];
+//			angular.forEach(data.education.Table_7, function(value, key) {
+//				$scope.provincenames.push(key);
+//			})
+//			angular.forEach($scope.provincenames.sort(), function(value, key) {
+//				google.charts.setOnLoadCallback(drawPieChart);
+//				google.charts.setOnLoadCallback(drawPieChartTwo);
+//				google.charts.setOnLoadCallback(drawBarChart);
+//
+//				$scope.sumFunc2 = function(val1, val2) {
+//        if(val1 == null) {
+//            val1=0;
+//        }
+//        if(val2 == null) {
+//            val2=0;
+//        }
+//
+//        return parseInt(val1) + parseInt(val2);
+//    }
+//
+//                $scope.sumFunc8 = function(val1, val2, val3, val4, val5, val6, val7, val8) {
+//                    if(val1 == null) {
+//                        val1=0;
+//                    }
+//                    if(val2 == null) {
+//                        val2=0;
+//                    }
+//                    if(val3 == null) {
+//                        val3=0;
+//                    }
+//                    if(val4 == null) {
+//                        val4=0;
+//                    }
+//                    if(val5 == null) {
+//                        val5=0;
+//                    }
+//                    if(val6 == null) {
+//                        val6=0;
+//                    }
+//                    if(val7 == null) {
+//                        val7=0;
+//                    }
+//                    if(val8 == null) {
+//                        val8=0;
+//                    }
+//
+//                    return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) + parseInt(val6) + parseInt(val7) + parseInt(val8);
+//                }
+//
+//                $scope.sumFunc5 = function(val1, val2, val3, val4, val5) {
+//                    if(val1 == null) {
+//                        val1=0;
+//                    }
+//                    if(val2 == null) {
+//                        val2=0;
+//                    }
+//                    if(val3 == null) {
+//                        val3=0;
+//                    }
+//                    if(val4 == null) {
+//                        val4=0;
+//                    }
+//                    if(val5 == null) {
+//                        val5=0;
+//                    }
+//
+//                    return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5);
+//                }
+//
+//                $scope.sumFunc6 = function(val1, val2, val3, val4, val5, val6) {
+//        if(val1 == null) {
+//            val1=0;
+//        }
+//        if(val2 == null) {
+//            val2=0;
+//        }
+//        if(val3 == null) {
+//            val3=0;
+//        }
+//        if(val4 == null) {
+//            val4=0;
+//        }
+//        if(val5 == null) {
+//            val5=0;
+//        }
+//        if(val6 == null) {
+//            val6=0;
+//        }
+//
+//        return parseInt(val1) + parseInt(val2) + parseInt(val3) + parseInt(val4) + parseInt(val5) + parseInt(val6);
+//    }
+//
+//
+//            angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
+//                angular.forEach(value, function(value_in, key) {
+//                    if(value_in.length > 0) {
+//                        if(key == 'DugNdafNational') {
+//
+//                            tot_damages =tot_damages +
+//                                $scope.sumFunc8(value_in[0].ab1_1c, value_in[0].type_2, value_in[0].type_3, value_in[0].pirivena,
+//                                value_in[0].training_institutes, value_in[0].training_colleges, value_in[0].tc_crc_resc, value_in[0].min_pzd_offices);
+//
+//                        }
+//                    }
+//                    console.log('try',tot_damages);
+//                })
+//            })
+//
+//
+//
+//
+//
+//            angular.forEach($scope.dlNational.education.Table_7, function(value, index) {
+//                angular.forEach(value, function(value_in, key) {
+//                tot_damages_private =0;
+//                    if(value_in.length > 0) {
+//
+//                        if(key == 'DpefBefPreNational') {
+//                            tot_damages_private = tot_damages_private + $scope.sumFunc2(value_in[0].tot_damages, 0);
+//                        }
+//                        else if(key == 'DpefBefPrimaryNational') {
+//                            tot_damages_private = tot_damages_private + $scope.sumFunc2(value_in[0].tot_damages, 0);
+//                        }
+//                        else if(key == 'DpefBefSecondaryNational') {
+//                            tot_damages_private = tot_damages_private + $scope.sumFunc2(value_in[0].tot_damages, 0);
+//                        }
+//                        else if(key == 'DpefBefUnvNational') {
+//                            tot_damages_private = tot_damages_private + $scope.sumFunc2(value_in[0].tot_damages, 0);
+//                        }
+//                        else if(key == 'DpefBefTechNational') {
+//                            tot_damages_private = tot_damages_private + $scope.sumFunc2(value_in[0].tot_damages, 0);
+//                        }
+//                        else if(key == 'DpefBefOtherNational') {
+//                            tot_damages_private = tot_damages_private + $scope.sumFunc2(value_in[0].tot_damages, 0);
+//                        }
+//
+//
+//                    }
+//                })
+//            })
+//
+//
+//
+//				function drawPieChart() {
+//					var data = new google.visualization.DataTable();
+//					data.addColumn('string', 'Name');
+//					data.addColumn('number', 'Data');
+//					data.addRows([
+//						['public', tot_damages],
+//						['private', tot_damages_private],
+//					]);
+//					var options = {
+//						width: 400,
+//						height: 200
+//					};
+//					var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+//					chart.draw(data, options);
+//				}
+//
+//
+//				function drawPieChartTwo() {
+//					var data = new google.visualization.DataTable();
+//					data.addColumn('string', 'Name');
+//					data.addColumn('number', 'Data');
+//					data.addRows([
+//						['public', 0],
+//						['private', 0],
+//					]);
+//					var options = {
+//						width: 400,
+//						height: 200
+//					};
+//					var chart = new google.visualization.PieChart(document.getElementById('piechartTwo'));
+//					chart.draw(data, options);
+//				}
+//
+//				function drawBarChart() {
+//					var data = [];
+//					var chartsdata = [];
+//					var Header = ['Province', 'Damages', 'Losses', {
+//						role: 'style'
+//					}];
+//					data.push(Header);
+//					angular.forEach($scope.provincenames, function(value, key) {
+//						var temp = [];
+//						temp.push(value, 0, 0, null);
+//						data.push(temp);
+//					})
+//					var chartdata = new google.visualization.arrayToDataTable(data);
+//					var options = {
+//						chart: {
+//							width: 400,
+//							height: 300
+//						}
+//					};
+//					var chart = new google.charts.Bar(document.getElementById('barchart'));
+//					chart.draw(chartdata, options);
+//				}
+//			})
+//		})
+//	}
+//	$scope.checkIfNull = function() {
+//		var isNull = $scope.dlNational ? angular.equals({}, $scope.dlNational.education.Table_7) : true;
+//		return isNull;
+//	}
+//	$scope.convertToInt = function(val1, val2, val3) {
+//		var sum = parseInt(val1) + parseInt(val2) + parseInt(val3);
+//		return sum;
+//	}
+//	$scope.printDiv = function() {
+//		window.print();
+//	}
+//});

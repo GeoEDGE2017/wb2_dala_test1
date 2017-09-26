@@ -14,6 +14,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.user_id;
     $scope.check_search = false;
     $scope.is_search = false;
+    $scope.bsCreatedeDate;
 
     var init_data = {
         'telecommunication': {

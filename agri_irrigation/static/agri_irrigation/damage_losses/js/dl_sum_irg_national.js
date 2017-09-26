@@ -166,7 +166,7 @@ app.controller("dlAgriIrrifationNatController", function ($scope,$http,$parse, _
                           totLos4 = totLos4 + value_in[0].total_los;
                     }
                     if(key == 'DlLosOtherNational') {
-                          totLos5 = totLos5 + value_in[0].total_los;
+                          totLos5 = totLos5 + value_in[3].total_los;
                     }
                     if(key == 'DlLosOtherNational') {
                           totLos6 = totLos6 + value_in[2].total_los;

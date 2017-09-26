@@ -45,7 +45,7 @@ app.controller('AgriIrrigationChartController', function($scope, $http, $parse, 
             angular.forEach($scope.provincenames.sort(), function(value, key) {
                 google.charts.setOnLoadCallback(drawPieChart);
                 google.charts.setOnLoadCallback(drawPieChartTwo);
-                google.charts.setOnLoadCallback(drawBarChart);
+//                google.charts.setOnLoadCallback(drawBarChart);
 
                 console.log('printing2', data.agri_irrigation.Table_6[value].DlMajorTanksNational[0].damages);
 
@@ -71,7 +71,7 @@ app.controller('AgriIrrigationChartController', function($scope, $http, $parse, 
                 totDmg7 = totDmg7 + data.agri_irrigation.Table_6[value].DlBuildingsNational[0].damages;
 
                 totDmg = totDmg1 + totDmg2 + totDmg3 + totDmg4 + totDmg5 + totDmg6 + totDmg7;
-
+                console.log('printing',totDmg);
 
 
                 totLos8 = totLos8 + data.agri_irrigation.Table_6[value].DlLosMajorTanksNational[0].total_los;
@@ -86,10 +86,10 @@ app.controller('AgriIrrigationChartController', function($scope, $http, $parse, 
                 totLos11 = totLos11 + data.agri_irrigation.Table_6[value].DlLosAnicutsNational[0].total_los;
 
 
-                totLos12 = totLos12 + data.agri_irrigation.Table_6[value].DlLosOtherNational[0].total_los;
+                totLos12 = totLos12 + data.agri_irrigation.Table_6[value].DlLosOtherNational[3].total_los;
 
 
-                totLos13 = totLos13 + data.agri_irrigation.Table_6[value].DlLosOtherNational[2].total_los;
+                totLos13 = totLos13 + data.agri_irrigation.Table_6[value].DlLosOtherNational[0].total_los;
 
 
                 totLos14 = totLos14 + data.agri_irrigation.Table_6[value].DlLosOtherNational[1].total_los;
@@ -139,28 +139,28 @@ app.controller('AgriIrrigationChartController', function($scope, $http, $parse, 
                     chart.draw(data, options);
                 }
 
-                function drawBarChart() {
-                    var data = [];
-                    var chartsdata = [];
-                    var Header = ['Province', 'Damages', 'Losses', {
-                        role: 'style'
-                    }];
-                    data.push(Header);
-                    angular.forEach($scope.provincenames, function(value, key) {
-                        var temp = [];
-                        temp.push(value, totDmg, totLos, null);
-                        data.push(temp);
-                    })
-                    var chartdata = new google.visualization.arrayToDataTable(data);
-                    var options = {
-                        chart: {
-                            width: 400,
-                            height: 300
-                        }
-                    };
-                    var chart = new google.charts.Bar(document.getElementById('barchart'));
-                    chart.draw(chartdata, options);
-                }
+//                function drawBarChart() {
+//                    var data = [];
+//                    var chartsdata = [];
+//                    var Header = ['Province', 'Damages', 'Losses', {
+//                        role: 'style'
+//                    }];
+//                    data.push(Header);
+//                    angular.forEach($scope.provincenames, function(value, key) {
+//                        var temp = [];
+//                        temp.push(value, totDmg, totLos, null);
+//                        data.push(temp);
+//                    })
+//                    var chartdata = new google.visualization.arrayToDataTable(data);
+//                    var options = {
+//                        chart: {
+//                            width: 400,
+//                            height: 300
+//                        }
+//                    };
+//                    var chart = new google.charts.Bar(document.getElementById('barchart'));
+//                    chart.draw(chartdata, options);
+//                }
 
             })
         })

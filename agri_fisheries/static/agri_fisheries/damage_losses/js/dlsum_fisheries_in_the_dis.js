@@ -12,6 +12,7 @@ app.controller('dlSumFisheriesInTheDisController', ['$scope', '$http', function(
     $scope.isLoded = false;
     $scope.user_id;
 
+
     $scope.changedValue = function getDlData() {
         if ($scope.incident) {
             $http({

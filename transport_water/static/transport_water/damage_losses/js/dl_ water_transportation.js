@@ -1,5 +1,6 @@
 //Table 2
 var app = angular.module('dlWaterTransApp', ['underscore']);
+
 app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 	$scope.district;
 	$scope.incident;

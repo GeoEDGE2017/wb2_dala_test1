@@ -7,6 +7,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
 	$scope.dlDate;
 	$scope.bs_data = {};
 	$scope.baselineDate;
+	$scope.bsCreatedeDate;
 	$scope.is_edit = false;
 	$scope.is_edit_disable = false;
 	$scope.is_valid_data = true;
@@ -341,14 +342,13 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
 					dataType: 'json',
 				}).then(function successCallback(response) {
 					var data = response.data;
-					console.log(response);
+					console.log('response', response);
 					angular.forEach(data, function(value, key) {
 						$scope.bs_data[key] = JSON.parse(value);
 					});
 					console.log($scope.bs_data);
 					var is_null = false;
 					angular.forEach($scope.bs_data, function(value, index) {
-						console.log('value ', value);
 						if(value == null) {
 							is_null = true;
 						}
@@ -375,12 +375,17 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
 							}),
 							dataType: 'json',
 						}).then(function successCallback(response) {
+						    console.log('response', response);
 							var result = response.data;
-							if(result == null) {
+							if(result.bs_date == null) {
 								$("#modal-container-239458").modal('show');
-							} else {
-								result = result.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + result;
+							}
+							else {
+								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+								$scope.bsCreatedeDate = result.bs_created_date;
+								console.log('bs_date', result.bs_date);
+								console.log('bsCreatedeDate', result.bs_created_date);
 							}
 						});
 					}
@@ -530,16 +535,19 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
 							'incident_id': $scope.incident,
 							'user_id': $scope.user_id,
 						},
+						'bs_date': $scope.bsCreatedeDate,
 						'is_edit': $scope.is_edit,
 						'sector': 'transport_air'
 					}),
 					dataType: 'json',
 				}).then(function successCallback(response) {
-					if(response.data == 'False') {
-						$scope.is_valid_data = false;
-					} else {
-						$("#modal-container-239453").modal('show');
-					}
+                    if(response.data == 'False') {
+                        $scope.is_valid_data = false;
+                        $("#modal-container-239454").modal('show');
+                    }
+                    else {
+                        $("#modal-container-239453").modal('show');
+                    }
 				}, function errorCallback(response) {});
 			}
 		}
@@ -571,8 +579,6 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({

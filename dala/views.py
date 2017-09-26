@@ -1020,6 +1020,7 @@ def dl_save_data(request):
     filter_fields = {}
     current_user = None
     print 'com_data', com_data
+    print 'dl_data', dl_data
     print 'bs_date', dl_data['bs_date']
     try:
         current_user = com_data['user_id']

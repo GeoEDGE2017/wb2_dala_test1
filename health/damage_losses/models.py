@@ -15,6 +15,7 @@ class DlSessionKeys(models.Model):
     province = models.ForeignKey(Province, db_column='province', related_name='hea_dl_province', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', related_name='hea_dl_district', blank=True, null=True)
     private_clinic = models.ForeignKey(PrivateClinic, db_column='private_clinic', related_name='hea_dl_private_clinic', blank=True, null=True)
+    bs_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

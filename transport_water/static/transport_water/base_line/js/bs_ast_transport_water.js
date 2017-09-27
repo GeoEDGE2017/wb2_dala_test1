@@ -169,14 +169,16 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 				'is_edit': $scope.is_edit
 			}),
 		}).success(function(data) {
-			$scope.bsAstTransWater = init_data;
 			$scope.is_edit = false;
 			if(data == 'False') {
 				$("#modal-container-239454").modal('show');
 				$scope.is_valid_data = false;
-			} else {
+			}
+			else {
+			    $scope.updateEnums();
 				$("#modal-container-239453").modal('show');
 			}
+			$scope.bsInfoAsetTrans = init_data;
 		})
 	}
 	$scope.bsHsDataEdit = function() {
@@ -206,10 +208,13 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 				})
 				if(edit_data_not_found != true) {
 					$scope.bsAstTransWater = data;
-				} else {
+					$scope.getEnumDataFromStart();
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
-			} else {
+			}
+			else {
 				$("#modal-container-239456").modal('show');
 			}
 		})
@@ -269,4 +274,83 @@ bsAstTransWaterApp.controller('BsAstTransWaterController', function BsAstTransWa
 		$scope.bsAstTransWater = angular.copy(init_data);
 		location.reload();
 	}
+
+	$scope.enum_data = {
+        'transport_water': {
+            'Table_1': {
+                'BsAstWaterWcrafts': [],
+//                'BS_Table2': [],
+//                'BS_Table3': [],
+//                'BS_Table4': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bsAstWaterWcrafts_e_index = 0;
+        angular.forEach($scope.bsAstTransWater.transport_water.Table_1.BsAstWaterWcrafts, function(value, index, key) {
+            if(value.assets != 'Ships' && value.assets != 'Ferries') {
+                var enum_val = {
+                    oldasset: value.assets,
+                    newasset: null,
+                    enum_index: bsAstWaterWcrafts_e_index,
+                    bs_asset_field: 'assets',
+                    dl_tables: {
+                        'Table_2': {
+                            'DlWaterDmgWcrafts': {
+                                dl_asset_field: 'assets'
+                            }
+                        }
+                    }
+                };
+                bsAstWaterWcrafts_e_index = bsAstWaterWcrafts_e_index + 1;
+                $scope.enum_data.transport_water.Table_1.BsAstWaterWcrafts.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log('---------getEnumDataFromEnd');
+        console.log($scope.bsAstTransWater.transport_water.Table_1);
+        var bsAstWaterWcrafts_e_index = 0;
+        angular.forEach($scope.bsAstTransWater.transport_water.Table_1.BsAstWaterWcrafts, function(value, key) {
+            console.log('BsAstWaterWcrafts ', value);
+            if(value.assets != 'Ships' && value.assets != 'Ferries') {
+                console.log('value.assets ', value.assets);
+                angular.forEach($scope.enum_data.transport_water.Table_1.BsAstWaterWcrafts, function(each_enum, index, key_in) {
+                    console.log('each_enum ', $scope.enum_data.transport_water.Table_1.BsAstWaterWcrafts);
+                    if(each_enum.enum_index == bsAstWaterWcrafts_e_index) {
+                        $scope.enum_data.transport_water.Table_1.BsAstWaterWcrafts[index].newasset = value.assets;
+                    }
+                })
+                bsAstWaterWcrafts_e_index = bsAstWaterWcrafts_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'transport_water'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+        }, function errorCallback(response) {
+
+        });
+    }
 })

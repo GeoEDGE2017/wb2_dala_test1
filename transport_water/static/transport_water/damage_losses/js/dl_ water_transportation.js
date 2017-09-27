@@ -328,13 +328,6 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 						}),
 						dataType: 'json',
 					}).then(function successCallback(response) {
-//						var result = response.data;
-//						if(result == null) {
-//							$("#modal-container-239458").modal('show');
-//						} else {
-//							result = result.replace(/^"(.*)"$/, '$1');
-//							$scope.currentBaselineDate = "Latest baseline data as at " + result;
-//						}
 						var result = response.data;
                         if(result.bs_date == null) {
                             $("#modal-container-239458").modal('show');
@@ -547,45 +540,45 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 	}
 
 	$scope.getTotal = function(model, property) {
-			var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
-			console.log(array);
-			var cumulative = null;
-			var sums = _.map(array, function(obj) {
-				if(obj.type_los != 'Total') {
-					cumulative += obj[property];
-					console.log(obj);
-					return cumulative;
-				}
-			});
-			var the_string = model + '_' + property;
-			var model = $parse(the_string);
-			model.assign($scope, cumulative);
-		}
+        var array = $scope.dlWaterTransportation.transport_water.Table_2[model];
+        console.log(array);
+        var cumulative = null;
+        var sums = _.map(array, function(obj) {
+            if(obj.type_los != 'Total') {
+                cumulative += obj[property];
+                console.log(obj);
+                return cumulative;
+            }
+        });
+        var the_string = model + '_' + property;
+        var model = $parse(the_string);
+        model.assign($scope, cumulative);
+    }
 
     //Edit Data
 	$scope.dlDataEdit = function(form) {
-			$scope.is_edit = true;
-			$scope.submitted = true;
-			document.getElementById("clearbtn").disabled = true;
-			if(form.$valid) {
-				$http({
-					method: "POST",
-					url: '/dl_fetch_edit_data',
-					data: angular.toJson({
-						'table_name': 'Table_2',
-						'sector': 'transport_water',
-						'com_data': {
-							'district': $scope.district.district__id,
-							'incident': $scope.incident,
-						},
-						'is_edit': $scope.is_edit
-					}),
-				}).success(function(data) {
-					console.log(data);
-					$scope.dlWaterTransportation = data;
-				})
-			}
-		}
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        document.getElementById("clearbtn").disabled = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/dl_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'transport_water',
+                    'com_data': {
+                        'district': $scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+            }).success(function(data) {
+                console.log(data);
+                $scope.dlWaterTransportation = data;
+            })
+        }
+    }
 
     //search Data
 	$scope.searchDlData = function(form) {

@@ -14,6 +14,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 	$scope.bs_data = {};
 	$scope.firm_id;
 	$scope.selectedFirm;
+	$scope.bsCreatedeDate;
 	$scope.new_firm = {
 		id: null,
 		name: null,
@@ -417,12 +418,17 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 							}),
 							dataType: 'json',
 						}).then(function successCallback(response) {
+							console.log('response', response);
 							var result = response.data;
-							if(result == null) {
+							if(result.bs_date == null) {
 								$("#modal-container-239458").modal('show');
-							} else {
-								result = result.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + result;
+							}
+							else {
+								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+								$scope.bsCreatedeDate = result.bs_created_date;
+								console.log('bs_date', result.bs_date);
+								console.log('bsCreatedeDate', result.bs_created_date);
 							}
 						});
 					}
@@ -505,17 +511,18 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 						'firm_id': $scope.selectedFirm.id,
 						'user_id': $scope.user_id,
 					},
+					'bs_date': $scope.bsCreatedeDate,
 					'is_edit': $scope.is_edit
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
-				console.log('test', $scope.dmLosOfMinFirms);
 				if(response.data == 'False') {
-					$("#modal-container-239454").modal('show');
-					$scope.is_valid_data = false;
-				} else {
-					$("#modal-container-239453").modal('show');
-				}
+                        $scope.is_valid_data = false;
+                        $("#modal-container-239454").modal('show');
+                    }
+                    else {
+                        $("#modal-container-239453").modal('show');
+                    }
 			}, function errorCallback(response) {
 				console.log(response);
 			});

@@ -18,6 +18,7 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
     $scope.user_id;
     $scope.check_search = false;
     $scope.is_search = false;
+    $scope.bsCreatedeDate;
 
 
     //initialize Data
@@ -406,15 +407,18 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                         }),
                         dataType: 'json',
                     }).then(function successCallback(response) {
-                        var result = response.data;
-                        console.log("@@@", result, "$$$");
-                        if(result == null) {
-                            $("#modal-container-239458").modal('show');
-                        }
-                        else {
-                            result = result.replace(/^"(.*)"$/, '$1');
-                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
-                        }
+                        console.log('response', response);
+							var result = response.data;
+							if(result.bs_date == null) {
+								$("#modal-container-239458").modal('show');
+							}
+							else {
+								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+								$scope.bsCreatedeDate = result.bs_created_date;
+								console.log('bs_date', result.bs_date);
+								console.log('bsCreatedeDate', result.bs_created_date);
+							}
                     });
                 }
             }, function errorCallback(response) {
@@ -438,17 +442,18 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
                         'incident_id': $scope.incident,
                         'user_id': $scope.user_id,
                     },
+                    'bs_date': $scope.bsCreatedeDate,
                     'is_edit' : $scope.is_edit,
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'False') {
-                    $("#modal-container-239454").modal('show');
-                    $scope.is_valid_data = false;
-                }
-                else {
-                    $("#modal-container-239453").modal('show');
-                }
+                        $scope.is_valid_data = false;
+                        $("#modal-container-239454").modal('show');
+                    }
+                    else {
+                        $("#modal-container-239453").modal('show');
+                    }
             }, function errorCallback(response) {
 
             });

@@ -607,7 +607,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
             if(!$scope.selectedFirm) {
                 console.log("no firm")
             }
-            alert("District, Incident needed ! ")
+           // alert("District, Incident needed ! ")
         }
     }
 

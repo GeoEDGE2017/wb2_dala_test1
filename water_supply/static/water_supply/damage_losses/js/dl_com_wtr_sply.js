@@ -18,7 +18,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.is_search = false;
     $scope.bsCreatedeDate;
 
-
     //Initialize Data
     var init_data = {
         'water_supply': {
@@ -123,6 +122,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             }
         }
     }
+
     $scope.dlComWtrSply = angular.copy(init_data);
 
     //Get Districts and related baseline Data
@@ -157,15 +157,13 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                     'table_name': 'Table_1',
                     'sector': 'water_supply',
                 }),
-                  dataType: 'json',
+                dataType: 'json',
             }).then(function successCallback(response) {
-                  var data = response.data;
-                console.log('*', response);
+                var data = response.data;
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                console.log('*', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -209,7 +207,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
 							}
                     });
                 }
-
             }, function errorCallback(response) {
                 console.log('baseline tables data retrieving error');
                 console.log(response);
@@ -236,25 +233,19 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             var particular_value_4 = null;
 
             if(model_name == 'BiaWaterIntake') {
-                console.log($scope.dlComWtrSply);
                 dl_model1 = 'DlcwDmgWaterIntake';
-
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model1] = [];
-                console.log($scope.dlComWtrSply);
             }
             if(model_name == 'BiaTreatmentPlant') {
                 dl_model2 = 'DlcwDmgWaterTreatment';
-
                $scope.dlComWtrSply.water_supply.Table_3[dl_model2] = [];
             }
             if(model_name == 'BiaWaterDistribution') {
                 dl_model3 = 'DlcwDmgWaterDisribution';
-
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model3] = [];
             }
             if(model_name == 'BiaMainOffice') {
                 dl_model4 = 'DlcwDmgMainOffice';
-
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model4] = [];
             }
 
@@ -322,19 +313,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                    $scope.dlComWtrSply.water_supply.Table_3[dl_model4].push(obj4);
                 }
             });
-
-//            if(model_name == 'BiaWaterIntake') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model1].push(obj1);
-//           }
-//            if(model_name == 'BiaTreatmentPlant') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model2].push(obj2);
-//            }
-//            if(model_name == 'BiaWaterDistribution') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model3].push(obj3);
-//            }
-//            if(model_name == 'BiaMainOffice') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model4].push(obj4);
-//            }
         });
     }
 
@@ -359,12 +337,12 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });
@@ -441,8 +419,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
         if(form.$valid) {
             $http({

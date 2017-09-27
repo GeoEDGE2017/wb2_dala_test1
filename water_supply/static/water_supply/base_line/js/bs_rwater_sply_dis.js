@@ -35,8 +35,7 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
                     num_users : null,
                     avg_replace_cost : null,
                     avg_repair_cost : null,
-                }
-                 ],
+                }],
             }
         }
     }
@@ -103,16 +102,11 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
                   'bs_date': $scope.bs_date} }),
             }).success(function(data) {
                 console.log(data);
-    //            $scope.bsRwaterSplyDis = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.water_supply.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -124,7 +118,6 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -133,33 +126,31 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
 
     //Search Data
     $scope.searchBsData = function(form) {
-            document.getElementById("clearbtn").disabled = true;
-			document.getElementById("editbtn").disabled = true;
-			document.getElementById("subbtn").disabled = true;
-			console.log("test", $scope.district);
-			console.log("test", $scope.bs_date);
-			$scope.is_search = true;
+        document.getElementById("clearbtn").disabled = true;
+        document.getElementById("editbtn").disabled = true;
+        document.getElementById("subbtn").disabled = true;
+        console.log("test", $scope.district);
+        console.log("test", $scope.bs_date);
+        $scope.is_search = true;
         if (form.$valid) {
             $http({
-            method: "POST",
-            url: "/bs_fetch_edit_data",
-            data: angular.toJson({
-                  'table_name': 'Table_2',
-                  'sector': 'water_supply',
-                  'com_data': {'district': $scope.district,
-                  'bs_date': $scope.bs_date} }),
+                method: "POST",
+                url: "/bs_fetch_edit_data",
+                data: angular.toJson({
+                    'table_name': 'Table_2',
+                    'sector': 'water_supply',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.bs_date
+                    }
+                }),
             }).success(function(data) {
                 console.log(data);
-    //            $scope.bsRwaterSplyDis = data;
-
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.water_supply.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
@@ -171,7 +162,6 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
                     }
                 }
                 else {
-                    console.log('----else');
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -192,17 +182,4 @@ app.controller('bsRwaterSplyDisController', function($scope, $http) {
         $scope.bsRwaterSplyDis = angular.copy(init_data);
         location.reload();
     }
-
-////Calculate Total
-//   $scope.calTotal=function(arr,property){
-//        var finaltotal = 0;
-//        angular.forEach(arr, function(value, key) {
-//        if(value.type_water_supply !='TOTAL'){
-//         finaltotal = finaltotal + value[property] ;
-//         }
-//        })
-//
-//        return finaltotal;
-//        }
-
 })

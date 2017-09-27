@@ -123,15 +123,13 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
                     'table_name': 'Table_2',
                     'sector': 'water_supply',
                 }),
-                  dataType: 'json',
+                dataType: 'json',
             }).then(function successCallback(response) {
                  var data = response.data;
                 console.log('*', response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-
-                console.log('*', $scope.bs_data);
                 var is_null = false;
 
                 angular.forEach($scope.bs_data, function(value, index) {
@@ -260,7 +258,6 @@ app.controller('dlRuralWtrSplyController', ['$scope', '$http', function($scope, 
                    'is_edit':$scope.is_edit
                 }),
             }).success(function(data) {
-                console.log(data);
                 $scope.dlRuralWtrSply = data;
             })
         }

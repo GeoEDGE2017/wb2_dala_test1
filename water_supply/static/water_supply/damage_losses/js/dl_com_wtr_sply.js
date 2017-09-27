@@ -18,7 +18,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
     $scope.is_search = false;
     $scope.bsCreatedeDate;
 
-
     //Initialize Data
     var init_data = {
         'water_supply': {
@@ -123,6 +122,7 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             }
         }
     }
+
     $scope.dlComWtrSply = angular.copy(init_data);
 
     //Get Districts and related baseline Data
@@ -157,15 +157,13 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                     'table_name': 'Table_1',
                     'sector': 'water_supply',
                 }),
-                  dataType: 'json',
+                dataType: 'json',
             }).then(function successCallback(response) {
-                  var data = response.data;
-                console.log('*', response);
+                var data = response.data;
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                console.log('*', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -209,7 +207,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
 							}
                     });
                 }
-
             }, function errorCallback(response) {
                 console.log('baseline tables data retrieving error');
                 console.log(response);
@@ -422,8 +419,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
         if(form.$valid) {
             $http({

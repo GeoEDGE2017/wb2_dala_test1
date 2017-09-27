@@ -236,25 +236,19 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
             var particular_value_4 = null;
 
             if(model_name == 'BiaWaterIntake') {
-                console.log($scope.dlComWtrSply);
                 dl_model1 = 'DlcwDmgWaterIntake';
-
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model1] = [];
-                console.log($scope.dlComWtrSply);
             }
             if(model_name == 'BiaTreatmentPlant') {
                 dl_model2 = 'DlcwDmgWaterTreatment';
-
                $scope.dlComWtrSply.water_supply.Table_3[dl_model2] = [];
             }
             if(model_name == 'BiaWaterDistribution') {
                 dl_model3 = 'DlcwDmgWaterDisribution';
-
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model3] = [];
             }
             if(model_name == 'BiaMainOffice') {
                 dl_model4 = 'DlcwDmgMainOffice';
-
                 $scope.dlComWtrSply.water_supply.Table_3[dl_model4] = [];
             }
 
@@ -322,19 +316,6 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                    $scope.dlComWtrSply.water_supply.Table_3[dl_model4].push(obj4);
                 }
             });
-
-//            if(model_name == 'BiaWaterIntake') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model1].push(obj1);
-//           }
-//            if(model_name == 'BiaTreatmentPlant') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model2].push(obj2);
-//            }
-//            if(model_name == 'BiaWaterDistribution') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model3].push(obj3);
-//            }
-//            if(model_name == 'BiaMainOffice') {
-//                $scope.dlComWtrSply.water_supply.Table_3[dl_model4].push(obj4);
-//            }
         });
     }
 
@@ -359,12 +340,12 @@ app.controller('dlComWtrSplyController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
             }).then(function successCallback(response) {
                 if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
 
             });

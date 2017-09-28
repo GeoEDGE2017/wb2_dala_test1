@@ -107,47 +107,88 @@ app.controller("DlAgriLivestockroController", ['$scope','$http',function ($scope
 //
 //    }
 
-//$scope.totDmg = function() {
-//        if(!angular.isUndefined($scope.dlAgriIrrifationPro)) {
-//            var totDmg1 = 0;
-//            var totDmg2 = 0;
-//            var totDmg3 = 0;
-//            var totDmg4 = 0;
-//            var totDmg5 = 0;
-//            var totDmg6 = 0;
-//            var totDmg7 = 0;
-//            var totDmg= 0;
-//            angular.forEach($scope.dlAgriIrrifationPro.agri_irrigation.Table_5, function(value, index) {
-//            angular.forEach(value, function(value_in, key) {
-//                    if(key == 'DlMajorTanksDistrict') {
-//                          totDmg1 = totDmg1 + value_in[0].damages;
-//                    }
-//                    if(key == 'DlMediumTanksDistrict') {
-//                          totDmg2 = totDmg2 + value_in[0].damages;
-//                    }
-//                    if(key == 'DlMinorTanksDistrict') {
-//                          totDmg3 = totDmg3 + value_in[0].damages;
-//                    }
-//                    if(key == 'DlAnicutsDistrict') {
-//                          totDmg4 = totDmg4 + value_in[0].damages;
-//                    }
-//                    if(key == 'DlOtherStructuresDistrict') {
-//                          totDmg5 = totDmg5 + value_in[0].damages;
-//                    }
-//                    if(key == 'DlRiverEmbankmntDistrict') {
-//                          totDmg6 = totDmg6 + value_in[0].damages;
-//                    }
-//                    if(key == 'DlBuildingsDistrict') {
-//                          totDmg7 = totDmg7 + value_in[0].damages;
-//                    }
-//                    totDmg = totDmg1 + totDmg2 + totDmg3 + totDmg4 + totDmg5 + totDmg6 + totDmg7;
-//                    console.log('test',totDmg);
-//                    })
-//
-//                })
-//
-//            return totDmg;
-//        }
-//    }
+    $scope.totDmgPub = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockPro)) {
+            var totDmgPub = 0;
+            angular.forEach($scope.dlAgriLivestockPro.agri_livestock.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpNdaPubProvince') {
+                          totDmgPub = totDmgPub + value_in[0].damages;
+                    }
+                    })
+                })
+            return totDmgPub;
+        }
+    }
+
+    $scope.totDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockPro)) {
+            var totDmgPvt = 0;
+            angular.forEach($scope.dlAgriLivestockPro.agri_livestock.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpNdaPvtProvince') {
+                          totDmgPvt = totDmgPvt + value_in[0].damages;
+                    }
+                    })
+                })
+            return totDmgPvt;
+        }
+    }
+
+    $scope.totLosPubY1 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockPro)) {
+            var totLosPubY1= 0;
+            angular.forEach($scope.dlAgriLivestockPro.agri_livestock.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPubProvince') {
+                          totLosPubY1 = totLosPubY1 + value_in[0].los_year_1;
+                    }
+                    })
+                })
+            return totLosPubY1;
+        }
+    }
+
+    $scope.totLosPvtY1 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockPro)) {
+            var totLosPvtY1= 0;
+            angular.forEach($scope.dlAgriLivestockPro.agri_livestock.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPvtProvince') {
+                          totLosPvtY1 = totLosPvtY1 + value_in[0].los_year_1;
+                    }
+                    })
+                })
+            return totLosPvtY1;
+        }
+    }
+
+    $scope.totLosPubY2 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockPro)) {
+            var totLosPubY2= 0;
+            angular.forEach($scope.dlAgriLivestockPro.agri_livestock.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPubProvince') {
+                          totLosPubY2 = totLosPubY2 + value_in[0].los_year_2;
+                    }
+                    })
+                })
+            return totLosPubY2;
+        }
+    }
+
+    $scope.totLosPvtY2 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockPro)) {
+            var totLosPvtY2= 0;
+            angular.forEach($scope.dlAgriLivestockPro.agri_livestock.Table_5, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPvtProvince') {
+                          totLosPvtY2 = totLosPvtY2 + value_in[0].los_year_2;
+                    }
+                    })
+                })
+            return totLosPvtY2;
+        }
+    }
 
  }])

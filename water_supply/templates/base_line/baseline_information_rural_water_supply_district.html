@@ -27,12 +27,20 @@
     <div class="container-fluid" ng-form name="form_bs_rwater_sply_dis">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-           <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_rwater_sply_dis)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_rwater_sply_dis)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                        Cancel Search
+                    </button>
 				</td>
                 <table class="table table-bordered">
                     <colgroup>
@@ -118,7 +126,8 @@
                         Clear
                     </button>
                     <span ng-if="is_edit_disable">
-                        <button id="editbtn" type="button" ng-click="bsHsDataEdit(form_bs_rwater_sply_dis)" ng-if="!is_edit" class="btn btn-success">
+                        <button id="editbtn" type="button" ng-click="bsHsDataEdit(form_bs_rwater_sply_dis)" ng-if="!is_edit"
+                                class="btn btn-success">
                             Edit
                         </button>
                     </span>
@@ -138,7 +147,6 @@
                 <br>
             </div>
         </div>
-    </div>
     </div>
     <!-- /.conainer-fluid -->
 </main>
@@ -191,6 +199,5 @@ $(document).on("click", "#add_technical", function () {
 
 
 });
-
 </script>
 {% endblock content %}

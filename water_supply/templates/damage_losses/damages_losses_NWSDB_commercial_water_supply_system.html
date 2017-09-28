@@ -2,20 +2,18 @@
 {% block content %}
 {% load static %}
 <script>
-  $(document).ready(function() {
-  
-    var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
-    
-  });
-  
-
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
 </script>
 <!-- Main content -->
 <main class="main" ng-app="dlComWtrSplyApp" ng-controller="dlComWtrSplyController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
         <li class="breadcrumb-item">
             <a href="{% url 'dashboard:water_supply_main' %}">
@@ -30,27 +28,40 @@
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
         <li style="float:right;">
             <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank"
-                style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+                style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
         </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
             <li id="li1" class="active">
-                <a href='#step1' data-toggle="tab">1 - Damages</a>
+                <a href='#step1' data-toggle="tab">
+                    1 - Damages
+                </a>
             </li>
             <li id="li2">
-                <a href='#step2' data-toggle="tab">2 - Losses</a>
+                <a href='#step2' data-toggle="tab">
+                    2 - Losses
+                </a>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1" ng-form name="form_dl_com_wtr_sply">
-            <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_com_wtr_sply)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchDlData(form_dl_com_wtr_sply)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                        Cancel Search
+                    </button>
+                </td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="223"/>
@@ -201,145 +212,143 @@
                 <div id="boxscroll" style="height:400px;overflow:auto;">
                     <table class="table table-bordered">
                         <tbody>
-                        <tr class="trheadc" height="18">
-                            <td width="223" height="18" style="width:20%;">
-                                Water Intake
-                            </td>
-                            <td colspan="2" width="216" style="width:20%;">
-                            </td>
-                            <td colspan="2" width="216" style="width:20%;">
-                            </td>
-                            <td colspan="2" width="202" style="width:20%;">
-                            </td>
-                        </tr>
-                        <tr height="18"
-                            ng-repeat="dlcwDmgWaterIntake in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterIntake">
-                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterIntake.assets">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlcwDmgWaterIntake.num_tot_destoyed">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlcwDmgWaterIntake.num_part_damaged">
-                            </td>
-                            <td class="right" colspan="2" ng-model="dlcwDmgWaterIntake.total_dmgs"
-                                ng-bind="dlcwDmgWaterIntake.total_dmgs =
-                            dlcwDmgWaterIntake.num_tot_destoyed * bs_data['BiaWaterIntake'][$index].fields.avg_replace_cost +
-                            dlcwDmgWaterIntake.num_part_damaged * bs_data['BiaWaterIntake'][$index].fields.avg_repair_cost">
-                            </td>
+                            <tr class="trheadc" height="18">
+                                <td width="223" height="18" style="width:20%;">
+                                    Water Intake
+                                </td>
+                                <td colspan="2" width="216" style="width:20%;">
+                                </td>
+                                <td colspan="2" width="216" style="width:20%;">
+                                </td>
+                                <td colspan="2" width="202" style="width:20%;">
+                                </td>
+                            </tr>
+                            <tr height="18"
+                                ng-repeat="dlcwDmgWaterIntake in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterIntake">
+                                <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterIntake.assets">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlcwDmgWaterIntake.num_tot_destoyed">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlcwDmgWaterIntake.num_part_damaged">
+                                </td>
+                                <td class="right" colspan="2" ng-model="dlcwDmgWaterIntake.total_dmgs"
+                                    ng-bind="dlcwDmgWaterIntake.total_dmgs =
+                                    dlcwDmgWaterIntake.num_tot_destoyed * bs_data['BiaWaterIntake'][$index].fields.avg_replace_cost +
+                                    dlcwDmgWaterIntake.num_part_damaged * bs_data['BiaWaterIntake'][$index].fields.avg_repair_cost">
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="18">
+                                <td width="223" height="18">
+                                    Water Treatment
+                                </td>
+                                <td colspan="2" width="216">
+                                </td>
+                                <td colspan="2" width="216">
+                                </td>
+                                <td colspan="2">
+                                </td>
+                            </tr>
+                            <tr height="18"
+                                ng-repeat="dlcwDmgWaterTreatment in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterTreatment">
+                                <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterTreatment.assets">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlcwDmgWaterTreatment.num_tot_destoyed">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlcwDmgWaterTreatment.num_part_damaged">
+                                </td>
+                                <td class="right" colspan="2" ng-model="dlcwDmgWaterTreatment.total_dmgs"
+                                    ng-bind="dlcwDmgWaterTreatment.total_dmgs =
+                                    dlcwDmgWaterTreatment.num_tot_destoyed * bs_data['BiaTreatmentPlant'][$index].fields.avg_replace_cost +
+                                    dlcwDmgWaterTreatment.num_part_damaged * bs_data['BiaTreatmentPlant'][$index].fields.avg_repair_cost  ">
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="18">
+                                <td width="223" height="18">
+                                    Water Distribution
+                                </td>
+                                <td colspan="2" width="216">
+                                </td>
+                                <td colspan="2" width="216">
+                                </td>
+                                <td colspan="2">
+                                </td>
+                            </tr>
+                            <tr height="18"
+                                ng-repeat="dlcwDmgWaterDisribution in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterDisribution">
+                                <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterDisribution.assets">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="dlcwDmgWaterDisribution.num_tot_destoyed">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md"
+                                           ng-model="dlcwDmgWaterDisribution.num_part_damaged">
+                                </td>
+                                <td class="right" colspan="2" ng-model="dlcwDmgWaterDisribution.total_dmgs"
+                                    ng-bind="dlcwDmgWaterDisribution.total_dmgs =
+                                    dlcwDmgWaterDisribution.num_tot_destoyed * bs_data['BiaWaterDistribution'][$index].fields.avg_replace_cost +
+                                    dlcwDmgWaterDisribution.num_part_damaged * bs_data['BiaWaterDistribution'][$index].fields.avg_repair_cost  ">
+                                </td>
+                            </tr>
+                            <tr class="trheadc" height="18">
+                                <td width="223" height="18">
+                                    Main Office
+                                </td>
+                                <td colspan="2" width="216">
+                                </td>
+                                <td colspan="2" width="216">
+                                </td>
+                                <td colspan="2">
+                                </td>
+                            </tr>
+                            <tr height="18" ng-repeat="dlcwDmgMainOffice in dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice">
+                                <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgMainOffice.assets">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlcwDmgMainOffice.num_tot_destoyed">
+                                </td>
+                                <td colspan="2" width="216">
+                                    <input id="textinput" name="textinput" type="number" placeholder=""
+                                           class="form-control input-md" ng-model="dlcwDmgMainOffice.num_part_damaged">
+                                </td>
 
-                        </tr>
-                        <tr class="trheadc" height="18">
-                            <td width="223" height="18">
-                                Water Treatment
-                            </td>
-                            <td colspan="2" width="216">
-                            </td>
-                            <td colspan="2" width="216">
-                            </td>
-                            <td colspan="2">
-                            </td>
-                        </tr>
-                        <tr height="18"
-                            ng-repeat="dlcwDmgWaterTreatment in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterTreatment">
-                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterTreatment.assets">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlcwDmgWaterTreatment.num_tot_destoyed">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlcwDmgWaterTreatment.num_part_damaged">
-                            </td>
-
-                            <td class="right" colspan="2" ng-model="dlcwDmgWaterTreatment.total_dmgs"
-                                ng-bind="dlcwDmgWaterTreatment.total_dmgs =
-                            dlcwDmgWaterTreatment.num_tot_destoyed * bs_data['BiaTreatmentPlant'][$index].fields.avg_replace_cost +
-                            dlcwDmgWaterTreatment.num_part_damaged * bs_data['BiaTreatmentPlant'][$index].fields.avg_repair_cost  ">
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="18">
-                            <td width="223" height="18">
-                                Water Distribution
-                            </td>
-                            <td colspan="2" width="216">
-                            </td>
-                            <td colspan="2" width="216">
-                            </td>
-                            <td colspan="2">
-                            </td>
-                        </tr>
-                        <tr height="18"
-                            ng-repeat="dlcwDmgWaterDisribution in dlComWtrSply.water_supply.Table_3.DlcwDmgWaterDisribution">
-                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgWaterDisribution.assets">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md"
-                                       ng-model="dlcwDmgWaterDisribution.num_tot_destoyed">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md"
-                                       ng-model="dlcwDmgWaterDisribution.num_part_damaged">
-                            </td>
-
-                            <td class="right" colspan="2" ng-model="dlcwDmgWaterDisribution.total_dmgs"
-                                ng-bind="dlcwDmgWaterDisribution.total_dmgs =
-                            dlcwDmgWaterDisribution.num_tot_destoyed * bs_data['BiaWaterDistribution'][$index].fields.avg_replace_cost +
-                            dlcwDmgWaterDisribution.num_part_damaged * bs_data['BiaWaterDistribution'][$index].fields.avg_repair_cost  ">
-                            </td>
-                        </tr>
-                        <tr class="trheadc" height="18">
-                            <td width="223" height="18">
-                                Main Office
-                            </td>
-                            <td colspan="2" width="216">
-                            </td>
-                            <td colspan="2" width="216">
-                            </td>
-                            <td colspan="2">
-                            </td>
-                        </tr>
-                        <tr height="18"
-                            ng-repeat="dlcwDmgMainOffice in dlComWtrSply.water_supply.Table_3.DlcwDmgMainOffice"
-                        >
-                            <td class="tdpa" width="223" height="18" ng-bind="dlcwDmgMainOffice.assets">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlcwDmgMainOffice.num_tot_destoyed">
-                            </td>
-                            <td colspan="2" width="216">
-                                <input id="textinput" name="textinput" type="number" placeholder=""
-                                       class="form-control input-md" ng-model="dlcwDmgMainOffice.num_part_damaged">
-                            </td>
-
-                            <td class="right" colspan="2" ng-model="dlcwDmgMainOffice.total_dmgs"
-                                ng-bind="dlcwDmgMainOffice.total_dmgs =
-                            dlcwDmgMainOffice.num_tot_destoyed * bs_data['BiaMainOffice'][$index].fields.avg_replace_cost +
-                            dlcwDmgMainOffice.num_part_damaged * bs_data['BiaMainOffice'][$index].fields.avg_repair_cost  ">
-                            </td>
-                        </tr>
-                        <tr height="18">
-                            <td class="tdpa" width="223" height="18">TOTAL
-                            </td>
-                            <td class="tdpa" colspan="2" width="216">
-                            </td>
-                            <td class="tdpa" colspan="2" width="216">
-                            </td>
-                            <td class="right" colspan="2" width="202" ng-bind="calGrandTotal()">
-                            </td>
-                        </tr>
+                                <td class="right" colspan="2" ng-model="dlcwDmgMainOffice.total_dmgs"
+                                    ng-bind="dlcwDmgMainOffice.total_dmgs =
+                                    dlcwDmgMainOffice.num_tot_destoyed * bs_data['BiaMainOffice'][$index].fields.avg_replace_cost +
+                                    dlcwDmgMainOffice.num_part_damaged * bs_data['BiaMainOffice'][$index].fields.avg_repair_cost  ">
+                                </td>
+                            </tr>
+                            <tr height="18">
+                                <td class="tdpa" width="223" height="18">
+                                    TOTAL
+                                </td>
+                                <td class="tdpa" colspan="2" width="216">
+                                </td>
+                                <td class="tdpa" colspan="2" width="216">
+                                </td>
+                                <td class="right" colspan="2" width="202" ng-bind="calGrandTotal()">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
                 <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                        class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    Fill Losses Informations
+                </a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
@@ -377,11 +386,9 @@
                     <tr height="18"
                         ng-repeat="dlcwLosProduction in dlComWtrSply.water_supply.Table_3.DlcwLosProduction">
                         <td class="tdpa" width="223" height="18" ng-bind="dlcwLosProduction.production_los">
-
                         </td>
                         <td width="108" ng-model="dlcwLosProduction.avg_income"
                             ng-bind="dlcwLosProduction.avg_income = bs_data['BiaWaterUsers'][4].fields.rate  ">
-
                         </td>
                         <td width="108">
                             <input id="textinput" name="textinput" type="number" placeholder=""
@@ -392,15 +399,14 @@
                                    class="form-control input-md" ng-model="dlcwLosProduction.est_inc_year_2">
                         </td>
                         <td class="right" width="108" ng-bind="dlcwLosProduction.tot_los_year_1 =
-                        (dlcwLosProduction.avg_income *
-                        dlcwLosProduction.est_inc_year_1/100)" ng-model="dlcwLosProduction.tot_los_year_1">
+                            (dlcwLosProduction.avg_income *
+                            dlcwLosProduction.est_inc_year_1/100)" ng-model="dlcwLosProduction.tot_los_year_1">
                         </td>
                         <td class="right" width="101" ng-model="dlcwLosProduction.tot_los_year_2" ng-bind="dlcwLosProduction.tot_los_year_2 =
-                        (dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_2/100)">
+                            (dlcwLosProduction.avg_income * dlcwLosProduction.est_inc_year_2/100)">
                         </td>
                         <td class="right" width="101" ng-model="dlcwLosProduction.tot_los" ng-bind="dlcwLosProduction.tot_los =
-                        dlcwLosProduction.tot_los_year_1 +
-                        dlcwLosProduction.tot_los_year_2">
+                            dlcwLosProduction.tot_los_year_1 + dlcwLosProduction.tot_los_year_2">
                         </td>
                     </tr>
                     <tr class="tdpa" height="18">
@@ -439,10 +445,10 @@
                         </td>
                         <td class="right" width="108" ng-model="dlcwLosOther.tot_los_year_1"
                             ng-bind="dlcwLosOther.tot_los_year_1 =
-                        $parent.dlComWtrSply.water_supply.Table_3.DlcwLosProduction[0].tot_los_year_1 +
-                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los_year_1+
-                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los_year_1+
-                        dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los_year_1">
+                            $parent.dlComWtrSply.water_supply.Table_3.DlcwLosProduction[0].tot_los_year_1 +
+                            dlComWtrSply.water_supply.Table_3.DlcwLosOther[0].tot_los_year_1+
+                            dlComWtrSply.water_supply.Table_3.DlcwLosOther[1].tot_los_year_1+
+                            dlComWtrSply.water_supply.Table_3.DlcwLosOther[2].tot_los_year_1">
                         </td>
                         <td class="right" width="101" ng-model="dlcwLosOther.tot_los_year_2"
                             ng-bind="dlcwLosOther.tot_los_year_2 =
@@ -464,8 +470,9 @@
                 <br>
                 <div class="pull-right">
                     <br>
-
-                    <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">Clear</button>
+                    <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
+                        Clear
+                    </button>
                     <span ng-if="is_edit_disable">
                         <button id="editbtn" type="button" ng-click="dlDataEdit(form_dl_com_wtr_sply)" ng-if="!is_edit"
                                 class="btn btn-success">
@@ -481,14 +488,13 @@
                         Edit
                     </button>
                     <button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid"
-                            ng-click="saveDlData(form_dl_com_wtr_sply)"
-                            class="btn btn-success">Submit
+                            ng-click="saveDlData(form_dl_com_wtr_sply)" class="btn btn-success">
+                        Submit
                     </button>
                 </div>
                 <br><br><br>
             </div>
         </div>
-    </div>
     </div>
     <div class="col-md-12">
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
@@ -525,8 +531,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <!-- /.conainer-fluid -->
     <!-- update the baseline Model -->

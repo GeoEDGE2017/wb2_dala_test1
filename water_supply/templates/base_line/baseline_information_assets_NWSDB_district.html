@@ -23,23 +23,38 @@
                 Table 1. Baseline Information on Assets of NWSDB in the District
             </span>
         </li>
-        <li style="float:right;"><a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank"
-                                    style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
-                                    data-toggle="tooltip" title="Veiw Document"></a></li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document">
+            </a>
+        </li>
     </ol>
     <div class="container-fluid" ng-form name="form_bs_asts_nwsdb_dis">
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Type of User</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Assets</a></li>
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">1 - Type of User</a><
+                /li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">2 - Assets</a>
+            </li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-            <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_asts_nwsdb_dis)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
+                    <span ng-if="check_search">
+                        <button ng-click="searchBsData(form_bs_asts_nwsdb_dis)"
+                                ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                        Cancel Search
+                    </button>
 				</td>
                 <table class="table table-bordered">
                     <colgroup>
@@ -47,173 +62,174 @@
                         <col width="108" span="4"/>
                     </colgroup>
                     <tbody>
-                    <tr style="background:#fff;border:1px solid #fff;text-align:center;">
-                        <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
-                        </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_bs_asts_nwsdb_dis.district.$error.required">
-                                Please Select District
-                            </span>
-                        </td>
-                        <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
-                        </td>
-                        <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
-                            <span class="arrow_box"
-                                  ng-show="submitted && form_bs_asts_nwsdb_dis.baselineDate.$error.required">
-                                Please Select Date
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="trhead1">
-                        <td style="padding-left:5px;"> Name of District</td>
-                        <td colspan="1" style="">
-                            <select ng-model="district" id="selectbasic" name="district" ng-change="changeDis()"
-                                    class="form-control"
-                                    style="font-weight:400;" required>
-                                <option value="">Select District</option>
-                                {% for district in districts %}
-                                <option value="{{ district.id }}">{{ district.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td colspan="2" style="padding-right:5px;text-align:right;">
-                            Year/Month
-                        </td>
-                        <td colspan="1" style="font-weight:normal;">
-                            <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
-                                   id="datepicker" ng-model="bs_date"
-                                   class="form-control input-md" required>
-                        </td>
-                        <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
-                    </tr>
-                    <tr class="trheadc1" height="18">
-                        <td rowspan="2" width="223" height="36">
-                            Number of Employees
-                        </td>
-                        <td colspan="2" width="216">
-                            Male
-                        </td>
-                        <td colspan="2" width="216">
-                            Female
-                        </td>
-                    </tr>
-                    <tr height="18" ng-repeat="biaNumEmployees in bsAstsNwsdbDis.water_supply.Table_1.BiaNumEmployees">
-                        <td colspan="2" width="216" height="18">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="biaNumEmployees.male">
-                        </td>
-                        <td colspan="2" width="216">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   class="form-control input-md" ng-model="biaNumEmployees.female">
-                        </td>
-                    </tr>
-                    <tr class="trheadc1" height="18">
-                        <td rowspan="2" width="223" height="36">
-                            Types of Water Users
-                        </td>
-                        <td rowspan="2" width="108">
-                            Number of Clients
-                        </td>
-                        <td width="108">
-                            Daily Demand
-                        </td>
-                        <td width="108">
-                            Annual Demand
-                        </td>
-                        <td width="108">
-                            Rate
-                        </td>
-                    </tr>
-                    <tr class="trsubc" height="18">
-                        <td width="108" height="18">
-                            Liters/day
-                        </td>
-                        <td width="108">
-                            Liters/Year
-                        </td>
-                        <td width="108">
-                            LKR/Liter
-                        </td>
-                    </tr>
-                    <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
-                        ng-if="biaWaterUsers.type_wusers != 'Average Income Per Year (LKR/Year)' && biaWaterUsers.type_wusers != 'Total'">
-                        <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers" ng-if="$index < 3">
-                        </td>
-                        <td width="98" ng-if="$index > 2">
-                            {% verbatim %}
-                            <button id="delete" ng-click="removeItem('BiaWaterUsers', $index)"
-                                    class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
-                            </button>
-                            <input style="width:80%;float:right;" name="biaWaterUsers_{{$index}}"
-                                   ng-model="biaWaterUsers.type_wusers"
-                                   popover="This field is required"
-                                   popover-toggle="form_pop_lat_census['biaWaterUsers_' + $index].$dirty && !form_pop_lat_census['biaWaterUsers_' + $index].$valid"
-                                   popover-placement="top" required
-                                   type="text"
-                                   class="form-control input-md">
-                            {% endverbatim %}
-                        </td>
-                        <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('BiaWaterUsers','num_clients')"
-                                   class="form-control input-md" ng-model="biaWaterUsers.num_clients">
-                        </td>
-                        <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('BiaWaterUsers','daily_demand')"
-                                   class="form-control input-md" ng-model="biaWaterUsers.daily_demand">
-                        </td>
-                        <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('BiaWaterUsers','annual_demand')"
-                                   class="form-control input-md" ng-model="biaWaterUsers.annual_demand">
-                        </td>
-                        <td width="108">
-                            <input id="textinput" name="textinput" type="number" placeholder=""
-                                   ng-change="getTotal('BiaWaterUsers','rate')"
-                                   class="form-control input-md" ng-model="biaWaterUsers.rate">
-                        </td>
-                    </tr>
-
-                    <tr lass="tdpa" height="18">
-                        <td class="tdpa" width="223" height="18">
-                            Others
-                            <button ng-click="insertAssets('BiaWaterUsers')"
-                                    class="btn btn-sm btn-info btn-circle"
-                                    id="insert"><span
-                                    class="fa fa-plus"></span>
-                            </button>
-                        </td>
-                        <td colspan="5" class="tdpa">
-                        </td>
-                    </tr>
-                    <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
-                        ng-if="biaWaterUsers.type_wusers == 'Total'">
-                        <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
-                        </td>
-                        <td class="right" width="108" ng-model="biaWaterUsers.num_clients" ng-bind="biaWaterUsers.num_clients = totalFunc('BiaWaterUsers','num_clients')">
-                        </td>
-                        <td class="right" width="108" ng-model="biaWaterUsers.daily_demand" ng-bind="biaWaterUsers.daily_demand = totalFunc('BiaWaterUsers','daily_demand')">
-                        </td>
-                        <td class="right" width="108" ng-model="biaWaterUsers.annual_demand" ng-bind="biaWaterUsers.annual_demand = totalFunc('BiaWaterUsers','annual_demand')">
-                        </td>
-                        <td width="108" class="tdpa">
-                        </td>
-                    </tr>
-                    <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
-                        ng-if="biaWaterUsers.type_wusers == 'Average Income Per Year (LKR/Year)'">
-                        <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
-                        </td>
-                        <td class="right" colspan="4" width="432" ng-model="biaWaterUsers.rate"
-                            ng-bind="biaWaterUsers.rate = calGrandTotal($parent.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers) ">
-                        </td>
-                    </tr>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;" border="0">
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_asts_nwsdb_dis.district.$error.required">
+                                    Please Select District
+                                </span>
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box"
+                                      ng-show="submitted && form_bs_asts_nwsdb_dis.baselineDate.$error.required">
+                                    Please Select Date
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead1">
+                            <td style="padding-left:5px;"> Name of District</td>
+                            <td colspan="1" style="">
+                                <select ng-model="district" id="selectbasic" name="district" ng-change="changeDis()"
+                                        class="form-control"
+                                        style="font-weight:400;" required>
+                                    <option value="">Select District</option>
+                                    {% for district in districts %}
+                                    <option value="{{ district.id }}">{{ district.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td colspan="2" style="padding-right:5px;text-align:right;">
+                                Year/Month
+                            </td>
+                            <td colspan="1" style="font-weight:normal;">
+                                <input name="baselineDate" type="text" placeholder="mm/yy" ng-change="changeDis()"
+                                       id="datepicker" ng-model="bs_date"
+                                       class="form-control input-md" required>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
+                        <tr class="trheadc1" height="18">
+                            <td rowspan="2" width="223" height="36">
+                                Number of Employees
+                            </td>
+                            <td colspan="2" width="216">
+                                Male
+                            </td>
+                            <td colspan="2" width="216">
+                                Female
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaNumEmployees in bsAstsNwsdbDis.water_supply.Table_1.BiaNumEmployees">
+                            <td colspan="2" width="216" height="18">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaNumEmployees.male">
+                            </td>
+                            <td colspan="2" width="216">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       class="form-control input-md" ng-model="biaNumEmployees.female">
+                            </td>
+                        </tr>
+                        <tr class="trheadc1" height="18">
+                            <td rowspan="2" width="223" height="36">
+                                Types of Water Users
+                            </td>
+                            <td rowspan="2" width="108">
+                                Number of Clients
+                            </td>
+                            <td width="108">
+                                Daily Demand
+                            </td>
+                            <td width="108">
+                                Annual Demand
+                            </td>
+                            <td width="108">
+                                Rate
+                            </td>
+                        </tr>
+                        <tr class="trsubc" height="18">
+                            <td width="108" height="18">
+                                Liters/day
+                            </td>
+                            <td width="108">
+                                Liters/Year
+                            </td>
+                            <td width="108">
+                                LKR/Liter
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
+                            ng-if="biaWaterUsers.type_wusers != 'Average Income Per Year (LKR/Year)' && biaWaterUsers.type_wusers != 'Total'">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers" ng-if="$index < 3">
+                            </td>
+                            <td width="98" ng-if="$index > 2">
+                                {% verbatim %}
+                                <button id="delete" ng-click="removeItem('BiaWaterUsers', $index)"
+                                        class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                </button>
+                                <input style="width:80%;float:right;" name="biaWaterUsers_{{$index}}"
+                                       ng-model="biaWaterUsers.type_wusers"
+                                       popover="This field is required"
+                                       popover-toggle="form_pop_lat_census['biaWaterUsers_' + $index].$dirty && !form_pop_lat_census['biaWaterUsers_' + $index].$valid"
+                                       popover-placement="top" required
+                                       type="text"
+                                       class="form-control input-md">
+                                {% endverbatim %}
+                            </td>
+                            <td width="108">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       ng-change="getTotal('BiaWaterUsers','num_clients')"
+                                       class="form-control input-md" ng-model="biaWaterUsers.num_clients">
+                            </td>
+                            <td width="108">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       ng-change="getTotal('BiaWaterUsers','daily_demand')"
+                                       class="form-control input-md" ng-model="biaWaterUsers.daily_demand">
+                            </td>
+                            <td width="108">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       ng-change="getTotal('BiaWaterUsers','annual_demand')"
+                                       class="form-control input-md" ng-model="biaWaterUsers.annual_demand">
+                            </td>
+                            <td width="108">
+                                <input id="textinput" name="textinput" type="number" placeholder=""
+                                       ng-change="getTotal('BiaWaterUsers','rate')"
+                                       class="form-control input-md" ng-model="biaWaterUsers.rate">
+                            </td>
+                        </tr>
+                        <tr lass="tdpa" height="18">
+                            <td class="tdpa" width="223" height="18">
+                                Others
+                                <button ng-click="insertAssets('BiaWaterUsers')"
+                                        class="btn btn-sm btn-info btn-circle"
+                                        id="insert"><span
+                                        class="fa fa-plus"></span>
+                                </button>
+                            </td>
+                            <td colspan="5" class="tdpa">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
+                            ng-if="biaWaterUsers.type_wusers == 'Total'">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
+                            </td>
+                            <td class="right" width="108" ng-model="biaWaterUsers.num_clients" ng-bind="biaWaterUsers.num_clients = totalFunc('BiaWaterUsers','num_clients')">
+                            </td>
+                            <td class="right" width="108" ng-model="biaWaterUsers.daily_demand" ng-bind="biaWaterUsers.daily_demand = totalFunc('BiaWaterUsers','daily_demand')">
+                            </td>
+                            <td class="right" width="108" ng-model="biaWaterUsers.annual_demand" ng-bind="biaWaterUsers.annual_demand = totalFunc('BiaWaterUsers','annual_demand')">
+                            </td>
+                            <td width="108" class="tdpa">
+                            </td>
+                        </tr>
+                        <tr height="18" ng-repeat="biaWaterUsers in bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers"
+                            ng-if="biaWaterUsers.type_wusers == 'Average Income Per Year (LKR/Year)'">
+                            <td class="tdpa" width="223" height="18" ng-bind="biaWaterUsers.type_wusers">
+                            </td>
+                            <td class="right" colspan="4" width="432" ng-model="biaWaterUsers.rate"
+                                ng-bind="biaWaterUsers.rate = calGrandTotal($parent.bsAstsNwsdbDis.water_supply.Table_1.BiaWaterUsers) ">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
-                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                        class="glyphicon glyphicon-arrow-right"></span> Fill Assets Informations</a>
+                <a href="#step2" id="s1" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    Fill Assets Informations
+                </a>
                 <br>
             </div>
             <div class="tab-pane fade" id="step2">
@@ -328,7 +344,6 @@
                             </td>
                             <td colspan="4" width="216">
                             </td>
-
                         </tr>
                         <tr class="trheadc" height="18">
                             <td width="223" height="18">
@@ -424,7 +439,6 @@
                             </td>
                             <td colspan="4" width="216">
                             </td>
-
                         </tr>
                         </tbody>
                     </table>
@@ -449,16 +463,13 @@
                         Cancel Edit
                     </button>
                     <button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid"
-                            ng-click="saveBsData(form_bs_asts_nwsdb_dis)"
-
-                            class="btn btn-success">Submit
+                        ng-click="saveBsData(form_bs_asts_nwsdb_dis)" class="btn btn-success">
+                        Submit
                     </button>
-
                 </div>
                 <br><br><br>
             </div>
         </div>
-    </div>
     </div>
     <div class="col-md-12">
         <div class="modal fade" id="modal-container-218029" role="dialog" style="width:50%;margin:0 auto;"
@@ -485,7 +496,6 @@
                     </div>
                     <br><br>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-default" data-dismiss="modal">
                             Close
                         </button>
@@ -496,8 +506,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <!-- /.conainer-fluid -->
 </main>

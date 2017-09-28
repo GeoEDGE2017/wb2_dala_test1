@@ -19,26 +19,41 @@ $(document).ready(function() {
 		<li class="breadcrumb-item"> <a href="{% url 'dashboard:transport_air_main' %}">
                 Transport Air Sector
             </a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+		<li class="breadcrumb-item active">
+			<span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline Information on the Assets in the Air Transportation Sub-sector
-            </span> </li>
+            </span>
+		</li>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+			<a href="{% static 'dashboard/doc/1B-Air Transportation-24Jan17.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
 		</li>
 	</ol>
 	<div class="container-fluid" ng-form name="form_bs_info_aset_trns">
 		<ul class='nav nav-wizard'>
-			<li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Assets</a></li>
-			<li id="li2"><a href='#step2' data-toggle="tab">2 - Structures</a></li>
+			<li id="li1" class="active">
+				<a href='#step1' data-toggle="tab">1 - Assets</a>
+			</li>
+			<li id="li2">
+				<a href='#step2' data-toggle="tab">2 - Structures</a>
+			</li>
 		</ul>
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_info_aset_trns)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+				<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+					<span ng-if="check_search">
+						<button ng-click="searchBsData(form_bs_info_aset_trns)" ng-if="!is_search" class="btn btn-info">
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+						Cancel Search
+					</button>
 				</td>
 				<table class="table table-bordered">
 					<colgroup>
@@ -51,26 +66,38 @@ $(document).ready(function() {
 						<col width="63" /> </colgroup>
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-							<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_info_aset_trns.district.$error.required">
-                                Please select District
-                            </span> </td>
-							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_info_aset_trns.baselineDate.$error.required">
-                                Please Select Date
-                            </span> </td>
+							<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"></td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_bs_info_aset_trns.district.$error.required">
+									Please select District
+								</span>
+							</td>
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+							</td>
+							<td style="background:#fff;border:1px solid #fff;text-align:center;">
+							</td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_bs_info_aset_trns.baselineDate.$error.required">
+									Please Select Date
+								</span>
+							</td>
 						</tr>
 						<tr class="trhead1" height="19">
 							<td height="19" width="218" style="padding:5px;"> Name of District: </td>
 							<td colspan="3" height="19" width="378">
 								<select id="selectbasic" name="district" class="form-control" ng-change="changeDis()" ng-model="district" style="width:100%;font-weight:400;" required>
 									<option value="" selected="true">Select a District</option> {% for district in districts %}
-									<option value={{ district.id }}>{{ district.name }}</option> {% endfor %} </select>
+									<option value={{ district.id }}>{{ district.name }}</option> {% endfor %}
+								</select>
 							</td>
 							<td colspan="2" style="padding:5px;"> Year/Month: </td>
 							<td colspan="2">
-								<input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker" ng-change="changeDis()" ng-model="bs_date" class="form-control input-md" style="font-weight:normal;" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+								<input name="baselineDate" type="text" placeholder="mm/yy" id="datepicker"
+									   ng-change="changeDis()" ng-model="bs_date"
+									   class="form-control input-md" style="font-weight:normal;" required>
+							</td>
+							<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+						</tr>
 						<tr class="trheadc1" height="34">
 							<td rowspan="2" height="53" width="218" style="width:36.5%;"> Assets </td>
 							<td colspan="2" height="34" width="126"> Number </td>
@@ -94,30 +121,45 @@ $(document).ready(function() {
 							<col width="63" />
 							<col width="63" />
 							<col width="63" />
-							<col width="63" /> </colgroup>
+							<col width="63" />
+						</colgroup>
 						<tbody>
 							<tr class="trheadc" height="19">
 								<td height="19" width="218" style="width:36.5%;"> Aircrafts </td>
 								<td height="19" width="63" style="width:10.8%;">
-									<br/> </td>
+									<br/>
+								</td>
 								<td height="19" width="63" style="width:10.5%;">
-									<br/> </td>
+									<br/>
+								</td>
 								<td colspan="2" height="19" width="126" style="width:21.2%;">
-									<br/> </td>
+									<br/>
+								</td>
 								<td colspan="2" height="19" width="126">
-									<br/> </td>
+									<br/>
+								</td>
 							</tr>
 							<tr height="19" ng-repeat="bsAstAirAircrafts in bsInfoAsetTrans.transport_air.Table_1.BsAstAirAircrafts">
-								<td class="tdpa" height="19" width="218" ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 2"> </td>
+								<td class="tdpa" height="19" width="218" ng-bind="bsAstAirAircrafts.assets" ng-if="$index < 2">
+								</td>
 								<td width="98" ng-if="$index > 1"> {% verbatim %}
-									<button id="delete" ng-click="removeItem('BsAstAirAircrafts', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
-									<input style="width:90%;float:right;" name="bsAstAirAircrafts_{{$index}}" ng-model="bsAstAirAircrafts.assets" popover="This field is required" popover-toggle="form_bs_info_aset_trns['bsAstAirAircrafts_' + $index].$dirty && !form_bs_info_aset_trns['bsAstAirAircrafts_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
+									<button id="delete" ng-click="removeItem('BsAstAirAircrafts', $index)" class="btn btn-sm btn-danger btn-circle">
+										<i class="fa fa-minus"></i>
+									</button>
+									<input style="width:90%;float:right;" name="bsAstAirAircrafts_{{$index}}" ng-model="bsAstAirAircrafts.assets"
+										   popover="This field is required" popover-toggle="form_bs_info_aset_trns['bsAstAirAircrafts_' + $index].$dirty && !form_bs_info_aset_trns['bsAstAirAircrafts_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
 								<td height="19" width="63">
-									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="bsAstAirAircrafts.num_pub"> </td>
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control
+									input-md" ng-model="bsAstAirAircrafts.num_pub">
+								</td>
 								<td height="19" width="63">
-									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="bsAstAirAircrafts.num_pvt"> </td>
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control
+										input-md" ng-model="bsAstAirAircrafts.num_pvt">
+								</td>
 								<td colspan="2" height="19" width="126">
-									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="bsAstAirAircrafts.avg_replace_cost"> </td>
+									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control
+										input-md" ng-model="bsAstAirAircrafts.avg_replace_cost">
+								</td>
 								<td colspan="2" height="19" width="126">
 									<input id="textinput" name="textinput" type="number" placeholder="" class="form-control input-md" ng-model="bsAstAirAircrafts.avg_repair_cost"> </td>
 							</tr>

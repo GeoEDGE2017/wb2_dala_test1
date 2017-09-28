@@ -5,9 +5,15 @@
 <main class="main" ng-app="dlRuralWtrSplyApp" ng-controller="dlRuralWtrSplyController">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Dashboard</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
-        <li class="breadcrumb-item"><a href="{% url 'dashboard:water_supply_main' %}">Water Supply Sector</a>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:water_supply_main' %}">
+                Water Supply Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -15,22 +21,43 @@
             </span>
         </li>
         <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
-          <li style="float:right;"> <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a> </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Water_Supply.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+                class="icon-info" data-toggle="tooltip" title="Veiw Document" >
+            </a>
+        </li>
     </ol>
     <div class="container-fluid">
         <ul class='nav nav-wizard'>
-            <li id="li1" class="active"><a href='#step1' data-toggle="tab">1 - Damages</a></li>
-            <li id="li2"><a href='#step2' data-toggle="tab">2 - Losses</a></li>
+            <li id="li1" class="active">
+                <a href='#step1' data-toggle="tab">
+                    1 - Damages
+                </a>
+            </li>
+            <li id="li2">
+                <a href='#step2' data-toggle="tab">
+                    2 - Losses
+                </a>
+            </li>
         </ul>
         <div id="myTabContent" class="tab-content" ng-form name="form_dl_rul_wtr_sply">
             <div class="tab-pane active" id="step1">
-            <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_rul_wtr_sply)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchDlData(form_dl_rul_wtr_sply)" ng-if="!is_search"
+                                class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                        Cancel Search
+                    </button>
+                </td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="240"/>
@@ -71,7 +98,9 @@
                                 {% endfor %}
                             </select>
                         </td>
-                        <td colspan="" style="padding-left:5px;"> Name of District</td>
+                        <td colspan="" style="padding-left:5px;">
+                            Name of District
+                        </td>
                         <td colspan="" style="">
                             <select style="font-weight:normal;" ng-options="district as district.district__name for district in districts track by district.district__id"
                                     name="district" id="ccyear" ng-model="district" ng-value="district.district__id"

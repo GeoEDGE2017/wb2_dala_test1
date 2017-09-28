@@ -12,8 +12,6 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.lossTotals = [];
     $scope.is_null = false;
     $scope.user_id;
-    $scope.check_search = false;
-    $scope.is_search = false;
 
     $scope.newPvtPwProducer = {
         'name':null,
@@ -84,6 +82,10 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     'tot_damaged_cost':null,
                 }],
                 'PvtDmgLosses': [{
+                    'losses_type':'Total',
+                    'los_year1':null,
+                    'los_year2':null,
+                }, {
                     'losses_type':'Income Losses',
                     'los_year1':null,
                     'los_year2':null,
@@ -99,14 +101,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     'losses_type':'Other unexpected expenses',
                     'los_year1':null,
                     'los_year2':null,
-                },
-                {
-                    'losses_type':'Total',
-                    'los_year1':null,
-                    'los_year2':null,
-                }
-
-                ],
+                }],
             }
         }
     }
@@ -130,7 +125,6 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
 
         if($scope.incident && $scope.district && $scope.district.district__id) {
             $scope.loadIPP_SPP();
-            $scope.check_search = true;
         }
         console.log("district", $scope.district);
     }
@@ -139,12 +133,10 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.clear = function(){
         $scope.is_edit = false;
         $scope.data = angular.copy(init_data);
-        location.reload();
     }
 
     //Load Data IPP_SPP
     $scope.loadIPP_SPP = function(){
-        $scope.check_search = true;
         if($scope.district){
             $http({
                 method: "POST",
@@ -275,48 +267,6 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.dataEdit = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-        document.getElementById("clearbtn").disabled = true;
-        if (form.$valid) {
-            if($scope.district && $scope.incident && $scope.selectedProducer ) {
-                $http({
-                    method: "POST",
-                    url: '/dl_fetch_edit_data',
-                    data: angular.toJson({
-                        'table_name': 'Table_3',
-                        'sector': 'power_supply',
-                        'com_data': {
-                            'district': $scope.district.district__id,
-                            'incident': $scope.incident,
-                            'pw_gen_firm' : $scope.selectedProducer.id,
-    //                        'pvt_pw_producer': $scope.selectedProducer.id,
-                        }
-                    }),
-                }).success(function(data) {
-                    console.log("edit", data);
-                    // handling response from server if data are not available in this
-                    if((data.power_supply.Table_3.PvtDmgAst.length == 0) || (data.power_supply.Table_3.PvtDmgLosses.length == 0) || (data.power_supply.Table_3.PvtNumEmp.length == 0)) {
-                        $scope.is_edit = false;
-                            // do nothing or display msg that data are not available
-                    }
-                    else {
-                        $scope.data = data;
-                    }
-                })
-            }
-        }
-//        else {
-//            alert("enter Incident, District, Firm, ownership, Type")
-//        }
-    }
-
-    //Search Data
-    $scope.searchDlData = function(form) {
-        document.getElementById("clearbtn").disabled = true;
-		document.getElementById("editbtn").disabled = true;
-		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
-		$scope.is_search = true;
 
         if (form.$valid) {
             if($scope.district && $scope.incident && $scope.selectedProducer ) {
@@ -354,10 +304,9 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.clear();
-        location.reload();
     }
 
     //Call Functions
     $scope.loadIPP_SPP_types();
-
+    $scope.clear();
 })

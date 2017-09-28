@@ -49,41 +49,88 @@ app.controller("DlAgriLivestocknNatController", ['$scope','$http',function ($sco
         return isNull;
     }
 
-    $scope.getTotal = function($index,key) {
+    $scope.totDmgPub = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
+            var totDmgPub = 0;
+            angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpNdaPubNational') {
+                          totDmgPub = totDmgPub + value_in[0].damages;
+                    }
+                    })
+                })
+            return totDmgPub;
+        }
+    }
 
-         $scope.totaldpub = $scope.totaldpub +
-         ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[$index] ? (
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[$index].damages ?
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[$index].damages : 0 ): 0) ;
+    $scope.totDmgPvt = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
+            var totDmgPvt = 0;
+            angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpNdaPvtNational') {
+                          totDmgPvt = totDmgPvt + value_in[0].damages;
+                    }
+                    })
+                })
+            return totDmgPvt;
+        }
+    }
 
-         $scope.totaldpvt = $scope.totaldpvt + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPvtNational[$index] ? (
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPvtNational[$index].damages ?
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpNdaPvtNational[$index].damages : 0 ) : 0) ;
+    $scope.totLosPubY1 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
+            var totLosPubY1= 0;
+            angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPubNational') {
+                          totLosPubY1 = totLosPubY1 + value_in[0].los_year_1;
+                    }
+                    })
+                })
+            return totLosPubY1;
+        }
+    }
 
-         $scope.totalyear1pub = $scope.totalyear1pub + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index] ? (
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_1 ?
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_1 : 0 ) : 0) ;
+    $scope.totLosPvtY1 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
+            var totLosPvtY1= 0;
+            angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPvtNational') {
+                          totLosPvtY1 = totLosPvtY1 + value_in[0].los_year_1;
+                    }
+                    })
+                })
+            return totLosPvtY1;
+        }
+    }
 
-         $scope.totalyear1pvt = $scope.totalyear1pvt + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index] ? (
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_1 ?
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_1 : 0 ) : 0 );
+    $scope.totLosPubY2 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
+            var totLosPubY2= 0;
+            angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPubNational') {
+                          totLosPubY2 = totLosPubY2 + value_in[0].los_year_2;
+                    }
+                    })
+                })
+            return totLosPubY2;
+        }
+    }
 
-        console.log('test', $scope.totalyear1pvt);
-
-
-         $scope.totalyear2pub = $scope.totalyear2pub + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index] ? (
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_2 ?
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPubNational[$index].los_year_2 : 0 ) : 0) ;
-
-         $scope.totalyear2pvt =$scope.totalyear2pvt + ($scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index] ? (
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_2 ?
-                         $scope.dlAgriLivestockSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[$index].los_year_2 : 0 ) : 0);
-
-
-         $scope.finaltotalpublic = $scope.finaltotalpublic + $scope.totaldpub + $scope.totalyear1pub  + $scope.totalyear2pub;
-
-         $scope.finaltotalprivate = $scope.finaltotalprivate + $scope.totaldpvt + $scope.totalyear1pvt + $scope.totalyear2pvt;
-
+    $scope.totLosPvtY2 = function() {
+        if(!angular.isUndefined($scope.dlAgriLivestockSumNat)) {
+            var totLosPvtY2= 0;
+            angular.forEach($scope.dlAgriLivestockSumNat.agri_livestock.Table_6, function(value, index) {
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlpLosPvtNational') {
+                          totLosPvtY2 = totLosPvtY2 + value_in[0].los_year_2;
+                    }
+                    })
+                })
+            return totLosPvtY2;
+        }
     }
 
  }])

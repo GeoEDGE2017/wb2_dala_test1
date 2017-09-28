@@ -87,6 +87,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 		}
 	}
 	$scope.grand_totals = {}
+
 	$scope.dlHealthDamagelostPrivateSys = angular.copy(init_data);
 	//Save Data
 	$scope.saveDlData = function(form) {

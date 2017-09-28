@@ -23,13 +23,13 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                     num_bis_public: null,
                     num_emp_male: null,
                     num_empfemale: null,
-                    },{
+                },{
                     business: "Guest Houses",
                     num_bis_private: null,
                     num_bis_public: null,
                     num_emp_male: null,
                     num_empfemale: null,
-                    },{
+                },{
                     business: "Travel Agents",
                     num_bis_private: null,
                     num_bis_public: null,
@@ -54,9 +54,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                     num_emp_male: null,
                     num_empfemale: null,
                     }],
-
-                    'BsCultSites': [
-                    {
+                    'BsCultSites': [{
                         site: "Temples",
                         num_bis_private: null,
                         num_bis_public: null,
@@ -92,7 +90,6 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         else {
             $scope.is_edit_disable = false;
             $scope.check_search = false;
-
         }
     }
 
@@ -161,16 +158,16 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
             }).success(function(data) {
                 $scope.bs_tourism_facilities = init_data;
                 $scope.is_edit = false;
-                if (data == 'False'){
+                if (data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else{
+                else {
                     $("#modal-container-239453").modal('show');
                 }
             })
         }
-        else{
+        else {
             console.log("invalid data ! You may have entered decimal values for a number");
         }
     }
@@ -187,7 +184,7 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         $scope.is_edit = true;
         $scope.submitted = true;
         document.getElementById("clearbtn").disabled = true;
-        if(form.$valid){
+        if(form.$valid) {
             $http({
                 method: "POST",
                 url: '/bs_fetch_edit_data',
@@ -201,14 +198,6 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
                     }
                 }),
             }).success(function(data) {
-//                if((data.tourism.Table_1.BsCultSites.length == 0) ||
-//                    (data.tourism.Table_1.BsNatFormation.length == 0) ||
-//                    (data.tourism.Table_1.BsTouBusiness.length == 0) ) {
-//                    $scope.is_edit = false;
-//                }
-//                else {
-//                    $scope.bs_tourism_facilities = data;
-//                }
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.tourism.Table_1, function(value, index) {
@@ -288,6 +277,90 @@ app.controller('bsTursmFcltsFisController', ['$scope', '$http', function($scope,
         $scope.is_edit = false;
         $scope.bs_tourism_facilities = angular.copy(init_data);
         location.reload();
+    }
+
+    $scope.enum_data = {
+        'tourism': {
+            'Table_1': {
+                'BsTouBusiness': [],
+                'BS_Table2': [],
+                'BS_Table3': [],
+                'BS_Table4': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bsTouBusiness_e_index = 0;
+        angular.forEach($scope.bs_tourism_facilities.tourism.Table_1.BsTouBusiness, function(value, index, key) {
+            if(value.business != 'Asset_01' && value.business != 'Asset_02') {
+                var enum_val = {
+                    oldasset: value.business,
+                    newasset: null,
+                    enum_index: bsTouBusiness_e_index,
+                    bs_asset_field: 'business',
+                    dl_tables: {
+                        'dl_interface_table': {
+                            'DL_Table1': {
+                                dl_asset_field: 'dl_asset_field_name'
+                            }
+                        }
+                    }
+                };
+                bsTouBusiness_e_index = bsTouBusiness_e_index + 1;
+                $scope.enum_data.tourism.Table_1.BsTouBusiness.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.bs_tourism_facilities.tourism.Table_1);
+        var bsTouBusiness_e_index = 0;
+        angular.forEach($scope.bs_tourism_facilities.tourism.Table_1.BsTouBusiness, function(value, key) {
+            if(value.business != 'Hotels' && value.business != 'Guest Houses' &&
+                value.business != 'Travel Agents' && value.business != 'Tour Guides' &&
+                value.business != 'Adventure Tourism Operators' && value.business != 'Ayurveda Resorts') {
+                angular.forEach($scope.enum_data.tourism.Table_1.BsTouBusiness, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.tourism.Table_1.BsTouBusiness);
+                    if(each_enum.enum_index == bsTouBusiness_e_index) {
+                        $scope.enum_data.tourism.Table_1.BsTouBusiness[index].newasset = value.business;
+                    }
+                })
+                bsTouBusiness_e_index = bsTouBusiness_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'tourism'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+//            if(response.data == 'False') {
+//                alert('False');
+//            }
+//            else {
+//                alert('True');
+//            }
+        }, function errorCallback(response) {
+
+        });
     }
 }]);
 

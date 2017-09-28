@@ -600,7 +600,6 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 		if(!angular.isUndefined($scope.dmLosOfMinFirms)) {
 			var totLos = 0;
 			angular.forEach($scope.dmLosOfMinFirms.mining.Table_3[array], function(value, index) {
-				console.log('test', value);
 				if(value[property] != null && value.assets != 'Total' && value.type_los != 'Total') {
 					totLos = totLos + value[property];
 				}

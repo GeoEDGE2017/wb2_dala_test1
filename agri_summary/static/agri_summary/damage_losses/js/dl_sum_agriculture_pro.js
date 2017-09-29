@@ -64,8 +64,8 @@ app.controller("DlSummeryAgriProController", function ($scope, $http, $parse, _)
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-                'table_name':  ['Table_9','Table_5',],
-                'sector': ['agri_agrarian','agri_livestock'],
+                'table_name':  ['Table_9','Table_5','Table_5','Table_4'],
+                'sector': ['agri_agrarian', 'agri_livestock','agri_fisheries','agri_irrigation'],
                 'com_data': {
                     'province': $scope.province,
                     'incident': $scope.incident,

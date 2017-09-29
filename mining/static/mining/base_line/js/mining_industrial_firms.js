@@ -201,22 +201,22 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
 		}
 	}
 	$scope.saveEditFirm = function(form) {
-		console.log($scope.editedFirmName);
+		console.log($scope.selectedFirm);
 		console.log("ownership", $scope.ownership);
-		if(!angular.isUndefined($scope.editedFirmName) || $scope.editedFirmName === null) {
+		if(!angular.isUndefined($scope.selectedFirm) || $scope.selectedFirm === null) {
 			console.log('2');
 			$http({
 				method: "POST",
 				url: "/edit_firm",
 				data: angular.toJson({
-					'firm_name': $scope.editedFirmName,
+					'firm_name': $scope.selectedFirm.name,
 					'firm_id': $scope.selectedFirm.id,
-					'ownership': $scope.ownership,
+					'ownership': $scope.selectedFirm.ownership,
 					'user_id': $scope.user_id,
 				}),
 			}).success(function(data) {
 				console.log(data);
-				$scope.editedFirmName = null;
+				$scope.selectedFirm = null;
 				$scope.fetchFirms();
 
 				$("#modal-container-469840").modal('hide');

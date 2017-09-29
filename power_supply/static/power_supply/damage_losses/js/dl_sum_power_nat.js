@@ -133,9 +133,9 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             var tot = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
               angular.forEach(value,function(value_in, key) {
-                   console.log('print',value_in);
                     if(key == 'DlNumAffNational') {
-                          tot = tot +parseInt(value_in[0].domestic);
+                          console.log('printing',value_in[0].domestic);
+                          tot = tot + parseInt(value_in[0].domestic);
                     }
                 })
                 })
@@ -147,7 +147,6 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             var tot = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
               angular.forEach(value,function(value_in, key) {
-                   console.log('print',value_in);
                     if(key == 'DlNumAffNational') {
                           tot = tot +parseInt(value_in[0].industrial);
                     }
@@ -164,7 +163,6 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             var tot = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
               angular.forEach(value,function(value_in, key) {
-                   console.log('print',value_in);
                     if(key == 'DlNumAffNational') {
                           tot = tot + parseInt(value_in[0].commercial);
                     }
@@ -179,7 +177,6 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             var tot = 0;
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
               angular.forEach(value,function(value_in, key) {
-                   console.log('print',value_in);
                     if(key == 'DlNumAffNational') {
                           tot = tot +parseInt(value_in[0].other);
                     }

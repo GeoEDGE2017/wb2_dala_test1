@@ -30,7 +30,7 @@ app.controller('dlSumAgriDstrController', function($scope, $http) {
                 $scope.selectedDistrict = "";
             })
         }
-        if($scope.incident && !selectedValue){
+        if($scope.incident && $scope.district){
             $scope.loadData();
         }
     }
@@ -44,8 +44,8 @@ app.controller('dlSumAgriDstrController', function($scope, $http) {
                 method: "POST",
                 url: '/dl_fetch_summary_dis_disagtn',
                 data: angular.toJson({
-                    'table_name':  ['Table_9', 'Table_5','Table_5'],
-                    'sector': ['agri_agrarian', 'agri_irrigation','agri_fisheries'],
+                    'table_name':  ['Table_9','Table_5','Table_5','Table_4'],
+                    'sector': ['agri_agrarian', 'agri_livestock','agri_fisheries','agri_irrigation'],
                     'com_data': {
                         'district':  $scope.district.district__id,
                         'incident': $scope.incident,

@@ -515,21 +515,21 @@ app.controller('bsLivestockPoultryController', ['$scope', '$http', function($sco
     }
 
     $scope.saveEditOrganization = function(form) {
-        console.log($scope.editedOrganizationName);
-        if(!angular.isUndefined($scope.editedOrganizationName) || $scope.editedOrganizationName === null) {
+        console.log($scope.selectedOrganization);
+        if(!angular.isUndefined($scope.selectedOrganization) || $scope.selectedOrganization === null) {
             console.log('2');
             $http({
                 method: "POST",
                 url: "/edit_organization",
                 data: angular.toJson({
-                    'firm_name': $scope.editedOrganizationName,
+                    'firm_name': $scope.selectedOrganization.name,
                     'firm_id' : $scope.selectedOrganization.id,
-                    'ownership': $scope.ownership,
+                    'ownership': $scope.selectedOrganization.ownership,
                     'user_id': $scope.user_id,
                 }),
             }).success(function(data) {
                 console.log(data);
-                $scope.editedOrganizationName = null;
+                $scope.selectedOrganization = null;
                 $scope.fetchOrganization();
                 $("#modal-container-0002").modal('hide');
             })

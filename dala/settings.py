@@ -1877,7 +1877,11 @@ TABLE_PROPERTY_MAPPER = {
                 ['damages'],
             'DlLosMinorTanksDistrict':
                 ['total_los'],
+            'DlIrrigatnLosDistrictNew':
+             ['total_los'],
             'DlAnicutsDistrict':
+                ['damages'],
+            'DlIrrigatnDmgDistrict':
                 ['damages'],
             'DlLosAnicutsDistrict':
                 ['total_los'],
@@ -3008,18 +3012,18 @@ TABLE_PROPERTY_MAPPER = {
                 'los_year_2_pub',
                 'los_year_2_pvt',
             ],
-            # 'DlfDmgPubProvince': [
-            #     'dmg_pub',
-            # ],
-            # 'DlfDmgPvtProvince': [
-            #     'dmg_pvt',
-            # ],
-            # 'DlfLosProvince': [
-            #     'los_year_1_pub',
-            #     'los_year_1_pvt',
-            #     'los_year_2_pub',
-            #     'los_year_2_pvt',
-            # ],
+            'DlfDmgPubProvince': [
+                'dmg_pub',
+            ],
+            'DlfDmgPvtProvince': [
+                'dmg_pvt',
+            ],
+            'DlfLosProvince': [
+                'los_year_1_pub',
+                'los_year_1_pvt',
+                'los_year_2_pub',
+                'los_year_2_pvt',
+            ],
         },
         'Table_6': {
             'DlfDmgPubNational': [

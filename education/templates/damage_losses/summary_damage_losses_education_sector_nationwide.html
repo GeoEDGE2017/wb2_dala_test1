@@ -2,6 +2,11 @@
 {% block content %}
 {% load static %}
 <!-- Main content -->
+<script>
+    $(document).ready(function() {
+        var nicesx = $("#boxscroll1").niceScroll({touchbehavior:false,cursorcolor:"#4679B2",cursoropacitymax:0.6,cursorwidth:8});
+    });
+</script>
 <style>
     .right {text-align:right;}
 </style>
@@ -109,7 +114,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div id="boxscroll" style="max-height:400px;overflow:auto;">
+                <div id="boxscroll1" style="max-height:400px;overflow:auto;">
                     <table ng-repeat="(key, value) in dlNational.education.Table_7" class="table table-bordered">
                         <tbody>
                             <tr height="20" class="trheadc">

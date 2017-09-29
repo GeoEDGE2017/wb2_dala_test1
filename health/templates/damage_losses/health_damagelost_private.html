@@ -36,6 +36,13 @@ $(document).ready(function() {
                     </span> <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
+                    <td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+									</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_health_damagelost_private)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+								</td> 
 					<table class="table table-bordered" style="width:100%;background:#E4E5E6;">
 						<colgroup>
 							<col width="264" />
@@ -65,13 +72,7 @@ $(document).ready(function() {
 										<option value="" selected>Select District</option>
 									</select>
 								</td>
-								<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-block btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_health_damagelost_private)" ng-if="!is_search" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-block btn-warning">Cancel Search</button>
-								</td>  <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
 							<tr height="20" class="trheadc1">
 								<td width="264" height="20" style="text-align:left;padding-left:5px;"> Types of Medical Facility </td>
 								<td colspan="2" rowspan="2" width="196"> Number of Affected Facilities </td>

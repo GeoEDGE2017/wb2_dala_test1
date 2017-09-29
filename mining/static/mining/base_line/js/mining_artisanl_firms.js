@@ -39,7 +39,9 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 			}
 		}
 	}
+
 	$scope.mnArtisanalFirm = angular.copy(init_data);
+
 	//Disable Edit Button
 	$scope.changeDis = function changeDis() {
 		if($scope.district && $scope.baselineDate) {
@@ -149,14 +151,97 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 	}
 
 	$scope.cancelEdit = function() {
-			$scope.is_edit = false;
-			$scope.mnArtisanalFirm = angular.copy(init_data);
-			location.reload();
-		}
-		//Clear Function
+        $scope.is_edit = false;
+        $scope.mnArtisanalFirm = angular.copy(init_data);
+        location.reload();
+    }
+
+    //Clear Function
 	$scope.clear = function() {
 		$scope.is_edit = false;
 		$scope.mnArtisanalFirm = angular.copy(init_data);
 		location.reload();
 	}
+
+	$scope.enum_data = {
+        'mining': {
+            'Table_2': {
+                'BmaAmMin': [],
+                'BS_Table2': [],
+                'BS_Table3': [],
+                'BS_Table4': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bmaAmMin_e_index = 0;
+        angular.forEach($scope.mnArtisanalFirm.mining.Table_2.BmaAmMin, function(value, index, key) {
+            if(value.minerals != 'Asset_01' && value.minerals != 'Asset_02') {
+                var enum_val = {
+                    oldasset: value.minerals,
+                    newasset: null,
+                    enum_index: bmaAmMin_e_index,
+                    bs_asset_field: 'minerals',
+                    dl_tables: {
+                        'Table_4': {
+                            'DL_Table1': {
+                                dl_asset_field: 'dl_asset_field_name'
+                            }
+                        }
+                    }
+                };
+                bmaAmMin_e_index = bmaAmMin_e_index + 1;
+                $scope.enum_data.mining.Table_2.BmaAmMin.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.mnArtisanalFirm.mining.Table_2);
+        var bmaAmMin_e_index = 0;
+        angular.forEach($scope.mnArtisanalFirm.mining.Table_2.BmaAmMin, function(value, key) {
+            if(value.minerals != 'Asset_01' && value.minerals != 'Asset_02') {
+                angular.forEach($scope.enum_data.mining.Table_2.BmaAmMin, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.mining.Table_2.BmaAmMin);
+                    if(each_enum.enum_index == bmaAmMin_e_index) {
+                        $scope.enum_data.mining.Table_2.BmaAmMin[index].newasset = value.minerals;
+                    }
+                })
+                bmaAmMin_e_index = bmaAmMin_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.bs_date,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'mining'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+//            if(response.data == 'False') {
+//                alert('False');
+//            }
+//            else {
+//                alert('True');
+//            }
+        }, function errorCallback(response) {
+
+        });
+    }
 }])

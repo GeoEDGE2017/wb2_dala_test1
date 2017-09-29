@@ -433,7 +433,7 @@ td[comma-value] input{
     color:#fff;
 }
 .card-inverse {height:130px;}
-
+.btnright {float:right;}
 </style>
 <script>
 $(document).ready(function(){
@@ -442,8 +442,26 @@ $.fn.digits = function(){
         $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
     })
 }
+
+
+
 });
 </script>
+
+<script>
+$(document).ready(function(){
+//if ($('.btn span').hasClass('fa-search')) {
+   // $(this).parent().addClass('btnright');
+//}
+$("button span.fa-search").parent().addClass('btnright');
+});
+
+
+
+</script>
+
+
+
 <script>
 $(document).on('click', '.panel-heading span.clickable', function(e){
     var $this = $(this);
@@ -946,6 +964,18 @@ $('tr').each(function(){
 
 
 });
+</script>
+<script>
+$("body").bind("DOMNodeInserted", function() {
+//if ($('.btn span').hasClass('fa-search')) {
+   // $(this).parent().addClass('btnright');
+//}
+$("button span.fa-search").parent().addClass('btnright');
+$(":contains('Cancel Search')").closest('button').addClass("btnright");
+});
+
+
+
 </script>
     <script src='{% static "dashboard/js/app.js" %}'></script>
     </body>

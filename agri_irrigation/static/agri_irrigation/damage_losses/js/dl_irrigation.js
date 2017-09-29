@@ -16,7 +16,6 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
     $scope.check_search = false;
     $scope.is_search = false;
 
-
     //Initialize Data
     var init_data = {
         'agri_irrigation': {
@@ -489,23 +488,23 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
         }
 
         if($scope.incident && $scope.district ) {
-         $scope.check_search = true;
+            $scope.check_search = true;
             $http({
                 method: 'POST',
                 url: '/bs_get_data_mock',
                 contentType: 'application/json; charset=utf-8',
                 data: angular.toJson({
-                    'db_tables': ['BsIfMajor', 'BsIfMedium', 'BsIfMinor', 'BsIfAnicuts', 'BsRciaMajorTanks', 'BsRciaMediumTanks', 'BsRciaMinorTanks', 'BsRciaAnicuts', 'BsRciaOtherStructures', 'BsRciRiverEmbankmnt','BsRciBuildings'],
+                    'db_tables': ['BsIfMajor', 'BsIfMedium', 'BsIfMinor', 'BsIfAnicuts', 'BsRciaMajorTanks',
+                        'BsRciaMediumTanks', 'BsRciaMinorTanks', 'BsRciaAnicuts', 'BsRciaOtherStructures',
+                        'BsRciRiverEmbankmnt','BsRciBuildings'],
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_1',
                     'sector':'agri_irrigation',
-                        }),
-                  dataType: 'json',
-
-
+                }),
+                dataType: 'json',
             }).then(function successCallback(response) {
                 generateRefencedData();
                 var data = response.data;
@@ -541,20 +540,19 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                         dataType: 'json',
                     }).then(function successCallback(response) {
                         console.log('response', response);
-							var result = response.data;
-							if(result.bs_date == null) {
-								$("#modal-container-239458").modal('show');
-							}
-							else {
-								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
-								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-								$scope.bsCreatedeDate = result.bs_created_date;
-								console.log('bs_date', result.bs_date);
-								console.log('bsCreatedeDate', result.bs_created_date);
-							}
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
+                        }
                     });
                 }
-
             }, function errorCallback(response) {
 
             });
@@ -617,24 +615,20 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             }
 
             if(model_name == 'BsIfMajor') {
-               dl_model6 = 'DlLosMajorTanks';
-
-               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model6] = [];
+                dl_model6 = 'DlLosMajorTanks';
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model6] = [];
             }
             if(model_name == 'BsIfMedium') {
-               dl_model7 = 'DlLosMediumTanks';
-
-               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model7] = [];
+                dl_model7 = 'DlLosMediumTanks';
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model7] = [];
             }
             if(model_name == 'BsIfMinor') {
-               dl_model8 = 'DlLosMinorTanks';
-
-               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model8] = [];
+                dl_model8 = 'DlLosMinorTanks';
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model8] = [];
             }
             if(model_name == 'BsIfAnicuts') {
-               dl_model9 = 'DlLosAnicuts';
-
-               $scope.dlIrrigation.agri_irrigation.Table_3[dl_model9] = [];
+                dl_model9 = 'DlLosAnicuts';
+                $scope.dlIrrigation.agri_irrigation.Table_3[dl_model9] = [];
             }
 
             var obj1 = {
@@ -667,8 +661,6 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 totally_destroyed : null,
                 damages : null,
             };
-
-
 
             angular.forEach(obj_array, function(value, key) {
                 var obj1 = {
@@ -772,10 +764,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
             if(model_name == 'BsRciaOtherStructures') {
                 $scope.dlIrrigation.agri_irrigation.Table_3[dl_model5].push(obj5);
             }
-
-
         });
-
     }
 
     //Save data
@@ -805,13 +794,13 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 }),
                 dataType: 'json',
             }).then(function successCallback(response) {
-                 if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                if(response.data == 'False') {
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
             }, function errorCallback(response) {
             });
         }
@@ -935,7 +924,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 finaltotal5 = finaltotal5 + value.high_operation_cost ;
             }
         })
-            angular.forEach(array6, function(value, key) {
+        angular.forEach(array6, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal6 = finaltotal6 + value.high_operation_cost ;
             }
@@ -975,7 +964,7 @@ app.controller('dlIrrigationController', ['$scope', '$http', function($scope, $h
                 finaltotal3 = finaltotal3 + value.other_unexpected_expenses ;
             }
         })
-            angular.forEach(array4, function(value, key) {
+        angular.forEach(array4, function(value, key) {
             if(value.irrigation_assets != 'TOTAL LOSSES'){
                 finaltotal4 = finaltotal4 + value.other_unexpected_expenses ;
             }

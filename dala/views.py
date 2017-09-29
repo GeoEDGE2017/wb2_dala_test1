@@ -295,7 +295,7 @@ def bs_save_data(request):
 # dileepa
 @csrf_exempt
 def update_enumirate_dl_data(request):
-    print 'update_enumirate_dl_data\n'
+    print 'update_enumirate_dl_data*\n'
     data = (yaml.safe_load(request.body))
     enum_data = data['enum_data']
     com_data = data['com_data']
@@ -355,6 +355,74 @@ def get_bd_session_key_record(sector, table_name, district, bs_date):
     sub_app_name = sector + '.base_line'
     sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
     bd_session = sub_app_session.objects.get(district=district, bs_date=bs_date, table_name=table_name)
+    # bd_session = sub_app_session.objects.get(id=1)
+    return bd_session.date
+
+
+# dileepa
+@csrf_exempt
+def uupdate_enumirate_dl_data_with_firms(request):
+    print 'uupdate_enumirate_dl_data_with_firms$\n'
+    data = (yaml.safe_load(request.body))
+    enum_data = data['enum_data']
+    com_data = data['com_data']
+
+    interface_table_name = None
+    for sector in enum_data:
+        for interface_table in enum_data[sector]:
+            interface_table_name = interface_table
+
+    print data['sector']
+    print interface_table_name
+    print com_data['district']
+    print com_data['bs_date']
+    print com_data['firm_id']
+
+    dsdate = get_bd_session_key_record_with_firm(data['sector'], interface_table_name, com_data['district'], com_data['bs_date'], com_data['firm_id'])
+
+    for sector in enum_data:
+        sub_app_name = sector + '.base_line'
+        print 'sub_app_name :', sub_app_name
+        for interface_table in enum_data[sector]:
+            for db_table in enum_data[sector][interface_table]:
+                for row in enum_data[sector][interface_table][db_table]:
+                    for dl_interface_table in row['dl_tables']:
+                        for dl_db_table in row['dl_tables'][dl_interface_table]:
+                            info = {'sector': data['sector'], 'dltable': get_db_table_from_model(str(dl_db_table)),
+                                    'district': com_data['district'], 'firmid': com_data['firm_id'], 'dsdate': dsdate,
+                                    'oldasset': row['oldasset'], 'newasset': row['newasset'],
+                                    'dl_asset_field': row['dl_tables'][dl_interface_table][dl_db_table]['dl_asset_field']}
+
+                            sql = """UPDATE {sector}.{dltable} dla
+                                     SET {dl_asset_field} = '{newasset}'
+                                     WHERE dla.{dl_asset_field} = (SELECT di.{dl_asset_field}
+                                         FROM {sector}.{dltable} di
+                                             JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                             JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                         WHERE di.district = {district} AND bss.date = '{dsdate}' AND
+                                         di.{dl_asset_field} = '{oldasset}' AND di.firm_id='{firmid}')
+                                     AND dla.district = {district}
+                                     AND dla.created_date = (SELECT dls.date
+                                         FROM {sector}.{dltable} di
+                                             JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                             JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                         WHERE di.district = {district} AND bss.date = '{dsdate}' AND
+                                         di.{dl_asset_field} = '{oldasset}'  AND di.firm_id='{firmid}')""".format(**info)
+
+                            print dl_db_table
+                            print sql
+                            cursor = connection.cursor()
+                            cursor.execute(sql)
+                            # row = cursor.fetchone()
+    return HttpResponse('success')
+
+
+# dileepa
+def get_bd_session_key_record_with_firm(sector, table_name, district, bs_date, firm_id):
+    print '*get_bd_session_key_record_with_firm', sector, table_name, district, bs_date, firm_id
+    sub_app_name = sector + '.base_line'
+    sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
+    bd_session = sub_app_session.objects.get(district=district, bs_date=bs_date, table_name=table_name, firm_id=firm_id)
     # bd_session = sub_app_session.objects.get(id=1)
     return bd_session.date
 

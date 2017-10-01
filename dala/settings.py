@@ -160,7 +160,6 @@ DATABASES = {
         # 'OPTIONS': {
         #     'options': '-c search_path=industry_services'
         # },
-
         'NAME': '2017_09_27_DB',
         'USER': 'postgres',
     },

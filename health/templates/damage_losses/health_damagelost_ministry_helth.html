@@ -113,8 +113,13 @@
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
-                             <td><button ng-click="dlEditData(form_health_damagelost_lmh)" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
-                            </td>
+                             <td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-block btn-info" disabled><span class="fa fa-search"></span></button>
+									</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_health_damagelost_lmh)" ng-if="!is_search" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-block btn-warning">Cancel Search</button>
+								</td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr height="20" class="trheadc1">
@@ -2016,23 +2021,23 @@
                         </table>
                         <div class="pull-right">
                             <br>
-                            <button type="button" ng-click="clear()" class="btn btn-info">
+                            <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
                                 Clear
                             </button>
                             <span ng-if="is_edit_disable">
-                                <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
+                                <button id="editbtn" type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
                                     Edit
                                 </button>
                             </span>
                             <span ng-if="!is_edit_disable">
-                                <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                                     Edit
                                 </button>
                             </span>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                            <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                                 Cancel Edit
                             </button>
-                            <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                            <button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid"
                                     ng-click="dlSaveData(form_health_damagelost_lmh)" class="btn btn-success">
                                 Submit
                             </button>

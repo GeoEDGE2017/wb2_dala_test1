@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': '2017_09_29_DB',
+        'NAME': '2017_09_27_DB',
         'USER': 'postgres',
     },
 }
@@ -2090,7 +2090,7 @@ TABLE_PROPERTY_MAPPER = {
 
         },
         'Table_6': {
-            'DlMediumTanksNational':
+            'DlIrrigatnDmgNational':
                 ['damages'],
             'DlLosMediumTanksNational':
                 ['total_los'],
@@ -2112,8 +2112,7 @@ TABLE_PROPERTY_MAPPER = {
                 ['total_los'],
             'DlRiverEmbankmntNational':
                 ['damages'],
-            'DlBuildingsNational':
-                ['damages'],
+
 
         },
     },
@@ -3032,6 +3031,12 @@ TABLE_PROPERTY_MAPPER = {
             ],
             'DlfDmgPvtNational': [
                 'name',
+                'dmg_pvt',
+            ],
+            'DlfLosPubNational': [
+                'dmg_pub',
+            ],
+            'DlfLosPvtNational': [
                 'dmg_pvt',
             ],
             'DlfLosIfisheriesNational': [

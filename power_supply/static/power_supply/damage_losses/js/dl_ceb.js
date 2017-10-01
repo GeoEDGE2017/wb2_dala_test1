@@ -328,7 +328,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 data: angular.toJson({
                     'db_tables': ['BsPwGenFirm'],
                     'com_data': {
-                        'district': 1,
+                        'district': $scope.district.district__id,
                         'incident': $scope.incident,
                     },
                     'table_name': 'Table_1',

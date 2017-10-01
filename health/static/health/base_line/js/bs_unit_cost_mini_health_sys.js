@@ -71,7 +71,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
 					provincial_general_hospital: null,
 					district_general_hospital: null,
 				}, {
-					particulars: 'Other Equipment (Specify)',
+					particulars: 'Other Equipment',
 					teaching_hospital: null,
 					provincial_general_hospital: null,
 					district_general_hospital: null,
@@ -150,7 +150,7 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
 					provincial_general_hospital: null,
 					district_general_hospital: null,
 				}, {
-					particulars: 'Other Equipment (Specify)',
+					particulars: 'Other Equipment',
 					teaching_hospital: null,
 					provincial_general_hospital: null,
 					district_general_hospital: null,

@@ -239,11 +239,11 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
                 }
-                else
+                else {
                     $("#modal-container-239453").modal('show');
-
-                }, function errorCallback(response) {
-
+                    $scope.updateEnums();
+                }
+            }, function errorCallback(response) {
                 console.log(response);
             });
         }
@@ -278,6 +278,7 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsCostsOfAssetsOnTheDistrict = data;
+                        $scope.getEnumDataFromStart();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
@@ -294,8 +295,6 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
 		$scope.submitted = true;
 		if(form.$valid) {
@@ -314,22 +313,20 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 				console.log(data.other_govn_services.Table_1);
 				var edit_data_not_found = false;
 				if(data != null) {
-					console.log('----if');
 					angular.forEach(data.other_govn_services.Table_1, function(value, index) {
-						console.log('----forEach');
 						console.log(value);
 						if(value.length == 0) {
-							console.log('----');
 							edit_data_not_found = true;
 						}
 					})
 					if(edit_data_not_found != true) {
 						$scope.bsCostsOfAssetsOnTheDistrict = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
-					console.log('----else');
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -372,4 +369,111 @@ app.controller('bsInfoforCostsOfAssetsOnTheDistrictController', ['$scope', '$htt
 			}
 		})
 	}
+
+    $scope.enum_data = {
+        'other_govn_services': {
+            'Table_1': {
+                'BcsOfficeEquipment': [],
+                'BcsMachinery': [],
+            }
+        }
+    }
+
+    $scope.getEnumDataFromStart = function() {
+        var bcsOfficeEquipment_e_index = 0;
+        angular.forEach($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment, function(value, index, key) {
+            if(value.asset != 'Computers' && value.asset != 'Furniture') {
+                var enum_val = {
+                    oldasset: value.asset,
+                    newasset: null,
+                    enum_index: bcsOfficeEquipment_e_index,
+                    bs_asset_field: 'asset',
+                    dl_tables: {
+                        'Table_2': {
+                            'DlagdDmgOfficeEquipment': {
+                                dl_asset_field: 'name_dept'
+                            }
+                        }
+                    }
+                };
+                bcsOfficeEquipment_e_index = bcsOfficeEquipment_e_index + 1;
+                $scope.enum_data.other_govn_services.Table_1.BcsOfficeEquipment.push(enum_val);
+            }
+        })
+        var bcsMachinery_e_index = 0;
+        angular.forEach($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery, function(value, index, key) {
+            if(value.asset != 'Vehicles' && value.asset != 'Generators' && value.asset != 'Elevators') {
+                var enum_val = {
+                    oldasset: value.asset,
+                    newasset: null,
+                    enum_index: bcsMachinery_e_index,
+                    bs_asset_field: 'asset',
+                    dl_tables: {
+                        'Table_2': {
+                            'DlagdDmgMachinery': {
+                                dl_asset_field: 'name_dept'
+                            }
+                        }
+                    }
+                };
+                bcsMachinery_e_index = bcsMachinery_e_index + 1;
+                $scope.enum_data.other_govn_services.Table_1.BcsMachinery.push(enum_val);
+            }
+        })
+        console.log('getEnumDataFromStart', $scope.enum_data);
+    }
+
+    $scope.getEnumDataFromEnd = function() {
+        console.log($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1);
+        var bcsOfficeEquipment_e_index = 0;
+        angular.forEach($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsOfficeEquipment, function(value, key) {
+            if(value.asset != 'Computers' && value.asset != 'Furniture') {
+                angular.forEach($scope.enum_data.other_govn_services.Table_1.BcsOfficeEquipment, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.other_govn_services.Table_1.BcsOfficeEquipment);
+                    if(each_enum.enum_index == bcsOfficeEquipment_e_index) {
+                        $scope.enum_data.other_govn_services.Table_1.BcsOfficeEquipment[index].newasset = value.asset;
+                    }
+                })
+                bcsOfficeEquipment_e_index = bcsOfficeEquipment_e_index + 1;
+            }
+        })
+        var bcsMachinery_e_index = 0;
+        angular.forEach($scope.bsCostsOfAssetsOnTheDistrict.other_govn_services.Table_1.BcsMachinery, function(value, key) {
+            if(value.asset != 'Vehicles' && value.asset != 'Generators' && value.asset != 'Elevators') {
+                angular.forEach($scope.enum_data.other_govn_services.Table_1.BcsMachinery, function(each_enum, index, key_in) {
+                    console.log($scope.enum_data.other_govn_services.Table_1.BcsMachinery);
+                    if(each_enum.enum_index == bcsMachinery_e_index) {
+                        $scope.enum_data.other_govn_services.Table_1.BcsMachinery[index].newasset = value.asset;
+                    }
+                })
+                bcsMachinery_e_index = bcsMachinery_e_index + 1;
+            }
+        })
+        console.log('getEnumDataFromEnd', $scope.enum_data);
+    }
+
+    $scope.updateEnums = function() {
+        console.log('----updateEnums');
+        $scope.getEnumDataFromEnd();
+        $http({
+            method: 'POST',
+            url: '/update_other_government_enumirate_dl_data',
+            contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'enum_data': ($scope.enum_data),
+                'com_data': {
+                    'district': $scope.district,
+                    'bs_date': $scope.baselineDate,
+                    'user_id': $scope.user_id
+                },
+                'is_edit': $scope.is_edit,
+                'sector': 'other_govn_services'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            console.log(response);
+        }, function errorCallback(response) {
+
+        });
+    }
 }])

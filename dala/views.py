@@ -135,6 +135,7 @@ def fetch_business_types(request):
     )
 
 
+# chamupathi
 # Tourism Infrastructure types
 @csrf_exempt
 def fetch_tourism_infrastructure_types(request):
@@ -294,8 +295,8 @@ def bs_save_data(request):
 
 # dileepa
 @csrf_exempt
-def update_enumirate_dl_data(request):
-    print 'update_enumirate_dl_data*\n'
+def update_enumirate_bs_data(request):
+    print 'update_enumirate_bs_data\n'
     data = (yaml.safe_load(request.body))
     enum_data = data['enum_data']
     com_data = data['com_data']
@@ -350,12 +351,128 @@ def update_enumirate_dl_data(request):
 
 
 # dileepa
+@csrf_exempt
+def update_enumirate_dl_data(request):
+    print 'update_enumirate_dl_data\n'
+    data = (yaml.safe_load(request.body))
+    enum_data = data['enum_data']
+    com_data = data['com_data']
+
+    interface_table_name = None
+    for sector in enum_data:
+        for interface_table in enum_data[sector]:
+            interface_table_name = interface_table
+
+    print data['sector']
+    print interface_table_name
+    print com_data['district']
+    print com_data['bs_date']
+
+    dsdate = get_bd_session_key_record(data['sector'], interface_table_name, com_data['district'], com_data['bs_date'])
+
+    for sector in enum_data:
+        sub_app_name = sector + '.base_line'
+        print 'sub_app_name :', sub_app_name
+        for interface_table in enum_data[sector]:
+            for db_table in enum_data[sector][interface_table]:
+                for row in enum_data[sector][interface_table][db_table]:
+                    for dl_interface_table in row['dl_tables']:
+                        for dl_db_table in row['dl_tables'][dl_interface_table]:
+                            info = {'sector': data['sector'], 'dltable': get_db_table_from_model(str(dl_db_table)),
+                                    'district': com_data['district'], 'dsdate': dsdate,
+                                    'oldasset': row['oldasset'], 'newasset': row['newasset'],
+                                    'dl_asset_field': row['dl_tables'][dl_interface_table][dl_db_table]['dl_asset_field']}
+
+                            sql = """UPDATE {sector}.{dltable} dla
+                                SET {dl_asset_field} = '{newasset}'
+                                WHERE dla.{dl_asset_field} = (SELECT di.{dl_asset_field}
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')
+                                AND dla.district = {district}
+                                AND dla.created_date = (SELECT dls.date
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')""".format(**info)
+
+                            print dl_db_table
+                            print sql
+                            cursor = connection.cursor()
+                            cursor.execute(sql)
+                            # row = cursor.fetchone()
+    return HttpResponse('success')
+
+
+# dileepa
+@csrf_exempt
+def update_other_government_enumirate_dl_data(request):
+    print 'update_other_government_enumirate_dl_data\n'
+    data = (yaml.safe_load(request.body))
+    enum_data = data['enum_data']
+    com_data = data['com_data']
+
+    interface_table_name = None
+    for sector in enum_data:
+        for interface_table in enum_data[sector]:
+            interface_table_name = interface_table
+
+    print data['sector']
+    print interface_table_name
+    print com_data['district']
+    print com_data['bs_date']
+
+    dsdate = get_bd_session_key_record(data['sector'], interface_table_name, com_data['district'], com_data['bs_date'])
+
+    for sector in enum_data:
+        sub_app_name = sector + '.base_line'
+        print 'sub_app_name :', sub_app_name
+        for interface_table in enum_data[sector]:
+            for db_table in enum_data[sector][interface_table]:
+                for row in enum_data[sector][interface_table][db_table]:
+                    for dl_interface_table in row['dl_tables']:
+                        for dl_db_table in row['dl_tables'][dl_interface_table]:
+                            info = {'sector': 'other_government', 'dltable': get_db_table_from_model(str(dl_db_table)),
+                                    'district': com_data['district'], 'dsdate': dsdate,
+                                    'oldasset': row['oldasset'], 'newasset': row['newasset'],
+                                    'dl_asset_field': row['dl_tables'][dl_interface_table][dl_db_table]['dl_asset_field']}
+
+                            print info
+
+                            sql = """UPDATE {sector}.{dltable} dla
+                                SET {dl_asset_field} = '{newasset}'
+                                WHERE dla.{dl_asset_field} in (SELECT di.{dl_asset_field}
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')
+                                AND dla.district = {district}
+                                AND dla.created_date in (SELECT dls.date
+                                    FROM {sector}.{dltable} di
+                                         JOIN {sector}.dl_session_keys dls ON di.created_date =  dls.date
+                                         JOIN {sector}.bd_session_keys bss ON dls.bs_date = bss.date
+                                    WHERE di.district = {district} AND bss.date = '{dsdate}'
+                                    AND di.{dl_asset_field} = '{oldasset}')""".format(**info)
+
+                            print dl_db_table
+                            print sql
+                            cursor = connection.cursor()
+                            cursor.execute(sql)
+                            # row = cursor.fetchone()
+    return HttpResponse('success')
+
+
+# dileepa
 def get_bd_session_key_record(sector, table_name, district, bs_date):
     print '*get_bd_session_key_record', sector, table_name, district, bs_date
     sub_app_name = sector + '.base_line'
     sub_app_session = apps.get_model(sub_app_name, 'BdSessionKeys')
     bd_session = sub_app_session.objects.get(district=district, bs_date=bs_date, table_name=table_name)
-    # bd_session = sub_app_session.objects.get(id=1)
+    print bd_session.date
     return bd_session.date
 
 
@@ -993,31 +1110,6 @@ def bs_fetch_edit_data(request):
     )
 
 
-# Old method
-# @csrf_exempt
-# def bs_save_edit_data(table_data, com_data):
-#     district = com_data['district']
-#     bs_date = com_data['bs_date']
-#
-#     for sector in table_data:
-#
-#         sub_app_name = sector + '.base_line'
-#
-#         for interface_table in table_data[sector]:
-#             print 'interface table', ' -->', interface_table, '\n'
-#             for db_table in table_data[sector][interface_table]:
-#
-#                 print 'db table', ' -->', db_table, '\n'
-#
-#                 for row in table_data[sector][interface_table][db_table]:
-#                     model_class = apps.get_model(sub_app_name, db_table)
-#                     model_object = model_class.objects.filter(bs_date=bs_date, district=district, id=row['id'])
-#                     model_object.update(**row)
-#
-#                     print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
-
-# new method added by chamupathi mendis to work with enum field edit
-
 @csrf_exempt
 def bs_save_edit_data(table_data, com_data):
     district = com_data['district']
@@ -1446,66 +1538,6 @@ def dl_fetch_edit_data_with_array(request):
     )
 
 
-# @csrf_exempt
-# def dl_fetch_district_disagtn(request):
-#     data = (yaml.safe_load(request.body))
-#     table_name = data['table_name']
-#     sector = data['sector']
-#     com_data = data['com_data']
-#     incident = com_data['incident']
-#     tables = settings.TABLE_PROPERTY_MAPPER[sector][table_name]
-#
-#     dl_mtable_data = {sector: {}}
-#     dl_mtable_data[sector][table_name] = {}
-#     sub_app_name = sector + '.damage_losses'
-#
-#     if 'province' in com_data:
-#         admin_area = com_data['province']
-#         filter_fields = {'incident': incident, 'district__province': admin_area}
-#     else:
-#         filter_fields = {'incident': incident}
-#
-#     dl_session_model = apps.get_model(sub_app_name, 'DlSessionKeys')
-#     dl_sessions = dl_session_model.objects.filter(**filter_fields).distinct()
-#     print dl_sessions
-#     for dl_session in dl_sessions:
-#
-#         category_name = None
-#
-#         if 'province' in com_data:
-#             district_id = dl_session.district.id
-#             filter_fields = {'incident': incident, 'district': district_id}
-#             category_name = dl_session.district.name
-#         else:
-#             province_id = None
-#             if dl_session.province:
-#                 province_id = dl_session.province.id
-#                 category_name = dl_session.province.name
-#             filter_fields = {'incident': incident, 'province': province_id}
-#
-#         if category_name is not None:
-#             dl_mtable_data[sector][table_name][category_name] = {}
-#
-#             for table in tables:
-#                 table_fields = tables[table]
-#
-#                 dl_mtable_data[sector][table_name][category_name][table] = {}
-#
-#                 table_fields = tables[table]
-#                 model_class = apps.get_model(sub_app_name, table)
-#
-#                 table_fields = tables[table]
-#                 dl_mtable_data[sector][table_name][category_name][table] = list(model_class.objects.
-#                                                                                 filter(**filter_fields)
-#                                                                                 .values(*table_fields))
-#
-#     return HttpResponse(
-#         json.dumps((dl_mtable_data), cls=DjangoJSONEncoder),
-#         content_type='application/javascript; charset=utf8'
-#     )
-
-# new method is added by chamupathi mendis to support new enum fields in edit mode
-
 @csrf_exempt
 def dl_save_edit_data(table_data, com_data, current_user):
     todate = timezone.now()
@@ -1698,27 +1730,6 @@ def dl_delete_data(table_data, com_data):
                         print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
 
 
-# Old method
-# @csrf_exempt
-# def dl_save_edit_data(table_data, com_data):
-#     print "Edit d"
-#     for sector in table_data:
-#
-#         sub_app_name = sector + '.damage_losses'
-#
-#         for interface_table in table_data[sector]:
-#             print 'interface table', ' -->', interface_table, '\n'
-#             for db_table in table_data[sector][interface_table]:
-#
-#                 print 'db table', ' -->', db_table, '\n'
-#
-#                 for row in table_data[sector][interface_table][db_table]:
-#                     model_class = apps.get_model(sub_app_name, db_table)
-#                     model_object = model_class.objects.filter(id=row['id'])
-#                     model_object.update(**row)
-#
-#                     print 'row', ' --> ', row, ' id ', model_object[0].id, '\n'
-
 @csrf_exempt
 def has_the_id(row):
 
@@ -1767,6 +1778,7 @@ def bs_mining_fetch_edit_data(request):
         json.dumps(bs_mtable_data),
         content_type='application/javascript; charset=utf8'
     )
+
 
 # edit data baseline mining
 @csrf_exempt

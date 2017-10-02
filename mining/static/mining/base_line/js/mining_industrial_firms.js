@@ -301,9 +301,6 @@ app.controller("MnIndusMinFirmController", function($scope, $http, _) {
         'mining': {
             'Table_1': {
                 'BmaImFn': [],
-//                'BS_Table2': [],
-//                'BS_Table3': [],
-//                'BS_Table4': [],
             }
         }
     }

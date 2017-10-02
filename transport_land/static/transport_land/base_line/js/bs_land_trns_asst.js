@@ -124,7 +124,8 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
             $scope.check_search = true;
-        } else {
+        }
+        else {
             $scope.is_edit_disable = false;
             $scope.check_search = false;
         }
@@ -203,7 +204,6 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
                 }),
             }).success(function(data) {
                 console.log(data);
-//                $scope.bsLandTrnsAsst = data;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.transport_land.Table_2, function(value, index) {
@@ -249,25 +249,22 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
                 }),
             }).success(function(data) {
                 console.log(data);
-                //                $scope.bsLandTrnsAsst = data;
                 var edit_data_not_found = false;
                 if(data != null) {
-                    console.log('----if');
                     angular.forEach(data.transport_land.Table_2, function(value, index) {
-                        console.log('----forEach');
                         console.log(value);
                         if(value.length == 0) {
-                            console.log('----');
                             edit_data_not_found = true;
                         }
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsLandTrnsAsst = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
-                    console.log('----else');
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -300,7 +297,6 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
     $scope.getEnumDataFromStart = function() {
         var bsGtlAstPvehicles_e_index = 0;
         angular.forEach($scope.bsLandTrnsAsst.transport_land.Table_2.BsGtlAstPvehicles, function(value, index, key) {
-//            var bsRbuTbridges_index = 0;
             if(value.private_vehicles != 'Cars' && value.private_vehicles != 'Motorcycles' && value.private_vehicles != 'Bicycles') {
                 var enum_val = {
                     oldasset: value.private_vehicles,

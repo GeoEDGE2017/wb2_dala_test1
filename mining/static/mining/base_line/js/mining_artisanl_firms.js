@@ -90,8 +90,16 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
-				$("#modal-container-239453").modal('show');
 				console.log(response);
+				if(response.data == 'False') {
+					$("#modal-container-239454").modal('show');
+					$scope.is_valid_data = false;
+				}
+				else {
+				    $scope.updateEnums();
+				     $scope.mnArtisanalFirm = init_data;
+					$("#modal-container-239453").modal('show');
+				}
 			}, function errorCallback(response) {
 				$("#modal-container-239454").modal('show');
 				console.log(response);
@@ -119,6 +127,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
 			}).success(function(data) {
 				console.log(data);
 				$scope.mnArtisanalFirm = data;
+				$scope.getEnumDataFromStart();
 			})
 		}
 	}
@@ -167,9 +176,6 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
         'mining': {
             'Table_2': {
                 'BmaAmMin': [],
-                'BS_Table2': [],
-                'BS_Table3': [],
-                'BS_Table4': [],
             }
         }
     }
@@ -177,7 +183,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
     $scope.getEnumDataFromStart = function() {
         var bmaAmMin_e_index = 0;
         angular.forEach($scope.mnArtisanalFirm.mining.Table_2.BmaAmMin, function(value, index, key) {
-            if(value.minerals != 'Asset_01' && value.minerals != 'Asset_02') {
+            if(value.minerals != 'Nickel' && value.minerals != 'Copper' && value.minerals != 'Gold') {
                 var enum_val = {
                     oldasset: value.minerals,
                     newasset: null,
@@ -185,8 +191,8 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
                     bs_asset_field: 'minerals',
                     dl_tables: {
                         'Table_4': {
-                            'DL_Table1': {
-                                dl_asset_field: 'dl_asset_field_name'
+                            'DlaLosPlos': {
+                                dl_asset_field: 'type_los'
                             }
                         }
                     }
@@ -202,7 +208,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
         console.log($scope.mnArtisanalFirm.mining.Table_2);
         var bmaAmMin_e_index = 0;
         angular.forEach($scope.mnArtisanalFirm.mining.Table_2.BmaAmMin, function(value, key) {
-            if(value.minerals != 'Asset_01' && value.minerals != 'Asset_02') {
+            if(value.minerals != 'Nickel' && value.minerals != 'Copper' && value.minerals != 'Gold') {
                 angular.forEach($scope.enum_data.mining.Table_2.BmaAmMin, function(each_enum, index, key_in) {
                     console.log($scope.enum_data.mining.Table_2.BmaAmMin);
                     if(each_enum.enum_index == bmaAmMin_e_index) {
@@ -225,7 +231,7 @@ app.controller("MnArtisanalFirmController", ['$scope', '$http', function($scope,
                 'enum_data': ($scope.enum_data),
                 'com_data': {
                     'district': $scope.district,
-                    'bs_date': $scope.bs_date,
+                    'bs_date': $scope.baselineDate,
                     'user_id': $scope.user_id
                 },
                 'is_edit': $scope.is_edit,

@@ -163,11 +163,18 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 				}).then(function successCallback(response) {
 					if(response.data == 'null') {
 						$scope.currentBaselineDate = "Baseline data not available in  Table 3: Baseline Information of Unit Cost of the Ministry Health System in a District";
-					} else {
+					}
+					else {
 						var result = response.data;
-						result = result.replace(/^"(.*)"$/, '$1');
-						$scope.currentBaselineDate = "Latest baseline data as at " + result;
-						console.log($scope.currentBaselineDate);
+//						result = result.replace(/^"(.*)"$/, '$1');
+//						$scope.currentBaselineDate = "Latest baseline data as at " + result;
+//						console.log($scope.currentBaselineDate);
+
+						var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                        $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                        $scope.bsCreatedeDate = result.bs_created_date;
+                        console.log('bs_date', result.bs_date);
+                        console.log('bsCreatedeDate', result.bs_created_date);
 					}
 				});
 			})

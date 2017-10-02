@@ -684,6 +684,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 			$scope.check_search = true;
 		}
 	}
+
 	$scope.saveDlData = function(form) {
 		$scope.submitted = true;
 		$scope.is_submit = true;
@@ -718,6 +719,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		}
 		$scope.is_submit = false;
 	}
+
 	$scope.editDlData = function(form) {
 		$scope.is_edit = true;
 		$scope.submitted = true;
@@ -767,10 +769,64 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 			})
 		}
 	}
+
+	$scope.searchDlData = function(form) {
+		document.getElementById("clearbtn").disabled = true;
+		document.getElementById("editbtn").disabled = true;
+		document.getElementById("subbtn").disabled = true;
+		$scope.is_search = true;
+		if(form.$valid) {
+			$http({
+				method: "POST",
+				url: '/dl_fetch_edit_data_with_array',
+				data: angular.toJson({
+					'table_name': 'Table_4',
+					'sector': 'education',
+					'keys': {
+						'DpefBefPreSchool': 'pre_school',
+						'DpefBefPrmSchool': 'primary_school',
+						'DpefBefSecSchool': 'secondary_school',
+						'DpefBefUnv': 'university',
+						'DpefBefTechInst': 'tech_institute',
+					},
+					'com_data': {
+						'district': $scope.district.district__id,
+						'incident': $scope.incident
+							//                        'user_id': $scope.user_id,
+					},
+					'is_edit': $scope.is_edit
+				}),
+			}).success(function(data) {
+				console.log(data);
+				//                $scope.dlPvtEduFacilities = data;
+				//                $scope.getPrivateClinicsIDs();
+				var edit_data_not_found = false;
+				if(data != null) {
+					angular.forEach(data.education.Table_4, function(value, key, index) {
+						console.log('value ', value, 'key ', key);
+						if((value.length == 0) && (key != 'DpefBefPreSchool') && (key != 'DpefBefPrmSchool') && (key != 'DpefBefSecSchool') && (key != 'DpefBefTechInst') && (key != 'DpefBefUnv')) {
+							edit_data_not_found = true;
+						}
+					})
+					if(edit_data_not_found != true) {
+						$scope.dlPvtEduFacilities = data;
+						$scope.getPrivateClinicsIDs();
+					} else {
+						$("#modal-container-239456").modal('show');
+					}
+				} else {
+					$("#modal-container-239456").modal('show');
+				}
+			})
+		}
+	}
+
 	$scope.cancelEdit = function() {
 		$scope.is_edit = false;
 		$scope.dlPvtEduFacilities = init_data;
+		location.reload();
 	}
+
 	$scope.addPreSchoolObject = function() {
 		var new_row_one = [{
 			asset: 'Structure',
@@ -814,6 +870,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		$scope.preSchool.unshift(null);
 		console.log('preSchool push', $scope.preSchool);
 	}
+
 	$scope.addPrmSchoolObject = function() {
 		var new_row_one = [{
 			asset: 'Structure',
@@ -857,6 +914,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		$scope.prmSchool.unshift(null);
 		console.log('prmSchool push', $scope.prmSchool);
 	}
+
 	$scope.addSecSchoolObject = function() {
 		var new_row_one = [{
 			asset: 'Structure',
@@ -900,6 +958,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		$scope.secSchool.unshift(null);
 		console.log('prmSchool push', $scope.secSchool);
 	}
+
 	$scope.addUnvObject = function() {
 		var new_row_one = [{
 			asset: 'Structure',
@@ -943,6 +1002,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		$scope.unv.unshift(null);
 		console.log('university push', $scope.unv);
 	}
+
 	$scope.addTechInstbject = function() {
 		var new_row_one = [{
 			asset: 'Structure',
@@ -986,6 +1046,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		$scope.techInst.unshift(null);
 		console.log('prmSchool push', $scope.techInst);
 	}
+
 	$scope.test = function() {
 			console.log('preSchool', $scope.preSchool);
 			console.log('prmSchool', $scope.prmSchool);
@@ -995,6 +1056,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		console.log("clear")
 		$scope.is_edit = false;
 		$scope.dlPvtEduFacilities = angular.copy(init_data);
+		location.reload();
 	}
 	$scope.totDpefNaf_NumEduFacilities = function() {
 		var tot = 0;

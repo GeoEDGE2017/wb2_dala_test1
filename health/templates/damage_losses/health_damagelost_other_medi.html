@@ -49,6 +49,13 @@ $(document).ready(function() {
                     </span> <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
+                    <td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
+									</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_damagelost_other_medi)" ng-if="!is_search" class="btn btn btn-info"><span class="fa fa-search"></span></button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+								</td>
 					<table class="table table-bordered" style="width:100%;background:#E4E5E6;">
 						<colgroup>
 							<col width="264" />
@@ -73,18 +80,12 @@ $(document).ready(function() {
 											{{incident.incident_name}} </option> {% endfor %} </select>
 								</td>
 								<td colspan="3" style="padding-left:5px;"> Name of District:</td>
-								<td colspan="2" style="">
+								<td colspan="3" style="">
 									<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" style="font-weight:400;" id="ccyear" ng-model="district" ng-value="district.district__id" class="form-control" ng-change="changedValue(false)" required>
 										<option value="" selected>Select District</option>
 									</select>
 								</td>
-								<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-block btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_damagelost_other_medi)" ng-if="!is_search" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-block btn-warning">Cancel Search</button>
-								</td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
 							<tr height="20" class="trheadc1">
 								<td width="287" height="20"> </td>
 								<td colspan="7" width="686" style="text-align:center;"> Type of Facility </td>

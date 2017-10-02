@@ -63,6 +63,8 @@
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
+                    <td><button ng-click="dlEditData(form_health_damagelost_lmh)" class="btn btn-info"><span class="fa fa-search"></span></button>
+                            </td>
                     <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
@@ -106,15 +108,20 @@
                                 </select>
                             </td>
                             <td colspan="" style="padding-left:5px;">Name of District:</td>
-                            <td colspan="2" style="">
+                            <td colspan="3" style="">
                                 <select ng-options="district as district.district__name for district in districts track by district.district__id"
                                         name="district" id="ccyear" ng-model="district" style="font-weight:400;"
                                         ng-change="changedValue(false)" class="form-control" required>
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
-                             <td><button ng-click="dlEditData(form_health_damagelost_lmh)" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
-                            </td>
+                             <td style="width:100px;"> <span ng-if="!check_search">
+									<button ng-if="!is_search" class="btn btn-block btn-info" disabled><span class="fa fa-search"></span></button>
+									</span> <span ng-if="check_search">
+									<button ng-click="searchDlData(form_health_damagelost_lmh)" ng-if="!is_search" class="btn btn-block btn-info"><span class="fa fa-search"></span></button>
+									</span>
+									<button ng-click="clear()" ng-if="is_search" class="btn btn-block btn-warning">Cancel Search</button>
+								</td>
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr height="20" class="trheadc1">
@@ -139,7 +146,7 @@
                                 Total Number
                             </td>
                         </tr>
-                        <tr height="34" class="trsubcs">
+                        <tr height="34" class="trsubc1">
                             <td width="264" height="34" class="trheadc">
                             </td>
                             <td width="98">
@@ -1024,8 +1031,8 @@
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-                        <tr height="20" class="trheadc1">
-                            <td width="264" height="20">
+                        <tr height="20" class="trsubc">
+                            <td width="264" height="20" class="trheadc">
                             </td>
                             <td colspan="3" width="294" style="text-align:center;">
                                 Line Ministry Health System
@@ -2016,23 +2023,23 @@
                         </table>
                         <div class="pull-right">
                             <br>
-                            <button type="button" ng-click="clear()" class="btn btn-info">
+                            <button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
                                 Clear
                             </button>
                             <span ng-if="is_edit_disable">
-                                <button type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
+                                <button id="editbtn" type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
                                     Edit
                                 </button>
                             </span>
                             <span ng-if="!is_edit_disable">
-                                <button type="button" ng-else="!is_edit" class="btn btn-success" disabled>
+                                <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                                     Edit
                                 </button>
                             </span>
-                            <button type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                            <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
                                 Cancel Edit
                             </button>
-                            <button type="button" ng-disabled="form_pop_lat_census.$invalid"
+                            <button id="subbtn" type="button" ng-disabled="form_pop_lat_census.$invalid"
                                     ng-click="dlSaveData(form_health_damagelost_lmh)" class="btn btn-success">
                                 Submit
                             </button>

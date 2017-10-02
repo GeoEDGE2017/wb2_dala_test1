@@ -14,6 +14,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.user_id;
     $scope.check_search = false;
     $scope.is_search = false;
+    $scope.bsCreatedeDate;
 
 
     $scope.newPvtPwProducer = {
@@ -119,20 +120,94 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                     'incident': $scope.incident,
                     'user':$scope.user_id,
                 }),
-            }).success(function(data) {
-                $scope.districts = data;
+            }).success(function(response) {
+                $scope.districts = response;
                 $scope.selectedDistrict = "";
-                //console.log($scope.districts);
-            })
+
+            }, function errorCallback(response) {
+
+            });
+
         }
 
         if($scope.incident && $scope.district && $scope.district.district__id) {
             $scope.loadIPP_SPP();
 
+
         }
-        if($scope.incident && $scope.district){
-         $scope.check_search = true;
+         if($scope.incident && $scope.district){
+            $scope.is_edit_disable = true;
+            $scope.check_search = true;
+            $http({
+                method: 'POST',
+                url: '/bs_get_data_mock',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'db_tables': ['BsPwGenFirm'],
+                    'com_data': {
+                        'district':$scope.district.district__id,
+                        'incident': $scope.incident,
+                    },
+                    'table_name': 'Table_1',
+                    'sector':'power_supply',
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                var data = response.data;
+                console.log('*', response);
+//
+//                    angular.forEach(data, function(value, key) {
+//                    //$scope.bs_data[key] = JSON.parse(value);
+//                   console.log('**', $scope.bs_data[key]);
+//                });
+
+
+                var is_null = false;
+                angular.forEach($scope.bs_data, function(value, index) {
+                    if(value == null) {
+                        is_null = true;
+                    }
+                })
+                if(is_null == true) {
+                    $("#modal-container-239458").modal('show');
+                    console.log('baseline table or tables are empty');
+                    console.log($scope.bs_data);
+                    $scope.currentBaselineDate = null;
+                }
+                else {
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_1',
+                            'sector': 'power_supply'
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        console.log('response', response);
+							var result = response.data;
+							if(result.bs_date == null) {
+								$("#modal-container-239458").modal('show');
+							}
+							else {
+								var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+								$scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+								$scope.bsCreatedeDate = result.bs_created_date;
+								console.log('bs_date', result.bs_date);
+								console.log('bsCreatedeDate', result.bs_created_date);
+							}
+                    });
+                }
+            }, function errorCallback(response) {
+
+            });
         }
+
         console.log("district", $scope.district);
     }
 
@@ -256,6 +331,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                         'pw_gen_firm_id' : $scope.selectedProducer.id,
                         'user_id': $scope.user_id,
                     },
+                    'bs_date': $scope.bsCreatedeDate,
                     'is_edit': $scope.is_edit
                 }),
                 dataType: 'json',
@@ -263,13 +339,13 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
                 console.log(data);
                 $scope.clear();
                 $scope.is_edit = false;
-                if (data == 'False') {
-                    $scope.is_valid_data = false;
-                    $("#modal-container-239454").modal('show');
-                }
-                else {
-                    $("#modal-container-239453").modal('show');
-                }
+                if(data == 'False') {
+                        $scope.is_valid_data = false;
+                        $("#modal-container-239454").modal('show');
+                    }
+                    else {
+                        $("#modal-container-239453").modal('show');
+                    }
             })
         }
     }

@@ -496,14 +496,14 @@ class DlRiverEmbankmntNational(models.Model):
         db_table = 'agri_irrigation\".\"dl_river_embankmnt_national'
 
 
-class DlBuildingsNational(models.Model):
+class DlIrrigatnDmgNational(models.Model):
     damages = models.FloatField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'agri_irrigation\".\"dl_buildings_national'
+        db_table = 'agri_irrigation\".\"dl_irrigatn_dmg_national'
 
 
 class DlIrrigatnDmgDistrict(models.Model):

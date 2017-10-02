@@ -41,8 +41,8 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
             method: "POST",
             url: '/dl_fetch_summary_disagtn',
             data: angular.toJson({
-                'table_name':  ['Table_10','Table_6',],
-                'sector': ['agri_agrarian','agri_livestock'],
+                'table_name':  ['Table_10','Table_6','Table_6','Table_6'],
+                'sector': ['agri_agrarian','agri_livestock','agri_fisheries','agri_irrigation'],
                 'com_data': {
                     'incident': $scope.incident,
                 },
@@ -73,12 +73,10 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
 
         $scope.finaltotalprivate = 0;
 
-        var totaldpub =  ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0] ?
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0].dmg_los_pub ?
-                         $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0].dmg_los_pub : 0):0) +
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[0] ?
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[0].damages ?
-                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[0].damages : 0) : 0)
+        var totaldpub =  $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgPubNational[0].sum +
+                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPubNational[0].damages +
+                         $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosPubNational[0].dmg_pub +
+                         $scope.dlAgriSumNat.agri_irrigation.Table_6[key].DlIrrigatnDmgNational[0].damages;
 
 
         var totaldpubstring = "totaldpub_"+ key;
@@ -90,13 +88,9 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
 
         console.log('test',$scope.dlAgriSumNat.agri_agrarian);
 
-       var totaldpvt =
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0]?
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0].dmg_los_pvt ?
-                         $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgLosNational[0].dmg_los_pvt : 0 ) : 0)+
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPvtNational[0] ?
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPvtNational[0].damages ?
-                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPvtNational[0].damages : 0) : 0);
+       var totaldpvt =$scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorDmgPvtNational[0].sum +
+                        $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpNdaPvtNational[0].damages +
+                        $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosPvtNational[0].dmg_pvt ;
 
 
         var totaldpvtstring = "totaldpvt_"+ key;
@@ -107,14 +101,10 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
         $scope.summaryDamages = $scope.grndtotaldpub + $scope.grndtotaldpvt;
 
 
-         var totalyear1pub =
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0]?
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pub ?
-                         $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pub : 0):0)  +
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0]?
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0].los_year_1 ?
-                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0].los_year_1 : 0) : 0);
-
+         var totalyear1pub =$scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pub+
+                        $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0].los_year_1 +
+                        $scope.dlAgriSumNat.agri_irrigation.Table_6[key].DlLosOtherNational[0].total_los +
+                        $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosNational[0].los_year_1_pub;
 
         var totalyear1pubstring = "totalyear1pub_"+ key;
 
@@ -123,15 +113,9 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
         $scope.grndtotalyear1pub = $scope.grndtotalyear1pub + totalyear1pub ;
 
 
-
-
-         var totalyear1pvt =
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0] ?
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pvt ?
-                         $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pvt : 0) :0) +
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0] ?
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0].los_year_1 ?
-                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0].los_year_1 : 0): 0 );
+         var totalyear1pvt =$scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear1National[0].dmg_los_pvt+
+                        $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0].los_year_1 +
+                        $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosNational[0].los_year_1_pvt;
 
         var totalyear1pvtstring = "totalyear1pvt_"+ key;
 
@@ -142,13 +126,9 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
 
 
 
-         var totalyear2pub =
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0]?
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pub ?
-                         $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pub : 0 ) :0)+
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0]?
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0].los_year_2 ?
-                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0].los_year_2 : 0) :0)
+         var totalyear2pub =$scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pub+
+                        $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPubNational[0].los_year_2 +
+                        $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosNational[0].los_year_2_pub
                          ;
 
          var totalyear2pubstring = "totalyear2pub_"+ key;
@@ -157,13 +137,9 @@ app.controller("DlSummeryAgriNatController", function ($scope, $http, $parse, _)
          model.assign($scope, totalyear2pub);
          $scope.grndtotalyear2pub = $scope.grndtotalyear2pub + totalyear2pub ;
 
-         var totalyear2pvt =
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0] ?
-                         ($scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pvt ?
-                         $scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pvt : 0 ) : 0)+
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0] ?
-                         ($scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0].los_year_2 ?
-                         $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0].los_year_2 : 0) : 0 );
+         var totalyear2pvt =$scope.dlAgriSumNat.agri_agrarian.Table_10[key].DsorLosYear2National[0].dmg_los_pvt +
+                       $scope.dlAgriSumNat.agri_livestock.Table_6[key].DlpLosPvtNational[0].los_year_2 +
+                       $scope.dlAgriSumNat.agri_fisheries.Table_6[key].DlfLosNational[0].los_year_2_pvt;
 
          var totalyear2pvtstring = "totalyear2pvt_"+ key;
 

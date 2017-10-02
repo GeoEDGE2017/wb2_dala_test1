@@ -544,14 +544,11 @@ app.controller('dlInTheLineMinistryHealthSysAppController', ['$scope', '$http', 
 
     //Search Data
     $scope.searchDlData = function(form) {
-document.getElementById("clearbtn").disabled = true;
-document.getElementById("editbtn").disabled = true;
-document.getElementById("subbtn").disabled = true;
+        document.getElementById("clearbtn").disabled = true;
+        document.getElementById("editbtn").disabled = true;
+        document.getElementById("subbtn").disabled = true;
 
-console.log("test",$scope.district);
-console.log("test",$scope.bs_date);
-
-$scope.is_search = true;
+        $scope.is_search = true;
 
         if(form.$valid) {
             $http({
@@ -569,7 +566,6 @@ $scope.is_search = true;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.health.Table_5, function(value, index) {
-//                        console.log(value);
                         if(value.length == 0) {
                             edit_data_not_found = true;
                         }
@@ -634,12 +630,10 @@ $scope.is_search = true;
                 dataType: 'json',
             }).then(function successCallback(response) {
                 var data = response.data;
-                console.log('*', response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
 
-                console.log('*', $scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {

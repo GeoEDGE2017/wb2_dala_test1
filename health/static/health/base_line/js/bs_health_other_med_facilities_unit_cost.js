@@ -298,7 +298,8 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
             $scope.is_edit_disable = true;
             $scope.check_search = true;
 
-        } else {
+        }
+        else {
             $scope.is_edit_disable = false;
             $scope.check_search = false;
         }
@@ -331,7 +332,8 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                 if (response.data == 'False') {
                     $("#modal-container-239454").modal('show');
                     $scope.is_valid_data = false;
-                } else {
+                }
+                else {
                     $("#modal-container-239453").modal('show');
                 }
             }, function errorCallback(data) {
@@ -371,10 +373,12 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                     })
                     if (edit_data_not_found != true) {
                         $scope.bsDataOtherMedicalFacilities = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -414,10 +418,12 @@ app.controller("BsOtherMedFaciUnitCostController", ['$scope', '$http', function(
                     })
                     if (edit_data_not_found != true) {
                         $scope.bsDataOtherMedicalFacilities = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })

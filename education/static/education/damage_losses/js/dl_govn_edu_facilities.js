@@ -29,6 +29,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 	$scope.is_edit_disable = false;
 	$scope.is_submit = false;
 	$scope.check_search = false;
+
 	var init_data = {
 		'education': {
 			'Table_3': {
@@ -577,7 +578,9 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 			}
 		}
 	}
+
 	$scope.dlGovnEduFacilities = init_data;
+
 	$scope.insertAsset = function(table) {
 		console.log($scope.dlGovnEduFacilities.education.Table_3[table]);
 		var new_row;
@@ -594,7 +597,8 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				min_pzd_offices: null,
 				total: null
 			}
-		} else if(table == 'DugNdafEquipment') {
+		}
+		else if(table == 'DugNdafEquipment') {
 			new_row = {
 				particulars: '',
 				ab1_1c: null,
@@ -607,7 +611,8 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				min_pzd_offices: null,
 				total: null
 			}
-		} else if(table == 'DugNpdatSupplies') {
+		}
+		else if(table == 'DugNpdatSupplies') {
 			new_row = {
 				particulars: '',
 				ab1_1c: null,
@@ -620,7 +625,8 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				min_pzd_offices: null,
 				total: null
 			}
-		} else if(table == 'DugNpdatEquipment') {
+		}
+		else if(table == 'DugNpdatEquipment') {
 			new_row = {
 				particulars: '',
 				ab1_1c: null,
@@ -636,17 +642,22 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		}
 		$scope.dlGovnEduFacilities.education.Table_3[table].push(new_row);
 	}
+
 	$scope.removeItem = function removeItem(table, index) {
 		if(table == 'DugNdafSupplies') {
 			$scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies.splice(index, 1);
-		} else if(table == 'DugNdafEquipment') {
+		}
+		else if(table == 'DugNdafEquipment') {
 			$scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.splice(index, 1);
-		} else if(table == 'DugNpdatSupplies') {
+		}
+		else if(table == 'DugNpdatSupplies') {
 			$scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.splice(index, 1);
-		} else if(table == 'DugNpdatEquipment') {
+		}
+		else if(table == 'DugNpdatEquipment') {
 			$scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment.splice(index, 1);
 		}
 	}
+
 	$scope.changedValue = function getBsData(selectedValue) {
 		if($scope.incident && selectedValue) {
 			console.log($scope.user_id);
@@ -669,6 +680,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 			$scope.check_search = true;
 		}
 	}
+
 	$scope.saveDlData = function(form) {
 		$scope.submitted = true;
 		$scope.is_submit = true;
@@ -693,7 +705,8 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				if(response.data == 'False') {
 					$("#modal-container-239454").modal('show');
 					$scope.is_valid_data = false;
-				} else {
+				}
+				else {
 					$("#modal-container-239453").modal('show');
 				}
 			}, function myError(response) {
@@ -702,6 +715,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		}
 		$scope.is_submit = false;
 	}
+
 	$scope.dlDataEdit = function(form) {
 		$scope.is_edit = true;
 		$scope.submitted = true;
@@ -733,15 +747,18 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 					})
 					if(edit_data_not_found != true) {
 						$scope.dlGovnEduFacilities = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
 		}
 	}
+
 	$scope.searchDlData = function(form) {
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
@@ -778,20 +795,24 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 					})
 					if(edit_data_not_found != true) {
 						$scope.dlGovnEduFacilities = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
 		}
 	}
+
 	$scope.cancelEdit = function() {
 		$scope.is_edit = false;
 		$scope.dlGovnEduFacilities = init_data;
 		location.reload();
 	}
+
 	$scope.fetchDlData = function() {
 		$http({
 			method: "POST",
@@ -828,7 +849,8 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 			}).then(function successCallback(response) {
 				if(response.data == 'null') {
 					$scope.currentBaselineDate = "Baseline data not available in Table_2";
-				} else {
+				}
+				else {
 					var result = response.data;
 					result = result.replace(/^"(.*)"$/, '$1');
 					$scope.currentBaselineDate = "Latest baseline data as at " + result;
@@ -852,7 +874,8 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				dl_model2 = 'DugNpdatSupplies';
 				particular_value_1 = 'Value of Destroyed Supplies and Materials';
 				particular_value_2 = 'Value of Partially Damaged Supplies and Materials';
-			} else if(model_name == 'BugArcEquipment') {
+			}
+			else if(model_name == 'BugArcEquipment') {
 				dl_model1 = 'DugNdafEquipment';
 				dl_model2 = 'DugNpdatEquipment';
 				particular_value_1 = 'Value of Destroyed Equipment';
@@ -913,7 +936,8 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				if(model_name == 'BugArcSupplies') {
 					$scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
 					$scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
-				} else if(model_name == 'BugArcEquipment') {
+				}
+				else if(model_name == 'BugArcEquipment') {
 					$scope.dlGovnEduFacilities.education.Table_3[dl_model1].push(obj1);
 					$scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
 				}
@@ -922,6 +946,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 			$scope.dlGovnEduFacilities.education.Table_3[dl_model2].push(obj2);
 		});
 	}
+
 	$scope.calTotal = function(model, property) {
 		var obj_array;
 		total = 0;
@@ -942,9 +967,11 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		})
 		return total;
 	}
+
 	$scope.getTotal = function(value) {
 		$scope.dugNdafTot = $scope.dugNdafTot + value.total;
 	}
+
 	$scope.getGrandTot = function(property) {
 		var strucLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure.length;
 		var suppLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies.length;
@@ -952,6 +979,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		var ab1_1c = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure[strucLength - 1][property] + $scope.dlGovnEduFacilities.education.Table_3.DugNdafSupplies[suppLength - 1][property] + $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equLength - 1][property]
 		return ab1_1c;
 	}
+
 	$scope.getGrandTotDamage = function(property) {
 		var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
 		var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
@@ -959,11 +987,13 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		var ab1_1c_dm = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength - 1][property] + $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies[suppDmLength - 1][property] + $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength - 1][property]
 		return ab1_1c_dm;
 	}
+
 	$scope.getTot = function(model) {
 		var len = $scope.dlGovnEduFacilities.education.Table_3[model].length;
 		var tot = $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].ab1_1c + $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].type_2 + $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].type_3 + $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].pirivena + $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].training_institutes + $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].training_colleges + $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].tc_crc_resc + $scope.dlGovnEduFacilities.education.Table_3[model][len - 1].min_pzd_offices;
 		return tot;
 	}
+
 	$scope.tabTwogetGrandTotal = function() {
 		tabtwototal = 0;
 		var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafStructure.length;
@@ -973,16 +1003,18 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		//        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment[equDmLength -1].total);
 		return tabtwototal;
 	}
+
 	$scope.tabFourgetGrandTotal = function() {
-			tabfourtotal = 0;
-			var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
-			var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
-			var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
-			var tabfourtotal = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength - 1].total + $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies[suppDmLength - 1].total + $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength - 1].total
-				//        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total);
-			return tabfourtotal;
-		}
-		//Clear Function
+        tabfourtotal = 0;
+        var strucDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure.length;
+        var suppDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies.length;
+        var equDmLength = $scope.dlGovnEduFacilities.education.Table_3.DugNdafEquipment.length;
+        var tabfourtotal = $scope.dlGovnEduFacilities.education.Table_3.DugNpdatStructure[strucDmLength - 1].total + $scope.dlGovnEduFacilities.education.Table_3.DugNpdatSupplies[suppDmLength - 1].total + $scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength - 1].total
+            //        console.log($scope.dlGovnEduFacilities.education.Table_3.DugNpdatEquipment[equDmLength -1].total);
+        return tabfourtotal;
+    }
+
+    //Clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

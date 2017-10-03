@@ -162,7 +162,7 @@ DATABASES = {
         # },
 
 
-        'NAME': '2017_10_03_DB',
+        'NAME': 'dala_10_02',
         'USER': 'postgres',
     },
 }

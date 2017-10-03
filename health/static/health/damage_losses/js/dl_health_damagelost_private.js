@@ -109,7 +109,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'com_data': {
                         'district_id': $scope.district.district__id,
                         'incident_id': $scope.incident,
-                        //                        'private_clinic': $scope.clinic,
+                        //'private_clinic': $scope.clinic,
                     },
                     'bs_date': $scope.bsCreatedeDate,
                     'is_edit': $scope.is_edit,
@@ -217,7 +217,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 
     //Edit Entities
 	$scope.editPrivateClinic = function() {
-        console.log("*");
         if($scope.selectedCliniEdit) {
             $scope.selectedCliniEdit.district_id = $scope.district.district__id;
             console.log($scope.selectedCliniEdit);

@@ -217,14 +217,18 @@ $(document).ready(function() {
 						<tr height="20" ng-repeat="dapBefOther in dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther" ng-if="dapBefOther.pvt_clinics != 'Total'">
 							<td width="264" ng-bind="dapBefOther.pvt_clinics" height="20" class="tdpa"> </td>
 							<td width="98">
-								<input id="textinput" ng-model="dapBefOther.est_replacement_cost" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input id="textinput" ng-model="dapBefOther.est_replacement_cost" name="textinput" type="number"
+									   placeholder="" class="form-control input-md">
+							</td>
 							<td width="98">
-								<input id="textinput" ng-model="dapBefOther.est_repair_cost" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-							<td width="98">
-								<input id="textinput" ng-model="dapBefOther.total_damages" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-							<td class="tdpa" width="98"> </td>
-							<td class="tdpa" width="98"> </td>
-							<td class="tdpa" width="98"> </td>
+								<input id="textinput" ng-model="dapBefOther.est_repair_cost" name="textinput" type="number"
+									   placeholder="" class="form-control input-md">
+							</td>
+							<td width="98" class="right" ng-bind="dapBefOther.total_damages = dapBefOther.est_replacement_cost + dapBefOther.est_repair_cost">
+								<!--<input id="textinput" ng-model="dapBefOther.total_damages" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>-->
+							<td class="tdpa" width="98"></td>
+							<td class="tdpa" width="98"></td>
+							<td class="tdpa" width="98"></td>
 						</tr>
 						<tr height="19" ng-repeat="dapBefOther in dlHealthDamagelostPrivateSys.health.Table_7.DapBefOther" ng-if="dapBefOther.pvt_clinics == 'Total'">
 							<td class="tdpa" height="19" width="264" ng-bind="dapBefOther.pvt_clinics"> </td>

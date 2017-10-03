@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': '2017_10_01_DB',
+        'NAME': '2017_10_03_DB',
         'USER': 'postgres',
     },
 }
@@ -3111,8 +3111,7 @@ TABLE_PROPERTY_MAPPER = {
                            'id', ],
         },
         'Table_5': {
-            'DlRuralDmg': ['type_water_supply', 'families_affected', 'tot_destroyed_assets', 'part_damaged_assets',
-                           'tot_damages', 'id', ],
+            'DlRuralDmgDis': ['type_water_supply', 'families_affected'],
             'DlRuralLos': ['type_water_supply', 'cleaning_debris', 'high_ocost', 'other_unexpected_exps', 'tot_los',
                            'id', ],
             'DlcwNumClients': ['residential', 'commercial', 'industrial', 'others', 'total', 'id', ],
@@ -3135,8 +3134,7 @@ TABLE_PROPERTY_MAPPER = {
             'DlRuralTotLosDistrict': ['tot_los'],
         },
         'Table_7': {
-            'DlcwNumAfNational': ['tot_dmg_residential', 'tot_dmg_commercial', 'tot_dmg_industrial', 'tot_dmg_others',
-                                  'tot_dmg_total'],
+            'DlcwNumAfNational': ['type1','type2','type3','others','total'],
             'DlRuralNumAfNational': ['type_water_supply', 'families_affected'],
             'DlcwDmgNational': ['sum'],
             # 'DlcwTotDmgNational': ['sum'],
@@ -3609,7 +3607,7 @@ TABLE_PROPERTY_MAPPER = {
         },
         'Table_4': {
             'DlNumAffDistrict': ['domestic', 'industrial', 'commercial', 'other', 'incident', 'district'],
-            'TotDmgCebDistrict': ['tot_dmg', 'incident', 'district'],
+            'TotDmgCebDistrictNew': ['tot_dmg', 'incident', 'district'],
             'TotLosCebDistrict': ['losses_y1', 'losses_y2', 'incident', 'district'],
             'TotDmgPvtDistrict': ['tot_replace_cost', 'district', 'incident', 'pw_gen_firm', 'ownership','assets'],
             'TotLossesPvtDistrict': ['los_year1', 'los_year2', 'district', 'incident', 'pw_gen_firm', 'ownership',

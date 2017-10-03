@@ -82,12 +82,14 @@ app.controller("DlWaterSupplyProController", function ($scope,$http,$parse, _) {
             angular.forEach(value, function(value_in, key) {
                     if(key == 'DlcwTotDmgProvince') {
                           totDmg = totDmg + value_in[0].dlcw_tot_dmg;
+
                     }
                     })
                 })
             return totDmg;
         }
     }
+
 
     $scope.totCommercialWaterSupplyLosYear1 = function() {
         if(!angular.isUndefined($scope.dlWaterSupplyPro)) {

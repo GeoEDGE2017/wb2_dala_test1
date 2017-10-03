@@ -30,39 +30,54 @@ $(document).ready(function() {
 	<div class="container-fluid">
 		<div class="col-sm-12" style="padding:0;">
 			<div class="card">
-				<div class="card-block" ng-form name="form_health_baseline_district"> <span style="color:red" ng-show="submitted && form_health_baseline_district.$error.required">
+				<div class="card-block" ng-form name="form_health_baseline_district">
+					<span style="color:red" ng-show="submitted && form_health_baseline_district.$error.required">
                         Please fill all required fields
-                    </span> <span style="color:red" ng-show="!is_valid_data">
+                    </span>
+					<span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                    <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_health_baseline_district)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                    <td style="width:100px;">
+						<span ng-if="!check_search">
+							<button ng-if="!is_search" class="btn btn-info" disabled>
+								<span class="fa fa-search"></span>
+							</button>
+						</span>
+						<span ng-if="check_search">
+							<button ng-click="searchBsData(form_health_baseline_district)" ng-if="!is_search" class="btn btn-info">
+								<span class="fa fa-search"></span>
+							</button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+							Cancel Search
+						</button>
+					</td>
 					<table class="table table-bordered" style="background:#E4E5E6;">
 						<colgroup>
 							<col width="264" />
 							<col width="98" span="3" /> </colgroup>
 						<tbody>
 							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-								<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"> </td>
-								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_health_baseline_district.district.$error.required">
-                                    Please select District
-                                </span> </td>
-								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_health_baseline_district.baselineDate.$error.required">
-                                    Please select Date
-                                </span> </td>
+								<td style="background:#fff;border:1px solid #fff;text-align:center;" border="0"></td>
+								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+									<span class="arrow_box" ng-show="submitted && form_health_baseline_district.district.$error.required">
+										Please select District
+									</span>
+								</td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+									<span class="arrow_box" ng-show="submitted && form_health_baseline_district.baselineDate.$error.required">
+										Please select Date
+									</span>
+								</td>
 							</tr>
 							<tr class="trhead1">
-								<td style="padding-left:5px;width:20%;"> Name of District or RDH</td>
+								<td style="padding-left:5px;width:20%;">Name of District or RDH</td>
 								<td colspan="1" style="">
 									<select id="selectbasic" name="district" ng-model='district' ng-change="changeDis();" class="form-control" style="font-weight:400;" required>
 										<option value="" selected="true">Select a District</option> {% for district in districts %}
-										<option value={{district.id}}>{{district.name}} {% endfor %} </select>
+										<option value={{district.id}}>{{district.name}} {% endfor %}
+									</select>
 								</td>
 								<td colspan="1" class="p5"> Year/Month </td>
 								<td colspan="2" style="font-weight:normal;">
@@ -191,11 +206,16 @@ $(document).ready(function() {
 					</div>
 					<div class="pull-right">
 						<br>
-						<button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info"> Clear </button> <span ng-if="is_edit_disable">
+						<button id="clearbtn" type="button" ng-click="clear()" class="btn btn-info">
+							Clear
+						</button>
+						<span ng-if="is_edit_disable">
                             <button id="editbtn"type="button" ng-click="editBsData(form_health_baseline_district)" ng-if="!is_edit"
-                                    class="btn btn-success">Edit
+                                    class="btn btn-success">
+								Edit
                             </button>
-                        </span> <span ng-if="!is_edit_disable">
+                        </span>
+						<span ng-if="!is_edit_disable">
                             <button id="editbtn"type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                                 Edit
                             </button>
@@ -204,11 +224,13 @@ $(document).ready(function() {
                             <button id="subbtn" type="button" ng-click="saveBsData(form_health_baseline_district)" class="btn btn-success">
                                 Submit
                             </button>
-                        </span> <span ng-if="is_submit">
+                        </span>
+						<span ng-if="is_submit">
                             <button id="subbtn" type="button" class="btn btn-success" disabled>
                                 Submit
                             </button>
-                        </span> </div>
+                        </span>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -132,7 +132,6 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 if(data) {
                     $scope.companies.push($scope.new_company);
                     $("#modal-container-218029").modal('hide');
-//                    $("#modal-container-469840").modal('hide');
                     window.location.reload();
                 }
             })
@@ -212,6 +211,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsTelcomCmpnys = data;
+                        $scope.setTelCompanyIDs();
                         console.log($scope.bsTelcomCmpnys);
                     }
                     else {
@@ -221,18 +221,6 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 else {
                     $("#modal-container-239456").modal('show');
                 }
-
-//                alert('hi');
-//                alert('company '+$scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company);
-//                $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company_name.value=26;
-
-//                angular.forEach($scope.data, function(value, key) {
-//                    console.log('');
-//                    $scope.ownership = data.telecommunication.Table_1.BsTelCompany[0].ownership;
-//
-////                    if(value.Password == "thomasTheKing")
-////                        console.log("username is thomas");
-//                });
             })
         }
     }
@@ -266,6 +254,7 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsTelcomCmpnys = data;
+                        $scope.setTelCompanyIDs();
                         console.log($scope.bsTelcomCmpnys);
                     }
                     else {
@@ -279,24 +268,22 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
         }
     }
 
-    $scope.getPrivateClinicsIDs = function() {
+    $scope.setTelCompanyIDs = function() {
         angular.forEach($scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany, function(value, index) {
             console.log(value);
-            $scope.preSchool.push(null);
-            angular.forEach(value, function(value_in, index_in) {
-                angular.forEach($scope.schools.PreSchools, function(pre_school, pre_school_index) {
-                    if(value_in.pre_school == pre_school.id) {
-                        console.log(value_in);
-                        $scope.preSchool[index] = pre_school;
-                    }
-                })
+            angular.forEach($scope.companies, function(company_value, index_in) {
+                if(company_value.id == value.company) {
+                    $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[index].company = company_value;
+                    $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[index].company_name = company_value.company_name;
+                    $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[index].ownership = company_value.ownership;
+                }
             })
         })
     }
 
     //Clear Function
     $scope.clear = function() {
-        console.log("clear")
+        console.log("clear");
         $scope.is_edit = false;
         $scope.bsTelcomCmpnys = angular.copy(init_data);
         location.reload();
@@ -312,5 +299,12 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
         $scope.is_edit = false;
         $scope.bsTelcomCmpnys = init_data;
         location.reload();
+    }
+
+    $scope.test = function() {
+        console.log($scope.bsTelcomCmpnys);
+        console.log($scope.companies);
+        $scope.setTelCompanyIDs();
+        console.log($scope.bsTelcomCmpnys);
     }
 });

@@ -112,9 +112,10 @@ app.controller("DlWaterSupplyNatController", function ($scope,$http,$parse, _) {
         if(!angular.isUndefined($scope.dlWaterSupplySumNat)) {
             var totLos = 0;
             angular.forEach($scope.dlWaterSupplySumNat.water_supply.Table_7, function(value, index) {
+            console.log()
             angular.forEach(value, function(value_in, key) {
                     if(key == 'DlRuralLosNational') {
-                          totLos = totLos + value_in[0].tot_los;
+                       totLos = totLos + value_in[0].tot_los;
                     }
                     })
                 })

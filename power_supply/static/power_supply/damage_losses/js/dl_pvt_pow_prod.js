@@ -432,6 +432,7 @@ app.controller('DlPowSupCebAppController',  function($scope, $http) {
     $scope.cancelEdit = function(){
         $scope.is_edit = false;
         $scope.clear();
+
     }
 
     //Call Functions

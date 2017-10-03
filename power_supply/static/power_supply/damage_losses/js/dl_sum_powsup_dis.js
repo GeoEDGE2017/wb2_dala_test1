@@ -66,7 +66,8 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
             var totDmg = 0;
             angular.forEach($scope.data.power_supply.Table_4, function(value, key) {
                     if(key == 'TotDmgPvtDistrict') {
-                          totDmg = totDmg + value[1].tot_replace_cost;
+                             totDmg = totDmg + value[0].tot_replace_cost;
+
                     }
 
                 })
@@ -103,7 +104,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
             var totDmg = 0;
             angular.forEach($scope.data.power_supply.Table_4, function(value, key) {
                     if(key == 'TotDmgPvtDistrict') {
-                          totDmg = totDmg + value[0].tot_replace_cost;
+                          totDmg = totDmg + value[1].tot_replace_cost;
                     }
 
                 })

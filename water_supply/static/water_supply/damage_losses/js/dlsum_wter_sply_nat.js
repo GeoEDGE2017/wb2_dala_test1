@@ -122,4 +122,21 @@ app.controller("DlWaterSupplyNatController", function ($scope,$http,$parse, _) {
         }
     }
 
+      $scope.totNoResidential = function() {
+        if(!angular.isUndefined($scope.dlWaterSupplySumNat)) {
+            var totDmg = 0;
+            angular.forEach($scope.dlWaterSupplySumNat.water_supply.Table_7, function(value, index) {
+            console.log('test',value);
+            angular.forEach(value, function(value_in, key) {
+                    if(key == 'DlcwNumClientsNational') {
+                          totDmg = totDmg + value_in[key].residential;
+                    }
+                    })
+                })
+
+            return totDmg;
+        }
+    }
+
+
 })

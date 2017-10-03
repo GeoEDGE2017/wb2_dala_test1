@@ -279,14 +279,14 @@ class DlNumAffDistrict(models.Model):
         db_table = 'power_supply\".\"dl_num_aff_district'
 
 
-class TotDmgCebDistrict(models.Model):
+class TotDmgCebDistrictNew(models.Model):
     tot_dmg = models.FloatField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
     district = models.ForeignKey(District, db_column='district', blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'power_supply\".\"tot_dmg_ceb_district'
+        db_table = 'power_supply\".\"tot_dmg_ceb_district_new'
 
 
 class TotLosCebDistrict(models.Model):

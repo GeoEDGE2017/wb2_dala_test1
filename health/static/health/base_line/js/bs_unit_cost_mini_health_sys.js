@@ -213,135 +213,146 @@ app.controller('unitCostMiniHealthSysController', ['$scope', '$http', function($
 
 	//disable Edit Button
 	$scope.changeDis = function changeDis() {
-			if($scope.district && $scope.baselineDate) {
-				$scope.is_edit_disable = true;
-				$scope.check_search = true;
-			} else {
-				$scope.is_edit_disable = false;
-				$scope.check_search = false;
-			}
-		}
-		//Save Data
+        if($scope.district && $scope.baselineDate) {
+            $scope.is_edit_disable = true;
+            $scope.check_search = true;
+        }
+        else {
+            $scope.is_edit_disable = false;
+            $scope.check_search = false;
+        }
+    }
+
+    //Save Data
 	$scope.saveBsData = function(form) {
-			$scope.submitted = true;
-			$scope.is_submit = true;
-			if(form.$valid) {
-				console.log($scope.data);
-				$http({
-					method: 'POST',
-					url: '/bs_save_data',
-					contentType: 'application/json; charset=utf-8',
-					data: angular.toJson({
-						'table_data': $scope.bsUnitCostMiniHealthSys,
-						'com_data': {
-							'district': $scope.district,
-							'bs_date': $scope.baselineDate,
-							'user_id': $scope.user_id,
-						},
-						'is_edit': $scope.is_edit
-					}),
-					dataType: 'json',
-				}).then(function successCallback(response) {
-					console.log(response);
-					if(response.data == 'False') {
-						$("#modal-container-239454").modal('show');
-						$scope.is_valid_data = false;
-					} else {
-						$("#modal-container-239453").modal('show');
-					}
-				}, function errorCallback(response) {
-					console.log(response);
-				});
-			}
-			$scope.is_submit = false;
-		}
-		//Edit Data
+        $scope.submitted = true;
+        $scope.is_submit = true;
+        if(form.$valid) {
+            console.log($scope.data);
+            $http({
+                method: 'POST',
+                url: '/bs_save_data',
+                contentType: 'application/json; charset=utf-8',
+                data: angular.toJson({
+                    'table_data': $scope.bsUnitCostMiniHealthSys,
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
+                    },
+                    'is_edit': $scope.is_edit
+                }),
+                dataType: 'json',
+            }).then(function successCallback(response) {
+                console.log(response);
+                if(response.data == 'False') {
+                    $("#modal-container-239454").modal('show');
+                    $scope.is_valid_data = false;
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        }
+        $scope.is_submit = false;
+    }
+
+    //Edit Data
 	$scope.editBsData = function(form) {
-			document.getElementById("clearbtn").disabled = true;
-			$scope.is_edit = true;
-			$scope.submitted = true;
-			if(form.$valid) {
-				$http({
-					method: "POST",
-					url: '/bs_fetch_edit_data',
-					data: angular.toJson({
-						'table_name': 'Table_3',
-						'sector': 'health',
-						'com_data': {
-							'district': $scope.district,
-							'bs_date': $scope.baselineDate,
-							'user_id': $scope.user_id,
-						},
-					}),
-				}).success(function(data) {
-					var edit_data_not_found = false;
-					if(data != null) {
-						angular.forEach(data.health.Table_3, function(value, index) {
-							console.log(value);
-							if(value.length == 0) {
-								edit_data_not_found = true;
-							}
-						})
-						if(edit_data_not_found != true) {
-							$scope.bsUnitCostMiniHealthSys = data;
-							console.log(data);
-						} else {
-							$("#modal-container-239456").modal('show');
-						}
-					} else {
-						$("#modal-container-239456").modal('show');
-					}
-				})
-			}
-		}
-		//Search Data
+        document.getElementById("clearbtn").disabled = true;
+        $scope.is_edit = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/bs_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'health',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
+                    },
+                }),
+            }).success(function(data) {
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_3, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsUnitCostMiniHealthSys = data;
+                        console.log(data);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
+    }
+
+    //Search Data
 	$scope.searchBsData = function(form) {
-			document.getElementById("clearbtn").disabled = true;
-			document.getElementById("editbtn").disabled = true;
-			document.getElementById("subbtn").disabled = true;
-			$scope.is_search = true;
-			$scope.submitted = true;
-			if(form.$valid) {
-				$http({
-					method: "POST",
-					url: '/bs_fetch_edit_data',
-					data: angular.toJson({
-						'table_name': 'Table_3',
-						'sector': 'health',
-						'com_data': {
-							'district': $scope.district,
-							'bs_date': $scope.baselineDate,
-							'user_id': $scope.user_id,
-						},
-					}),
-				}).success(function(data) {
-					var edit_data_not_found = false;
-					if(data != null) {
-						angular.forEach(data.health.Table_3, function(value, index) {
-							console.log(value);
-							if(value.length == 0) {
-								edit_data_not_found = true;
-							}
-						})
-						if(edit_data_not_found != true) {
-							$scope.bsUnitCostMiniHealthSys = data;
-							console.log(data);
-						} else {
-							$("#modal-container-239456").modal('show');
-						}
-					} else {
-						$("#modal-container-239456").modal('show');
-					}
-				})
-			}
-		}
-		//Cancel Edit
+        document.getElementById("clearbtn").disabled = true;
+        document.getElementById("editbtn").disabled = true;
+        document.getElementById("subbtn").disabled = true;
+        $scope.is_search = true;
+        $scope.submitted = true;
+        if(form.$valid) {
+            $http({
+                method: "POST",
+                url: '/bs_fetch_edit_data',
+                data: angular.toJson({
+                    'table_name': 'Table_3',
+                    'sector': 'health',
+                    'com_data': {
+                        'district': $scope.district,
+                        'bs_date': $scope.baselineDate,
+                        'user_id': $scope.user_id,
+                    },
+                }),
+            }).success(function(data) {
+                var edit_data_not_found = false;
+                if(data != null) {
+                    angular.forEach(data.health.Table_3, function(value, index) {
+                        console.log(value);
+                        if(value.length == 0) {
+                            edit_data_not_found = true;
+                        }
+                    })
+                    if(edit_data_not_found != true) {
+                        $scope.bsUnitCostMiniHealthSys = data;
+                        console.log(data);
+                    }
+                    else {
+                        $("#modal-container-239456").modal('show');
+                    }
+                }
+                else {
+                    $("#modal-container-239456").modal('show');
+                }
+            })
+        }
+    }
+
+    //Cancel Edit
 	$scope.cancelEdit = function() {
-			$scope.is_edit = false;
-			location.reload();
-			document.getElementById("clearbtn").disabled = false;
-		}
-		//Clear Function
+        $scope.is_edit = false;
+        location.reload();
+        document.getElementById("clearbtn").disabled = false;
+    }
+
+    //Clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

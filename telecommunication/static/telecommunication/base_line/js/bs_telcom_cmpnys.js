@@ -87,7 +87,10 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
         console.log($scope.editTelCompany);
         if($scope.district != null && $scope.bs_date != null) {
             if(!$scope.is_edit_model) {
-                $scope.new_company = {company_name: $scope.company, ownership: $scope.ownership};
+                $scope.new_company = {
+                    company_name: $scope.company,
+                    ownership: $scope.ownership
+                };
                 $http({
                     method: "POST",
                     url: "/add_entity_with_district",
@@ -102,7 +105,6 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                     if(data)
                         $scope.companies.push($scope.new_company);
                         $("#modal-container-218029").modal('hide');
-    //                    $("#modal-container-469840").modal('hide');
                         $scope.is_edit_model = false;
                         window.location.reload();
                 })
@@ -240,8 +242,6 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
         if(form.$valid) {
             $http({
@@ -275,18 +275,6 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
                 else {
                     $("#modal-container-239456").modal('show');
                 }
-
-//                alert('hi');
-//                alert('company '+$scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company);
-//                $scope.bsTelcomCmpnys.telecommunication.Table_1.BsTelCompany[0].company_name.value=26;
-
-//                angular.forEach($scope.data, function(value, key) {
-//                    console.log('');
-//                    $scope.ownership = data.telecommunication.Table_1.BsTelCompany[0].ownership;
-//
-////                    if(value.Password == "thomasTheKing")
-////                        console.log("username is thomas");
-//                });
             })
         }
     }
@@ -323,6 +311,6 @@ app.controller('bsTelcomCmpnysController', function($scope, $http) {
         console.log("edit close")
         $scope.is_edit = false;
         $scope.bsTelcomCmpnys = init_data;
-         location.reload();
+        location.reload();
     }
 });

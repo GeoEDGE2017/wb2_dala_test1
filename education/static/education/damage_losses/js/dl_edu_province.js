@@ -14,7 +14,7 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
     $scope.user_id;
     $scope.province;
 
-       $scope.changedValue=function getBsData(selectedValue) {
+    $scope.changedValue=function getBsData(selectedValue) {
         if($scope.incident && selectedValue) {
             fetchProvinces();
         }
@@ -37,7 +37,6 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
 
     }
 
-
     $scope.loadData = function() {
         if($scope.incident && $scope.province) {
             $scope.is_edit = true;
@@ -56,7 +55,6 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
                     },
                 }),
             }).success(function(data) {
-//                $scope.data = data;
                 $scope.dlEduProvince = data;
                 console.log($scope.dlEduProvince);
             })
@@ -382,6 +380,4 @@ bsHealthStatusApp.controller('DlEduProvinceController', function DlEduProvinceCo
             return tot_est_losses_y2;
         }
     }
-
-
 })

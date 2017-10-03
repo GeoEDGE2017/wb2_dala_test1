@@ -79,7 +79,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
             var totLos = 0;
             angular.forEach($scope.data.power_supply.Table_4, function(value, key) {
                     if(key == 'TotLossesPvtDistrict') {
-                          totLos = totLos + value[1].los_year1;
+                          totLos = totLos + value[0].los_year1;
                     }
 
                 })
@@ -91,7 +91,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
             var totLos = 0;
             angular.forEach($scope.data.power_supply.Table_4, function(value, key) {
                     if(key == 'TotLossesPvtDistrict') {
-                          totLos = totLos + value[1].los_year2;
+                          totLos = totLos + value[0].los_year2;
                     }
 
                 })
@@ -119,7 +119,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
             console.log('printing',key);
                     if(key == 'TotLossesPvtDistrict') {
                           console.log('printing',value[0]);
-                          totLos = totLos + value[0].los_year1;
+                          totLos = totLos + value[1].los_year1;
                     }
 
                 })
@@ -131,7 +131,7 @@ app.controller('dlSumPowsupDisController', function($scope, $http) {
             var totLos = 0;
             angular.forEach($scope.data.power_supply.Table_4, function(value, key) {
                     if(key == 'TotLossesPvtDistrict') {
-                          totLos = totLos + value[0].los_year2;
+                          totLos = totLos + value[1].los_year2;
                     }
 
                 })

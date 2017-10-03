@@ -120,7 +120,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                 if(response.data == 'False') {
                     $scope.is_valid_data = false;
                     $("#modal-container-239454").modal('show');
-                } else {
+                }
+                else {
                     $("#modal-container-239453").modal('show');
                 }
             }, function errorCallback(response) {
@@ -202,7 +203,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                         $scope.privateClinics.push($scope.private_clinic);
                         console.log($scope.privateClinics);
                     }
-                } else {
+                }
+                else {
                     var private_clinic = $filter('filter')($scope.privateClinics, {
                         id: data
                     })[0];
@@ -258,7 +260,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident
-                            //                        'user_id': $scope.user_id,
+//                        'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -274,10 +276,12 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                         $scope.dlHealthDamagelostPrivateSys = data;
                         $scope.getPrivateClinicsIDs();
                         console.log($scope.dlHealthDamagelostPrivateSys);
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -289,8 +293,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
         document.getElementById("subbtn").disabled = true;
-        console.log("test", $scope.district);
-        console.log("test", $scope.bs_date);
         $scope.is_search = true;
         if(form.$valid) {
             $http({
@@ -305,7 +307,7 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     'com_data': {
                         'district': $scope.district.district__id,
                         'incident': $scope.incident
-                            //                        'user_id': $scope.user_id,
+                        //'user_id': $scope.user_id,
                     },
                     'is_edit': $scope.is_edit
                 }),
@@ -321,10 +323,12 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                         $scope.dlHealthDamagelostPrivateSys = data;
                         $scope.getPrivateClinicsIDs();
                         console.log($scope.dlHealthDamagelostPrivateSys);
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -387,7 +391,8 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
                     console.log('baseline table or tables are empty');
                     console.log($scope.bs_data);
                     $scope.currentBaselineDate = null;
-                } else {
+                }
+                else {
                     $http({
                         method: 'POST',
                         url: '/get_latest_bs_date',
@@ -484,6 +489,19 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 		}
 	}
 
+	$scope.getPrivateClinicsIDs = function() {
+		angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
+			$scope.privateClinicsData.push(null);
+			angular.forEach(value, function(value_in, index_in) {
+				angular.forEach($scope.privateClinics, function(pvt_clinic, pvt_clinic_index) {
+					if(value_in.private_clinic == pvt_clinic.id) {
+						$scope.privateClinicsData[index] = pvt_clinic;
+					}
+				})
+			})
+		})
+	}
+
 	$scope.setPrivateClinicsIDs = function() {
 		angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
 			angular.forEach(value, function(value_in, index_in) {
@@ -559,19 +577,6 @@ app.controller('dlHealthDamagelostPrivateAppController', function($scope, $http,
 		//        console.log($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc);
 		//        console.log($scope.privateClinicsData);
 		console.log($scope.dlHealthDamagelostPrivateSys);
-	}
-
-	$scope.getPrivateClinicsIDs = function() {
-		angular.forEach($scope.dlHealthDamagelostPrivateSys.health.Table_7.DapBefPc, function(value, index) {
-			$scope.privateClinicsData.push(null);
-			angular.forEach(value, function(value_in, index_in) {
-				angular.forEach($scope.privateClinics, function(pvt_clinic, pvt_clinic_index) {
-					if(value_in.private_clinic == pvt_clinic.id) {
-						$scope.privateClinicsData[index] = pvt_clinic;
-					}
-				})
-			})
-		})
 	}
 
 	$scope.totDapNapTmfTypeMedFac = function() {

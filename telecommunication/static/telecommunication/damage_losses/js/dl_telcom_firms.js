@@ -416,7 +416,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     }
 
     $scope.test = function(form) {
-       console.log($scope.selectedCompany.company);
+        console.log($scope.selectedCompany.company);
 //        console.log($scope.selectedCompany.id);
     }
 

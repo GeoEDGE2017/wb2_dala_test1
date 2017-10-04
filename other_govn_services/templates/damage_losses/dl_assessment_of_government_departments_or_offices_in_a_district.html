@@ -18,59 +18,95 @@ $(document).ready(function() {
 <main class="main" ng-app="dlAssessmentOfGovnDeptOrOfcInADistrictApp" ng-controller="dlAssessmentOfGovnDeptOrOfcInADistrictController">
 	<!-- Breadcrumb -->
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:othergov_main' %}">
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:index' %}">
+				Dashboard
+			</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a href="{% url 'dashboard:othergov_main' %}">
                 Other Government Sector
-            </a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+            </a>
+		</li>
+		<li class="breadcrumb-item active">
+			<span class="label label-success" style="font-size:14px;">
                 Table 2: Damage and Loss Assessment of Government Departments or Offices in a District
-            </span> </li> <span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
+            </span>
+		</li>
+		<span style="margin-left:15px;color:#000;" ng-bind="currentBaselineDate"></span>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"> </a>
+			<a href="{% static 'dashboard/doc/Other_Government Services.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document">
+			</a>
 		</li>
 	</ol>
 	<div class="container-fluid">
 		<ul class='nav nav-wizard'>
-			<li id="li1" class="active"> <a href='#step1' data-toggle="tab">1 - Damages</a> </li>
-			<li id="li2"> <a href='#step2' data-toggle="tab">2 - Losses</a> </li>
+			<li id="li1" class="active">
+				<a href='#step1' data-toggle="tab">1 - Damages</a>
+			</li>
+			<li id="li2">
+				<a href='#step2' data-toggle="tab">2 - Losses</a>
+			</li>
 		</ul>
 		<div id="myTabContent" class="tab-content" ng-form name="form_ogs_ofc_district_firm">
 			<div class="tab-pane active" id="step1">
-				<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-					</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_ogs_ofc_district_firm)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+				<td style="width:100px;">
+					<span ng-if="!check_search">
+						<button ng-if="!is_search" class="btn btn-info" disabled>
+							<span class="fa fa-search"></span>
+						</button>
 					</span>
-					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
+					<span ng-if="check_search">
+						<button ng-click="searchDlData(form_ogs_ofc_district_firm)" ng-if="!is_search"
+								class="btn btn-info"><span class="fa fa-search"></span>
+						</button>
+					</span>
+					<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+						Cancel Search
+					</button>
 				</td>
 				<table class="table table-bordered">
 					<colgroup>
 						<col width="241" />
 						<col width="124" />
 						<col width="100" span="3" />
-						<col width="100" span="3" /> </colgroup>
+						<col width="100" span="3" />
+					</colgroup>
 					<tbody>
 						<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.incident.$error.required">
-                                Please Select Incident
-                            </span> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.department.$error.required">
-                                Please Select Department
-                            </span> </td>
-							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.district.$error.required">
-                                Please Select District
-                            </span> </td>
+							<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+
+							</td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.incident.$error.required">
+                                	Please Select Incident
+                            	</span>
+							</td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.department.$error.required">
+									Please Select Department
+								</span>
+							</td>
+							<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+								<span class="arrow_box" ng-show="submitted && form_ogs_ofc_district_firm.district.$error.required">
+									Please Select District
+								</span>
+							</td>
 						</tr>
 						<tr class="trhead1">
 							<td colspan="1" style="padding-right:5px;text-align:right;"> Incident </td>
 							<td colspan="3" style="">
 								<select id="selectbasic" name="incident" ng-model="incident" class="form-control" ng-change="changedValue(true)" style="width:100%;font-weight:400;" required>
-									<option value="" selected="true">Select an Incident</option> {% for incident in incidents %}
+									<option value="" selected="true">Select an Incident</option>
+									{% for incident in incidents %}
 									<option value={{incident.id}}>
 										<!--{{incident.disaster_type.name}}-->
-										<!--{{incident.reported_date_time}}-->{{incident.incident_name}} </option> {% endfor %} </select>
-							</td> <span ng-bind="user={{user.id}}" style="display:none;"></span>
+										<!--{{incident.reported_date_time}}-->{{incident.incident_name}}
+									</option> {% endfor %}
+								</select>
+							</td>
+							<span ng-bind="user={{user.id}}" style="display:none;"></span>
 							<td colspan="2" style="padding-left:5px;"> Name of District</td>
 							<td colspan="3" style="">
 								<select ng-options="district as district.district__name for district in districts track by district.district__id" name="district" id="ccyear" ng-model="district" ng-change="changedValue(false);fetchDepartments();" style="font-weight:400;" class="form-control" required>
@@ -94,11 +130,6 @@ $(document).ready(function() {
 						<tr height="20">
 							<td class="trheadc1" width="241" height="20"> Ownership </td>
 							<td colspan="7" width="724"> <span ng-bind="ownership"></span> </td>
-							<!--<td>-->
-							<!--<button id="add_preschool" role="button" data-toggle="modal" data-id="Add Pre-school" ng-click="test()">-->
-							<!--Add-->
-							<!--</button>-->
-							<!--</td>-->
 						</tr>
 						<tr class="trheadc1" height="20">
 							<td rowspan="3" width="241" height="61"> Structure </td>
@@ -224,39 +255,80 @@ $(document).ready(function() {
 							<td width="100"> Total Losses (LKR) </td>
 						</tr>
 						<tr height="20" ng-repeat="dlagdLosses in dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses" ng-if="$index < 4">
-							<td width="384" ng-bind="dlagdLosses.name_dept" height="20" class="tdpa"> </td>
+							<td width="384" ng-bind="dlagdLosses.name_dept" height="20" class="tdpa">
+							</td>
 							<td colspan="3" width="324">
-								<input id="textinput" ng-model="dlagdLosses.los_year1" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+								<input id="textinput" ng-model="dlagdLosses.los_year1" name="textinput" type="number"
+									   placeholder="" class="form-control input-md">
+							</td>
 							<td colspan="3" width="300">
-								<input id="textinput" ng-model="dlagdLosses.los_year2" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-							<td class="right" ng-bind="dlagdLosses.total_losses" ng-value="dlagdLosses.total_losses=dlagdLosses.los_year1 + dlagdLosses.los_year2"> </td>
+								<input id="textinput" ng-model="dlagdLosses.los_year2" name="textinput" type="number"
+									   placeholder="" class="form-control input-md">
+							</td>
+							<td class="right" ng-bind="dlagdLosses.total_losses"
+								ng-value="dlagdLosses.total_losses=dlagdLosses.los_year1 + dlagdLosses.los_year2">
+							</td>
 						</tr>
 						<tr height="20">
-							<td ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].name_dept" width="241" height="20" class="tdpa"></td>
-							<td class="right" colspan="3" width="324" ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year1" ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year1=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].los_year1 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].los_year1 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].los_year1 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].los_year1"> </td>
-							<td class="right" colspan="3" width="300" ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year2" ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year2=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].los_year2 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].los_year2 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].los_year2 + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].los_year2"> </td>
-							<td class="right" ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].total_losses" name="textinput" type="number" ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].total_losses=dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].total_losses + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].total_losses + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].total_losses + dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].total_losses"> </td>
+							<td ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].name_dept"
+								width="241" height="20" class="tdpa">
+							</td>
+							<td class="right" colspan="3" width="324"
+								ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year1"
+								ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year1=
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].los_year1 +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].los_year1 +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].los_year1 +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].los_year1">
+							</td>
+							<td class="right" colspan="3" width="300"
+								ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year2"
+								ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].los_year2=
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].los_year2 +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].los_year2 +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].los_year2 +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].los_year2">
+							</td>
+							<td class="right" ng-bind="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].total_losses"
+								name="textinput" type="number"
+								ng-value="dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[4].total_losses=
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[0].total_losses +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[1].total_losses +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[2].total_losses +
+									dlAssessmentOfGovnDeptOrOfcInADistrictSys.other_govn_services.Table_2.DlagdLosses[3].total_losses">
+							</td>
 						</tr>
 					</tbody>
 				</table>
 				<br>
 				<div class="pull-right">
 					<br>
-					<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">Clear</button>
-					<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning"> Cancel Edit </button> <span ng-if="is_edit_disable">
-                        <button id="editbtn" type="button" ng-click="dlDataEdit(form_ogs_ofc_district_firm)" ng-if="!is_edit" class="btn btn-success">
+					<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">
+						Clear
+					</button>
+					<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit"
+							class="btn btn-warning">
+						Cancel Edit
+					</button>
+					<span ng-if="is_edit_disable">
+                        <button id="editbtn" type="button" ng-click="dlDataEdit(form_ogs_ofc_district_firm)" ng-if="!is_edit"
+								class="btn btn-success">
                             Edit
                         </button>
-                    </span> <span ng-if="!is_edit_disable">
+                    </span>
+					<span ng-if="!is_edit_disable">
                         <button id="editbtn" type="button" ng-else="!is_edit" class="btn btn-success" disabled>
                             Edit
                         </button>
                     </span>
-					<button id="subbtn" type="button" class="btn btn-success" ng-click="saveDlData(form_ogs_ofc_district_firm)"> Submit </button>
+					<button id="subbtn" type="button" class="btn btn-success" ng-click="saveDlData(form_ogs_ofc_district_firm)">
+						Submit
+					</button>
 				</div>
 				<br>
 				<br>
-				<br> </div>
+				<br>
+			</div>
 		</div>
 	</div>
 	<!-- /.conainer-fluid -->

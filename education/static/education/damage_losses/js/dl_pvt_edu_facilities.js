@@ -752,7 +752,7 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
                     $scope.bsCreatedeDate = result.bs_created_date;
                     console.log('bs_date', result.bs_date);
                     console.log('bsCreatedeDate', result.bs_created_date);
-                    
+
                  }
 			});
 		})

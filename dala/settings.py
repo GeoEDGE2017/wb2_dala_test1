@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': '2017_10_04_DB',
+        'NAME': '2017_10_05_DB',
         'USER': 'postgres',
     },
 }
@@ -3619,6 +3619,7 @@ TABLE_PROPERTY_MAPPER = {
             'TotLosCebProvince': ['losses_y1', 'losses_y2'],
             'TotDmgPvtProvince': ['tot_dmg', 'ownership'],
             'TotLossesPvtProvince': ['los_year1', 'los_year2', 'ownership'],
+            'DlNumAffProvinceNew': ['domestic', 'industrial', 'commercial', 'other'],
         },
         'Table_6': {
             'DlNumAffNational': ['domestic', 'industrial', 'commercial', 'other'],

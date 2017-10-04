@@ -343,6 +343,20 @@ class DlNumAffProvince(models.Model):
         db_table = 'power_supply\".\"dl_num_aff_province'
 
 
+class DlNumAffProvinceNew(models.Model):
+    domestic = models.BigIntegerField(blank=True, null=True)
+    industrial = models.BigIntegerField(blank=True, null=True)
+    commercial = models.BigIntegerField(blank=True, null=True)
+    other = models.BigIntegerField(blank=True, null=True)
+    incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)
+    district = models.ForeignKey(District, db_column='district', blank=True, null=True)
+    province = models.ForeignKey(Province, db_column='province', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'power_supply\".\"dl_num_aff_province_new'
+
+
 class TotDmgCebProvince(models.Model):
     tot_dmg = models.BigIntegerField(blank=True, null=True)
     incident = models.ForeignKey(IncidentReport, db_column='incident', blank=True, null=True)

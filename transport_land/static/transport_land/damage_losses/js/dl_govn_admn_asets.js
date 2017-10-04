@@ -183,7 +183,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 					console.log($scope.bs_data);
 					$scope.currentBaselineDate = null;
 				} else {
-					generateRefencedData();
+
 					console.log($scope.dlGovnAdmnAsets);
 					$http({
 						method: 'POST',
@@ -200,13 +200,20 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 						}),
 						dataType: 'json',
 					}).then(function successCallback(response) {
-						var result = response.data;
-						if(result == null) {
-							$("#modal-container-239458").modal('show');
-						} else {
-							result = result.replace(/^"(.*)"$/, '$1');
-							$scope.currentBaselineDate = "Latest baseline data as at " + result;
-						}
+						console.log('response', response.data.bs_created_date);
+                var result = response.data;
+                if(result.bs_date == null) {
+                    $("#modal-container-239458").modal('show');
+                }
+                else {
+                    var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                    $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                    $scope.bsCreatedeDate = result.bs_created_date;
+                    console.log('bs_date', result.bs_date);
+                    console.log('bsCreatedeDate', result.bs_created_date);
+                    generateRefencedData();
+                    $scope.calTotal();
+                 }
 					});
 				}
 			}, function errorCallback(response) {

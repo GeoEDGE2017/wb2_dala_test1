@@ -349,7 +349,6 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-                console.log($scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {

@@ -28,16 +28,27 @@ $(document).ready(function() {
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
                 Table 3: Baseline Information of Unit Cost of the Ministry Health System in a District
-            </span> </li>
+            </span>
+		</li>
 		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
+			<a href="{% static 'dashboard/doc/Health.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;"
+			   class="icon-info" data-toggle="tooltip" title="Veiw Document">
+			</a>
 		</li>
 	</ol>
 	<div class="container-fluid">
 		<div>
 			<ul class='nav nav-wizard'>
-				<li id="li1" class="active"> <a href='#step1' data-toggle="tab">Step 1 - Average Replacement Cost</a> </li>
-				<li id="li2"> <a href='#step2' data-toggle="tab">Step 2 - Average Repair Cost</a> </li>
+				<li id="li1" class="active">
+					<a href='#step1' data-toggle="tab">
+						Step 1 - Average Replacement Cost
+					</a>
+				</li>
+				<li id="li2">
+					<a href='#step2' data-toggle="tab">
+						Step 2 - Average Repair Cost
+					</a>
+				</li>
 			</ul>
 			<div id="myTabContent" class="tab-content" ng-form name="form_health_baseline_unitcost_district">
 				<div style="background:#fff;border:1px solid #fff;margin-left:20px;color:red;">
@@ -55,32 +66,50 @@ $(document).ready(function() {
 				<div class="tab-pane active" id="step1"> <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                    <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_health_baseline_unitcost_district)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                    <td style="width:100px;">
+						<span ng-if="!check_search">
+							<button ng-if="!is_search" class="btn btn-info" disabled>
+								<span class="fa fa-search"></span>
+							</button>
+						</span>
+						<span ng-if="check_search">
+							<button ng-click="searchBsData(form_health_baseline_unitcost_district)" ng-if="!is_search"
+									class="btn btn-info">
+								<span class="fa fa-search"></span>
+							</button>
+						</span>
+						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+							Cancel Search
+						</button>
+					</td>
 					<table class="table table-bordered" style="background:#E4E5E6;">
 						<colgroup>
-							<col width="264" />
-							<col width="98" span="5" /> </colgroup>
+							<col width="264"/>
+							<col width="98" span="5"/></colgroup>
 						<tbody>
 							<tr class="trhead1">
 								<td style="padding-left:5px;"> Name of District:</td>
 								<td colspan="2" style="">
-									<select id="selectbasic" name="district" ng-model='district' ng-change="changeDis();" class="form-control" style="font-weight:400;" required>
+									<select id="selectbasic" name="district" ng-model='district' ng-change="changeDis();"
+											class="form-control" style="font-weight:400;" required>
 										<option value="" selected="true">Select a District</option> {% for district in districts %}
-										<option value={{district.id}}>{{district.name}} {% endfor %} </select>
+										<option value={{district.id}}>{{district.name}} {% endfor %}
+									</select>
 								</td>
 								<td colspan="1" style="padding-left:5px;"> Year/Month: </td>
 								<td colspan="2" style="font-weight:normal;">
-									<input name="baselineDate" type="text" ng-model="baselineDate" ng-change="changeDis();" placeholder="mm/yyyy" id="datepicker" class="form-control input-md" required> </td>
-								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+									<input name="baselineDate" type="text" ng-model="baselineDate" ng-change="changeDis();"
+										   placeholder="mm/yyyy" id="datepicker" class="form-control input-md" required>
+								</td>
+								<span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+							</tr>
 							<tr height="20" class="trhead1">
-								<td rowspan="3" width="264" height="91" class="p5"> Particulars </td>
-								<td colspan="5" width="490" class="trheadc1"> Types of Medical Facilities </td>
+								<td rowspan="3" width="264" height="91" class="p5">
+									Particulars
+								</td>
+								<td colspan="5" width="490" class="trheadc1">
+									Types of Medical Facilities
+								</td>
 							</tr>
 							<tr height="20" class="trheadc1">
 								<td colspan="3" width="294" height="20" style="text-align:center;"> Line Ministry Health System </td>
@@ -103,29 +132,41 @@ $(document).ready(function() {
 							<tr height="20" ng-repeat="bucMarStructure in bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure">
 								<td ng-bind="bucMarStructure.particulars" width="264" height="20" class="tdpa"> </td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].teaching_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].teaching_hospital" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].provincial_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].provincial_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].district_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].district_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].office" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].office" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].other" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarStructure[$index].other" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 							</tr>
 							<tr height="20" class="trheadc">
-								<td colspan="6" width="754" height="20"> Set of Supplies (LKR/Unit) </td>
+								<td colspan="6" width="754" height="20">
+									Set of Supplies (LKR/Unit)
+								</td>
 							</tr>
 							<tr height="20" ng-repeat="bucMarSupplies in bsUnitCostMiniHealthSys.health.Table_3.BucMarSupplies">
-								<td ng-bind="bucMarSupplies.particulars" width="264" height="20" class="tdpa"> </td>
+								<td ng-bind="bucMarSupplies.particulars" width="264" height="20" class="tdpa"></td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarSupplies[$index].teaching_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarSupplies[$index].teaching_hospital" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarSupplies[$index].provincial_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarSupplies[$index].provincial_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
 								<td width="98">
-									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarSupplies[$index].district_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md"> </td>
-								<td width="98" style="background:#E4E5E6;"> </td>
-								<td width="98" style="background:#E4E5E6;"> </td>
+									<input id="textinput" ng-model="bsUnitCostMiniHealthSys.health.Table_3.BucMarSupplies[$index].district_general_hospital" name="textinput" type="number" placeholder="" class="form-control input-md">
+								</td>
+								<td width="98" style="background:#E4E5E6;">
+								</td>
+								<td width="98" style="background:#E4E5E6;">
+								</td>
 							</tr>
 							<tr height="20" class="trheadc">
 								<td colspan="6" width="754" height="20"> Medical Equipment (LKR/Unit) </td>

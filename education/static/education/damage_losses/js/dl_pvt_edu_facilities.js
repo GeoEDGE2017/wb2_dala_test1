@@ -668,16 +668,20 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 		if(table == 'DpefBefPreSchool') {
 			$scope.dlPvtEduFacilities.education.Table_4.DpefBefPreSchool.splice(index, 1);
 			$scope.preSchool.splice(index, 1);
-		} else if(table == 'DpefBefPrmSchool') {
+		}
+		else if(table == 'DpefBefPrmSchool') {
 			$scope.dlPvtEduFacilities.education.Table_4.DpefBefPrmSchool.splice(index, 1);
 			$scope.prmSchool.splice(index, 1);
-		} else if(table == 'DpefBefSecSchool') {
+		}
+		else if(table == 'DpefBefSecSchool') {
 			$scope.dlPvtEduFacilities.education.Table_4.DpefBefSecSchool.splice(index, 1);
 			$scope.secSchool.splice(index, 1);
-		} else if(table == 'DpefBefUnv') {
+		}
+		else if(table == 'DpefBefUnv') {
 			$scope.dlPvtEduFacilities.education.Table_4.DpefBefUnv.splice(index, 1);
 			$scope.unv.splice(index, 1);
-		} else if(table == 'DpefBefTechInst') {
+		}
+		else if(table == 'DpefBefTechInst') {
 			$scope.dlPvtEduFacilities.education.Table_4.DpefBefTechInst.splice(index, 1);
 			$scope.techInst.splice(index, 1);
 		}
@@ -702,9 +706,8 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 			$scope.is_edit_disable = true;
 			$scope.check_search = true;
 			$scope.fetchDlData();
-
 		}
-		}
+    }
 
 	$scope.fetchDlData = function() {
 		$http({
@@ -720,9 +723,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 				},
 			}),
 		}).success(function(data) {
-//			angular.forEach(data, function(value, key) {
-//				$scope.bs_data[key] = JSON.parse(value);
-//			});
 			$http({
 				//this table does not get any data from baseline tables,
 				//but we pass baseline table 3, for get baseline data only
@@ -740,7 +740,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
-
                 console.log('response', response.data.bs_created_date);
                 var result = response.data;
                 if(result.bs_date == null) {
@@ -780,13 +779,13 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 				}),
 				dataType: 'json',
 			}).then(function mySucces(response) {
-				 if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                if(response.data == 'False') {
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
 			}, function myError(response) {
 				console.log(response);
 			});
@@ -815,14 +814,12 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 					'com_data': {
 						'district': $scope.district.district__id,
 						'incident': $scope.incident
-							//                        'user_id': $scope.user_id,
+//                        'user_id': $scope.user_id,
 					},
 					'is_edit': $scope.is_edit
 				}),
 			}).success(function(data) {
 				console.log(data);
-				//                $scope.dlPvtEduFacilities = data;
-				//                $scope.getPrivateClinicsIDs();
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.education.Table_4, function(value, key, index) {
@@ -834,10 +831,12 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 					if(edit_data_not_found != true) {
 						$scope.dlPvtEduFacilities = data;
 						$scope.getPrivateClinicsIDs();
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -872,8 +871,6 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 				}),
 			}).success(function(data) {
 				console.log(data);
-				//                $scope.dlPvtEduFacilities = data;
-				//                $scope.getPrivateClinicsIDs();
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.education.Table_4, function(value, key, index) {
@@ -885,10 +882,12 @@ bsHealthStatusApp.controller('DlPvtEduFacilitiesController', function DlPvtEduFa
 					if(edit_data_not_found != true) {
 						$scope.dlPvtEduFacilities = data;
 						$scope.getPrivateClinicsIDs();
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})

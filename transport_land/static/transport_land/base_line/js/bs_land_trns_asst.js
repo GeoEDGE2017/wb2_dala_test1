@@ -20,12 +20,12 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
                     private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
-                },{
+                }, {
                     private_vehicles: 'Motorcycles',
                     private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
-                },{
+                }, {
                     private_vehicles: 'Bicycles',
                     private: null,
                     avg_replace_cost: null,
@@ -37,7 +37,7 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
                     private: null,
                     avg_replace_cost: null,
                     avg_repair_cost: null,
-                },{
+                }, {
                     bus_companies: 'Garage',
                     public: null,
                     private: null,
@@ -232,8 +232,6 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
         document.getElementById("subbtn").disabled = true;
-        console.log("test", $scope.district);
-        console.log("test", $scope.bs_date);
         $scope.is_search = true;
         if(form.$valid) {
             $http({
@@ -354,12 +352,12 @@ app.controller('BsLandTrnsAsstController', ['$scope', '$http', function($scope, 
             dataType: 'json',
         }).then(function successCallback(response) {
             console.log(response);
-//            if(response.data == 'False') {
-//                alert('False');
-//            }
-//            else {
-//                alert('True');
-//            }
+            if(response.data == 'False') {
+                console.log('enum update fail');
+            }
+            else {
+                console.log('enum update successful');
+            }
         }, function errorCallback(response) {
 
         });

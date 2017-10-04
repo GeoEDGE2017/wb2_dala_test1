@@ -161,7 +161,7 @@ DATABASES = {
         #     'options': '-c search_path=industry_services'
         # },
 
-        'NAME': '2017_10_04_DB',
+        'NAME': 'dala_10_04',
         'USER': 'postgres',
     },
 }

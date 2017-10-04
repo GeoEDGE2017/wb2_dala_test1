@@ -7,11 +7,13 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 	$scope.dlDate;
 	$scope.bs_data = {};
 	$scope.baselineDate;
+	$scope.bsCreatedDate;
 	$scope.is_edit = false;
 	$scope.is_valid_data = true;
 	$scope.user_id;
 	$scope.is_edit_disable = false;
 	$scope.check_search = false;
+
 	var init_data = {
 		'transport_land': {
 			'Table_6': {
@@ -131,7 +133,9 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 			}
 		}
 	}
+
 	$scope.dlGovnAdmnAsets = angular.copy(init_data);
+
 	$scope.changedValue = function getBsData(selectedValue) {
 		if($scope.incident && selectedValue) {
 			$http({
@@ -182,7 +186,8 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 					console.log('baseline table or tables are empty');
 					console.log($scope.bs_data);
 					$scope.currentBaselineDate = null;
-				} else {
+				}
+				else {
 					generateRefencedData();
 					console.log($scope.dlGovnAdmnAsets);
 					$http({
@@ -200,13 +205,27 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 						}),
 						dataType: 'json',
 					}).then(function successCallback(response) {
-						var result = response.data;
-						if(result == null) {
-							$("#modal-container-239458").modal('show');
-						} else {
-							result = result.replace(/^"(.*)"$/, '$1');
-							$scope.currentBaselineDate = "Latest baseline data as at " + result;
-						}
+//						var result = response.data;
+//						if(result == null) {
+//							$("#modal-container-239458").modal('show');
+//						}
+//						else {
+//							result = result.replace(/^"(.*)"$/, '$1');
+//							$scope.currentBaselineDate = "Latest baseline data as at " + result;
+//						}
+
+						console.log('response', response);
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedDate', result.bs_created_date);
+                        }
 					});
 				}
 			}, function errorCallback(response) {
@@ -256,6 +275,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 		});
 		console.log(dl_model1);
 	}
+
 	$scope.saveDlData = function(form) {
 		$scope.submitted = true;
 		if(form.$valid) {
@@ -270,7 +290,9 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 						'incident_id': $scope.incident,
 						'user_id': $scope.user_id
 					},
+					'bs_date': $scope.bsCreatedDate,
 					'is_edit': $scope.is_edit,
+					'sector': 'transport_land'
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
@@ -286,6 +308,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 			});
 		}
 	}
+
 	$scope.editDlData = function(form) {
 		$scope.is_edit = true;
 		$scope.submitted = true;
@@ -315,15 +338,18 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 					if(edit_data_not_found != true) {
 						$scope.dlGovnAdmnAsets = data;
 						console.log($scope.dlGovnAdmnAsets);
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
 		}
 	}
+
 	$scope.searchDlData = function(form) {
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
@@ -356,10 +382,12 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 					if(edit_data_not_found != true) {
 						$scope.dlGovnAdmnAsets = data;
 						console.log($scope.dlGovnAdmnAsets);
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -381,6 +409,7 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 		console.log(finaltotal);
 		return finaltotal;
 	}
+
 	$scope.calGrandTotal = function() {
 		var finaltotal1 = 0;
 		var finaltotal2 = 0;
@@ -415,19 +444,21 @@ app.controller('dlGovnAdmnAsetsController', function($scope, $http, $parse, _) {
 		console.log('test', finaltotal1, finaltotal2, finaltotal3, finaltotal4)
 		return grantot;
 	}
-	$scope.calGrandTypeLossTotal = function() {
-			var finaltotal1 = 0;
-			var grantot = 0;
-			var array1 = $scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType;
-			angular.forEach(array1, function(value, key) {
-				if(value.assets != 'TOTAL LOSSES') {
-					finaltotal1 = finaltotal1 + value.total;
-				}
-			})
-			grantot = grantot + finaltotal1;
-			return grantot;
-		}
-		//Clear Function
+
+    $scope.calGrandTypeLossTotal = function() {
+        var finaltotal1 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlGovnAdmnAsets.transport_land.Table_6.DlGacLosType;
+        angular.forEach(array1, function(value, key) {
+            if(value.assets != 'TOTAL LOSSES') {
+                finaltotal1 = finaltotal1 + value.total;
+            }
+        })
+        grantot = grantot + finaltotal1;
+        return grantot;
+    }
+
+    //Clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

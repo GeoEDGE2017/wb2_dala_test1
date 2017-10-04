@@ -8,7 +8,7 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
 	$scope.dl_data = {};
 	$scope.is_edit = false;
 	$scope.submitted = false;
-	$scope.bsCreatedeDate;
+	$scope.bsCreatedDate;
 	$scope.Districts = [];
 	$scope.is_valid_data = true;
 	$scope.DlWaterDmgWcrafts_num_tdestroyed_public = null;
@@ -243,7 +243,7 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
                         'incident_id': $scope.incident,
                         'user_id': $scope.user_id
                     },
-                    'bs_date': $scope.bsCreatedeDate,
+                    'bs_date': $scope.bsCreatedDate,
                     'is_edit': $scope.is_edit,
                     'sector': 'transport_water'
                 }),
@@ -335,9 +335,9 @@ app.controller("DlWaterTransController", function($scope, $http, $parse, _) {
                         else {
                             var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
                             $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-                            $scope.bsCreatedeDate = result.bs_created_date;
+                            $scope.bsCreatedDate = result.bs_created_date;
                             console.log('bs_date', result.bs_date);
-                            console.log('bsCreatedeDate', result.bs_created_date);
+                            console.log('bsCreatedDate', result.bs_created_date);
                         }
 					});
 				}

@@ -173,7 +173,7 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 				data: angular.toJson({
 					'db_tables': ['BsMovingAst', 'BsEquipMachineryAst', 'BsMatSuppliesAst', 'BsStructuresAst', 'BsBuildingAst'],
 					'com_data': {
-						'district': $scope.district.district__id,
+                        'district': $scope.district.district__id,
 						'incident': $scope.incident,
 					},
 					'sector': 'transport_rail',
@@ -199,7 +199,8 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 					console.log('baseline table or tables are empty');
 					console.log($scope.bs_data);
 					$scope.currentBaselineDate = null;
-				} else {
+				}
+				else {
 					$http({
 						method: 'POST',
 						url: '/get_latest_bs_date',
@@ -215,13 +216,18 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 						}),
 						dataType: 'json',
 					}).then(function successCallback(response) {
-						var result = response.data;
-						if(result == null) {
-							$("#modal-container-239458").modal('show');
-						} else {
-							result = result.replace(/^"(.*)"$/, '$1');
-							$scope.currentBaselineDate = "Latest baseline data as at " + result;
-						}
+						console.log('response', response);
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedDate', result.bs_created_date);
+                        }
 					});
 				}
 			}, function errorCallback(response) {
@@ -338,7 +344,9 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 							'company_id': $scope.company.id,
 							'user_id': $scope.user_id
 						},
-						'is_edit': $scope.is_edit
+						'bs_date': $scope.bsCreatedDate,
+                        'is_edit': $scope.is_edit,
+                        'sector': 'transport_rail'
 					}),
 					dataType: 'json',
 				}).then(function successCallback(response) {
@@ -424,8 +432,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 					'is_edit': $scope.is_edit
 				}),
 			}).success(function(data) {
-				//                console.log(data);
-				//                $scope.dlIncomeRailCompany = data;
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.transport_rail.Table_2, function(value, index) {
@@ -492,11 +498,12 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 	}
 
 	$scope.cancelEdit = function() {
-			$scope.is_edit = false;
-			$scope.dlIncomeRailCompany = init_data;
-			location.reload();
-		}
-		//Clear Function
+        $scope.is_edit = false;
+        $scope.dlIncomeRailCompany = init_data;
+        location.reload();
+    }
+
+    //clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

@@ -9,6 +9,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 	var total = null;
 	$scope.total = null;
 	$scope.baselineDate;
+	$scope.bsCreatedeDate;
 	$scope.DlOtherDmgsPvehicles_total = null;
 	$scope.is_edit = false;
 	$scope.is_valid_data = true;
@@ -16,6 +17,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 	$scope.user_id;
 	$scope.is_edit_disable = false;
 	$scope.check_search = false;
+
 	var init_data = {
 		'transport_land': {
 			'Table_5': {
@@ -319,7 +321,9 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 			}
 		}
 	}
+
 	$scope.dlOthLndAsets = angular.copy(init_data);
+
 	$scope.changedValue = function getBsData(selectedValue) {
 		if($scope.incident && selectedValue) {
 			$http({
@@ -369,7 +373,8 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 					console.log('baseline table or tables are empty');
 					console.log($scope.bs_data);
 					$scope.currentBaselineDate = null;
-				} else {
+				}
+				else {
 					generateRefencedData();
 					$http({
 						method: 'POST',
@@ -386,13 +391,27 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 						}),
 						dataType: 'json',
 					}).then(function successCallback(response) {
-						var result = response.data;
-						if(result == null) {
-							$("#modal-container-239458").modal('show');
-						} else {
-							result = result.replace(/^"(.*)"$/, '$1');
-							$scope.currentBaselineDate = "Latest baseline data as at " + result;
-						}
+//						var result = response.data;
+//						if(result == null) {
+//							$("#modal-container-239458").modal('show');
+//						}
+//						else {
+//							result = result.replace(/^"(.*)"$/, '$1');
+//							$scope.currentBaselineDate = "Latest baseline data as at " + result;
+//						}
+
+						console.log('response', response);
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
+                        }
 					});
 				}
 			}, function errorCallback(response) {});
@@ -431,6 +450,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 			$scope.dlOthLndAsets.transport_land.Table_5[dl_model1].push(obj1);
 		});
 	}
+
 	$scope.saveDlData = function(form) {
 		$scope.submitted = true;
 		if(form.$valid) {
@@ -445,7 +465,9 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 						'incident_id': $scope.incident,
 						'user_id': $scope.user_id
 					},
-					'is_edit': $scope.is_edit,
+					'bs_date': $scope.bsCreatedeDate,
+                    'is_edit': $scope.is_edit,
+                    'sector': 'transport_land'
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
@@ -461,6 +483,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 			});
 		}
 	}
+
 	$scope.dlDataEdit = function(form) {
 		$scope.is_edit = true;
 		$scope.submitted = true;
@@ -479,8 +502,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 					'is_edit': $scope.is_edit
 				}),
 			}).success(function(data) {
-				//                console.log(data);
-				//                $scope.dlOthLndAsets = data;
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.transport_land.Table_5, function(value, index) {
@@ -492,21 +513,23 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 					if(edit_data_not_found != true) {
 						$scope.dlOthLndAsets = data;
 						console.log($scope.dlOthLndAsets);
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
 		}
 	}
+
 	$scope.searchDlData = function(form) {
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({
@@ -522,8 +545,6 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 					'is_edit': $scope.is_edit
 				}),
 			}).success(function(data) {
-				//                console.log(data);
-				//                $scope.dlOthLndAsets = data;
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.transport_land.Table_5, function(value, index) {
@@ -535,20 +556,24 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 					if(edit_data_not_found != true) {
 						$scope.dlOthLndAsets = data;
 						console.log($scope.dlOthLndAsets);
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
 		}
 	}
+
 	$scope.cancelEdit = function() {
 		$scope.is_edit = false;
 		$scope.dlOthLndAsets = init_data;
 		location.reload();
 	}
+
 	$scope.calPvtTotal = function(arr) {
 		var finaltotal = 0;
 		angular.forEach(arr, function(value, key) {
@@ -558,6 +583,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 		})
 		return finaltotal;
 	}
+
 	$scope.calPubTotal = function(arr) {
 		var finaltotal = 0;
 		angular.forEach(arr, function(value, key) {
@@ -567,6 +593,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 		})
 		return finaltotal;
 	}
+
 	$scope.calGrandPvtTotal = function() {
 		var finaltotal1 = 0;
 		var finaltotal2 = 0;
@@ -607,6 +634,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 		grantot = finaltotal1 + finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
 		return grantot;
 	}
+
 	$scope.calGrandPubTotal = function() {
 		var finaltotal2 = 0;
 		var finaltotal3 = 0;
@@ -640,6 +668,7 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 		grantot = finaltotal2 + finaltotal3 + finaltotal4 + finaltotal5;
 		return grantot;
 	}
+
 	$scope.calTotal = function(arr) {
 		var finaltotal = 0;
 		angular.forEach(arr, function(value, key) {
@@ -649,26 +678,28 @@ app.controller('dlOthLndAsetsController', function($scope, $http, $parse, _) {
 		})
 		return finaltotal;
 	}
+
 	$scope.calGrandTotal = function() {
-			var finaltotal1 = 0;
-			var finaltotal2 = 0;
-			var grantot = 0;
-			var array1 = $scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPub;
-			var array2 = $scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt;
-			angular.forEach(array1, function(value, key) {
-				if(value.tr_company != 'Total') {
-					finaltotal1 = finaltotal1 + value.tot_los;
-				}
-			})
-			angular.forEach(array2, function(value, key) {
-				if((value.tr_company != 'Total') && (value.tr_company != 'TOTAL LOSSES')) {
-					finaltotal2 = finaltotal2 + value.tot_los;
-				}
-			})
-			grantot = grantot + finaltotal1 + finaltotal2;
-			return grantot;
-		}
-		//Clear Function
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var grantot = 0;
+        var array1 = $scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPub;
+        var array2 = $scope.dlOthLndAsets.transport_land.Table_5.DlOtherLosPvt;
+        angular.forEach(array1, function(value, key) {
+            if(value.tr_company != 'Total') {
+                finaltotal1 = finaltotal1 + value.tot_los;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if((value.tr_company != 'Total') && (value.tr_company != 'TOTAL LOSSES')) {
+                finaltotal2 = finaltotal2 + value.tot_los;
+            }
+        })
+        grantot = grantot + finaltotal1 + finaltotal2;
+        return grantot;
+    }
+
+    //clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

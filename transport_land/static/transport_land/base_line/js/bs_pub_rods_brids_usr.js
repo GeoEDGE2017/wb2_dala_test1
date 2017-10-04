@@ -108,14 +108,6 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
 
     $scope.bsPubRodsBridsUsr = angular.copy(init_data);
 
-//    angular.forEach(db_table_data function(value_in, key_in) {
-//
-//    }
-//
-//    angular.forEach($scope.bsPubRodsBridsUsr.transport_land.Table_1, function(value_in, key_in) {
-//
-//    })
-
     //disable Edit Button
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date) {
@@ -261,8 +253,7 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({
@@ -281,22 +272,20 @@ app.controller('bsPubRodsBridsUsrController', ['$scope', '$http', function($scop
 				$scope.bsPubRodsBridsUsr = data;
 				var edit_data_not_found = false;
 				if(data != null) {
-					console.log('----if');
 					angular.forEach(data.transport_land.Table_1, function(value, index) {
-						console.log('----forEach');
 						console.log(value);
 						if(value.length == 0) {
-							console.log('----');
 							edit_data_not_found = true;
 						}
 					})
 					if(edit_data_not_found != true) {
 						$scope.bsPubRodsBridsUsr = data;
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
-					console.log('----else');
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})

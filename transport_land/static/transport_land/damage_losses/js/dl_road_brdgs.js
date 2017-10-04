@@ -7,6 +7,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
     $scope.dlDate;
     $scope.bs_data={};
     $scope.baselineDate;
+    $scope.bsCreatedeDate;
     var total=0;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
@@ -259,13 +260,26 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                         }),
                         dataType: 'json',
                     }).then(function successCallback(response) {
+//                        var result = response.data;
+//                        if(result == null) {
+//                            $("#modal-container-239458").modal('show');
+//                        }
+//                        else {
+//                            result = result.replace(/^"(.*)"$/, '$1');
+//                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+//                        }
+
+                        console.log('response', response);
                         var result = response.data;
-                        if(result == null) {
+                        if(result.bs_date == null) {
                             $("#modal-container-239458").modal('show');
                         }
                         else {
-                            result = result.replace(/^"(.*)"$/, '$1');
-                            $scope.currentBaselineDate = "Latest baseline data as at " + result;
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedeDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedeDate', result.bs_created_date);
                         }
                     });
                 }
@@ -409,8 +423,8 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
                        'district_id': $scope.district.district__id,
                         'incident_id' : $scope.incident,
                         'user_id': $scope.user_id
-
                     },
+                    'bs_date': $scope.bsCreatedeDate,
                     'is_edit':$scope.is_edit,
                     'sector':'transport_land'
                 }),
@@ -474,8 +488,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
+
 		$scope.is_search = true;
 		if(form.$valid) {
 			$http({
@@ -502,10 +515,12 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 					if(edit_data_not_found != true) {
 						$scope.dlRoadBrdgs = data;
 						console.log($scope.dlRoadBrdgs);
-					} else {
+					}
+					else {
 						$("#modal-container-239456").modal('show');
 					}
-				} else {
+				}
+				else {
 					$("#modal-container-239456").modal('show');
 				}
 			})
@@ -581,9 +596,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
 
     $scope.calTot = function() {
         var finaltotal1 = 0;
-
         var grantot = 0;
-
         var array1=$scope.dlRoadBrdgs.transport_land.Table_4.DlRbdRclassification;
 
         angular.forEach(array1, function(value, key) {
@@ -596,7 +609,7 @@ app.controller('dlRoadBrdgsController', function($scope, $http, $parse, _) {
         return grantot;
     }
 
-    //Clear Function
+    //clear Function
     $scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;

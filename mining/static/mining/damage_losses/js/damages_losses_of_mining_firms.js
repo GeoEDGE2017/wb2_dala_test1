@@ -604,6 +604,7 @@ app.controller("DmLosOfMinFirmsAppController", function($scope, $http, $parse, _
 					totLos = totLos + value[property];
 				}
 			})
+			console.log("testing",totLos);
 			return totLos;
 		}
 	}

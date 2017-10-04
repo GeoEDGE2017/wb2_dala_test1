@@ -135,7 +135,7 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
               angular.forEach(value,function(value_in, key) {
                     if(key == 'DlNumAffNational') {
                           console.log('printing',value_in[0].domestic);
-                          tot = tot + parseInt(value_in[0].domestic);
+                          tot = parseInt(value_in[0].domestic);
                     }
                 })
                 })
@@ -148,7 +148,7 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
               angular.forEach(value,function(value_in, key) {
                     if(key == 'DlNumAffNational') {
-                          tot = tot +parseInt(value_in[0].industrial);
+                          tot = parseInt(value_in[0].industrial);
                     }
                 })
                 })
@@ -164,7 +164,7 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
               angular.forEach(value,function(value_in, key) {
                     if(key == 'DlNumAffNational') {
-                          tot = tot + parseInt(value_in[0].commercial);
+                          tot =  parseInt(value_in[0].commercial);
                     }
                 })
                 })
@@ -178,7 +178,7 @@ app.controller("DlPowerSupplyNatController", function ($scope,$http,$parse, _) {
             angular.forEach($scope.dlPowerSupplySumNat.power_supply.Table_6, function(value, index) {
               angular.forEach(value,function(value_in, key) {
                     if(key == 'DlNumAffNational') {
-                          tot = tot +parseInt(value_in[0].other);
+                          tot = parseInt(value_in[0].other);
                     }
                 })
                 })

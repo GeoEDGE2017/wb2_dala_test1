@@ -29,6 +29,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 	$scope.is_edit_disable = false;
 	$scope.is_submit = false;
 	$scope.check_search = false;
+	$scope.bsCreatedeDate;
 
 	var init_data = {
 		'education': {
@@ -697,18 +698,18 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 						'incident_id': $scope.incident,
 						'user_id': $scope.user_id,
 					},
+					'bs_date': $scope.bsCreatedeDate,
 					'is_edit': $scope.is_edit
 				}),
 				dataType: 'json',
 			}).then(function mySucces(response) {
-				console.log(response);
-				if(response.data == 'False') {
-					$("#modal-container-239454").modal('show');
-					$scope.is_valid_data = false;
-				}
-				else {
-					$("#modal-container-239453").modal('show');
-				}
+				 if(response.data == 'False') {
+                        $scope.is_valid_data = false;
+                        $("#modal-container-239454").modal('show');
+                    }
+                    else {
+                        $("#modal-container-239453").modal('show');
+                    }
 			}, function myError(response) {
 				console.log(response);
 			});
@@ -847,17 +848,21 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				}),
 				dataType: 'json',
 			}).then(function successCallback(response) {
-				if(response.data == 'null') {
-					$scope.currentBaselineDate = "Baseline data not available in Table_2";
-				}
-				else {
-					var result = response.data;
-					result = result.replace(/^"(.*)"$/, '$1');
-					$scope.currentBaselineDate = "Latest baseline data as at " + result;
-					console.log($scope.currentBaselineDate);
-					generateRefencedData();
-					$scope.calTotal();
-				}
+
+                console.log('response', response.data.bs_created_date);
+                var result = response.data;
+                if(result.bs_date == null) {
+                    $("#modal-container-239458").modal('show');
+                }
+                else {
+                    var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                    $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                    $scope.bsCreatedeDate = result.bs_created_date;
+                    console.log('bs_date', result.bs_date);
+                    console.log('bsCreatedeDate', result.bs_created_date);
+                    generateRefencedData();
+                    $scope.calTotal();
+                 }
 			});
 		})
 	}

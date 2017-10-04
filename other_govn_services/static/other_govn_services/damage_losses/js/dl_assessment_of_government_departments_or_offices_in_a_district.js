@@ -111,7 +111,7 @@ app.controller("dlAssessmentOfGovnDeptOrOfcInADistrictController", function($sco
 					los_year2: null,
 					total_losses: null,
 				}, {
-					name_dept: 'Cleaning up of debris',
+					name_dept: 'Cleaning Costs',
 					los_year1: null,
 					los_year2: null,
 					total_losses: null,

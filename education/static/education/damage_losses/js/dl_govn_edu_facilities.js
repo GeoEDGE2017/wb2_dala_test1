@@ -29,7 +29,7 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 	$scope.is_edit_disable = false;
 	$scope.is_submit = false;
 	$scope.check_search = false;
-	$scope.bsCreatedeDate;
+	$scope.bsCreatedDate;
 
 	var init_data = {
 		'education': {
@@ -698,18 +698,19 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 						'incident_id': $scope.incident,
 						'user_id': $scope.user_id,
 					},
-					'bs_date': $scope.bsCreatedeDate,
-					'is_edit': $scope.is_edit
+					'bs_date': $scope.bsCreatedDate,
+                    'is_edit': $scope.is_edit,
+                    'sector': 'transport_air'
 				}),
 				dataType: 'json',
 			}).then(function mySucces(response) {
-				 if(response.data == 'False') {
-                        $scope.is_valid_data = false;
-                        $("#modal-container-239454").modal('show');
-                    }
-                    else {
-                        $("#modal-container-239453").modal('show');
-                    }
+                if(response.data == 'False') {
+                    $scope.is_valid_data = false;
+                    $("#modal-container-239454").modal('show');
+                }
+                else {
+                    $("#modal-container-239453").modal('show');
+                }
 			}, function myError(response) {
 				console.log(response);
 			});
@@ -731,13 +732,13 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 					'com_data': {
 						'district': $scope.district.district__id,
 						'incident': $scope.incident,
-						//                        'user_id': $scope.user_id,
+//                        'user_id': $scope.user_id,
 					},
 					'is_edit': $scope.is_edit
 				}),
 			}).success(function(data) {
 				console.log(data);
-				//                $scope.dlGovnEduFacilities = data;
+//                $scope.dlGovnEduFacilities = data;
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.education.Table_3, function(value, index) {
@@ -764,8 +765,6 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 		document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
 		$scope.is_search = true;
 		$scope.submitted = true;
 		document.getElementById("clearbtn").disabled = true;
@@ -779,13 +778,11 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 					'com_data': {
 						'district': $scope.district.district__id,
 						'incident': $scope.incident,
-						//                        'user_id': $scope.user_id,
 					},
 					'is_edit': $scope.is_edit
 				}),
 			}).success(function(data) {
 				console.log(data);
-				//                $scope.dlGovnEduFacilities = data;
 				var edit_data_not_found = false;
 				if(data != null) {
 					angular.forEach(data.education.Table_3, function(value, index) {
@@ -857,12 +854,12 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
                 else {
                     var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
                     $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-                    $scope.bsCreatedeDate = result.bs_created_date;
+                    $scope.bsCreatedDate = result.bs_created_date;
                     console.log('bs_date', result.bs_date);
-                    console.log('bsCreatedeDate', result.bs_created_date);
+                    console.log('bsCreatedDate', result.bs_created_date);
                     generateRefencedData();
                     $scope.calTotal();
-                 }
+                }
 			});
 		})
 	}
@@ -912,7 +909,6 @@ bsHealthStatusApp.controller('DlGovnEduFacilitiesController', function DlGovnEdu
 				min_pzd_offices: null,
 				total: null
 			};
-			//    console.log($scope.dlGovnEduFacilities.education.Table_3);
 			angular.forEach(obj_array, function(value, key) {
 				var obj1 = {
 					particulars: value.fields.particulars,

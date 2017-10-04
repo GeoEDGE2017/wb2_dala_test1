@@ -7,7 +7,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
 	$scope.dlDate;
 	$scope.bs_data = {};
 	$scope.baselineDate;
-	$scope.bsCreatedeDate;
+	$scope.bsCreatedDate;
 	$scope.is_edit = false;
 	$scope.is_edit_disable = false;
 	$scope.is_valid_data = true;
@@ -349,7 +349,6 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
-                console.log($scope.bs_data);
                 var is_null = false;
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value == null) {
@@ -387,9 +386,9 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
                         else {
                             var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
                             $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
-                            $scope.bsCreatedeDate = result.bs_created_date;
+                            $scope.bsCreatedDate = result.bs_created_date;
                             console.log('bs_date', result.bs_date);
-                            console.log('bsCreatedeDate', result.bs_created_date);
+                            console.log('bsCreatedDate', result.bs_created_date);
                         }
                     });
                 }
@@ -400,10 +399,12 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
     //get reference data
 	function generateRefencedData() {
 		data_array = ['BsAstAirAircrafts', 'BsAstAirEquipment', 'BsAstAirSupplies', 'BsAstAirStructures'];
+
 		var dl_model1 = null;
 		var dl_model2 = null;
 		var dl_model3 = null;
 		var dl_model4 = null;
+
 		angular.forEach(data_array, function(value, key) {
 			obj_array = $scope.bs_data[value];
 			model_name = value;
@@ -541,7 +542,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
                         'incident_id': $scope.incident,
                         'user_id': $scope.user_id,
                     },
-                    'bs_date': $scope.bsCreatedeDate,
+                    'bs_date': $scope.bsCreatedDate,
                     'is_edit': $scope.is_edit,
                     'sector': 'transport_air'
                 }),
@@ -744,7 +745,7 @@ app.controller('DlAirTrnspotationController', ['$scope', '$http', function($scop
         return finaltotal;
     }
 
-    //Clear Function
+    //clear Function
 	$scope.clear = function() {
 		console.log('clear')
 		$scope.is_edit = false;

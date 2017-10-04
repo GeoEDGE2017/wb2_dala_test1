@@ -63,13 +63,22 @@
                     <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-                      <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_health_damagelost_lmh)" ng-if="!is_search" class="btn  btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">Cancel Search</button>
-								</td>
+                    <td style="width:100px;">
+                        <span ng-if="!check_search">
+                            <button ng-if="!is_search" class="btn btn-info" disabled>
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <span ng-if="check_search">
+                            <button ng-click="searchDlData(form_health_damagelost_lmh)" ng-if="!is_search"
+                                    class="btn  btn-info">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </span>
+                        <button ng-click="clear()" ng-if="is_search" class="btn  btn-warning">
+                            Cancel Search
+                        </button>
+                    </td>
                     <table class="table table-bordered" style="width:100%;background:#E4E5E6;">
                         <colgroup>
                             <col width="264"/>
@@ -120,7 +129,6 @@
                                     <option value="" selected>Select District</option>
                                 </select>
                             </td>
-
                             <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                         </tr>
                         <tr height="20" class="trheadc1">
@@ -423,10 +431,10 @@
                             </tbody>
                         </table>
                         <br>
-                        <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                                class="glyphicon glyphicon-arrow-right"></span> Fill No of Destroyed Assets by Types of
-                            Facilities
-                            Informations</a>
+                        <a href="#step3" id="s2" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                            Fill No of Destroyed Assets by Types of Facilities Informations
+                        </a>
                     </div>
                 </div>
                 <div class="tab-pane" id="step3">
@@ -437,39 +445,39 @@
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-                        <tr height="20" class="trheadc1">
-                            <td width="264" height="20">
-                            </td>
-                            <td colspan="3" width="294" style="text-align:center;">
-                                Line Ministry Health System
-                            </td>
-                            <td colspan="2" width="196">
-                                MOH
-                            </td>
-                            <td rowspan="2" width="98" style="text-align:center;">
-                                Total Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr height="34" class="trsubc">
-                            <td width="264" height="34" class="trhead" style="text-align:left;">
-                                Assets
-                            </td>
-                            <td width="98">
-                                Teaching Hospitals
-                            </td>
-                            <td width="98">
-                                Provincial General Hospitals
-                            </td>
-                            <td width="98">
-                                District General Hospitals
-                            </td>
-                            <td width="98">
-                                Offices
-                            </td>
-                            <td width="98">
-                                Others
-                            </td>
-                        </tr>
+                            <tr height="20" class="trheadc1">
+                                <td width="264" height="20">
+                                </td>
+                                <td colspan="3" width="294" style="text-align:center;">
+                                    Line Ministry Health System
+                                </td>
+                                <td colspan="2" width="196">
+                                    MOH
+                                </td>
+                                <td rowspan="2" width="98" style="text-align:center;">
+                                    Total Damages (LKR)
+                                </td>
+                            </tr>
+                            <tr height="34" class="trsubc">
+                                <td width="264" height="34" class="trhead" style="text-align:left;">
+                                    Assets
+                                </td>
+                                <td width="98">
+                                    Teaching Hospitals
+                                </td>
+                                <td width="98">
+                                    Provincial General Hospitals
+                                </td>
+                                <td width="98">
+                                    District General Hospitals
+                                </td>
+                                <td width="98">
+                                    Offices
+                                </td>
+                                <td width="98">
+                                    Others
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div id="boxscroll1" style="height:400px;overflow:auto;">
@@ -643,8 +651,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhNdatFacSupplies[3].asset"
-                                    class="tdpa"></td>
+                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhNdatFacSupplies[3].asset" class="tdpa">
+                                </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhNdatFacSupplies[3].teaching_hospital"
@@ -739,7 +747,8 @@
                             </tr>
                             <tr>
                                 <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhNdatFacMequipment[4].asset"
-                                    height="20" class="tdpa"></td>
+                                    height="20" class="tdpa">
+                                </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhNdatFacMequipment[4].teaching_hospital"
@@ -1030,40 +1039,39 @@
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-                        <tr height="20" class="trsubc">
-                            <td width="264" height="20" class="trheadc">
-                            </td>
-                            <td colspan="3" width="294" style="text-align:center;">
-                                Line Ministry Health System
-                            </td>
-                            <td colspan="2" width="196" style="text-align:center;">
-                                MOH
-                            </td>
-                            <td rowspan="2" width="98">
-                                Total Damages (LKR)
-                            </td>
-                        </tr>
-                        <tr height="34" class="trsubc">
-                            <td width="264" height="34" class="trhead1" style="text-align:left;padding-left:5px;">
-                                Assets
-                            </td>
-                            <td width="98">
-                                Teaching Hospitals
-                            </td>
-                            <td width="98">
-                                Provincial General Hospitals
-                            </td>
-                            <td width="98">
-                                District General Hospitals
-                            </td>
-                            <td width="98">
-                                Offices
-                            </td>
-                            <td width="98">
-                                Others
-                            </td>
-                        </tr>
-
+                            <tr height="20" class="trsubc">
+                                <td width="264" height="20" class="trheadc">
+                                </td>
+                                <td colspan="3" width="294" style="text-align:center;">
+                                    Line Ministry Health System
+                                </td>
+                                <td colspan="2" width="196" style="text-align:center;">
+                                    MOH
+                                </td>
+                                <td rowspan="2" width="98">
+                                    Total Damages (LKR)
+                                </td>
+                            </tr>
+                            <tr height="34" class="trsubc">
+                                <td width="264" height="34" class="trhead1" style="text-align:left;padding-left:5px;">
+                                    Assets
+                                </td>
+                                <td width="98">
+                                    Teaching Hospitals
+                                </td>
+                                <td width="98">
+                                    Provincial General Hospitals
+                                </td>
+                                <td width="98">
+                                    District General Hospitals
+                                </td>
+                                <td width="98">
+                                    Offices
+                                </td>
+                                <td width="98">
+                                    Others
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div id="boxscroll3" style="height:400px;overflow:auto;">
@@ -1237,7 +1245,8 @@
                             </tr>
                             <tr>
                                 <td width="264" ng-bind="dlMinistryHealthSys.health.Table_5.DmhPdfaMequipment[4].asset"
-                                    height="20" class="tdpa"></td>
+                                    height="20" class="tdpa">
+                                </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhPdfaMequipment[4].teaching_hospital"
@@ -1336,7 +1345,8 @@
                             </tr>
                             <tr>
                                 <td width="264" ng-bind="dlMinistryHealthSys.health.Table_5.DmhPdfaOassets[5].asset"
-                                    height="20" class="tdpa"></td>
+                                    height="20" class="tdpa">
+                                </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhPdfaOassets[5].teaching_hospital"
@@ -1388,7 +1398,8 @@
                             </tr>
                             <tr>
                                 <td width="264" ng-bind="dlMinistryHealthSys.health.Table_5.DmhPdfaOassets[6].asset"
-                                    height="20" class="tdpa"></td>
+                                    height="20" class="tdpa">
+                                </td>
                                 <td width="98">
                                     <input id="textinput"
                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhPdfaOassets[6].teaching_hospital"
@@ -1494,8 +1505,10 @@
                             </tbody>
                         </table>
                         <br>
-                        <a href="#step5" id="s4" class="btn btn-sm btn-info pull-right" data-toggle="tab"><span
-                                class="glyphicon glyphicon-arrow-right"></span> Fill Losses Informations</a>
+                        <a href="#step5" id="s4" class="btn btn-sm btn-info pull-right" data-toggle="tab">
+                            <span class="glyphicon glyphicon-arrow-right"></span>
+                            Fill Losses Informations
+                        </a>
                     </div>
                 </div>
                 <div class="tab-pane" id="step5">
@@ -1506,518 +1519,517 @@
                             <col width="98" span="6"/>
                         </colgroup>
                         <tbody>
-
-                        <tr height="20" class="trheadc1">
-                            <td width="264" height="20" style="text-align:left;padding-left:5px;">
-                                Types of Losses
-                            </td>
-                            <td colspan="3" width="294" style="text-align:center;">
-                                Line Ministry Health System
-                            </td>
-                            <td colspan="2" width="196" style="text-align:center;">
-                                MOH
-                            </td>
-                            <td rowspan="2" width="98">
-                                Total Losses (LKR)
-                            </td>
-                        </tr>
-                        <tr height="51" class="trsubc1">
-                            <td width="264" height="51" class="trheadc">
-                            </td>
-                            <td width="98">
-                                Teaching Hospitals
-                            </td>
-                            <td width="98">
-                                Provincial General Hospitals
-                            </td>
-                            <td width="98">
-                                District General Hospitals
-                            </td>
-                            <td width="98">
-                                Offices
-                            </td>
-                            <td width="98">
-                                Others
-                            </td>
-                        </tr>
+                            <tr height="20" class="trheadc1">
+                                <td width="264" height="20" style="text-align:left;padding-left:5px;">
+                                    Types of Losses
+                                </td>
+                                <td colspan="3" width="294" style="text-align:center;">
+                                    Line Ministry Health System
+                                </td>
+                                <td colspan="2" width="196" style="text-align:center;">
+                                    MOH
+                                </td>
+                                <td rowspan="2" width="98">
+                                    Total Losses (LKR)
+                                </td>
+                            </tr>
+                            <tr height="51" class="trsubc1">
+                                <td width="264" height="51" class="trheadc">
+                                </td>
+                                <td width="98">
+                                    Teaching Hospitals
+                                </td>
+                                <td width="98">
+                                    Provincial General Hospitals
+                                </td>
+                                <td width="98">
+                                    District General Hospitals
+                                </td>
+                                <td width="98">
+                                    Offices
+                                </td>
+                                <td width="98">
+                                    Others
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div id="boxscroll4" style="height:400px;overflow:auto;">
                         <table class="table table-bordered">
                             <tbody>
-                            <tr height="20" class="trheadc">
-                                <td width="264" height="20">
-                                    Foregone Income
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                            </tr>
-                            <tr height="20" ng-repeat="dmhLosFi in dlMinistryHealthSys.health.Table_5.DmhLosFi"
-                                ng-if="$index < 2">
-                                <td width="264" ng-bind="dmhLosFi.type_of_losses" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosFi.teaching_hospital" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosFi.provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosFi.district_general_hospital" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosFi.office" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosFi.other" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosFi.total" name="textinput" type="number"
-                                           ng-value="dmhLosFi.total=dmhLosFi.teaching_hospital + dmhLosFi.provincial_general_hospital + dmhLosFi.district_general_hospital + dmhLosFi.office + dmhLosFi.other"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].type_of_losses" height="20"
-                                    class="tdpa"></td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].teaching_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].provincial_general_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].district_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].district_general_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].office + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].office"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].other + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].other"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].total + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].total"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td width="264" height="20">
-                                    Cleaning costs
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                            </tr>
-                            <tr height="20" ng-repeat="dmhLosCud in dlMinistryHealthSys.health.Table_5.DmhLosCud"
-                                ng-if="$index < 2">
-                                <td width="264" ng-bind="dmhLosCud.type_of_losses" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosCud.teaching_hospital" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosCud.provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosCud.district_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosCud.office" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosCud.other" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosCud.total" name="textinput" type="number"
-                                           ng-value="dmhLosCud.total=dmhLosCud.teaching_hospital + dmhLosCud.provincial_general_hospital + dmhLosCud.district_general_hospital + dmhLosCud.office + dmhLosCud.other"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].type_of_losses" height="20"
-                                    class="tdpa"></td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].teaching_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].teaching_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].provincial_general_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].district_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].district_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].district_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].district_general_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].office"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].office=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].office + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].office"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].other"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].other=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].other + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].other"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].total"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].total=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].total + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].total"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td width="264" height="20">
-                                    Higher Operating Costs
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                            </tr>
-                            <tr height="20" ng-repeat="dmhLosHoc in dlMinistryHealthSys.health.Table_5.DmhLosHoc"
-                                ng-if="$index < 2">
-                                <td width="264" ng-bind="dmhLosHoc.type_of_losses" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosHoc.teaching_hospital" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosHoc.provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosHoc.district_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosHoc.office" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosHoc.other" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosHoc.total" name="textinput" type="number"
-                                           ng-value="dmhLosHoc.total=dmhLosHoc.teaching_hospital + dmhLosHoc.provincial_general_hospital + dmhLosHoc.district_general_hospital + dmhLosHoc.office + dmhLosHoc.other"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].type_of_losses" height="20"
-                                    class="tdpa"></td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].teaching_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].teaching_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].provincial_general_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].district_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].district_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].district_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].district_general_hospital"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].office"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].office=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].office + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].office"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].other"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].other=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].other + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].other"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].total"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].total=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].total + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].total"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr height="20" class="trheadc">
-                                <td width="264" height="20">
-                                    Other Unexpected Expenses
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                                <td width="98">
-                                </td>
-                            </tr>
-                            <tr height="20" ng-repeat="dmhLosOue in dlMinistryHealthSys.health.Table_5.DmhLosOue"
-                                ng-if="$index < 2">
-                                <td width="264" ng-bind="dmhLosOue.type_of_losses" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosOue.teaching_hospital" name="textinput"
-                                           type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosOue.provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosOue.district_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosOue.office" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosOue.other" name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput" ng-model="dmhLosOue.total" name="textinput" type="number"
-                                           ng-value="dmhLosOue.total=dmhLosOue.teaching_hospital + dmhLosOue.provincial_general_hospital + dmhLosOue.district_general_hospital + dmhLosOue.office + dmhLosOue.other"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].type_of_losses" height="20" class="tdpa">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].teaching_hospital"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosOue[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosOue[1].teaching_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                           ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].provincial_general_hospital"
-                                           ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosOue[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosOue[1].provincial_general_hospital"
-                                           name="textinput" type="number"
-                                           placeholder="" class="form-control input-md"
-                                           onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                        ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].district_general_hospital"
-                                        ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].district_general_hospital=
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[0].district_general_hospital +
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[1].district_general_hospital"
-                                        name="textinput" type="number"
-                                        placeholder="" class="form-control input-md"
-                                        onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                        ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].office"
-                                        name="textinput" type="number"
-                                        placeholder="" class="form-control input-md"
-                                        ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].office=
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[0].office +
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[1].office"
-                                        onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                        ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].other"
-                                        name="textinput" type="number"
-                                        placeholder="" class="form-control input-md"
-                                        ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].other=
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[0].other +
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[1].other"
-                                        onkeypress="return isNumberKey(event)">
-                                </td>
-                                <td width="98">
-                                    <input id="textinput"
-                                        ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].total"
-                                        name="textinput" type="number"
-                                        placeholder="" class="form-control input-md"
-                                        ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].total=
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[0].total +
-                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[1].total"
-                                        onkeypress="return isNumberKey(event)">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td height="20" class="tdpa">GRAND TOTAL OF LOSSES</td>
-                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosCud[2].teaching_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].teaching_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosOue[2].teaching_hospital" width="98">
-                                </td>
-                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosCud[2].provincial_general_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].provincial_general_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosOue[2].provincial_general_hospital" width="98">
-                                </td>
-                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosCud[2].district_general_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].district_general_hospital +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosOue[2].district_general_hospital" width="98">
-                                </td>
-                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosCud[2].office +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].office +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosOue[2].office" width="98">
-                                </td>
-                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosCud[2].other +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].other +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosOue[2].other" width="98">
-                                </td>
-                                <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosCud[2].total +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].total +
-                                    dlMinistryHealthSys.health.Table_5.DmhLosOue[2].total" width="98">
-                                </td>
-                            </tr>
+                                <tr height="20" class="trheadc">
+                                    <td width="264" height="20">
+                                        Foregone Income
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                </tr>
+                                <tr height="20" ng-repeat="dmhLosFi in dlMinistryHealthSys.health.Table_5.DmhLosFi"
+                                    ng-if="$index < 2">
+                                    <td width="264" ng-bind="dmhLosFi.type_of_losses" height="20" class="tdpa">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosFi.teaching_hospital" name="textinput"
+                                               type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosFi.provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosFi.district_general_hospital" name="textinput"
+                                               type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosFi.office" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosFi.other" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosFi.total" name="textinput" type="number"
+                                               ng-value="dmhLosFi.total=dmhLosFi.teaching_hospital + dmhLosFi.provincial_general_hospital + dmhLosFi.district_general_hospital + dmhLosFi.office + dmhLosFi.other"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].type_of_losses" height="20"
+                                        class="tdpa"></td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].teaching_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].provincial_general_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].district_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].district_general_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].office + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].office"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].other + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].other"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total=dlMinistryHealthSys.health.Table_5.DmhLosFi[0].total + dlMinistryHealthSys.health.Table_5.DmhLosFi[1].total"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr height="20" class="trheadc">
+                                    <td width="264" height="20">
+                                        Cleaning costs
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                </tr>
+                                <tr height="20" ng-repeat="dmhLosCud in dlMinistryHealthSys.health.Table_5.DmhLosCud"
+                                    ng-if="$index < 2">
+                                    <td width="264" ng-bind="dmhLosCud.type_of_losses" height="20" class="tdpa">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosCud.teaching_hospital" name="textinput"
+                                               type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosCud.provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosCud.district_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosCud.office" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosCud.other" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosCud.total" name="textinput" type="number"
+                                               ng-value="dmhLosCud.total=dmhLosCud.teaching_hospital + dmhLosCud.provincial_general_hospital + dmhLosCud.district_general_hospital + dmhLosCud.office + dmhLosCud.other"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].type_of_losses" height="20"
+                                        class="tdpa"></td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].teaching_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].teaching_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].provincial_general_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].district_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].district_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].district_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].district_general_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].office"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].office=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].office + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].office"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].other"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].other=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].other + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].other"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].total"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosCud[2].total=dlMinistryHealthSys.health.Table_5.DmhLosCud[0].total + dlMinistryHealthSys.health.Table_5.DmhLosCud[1].total"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr height="20" class="trheadc">
+                                    <td width="264" height="20">
+                                        Higher Operating Costs
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                </tr>
+                                <tr height="20" ng-repeat="dmhLosHoc in dlMinistryHealthSys.health.Table_5.DmhLosHoc"
+                                    ng-if="$index < 2">
+                                    <td width="264" ng-bind="dmhLosHoc.type_of_losses" height="20" class="tdpa">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosHoc.teaching_hospital" name="textinput"
+                                               type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosHoc.provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosHoc.district_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosHoc.office" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosHoc.other" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosHoc.total" name="textinput" type="number"
+                                               ng-value="dmhLosHoc.total=dmhLosHoc.teaching_hospital + dmhLosHoc.provincial_general_hospital + dmhLosHoc.district_general_hospital + dmhLosHoc.office + dmhLosHoc.other"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].type_of_losses" height="20"
+                                        class="tdpa"></td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].teaching_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].teaching_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].provincial_general_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].district_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].district_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].district_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].district_general_hospital"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].office"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].office=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].office + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].office"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].other"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].other=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].other + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].other"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].total"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].total=dlMinistryHealthSys.health.Table_5.DmhLosHoc[0].total + dlMinistryHealthSys.health.Table_5.DmhLosHoc[1].total"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr height="20" class="trheadc">
+                                    <td width="264" height="20">
+                                        Other Unexpected Expenses
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                    <td width="98">
+                                    </td>
+                                </tr>
+                                <tr height="20" ng-repeat="dmhLosOue in dlMinistryHealthSys.health.Table_5.DmhLosOue"
+                                    ng-if="$index < 2">
+                                    <td width="264" ng-bind="dmhLosOue.type_of_losses" height="20" class="tdpa">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosOue.teaching_hospital" name="textinput"
+                                               type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosOue.provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosOue.district_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosOue.office" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosOue.other" name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput" ng-model="dmhLosOue.total" name="textinput" type="number"
+                                               ng-value="dmhLosOue.total=dmhLosOue.teaching_hospital + dmhLosOue.provincial_general_hospital + dmhLosOue.district_general_hospital + dmhLosOue.office + dmhLosOue.other"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].type_of_losses" height="20" class="tdpa">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].teaching_hospital"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].teaching_hospital=dlMinistryHealthSys.health.Table_5.DmhLosOue[0].teaching_hospital + dlMinistryHealthSys.health.Table_5.DmhLosOue[1].teaching_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                               ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].provincial_general_hospital"
+                                               ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].provincial_general_hospital=dlMinistryHealthSys.health.Table_5.DmhLosOue[0].provincial_general_hospital + dlMinistryHealthSys.health.Table_5.DmhLosOue[1].provincial_general_hospital"
+                                               name="textinput" type="number"
+                                               placeholder="" class="form-control input-md"
+                                               onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].district_general_hospital"
+                                            ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].district_general_hospital=
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[0].district_general_hospital +
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[1].district_general_hospital"
+                                            name="textinput" type="number"
+                                            placeholder="" class="form-control input-md"
+                                            onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].office"
+                                            name="textinput" type="number"
+                                            placeholder="" class="form-control input-md"
+                                            ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].office=
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[0].office +
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[1].office"
+                                            onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].other"
+                                            name="textinput" type="number"
+                                            placeholder="" class="form-control input-md"
+                                            ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].other=
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[0].other +
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[1].other"
+                                            onkeypress="return isNumberKey(event)">
+                                    </td>
+                                    <td width="98">
+                                        <input id="textinput"
+                                            ng-model="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].total"
+                                            name="textinput" type="number"
+                                            placeholder="" class="form-control input-md"
+                                            ng-value="dlMinistryHealthSys.health.Table_5.DmhLosOue[2].total=
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[0].total +
+                                            dlMinistryHealthSys.health.Table_5.DmhLosOue[1].total"
+                                            onkeypress="return isNumberKey(event)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20" class="tdpa">GRAND TOTAL OF LOSSES</td>
+                                    <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].teaching_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosCud[2].teaching_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].teaching_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[2].teaching_hospital" width="98">
+                                    </td>
+                                    <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].provincial_general_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosCud[2].provincial_general_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].provincial_general_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[2].provincial_general_hospital" width="98">
+                                    </td>
+                                    <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].district_general_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosCud[2].district_general_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].district_general_hospital +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[2].district_general_hospital" width="98">
+                                    </td>
+                                    <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].office +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosCud[2].office +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].office +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[2].office" width="98">
+                                    </td>
+                                    <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].other +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosCud[2].other +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].other +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[2].other" width="98">
+                                    </td>
+                                    <td class="right" ng-bind="dlMinistryHealthSys.health.Table_5.DmhLosFi[2].total +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosCud[2].total +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosHoc[2].total +
+                                        dlMinistryHealthSys.health.Table_5.DmhLosOue[2].total" width="98">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="pull-right">
@@ -2026,7 +2038,8 @@
                                 Clear
                             </button>
                             <span ng-if="is_edit_disable">
-                                <button id="editbtn" type="button" ng-click="dlEditData(form_health_damagelost_lmh)" ng-if="!is_edit" class="btn btn-success">
+                                <button id="editbtn" type="button" ng-click="dlEditData(form_health_damagelost_lmh)"
+                                        ng-if="!is_edit" class="btn btn-success">
                                     Edit
                                 </button>
                             </span>
@@ -2050,7 +2063,6 @@
         <br>
     </div>
     <!-- /.conainer-fluid -->
-
     <!-- please update the baseline tables -->
     <div class="modal fade" id="modal-container-239458" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

@@ -197,7 +197,7 @@ app.controller('dlindustryServicesFormalSecController', ['$scope', '$http', func
                 'model': 'BsFrmBusIndustry', //BsFrmBusIndustry
                 'sector':'industry_services', //industry_services
                 'col': 'industry',
-             }),
+            }),
         }).success(function(data) {
             $scope.indSubSec = data;
         })

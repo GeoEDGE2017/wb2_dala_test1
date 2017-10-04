@@ -8,143 +8,218 @@ $(document).ready(function() {
 		cursorwidth: 8
 	});
 });
+
 </script>
 <!-- Main content -->
 <main ng-app="bsEduFacilitiesApp" ng-controller="BsEduFacilitiesController" class="main">
-	<!-- Breadcrumb -->
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:index' %}">Dashboard</a> </li>
-		<li class="breadcrumb-item"> <a href="{% url 'dashboard:education_main' %}">Education Sector</a> </li>
-		<li class="breadcrumb-item active"> <span class="label label-success" style="font-size:14px;">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'dashboard:education_main' %}">
+                Education Sector
+            </a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span class="label label-success" style="font-size:14px;">
                 Table 1. Baseline Information of Educational Facilities in a District
-            </span> </li>
-		<li style="float:right;">
-			<a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document"></a>
-		</li>
-	</ol>
-	<div class="container-fluid" ng-form name="form_bs_edu_fac">
-		<div class="col-sm-12" style="padding:0;">
-			<div class="card">
-				<div class="card-block"> <span style="color:red" ng-show="!is_valid_data">
+            </span>
+        </li>
+        <li style="float:right;">
+            <a href="{% static 'dashboard/doc/Education.pdf' %}" target="_blank"
+               style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip"
+               title="Veiw Document">
+            </a>
+        </li>
+    </ol>
+    <div class="container-fluid" ng-form name="form_bs_edu_fac">
+        <div class="col-sm-12" style="padding:0;">
+            <div class="card">
+                <div class="card-block">
+                    <span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
                     </span>
-					<td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-						</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_bs_edu_fac)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
+                    <td style="width:100px;">
+                        <span ng-if="!check_search">
+                            <button ng-if="!is_search" class="btn btn-info" disabled>
+                                <span class="fa fa-search"></span>
+                            </button>
 						</span>
-						<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-					</td>
-					<table class="table table-bordered">
-						<colgroup>
-							<col width="280" />
-							<col width="136" span="3" /> </colgroup>
-						<tbody>
-							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-								<td style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.district.$error.required">
+                        <span ng-if="check_search">
+                            <button ng-click="searchBsData(form_bs_edu_fac)" ng-if="!is_search" class="btn btn-info">
+                                <span class="fa fa-search"></span>
+                            </button>
+						</span>
+                        <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                            Cancel Search
+                        </button>
+                    </td>
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col width="280"/>
+                            <col width="136" span="3"/>
+                        </colgroup>
+                        <tbody>
+                        <tr style="background:#fff;border:1px solid #fff;text-align:center;">
+                            <td style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+                            <td colspan="" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.district.$error.required">
                                     Please select district
-                                </span> </td>
-								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.baselineDate.$error.required">
+                                </span>
+                            </td>
+                            <td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+                            </td>
+                            <td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+                                <span class="arrow_box" ng-show="submitted && form_bs_edu_fac.baselineDate.$error.required">
                                     Please Select Date
-                                </span> </td>
-							</tr>
-							<tr class="trhead1">
-								<td style="padding-left:5px;width:10%;"> Name of District</td>
-								<td colspan="" style="">
-									<select ng-model="district" id="selectbasic" ng-change="changeDis();" name="district" class="form-control" style="font-weight:400;" required>
-										<option value="">Select District</option> {% for district in districts %}
-										<option value="{{ district.id }}">{{ district.name }}</option> {% endfor %} </select>
-								</td>
-								<td colspan="" style="padding-left:5px;"> Month/Year </td>
-								<td colspan="" style="font-weight:normal;">
-									<input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy" id="datepicker" ng-model="baselineDate" class="form-control input-md" required> </td> <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
-							<tr class="trheadc1" height="17">
-								<td rowspan="2" width="280" height="34" style="width:26.7%;"> Type of Facilities </td>
-								<td rowspan="2" width="136" style="width:28.3%;"> Total Number </td>
-								<td colspan="2" width="272"> Average Number of Students Per Facility </td>
-							</tr>
-							<tr class="trsubc" height="17">
-								<td width="136" height="17"> Male </td>
-								<td width="136"> Female </td>
-							</tr>
-						</tbody>
-					</table>
-					<div id="boxscroll1" style="height:400px;overflow:auto;">
-						<table class="table table-bordered">
-							<tbody>
-								<tr class="trheadc" height="17">
-									<td colspan="8" width="280" height="17"> Public Sector </td>
-								</tr>
-								<tr class="trheadc" height="17">
-									<td width="280" height="17" style="width:26.7%;"> Schools </td>
-									<td colspan="3" width="136" style="width:28.3%;"> </td>
-									<td colspan="3" width="136"> </td>
-									<td colspan="3" width="136" style="width:23%;"> </td>
-								</tr>
-								<tr ng-repeat="befPubSchool in bsEduFacilities.education.Table_1.BefPubSchools" height="17">
-									<td ng-bind="befPubSchool.type_facilities" ng-model="befPubSchool.type_facilities" class="tdpa" width="280" height="17"> </td>
-									<td colspan="3" width="136">
-										<input ng-model="befPubSchool.total_number" type="number" placeholder="" class="form-control input-md" ng-change="getTotal('BefPubSchools');"> </td>
-									<td colspan="3" width="136">
-										<input ng-model="befPubSchool.avg_male" type="number" placeholder="" ng-change="getTotal('BefPubSchools');" class="form-control input-md"> </td>
-									<td colspan="3" width="136">
-										<input ng-model="befPubSchool.avg_female" type="number" placeholder="" ng-change="getTotal('BefPubSchools');" class="form-control input-md"> </td>
-								</tr>
-								<tr class="trheadc" class="trheadc" height="17">
-									<td width="280" height="17"> Offices </td>
-									<td colspan="3" width="136"> </td>
-									<td colspan="3" width="136"> </td>
-									<td colspan="3" width="136"> </td>
-								</tr>
-								<tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices" ng-if="befPubOffice.type_facilities != 'TOTAL NUMBER OF STUDENTS'" height="17">
-									<td ng-bind="befPubOffice.type_facilities" class="tdpa" width="280" height="17"> </td>
-									<td colspan="3" width="136">
-										<input ng-model="befPubOffice.total_number" type="number" placeholder="" ng-change="getTotal('BefPubOffices')" class="form-control input-md"> </td>
-									<td colspan="3" class="tdpa" width="136"> </td>
-									<td colspan="3" class="tdpa" width="136"> </td>
-								</tr>
-								<tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices" ng-if="befPubOffice.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
-									<td class="tdpa" width="280" height="17" ng-bind="befPubOffice.type_facilities"> </td>
-									<td colspan="3" width="136" class="right" ng-model="befPubOffice.total_number" ng-bind="befPubOffice.total_number = totTotalNumber()"> </td>
-									<td colspan="3" width="136" class="right" ng-model="befPubOffice.avg_male" ng-bind="befPubOffice.avg_male = totAvgMale()"> </td>
-									<td colspan="3" width="136" class="right" ng-model="befPubOffice.avg_female" ng-bind="befPubOffice.avg_female = totAvgFemaler()"> </td>
-								</tr>
-								<tr class="trheadc" height="17">
-									<td colspan="8" width="280" height="17"> Private Sector </td>
-								</tr>
-								<tr ng-init="" ng-repeat="befPvt in bsEduFacilities.education.Table_1.BefPvt" ng-if="befPvt.type_facilities != 'TOTAL NUMBER OF STUDENTS'" height="17">
-									<td ng-bind="befPvt.type_facilities" ng-if="$index < 6" class="tdpa"> </td>
-									<td width="136" ng-if="$index > 5"> {% verbatim %}
-										<button id="delete" ng-click="removeItem('BefPvt', $index)" class="btn btn-sm btn-danger btn-circle"> <i class="fa fa-minus"></i> </button>
-										<input style="width:80%;float:right;" name="befPvt_{{$index}}" ng-model="befPvt.type_facilities" popover="This field is required" popover-toggle="form_bs_edu_fac['befPvt_' + $index].$dirty && !form_bs_edu_fac['befPvt_' + $index].$valid" popover-placement="top" required type="text" class="form-control input-md"> {% endverbatim %} </td>
-									<td colspan="3" width="136">
-										<input ng-model="befPvt.total_number" type="number" placeholder="" class="form-control input-md"> </td>
-									<td colspan="3" width="136">
-										<input ng-model="befPvt.avg_male" placeholder="" type="number" class="form-control input-md"> </td>
-									<td colspan="3" width="136">
-										<input ng-model="befPvt.avg_female" placeholder="" type="number" class="form-control input-md"> </td>
-								</tr>
-								<tr class="tdpa" height="20">
-									<td width="280" height="17" colspan="7"> Others
-										<button ng-click="insertAsset('BefPvt')" class="btn btn-sm btn-info btn-circle" id="insert"> <span class="fa fa-plus"></span> </button>
-									</td>
-									<td colspan="3" colspan="3" width="136"> </td>
-								</tr>
-								<tr ng-repeat="befPvt in bsEduFacilities.education.Table_1.BefPvt" ng-if="befPvt.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
-									<td ng-bind="befPvt.type_facilities" class="tdpa" width="280" height="17"> </td>
-									<td colspan="3" class="right" width="136" ng-model="befPvt.total_number" ng-bind="totBefPvtTotalNumber()"> </td>
-									<td colspan="3" class="right" width="136" ng-model="befPvt.avg_male" ng-bind="befPvt.avg_male = totBefPvtAvgMale()"> </td>
-									<td colspan="3" class="right" width="136" ng-model="befPvt.avg_female" ng-bind="befPvt.avg_male = totBefPvtAvgFemale()"> </td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="pull-right">
-						<br>
-						<button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()"> Clear </button> <span ng-if="is_edit_disable">
-                            <button id="editbtn" type="button" ng-click="editBsData(form_bs_edu_fac)" ng-if="!is_edit" class="btn btn-success">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="trhead1">
+                            <td style="padding-left:5px;width:10%;">
+                                Name of District
+                            </td>
+                            <td colspan="" style="">
+                                <select ng-model="district" id="selectbasic" ng-change="changeDis();" name="district"
+                                        class="form-control" style="font-weight:400;" required>
+                                    <option value="">
+                                        Select District
+                                    </option>
+                                    {% for district in districts %}
+                                    <option value="{{ district.id }}">
+                                        {{ district.name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td colspan="" style="padding-left:5px;">
+                                Month/Year
+                            </td>
+                            <td colspan="" style="font-weight:normal;">
+                                <input name="textinput" type="text" ng-change="changeDis();" placeholder="mm/yy"
+                                       id="datepicker" ng-model="baselineDate" class="form-control input-md" required>
+                            </td>
+                            <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+                        </tr>
+                        <tr class="trheadc1" height="17">
+                            <td rowspan="2" width="280" height="34" style="width:26.7%;"> Type of Facilities</td>
+                            <td rowspan="2" width="136" style="width:28.3%;"> Total Number</td>
+                            <td colspan="2" width="272"> Average Number of Students Per Facility</td>
+                        </tr>
+                        <tr class="trsubc" height="17">
+                            <td width="136" height="17"> Male</td>
+                            <td width="136"> Female</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div id="boxscroll1" style="height:400px;overflow:auto;">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr class="trheadc" height="17">
+                                    <td colspan="8" width="280" height="17"> Public Sector</td>
+                                </tr>
+                                <tr class="trheadc" height="17">
+                                    <td width="280" height="17" style="width:26.7%;"> Schools</td>
+                                    <td colspan="3" width="136" style="width:28.3%;"></td>
+                                    <td colspan="3" width="136"></td>
+                                    <td colspan="3" width="136" style="width:23%;"></td>
+                                </tr>
+                                <tr ng-repeat="befPubSchool in bsEduFacilities.education.Table_1.BefPubSchools" height="17">
+                                    <td ng-bind="befPubSchool.type_facilities" ng-model="befPubSchool.type_facilities"
+                                        class="tdpa" width="280" height="17"></td>
+                                    <td colspan="3" width="136">
+                                        <input ng-model="befPubSchool.total_number" type="number" placeholder=""
+                                               class="form-control input-md" ng-change="getTotal('BefPubSchools');"></td>
+                                    <td colspan="3" width="136">
+                                        <input ng-model="befPubSchool.avg_male" type="number" placeholder=""
+                                               ng-change="getTotal('BefPubSchools');" class="form-control input-md"></td>
+                                    <td colspan="3" width="136">
+                                        <input ng-model="befPubSchool.avg_female" type="number" placeholder=""
+                                               ng-change="getTotal('BefPubSchools');" class="form-control input-md"></td>
+                                </tr>
+                                <tr class="trheadc" class="trheadc" height="17">
+                                    <td width="280" height="17"> Offices</td>
+                                    <td colspan="3" width="136"></td>
+                                    <td colspan="3" width="136"></td>
+                                    <td colspan="3" width="136"></td>
+                                </tr>
+                                <tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices"
+                                    ng-if="befPubOffice.type_facilities != 'TOTAL NUMBER OF STUDENTS'" height="17">
+                                    <td ng-bind="befPubOffice.type_facilities" class="tdpa" width="280" height="17"></td>
+                                    <td colspan="3" width="136">
+                                        <input ng-model="befPubOffice.total_number" type="number" placeholder=""
+                                               ng-change="getTotal('BefPubOffices')" class="form-control input-md"></td>
+                                    <td colspan="3" class="tdpa" width="136"></td>
+                                    <td colspan="3" class="tdpa" width="136"></td>
+                                </tr>
+                                <tr ng-repeat="befPubOffice in bsEduFacilities.education.Table_1.BefPubOffices"
+                                    ng-if="befPubOffice.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
+                                    <td class="tdpa" width="280" height="17" ng-bind="befPubOffice.type_facilities"></td>
+                                    <td colspan="3" width="136" class="right" ng-model="befPubOffice.total_number"
+                                        ng-bind="befPubOffice.total_number = totTotalNumber()"></td>
+                                    <td colspan="3" width="136" class="right" ng-model="befPubOffice.avg_male"
+                                        ng-bind="befPubOffice.avg_male = totAvgMale()"></td>
+                                    <td colspan="3" width="136" class="right" ng-model="befPubOffice.avg_female"
+                                        ng-bind="befPubOffice.avg_female = totAvgFemaler()"></td>
+                                </tr>
+                                <tr class="trheadc" height="17">
+                                    <td colspan="8" width="280" height="17"> Private Sector</td>
+                                </tr>
+                                <tr ng-init="" ng-repeat="befPvt in bsEduFacilities.education.Table_1.BefPvt"
+                                    ng-if="befPvt.type_facilities != 'TOTAL NUMBER OF STUDENTS'" height="17">
+                                    <td ng-bind="befPvt.type_facilities" ng-if="$index < 6" class="tdpa"></td>
+                                    <td width="136" ng-if="$index > 5"> {% verbatim %}
+                                        <button id="delete" ng-click="removeItem('BefPvt', $index)"
+                                                class="btn btn-sm btn-danger btn-circle"><i class="fa fa-minus"></i>
+                                        </button>
+                                        <input style="width:80%;float:right;" name="befPvt_{{$index}}"
+                                               ng-model="befPvt.type_facilities" popover="This field is required"
+                                               popover-toggle="form_bs_edu_fac['befPvt_' + $index].$dirty && !form_bs_edu_fac['befPvt_' + $index].$valid"
+                                               popover-placement="top" required type="text" class="form-control input-md">
+                                        {% endverbatim %}
+                                    </td>
+                                    <td colspan="3" width="136">
+                                        <input ng-model="befPvt.total_number" type="number" placeholder=""
+                                               class="form-control input-md"></td>
+                                    <td colspan="3" width="136">
+                                        <input ng-model="befPvt.avg_male" placeholder="" type="number"
+                                               class="form-control input-md"></td>
+                                    <td colspan="3" width="136">
+                                        <input ng-model="befPvt.avg_female" placeholder="" type="number"
+                                               class="form-control input-md"></td>
+                                </tr>
+                                <tr class="tdpa" height="20">
+                                    <td width="280" height="17" colspan="7"> Others
+                                        <button ng-click="insertAsset('BefPvt')" class="btn btn-sm btn-info btn-circle"
+                                                id="insert"><span class="fa fa-plus"></span></button>
+                                    </td>
+                                    <td colspan="3" colspan="3" width="136"></td>
+                                </tr>
+                                <tr ng-repeat="befPvt in bsEduFacilities.education.Table_1.BefPvt"
+                                ng-if="befPvt.type_facilities == 'TOTAL NUMBER OF STUDENTS'" height="17">
+                                <td ng-bind="befPvt.type_facilities" class="tdpa" width="280" height="17"></td>
+                                <td colspan="3" class="right" width="136" ng-model="befPvt.total_number"
+                                    ng-bind="totBefPvtTotalNumber()"></td>
+                                <td colspan="3" class="right" width="136" ng-model="befPvt.avg_male"
+                                    ng-bind="befPvt.avg_male = totBefPvtAvgMale()"></td>
+                                <td colspan="3" class="right" width="136" ng-model="befPvt.avg_female"
+                                    ng-bind="befPvt.avg_male = totBefPvtAvgFemale()"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pull-right">
+                        <br>
+                        <button id="clearbtn" type="button" class="btn btn-info" ng-click="clear()">
+                            Clear
+                        </button>
+                        <span ng-if="is_edit_disable">
+                            <button id="editbtn" type="button" ng-click="editBsData(form_bs_edu_fac)" ng-if="!is_edit"
+                                    class="btn btn-success">
                                 Edit
                             </button>
                         </span> <span ng-if="!is_edit_disable">
@@ -152,12 +227,16 @@ $(document).ready(function() {
                                 Edit
                             </button>
                         </span>
-						<button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning"> Cancel Edit </button>
-						<button id="subbtn" type="button" ng-click="saveBsData(form_bs_edu_fac)" class="btn btn-success"> Submit </button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /.conainer-fluid -->
+                        <button id="editbtn" type="button" ng-click="cancelEdit()" ng-if="is_edit" class="btn btn-warning">
+                            Cancel Edit
+                        </button>
+                        <button id="subbtn" type="button" ng-click="saveBsData(form_bs_edu_fac)" class="btn btn-success">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.conainer-fluid -->
 </main> {% endblock content %}

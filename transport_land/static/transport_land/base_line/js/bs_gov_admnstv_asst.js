@@ -69,7 +69,7 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
 
     $scope.bsGovAdmnstvAsset = angular.copy(init_data);
 
-    //Disable Edit Button
+    //disable edit button
     $scope.changeDis = function changeDis() {
         if($scope.district && $scope.bs_date) {
             $scope.is_edit_disable = true;
@@ -104,7 +104,8 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
     $scope.removeItem = function removeItem(table, index) {
         if (table == 'BiaGacLandOequipment') {
             $scope.bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandOequipment.splice(index, 1);
-        } else if (table == 'BiaGacLandMachinery') {
+        }
+        else if (table == 'BiaGacLandMachinery') {
             $scope.bsGovAdmnstvAsset.transport_land.Table_3.BiaGacLandMachinery.splice(index, 1);
         }
     }
@@ -141,7 +142,7 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         }
     }
 
-    // edit data
+    //edit data
     $scope.editBsData = function(form) {
         $scope.submitted = true;
         $scope.is_edit = true;
@@ -190,7 +191,7 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         location.reload();
     }
 
-    //Clear Function
+    //clear Function
 	$scope.clear = function() {
 		console.log("clear")
 		$scope.is_edit = false;
@@ -198,7 +199,7 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
 		location.reload();
 	}
 
-    // search data
+    //search data
 	$scope.searchBsData = function(form) {
         document.getElementById("clearbtn").disabled = true;
         document.getElementById("editbtn").disabled = true;
@@ -230,10 +231,12 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
                     })
                     if(edit_data_not_found != true) {
                         $scope.bsGovAdmnstvAsset = data;
-                    } else {
+                    }
+                    else {
                         $("#modal-container-239456").modal('show');
                     }
-                } else {
+                }
+                else {
                     $("#modal-container-239456").modal('show');
                 }
             })
@@ -244,9 +247,6 @@ app.controller('BsGovAdmnstvAssetController', ['$scope', '$http', function($scop
         'transport_land': {
             'Table_3': {
                 'BiaGacLandOequipment': [],
-//                'BS_Table2': [],
-//                'BS_Table3': [],
-//                'BS_Table4': [],
             }
         }
     }

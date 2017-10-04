@@ -7,6 +7,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.dlDate;
     $scope.bs_data = {};
     $scope.baselineDate;
+    $scope.bsCreatedDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.selectedCompany;
@@ -236,9 +237,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                 $scope.selectedDistrict = "";
             })
         }
-
         if($scope.incident && $scope.district) {
-            console.log('**');
             $scope.check_search = true;
             $http({
                 method: 'POST',
@@ -254,27 +253,23 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     'sector':'telecommunication',
                 }),
                 dataType: 'json',
-
             }).then(function successCallback(response) {
                 var data = response.data;
+                console.log('response', response);
                 angular.forEach(data, function(value, key) {
                     $scope.bs_data[key] = JSON.parse(value);
                 });
                 var is_null = false;
-//                console.log(data);
-
                 angular.forEach($scope.bs_data, function(value, index) {
                     if(value==null) {
                         is_null = true;
                     }
                 })
-
                 if(is_null == true) {
                     $("#modal-container-239455").modal('show');
                     console.log('baseline table or tables are empty');
                 }
                 else {
-                    console.log('***');
                     console.log('bs_data', $scope.bs_data);
                     console.log('len ', $scope.bs_data.BsTelCompany.length);
 
@@ -285,7 +280,36 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     });
                     $scope.companies = company_array;
 
-                    console.log($scope.companies);
+                    console.log('=======================');
+
+                    $http({
+                        method: 'POST',
+                        url: '/get_latest_bs_date',
+                        contentType: 'application/json; charset=utf-8',
+                        data: angular.toJson({
+                            'db_tables': [],
+                            'com_data': {
+                                'district': $scope.district.district__id,
+                                'incident': $scope.incident,
+                            },
+                            'table_name': 'Table_1',
+                            'sector': 'telecommunication',
+                        }),
+                        dataType: 'json',
+                    }).then(function successCallback(response) {
+                        console.log('response', response);
+                        var result = response.data;
+                        if(result.bs_date == null) {
+                            $("#modal-container-239458").modal('show');
+                        }
+                        else {
+                            var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+                            $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+                            $scope.bsCreatedDate = result.bs_created_date;
+                            console.log('bs_date', result.bs_date);
+                            console.log('bsCreatedDate', result.bs_created_date);
+                        }
+                    });
                 }
             });
         }
@@ -293,25 +317,21 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
 
     $scope.calTotal = function(arr) {
         var finaltotal = 0;
-//        console.log(arr);
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'Total') {
                 finaltotal = finaltotal + value.tot_dmg;
             }
         })
-//        console.log(finaltotal);
         return finaltotal;
     }
 
     $scope.calTotalInField = function(arr, field_name) {
         var finaltotal = 0;
-//        console.log(arr);
         angular.forEach(arr, function(value, key) {
             if(value.assets != 'TOTAL') {
                 finaltotal = finaltotal + value[field_name];
             }
         })
-//        console.log(finaltotal);
         return finaltotal;
     }
 
@@ -375,6 +395,7 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                         'company_id' : $scope.selectedCompany.company,
                         'user_id' : $scope.user_id,
                     },
+                    'bs_date': $scope.bsCreatedDate,
                     'is_edit' : $scope.is_edit,
                     'sector' : 'telecommunication'
                 }),
@@ -395,14 +416,14 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     }
 
     $scope.test = function(form) {
-       console.log($scope.selectedCompany.company);
+        console.log($scope.selectedCompany.company);
 //        console.log($scope.selectedCompany.id);
     }
 
     $scope.editDlData = function(form) {
         $scope.is_edit = true;
         $scope.submitted = true;
-         document.getElementById("clearbtn").disabled = true;
+        document.getElementById("clearbtn").disabled = true;
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -419,7 +440,6 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                 }),
             }).success(function(data) {
                 console.log(data);
-//                $scope.dlTelcomFirms = data;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.telecommunication.Table_2, function(value, index) {
@@ -430,7 +450,6 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     })
                     if(edit_data_not_found != true) {
                         $scope.dlTelcomFirms = data;
-//                        $scope.getPrivateClinicsIDs();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
@@ -443,13 +462,12 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
         }
     }
 
-     $scope.searchDlData = function(form) {
+    $scope.searchDlData = function(form) {
         document.getElementById("clearbtn").disabled = true;
 		document.getElementById("editbtn").disabled = true;
 		document.getElementById("subbtn").disabled = true;
-		console.log("test", $scope.district);
-		console.log("test", $scope.bs_date);
-		$scope.is_search = true;
+
+        $scope.is_search = true;
         if(form.$valid) {
             $http({
                 method: "POST",
@@ -466,7 +484,6 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                 }),
             }).success(function(data) {
                 console.log(data);
-//                $scope.dlTelcomFirms = data;
                 var edit_data_not_found = false;
                 if(data != null) {
                     angular.forEach(data.telecommunication.Table_2, function(value, index) {
@@ -477,7 +494,6 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
                     })
                     if(edit_data_not_found != true) {
                         $scope.dlTelcomFirms = data;
-//                        $scope.getPrivateClinicsIDs();
                     }
                     else {
                         $("#modal-container-239456").modal('show');
@@ -517,11 +533,11 @@ app.controller('dlTelcomFirmsController', ['$scope', '$http', function($scope, $
     $scope.fetchOwnership = function() {
         if($scope.new_department) {
             $http({
-            method: "POST",
-            url: "/other_govn_services/damage_losses/fetch_ownership",
-            data: angular.toJson({
-            'department': $scope.new_department.id,
-             }),
+                method: "POST",
+                url: "/other_govn_services/damage_losses/fetch_ownership",
+                data: angular.toJson({
+                    'department': $scope.new_department.id,
+                }),
             }).success(function(data) {
                 $scope.ownership = data;
                 console.log(data);

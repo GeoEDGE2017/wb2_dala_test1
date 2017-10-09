@@ -9,10 +9,14 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:index' %}">Dashboard</a>
+            <a href="{% url 'dashboard:index' %}">
+                Dashboard
+            </a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{% url 'dashboard:telecom_main' %}">Telecommunication Sector</a>
+            <a href="{% url 'dashboard:telecom_main' %}">
+                Telecommunication Sector
+            </a>
         </li>
         <li class="breadcrumb-item active">
             <span class="label label-success" style="font-size:14px;">
@@ -20,7 +24,9 @@
             </span>
         </li>
         <li style="float:right;">
-            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info" data-toggle="tooltip" title="Veiw Document" ></a>
+            <a href="{% static 'dashboard/doc/Telecommunications.pdf' %}" target="_blank" style="font-size: 18px;font-weight:bold;text-decoration: none;" class="icon-info"
+               data-toggle="tooltip" title="Veiw Document" >
+            </a>
         </li>
     </ol>
     <div class="container-fluid" ng-form name="form_dl_telcom_firms">
@@ -34,13 +40,21 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active" id="step1">
-                        <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchDlData(form_dl_telcom_firms)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+                <td style="width:100px;">
+                    <span ng-if="!check_search">
+                        <button ng-if="!is_search" class="btn btn-info" disabled>
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <span ng-if="check_search">
+                        <button ng-click="searchDlData(form_dl_telcom_firms)" ng-if="!is_search" class="btn btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </span>
+                    <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+                        Cancel Search
+                    </button>
+                </td>
                 <table class="table table-bordered">
                     <colgroup>
                         <col width="293"/>

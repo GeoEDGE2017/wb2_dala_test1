@@ -460,7 +460,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 						console.log($scope.bs_data);
 						$scope.currentBaselineDate = null;
 					} else {
-						generateRefencedData();
+
 						$http({
 							method: 'POST',
 							url: '/get_latest_bs_date',
@@ -486,6 +486,7 @@ app.controller('dlLivestockPoultryController', ['$scope', '$http', function($sco
 								$scope.bsCreatedeDate = result.bs_created_date;
 								console.log('bs_date', result.bs_date);
 								console.log('bsCreatedeDate', result.bs_created_date);
+								generateRefencedData();
 							}
 						});
 					}

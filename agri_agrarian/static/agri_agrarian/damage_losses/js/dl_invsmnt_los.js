@@ -229,7 +229,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
                 dataType: 'json',
 
             }).then(function successCallback(response) {
-                    generateRefencedData()
+
                     var data = response.data;
                     console.log('*', response);
                     angular.forEach(data, function(value, key) {
@@ -276,6 +276,7 @@ app.controller('dlInvsmntLosController', ['$scope', '$http', function($scope, $h
 								$scope.bsCreatedeDate = result.bs_created_date;
 								console.log('bs_date', result.bs_date);
 								console.log('bsCreatedeDate', result.bs_created_date);
+								generateRefencedData()
 							}
                         });
                     }

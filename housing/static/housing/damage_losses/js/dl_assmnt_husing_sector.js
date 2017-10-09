@@ -679,4 +679,141 @@ app.controller('dlAssmntHusingController', ['$scope', '$http', function($scope, 
         $scope.dlAssmntHusing = angular.copy(init_data);
         location.reload();
     }
+
+    //Calculate  Total Destroyed
+    $scope.calTotDestroyed=function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+
+        var grandparttot = 0;
+
+        var array1=$scope.dlAssmntHusing.housing.Table_3.DlLosPermanent;
+        var array2 =$scope.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent;
+        var array3 =$scope.dlAssmntHusing.housing.Table_3.DlLosImprovised;
+
+        angular.forEach(array1, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal1 = finaltotal1 + value.tot_num_des_houses ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal2 = finaltotal2 + value.tot_num_des_houses ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal3 = finaltotal3 + value.tot_num_des_houses ;
+            }
+        })
+        console.log("printing",finaltotal1 ,finaltotal2,finaltotal3);
+        grandparttot = $scope.twoInputconvertToInt(finaltotal1, finaltotal2,finaltotal3);
+        $scope.partialtot = grandparttot;
+        return grandparttot;
+
+    }
+
+     //Calculate Partial Total
+    $scope.calTotPartial=function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+
+        var grandparttot = 0;
+
+        var array1=$scope.dlAssmntHusing.housing.Table_3.DlLosPermanent;
+        var array2 =$scope.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent;
+        var array3 =$scope.dlAssmntHusing.housing.Table_3.DlLosImprovised;
+
+        angular.forEach(array1, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal1 = finaltotal1 + value.tot_num_dmg_houses ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal2 = finaltotal2 + value.tot_num_dmg_houses ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal3 = finaltotal3 + value.tot_num_dmg_houses ;
+            }
+        })
+        console.log("printing",finaltotal1 ,finaltotal2,finaltotal3);
+        grandparttot = $scope.twoInputconvertToInt(finaltotal1, finaltotal2,finaltotal3);
+        $scope.partialtot = grandparttot;
+        return grandparttot;
+
+    }
+
+    $scope.calTotForeign=function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+
+        var grandparttot = 0;
+
+        var array1=$scope.dlAssmntHusing.housing.Table_3.DlLosPermanent;
+        var array2 =$scope.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent;
+        var array3 =$scope.dlAssmntHusing.housing.Table_3.DlLosImprovised;
+
+        angular.forEach(array1, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal1 = finaltotal1 + value.frg_income ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal2 = finaltotal2 + value.frg_income ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal3 = finaltotal3 + value.frg_income ;
+            }
+        })
+        console.log("printing",finaltotal1 ,finaltotal2,finaltotal3);
+        grandparttot = $scope.twoInputconvertToInt(finaltotal1, finaltotal2,finaltotal3);
+        $scope.partialtot = grandparttot;
+        return grandparttot;
+
+    }
+
+      //Calculate grand loss Total
+    $scope.calTotLossValue=function(){
+        var finaltotal1 = 0;
+        var finaltotal2 = 0;
+        var finaltotal3 = 0;
+
+        var grandparttot = 0;
+
+        var array1=$scope.dlAssmntHusing.housing.Table_3.DlLosPermanent;
+        var array2 =$scope.dlAssmntHusing.housing.Table_3.DlLosSemiPermanent;
+        var array3 =$scope.dlAssmntHusing.housing.Table_3.DlLosImprovised;
+
+        angular.forEach(array1, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal1 = finaltotal1 + value.losses ;
+            }
+        })
+        angular.forEach(array2, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal2 = finaltotal2 + value.losses ;
+            }
+        })
+        angular.forEach(array3, function(value, key) {
+            if(value.assets !='Total'){
+                finaltotal3 = finaltotal3 + value.losses ;
+            }
+        })
+        console.log("printing",finaltotal1 ,finaltotal2,finaltotal3);
+        grandparttot = $scope.twoInputconvertToInt(finaltotal1, finaltotal2,finaltotal3);
+        $scope.partialtot = grandparttot;
+        return grandparttot;
+
+    }
+
+
 }]);

@@ -38,44 +38,67 @@ $(document).ready(function() {
 	<div class="container-fluid">
 		<div class="col-sm-12" style="padding:0;">
 			<div class="card">
-				<div ng-form name="form_pop_lat_census" class="card-block"> <span style="color:red" ng-show="submitted && form_pop_lat_census.$error.required">
-                         Please fill all required fields
-                     </span> <span style="color:red" ng-show="!is_valid_data">
+				<div ng-form name="form_pop_lat_census" class="card-block">
+					<span style="color:red" ng-show="submitted && form_pop_lat_census.$error.required">
+				 		Please fill all required fields
+			 		</span>
+					<span style="color:red" ng-show="!is_valid_data">
                         This request can't be proceed, there is data-set available for this selection.
-                     </span>
-                     <td style="width:100px;"> <span ng-if="!check_search">
-									<button ng-if="!is_search" class="btn btn-info" disabled><span class="fa fa-search"></span></button>
-									</span> <span ng-if="check_search">
-									<button ng-click="searchBsData(form_pop_lat_census)" ng-if="!is_search" class="btn btn-info"><span class="fa fa-search"></span></button>
-									</span>
-									<button ng-click="clear()" ng-if="is_search" class="btn btn-warning">Cancel Search</button>
-								</td>
+				 	</span>
+				 	<td style="width:100px;">
+				 		<span ng-if="!check_search">
+					 		<button ng-if="!is_search" class="btn btn-info" disabled>
+					 			<span class="fa fa-search"></span>
+						 	</button>
+					 	</span>
+					 	<span ng-if="check_search">
+					 		<button ng-click="searchBsData(form_pop_lat_census)" ng-if="!is_search" class="btn btn-info">
+								<span class="fa fa-search"></span>
+							</button>
+					 	</span>
+						 <button ng-click="clear()" ng-if="is_search" class="btn btn-warning">
+							 Cancel Search
+						 </button>
+					</td>
 					<table class="table table-bordered" style="width:100%;background:#4679B2;color:#fff;">
 						<colgroup>
-							<col width="264" />
-							<col width="98" span="4" /> </colgroup>
+							<col width="264"/>
+							<col width="98" span="4"/>
+						</colgroup>
 						<tbody>
 							<tr style="background:#fff;border:1px solid #fff;text-align:center;">
-								<td style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_pop_lat_census.district.$error.required">
-                                       Please Select District
-                                 </span> </td>
-								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;"> </td>
-								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;"> <span class="arrow_box" ng-show="submitted && form_pop_lat_census.bs_date.$error.required">
-                                       Please Select Date
-                                 </span> </td>
+								<td style="background:#fff;border:1px solid #fff;text-align:center;"></td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+									<span class="arrow_box" ng-show="submitted && form_pop_lat_census.district.$error.required">
+								   		Please Select District
+                                 	</span>
+								</td>
+								<td colspan="1" style="background:#fff;border:1px solid #fff;text-align:center;">
+								</td>
+								<td colspan="2" style="background:#fff;border:1px solid #fff;text-align:center;">
+									<span class="arrow_box" ng-show="submitted && form_pop_lat_census.bs_date.$error.required">
+								   		Please Select Date
+                                 	</span>
+								</td>
 							</tr>
 							<tr class="trhead1 p5">
-								<td class=""> Name of District or RDH</td>
+								<td class="">
+									Name of District or RDH
+								</td>
 								<td colspan="">
-									<select ng-model="district" id="selectbasic" name="district" ng-change="getLatestBsDate;changeDis();" class="form-control" style="font-weight:400;" required>
+									<select ng-model="district" id="selectbasic" name="district" ng-change="getLatestBsDate;changeDis();"
+											class="form-control" style="font-weight:400;" required>
 										<option value="">Select the District or RDH</option> {% for district in districts %}
-										<option value="{{ district.id }}">{{ district.name }}</option> {% endfor %} </select>
+										<option value="{{ district.id }}">{{ district.name }}</option> {% endfor %}
+									</select>
 								</td>
 								<td class="p5"> Year/Month </td>
 								<td colspan="2">
-									<input ng-model="bs_date" required name="bs_date" ng-change="changeDis();" type="text" placeholder="mm/yyyy" id="datepicker" class="form-control input-md"> </td>
-								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span> </tr>
+									<input ng-model="bs_date" required name="bs_date" ng-change="changeDis();" type="text"
+										   placeholder="mm/yyyy" id="datepicker" class="form-control input-md">
+								</td>
+								 <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
+							</tr>
 							<tr height="20" class="trhead1">
 								<td rowspan="3" height="60" width="264" style="padding-left:5px;"> Population as of Latest Census </td>
 								<td colspan="2" width="196" style="text-align:center;" style="padding-left:5px;"> By Sex </td>

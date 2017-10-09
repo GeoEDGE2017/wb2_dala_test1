@@ -35,7 +35,7 @@
                         <td class="trhead1 p5" width="130" colspan="2">
                             Incident
                         </td>
-                        <td width="125">
+                        <td width="125" colspan="2">
                             <select id="selectbasic" name="incident" ng-model="incident"
                                     class="form-control" ng-change="changedValue(true);fetchDlData();"
                                     style="width:100%;font-weight:400;" required>
@@ -65,9 +65,9 @@
                         <span ng-bind="user_id={{user.id}}" style="display:none;"></span>
                     </tr>
                     </tbody>
-                    </table>
-                  <table class="table table-bordered" ng-if="!checkIfNull()">
-                    <tbody>
+                 
+                 
+                    <tbody ng-if="!checkIfNull()">
 
 
                     <tr class="trhead1" height="20">
@@ -91,10 +91,11 @@
                         </td>
                     </tr>
                     </tbody>
-                </table>
-                <table class="table table-bordered" ng-if="!checkIfNull() && !$index>0"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
-                    <tbody>
+               
+                <tbody class="" ng-if="!checkIfNull() && !$index>0"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
+                   
                     <tr height="20">
+                    <td></td>
                         <td width="107" height="21" class="right"
                             ng-bind="data.water_supply.Table_6[key].DlcwNumClientsProvince[0].residential">
 
@@ -109,9 +110,9 @@
                         </td>
                     </tr>
                     </tbody>
-                    </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
-                    <tbody>
+                   
+                <tbody class="" ng-if="!checkIfNull()">
+                 
                     <tr class="trheadc1" height="20">
                         <td rowspan="2" width="298" height="40">
                             Number of Affected Rural Water Supply Users (Families)
@@ -133,10 +134,11 @@
                         </td>
                     </tr>
                     </tbody>
-                    </table>
-             <table class="table table-bordered" ng-if="!checkIfNull() && !$index>0"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
-                    <tbody>
+                   
+             <tbody class="" ng-if="!checkIfNull() && !$index>0"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
+                   
                     <tr height="20" >
+                     <td></td>
                         <td  width="107" class="right" height="21" ng-bind="data.water_supply.Table_6[key].DlRuralDmgProvince[1].families_affected">
                         </td>
                         <td class="right" width="107" ng-bind="data.water_supply.Table_6[key].DlRuralDmgProvince[2].families_affected">
@@ -149,9 +151,9 @@
                         </td>
                     </tr>
                     </tbody>
-                 </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()" >
-                   <tbody>
+                 
+                <tbody class="" ng-if="!checkIfNull()" >
+                  
                     <tr class="trheadc1" height="20">
                         <td rowspan="3" width="298" height="60">
                             Type of Water Supply System
@@ -183,8 +185,8 @@
                         </td>
                     </tr>
                     </tbody>
-                    </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
+                   
+                <tbody class="" ng-if="!checkIfNull()">
                     <tr class="tdpa" height="20">
                         <td width="298" height="20" class="boldash">
                             NWSDB Commercial Water Supply
@@ -198,9 +200,9 @@
                         <td colspan="2" width="196">
                         </td>
                     </tr>
-                    </table>
-              <table class="table table-bordered" ng-if="!checkIfNull()"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
-                    <tbody>
+                   
+              <tbody class="" ng-if="!checkIfNull()"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
+                   
                     <tr height="20" height="20"
                         ng-init="getTotal(key)">
                         <td  class="tdpa" width="298" height="20" ng-bind="key">
@@ -218,10 +220,10 @@
                         </td>
                     </tr>
                     </tbody>
-                  </table>
-                <table class="table table-bordered" ng-if="!checkIfNull() && !$index>0"
+                 
+                <tbody class="" ng-if="!checkIfNull() && !$index>0"
                        ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
-                    <tbody>
+                   
                     <tr height="20" height="20" >
                         <td class="tdpa" width="298" height="20">
                             Total - Commercial Water Supply
@@ -244,9 +246,9 @@
                         </td>
                         {% endverbatim %}
                     </tr>
-                    </table>
+                   </tbody>
 
-                <table class="table table-bordered" ng-if="!checkIfNull()">
+                <tbody class="" ng-if="!checkIfNull()">
                     <tr class="tdpa" height="20">
                         <td width="298" height="20" class="tdpa">
                             Rural Water Supply
@@ -260,9 +262,9 @@
                         <td colspan="2" width="196">
                         </td>
                     </tr>
-                    </table>
-              <table class="table table-bordered" ng-if="!checkIfNull()"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
-                    <tbody>
+                   </tbody>
+              <tbody class="" ng-if="!checkIfNull()"  ng-repeat="(key, value) in dlWaterSupplyPro.water_supply.Table_6">
+                  
                     <tr height="20"
                         ng-init="getTotal(key)">
                         <td class="tdpa" width="298" height="20" ng-bind="key">
@@ -280,9 +282,9 @@
                         </td>
                     </tr>
                     </tbody>
-                  </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()"  >
-                     <tbody>
+                  
+                <tbody class="" ng-if="!checkIfNull()"  >
+                   
                     <tr height="20" >
                         <td class="tdpa" width="298" height="20">
                             Total - Rural Water Supply
@@ -303,9 +305,9 @@
                         {% endverbatim %}
                     </tr>
                     </tbody>
-                    </table>
-                <table class="table table-bordered" ng-if="!checkIfNull()">
-                    <tbody>
+                   
+                <body class="" ng-if="!checkIfNull()">
+                   
                     <tr height="20">
                         <td class="tdpa" width="298" height="20">
                             GRAND TOTAL

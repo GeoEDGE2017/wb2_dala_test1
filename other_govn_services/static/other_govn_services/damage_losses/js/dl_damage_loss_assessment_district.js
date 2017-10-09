@@ -153,17 +153,17 @@ app.controller("dlAssessmentDistrictController", function ($scope,$http, _) {
     }
 
     $scope.grandTotDamages = function(type) {
-        return  $scope.getTotDamages('Provincial Government') +  $scope.getTotDamages('Provincial Government') +
+        return  $scope.getTotDamages('District Government') +  $scope.getTotDamages('Provincial Government') +
              $scope.getTotDamages('National Ministry or Agency');
     }
 
     $scope.grandTotLosYear1 = function(type) {
-        return  $scope.getTotLosYear1('Provincial Government') +  $scope.getTotLosYear1('Provincial Government') +
+        return  $scope.getTotLosYear1('District Government') +  $scope.getTotLosYear1('Provincial Government') +
              $scope.getTotLosYear1('National Ministry or Agency');
     }
 
     $scope.grandTotLosYear2 = function(type) {
-        return  $scope.getTotLosYear2('Provincial Government') +  $scope.getTotLosYear2('Provincial Government') +
+        return  $scope.getTotLosYear2('District Government') +  $scope.getTotLosYear2('Provincial Government') +
              $scope.getTotLosYear2('National Ministry or Agency');
     }
 })

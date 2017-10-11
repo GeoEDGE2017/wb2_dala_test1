@@ -357,7 +357,6 @@ app.controller('dlIncomeRailCompanyController', function($scope, $http, $parse, 
 							'company_id': $scope.company.id,
 							'user_id': $scope.user_id
 						},
-
 						'bs_date': $scope.bsCreatedDate,
                         'is_edit': $scope.is_edit,
                         'sector': 'transport_rail'

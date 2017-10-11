@@ -91,27 +91,36 @@
                     <tbody ng-if="!checkIfNull()">
                         <tr class="trheadc1" height="20">
                             <td colspan="3" width="281" height="20" style="width:41%;">
-                                Name of District
+                                Name of District*
                             </td>
                             <td colspan="3" width="425">
                                 Total Damage (LKR)
                             </td>
                         </tr>
                     </tbody>
+                    <!--<tbody class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlRailTransSumDis.transport_rail.Table_3" >-->
+                        <!--<tr  height="20" ng-init="getTotal('TotDmgProvince','tot_damages', $index, key);">-->
+                            <!--<td colspan="3" ng-bind="key"  class="tdpa" width="275">-->
+                            <!--</td>-->
+                            <!--<td class="right" colspan="3" width="400" ng-bind="value.TotDmgProvince[0].tot_damages" >-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    <!--</tbody>-->
                     <tbody class="table table-bordered" ng-if="!checkIfNull()" ng-repeat="(key, value) in dlRailTransSumDis.transport_rail.Table_3" >
-                        <tr  height="20" ng-init="getTotal('TotDmgProvince','tot_damages', $index,key);">
+                        <tr  height="20">
                             <td colspan="3" ng-bind="key"  class="tdpa" width="275">
                             </td>
                             <td class="right" colspan="3" width="400" ng-bind="value.TotDmgProvince[0].tot_damages" >
                             </td>
                         </tr>
                     </tbody>
+
                     <tbody class="table table-bordered" ng-if="!checkIfNull()" >
                         <tr height="20">
                             <td class="boldash" width="281" height="20">
                                 TOTAL
                             </td>
-                            <td width="425" colspan="3" class="right" ng-bind="total">
+                            <td width="425" colspan="3" class="right" ng-bind="getTotal()">
                                 <!--<span class="right" ng-bind="total"></span>-->
                             </td>
                         </tr>

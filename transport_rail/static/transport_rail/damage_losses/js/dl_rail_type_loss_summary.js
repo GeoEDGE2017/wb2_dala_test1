@@ -1,3 +1,4 @@
+//Table_5
 var app = angular.module('dlTypeLossRailApp', ['underscore'])
 
 app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
@@ -8,6 +9,7 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
     $scope.bs_data={};
     var total=0;
     $scope.baselineDate;
+    $scope.bsCreatedDate;
     $scope.is_edit = false;
     $scope.is_valid_data = true;
     $scope.DlTypeLos_year_1 = 0;
@@ -22,23 +24,19 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
                     year_1 : null,
                     year_2 : null,
                     tot_los : null,
-                },
-                {   loss_type : 'Cleaning up of debris',
+                }, {   loss_type : 'Cleaning up of debris',
                     year_1 : null,
                     year_2 : null,
                     tot_los : null,
-                },
-                {   loss_type : 'Higher operating costs',
+                },{   loss_type : 'Higher operating costs',
                     year_1 : null,
                     year_2 : null,
                     tot_los : null,
-                },
-                {   loss_type : 'Other unexpected expenses',
+                },{   loss_type : 'Other unexpected expenses',
                     year_1 : null,
                     year_2 : null,
                     tot_los : null,
-                },
-                {   loss_type : 'TOTAL LOSSES',
+                },{   loss_type : 'TOTAL LOSSES',
                     year_1 : null,
                     year_2 : null,
                     tot_los : null,
@@ -48,6 +46,39 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
     }
 
     $scope.dlTypeLossRail = init_data;
+
+    $scope.changedValue = function(selectedValue) {
+//		if($scope.incident) {
+//            $http({
+//                method: 'POST',
+//                url: '/get_latest_bs_date',
+//                contentType: 'application/json; charset=utf-8',
+//                data: angular.toJson({
+//                    'db_tables': ['DlTypeLos'],
+//                    'com_data': {
+//                        'district': $scope.district.district__id,
+//                        'incident': $scope.incident,
+//                    },
+//                    'sector': 'transport_rail',
+//                    'table_name': 'Table_1'
+//                }),
+//                dataType: 'json',
+//            }).then(function successCallback(response) {
+//                console.log('response', response.data.bs_created_date);
+//                var result = response.data;
+//                if(result.bs_date == null) {
+//                    $("#modal-container-239458").modal('show');
+//                }
+//                else {
+//                    var bs_date = result.bs_date.replace(/^"(.*)"$/, '$1');
+//                    $scope.currentBaselineDate = "Latest baseline data as at " + bs_date;
+//                    $scope.bsCreatedDate = result.bs_created_date;
+//                    console.log('bs_date', result.bs_date);
+//                    console.log('bsCreatedDate', result.bs_created_date);
+//                }
+//            });
+//        }
+	}
 
     $scope.getTotal = function(property) {
         var array = $scope.dlTypeLossRail.transport_rail.Table_5.DlTypeLos;
@@ -61,70 +92,60 @@ app.controller('DlTypeLossRailController', function($scope, $http, $parse, _) {
         var the_string = 'DlTypeLos_' + property;
         var model = $parse(the_string);
         model.assign($scope, cumulative);
-
-
-
     }
 
     $scope.saveDlData = function(form) {
-
         $scope.submitted = true;
-            $http({
-                method: 'POST',
-                url: '/dl_save_data',
-               contentType: 'application/json; charset=utf-8',
-                data: angular.toJson({
-                    'table_data': $scope.dlTypeLossRail,
-                    'com_data': {
-                        'incident_id' : $scope.incident,
-                        'user_id': $scope.user_id
-                    },
-                    'is_edit':$scope.is_edit
-                }),
-                dataType: 'json',
-            }).then(function successCallback(response) {
-                if(response.data == 'False')
-                    $scope.is_valid_data = false;
-               else
-                    $("#modal-container-239453").modal('show');
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-
+        $http({
+            method: 'POST',
+            url: '/dl_save_data',
+           contentType: 'application/json; charset=utf-8',
+            data: angular.toJson({
+                'table_data': $scope.dlTypeLossRail,
+                'com_data': {
+                    'incident_id' : $scope.incident,
+                    'user_id': $scope.user_id
+                },
+//                'bs_date': $scope.bsCreatedDate,
+                'is_edit': $scope.is_edit,
+                'sector': 'transport_rail'
+            }),
+            dataType: 'json',
+        }).then(function successCallback(response) {
+            if(response.data == 'False') {
+                $scope.is_valid_data = false;
             }
+            else {
+                $("#modal-container-239453").modal('show');
+            }
+        },
+        function errorCallback(response) {
+            console.log(response);
+        });
+    }
 
-   $scope.dlDataEdit = function(form){
+    $scope.dlDataEdit = function(form) {
+        $scope.is_edit = true;
+        $scope.submitted = true;
 
-   $scope.is_edit = true;
-   $scope.submitted = true;
+        $http({
+            method: "POST",
+            url: '/dl_fetch_edit_data',
+            data: angular.toJson({
+                'table_name':  'Table_5',
+                'sector':'transport_rail',
+                'com_data': {
+                    'incident': $scope.incident,
+                },
+                'is_edit':$scope.is_edit
+            }),
+        }).success(function(data) {
+            $scope.dlTypeLossRail = data;
+        })
+    }
 
-    $http({
-    method: "POST",
-    url: '/dl_fetch_edit_data',
-    data: angular.toJson({
-    'table_name':  'Table_5',
-    'sector':'transport_rail',
-    'com_data': {
-
-            'incident': $scope.incident,
-          },
-           'is_edit':$scope.is_edit
-           }),
-    }).success(function(data) {
-
-    $scope.dlTypeLossRail = data;
-    })
-
-}
-
-    $scope.cancelEdit = function(){
-     $scope.is_edit = false;
-     $scope.dlTypeLossRail = init_data;
-}
-
-
-
-
-
-
+    $scope.cancelEdit = function() {
+        $scope.is_edit = false;
+        $scope.dlTypeLossRail = init_data;
+    }
 });

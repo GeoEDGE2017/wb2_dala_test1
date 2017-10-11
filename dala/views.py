@@ -1181,12 +1181,14 @@ def dl_save_data(request):
     current_user = None
     print 'com_data', com_data
     print 'dl_data', dl_data
-    print 'bs_date', dl_data['bs_date']
+    try:
+        print 'bs_date', dl_data['bs_date']
+    except:
+        pass
     try:
         current_user = com_data['user_id']
-
         print 'Current User', current_user
-    except Exception as e:
+    except:
         print 'Current User Error'
 
     if not is_edit:
@@ -1243,7 +1245,10 @@ def dl_save_data(request):
                         district = District.objects.get(pk=com_data['district_id'])
                         filter_fields['province_id'] = district.province.id
                         filter_fields['user'] = current_user
-                        filter_fields['bs_date'] = dl_data['bs_date']
+                        try:
+                            filter_fields['bs_date'] = dl_data['bs_date']
+                        except Exception as e:
+                            pass
                         dl_session = sub_app_session(**filter_fields)
                         print '=== filter_fields', filter_fields
                         dl_session.date = todate
